@@ -3,57 +3,55 @@
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 // Sorted ASC by size. That's important.
+// It can't be configured as it's used statically for propTypes.
 export const keys = ['xs', 'sm', 'md', 'lg', 'xl'];
-
-const defaultBreakpointsMap = {
-  xs: 360,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-  xl: 1920,
-};
 
 // Keep in mind that @media is inclusive by the CSS specification.
 export default function createBreakpoints(breakpoints: Object) {
-  const { breakpointsMap = defaultBreakpointsMap, unit = 'px', step = 1, ...other } = breakpoints;
-
-  const values = keys.map(key => breakpointsMap[key]);
+  const {
+    // The breakpoint **start** at this value.
+    // For instance with the first breakpoint xs: [xs, sm[.
+    values = {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+    unit = 'px',
+    step = 5,
+    ...other
+  } = breakpoints;
 
   function up(key) {
-    let value;
-    // min-width of xs starts at 0
-    if (key === 'xs') {
-      value = 0;
-    } else {
-      value = breakpointsMap[key] || key;
-    }
+    const value = typeof values[key] === 'number' ? values[key] : key;
     return `@media (min-width:${value}${unit})`;
   }
 
   function down(key) {
-    const value = breakpointsMap[key] || key;
+    const value = typeof values[key] === 'number' ? values[key] : key;
     return `@media (max-width:${value - step / 100}${unit})`;
   }
 
   function between(start, end) {
-    const startIndex = keys.indexOf(start);
-    const endIndex = keys.indexOf(end);
+    const endIndex = keys.indexOf(end) + 1;
+
+    if (endIndex === keys.length) {
+      return up(start);
+    }
+
     return (
-      `@media (min-width:${values[startIndex]}${unit}) and ` +
-      `(max-width:${values[endIndex + 1] - step / 100}${unit})`
+      `@media (min-width:${values[start]}${unit}) and ` +
+      `(max-width:${values[keys[endIndex]] - step / 100}${unit})`
     );
   }
 
   function only(key) {
-    const keyIndex = keys.indexOf(key);
-    if (keyIndex === keys.length - 1) {
-      return up(key);
-    }
     return between(key, key);
   }
 
-  function getWidth(key) {
-    return breakpointsMap[key];
+  function width(key) {
+    return values[key];
   }
 
   return {
@@ -63,7 +61,7 @@ export default function createBreakpoints(breakpoints: Object) {
     down,
     between,
     only,
-    getWidth,
+    width,
     ...other,
   };
 }

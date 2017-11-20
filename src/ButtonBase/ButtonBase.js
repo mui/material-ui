@@ -1,11 +1,9 @@
 // @flow weak
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import { findDOMNode } from 'react-dom';
-import warning from 'warning';
 import classNames from 'classnames';
-import getDisplayName from 'recompose/getDisplayName';
 import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
 import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
@@ -20,14 +18,19 @@ export const styles = (theme: Object) => ({
     position: 'relative',
     // Remove grey highlight
     WebkitTapHighlightColor: theme.palette.common.transparent,
+    backgroundColor: 'transparent', // Reset default value
     outline: 'none',
     border: 0,
+    borderRadius: 0,
     cursor: 'pointer',
     userSelect: 'none',
     appearance: 'none',
     textDecoration: 'none',
     // So we take precedent over the style of a native <a /> element.
     color: 'inherit',
+    '&::-moz-focus-inner': {
+      borderStyle: 'none', // Remove Firefox dotted outline.
+    },
   },
   disabled: {
     pointerEvents: 'none', // Disable link interactions
@@ -35,16 +38,24 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * If `true`, the ripples will be centered.
    * They won't start at the cursor interaction position.
    */
-  centerRipple?: boolean,
+  centerRipple: boolean,
   /**
    * The content of the component.
    */
@@ -62,7 +73,7 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * The default value is a `button`.
    */
-  component?: string | ComponentType<*>,
+  component?: ElementType,
   /**
    * If `true`, the base button will be disabled.
    */
@@ -70,12 +81,12 @@ export type Props = {
   /**
    * If `true`, the ripple effect will be disabled.
    */
-  disableRipple?: boolean,
+  disableRipple: boolean,
   /**
    * If `true`, the base button will have a keyboard focus ripple.
    * `disableRipple` must also be `false`.
    */
-  focusRipple?: boolean,
+  focusRipple: boolean,
   /**
    * The CSS class applied while the component is keyboard focused.
    */
@@ -124,30 +135,34 @@ export type Props = {
   /**
    * @ignore
    */
+  onTouchMove?: Function,
+  /**
+   * @ignore
+   */
   onTouchStart?: Function,
   /**
    * @ignore
    */
   role?: string,
   /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef?: Function,
+  /**
    * @ignore
    */
-  tabIndex?: number | string,
+  tabIndex: number | string,
   /**
    * @ignore
    */
   type: string,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   keyboardFocused: boolean,
 };
 
-class ButtonBase extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class ButtonBase extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     centerRipple: false,
     focusRipple: false,
@@ -161,21 +176,18 @@ class ButtonBase extends React.Component<AllProps, State> {
   };
 
   componentDidMount() {
+    this.button = findDOMNode(this);
     listenForFocusKeys();
+  }
 
-    warning(
-      this.button,
-      [
-        'Material-UI: you have provided a custom Component to the `component` ' +
-          'property of `ButtonBase`.',
-        'In order to make the keyboard focus logic work, we need a reference on the root element.',
-        'Please provide a class component instead of a functional component.',
-        // eslint-disable-next-line prefer-template
-        `You need to fix the: ${getDisplayName(this.props.component) === 'component'
-          ? String(this.props.component)
-          : getDisplayName(this.props.component)} component.`,
-      ].join('\n'),
-    );
+  componentWillReceiveProps(nextProps) {
+    // The blur won't fire when the disabled state is set on a focused input.
+    // We need to book keep the focused state manually.
+    if (!this.props.disabled && nextProps.disabled) {
+      this.setState({
+        keyboardFocused: false,
+      });
+    }
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -190,19 +202,25 @@ class ButtonBase extends React.Component<AllProps, State> {
   }
 
   componentWillUnmount() {
+    this.button = null;
     clearTimeout(this.keyboardFocusTimeout);
   }
+
+  onKeyboardFocusHandler = event => {
+    this.keyDown = false;
+    this.setState({ keyboardFocused: true });
+
+    if (this.props.onKeyboardFocus) {
+      this.props.onKeyboardFocus(event);
+    }
+  };
 
   ripple = null;
   keyDown = false; // Used to help track keyboard activation keyDown
   button = null;
   keyboardFocusTimeout = null;
-  keyboardFocusCheckTime = 40;
+  keyboardFocusCheckTime = 50;
   keyboardFocusMaxCheckTimes = 5;
-
-  focus = () => {
-    this.button.focus();
-  };
 
   handleKeyDown = event => {
     const { component, focusRipple, onKeyDown, onClick } = this.props;
@@ -266,7 +284,11 @@ class ButtonBase extends React.Component<AllProps, State> {
 
   handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
 
+  handleTouchMove = createRippleHandler(this, 'TouchEnd', 'stop');
+
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
+    clearTimeout(this.keyboardFocusTimeout);
+    focusKeyPressed(false);
     this.setState({ keyboardFocused: false });
   });
 
@@ -275,24 +297,17 @@ class ButtonBase extends React.Component<AllProps, State> {
       return;
     }
 
-    if (this.button) {
-      event.persist();
-
-      const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
-      detectKeyboardFocus(this, findDOMNode(this.button), keyboardFocusCallback);
+    // Fix for https://github.com/facebook/react/issues/7769
+    if (!this.button) {
+      this.button = event.currentTarget;
     }
+
+    event.persist();
+    const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
+    detectKeyboardFocus(this, this.button, keyboardFocusCallback);
 
     if (this.props.onFocus) {
       this.props.onFocus(event);
-    }
-  };
-
-  onKeyboardFocusHandler = event => {
-    this.keyDown = false;
-    this.setState({ keyboardFocused: true });
-
-    if (this.props.onKeyboardFocus) {
-      this.props.onKeyboardFocus(event);
     }
   };
 
@@ -331,7 +346,9 @@ class ButtonBase extends React.Component<AllProps, State> {
       onMouseLeave,
       onMouseUp,
       onTouchEnd,
+      onTouchMove,
       onTouchStart,
+      rootRef,
       tabIndex,
       type,
       ...other
@@ -341,8 +358,7 @@ class ButtonBase extends React.Component<AllProps, State> {
       classes.root,
       {
         [classes.disabled]: disabled,
-        // $FlowFixMe
-        [keyboardFocusedClassName]: keyboardFocusedClassName && this.state.keyboardFocused,
+        [keyboardFocusedClassName || '']: this.state.keyboardFocused,
       },
       classNameProp,
     );
@@ -370,9 +386,6 @@ class ButtonBase extends React.Component<AllProps, State> {
 
     return (
       <ComponentProp
-        ref={node => {
-          this.button = node;
-        }}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
         onKeyDown={this.handleKeyDown}
@@ -381,11 +394,13 @@ class ButtonBase extends React.Component<AllProps, State> {
         onMouseLeave={this.handleMouseLeave}
         onMouseUp={this.handleMouseUp}
         onTouchEnd={this.handleTouchEnd}
+        onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
         tabIndex={disabled ? -1 : tabIndex}
         className={className}
         {...buttonProps}
         {...other}
+        ref={rootRef}
       >
         {children}
         {this.renderRipple()}

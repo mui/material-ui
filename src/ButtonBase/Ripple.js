@@ -4,11 +4,15 @@ import React from 'react';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
 
+type ProvidedProps = {
+  classes: Object,
+};
+
 export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -36,8 +40,7 @@ type State = { rippleVisible: boolean, rippleLeaving: boolean };
 /**
  * @ignore - internal component.
  */
-class Ripple extends React.Component<Props, State> {
-  props: Props;
+class Ripple extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     pulsate: false,
   };
@@ -45,6 +48,17 @@ class Ripple extends React.Component<Props, State> {
   state = {
     rippleVisible: false,
     rippleLeaving: false,
+  };
+
+  getRippleStyles = props => {
+    const { rippleSize, rippleX, rippleY } = props;
+
+    return {
+      width: rippleSize,
+      height: rippleSize,
+      top: -(rippleSize / 2) + rippleY,
+      left: -(rippleSize / 2) + rippleX,
+    };
   };
 
   handleEnter = () => {
@@ -57,17 +71,6 @@ class Ripple extends React.Component<Props, State> {
     this.setState({
       rippleLeaving: true,
     });
-  };
-
-  getRippleStyles = props => {
-    const { rippleSize, rippleX, rippleY } = props;
-
-    return {
-      width: rippleSize,
-      height: rippleSize,
-      top: -(rippleSize / 2) + rippleY,
-      left: -(rippleSize / 2) + rippleX,
-    };
   };
 
   render() {

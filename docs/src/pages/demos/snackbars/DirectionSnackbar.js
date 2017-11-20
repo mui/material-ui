@@ -5,14 +5,30 @@ import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
 import Slide from 'material-ui/transitions/Slide';
 
+function TransitionLeft(props) {
+  return <Slide direction="left" {...props} />;
+}
+
+function TransitionUp(props) {
+  return <Slide direction="up" {...props} />;
+}
+
+function TransitionRight(props) {
+  return <Slide direction="right" {...props} />;
+}
+
+function TransitionDown(props) {
+  return <Slide direction="down" {...props} />;
+}
+
 class DirectionSnackbar extends React.Component {
   state = {
     open: false,
-    direction: null,
+    transition: null,
   };
 
-  handleClick = direction => () => {
-    this.setState({ open: true, direction });
+  handleClick = transition => () => {
+    this.setState({ open: true, transition });
   };
 
   handleRequestClose = () => {
@@ -22,14 +38,14 @@ class DirectionSnackbar extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleClick('left')}>Right</Button>
-        <Button onClick={this.handleClick('up')}>Up</Button>
-        <Button onClick={this.handleClick('right')}>Left</Button>
-        <Button onClick={this.handleClick('down')}>Down</Button>
+        <Button onClick={this.handleClick(TransitionLeft)}>Right</Button>
+        <Button onClick={this.handleClick(TransitionUp)}>Up</Button>
+        <Button onClick={this.handleClick(TransitionRight)}>Left</Button>
+        <Button onClick={this.handleClick(TransitionDown)}>Down</Button>
         <Snackbar
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
-          transition={<Slide direction={this.state.direction} />}
+          transition={this.state.transition}
           SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}

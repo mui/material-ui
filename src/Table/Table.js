@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -16,12 +16,19 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  component: string,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The content of the table, normally `TableHeader` and `TableBody`.
    */
@@ -38,16 +45,12 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | ComponentType<*>,
+  component: ElementType,
 };
 
-type AllProps = DefaultProps & Props;
-
-class Table extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class Table extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
-    component: 'table',
+    component: ('table': ElementType),
   };
 
   getChildContext() {

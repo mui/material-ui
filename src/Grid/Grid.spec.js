@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import forOwn from 'lodash/forOwn';
 import { createShallow, getClasses } from '../test-utils';
 import Hidden from '../Hidden';
 import Grid from './Grid';
@@ -17,9 +16,7 @@ describe('<Grid />', () => {
     shallow = node => {
       return shallowInner(node)
         .find('Grid')
-        .shallow({
-          context: shallowInner.context,
-        });
+        .shallow({ context: shallowInner.context });
     };
     classes = getClasses(<Grid />);
   });
@@ -70,6 +67,20 @@ describe('<Grid />', () => {
     });
   });
 
+  describe('prop: alignItems', () => {
+    it('should apply the align-item class', () => {
+      const wrapper = shallow(<Grid alignItems="center" container />);
+      assert.strictEqual(wrapper.hasClass(classes['align-items-xs-center']), true);
+    });
+  });
+
+  describe('prop: alignContent', () => {
+    it('should apply the align-content class', () => {
+      const wrapper = shallow(<Grid alignContent="center" container />);
+      assert.strictEqual(wrapper.hasClass(classes['align-content-xs-center']), true);
+    });
+  });
+
   describe('prop: other', () => {
     it('should spread the other properties to the root element', () => {
       const handleClick = () => {};
@@ -93,7 +104,9 @@ describe('<Grid />', () => {
       xlDownHidden: true,
     };
 
-    forOwn(hiddenProps, (value, key) => {
+    Object.keys(hiddenProps).forEach(key => {
+      const value = hiddenProps[key];
+
       it(`should render ${key} with Hidden`, () => {
         const wrapper = shallow(<Grid hidden={{ [key]: value }} />);
         assert.strictEqual(wrapper.type(), Hidden);

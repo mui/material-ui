@@ -13,6 +13,7 @@ export const styles = (theme: Object) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
+    boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
     zIndex: theme.zIndex.appBar,
     flexShrink: 0,
   },
@@ -46,10 +47,15 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+export type Color = 'inherit' | 'primary' | 'accent' | 'default';
+export type Position = 'static' | 'fixed' | 'absolute';
+
+type ProvidedProps = {
   classes: Object,
-  color: 'primary',
-  position: 'fixed',
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -68,38 +74,38 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'inherit' | 'primary' | 'accent' | 'default',
+  color: Color,
   /**
    * The positioning type.
    */
-  position?: 'static' | 'fixed' | 'absolute',
+  position: Position,
 };
 
-type AllProps = DefaultProps & Props;
+class AppBar extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    color: 'primary',
+    position: 'fixed',
+  };
 
-function AppBar(props: AllProps) {
-  const { children, classes, className: classNameProp, color, position, ...other } = props;
+  render() {
+    const { children, classes, className: classNameProp, color, position, ...other } = this.props;
 
-  const className = classNames(
-    classes.root,
-    classes[`position${capitalizeFirstLetter(position)}`],
-    {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
-      'mui-fixed': position === 'fixed', // Useful for the Dialog
-    },
-    classNameProp,
-  );
+    const className = classNames(
+      classes.root,
+      classes[`position${capitalizeFirstLetter(position)}`],
+      {
+        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+        'mui-fixed': position === 'fixed', // Useful for the Dialog
+      },
+      classNameProp,
+    );
 
-  return (
-    <Paper square component="header" elevation={4} className={className} {...other}>
-      {children}
-    </Paper>
-  );
+    return (
+      <Paper square component="header" elevation={4} className={className} {...other}>
+        {children}
+      </Paper>
+    );
+  }
 }
-
-AppBar.defaultProps = {
-  color: 'primary',
-  position: 'fixed',
-};
 
 export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);

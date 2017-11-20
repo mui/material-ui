@@ -1,13 +1,18 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export type InputProps = {
+export interface InputProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  InputClassKey,
+  'onChange' | 'onKeyUp' | 'onKeyDown' | 'defaultValue'
+> {
   autoComplete?: string;
   autoFocus?: boolean;
   inputComponent?: React.ReactNode;
   defaultValue?: string | number;
   disabled?: boolean;
   disableUnderline?: boolean;
+  endAdornment?: React.ReactNode;
   error?: boolean;
   fullWidth?: boolean;
   id?: string;
@@ -21,10 +26,42 @@ export type InputProps = {
   placeholder?: string;
   rows?: string | number;
   rowsMax?: string | number;
+  startAdornment?: React.ReactNode;
   type?: string;
   value?: string | number;
   onClean?: () => void;
   onDirty?: () => void;
-} & React.HTMLAttributes<HTMLDivElement>;
+  /**
+   * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
+   * which by default is an input or textarea. Since these handlers differ from the
+   * ones inherited by `React.HTMLAttributes<HTMLDivElement>` we need to omit them.
+   *
+   * Note that  `blur` and `focus` event handler are applied to the outter `<div>`.
+   * So these can just be inherited from the native `<div>`.
+   */
+  onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+}
 
-export default class Input extends StyledComponent<InputProps> {}
+export type InputClassKey =
+  | 'root'
+  | 'formControl'
+  | 'inkbar'
+  | 'error'
+  | 'input'
+  | 'inputDense'
+  | 'disabled'
+  | 'focused'
+  | 'underline'
+  | 'multiline'
+  | 'inputDisabled'
+  | 'inputSingleline'
+  | 'inputSearch'
+  | 'inputMultiline'
+  | 'fullWidth'
+  ;
+
+declare const Input: React.ComponentType<InputProps>;
+
+export default Input;

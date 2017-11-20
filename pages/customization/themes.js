@@ -24,6 +24,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/TypographyTheme'), 'utf8')
 `,
         },
+        'pages/customization/FontSizeTheme.js': {
+          js: require('docs/src/pages/customization/FontSizeTheme').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/customization/FontSizeTheme'), 'utf8')
+`,
+        },
         'pages/customization/DarkTheme.js': {
           js: require('docs/src/pages/customization/DarkTheme').default,
           raw: preval`
@@ -38,11 +45,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/ThemeDefault'), 'utf8')
 `,
         },
-        'pages/customization/BusinessVariables.js': {
-          js: require('docs/src/pages/customization/BusinessVariables').default,
+        'pages/customization/CustomStyles.js': {
+          js: require('docs/src/pages/customization/CustomStyles').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/BusinessVariables'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/customization/CustomStyles'), 'utf8')
 `,
         },
         'pages/customization/OverridesTheme.js': {

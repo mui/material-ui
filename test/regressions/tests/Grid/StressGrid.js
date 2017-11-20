@@ -9,7 +9,7 @@ import Grid from 'material-ui/Grid';
 const styles = (theme: Object) => ({
   root: {
     width: 400,
-    backgroundColor: theme.palette.primary.A400,
+    backgroundColor: theme.palette.secondary.A400,
   },
   paper: {
     padding: 16,
@@ -47,7 +47,7 @@ function StressGrid(props) {
             <Paper className={classes.paper}>between</Paper>
           </Grid>
         </Grid>
-        <Grid container item spacing={8} align="stretch" direction="column-reverse">
+        <Grid container item spacing={8} alignItems="stretch" direction="column-reverse">
           <Grid item>
             <Paper className={classes.paper}>reverse</Paper>
           </Grid>

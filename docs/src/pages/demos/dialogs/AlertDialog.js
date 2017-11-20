@@ -9,9 +9,13 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-export default class AlertDialog extends React.Component {
+class AlertDialog extends React.Component {
   state = {
     open: false,
+  };
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
   };
 
   handleRequestClose = () => {
@@ -21,7 +25,7 @@ export default class AlertDialog extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={() => this.setState({ open: true })}>Open alert dialog</Button>
+        <Button onClick={this.handleClickOpen}>Open alert dialog</Button>
         <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
           <DialogTitle>{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
@@ -34,7 +38,7 @@ export default class AlertDialog extends React.Component {
             <Button onClick={this.handleRequestClose} color="primary">
               Disagree
             </Button>
-            <Button onClick={this.handleRequestClose} color="primary">
+            <Button onClick={this.handleRequestClose} color="primary" autoFocus>
               Agree
             </Button>
           </DialogActions>
@@ -43,3 +47,5 @@ export default class AlertDialog extends React.Component {
     );
   }
 }
+
+export default AlertDialog;

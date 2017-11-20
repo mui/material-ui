@@ -43,16 +43,19 @@ or included as a child for other Material-UI components that use icons.
 
 {{demo='pages/style/SvgIcons.js'}}
 
-Looking for svg icons? There is a lot of project out there.
-We have found one that provides 2000+ unoffical Material Design Icons: [https://materialdesignicons.com/](https://materialdesignicons.com/).
+Looking for SVG icons? There are a lot of projects out there.
+We have found one that provides 2,000+ unofficial Material Design Icons: [https://materialdesignicons.com](https://materialdesignicons.com/).
+You can use the [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) integration project between this raw list of icons and Material-UI.
 
 ### SVG Material icons
 
+It's interesting to have the building blocks needed to implement custom icons, but what about presets?
 We provide a separate NPM package,
 [material-ui-icons](https://www.npmjs.com/package/material-ui-icons),
-that includes the [material.io/icons](https://material.io/icons/) converted to SvgIcon components.
-Let's say you are looking for an icon.
-You can take advantage of the **search bar** of [material.io/icons](https://material.io/icons/).
+that includes the 900+ official material system icons: [material.io/icons](https://material.io/icons/) converted to `SvgIcon` components.
+
+Let's say you are looking for a specific icon.
+You can take advantage of the **search bar** of [material.io/icons](https://material.io/icons/) to find it.
 Keep in mind that we `PascalCase` the names of the icons, for instance:
 - [`alarm`](https://material.io/icons/#ic_alarm) is exposed as `material-ui-icons/Alarm`
 - [`alarm off`](https://material.io/icons/#ic_alarm_off) is exposed as `material-ui-icons/AlarmOff`

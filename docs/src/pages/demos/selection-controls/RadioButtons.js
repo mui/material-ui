@@ -9,7 +9,7 @@ class RadioButtons extends React.Component {
   };
 
   handleChange = event => {
-    this.setState({ selectedValue: event.currentTarget.value });
+    this.setState({ selectedValue: event.target.value });
   };
 
   render() {

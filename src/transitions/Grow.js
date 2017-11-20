@@ -1,50 +1,67 @@
 // @flow
+// @inheritedComponent CSSTransition
 
 import React from 'react';
 import type { Element } from 'react';
+import CSSTransition from 'react-transition-group/CSSTransition';
 import withTheme from '../styles/withTheme';
-import Transition from '../internal/Transition';
-import type { TransitionCallback } from '../internal/Transition';
+import type { TransitionCallback, TransitionClasses } from '../internal/transition';
 
-// only exported for tests
+// Only exported for tests.
 export function getScale(value: number) {
   return `scale(${value}, ${value ** 2})`;
 }
 
-type DefaultProps = {
+export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
+
+type ProvidedProps = {
+  /**
+   * @ignore
+   */
   theme: Object,
-  transitionDuration: 'auto',
 };
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
+   * @ignore
+   */
+  appear: boolean,
+  /**
    * A single child content element.
    */
-  children?: Element<*>,
+  children: Element<any>,
   /**
-   * Callback fired before the component is entering
+   * If `true`, show the component; triggers the enter or exit animation.
+   */
+  in: boolean,
+  /**
+   * @ignore
    */
   onEnter?: TransitionCallback,
   /**
-   * Callback fired when the component is entering
+   * @ignore
    */
   onEntering?: TransitionCallback,
   /**
-   * Callback fired when the component has entered
+   * @ignore
    */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback,
   /**
-   * Callback fired before the component is exiting
+   * @ignore
    */
   onExit?: TransitionCallback,
   /**
-   * Callback fired when the component is exiting
+   * @ignore
    */
   onExiting?: TransitionCallback,
   /**
-   * Callback fired when the component has exited
+   * @ignore
    */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback,
   /**
    * Use that property to pass a ref callback to the root component.
    */
@@ -52,122 +69,153 @@ export type Props = {
   /**
    * @ignore
    */
-  theme?: Object,
+  style?: Object,
   /**
-   * Set to 'auto' to automatically calculate transition time based on height
+   * The animation classNames applied to the component as it enters or exits.
+   * This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames).
    */
-  transitionDuration?: number | 'auto',
+  transitionClasses: TransitionClasses,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   *
+   * Set to 'auto' to automatically calculate transition time based on height.
+   */
+  timeout: TransitionDuration,
 };
 
-type AllProps = DefaultProps & Props;
-
 /**
- * Grow transition used by popovers such as Menu.
+ * The Grow transition is used by the Popover component.
+ * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Grow extends React.Component<AllProps, void> {
-  props: AllProps;
+class Grow extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
-    theme: {},
-    transitionDuration: 'auto',
+    appear: true,
+    timeout: ('auto': TransitionDuration),
+    transitionClasses: {},
   };
 
-  autoTransitionDuration = undefined;
+  autoTimeout = undefined;
 
-  handleEnter = (element: HTMLElement) => {
-    element.style.opacity = '0';
-    element.style.transform = getScale(0.75);
+  handleEnter = (node: HTMLElement) => {
+    node.style.opacity = '0';
+    node.style.transform = getScale(0.75);
 
     if (this.props.onEnter) {
-      this.props.onEnter(element);
+      this.props.onEnter(node);
     }
-
-    let { transitionDuration } = this.props;
-    const { transitions } = this.props.theme;
-
-    if (transitionDuration === 'auto') {
-      transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
-      this.autoTransitionDuration = transitionDuration;
-    }
-
-    element.style.transition = [
-      transitions.create('opacity', {
-        duration: transitionDuration,
-      }),
-      transitions.create('transform', {
-        duration: transitionDuration * 0.666,
-      }),
-    ].join(',');
   };
 
-  handleEntering = (element: HTMLElement) => {
-    element.style.opacity = '1';
-    element.style.transform = getScale(1);
+  handleEntering = (node: HTMLElement) => {
+    const { theme, timeout } = this.props;
+    let duration = 0;
+
+    if (timeout === 'auto') {
+      duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
+      this.autoTimeout = duration;
+    } else if (typeof timeout === 'number') {
+      duration = timeout;
+    } else if (timeout && typeof timeout.enter === 'number') {
+      duration = timeout.enter;
+    } else {
+      // The propType will warn in this case.
+    }
+
+    node.style.transition = [
+      theme.transitions.create('opacity', {
+        duration,
+      }),
+      theme.transitions.create('transform', {
+        duration: duration * 0.666,
+      }),
+    ].join(',');
+
+    node.style.opacity = '1';
+    node.style.transform = getScale(1);
 
     if (this.props.onEntering) {
-      this.props.onEntering(element);
+      this.props.onEntering(node);
     }
   };
 
-  handleExit = (element: HTMLElement) => {
-    let { transitionDuration } = this.props;
-    const { transitions } = this.props.theme;
+  handleExit = (node: HTMLElement) => {
+    const { theme, timeout } = this.props;
+    let duration = 0;
 
-    if (transitionDuration === 'auto') {
-      transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
-      this.autoTransitionDuration = transitionDuration;
+    if (timeout === 'auto') {
+      duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
+      this.autoTimeout = duration;
+    } else if (typeof timeout === 'number') {
+      duration = timeout;
+    } else if (timeout && typeof timeout.exit === 'number') {
+      duration = timeout.exit;
+    } else {
+      // The propType will warn in this case.
     }
 
-    element.style.transition = [
-      transitions.create('opacity', {
-        duration: transitionDuration,
+    node.style.transition = [
+      theme.transitions.create('opacity', {
+        duration,
       }),
-      transitions.create('transform', {
-        duration: transitionDuration * 0.666,
-        delay: transitionDuration * 0.333,
+      theme.transitions.create('transform', {
+        duration: duration * 0.666,
+        delay: duration * 0.333,
       }),
     ].join(',');
 
-    element.style.opacity = '0';
-    element.style.transform = getScale(0.75);
+    node.style.opacity = '0';
+    node.style.transform = getScale(0.75);
 
     if (this.props.onExit) {
-      this.props.onExit(element);
+      this.props.onExit(node);
     }
   };
 
-  handleRequestTimeout = () => {
-    if (this.props.transitionDuration === 'auto') {
-      return (this.autoTransitionDuration || 0) + 20;
+  addEndListener = (node, next: Function) => {
+    if (this.props.timeout === 'auto') {
+      setTimeout(next, this.autoTimeout || 0);
     }
-    return this.props.transitionDuration + 20;
   };
 
   render() {
     const {
+      appear,
       children,
-      transitionDuration,
       onEnter,
       onEntering,
       onExit,
       rootRef,
+      style: styleProp,
+      transitionClasses,
+      timeout,
       theme,
       ...other
     } = this.props;
 
+    const style = { ...children.props.style, ...styleProp };
+
+    // For server side rendering.
+    if (!this.props.in || appear) {
+      style.opacity = '0';
+    }
+
     return (
-      <Transition
+      <CSSTransition
+        classNames={transitionClasses}
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
-        onRequestTimeout={this.handleRequestTimeout}
-        transitionAppear
+        addEndListener={this.addEndListener}
+        appear={appear}
+        style={style}
+        timeout={timeout === 'auto' ? null : timeout}
         {...other}
         ref={rootRef}
       >
         {children}
-      </Transition>
+      </CSSTransition>
     );
   }
 }
 
-export default withTheme(Grow);
+export default withTheme()(Grow);

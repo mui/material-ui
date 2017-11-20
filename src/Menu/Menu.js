@@ -3,23 +3,32 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from './MenuList';
-import type { TransitionCallback } from '../internal/Transition';
+import type { TransitionCallback } from '../internal/transition';
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
+
+type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * The DOM element used to set the position of the menu.
    */
-  anchorEl?: Object,
+  anchorEl?: ?HTMLElement, // match Popover
   /**
    * Menu contents, normally `MenuItem`s.
    */
@@ -28,10 +37,6 @@ export type Props = {
    * Useful to extend the style applied to components.
    */
   classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
   /**
    * Properties applied to the `MenuList` element.
    */
@@ -47,7 +52,7 @@ export type Props = {
   /**
    * Callback fired when the Menu has entered.
    */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback,
   /**
    * Callback fired before the Menu exits.
    */
@@ -59,7 +64,7 @@ export type Props = {
   /**
    * Callback fired when the Menu has exited.
    */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback,
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -69,50 +74,94 @@ export type Props = {
   /**
    * If `true`, the menu is visible.
    */
-  open?: boolean,
+  open: boolean,
+  /**
+   * @ignore
+   */
+  PaperProps?: Object,
+  /**
+   * `classes` property applied to the `Popover` element.
+   */
+  PopoverClasses?: Object,
   /**
    * The length of the transition in `ms`, or 'auto'
    */
-  transitionDuration?: number | 'auto',
+  transitionDuration: TransitionDuration,
 };
 
-type AllProps = DefaultProps & Props;
+const rtlOrigin = {
+  vertical: 'top',
+  horizontal: 'right',
+};
+
+const ltrOrigin = {
+  vertical: 'top',
+  horizontal: 'left',
+};
 
 export const styles = {
-  root: {
+  paper: {
     // specZ: The maximum height of a simple menu should be one or more rows less than the view
     // height. This ensures a tappable area outside of the simple menu with which to dismiss
     // the menu.
     maxHeight: 'calc(100vh - 96px)',
     // Add iOS momentum scrolling.
     WebkitOverflowScrolling: 'touch',
-    // So we see the menu when it's empty.
-    // It's most likely on issue on userland.
-    minWidth: 16,
-    minHeight: 16,
   },
 };
 
-class Menu extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class Menu extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     open: false,
-    transitionDuration: 'auto',
+    transitionDuration: ('auto': TransitionDuration),
+  };
+
+  componentDidMount() {
+    if (this.props.open) {
+      this.focus();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.open && this.props.open) {
+      // Needs to refocus as when a menu is rendered into another Modal,
+      // the first modal might change the focus to prevent any leak.
+      this.focus();
+    }
+  }
+
+  getContentAnchorEl = () => {
+    if (!this.menuList || !this.menuList.selectedItem) {
+      // $FlowFixMe
+      return findDOMNode(this.menuList).firstChild;
+    }
+
+    return findDOMNode(this.menuList.selectedItem);
   };
 
   menuList = undefined;
 
-  handleEnter = (element: HTMLElement) => {
-    const menuList = findDOMNode(this.menuList);
-
+  focus = () => {
     if (this.menuList && this.menuList.selectedItem) {
       // $FlowFixMe
       findDOMNode(this.menuList.selectedItem).focus();
-    } else if (menuList && menuList.firstChild) {
+      return;
+    }
+
+    const menuList = findDOMNode(this.menuList);
+    if (menuList && menuList.firstChild) {
       // $FlowFixMe
       menuList.firstChild.focus();
     }
+  };
+
+  handleEnter = (element: HTMLElement) => {
+    const { theme } = this.props;
+
+    const menuList = findDOMNode(this.menuList);
+
+    // Focus so the scroll computation of the Popover works as expected.
+    this.focus();
 
     // Let's ignore that piece of logic if users are already overriding the width
     // of the menu.
@@ -120,7 +169,7 @@ class Menu extends React.Component<AllProps, void> {
     if (menuList && element.clientHeight < menuList.clientHeight && !menuList.style.width) {
       const size = `${getScrollbarSize()}px`;
       // $FlowFixMe
-      menuList.style.paddingRight = size;
+      menuList.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = size;
       // $FlowFixMe
       menuList.style.width = `calc(100% + ${size})`;
     }
@@ -133,41 +182,50 @@ class Menu extends React.Component<AllProps, void> {
   handleListKeyDown = (event: SyntheticUIEvent<>, key: string) => {
     if (key === 'tab') {
       event.preventDefault();
+
       if (this.props.onRequestClose) {
-        return this.props.onRequestClose(event);
+        this.props.onRequestClose(event);
       }
     }
-
-    return false;
-  };
-
-  getContentAnchorEl = () => {
-    if (!this.menuList || !this.menuList.selectedItem) {
-      // $FlowFixMe
-      return findDOMNode(this.menuList).firstChild;
-    }
-
-    return findDOMNode(this.menuList.selectedItem);
   };
 
   render() {
-    const { children, classes, className, MenuListProps, onEnter, ...other } = this.props;
+    const {
+      children,
+      classes,
+      MenuListProps,
+      onEnter,
+      PaperProps = {},
+      PopoverClasses,
+      theme,
+      ...other
+    } = this.props;
 
+    const themeDirection = theme && theme.direction;
     return (
       <Popover
         getContentAnchorEl={this.getContentAnchorEl}
-        className={classNames(classes.root, className)}
+        classes={PopoverClasses}
         onEnter={this.handleEnter}
+        anchorOrigin={themeDirection === 'rtl' ? rtlOrigin : ltrOrigin}
+        transformOrigin={themeDirection === 'rtl' ? rtlOrigin : ltrOrigin}
+        PaperProps={{
+          ...PaperProps,
+          classes: {
+            ...PaperProps.classes,
+            root: classes.paper,
+          },
+        }}
         {...other}
       >
         <MenuList
           data-mui-test="Menu"
           role="menu"
+          onKeyDown={this.handleListKeyDown}
+          {...MenuListProps}
           ref={node => {
             this.menuList = node;
           }}
-          onKeyDown={this.handleListKeyDown}
-          {...MenuListProps}
         >
           {children}
         </MenuList>
@@ -176,4 +234,4 @@ class Menu extends React.Component<AllProps, void> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiMenu' })(Menu);
+export default withStyles(styles, { withTheme: true, name: 'MuiMenu' })(Menu);

@@ -1,7 +1,6 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -10,6 +9,7 @@ export const styles = (theme: Object) => ({
     height: 1,
     margin: 0, // Reset browser default style.
     border: 'none',
+    flexShrink: 0,
   },
   default: {
     backgroundColor: theme.palette.text.divider,
@@ -28,46 +28,56 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function Divider(props) {
-  const { absolute, classes, className: classNameProp, inset, light, ...other } = props;
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.absolute]: absolute,
-      [classes.inset]: inset,
-      [light ? classes.light : classes.default]: true,
-    },
-    classNameProp,
-  );
-
-  return <hr className={className} {...other} />;
-}
-
-Divider.propTypes = {
-  absolute: PropTypes.bool,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
+type ProvidedProps = {
+  classes: Object,
   /**
    * @ignore
    */
-  className: PropTypes.string,
+  theme?: Object,
+};
+
+export type Props = {
+  absolute: boolean,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
   /**
    * If `true`, the divider will be indented.
    */
-  inset: PropTypes.bool,
+  inset: boolean,
   /**
    * If `true`, the divider will have a lighter color.
    */
-  light: PropTypes.bool,
+  light: boolean,
 };
 
-Divider.defaultProps = {
-  absolute: false,
-  inset: false,
-  light: false,
-};
+class Divider extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    absolute: false,
+    inset: false,
+    light: false,
+  };
+
+  render() {
+    const { absolute, classes, className: classNameProp, inset, light, ...other } = this.props;
+
+    const className = classNames(
+      classes.root,
+      {
+        [classes.absolute]: absolute,
+        [classes.inset]: inset,
+        [light ? classes.light : classes.default]: true,
+      },
+      classNameProp,
+    );
+
+    return <hr className={className} {...other} />;
+  }
+}
 
 export default withStyles(styles, { name: 'MuiDivider' })(Divider);

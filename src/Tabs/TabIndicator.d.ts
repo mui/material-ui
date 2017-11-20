@@ -1,10 +1,20 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface TabIndicatorProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface TabIndicatorProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  TabIndicatorClassKey
+> {
   color: 'accent' | 'primary' | string;
   style: { left: number; width: number };
 }
 
-export default class TabIndicator extends StyledComponent<TabIndicatorProps> {}
+export type TabIndicatorClassKey =
+  | 'root'
+  | 'colorAccent'
+  | 'colorPrimary'
+  ;
+
+declare const TabIndicator: React.ComponentType<TabIndicatorProps>;
+
+export default TabIndicator;

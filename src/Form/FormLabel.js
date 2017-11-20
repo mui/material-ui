@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -12,6 +12,7 @@ export const styles = (theme: Object) => {
     root: {
       fontFamily: theme.typography.fontFamily,
       color: theme.palette.input.labelText,
+      fontSize: theme.typography.pxToRem(16),
       lineHeight: 1,
       padding: 0,
     },
@@ -27,9 +28,12 @@ export const styles = (theme: Object) => {
   };
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  component: string,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -49,7 +53,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | ComponentType<*>,
+  component: ElementType,
   /**
    * If `true`, the label should be displayed in a disabled state.
    */
@@ -68,75 +72,77 @@ export type Props = {
   required?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
+class FormLabel extends React.Component<ProvidedProps & Props> {
+  static contextTypes = {
+    muiFormControl: PropTypes.object,
+  };
 
-function FormLabel(props: AllProps, context: { muiFormControl: Object }) {
-  const {
-    children,
-    classes,
-    className: classNameProp,
-    component: Component,
-    disabled: disabledProp,
-    error: errorProp,
-    focused: focusedProp,
-    required: requiredProp,
-    ...other
-  } = props;
+  static defaultProps = {
+    component: ('label': ElementType),
+  };
 
-  const { muiFormControl } = context;
+  context: { muiFormControl: Object };
 
-  let required = requiredProp;
-  let focused = focusedProp;
-  let disabled = disabledProp;
-  let error = errorProp;
+  render() {
+    const {
+      children,
+      classes,
+      className: classNameProp,
+      component: Component,
+      disabled: disabledProp,
+      error: errorProp,
+      focused: focusedProp,
+      required: requiredProp,
+      ...other
+    } = this.props;
 
-  if (muiFormControl) {
-    if (typeof required === 'undefined') {
-      required = muiFormControl.required;
+    const { muiFormControl } = this.context;
+
+    let required = requiredProp;
+    let focused = focusedProp;
+    let disabled = disabledProp;
+    let error = errorProp;
+
+    if (muiFormControl) {
+      if (typeof required === 'undefined') {
+        required = muiFormControl.required;
+      }
+      if (typeof focused === 'undefined') {
+        focused = muiFormControl.focused;
+      }
+      if (typeof disabled === 'undefined') {
+        disabled = muiFormControl.disabled;
+      }
+      if (typeof error === 'undefined') {
+        error = muiFormControl.error;
+      }
     }
-    if (typeof focused === 'undefined') {
-      focused = muiFormControl.focused;
-    }
-    if (typeof disabled === 'undefined') {
-      disabled = muiFormControl.disabled;
-    }
-    if (typeof error === 'undefined') {
-      error = muiFormControl.error;
-    }
-  }
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.focused]: focused,
-      [classes.disabled]: disabled,
+    const className = classNames(
+      classes.root,
+      {
+        [classes.focused]: focused,
+        [classes.disabled]: disabled,
+        [classes.error]: error,
+      },
+      classNameProp,
+    );
+
+    const asteriskClassName = classNames({
       [classes.error]: error,
-    },
-    classNameProp,
-  );
+    });
 
-  const asteriskClassName = classNames({
-    [classes.error]: error,
-  });
-
-  return (
-    <Component className={className} {...other}>
-      {children}
-      {required && (
-        <span className={asteriskClassName} data-mui-test="FormLabelAsterisk">
-          {'\u2009*'}
-        </span>
-      )}
-    </Component>
-  );
+    return (
+      <Component className={className} {...other}>
+        {children}
+        {required && (
+          <span className={asteriskClassName} data-mui-test="FormLabelAsterisk">
+            {'\u2009*'}
+          </span>
+        )}
+      </Component>
+    );
+  }
 }
-
-FormLabel.defaultProps = {
-  component: 'label',
-};
-
-FormLabel.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
 
 export default withStyles(styles, { name: 'MuiFormLabel' })(FormLabel);

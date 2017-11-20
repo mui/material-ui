@@ -4,7 +4,8 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Slide from '../transitions/Slide';
-import Modal from '../internal/Modal';
+import createMuiTheme from '../styles/createMuiTheme';
+import Modal from '../Modal';
 import Paper from '../Paper';
 import Drawer from './Drawer';
 
@@ -51,68 +52,42 @@ describe('<Drawer />', () => {
       assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
     });
 
-    describe('enterTransitionDuration property', () => {
-      const enterDuration = 854;
-      const leaveDuration = 2967;
+    describe('transitionDuration property', () => {
+      const transitionDuration = {
+        enter: 854,
+        exit: 2967,
+      };
 
       it('should be passed to Slide', () => {
         const wrapper = shallow(
-          <Drawer enterTransitionDuration={enterDuration}>
+          <Drawer transitionDuration={transitionDuration}>
             <div />
           </Drawer>,
         );
-        assert.strictEqual(wrapper.find(Slide).prop('enterTransitionDuration'), enterDuration);
+        assert.strictEqual(wrapper.find(Slide).props().timeout, transitionDuration);
       });
 
-      it("should be passed to to Modal's backdropTransitionDuration when open=true", () => {
+      it("should be passed to to Modal's BackdropTransitionDuration when open=true", () => {
         const wrapper = shallow(
-          <Drawer
-            open
-            enterTransitionDuration={enterDuration}
-            leaveTransitionDuration={leaveDuration}
-          >
+          <Drawer open transitionDuration={transitionDuration}>
             <div />
           </Drawer>,
         );
-        assert.strictEqual(wrapper.find(Modal).prop('backdropTransitionDuration'), enterDuration);
+        assert.strictEqual(
+          wrapper.find(Modal).props().BackdropTransitionDuration,
+          transitionDuration,
+        );
       });
     });
 
-    describe('leaveTransitionDuration property', () => {
-      const enterDuration = 6577;
-      const leaveDuration = 1889;
-
-      it('should be passed to Slide', () => {
-        const wrapper = shallow(
-          <Drawer leaveTransitionDuration={leaveDuration}>
-            <div />
-          </Drawer>,
-        );
-        assert.strictEqual(wrapper.find(Slide).props().leaveTransitionDuration, leaveDuration);
-      });
-
-      it("should be passed to to Modal's backdropTransitionDuration when open=false", () => {
-        const wrapper = shallow(
-          <Drawer
-            open={false}
-            enterTransitionDuration={enterDuration}
-            leaveTransitionDuration={leaveDuration}
-          >
-            <div />
-          </Drawer>,
-        );
-        assert.strictEqual(wrapper.find(Modal).props().backdropTransitionDuration, leaveDuration);
-      });
-    });
-
-    it("should override Modal's backdropTransitionDuration from property when specified", () => {
+    it("should override Modal's BackdropTransitionDuration from property when specified", () => {
       const testDuration = 335;
       const wrapper = shallow(
-        <Drawer backdropTransitionDuration={testDuration}>
+        <Drawer BackdropTransitionDuration={testDuration}>
           <div />
         </Drawer>,
       );
-      assert.strictEqual(wrapper.find(Modal).props().backdropTransitionDuration, testDuration);
+      assert.strictEqual(wrapper.find(Modal).props().BackdropTransitionDuration, testDuration);
     });
 
     it('should set the custom className for Modal when type is temporary', () => {
@@ -246,24 +221,16 @@ describe('<Drawer />', () => {
     });
 
     it('should return the opposing slide direction', () => {
-      wrapper.setProps({
-        anchor: 'left',
-      });
+      wrapper.setProps({ anchor: 'left' });
       assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
 
-      wrapper.setProps({
-        anchor: 'right',
-      });
+      wrapper.setProps({ anchor: 'right' });
       assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
 
-      wrapper.setProps({
-        anchor: 'top',
-      });
+      wrapper.setProps({ anchor: 'top' });
       assert.strictEqual(wrapper.find(Slide).props().direction, 'down');
 
-      wrapper.setProps({
-        anchor: 'bottom',
-      });
+      wrapper.setProps({ anchor: 'bottom' });
       assert.strictEqual(wrapper.find(Slide).props().direction, 'up');
     });
   });
@@ -272,24 +239,22 @@ describe('<Drawer />', () => {
     let wrapper;
 
     before(() => {
+      const theme = createMuiTheme({
+        direction: 'rtl',
+      });
       wrapper = shallow(
-        <Drawer>
+        <Drawer theme={theme}>
           <div />
         </Drawer>,
       );
-      wrapper.instance().props.theme.dir = 'rtl';
     });
 
     it('should switch left and right anchor when theme is right-to-left', () => {
-      wrapper.setProps({
-        anchor: 'left',
-      });
+      wrapper.setProps({ anchor: 'left' });
       // slide direction for left is right, if left is switched to right, we should get left
       assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
 
-      wrapper.setProps({
-        anchor: 'right',
-      });
+      wrapper.setProps({ anchor: 'right' });
       // slide direction for right is left, if right is switched to left, we should get right
       assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
     });

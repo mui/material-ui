@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -15,45 +15,55 @@ export const styles = (theme: Object) => ({
   gutters: theme.mixins.gutters({}),
 });
 
-function Toolbar(props) {
-  const { children, classes, className: classNameProp, disableGutters, ...other } = props;
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.gutters]: !disableGutters,
-    },
-    classNameProp,
-  );
-
-  return (
-    <div className={className} {...other}>
-      {children}
-    </div>
-  );
-}
-
-Toolbar.propTypes = {
-  /**
-   * Can be a `ToolbarGroup` to render a group of related items.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
+type ProvidedProps = {
+  classes: Object,
   /**
    * @ignore
    */
-  className: PropTypes.string,
+  theme?: Object,
+};
+
+export type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
+   */
+  children?: Node,
+  /**
+   * @ignore
+   */
+  className?: string,
   /**
    * If `true`, disables gutter padding.
    */
-  disableGutters: PropTypes.bool,
+  disableGutters?: boolean,
 };
 
-Toolbar.defaultProps = {
-  disableGutters: false,
-};
+class Toolbar extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    disableGutters: false,
+  };
+
+  render() {
+    const { children, classes, className: classNameProp, disableGutters, ...other } = this.props;
+
+    const className = classNames(
+      classes.root,
+      {
+        [classes.gutters]: !disableGutters,
+      },
+      classNameProp,
+    );
+
+    return (
+      <div className={className} {...other}>
+        {children}
+      </div>
+    );
+  }
+}
 
 export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);

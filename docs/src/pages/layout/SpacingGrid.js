@@ -33,7 +33,7 @@ class GuttersGrid extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     const { spacing } = this.state;
 
     return (

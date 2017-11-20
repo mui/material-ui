@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
 import { Theme } from '../styles/createMuiTheme';
-import { TransitionProps } from '../internal/Transition';
+import { TransitionDuration, TransitionProps } from '../internal/transition';
 
 export interface SlideProps extends TransitionProps {
-  direction?: 'left' | 'right' | 'up' | 'down';
-  offset?: string;
+  direction: 'left' | 'right' | 'up' | 'down';
   theme?: Theme;
-  enterTransitionDuration?: number;
-  leaveTransitionDuration?: number;
+  timeout?: TransitionDuration;
 }
 
-export default class Slide extends StyledComponent<SlideProps> {}
+declare const Slide: React.ComponentType<SlideProps>;
+
+export default Slide;

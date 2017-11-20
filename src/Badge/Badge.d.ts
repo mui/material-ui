@@ -1,10 +1,22 @@
 import * as React from 'react';
-import { StyledComponent, PropTypes } from '..';
+import { StandardProps, PropTypes } from '..';
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface BadgeProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  BadgeClassKey
+> {
   badgeContent: React.ReactNode;
   children: React.ReactNode;
   color?: PropTypes.Color;
 }
 
-export default class Badge extends StyledComponent<BadgeProps> {}
+export type BadgeClassKey =
+  | 'root'
+  | 'badge'
+  | 'colorPrimary'
+  | 'colorAccent'
+  ;
+
+declare const Badge: React.ComponentType<BadgeProps>;
+
+export default Badge;

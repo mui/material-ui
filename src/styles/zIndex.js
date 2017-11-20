@@ -1,7 +1,7 @@
 // @flow
 
 // Needed as the zIndex works with absolute values.
-export default {
+const zIndex = {
   mobileStepper: 900,
   menu: 1000,
   appBar: 1100,
@@ -14,3 +14,5 @@ export default {
   snackbar: 2900,
   tooltip: 3000,
 };
+
+export default zIndex;

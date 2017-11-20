@@ -1,6 +1,7 @@
 // @flow
 
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
+import warning from 'warning';
 import createTypography from './createTypography';
 import createBreakpoints from './createBreakpoints';
 import createPalette from './createPalette';
@@ -16,31 +17,36 @@ function createMuiTheme(options: Object = {}) {
     breakpoints: breakpointsInput = {},
     mixins: mixinsInput = {},
     typography: typographyInput = {},
+    shadows: shadowsInput,
     ...other
   } = options;
 
   const palette = createPalette(paletteInput);
   const breakpoints = createBreakpoints(breakpointsInput);
 
-  return {
+  const muiTheme = {
     direction: 'ltr',
     palette,
     typography: createTypography(palette, typographyInput),
     mixins: createMixins(breakpoints, spacing, mixinsInput),
     breakpoints,
+    shadows: shadowsInput || shadows,
     ...deepmerge(
       {
-        shadows,
         transitions,
         spacing,
         zIndex,
       },
       other,
-      {
-        clone: true, // We don't want to mutate the input
-      },
     ),
   };
+
+  warning(
+    muiTheme.shadows.length === 25,
+    'Material-UI: the shadows array provided to createMuiTheme should support 25 elevations.',
+  );
+
+  return muiTheme;
 }
 
 export default createMuiTheme;

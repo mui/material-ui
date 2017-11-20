@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import type { ComponentType } from 'react';
+import type { Node, ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -34,29 +34,41 @@ export function isDirty(obj, SSR = false) {
   );
 }
 
+// Determine if an Input is adorned on start.
+// It's corresponding to the left with LTR.
+//
+// @param obj
+// @returns {boolean} False when no adornments.
+//                    True when adorned at the start.
+export function isAdornedStart(obj) {
+  return obj.startAdornment;
+}
+
 export const styles = (theme: Object) => {
   const placeholder = {
     color: 'currentColor',
     opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
-  };
-  const placeholderForm = {
-    opacity: 0,
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shorter,
       easing: theme.transitions.easing.ease,
     }),
   };
-  const placeholderFormFocus = {
+  const placeholderHidden = {
+    opacity: 0,
+  };
+  const placeholderVisible = {
     opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
   };
 
   return {
     root: {
       // Mimics the default input display property used by browsers for an input.
-      display: 'inline-block',
+      display: 'inline-flex',
+      alignItems: 'baseline',
       position: 'relative',
       fontFamily: theme.typography.fontFamily,
       color: theme.palette.input.inputText,
+      fontSize: theme.typography.pxToRem(16),
     },
     formControl: {
       'label + &': {
@@ -78,6 +90,7 @@ export const styles = (theme: Object) => {
           duration: theme.transitions.duration.shorter,
           easing: theme.transitions.easing.easeOut,
         }),
+        pointerEvents: 'none', // Transparent to the hover style.
       },
       '&$focused:after': {
         transform: 'scaleX(1)',
@@ -89,17 +102,58 @@ export const styles = (theme: Object) => {
         transform: 'scaleX(1)', // error is always underlined in red
       },
     },
+    disabled: {
+      color: theme.palette.text.disabled,
+    },
+    focused: {},
+    underline: {
+      '&:before': {
+        backgroundColor: theme.palette.input.bottomLine,
+        left: 0,
+        bottom: 0,
+        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+        content: '""',
+        height: 1,
+        position: 'absolute',
+        right: 0,
+        transition: theme.transitions.create('background-color', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.ease,
+        }),
+        pointerEvents: 'none', // Transparent to the hover style.
+      },
+      '&:hover:not($disabled):before': {
+        backgroundColor: theme.palette.text.primary,
+        height: 2,
+      },
+      '&$disabled:before': {
+        background: 'transparent',
+        backgroundImage: `linear-gradient(to right, ${
+          theme.palette.input.bottomLine
+        } 33%, transparent 0%)`,
+        backgroundPosition: 'left top',
+        backgroundRepeat: 'repeat-x',
+        backgroundSize: '5px 1px',
+      },
+    },
+    multiline: {
+      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
+    },
+    fullWidth: {
+      width: '100%',
+    },
     input: {
       font: 'inherit',
       color: 'currentColor',
-      // slight alteration to spec spacing to match visual spec result
-      padding: `${theme.spacing.unit - 1}px 0`,
+      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
       border: 0,
-      display: 'block',
       boxSizing: 'content-box',
       verticalAlign: 'middle',
       background: 'none',
       margin: 0, // Reset for Safari
+      // Remove grey highlight
+      WebkitTapHighlightColor: theme.palette.common.transparent,
+      display: 'block',
       width: '100%',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
@@ -117,88 +171,49 @@ export const styles = (theme: Object) => {
         appearance: 'none',
       },
       // Show and hide the placeholder logic
-      'label + $formControl &': {
-        '&::-webkit-input-placeholder': placeholderForm,
-        '&::-moz-placeholder': placeholderForm, // Firefox 19+
-        '&:-ms-input-placeholder': placeholderForm, // IE 11
-        '&::-ms-input-placeholder': placeholderForm, // Edge
-        '&:focus::-webkit-input-placeholder': placeholderFormFocus,
-        '&:focus::-moz-placeholder': placeholderFormFocus, // Firefox 19+
-        '&:focus:-ms-input-placeholder': placeholderFormFocus, // IE 11
-        '&:focus::-ms-input-placeholder': placeholderFormFocus, // Edge
+      'label[data-shrink=false] + $formControl &': {
+        '&::-webkit-input-placeholder': placeholderHidden,
+        '&::-moz-placeholder': placeholderHidden, // Firefox 19+
+        '&:-ms-input-placeholder': placeholderHidden, // IE 11
+        '&::-ms-input-placeholder': placeholderHidden, // Edge
+        '&:focus::-webkit-input-placeholder': placeholderVisible,
+        '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
+        '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
+        '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
       },
     },
     inputDense: {
-      paddingTop: theme.spacing.unit / 2,
-    },
-    disabled: {
-      color: theme.palette.text.disabled,
-    },
-    focused: {},
-    underline: {
-      paddingBottom: 2,
-      '&:before': {
-        backgroundColor: theme.palette.input.bottomLine,
-        left: 0,
-        bottom: 0,
-        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-        content: '""',
-        height: 1,
-        position: 'absolute',
-        right: 0,
-        transition: theme.transitions.create('backgroundColor', {
-          duration: theme.transitions.duration.shorter,
-          easing: theme.transitions.easing.ease,
-        }),
-      },
-      '&:hover:not($disabled):before': {
-        backgroundColor: theme.palette.text.primary,
-        height: 2,
-      },
-      '&$disabled:before': {
-        background: 'transparent',
-        backgroundImage: `linear-gradient(to right, ${theme.palette.input
-          .bottomLine} 33%, transparent 0%)`,
-        backgroundPosition: 'left top',
-        backgroundRepeat: 'repeat-x',
-        backgroundSize: '5px 1px',
-      },
-    },
-    multiline: {
-      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
+      paddingTop: theme.spacing.unit / 2 - 1,
     },
     inputDisabled: {
       opacity: 1, // Reset iOS opacity
     },
     inputSingleline: {
-      height: '1em',
-    },
-    inputSearch: {
-      appearance: 'textfield', // Improve type search style.
+      height: '1.1875em', // Reset (19px)
     },
     inputMultiline: {
       resize: 'none',
       padding: 0,
     },
-    fullWidth: {
-      width: '100%',
+    inputSearch: {
+      appearance: 'textfield', // Improve type search style.
     },
   };
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  disableUnderline: boolean,
-  fullWidth: boolean,
-  multiline: boolean,
-  type: string,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
-   * The name can be confusion, it's more like an autofill.
-   * You can learn about it with that article
+   * The name can be confusing, it's more like an autofill.
+   * You can learn more about it in this article
    * https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
    */
   autoComplete?: string,
@@ -226,6 +241,10 @@ export type Props = {
    * If `true`, the input will not have an underline.
    */
   disableUnderline?: boolean,
+  /**
+   * End `InputAdornment` for this component.
+   */
+  endAdornment?: Node,
   /**
    * If `true`, the input will indicate an error. This is normally obtained via context from
    * FormControl.
@@ -275,7 +294,9 @@ export type Props = {
    */
   onBlur?: (event: SyntheticFocusEvent<>) => void,
   /**
-   * TODO
+   * Callback fired when the value is changed.
+   *
+   * @param {object} event The event source of the callback
    */
   onChange?: (event: SyntheticInputEvent<>) => void,
   /**
@@ -299,7 +320,7 @@ export type Props = {
    */
   onKeyUp?: (event: SyntheticKeyboardEvent<>) => void,
   /**
-   * TODO
+   * The short hint displayed in the input before the user enters a value.
    */
   placeholder?: string,
   /**
@@ -311,6 +332,10 @@ export type Props = {
    */
   rowsMax?: string | number,
   /**
+   * Start `InputAdornment` for this component.
+   */
+  startAdornment?: Node,
+  /**
    * Type of the input element. It should be a valid HTML5 input type.
    */
   type?: string,
@@ -320,15 +345,11 @@ export type Props = {
   value?: string | number | Array<string | number>,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   focused: boolean,
 };
 
-class Input extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class Input extends React.Component<ProvidedProps & Props, State> {
   static muiName = 'Input';
 
   static defaultProps = {
@@ -354,10 +375,28 @@ class Input extends React.Component<AllProps, State> {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    // The blur won't fire when the disabled state is set on a focused input.
+    // We need to book keep the focused state manually.
+    if (!this.props.disabled && nextProps.disabled) {
+      this.setState({
+        focused: false,
+      });
+    }
+  }
+
   componentWillUpdate(nextProps) {
-    if (this.isControlled()) {
+    if (this.isControlled(nextProps)) {
       this.checkDirty(nextProps);
     } // else performed in the onChange
+
+    // Book keep the focused state.
+    if (!this.props.disabled && nextProps.disabled) {
+      const { muiFormControl } = this.context;
+      if (muiFormControl && muiFormControl.onBlur) {
+        muiFormControl.onBlur();
+      }
+    }
   }
 
   // Holds the input reference
@@ -392,6 +431,8 @@ class Input extends React.Component<AllProps, State> {
     this.input = node;
     if (this.props.inputRef) {
       this.props.inputRef(node);
+    } else if (this.props.inputProps && this.props.inputProps.ref) {
+      this.props.inputProps.ref(node);
     }
   };
 
@@ -399,8 +440,8 @@ class Input extends React.Component<AllProps, State> {
   //
   // @see https://facebook.github.io/react/docs/forms.html#controlled-components
   // @returns {boolean} true if string (including '') or number (including zero)
-  isControlled() {
-    return hasValue(this.props.value);
+  isControlled(props = this.props) {
+    return hasValue(props.value);
   }
 
   checkDirty(obj) {
@@ -433,11 +474,12 @@ class Input extends React.Component<AllProps, State> {
       defaultValue,
       disabled: disabledProp,
       disableUnderline,
+      endAdornment,
       error: errorProp,
       fullWidth,
       id,
       inputComponent,
-      inputProps: { inputPropsClassName, ...inputPropsProp } = {},
+      inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
       inputRef,
       margin: marginProp,
       multiline,
@@ -453,13 +495,14 @@ class Input extends React.Component<AllProps, State> {
       readOnly,
       rows,
       rowsMax,
+      startAdornment,
       type,
+      // $FlowFixMe
       value,
       ...other
     } = this.props;
 
     const { muiFormControl } = this.context;
-
     let disabled = disabledProp;
     let error = errorProp;
     let margin = marginProp;
@@ -498,8 +541,8 @@ class Input extends React.Component<AllProps, State> {
       {
         [classes.inputDisabled]: disabled,
         [classes.inputSingleline]: !multiline,
-        [classes.inputSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
+        [classes.inputSearch]: type === 'search',
         [classes.inputDense]: margin === 'dense',
       },
       inputPropsClassName,
@@ -509,8 +552,8 @@ class Input extends React.Component<AllProps, State> {
 
     let InputComponent = 'input';
     let inputProps = {
-      ref: this.handleRefInput,
       ...inputPropsProp,
+      ref: this.handleRefInput,
     };
 
     if (inputComponent) {
@@ -539,6 +582,7 @@ class Input extends React.Component<AllProps, State> {
 
     return (
       <div onBlur={this.handleBlur} onFocus={this.handleFocus} className={className} {...other}>
+        {startAdornment}
         <InputComponent
           autoComplete={autoComplete}
           autoFocus={autoFocus}
@@ -558,6 +602,7 @@ class Input extends React.Component<AllProps, State> {
           rows={rows}
           {...inputProps}
         />
+        {endAdornment}
       </div>
     );
   }

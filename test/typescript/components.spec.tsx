@@ -14,6 +14,7 @@ import {
   Checkbox,
   Chip,
   CircularProgress,
+  ClickAwayListener,
   Dialog,
   DialogTitle,
   Divider,
@@ -37,6 +38,7 @@ import {
   Tabs,
   TextField,
   Toolbar,
+  Tooltip,
   Typography,
   Grid,
   Select,
@@ -52,6 +54,9 @@ import Table, {
   TableRow,
 } from '../../src/Table';
 import { withStyles, StyleRulesCallback } from '../../src/styles';
+import { withMobileDialog, DialogProps } from '../../src/Dialog';
+import { WithStyles } from '../../src/styles/withStyles';
+import GridListTile from '../../src/GridList/GridListTile';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -71,6 +76,8 @@ const AppBarTest = () =>
 
 const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
 
+const AvaterClassName = () => <Avatar className="foo" />;
+
 const BadgeTest = () =>
   <Badge badgeContent={4} color="primary">
     <FakeIcon />
@@ -78,10 +85,9 @@ const BadgeTest = () =>
 
 const BottomNavigationTest = () => {
   const value = 123;
-  const handleChange = (e: React.SyntheticEvent<any>) => log(e);
 
   return (
-    <BottomNavigation value={value} onChange={handleChange} showLabels>
+    <BottomNavigation value={value} onChange={e => log(e)} showLabels>
       <BottomNavigationButton label="Recents" icon={<FakeIcon />} />
       <BottomNavigationButton label="Favorites" />
       <BottomNavigationButton label={<span>Nearby</span>} icon={<FakeIcon />} />
@@ -102,6 +108,12 @@ const ButtonTest = () =>
     </Button>
     <Button tabIndex={1} title="some button">
       Raised
+    </Button>
+    <Button component="a">
+      Simple Link
+    </Button>
+    <Button component={props => <a {...props} />}>
+      Complexe Link
     </Button>
   </div>;
 
@@ -149,7 +161,7 @@ const CardMediaTest = () =>
       title="Shrimp and Chorizo Paella"
       subheader="September 14, 2016"
     />
-    <CardMedia image="src.png">
+    <CardMedia image="src.png" component="div">
       <img src={'image/src.png'} alt="Contemplative Reptile" />
     </CardMedia>
     <CardContent>
@@ -170,7 +182,7 @@ const CardMediaTest = () =>
         <FakeIcon />
       </IconButton>
     </CardActions>
-    <Collapse in={true} transitionDuration="auto" unmountOnExit>
+    <Collapse in={true} timeout="auto" unmountOnExit>
       <CardContent>
         <Typography paragraph type="body2">
           Method:
@@ -210,12 +222,12 @@ const ChipsTest = () =>
     <Chip
       avatar={<Avatar>MB</Avatar>}
       label="Clickable Chip"
-      onClick={(e: React.SyntheticEvent<any>) => log(e)}
+      onClick={e => log(e)}
     />
     <Chip
       avatar={<Avatar src={'image.bmp'} />}
       label="Deletable Chip"
-      onRequestDelete={(e: React.SyntheticEvent<any>) => log(e)}
+      onRequestDelete={e => log(e)}
     />
     <Chip
       avatar={
@@ -224,8 +236,8 @@ const ChipsTest = () =>
         </Avatar>
       }
       label="Clickable Deletable Chip"
-      onClick={(e: React.SyntheticEvent<any>) => log(e)}
-      onRequestDelete={(e: React.SyntheticEvent<any>) => log(e)}
+      onClick={e => log(e)}
+      onRequestDelete={e => log(e)}
     />
   </div>;
 
@@ -239,7 +251,7 @@ const DialogTest = () => {
           {emails.map(email =>
             <ListItem
               button
-              onClick={(e: React.SyntheticEvent<any>) => log(e)}
+              onClick={e => log(e)}
               key={email}
             >
               <ListItemAvatar>
@@ -250,7 +262,7 @@ const DialogTest = () => {
               <ListItemText primary={email} />
             </ListItem>
           )}
-          <ListItem button onClick={(e: React.SyntheticEvent<any>) => log(e)}>
+          <ListItem button onClick={e => log(e)}>
             <ListItemAvatar>
               <Avatar>
                 <FakeIcon />
@@ -282,8 +294,8 @@ const DrawerTest = () => {
       <Drawer
         type="persistent"
         open={open.left}
-        onRequestClose={(e: React.SyntheticEvent<any>) => log(e)}
-        onClick={(e: React.SyntheticEvent<any>) => log(e)}
+        onRequestClose={e => log(e)}
+        onClick={e => log(e)}
       >
         List
       </Drawer>
@@ -291,8 +303,8 @@ const DrawerTest = () => {
         type="temporary"
         anchor="top"
         open={open.top}
-        onRequestClose={(e: React.SyntheticEvent<any>) => log(e)}
-        onClick={(e: React.SyntheticEvent<any>) => log(e)}
+        onRequestClose={e => log(e)}
+        onClick={e => log(e)}
       >
         List
       </Drawer>
@@ -300,8 +312,8 @@ const DrawerTest = () => {
         anchor="bottom"
         type="temporary"
         open={open.bottom}
-        onRequestClose={(e: React.SyntheticEvent<any>) => log(e)}
-        onClick={(e: React.SyntheticEvent<any>) => log(e)}
+        onRequestClose={e => log(e)}
+        onClick={e => log(e)}
       >
         List
       </Drawer>
@@ -309,8 +321,8 @@ const DrawerTest = () => {
         type="persistent"
         anchor="right"
         open={open.right}
-        onRequestClose={(e: React.SyntheticEvent<any>) => log(e)}
-        onClick={(e: React.SyntheticEvent<any>) => log(e)}
+        onRequestClose={e => log(e)}
+        onClick={e => log(e)}
       >
         List
       </Drawer>
@@ -319,7 +331,7 @@ const DrawerTest = () => {
 };
 
 const GridTest = () =>
-  <Grid container>
+  <Grid component={Paper} container>
     <Grid item xs={12}>
       ...
     </Grid>
@@ -329,13 +341,16 @@ const GridTest = () =>
     <Grid item xl={true}>
       ...
     </Grid>
+    <Grid item hidden={{ smDown: true }} style={{ color: 'red' }}>
+      ...
+    </Grid>
   </Grid>;
 
 const GridListTest = () =>
-  <GridList cellHeight={160} cols={3}>
-    <GridListTest cols={1}>
+  <GridList cellHeight={160} cols={3} onClick={e => log(e)}>
+    <GridListTile cols={1} rows={4} onClick={e => log(e)}>
       <img src="img.png" alt="alt text" />
-    </GridListTest>,
+    </GridListTile>,
   </GridList>;
 
 const ListTest = () =>
@@ -345,7 +360,7 @@ const ListTest = () =>
         dense
         button
         key={value}
-        onClick={(e: React.SyntheticEvent<any>) => log(e)}
+        onClick={e => log(e)}
       >
         <Checkbox checked={true} tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
@@ -359,7 +374,7 @@ const ListTest = () =>
   </List>;
 
 const MenuTest = () => {
-  const anchorEl = document.getElementById('foo');
+  const anchorEl = document.getElementById('foo')!;
   const options = [
     'Show all notification content',
     'Hide sensitive notification content',
@@ -371,13 +386,13 @@ const MenuTest = () => {
       id="lock-menu"
       anchorEl={anchorEl}
       open={true}
-      onRequestClose={(e: React.SyntheticEvent<any>) => log(e)}
+      onRequestClose={e => log(e)}
     >
       {options.map((option, index) =>
         <MenuItem
           key={option}
           selected={false}
-          onClick={(e: React.SyntheticEvent<any>) => log(e)}
+          onClick={e => log(e)}
         >
           {option}
         </MenuItem>
@@ -417,7 +432,7 @@ const SelectionControlTest = () => {
     checkedF: true,
   };
 
-  const handleChange = name => (
+  const handleChange = (name: string) => (
     event: React.SyntheticEvent<any>,
     checked: boolean
   ) => log({ [name]: checked });
@@ -483,7 +498,7 @@ const SwitchTest = () => {
     checkedB: false,
     checkedE: true,
   };
-  const handleChange = name => (
+  const handleChange = (name: string) => (
     event: React.SyntheticEvent<any>,
     checked: boolean
   ) => log({ [name]: checked });
@@ -513,7 +528,7 @@ const SwitchTest = () => {
 
 const SnackbarTest = () =>
   <div>
-    <Button onClick={(e: React.SyntheticEvent<any>) => log(e)}>
+    <Button onClick={e => log(e)}>
       Open simple snackbar
     </Button>
     <Snackbar
@@ -523,7 +538,7 @@ const SnackbarTest = () =>
       }}
       open={true}
       autoHideDuration={6e3}
-      onRequestClose={(e: React.SyntheticEvent<any>) => log(e)}
+      onRequestClose={e => log(e)}
       SnackbarContentProps={{
         'aria-describedby': 'message-id',
       }}
@@ -533,7 +548,7 @@ const SnackbarTest = () =>
           key="undo"
           color="accent"
           dense
-          onClick={(e: React.SyntheticEvent<any>) => log(e)}
+          onClick={e => log(e)}
         >
           UNDO
         </Button>,
@@ -541,7 +556,7 @@ const SnackbarTest = () =>
           key="close"
           aria-label="Close"
           color="inherit"
-          onClick={(e: React.SyntheticEvent<any>) => log(e)}
+          onClick={e => log(e)}
         >
           <FakeIcon />
         </IconButton>,
@@ -620,7 +635,7 @@ const StepperTest = () =>
   };
 
 const TableTest = () => {
-  const styles: StyleRulesCallback = theme => ({
+  const styles: StyleRulesCallback<'paper'> = theme => ({
     paper: {
       width: '100%',
       marginTop: theme.spacing.unit * 3,
@@ -629,7 +644,7 @@ const TableTest = () => {
   });
 
   let id = 0;
-  function createData(name, calories, fat, carbs, protein) {
+  function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
     id += 1;
     return { id, name, calories, fat, carbs, protein };
   }
@@ -642,7 +657,7 @@ const TableTest = () => {
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ];
 
-  function BasicTable(props) {
+  function BasicTable(props: WithStyles<'paper'>) {
     const classes = props.classes;
 
     return (
@@ -685,29 +700,34 @@ const TableTest = () => {
     );
   }
 
-  return withStyles(styles)(BasicTable);
+  return withStyles(styles)<{}>(BasicTable);
 };
 
 const TabsTest = () => {
-  const TabContainer = props =>
+  const TabContainer: React.SFC = props =>
     <div style={{ padding: 20 }}>
       {props.children}
     </div>;
 
-  const styles = theme => ({
+  type ClassKey = 'root' | 'button'
+
+  const styles: StyleRulesCallback<ClassKey> = theme => ({
     root: {
       flexGrow: 1,
       marginTop: theme.spacing.unit * 3,
       backgroundColor: theme.palette.background.paper,
     },
+    button: {
+      display: 'flex',
+    },
   });
 
-  class BasicTabs extends React.Component<{ classes: { root: string } }> {
+  class BasicTabs extends React.Component<WithStyles<ClassKey>> {
     state = {
       value: 0,
     };
 
-    handleChange = (event, value) => {
+    handleChange = (event: React.SyntheticEvent<any>, value: number) => {
       this.setState({ value });
     };
 
@@ -751,19 +771,19 @@ const TextFieldTest = () =>
       id="name"
       label="Name"
       value={'Alice'}
-      onChange={(event: React.SyntheticEvent<any>) =>
+      onChange={event =>
         log({ name: event.currentTarget.value })}
     />
     <TextField
       id="name"
       label="Name"
       value={'Alice'}
-      InputProps={{ classes: { foo: 'bar' } }}
+      InputProps={{ classes: { root: 'foo' } }}
     />
   </div>;
 
-const SelectTest = () =>
-  <Select input={<Input />} value={10}>
+const SelectTest = () => {
+  <Select input={<Input />} value={10} onChange={e => log(e.currentTarget.value)}>
     <MenuItem value="">
       <em>None</em>
     </MenuItem>
@@ -771,3 +791,35 @@ const SelectTest = () =>
     <MenuItem value={20}>Twenty</MenuItem>
     <MenuItem value={30}>Thirty</MenuItem>
   </Select>;
+};
+
+const ResponsiveComponentTest = () => {
+  const ResponsiveComponent = withMobileDialog({
+    breakpoint: 'sm',
+  })(({ children, width }) =>
+    <div style={{ width }}>
+      {children}
+    </div>
+  );
+  <ResponsiveComponent />;
+
+  const ResponsiveDialogComponent = withMobileDialog<DialogProps>({
+    breakpoint: 'sm',
+  })(Dialog);
+};
+
+const TooltipComponentTest = () =>
+  <div>
+    <Tooltip id="tooltip-top-start" title="Add" placement="top-start">
+      <Button>top-start</Button>
+    </Tooltip>
+    <Tooltip id="tooltip-top-start" title={<strong>Add</strong>} placement="top-start">
+      <Button>top-start</Button>
+    </Tooltip>
+  </div>
+
+const ClickAwayListenerComponentTest = () =>
+  <ClickAwayListener onClickAway={() => {}}>
+    <div />
+  </ClickAwayListener>
+

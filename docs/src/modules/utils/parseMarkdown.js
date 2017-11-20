@@ -1,24 +1,36 @@
 // @flow
 
-const headerRegExp = /---\n(.*)\n---/;
-const titleRegExp = /# (.*)\n/;
-const componentsRegExp = /^components: (.*)$/;
+const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
+const titleRegExp = /# (.*)[\r\n]/;
+const headerKeyValueRegExp = /(.*): (.*)/g;
 const emptyRegExp = /^\s*$/;
 
-export function getComponents(markdown: string) {
-  const header = markdown.match(headerRegExp);
+export function getHeaders(markdown: string) {
+  let header = markdown.match(headerRegExp);
 
   if (!header) {
-    return [];
+    return {
+      components: [],
+    };
   }
 
-  const components = header[1].match(componentsRegExp);
+  header = header[1];
 
-  if (!components) {
-    return [];
+  let regexMatchs;
+  const headers = {};
+
+  // eslint-disable-next-line no-cond-assign
+  while ((regexMatchs = headerKeyValueRegExp.exec(header)) !== null) {
+    headers[regexMatchs[1]] = regexMatchs[2];
   }
 
-  return components[1].split(', ').sort();
+  if (headers.components) {
+    headers.components = headers.components.split(', ').sort();
+  } else {
+    headers.components = [];
+  }
+
+  return headers;
 }
 
 export function getContents(markdown: string) {

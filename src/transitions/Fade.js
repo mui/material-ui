@@ -1,131 +1,142 @@
-// @flow weak
+// @flow
+// @inheritedComponent Transition
 
 import React from 'react';
 import type { Element } from 'react';
-import Transition from '../internal/Transition';
+import Transition from 'react-transition-group/Transition';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
-import type { TransitionCallback } from '../internal/Transition';
+import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
-type DefaultProps = {
-  enterTransitionDuration: number,
-  leaveTransitionDuration: number,
+type ProvidedProps = {
+  /**
+   * @ignore
+   */
   theme: Object,
 };
 
 export type Props = {
   /**
-   * A single child content element.
+   * Other base element props.
    */
-  children?: Element<*>,
-  /**
-   * If `true`, the component will transition in.
-   */
-  in?: boolean,
-  /**
-   * Duration of the animation when the element is entering.
-   */
-  enterTransitionDuration?: number, // eslint-disable-line react/sort-prop-types
-  /**
-   * Duration of the animation when the element is exiting.
-   */
-  leaveTransitionDuration?: number,
-  /**
-   * Callback fired before the component enters.
-   */
-  onEnter?: TransitionCallback,
-  /**
-   * Callback fired when the component is entering.
-   */
-  onEntering?: TransitionCallback,
-  /**
-   * Callback fired when the component has entered.
-   */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
-  /**
-   * Callback fired before the component exits.
-   */
-  onExit?: TransitionCallback,
-  /**
-   * Callback fired when the component is exiting.
-   */
-  onExiting?: TransitionCallback,
-  /**
-   * Callback fired when the component has exited.
-   */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  [otherProp: string]: any,
   /**
    * @ignore
    */
-  theme?: Object,
+  appear: boolean,
+  /**
+   * A single child content element.
+   */
+  children: Element<any>,
+  /**
+   * If `true`, the component will transition in.
+   */
+  in: boolean,
+  /**
+   * @ignore
+   */
+  onEnter?: TransitionCallback,
+  /**
+   * @ignore
+   */
+  onEntering?: TransitionCallback,
+  /**
+   * @ignore
+   */
+  onExit?: TransitionCallback,
+  /**
+   * @ignore
+   */
+  style?: Object,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  timeout: TransitionDuration,
 };
 
-type AllProps = DefaultProps & Props;
+const reflow = node => node.scrollTop;
 
-class Fade extends React.Component<AllProps, void> {
-  props: AllProps;
-
+/**
+ * The Fade transition is used by the Modal component.
+ * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ */
+class Fade extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
-    in: false,
-    enterTransitionDuration: duration.enteringScreen,
-    leaveTransitionDuration: duration.leavingScreen,
-    theme: {},
+    appear: true,
+    timeout: ({
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    }: TransitionDuration),
   };
 
-  handleEnter = element => {
-    element.style.opacity = 0;
+  handleEnter = (node: HTMLElement) => {
+    node.style.opacity = '0';
+    reflow(node);
+
     if (this.props.onEnter) {
-      this.props.onEnter(element);
+      this.props.onEnter(node);
     }
   };
 
-  handleEntering = element => {
-    const { transitions } = this.props.theme;
-    element.style.transition = transitions.create('opacity', {
-      duration: this.props.enterTransitionDuration,
+  handleEntering = (node: HTMLElement) => {
+    const { theme, timeout } = this.props;
+    node.style.transition = theme.transitions.create('opacity', {
+      duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
-    element.style.WebkitTransition = transitions.create('opacity', {
-      duration: this.props.enterTransitionDuration,
+    // $FlowFixMe - https://github.com/facebook/flow/pull/5161
+    node.style.webkitTransition = theme.transitions.create('opacity', {
+      duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
-    element.style.opacity = 1;
+    node.style.opacity = '1';
+
     if (this.props.onEntering) {
-      this.props.onEntering(element);
+      this.props.onEntering(node);
     }
   };
 
-  handleExit = element => {
-    const { transitions } = this.props.theme;
-    element.style.transition = transitions.create('opacity', {
-      duration: this.props.leaveTransitionDuration,
+  handleExit = (node: HTMLElement) => {
+    const { theme, timeout } = this.props;
+    node.style.transition = theme.transitions.create('opacity', {
+      duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
-    element.style.WebkitTransition = transitions.create('opacity', {
-      duration: this.props.leaveTransitionDuration,
+    // $FlowFixMe - https://github.com/facebook/flow/pull/5161
+    node.style.webkitTransition = theme.transitions.create('opacity', {
+      duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
-    element.style.opacity = 0;
+    node.style.opacity = '0';
+
     if (this.props.onExit) {
-      this.props.onExit(element);
+      this.props.onExit(node);
     }
   };
 
   render() {
     const {
+      appear,
       children,
-      enterTransitionDuration,
-      leaveTransitionDuration,
       onEnter,
       onEntering,
       onExit,
+      style: styleProp,
       theme,
       ...other
     } = this.props;
 
+    const style = { ...styleProp };
+
+    // For server side rendering.
+    if (!this.props.in || appear) {
+      style.opacity = '0';
+    }
+
     return (
       <Transition
+        appear={appear}
+        style={style}
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
-        timeout={Math.max(enterTransitionDuration, leaveTransitionDuration) + 10}
-        transitionAppear
         {...other}
       >
         {children}
@@ -134,4 +145,4 @@ class Fade extends React.Component<AllProps, void> {
   }
 }
 
-export default withTheme(Fade);
+export default withTheme()(Fade);

@@ -1,11 +1,19 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 
 const DefaultOnSSR = () => null;
 
-class NoSSR extends React.Component {
+type State = {
+  canRender: boolean,
+};
+
+type Props = {
+  children: Node,
+};
+
+class NoSSR extends React.Component<Props, State> {
   state = {
     canRender: false,
   };
@@ -18,9 +26,5 @@ class NoSSR extends React.Component {
     return this.state.canRender ? this.props.children : <DefaultOnSSR />;
   }
 }
-
-NoSSR.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default NoSSR;

@@ -80,21 +80,31 @@ describe('until', () => {
     assert.strictEqual(wrapper.contains(<div />), true);
   });
 
-  const Foo = () => <Div />;
-  Foo.contextTypes = { quux: PropTypes.bool.isRequired };
+  // eslint-disable-next-line react/prefer-stateless-function
+  class Foo extends React.Component<{}> {
+    render() {
+      return <Div />;
+    }
+  }
 
+  Foo.contextTypes = {
+    quux: PropTypes.bool.isRequired,
+  };
+
+  it('context propagation passes down context from the root component', () => {
+    const EnhancedFoo = hoc(Foo);
+    const options = { context: { quux: true } };
+    const wrapper = until.call(shallow(<EnhancedFoo />, options), 'Foo', options);
+    assert.strictEqual(wrapper.context('quux'), true);
+    assert.strictEqual(wrapper.contains(<Div />), true);
+  });
+
+  // eslint-disable-next-line react/no-multi-comp
   class Bar extends React.Component<{}> {
     static childContextTypes = { quux: PropTypes.bool };
     getChildContext = () => ({ quux: true });
     render = () => <Foo />;
   }
-
-  it('context propagation passes down context from the root component', () => {
-    const EnhancedFoo = hoc(Foo);
-    const wrapper = until.call(shallow(<EnhancedFoo />, { context: { quux: true } }), 'Foo');
-    assert.strictEqual(wrapper.context('quux'), true);
-    assert.strictEqual(wrapper.contains(<Div />), true);
-  });
 
   it('context propagation passes down context from an intermediary component', () => {
     const EnhancedBar = hoc(Bar);

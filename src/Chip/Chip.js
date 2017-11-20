@@ -1,21 +1,23 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Element, Node } from 'react';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
 import CancelIcon from '../svg-icons/Cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
+import Avatar from '../Avatar/Avatar';
 
 export const styles = (theme: Object) => {
   const height = 32;
   const backgroundColor = emphasize(theme.palette.background.default, 0.12);
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
+
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
-      fontSize: 13,
+      fontSize: theme.typography.pxToRem(13),
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -33,6 +35,8 @@ export const styles = (theme: Object) => {
       padding: 0, // Remove `button` padding
     },
     clickable: {
+      // Remove grey highlight
+      WebkitTapHighlightColor: theme.palette.common.transparent,
       cursor: 'pointer',
       '&:hover, &:focus': {
         backgroundColor: emphasize(backgroundColor, 0.08),
@@ -51,7 +55,7 @@ export const styles = (theme: Object) => {
       marginRight: -4,
       width: 32,
       height: 32,
-      fontSize: 16,
+      fontSize: theme.typography.pxToRem(16),
     },
     avatarChildren: {
       width: 19,
@@ -67,6 +71,8 @@ export const styles = (theme: Object) => {
       cursor: 'inherit',
     },
     deleteIcon: {
+      // Remove grey highlight
+      WebkitTapHighlightColor: theme.palette.common.transparent,
       color: deleteIconColor,
       cursor: 'pointer',
       height: 'auto',
@@ -78,27 +84,39 @@ export const styles = (theme: Object) => {
   };
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * Avatar element.
    */
-  avatar?: Element<*>,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
+  avatar?: Element<typeof Avatar>,
   /**
    * @ignore
    */
   className?: string,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * Custom delete icon. Will be shown only if `onRequestDelete` is set.
+   */
+  deleteIcon?: Element<any>,
+  /**
    * The content of the label.
    */
-  label?: Element<*>,
+  label?: Node,
   /**
    * @ignore
    */
@@ -118,13 +136,11 @@ export type Props = {
   tabIndex?: number | string,
 };
 
-type AllProps = DefaultProps & Props;
-
 /**
  * Chips represent complex entities in small blocks, such as a contact.
  */
-class Chip extends React.Component<AllProps> {
-  props: AllProps;
+class Chip extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {};
 
   chipRef: ?HTMLElement = null;
 
@@ -168,6 +184,7 @@ class Chip extends React.Component<AllProps> {
       onClick,
       onKeyDown,
       onRequestDelete,
+      deleteIcon: deleteIconProp,
       tabIndex: tabIndexProp,
       ...other
     } = this.props;
@@ -180,7 +197,12 @@ class Chip extends React.Component<AllProps> {
     );
 
     let deleteIcon = null;
-    if (onRequestDelete) {
+    if (onRequestDelete && deleteIconProp && React.isValidElement(deleteIconProp)) {
+      deleteIcon = React.cloneElement(deleteIconProp, {
+        onClick: this.handleDeleteIconClick,
+        className: classNames(classes.deleteIcon, deleteIconProp.props.className),
+      });
+    } else if (onRequestDelete) {
       deleteIcon = (
         <CancelIcon className={classes.deleteIcon} onClick={this.handleDeleteIconClick} />
       );
@@ -207,10 +229,10 @@ class Chip extends React.Component<AllProps> {
         tabIndex={tabIndex}
         onClick={onClick}
         onKeyDown={this.handleKeyDown}
+        {...other}
         ref={node => {
           this.chipRef = node;
         }}
-        {...other}
       >
         {avatar}
         <span className={classes.label}>{label}</span>

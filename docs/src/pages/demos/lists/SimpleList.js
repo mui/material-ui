@@ -17,7 +17,7 @@ const styles = theme => ({
 });
 
 function SimpleList(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.root}>
       <List>

@@ -11,6 +11,7 @@ const rowsHeight = 24;
 export const styles = {
   root: {
     position: 'relative', // because the shadow has position: 'absolute',
+    width: '100%',
   },
   textarea: {
     width: '100%',
@@ -38,11 +39,21 @@ export const styles = {
   },
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
+type Rows = string | number;
+
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * Useful to extend the style applied to components.
    */
@@ -54,7 +65,7 @@ export type Props = {
   /**
    * @ignore
    */
-  defaultValue?: string,
+  defaultValue?: string | number,
   /**
    * @ignore
    */
@@ -66,7 +77,7 @@ export type Props = {
   /**
    * Number of rows to display when multiline option is set to true.
    */
-  rows?: string | number,
+  rows: Rows,
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
@@ -78,10 +89,8 @@ export type Props = {
   /**
    * @ignore
    */
-  value?: string,
+  value?: string | number,
 };
-
-type AllProps = DefaultProps & Props;
 
 type State = {
   height: ?number,
@@ -90,19 +99,9 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class Textarea extends React.Component<AllProps, State> {
-  props: AllProps;
-
-  shadow: ?HTMLInputElement;
-
-  singlelineShadow: ?HTMLInputElement;
-
-  input: ?HTMLInputElement;
-
-  value: string;
-
+class Textarea extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
-    rows: 1,
+    rows: (1: Rows),
   };
 
   state = {
@@ -135,6 +134,11 @@ class Textarea extends React.Component<AllProps, State> {
     this.handleResize.cancel();
   }
 
+  shadow: ?HTMLTextAreaElement;
+  singlelineShadow: ?HTMLTextAreaElement;
+  input: ?HTMLTextAreaElement;
+  value: string | number;
+
   handleResize = debounce(event => {
     this.syncHeightWithShadow(event);
   }, 166);
@@ -143,7 +147,7 @@ class Textarea extends React.Component<AllProps, State> {
     if (this.shadow && this.singlelineShadow) {
       // The component is controlled, we need to update the shallow value.
       if (typeof this.props.value !== 'undefined') {
-        this.shadow.value = props.value || '';
+        this.shadow.value = props.value == null ? '' : String(props.value);
       }
 
       const lineHeight = this.singlelineShadow.scrollHeight;
@@ -234,13 +238,13 @@ class Textarea extends React.Component<AllProps, State> {
           value={value}
         />
         <textarea
-          ref={this.handleRefInput}
           rows={rows}
           className={classnames(classes.textarea, className)}
           defaultValue={defaultValue}
           value={value}
           onChange={this.handleChange}
           {...other}
+          ref={this.handleRefInput}
         />
       </div>
     );

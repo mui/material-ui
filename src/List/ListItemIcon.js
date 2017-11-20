@@ -15,8 +15,12 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -24,7 +28,7 @@ export type Props = {
    * The content of the component, normally `Icon`, `SvgIcon`,
    * or a `material-ui-icons` SVG icon component.
    */
-  children: Element<*>,
+  children: Element<any>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -35,12 +39,10 @@ export type Props = {
   className?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
-function ListItemIcon(props: AllProps) {
+function ListItemIcon(props: ProvidedProps & Props) {
   const { children, classes, className: classNameProp, ...other } = props;
 
   return React.cloneElement(children, {

@@ -17,9 +17,7 @@ describe('createTypography', () => {
   });
 
   it('should create a typography with custom fontSize', () => {
-    const typography = createTypography(palette, {
-      fontSize: 15,
-    });
+    const typography = createTypography(palette, { fontSize: 15 });
     assert.strictEqual(typography.fontSize, 15);
   });
 
@@ -27,10 +25,13 @@ describe('createTypography', () => {
     const typography = createTypography(palette, paletteCurrent => {
       assert.strictEqual(palette, paletteCurrent);
 
-      return {
-        fontSize: 15,
-      };
+      return { fontSize: 15 };
     });
     assert.strictEqual(typography.fontSize, 15);
+  });
+
+  it('should create a typography with a custom baseFontSize', () => {
+    const typography = createTypography(palette, { htmlFontSize: 10 });
+    assert.strictEqual(typography.display4.fontSize, '11.2rem');
   });
 });

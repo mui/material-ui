@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -11,7 +11,7 @@ import { isMuiElement } from '../utils/reactHelpers';
 export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
-    justifyContent: 'initial',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     position: 'relative',
     textDecoration: 'none',
@@ -47,23 +47,39 @@ export const styles = (theme: Object) => ({
     '&:hover': {
       textDecoration: 'none',
       backgroundColor: theme.palette.text.divider,
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
       '&$disabled': {
         backgroundColor: 'transparent',
       },
     },
   },
+  secondaryAction: {
+    // Add some space to avoid collision as `ListItemSecondaryAction`
+    // is absolutely positionned.
+    paddingRight: theme.spacing.unit * 4,
+  },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  component: string,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * If `true`, the ListItem will be a button.
    */
-  button?: boolean,
+  button: boolean,
   /**
    * The content of the component.
    */
@@ -80,33 +96,29 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | ComponentType<*>,
+  component: ElementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
    */
-  dense?: boolean,
+  dense: boolean,
   /**
    * @ignore
    */
-  disabled?: boolean,
+  disabled: boolean,
   /**
    * If `true`, the left and right padding is removed.
    */
-  disableGutters?: boolean,
+  disableGutters: boolean,
   /**
    * If `true`, a 1px light border is added to the bottom of the list item.
    */
-  divider?: boolean,
+  divider: boolean,
 };
 
-type AllProps = DefaultProps & Props;
-
-class ListItem extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class ListItem extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     button: false,
-    component: 'li',
+    component: ('li': ElementType),
     dense: false,
     disabled: false,
     disableGutters: false,
@@ -136,6 +148,8 @@ class ListItem extends React.Component<AllProps, void> {
     const children = React.Children.toArray(childrenProp);
 
     const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
+    const hasSecondaryAction =
+      children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
     const className = classNames(
       classes.root,
@@ -144,6 +158,7 @@ class ListItem extends React.Component<AllProps, void> {
         [classes.divider]: divider,
         [classes.disabled]: disabled,
         [classes.button]: button,
+        [classes.secondaryAction]: hasSecondaryAction,
         [isDense || hasAvatar ? classes.dense : classes.default]: true,
       },
       classNameProp,
@@ -158,15 +173,11 @@ class ListItem extends React.Component<AllProps, void> {
       listItemProps.keyboardFocusedClassName = classes.keyboardFocused;
     }
 
-    if (
-      children.length &&
-      isMuiElement(children[children.length - 1], ['ListItemSecondaryAction'])
-    ) {
-      const secondaryAction = children.pop();
+    if (hasSecondaryAction) {
       return (
         <div className={classes.container}>
           <ComponentMain {...listItemProps}>{children}</ComponentMain>
-          {secondaryAction}
+          {children.pop()}
         </div>
       );
     }

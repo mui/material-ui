@@ -4,8 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Badge from 'material-ui/Badge';
+import IconButton from 'material-ui/IconButton';
 import MailIcon from 'material-ui-icons/Mail';
-import FolderIcon from 'material-ui-icons/Folder';
 
 const styles = theme => ({
   badge: {
@@ -14,15 +14,20 @@ const styles = theme => ({
 });
 
 function SimpleBadge(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div>
       <Badge className={classes.badge} badgeContent={4} color="primary">
         <MailIcon />
       </Badge>
       <Badge className={classes.badge} badgeContent={10} color="accent">
-        <FolderIcon />
+        <MailIcon />
       </Badge>
+      <IconButton>
+        <Badge className={classes.badge} badgeContent={4} color="primary">
+          <MailIcon />
+        </Badge>
+      </IconButton>
     </div>
   );
 }

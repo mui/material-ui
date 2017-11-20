@@ -1,9 +1,17 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface DialogActionsProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
-
-export default class DialogActions extends StyledComponent<
-  DialogActionsProps
+export interface DialogActionsProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  DialogActionsClassKey
 > {}
+
+export type DialogActionsClassKey =
+  | 'root'
+  | 'action'
+  | 'button'
+  ;
+
+declare const DialogActions: React.ComponentType<DialogActionsProps>;
+
+export default DialogActions;

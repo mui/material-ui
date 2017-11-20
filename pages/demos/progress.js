@@ -17,11 +17,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularIndeterminate'), 'utf8')
 `,
         },
-        'pages/demos/progress/CircularFab.js': {
-          js: require('docs/src/pages/demos/progress/CircularFab').default,
+        'pages/demos/progress/CircularIntegration.js': {
+          js: require('docs/src/pages/demos/progress/CircularIntegration').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularFab'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularIntegration'), 'utf8')
 `,
         },
         'pages/demos/progress/CircularDeterminate.js': {

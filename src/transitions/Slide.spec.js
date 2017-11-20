@@ -2,33 +2,37 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { findDOMNode } from 'react-dom';
-import { createShallow, createMount } from '../test-utils';
-import Slide from './Slide';
-import transitions, { easing, duration } from '../styles/transitions';
+import { createShallow, createMount, unwrap } from '../test-utils';
+import Slide, { setTranslateValue } from './Slide';
+import transitions, { easing } from '../styles/transitions';
 import createMuiTheme from '../styles/createMuiTheme';
+
+const SlideNaked = unwrap(Slide);
 
 describe('<Slide />', () => {
   let shallow;
+  let mount;
+  const props = {
+    in: true,
+    children: <div />,
+    direction: 'down',
+  };
 
   before(() => {
-    shallow = createShallow({
-      dive: true,
-    });
+    shallow = createShallow({ dive: true });
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a Transition', () => {
-    const wrapper = shallow(<Slide />);
-    assert.strictEqual(wrapper.name(), 'Transition');
-  });
-
-  it('enterTransitionDuration prop should have default value from standard durations', () => {
-    assert.strictEqual(Slide.Naked.defaultProps.enterTransitionDuration, duration.enteringScreen);
-  });
-
-  it('leaveTransitionDuration prop should have default value from standard durations', () => {
-    assert.strictEqual(Slide.Naked.defaultProps.leaveTransitionDuration, duration.leavingScreen);
+    const wrapper = shallow(<Slide {...props} />);
+    assert.strictEqual(wrapper.name(), 'EventListener');
+    assert.strictEqual(wrapper.childAt(0).name(), 'Transition');
   });
 
   describe('event callbacks', () => {
@@ -40,32 +44,39 @@ describe('<Slide />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<Slide {...handlers} />);
+      const wrapper = shallow(<Slide {...props} {...handlers} />).childAt(0);
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, { style: {}, getBoundingClientRect: () => ({}) });
+        wrapper.simulate(event, {
+          fakeTransform: 'none',
+          style: {},
+          getBoundingClientRect: () => ({}),
+        });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
     });
   });
 
-  describe('transition animation', () => {
+  describe('prop: timeout', () => {
     let wrapper;
     let instance;
     let element;
     const enterDuration = 556;
     const leaveDuration = 446;
 
-    before(() => {
+    beforeEach(() => {
       wrapper = shallow(
-        <Slide enterTransitionDuration={enterDuration} leaveTransitionDuration={leaveDuration} />,
+        <Slide
+          {...props}
+          timeout={{
+            enter: enterDuration,
+            exit: leaveDuration,
+          }}
+        />,
       );
       instance = wrapper.instance();
-      element = {
-        getBoundingClientRect: () => ({}),
-        style: {},
-      };
+      element = { fakeTransform: 'none', getBoundingClientRect: () => ({}), style: {} };
     });
 
     it('should create proper easeOut animation onEntering', () => {
@@ -87,12 +98,27 @@ describe('<Slide />', () => {
     });
   });
 
+  describe('prop: direction', () => {
+    it('should update the position', () => {
+      const wrapper = mount(<SlideNaked {...props} in={false} direction="left" />);
+      const transition = findDOMNode(wrapper.instance().transition);
+      // $FlowExpectedError
+      const transition1 = transition.style.transform;
+      wrapper.setProps({
+        direction: 'right',
+      });
+      // $FlowExpectedError
+      const transition2 = transition.style.transform;
+      assert.notStrictEqual(transition1, transition2);
+    });
+  });
+
   describe('transition lifecycle', () => {
     let wrapper;
     let instance;
 
     before(() => {
-      wrapper = shallow(<Slide />);
+      wrapper = shallow(<Slide {...props} />);
       instance = wrapper.instance();
     });
 
@@ -101,6 +127,7 @@ describe('<Slide />', () => {
 
       beforeEach(() => {
         element = {
+          fakeTransform: 'none',
           getBoundingClientRect: () => ({
             width: 500,
             height: 300,
@@ -116,23 +143,23 @@ describe('<Slide />', () => {
       it('should set element transform and transition according to the direction', () => {
         wrapper.setProps({ direction: 'left' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(calc(100vw - 300px), 0, 0)');
+        assert.strictEqual(element.style.transform, 'translateX(100vw) translateX(-300px)');
         wrapper.setProps({ direction: 'right' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(-824px, 0, 0)');
+        assert.strictEqual(element.style.transform, 'translateX(-824px)');
         wrapper.setProps({ direction: 'up' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, calc(100vh - 200px), 0)');
+        assert.strictEqual(element.style.transform, 'translateY(100vh) translateY(-200px)');
         wrapper.setProps({ direction: 'down' });
         instance.handleEnter(element);
         assert.strictEqual(element.style.transform, 'translate3d(0, -500px, 0)');
       });
 
       it('should reset the previous transition if needed', () => {
-        element.style.transform = 'translate3d(-824px, 0, 0)';
+        element.style.transform = 'translateX(-824px)';
         wrapper.setProps({ direction: 'right' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(-824px, 0, 0)');
+        assert.strictEqual(element.style.transform, 'translateX(-824px)');
       });
     });
 
@@ -154,6 +181,7 @@ describe('<Slide />', () => {
 
       before(() => {
         element = {
+          fakeTransform: 'none',
           getBoundingClientRect: () => ({
             width: 500,
             height: 300,
@@ -169,13 +197,13 @@ describe('<Slide />', () => {
       it('should set element transform and transition according to the direction', () => {
         wrapper.setProps({ direction: 'left' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(calc(100vw - 300px), 0, 0)');
+        assert.strictEqual(element.style.transform, 'translateX(100vw) translateX(-300px)');
         wrapper.setProps({ direction: 'right' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(-824px, 0, 0)');
+        assert.strictEqual(element.style.transform, 'translateX(-824px)');
         wrapper.setProps({ direction: 'up' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, calc(100vh - 200px), 0)');
+        assert.strictEqual(element.style.transform, 'translateY(100vh) translateY(-200px)');
         wrapper.setProps({ direction: 'down' });
         instance.handleEnter(element);
         assert.strictEqual(element.style.transform, 'translate3d(0, -500px, 0)');
@@ -184,25 +212,72 @@ describe('<Slide />', () => {
   });
 
   describe('mount', () => {
-    let mount;
+    it('should work when initially hidden', () => {
+      const wrapper = mount(
+        <SlideNaked theme={createMuiTheme()} in={false}>
+          <div>Foo</div>
+        </SlideNaked>,
+      );
+      const transition = findDOMNode(wrapper.instance().transition);
+      // $FlowExpectedError
+      assert.strictEqual(transition.style.visibility, 'inherit');
+      // $FlowExpectedError
+      assert.notStrictEqual(transition.style.transform, undefined);
+    });
+  });
+
+  describe('resize', () => {
+    let clock;
 
     before(() => {
-      mount = createMount();
+      clock = useFakeTimers();
     });
 
     after(() => {
-      mount.cleanUp();
+      clock.restore();
     });
 
-    it('should work when initially hidden', () => {
+    it('should recompute the correct position', () => {
       const wrapper = mount(
-        <Slide.Naked theme={createMuiTheme()} in={false}>
+        <SlideNaked theme={createMuiTheme()} direction="up" in={false}>
           <div>Foo</div>
-        </Slide.Naked>,
+        </SlideNaked>,
       );
-      const transition = findDOMNode(wrapper.instance().transition);
-      // $FlowFixMe
-      assert.notStrictEqual(transition ? transition.style.transform : undefined, undefined);
+      const instance = wrapper.instance();
+      instance.handleResize();
+      clock.tick(166);
+      const transition = findDOMNode(instance.transition);
+      // $FlowExpectedError
+      assert.notStrictEqual(transition.style.transform, undefined);
+    });
+
+    it('should take existing transform into account', () => {
+      const element = {
+        fakeTransform: 'transform matrix(1, 0, 0, 1, 0, 420)',
+        getBoundingClientRect: () => ({
+          width: 500,
+          height: 300,
+          left: 300,
+          right: 800,
+          top: 1200,
+          bottom: 1500,
+        }),
+        style: {},
+      };
+      setTranslateValue(
+        {
+          direction: 'up',
+        },
+        element,
+      );
+      assert.strictEqual(element.style.transform, 'translateY(100vh) translateY(-780px)');
+    });
+
+    it('should do nothing when visible', () => {
+      const wrapper = shallow(<Slide {...props} />);
+      const instance = wrapper.instance();
+      instance.handleResize();
+      clock.tick(166);
     });
   });
 });

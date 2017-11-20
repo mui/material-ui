@@ -1,12 +1,23 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { StandardProps } from '..';
+import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
-export interface TableSortLabelProps extends ButtonBaseProps {
+export interface TableSortLabelProps extends StandardProps<
+  ButtonBaseProps,
+  TableSortLabelClassKey
+> {
   active?: boolean;
   direction?: 'asc' | 'desc';
 }
 
-export default class TableSortLabel extends StyledComponent<
-  TableSortLabelProps
-> {}
+export type TableSortLabelClassKey =
+  | ButtonBaseClassKey
+  | 'active'
+  | 'icon'
+  | 'desc'
+  | 'asc'
+  ;
+
+declare const TableSortLabel: React.ComponentType<TableSortLabelProps>;
+
+export default TableSortLabel;

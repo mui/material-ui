@@ -1,10 +1,10 @@
 ---
-components: Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel
+components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
 # Tables
 
-[Data tables](https://material.google.com/components/data-tables.html) display sets of raw data.
+[Data tables](https://material.io/guidelines/components/data-tables.html) display sets of raw data.
 They usually appear in desktop enterprise products.
 
 ## Structure

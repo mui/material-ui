@@ -2,9 +2,7 @@
 
 import { assert } from 'chai';
 import createBroadcast from 'brcast';
-import themeListener from './themeListener';
-
-const CHANNEL = 'material-ui';
+import themeListener, { CHANNEL } from './themeListener';
 
 describe('themeListener', () => {
   it('should be able to get the initial state', () => {
@@ -12,12 +10,7 @@ describe('themeListener', () => {
     const initialState = {};
     broadcast.setState(initialState);
 
-    assert.strictEqual(
-      themeListener.initial({
-        [CHANNEL]: broadcast,
-      }),
-      initialState,
-    );
+    assert.strictEqual(themeListener.initial({ [CHANNEL]: broadcast }), initialState);
   });
 
   it('should not complain if the context is not defined', () => {

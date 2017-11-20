@@ -16,11 +16,19 @@ export const styles = {
   },
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The content of the component.
    */
@@ -36,34 +44,35 @@ export type Props = {
   /**
    * Display group of elements in a compact row.
    */
-  row?: boolean,
+  row: boolean,
 };
-
-type AllProps = DefaultProps & Props;
 
 /**
- * FormGroup wraps controls such as Checkbox and Switch.
- * It provides compact row layout and FormLabel awareness.
+ * `FormGroup` wraps controls such as `Checkbox` and `Switch`.
+ * It provides compact row layout.
+ * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
-function FormGroup(props: AllProps) {
-  const { classes, className, children, row, ...other } = props;
-  const rootClassName = classNames(
-    classes.root,
-    {
-      [classes.row]: row,
-    },
-    className,
-  );
+class FormGroup extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    row: false,
+  };
 
-  return (
-    <div className={rootClassName} {...other}>
-      {children}
-    </div>
-  );
+  render() {
+    const { classes, className, children, row, ...other } = this.props;
+    const rootClassName = classNames(
+      classes.root,
+      {
+        [classes.row]: row,
+      },
+      className,
+    );
+
+    return (
+      <div className={rootClassName} {...other}>
+        {children}
+      </div>
+    );
+  }
 }
-
-FormGroup.defaultProps = {
-  row: false,
-};
 
 export default withStyles(styles, { name: 'MuiFormGroup' })(FormGroup);

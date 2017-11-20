@@ -4,7 +4,7 @@ components: Button, IconButton, ButtonBase
 
 # Buttons
 
-[Buttons](https://material.google.com/components/buttons.html) communicate the action that will occur when the user touches them.
+[Buttons](https://material.io/guidelines/components/buttons.html) communicate the action that will occur when the user touches them.
 
 Material buttons trigger an ink reaction on press.
 They may display text, imagery, or both.
@@ -42,6 +42,11 @@ Icon buttons are commonly found in app bars and toolbars.
 Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
 
 {{demo='pages/demos/buttons/IconButtons.js'}}
+
+### Buttons with icons and label
+Sometimes you might want to have icons for certain button to enhance the UX of the application as humans recognize logos more than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+
+{{demo='pages/demos/buttons/IconLabelButtons.js'}}
 
 ## Complex Buttons
 

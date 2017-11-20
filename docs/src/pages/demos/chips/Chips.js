@@ -6,6 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import FaceIcon from 'material-ui-icons/Face';
+import Done from 'material-ui-icons/Done';
 import grey from 'material-ui/colors/grey';
 
 const styles = theme => ({
@@ -31,7 +32,7 @@ function handleClick() {
 }
 
 function Chips(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.row}>
       <Chip label="Basic Chip" className={classes.chip} />
@@ -57,6 +58,13 @@ function Chips(props) {
         onClick={handleClick}
         onRequestDelete={handleRequestDelete}
         className={classes.chip}
+      />
+      <Chip
+        label="Custom delete icon Chip"
+        onClick={handleClick}
+        onRequestDelete={handleRequestDelete}
+        className={classes.chip}
+        deleteIcon={<Done />}
       />
     </div>
   );

@@ -1,24 +1,21 @@
 import * as React from 'react';
+import { StyledComponentProps } from './styles'
+export { StyledComponentProps }
 
 /**
- * Component exposed by `material-ui` are usually wrapped
- * with the `withStyles` HOC and allow customization via
- * the following props:
- *
- * - `className`
- * - `classes`
- * - `style`
+ * All standard components exposed by `material-ui` are `StyledComponents` with
+ * certain `classes`, on which one can also set a top-level `className` and inline
+ * `style`.
  */
-export interface StyledComponentProps<StyleClasses> {
-  className?: string;
-  classes?: StyleClasses;
-  style?: Partial<React.CSSProperties>;
-}
-export class StyledComponent<P, C = Object> extends React.Component<
-  P & StyledComponentProps<C>
-> {}
+export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> =
+  & Omit<C & { classes: any }, 'classes' | Removals>
+  & StyledComponentProps<ClassKey>
+  & {
+    className?: string;
+    style?: Partial<React.CSSProperties>;
+  }
 
-export type Contrast = 'light' | 'dark' | 'brown';
+export type Contrast = 'light' | 'dark';
 export interface Color {
   50: string;
   100: string;
@@ -41,9 +38,15 @@ export interface Color {
  * Utilies types based on:
  * https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-307871458
  */
-export type Diff<T extends string, U extends string> = ({ [P in T]: P } &
-  { [P in U]: never } & { [x: string]: never })[T];
-export type Omit<T, K extends keyof T> = { [P in Diff<keyof T, K>]: T[P] };
+
+ /** @internal */
+type Diff<T extends string, U extends string> = (
+  { [P in T]: P } &
+  { [P in U]: never } & { [x: string]: never }
+)[T];
+
+/** @internal */
+export type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
 
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
@@ -61,6 +64,7 @@ export { default as ButtonBase } from './ButtonBase';
 export { default as Card, CardActions, CardContent, CardHeader, CardMedia } from './Card';
 export { default as Checkbox } from './Checkbox';
 export { default as Chip } from './Chip';
+export { default as ClickAwayListener } from './utils/ClickAwayListener';
 export {
   default as Dialog,
   DialogActions,
@@ -86,13 +90,15 @@ export {
   ListSubheader,
 } from './List';
 export { default as Menu, MenuItem, MenuList } from './Menu';
+export { default as Modal } from './Modal';
 export { default as Paper } from './Paper';
 export { default as Popover } from './Popover';
 export { CircularProgress, LinearProgress } from './Progress';
 export { default as Radio, RadioGroup } from './Radio';
 export { default as Select } from './Select';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
-export { MuiThemeProvider, withStyles, withTheme, createMuiTheme } from './styles';
+export { default as Stepper, Step, StepButton, StepContent, StepLabel } from './Stepper';
+export { MuiThemeProvider, withStyles, WithStyles, withTheme, createMuiTheme } from './styles';
 
 import * as colors from './colors';
 
@@ -112,5 +118,7 @@ export { default as Tabs, Tab } from './Tabs';
 export { default as Typography } from './Typography';
 export { default as TextField } from './TextField';
 export { default as Toolbar } from './Toolbar';
-
 export { default as Tooltip } from './Tooltip';
+export { Slide, Grow, Fade, Collapse } from './transitions';
+
+export { default as withWidth } from './utils/withWidth';

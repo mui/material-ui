@@ -1,4 +1,4 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -52,7 +52,7 @@ const MyLinkStyled = withStyles(styles)(MyLink);
 export default function CssInJs() {
   return (
     <Typography type="subheading">
-      <MyLinkStyled href="#">{'MyLink'}</MyLinkStyled>
+      <MyLinkStyled href="#">MyLink</MyLinkStyled>
       {' - '}
       <MyLinkStyled href="#" variant="primary">
         {'primary'}

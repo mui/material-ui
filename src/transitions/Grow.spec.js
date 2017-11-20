@@ -2,15 +2,24 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { createShallow } from '../test-utils';
 import Grow, { getScale } from './Grow';
 
 describe('<Grow />', () => {
   let shallow;
+  const props = {
+    in: true,
+    children: <div />,
+  };
 
   before(() => {
     shallow = createShallow({ dive: true });
+  });
+
+  it('should render a CSSTransition', () => {
+    const wrapper = shallow(<Grow {...props} />);
+    assert.strictEqual(wrapper.name(), 'CSSTransition');
   });
 
   describe('event callbacks', () => {
@@ -22,7 +31,7 @@ describe('<Grow />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<Grow {...handlers} />);
+      const wrapper = shallow(<Grow {...props} {...handlers} />);
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
@@ -30,6 +39,38 @@ describe('<Grow />', () => {
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
         assert.strictEqual(handlers[n].args[0].length, 1, 'should forward the element');
       });
+    });
+  });
+
+  describe('prop: timeout', () => {
+    let wrapper;
+    let instance;
+    let element;
+    const enterDuration = 556;
+    const leaveDuration = 446;
+
+    beforeEach(() => {
+      wrapper = shallow(
+        <Grow
+          {...props}
+          timeout={{
+            enter: enterDuration,
+            exit: leaveDuration,
+          }}
+        />,
+      );
+      instance = wrapper.instance();
+      element = { getBoundingClientRect: () => ({}), style: {} };
+    });
+
+    it('should create proper easeOut animation onEnter', () => {
+      instance.handleEntering(element);
+      assert.match(element.style.transition, new RegExp(`${enterDuration}ms`));
+    });
+
+    it('should create proper sharp animation onExit', () => {
+      instance.handleExit(element);
+      assert.match(element.style.transition, new RegExp(`${leaveDuration}ms`));
     });
   });
 
@@ -51,7 +92,7 @@ describe('<Grow />', () => {
 
       before(() => {
         handleEnter = spy();
-        wrapper = shallow(<Grow onEnter={handleEnter} />);
+        wrapper = shallow(<Grow {...props} onEnter={handleEnter} />);
         wrapper.instance().handleEnter(element);
       });
 
@@ -61,11 +102,6 @@ describe('<Grow />', () => {
           element.style.transform,
           getScale(0.75),
           'should have the starting scale',
-        );
-        assert.strictEqual(
-          element.style.transition,
-          'opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms', // eslint-disable-line max-len
-          'should apply a transition for transform and opacity',
         );
       });
 
@@ -80,11 +116,17 @@ describe('<Grow />', () => {
 
       before(() => {
         handleEntering = spy();
-        wrapper = shallow(<Grow onEntering={handleEntering} />);
+        wrapper = shallow(<Grow {...props} onEntering={handleEntering} />);
         wrapper.instance().handleEntering(element);
       });
 
       it('should set the inline styles for the entering phase', () => {
+        assert.strictEqual(
+          element.style.transition,
+          'opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,' +
+            'transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          'should apply a transition for transform and opacity',
+        );
         assert.strictEqual(element.style.opacity, '1', 'should be visible');
         assert.strictEqual(element.style.transform, getScale(1), 'should have the full scale');
       });
@@ -100,7 +142,7 @@ describe('<Grow />', () => {
 
       before(() => {
         handleExit = spy();
-        wrapper = shallow(<Grow onExit={handleExit} />);
+        wrapper = shallow(<Grow {...props} onExit={handleExit} />);
         wrapper.instance().handleExit(element);
       });
 
@@ -115,44 +157,48 @@ describe('<Grow />', () => {
     });
   });
 
-  describe('handleRequestTimeout()', () => {
-    let wrapper;
+  describe('addEndListener()', () => {
     let instance;
+    let clock;
 
     before(() => {
-      wrapper = shallow(<Grow />);
+      clock = useFakeTimers();
     });
 
-    describe('transitionDuration is auto', () => {
-      before(() => {
-        wrapper.setProps({ transitionDuration: 'auto' });
-        instance = wrapper.instance();
-      });
-
-      it('should return autoTransitionDuration + 20', () => {
-        const autoTransitionDuration = 10;
-        instance.autoTransitionDuration = autoTransitionDuration;
-        assert.strictEqual(instance.handleRequestTimeout(), autoTransitionDuration + 20);
-      });
-
-      it('should return 20', () => {
-        instance.autoTransitionDuration = undefined;
-        assert.strictEqual(instance.handleRequestTimeout(), 20);
-      });
+    after(() => {
+      clock.restore();
     });
 
-    describe('transitionDuration is number', () => {
-      let transitionDuration;
+    it('should return autoTransitionDuration when timeout is auto', () => {
+      const wrapper = shallow(<Grow {...props} timeout="auto" />);
+      assert.strictEqual(wrapper.props().timeout, null);
+      instance = wrapper.instance();
+      const next = spy();
 
-      before(() => {
-        transitionDuration = 10;
-        wrapper.setProps({ transitionDuration });
-        instance = wrapper.instance();
-      });
+      const autoTransitionDuration = 10;
+      instance.autoTransitionDuration = autoTransitionDuration;
+      instance.addEndListener(null, next);
+      assert.strictEqual(next.callCount, 0);
+      clock.tick(autoTransitionDuration);
+      assert.strictEqual(next.callCount, 1);
 
-      it('should return props.transitionDuration + 20', () => {
-        assert.strictEqual(instance.handleRequestTimeout(), transitionDuration + 20);
-      });
+      instance.autoTransitionDuration = undefined;
+      instance.addEndListener(null, next);
+      assert.strictEqual(next.callCount, 1);
+      clock.tick(0);
+      assert.strictEqual(next.callCount, 2);
+    });
+
+    it('should return props.timeout when timeout is number', () => {
+      const timeout = 10;
+      const wrapper = shallow(<Grow {...props} timeout={timeout} />);
+      assert.strictEqual(wrapper.props().timeout, timeout);
+      instance = wrapper.instance();
+      const next = spy();
+      instance.addEndListener(null, next);
+      assert.strictEqual(next.callCount, 0);
+      clock.tick(timeout);
+      assert.strictEqual(next.callCount, 0);
     });
   });
 });

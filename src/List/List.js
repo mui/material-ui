@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -12,6 +12,7 @@ export const styles = (theme: Object) => ({
     listStyle: 'none',
     margin: 0,
     padding: 0,
+    position: 'relative',
   },
   padding: {
     paddingTop: theme.spacing.unit,
@@ -26,12 +27,19 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
-  component: string,
+type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The content of the component.
    */
@@ -48,17 +56,17 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | ComponentType<*>,
+  component: ElementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
    * the list and list items. The property is available to descendant components as the
    * `dense` context.
    */
-  dense?: boolean,
+  dense: boolean,
   /**
    * If `true`, vertical padding will be removed from the list.
    */
-  disablePadding?: boolean,
+  disablePadding: boolean,
   /**
    * Use that property to pass a ref callback to the root component.
    */
@@ -69,13 +77,9 @@ export type Props = {
   subheader?: Node,
 };
 
-type AllProps = DefaultProps & Props;
-
-class List extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class List extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
-    component: 'ul',
+    component: ('ul': ElementType),
     dense: false,
     disablePadding: false,
   };
@@ -109,7 +113,7 @@ class List extends React.Component<AllProps, void> {
     );
 
     return (
-      <ComponentProp ref={rootRef} className={className} {...other}>
+      <ComponentProp className={className} {...other} ref={rootRef}>
         {subheader}
         {children}
       </ComponentProp>

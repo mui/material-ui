@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.
@@ -11,18 +11,41 @@ export const styles = (theme: Object) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    margin: `${theme.spacing.unit}px 4px`,
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
     flex: '0 0 auto',
   },
   action: {
-    margin: '0 4px',
+    margin: `0 ${theme.spacing.unit / 2}px`,
   },
   button: {
     minWidth: 64,
   },
 });
 
-function DialogActions(props) {
+type ProvidedProps = {
+  classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
+};
+
+export type Props = {
+  /**
+   * The content of the component.
+   */
+  children?: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+};
+
+function DialogActions(props: ProvidedProps & Props) {
   const { children, classes, className, ...other } = props;
 
   return (
@@ -41,20 +64,5 @@ function DialogActions(props) {
     </div>
   );
 }
-
-DialogActions.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-};
 
 export default withStyles(styles, { name: 'MuiDialogActions' })(DialogActions);

@@ -4,13 +4,12 @@ import { spy } from 'sinon';
 import { assert } from 'chai';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { create } from 'jss';
-import preset from 'jss-preset-default';
+import { create, SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { SheetsRegistry } from 'react-jss/lib/jss';
 import { renderToString } from 'react-dom/server';
 import { createMount } from '../test-utils';
-import { createMuiTheme } from '../styles';
+import createMuiTheme from './createMuiTheme';
+import { preset } from './withStyles';
 import Button from '../Button';
 import createGenerateClassName from './createGenerateClassName';
 import withTheme from './withTheme';
@@ -18,7 +17,7 @@ import MuiThemeProvider from './MuiThemeProvider';
 
 function getThemeSpy() {
   const themeSpy = spy();
-  const ThemeSpy = props => {
+  const ThemeSpy = (props: Object) => {
     themeSpy(props.theme);
     return props.children;
   };
@@ -29,12 +28,43 @@ function getThemeSpy() {
   };
 
   return {
-    ThemeSpy: withTheme(ThemeSpy),
+    ThemeSpy: withTheme()(ThemeSpy),
     themeSpy,
   };
 }
 
+function getOptionsSpy() {
+  const optionsSpy = spy();
+  const OptionsSpy = (props, context) => {
+    optionsSpy(context.muiThemeProviderOptions);
+    return props.children;
+  };
+
+  OptionsSpy.propTypes = {
+    children: PropTypes.element.isRequired,
+  };
+
+  OptionsSpy.contextTypes = {
+    muiThemeProviderOptions: PropTypes.object,
+  };
+
+  return {
+    OptionsSpy,
+    optionsSpy,
+  };
+}
+
 describe('<MuiThemeProvider />', () => {
+  let mount;
+
+  before(() => {
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
   describe('server side', () => {
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
@@ -72,39 +102,16 @@ describe('<MuiThemeProvider />', () => {
   });
 
   describe('mount', () => {
-    let mount;
-
-    before(() => {
-      mount = createMount();
-    });
-
-    after(() => {
-      mount.cleanUp();
-    });
-
     it('should work with nesting theme', () => {
       const { themeSpy: themeSpy1, ThemeSpy: ThemeSpy1 } = getThemeSpy();
       const { themeSpy: themeSpy2, ThemeSpy: ThemeSpy2 } = getThemeSpy();
       const { themeSpy: themeSpy3, ThemeSpy: ThemeSpy3 } = getThemeSpy();
 
-      const theme1 = createMuiTheme({
-        status: {
-          color: 'orange',
-        },
-      });
+      const theme1 = createMuiTheme({ status: { color: 'orange' } });
 
-      const theme2 = outerTheme => ({
-        ...outerTheme,
-        status: {
-          color: 'green',
-        },
-      });
+      const theme2 = outerTheme => ({ ...outerTheme, status: { color: 'green' } });
 
-      const theme3 = createMuiTheme({
-        status: {
-          color: 'yellow',
-        },
-      });
+      const theme3 = createMuiTheme({ status: { color: 'yellow' } });
 
       const wrapper = mount(
         <MuiThemeProvider theme={theme1}>
@@ -132,13 +139,7 @@ describe('<MuiThemeProvider />', () => {
       assert.strictEqual(themeSpy3.callCount, 1);
       assert.strictEqual(themeSpy3.args[0][0].status.color, 'yellow');
 
-      wrapper.setProps({
-        theme: createMuiTheme({
-          status: {
-            color: 'blue',
-          },
-        }),
-      });
+      wrapper.setProps({ theme: createMuiTheme({ status: { color: 'blue' } }) });
 
       assert.strictEqual(themeSpy1.callCount, 2);
       assert.strictEqual(themeSpy1.args[1][0].status.color, 'blue');
@@ -146,6 +147,27 @@ describe('<MuiThemeProvider />', () => {
       assert.strictEqual(themeSpy2.args[1][0].status.color, 'green');
       assert.strictEqual(themeSpy3.callCount, 2);
       assert.strictEqual(themeSpy3.args[1][0].status.color, 'yellow');
+    });
+  });
+
+  describe('prop: disableStylesGeneration', () => {
+    it('should provide the property down the context', () => {
+      const { optionsSpy, OptionsSpy } = getOptionsSpy();
+
+      const theme = createMuiTheme();
+      const wrapper = mount(
+        <MuiThemeProvider theme={theme} disableStylesGeneration>
+          <OptionsSpy>
+            <div>Foo</div>
+          </OptionsSpy>
+        </MuiThemeProvider>,
+      );
+
+      assert.strictEqual(optionsSpy.callCount, 1);
+      assert.strictEqual(optionsSpy.args[0][0].disableStylesGeneration, true);
+
+      wrapper.setProps({ disableStylesGeneration: false });
+      assert.strictEqual(optionsSpy.args[1][0].disableStylesGeneration, false);
     });
   });
 });

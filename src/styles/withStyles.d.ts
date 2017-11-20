@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { StyledComponentProps } from '..';
 import { Theme } from './createMuiTheme';
 
 /**
@@ -9,33 +8,31 @@ import { Theme } from './createMuiTheme';
    * - the `keys` are the class (names) that will be created
    * - the `values` are objects that represent CSS rules (`React.CSSProperties`).
    */
-export interface StyleRules {
-  [displayName: string]: Partial<React.CSSProperties>;
-}
+export type StyleRules<ClassKey extends string = string> = Record<ClassKey, Partial<React.CSSProperties>>;
 
-export type StyleRulesCallback = (theme: Theme) => StyleRules;
+export type StyleRulesCallback<ClassKey extends string = string> = (theme: Theme) => StyleRules<ClassKey>;
 
 export interface WithStylesOptions {
+  flip?: boolean;
   withTheme?: boolean;
   name?: string;
 }
 
-declare function withStyles(
-  style: StyleRules | StyleRulesCallback,
-  options?: WithStylesOptions
-): <
-  C extends React.ComponentType<P & { classes: ClassNames; theme?: Theme }>,
-  P = {},
-  ClassNames = {}
->(
-  component: C
-) => C & React.ComponentClass<P & StyledComponentProps<ClassNames>>
+export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
-declare function withStyles<P = {}, ClassNames = {}>(
-  style: StyleRules | StyleRulesCallback,
-  options?: WithStylesOptions
-): (
-  component: React.ComponentType<P & { classes: ClassNames; theme?: Theme }>
-) => React.ComponentClass<P & StyledComponentProps<ClassNames>>
+export interface WithStyles<ClassKey extends string = string> {
+  classes: ClassNameMap<ClassKey>
+  theme?: Theme
+}
 
-export default withStyles;
+export interface StyledComponentProps<ClassKey extends string = string> {
+  classes?: Partial<ClassNameMap<ClassKey>>;
+  innerRef?: React.Ref<any>;
+}
+
+export default function withStyles<ClassKey extends string>(
+  style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
+  options?: WithStylesOptions
+): <P>(
+  component: React.ComponentType<P & WithStyles<ClassKey>>
+) => React.ComponentType<P & StyledComponentProps<ClassKey>>;

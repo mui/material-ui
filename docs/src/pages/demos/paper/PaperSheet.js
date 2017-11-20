@@ -15,7 +15,7 @@ const styles = theme => ({
 });
 
 function PaperSheet(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div>
       <Paper className={classes.root} elevation={4}>

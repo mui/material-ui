@@ -1,16 +1,22 @@
 // @flow
 
+import type { Node } from 'react';
 import warning from 'warning';
-import { keys as breakpoints } from '../styles/createBreakpoints';
+import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
 import type { HiddenProps } from './types';
+import type { Breakpoint } from '../styles/createBreakpoints';
 
 export type Props = HiddenProps & {
+  /**
+   * The content of the component.
+   */
+  children: Node,
   /**
    * @ignore
    * width prop provided by withWidth decorator
    */
-  width: string,
+  width: Breakpoint,
 };
 
 /**
@@ -59,8 +65,8 @@ function HiddenJs(props: Props) {
   // Allow `only` to be combined with other props. If already hidden, no need to check others.
   if (visible) {
     // determine visibility based on the smallest size up
-    for (let i = 0; i < breakpoints.length; i += 1) {
-      const breakpoint = breakpoints[i];
+    for (let i = 0; i < breakpointKeys.length; i += 1) {
+      const breakpoint = breakpointKeys[i];
       const breakpointUp = props[`${breakpoint}Up`];
       const breakpointDown = props[`${breakpoint}Down`];
       if (

@@ -31,7 +31,7 @@ const HomeIcon = props => (
 );
 
 function SvgIcons(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div>
       <HomeIcon className={classes.icon} />

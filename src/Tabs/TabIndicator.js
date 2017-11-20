@@ -1,16 +1,16 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
 export const styles = (theme: Object) => ({
   root: {
-    position: 'relative',
+    position: 'absolute',
     height: 2,
-    marginTop: -2,
+    bottom: 0,
+    width: '100%',
     transition: theme.transitions.create(),
     willChange: 'left, width',
   },
@@ -22,10 +22,40 @@ export const styles = (theme: Object) => ({
   },
 });
 
+export type IndicatorStyle = {
+  left: number,
+  width: number,
+};
+
+export type ProvidedProps = {
+  classes: Object,
+};
+
+export type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * @ignore
+   * The color of the tab indicator.
+   */
+  color: 'accent' | 'primary' | string,
+  /**
+   * @ignore
+   * The style of the root element.
+   */
+  style: IndicatorStyle,
+};
+
 /**
  * @ignore - internal component.
  */
-function TabIndicator(props) {
+function TabIndicator(props: ProvidedProps & Props) {
   const { classes, className: classNameProp, color, style: styleProp } = props;
   const colorPredefined = ['primary', 'accent'].indexOf(color) !== -1;
   const className = classNames(
@@ -45,29 +75,5 @@ function TabIndicator(props) {
 
   return <div className={className} style={style} />;
 }
-
-TabIndicator.propTypes = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * @ignore
-   * The color of the tab indicator.
-   */
-  color: PropTypes.oneOfType([PropTypes.oneOf(['accent', 'primary']), PropTypes.string]).isRequired,
-  /**
-   * @ignore
-   * The style of the root element.
-   */
-  style: PropTypes.shape({
-    left: PropTypes.number,
-    width: PropTypes.number,
-  }).isRequired,
-};
 
 export default withStyles(styles, { name: 'MuiTabIndicator' })(TabIndicator);

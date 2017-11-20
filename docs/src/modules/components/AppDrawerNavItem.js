@@ -37,14 +37,14 @@ const styles = theme => ({
   navLinkButton: {
     color: theme.palette.text.secondary,
     textIndent: theme.spacing.unit * 3,
-    fontSize: 13,
+    fontSize: theme.typography.pxToRem(13),
   },
   activeButton: {
     color: theme.palette.text.primary,
   },
 });
 
-class AppDrawerNavItem extends React.Component<any, any> {
+class AppDrawerNavItem extends React.Component<Object, Object> {
   static defaultProps = {
     openImmediately: false,
   };
@@ -95,7 +95,7 @@ class AppDrawerNavItem extends React.Component<any, any> {
         >
           {title}
         </Button>
-        <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
+        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
           {children}
         </Collapse>
       </ListItem>

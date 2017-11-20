@@ -34,34 +34,14 @@ function createPackageFile() {
   })
     .then(data => JSON.parse(data))
     .then(packageData => {
-      const {
-        author,
-        version,
-        description,
-        keywords,
-        repository,
-        license,
-        bugs,
-        homepage,
-        peerDependencies,
-        dependencies,
-      } = packageData;
+      const { nyc, ...packageDataOther } = packageData;
 
       const minimalPackage = {
+        ...packageDataOther,
         name: 'material-ui',
-        author,
-        version,
-        description,
         main: './index.js',
         module: './index.es.js',
-        'jsnext:main': './index.es.js',
-        keywords,
-        repository,
-        license,
-        bugs,
-        homepage,
-        peerDependencies,
-        dependencies,
+        private: false,
       };
 
       return new Promise(resolve => {
@@ -80,7 +60,13 @@ const files = ['README.md', 'CHANGELOG.md', 'LICENSE'];
 
 Promise.all(files.map(file => copyFile(file)))
   .then(() => createPackageFile())
-  .then(() => copyTypings(path.resolve(__dirname, '../src'), path.resolve(__dirname, '../build')));
+  .then(() => {
+    const from = path.resolve(__dirname, '../src');
+    return Promise.all([
+      copyTypings(from, path.resolve(__dirname, '../build')),
+      copyTypings(from, path.resolve(__dirname, '../build/es')),
+    ]);
+  });
 
 // Copy original implementation files for flow.
 flowCopySource(['src'], 'build', { verbose: true, ignore: '**/*.spec.js' });

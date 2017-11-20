@@ -8,12 +8,17 @@ import SwipeableViews from 'react-swipeable-views';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
-function TabContainer(props) {
-  return <div style={{ padding: 20 }}>{props.children}</div>;
+function TabContainer({ children, dir }) {
+  return (
+    <div dir={dir} style={{ padding: 8 * 3 }}>
+      {children}
+    </div>
+  );
 }
 
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
+  dir: PropTypes.string.isRequired,
 };
 
 const styles = theme => ({
@@ -36,7 +41,7 @@ class FullWidthTabs extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
 
     return (
       <div className={classes.root} style={{ width: 500 }}>
@@ -53,10 +58,14 @@ class FullWidthTabs extends React.Component {
             <Tab label="Item Three" />
           </Tabs>
         </AppBar>
-        <SwipeableViews index={this.state.value} onChangeIndex={this.handleChangeIndex}>
-          <TabContainer>{'Item One'}</TabContainer>
-          <TabContainer>{'Item Two'}</TabContainer>
-          <TabContainer>{'Item Three'}</TabContainer>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={this.state.value}
+          onChangeIndex={this.handleChangeIndex}
+        >
+          <TabContainer dir={theme.direction}>Item One</TabContainer>
+          <TabContainer dir={theme.direction}>Item Two</TabContainer>
+          <TabContainer dir={theme.direction}>Item Three</TabContainer>
         </SwipeableViews>
       </div>
     );
@@ -65,6 +74,7 @@ class FullWidthTabs extends React.Component {
 
 FullWidthTabs.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FullWidthTabs);
+export default withStyles(styles, { withTheme: true })(FullWidthTabs);

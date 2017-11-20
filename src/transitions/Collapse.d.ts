@@ -1,11 +1,25 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 import { Theme } from '../styles/createMuiTheme';
-import { TransitionProps } from '../internal/Transition';
+import { TransitionDuration, TransitionProps } from '../internal/transition';
 
-export interface CollapseProps extends TransitionProps {
+export interface CollapseProps extends StandardProps<
+  TransitionProps,
+  CollapseClassKey,
+  'children'
+> {
+  children?: React.ReactNode;
+  collapsedHeight?: string;
+  component?: string | React.ComponentType<CollapseProps>;
   theme?: Theme;
-  transitionDuration?: number | string;
+  timeout?: TransitionDuration | 'auto';
 }
 
-export default class Collapse extends StyledComponent<CollapseProps> {}
+export type CollapseClassKey =
+  | 'container'
+  | 'entered'
+  ;
+
+declare const Collapse: React.ComponentType<CollapseProps>;
+
+export default Collapse;

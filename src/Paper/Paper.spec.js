@@ -10,9 +10,7 @@ describe('<Paper />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({
-      dive: true,
-    });
+    shallow = createShallow({ dive: true });
     classes = getClasses(<Paper />);
   });
 

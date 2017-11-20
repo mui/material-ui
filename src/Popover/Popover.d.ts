@@ -1,15 +1,19 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
-import { TransitionHandlers } from '../internal/Transition';
-import { ModalProps } from '../internal/Modal';
+import { TransitionDuration, TransitionHandlers } from '../internal/transition';
+import { ModalProps, ModalClassKey } from '../Modal';
 
-export type Origin = {
+export interface Origin {
   horizontal: 'left' | 'center' | 'right' | number;
   vertical: 'top' | 'center' | 'bottom' | number;
-};
+}
 
-export type PopoverProps = {
+export interface PopoverProps extends StandardProps<
+  ModalProps & Partial<TransitionHandlers>,
+  PopoverClassKey,
+  'onRequestClose'
+> {
   anchorEl?: Object;
   anchorOrigin?: Origin;
   elevation?: number;
@@ -18,15 +22,22 @@ export type PopoverProps = {
   exitedClassName?: string;
   exitingClassName?: string;
   getContentAnchorEl?: Function;
+  marginThreshold?: number;
   modal?: boolean;
   onRequestClose?: Function;
   open?: boolean;
   role?: string;
   transformOrigin?: Origin;
-  transitionDuration?: number | 'auto';
+  transitionDuration?: TransitionDuration;
   theme?: Object;
   PaperProps?: Partial<PaperProps>;
-} & Partial<TransitionHandlers> &
-  ModalProps;
+}
 
-export default class Popover extends StyledComponent<PopoverProps> {}
+export type PopoverClassKey =
+  | ModalClassKey
+  | 'paper'
+  ;
+
+declare const Popover: React.ComponentType<PopoverProps>;
+
+export default Popover;

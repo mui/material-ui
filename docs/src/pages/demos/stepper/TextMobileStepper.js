@@ -43,7 +43,8 @@ class TextMobileStepper extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes, theme } = this.props;
+
     return (
       <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>
@@ -58,12 +59,12 @@ class TextMobileStepper extends React.Component {
           nextButton={
             <Button dense onClick={this.handleNext} disabled={this.state.activeStep === 5}>
               Next
-              <KeyboardArrowRight />
+              {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
             </Button>
           }
           backButton={
             <Button dense onClick={this.handleBack} disabled={this.state.activeStep === 0}>
-              <KeyboardArrowLeft />
+              {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
               Back
             </Button>
           }
@@ -75,6 +76,7 @@ class TextMobileStepper extends React.Component {
 
 TextMobileStepper.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TextMobileStepper);
+export default withStyles(styles, { withTheme: true })(TextMobileStepper);

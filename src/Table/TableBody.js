@@ -1,21 +1,24 @@
 // @flow
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = (theme: Object) => ({
   root: {
-    fontSize: 13,
+    fontSize: theme.typography.pxToRem(13),
     color: theme.palette.text.primary,
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  component: string,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -35,16 +38,12 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | ComponentType<*>,
+  component: ElementType,
 };
 
-type AllProps = DefaultProps & Props;
-
-class TableBody extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class TableBody extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
-    component: 'tbody',
+    component: ('tbody': ElementType),
   };
 
   getChildContext() {
@@ -61,7 +60,7 @@ class TableBody extends React.Component<AllProps, void> {
       classes,
       className: classNameProp,
       children,
-      component: ComponentProp,
+      component: ComponentProp = 'tbody',
       ...other
     } = this.props;
     const className = classNames(classes.root, classNameProp);
@@ -73,10 +72,6 @@ class TableBody extends React.Component<AllProps, void> {
     );
   }
 }
-
-TableBody.contextTypes = {
-  table: PropTypes.object,
-};
 
 TableBody.childContextTypes = {
   table: PropTypes.object,

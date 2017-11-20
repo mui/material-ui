@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ChildrenArray, Element, Node } from 'react';
+import type { Element, Node } from 'react';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
@@ -9,16 +9,25 @@ import Menu from '../Menu/Menu';
 import { isDirty } from '../Input/Input';
 import ArrowDropDownIcon from '../svg-icons/ArrowDropDown';
 
+type ProvidedProps = {
+  classes: Object,
+};
+
 export type Props = {
+  /**
+   * If true, the width of the popover will automatically be set according to the items inside the
+   * menu, otherwise it will be at least the width of the select input.
+   */
+  autoWidth: boolean,
   /**
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
    */
-  children: $ReadOnlyArray<ChildrenArray<Node>>,
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * The CSS class name of the select element.
    */
@@ -28,11 +37,17 @@ export type Props = {
    */
   disabled?: boolean,
   /**
+   * If `true`, the selected item is displayed even if its value is empty.
+   * You can only use it when the `native` property is `false` (default).
+   */
+  displayEmpty: boolean,
+  /**
    * If `true`, the component will be using a native `select` element.
    */
   native: boolean,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
+   * You can only use it when the `native` property is `false` (default).
    */
   multiple: boolean,
   /**
@@ -53,7 +68,7 @@ export type Props = {
    * @param {object} event The event source of the callback
    * @param {object} child The react element that was selected
    */
-  onChange?: (event: Object, child: Element<*>) => void,
+  onChange?: (event: SyntheticUIEvent<*>, child: Element<any>) => void,
   /**
    * @ignore
    */
@@ -64,7 +79,7 @@ export type Props = {
   readOnly?: boolean,
   /**
    * Render the selected value.
-   * It's only useful when the `native` property is not set to `true`.
+   * You can only use it when the `native` property is `false` (default).
    */
   renderValue?: Function,
   /**
@@ -74,10 +89,8 @@ export type Props = {
   /**
    * The value of the component, required for a controlled component.
    */
-  value?: string | number | Array<string | number>,
+  value?: string | number | $ReadOnlyArray<string | number>,
 };
-
-type AllProps = Props;
 
 type State = {
   open: boolean,
@@ -87,9 +100,7 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class SelectInput extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class SelectInput extends React.Component<ProvidedProps & Props, State> {
   static muiName = 'SelectInput';
 
   state = {
@@ -114,7 +125,7 @@ class SelectInput extends React.Component<AllProps, State> {
     });
   };
 
-  handleItemClick = (child: Element<*>) => (event: SyntheticMouseEvent<>) => {
+  handleItemClick = (child: Element<any>) => (event: SyntheticMouseEvent<> & { target?: any }) => {
     if (!this.props.multiple) {
       this.setState({
         open: false,
@@ -122,7 +133,13 @@ class SelectInput extends React.Component<AllProps, State> {
     }
 
     if (this.props.onChange) {
+      const { onChange, name } = this.props;
       let value;
+      let target;
+
+      if (event.target) {
+        target = event.target;
+      }
 
       if (this.props.multiple) {
         value = Array.isArray(this.props.value) ? [...this.props.value] : [];
@@ -136,15 +153,10 @@ class SelectInput extends React.Component<AllProps, State> {
         value = child.props.value;
       }
 
-      this.props.onChange(
-        {
-          ...event,
-          target: {
-            value,
-          },
-        },
-        child,
-      );
+      event.persist();
+      event.target = { ...target, value, name };
+
+      onChange(event, child);
     }
   };
 
@@ -191,10 +203,12 @@ class SelectInput extends React.Component<AllProps, State> {
 
   render() {
     const {
+      autoWidth,
       children,
       className: classNameProp,
       classes,
       disabled,
+      displayEmpty,
       name,
       native,
       multiple,
@@ -215,6 +229,14 @@ class SelectInput extends React.Component<AllProps, State> {
         'Material-UI: you can not use the `native` and `multiple` properties ' +
           'at the same time on a `Select` component.',
       );
+      warning(
+        !renderValue,
+        'Material-UI: the `renderValue` property is not used by the native implementation.',
+      );
+      warning(
+        !displayEmpty,
+        'Material-UI: the `displayEmpty` property is not used by the native implementation.',
+      );
 
       return (
         <div className={classes.root}>
@@ -228,13 +250,13 @@ class SelectInput extends React.Component<AllProps, State> {
             )}
             name={name}
             disabled={disabled}
-            ref={selectRef}
             onBlur={onBlur}
             onChange={onChange}
             onFocus={onFocus}
             value={value}
             readOnly={readOnly}
             {...other}
+            ref={selectRef}
           >
             {children}
           </select>
@@ -256,7 +278,7 @@ class SelectInput extends React.Component<AllProps, State> {
     let computeDisplay = false;
 
     // No need to display any value if the field is empty.
-    if (isDirty(this.props)) {
+    if (isDirty(this.props) || displayEmpty) {
       if (renderValue) {
         display = renderValue(value);
       } else {
@@ -300,6 +322,9 @@ class SelectInput extends React.Component<AllProps, State> {
       display = multiple ? displayMultiple.join(', ') : displaySingle;
     }
 
+    const minimumMenuWidth =
+      this.state.anchorEl != null && !autoWidth ? this.state.anchorEl.clientWidth : undefined;
+
     return (
       <div className={classes.root}>
         <div
@@ -311,6 +336,7 @@ class SelectInput extends React.Component<AllProps, State> {
             },
             classNameProp,
           )}
+          data-mui-test="SelectDisplay"
           aria-pressed={this.state.open ? 'true' : 'false'}
           tabIndex={disabled ? null : 0}
           role="button"
@@ -324,11 +350,11 @@ class SelectInput extends React.Component<AllProps, State> {
           {display}
         </div>
         <input
-          ref={this.handleSelectRef}
           value={Array.isArray(value) ? value.join(',') : value}
           name={name}
           readOnly={readOnly}
           {...other}
+          ref={this.handleSelectRef}
           type="hidden"
         />
         <ArrowDropDownIcon className={classes.icon} />
@@ -341,6 +367,13 @@ class SelectInput extends React.Component<AllProps, State> {
           MenuListProps={{
             ...MenuProps.MenuListProps,
             role: 'listbox',
+          }}
+          PaperProps={{
+            ...MenuProps.PaperProps,
+            style: {
+              minWidth: minimumMenuWidth,
+              ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
+            },
           }}
         >
           {items}

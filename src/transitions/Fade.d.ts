@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
 import { Theme } from '../styles/createMuiTheme';
-import { TransitionProps } from '../internal/Transition';
+import { TransitionDuration, TransitionProps } from '../internal/transition';
 
 export interface FadeProps extends TransitionProps {
   theme?: Theme;
-  enterTransitionDuration?: number;
-  leaveTransitionDuration?: number;
+  timeout?: TransitionDuration;
 }
 
-export default class Fade extends StyledComponent<FadeProps> {}
+declare const Fade: React.ComponentType<FadeProps>;
+
+export default Fade;

@@ -1,15 +1,32 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { StandardProps } from '..';
+import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
-export type ListItemProps = {
+export interface ListItemProps extends StandardProps<
+  ButtonBaseProps & React.LiHTMLAttributes<HTMLElement>,
+  ListItemClassKey,
+  'component'
+> {
   button?: boolean;
-  component?: React.ReactNode;
+  component?: string | React.ComponentType<ListItemProps>;
   dense?: boolean;
   disabled?: boolean;
   disableGutters?: boolean;
   divider?: boolean;
-} & ButtonBaseProps &
-  React.LiHTMLAttributes<HTMLLIElement>;
+}
 
-export default class ListItem extends StyledComponent<ListItemProps> {}
+export type ListItemClassKey =
+  | ButtonBaseClassKey
+  | 'container'
+  | 'keyboardFocused'
+  | 'default'
+  | 'dense'
+  | 'divider'
+  | 'gutters'
+  | 'button'
+  | 'secondaryAction'
+  ;
+
+declare const ListItem: React.ComponentType<ListItemProps>;
+
+export default ListItem;

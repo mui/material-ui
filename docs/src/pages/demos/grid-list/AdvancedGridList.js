@@ -48,7 +48,7 @@ const styles = theme => ({
  * ];
  */
 function AdvancedGridList(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
     <div className={classes.root}>

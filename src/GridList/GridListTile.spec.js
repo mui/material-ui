@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import GridListTile from './GridListTile';
 
 describe('<GridListTile />', () => {
@@ -12,9 +12,7 @@ describe('<GridListTile />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({
-      dive: true,
-    });
+    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<GridListTile />);
   });
@@ -74,15 +72,13 @@ describe('<GridListTile />', () => {
     let wrapper;
 
     beforeEach(() => {
+      const GridListTileNaked = unwrap(GridListTile);
       wrapper = mount(
-        <GridListTile.Naked
-          classes={{
-            imgFullWidth: 'imgFullWidth',
-            imgFullHeight: 'imgFullHeight',
-          }}
+        <GridListTileNaked
+          classes={{ imgFullWidth: 'imgFullWidth', imgFullHeight: 'imgFullHeight' }}
         >
           <img alt="test" />
-        </GridListTile.Naked>,
+        </GridListTileNaked>,
       );
       instance = wrapper.instance();
     });
@@ -93,14 +89,10 @@ describe('<GridListTile />', () => {
       instance.ensureImageCover();
       instance.fit();
 
-      instance.imgElement = {
-        complete: false,
-      };
+      instance.imgElement = { complete: false };
       instance.fit();
       assert.strictEqual(instance.imgElement instanceof HTMLElement, false);
-      wrapper.setProps({
-        children: <img alt="test2" />,
-      });
+      wrapper.setProps({ children: <img alt="test2" /> });
       assert.strictEqual(instance.imgElement instanceof HTMLElement, true);
     });
 
@@ -109,14 +101,8 @@ describe('<GridListTile />', () => {
         complete: true,
         width: 16,
         height: 9,
-        parentNode: {
-          offsetWidth: 4,
-          offsetHeight: 3,
-        },
-        classList: {
-          remove: spy(),
-          add: spy(),
-        },
+        parentNode: { offsetWidth: 4, offsetHeight: 3 },
+        classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
 
@@ -132,14 +118,8 @@ describe('<GridListTile />', () => {
         complete: true,
         width: 4,
         height: 3,
-        parentNode: {
-          offsetWidth: 16,
-          offsetHeight: 9,
-        },
-        classList: {
-          remove: spy(),
-          add: spy(),
-        },
+        parentNode: { offsetWidth: 16, offsetHeight: 9 },
+        classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
 
@@ -169,14 +149,8 @@ describe('<GridListTile />', () => {
         complete: true,
         width: 4,
         height: 3,
-        parentNode: {
-          offsetWidth: 16,
-          offsetHeight: 9,
-        },
-        classList: {
-          remove: spy(),
-          add: spy(),
-        },
+        parentNode: { offsetWidth: 16, offsetHeight: 9 },
+        classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
       wrapper

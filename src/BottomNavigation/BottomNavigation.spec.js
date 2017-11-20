@@ -28,6 +28,17 @@ describe('<BottomNavigation />', () => {
     mount.cleanUp();
   });
 
+  it('renders with a null child', () => {
+    const wrapper = shallow(
+      <BottomNavigation showLabels value={0}>
+        <BottomNavigationButton label="One" />
+        {null}
+        <BottomNavigationButton label="Three" />
+      </BottomNavigation>,
+    );
+    assert.strictEqual(wrapper.find(BottomNavigationButton).length, 2);
+  });
+
   it('should render with the root class', () => {
     const wrapper = shallow(
       <BottomNavigation showLabels value={0}>

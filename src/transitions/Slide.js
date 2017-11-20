@@ -1,169 +1,252 @@
 // @flow
+// @inheritedComponent Transition
 
 import React from 'react';
 import type { Element } from 'react';
 import { findDOMNode } from 'react-dom';
-import Transition from '../internal/Transition';
+import EventListener from 'react-event-listener';
+import debounce from 'lodash/debounce';
+import Transition from 'react-transition-group/Transition';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
-import type { TransitionCallback } from '../internal/Transition';
+import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
 const GUTTER = 24;
 
-// Translate the element so he can't be seen in the screen.
-// Later, we gonna translate back the element to his original location
+// Translate the node so he can't be seen on the screen.
+// Later, we gonna translate back the node to his original location
 // with `translate3d(0, 0, 0)`.`
-function getTranslateValue(props, element: HTMLElement) {
+function getTranslateValue(props, node: HTMLElement) {
   const { direction } = props;
-  const rect = element.getBoundingClientRect();
+  const rect = node.getBoundingClientRect();
+
+  let transform;
+
+  if (node.fakeTransform) {
+    transform = node.fakeTransform;
+  } else {
+    const computedStyle = window.getComputedStyle(node);
+    transform =
+      computedStyle.getPropertyValue('-webkit-transform') ||
+      computedStyle.getPropertyValue('transform');
+  }
+
+  let offsetX = 0;
+  let offsetY = 0;
+
+  if (transform && transform !== 'none' && typeof transform === 'string') {
+    const transformValues = transform
+      .split('(')[1]
+      .split(')')[0]
+      .split(',');
+    offsetX = parseInt(transformValues[4], 10);
+    offsetY = parseInt(transformValues[5], 10);
+  }
 
   if (direction === 'left') {
-    return `translate3d(calc(100vw - ${rect.left}px), 0, 0)`;
+    return `translateX(100vw) translateX(-${rect.left - offsetX}px)`;
   } else if (direction === 'right') {
-    return `translate3d(${0 - (rect.left + rect.width + GUTTER)}px, 0, 0)`;
+    return `translateX(-${rect.left + rect.width + GUTTER - offsetX}px)`;
   } else if (direction === 'up') {
-    return `translate3d(0, calc(100vh - ${rect.top}px), 0)`;
+    return `translateY(100vh) translateY(-${rect.top - offsetY}px)`;
   }
 
   // direction === 'down
   return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
 }
 
-type Direction = 'left' | 'right' | 'up' | 'down';
+export function setTranslateValue(props: Object, node: HTMLElement | Object) {
+  const transform = getTranslateValue(props, node);
 
-type DefaultProps = {
-  enterTransitionDuration: number,
-  leaveTransitionDuration: number,
+  if (transform) {
+    node.style.transform = transform;
+    node.style.webkitTransform = transform;
+  }
+}
+
+export type Direction = 'left' | 'right' | 'up' | 'down';
+
+type ProvidedProps = {
+  /**
+   * @ignore
+   */
   theme: Object,
 };
 
 export type Props = {
   /**
+   * Other Transition element props.
+   */
+  [otherProp: string]: any,
+  /**
    * A single child content element.
    */
-  children?: Element<*>,
+  children: Element<any>,
   /**
-   * Direction the child element will enter from.
+   * Direction the child node will enter from.
    */
-  direction?: Direction,
-  /**
-   * Duration of the animation when the element is entering.
-   */
-  enterTransitionDuration?: number,
+  direction: Direction,
   /**
    * If `true`, show the component; triggers the enter or exit animation.
    */
-  in?: boolean,
-  /**
-   * Duration of the animation when the element is exiting.
-   */
-  leaveTransitionDuration?: number,
-  /**
-   * Callback fired before the component enters.
-   */
-  onEnter?: TransitionCallback,
-  /**
-   * Callback fired when the component is entering.
-   */
-  onEntering?: TransitionCallback,
-  /**
-   * Callback fired when the component has entered.
-   */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
-  /**
-   * Callback fired before the component exits.
-   */
-  onExit?: TransitionCallback,
-  /**
-   * Callback fired when the component is exiting.
-   */
-  onExiting?: TransitionCallback,
-  /**
-   * Callback fired when the component has exited.
-   */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  in: boolean,
   /**
    * @ignore
    */
-  theme?: Object,
+  onEnter?: TransitionCallback,
+  /**
+   * @ignore
+   */
+  onEntering?: TransitionCallback,
+  /**
+   * @ignore
+   */
+  onEntered?: TransitionCallback,
+  /**
+   * @ignore
+   */
+  onExit?: TransitionCallback,
+  /**
+   * @ignore
+   */
+  onExiting?: TransitionCallback,
+  /**
+   * @ignore
+   */
+  onExited?: TransitionCallback,
+  /**
+   * @ignore
+   */
+  style?: Object,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  timeout: TransitionDuration,
 };
 
-type AllProps = DefaultProps & Props;
+type State = {
+  firstMount: boolean,
+};
 
-class Slide extends React.Component<AllProps, void> {
-  props: AllProps;
+const reflow = node => node.scrollTop;
 
+class Slide extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
-    direction: 'down',
-    enterTransitionDuration: duration.enteringScreen,
-    leaveTransitionDuration: duration.leavingScreen,
-    theme: {},
+    timeout: ({
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    }: TransitionDuration),
+  };
+
+  state = {
+    // We use this state to handle the server-side rendering.
+    firstMount: true,
   };
 
   componentDidMount() {
+    // state.firstMount handle SSR, once the component is mounted, we need
+    // to properly hide it.
     if (!this.props.in) {
       // We need to set initial translate values of transition element
       // otherwise component will be shown when in=false.
-      const element = findDOMNode(this.transition);
-      if (element instanceof HTMLElement) {
-        const transform = getTranslateValue(this.props, element);
-        element.style.transform = transform;
-        element.style.webkitTransform = transform;
-      }
+      this.updatePosition();
     }
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      firstMount: false,
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.direction !== this.props.direction && !this.props.in) {
+      // We need to update the position of the drawer when the direction change and
+      // when it's hidden.
+      this.updatePosition();
+    }
+  }
+
+  componentWillUnmount() {
+    this.handleResize.cancel();
   }
 
   transition = null;
 
-  handleEnter = element => {
-    // Reset the transformation when needed.
-    // That's triggering a reflow.
-    if (element.style.transform) {
-      element.style.transform = 'translate3d(0, 0, 0)';
-      element.style.webkitTransform = 'translate3d(0, 0, 0)';
+  updatePosition() {
+    const element = findDOMNode(this.transition);
+    if (element instanceof HTMLElement) {
+      element.style.visibility = 'inherit';
+      setTranslateValue(this.props, element);
     }
-    const transform = getTranslateValue(this.props, element);
-    element.style.transform = transform;
-    element.style.webkitTransform = transform;
+  }
+
+  handleResize = debounce(() => {
+    // Skip configuration where the position is screen size invariant.
+    if (this.props.in || this.props.direction === 'down' || this.props.direction === 'right') {
+      return;
+    }
+
+    const node = findDOMNode(this.transition);
+    if (node instanceof HTMLElement) {
+      setTranslateValue(this.props, node);
+    }
+  }, 166);
+
+  handleEnter = (node: HTMLElement) => {
+    setTranslateValue(this.props, node);
+    reflow(node);
 
     if (this.props.onEnter) {
-      this.props.onEnter(element);
+      this.props.onEnter(node);
     }
   };
 
-  handleEntering = element => {
-    const { transitions } = this.props.theme;
-    element.style.transition = transitions.create('transform', {
-      duration: this.props.enterTransitionDuration,
-      easing: transitions.easing.easeOut,
+  handleEntering = (node: HTMLElement) => {
+    const { theme, timeout } = this.props;
+    node.style.transition = theme.transitions.create('transform', {
+      duration: typeof timeout === 'number' ? timeout : timeout.enter,
+      easing: theme.transitions.easing.easeOut,
     });
-    element.style.webkitTransition = transitions.create('-webkit-transform', {
-      duration: this.props.enterTransitionDuration,
-      easing: transitions.easing.easeOut,
+    // $FlowFixMe - https://github.com/facebook/flow/pull/5161
+    node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
+      duration: typeof timeout === 'number' ? timeout : timeout.enter,
+      easing: theme.transitions.easing.easeOut,
     });
-    element.style.transform = 'translate3d(0, 0, 0)';
-    element.style.webkitTransform = 'translate3d(0, 0, 0)';
+    node.style.transform = 'translate3d(0, 0, 0)';
+    node.style.webkitTransform = 'translate3d(0, 0, 0)';
     if (this.props.onEntering) {
-      this.props.onEntering(element);
+      this.props.onEntering(node);
     }
   };
 
-  handleExit = element => {
-    const { transitions } = this.props.theme;
-    element.style.transition = transitions.create('transform', {
-      duration: this.props.leaveTransitionDuration,
-      easing: transitions.easing.sharp,
+  handleExit = (node: HTMLElement) => {
+    const { theme, timeout } = this.props;
+    node.style.transition = theme.transitions.create('transform', {
+      duration: typeof timeout === 'number' ? timeout : timeout.exit,
+      easing: theme.transitions.easing.sharp,
     });
-    element.style.webkitTransition = transitions.create('-webkit-transform', {
-      duration: this.props.leaveTransitionDuration,
-      easing: transitions.easing.sharp,
+    // $FlowFixMe - https://github.com/facebook/flow/pull/5161
+    node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
+      duration: typeof timeout === 'number' ? timeout : timeout.exit,
+      easing: theme.transitions.easing.sharp,
     });
-    const transform = getTranslateValue(this.props, element);
-    element.style.transform = transform;
-    element.style.webkitTransform = transform;
+    setTranslateValue(this.props, node);
 
     if (this.props.onExit) {
-      this.props.onExit(element);
+      this.props.onExit(node);
+    }
+  };
+
+  handleExited = (node: HTMLElement) => {
+    // No need for transitions when the component is hidden
+    node.style.transition = '';
+    // $FlowFixMe - https://github.com/facebook/flow/pull/5161
+    node.style.webkitTransition = '';
+
+    if (this.props.onExited) {
+      this.props.onExited(node);
     }
   };
 
@@ -173,28 +256,37 @@ class Slide extends React.Component<AllProps, void> {
       onEnter,
       onEntering,
       onExit,
-      enterTransitionDuration,
-      leaveTransitionDuration,
+      onExited,
+      style: styleProp,
       theme,
       ...other
     } = this.props;
 
+    const style = { ...styleProp };
+
+    if (!this.props.in && this.state.firstMount) {
+      style.visibility = 'hidden';
+    }
+
     return (
-      <Transition
-        onEnter={this.handleEnter}
-        onEntering={this.handleEntering}
-        onExit={this.handleExit}
-        timeout={Math.max(enterTransitionDuration, leaveTransitionDuration) + 10}
-        transitionAppear
-        {...other}
-        ref={ref => {
-          this.transition = ref;
-        }}
-      >
-        {children}
-      </Transition>
+      <EventListener target="window" onResize={this.handleResize}>
+        <Transition
+          onEnter={this.handleEnter}
+          onEntering={this.handleEntering}
+          onExit={this.handleExit}
+          onExited={this.handleExited}
+          appear
+          style={style}
+          {...other}
+          ref={node => {
+            this.transition = node;
+          }}
+        >
+          {children}
+        </Transition>
+      </EventListener>
     );
   }
 }
 
-export default withTheme(Slide);
+export default withTheme()(Slide);

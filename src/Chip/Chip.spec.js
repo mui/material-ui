@@ -4,17 +4,25 @@ import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import CheckBox from '../svg-icons/CheckBox';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Avatar from '../Avatar';
 import Chip from './Chip';
+import CancelIcon from '../svg-icons/Cancel';
 
 describe('<Chip />', () => {
   let shallow;
   let classes;
+  let mount;
 
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<Chip />);
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   describe('text only', () => {
@@ -75,11 +83,9 @@ describe('<Chip />', () => {
 
     it('should apply user value of tabIndex', () => {
       wrapper = shallow(
-        <Chip
-          onClick={() => {}}
-          tabIndex={5} // eslint-disable-line jsx-a11y/tabindex-no-positive
-        >
-          Text Chip
+        // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+        <Chip onClick={() => {}} tabIndex={5}>
+          {'Text Chip'}
         </Chip>,
       );
       assert.strictEqual(wrapper.props().tabIndex, 5);
@@ -115,13 +121,13 @@ describe('<Chip />', () => {
     it('should merge user classes & spread custom props to the root node', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofChip');
+      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
     });
 
     it('should merge user classes & spread custom props to the Avatar node', () => {
       assert.strictEqual(wrapper.childAt(0).hasClass(classes.avatar), true);
       assert.strictEqual(wrapper.childAt(0).hasClass('my-Avatar'), true);
-      assert.strictEqual(wrapper.childAt(0).prop('data-my-prop'), 'woofChip');
+      assert.strictEqual(wrapper.childAt(0).props()['data-my-prop'], 'woofChip');
     });
 
     it('should have a tabIndex prop', () => {
@@ -154,6 +160,32 @@ describe('<Chip />', () => {
     });
   });
 
+  describe('prop: deleteIcon', () => {
+    it('should fire the function given in onDeleteRequest', () => {
+      const wrapper = shallow(
+        <Chip
+          label="Custom delete icon Chip"
+          onRequestDelete={() => {}}
+          deleteIcon={<CheckBox />}
+        />,
+      );
+      const onRequestDeleteSpy = spy();
+      wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
+
+      wrapper.find(CheckBox).simulate('click', { stopPropagation: () => {} });
+      assert.strictEqual(
+        onRequestDeleteSpy.callCount,
+        1,
+        'should have called the onRequestDelete handler',
+      );
+    });
+
+    it('should render a default icon', () => {
+      const wrapper = mount(<Chip label="Custom delete icon Chip" onRequestDelete={() => {}} />);
+      assert.strictEqual(wrapper.find(CancelIcon).length, 1);
+    });
+  });
+
   describe('reacts to keyboard chip', () => {
     let wrapper;
     let onKeyDownSpy;
@@ -170,27 +202,16 @@ describe('<Chip />', () => {
     });
 
     it('should call onKeyDown when a key is pressed', () => {
-      const anyKeydownEvent = {
-        keyCode: keycode('p'),
-      };
+      const anyKeydownEvent = { keyCode: keycode('p') };
       wrapper.find('div').simulate('keydown', anyKeydownEvent);
       assert.strictEqual(onKeyDownSpy.callCount, 1, 'should have called onKeyDown');
       assert(onKeyDownSpy.calledWith(anyKeydownEvent));
     });
 
     describe('escape', () => {
-      let mount;
-
-      before(() => {
-        mount = createMount();
-      });
-
-      after(() => {
-        mount.cleanUp();
-      });
-
       it('should unfocus when a esc key is pressed', () => {
-        const wrapper2 = mount(<Chip.Naked classes={{}}>Text Chip</Chip.Naked>);
+        const ChipNaked = unwrap(Chip);
+        const wrapper2 = mount(<ChipNaked classes={{}}>Text Chip</ChipNaked>);
         const handleBlur = spy();
         wrapper2.instance().chipRef.blur = handleBlur;
         wrapper2.find('div').simulate('keydown', {
@@ -214,10 +235,7 @@ describe('<Chip />', () => {
 
       it('should call onClick when `space` is pressed ', () => {
         const preventDefaultSpy = spy();
-        const spaceKeydownEvent = {
-          preventDefault: preventDefaultSpy,
-          keyCode: keycode('space'),
-        };
+        const spaceKeydownEvent = { preventDefault: preventDefaultSpy, keyCode: keycode('space') };
         wrapper.find('div').simulate('keydown', spaceKeydownEvent);
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
         assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
@@ -226,10 +244,7 @@ describe('<Chip />', () => {
 
       it('should call onClick when `enter` is pressed ', () => {
         const preventDefaultSpy = spy();
-        const enterKeydownEvent = {
-          preventDefault: preventDefaultSpy,
-          keyCode: keycode('enter'),
-        };
+        const enterKeydownEvent = { preventDefault: preventDefaultSpy, keyCode: keycode('enter') };
         wrapper.find('div').simulate('keydown', enterKeydownEvent);
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
         assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');

@@ -31,6 +31,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/selects/MultipleSelect'), 'utf8')
 `,
         },
+        'pages/demos/selects/DialogSelect.js': {
+          js: require('docs/src/pages/demos/selects/DialogSelect').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/selects/DialogSelect'), 'utf8')
+`,
+        },
       }}
     />
   );

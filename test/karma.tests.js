@@ -1,8 +1,7 @@
 // @flow weak
 
-import consoleError from './utils/consoleError';
-
-consoleError();
+import './utils/performance';
+import './utils/init';
 
 const integrationContext = require.context('./integration', true, /\.js$/);
 integrationContext.keys().forEach(integrationContext);

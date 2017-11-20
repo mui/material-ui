@@ -49,11 +49,11 @@ const suggestions = [
 ];
 
 function renderInput(inputProps) {
-  const { classes, home, value, ref, ...other } = inputProps;
+  const { classes, autoFocus, value, ref, ...other } = inputProps;
 
   return (
     <TextField
-      autoFocus={home}
+      autoFocus={autoFocus}
       className={classes.textField}
       value={value}
       inputRef={ref}

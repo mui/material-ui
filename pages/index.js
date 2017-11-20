@@ -76,7 +76,7 @@ function PageHome(props) {
               {'Material-UI'}
             </Typography>
             <Typography type="headline" component="h2" color="inherit" className={classes.headline}>
-              {"React Components that Implement Google's Material Design."}
+              {"React components that implement Google's Material Design."}
             </Typography>
             <Button
               component={Link}

@@ -31,14 +31,19 @@ const blacklistSuite = [
   // Needs interaction
   'docs-demos-dialogs',
   'docs-demos-menus',
+  'docs-demos-tooltips',
 
   // Useless
   'docs-', // Home
-  'docs-style',
   'docs-guides',
 ];
 
-const blacklistName = ['tileData'];
+const blacklistName = [
+  'docs-getting-started/Usage', // codesandbox inside
+  'docs-style/Color', // too large
+  'docs-demos-drawers/tileData', // raw data
+  'docs-demos-grid-list/tileData', // raw data
+];
 
 // Also use some of the demos to avoid code duplication.
 const requireDemos = require.context('docs/src/pages', true, /js$/);
@@ -50,7 +55,7 @@ const demos = requireDemos.keys().reduce((res, path) => {
     .reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (!blacklistSuite.includes(suite) && !blacklistName.includes(name)) {
+  if (!blacklistSuite.includes(suite) && !blacklistName.includes(`${suite}/${name}`)) {
     res.push({
       path,
       suite,

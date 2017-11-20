@@ -1,8 +1,17 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface DialogTitleProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface DialogTitleProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  DialogTitleClassKey
+> {
   disableTypography?: boolean;
 }
 
-export default class DialogTitle extends StyledComponent<DialogTitleProps> {}
+export type DialogTitleClassKey =
+  | 'root'
+  ;
+
+declare const DialogTitle: React.ComponentType<DialogTitleProps>;
+
+export default DialogTitle;

@@ -4,8 +4,11 @@
 .*/node_modules/react-scrollbar-size
 .*/node_modules/fbjs/lib/partitionObjectByKey.js
 .*/node_modules/mitt
+.*/node_modules/npmconf/test/fixtures/package.json
 .*/node_modules/react-swipeable-views
+.*/node_modules/react-flow-types/tests
 .*/node_modules/eslint-plugin-jsx-a11y
+.*/node_modules/react-number-format/src
 .*/scripts
 .*/docs/webpack.*
 ; FIXME: we should be flow checking against jss
@@ -18,6 +21,7 @@ flow/interfaces
 
 [options]
 
+include_warnings=true
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
 module.file_ext=.js
@@ -31,8 +35,16 @@ module.ignore_non_literal_requires=true
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=.
 
+suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore
 suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
 suppress_comment= \\(.\\|\n\\)*\\$FlowExpectedError
 suppress_type=$FlowToDo
-suppress_type=$FlowFixMeProps
-suppress_type=$FlowFixMeState
+
+[lints]
+
+all=error
+sketchy-null-bool=off
+sketchy-null-mixed=off
+sketchy-null-number=off
+sketchy-null-string=off
+untyped-type-import=off

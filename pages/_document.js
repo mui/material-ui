@@ -2,14 +2,16 @@
 
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import getContext from 'docs/src/modules/styles/getContext';
-import JssProvider from 'react-jss/lib/JssProvider';
 import CleanCSS from 'clean-css';
+import getContext from 'docs/src/modules/styles/getContext';
+import config from 'docs/src/config';
 
 const cleanCSS = new CleanCSS();
 
 class MyDocument extends Document {
   render() {
+    const { canonical, stylesContext } = this.props;
+
     return (
       <html lang="en" dir="ltr">
         <Head>
@@ -33,7 +35,7 @@ class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={this.props.stylesContext.theme.palette.primary[500]} />
+          <meta name="theme-color" content={stylesContext.theme.palette.primary[500]} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
@@ -47,10 +49,7 @@ class MyDocument extends Document {
             name="twitter:description"
             content="React Components that Implement Google's Material Design."
           />
-          <meta
-            name="twitter:image"
-            content="https://material-ui-1dab0.firebaseapp.com/static/brand.png"
-          />
+          <meta name="twitter:image" content="https://material-ui-next.com/static/brand.png" />
           {/* Facebook */}
           <meta property="og:type" content="website" />
           <meta property="og:title" content="Material-UI" />
@@ -58,16 +57,25 @@ class MyDocument extends Document {
             property="og:description"
             content="React Components that Implement Google's Material Design."
           />
-          <meta
-            property="og:image"
-            content="https://material-ui-1dab0.firebaseapp.com/static/brand.png"
-          />
+          <meta property="og:image" content="https://material-ui-next.com/static/brand.png" />
           <link rel="shortcut icon" href="/static/favicon.ico" />
+          <link rel="canonical" href={canonical} />
         </Head>
         <body>
           <Main />
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.google.id}`} />
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};
+gtag('js', new Date());
+              `,
+            }}
+          />
           <NextScript />
-          <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" async defer />
+          <script async src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" />
         </body>
       </html>
     );
@@ -95,9 +103,7 @@ MyDocument.getInitialProps = ctx => {
   // Get the context to collected side effects.
   const context = getContext();
   const page = ctx.renderPage(Component => props => (
-    <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
-      <Component {...props} />
-    </JssProvider>
+    <Component sheetsRegistry={context.sheetsRegistry} {...props} />
   ));
 
   let css = context.sheetsRegistry.toString();
@@ -108,6 +114,7 @@ MyDocument.getInitialProps = ctx => {
   return {
     ...page,
     stylesContext: context,
+    canonical: `https://material-ui-next.com${ctx.req.url.replace(/\/$/, '')}/`,
     styles: (
       <style
         id="jss-server-side"

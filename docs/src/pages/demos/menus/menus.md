@@ -4,7 +4,7 @@ components: Menu, MenuItem, MenuList
 
 # Menus
 
-[Menus](https://material.google.com/components/menus.html) display a list of choices on a transient sheet of material.
+[Menus](https://material.io/guidelines/components/menus.html) display a list of choices on a transient sheet of material.
 
 Menus appear upon interaction with a button, action, or other control. They display a list of choices, with one choice per line.
 
@@ -35,3 +35,20 @@ If text in a simple menu wraps to a second line, use a simple dialog instead. Si
 If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
 
 {{demo='pages/demos/menus/LongMenu.js'}}
+
+## MenuList composition
+
+The `Menu` component uses the `Popover` component internally.
+However, you might want to use a different positioning strategy, or not blocking the scroll.
+For answering those needs, we expose a `MenuList` component that you can compose.
+
+The primary responsibility of the `MenuList` component is to handle the focus.
+
+{{demo='pages/demos/menus/MenuListComposition.js'}}
+
+## ListItem composition
+
+The `MenuItem` is a wrapper around `ListItem` with some additional styles.
+You can use the same list composition features with the `MenuItem` component:
+
+{{demo='pages/demos/menus/ListItemComposition.js'}}

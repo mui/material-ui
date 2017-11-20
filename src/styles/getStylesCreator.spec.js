@@ -2,6 +2,7 @@
 
 import { assert } from 'chai';
 import getStylesCreator from './getStylesCreator';
+import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 describe('getStylesCreator', () => {
   const name = 'name';
@@ -29,18 +30,18 @@ describe('getStylesCreator', () => {
   });
 
   describe('overrides', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+    });
+
     it('should be able to overrides some rules, deep', () => {
       const theme = {
         overrides: {
-          [name]: {
-            root: {
-              color: 'white',
-              '&:hover': {
-                borderRadius: 2,
-                background: 'black',
-              },
-            },
-          },
+          [name]: { root: { color: 'white', '&:hover': { borderRadius: 2, background: 'black' } } },
         },
       };
       const styles = stylesCreator.create(theme, name);
@@ -54,6 +55,21 @@ describe('getStylesCreator', () => {
           },
         },
       });
+    });
+
+    it('should warn on wrong usage', () => {
+      const theme = {
+        overrides: {
+          [name]: {
+            bubu: {
+              color: 'white',
+            },
+          },
+        },
+      };
+      stylesCreator.create(theme, name);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.match(consoleErrorMock.args()[0][0], /Fix the `bubu` key of `theme\.overrides\.name`/);
     });
   });
 });

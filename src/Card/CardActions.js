@@ -18,9 +18,12 @@ export const styles = {
   },
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  disableActionSpacing: boolean,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -39,27 +42,25 @@ export type Props = {
   /**
    * If `true`, the card actions do not have additional margin.
    */
-  disableActionSpacing?: boolean,
+  disableActionSpacing: boolean,
 };
 
-type AllProps = DefaultProps & Props;
+class CardActions extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    disableActionSpacing: false,
+  };
 
-function CardActions(props: AllProps) {
-  const { disableActionSpacing, children, classes, className, ...other } = props;
+  render() {
+    const { disableActionSpacing, children, classes, className, ...other } = this.props;
 
-  return (
-    <div className={classNames(classes.root, className)} {...other}>
-      {disableActionSpacing ? (
-        children
-      ) : (
-        cloneChildrenWithClassName(children, classes.actionSpacing)
-      )}
-    </div>
-  );
+    return (
+      <div className={classNames(classes.root, className)} {...other}>
+        {disableActionSpacing
+          ? children
+          : cloneChildrenWithClassName(children, classes.actionSpacing)}
+      </div>
+    );
+  }
 }
-
-CardActions.defaultProps = {
-  disableActionSpacing: false,
-};
 
 export default withStyles(styles, { name: 'MuiCardActions' })(CardActions);

@@ -12,4 +12,6 @@ function Twitter(props: Object) {
   );
 }
 
+Twitter.muiName = 'SvgIcon';
+
 export default Twitter;

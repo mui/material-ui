@@ -5,7 +5,7 @@ import compose from 'recompose/compose';
 import pure from 'recompose/pure';
 import PropTypes from 'prop-types';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
-import Search from 'material-ui-icons/Search';
+import SearchIcon from 'material-ui-icons/Search';
 import { fade } from 'material-ui/styles/colorManipulator';
 import { withStyles } from 'material-ui/styles';
 
@@ -33,6 +33,18 @@ const styles = theme => ({
   '@global': {
     '.algolia-autocomplete': {
       fontFamily: theme.typography.fontFamily,
+      '& .algolia-docsearch-suggestion--category-header-lvl0': {
+        color: theme.palette.text.primary,
+      },
+      '& .algolia-docsearch-suggestion--subcategory-column-text': {
+        color: theme.palette.text.secondary,
+      },
+      '& .algolia-docsearch-suggestion--highlight': {
+        color: theme.palette.type === 'light' ? '#174d8c' : '#acccf1',
+      },
+      '& .algolia-docsearch-suggestion': {
+        background: 'transparent',
+      },
       '& .algolia-docsearch-suggestion--title': {
         ...theme.typography.title,
       },
@@ -48,6 +60,7 @@ const styles = theme => ({
         '& [class^=ds-dataset-]': {
           border: 0,
           borderRadius: 2,
+          background: theme.palette.background.paper,
         },
       },
     },
@@ -55,6 +68,7 @@ const styles = theme => ({
   wrapper: {
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
+    marginRight: 16,
     borderRadius: 2,
     background: fade(theme.palette.common.white, 0.15),
     '&:hover': {
@@ -108,7 +122,7 @@ function AppSearch(props) {
   return (
     <div className={classes.wrapper}>
       <div className={classes.search}>
-        <Search />
+        <SearchIcon />
       </div>
       <input id="docsearch-input" className={classes.input} />
     </div>

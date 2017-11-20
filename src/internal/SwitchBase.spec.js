@@ -3,8 +3,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses } from '../test-utils';
-import createSwitch from './SwitchBase';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import SwitchBase from './SwitchBase';
 import Icon from '../Icon';
 
 function assertIsChecked(wrapper) {
@@ -17,7 +17,7 @@ function assertIsChecked(wrapper) {
   );
 
   const input = wrapper.find('input');
-  assert.strictEqual(input.node.checked, true, 'the DOM node should be checked');
+  assert.strictEqual(input.instance().checked, true, 'the DOM node should be checked');
 
   const label = iconButton.childAt(0);
   const icon = label.childAt(0);
@@ -34,7 +34,7 @@ function assertIsNotChecked(wrapper) {
   );
 
   const input = wrapper.find('input');
-  assert.strictEqual(input.node.checked, false, 'the DOM node should not be checked');
+  assert.strictEqual(input.instance().checked, false, 'the DOM node should not be checked');
 
   const label = iconButton.childAt(0);
   const icon = label.childAt(0);
@@ -49,13 +49,11 @@ describe('<SwitchBase />', () => {
   let shallow;
   let mount;
   let classes;
-  let SwitchBase;
+  let SwitchBaseNaked;
 
   before(() => {
-    SwitchBase = createSwitch();
-    shallow = createShallow({
-      dive: true,
-    });
+    SwitchBaseNaked = unwrap(SwitchBase);
+    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<SwitchBase />);
   });
@@ -116,11 +114,7 @@ describe('<SwitchBase />', () => {
   });
 
   it('should pass value, disabled, checked, and name to the input', () => {
-    const props = {
-      name: 'gender',
-      disabled: true,
-      value: 'male',
-    };
+    const props = { name: 'gender', disabled: true, value: 'male' };
 
     const wrapper = shallow(<SwitchBase {...props} />);
     const input = wrapper.find('input');
@@ -138,7 +132,7 @@ describe('<SwitchBase />', () => {
 
   it('should apply the custom disabled className when disabled', () => {
     const disabledClassName = 'foo';
-    const wrapperA = shallow(<SwitchBase disabled disabledClassName={disabledClassName} />);
+    const wrapperA = shallow(<SwitchBase disabled classes={{ disabled: disabledClassName }} />);
 
     assert.strictEqual(
       wrapperA.hasClass(disabledClassName),
@@ -161,10 +155,11 @@ describe('<SwitchBase />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <SwitchBase.Naked
-          classes={{}}
+        <SwitchBaseNaked
+          classes={{
+            checked: 'test-class-checked',
+          }}
           className="test-class"
-          checkedClassName="test-class-checked"
           checked={false}
         />,
       );
@@ -176,9 +171,6 @@ describe('<SwitchBase />', () => {
         true,
         'should set instance.isControlled to true',
       );
-    });
-
-    it('should not not be checked', () => {
       assertIsNotChecked(wrapper);
     });
 
@@ -199,30 +191,39 @@ describe('<SwitchBase />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <SwitchBase.Naked
-          classes={{}}
+        <SwitchBaseNaked
+          classes={{
+            checked: 'test-class-checked',
+          }}
           className="test-class"
-          checkedClassName="test-class-checked"
         />,
       );
     });
 
     it('should recognize an uncontrolled input', () => {
       assert.strictEqual(wrapper.instance().isControlled, false);
-    });
-
-    it('should not not be checked', () => {
       assertIsNotChecked(wrapper);
     });
 
     it('should check the checkbox', () => {
-      wrapper.find('input').node.click();
+      wrapper
+        .find('input')
+        .instance()
+        .click();
+      wrapper.update();
       assertIsChecked(wrapper);
     });
 
     it('should uncheck the checkbox', () => {
-      wrapper.find('input').node.click();
-      wrapper.find('input').node.click();
+      wrapper
+        .find('input')
+        .instance()
+        .click();
+      wrapper
+        .find('input')
+        .instance()
+        .click();
+      wrapper.update();
       assertIsNotChecked(wrapper);
     });
   });
@@ -241,9 +242,13 @@ describe('<SwitchBase />', () => {
     let onChangeSpy;
 
     before(() => {
-      event = 'woofSwitchBase';
+      event = {
+        target: {
+          checked: false,
+        },
+      };
       onChangeSpy = spy();
-      wrapper = mount(<SwitchBase.Naked classes={{}} />);
+      wrapper = mount(<SwitchBaseNaked classes={{}} />);
       wrapper.setProps({ onChange: onChangeSpy });
       instance = wrapper.instance();
     });
@@ -274,10 +279,11 @@ describe('<SwitchBase />', () => {
 
       it('should call onChange once', () => {
         assert.strictEqual(onChangeSpy.callCount, 1);
-      });
-
-      it('should call onChange with event and !props.checked', () => {
-        assert.strictEqual(onChangeSpy.calledWith(event, !checked), true);
+        assert.strictEqual(
+          onChangeSpy.calledWith(event, !checked),
+          true,
+          'call onChange with event and !props.checked',
+        );
       });
     });
 
@@ -313,6 +319,52 @@ describe('<SwitchBase />', () => {
       it('should be able to add aria', () => {
         const wrapper2 = shallow(<SwitchBase inputProps={{ 'aria-label': 'foo' }} />);
         assert.strictEqual(wrapper2.find('input').props()['aria-label'], 'foo');
+      });
+    });
+  });
+
+  describe('with muiFormControl context', () => {
+    let wrapper;
+    let muiFormControl;
+
+    function setFormControlContext(muiFormControlContext) {
+      muiFormControl = muiFormControlContext;
+      wrapper.setContext({ ...wrapper.context(), muiFormControl });
+    }
+
+    beforeEach(() => {
+      wrapper = shallow(<SwitchBase />);
+    });
+
+    describe('enabled', () => {
+      beforeEach(() => {
+        setFormControlContext({});
+      });
+
+      it('should not have the disabled class', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+      });
+
+      it('should be overridden by props', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+        wrapper.setProps({ disabled: true });
+        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+      });
+    });
+
+    describe('disabled', () => {
+      beforeEach(() => {
+        setFormControlContext({ disabled: true });
+      });
+
+      it('should have the disabled class', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+      });
+
+      it('should honor props', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+        wrapper.setProps({ disabled: false });
+        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
       });
     });
   });

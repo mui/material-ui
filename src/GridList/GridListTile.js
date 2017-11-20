@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import type { ChildrenArray, ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
@@ -32,8 +32,12 @@ export const styles = {
   },
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -42,7 +46,7 @@ export type Props = {
    * in which case GridListTile takes care of making the image "cover" available space
    * (similar to `background-size: cover` or to `object-fit: cover`).
    */
-  children?: $ReadOnlyArray<ChildrenArray<Node>>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -59,17 +63,14 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | ComponentType<*>,
+  component?: ElementType,
   /**
    * Height of the tile in number of grid cells.
    */
   rows?: number,
 };
 
-type AllProps = DefaultProps & Props;
-
-class GridListTile extends React.Component<AllProps> {
-  props: AllProps;
+class GridListTile extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     cols: 1,
     rows: 1,

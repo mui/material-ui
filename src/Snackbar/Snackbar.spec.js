@@ -72,9 +72,7 @@ describe('<Snackbar />', () => {
         />,
       );
 
-      wrapper.setProps({
-        open: true,
-      });
+      wrapper.setProps({ open: true });
       assert.strictEqual(handleRequestClose.callCount, 0);
       clock.tick(autoHideDuration);
       assert.strictEqual(handleRequestClose.callCount, 1);
@@ -93,14 +91,10 @@ describe('<Snackbar />', () => {
         />,
       );
 
-      wrapper.setProps({
-        open: true,
-      });
+      wrapper.setProps({ open: true });
       assert.strictEqual(handleRequestClose.callCount, 0);
       clock.tick(autoHideDuration / 2);
-      wrapper.setProps({
-        autoHideDuration: null,
-      });
+      wrapper.setProps({ autoHideDuration: undefined });
       clock.tick(autoHideDuration / 2);
       assert.strictEqual(handleRequestClose.callCount, 0);
     });
@@ -134,7 +128,24 @@ describe('<Snackbar />', () => {
       assert.deepEqual(handleRequestClose.args[0], [null, 'timeout']);
     });
 
-    it('should not call onRequestClose with not timeout', () => {
+    it('should not call onRequestClose if autoHideDuration is undefined', () => {
+      const handleRequestClose = spy();
+      const autoHideDuration = 2e3;
+      mount(
+        <Snackbar
+          open
+          onRequestClose={handleRequestClose}
+          message="message"
+          autoHideDuration={undefined}
+        />,
+      );
+
+      assert.strictEqual(handleRequestClose.callCount, 0);
+      clock.tick(autoHideDuration);
+      assert.strictEqual(handleRequestClose.callCount, 0);
+    });
+
+    it('should not call onRequestClose if autoHideDuration is null', () => {
       const handleRequestClose = spy();
       const autoHideDuration = 2e3;
       mount(
@@ -165,11 +176,68 @@ describe('<Snackbar />', () => {
 
       assert.strictEqual(handleRequestClose.callCount, 0);
       clock.tick(autoHideDuration / 2);
-      wrapper.setProps({
-        open: false,
-      });
+      wrapper.setProps({ open: false });
       clock.tick(autoHideDuration / 2);
       assert.strictEqual(handleRequestClose.callCount, 0);
+    });
+  });
+
+  describe('prop: resumeHideDuration', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('should not call onRequestClose with not timeout after user interaction', () => {
+      const handleRequestClose = spy();
+      const autoHideDuration = 2e3;
+      const resumeHideDuration = 3e3;
+      const wrapper = mount(
+        <Snackbar
+          open
+          onRequestClose={handleRequestClose}
+          message="message"
+          autoHideDuration={autoHideDuration}
+          resumeHideDuration={resumeHideDuration}
+        />,
+      );
+      assert.strictEqual(handleRequestClose.callCount, 0);
+      clock.tick(autoHideDuration / 2);
+      wrapper.simulate('mouseEnter');
+      clock.tick(autoHideDuration / 2);
+      wrapper.simulate('mouseLeave');
+      assert.strictEqual(handleRequestClose.callCount, 0);
+      clock.tick(2e3);
+      assert.strictEqual(handleRequestClose.callCount, 0);
+    });
+
+    it('should call onRequestClose when timer done after user interaction', () => {
+      const handleRequestClose = spy();
+      const autoHideDuration = 2e3;
+      const resumeHideDuration = 3e3;
+      const wrapper = mount(
+        <Snackbar
+          open
+          onRequestClose={handleRequestClose}
+          message="message"
+          autoHideDuration={autoHideDuration}
+          resumeHideDuration={resumeHideDuration}
+        />,
+      );
+      assert.strictEqual(handleRequestClose.callCount, 0);
+      clock.tick(autoHideDuration / 2);
+      wrapper.simulate('mouseEnter');
+      clock.tick(autoHideDuration / 2);
+      wrapper.simulate('mouseLeave');
+      assert.strictEqual(handleRequestClose.callCount, 0);
+      clock.tick(resumeHideDuration);
+      assert.strictEqual(handleRequestClose.callCount, 1);
+      assert.deepEqual(handleRequestClose.args[0], [null, 'timeout']);
     });
   });
 
@@ -182,9 +250,7 @@ describe('<Snackbar />', () => {
     it('should be able show it after mounted', () => {
       const wrapper = shallow(<Snackbar open={false} message="" />);
       assert.strictEqual(wrapper.type(), null);
-      wrapper.setProps({
-        open: true,
-      });
+      wrapper.setProps({ open: true });
       assert.strictEqual(wrapper.find(Slide).length, 1, 'should use a Slide by default');
     });
   });
@@ -194,6 +260,18 @@ describe('<Snackbar />', () => {
       const children = <div />;
       const wrapper = shallow(<Snackbar open>{children}</Snackbar>);
       assert.strictEqual(wrapper.contains(children), true);
+    });
+  });
+
+  describe('prop: transition', () => {
+    it('should render a Snackbar with transition', () => {
+      const Transition = props => <div className="cloned-element-class" {...props} />;
+      const wrapper = shallow(<Snackbar open transition={Transition} />);
+      assert.strictEqual(
+        wrapper.find(Transition).length,
+        1,
+        'should include element given in transition',
+      );
     });
   });
 });

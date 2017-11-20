@@ -16,6 +16,9 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 120,
   },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
 });
 
 class NativeSelect extends React.Component {
@@ -29,7 +32,7 @@ class NativeSelect extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     return (
       <div className={classes.container}>
@@ -61,6 +64,20 @@ class NativeSelect extends React.Component {
             <option value={30}>Thirty</option>
           </Select>
           <FormHelperText>Some important helper text</FormHelperText>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <Select
+            native
+            value={this.state.age}
+            onChange={this.handleChange('age')}
+            className={classes.selectEmpty}
+          >
+            <option value="">None</option>
+            <option value={10}>Ten</option>
+            <option value={20}>Twenty</option>
+            <option value={30}>Thirty</option>
+          </Select>
+          <FormHelperText>Without label</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} disabled>
           <InputLabel htmlFor="name-native-disabled">Name</InputLabel>
@@ -103,7 +120,7 @@ class NativeSelect extends React.Component {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="name-input">Name</InputLabel>
           <Input id="name-input" />
-          <FormHelperText>Alignement with an input</FormHelperText>
+          <FormHelperText>Alignment with an input</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="uncontrolled-native">Name</InputLabel>

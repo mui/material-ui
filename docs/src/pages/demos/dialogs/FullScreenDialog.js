@@ -23,29 +23,33 @@ const styles = {
   },
 };
 
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
+
 class FullScreenDialog extends React.Component {
   state = {
     open: false,
+  };
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
   };
 
   handleRequestClose = () => {
     this.setState({ open: false });
   };
 
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
-
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <Button onClick={this.handleOpen}>Open full-screen dialog</Button>
+        <Button onClick={this.handleClickOpen}>Open full-screen dialog</Button>
         <Dialog
           fullScreen
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
-          transition={<Slide direction="up" />}
+          transition={Transition}
         >
           <AppBar className={classes.appBar}>
             <Toolbar>

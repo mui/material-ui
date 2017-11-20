@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -19,7 +19,26 @@ export const styles = (theme: Object) => {
   };
 };
 
-function DialogContent(props) {
+type ProvidedProps = {
+  classes: Object,
+};
+
+export type Props = {
+  /**
+   * The content of the component.
+   */
+  children?: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+};
+
+function DialogContent(props: ProvidedProps & Props) {
   const { classes, children, className, ...other } = props;
 
   return (
@@ -28,20 +47,5 @@ function DialogContent(props) {
     </div>
   );
 }
-
-DialogContent.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-};
 
 export default withStyles(styles, { name: 'MuiDialogContent' })(DialogContent);

@@ -54,13 +54,6 @@ describe('<HiddenCss />', () => {
   });
 
   describe('prop: children', () => {
-    it('should work when empty', () => {
-      const wrapper = shallow(<HiddenCss mdUp />);
-      assert.strictEqual(wrapper.type(), 'span');
-      assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
-      assert.isNull(wrapper.childAt(0).type());
-    });
-
     it('should work when text Node', () => {
       const wrapper = shallow(<HiddenCss mdUp>foo</HiddenCss>);
       assert.strictEqual(wrapper.type(), 'span');

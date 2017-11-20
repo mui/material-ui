@@ -9,9 +9,7 @@ describe('<GridListTileBar />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallow({
-      dive: true,
-    });
+    shallow = createShallow({ dive: true });
   });
 
   const tileData = {

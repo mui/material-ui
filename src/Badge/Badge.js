@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -11,7 +11,7 @@ const RADIUS = 12;
 export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
-    display: 'inline-block',
+    display: 'inline-flex',
   },
   badge: {
     display: 'flex',
@@ -25,12 +25,13 @@ export const styles = (theme: Object) => ({
     right: -RADIUS,
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeight,
-    fontSize: RADIUS,
+    fontSize: theme.typography.pxToRem(RADIUS),
     width: RADIUS * 2,
     height: RADIUS * 2,
     borderRadius: '50%',
     backgroundColor: theme.palette.color,
     color: theme.palette.textColor,
+    zIndex: 1, // Render the badge on top of potential ripples.
   },
   colorPrimary: {
     backgroundColor: theme.palette.primary[500],
@@ -42,46 +43,69 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function Badge(props) {
-  const { badgeContent, classes, className: classNameProp, color, children, ...other } = props;
-  const className = classNames(classes.root, classNameProp);
-  const badgeClassName = classNames(classes.badge, {
-    [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
-  });
+type Color = 'default' | 'primary' | 'accent';
 
-  return (
-    <div className={className} {...other}>
-      {children}
-      <span className={badgeClassName}>{badgeContent}</span>
-    </div>
-  );
-}
-
-Badge.propTypes = {
-  /**
-   * The content rendered within the badge.
-   */
-  badgeContent: PropTypes.node.isRequired,
-  /**
-   * The badge will be added relative to this node.
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
+type ProvidedProps = {
+  classes: Object,
   /**
    * @ignore
    */
-  className: PropTypes.string,
+  theme?: Object,
+};
+
+export type Props = {
+  /**
+   * Other div props.
+   */
+  [otherProp: string]: any,
+  /**
+   * The content rendered within the badge.
+   */
+  badgeContent: Node,
+  /**
+   * The badge will be added relative to this node.
+   */
+  children: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['default', 'primary', 'accent']),
+  color: Color,
 };
 
-Badge.defaultProps = {
-  color: 'default',
-};
+class Badge extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    color: 'default',
+  };
+
+  render() {
+    const {
+      badgeContent,
+      classes,
+      className: classNameProp,
+      color,
+      children,
+      ...other
+    } = this.props;
+    const className = classNames(classes.root, classNameProp);
+    const badgeClassName = classNames(classes.badge, {
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+    });
+
+    return (
+      <div className={className} {...other}>
+        {children}
+        <span className={badgeClassName}>{badgeContent}</span>
+      </div>
+    );
+  }
+}
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);

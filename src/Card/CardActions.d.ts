@@ -1,7 +1,18 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
-export interface CardActionsProps extends React.HTMLAttributes<HTMLDivElement> {
+import { StandardProps } from '..';
+
+export interface CardActionsProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  CardActionClassKey
+> {
   disableActionSpacing?: boolean;
 }
 
-export default class CardActions extends StyledComponent<CardActionsProps> {}
+export type CardActionClassKey =
+  | 'root'
+  | 'actionSpacing'
+  ;
+
+declare const CardActions: React.ComponentType<CardActionsProps>;
+
+export default CardActions;

@@ -2,7 +2,7 @@
 // @inheritedComponent ListItem
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ListItem from '../List/ListItem';
@@ -10,8 +10,8 @@ import ListItem from '../List/ListItem';
 export const styles = (theme: Object) => ({
   root: {
     ...theme.typography.subheading,
-    height: 48,
-    boxSizing: 'border-box',
+    height: 24,
+    boxSizing: 'content-box',
     background: 'none',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -28,13 +28,19 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  role: string,
-  selected: boolean,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * Menu item contents.
    */
@@ -51,45 +57,45 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | ComponentType<*>,
+  component?: ElementType,
   /**
    * @ignore
    */
-  role?: string,
+  role: string,
   /**
    * Use to apply selected styling.
    */
-  selected?: boolean,
+  selected: boolean,
 };
 
-type AllProps = DefaultProps & Props;
+class MenuItem extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    role: 'menuitem',
+    selected: false,
+  };
 
-function MenuItem(props: AllProps) {
-  const { classes, className: classNameProp, component, selected, role, ...other } = props;
+  render() {
+    const { classes, className: classNameProp, component, selected, role, ...other } = this.props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.selected]: selected,
-    },
-    classNameProp,
-  );
+    const className = classNames(
+      classes.root,
+      {
+        [classes.selected]: selected,
+      },
+      classNameProp,
+    );
 
-  return (
-    <ListItem
-      button
-      role={role}
-      tabIndex={-1}
-      className={className}
-      component={component}
-      {...other}
-    />
-  );
+    return (
+      <ListItem
+        button
+        role={role}
+        tabIndex={-1}
+        className={className}
+        component={component}
+        {...other}
+      />
+    );
+  }
 }
-
-MenuItem.defaultProps = {
-  role: 'menuitem',
-  selected: false,
-};
 
 export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);

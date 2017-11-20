@@ -1,22 +1,25 @@
 // @flow
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = (theme: Object) => ({
   root: {
-    fontSize: 12,
+    fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightMedium,
     color: theme.palette.text.secondary,
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  component: string,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -36,16 +39,12 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | ComponentType<*>,
+  component: ElementType,
 };
 
-type AllProps = DefaultProps & Props;
-
-class TableHead extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class TableHead extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
-    component: 'thead',
+    component: ('thead': ElementType),
   };
 
   getChildContext() {
@@ -74,10 +73,6 @@ class TableHead extends React.Component<AllProps, void> {
     );
   }
 }
-
-TableHead.contextTypes = {
-  table: PropTypes.object,
-};
 
 TableHead.childContextTypes = {
   table: PropTypes.object,

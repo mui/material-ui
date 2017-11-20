@@ -7,16 +7,15 @@ import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
 import CodeIcon from 'material-ui-icons/Code';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import NoSSR from 'docs/src/modules/components/NoSSR';
+import Tooltip from 'material-ui/Tooltip';
 
 const styles = theme => ({
   root: {
-    fontFamily: theme.typography.fontFamily,
     position: 'relative',
     backgroundColor: theme.palette.background.contentFrame,
     marginBottom: 40,
-    marginLeft: -16,
-    marginRight: -16,
+    marginLeft: -theme.spacing.unit * 2,
+    marginRight: -theme.spacing.unit * 2,
   },
   demo: theme.mixins.gutters({
     display: 'flex',
@@ -25,6 +24,7 @@ const styles = theme => ({
     paddingBottom: 20,
   }),
   codeButton: {
+    flip: false,
     display: 'none',
     zIndex: 10,
     position: 'absolute',
@@ -67,19 +67,20 @@ class Demo extends React.Component<any, any> {
   };
 
   render() {
-    const { classes, js: DemoComponent, name, raw } = this.props;
+    const { classes, js: DemoComponent, raw } = this.props;
+    const { codeOpen } = this.state;
 
     return (
       <div className={classes.root}>
-        <IconButton onClick={this.handleCodeButtonClick} className={classes.codeButton}>
-          <CodeIcon />
-        </IconButton>
-        <Collapse in={this.state.codeOpen}>
-          <NoSSR>
-            <MarkdownElement className={classes.code} text={`\`\`\`js\n${raw}\n\`\`\``} />
-          </NoSSR>
+        <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
+          <IconButton onClick={this.handleCodeButtonClick} className={classes.codeButton}>
+            <CodeIcon />
+          </IconButton>
+        </Tooltip>
+        <Collapse in={codeOpen} unmountOnExit>
+          <MarkdownElement dir="ltr" className={classes.code} text={`\`\`\`js\n${raw}\n\`\`\``} />
         </Collapse>
-        <div className={classes.demo} data-mui-demo={name}>
+        <div className={classes.demo}>
           <DemoComponent />
         </div>
       </div>
@@ -90,7 +91,6 @@ class Demo extends React.Component<any, any> {
 Demo.propTypes = {
   classes: PropTypes.object.isRequired,
   js: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
   raw: PropTypes.string.isRequired,
 };
 

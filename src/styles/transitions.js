@@ -35,7 +35,7 @@ export const duration = {
 
 export const formatMs = (milliseconds: number) => `${Math.round(milliseconds)}ms`;
 export const isString = (value: any) => typeof value === 'string';
-export const isNumber = (value: any) => !isNaN(parseFloat(value));
+export const isNumber = (value: any) => !Number.isNaN(parseFloat(value));
 
 /**
  * @param {string|Array} props
@@ -88,6 +88,7 @@ export default {
 
     const constant = height / 36;
 
+    // https://www.wolframalpha.com/input/?i=(4+%2B+15+*+(x+%2F+36+)+**+0.25+%2B+(x+%2F+36)+%2F+5)+*+10
     return Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10);
   },
 };

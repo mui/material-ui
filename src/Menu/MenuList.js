@@ -1,7 +1,8 @@
 // @flow
+// @inheritedComponent List
 
 import React from 'react';
-import type { ChildrenArray, Node } from 'react';
+import type { Node } from 'react';
 import { findDOMNode } from 'react-dom';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
@@ -13,7 +14,7 @@ export type Props = {
   /**
    * MenuList contents, normally `MenuItem`s.
    */
-  children?: $ReadOnlyArray<ChildrenArray<Node>>,
+  children?: Node,
   /**
    * @ignore
    */
@@ -33,7 +34,6 @@ type State = {
 };
 
 class MenuList extends React.Component<Props, State> {
-  props: Props;
   state = {
     currentTabIndex: undefined,
   };
@@ -44,6 +44,10 @@ class MenuList extends React.Component<Props, State> {
 
   componentWillUnmount() {
     clearTimeout(this.blurTimer);
+  }
+
+  setTabIndex(index: number) {
+    this.setState({ currentTabIndex: index });
   }
 
   list = undefined;
@@ -116,7 +120,7 @@ class MenuList extends React.Component<Props, State> {
   focus() {
     const { currentTabIndex } = this.state;
     const list = findDOMNode(this.list);
-    if (!list || !list.children) {
+    if (!list || !list.children || !list.firstChild) {
       return;
     }
 
@@ -145,10 +149,6 @@ class MenuList extends React.Component<Props, State> {
     }
 
     return this.setTabIndex(0);
-  }
-
-  setTabIndex(index: number) {
-    this.setState({ currentTabIndex: index });
   }
 
   render() {

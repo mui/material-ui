@@ -1,13 +1,21 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export type BottomNavigationProps = {
+export interface BottomNavigationProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  BottomNavigationClassKey,
+  'onChange'
+> {
   children: React.ReactNode;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   showLabels?: boolean;
   value?: any;
-} & React.HTMLAttributes<HTMLDivElement>;
+}
 
-export default class BottomNavigation extends StyledComponent<
-  BottomNavigationProps
-> {}
+export type BottomNavigationClassKey =
+  | 'root'
+  ;
+
+declare const BottomNavigation: React.ComponentType<BottomNavigationProps>;
+
+export default BottomNavigation;

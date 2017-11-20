@@ -31,6 +31,20 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/menus/LongMenu'), 'utf8')
 `,
         },
+        'pages/demos/menus/MenuListComposition.js': {
+          js: require('docs/src/pages/demos/menus/MenuListComposition').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/menus/MenuListComposition'), 'utf8')
+`,
+        },
+        'pages/demos/menus/ListItemComposition.js': {
+          js: require('docs/src/pages/demos/menus/ListItemComposition').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/menus/ListItemComposition'), 'utf8')
+`,
+        },
       }}
     />
   );

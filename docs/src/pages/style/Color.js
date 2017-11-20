@@ -56,6 +56,11 @@ export const styles = theme => ({
   colorValue: {
     ...theme.typography.caption,
     color: 'inherit',
+    fontWeight: 'inherit',
+  },
+  themeInherit: {
+    ...theme.typography,
+    fontWeight: 500,
   },
 });
 
@@ -87,7 +92,7 @@ function getColorBlock(classes, colorName, colorValue, colorTitle) {
   }
 
   return (
-    <li style={rowStyle} key={colorValue}>
+    <li style={rowStyle} key={colorValue} className={classes.themeInherit}>
       {blockTitle}
       <div className={classes.colorContainer}>
         <span>{colorValue}</span>
@@ -119,7 +124,7 @@ function getColorGroup(options) {
 }
 
 function Color(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
     <div className={classes.root}>

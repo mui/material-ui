@@ -10,7 +10,7 @@ describe('<ListItemIcon />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = getClasses(
       <ListItemIcon>
         <span />

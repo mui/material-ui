@@ -42,7 +42,7 @@ const styles = theme => ({
  * ];
  */
 function ImageGridList(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
     <div className={classes.root}>

@@ -14,9 +14,9 @@ describe('<ListSubheader />', () => {
     classes = getClasses(<ListSubheader />);
   });
 
-  it('should render a div', () => {
+  it('should render a li', () => {
     const wrapper = shallow(<ListSubheader />);
-    assert.strictEqual(wrapper.name(), 'div');
+    assert.strictEqual(wrapper.name(), 'li');
   });
 
   it('should render with the user and root classes', () => {
@@ -39,5 +39,17 @@ describe('<ListSubheader />', () => {
     const wrapper = shallow(<ListSubheader inset />);
     assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have the primary class');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
+  });
+
+  describe('prop: disableSticky', () => {
+    it('should display sticky class', () => {
+      const wrapper = shallow(<ListSubheader />);
+      assert.strictEqual(wrapper.hasClass(classes.sticky), true);
+    });
+
+    it('should not display sticky class', () => {
+      const wrapper = shallow(<ListSubheader disableSticky />);
+      assert.strictEqual(wrapper.hasClass(classes.sticky), false);
+    });
   });
 });

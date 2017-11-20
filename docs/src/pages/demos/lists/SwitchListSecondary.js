@@ -27,7 +27,7 @@ class SwitchListSecondary extends React.Component {
     checked: ['wifi'],
   };
 
-  handleToggle = (event, value) => {
+  handleToggle = value => () => {
     const { checked } = this.state;
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -44,7 +44,7 @@ class SwitchListSecondary extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
@@ -56,7 +56,7 @@ class SwitchListSecondary extends React.Component {
             <ListItemText primary="Wi-Fi" />
             <ListItemSecondaryAction>
               <Switch
-                onClick={event => this.handleToggle(event, 'wifi')}
+                onChange={this.handleToggle('wifi')}
                 checked={this.state.checked.indexOf('wifi') !== -1}
               />
             </ListItemSecondaryAction>
@@ -68,7 +68,7 @@ class SwitchListSecondary extends React.Component {
             <ListItemText primary="Bluetooth" />
             <ListItemSecondaryAction>
               <Switch
-                onClick={event => this.handleToggle(event, 'bluetooth')}
+                onChange={this.handleToggle('bluetooth')}
                 checked={this.state.checked.indexOf('bluetooth') !== -1}
               />
             </ListItemSecondaryAction>

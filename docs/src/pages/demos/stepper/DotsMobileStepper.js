@@ -33,7 +33,8 @@ class DotsMobileStepper extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes, theme } = this.props;
+
     return (
       <MobileStepper
         type="dots"
@@ -44,12 +45,12 @@ class DotsMobileStepper extends React.Component {
         nextButton={
           <Button dense onClick={this.handleNext} disabled={this.state.activeStep === 5}>
             Next
-            <KeyboardArrowRight />
+            {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
           </Button>
         }
         backButton={
           <Button dense onClick={this.handleBack} disabled={this.state.activeStep === 0}>
-            <KeyboardArrowLeft />
+            {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
             Back
           </Button>
         }
@@ -60,6 +61,7 @@ class DotsMobileStepper extends React.Component {
 
 DotsMobileStepper.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(DotsMobileStepper);
+export default withStyles(styles, { withTheme: true })(DotsMobileStepper);

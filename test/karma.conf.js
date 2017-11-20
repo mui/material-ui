@@ -1,5 +1,7 @@
 // @flow weak
+
 const path = require('path');
+const webpack = require('webpack');
 
 const browserStack = {
   username: process.env.BROWSERSTACK_USERNAME,
@@ -50,6 +52,13 @@ module.exports = function setKarmaConfig(config) {
     reporters: ['dots'],
     webpack: {
       devtool: 'inline-source-map',
+      plugins: [
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('test'),
+          },
+        }),
+      ],
       module: {
         rules: [
           {
@@ -77,10 +86,6 @@ module.exports = function setKarmaConfig(config) {
       },
       externals: {
         jsdom: 'window',
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': 'window',
-        'text-encoding': 'window',
-        'react/addons': true, // For enzyme
       },
       node: {
         fs: 'empty',
@@ -110,9 +115,9 @@ module.exports = function setKarmaConfig(config) {
       browserStack,
       browsers: baseConfig.browsers.concat([
         'BrowserStack_Chrome',
-        'BrowserStack_Firefox',
-        'BrowserStack_Safari',
-        'BrowserStack_Edge',
+        // 'BrowserStack_Firefox',
+        // 'BrowserStack_Safari',
+        // 'BrowserStack_Edge',
       ]),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: Object.assign({}, baseConfig.customLaunchers, {
@@ -123,27 +128,27 @@ module.exports = function setKarmaConfig(config) {
           browser: 'Chrome',
           browser_version: '49.0',
         },
-        BrowserStack_Firefox: {
-          base: 'BrowserStack',
-          os: 'Windows',
-          os_version: '10',
-          browser: 'Firefox',
-          browser_version: '45.0',
-        },
-        BrowserStack_Safari: {
-          base: 'BrowserStack',
-          os: 'OS X',
-          os_version: 'Sierra',
-          browser: 'Safari',
-          browser_version: '10.1',
-        },
-        BrowserStack_Edge: {
-          base: 'BrowserStack',
-          os: 'Windows',
-          os_version: '10',
-          browser: 'Edge',
-          browser_version: '14.0',
-        },
+        // BrowserStack_Firefox: {
+        //   base: 'BrowserStack',
+        //   os: 'Windows',
+        //   os_version: '10',
+        //   browser: 'Firefox',
+        //   browser_version: '45.0',
+        // },
+        // BrowserStack_Safari: {
+        //   base: 'BrowserStack',
+        //   os: 'OS X',
+        //   os_version: 'Sierra',
+        //   browser: 'Safari',
+        //   browser_version: '10.1',
+        // },
+        // BrowserStack_Edge: {
+        //   base: 'BrowserStack',
+        //   os: 'Windows',
+        //   os_version: '10',
+        //   browser: 'Edge',
+        //   browser_version: '14.0',
+        // },
       }),
     });
   }

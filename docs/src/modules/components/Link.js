@@ -1,6 +1,8 @@
 // @flow
+/* eslint-disable react/no-multi-comp */
 
 import React from 'react';
+import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import NextLink from 'next/link';
@@ -53,86 +55,100 @@ OnClick.propTypes = {
   onCustomClick: PropTypes.func,
 };
 
-function Link(props, context) {
-  const {
-    activeClassName,
-    children: childrenProp,
-    component: ComponentProp,
-    classes,
-    className: classNameProp,
-    variant,
-    href,
-    onClick,
-    prefetch,
-    ...other
-  } = props;
+type Variant = 'default' | 'primary' | 'accent' | 'button';
 
-  let ComponentRoot;
-  const className = classNames(
-    classes.root,
-    classes[`variant${capitalizeFirstLetter(variant)}`],
-    classNameProp,
-  );
-  let rootProps;
-  let children = childrenProp;
+type DefaultProps = {
+  activeClassName: string,
+  variant?: Variant,
+};
 
-  if (ComponentProp) {
-    ComponentRoot = ComponentProp;
-    rootProps = {
-      ...other,
-      className,
-    };
-  } else if (href) {
-    ComponentRoot = NextLink;
-    rootProps = {
+type ProvidedProps = {
+  classes: Object,
+  theme?: Object,
+};
+
+type Props = {
+  activeClassName: string,
+  children: Node,
+  className?: string,
+  component?: ElementType,
+  href?: string,
+  onClick?: Function,
+  prefetch?: boolean,
+  variant?: Variant,
+};
+
+class Link extends React.Component<Props & ProvidedProps> {
+  static defaultProps: DefaultProps = {
+    variant: 'default',
+    activeClassName: 'active',
+  };
+
+  static contextTypes = {
+    url: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+  };
+
+  render() {
+    const {
+      activeClassName,
+      children: childrenProp,
+      component: ComponentProp,
+      classes,
+      className: classNameProp,
+      variant,
       href,
+      onClick,
       prefetch,
-      passHref: true,
-    };
-    const active = context.url.pathname === href;
-    children = (
-      <OnClick
-        component="a"
-        className={classNames(className, {
-          [activeClassName]: active && activeClassName,
-        })}
-        onCustomClick={onClick}
-        {...other}
-      >
-        {children}
-      </OnClick>
+      ...other
+    } = this.props;
+
+    let ComponentRoot;
+    const className = classNames(
+      classes.root,
+      classes[`variant${capitalizeFirstLetter(variant)}`],
+      classNameProp,
     );
-  } else {
-    ComponentRoot = 'a';
-    rootProps = {
-      ...other,
-      className,
-    };
+    let rootProps;
+    let children = childrenProp;
+
+    if (ComponentProp) {
+      ComponentRoot = ComponentProp;
+      rootProps = {
+        ...other,
+        className,
+      };
+    } else if (href) {
+      ComponentRoot = NextLink;
+      rootProps = {
+        href,
+        prefetch,
+        passHref: true,
+      };
+      const active = this.context.url.pathname === href;
+      children = (
+        <OnClick
+          component="a"
+          className={classNames(className, {
+            [activeClassName]: active && activeClassName,
+          })}
+          onCustomClick={onClick}
+          {...other}
+        >
+          {children}
+        </OnClick>
+      );
+    } else {
+      ComponentRoot = 'a';
+      rootProps = {
+        ...other,
+        className,
+      };
+    }
+
+    return <ComponentRoot {...rootProps}>{children}</ComponentRoot>;
   }
-
-  return <ComponentRoot {...rootProps}>{children}</ComponentRoot>;
 }
-
-Link.propTypes = {
-  activeClassName: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  href: PropTypes.string,
-  onClick: PropTypes.func,
-  prefetch: PropTypes.bool,
-  variant: PropTypes.oneOf(['default', 'primary', 'accent', 'button']),
-};
-
-Link.contextTypes = {
-  url: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-Link.defaultProps = {
-  variant: 'default',
-};
 
 export default withStyles(styles)(Link);

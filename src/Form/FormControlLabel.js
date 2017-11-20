@@ -3,6 +3,7 @@
 
 import React from 'react';
 import type { Node, Element } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -26,8 +27,16 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type Context = {
+  muiFormControl?: Object,
+};
+
+type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -46,7 +55,7 @@ export type Props = {
   /**
    * A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.
    */
-  control: Element<*>,
+  control: Element<any>,
   /**
    * If `true`, the control will be disabled.
    */
@@ -76,15 +85,17 @@ export type Props = {
   value?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
-function FormControlLabel(props: AllProps) {
+/**
+ * Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
+ * Use this component if you want to display an extra label.
+ */
+function FormControlLabel(props: ProvidedProps & Props, context: Context) {
   const {
     checked,
     classes,
     className: classNameProp,
     control,
-    disabled,
+    disabled: disabledProp,
     inputRef,
     label,
     name,
@@ -92,6 +103,21 @@ function FormControlLabel(props: AllProps) {
     value,
     ...other
   } = props;
+
+  const { muiFormControl } = context;
+  let disabled = disabledProp;
+
+  if (typeof control.props.disabled !== 'undefined') {
+    if (typeof disabled === 'undefined') {
+      disabled = control.props.disabled;
+    }
+  }
+
+  if (muiFormControl) {
+    if (typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
+    }
+  }
 
   const className = classNames(
     classes.root,
@@ -104,20 +130,22 @@ function FormControlLabel(props: AllProps) {
   return (
     <label className={className} {...other}>
       {React.cloneElement(control, {
-        disabled: typeof control.props.disabled === 'undefined' ? disabled : control.props.disabled,
+        disabled,
         checked: typeof control.props.checked === 'undefined' ? checked : control.props.checked,
         name: control.props.name || name,
         onChange: control.props.onChange || onChange,
         value: control.props.value || value,
         inputRef: control.props.inputRef || inputRef,
       })}
-      <Typography className={classes.label}>{label}</Typography>
+      <Typography component="span" className={classes.label}>
+        {label}
+      </Typography>
     </label>
   );
 }
 
-FormControlLabel.defaultProps = {
-  disabled: false,
+FormControlLabel.contextTypes = {
+  muiFormControl: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiFormControlLabel' })(FormControlLabel);

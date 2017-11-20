@@ -33,13 +33,16 @@ const pages = [
         pathname: '/getting-started/usage',
       },
       {
-        pathname: '/getting-started/examples',
+        pathname: '/getting-started/example-projects',
       },
       {
         pathname: '/getting-started/supported-components',
       },
       {
         pathname: '/getting-started/supported-platforms',
+      },
+      {
+        pathname: '/getting-started/frequently-asked-questions',
       },
     ],
   },
@@ -56,15 +59,15 @@ const pages = [
         pathname: '/customization/css-in-js',
         title: 'CSS in JS',
       },
-      {
-        pathname: '/customization/api',
-        title: 'API',
-      },
     ],
   },
   {
     pathname: '/guides',
     children: [
+      {
+        pathname: '/guides/api',
+        title: 'API',
+      },
       {
         pathname: '/guides/composition',
       },
@@ -76,6 +79,27 @@ const pages = [
       },
       {
         pathname: '/guides/testing',
+      },
+      {
+        pathname: '/guides/migration-v0.x',
+        title: 'Migration from v0.x',
+      },
+      {
+        pathname: '/guides/comparison',
+      },
+      {
+        pathname: '/guides/flow',
+      },
+      {
+        pathname: '/guides/typescript',
+      },
+      {
+        pathname: '/guides/right-to-left',
+        title: 'Right-to-left',
+      },
+      {
+        pathname: '/guides/interoperability',
+        title: 'Interoperability',
       },
     ],
   },
@@ -176,15 +200,17 @@ function withRoot(BaseComponent) {
 
   type WithRootProps = {
     reduxServerState?: Object,
+    sheetsRegistry?: Object,
     url: Object,
   };
+
   class WithRoot extends React.Component<WithRootProps> {
-    props: WithRootProps;
     static childContextTypes = {
       url: PropTypes.object,
       pages: PropTypes.array,
       activePage: PropTypes.object,
     };
+
     static getInitialProps(ctx) {
       let initialProps = {};
       const redux = initRedux({});
@@ -209,8 +235,8 @@ function withRoot(BaseComponent) {
       };
     }
 
-    constructor(props) {
-      super(props);
+    constructor(props, context) {
+      super(props, context);
       this.redux = initRedux(this.props.reduxServerState || {});
     }
 
@@ -225,10 +251,12 @@ function withRoot(BaseComponent) {
     redux = null;
 
     render() {
+      const { sheetsRegistry, ...other } = this.props;
+
       return (
         <Provider store={this.redux}>
-          <AppWrapper>
-            <PureBaseComponent initialProps={this.props} />
+          <AppWrapper sheetsRegistry={sheetsRegistry}>
+            <PureBaseComponent initialProps={other} />
           </AppWrapper>
         </Provider>
       );

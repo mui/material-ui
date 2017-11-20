@@ -1,10 +1,14 @@
 import * as React from 'react';
-import { StyledComponent, PropTypes } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { StandardProps, PropTypes } from '..';
+import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
-export interface ButtonProps extends ButtonBaseProps {
+export interface ButtonProps extends StandardProps<
+  ButtonBaseProps,
+  ButtonClassKey,
+  'component'
+> {
   color?: PropTypes.Color | 'contrast';
-  component?: React.ReactNode;
+  component?: string | React.ComponentType<ButtonProps>;
   dense?: boolean;
   disabled?: boolean;
   disableFocusRipple?: boolean;
@@ -15,4 +19,22 @@ export interface ButtonProps extends ButtonBaseProps {
   type?: string;
 }
 
-export default class Button extends StyledComponent<ButtonProps> {}
+export type ButtonClassKey =
+  | ButtonBaseClassKey
+  | 'dense'
+  | 'label'
+  | 'flatPrimary'
+  | 'flatAccent'
+  | 'flatContrast'
+  | 'colorInherit'
+  | 'raised'
+  | 'keyboardFocused'
+  | 'raisedPrimary'
+  | 'raisedAccent'
+  | 'raisedContrast'
+  | 'fab'
+  ;
+
+declare const Button: React.ComponentType<ButtonProps>;
+
+export default Button

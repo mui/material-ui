@@ -14,7 +14,12 @@ const styles = {
   },
 };
 
-function Icons(props) {
+type ProvidedProps = {
+  classes: Object,
+  theme?: Object,
+};
+
+function Icons(props: ProvidedProps) {
   return (
     <div className={props.classes.root}>
       <Icon>add_circle</Icon>

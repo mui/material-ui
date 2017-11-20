@@ -1,18 +1,10 @@
 {
-  "private": true,
   "name": "material-ui-icons-builder",
-  "version": "1.0.0-beta.5",
-  "description": "Material Design Svg Icons converted to Material-UI React components.",
+  "private": true,
   "author": "Material-UI Team",
-  "license": "MIT",
-  "homepage": "http://material-ui.com/",
-  "bugs": {
-    "url": "https://github.com/callemall/material-ui/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "callemall/material-ui"
-  },
+  "version": "1.0.0-beta.17",
+  "description": "Material Design Svg Icons converted to Material-UI React components.",
+  "main": "./src/index.js",
   "keywords": [
     "Material",
     "Design",
@@ -21,6 +13,15 @@
     "React",
     "react-component"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/callemall/material-ui.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/callemall/material-ui/issues"
+  },
+  "homepage": "https://github.com/callemall/material-ui/tree/v1-beta/packages/material-ui-icons",
   "scripts": {
     "prebuild": "rimraf build",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
@@ -36,27 +37,27 @@
     "test:watch": "mocha -w"
   },
   "peerDependencies": {
-    "material-ui": "^1.0.0-beta",
-    "react": "^15.3.0 || ^16.0.0-beta.1",
-    "react-dom": "^15.3.0 || ^16.0.0-beta.1"
+    "material-ui": "^1.0.0-beta.16",
+    "react": "^15.3.0 || ^16.0.0",
+    "react-dom": "^15.3.0 || ^16.0.0"
   },
   "dependencies": {
-    "recompose": "^0.24.0"
+    "recompose": "^0.26.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "chai": "^4.1.2",
     "cross-env": "^5.0.5",
-    "fs-extra": "^4.0.1",
+    "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
     "lodash": "^4.0.0",
     "material-design-icons": "^3.0.0",
     "mkdirp": "^0.5.0",
-    "mocha": "^3.5.0",
+    "mocha": "^3.5.3",
     "mustache": "^2.0.0",
     "recursive-readdir-sync": "^1.0.6",
-    "rimraf": "^2.0.0",
+    "rimraf": "^2.6.2",
     "temp": "^0.8.3",
-    "yargs": "^8.0.2"
+    "yargs": "^9.0.1"
   }
 }

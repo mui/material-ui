@@ -10,7 +10,7 @@ module.exports = {
     node: true,
     mocha: true,
   },
-  extends: ['airbnb', 'plugin:import/recommended'],
+  extends: ['plugin:import/recommended', 'airbnb'],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 7,
@@ -28,6 +28,8 @@ module.exports = {
     'linebreak-style': 'off', // Don't play nicely with Windows.
     'arrow-body-style': 'off', // Not our taste?
     'arrow-parens': 'off', // Incompatible with prettier
+    'object-curly-newline': 'off', // Incompatible with prettier
+    'function-paren-newline': 'off', // Incompatible with prettier
     indent: 'off', // Incompatible with prettier
     'space-before-function-paren': 'off', // Incompatible with prettier
     'no-mixed-operators': 'off', // Incompatible with prettier
@@ -46,6 +48,7 @@ module.exports = {
     'no-prototype-builtins': 'off', // airbnb use error
     'object-curly-spacing': 'off', // use babel plugin rule
     'no-restricted-properties': 'off', // To remove once react-docgen support ** operator.
+    'prefer-destructuring': 'off', // To remove once react-docgen support ** operator.
 
     'babel/object-curly-spacing': ['error', 'always'],
 
@@ -73,21 +76,8 @@ module.exports = {
     'react/no-find-dom-node': 'off', // I don't know
     'react/no-unused-prop-types': 'off', // Is still buggy
     'react/sort-prop-types': 'error', // airbnb do nothing here.
-    'react/sort-comp': [
-      2,
-      {
-        order: [
-          'type-annotations',
-          'static-methods',
-          'lifecycle',
-          // '/^handle.+$/', // wishlist -- needs above first
-          // '/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/', // wishlist -- needs above first
-          'everything-else',
-          '/^render.+$/',
-          'render',
-        ],
-      },
-    ],
+    'react/default-props-match-prop-types': 'off', // Buggy
+    'react/jsx-curly-brace-presence': 'off', // Buggy
 
     'material-ui/docgen-ignore-before-comment': 'error',
 
@@ -106,13 +96,6 @@ module.exports = {
     'flowtype/type-id-match': 'off',
     'flowtype/use-flow-type': 'error',
 
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        printWidth: 100,
-        trailingComma: 'all',
-      },
-    ],
+    'prettier/prettier': ['error'],
   },
 };

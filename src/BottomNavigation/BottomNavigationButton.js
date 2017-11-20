@@ -2,7 +2,7 @@
 // @inheritedComponent ButtonBase
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node, Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -13,14 +13,12 @@ export const styles = (theme: Object) => ({
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
     }),
-    flexDirection: 'column',
     paddingTop: 8,
     paddingBottom: 10,
     paddingLeft: 12,
     paddingRight: 12,
     minWidth: 80,
     maxWidth: 168,
-    background: 'none',
     color: theme.palette.text.secondary,
     flex: '1',
   },
@@ -29,17 +27,24 @@ export const styles = (theme: Object) => ({
     color: theme.palette.primary[500],
   },
   selectedIconOnly: {
-    paddingTop: 25,
+    paddingTop: theme.spacing.unit * 2,
+  },
+  wrapper: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    flexDirection: 'column',
   },
   label: {
     fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.fontSize - 2,
+    fontSize: theme.typography.pxToRem(theme.typography.fontSize - 2),
     opacity: 1,
     transition: 'font-size 0.2s, opacity 0.2s',
     transitionDelay: '0.1s',
   },
   selectedLabel: {
-    fontSize: theme.typography.fontSize,
+    fontSize: theme.typography.pxToRem(theme.typography.fontSize),
   },
   hiddenLabel: {
     opacity: 0,
@@ -51,11 +56,19 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * Useful to extend the style applied to components.
    */
@@ -67,11 +80,11 @@ export type Props = {
   /**
    * The icon element. If a string is provided, it will be used as a font ligature.
    */
-  icon?: Element<*>,
+  icon?: string | Element<any>,
   /**
    * The label element.
    */
-  label?: Element<*>,
+  label?: Node,
   /**
    * @ignore
    */
@@ -94,10 +107,9 @@ export type Props = {
   value?: any,
 };
 
-type AllProps = DefaultProps & Props;
+class BottomNavigationButton extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {};
 
-class BottomNavigationButton extends React.Component<AllProps> {
-  props: AllProps;
   handleChange = event => {
     const { onChange, value, onClick } = this.props;
 
@@ -113,7 +125,6 @@ class BottomNavigationButton extends React.Component<AllProps> {
   render() {
     const {
       label,
-      // $FlowFixMe - no idea why it cannot find icon.
       icon: iconProp,
       selected,
       classes,
@@ -133,16 +144,17 @@ class BottomNavigationButton extends React.Component<AllProps> {
       classNameProp,
     );
 
-    const iconClassName = classNames(
-      classes.icon,
-      React.isValidElement(iconProp) ? iconProp.props.className : null,
-    );
+    let icon = null;
 
-    const icon = React.isValidElement(iconProp) ? (
-      React.cloneElement(iconProp, { className: iconClassName })
-    ) : (
-      <Icon>{iconProp}</Icon>
-    );
+    if (iconProp) {
+      if (React.isValidElement(iconProp) && typeof iconProp !== 'string') {
+        icon = React.cloneElement(iconProp, {
+          className: classNames(classes.icon, iconProp.props.className),
+        });
+      } else {
+        icon = <Icon>{iconProp}</Icon>;
+      }
+    }
 
     const labelClassName = classNames(classes.label, {
       [classes.selectedLabel]: selected,
@@ -151,8 +163,10 @@ class BottomNavigationButton extends React.Component<AllProps> {
 
     return (
       <ButtonBase className={className} focusRipple {...other} onClick={this.handleChange}>
-        {icon}
-        <span className={labelClassName}>{label}</span>
+        <span className={classes.wrapper}>
+          {icon}
+          <span className={labelClassName}>{label}</span>
+        </span>
       </ButtonBase>
     );
   }

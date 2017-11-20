@@ -8,12 +8,12 @@ const styles = theme => ({
   root: theme.typography.button,
 });
 
-function TypograpghyTheme(props) {
-  return <div className={props.classes.root}>{'This div looks like a button.'}</div>;
+function TypographyTheme(props) {
+  return <div className={props.classes.root}>This div looks like a button.</div>;
 }
 
-TypograpghyTheme.propTypes = {
+TypographyTheme.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TypograpghyTheme);
+export default withStyles(styles)(TypographyTheme);

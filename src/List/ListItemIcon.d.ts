@@ -1,5 +1,11 @@
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface ListItemIconProps {}
+export interface ListItemIconProps extends StandardProps<{}, ListItemIconClassKey> {}
 
-export default class ListItemIcon extends StyledComponent<ListItemIconProps> {}
+export type ListItemIconClassKey =
+  | 'root'
+  ;
+
+declare const ListItemIcon: React.ComponentType<ListItemIconProps>;
+
+export default ListItemIcon;

@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
+import purple from 'material-ui/colors/purple';
 
 const styles = theme => ({
   progress: {
@@ -12,12 +13,13 @@ const styles = theme => ({
 });
 
 function CircularIndeterminate(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div>
       <CircularProgress className={classes.progress} />
       <CircularProgress className={classes.progress} size={50} />
-      <CircularProgress color="accent" className={classes.progress} />
+      <CircularProgress className={classes.progress} color="accent" />
+      <CircularProgress className={classes.progress} style={{ color: purple[500] }} thickness={7} />
     </div>
   );
 }

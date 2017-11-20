@@ -2,7 +2,7 @@
 
 import React from 'react';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { SheetsRegistry } from 'react-jss/lib/jss';
+import { SheetsRegistry } from 'jss';
 import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 import CssInJs from './CssInJs';
 
@@ -10,7 +10,6 @@ const sheetsRegistry = new SheetsRegistry();
 const theme = createMuiTheme();
 
 class JssRegistry extends React.Component<any, any> {
-  static defaultProps: {};
   state = {
     length: 0,
   };
@@ -37,6 +36,7 @@ class JssRegistry extends React.Component<any, any> {
     }
 
     // Needed as the sheets are removed asynchronously to prevent FOUC.
+    // (flash of unstyled content).
     this.timer = setTimeout(() => {
       if (this.state.length !== sheetsRegistry.registry.length) {
         this.setState({

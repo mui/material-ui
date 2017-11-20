@@ -30,55 +30,64 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+export type Color = 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary';
+
+type ProvidedProps = {
   classes: Object,
-  color: 'inherit',
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The name of the icon font ligature.
    */
   children?: Node,
   /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
    * @ignore
    */
   className?: string,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary',
+  color: Color,
 };
 
-type AllProps = DefaultProps & Props;
+class Icon extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    color: 'inherit',
+  };
 
-function Icon(props: AllProps) {
-  const { children, classes, className: classNameProp, color, ...other } = props;
+  static muiName = 'Icon';
 
-  const className = classNames(
-    'material-icons',
-    classes.root,
-    {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
-    },
-    classNameProp,
-  );
+  render() {
+    const { children, classes, className: classNameProp, color, ...other } = this.props;
 
-  return (
-    <span className={className} aria-hidden="true" {...other}>
-      {children}
-    </span>
-  );
+    const className = classNames(
+      'material-icons',
+      classes.root,
+      {
+        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+      },
+      classNameProp,
+    );
+
+    return (
+      <span className={className} aria-hidden="true" {...other}>
+        {children}
+      </span>
+    );
+  }
 }
-
-Icon.defaultProps = {
-  color: 'inherit',
-};
-
-Icon.muiName = 'Icon';
 
 export default withStyles(styles, { name: 'MuiIcon' })(Icon);

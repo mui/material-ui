@@ -56,7 +56,7 @@ describe('<FormLabel />', () => {
 
     function setFormControlContext(muiFormControlContext) {
       muiFormControl = muiFormControlContext;
-      wrapper.setContext({ ...wrapper.context(), muiFormControl });
+      wrapper.setContext({ muiFormControl });
     }
 
     beforeEach(() => {

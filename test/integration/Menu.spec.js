@@ -1,27 +1,39 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { ReactWrapper } from 'enzyme';
+import TestUtils from 'react-dom/test-utils';
 import { createMount } from 'src/test-utils';
 import Popover from 'src/Popover';
 import SimpleMenu from './fixtures/menus/SimpleMenu';
+import mockPortal from '../../test/utils/mockPortal';
+
+function simulateEvent(node, event, mock) {
+  const eventFn = TestUtils.Simulate[event];
+  if (!eventFn) {
+    throw new TypeError(`simulateEvent: event '${event}' does not exist`);
+  }
+  eventFn(node, mock);
+}
 
 describe('<Menu> integration', () => {
   let mount;
 
   before(() => {
     mount = createMount();
+    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
+    mockPortal.reset();
   });
 
   describe('mounted open', () => {
     let wrapper;
-    let list;
+    let portalLayer;
 
     before(() => {
       wrapper = mount(<SimpleMenu transitionDuration={0} />);
@@ -29,101 +41,71 @@ describe('<Menu> integration', () => {
 
     it('should not be open', () => {
       const popover = wrapper.find(Popover);
-      assert.strictEqual(popover.prop('open'), false, 'should have passed open=false to Popover');
+      assert.strictEqual(popover.props().open, false, 'should have passed open=false to Popover');
       const menuEl = document.getElementById('simple-menu');
       assert.strictEqual(menuEl, null, 'should not render the menu to the DOM');
     });
 
-    it('should open', done => {
-      wrapper.setProps({
-        onEntered() {
-          assert.ok(true, 'should have fired the onEntered callback');
-          const portal = wrapper.find('Modal').node.mountNode.firstChild;
-          const portalWrapper = new ReactWrapper(portal, portal);
-          list = portalWrapper.find('List');
-          done();
-        },
-      });
-      wrapper.setState({ open: true });
-    });
-
     it('should focus the first item as nothing has been selected', () => {
-      const menuEl = document.querySelector('[data-mui-test="Menu"]');
+      wrapper.setState({ open: true });
+      portalLayer = wrapper
+        .find('Portal')
+        .instance()
+        .getLayer();
       assert.strictEqual(
         document.activeElement,
-        menuEl && menuEl.firstChild,
+        portalLayer.querySelectorAll('li')[0],
         'should be the first menu item',
       );
     });
 
     it('should change focus to the 2nd item when down arrow is pressed', () => {
-      list.simulate('keyDown', {
-        which: keycode('down'),
-      });
-
-      const menuEl = document.querySelector('[data-mui-test="Menu"]');
+      simulateEvent(portalLayer.querySelector('ul'), 'keyDown', { which: keycode('down') });
       assert.strictEqual(
         document.activeElement,
-        menuEl && menuEl.children[1],
+        portalLayer.querySelectorAll('li')[1],
         'should be the 2nd menu item',
       );
     });
 
     it('should change focus to the 3rd item when down arrow is pressed', () => {
-      list.simulate('keyDown', {
-        which: keycode('down'),
-      });
-
-      const menuEl = document.querySelector('[data-mui-test="Menu"]');
+      simulateEvent(portalLayer.querySelector('ul'), 'keyDown', { which: keycode('down') });
       assert.strictEqual(
         document.activeElement,
-        menuEl && menuEl.children[2],
+        portalLayer.querySelectorAll('li')[2],
         'should be the 3rd menu item',
       );
     });
 
     it('should keep focus on the 3rd item (last item) when down arrow is pressed', () => {
-      list.simulate('keyDown', {
-        which: keycode('down'),
-      });
-
-      const menuEl = document.querySelector('[data-mui-test="Menu"]');
+      simulateEvent(portalLayer.querySelector('ul'), 'keyDown', { which: keycode('down') });
       assert.strictEqual(
         document.activeElement,
-        menuEl && menuEl.children[2],
+        portalLayer.querySelectorAll('li')[2],
         'should be the 3rd menu item',
       );
     });
 
     it('should keep focus on the last item when a key with no associated action is pressed', () => {
-      list.simulate('keyDown', {
-        which: keycode('right'),
-      });
-
-      const menuEl = document.querySelector('[data-mui-test="Menu"]');
+      simulateEvent(portalLayer.querySelector('ul'), 'keyDown', { which: keycode('right') });
       assert.strictEqual(
         document.activeElement,
-        menuEl && menuEl.children[2],
+        portalLayer.querySelectorAll('li')[2],
         'should be the 3rd menu item',
       );
     });
 
     it('should change focus to the 2nd item when up arrow is pressed', () => {
-      list.simulate('keyDown', {
-        which: keycode('up'),
-      });
-
-      const menuEl = document.querySelector('[data-mui-test="Menu"]');
+      simulateEvent(portalLayer.querySelector('ul'), 'keyDown', { which: keycode('up') });
       assert.strictEqual(
         document.activeElement,
-        menuEl && menuEl.children[1],
+        portalLayer.querySelectorAll('li')[1],
         'should be the 2nd menu item',
       );
     });
 
     it('should select the 2nd item and close the menu', () => {
-      const item = list.childAt(1);
-      item.simulate('click');
+      portalLayer.querySelectorAll('li')[1].click();
       assert.strictEqual(wrapper.state().selectedIndex, 1, 'should be index 1');
       assert.strictEqual(wrapper.state().open, false, 'should have closed');
     });
@@ -131,7 +113,6 @@ describe('<Menu> integration', () => {
 
   describe('opening with a selected item', () => {
     let wrapper;
-    let list;
 
     before(() => {
       wrapper = mount(<SimpleMenu transitionDuration={0} />);
@@ -140,58 +121,44 @@ describe('<Menu> integration', () => {
 
     it('should not be open', () => {
       const popover = wrapper.find(Popover);
-      assert.strictEqual(popover.prop('open'), false, 'should have passed open=false to Popover');
+      assert.strictEqual(popover.props().open, false, 'should have passed open=false to Popover');
       const menuEl = document.getElementById('simple-menu');
       assert.strictEqual(menuEl, null, 'should not render the menu to the DOM');
     });
 
-    it('should open', done => {
-      wrapper.setProps({
-        onEntering() {
-          assert.ok(true, 'should have fired the onEntering callback');
-          const portal = wrapper.find('Modal').node.mountNode.firstChild;
-          const portalWrapper = new ReactWrapper(portal, portal);
-          list = portalWrapper.find('List');
-          done();
-        },
-      });
-      wrapper.setState({ open: true });
-    });
-
     it('should focus the selected item', () => {
-      const menuEl = document.querySelector('[data-mui-test="Menu"]');
+      wrapper.setState({ open: true });
+      const portalLayer = wrapper
+        .find('Portal')
+        .instance()
+        .getLayer();
       assert.strictEqual(
         document.activeElement,
-        menuEl && menuEl.children[2],
+        portalLayer.querySelectorAll('li')[2],
         'should be the 3rd menu item',
       );
     });
 
     it('should select the 2nd item and close the menu', () => {
-      const item = list.childAt(1);
-      item.simulate('click');
+      const portalLayer = wrapper
+        .find('Portal')
+        .instance()
+        .getLayer();
+      const item = portalLayer.querySelector('ul').children[1];
+      item.click();
       assert.strictEqual(wrapper.state().selectedIndex, 1, 'should be index 1');
       assert.strictEqual(wrapper.state().open, false, 'should have closed');
     });
 
-    it('should open', done => {
-      wrapper.setProps({
-        onEntering() {
-          assert.ok(true, 'should have fired the onEntering callback');
-          const portal = wrapper.find('Modal').node.mountNode.firstChild;
-          const portalWrapper = new ReactWrapper(portal, portal);
-          list = portalWrapper.find('List');
-          done();
-        },
-      });
-      wrapper.setState({ open: true });
-    });
-
     it('should focus the selected item', () => {
-      const menuEl = document.querySelector('[data-mui-test="Menu"]');
+      wrapper.setState({ open: true });
+      const portalLayer = wrapper
+        .find('Portal')
+        .instance()
+        .getLayer();
       assert.strictEqual(
         document.activeElement,
-        menuEl && menuEl.children[1],
+        portalLayer.querySelectorAll('li')[1],
         'should be the 2nd menu item',
       );
     });
@@ -205,10 +172,11 @@ describe('<Menu> integration', () => {
     beforeEach(() => {
       wrapper = mount(<SimpleMenu transitionDuration={0} />);
       wrapper.setState({ open: true });
-      const portal = wrapper.find('Modal').node.mountNode.firstChild;
-      const portalWrapper = new ReactWrapper(portal, portal);
+      const portal = wrapper.find('Portal').props().children;
+      const portalWrapper = new ReactWrapper(portal);
       list = portalWrapper.find('List');
       backdrop = portalWrapper.find('Backdrop');
+      assert.strictEqual(backdrop.length, 1, 'find a backdrop');
     });
 
     it('should close the menu with tab', done => {
@@ -219,9 +187,7 @@ describe('<Menu> integration', () => {
         },
       });
       assert.strictEqual(wrapper.state().open, true, 'should start open');
-      list.simulate('keyDown', {
-        which: keycode('tab'),
-      });
+      list.simulate('keyDown', { which: keycode('tab') });
       assert.strictEqual(wrapper.state().open, false, 'should be closed');
     });
 

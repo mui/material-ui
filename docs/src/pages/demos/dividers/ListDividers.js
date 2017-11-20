@@ -15,7 +15,7 @@ const styles = theme => ({
 });
 
 function ListDividers(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <List className={classes.root}>
       <ListItem button>

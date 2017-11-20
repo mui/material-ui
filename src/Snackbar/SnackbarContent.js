@@ -1,4 +1,5 @@
 // @flow
+// @inheritedComponent Paper
 
 import React from 'react';
 import type { Node } from 'react';
@@ -42,7 +43,7 @@ export const styles = (theme: Object) => {
   };
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -65,9 +66,7 @@ export type Props = {
   message: Node,
 };
 
-type AllProps = DefaultProps & Props;
-
-function SnackbarContent(props: AllProps) {
+function SnackbarContent(props: ProvidedProps & Props) {
   const { action, classes, className, message, ...other } = props;
 
   return (

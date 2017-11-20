@@ -1,14 +1,16 @@
 // @flow
+// @inheritedComponent Modal
 
 import React from 'react';
 import type { Node } from 'react';
 import classNames from 'classnames';
-import Modal from '../internal/Modal';
+import Modal from '../Modal';
 import withStyles from '../styles/withStyles';
 import Slide from '../transitions/Slide';
 import Paper from '../Paper';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import { duration } from '../styles/transitions';
+import type { TransitionDuration } from '../internal/transition';
 
 function getSlideDirection(anchor) {
   if (anchor === 'left') {
@@ -24,30 +26,36 @@ function getSlideDirection(anchor) {
 }
 
 export const styles = (theme: Object) => ({
+  docked: {
+    flex: '0 0 auto',
+  },
   paper: {
     overflowY: 'auto',
     display: 'flex',
     flexDirection: 'column',
     height: '100vh',
     flex: '1 0 auto',
+    zIndex: theme.zIndex.navDrawer,
+    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    // temporary style
     position: 'fixed',
     top: 0,
-    zIndex: theme.zIndex.navDrawer,
-    willChange: 'transform',
+    // We disable the focus ring for mouse, touch and keyboard users.
+    // At some point, it would be better to keep it for keyboard users.
+    // :focus-ring CSS pseudo-class will help.
     '&:focus': {
       outline: 'none',
     },
-    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   },
-  anchorLeft: {
+  paperAnchorLeft: {
     left: 0,
     right: 'auto',
   },
-  anchorRight: {
+  paperAnchorRight: {
     left: 'auto',
     right: 0,
   },
-  anchorTop: {
+  paperAnchorTop: {
     top: 0,
     left: 0,
     bottom: 'auto',
@@ -55,7 +63,7 @@ export const styles = (theme: Object) => ({
     height: 'auto',
     maxHeight: '100vh',
   },
-  anchorBottom: {
+  paperAnchorBottom: {
     top: 'auto',
     left: 0,
     bottom: 0,
@@ -63,29 +71,41 @@ export const styles = (theme: Object) => ({
     height: 'auto',
     maxHeight: '100vh',
   },
-  docked: {
-    flex: '0 0 auto',
-    '& $paper': {
-      borderRight: `1px solid ${theme.palette.text.divider}`,
-    },
+  paperAnchorDockedLeft: {
+    borderRight: `1px solid ${theme.palette.text.divider}`,
   },
-  modal: {},
+  paperAnchorDockedTop: {
+    borderBottom: `1px solid ${theme.palette.text.divider}`,
+  },
+  paperAnchorDockedRight: {
+    borderLeft: `1px solid ${theme.palette.text.divider}`,
+  },
+  paperAnchorDockedBottom: {
+    borderTop: `1px solid ${theme.palette.text.divider}`,
+  },
+  modal: {}, // Just here so people can override the style.
 });
 
-type DefaultProps = {
-  anchor: 'left',
+export type Anchor = 'left' | 'top' | 'right' | 'bottom';
+export type Type = 'permanent' | 'persistent' | 'temporary';
+
+type ProvidedProps = {
   classes: Object,
-  elevation: number,
-  enterTransitionDuration: number,
-  leaveTransitionDuration: number,
-  open: boolean,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * Side from which the drawer will appear.
    */
-  anchor?: 'left' | 'top' | 'right' | 'bottom',
+  anchor: Anchor,
   /**
    * The contents of the drawer.
    */
@@ -99,17 +119,14 @@ export type Props = {
    */
   className?: string,
   /**
-   * Customizes duration of enter animation (ms)
-   */
-  enterTransitionDuration?: number,
-  /**
    * The elevation of the drawer.
    */
-  elevation?: number,
+  elevation: number,
   /**
-   * Customizes duration of leave animation (ms)
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
    */
-  leaveTransitionDuration?: number,
+  transitionDuration: TransitionDuration,
   /**
    * Properties applied to the `Modal` element.
    */
@@ -123,35 +140,29 @@ export type Props = {
   /**
    * If `true`, the drawer is open.
    */
-  open?: boolean,
+  open: boolean,
   /**
    * Properties applied to the `Slide` element.
    */
   SlideProps?: Object,
   /**
-   * @ignore
-   */
-  theme: Object,
-  /**
    * The type of drawer.
    */
-  type: 'permanent' | 'persistent' | 'temporary',
+  type: Type,
 };
-
-type AllProps = DefaultProps & Props;
 
 type State = {
   firstMount: boolean,
 };
 
-class Drawer extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class Drawer extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     anchor: 'left',
     elevation: 16,
-    enterTransitionDuration: duration.enteringScreen,
-    leaveTransitionDuration: duration.leavingScreen,
+    transitionDuration: ({
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    }: TransitionDuration),
     open: false,
     type: 'temporary', // Mobile first.
   };
@@ -176,8 +187,7 @@ class Drawer extends React.Component<AllProps, State> {
       classes,
       className,
       elevation,
-      enterTransitionDuration,
-      leaveTransitionDuration,
+      transitionDuration,
       ModalProps,
       onRequestClose,
       open,
@@ -187,7 +197,7 @@ class Drawer extends React.Component<AllProps, State> {
       ...other
     } = this.props;
 
-    const rtl = theme.dir === 'rtl';
+    const rtl = theme && theme.direction === 'rtl';
     let anchor = anchorProp;
     if (rtl && ['left', 'right'].includes(anchor)) {
       anchor = anchor === 'left' ? 'right' : 'left';
@@ -197,7 +207,13 @@ class Drawer extends React.Component<AllProps, State> {
       <Paper
         elevation={type === 'temporary' ? elevation : 0}
         square
-        className={classNames(classes.paper, classes[`anchor${capitalizeFirstLetter(anchor)}`])}
+        className={classNames(
+          classes.paper,
+          classes[`paperAnchor${capitalizeFirstLetter(anchor)}`],
+          {
+            [classes[`paperAnchorDocked${capitalizeFirstLetter(anchor)}`]]: type !== 'temporary',
+          },
+        )}
       >
         {children}
       </Paper>
@@ -215,9 +231,8 @@ class Drawer extends React.Component<AllProps, State> {
       <Slide
         in={open}
         direction={getSlideDirection(anchor)}
-        enterTransitionDuration={enterTransitionDuration}
-        leaveTransitionDuration={leaveTransitionDuration}
-        transitionAppear={!this.state.firstMount}
+        timeout={transitionDuration}
+        appear={!this.state.firstMount}
         {...SlideProps}
       >
         {drawer}
@@ -235,7 +250,7 @@ class Drawer extends React.Component<AllProps, State> {
     // type === temporary
     return (
       <Modal
-        backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
+        BackdropTransitionDuration={transitionDuration}
         className={classNames(classes.modal, className)}
         show={open}
         onRequestClose={onRequestClose}
@@ -248,4 +263,4 @@ class Drawer extends React.Component<AllProps, State> {
   }
 }
 
-export default withStyles(styles, { withTheme: true, name: 'MuiDrawer' })(Drawer);
+export default withStyles(styles, { flip: false, withTheme: true, name: 'MuiDrawer' })(Drawer);

@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, unwrap } from '../test-utils';
 import Textarea from './Textarea';
 
 function assignRefs(wrapper) {
@@ -65,7 +65,8 @@ describe('<Textarea />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = mount(<Textarea.Naked classes={{}} value="f" />);
+      const TextareaNaked = unwrap(Textarea);
+      wrapper = mount(<TextareaNaked classes={{}} value="f" />);
     });
 
     afterEach(() => {
@@ -74,22 +75,12 @@ describe('<Textarea />', () => {
 
     it('should update the height when the value change', () => {
       const instance = wrapper.instance();
-      instance.singlelineShadow = {
-        scrollHeight: 24,
-      };
-      instance.shadow = {
-        scrollHeight: 24,
-      };
-      wrapper.setProps({
-        value: 'fo',
-      });
+      instance.singlelineShadow = { scrollHeight: 24 };
+      instance.shadow = { scrollHeight: 24 };
+      wrapper.setProps({ value: 'fo' });
       assert.strictEqual(wrapper.state().height, 24);
-      instance.shadow = {
-        scrollHeight: 48,
-      };
-      wrapper.setProps({
-        value: 'foooooo',
-      });
+      instance.shadow = { scrollHeight: 48 };
+      wrapper.setProps({ value: 'foooooo' });
       assert.strictEqual(wrapper.state().height, 48);
     });
 
@@ -97,15 +88,9 @@ describe('<Textarea />', () => {
       const instance = wrapper.instance();
       const rowsMax = 2;
       const lineHeight = 24;
-      instance.singlelineShadow = {
-        scrollHeight: lineHeight,
-      };
-      instance.shadow = {
-        scrollHeight: lineHeight * 3,
-      };
-      wrapper.setProps({
-        rowsMax,
-      });
+      instance.singlelineShadow = { scrollHeight: lineHeight };
+      instance.shadow = { scrollHeight: lineHeight * 3 };
+      wrapper.setProps({ rowsMax });
       assert.strictEqual(wrapper.state().height, lineHeight * rowsMax);
     });
   });

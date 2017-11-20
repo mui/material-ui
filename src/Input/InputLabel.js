@@ -37,13 +37,19 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  disabled: boolean,
-  disableAnimation: boolean,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The contents of the `InputLabel`.
    */
@@ -59,11 +65,11 @@ export type Props = {
   /**
    * If `true`, the transition animation is disabled.
    */
-  disableAnimation?: boolean,
+  disableAnimation: boolean,
   /**
    * If `true`, apply disabled class.
    */
-  disabled?: boolean,
+  disabled: boolean,
   /**
    * If `true`, the label will be displayed in an error state.
    */
@@ -91,59 +97,61 @@ export type Props = {
   shrink?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
+class InputLabel extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    disabled: false,
+    disableAnimation: false,
+  };
 
-function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
-  const {
-    disabled,
-    disableAnimation,
-    children,
-    classes,
-    className: classNameProp,
-    FormControlClasses,
-    shrink: shrinkProp,
-    margin: marginProp,
-    ...other
-  } = props;
+  static contextTypes = {
+    muiFormControl: PropTypes.object,
+  };
 
-  const { muiFormControl } = context;
-  let shrink = shrinkProp;
+  context: { muiFormControl: Object };
 
-  if (typeof shrink === 'undefined' && muiFormControl) {
-    shrink = muiFormControl.dirty || muiFormControl.focused;
+  render() {
+    const {
+      disabled,
+      disableAnimation,
+      children,
+      classes,
+      className: classNameProp,
+      FormControlClasses,
+      shrink: shrinkProp,
+      margin: marginProp,
+      ...other
+    } = this.props;
+
+    const { muiFormControl } = this.context;
+    let shrink = shrinkProp;
+
+    if (typeof shrink === 'undefined' && muiFormControl) {
+      shrink = muiFormControl.dirty || muiFormControl.focused || muiFormControl.adornedStart;
+    }
+
+    let margin = marginProp;
+    if (typeof margin === 'undefined' && muiFormControl) {
+      margin = muiFormControl.margin;
+    }
+
+    const className = classNames(
+      classes.root,
+      {
+        [classes.formControl]: muiFormControl,
+        [classes.animated]: !disableAnimation,
+        [classes.shrink]: shrink,
+        [classes.disabled]: disabled,
+        [classes.labelDense]: margin === 'dense',
+      },
+      classNameProp,
+    );
+
+    return (
+      <FormLabel data-shrink={shrink} className={className} classes={FormControlClasses} {...other}>
+        {children}
+      </FormLabel>
+    );
   }
-
-  let margin = marginProp;
-  if (typeof margin === 'undefined' && muiFormControl) {
-    margin = muiFormControl.margin;
-  }
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.formControl]: muiFormControl,
-      [classes.animated]: !disableAnimation,
-      [classes.shrink]: shrink,
-      [classes.disabled]: disabled,
-      [classes.labelDense]: margin === 'dense',
-    },
-    classNameProp,
-  );
-
-  return (
-    <FormLabel className={className} classes={FormControlClasses} {...other}>
-      {children}
-    </FormLabel>
-  );
 }
-
-InputLabel.defaultProps = {
-  disabled: false,
-  disableAnimation: false,
-};
-
-InputLabel.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
 
 export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);

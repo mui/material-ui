@@ -7,10 +7,13 @@ import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Ta
 import Paper from 'material-ui/Paper';
 
 const styles = theme => ({
-  paper: {
+  root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
+  },
+  table: {
+    minWidth: 700,
   },
 });
 
@@ -29,11 +32,11 @@ const data = [
 ];
 
 function BasicTable(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
-    <Paper className={classes.paper}>
-      <Table>
+    <Paper className={classes.root}>
+      <Table className={classes.table}>
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>

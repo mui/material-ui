@@ -1,10 +1,10 @@
 ---
-components: List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader, Divider
+components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
 # Lists
 
-[Lists](https://material.google.com/components/lists.html) present multiple line items vertically as a single continuous element.
+[Lists](https://material.io/guidelines/components/lists.html) present multiple line items vertically as a single continuous element.
 
 Lists are made up of a continuous column of rows. Each row contains a tile. Primary actions fill the tile, and supplemental actions are represented by icons and text.
 
@@ -25,6 +25,15 @@ Lists are best suited for similar data types.
 ### Nested List
 
 {{demo='pages/demos/lists/NestedList.js'}}
+
+### Pinned Subheader List
+
+Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
+
+This feature is relying on the CSS sticky positioning.
+Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
+
+{{demo='pages/demos/lists/PinnedSubheaderList.js'}}
 
 ## List Controls
 

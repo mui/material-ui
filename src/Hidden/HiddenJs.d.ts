@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
 import { Breakpoint } from '../styles/createBreakpoints';
 
 export interface HiddenJsProps {
@@ -16,4 +15,6 @@ export interface HiddenJsProps {
   xlDown?: boolean;
 }
 
-export default class HiddenJs extends StyledComponent<HiddenJsProps> {}
+declare const HiddenJs: React.ComponentType<HiddenJsProps>;
+
+export default HiddenJs;

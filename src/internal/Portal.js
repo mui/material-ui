@@ -20,21 +20,20 @@ export type Props = {
  * @ignore - internal component.
  */
 class Portal extends React.Component<Props> {
-  props: Props;
   static defaultProps = {
     open: false,
   };
 
   componentDidMount() {
     // Support react@15.x, will be removed at some point
-    if (!ReactDOM.unstable_createPortal) {
+    if (!ReactDOM.createPortal) {
       this.renderLayer();
     }
   }
 
   componentDidUpdate() {
     // Support react@15.x, will be removed at some point
-    if (!ReactDOM.unstable_createPortal) {
+    if (!ReactDOM.createPortal) {
       this.renderLayer();
     }
   }
@@ -42,8 +41,6 @@ class Portal extends React.Component<Props> {
   componentWillUnmount() {
     this.unrenderLayer();
   }
-
-  layer: ?HTMLElement = null;
 
   getLayer() {
     if (!this.layer) {
@@ -57,13 +54,15 @@ class Portal extends React.Component<Props> {
     return this.layer;
   }
 
+  layer: ?HTMLElement = null;
+
   unrenderLayer() {
     if (!this.layer) {
       return;
     }
 
     // Support react@15.x, will be removed at some point
-    if (!ReactDOM.unstable_createPortal) {
+    if (!ReactDOM.createPortal) {
       ReactDOM.unmountComponentAtNode(this.layer);
     }
 
@@ -82,7 +81,6 @@ class Portal extends React.Component<Props> {
       // funnels React's hierarchical updates through to a DOM node on an
       // entirely different part of the page.
       const layerElement = React.Children.only(children);
-      // $FlowFixMe
       ReactDOM.unstable_renderSubtreeIntoContainer(this, layerElement, this.getLayer());
     } else {
       this.unrenderLayer();
@@ -93,14 +91,16 @@ class Portal extends React.Component<Props> {
     const { children, open } = this.props;
 
     // Support react@15.x, will be removed at some point
-    if (!ReactDOM.unstable_createPortal) {
+    if (!ReactDOM.createPortal) {
       return null;
     }
 
     // Can't be rendered server-side.
     if (canUseDom) {
       if (open) {
-        return ReactDOM.unstable_createPortal(children, this.getLayer());
+        const layer = this.getLayer();
+        // $FlowIgnore layer is non-null
+        return ReactDOM.createPortal(children, layer);
       }
 
       this.unrenderLayer();

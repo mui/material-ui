@@ -36,6 +36,9 @@ export const light = {
     appBar: grey[100],
     contentFrame: grey[200],
   },
+  line: {
+    stepper: grey[400],
+  },
 };
 
 export const dark = {
@@ -64,7 +67,10 @@ export const dark = {
     paper: grey[800],
     appBar: grey[900],
     contentFrame: grey[900],
-    status: common.black,
+  },
+  line: {
+    // TODO: What should the dark theme have for stepper line? Not stated in style guide
+    stepper: grey[400],
   },
 };
 
@@ -79,7 +85,7 @@ export default function createPalette(palette: Object) {
   const { primary = indigo, secondary = pink, error = red, type = 'light', ...other } = palette;
   const shades = { dark, light };
 
-  warning(shades[type], `Material-UI: the palette type \`${type}\` is not supported.`);
+  warning(Boolean(shades[type]), `Material-UI: the palette type \`${type}\` is not supported.`);
 
   const paletteOutput = deepmerge(
     {
@@ -94,9 +100,13 @@ export default function createPalette(palette: Object) {
       input: shades[type].input,
       action: shades[type].action,
       background: shades[type].background,
+      line: shades[type].line,
       getContrastText,
     },
     other,
+    {
+      clone: false, // No need to clone deep
+    },
   );
 
   // Dev warnings

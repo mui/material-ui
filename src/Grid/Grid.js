@@ -11,9 +11,10 @@
 // - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import requirePropFactory from '../utils/requirePropFactory';
 import Hidden from '../Hidden';
 import type { HiddenProps } from '../Hidden/types';
@@ -109,17 +110,35 @@ export const styles = (theme: Object) => ({
   'wrap-xs-nowrap': {
     flexWrap: 'nowrap',
   },
-  'align-xs-center': {
+  'wrap-xs-wrap-reverse': {
+    flexWrap: 'wrap-reverse',
+  },
+  'align-items-xs-center': {
     alignItems: 'center',
   },
-  'align-xs-flex-start': {
+  'align-items-xs-flex-start': {
     alignItems: 'flex-start',
   },
-  'align-xs-flex-end': {
+  'align-items-xs-flex-end': {
     alignItems: 'flex-end',
   },
-  'align-xs-baseline': {
+  'align-items-xs-baseline': {
     alignItems: 'baseline',
+  },
+  'align-content-xs-center': {
+    alignContent: 'center',
+  },
+  'align-content-xs-flex-start': {
+    alignContent: 'flex-start',
+  },
+  'align-content-xs-flex-end': {
+    alignContent: 'flex-end',
+  },
+  'align-content-xs-space-between': {
+    alignContent: 'space-between',
+  },
+  'align-content-xs-space-around': {
+    alignContent: 'space-around',
   },
   'justify-xs-center': {
     justifyContent: 'center',
@@ -134,21 +153,46 @@ export const styles = (theme: Object) => ({
     justifyContent: 'space-around',
   },
   ...generateGutter(theme, 'xs'),
-  ...theme.breakpoints.keys.reduce((accumulator, key) => {
+  ...breakpointKeys.reduce((accumulator, key) => {
     // Use side effect over immutability for better performance.
     generateGrid(accumulator, theme, key);
     return accumulator;
   }, {}),
 });
 
-type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-type DefaultProps = {
+type AlignContent =
+  | 'stretch'
+  | 'center'
+  | 'flex-start'
+  | 'flex-end'
+  | 'space-between'
+  | 'space-around';
+
+type AlignItems = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
+
+type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+
+type Justify = 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around';
+
+type Spacing = 0 | 8 | 16 | 24 | 40;
+
+type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
+
+type ProvidedProps = {
   classes: Object,
-  component: ComponentType<*>,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The content of the component.
    */
@@ -165,32 +209,37 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | ComponentType<*>,
+  component: ElementType,
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
    */
-  container?: boolean,
+  container: boolean,
   /**
-   * It true, the component will have the flex *item* behavior.
+   * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
    */
-  item?: boolean,
+  item: boolean,
+  /**
+   * Defines the `align-content` style property.
+   * It's applied for all screen sizes.
+   */
+  alignContent: AlignContent,
   /**
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
    */
-  align?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline',
+  alignItems: AlignItems,
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
    */
-  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse',
+  direction: Direction,
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-  spacing?: 0 | 8 | 16 | 24 | 40,
+  spacing: Spacing,
   /**
    * If provided, will wrap with [Hidden](/api/hidden) component and given properties.
    */
@@ -199,12 +248,12 @@ export type Props = {
    * Defines the `justify-content` style property.
    * It is applied for all screen sizes.
    */
-  justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around',
+  justify: Justify,
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    */
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse',
+  wrap: Wrap,
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
@@ -232,85 +281,96 @@ export type Props = {
   xl?: GridSizes,
 };
 
-function Grid(props: DefaultProps & Props) {
-  const {
-    classes,
-    className: classNameProp,
-    component: ComponentProp,
-    container,
-    item,
-    align,
-    direction,
-    spacing,
-    hidden,
-    justify,
-    wrap,
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
-    ...other
-  } = props;
+class Grid extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    alignContent: 'stretch',
+    alignItems: 'stretch',
+    component: ('div': ElementType),
+    container: false,
+    direction: 'row',
+    item: false,
+    justify: 'flex-start',
+    spacing: 16,
+    wrap: 'wrap',
+  };
 
-  const className = classNames(
-    {
-      [classes.typeContainer]: container,
-      [classes.typeItem]: item,
-      [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
-      [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
-      [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
-      [classes[`align-xs-${String(align)}`]]: align !== Grid.defaultProps.align,
-      [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
-      [classes['grid-xs']]: xs === true,
-      [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
-      [classes['grid-sm']]: sm === true,
-      [classes[`grid-sm-${String(sm)}`]]: sm && sm !== true,
-      [classes['grid-md']]: md === true,
-      [classes[`grid-md-${String(md)}`]]: md && md !== true,
-      [classes['grid-lg']]: lg === true,
-      [classes[`grid-lg-${String(lg)}`]]: lg && lg !== true,
-      [classes['grid-xl']]: xl === true,
-      [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
-    },
-    classNameProp,
-  );
-  const gridProps = { className, ...other };
+  render() {
+    const {
+      classes,
+      className: classNameProp,
+      component: ComponentProp,
+      container,
+      item,
+      alignContent,
+      alignItems,
+      direction,
+      spacing,
+      hidden,
+      justify,
+      wrap,
+      xs,
+      sm,
+      md,
+      lg,
+      xl,
+      ...other
+    } = this.props;
 
-  if (hidden) {
-    return (
-      <Hidden {...hidden}>
-        <ComponentProp {...gridProps} />
-      </Hidden>
+    const className = classNames(
+      {
+        [classes.typeContainer]: container,
+        [classes.typeItem]: item,
+        [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
+        [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
+        [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
+        [classes[`align-items-xs-${String(alignItems)}`]]:
+          alignItems !== Grid.defaultProps.alignItems,
+        [classes[`align-content-xs-${String(alignContent)}`]]:
+          alignContent !== Grid.defaultProps.alignContent,
+        [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
+        [classes['grid-xs']]: xs === true,
+        [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
+        [classes['grid-sm']]: sm === true,
+        [classes[`grid-sm-${String(sm)}`]]: sm && sm !== true,
+        [classes['grid-md']]: md === true,
+        [classes[`grid-md-${String(md)}`]]: md && md !== true,
+        [classes['grid-lg']]: lg === true,
+        [classes[`grid-lg-${String(lg)}`]]: lg && lg !== true,
+        [classes['grid-xl']]: xl === true,
+        [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
+      },
+      classNameProp,
     );
+    const gridProps = { className, ...other };
+
+    if (hidden) {
+      return (
+        <Hidden {...hidden}>
+          <ComponentProp {...gridProps} />
+        </Hidden>
+      );
+    }
+
+    return <ComponentProp {...gridProps} />;
   }
-
-  return <ComponentProp {...gridProps} />;
 }
-
-Grid.defaultProps = {
-  align: 'stretch',
-  component: 'div',
-  container: false,
-  direction: 'row',
-  hidden: undefined,
-  item: false,
-  justify: 'flex-start',
-  spacing: 16,
-  wrap: 'wrap',
-};
 
 // Add a wrapper component to generate some helper messages in the development
 // environment.
-let GridWrapper = Grid; // eslint-disable-line import/no-mutable-exports
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable react/prefer-stateless-function */
+// eslint-disable-next-line import/no-mutable-exports
+let GridWrapper = Grid;
 
 if (process.env.NODE_ENV !== 'production') {
   const requireProp = requirePropFactory('Grid');
 
   GridWrapper = (props: any) => <Grid {...props} />;
 
+  // $FlowFixMe - cannot mix legacy propTypes with current HOC pattern - https://github.com/facebook/flow/issues/4644#issuecomment-332530909
   GridWrapper.propTypes = {
-    align: requireProp('container'),
+    alignContent: requireProp('container'),
+    alignItems: requireProp('container'),
     direction: requireProp('container'),
     justify: requireProp('container'),
     lg: requireProp('item'),

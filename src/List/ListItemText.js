@@ -1,6 +1,7 @@
 // @flow weak
 
 import React from 'react';
+import type { Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -20,7 +21,7 @@ export const styles = (theme: Object) => ({
     },
   },
   dense: {
-    fontSize: 13,
+    fontSize: theme.typography.pxToRem(13),
   },
   text: {}, // Present to allow external customization
   textDense: {
@@ -28,87 +29,97 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function ListItemText(props, context) {
-  const {
-    classes,
-    className: classNameProp,
-    disableTypography,
-    primary,
-    secondary,
-    inset,
-    ...other
-  } = props;
-  const { dense } = context;
-  const className = classNames(
-    classes.root,
-    {
-      [classes.dense]: dense,
-      [classes.inset]: inset,
-    },
-    classNameProp,
-  );
-
-  return (
-    <div className={className} {...other}>
-      {primary &&
-        (disableTypography ? (
-          primary
-        ) : (
-          <Typography
-            type="subheading"
-            className={classNames(classes.text, { [classes.textDense]: dense })}
-          >
-            {primary}
-          </Typography>
-        ))}
-      {secondary &&
-        (disableTypography ? (
-          secondary
-        ) : (
-          <Typography
-            color="secondary"
-            type="body1"
-            className={classNames(classes.text, { [classes.textDense]: dense })}
-          >
-            {secondary}
-          </Typography>
-        ))}
-    </div>
-  );
-}
-
-ListItemText.propTypes = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
+type ProvidedProps = {
+  classes: Object,
   /**
    * @ignore
    */
-  className: PropTypes.string,
+  theme?: Object,
+};
+
+export type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
   /**
    * If `true`, the children won't be wrapped by a typography component.
    * For instance, that can be useful to can render an h4 instead of a
    */
-  disableTypography: PropTypes.bool,
+  disableTypography: boolean,
   /**
    * If `true`, the children will be indented.
    * This should be used if there is no left avatar or left icon.
    */
-  inset: PropTypes.bool,
-  primary: PropTypes.node,
-  secondary: PropTypes.node,
+  inset: boolean,
+  primary: Node,
+  secondary: Node,
 };
 
-ListItemText.defaultProps = {
-  disableTypography: false,
-  primary: false,
-  secondary: false,
-  inset: false,
-};
+class ListItemText extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    disableTypography: false,
+    primary: false,
+    secondary: false,
+    inset: false,
+  };
 
-ListItemText.contextTypes = {
-  dense: PropTypes.bool,
-};
+  static contextTypes = {
+    dense: PropTypes.bool,
+  };
+
+  render() {
+    const {
+      classes,
+      className: classNameProp,
+      disableTypography,
+      primary,
+      secondary,
+      inset,
+      ...other
+    } = this.props;
+    const { dense } = this.context;
+    const className = classNames(
+      classes.root,
+      {
+        [classes.dense]: dense,
+        [classes.inset]: inset,
+      },
+      classNameProp,
+    );
+
+    return (
+      <div className={className} {...other}>
+        {primary &&
+          (disableTypography ? (
+            primary
+          ) : (
+            <Typography
+              type="subheading"
+              className={classNames(classes.text, { [classes.textDense]: dense })}
+            >
+              {primary}
+            </Typography>
+          ))}
+        {secondary &&
+          (disableTypography ? (
+            secondary
+          ) : (
+            <Typography
+              color="secondary"
+              type="body1"
+              className={classNames(classes.text, { [classes.textDense]: dense })}
+            >
+              {secondary}
+            </Typography>
+          ))}
+      </div>
+    );
+  }
+}
 
 export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);

@@ -1,12 +1,29 @@
 import * as React from 'react';
-import { StyledComponent, PropTypes } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { StandardProps, PropTypes } from '..';
+import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
-export interface IconButtonProps extends ButtonBaseProps {
+export interface IconButtonProps extends StandardProps<
+  ButtonBaseProps,
+  IconButtonClassKey
+> {
+  buttonRef?: React.Ref<any>;
   color?: PropTypes.Color | 'contrast';
   disabled?: boolean;
   disableRipple?: boolean;
   rootRef?: React.Ref<any>;
 }
 
-export default class IconButton extends StyledComponent<IconButtonProps> {}
+export type IconButtonClassKey =
+  | ButtonBaseClassKey
+  | 'colorAccent'
+  | 'colorContrast'
+  | 'colorPrimary'
+  | 'colorInherit'
+  | 'label'
+  | 'icon'
+  | 'keyboardFocused'
+  ;
+
+declare const IconButton: React.ComponentType<IconButtonProps>;
+
+export default IconButton;

@@ -10,7 +10,7 @@ export const styles = (theme: Object) => ({
   root: {
     color: theme.palette.input.helperText,
     fontFamily: theme.typography.fontFamily,
-    fontSize: 12,
+    fontSize: theme.typography.pxToRem(12),
     textAlign: 'left',
     marginTop: theme.spacing.unit,
     lineHeight: '1em',
@@ -28,8 +28,12 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -60,9 +64,7 @@ export type Props = {
   margin?: 'dense',
 };
 
-type AllProps = DefaultProps & Props;
-
-function FormHelperText(props: AllProps, context: { muiFormControl: Object }) {
+function FormHelperText(props: ProvidedProps & Props, context: { muiFormControl: Object }) {
   const {
     children,
     classes,

@@ -17,6 +17,12 @@ export const styles = (theme: Object) => ({
     flex: '0 0 auto',
     marginRight: theme.spacing.unit * 2,
   },
+  action: {
+    flex: '0 0 auto',
+    alignSelf: 'flex-start',
+    marginTop: theme.spacing.unit * -1,
+    marginRight: theme.spacing.unit * -2,
+  },
   content: {
     flex: '1 1 auto',
   },
@@ -24,11 +30,15 @@ export const styles = (theme: Object) => ({
   subheader: {},
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
 export type Props = {
+  /**
+   * The action to display in the card header.
+   */
+  action?: Node,
   /**
    * The Avatar for the Card Header.
    */
@@ -51,19 +61,15 @@ export type Props = {
   title?: Node,
 };
 
-type AllProps = DefaultProps & Props;
-
-function CardHeader(props: AllProps) {
-  const { avatar, classes, className: classNameProp, subheader, title, ...other } = props;
-
-  const className = classNames(classes.root, classNameProp);
+function CardHeader(props: ProvidedProps & Props) {
+  const { avatar, action, classes, className: classNameProp, subheader, title, ...other } = props;
 
   // Adjustments that depend on the presence of an avatar
   const titleType = avatar ? 'body2' : 'headline';
   const subheaderType = avatar ? 'body2' : 'body1';
 
   return (
-    <CardContent className={className} {...other}>
+    <CardContent className={classNames(classes.root, classNameProp)} {...other}>
       {avatar && <div className={classes.avatar}>{avatar}</div>}
       <div className={classes.content}>
         <Typography type={titleType} component="span" className={classes.title}>
@@ -78,6 +84,7 @@ function CardHeader(props: AllProps) {
           {subheader}
         </Typography>
       </div>
+      {action && <div className={classes.action}>{action}</div>}
     </CardContent>
   );
 }

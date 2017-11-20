@@ -8,7 +8,7 @@ import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
 function TabContainer(props) {
-  return <div style={{ padding: 20 }}>{props.children}</div>;
+  return <div style={{ padding: 8 * 3 }}>{props.children}</div>;
 }
 
 TabContainer.propTypes = {
@@ -45,9 +45,9 @@ class BasicTabsWrappedLabel extends React.Component {
             <Tab value="three" label="Item Three" />
           </Tabs>
         </AppBar>
-        {value === 'one' && <TabContainer>{'Item One'}</TabContainer>}
-        {value === 'two' && <TabContainer>{'Item Two'}</TabContainer>}
-        {value === 'three' && <TabContainer>{'Item Three'}</TabContainer>}
+        {value === 'one' && <TabContainer>Item One</TabContainer>}
+        {value === 'two' && <TabContainer>Item Two</TabContainer>}
+        {value === 'three' && <TabContainer>Item Three</TabContainer>}
       </div>
     );
   }

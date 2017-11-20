@@ -1,7 +1,11 @@
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface ListItemSecondaryActionProps {}
+export interface ListItemSecondaryActionProps extends StandardProps<{}, ListItemSecondaryActionClassKey> {}
 
-export default class ListItemSecondaryAction extends StyledComponent<
-  ListItemSecondaryActionProps
-> {}
+export type ListItemSecondaryActionClassKey =
+  | 'root'
+  ;
+
+declare const ListItemSecondaryAction: React.ComponentType<ListItemSecondaryActionProps>;
+
+export default ListItemSecondaryAction;

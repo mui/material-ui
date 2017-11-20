@@ -1,14 +1,29 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface GridListTileBarProps {
-  actionIcon?: React.ReactElement<any>;
+export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarClassKey>
+{
+  actionIcon?: React.ReactNode;
   actionPosition?: 'left' | 'right';
   subtitle?: React.ReactNode;
   title?: React.ReactNode;
   titlePosition?: 'top' | 'bottom';
 }
 
-export default class GridListTileBar extends StyledComponent<
-  GridListTileBarProps
-> {}
+export type GridListTileBarClassKey =
+  | 'root'
+  | 'rootBottom'
+  | 'rootTop'
+  | 'rootWithSubtitle'
+  | 'titleWrap'
+  | 'titleWrapActionLeft'
+  | 'titleWrapActionRight'
+  | 'title'
+  | 'subtitle'
+  | 'actionIconPositionLeft'
+  | 'childImg'
+  ;
+
+declare const GridListTileBar: React.ComponentType<GridListTileBarProps>;
+
+export default GridListTileBar;

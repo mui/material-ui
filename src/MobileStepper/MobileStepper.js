@@ -2,7 +2,7 @@
 // @inheritedComponent Paper
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
@@ -52,92 +52,105 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function MobileStepper(props) {
-  const {
-    activeStep,
-    backButton,
-    classes,
-    className: classNameProp,
-    position,
-    type,
-    nextButton,
-    steps,
-    ...other
-  } = props;
+export type Position = 'bottom' | 'top' | 'static';
+export type Type = 'text' | 'dots' | 'progress';
 
-  const className = classNames(
-    classes.root,
-    classes[`position${capitalizeFirstLetter(position)}`],
-    classNameProp,
-  );
+type ProvidedProps = {
+  classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
+};
 
-  return (
-    <Paper square elevation={0} className={className} {...other}>
-      {backButton}
-      {type === 'dots' && (
-        <div className={classes.dots}>
-          {[...new Array(steps)].map((_, step) => {
-            const dotClassName = classNames(
-              {
-                [classes.dotActive]: step === activeStep,
-              },
-              classes.dot,
-            );
-            // eslint-disable-next-line react/no-array-index-key
-            return <div key={step} className={dotClassName} />;
-          })}
-        </div>
-      )}
-      {type === 'progress' && (
-        <div className={classes.progress}>
-          <LinearProgress mode="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
-        </div>
-      )}
-      {nextButton}
-    </Paper>
-  );
-}
-
-MobileStepper.propTypes = {
+export type Props = {
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the type is 'dots'.
    */
-  activeStep: PropTypes.number,
+  activeStep?: number,
   /**
    * A back button element. For instance, it can be be a `Button` or a `IconButton`.
    */
-  backButton: PropTypes.element.isRequired,
+  backButton: Element<any>,
   /**
    * Useful to extend the style applied to components.
    */
-  classes: PropTypes.object.isRequired,
+  classes?: Object,
   /**
    * @ignore
    */
-  className: PropTypes.string,
+  className?: string,
   /**
    * A next button element. For instance, it can be be a `Button` or a `IconButton`.
    */
-  nextButton: PropTypes.element.isRequired,
+  nextButton: Element<any>,
   /**
    * Set the positioning type.
    */
-  position: PropTypes.oneOf(['bottom', 'top', 'static']),
+  position?: Position,
   /**
    * The total steps.
    */
-  steps: PropTypes.number.isRequired,
+  steps: number,
   /**
    * The type of mobile stepper to use.
    */
-  type: PropTypes.oneOf(['text', 'dots', 'progress']),
+  type?: Type,
 };
 
-MobileStepper.defaultProps = {
-  activeStep: 0,
-  position: 'bottom',
-  type: 'dots',
-};
+class MobileStepper extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {
+    activeStep: 0,
+    position: 'bottom',
+    type: 'dots',
+  };
+
+  render() {
+    const {
+      activeStep = 0,
+      backButton,
+      classes,
+      className: classNameProp,
+      position,
+      type,
+      nextButton,
+      steps,
+      ...other
+    } = this.props;
+
+    const className = classNames(
+      classes.root,
+      classes[`position${capitalizeFirstLetter(position)}`],
+      classNameProp,
+    );
+
+    return (
+      <Paper square elevation={0} className={className} {...other}>
+        {backButton}
+        {type === 'dots' && (
+          <div className={classes.dots}>
+            {[...new Array(steps)].map((_, step) => {
+              const dotClassName = classNames(
+                {
+                  [classes.dotActive]: step === activeStep,
+                },
+                classes.dot,
+              );
+              // eslint-disable-next-line react/no-array-index-key
+              return <div key={step} className={dotClassName} />;
+            })}
+          </div>
+        )}
+        {type === 'progress' && (
+          <div className={classes.progress}>
+            <LinearProgress mode="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
+          </div>
+        )}
+        {nextButton}
+      </Paper>
+    );
+  }
+}
 
 export default withStyles(styles, { name: 'MuiMobileStepper' })(MobileStepper);

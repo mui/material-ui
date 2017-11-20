@@ -1,13 +1,31 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
+import { InputProps } from '../Input';
+import { MenuProps } from '../Menu';
 
-export interface SelectProps extends React.HTMLAttributes<HTMLDivElement> {
-  input: React.ReactNode;
+export interface SelectProps extends StandardProps<
+  InputProps,
+  SelectClassKey,
+  'value'
+> {
+  autoWidth?: boolean;
+  displayEmpty?: boolean;
+  input?: React.ReactNode;
   native?: boolean;
   multiple?: boolean;
-  MenuProps?: Object;
+  MenuProps?: Partial<MenuProps>;
   renderValue?: Function;
   value?: Array<string | number> | string | number;
 }
 
-export default class Select extends StyledComponent<SelectProps> {}
+type SelectClassKey =
+  | 'root'
+  | 'select'
+  | 'selectMenu'
+  | 'disabled'
+  | 'icon'
+  ;
+
+declare const Select: React.ComponentType<SelectProps>;
+
+export default Select;

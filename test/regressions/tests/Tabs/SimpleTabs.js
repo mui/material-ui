@@ -8,6 +8,8 @@ import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 
+const noop = () => {};
+
 const styles = (theme: Object) => ({
   root: {
     width: 600,
@@ -24,35 +26,35 @@ function SimpleTabs(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.appBar}>
-        <Tabs value={0}>
+        <Tabs onChange={noop} value={0}>
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" disabled />
         </Tabs>
       </Paper>
       <Paper className={classes.root}>
-        <Tabs value={1} textColor="accent" centered>
+        <Tabs onChange={noop} value={1} textColor="accent" centered>
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" disabled />
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs value={2} textColor="accent" fullWidth>
+        <Tabs onChange={noop} value={2} textColor="accent" fullWidth>
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" />
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs value={0} textColor="accent" fullWidth>
+        <Tabs onChange={noop} value={0} textColor="accent" fullWidth>
           <Tab icon={<Icon>phone</Icon>} />
           <Tab icon={<Icon>favorite</Icon>} />
           <Tab icon={<Icon>person_pin</Icon>} disabled />
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs value={1} fullWidth textColor="accent">
+        <Tabs onChange={noop} value={1} fullWidth textColor="accent">
           <Tab icon={<Icon>phone</Icon>} label="RECENTS" />
           <Tab icon={<Icon>favorite</Icon>} label="FAVORITES" />
           <Tab icon={<Icon>person_pin</Icon>} label="NEARBY" disabled />

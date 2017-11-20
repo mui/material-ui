@@ -4,7 +4,7 @@ import React from 'react';
 import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import createSwitch from '../internal/SwitchBase';
+import SwitchBase from '../internal/SwitchBase';
 
 export const styles = (theme: Object) => ({
   root: {
@@ -61,9 +61,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-const SwitchBase = createSwitch();
-
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -72,10 +70,6 @@ export type Props = {
    * If `true`, the component is checked.
    */
   checked?: boolean | string,
-  /**
-   * The CSS class name of the root element when checked.
-   */
-  checkedClassName?: string,
   /**
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
@@ -97,10 +91,6 @@ export type Props = {
    * If `true`, the switch will be disabled.
    */
   disabled?: boolean,
-  /**
-   * The CSS class name of the root element when disabled.
-   */
-  disabledClassName?: string,
   /**
    * If `true`, the ripple effect will be disabled.
    */
@@ -139,11 +129,9 @@ export type Props = {
   value?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Switch(props: AllProps) {
+function Switch(props: ProvidedProps & Props) {
   const { classes, className, ...other } = props;
-  const icon = <div className={classes.icon} />;
+  const icon = <span className={classes.icon} />;
 
   return (
     <div className={classNames(classes.root, className)}>
@@ -157,7 +145,7 @@ function Switch(props: AllProps) {
         checkedIcon={icon}
         {...other}
       />
-      <div className={classes.bar} />
+      <span className={classes.bar} />
     </div>
   );
 }
