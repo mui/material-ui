@@ -1,4 +1,4 @@
-import React, {g PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { TextField } from 'material-ui';
