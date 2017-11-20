@@ -24,6 +24,9 @@ export type Theme<T = {}> = {
   transitions: Transitions;
   spacing: Spacing;
   zIndex: ZIndex;
+  overrides?: {
+    [name: string]: {}
+  };
 } & T;
 
 export default function createMuiTheme<T = {}>(
