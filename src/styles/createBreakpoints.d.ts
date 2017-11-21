@@ -9,7 +9,7 @@ export interface BreakpointsOptions {
 }
 
 export interface Breakpoints {
-  keys: typeof keys;
+  keys: Breakpoint[];
   values: BreakpointValues;
   up: (key: Breakpoint | number) => string;
   down: (key: Breakpoint | number) => string;
