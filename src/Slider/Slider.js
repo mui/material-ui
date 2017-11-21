@@ -383,25 +383,33 @@ class Slider extends Component {
 
   componentWillMount() {
     const {
-      value: valueProp,
       defaultValue,
       min,
+      max,
     } = this.props;
 
-    let value = valueProp;
+    let {
+      value,
+    } = this.props;
+
     if (value === undefined) {
       value = defaultValue !== undefined ? defaultValue : min;
     }
 
     this.setState({
-      value: this.resolveValue(value),
+      value: this.resolveValue(value, min, max),
     });
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== undefined && !this.state.dragging) {
+      const {
+        min = this.props.min,
+        max = this.props.max,
+      } = nextProps;
+
       this.setState({
-        value: this.resolveValue(nextProps.value),
+        value: this.resolveValue(nextProps.value, min, max),
       });
     }
   }
@@ -409,9 +417,7 @@ class Slider extends Component {
   track = null;
   handle = null;
 
-  resolveValue = (value) => {
-    const {max, min} = this.props;
-
+  resolveValue = (value, min, max) => {
     if (value > max) {
       return max;
     }
@@ -498,7 +504,7 @@ class Slider extends Component {
 
       // We need to use toFixed() because of float point errors.
       // For example, 0.01 + 0.06 = 0.06999999999999999
-      newValue = this.resolveValue(parseFloat(newValue.toFixed(5)));
+      newValue = this.resolveValue(parseFloat(newValue.toFixed(5)), min, max);
 
       if (this.state.value !== newValue) {
         this.setState({
@@ -746,7 +752,7 @@ class Slider extends Component {
       value = parseFloat(value.toFixed(5));
     }
 
-    value = this.resolveValue(value);
+    value = this.resolveValue(value, min, max);
 
     if (this.state.value !== value) {
       this.setState({
