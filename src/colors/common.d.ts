@@ -1,4 +1,4 @@
-declare const common: {
+export interface CommonColors {
   black: string;
   white: string;
   transparent: string;
@@ -10,6 +10,7 @@ declare const common: {
   fullWhite: string;
   darkWhite: string;
   lightWhite: string;
-};
+}
 
+declare const common: CommonColors;
 export default common;
