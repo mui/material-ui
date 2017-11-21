@@ -1,21 +1,16 @@
 {
-  "name": "material-ui-picker-docs",
+  "name": "docs",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "eslint-config-react-app": "^2.0.1",
+    "material-ui": "^1.0.0-beta.21",
+    "moment": "^2.19.2",
     "prismjs": "^1.8.4",
-    "react-highlight": "^0.10.0",
-    "react-jsx-parser": "^1.1.5",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
     "react-markdown": "^2.5.1",
-    "react-scripts": "^1.0.17",
-    "react-syntax-highlighter": "^5.8.0"
-  },
-  "scripts": {
-    "start": "cross-env PORT=3002 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "react-scripts": "1.0.17"
   },
   "devDependencies": {
     "cross-env": "^5.1.0",
@@ -25,5 +20,11 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
     "raw-loader": "^0.5.1"
+  },
+  "scripts": {
+    "start": "PORT=3002 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
