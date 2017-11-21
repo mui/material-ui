@@ -1,9 +1,9 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "React components, that implements material design pickers for material-ui v1",
-  "main": "dist/material-ui-pickers.cjs.js",
-  "module": "dist/material-ui-pickers.es.js",
+  "main": "../dist/material-ui-pickers.cjs.js",
+  "module": "../dist/material-ui-pickers.es.js",
   "keywords": [
     "material-ui",
     "pickers",
@@ -78,7 +78,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
-    "rollup": "0.50.0",
+    "rollup": "^0.51.8",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.4",
     "rollup-plugin-filesize": "^1.5.0",
@@ -89,6 +89,7 @@
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",
     "testRegex": "__tests__/.*\\.test\\.js$",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "coverageDirectory": "../coverage"
   }
 }
