@@ -11,9 +11,6 @@ const styles = theme => ({
     width: '100%',
     marginTop: theme.spacing.unit * 3,
   },
-  table: {
-    minWidth: 700,
-  },
   cell: {
     whiteSpace: 'nowrap',
   },
@@ -38,7 +35,7 @@ function ResponsiveTable(props) {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table} responsive>
+      <Table responsive>
         <TableHead>
           <TableRow>
             <TableCell className={classes.cell}>Dessert (100g serving)</TableCell>
