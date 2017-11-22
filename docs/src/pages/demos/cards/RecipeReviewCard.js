@@ -96,7 +96,7 @@ class RecipeReviewCard extends React.Component {
               <ExpandMoreIcon />
             </IconButton>
           </CardActions>
-          <Collapse in={this.state.expanded} transitionDuration="auto" unmountOnExit>
+          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
               <Typography paragraph type="body2">
                 Method:
