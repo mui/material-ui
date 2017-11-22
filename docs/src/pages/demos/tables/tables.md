@@ -21,7 +21,7 @@ A simple example with no frills.
 
 ## Responsive Table
 
-A responsive table will display a horizontal scroll bar if the screen is too small to display the full content.
+A responsive table will display a horizontal scroll bar if the screen is too small to display the full content. You may need to resize your browser window to see the effect.
 
 {{demo='pages/demos/tables/ResponsiveTable.js'}}
 
