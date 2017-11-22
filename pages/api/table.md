@@ -15,6 +15,7 @@ filename: /src/Table/Table.js
 | children | Node |  | The content of the table, normally `TableHeader` and `TableBody`. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | component | ElementType | 'table' | The component used for the root node. Either a string to use a DOM element or a component. |
+| responsive | boolean | false | If `true`, overflowX is set to 'auto' which allow vertical scrolling. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -23,6 +24,7 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
+- `responsive`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/Table/Table.js)

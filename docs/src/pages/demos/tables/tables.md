@@ -19,6 +19,12 @@ A simple example with no frills.
 
 {{demo='pages/demos/tables/BasicTable.js'}}
 
+## Responsive Table
+
+A responsive table will display a horizontal scroll bar if the screen is too small to display the full content.
+
+{{demo='pages/demos/tables/ResponsiveTable.js'}}
+
 ## Sorting & Selecting
 
 This example demonstrates the use `Checkbox` and clickable rows for selection with a `Toolbar`.
