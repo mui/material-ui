@@ -14,7 +14,7 @@ that you can use to tag your questions.
 
 [![PeerDependencies](https://img.shields.io/david/peer/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui#info=peerDependencies&view=list)
 [![Dependencies](https://img.shields.io/david/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui)
-[![DevDependencies](https://img.shields.io/david/dev/mui-org/material-ui.svg)](https://david-dm.org/mui-orgy/material-ui#info=devDependencies&view=list)
+[![DevDependencies](https://img.shields.io/david/dev/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui#info=devDependencies&view=list)
 
 > Material-UI is a set of [React](http://facebook.github.io/react/) components that implement
 [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html)
