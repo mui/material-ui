@@ -7,14 +7,14 @@ that you can use to tag your questions.
 
 # [Material-UI@v1-beta](https://material-ui-next.com/)
 [![npm package](https://img.shields.io/npm/v/material-ui/next.svg)](https://www.npmjs.org/package/material-ui)
-[![CircleCI](https://img.shields.io/circleci/project/github/callemall/material-ui/v1-beta.svg)](https://circleci.com/gh/callemall/material-ui/tree/v1-beta)
-[![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Coverage Status](https://img.shields.io/codecov/c/github/callemall/material-ui/v1-beta.svg)](https://codecov.io/gh/callemall/material-ui/branch/v1-beta)
+[![CircleCI](https://img.shields.io/circleci/project/github/mui-org/material-ui/v1-beta.svg)](https://circleci.com/gh/mui-org/material-ui/tree/v1-beta)
+[![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg)](https://gitter.im/mui-org/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/v1-beta.svg)](https://codecov.io/gh/mui-org/material-ui/branch/v1-beta)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1320/badge)](https://bestpractices.coreinfrastructure.org/projects/1320)
 
-[![PeerDependencies](https://img.shields.io/david/peer/callemall/material-ui.svg)](https://david-dm.org/callemall/material-ui#info=peerDependencies&view=list)
-[![Dependencies](https://img.shields.io/david/callemall/material-ui.svg)](https://david-dm.org/callemall/material-ui)
-[![DevDependencies](https://img.shields.io/david/dev/callemall/material-ui.svg)](https://david-dm.org/callemall/material-ui#info=devDependencies&view=list)
+[![PeerDependencies](https://img.shields.io/david/peer/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui#info=peerDependencies&view=list)
+[![Dependencies](https://img.shields.io/david/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui)
+[![DevDependencies](https://img.shields.io/david/dev/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui#info=devDependencies&view=list)
 
 > Material-UI is a set of [React](http://facebook.github.io/react/) components that implement
 [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html)
