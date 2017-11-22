@@ -11,5 +11,5 @@ export interface ZIndex {
   snackbar: number;
   tooltip: number;
 }
-
-export default ZIndex;
+declare const zIndex: ZIndex
+export default zIndex;
