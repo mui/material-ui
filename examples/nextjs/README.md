@@ -1,12 +1,12 @@
-[![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/callemall/material-ui/tree/v1-beta/examples/nextjs)
+[![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/mui-org/material-ui/tree/v1-beta/examples/nextjs)
 # Next.js example
 
 ## How to use
 
-Download the example [or clone the repo](https://github.com/callemall/material-ui):
+Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```bash
-curl https://codeload.github.com/callemall/material-ui/tar.gz/v1-beta | tar -xz --strip=2  material-ui-1-beta/examples/nextjs
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/v1-beta | tar -xz --strip=2  material-ui-1-beta/examples/nextjs
 cd nextjs
 ```
 
