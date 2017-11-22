@@ -3,4 +3,4 @@ node_js:
   - "8"
 
 script: 
-  - npm test && npm run lint && npm run build
+  - cd lib && npm install && npm test && npm run lint && npm run build
