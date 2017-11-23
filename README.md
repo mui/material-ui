@@ -1,3 +1,4 @@
+
 #### Note
 
 For *how-to* questions and other non-issues,
@@ -17,8 +18,11 @@ that you can use to tag your questions.
 [![DevDependencies](https://img.shields.io/david/dev/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui#info=devDependencies&view=list)
 
 > Material-UI is a set of [React](http://facebook.github.io/react/) components that implement
-[Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html)
-specification.
+[Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html) specification.
+
+## We've moved!
+
+We've moved the repo from `callemall/material-ui` to `mui-org/material-ui`. [Find out more](https://medium.com/call-em-all/material-ui-the-move-to-a-sustainable-open-source-project-5261d07b5067) from [@callemall/haicea](https://github.com/hai-cea).
 
 ## Installation
 
