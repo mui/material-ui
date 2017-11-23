@@ -25,7 +25,7 @@ const styles = {
 };
 
 const demoRegexp = /^demo='(.*)'$/;
-const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-beta';
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/v1-beta';
 
 type InjectedProps = {
   classes: Object,

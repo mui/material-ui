@@ -10,11 +10,11 @@ When in doubt, keep your pull requests small. To give a PR the best chance of ge
 
 As with issues, please begin the title with [ComponentName].
 
-When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup [here](https://github.com/callemall/material-ui/blob/v1-beta/test/README.md).
+When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup [here](https://github.com/mui-org/material-ui/blob/v1-beta/test/README.md).
 
 ### Branch Structure
 
-All stable releases are tagged ([view tags](https://github.com/callemall/material-ui/tags)). At any given time, `v1-beta` represents the latest development version of the library.
+All stable releases are tagged ([view tags](https://github.com/mui-org/material-ui/tags)). At any given time, `v1-beta` represents the latest development version of the library.
 Patches or hotfix releases are prepared on an independent branch.
 
 #### `v1-beta` is unsafe
@@ -33,7 +33,7 @@ Please create a new branch from an up to date v1-beta on your fork. (Note, urgen
 
 If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
 ```js
-git remote add upstream git@github.com:callemall/material-ui.git
+git remote add upstream git@github.com:mui-org/material-ui.git
 git checkout v1-beta
 git pull upstream v1-beta
 git checkout -b my-topic-branch
@@ -110,12 +110,12 @@ Then, you will need to add the following code:
 
 #### 4. You are done 🎉!
 
-In case you missed something, [we have a real example that can be used as a summary report]((https://github.com/callemall/material-ui/pull/8922/files)).
+In case you missed something, [we have a real example that can be used as a summary report]((https://github.com/mui-org/material-ui/pull/8922/files)).
 
 ## Roadmap
 
-To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [ROADMAP](https://github.com/callemall/material-ui/blob/v1-beta/ROADMAP.md).
+To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [ROADMAP](https://github.com/mui-org/material-ui/blob/v1-beta/ROADMAP.md).
 
 ## License
 
-By contributing your code to the callemall/material-ui GitHub repository, you agree to license your contribution under the MIT license.
+By contributing your code to the mui-org/material-ui GitHub repository, you agree to license your contribution under the MIT license.

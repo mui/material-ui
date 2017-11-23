@@ -7,11 +7,11 @@ That’s what we hope to answer for you here.
 
 We’d like your help keeping this document up-to-date because the JavaScript world moves fast!
 If you notice an inaccuracy or something that doesn’t seem quite right, please let us know by
-[opening an issue](https://github.com/callemall/material-ui/issues/new?title=[Docs]+Inaccuracy+in+comparison+guide).
+[opening an issue](https://github.com/mui-org/material-ui/issues/new?title=[Docs]+Inaccuracy+in+comparison+guide).
 
 ## Material-UI
 
-![stars](https://img.shields.io/github/stars/callemall/material-ui.svg?style=social&label=Star)
+![stars](https://img.shields.io/github/stars/mui-org/material-ui.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/material-ui.svg)
 
 We'll try very hard to avoid bias, although as the core team, we obviously like Material-UI a lot ❤️.
@@ -86,7 +86,7 @@ Our vision is to provide an elegant implementation of the Material Design guidel
 We want to see businesses succeeding in taking advantage of Material-UI to ship an awesome UI to their users
 while having it match their brand, so we have invested a lot in the customization capabilities of Material-UI.
 
-The only goal of MDC-Web is to be a Material Design implementation for the web platform. **Nothing more, nothing less**. They will not consider making changes to the components - especially UX changes - that would facilitate additional flexibility at the cost of breaking with the core Material Design system, as that is a non-goal of the project. *[source](https://github.com/callemall/material-ui/issues/6799#issuecomment-299925174)*
+The only goal of MDC-Web is to be a Material Design implementation for the web platform. **Nothing more, nothing less**. They will not consider making changes to the components - especially UX changes - that would facilitate additional flexibility at the cost of breaking with the core Material Design system, as that is a non-goal of the project. *[source](https://github.com/mui-org/material-ui/issues/6799#issuecomment-299925174)*
 
 ### Tests
 
@@ -95,7 +95,7 @@ Both projects invest a lot in tests. At the time of writing, both projects have 
 - MDC-web has 1200+ unit tests running on all the major browsers.
 
 Still, there is one thing that sets Material-UI apart and it's key:
-We have [hundreds of visual regression tests](https://www.argos-ci.com/callemall/material-ui) when MDC-web doesn't have any.
+We have [hundreds of visual regression tests](https://www.argos-ci.com/mui-org/material-ui) when MDC-web doesn't have any.
 With visual regression tests, you don't have to make any trade-off:
 - You can spend less time making sure every contribution doesn't introduce unexpected regressions.
 The **less** time you spend on a single contribution, the **more** contributions you can accept.

@@ -238,7 +238,7 @@ class AppFrame extends React.Component<any, any> {
               component="a"
               title="GitHub"
               color="contrast"
-              href="https://github.com/callemall/material-ui/tree/v1-beta"
+              href="https://github.com/mui-org/material-ui/tree/v1-beta"
             >
               <Github />
             </IconButton>

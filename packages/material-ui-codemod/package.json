@@ -18,13 +18,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/callemall/material-ui.git"
+    "url": "https://github.com/mui-org/material-ui.git"
   },
   "files": [
     "src",
     "lib"
   ],
-  "homepage": "https://github.com/callemall/material-ui/tree/master/packages/material-ui-codemod",
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -33,14 +33,14 @@ If you want to `grep` for certain tests just add `-- -g STRING_TO_GREP` and chan
 First, we have the **unit test** suite.
 It uses [mocha](https://mochajs.org) and the *shallow* API of [enzyme](https://github.com/airbnb/enzyme) to allow testing the components in isolation.
 It's the fastest approach, and is best suited for testing many combinations.
-Here is an [example](https://github.com/callemall/material-ui/blob/a3719a203515b1ad683e62085cb5065318c0c87f/src/Menu/Menu.spec.js#L18) with the `Menu` component.
+Here is an [example](https://github.com/mui-org/material-ui/blob/a3719a203515b1ad683e62085cb5065318c0c87f/src/Menu/Menu.spec.js#L18) with the `Menu` component.
 
 Next, we have the **integration** tests.
 We are using the *mount* API of [enzyme](https://github.com/airbnb/enzyme).
 It allows testing the integration of different components using a virtual DOM.
 This virtual DOM is provided by [jsdom](https://github.com/tmpvar/jsdom).
 It's here to make sure components work together.
-Here is an [example](https://github.com/callemall/material-ui/blob/a3719a203515b1ad683e62085cb5065318c0c87f/test/integration/Menu.spec.js#L29) with the `Menu` component.
+Here is an [example](https://github.com/mui-org/material-ui/blob/a3719a203515b1ad683e62085cb5065318c0c87f/test/integration/Menu.spec.js#L29) with the `Menu` component.
 
 #### Create HTML coverage reports
 `npm run test:coverage:html`
@@ -74,7 +74,7 @@ Next, we are using [docker](https://github.com/docker/docker) to take screenshot
 ![before](/test/docs-regressions-before.png)
 ![diff](/test/docs-regressions-diff.png)
 
-Here is an [example](https://github.com/callemall/material-ui/blob/a3719a203515b1ad683e62085cb5065318c0c87f/test/regressions/tests/Menu/SimpleMenuList.js#L7) with the `Menu` component.
+Here is an [example](https://github.com/mui-org/material-ui/blob/a3719a203515b1ad683e62085cb5065318c0c87f/test/regressions/tests/Menu/SimpleMenuList.js#L7) with the `Menu` component.
 
 #### Installation
 
@@ -104,7 +104,7 @@ testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
 
 ## Writing Tests
 
-For all unit tests, please use the [shallow renderer](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md) from `enzyme` unless the Component being tested requires a DOM. [Here's](https://github.com/callemall/material-ui/blob/master/src/Avatar/Avatar.spec.js) a small shallow rendered test to get you started.
+For all unit tests, please use the [shallow renderer](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md) from `enzyme` unless the Component being tested requires a DOM. [Here's](https://github.com/mui-org/material-ui/blob/master/src/Avatar/Avatar.spec.js) a small shallow rendered test to get you started.
 
 If the Component being unit tested requires a DOM, you can use the [mount api](https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md) from `enzyme`. For some operations, you may still need to use the React test utils, but try to use the `enzyme` API as much as possible.
 

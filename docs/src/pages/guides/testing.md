@@ -3,10 +3,10 @@
 ## Internal
 
 We take tests seriously. We have written and maintain **a wide range** of tests so we can
-iterate with confidence on the components, for instance, the visual regression tests provided by [Argos-CI](https://www.argos-ci.com/callemall/material-ui) have proven to be really helpful.
-To learn more about our internal tests, you can have a look at the [README](https://github.com/callemall/material-ui/blob/v1-beta/test/README.md).
+iterate with confidence on the components, for instance, the visual regression tests provided by [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) have proven to be really helpful.
+To learn more about our internal tests, you can have a look at the [README](https://github.com/mui-org/material-ui/blob/v1-beta/test/README.md).
 
-[![Coverage Status](https://img.shields.io/codecov/c/github/callemall/material-ui/v1-beta.svg)](https://codecov.io/gh/callemall/material-ui/branch/v1-beta)
+[![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/v1-beta.svg)](https://codecov.io/gh/mui-org/material-ui/branch/v1-beta)
 
 ## Userspace
 
