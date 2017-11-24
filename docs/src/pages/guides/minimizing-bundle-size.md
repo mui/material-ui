@@ -5,8 +5,8 @@
 Material-UI takes the bundle size very seriously.
 We are relying on [size-limit](https://github.com/ai/size-limit) to prevent introducing any regression.
 We monitor the size of the bundle:
-- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/callemall/material-ui/tree/v1-beta/.size-limit#L4).
-- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/callemall/material-ui/tree/v1-beta/.size-limit#L8). (styling, theming, etc.: ~20 kB gzipped)
+- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/tree/v1-beta/.size-limit#L4).
+- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/mui-org/material-ui/tree/v1-beta/.size-limit#L8). (styling, theming, etc.: ~20 kB gzipped)
 
 ## How to reduce the bundle size?
 

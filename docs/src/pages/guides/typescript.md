@@ -1,7 +1,7 @@
 # TypeScript
 
 You can add static typing to JavaScript to improve developer productivity and code quality thanks to [TypeScript](https://www.typescriptlang.org/).
-Have a look at the [Create React App with TypeScript](https://github.com/callemall/material-ui/tree/v1-beta/examples/create-react-app-with-typescript) example.
+Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/v1-beta/examples/create-react-app-with-typescript) example.
 
 ## Usage of `withStyles`
 

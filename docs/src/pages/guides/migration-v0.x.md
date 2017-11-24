@@ -10,14 +10,14 @@ We have been making lower-level components, abstracting less complexity.
 
 ### What motivated such large change?
 
-Material-UI was started [3 years ago](https://github.com/callemall/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
+Material-UI was started [3 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
 The ecosystem has evolved a lot since then, we have also learned a lot.
 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up**
 taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
 - New styling solution using CSS-in-JS (better [customization](/customization/overrides) power, better performance)
 - New [theme handling](/customization/themes) (nesting, self-supporting, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/zeit/next.js)
-- Way better [test coverage](/guides/testing) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/callemall/material-ui))
+- Way better [test coverage](/guides/testing) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))
 - Full [server-side rendering](/guides/server-rendering) support
 - Wide range of [supported browsers](/getting-started/supported-platforms)
 
@@ -48,14 +48,14 @@ then
 import FlatButton from 'material-ui/FlatButton'; // v0.x
 import Button from 'material-ui-next/Button'; // v1.x
 ```
-2. Run [the migration helper](https://github.com/callemall/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
+2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
 3. After that, you are free to migrate one component instance at the time.
 
 ## Components
 
 ### Svg Icon
 
-First, run [the migration helper](https://github.com/callemall/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
+First, run [the migration helper](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
 
 However, this might not be enough when using the svg icons.
 The `material-ui-icons` package has a dependency on the `masterial-ui/SvgIcon` module.
@@ -95,4 +95,4 @@ global.__MUI_SvgIcon__ = SvgIcon;
 ### To be continued…
 
 You successfully migrated your app and wish to help the community?
-Please help us! We have an open issue in order to finish this migration guide [#7195](https://github.com/callemall/material-ui/issues/7195). Any pull request is welcomed 😊.
+Please help us! We have an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). Any pull request is welcomed 😊.

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Custom eslint rules for Material-UI",
-  "repository": "https://github.com/callemall/material-ui/packages/eslint-plugin-material-ui",
+  "repository": "https://github.com/mui-org/material-ui/packages/eslint-plugin-material-ui",
   "main": "lib/index.js",
   "scripts": {
     "test": "../../node_modules/mocha/bin/_mocha -- tests/lib/**/*.js",

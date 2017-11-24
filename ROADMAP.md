@@ -9,16 +9,16 @@ The roadmap is a living document, and it is likely that priorities will change, 
 Version 1 release is going to be huge ✨.
 We host a temporary [documentation site](https://material-ui-next.com) for the pre-releases.
 
-Material-UI was started [3 years ago](https://github.com/callemall/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
+Material-UI was started [3 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
 The ecosystem has evolved a lot since then, we have also learned a lot.
 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up**
 taking advantage of this knowledge to address long-standing issues.
 Expect various **breaking changes**.
 
-The core team is now helping him in the [v1-beta](https://github.com/callemall/material-ui/tree/v1-beta) branch.
+The core team is now helping him in the [v1-beta](https://github.com/mui-org/material-ui/tree/v1-beta) branch.
 If you are interested in following our progress or if you want to help us reach that goal faster, you can have a look at the following milestones:
-- ~~[v1.0.0-beta](https://github.com/callemall/material-ui/milestone/22)~~ - complete!
-- [v1.0.0-prerelease](https://github.com/callemall/material-ui/milestone/14)
+- ~~[v1.0.0-beta](https://github.com/mui-org/material-ui/milestone/22)~~ - complete!
+- [v1.0.0-prerelease](https://github.com/mui-org/material-ui/milestone/14)
 
 ## Q&A with the v1 version
 
@@ -70,11 +70,11 @@ We should answer the following questions:
 - What trade-offs are we going to make?
 - What features will be implemented?
 
-That conversation could start on one of the following [issues](https://github.com/callemall/material-ui/issues?q=is%3Aissue+is%3Aopen+label%3ARefactoring+label%3Anext).
+That conversation could start on one of the following [issues](https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+label%3ARefactoring+label%3Anext).
 
 ### How do I know if a component still needs to be migrated `v1-beta`?
 
-We have [some open issues](https://github.com/callemall/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3ARefactoring+label%3Av1) to **coordinate** the work toward the `v1.0.0` release.
+We have [some open issues](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3ARefactoring+label%3Av1) to **coordinate** the work toward the `v1.0.0` release.
 
 ### How do I start migrating components to the `v1-beta` branch?
 
@@ -90,7 +90,7 @@ That's really up to you. At least, you going to have to:
 
 We don't have an ETA for the release of the `v1`, however, we are going to try to follow this plan:
 
-1. ~~We completely address the styling issue before moving from *alpha* to [*beta*](https://github.com/callemall/material-ui/milestone/22).~~
+1. ~~We completely address the styling issue before moving from *alpha* to [*beta*](https://github.com/mui-org/material-ui/milestone/22).~~
 2. ~~We publish our first beta releases.~~
 3. We fix the last API inconsistencies (as we can make breaking changes without having to worry much).
 4. We merge the beta branch into master
@@ -120,5 +120,5 @@ On the other hand, using a smart date library for the DatePicker / TimePicker wo
 ## Future
 
 - Add missing components, and missing features from current ones
-- [[#7721](https://github.com/callemall/material-ui/issues/7721)] Preact support
-- [[#593](https://github.com/callemall/material-ui/issues/593)] Support React Native
+- [[#7721](https://github.com/mui-org/material-ui/issues/7721)] Preact support
+- [[#593](https://github.com/mui-org/material-ui/issues/593)] Support React Native

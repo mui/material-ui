@@ -9,7 +9,7 @@ that you can use to tag your questions.
 # [Material-UI@v1-beta](https://material-ui-next.com/)
 [![npm package](https://img.shields.io/npm/v/material-ui/next.svg)](https://www.npmjs.org/package/material-ui)
 [![CircleCI](https://img.shields.io/circleci/project/github/mui-org/material-ui/v1-beta.svg)](https://circleci.com/gh/mui-org/material-ui/tree/v1-beta)
-[![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg)](https://gitter.im/mui-org/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/v1-beta.svg)](https://codecov.io/gh/mui-org/material-ui/branch/v1-beta)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1320/badge)](https://bestpractices.coreinfrastructure.org/projects/1320)
 
@@ -63,7 +63,7 @@ render(<App />, document.querySelector('#app'));
 ## Examples
 
 Are you looking for an example project to get started?
-[We host some](https://github.com/callemall/material-ui/blob/v1-beta/docs/src/pages/getting-started/example-projects.md).
+[We host some](https://github.com/mui-org/material-ui/blob/v1-beta/docs/src/pages/getting-started/example-projects.md).
 
 ## Documentation
 
@@ -71,16 +71,16 @@ Check out our [documentation website](https://material-ui-next.com/).
 
 ## Contributing
 
-We'd greatly appreciate any [contribution](https://github.com/callemall/material-ui/blob/v1-beta/CONTRIBUTING.md) you make. :)
+We'd greatly appreciate any [contribution](https://github.com/mui-org/material-ui/blob/v1-beta/CONTRIBUTING.md) you make. :)
 
 ## Changelog
 
 Recently Updated?
-Please read the [changelog](https://github.com/callemall/material-ui/releases).
+Please read the [changelog](https://github.com/mui-org/material-ui/releases).
 
 ## Roadmap
 
-The future plans and high priority features and enhancements can be found in the [ROADMAP.md](https://github.com/callemall/material-ui/blob/v1-beta/ROADMAP.md) file.
+The future plans and high priority features and enhancements can be found in the [ROADMAP.md](https://github.com/mui-org/material-ui/blob/v1-beta/ROADMAP.md) file.
 
 ## Thanks
 
@@ -91,4 +91,4 @@ Thank you to [BrowserStack](https://www.browserstack.com/) for providing the inf
 ## License
 
 This project is licensed under the terms of the
-[MIT license](https://github.com/callemall/material-ui/blob/v1-beta/LICENSE).
+[MIT license](https://github.com/mui-org/material-ui/blob/v1-beta/LICENSE).
