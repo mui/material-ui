@@ -12,7 +12,7 @@ We use [jss](https://github.com/cssinjs/jss) under the hood.
 You need to use the `<MuiThemeProvider />` component in order to inject a theme into your application. However, this is optional, Material-UI components come with a default theme.
 We rely on the context feature of React.
 
-Makes sure that `<MuiThemeProvider />` is a parent of the components you are trying to customize.
+Make sure that `<MuiThemeProvider />` is a parent of the components you are trying to customize.
 You can learn more about it [reading the API section](#muithemeprovider).
 
 ## Configuration variables
