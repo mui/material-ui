@@ -1,5 +1,5 @@
-// flow-typed signature: 04abbfe10ba62a87d54aa0723604ba3f
-// flow-typed version: dd6d1b6bed/chai_v4.x.x/flow_>=v0.15.0
+// flow-typed signature: 88d2313c965c71ea202a84ce638ce5b1
+// flow-typed version: cfc9aef80e/chai_v4.x.x/flow_>=v0.15.0
 
 declare module "chai" {
   declare type ExpectChain<T> = {
@@ -30,6 +30,7 @@ declare module "chai" {
     contain: ExpectChain<T> & ((value: mixed) => ExpectChain<T>),
     contains: ExpectChain<T> & ((value: mixed) => ExpectChain<T>),
 
+    eq: (value: T) => ExpectChain<T>,
     eql: (value: T) => ExpectChain<T>,
     equal: (value: T) => ExpectChain<T>,
     equals: (value: T) => ExpectChain<T>,
@@ -91,6 +92,7 @@ declare module "chai" {
     extensible: () => ExpectChain<T>,
     sealed: () => ExpectChain<T>,
     frozen: () => ExpectChain<T>,
+    NaN: () => ExpectChain<T>,
 
     // chai-immutable
     size: (n: number) => ExpectChain<T>,
@@ -117,136 +119,162 @@ declare module "chai" {
     fulfilled: () => Promise<mixed> & ExpectChain<T>,
 
     // chai-subset
-    containSubset: (obj: Object | Object[]) => ExpectChain<T>
+    containSubset: (obj: Object | Object[]) => ExpectChain<T>,
+
+    // chai-redux-mock-store
+    dispatchedActions: (
+      actions: Array<Object | ((action: Object) => any)>
+    ) => ExpectChain<T>,
+    dispatchedTypes: (actions: Array<string>) => ExpectChain<T>,
+
+    // chai-enzyme
+    attr: (key: string, val?: any) => ExpectChain<T>,
+    data: (key: string, val?: any) => ExpectChain<T>,
+    prop: (key: string, val?: any) => ExpectChain<T>,
+    state: (key: string, val?: any) => ExpectChain<T>,
+    value: (val: string) => ExpectChain<T>
   };
 
-  declare function expect<T>(actual: T): ExpectChain<T>;
+  declare function expect<T>(actual: T, message?: string): ExpectChain<T>;
 
   declare function use(plugin: (chai: Object, utils: Object) => void): void;
 
   declare class assert {
-    static (expression: mixed, message?: string): void,
+    static (expression: mixed, message?: string): void;
     static fail(
       actual: mixed,
       expected: mixed,
       message?: string,
       operator?: string
-    ): void,
+    ): void;
 
-    static isOk(object: mixed, message?: string): void,
-    static isNotOk(object: mixed, message?: string): void,
+    static isOk(object: mixed, message?: string): void;
+    static isNotOk(object: mixed, message?: string): void;
 
-    static equal(actual: mixed, expected: mixed, message?: string): void,
-    static notEqual(actual: mixed, expected: mixed, message?: string): void,
+    static equal(actual: mixed, expected: mixed, message?: string): void;
+    static notEqual(actual: mixed, expected: mixed, message?: string): void;
 
-    static strictEqual(act: mixed, exp: mixed, msg?: string): void,
-    static notStrictEqual(act: mixed, exp: mixed, msg?: string): void,
+    static strictEqual(act: mixed, exp: mixed, msg?: string): void;
+    static notStrictEqual(act: mixed, exp: mixed, msg?: string): void;
 
-    static deepEqual(act: mixed, exp: mixed, msg?: string): void,
-    static notDeepEqual(act: mixed, exp: mixed, msg?: string): void,
+    static deepEqual(act: mixed, exp: mixed, msg?: string): void;
+    static notDeepEqual(act: mixed, exp: mixed, msg?: string): void;
 
-    static ok(val: mixed, msg?: string): void,
-    static isTrue(val: mixed, msg?: string): void,
-    static isNotTrue(val: mixed, msg?: string): void,
-    static isFalse(val: mixed, msg?: string): void,
-    static isNotFalse(val: mixed, msg?: string): void,
+    static ok(val: mixed, msg?: string): void;
+    static isTrue(val: mixed, msg?: string): void;
+    static isNotTrue(val: mixed, msg?: string): void;
+    static isFalse(val: mixed, msg?: string): void;
+    static isNotFalse(val: mixed, msg?: string): void;
 
-    static isNull(val: mixed, msg?: string): void,
-    static isNotNull(val: mixed, msg?: string): void,
+    static isNull(val: mixed, msg?: string): void;
+    static isNotNull(val: mixed, msg?: string): void;
 
-    static isUndefined(val: mixed, msg?: string): void,
-    static isDefined(val: mixed, msg?: string): void,
+    static isUndefined(val: mixed, msg?: string): void;
+    static isDefined(val: mixed, msg?: string): void;
 
-    static isNaN(val: mixed, msg?: string): void,
-    static isNotNaN(val: mixed, msg?: string): void,
+    static isNaN(val: mixed, msg?: string): void;
+    static isNotNaN(val: mixed, msg?: string): void;
 
-    static isAbove(val: number, abv: number, msg?: string): void,
-    static isBelow(val: number, blw: number, msg?: string): void,
+    static isAbove(val: number, abv: number, msg?: string): void;
+    static isBelow(val: number, blw: number, msg?: string): void;
 
-    static isAtMost(val: number, atmst: number, msg?: string): void,
-    static isAtLeast(val: number, atlst: number, msg?: string): void,
+    static isAtMost(val: number, atmst: number, msg?: string): void;
+    static isAtLeast(val: number, atlst: number, msg?: string): void;
 
-    static isFunction(val: mixed, msg?: string): void,
-    static isNotFunction(val: mixed, msg?: string): void,
+    static isFunction(val: mixed, msg?: string): void;
+    static isNotFunction(val: mixed, msg?: string): void;
 
-    static isObject(val: mixed, msg?: string): void,
-    static isNotObject(val: mixed, msg?: string): void,
+    static isObject(val: mixed, msg?: string): void;
+    static isNotObject(val: mixed, msg?: string): void;
 
-    static isArray(val: mixed, msg?: string): void,
-    static isNotArray(val: mixed, msg?: string): void,
+    static isArray(val: mixed, msg?: string): void;
+    static isNotArray(val: mixed, msg?: string): void;
 
-    static isString(val: mixed, msg?: string): void,
-    static isNotString(val: mixed, msg?: string): void,
+    static isString(val: mixed, msg?: string): void;
+    static isNotString(val: mixed, msg?: string): void;
 
-    static isNumber(val: mixed, msg?: string): void,
-    static isNotNumber(val: mixed, msg?: string): void,
+    static isNumber(val: mixed, msg?: string): void;
+    static isNotNumber(val: mixed, msg?: string): void;
 
-    static isBoolean(val: mixed, msg?: string): void,
-    static isNotBoolean(val: mixed, msg?: string): void,
+    static isBoolean(val: mixed, msg?: string): void;
+    static isNotBoolean(val: mixed, msg?: string): void;
 
-    static typeOf(val: mixed, type: string, msg?: string): void,
-    static notTypeOf(val: mixed, type: string, msg?: string): void,
+    static typeOf(val: mixed, type: string, msg?: string): void;
+    static notTypeOf(val: mixed, type: string, msg?: string): void;
 
-    static instanceOf(val: mixed, constructor: Function, msg?: string): void,
-    static notInstanceOf(val: mixed, constructor: Function, msg?: string): void,
+    static instanceOf(val: mixed, constructor: Function, msg?: string): void;
+    static notInstanceOf(val: mixed, constructor: Function, msg?: string): void;
 
-    static include(exp: string, inc: mixed, msg?: string): void,
-    static include<T>(exp: Array<T>, inc: T, msg?: string): void,
+    static include(exp: string, inc: mixed, msg?: string): void;
+    static include<T>(exp: Array<T>, inc: T, msg?: string): void;
 
-    static notInclude(exp: string, inc: mixed, msg?: string): void,
-    static notInclude<T>(exp: Array<T>, inc: T, msg?: string): void,
+    static notInclude(exp: string, inc: mixed, msg?: string): void;
+    static notInclude<T>(exp: Array<T>, inc: T, msg?: string): void;
 
-    static match(exp: mixed, re: RegExp, msg?: string): void,
-    static notMatch(exp: mixed, re: RegExp, msg?: string): void,
+    static match(exp: mixed, re: RegExp, msg?: string): void;
+    static notMatch(exp: mixed, re: RegExp, msg?: string): void;
 
-    static property(obj: Object, prop: string, msg?: string): void,
-    static notProperty(obj: Object, prop: string, msg?: string): void,
-    static deepProperty(obj: Object, prop: string, msg?: string): void,
-    static notDeepProperty(obj: Object, prop: string, msg?: string): void,
+    static property(obj: Object, prop: string, msg?: string): void;
+    static notProperty(obj: Object, prop: string, msg?: string): void;
+    static deepProperty(obj: Object, prop: string, msg?: string): void;
+    static notDeepProperty(obj: Object, prop: string, msg?: string): void;
 
     static propertyVal(
       obj: Object,
       prop: string,
       val: mixed,
       msg?: string
-    ): void,
+    ): void;
     static propertyNotVal(
       obj: Object,
       prop: string,
       val: mixed,
       msg?: string
-    ): void,
+    ): void;
 
     static deepPropertyVal(
       obj: Object,
       prop: string,
       val: mixed,
       msg?: string
-    ): void,
+    ): void;
     static deepPropertyNotVal(
       obj: Object,
       prop: string,
       val: mixed,
       msg?: string
-    ): void,
+    ): void;
 
-    static lengthOf(exp: mixed, len: number, msg?: string): void,
+    static lengthOf(exp: mixed, len: number, msg?: string): void;
 
     static throws<E>(
       func: () => any,
       err?: Class<E> | Error | RegExp | string,
       errorMsgMatcher?: string | RegExp,
       msg?: string
-    ): void,
+    ): void;
     static doesNotThrow<E>(
       func: () => any,
       err?: Class<E> | Error | RegExp | string,
       errorMsgMatcher?: string | RegExp,
       msg?: string
-    ): void,
+    ): void;
 
-    static closeTo(actual: number, expected: number, delta: number, msg?: string): void,
-    static approximately(actual: number, expected: number, delta: number, msg?: string): void
+    static closeTo(
+      actual: number,
+      expected: number,
+      delta: number,
+      msg?: string
+    ): void;
+    static approximately(
+      actual: number,
+      expected: number,
+      delta: number,
+      msg?: string
+    ): void;
+    
+    // chai-immutable
+    static sizeOf(val: mixed, length: number): void;
   }
 
   declare var config: {
