@@ -13,6 +13,7 @@ class Demo extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     toggleThemeType: PropTypes.func.isRequired,
+    toggleDirection: PropTypes.func.isRequired,
     toggleFrench: PropTypes.func.isRequired,
   }
 
@@ -25,7 +26,7 @@ class Demo extends Component {
   }
 
   render() {
-    const { classes, toggleThemeType, toggleFrench } = this.props;
+    const { classes, toggleThemeType, toggleDirection, toggleFrench } = this.props;
     return (
       <main className={classes.main}>
         <AppBar position="fixed" className={classes.noShadow}>
@@ -45,6 +46,12 @@ class Demo extends Component {
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton color="contrast" onClick={toggleThemeType}>
                 lightbulb_outline
+              </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Toggle direction" enterDelay={300}>
+              <IconButton color="contrast" onClick={toggleDirection}>
+              format_textdirection_l_to_r
               </IconButton>
             </Tooltip>
 
