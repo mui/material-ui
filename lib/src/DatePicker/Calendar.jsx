@@ -7,6 +7,7 @@ import { extendMoment } from 'moment-range';
 import classnames from 'classnames';
 import CalendarHeader from './CalendarHeader';
 import DomainPropTypes from '../constants/prop-types';
+import * as defaultUtils from '../_shared/utils';
 
 const moment = extendMoment(Moment);
 
@@ -21,6 +22,7 @@ export class Calendar extends Component {
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
+    utils: PropTypes.object,
   }
 
   static defaultProps = {
@@ -30,10 +32,11 @@ export class Calendar extends Component {
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
     renderDay: undefined,
+    utils: defaultUtils,
   }
 
   state = {
-    currentMonth: this.props.date.clone().startOf('month'),
+    currentMonth: this.props.utils.getStartOfMonth(this.props.date),
   }
 
   onDateSelect = (day) => {
@@ -67,64 +70,60 @@ export class Calendar extends Component {
   }
 
   renderWeeks = () => {
+    const { utils } = this.props;
     const { currentMonth } = this.state;
-    const start = currentMonth.clone().startOf('week');
-    const end = currentMonth.clone().endOf('month').endOf('week');
+    const weeks = utils.getWeekArray(currentMonth);
 
-    return Array.from(moment.range(start, end).by('week'))
-      .map(week => (
-        <div key={`week-${week.toString()}`} className={this.props.classes.week}>
-          { this.renderDays(week) }
-        </div>
-      ));
+    return weeks.map(week => (
+      <div key={`week-${week[0].toString()}`} className={this.props.classes.week}>
+        {this.renderDays(week)}
+      </div>
+    ));
   }
 
   renderDays = (week) => {
-    const { classes, date, renderDay } = this.props;
+    const { classes, date, renderDay, utils } = this.props;
 
     const selectedDate = date.clone().startOf('day');
-    const formattedSelectedDate = selectedDate.format();
-    const end = week.clone().endOf('week');
-    const currentMonthNumber = this.state.currentMonth.get('month');
+    const currentMonthNumber = utils.getMonthNumber(this.state.currentMonth);
 
-    return Array.from(moment.range(week, end).by('day'))
-      .map((day) => {
-        // should be applied both for wrapper and button
-        const disabledClass = classnames({ [classes.disabled]: this.shouldDisableDate(day) });
-        const dayInCurrentMonth = day.get('month') === currentMonthNumber;
+    return week.map((day) => {
+      // should be applied both for wrapper and button
+      const disabledClass = classnames({ [classes.disabled]: this.shouldDisableDate(day) });
+      const dayInCurrentMonth = utils.getMonthNumber(day) === currentMonthNumber;
 
-        const dayClass = classnames(classes.day, disabledClass, {
-          [classes.hidden]: !dayInCurrentMonth,
-          [classes.selected]: day.format() === formattedSelectedDate,
-        });
-
-        let dayComponent = (
-          <IconButton className={dayClass}>
-            <span> { day.format('DD')} </span>
-          </IconButton>
-        );
-
-        if (renderDay) {
-          dayComponent = renderDay(day, selectedDate, dayInCurrentMonth, dayComponent);
-        }
-
-        return (
-          <div
-            key={day.toString()}
-            onClick={() => dayInCurrentMonth && this.onDateSelect(day)}
-            onKeyPress={() => dayInCurrentMonth && this.onDateSelect(day)}
-            className={disabledClass}
-            role="presentation"
-          >
-            {dayComponent}
-          </div>
-        );
+      const dayClass = classnames(classes.day, disabledClass, {
+        [classes.hidden]: !dayInCurrentMonth,
+        [classes.selected]: selectedDate.isSame(day, 'day'),
       });
+
+      let dayComponent = (
+        <IconButton className={dayClass}>
+          <span> {utils.getDayText(day)} </span>
+        </IconButton>
+      );
+
+      if (renderDay) {
+        dayComponent = renderDay(day, selectedDate, dayInCurrentMonth, dayComponent);
+      }
+
+      return (
+        <div
+          key={day.toString()}
+          onClick={() => dayInCurrentMonth && this.onDateSelect(day)}
+          onKeyPress={() => dayInCurrentMonth && this.onDateSelect(day)}
+          className={disabledClass}
+          role="presentation"
+        >
+          {dayComponent}
+        </div>
+      );
+    });
   }
 
   render() {
     const { currentMonth } = this.state;
-    const { classes } = this.props;
+    const { classes, utils } = this.props;
 
     return (
       <div className={classes.container}>
@@ -133,10 +132,11 @@ export class Calendar extends Component {
           onMonthChange={this.handleChangeMonth}
           leftArrowIcon={this.props.leftArrowIcon}
           rightArrowIcon={this.props.rightArrowIcon}
+          utils={utils}
         />
 
         <div className={classes.calendar}>
-          { this.renderWeeks() }
+          {this.renderWeeks()}
         </div>
       </div>
     );
