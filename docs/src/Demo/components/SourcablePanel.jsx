@@ -10,6 +10,7 @@ class SourcablePanel extends PureComponent {
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
     classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
+    description: PropTypes.string,
     sourceFile: PropTypes.string.isRequired,
   }
 
@@ -30,7 +31,7 @@ class SourcablePanel extends PureComponent {
 
   render() {
     const { sourceExpanded } = this.state;
-    const { classes, title } = this.props;
+    const { classes, title, description } = this.props;
 
     return [
       <Typography
@@ -40,7 +41,7 @@ class SourcablePanel extends PureComponent {
       >
         { title }
       </Typography>,
-
+      description,
       <Collapse key="code" in={sourceExpanded}>
         <Code className={classes.source} text={this.getSource()} />
       </Collapse>,
