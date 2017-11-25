@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Theme } from './createMuiTheme';
 
 export interface MuiThemeProviderProps {
-  theme?: Theme<any>;
+  theme?: Theme;
   sheetsManager?: Object;
   children: React.ReactNode;
 }

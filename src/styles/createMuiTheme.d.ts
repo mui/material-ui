@@ -20,7 +20,7 @@ export interface ThemeOptions {
   overrides?: { [name: string]: StyleRules };
 }
 
-export type Theme<T = {}> = {
+export type Theme = {
   direction: 'ltr' | 'rtl';
   palette: Palette;
   typography: Typography;
@@ -31,8 +31,8 @@ export type Theme<T = {}> = {
   spacing: Spacing;
   zIndex: ZIndex;
   overrides?: { [name: string]: StyleRules; };
-} & T;
+};
 
-export default function createMuiTheme<T = {}>(
-  options?: ThemeOptions & T
-): Theme<T>;
+export default function createMuiTheme(
+  options?: ThemeOptions
+): Theme;
