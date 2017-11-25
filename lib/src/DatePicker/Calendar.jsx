@@ -82,7 +82,9 @@ export class Calendar extends Component {
   }
 
   renderDays = (week) => {
-    const { classes, date, renderDay, utils } = this.props;
+    const {
+      classes, date, renderDay, utils,
+    } = this.props;
 
     const selectedDate = date.clone().startOf('day');
     const currentMonthNumber = utils.getMonthNumber(this.state.currentMonth);

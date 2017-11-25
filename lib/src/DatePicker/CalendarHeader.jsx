@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import { withStyles, IconButton } from 'material-ui';
 import * as defaultUtils from '../_shared/utils';
 
@@ -85,6 +84,7 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles, { withTheme: true, name: 'MuiPickersCalendarHeader' })(
-  CalendarHeader,
-);
+export default withStyles(
+  styles,
+  { withTheme: true, name: 'MuiPickersCalendarHeader' },
+)(CalendarHeader);

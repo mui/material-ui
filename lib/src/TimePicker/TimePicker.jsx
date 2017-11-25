@@ -59,7 +59,10 @@ export class TimePicker extends Component {
   }
 
   render() {
-    const { classes, theme, date, utils } = this.props;
+    const {
+      classes, theme, date, utils,
+    } = this.props;
+
     const { isHourViewShown, meridiemMode } = this.state;
 
     const rtl = theme.direction === 'rtl';
@@ -117,18 +120,18 @@ export class TimePicker extends Component {
         {
           isHourViewShown
             ?
-            <HourView
-              date={date}
-              meridiemMode={meridiemMode}
-              onChange={this.handleChange(true)}
-              utils={utils}
-            />
+              <HourView
+                date={date}
+                meridiemMode={meridiemMode}
+                onChange={this.handleChange(true)}
+                utils={utils}
+              />
             :
-            <MinutesView
-              date={date}
-              onChange={this.handleChange(false)}
-              utils={utils}
-            />
+              <MinutesView
+                date={date}
+                onChange={this.handleChange(false)}
+                utils={utils}
+              />
         }
       </div>
 
