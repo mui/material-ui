@@ -5,6 +5,7 @@ import ModalWrapper from '../wrappers/ModalWrapper';
 import DatePicker from './DatePicker';
 import DomainPropTypes from '../constants/prop-types';
 import PickerBase from '../_shared/PickerBase';
+import * as defaultUtils from '../_shared/utils';
 
 export default class DatePickerWrapper extends PickerBase {
   static propTypes = {
@@ -23,6 +24,7 @@ export default class DatePickerWrapper extends PickerBase {
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
     labelFunc: PropTypes.func,
+    utils: PropTypes.object,
   }
 
   static defaultProps = {
@@ -40,6 +42,7 @@ export default class DatePickerWrapper extends PickerBase {
     rightArrowIcon: undefined,
     renderDay: undefined,
     labelFunc: undefined,
+    utils: defaultUtils,
   }
 
   render() {
@@ -60,6 +63,7 @@ export default class DatePickerWrapper extends PickerBase {
       rightArrowIcon,
       renderDay,
       labelFunc,
+      utils,
       ...other
     } = this.props;
 
@@ -85,6 +89,7 @@ export default class DatePickerWrapper extends PickerBase {
           leftArrowIcon={leftArrowIcon}
           rightArrowIcon={rightArrowIcon}
           renderDay={renderDay}
+          utils={utils}
         />
       </ModalWrapper>
     );
