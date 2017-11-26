@@ -99,7 +99,7 @@ class Portal extends React.Component<Props> {
     if (canUseDom) {
       if (open) {
         const layer = this.getLayer();
-        // $FlowIgnore layer is non-null
+        // $FlowFixMe layer is non-null
         return ReactDOM.createPortal(children, layer);
       }
 

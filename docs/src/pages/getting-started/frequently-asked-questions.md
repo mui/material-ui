@@ -15,7 +15,7 @@ In this situation, you can apply a global `.mui-fixed` class name to tell Materi
 
 The best solution at present is to write wrapping components for all the Material-UI components showing a ripple.
 The ripple effect is exclusively coming from the `BaseButton` component.
-You can find the components using the BaseButton [here](https://github.com/callemall/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
+You can find the components using the BaseButton [here](https://github.com/mui-org/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
 Then, all you have to do is to provide the `disableRipple` property.
 
 ## When should I use inline-style vs `withStyles()`?
@@ -56,7 +56,7 @@ export default withTheme()(withStyles(styles)(Modal));
 ## Material-UI is awesome. How can I support the project?
 
 There are a lot of ways to support Material-UI:
-- Improve [the documentation](https://github.com/callemall/material-ui/tree/v1-beta/docs).- Help others to get started.- [Spread the word](https://twitter.com/MaterialUI).- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui).If you use Material-UI in a commercial project and would like to support its continued development by becoming a **Sponsor**,
+- Improve [the documentation](https://github.com/mui-org/material-ui/tree/v1-beta/docs).- Help others to get started.- [Spread the word](https://twitter.com/MaterialUI).- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui).If you use Material-UI in a commercial project and would like to support its continued development by becoming a **Sponsor**,
 or in a side or hobby project and would like to become a backer, you can do so through [OpenCollective](https://opencollective.com/material-ui).
 
 All funds raised are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.

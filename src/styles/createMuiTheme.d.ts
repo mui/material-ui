@@ -6,12 +6,18 @@ import { Spacing } from './spacing';
 import { Transitions } from './transitions';
 import { Typography, TypographyOptions } from './createTypography';
 import { ZIndex } from './zIndex';
+import { StyleRules } from './withStyles'
 
 export interface ThemeOptions {
   breakpoints?: Partial<BreakpointsOptions> & Partial<Breakpoints>;
   mixins?: Partial<Mixins>;
   palette?: Partial<Palette>;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
+  shadows?: Shadows;
+  transitions?: Partial<Transitions>;
+  spacing?: Partial<Spacing>;
+  zIndex?: Partial<ZIndex>;
+  overrides?: { [name: string]: StyleRules };
 }
 
 export type Theme<T = {}> = {
@@ -24,6 +30,7 @@ export type Theme<T = {}> = {
   transitions: Transitions;
   spacing: Spacing;
   zIndex: ZIndex;
+  overrides?: { [name: string]: StyleRules; };
 } & T;
 
 export default function createMuiTheme<T = {}>(

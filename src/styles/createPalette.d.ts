@@ -1,5 +1,5 @@
 import { Color, Contrast } from '..';
-import commonColors from '../colors/common';
+import { CommonColors } from '../colors/common';
 
 type ShadeText = {
   primary: string;
@@ -43,7 +43,7 @@ export const light: Shade;
 export const dark: Shade;
 
 export type Palette = {
-  common: typeof commonColors;
+  common: CommonColors;
   type: Contrast;
   primary: Color;
   secondary: Color;
