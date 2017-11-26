@@ -33,16 +33,10 @@ describe('<Table />', () => {
     );
   });
 
-  it('should render with the user and root classes but without responsive classes', () => {
+  it('should render with the user and root classes', () => {
     const wrapper = shallow(<Table className="woofTable" />);
     assert.strictEqual(wrapper.hasClass('woofTable'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.responsive), false);
-  });
-
-  it('should render table with responsive classes', () => {
-    const wrapper = shallow(<Table responsive />);
-    assert.strictEqual(wrapper.hasClass(classes.responsive), true);
   });
 
   it('should render children', () => {

@@ -14,10 +14,6 @@ export const styles = (theme: Object) => ({
     borderSpacing: 0,
     overflow: 'hidden',
   },
-  responsive: {
-    display: 'block',
-    overflowX: 'auto',
-  },
 });
 
 type ProvidedProps = {
@@ -46,10 +42,6 @@ export type Props = {
    */
   className?: string,
   /**
-   * If `true`, overflowX is set to 'auto' which allow vertical scrolling.
-   */
-  responsive: boolean,
-  /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
@@ -59,7 +51,6 @@ export type Props = {
 class Table extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     component: ('table': ElementType),
-    responsive: false,
   };
 
   getChildContext() {
@@ -75,10 +66,9 @@ class Table extends React.Component<ProvidedProps & Props> {
       className: classNameProp,
       children,
       component: ComponentProp,
-      responsive,
       ...other
     } = this.props;
-    const className = classNames(classes.root, classNameProp, { [classes.responsive]: responsive });
+    const className = classNames(classes.root, classNameProp);
 
     return (
       <ComponentProp className={className} {...other}>

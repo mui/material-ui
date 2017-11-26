@@ -17,13 +17,6 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/BasicTable'), 'utf8')
 `,
         },
-        'pages/demos/tables/ResponsiveTable.js': {
-          js: require('docs/src/pages/demos/tables/ResponsiveTable').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tables/ResponsiveTable'), 'utf8')
-`,
-        },
         'pages/demos/tables/EnhancedTable.js': {
           js: require('docs/src/pages/demos/tables/EnhancedTable').default,
           raw: preval`
