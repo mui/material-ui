@@ -20,7 +20,7 @@ export const styles = (theme: Object) => {
       alignItems: 'center',
       minHeight: theme.spacing.unit * 6,
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
-      padding: `0 ${theme.spacing.unit}px 0 ${theme.spacing.unit * 3}px`,
+      padding: `0 ${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 3}px`,
       position: 'relative',
       '&:hover:not($disabled)': {
         cursor: 'pointer',
@@ -40,18 +40,24 @@ export const styles = (theme: Object) => {
       display: 'flex',
       flexGrow: 1,
       transition: theme.transitions.create(['margin'], transition),
-      margin: `12px ${theme.spacing.unit}px 12px 0`,
+      margin: '12px 0',
+      '& > :last-child': {
+        paddingRight: theme.spacing.unit * 4,
+      },
     },
     contentExpanded: {
-      margin: `20px ${theme.spacing.unit}px 20px 0`,
+      margin: '20px 0',
     },
     expandIcon: {
       color: theme.palette.text.icon,
-      transform: 'rotate(0deg)',
+      position: 'absolute',
+      top: '50%',
+      right: theme.spacing.unit,
+      transform: 'translateY(-50%) rotate(0deg)',
       transition: theme.transitions.create('transform', transition),
     },
     expandIconExpanded: {
-      transform: 'rotate(180deg)',
+      transform: 'translateY(-50%) rotate(180deg)',
     },
   };
 };
@@ -156,6 +162,7 @@ class ExpansionPanelSummary extends React.Component<ProvidedProps & Props, State
         disableRipple
         disabled={disabled}
         component="div"
+        aria-expanded={expanded}
         className={classNames(
           classes.root,
           {
@@ -181,6 +188,7 @@ class ExpansionPanelSummary extends React.Component<ProvidedProps & Props, State
             })}
             component="div"
             tabIndex="-1"
+            aria-hidden="true"
             onClick={this.handleChange}
           >
             {expandIcon}

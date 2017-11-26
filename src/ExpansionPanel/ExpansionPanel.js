@@ -201,10 +201,21 @@ class ExpansionPanel extends React.Component<ProvidedProps & Props, State> {
       return child;
     });
 
+    const containerProps = !expanded
+      ? {
+          'aria-hidden': 'true',
+        }
+      : null;
+
     return (
       <Paper className={className} elevation={1} square {...other}>
         {summary}
-        <Collapse in={expanded} transitionDuration="auto" {...CollapseProps}>
+        <Collapse
+          in={expanded}
+          transitionDuration="auto"
+          containerProps={containerProps}
+          {...CollapseProps}
+        >
           {children}
         </Collapse>
       </Paper>

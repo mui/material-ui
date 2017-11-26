@@ -4,6 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
+import Collapse from '../transitions/Collapse';
 import ExpansionPanel from './ExpansionPanel';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
 
@@ -28,6 +29,9 @@ describe('<ExpansionPanel />', () => {
     assert.strictEqual(wrapper.props().elevation, 1);
     assert.strictEqual(wrapper.props().square, true);
     assert.strictEqual(wrapper.instance().isControlled, false);
+
+    const collapse = wrapper.find(Collapse);
+    assert.strictEqual(collapse.props().containerProps['aria-hidden'], 'true');
 
     wrapper.setProps({ expanded: true });
     assert.strictEqual(wrapper.state().expanded, false, 'should not change the expanded state');
