@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Clock from './Clock';
 import { MINUTES } from '../constants/clock-types';
 import ClockNumber from './ClockNumber';
-import * as defaultUtils from '../_shared/utils';
+import * as defaultUtils from '../utils/utils';
 
 export default class MinutesView extends Component {
   static propTypes = {

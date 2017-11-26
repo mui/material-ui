@@ -19,6 +19,21 @@ const positions = [
   [-54.5, 19.6],
 ];
 
+const innerPositions = [
+  [0, 40],
+  [36.9, 49.9],
+  [64, 77],
+  [74, 114],
+  [64, 151],
+  [37, 178],
+  [0, 188],
+  [-37, 178],
+  [-64, 151],
+  [-74, 114],
+  [-64, 77],
+  [-37, 50],
+];
+
 export class ClockNumber extends Component {
   static propTypes = {
     index: PropTypes.number.isRequired,

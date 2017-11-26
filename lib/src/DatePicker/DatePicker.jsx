@@ -7,7 +7,7 @@ import Calendar from './Calendar';
 import YearSelection from './YearSelection';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
-import * as defaultUtils from '../_shared/utils';
+import * as defaultUtils from '../utils/utils';
 import DomainPropTypes from '../constants/prop-types';
 
 export class DatePicker extends PureComponent {

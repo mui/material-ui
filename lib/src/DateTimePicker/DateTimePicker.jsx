@@ -9,11 +9,11 @@ import HourView from '../TimePicker/HourView';
 import MinutesView from '../TimePicker/MinutesView';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import DatetimePickerHeader from './DateTimePickerHeader';
-import { convertToMeridiem } from '../TimePicker/utils/time-utils';
+import { convertToMeridiem } from '../utils/time-utils';
 
 import DomainPropTypes from '../constants/prop-types';
 import * as viewType from '../constants/date-picker-view';
-import * as defaultUtils from '../_shared/utils';
+import * as defaultUtils from '../utils/utils';
 
 export class DateTimePicker extends Component {
   static propTypes = {

@@ -8,7 +8,7 @@ import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
 import DateTimePicker from './DateTimePicker';
 import PickerBase from '../_shared/PickerBase';
-import * as defaultUtils from '../_shared/utils';
+import * as defaultUtils from '../utils/utils';
 
 export class DateTimePickerWrapper extends PickerBase {
   static propTypes = {

@@ -5,7 +5,7 @@ import ModalWrapper from '../wrappers/ModalWrapper';
 import DatePicker from './DatePicker';
 import DomainPropTypes from '../constants/prop-types';
 import PickerBase from '../_shared/PickerBase';
-import * as defaultUtils from '../_shared/utils';
+import * as defaultUtils from '../utils/utils';
 
 export default class DatePickerWrapper extends PickerBase {
   static propTypes = {

@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import * as viewType from '../constants/date-picker-view';
-import * as defaultUtils from '../_shared/utils';
+import * as defaultUtils from '../utils/utils';
 
 export const DateTimePickerHeader = (props) => {
   const {
