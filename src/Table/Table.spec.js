@@ -42,7 +42,13 @@ describe('<Table />', () => {
   it('should render children', () => {
     const children = <tbody className="test" />;
     const wrapper = shallow(<Table>{children}</Table>);
-    assert.strictEqual(wrapper.childAt(0).childAt(0).equals(children), true);
+    assert.strictEqual(
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .equals(children),
+      true,
+    );
   });
 
   it('should define table in the child context', () => {
