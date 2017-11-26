@@ -2,7 +2,7 @@
 */node_modules
 
 # build
-*/dist
+dist
 
 # logs
 logs
