@@ -74,7 +74,7 @@ class Table extends React.Component<ProvidedProps & Props> {
     const divWrapper = classNames(classes.wrapper, classNameProp);
 
     return (
-	  <div className={divWrapper}>
+      <div className={divWrapper}>
         <ComponentProp className={classes.table} {...other}>
           {children}
         </ComponentProp>
