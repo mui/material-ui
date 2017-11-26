@@ -12,7 +12,8 @@ export const styles = (theme: Object) => ({
     width: '100%',
     borderCollapse: 'collapse',
     borderSpacing: 0,
-    overflow: 'hidden',
+    display: 'block',
+    overflowX: 'auto',
   },
 });
 
