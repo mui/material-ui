@@ -20,15 +20,16 @@ export default class HourView extends PureComponent {
 
   getHourNumbers = () => {
     const { ampm, utils, date } = this.props;
+    const currentHours = date.get('hours');
 
     const hourNumbers = [];
-    const hourSize = ampm ? 12 : 24;
-    const currentHours = date.get('hours');
+    const startHour = ampm ? 1 : 0;
+    const endHour = ampm ? 12 : 23;
 
     const isSelected = hour =>
       currentHours === hour || (ampm && currentHours - 12 === hour);
 
-    for (let hour = 0; hour < hourSize; hour += 1) {
+    for (let hour = startHour; hour <= endHour; hour += 1) {
       let label = hour.toString();
 
       if (hour === 0) {
@@ -61,9 +62,9 @@ export default class HourView extends PureComponent {
     return (
       <Clock
         type={HOURS}
-        onChange={this.handleChange}
         value={value}
         ampm={ampm}
+        onChange={this.handleChange}
       >
         { this.getHourNumbers() }
       </Clock>

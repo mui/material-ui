@@ -36,7 +36,11 @@ export class ClockNumber extends Component {
     label: PropTypes.string.isRequired,
     selected: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
-    isInner: PropTypes.bool.isRequired,
+    isInner: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isInner: false,
   }
 
   getTransformStyle = (index) => {

@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui';
 import classnames from 'classnames';
-import * as clockType from '../constants/clock-types';
 
 export class ClockPointer extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     hasSelected: PropTypes.bool.isRequired,
-    type: PropTypes.oneOf(Object.values(clockType)).isRequired,
+    isInner: PropTypes.bool.isRequired,
+    max: PropTypes.number.isRequired,
   }
 
   getAngleStyle = () => {
-    const { value, type } = this.props;
-    const max = type === clockType.HOURS ? 12 : 60;
+    const {
+      value, isInner, max,
+    } = this.props;
 
     const angle = (360 / max) * value;
-    const isInner = type === clockType.HOURS && (value < 1 || value > 12);
 
     return {
       height: isInner ? '26%' : '40%',

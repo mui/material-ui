@@ -75,8 +75,11 @@ export class Clock extends Component {
 
   render() {
     const {
-      classes, value, children, type,
+      classes, value, children, type, ampm,
     } = this.props;
+
+    const max = type === clockType.HOURS ? 12 : 60;
+    const isPointerInner = !ampm && type === clockType.HOURS && (value < 1 || value > 12);
 
     return (
       <div className={classes.container}>
@@ -94,9 +97,10 @@ export class Clock extends Component {
           />
 
           <ClockPointer
-            type={type}
-            hasSelected={this.hasSelected()}
+            max={max}
             value={value}
+            isInner={isPointerInner}
+            hasSelected={this.hasSelected()}
           />
 
           { children }

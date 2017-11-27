@@ -70,14 +70,14 @@ export class TimePicker extends Component {
     const { isHourViewShown, meridiemMode } = this.state;
 
     const rtl = theme.direction === 'rtl';
-    const hourMinuteClassname = rtl
+    const hourMinuteClassName = rtl
       ? classes.hourMinuteLabelReverse
       : classes.hourMinuteLabel;
 
     return (
       <div className={classes.container}>
         <PickerToolbar className={classes.toolbar}>
-          <div className={hourMinuteClassname}>
+          <div className={hourMinuteClassName}>
             <ToolbarButton
               type="display3"
               onClick={this.openHourView}

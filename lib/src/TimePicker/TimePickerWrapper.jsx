@@ -33,7 +33,7 @@ export default class TimePickerWrapper extends PickerBase {
     ampm: true,
   }
 
-  default24hFormat = 'hh:mm A'
+  default12hFormat = 'hh:mm A'
   default24hFormat = 'HH:mm'
 
   render() {
