@@ -7,6 +7,7 @@ import { Transitions } from './transitions';
 import { Typography, TypographyOptions } from './createTypography';
 import { ZIndex } from './zIndex';
 import { StyleRules } from './withStyles'
+import { Overrides } from './overrides'
 
 export interface ThemeOptions {
   breakpoints?: Partial<BreakpointsOptions> & Partial<Breakpoints>;
@@ -17,7 +18,7 @@ export interface ThemeOptions {
   transitions?: Partial<Transitions>;
   spacing?: Partial<Spacing>;
   zIndex?: Partial<ZIndex>;
-  overrides?: { [name: string]: StyleRules };
+  overrides?: Overrides;
 }
 
 export type Theme = {
@@ -30,7 +31,7 @@ export type Theme = {
   transitions: Transitions;
   spacing: Spacing;
   zIndex: ZIndex;
-  overrides?: { [name: string]: StyleRules; };
+  overrides?: Overrides;
 };
 
 export default function createMuiTheme(
