@@ -13,6 +13,11 @@ export class Clock extends Component {
     value: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
+    ampm: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    ampm: false,
   }
 
   setTime(e, isFinish = false) {
@@ -27,7 +32,7 @@ export class Clock extends Component {
 
     const value = this.props.type === clockType.MINUTES
       ? getMinutes(offsetX, offsetY)
-      : getHours(offsetX, offsetY);
+      : getHours(offsetX, offsetY, this.props.ampm);
 
     this.props.onChange(value, isFinish);
   }

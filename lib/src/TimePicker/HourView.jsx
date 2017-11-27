@@ -55,7 +55,7 @@ export default class HourView extends PureComponent {
   }
 
   render() {
-    const { date } = this.props;
+    const { date, ampm } = this.props;
     const value = date.get('hours');
 
     return (
@@ -63,6 +63,7 @@ export default class HourView extends PureComponent {
         type={HOURS}
         onChange={this.handleChange}
         value={value}
+        ampm={ampm}
       >
         { this.getHourNumbers() }
       </Clock>
