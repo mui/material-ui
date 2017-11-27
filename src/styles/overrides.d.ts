@@ -100,14 +100,14 @@ type ComponentNameToClassKey = {
   MuiCheckbox: CheckboxClassKey;
   MuiChip: ChipClassKey;
   MuiCircularProgress: CircularProgressClassKey;
-  MuiCollapse: CollapseClassKey; // TODO ?
+  MuiCollapse: CollapseClassKey;
   MuiDialog: DialogClassKey;
   MuiDialogActions: DialogActionsClassKey;
   MuiDialogContent: DialogContentClassKey;
   MuiDialogContentText: DialogContentTextClassKey;
   MuiDialogTitle: DialogTitleClassKey;
   MuiDivider: DividerClassKey;
-  MuiDrawer: DrawerClassKey; // TODO ?
+  MuiDrawer: DrawerClassKey;
   MuiFormControl: FormControlClassKey;
   MuiFormControlLabel: FormControlLabelClassKey;
   MuiFormGroup: FormGroupClassKey;
@@ -130,18 +130,18 @@ type ComponentNameToClassKey = {
   MuiListItemSecondaryAction: ListItemSecondaryActionClassKey;
   MuiListItemText: ListItemTextClassKey;
   MuiListSubheader: ListSubheaderClassKey;
-  MuiMenu: MenuClassKey; // TODO ?
+  MuiMenu: MenuClassKey;
   MuiMenuItem: MenuItemClassKey;
   MuiMenuList: MenuListClassKey; // TODO ?
   MuiMobileStepper: MobileStepperClassKey;
-  MuiModal: ModalClassKey; // TODO ?
+  MuiModal: ModalClassKey;
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
   MuiRadio: RadioClassKey;
   MuiRadioGroup: RadioGroupClassKey; // TODO ?
   MuiSelect: SelectClassKey;
   MuiSelectInput: SelectInputClassKey; // TODO ?
-  MuiSnackbar: SnackbarClassKey; // TODO ?
+  MuiSnackbar: SnackbarClassKey;
   MuiSnackbarContent: SnackbarContentClassKey;
   MuiSvgIcon: SvgIconClassKey;
   MuiSwitchBase: SwitchBaseClassKey;
@@ -153,10 +153,10 @@ type ComponentNameToClassKey = {
   MuiTableCell: TableCellClassKey;
   MuiTableFooter: TableFooterClassKey;
   MuiTableHead: TableHeadClassKey;
-  MuiTablePagination: TablePaginationClassKey; // TODO ?
+  MuiTablePagination: TablePaginationClassKey;
   MuiTableRow: TableRowClassKey;
   MuiTableSortLabel: TableSortLabelClassKey;
-  MuiTabs: TabsClassKey; // TODO ?
+  MuiTabs: TabsClassKey;
   MuiTabScrollButton: TabScrollButtonClassKey;
   MuiTextarea: TextareaClassKey;
   MuiTextField: TextFieldClassKey; // TODO ?
