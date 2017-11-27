@@ -1,9 +1,9 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "React components, that implements material design pickers for material-ui v1",
-  "main": "../dist/material-ui-pickers.cjs.js",
-  "module": "../dist/material-ui-pickers.es.js",
+  "main": "dist/material-ui-pickers.cjs.js",
+  "module": "dist/material-ui-pickers.es.js",
   "keywords": [
     "material-ui",
     "pickers",
