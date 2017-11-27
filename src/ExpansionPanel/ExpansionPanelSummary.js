@@ -84,10 +84,12 @@ export type Props = {
    */
   className?: string,
   /**
+   * @ignore
    * If `true`, the summary will be displayed in a disabled state.
    */
   disabled: boolean,
   /**
+   * @ignore
    * If `true`, expands the summary, otherwise collapse it.
    */
   expanded?: boolean,

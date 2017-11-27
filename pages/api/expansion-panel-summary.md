@@ -14,9 +14,7 @@ filename: /src/ExpansionPanel/ExpansionPanelSummary.js
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The content of the expansion panel summary. |
 | classes | Object | {} | Useful to extend the style applied to components. |
-| disabled | boolean | false | If `true`, the summary will be displayed in a disabled state. |
 | expandIcon | Node |  | The icon to display as the expand indicator. |
-| expanded | boolean |  | If `true`, expands the summary, otherwise collapse it. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
