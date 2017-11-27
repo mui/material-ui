@@ -92,7 +92,7 @@ type ComponentNameToClassKey = {
   MuiBottomNavigationButton: BottomNavigationButtonClassKey;
   MuiButton: ButtonClassKey;
   MuiButtonBase: ButtonBaseClassKey;
-  MuiCard: CardClassKey; // TODO ?
+  // MuiCard: CardClassKey;
   MuiCardActions: CardActionsClassKey;
   MuiCardContent: CardContentClassKey;
   MuiCardHeader: CardHeaderClassKey;
@@ -132,15 +132,15 @@ type ComponentNameToClassKey = {
   MuiListSubheader: ListSubheaderClassKey;
   MuiMenu: MenuClassKey;
   MuiMenuItem: MenuItemClassKey;
-  MuiMenuList: MenuListClassKey; // TODO ?
+  // MuiMenuList: MenuListClassKey;
   MuiMobileStepper: MobileStepperClassKey;
   MuiModal: ModalClassKey;
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
   MuiRadio: RadioClassKey;
-  MuiRadioGroup: RadioGroupClassKey; // TODO ?
+  // MuiRadioGroup: RadioGroupClassKey;
   MuiSelect: SelectClassKey;
-  MuiSelectInput: SelectInputClassKey; // TODO ?
+  // MuiSelectInput: SelectInputClassKey;
   MuiSnackbar: SnackbarClassKey;
   MuiSnackbarContent: SnackbarContentClassKey;
   MuiSvgIcon: SvgIconClassKey;
@@ -159,7 +159,7 @@ type ComponentNameToClassKey = {
   MuiTabs: TabsClassKey;
   MuiTabScrollButton: TabScrollButtonClassKey;
   MuiTextarea: TextareaClassKey;
-  MuiTextField: TextFieldClassKey; // TODO ?
+  // MuiTextField: TextFieldClassKey;
   MuiToolbar: ToolbarClassKey;
   MuiTooltip: TooltipClassKey;
   MuiTypography: TypographyClassKey;
