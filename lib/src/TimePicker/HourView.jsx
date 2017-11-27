@@ -28,11 +28,18 @@ export default class HourView extends PureComponent {
     const isSelected = hour =>
       currentHours === hour || (ampm && currentHours - 12 === hour);
 
-    for (let hour = 0; hour < hourSize; hour += 1) {
+    for (let hour = 1; hour <= hourSize; hour += 1) {
+      let label = hour.toString();
+
+      if (hour === 24) {
+        label = '00';
+      }
+
       const props = {
         index: hour,
-        label: utils.formatNumber(hour === 0 ? '12' : hour.toString()),
+        label: utils.formatNumber(label),
         selected: isSelected(hour),
+        isInner: !ampm && hour >= 12,
       };
 
       hourNumbers.push(<ClockNumber key={hour} {...props} />);

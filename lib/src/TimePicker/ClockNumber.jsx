@@ -1,38 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import classnames from 'classnames';
 import { withStyles } from 'material-ui';
 
-const positions = [
-  [0, 5],
-  [55, 19.6],
-  [94.4, 59.5],
-  [109, 114],
-  [94.4, 168.5],
-  [54.5, 208.4],
-  [0, 223],
-  [-54.5, 208.4],
-  [-94.4, 168.5],
-  [-109, 114],
-  [-94.4, 59.5],
-  [-54.5, 19.6],
-];
-
-const innerPositions = [
-  [0, 40],
-  [36.9, 49.9],
-  [64, 77],
-  [74, 114],
-  [64, 151],
-  [37, 178],
-  [0, 188],
-  [-37, 178],
-  [-64, 151],
-  [-74, 114],
-  [-64, 77],
-  [-37, 50],
-];
+const positions = {
+  1: [55, 19.6],
+  2: [94.4, 59.5],
+  3: [109, 114],
+  4: [94.4, 168.5],
+  5: [54.5, 208.4],
+  6: [0, 223],
+  7: [-54.5, 208.4],
+  8: [-94.4, 168.5],
+  9: [-109, 114],
+  10: [-94.4, 59.5],
+  11: [-54.5, 19.6],
+  12: [0, 5],
+  13: [36.9, 49.9],
+  14: [64, 77],
+  15: [74, 114],
+  16: [64, 151],
+  17: [37, 178],
+  18: [0, 188],
+  19: [-37, 178],
+  20: [-64, 151],
+  21: [-74, 114],
+  22: [-64, 77],
+  23: [-37, 50],
+  24: [0, 40],
+};
 
 export class ClockNumber extends Component {
   static propTypes = {
@@ -40,6 +36,7 @@ export class ClockNumber extends Component {
     label: PropTypes.string.isRequired,
     selected: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
+    isInner: PropTypes.bool.isRequired,
   }
 
   getTransformStyle = (index) => {
@@ -52,17 +49,18 @@ export class ClockNumber extends Component {
 
   render() {
     const {
-      selected, label, index, classes,
+      selected, label, index, classes, isInner,
     } = this.props;
 
     const className = classnames(classes.clockNumber, {
       [classes.selected]: selected,
+      [classes.inner]: isInner,
     });
 
     return (
       <div
         className={className}
-        style={this.getTransformStyle(index)}
+        style={this.getTransformStyle(index, isInner)}
       >
         { label }
       </div>

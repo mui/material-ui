@@ -20,6 +20,7 @@ export default class TimePickerWrapper extends PickerBase {
     returnMoment: PropTypes.bool,
     invalidLabel: PropTypes.string,
     utils: PropTypes.object,
+    ampm: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -29,13 +30,14 @@ export default class TimePickerWrapper extends PickerBase {
     returnMoment: true,
     invalidLabel: undefined,
     utils: defaultUtils,
+    ampm: true,
   }
 
   render() {
     const { date } = this.state;
     const {
       value, format, autoOk, onChange, returnMoment, invalidLabel,
-      utils, ...other
+      utils, ampm, ...other
     } = this.props;
 
     return (
@@ -52,6 +54,7 @@ export default class TimePickerWrapper extends PickerBase {
           date={date}
           onChange={this.handleChange}
           utils={utils}
+          ampm={ampm}
         />
       </ModalWrapper>
     );

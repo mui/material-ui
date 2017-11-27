@@ -7,7 +7,7 @@ import Code from '../components/Code';
 
 class SourcablePanel extends PureComponent {
   static propTypes = {
-    children: PropTypes.arrayOf(PropTypes.node).isRequired,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.object]).isRequired,
     classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
@@ -16,6 +16,7 @@ class SourcablePanel extends PureComponent {
 
   state = {
     sourceExpanded: false,
+    description: undefined,
   }
 
   getSource = () => {
