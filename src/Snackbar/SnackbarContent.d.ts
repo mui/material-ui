@@ -5,13 +5,13 @@ import { PaperClassKey } from '../Paper/Paper';
 
 export interface SnackbarContentProps extends StandardProps<
   PaperProps,
-  SnackbarContentClasskey
+  SnackbarContentClassKey
 > {
   action?: React.ReactElement<any>;
   message: React.ReactElement<any> | string;
 }
 
-export type SnackbarContentClasskey =
+export type SnackbarContentClassKey =
   | PaperClassKey
   | 'message'
   | 'action'
