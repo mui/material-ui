@@ -31,6 +31,7 @@ export class DateTimePicker extends Component {
     timeIcon: PropTypes.node,
     renderDay: PropTypes.func,
     utils: PropTypes.object,
+    ampm: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -46,6 +47,7 @@ export class DateTimePicker extends Component {
     timeIcon: undefined,
     renderDay: undefined,
     utils: defaultUtils,
+    ampm: true,
   }
 
   state = {
@@ -73,7 +75,7 @@ export class DateTimePicker extends Component {
   }
 
   handleChange = (time, isFinish = false) => {
-    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode);
+    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm);
     this.props.onChange(withMeridiem, isFinish);
   }
 
@@ -91,6 +93,7 @@ export class DateTimePicker extends Component {
       timeIcon,
       renderDay,
       utils,
+      ampm,
     } = this.props;
 
     return (
@@ -102,6 +105,7 @@ export class DateTimePicker extends Component {
           setMeridiemMode={this.setMeridiemMode}
           onOpenViewChange={this.handleViewChange}
           utils={utils}
+          ampm={ampm}
         />
 
         {
@@ -145,6 +149,7 @@ export class DateTimePicker extends Component {
             meridiemMode={meridiemMode}
             onChange={this.onChange(viewType.MINUTES)}
             utils={utils}
+            ampm={ampm}
           />
         </View>
 

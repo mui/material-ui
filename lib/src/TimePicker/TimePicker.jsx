@@ -38,9 +38,7 @@ export class TimePicker extends Component {
   }
 
   handleChange = openMinutes => (time, isFinish) => {
-    const withMeridiem = this.props.ampm
-      ? convertToMeridiem(time, this.state.meridiemMode)
-      : time;
+    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm);
 
     if (isFinish) {
       if (!openMinutes) {
