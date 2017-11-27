@@ -12,7 +12,7 @@ export default class DateTextField extends PureComponent {
       PropTypes.instanceOf(Date),
     ]),
     disabled: PropTypes.bool,
-    format: PropTypes.string.isRequired,
+    format: PropTypes.string,
     onClick: PropTypes.func.isRequired,
     invalidLabel: PropTypes.string,
     labelFunc: PropTypes.func,
@@ -23,6 +23,7 @@ export default class DateTextField extends PureComponent {
     invalidLabel: 'Unknown',
     value: new Date(),
     labelFunc: undefined,
+    format: undefined,
   }
 
   getDisplayDate = () => {

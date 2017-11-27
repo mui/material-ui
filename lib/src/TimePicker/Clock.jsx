@@ -42,7 +42,7 @@ export class Clock extends Component {
   }
 
   handleTouchEnd = (e) => {
-    this.handleTouchMove(e);
+    this.setTime(e, true);
   }
 
   handleUp = (event) => {
