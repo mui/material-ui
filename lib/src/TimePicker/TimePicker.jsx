@@ -82,7 +82,7 @@ export class TimePicker extends Component {
               type="display3"
               onClick={this.openHourView}
               selected={isHourViewShown}
-              label={utils.getHourText(date)}
+              label={utils.getHourText(date, ampm)}
             />
 
             <ToolbarButton

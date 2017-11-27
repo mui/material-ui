@@ -58,4 +58,10 @@ export default class PickerBase extends PureComponent {
   togglePicker = () => {
     this.wrapper.togglePicker();
   }
+
+  getDefaultFormat = () => (
+    this.props.ampm
+      ? this.default12hFormat
+      : this.default24hFormat
+  )
 }

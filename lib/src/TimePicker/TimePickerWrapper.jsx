@@ -25,13 +25,16 @@ export default class TimePickerWrapper extends PickerBase {
 
   static defaultProps = {
     value: new Date(),
-    format: 'hh:mm A',
+    format: undefined,
     autoOk: false,
     returnMoment: true,
     invalidLabel: undefined,
     utils: defaultUtils,
     ampm: true,
   }
+
+  default24hFormat = 'hh:mm A'
+  default24hFormat = 'HH:mm'
 
   render() {
     const { date } = this.state;
@@ -44,7 +47,7 @@ export default class TimePickerWrapper extends PickerBase {
       <ModalWrapper
         ref={(node) => { this.wrapper = node; }}
         value={value}
-        format={format}
+        format={format || this.getDefaultFormat()}
         onAccept={this.handleAccept}
         onDismiss={this.handleDismiss}
         invalidLabel={invalidLabel}

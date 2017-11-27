@@ -44,18 +44,14 @@ export default class DateTextField extends PureComponent {
       : invalidLabel;
   }
 
-  handleChange = (e) => {
-    const { value } = e.target;
-    const momentValue = moment(value);
-
-    if (momentValue.isValid()) {
-      console.warn('Currently not supported keyboad input');
-      // this.props.onChange(momentValue);
-    }
+  handleChange = () => {
+    console.warn('Currently not supported keyboad input');
   }
 
   handleFocus = (e) => {
     e.target.blur();
+    e.stopPropagation();
+    e.preventDefault();
     const { disabled, onClick } = this.props;
 
     if (!disabled) {
@@ -73,7 +69,8 @@ export default class DateTextField extends PureComponent {
         readOnly
         value={this.getDisplayDate()}
         onChange={this.handleChange}
-        onFocus={this.handleFocus}
+        onClick={this.handleFocus}
+        onKeyPress={this.handleFocus}
         onBlur={e => e.preventDefault() && e.stopPropagation()}
         disabled={disabled}
         {...other}

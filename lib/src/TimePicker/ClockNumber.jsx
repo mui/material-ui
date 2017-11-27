@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { withStyles } from 'material-ui';
 
 const positions = {
+  0: [0, 40],
   1: [55, 19.6],
   2: [94.4, 59.5],
   3: [109, 114],
@@ -27,7 +28,6 @@ const positions = {
   21: [-74, 114],
   22: [-64, 77],
   23: [-37, 50],
-  24: [0, 40],
 };
 
 export class ClockNumber extends Component {
@@ -84,6 +84,9 @@ const styles = theme => ({
   },
   selected: {
     color: 'white',
+  },
+  inner: {
+    fontSize: 14,
   },
 });
 
