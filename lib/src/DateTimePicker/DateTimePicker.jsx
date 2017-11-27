@@ -9,10 +9,11 @@ import HourView from '../TimePicker/HourView';
 import MinutesView from '../TimePicker/MinutesView';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import DatetimePickerHeader from './DateTimePickerHeader';
-import { convertToMeridiem } from '../TimePicker/utils/time-utils';
+import { convertToMeridiem } from '../utils/time-utils';
 
 import DomainPropTypes from '../constants/prop-types';
 import * as viewType from '../constants/date-picker-view';
+import * as defaultUtils from '../utils/utils';
 
 export class DateTimePicker extends Component {
   static propTypes = {
@@ -29,6 +30,8 @@ export class DateTimePicker extends Component {
     dateRangeIcon: PropTypes.node,
     timeIcon: PropTypes.node,
     renderDay: PropTypes.func,
+    utils: PropTypes.object,
+    ampm: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -43,11 +46,13 @@ export class DateTimePicker extends Component {
     dateRangeIcon: undefined,
     timeIcon: undefined,
     renderDay: undefined,
+    utils: defaultUtils,
+    ampm: true,
   }
 
   state = {
     openView: this.props.openTo,
-    meridiemMode: this.props.date.format('a'),
+    meridiemMode: this.props.date.hours() >= 12 ? 'pm' : 'am',
   }
 
   onChange = nextView => (time, isFinish = true) => {
@@ -70,7 +75,7 @@ export class DateTimePicker extends Component {
   }
 
   handleChange = (time, isFinish = false) => {
-    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode);
+    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm);
     this.props.onChange(withMeridiem, isFinish);
   }
 
@@ -87,6 +92,8 @@ export class DateTimePicker extends Component {
       dateRangeIcon,
       timeIcon,
       renderDay,
+      utils,
+      ampm,
     } = this.props;
 
     return (
@@ -97,6 +104,8 @@ export class DateTimePicker extends Component {
           meridiemMode={meridiemMode}
           setMeridiemMode={this.setMeridiemMode}
           onOpenViewChange={this.handleViewChange}
+          utils={utils}
+          ampm={ampm}
         />
 
         {
@@ -116,6 +125,7 @@ export class DateTimePicker extends Component {
             maxDate={maxDate}
             onChange={this.onChange(viewType.DATE)}
             disableFuture={disableFuture}
+            utils={utils}
           />
         </View>
 
@@ -129,6 +139,7 @@ export class DateTimePicker extends Component {
             leftArrowIcon={leftArrowIcon}
             rightArrowIcon={rightArrowIcon}
             renderDay={renderDay}
+            utils={utils}
           />
         </View>
 
@@ -137,6 +148,8 @@ export class DateTimePicker extends Component {
             date={date}
             meridiemMode={meridiemMode}
             onChange={this.onChange(viewType.MINUTES)}
+            utils={utils}
+            ampm={ampm}
           />
         </View>
 
@@ -144,6 +157,7 @@ export class DateTimePicker extends Component {
           <MinutesView
             date={date}
             onChange={this.handleChange}
+            utils={utils}
           />
         </View>
       </div>

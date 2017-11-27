@@ -28,7 +28,7 @@ const ModalDialog = ({
   dialogContentClassName,
   ...other
 }) => (
-  <Dialog classes={{ paper: classes.dialogRoot }} {...other}>
+  <Dialog onRequestClose={onDismiss} classes={{ paper: classes.dialogRoot }} {...other}>
     <DialogContent className={classnames(classes.dialog, dialogContentClassName)}>
       { children }
     </DialogContent>

@@ -4,11 +4,17 @@
   "private": true,
   "dependencies": {
     "eslint-config-react-app": "^2.0.1",
+    "jss": "^9.3.3",
+    "jss-preset-default": "^4.0.1",
+    "jss-rtl": "^0.2.1",
     "material-ui": "^1.0.0-beta.21",
+    "material-ui-pickers-jalali-utils": "^0.2.0",
     "moment": "^2.19.2",
+    "moment-jalaali": "^0.7.2",
     "prismjs": "^1.8.4",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-jss": "^8.1.0",
     "react-markdown": "^2.5.1",
     "react-scripts": "1.0.17"
   },
@@ -22,7 +28,7 @@
     "raw-loader": "^0.5.1"
   },
   "scripts": {
-    "start": "PORT=3002 react-scripts start",
+    "start": "cross-env PORT=3002 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

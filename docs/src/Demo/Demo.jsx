@@ -7,12 +7,14 @@ import SourcablePanel from './components/SourcablePanel';
 import BasicUsage from './Examples/BasicUsage';
 import CustomElements from './Examples/CustomElements';
 import DateTimePickers from './Examples/DateTimePickers';
+import PersianPickers from './Examples/PersianPickers';
 import './Demo.css';
 
 class Demo extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     toggleThemeType: PropTypes.func.isRequired,
+    toggleDirection: PropTypes.func.isRequired,
     toggleFrench: PropTypes.func.isRequired,
   }
 
@@ -25,7 +27,10 @@ class Demo extends Component {
   }
 
   render() {
-    const { classes, toggleThemeType, toggleFrench } = this.props;
+    const {
+      classes, toggleThemeType, toggleDirection, toggleFrench,
+    } = this.props;
+
     return (
       <main className={classes.main}>
         <AppBar position="fixed" className={classes.noShadow}>
@@ -45,6 +50,12 @@ class Demo extends Component {
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton color="contrast" onClick={toggleThemeType}>
                 lightbulb_outline
+              </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Toggle direction" enterDelay={300}>
+              <IconButton color="contrast" onClick={toggleDirection}>
+                format_textdirection_l_to_r
               </IconButton>
             </Tooltip>
 
@@ -95,6 +106,20 @@ class Demo extends Component {
             sourceFile="CustomElements.jsx"
           >
             <CustomElements />
+          </SourcablePanel>
+
+          <SourcablePanel
+            title="Persian Pickers"
+            description={
+              <p key="persian-desc">
+                Make sure you have read the
+                <a href="https://material-ui-next.com/guides/right-to-left/"> right to left section </a>
+                of the material-ui documentation page
+              </p>
+            }
+            sourceFile="PersianPickers.jsx"
+          >
+            <PersianPickers />
           </SourcablePanel>
         </div>
       </main>

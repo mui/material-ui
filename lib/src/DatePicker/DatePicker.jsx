@@ -7,6 +7,7 @@ import Calendar from './Calendar';
 import YearSelection from './YearSelection';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
+import * as defaultUtils from '../utils/utils';
 import DomainPropTypes from '../constants/prop-types';
 
 export class DatePicker extends PureComponent {
@@ -23,6 +24,7 @@ export class DatePicker extends PureComponent {
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
+    utils: PropTypes.object,
   }
 
   static defaultProps = {
@@ -35,6 +37,7 @@ export class DatePicker extends PureComponent {
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
     renderDay: undefined,
+    utils: defaultUtils,
   }
 
   state = {
@@ -76,6 +79,7 @@ export class DatePicker extends PureComponent {
       leftArrowIcon,
       rightArrowIcon,
       renderDay,
+      utils,
     } = this.props;
     const { showYearSelection } = this.state;
 
@@ -86,14 +90,14 @@ export class DatePicker extends PureComponent {
             type="subheading"
             onClick={this.openYearSelection}
             selected={showYearSelection}
-            label={this.date.format('YYYY')}
+            label={utils.getYearText(this.date)}
           />
 
           <ToolbarButton
             type="display1"
             onClick={this.openCalendar}
             selected={!showYearSelection}
-            label={this.date.format('ddd, MMM DD')}
+            label={utils.getDatePickerHeaderText(this.date)}
           />
         </PickerToolbar>
 
@@ -109,6 +113,7 @@ export class DatePicker extends PureComponent {
                 maxDate={this.maxDate}
                 disableFuture={disableFuture}
                 animateYearScrolling={animateYearScrolling}
+                utils={utils}
               />
             :
               <Calendar
@@ -120,6 +125,7 @@ export class DatePicker extends PureComponent {
                 leftArrowIcon={leftArrowIcon}
                 rightArrowIcon={rightArrowIcon}
                 renderDay={renderDay}
+                utils={utils}
               />
         }
       </div>

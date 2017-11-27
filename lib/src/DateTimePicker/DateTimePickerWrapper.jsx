@@ -8,6 +8,7 @@ import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
 import DateTimePicker from './DateTimePicker';
 import PickerBase from '../_shared/PickerBase';
+import * as defaultUtils from '../utils/utils';
 
 export class DateTimePickerWrapper extends PickerBase {
   static propTypes = {
@@ -30,11 +31,13 @@ export class DateTimePickerWrapper extends PickerBase {
     timeIcon: PropTypes.node,
     renderDay: PropTypes.func,
     labelFunc: PropTypes.func,
+    utils: PropTypes.object,
+    ampm: PropTypes.bool,
   }
 
   static defaultProps = {
     value: new Date(),
-    format: 'MMMM Do hh:mm a',
+    format: undefined,
     autoOk: false,
     autoSubmit: undefined,
     openTo: undefined,
@@ -50,7 +53,12 @@ export class DateTimePickerWrapper extends PickerBase {
     timeIcon: undefined,
     renderDay: undefined,
     labelFunc: undefined,
+    utils: defaultUtils,
+    ampm: true,
   }
+
+  default12hFormat = 'MMMM Do hh:mm a'
+  default24hFormat = 'MMMM Do HH:mm'
 
   render() {
     const { date } = this.state;
@@ -73,6 +81,8 @@ export class DateTimePickerWrapper extends PickerBase {
       timeIcon,
       renderDay,
       labelFunc,
+      utils,
+      ampm,
       ...other
     } = this.props;
 
@@ -82,7 +92,7 @@ export class DateTimePickerWrapper extends PickerBase {
       <ModalWrapper
         ref={(node) => { this.wrapper = node; }}
         value={value}
-        format={format}
+        format={this.getFormat()}
         onAccept={this.handleAccept}
         onDismiss={this.handleDismiss}
         dialogContentClassName={dialogClassName}
@@ -104,6 +114,8 @@ export class DateTimePickerWrapper extends PickerBase {
           dateRangeIcon={dateRangeIcon}
           timeIcon={timeIcon}
           renderDay={renderDay}
+          utils={utils}
+          ampm={ampm}
         />
       </ModalWrapper>
     );

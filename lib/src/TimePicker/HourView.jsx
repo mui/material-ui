@@ -3,12 +3,50 @@ import PropTypes from 'prop-types';
 import Clock from './Clock';
 import { HOURS } from '../constants/clock-types';
 import ClockNumber from './ClockNumber';
-
+import * as defaultUtils from '../utils/utils';
 
 export default class HourView extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    utils: PropTypes.object,
+    ampm: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    utils: defaultUtils,
+    ampm: true,
+  }
+
+  getHourNumbers = () => {
+    const { ampm, utils, date } = this.props;
+    const currentHours = date.get('hours');
+
+    const hourNumbers = [];
+    const startHour = ampm ? 1 : 0;
+    const endHour = ampm ? 12 : 23;
+
+    const isSelected = hour =>
+      currentHours === hour || (ampm && currentHours - 12 === hour);
+
+    for (let hour = startHour; hour <= endHour; hour += 1) {
+      let label = hour.toString();
+
+      if (hour === 0) {
+        label = '00';
+      }
+
+      const props = {
+        index: hour,
+        label: utils.formatNumber(label),
+        selected: isSelected(hour),
+        isInner: !ampm && (hour === 0 || hour > 12),
+      };
+
+      hourNumbers.push(<ClockNumber key={hour} {...props} />);
+    }
+
+    return hourNumbers;
   }
 
   handleChange = (hours, isFinish) => {
@@ -18,29 +56,17 @@ export default class HourView extends PureComponent {
   }
 
   render() {
-    const { date } = this.props;
-
+    const { date, ampm } = this.props;
     const value = date.get('hours');
-    const ampmValue = Number(date.format('hh'));
 
     return (
       <Clock
         type={HOURS}
-        onChange={this.handleChange}
         value={value}
+        ampm={ampm}
+        onChange={this.handleChange}
       >
-        <ClockNumber label="12" selected={ampmValue === 12} index={0} />
-        <ClockNumber label="1" selected={ampmValue === 1} index={1} />
-        <ClockNumber label="2" selected={ampmValue === 2} index={2} />
-        <ClockNumber label="3" selected={ampmValue === 3} index={3} />
-        <ClockNumber label="4" selected={ampmValue === 4} index={4} />
-        <ClockNumber label="5" selected={ampmValue === 5} index={5} />
-        <ClockNumber label="6" selected={ampmValue === 6} index={6} />
-        <ClockNumber label="7" selected={ampmValue === 7} index={7} />
-        <ClockNumber label="8" selected={ampmValue === 8} index={8} />
-        <ClockNumber label="9" selected={ampmValue === 9} index={9} />
-        <ClockNumber label="10" selected={ampmValue === 10} index={10} />
-        <ClockNumber label="11" selected={ampmValue === 11} index={11} />
+        { this.getHourNumbers() }
       </Clock>
     );
   }

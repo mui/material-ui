@@ -8,7 +8,7 @@ export default class ModalWrapper extends PureComponent {
   static propTypes = {
     value: DomainPropTypes.date,
     children: PropTypes.node.isRequired,
-    format: PropTypes.string.isRequired,
+    format: PropTypes.string,
     onAccept: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
     dialogContentClassName: PropTypes.string,
@@ -25,6 +25,7 @@ export default class ModalWrapper extends PureComponent {
     labelFunc: undefined,
     okLabel: undefined,
     cancelLabel: undefined,
+    format: undefined,
   }
 
   state = {

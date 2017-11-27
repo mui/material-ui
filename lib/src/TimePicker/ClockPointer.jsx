@@ -8,14 +8,19 @@ export class ClockPointer extends Component {
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     hasSelected: PropTypes.bool.isRequired,
+    isInner: PropTypes.bool.isRequired,
     max: PropTypes.number.isRequired,
   }
 
   getAngleStyle = () => {
-    const { value, max } = this.props;
+    const {
+      value, isInner, max,
+    } = this.props;
+
     const angle = (360 / max) * value;
 
     return {
+      height: isInner ? '26%' : '40%',
       transform: `rotateZ(${angle}deg)`,
     };
   }
@@ -38,7 +43,6 @@ const styles = theme => ({
   pointer: {
     width: 2,
     backgroundColor: theme.palette.primary[500],
-    height: '40%',
     position: 'absolute',
     left: 'calc(50% - 1px)',
     bottom: '50%',
