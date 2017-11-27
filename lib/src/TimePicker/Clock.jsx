@@ -94,7 +94,7 @@ export class Clock extends Component {
           />
 
           <ClockPointer
-            max={type === clockType.HOURS ? 12 : 60}
+            type={type}
             hasSelected={this.hasSelected()}
             value={value}
           />
