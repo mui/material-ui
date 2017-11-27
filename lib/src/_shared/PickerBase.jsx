@@ -10,12 +10,18 @@ export default class PickerBase extends PureComponent {
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
     returnMoment: PropTypes.bool,
+    format: PropTypes.string,
+    labelFunc: PropTypes.func,
+    ampm: PropTypes.bool,
   }
 
   static defaultProps = {
     value: new Date(),
     autoOk: false,
     returnMoment: false,
+    labelFunc: undefined,
+    format: undefined,
+    ampm: true,
   }
 
   getValidDateOrCurrent = () => {
@@ -59,9 +65,13 @@ export default class PickerBase extends PureComponent {
     this.wrapper.togglePicker();
   }
 
-  getDefaultFormat = () => (
-    this.props.ampm
+  getFormat = () => {
+    if (this.props.format || this.props.labelFunc) {
+      return this.props.format;
+    }
+
+    return this.props.ampm
       ? this.default12hFormat
-      : this.default24hFormat
-  )
+      : this.default24hFormat;
+  }
 }

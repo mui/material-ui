@@ -34,7 +34,6 @@ export default class BasicUsage extends Component {
         </Typography>
 
         <TimePicker
-          ampm={false}
           value={selectedDate}
           onChange={this.handleDateChange}
         />

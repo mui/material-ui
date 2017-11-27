@@ -43,7 +43,7 @@ export const DateTimePickerHeader = (props) => {
             type="display2"
             onClick={changeOpenView(viewType.HOUR)}
             selected={openView === viewType.HOUR}
-            label={utils.getHourText(date)}
+            label={utils.getHourText(date, ampm)}
           />
 
           <ToolbarButton
