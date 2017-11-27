@@ -5,6 +5,8 @@ An [existing bug in flow regarding the use of higher order components (HOC)](htt
 limits the usefulness of flow by an application.  As of November 27, 2017 we cannot recommend the use of flow 
 typing in your application in conjunction with `material-ui`.
 
+This issue is under discussion in [#9312](https://github.com/mui-org/material-ui/issues/9312).
+
 ## How to use
 
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
