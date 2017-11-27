@@ -18,7 +18,7 @@ export interface SelectProps extends StandardProps<
   value?: Array<string | number> | string | number;
 }
 
-type SelectClassKey =
+export type SelectClassKey =
   | 'root'
   | 'select'
   | 'selectMenu'
