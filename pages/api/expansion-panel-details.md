@@ -1,10 +1,10 @@
 ---
-filename: /src/Card/CardActions.js
+filename: /src/ExpansionPanel/ExpansionPanelDetails.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# CardActions
+# ExpansionPanelDetails
 
 
 
@@ -12,9 +12,8 @@ filename: /src/Card/CardActions.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Node |  | The content of the component. |
+| children | Node |  | The content of the expansion panel details. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| disableActionSpacing | boolean | false | If `true`, the card actions do not have additional margin. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -23,17 +22,16 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `action`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Card/CardActions.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/ExpansionPanel/ExpansionPanelDetails.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
-you need to use the following style sheet name: `MuiCardActions`.
+you need to use the following style sheet name: `MuiExpansionPanelDetails`.
 
 ## Demos
 
-- [Cards](/demos/cards)
+- [Expansion Panels](/demos/expansion-panels)
 

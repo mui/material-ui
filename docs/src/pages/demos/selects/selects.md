@@ -4,7 +4,7 @@ components: Select
 
 # Selects
 
-## Simple select
+## Simple Select
 
 Menus are positioned over their emitting elements such that the currently selected menu item appears on top of the emitting element.
 

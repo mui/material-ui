@@ -4,21 +4,17 @@ import React from 'react';
 import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import '../Button'; // So we don't have any override priority issue.
+import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
 export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
-    flex: '0 0 auto',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit}px`,
   },
   action: {
-    margin: `0 ${theme.spacing.unit / 2}px`,
-  },
-  button: {
-    minWidth: 64,
+    marginLeft: theme.spacing.unit,
   },
 });
 
@@ -45,26 +41,14 @@ export type Props = {
   className?: string,
 };
 
-function DialogActions(props: ProvidedProps & Props) {
+function ExpansionPanelActions(props: ProvidedProps & Props) {
   const { children, classes, className, ...other } = props;
 
   return (
     <div className={classNames(classes.root, className)} {...other}>
-      {React.Children.map(children, child => {
-        if (!React.isValidElement(child)) {
-          return null;
-        }
-
-        return (
-          <div className={classes.action}>
-            {React.cloneElement(child, {
-              className: classNames(classes.button, child.props.className),
-            })}
-          </div>
-        );
-      })}
+      {cloneChildrenWithClassName(children, classes.action)}
     </div>
   );
 }
 
-export default withStyles(styles, { name: 'MuiDialogActions' })(DialogActions);
+export default withStyles(styles, { name: 'MuiExpansionPanelActions' })(ExpansionPanelActions);

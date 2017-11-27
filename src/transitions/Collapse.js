@@ -69,6 +69,10 @@ export type Props = {
    */
   collapsedHeight: string,
   /**
+   * Properties applied to the `Collapse` container.
+   */
+  containerProps?: Object,
+  /**
    * If `true`, the component will transition in.
    */
   in: boolean,
@@ -205,6 +209,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
       className,
       component: ComponentProp,
       collapsedHeight,
+      containerProps,
       onEnter,
       onEntering,
       onEntered,
@@ -239,6 +244,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
                 },
                 className,
               )}
+              {...containerProps}
             >
               <div
                 className={classes.wrapper}

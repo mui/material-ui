@@ -12,7 +12,7 @@ Menu items may be disabled if not applicable to a certain context. Contextual me
 
 Menus should not be used as a primary method for navigation within an app.
 
-## Simple menus
+## Simple Menu
 
 Simple menus open over the anchor element by default (this option can be changed via props). When close to a screen edge, simple menus vertically realign to make all menu items are completely visible.
 
