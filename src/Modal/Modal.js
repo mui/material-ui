@@ -91,7 +91,7 @@ export type Props = {
   /**
    * The document to inject the portal into.
    */
-  document?: HTMLDocument,
+  document?: Document,
   /**
    * Always keep the children in the DOM.
    * This property can be useful in SEO situation or

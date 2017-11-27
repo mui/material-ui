@@ -13,7 +13,7 @@ export type Props = {
   /**
    * The document to inject the portal into.
    */
-  document?: HTMLDocument,
+  document?: Document,
   /**
    * If `true` the children will be mounted into the DOM.
    */
@@ -77,7 +77,7 @@ class Portal extends React.Component<Props> {
 
     const doc = this.getDocument();
 
-    if (doc.body) {
+    if (doc.body && this.layer) {
       doc.body.removeChild(this.layer);
     }
     this.layer = null;
