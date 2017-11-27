@@ -1,5 +1,10 @@
 # Create React App example with Flow
 
+## Warning 
+An [existing bug in flow regarding the use of higher order components (HOC)](https://github.com/facebook/flow/issues/5382) 
+limits the usefulness of flow by an application.  As of November 27, 2017 we cannot recommend the use of flow 
+typing in your application in conjunction with `material-ui`.
+
 ## How to use
 
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
