@@ -19,6 +19,10 @@ import {
   DialogTitle,
   Divider,
   Drawer,
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+  ExpansionPanelActions,
   FormControlLabel,
   FormGroup,
   IconButton,
@@ -329,6 +333,25 @@ const DrawerTest = () => {
     </div>
   );
 };
+
+const ExpansionPanelTest = () =>
+  <div>
+    <ExpansionPanel onChange={e => log(e)} expanded disabled>
+      <ExpansionPanelSummary />
+      <ExpansionPanelDetails />
+    </ExpansionPanel>
+    <ExpansionPanel defaultExpanded>
+      <ExpansionPanelSummary expandIcon={<FakeIcon />}>
+          <Typography>...</Typography>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails>
+          <Typography>...</Typography>
+      </ExpansionPanelDetails>
+      <ExpansionPanelActions>
+          <Button dense>Save</Button>
+      </ExpansionPanelActions>
+    </ExpansionPanel>
+  </div>;
 
 const GridTest = () =>
   <Grid component={Paper} container>
