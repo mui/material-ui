@@ -4,12 +4,12 @@ import { withStyles } from 'material-ui';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import * as viewType from '../constants/date-picker-view';
-import * as defaultUtils from '../_shared/utils';
+import * as defaultUtils from '../utils/utils';
 
 export const DateTimePickerHeader = (props) => {
   const {
     date, classes, openView, meridiemMode, onOpenViewChange, setMeridiemMode,
-    theme, utils,
+    theme, utils, ampm,
   } = props;
 
   const changeOpenView = view => () => onOpenViewChange(view);
@@ -43,7 +43,7 @@ export const DateTimePickerHeader = (props) => {
             type="display2"
             onClick={changeOpenView(viewType.HOUR)}
             selected={openView === viewType.HOUR}
-            label={utils.getHourText(date)}
+            label={utils.getHourText(date, ampm)}
           />
 
           <ToolbarButton
@@ -61,22 +61,25 @@ export const DateTimePickerHeader = (props) => {
           />
         </div>
 
-        <div className={classes.ampmSelection}>
-          <ToolbarButton
-            className={classes.ampmLabel}
-            selected={meridiemMode === 'am'}
-            type="subheading"
-            label={utils.getMeridiemText('am')}
-            onClick={setMeridiemMode('am')}
-          />
-          <ToolbarButton
-            className={classes.ampmLabel}
-            selected={meridiemMode === 'pm'}
-            type="subheading"
-            label={utils.getMeridiemText('pm')}
-            onClick={setMeridiemMode('pm')}
-          />
-        </div>
+        {
+          ampm &&
+            <div className={classes.ampmSelection}>
+              <ToolbarButton
+                className={classes.ampmLabel}
+                selected={meridiemMode === 'am'}
+                type="subheading"
+                label={utils.getMeridiemText('am')}
+                onClick={setMeridiemMode('am')}
+              />
+              <ToolbarButton
+                className={classes.ampmLabel}
+                selected={meridiemMode === 'pm'}
+                type="subheading"
+                label={utils.getMeridiemText('pm')}
+                onClick={setMeridiemMode('pm')}
+              />
+            </div>
+        }
       </div>
     </PickerToolbar>
   );
@@ -91,10 +94,12 @@ DateTimePickerHeader.propTypes = {
   onOpenViewChange: PropTypes.func.isRequired,
   setMeridiemMode: PropTypes.func.isRequired,
   utils: PropTypes.object,
+  ampm: PropTypes.bool,
 };
 
 DateTimePickerHeader.defaultProps = {
   utils: defaultUtils,
+  ampm: true,
 };
 
 const styles = () => ({

@@ -7,15 +7,20 @@ import Code from '../components/Code';
 
 class SourcablePanel extends PureComponent {
   static propTypes = {
-    children: PropTypes.arrayOf(PropTypes.node).isRequired,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.object]).isRequired,
     classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
-    description: PropTypes.string,
+    description: PropTypes.node,
     sourceFile: PropTypes.string.isRequired,
+  }
+
+  static defaultProps = {
+    description: undefined,
   }
 
   state = {
     sourceExpanded: false,
+
   }
 
   getSource = () => {
@@ -41,7 +46,9 @@ class SourcablePanel extends PureComponent {
       >
         { title }
       </Typography>,
+
       description,
+
       <Collapse key="code" in={sourceExpanded}>
         <Code className={classes.source} text={this.getSource()} />
       </Collapse>,

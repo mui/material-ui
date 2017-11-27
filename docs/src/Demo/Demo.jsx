@@ -27,7 +27,10 @@ class Demo extends Component {
   }
 
   render() {
-    const { classes, toggleThemeType, toggleDirection, toggleFrench } = this.props;
+    const {
+      classes, toggleThemeType, toggleDirection, toggleFrench,
+    } = this.props;
+
     return (
       <main className={classes.main}>
         <AppBar position="fixed" className={classes.noShadow}>
@@ -52,7 +55,7 @@ class Demo extends Component {
 
             <Tooltip title="Toggle direction" enterDelay={300}>
               <IconButton color="contrast" onClick={toggleDirection}>
-              format_textdirection_l_to_r
+                format_textdirection_l_to_r
               </IconButton>
             </Tooltip>
 
@@ -107,7 +110,13 @@ class Demo extends Component {
 
           <SourcablePanel
             title="Persian Pickers"
-            description="Make sure you read the right to left section of the material-ui documentation page."
+            description={
+              <p key="persian-desc">
+                Make sure you have read the
+                <a href="https://material-ui-next.com/guides/right-to-left/"> right to left section </a>
+                of the material-ui documentation page
+              </p>
+            }
             sourceFile="PersianPickers.jsx"
           >
             <PersianPickers />

@@ -9,13 +9,9 @@
 Changelog available [here](https://github.com/dmtrKovalenko/material-ui-pickers/releases)
 
 ### Installation
-Available as npm package
+Available as npm package. Please note that we are using moment as a peer dependency
 ```sh
-npm install material-ui-pickers -S
-```
-We have moment in the peer dependencies, so if you are not using moment
-```sh
-npm install moment -S
+npm install moment material-ui-pickers -S
 ```
 
 We are using material-ui-icons font to display icons. Just add this to your html 
@@ -113,6 +109,7 @@ onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
+ampm | boolean | true | 12h/24h view for hour selection clock
 
 #### DateTimepicker
 Prop | Type | Default | Definition
@@ -135,6 +132,7 @@ leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 dateRangeIcon | react node, string | 'date_range'| Date tab icon 
 timeIcon | react node, string | 'access_time'| Time tab icon
+ampm | boolean | true | 12h/24h view for hour selection clock
 
 ### l10n
 For l10n texts we're currently relying on moment which is stateful. To change the locale you have to import your langauge specific files an change the locale manually via `moment.locale(language)`.
@@ -145,13 +143,27 @@ import 'moment/locale/fr';
 moment.locale('fr')
 ```
 
+### Jalali Calendar
+We are fully supporting Jalali calendar system and [right-to-left](https://material-ui-next.com/guides/right-to-left/) material-ui api. Special thanks to @alitaheri.
+Here is a little example of how to use it 
+```jsx
+import { TimePicker, DateTimePicker, DatePicker } from 'material-ui-pickers';
+import jalaliUtils from 'material-ui-pickers-jalali-utils';
+
+jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
+
+<DateTimePicker
+  okLabel="تأیید"
+  cancelLabel="لغو"
+  labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
+  value={selectedDate}
+  onChange={this.handleDateChange}
+  utils={jalaliUtils}
+/>
+```
+
 ### Migrate to date-fns?
-If you are interested of using moment or date-fns as the peer of this project, please mention that in [this issue](https://github.com/dmtrKovalenko/material-ui-pickers/issues/61), we need to know which libriry if more useful to be in the peer dependencies of this project. Thank you.
-
-### Known Issues
-1. 24 hour displaying for timepicker (now supporting only am/pm)
-
-They would be added/fixed in one of the nearest release :)
+If you are interested of using moment or date-fns as the peer of this project, please mention that in [this issue](https://github.com/dmtrKovalenko/material-ui-pickers/issues/61), we need to know which library if more useful to be in the peer dependencies of this project. Thank you.
 
 ### Contributing
 For information about how to contribute, see the [CONTRIBUTING](https://github.com/dmtrKovalenko/material-ui-pickers/blob/master/CONTRIBUTING.md) file.

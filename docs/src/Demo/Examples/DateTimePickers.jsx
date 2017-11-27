@@ -36,14 +36,15 @@ export default class BasicUsage extends Component {
         <DateTimePicker
           error
           autoOk
+          ampm={false}
           showTabs={false}
           autoSubmit={false}
           disableFuture
           value={selectedDate}
           onChange={this.handleDateChange}
           helperText="Required"
-          leftArrowIcon={ <Icon> add_alarm </Icon> }
-          rightArrowIcon={ <Icon> snooze </Icon> }
+          leftArrowIcon={<Icon> add_alarm </Icon>}
+          rightArrowIcon={<Icon> snooze </Icon>}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">

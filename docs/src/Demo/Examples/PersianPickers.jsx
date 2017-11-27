@@ -20,7 +20,7 @@ export default class BasicUsage extends Component {
     const { selectedDate } = this.state;
 
     return [
-      <div key="basic_day" className="picker">
+      <div key="persian_day" className="picker">
         <Typography type="headline" align="center" gutterBottom>
           Date picker
         </Typography>
@@ -36,7 +36,7 @@ export default class BasicUsage extends Component {
         />
       </div>,
 
-      <div key="basic_time" className="picker">
+      <div key="persian_time" className="picker">
         <Typography type="headline" align="center" gutterBottom>
           Time picker
         </Typography>
@@ -51,7 +51,7 @@ export default class BasicUsage extends Component {
         />
       </div>,
 
-      <div key="basic_time" className="picker">
+      <div key="persian_datetime" className="picker">
         <Typography type="headline" align="center" gutterBottom>
           DateTime picker
         </Typography>

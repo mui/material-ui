@@ -5,25 +5,41 @@ import ModalWrapper from '../wrappers/ModalWrapper';
 import DatePicker from './DatePicker';
 import DomainPropTypes from '../constants/prop-types';
 import PickerBase from '../_shared/PickerBase';
-import * as defaultUtils from '../_shared/utils';
+import * as defaultUtils from '../utils/utils';
 
 export default class DatePickerWrapper extends PickerBase {
   static propTypes = {
+    /* Datepicker value */
     value: DomainPropTypes.date,
+    /* Min selectable date */
     minDate: DomainPropTypes.date,
+    /* Max selectable date */
     maxDate: DomainPropTypes.date,
+    /* Moment format string for input */
     format: PropTypes.string,
+    /* Callback firing when date accepted */
     onChange: PropTypes.func.isRequired,
+    /* Auto accept date on selection */
     autoOk: PropTypes.bool,
+    /* Disable future dates */
     disableFuture: PropTypes.bool,
+    /* To animate scrolling to current year (with scrollIntoView) */
     animateYearScrolling: PropTypes.bool,
+    /* Open datepicker from year selection */
     openToYearSelection: PropTypes.bool,
+    /* Return moment object in onChange event */
     returnMoment: PropTypes.bool,
+    /* Displayed string if date can`t be parsed (or null) */
     invalidLabel: PropTypes.string,
-    leftArrowIcon: PropTypes.node,
-    rightArrowIcon: PropTypes.node,
-    renderDay: PropTypes.func,
+    /* Allow to specify dynamic label for text field labelFunc(date, invalidLabel) */
     labelFunc: PropTypes.func,
+    /* Left arrow icon */
+    leftArrowIcon: PropTypes.node,
+    /* Right arrow icon */
+    rightArrowIcon: PropTypes.node,
+    /* Custom renderer for day renderDay(date, selectedDate, dayInCurrentMonth) */
+    renderDay: PropTypes.func,
+    /* Date displaying utils */
     utils: PropTypes.object,
   }
 

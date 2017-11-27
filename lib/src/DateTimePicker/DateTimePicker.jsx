@@ -9,11 +9,11 @@ import HourView from '../TimePicker/HourView';
 import MinutesView from '../TimePicker/MinutesView';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import DatetimePickerHeader from './DateTimePickerHeader';
-import { convertToMeridiem } from '../TimePicker/utils/time-utils';
+import { convertToMeridiem } from '../utils/time-utils';
 
 import DomainPropTypes from '../constants/prop-types';
 import * as viewType from '../constants/date-picker-view';
-import * as defaultUtils from '../_shared/utils';
+import * as defaultUtils from '../utils/utils';
 
 export class DateTimePicker extends Component {
   static propTypes = {
@@ -31,6 +31,7 @@ export class DateTimePicker extends Component {
     timeIcon: PropTypes.node,
     renderDay: PropTypes.func,
     utils: PropTypes.object,
+    ampm: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -46,6 +47,7 @@ export class DateTimePicker extends Component {
     timeIcon: undefined,
     renderDay: undefined,
     utils: defaultUtils,
+    ampm: true,
   }
 
   state = {
@@ -73,7 +75,7 @@ export class DateTimePicker extends Component {
   }
 
   handleChange = (time, isFinish = false) => {
-    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode);
+    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm);
     this.props.onChange(withMeridiem, isFinish);
   }
 
@@ -91,6 +93,7 @@ export class DateTimePicker extends Component {
       timeIcon,
       renderDay,
       utils,
+      ampm,
     } = this.props;
 
     return (
@@ -102,6 +105,7 @@ export class DateTimePicker extends Component {
           setMeridiemMode={this.setMeridiemMode}
           onOpenViewChange={this.handleViewChange}
           utils={utils}
+          ampm={ampm}
         />
 
         {
@@ -145,6 +149,7 @@ export class DateTimePicker extends Component {
             meridiemMode={meridiemMode}
             onChange={this.onChange(viewType.MINUTES)}
             utils={utils}
+            ampm={ampm}
           />
         </View>
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Clock from './Clock';
 import { MINUTES } from '../constants/clock-types';
 import ClockNumber from './ClockNumber';
-import * as defaultUtils from '../_shared/utils';
+import * as defaultUtils from '../utils/utils';
 
 export default class MinutesView extends Component {
   static propTypes = {
@@ -33,7 +33,7 @@ export default class MinutesView extends Component {
         onChange={this.handleChange}
         value={value}
       >
-        <ClockNumber label={f('00')} selected={value === 0} index={0} />
+        <ClockNumber label={f('00')} selected={value === 0} index={12} />
         <ClockNumber label={f('05')} selected={value === 5} index={1} />
         <ClockNumber label={f('10')} selected={value === 10} index={2} />
         <ClockNumber label={f('15')} selected={value === 15} index={3} />

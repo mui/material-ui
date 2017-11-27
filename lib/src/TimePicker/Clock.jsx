@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui';
 
 import ClockPointer from './ClockPointer';
 import * as clockType from '../constants/clock-types';
-import { getMinutes, getHours } from './utils/time-utils';
+import { getMinutes, getHours } from '../utils/time-utils';
 
 export class Clock extends Component {
   static propTypes = {
@@ -13,6 +13,11 @@ export class Clock extends Component {
     value: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
+    ampm: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    ampm: false,
   }
 
   setTime(e, isFinish = false) {
@@ -27,7 +32,7 @@ export class Clock extends Component {
 
     const value = this.props.type === clockType.MINUTES
       ? getMinutes(offsetX, offsetY)
-      : getHours(offsetX, offsetY);
+      : getHours(offsetX, offsetY, this.props.ampm);
 
     this.props.onChange(value, isFinish);
   }
@@ -37,7 +42,7 @@ export class Clock extends Component {
   }
 
   handleTouchEnd = (e) => {
-    this.handleTouchMove(e);
+    this.setTime(e, true);
   }
 
   handleUp = (event) => {
@@ -70,8 +75,11 @@ export class Clock extends Component {
 
   render() {
     const {
-      classes, value, children, type,
+      classes, value, children, type, ampm,
     } = this.props;
+
+    const max = type === clockType.HOURS ? 12 : 60;
+    const isPointerInner = !ampm && type === clockType.HOURS && (value < 1 || value > 12);
 
     return (
       <div className={classes.container}>
@@ -89,9 +97,10 @@ export class Clock extends Component {
           />
 
           <ClockPointer
-            max={type === clockType.HOURS ? 12 : 60}
-            hasSelected={this.hasSelected()}
+            max={max}
             value={value}
+            isInner={isPointerInner}
+            hasSelected={this.hasSelected()}
           />
 
           { children }

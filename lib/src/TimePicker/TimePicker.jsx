@@ -5,8 +5,8 @@ import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import HourView from './HourView';
 import MinutesView from './MinutesView';
-import { convertToMeridiem } from './utils/time-utils';
-import * as defaultUtils from '../_shared/utils';
+import { convertToMeridiem } from '../utils/time-utils';
+import * as defaultUtils from '../utils/utils';
 
 export class TimePicker extends Component {
   static propTypes = {
@@ -16,11 +16,13 @@ export class TimePicker extends Component {
     theme: PropTypes.object.isRequired,
     children: PropTypes.node,
     utils: PropTypes.object,
+    ampm: PropTypes.bool,
   }
 
   static defaultProps = {
     children: null,
     utils: defaultUtils,
+    ampm: true,
   }
 
   state = {
@@ -36,7 +38,7 @@ export class TimePicker extends Component {
   }
 
   handleChange = openMinutes => (time, isFinish) => {
-    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode);
+    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm);
 
     if (isFinish) {
       if (!openMinutes) {
@@ -60,25 +62,25 @@ export class TimePicker extends Component {
 
   render() {
     const {
-      classes, theme, date, utils,
+      classes, theme, date, utils, ampm,
     } = this.props;
 
     const { isHourViewShown, meridiemMode } = this.state;
 
     const rtl = theme.direction === 'rtl';
-    const hourMinuteClassname = rtl
+    const hourMinuteClassName = rtl
       ? classes.hourMinuteLabelReverse
       : classes.hourMinuteLabel;
 
     return (
       <div className={classes.container}>
         <PickerToolbar className={classes.toolbar}>
-          <div className={hourMinuteClassname}>
+          <div className={hourMinuteClassName}>
             <ToolbarButton
               type="display3"
               onClick={this.openHourView}
               selected={isHourViewShown}
-              label={utils.getHourText(date)}
+              label={utils.getHourText(date, ampm)}
             />
 
             <ToolbarButton
@@ -96,23 +98,26 @@ export class TimePicker extends Component {
             />
           </div>
 
-          <div className={classes.ampmSelection}>
-            <ToolbarButton
-              className={classes.ampmLabel}
-              selected={meridiemMode === 'am'}
-              type="subheading"
-              label={utils.getMeridiemText('am')}
-              onClick={this.setMeridiemMode('am')}
-            />
+          {
+            ampm &&
+              <div className={classes.ampmSelection}>
+                <ToolbarButton
+                  className={classes.ampmLabel}
+                  selected={meridiemMode === 'am'}
+                  type="subheading"
+                  label={utils.getMeridiemText('am')}
+                  onClick={this.setMeridiemMode('am')}
+                />
 
-            <ToolbarButton
-              className={classes.ampmLabel}
-              selected={meridiemMode === 'pm'}
-              type="subheading"
-              label={utils.getMeridiemText('pm')}
-              onClick={this.setMeridiemMode('pm')}
-            />
-          </div>
+                <ToolbarButton
+                  className={classes.ampmLabel}
+                  selected={meridiemMode === 'pm'}
+                  type="subheading"
+                  label={utils.getMeridiemText('pm')}
+                  onClick={this.setMeridiemMode('pm')}
+                />
+              </div>
+          }
         </PickerToolbar>
 
         {this.props.children}
@@ -125,6 +130,7 @@ export class TimePicker extends Component {
                 meridiemMode={meridiemMode}
                 onChange={this.handleChange(true)}
                 utils={utils}
+                ampm={ampm}
               />
             :
               <MinutesView
