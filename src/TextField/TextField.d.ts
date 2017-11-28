@@ -2,7 +2,8 @@ import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { FormControlProps, FormHelperTextProps } from '../Form';
 import { InputProps, InputLabelProps } from '../Input';
-import { FormControlClassKey } from '../Form/FormControl'
+import { FormControlClassKey } from '../Form/FormControl';
+import { SelectProps } from '../Select';
 
 export interface TextFieldProps extends StandardProps<
   FormControlProps,
@@ -23,7 +24,7 @@ export interface TextFieldProps extends StandardProps<
   inputClassName?: string;
   InputClassName?: string;
   InputLabelProps?: InputLabelProps;
-  inputProps?: Object;
+  inputProps?: InputProps['inputProps'];
   InputProps?: InputProps;
   inputRef?: React.Ref<any>;
   label?: React.ReactNode;
@@ -36,7 +37,7 @@ export interface TextFieldProps extends StandardProps<
   rows?: string | number;
   rowsMax?: string | number;
   select?: boolean;
-  SelectProps?: Object;
+  SelectProps?: SelectProps;
   type?: string;
   value?: string | number;
   margin?: PropTypes.Margin;

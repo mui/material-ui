@@ -780,6 +780,7 @@ const TextFieldTest = () =>
       value={'Alice'}
       InputProps={{ classes: { root: 'foo' } }}
     />
+    <TextField type="number" inputProps={{ min: "0", max: "10", step: "1" }} />
   </div>;
 
 const SelectTest = () => {
