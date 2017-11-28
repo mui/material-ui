@@ -7,7 +7,7 @@ import camelCase from 'lodash/camelCase';
 export function titleize(string: String) {
   warning(
     typeof string === 'string' && string.length > 0,
-    'Material-UI: titleize(string) expects a non empty string argument.',
+    'titleize(string) expects a non empty string argument.',
   );
 
   return string

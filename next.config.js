@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const path = require('path');
 const pkg = require('./package.json');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
