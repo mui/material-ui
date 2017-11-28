@@ -25,33 +25,28 @@ function bodyIsOverflowing(node) {
   return marginLeft + doc.body.clientWidth + marginRight < win.innerWidth;
 }
 
-// The container shouldn't be used on the server.
-const defaultContainer = canUseDom ? window.document.body : {};
-
 /**
  * State management helper for modals/layers.
  * Simplified, but inspired by react-overlay's ModalManager class
  *
  * @internal Used by the Modal to ensure proper focus management.
  */
-function createModalManager(
-  { container = defaultContainer, hideSiblingNodes = true }: Object = {},
-) {
-  warning(
-    container !== null,
-    `
-Material-UI: you are most likely evaluating the code before the
-browser has a chance to reach the <body>.
-Please move the import at the end of the <body>.
-  `,
-  );
-
+function createModalManager({ hideSiblingNodes = true }: Object = {}) {
   const modals = [];
 
   let prevOverflow;
   let prevPaddings = [];
 
   function add(modal: Object) {
+    const container = canUseDom ? window.document.body : {};
+    warning(
+      container !== null,
+      `
+Material-UI: you are most likely evaluating the code before the
+browser has a chance to reach the <body>.
+Please move the import at the end of the <body>.
+  `,
+    );
     let modalIdx = modals.indexOf(modal);
 
     if (modalIdx !== -1) {
@@ -90,6 +85,15 @@ Please move the import at the end of the <body>.
   }
 
   function remove(modal: Object) {
+    const container = canUseDom ? window.document.body : {};
+    warning(
+      container !== null,
+      `
+Material-UI: you are most likely evaluating the code before the
+browser has a chance to reach the <body>.
+Please move the import at the end of the <body>.
+  `,
+    );
     const modalIdx = modals.indexOf(modal);
 
     if (modalIdx === -1) {
