@@ -6,14 +6,14 @@ import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({
-  content: theme.mixins.gutters({
+  root: theme.mixins.gutters({
     paddingTop: 80,
     flex: '1 1 100%',
     maxWidth: '100%',
     margin: '0 auto',
   }),
   [theme.breakpoints.up(900 + theme.spacing.unit * 6)]: {
-    content: {
+    root: {
       maxWidth: 900,
     },
   },
@@ -22,7 +22,7 @@ const styles = theme => ({
 function AppContent(props: Object) {
   const { className, classes, children } = props;
 
-  return <div className={classNames(classes.content, className)}>{children}</div>;
+  return <div className={classNames(classes.root, className)}>{children}</div>;
 }
 
 AppContent.propTypes = {

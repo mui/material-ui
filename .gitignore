@@ -5,7 +5,8 @@ build
 /.eslintcache
 /docs/export
 /tmp
-coverage
+/coverage
+/.nyc_output
 
 # OS files
 .DS_STORE
@@ -23,4 +24,3 @@ package-lock.json
 .idea
 .vscode
 
-.nyc_output
