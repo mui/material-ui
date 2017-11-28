@@ -1,10 +1,8 @@
 codecov:
   branch: next
-
 coverage:
   status:
     patch:
       default:
         threshold: .1%
-
 comment: false
