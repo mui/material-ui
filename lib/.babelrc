@@ -9,11 +9,16 @@
       ]
     },
     "development": {
-      "presets": [
-        [
-          "es2015", { "modules": false }
-        ]
-      ],
+      "presets": [[ "es2015", { "modules": false } ]],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-react-jsx",
+        "transform-class-properties",
+        "external-helpers"
+      ]
+    },
+    "production": {
+      "presets": [[ "es2015", { "modules": false } ]],
       "plugins": [
         "transform-object-rest-spread",
         "transform-react-jsx",
