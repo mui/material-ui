@@ -2,6 +2,85 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.22
+###### _Nov 28, 2017_
+
+Big thanks to the 26 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Wait, what? A new component is coming, again 🎉.
+@andrzejbk has been implementing the `ExpansionPanel` component with the help of the community. Big thanks to him!
+- Support TypeScript@2.6 (#9124) @pelotom
+- Support Flow@0.57.x (#8983) @rsolomon, @rosskevin
+- A new organization: `mui-org` @hai-cea
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [Select] Remove InputClasses (#9159) @oliviertassinari
+
+It's a revert.
+I have made the unwise call of adding the InputClasses property in an unrelated refactorization pull-request #8942.
+It was not taking the input classes property into account.
+It was a breaking change and not needed.
+
+#### Component Fixes / Enhancements
+
+- [Tooltip] Fix typo in API page (#9128) @mizx
+- [Transition] Fix wrong addEndListener logic (#9142) @oliviertassinari
+- [TablePagination] export LabelDisplayedRowArgs interface and improve label (#8930) @t49tran
+- [Drawer] Hide focus ring (#9147) @rodrigofepy
+- [Drawer] Fix classes in typescript definition (#9145) @johnnynia
+- [CircularProgress] Fix behavior when dir=rtl (#9151) @alitaheri
+- [StepContent] Fix typings (#9150) @alitaheri
+- [Dialog] Fix maxWidth=xs (#9162) @oliviertassinari
+- [Select] Fix typescript typings (#9153) @alitaheri
+- [Slide] No default direction (#9165) @oliviertassinari
+- [TablePagination] Improve the API docs page (#9181) @oliviertassinari
+- [typescript] Strip keys from GridProps which won't get passed to override component (#9183) @pelotom
+- [Input] Fix input height on Firefox (#9184) @oliviertassinari
+- [Switch] Fixes non-valid HTML when div used inside of label element (#9188) @mikeriley131
+- [FormControlLabel] Fixes non-valid HTML when p used in label element (#9187) @mikeriley131
+- [Avatar] Fix alt align (#9193) @mctep
+- [Drawer] Fix typo @ignore for theme prop (#9195) @christophehurpeau
+- [style] Fix between media-query for xl (#9201) @michaelgruber
+- [transitions] Expose the transition components (#9210) @ajay2507
+- [Card] Add action prop to CardHeader (#9202) @lukePeavey
+- [Select] Add name to the target (#9216) @oliviertassinari
+- [TablePagination] Hide the rows per page selector if there are less than two options (#9213) @leMaik
+- [ButtonBase] Bookkeep the disable state (#9220) @oliviertassinari
+- [TextField] Better select support (#9224) @oliviertassinari
+- [TableCell] Use solid version of theme divider (#9229) @mbrookes
+- [ExpansionPanel] New component (#7651) @andrzejbk
+
+#### Docs
+
+- [docs] Additional tweaks (#9122) @mbrookes
+- [docs] Improved documentation for Menu style overrides (#9126) @lsemerini
+- [docs] Fix display on IE11 (#9166) @oliviertassinari
+- [docs] Fix broken link in README.md (#9177) @Primajin
+- [docs] Clean up code in IconLabelButton example (#9211) @xfumihiro
+- [docs] Fill enhanced table to always have the same height on all pages (#9214) @leMaik
+- [docs] Fix broken link to the API#spread (#9219) @oliviertassinari
+- [Guide] Add Interoperability guide (#9217) @FjVillar
+- [docs] Add a styled-components section (#9225) @oliviertassinari
+- [examples] rename organization to mui-org (#9273) @stormasm
+- [docs] Fix typo (#9288) @paulzmuda
+
+#### Core
+
+- [test] Fix flaky popper.js test (#9168) @oliviertassinari
+- [typescript] Support TypeScript 2.6 and --strictFunctionTypes (#9124) @pelotom
+- [typescript] Fix typing of withWidth (#9125) @pelotom
+- [typescript] Eliminate the need for type annotations on callback parameters (#9127) @pelotom
+- [core] Reduce bundle size by 2kB gzipped (#9129) @oliviertassinari
+- [core] Upgrade enzyme (#9167) @oliviertassinari
+- Add support for Flow@0.57.x (#8983) @rsolomon
+- [test] Avoid unspotted API docs changes (#9212) @oliviertassinari
+- [core] Increase the size-limit (#9215) @oliviertassinari
+- [flow] Continuation of Flow updates 0.57+ (#9203) @rosskevin
+- [flow] Bump react-flow-types version and fix errors (#9232) @rsolomon
+
 ## 1.0.0-beta.21
 ###### _Nov 13, 2017_
 
