@@ -9,8 +9,10 @@ import { ZIndex } from './zIndex';
 import { StyleRules } from './withStyles'
 import { Overrides } from './overrides'
 
+export type Direction = 'ltr' | 'rtl';
+
 export interface ThemeOptions {
-  direction?: 'ltr' | 'rtl';
+  direction?: Direction;
   palette?: Partial<Palette>;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   mixins?: Partial<Mixins>;
@@ -23,7 +25,7 @@ export interface ThemeOptions {
 }
 
 export type Theme = {
-  direction: 'ltr' | 'rtl';
+  direction: Direction;
   palette: Palette;
   typography: Typography;
   mixins: Mixins;
