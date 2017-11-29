@@ -134,7 +134,7 @@ function Switch(props: ProvidedProps & Props) {
   const icon = <span className={classes.icon} />;
 
   return (
-    <div className={classNames(classes.root, className)}>
+    <span className={classNames(classes.root, className)}>
       <SwitchBase
         icon={icon}
         classes={{
@@ -146,7 +146,7 @@ function Switch(props: ProvidedProps & Props) {
         {...other}
       />
       <span className={classes.bar} />
-    </div>
+    </span>
   );
 }
 

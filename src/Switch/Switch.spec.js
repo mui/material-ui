@@ -10,7 +10,7 @@ describe('<Switch />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'div' });
+    shallow = createShallow({ untilSelector: 'span' });
     classes = getClasses(<Switch />);
   });
 
@@ -29,8 +29,8 @@ describe('<Switch />', () => {
       wrapper = shallow(<Switch className="foo" />);
     });
 
-    it('should render a div with the root and user classes', () => {
-      assert.strictEqual(wrapper.name(), 'div');
+    it('should render a span with the root and user classes', () => {
+      assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('foo'), true);
     });
