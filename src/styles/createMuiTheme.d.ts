@@ -10,10 +10,11 @@ import { StyleRules } from './withStyles'
 import { Overrides } from './overrides'
 
 export interface ThemeOptions {
-  breakpoints?: Partial<BreakpointsOptions> & Partial<Breakpoints>;
-  mixins?: Partial<Mixins>;
+  direction?: 'ltr' | 'rtl';
   palette?: Partial<Palette>;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
+  mixins?: Partial<Mixins>;
+  breakpoints?: Partial<BreakpointsOptions> & Partial<Breakpoints>;
   shadows?: Shadows;
   transitions?: Partial<Transitions>;
   spacing?: Partial<Spacing>;
