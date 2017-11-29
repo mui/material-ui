@@ -17,7 +17,7 @@ export interface RadioProps extends StandardProps<
   inputProps?: Object;
   inputRef?: React.Ref<any>;
   name?: string;
-  onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
   tabIndex?: number;
   value?: string;
 }

@@ -10,7 +10,7 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
   MenuProps?: Partial<MenuProps>;
   name?: string;
   onBlur?: React.FocusEventHandler<any>;
-  onChange?: (event: React.ChangeEvent<{}>, child: React.ReactNode) => void,
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, child: React.ReactNode) => void,
   onFocus?: React.FocusEventHandler<any>;
   readOnly?: boolean;
   renderValue?: Function;

@@ -8,7 +8,7 @@ export interface RadioGroupProps extends StandardProps<
   'onChange'
 > {
   name?: string;
-  onChange?: (event: React.ChangeEvent<{}>, value: string) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void;
   value?: string;
 }
 
