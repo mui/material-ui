@@ -3,16 +3,14 @@ import { DateTimePickerView } from '../constants/date-picker-view';
 import { DateType } from '../constants/prop-types';
 import { Utils } from '../utils/utils';
 import { RenderDay } from '../DatePicker/Calendar';
-import { ModalWrapperProps } from '../wrappers/ModalWrapper';
 
-export interface DateTimePickerWrapperProps extends ModalWrapperProps {
+export interface DateTimePickerProps {
+  date: object;
   minDate?: DateType;
   maxDate?: DateType;
-  onChange: (date: object) => void;
+  onChange: (date: object, isFinished?: boolean) => void;
   disableFuture?: boolean;
-  autoOk?: boolean;
   autoSubmit?: boolean;
-  returnMoment?: boolean;
   showTabs?: boolean;
   ampm?: boolean;
   openTo?: DateTimePickerView;
@@ -24,6 +22,6 @@ export interface DateTimePickerWrapperProps extends ModalWrapperProps {
   utils?: Utils;
 }
 
-declare const DateTimePickerWrapper: ComponentClass<DateTimePickerWrapperProps>;
+declare const DateTimePicker: ComponentClass<DateTimePickerProps>;
 
-export default DateTimePickerWrapper;
+export default DateTimePicker;

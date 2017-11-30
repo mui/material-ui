@@ -8,7 +8,6 @@ export interface ModalWrapperProps extends DateTextFieldProps {
     onAccept: ButtonProps['onClick'];
     onDismiss: ButtonProps['onClick'];
     dialogContentClassName?: string;
-    invalidLabel?: string;
     okLabel?: ReactNode;
     cancelLabel?: ReactNode;
 }
