@@ -12,6 +12,7 @@ export interface DrawerProps extends StandardProps<
   anchor?: 'left' | 'top' | 'right' | 'bottom';
   elevation?: number;
   transitionDuration?: TransitionDuration;
+  ModalProps?: ModalProps
   open?: boolean;
   SlideProps?: SlideProps;
   theme?: Theme;
