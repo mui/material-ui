@@ -33,6 +33,7 @@ export default class BasicUsage extends Component {
           Custom
         </Typography>
 
+        <DateTimePicker value="fewf" />
         <DateTimePicker
           error
           autoOk
