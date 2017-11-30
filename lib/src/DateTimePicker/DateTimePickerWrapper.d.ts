@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ComponentClass, ReactNode } from 'react';
 import { Utils } from '../utils/utils'
 
 export interface DateTimePickerWrapperProps {
@@ -11,20 +11,22 @@ export interface DateTimePickerWrapperProps {
   autoSubmit?: Object;
   // ToDo move to the lower level
   disableFuture?: Object;
-  openTo?: string; 
+  openTo?: string;
   minDate?: any;
   maxDate?: any;
   showTabs?: boolean;
   returnMoment?: boolean;
   invalidLabel?: boolean;
-  leftArrowIcon: React.ReactNode;
-  rightArrowIcon: React.ReactNode;
-  dateRangeIcon?: React.ReactNode;
-  timeIcon?: React.ReactNode;
-  renderDay?: () => React.ReactNode;
+  leftArrowIcon: ReactNode;
+  rightArrowIcon: ReactNode;
+  dateRangeIcon?: ReactNode;
+  timeIcon?: ReactNode;
+  renderDay?: () => ReactNode;
   labelFunc?: () => string;
   utils?: Utils;
   ampm: boolean;
 }
 
-declare class DateTimePickerWrapper extends React.Component<DateTimePickerWrapperProps, any> {  }
+declare const DateTimePickerWrapper: ComponentClass<DateTimePickerWrapperProps>;
+
+export default DateTimePickerWrapper;
