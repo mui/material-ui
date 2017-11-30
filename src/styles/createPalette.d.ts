@@ -1,7 +1,7 @@
 import { Color, Contrast } from '..';
 import { CommonColors } from '../colors/common';
 
-type ShadeText = {
+interface ShadeText {
   primary: string;
   secondary: string;
   disabled: string;
@@ -9,40 +9,40 @@ type ShadeText = {
   icon: string;
   divider: string;
   lightDivider: string;
-};
+}
 
-type ShadeInput = {
+interface ShadeInput {
   bottomLine: string;
   helperText: string;
   labelText: string;
   inputText: string;
   disabled: string;
-};
+}
 
-type ShadeAction = {
+interface ShadeAction {
   active: string;
   disabled: string;
-};
+}
 
-type ShadeBackground = {
+interface ShadeBackground {
   default: string;
   paper: string;
   appBar: string;
   contentFrame: string;
   status: string;
-};
+}
 
-export type Shade = {
+export interface Shade {
   text: ShadeText;
   input: ShadeInput;
   action: ShadeAction;
   background: ShadeBackground;
-};
+}
 
 export const light: Shade;
 export const dark: Shade;
 
-export type Palette = {
+export interface Palette {
   common: CommonColors;
   type: Contrast;
   primary: Color;
@@ -58,7 +58,7 @@ export type Palette = {
   action: ShadeAction;
   background: ShadeBackground;
   getContrastText: (color: string) => string;
-};
+}
 
 export default function createPalette(
   palette: Partial<Palette>

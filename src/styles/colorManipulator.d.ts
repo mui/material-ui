@@ -1,8 +1,8 @@
 export type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla';
-export type ColorObject = {
+export interface ColorObject {
   type: ColorFormat;
   color: [number, number, number] | [number, number, number, number];
-};
+}
 
 export function convertColorToString(color: ColorObject): string;
 export function convertHexToRGB(hex: string): string;
