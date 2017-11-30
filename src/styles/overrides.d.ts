@@ -74,7 +74,6 @@ import { TableSortLabelClassKey } from '../Table/TableSortLabel';
 import { TabsClassKey } from '../Tabs/Tabs';
 import { TabScrollButtonClassKey } from '../Tabs/TabScrollButton';
 import { TextareaClassKey } from '../Input/Textarea';
-import { TextFieldClassKey } from '../TextField/TextField';
 import { ToolbarClassKey } from '../Toolbar/Toolbar';
 import { TooltipClassKey } from '../Tooltip/Tooltip';
 import { TypographyClassKey } from '../Typography/Typography';
