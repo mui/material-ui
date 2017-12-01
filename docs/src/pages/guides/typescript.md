@@ -127,7 +127,7 @@ export default function createMyTheme(options: ThemeOptions) {
     merge(
       {
         appDrawer: {
-          width: '225px',
+          width: 225,
           breakpoint: 'lg',
         },
       },
