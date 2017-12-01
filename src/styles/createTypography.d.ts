@@ -37,7 +37,7 @@ export interface TypographyStyle {
 
 export type Typography = { [type in Style]: TypographyStyle } & FontStyle;
 
-export type TypographyOptions = DeepPartial<TypographyStyle>;
+export type TypographyOptions = DeepPartial<Typography>;
 
 export default function createTypography(
   palette: Palette,
