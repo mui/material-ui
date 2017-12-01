@@ -106,5 +106,12 @@ declare module 'material-ui/styles/createMuiTheme' {
       breakpoint: Breakpoint
     }
   }
+  // allow configuration using `createMuiTheme`
+  interface Theme {
+    appDrawer?: {
+      width?: React.CSSProperties['width']
+      breakpoint?: Breakpoint
+    }
+  }
 }
 ```
