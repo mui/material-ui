@@ -115,3 +115,32 @@ declare module 'material-ui/styles/createMuiTheme' {
   }
 }
 ```
+
+And a custom theme factory with additional defaulted options:
+
+```js
+import {default as createMuiTheme, ThemeOptions} from 'material-ui/styles/createMuiTheme'
+import { merge } from 'lodash'
+
+export default function createMyTheme(options: ThemeOptions) {
+  return createMuiTheme(
+    merge(
+      {
+        appDrawer: {
+          width: '225px',
+          breakpoint: 'lg',
+        },
+      },
+      options,
+    ),
+  )
+}
+```
+
+This could be used like:
+
+```js
+import createMyTheme from './styles/createMyTheme'
+
+const theme = createMyTheme({breakpoint: 'md'})
+```
