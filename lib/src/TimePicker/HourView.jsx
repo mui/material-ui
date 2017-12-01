@@ -5,6 +5,7 @@ import { HOURS } from '../constants/clock-types';
 import ClockNumber from './ClockNumber';
 import * as defaultUtils from '../utils/utils';
 
+
 export default class HourView extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
@@ -18,6 +19,7 @@ export default class HourView extends PureComponent {
     ampm: true,
   }
 
+
   getHourNumbers = () => {
     const { ampm, utils, date } = this.props;
     const currentHours = date.get('hours');
@@ -26,8 +28,14 @@ export default class HourView extends PureComponent {
     const startHour = ampm ? 1 : 0;
     const endHour = ampm ? 12 : 23;
 
-    const isSelected = hour =>
-      currentHours === hour || (ampm && currentHours - 12 === hour);
+    const isSelected = (hour) => {
+      if (ampm && hour === 12) {
+        return currentHours === 12 || currentHours === 0;
+      }
+
+      return currentHours === hour || currentHours - 12 === hour;
+    };
+
 
     for (let hour = startHour; hour <= endHour; hour += 1) {
       let label = hour.toString();
