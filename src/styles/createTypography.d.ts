@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Palette } from './createPalette';
-import { DeepPartial } from './index'
+import { DeepPartial } from 'index'
 
 export type TextStyle =
   | 'display1'
