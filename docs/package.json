@@ -16,7 +16,7 @@
     "react-dom": "^16.2.0",
     "react-jss": "^8.1.0",
     "react-markdown": "^2.5.1",
-    "react-scripts": "1.0.17"
+    "react-scripts": "^1.0.17"
   },
   "devDependencies": {
     "cross-env": "^5.1.0",
