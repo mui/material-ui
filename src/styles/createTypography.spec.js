@@ -34,7 +34,7 @@ describe('createTypography', () => {
     const typography = createTypography(palette, { htmlFontSize: 10 });
     assert.strictEqual(typography.display4.fontSize, '11.2rem');
   });
-  
+
   it('should create a typography with custom display4', () => {
     const customFontSize = '18px';
     const typography = createTypography(palette, { display4: { fontSize: customFontSize } });
