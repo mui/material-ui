@@ -142,5 +142,5 @@ This could be used like:
 ```js
 import createMyTheme from './styles/createMyTheme'
 
-const theme = createMyTheme({breakpoint: 'md'})
+const theme = createMyTheme({appDrawer: {breakpoint: 'md'}})
 ```
