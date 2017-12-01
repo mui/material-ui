@@ -16,12 +16,12 @@ describe('<Table />', () => {
 
   it('should render a table', () => {
     const wrapper = shallow(<Table />);
-    assert.strictEqual(wrapper.name(), 'table');
+    assert.strictEqual(wrapper.childAt(0).name(), 'table');
   });
 
   it('should render a div', () => {
     const wrapper = shallow(<Table component="div" />);
-    assert.strictEqual(wrapper.name(), 'div');
+    assert.strictEqual(wrapper.childAt(0).name(), 'div');
   });
 
   it('should spread custom props on the root node', () => {
@@ -36,13 +36,19 @@ describe('<Table />', () => {
   it('should render with the user and root classes', () => {
     const wrapper = shallow(<Table className="woofTable" />);
     assert.strictEqual(wrapper.hasClass('woofTable'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.wrapper), true);
   });
 
   it('should render children', () => {
     const children = <tbody className="test" />;
     const wrapper = shallow(<Table>{children}</Table>);
-    assert.strictEqual(wrapper.childAt(0).equals(children), true);
+    assert.strictEqual(
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .equals(children),
+      true,
+    );
   });
 
   it('should define table in the child context', () => {

@@ -7,12 +7,15 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = (theme: Object) => ({
-  root: {
+  table: {
     fontFamily: theme.typography.fontFamily,
     width: '100%',
     borderCollapse: 'collapse',
     borderSpacing: 0,
-    overflow: 'hidden',
+  },
+  wrapper: {
+    width: '100%',
+    overflowX: 'auto',
   },
 });
 
@@ -68,12 +71,12 @@ class Table extends React.Component<ProvidedProps & Props> {
       component: ComponentProp,
       ...other
     } = this.props;
-    const className = classNames(classes.root, classNameProp);
+    const divWrapper = classNames(classes.wrapper, classNameProp);
 
     return (
-      <ComponentProp className={className} {...other}>
-        {children}
-      </ComponentProp>
+      <div className={divWrapper} {...other}>
+        <ComponentProp className={classes.table}>{children}</ComponentProp>
+      </div>
     );
   }
 }
