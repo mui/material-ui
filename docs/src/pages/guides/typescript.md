@@ -106,5 +106,41 @@ declare module 'material-ui/styles/createMuiTheme' {
       breakpoint: Breakpoint
     }
   }
+  // allow configuration using `createMuiTheme`
+  interface ThemeOptions {
+    appDrawer?: {
+      width?: React.CSSProperties['width']
+      breakpoint?: Breakpoint
+    }
+  }
 }
+```
+
+And a custom theme factory with additional defaulted options:
+
+```js
+import {default as createMuiTheme, ThemeOptions} from 'material-ui/styles/createMuiTheme'
+import { merge } from 'lodash'
+
+export default function createMyTheme(options: ThemeOptions) {
+  return createMuiTheme(
+    merge(
+      {
+        appDrawer: {
+          width: 225,
+          breakpoint: 'lg',
+        },
+      },
+      options,
+    ),
+  )
+}
+```
+
+This could be used like:
+
+```js
+import createMyTheme from './styles/createMyTheme'
+
+const theme = createMyTheme({appDrawer: {breakpoint: 'md'}})
 ```
