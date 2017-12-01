@@ -156,10 +156,7 @@ const styles = theme => ({
 });
 
 const Code = (props) => {
-  const {
-    classes, className, text, ...other
-  } = props;
-
+  const { classes, className, text } = props;
   const hightlightedCode = prism.highlight(text, prism.languages.jsx);
 
   return (

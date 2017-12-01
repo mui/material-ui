@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import jMoment from 'moment-jalaali';
 import { Typography } from 'material-ui';
@@ -19,52 +19,54 @@ export default class BasicUsage extends Component {
   render() {
     const { selectedDate } = this.state;
 
-    return [
-      <div key="persian_day" className="picker">
-        <Typography type="headline" align="center" gutterBottom>
-          Date picker
-        </Typography>
+    return (
+      <Fragment>
+        <div className="picker">
+          <Typography type="headline" align="center" gutterBottom>
+            Date picker
+          </Typography>
 
-        <DatePicker
-          okLabel="تأیید"
-          cancelLabel="لغو"
-          labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD')}
-          value={selectedDate}
-          onChange={this.handleDateChange}
-          animateYearScrolling={false}
-          utils={jalaliUtils}
-        />
-      </div>,
+          <DatePicker
+            okLabel="تأیید"
+            cancelLabel="لغو"
+            labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD')}
+            value={selectedDate}
+            onChange={this.handleDateChange}
+            animateYearScrolling={false}
+            utils={jalaliUtils}
+          />
+        </div>
 
-      <div key="persian_time" className="picker">
-        <Typography type="headline" align="center" gutterBottom>
-          Time picker
-        </Typography>
+        <div className="picker">
+          <Typography type="headline" align="center" gutterBottom>
+            Time picker
+          </Typography>
 
-        <TimePicker
-          okLabel="تأیید"
-          cancelLabel="لغو"
-          labelFunc={date => jMoment(date).format('hh:mm A')}
-          value={selectedDate}
-          onChange={this.handleDateChange}
-          utils={jalaliUtils}
-        />
-      </div>,
+          <TimePicker
+            okLabel="تأیید"
+            cancelLabel="لغو"
+            labelFunc={date => jMoment(date).format('hh:mm A')}
+            value={selectedDate}
+            onChange={this.handleDateChange}
+            utils={jalaliUtils}
+          />
+        </div>
 
-      <div key="persian_datetime" className="picker">
-        <Typography type="headline" align="center" gutterBottom>
-          DateTime picker
-        </Typography>
+        <div className="picker">
+          <Typography type="headline" align="center" gutterBottom>
+            DateTime picker
+          </Typography>
 
-        <DateTimePicker
-          okLabel="تأیید"
-          cancelLabel="لغو"
-          labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
-          value={selectedDate}
-          onChange={this.handleDateChange}
-          utils={jalaliUtils}
-        />
-      </div>,
-    ];
+          <DateTimePicker
+            okLabel="تأیید"
+            cancelLabel="لغو"
+            labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
+            value={selectedDate}
+            onChange={this.handleDateChange}
+            utils={jalaliUtils}
+          />
+        </div>
+      </Fragment>
+    );
   }
 }
