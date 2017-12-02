@@ -13,10 +13,9 @@ export interface Breakpoints {
 }
 
 export type BreakpointsOptions = Partial<{
-  values: BreakpointValues;
   unit: string;
   step: number;
-} & Breakpoints>
+} & Breakpoints>;
 
 export default function createBreakpoints(
   options: BreakpointsOptions
