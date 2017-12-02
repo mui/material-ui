@@ -11,6 +11,7 @@ import {
 import Button from '../../src/Button/Button';
 import { StyleRulesCallback } from '../../src/styles/withStyles';
 import { Contrast } from '../../src/index';
+import {WithTheme} from "../../src/styles/withTheme";
 
 // Shared types for examples
 type ComponentClassNames = 'root';
@@ -120,18 +121,19 @@ function OverridesTheme() {
 }
 
 // withTheme
-const ThemedComponent: React.SFC<{ theme: Theme }> = ({ theme }) => (
+const ThemedComponent: React.SFC<WithTheme> = ({ theme }) => (
   <div>{theme.spacing.unit}</div>
 );
 const ComponentWithTheme = withTheme()(ThemedComponent);
 
 // withStyles + withTheme
-interface AllTheProps {
-  theme: Theme;
+interface AllTheProps extends WithTheme {
   classes: { root: string };
 }
 
-const AllTheComposition = withTheme()(withStyles(styles)(({ theme, classes }) => (
+const AllTheComposition = withTheme()(
+  withStyles(styles)(
+    ({ theme, classes }: AllTheProps) => (
   <div className={classes.root}>{theme.palette.text.primary}</div>
 )));
 
