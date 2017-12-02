@@ -11,6 +11,7 @@ import {
 import Button from '../../src/Button/Button';
 import { StyleRulesCallback } from '../../src/styles/withStyles';
 import { Contrast } from '../../src/index';
+import {WithTheme} from "../../src/styles/withTheme";
 
 // Shared types for examples
 type ComponentClassNames = 'root';
@@ -120,20 +121,24 @@ function OverridesTheme() {
 }
 
 // withTheme
-const ThemedComponent: React.SFC<{ theme: Theme }> = ({ theme }) => (
-  <div>{theme.spacing.unit}</div>
+const ComponentWithTheme = withTheme()(
+  ({ theme }) => (
+    <div>{theme.spacing.unit}</div>
+  )
 );
-const ComponentWithTheme = withTheme()(ThemedComponent);
+
+<ComponentWithTheme />
 
 // withStyles + withTheme
-interface AllTheProps {
-  theme: Theme;
-  classes: { root: string };
-}
+type AllTheProps = WithTheme & WithStyles<'root'>
 
-const AllTheComposition = withTheme()(withStyles(styles)(({ theme, classes }) => (
+const AllTheComposition = withTheme()(
+  withStyles(styles)(
+    ({ theme, classes }: AllTheProps) => (
   <div className={classes.root}>{theme.palette.text.primary}</div>
 )));
+
+<AllTheComposition />
 
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
