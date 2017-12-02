@@ -47,7 +47,7 @@
     "start": "cross-env NODE_ENV=development rollup --config --watch",
     "build:copy": "node copy.js",
     "build:bundle": "cross-env NODE_ENV=production rollup --config",
-    "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
+    "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build/src",
     "build": "npm run build:bundle && npm run build:es2015 && npm run build:copy",
     "prepublish": "npm run test && npm run lint && npm run build",
     "webpack": "webpack",
