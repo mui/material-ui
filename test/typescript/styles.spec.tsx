@@ -94,6 +94,15 @@ const customTheme = createMuiTheme({
   },
 });
 
+const customThemeTypographyPartial = createMuiTheme({
+  typography: {
+    display4: {
+      fontSize: '18px'
+    },
+    fontSize: 18
+  },
+});
+
 function OverridesTheme() {
   return (
     <MuiThemeProvider theme={theme}>

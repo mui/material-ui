@@ -48,6 +48,11 @@ type Diff<T extends string, U extends string> = (
 /** @internal */
 export type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
 
+/** @internal */
+export type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>;
+}
+
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
   type Color = 'inherit' | 'primary' | 'accent' | 'default';

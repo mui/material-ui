@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Palette } from './createPalette';
+import { DeepPartial } from '..'
 
 export type TextStyle =
   | 'display1'
@@ -36,7 +37,7 @@ export interface TypographyStyle {
 
 export type Typography = { [type in Style]: TypographyStyle } & FontStyle;
 
-export type TypographyOptions = Partial<FontStyle> & Partial<Typography>;
+export type TypographyOptions = DeepPartial<Typography>;
 
 export default function createTypography(
   palette: Palette,
