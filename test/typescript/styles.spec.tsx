@@ -72,6 +72,35 @@ const AnotherStyledSFC = withStyles({
 
 // Overriding styles
 const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    common: {
+      white: '#ffffff',
+    },
+  },
+  typography: {
+    display4: {
+      fontSize: 24,
+    },
+    fontSize: 18,
+  },
+  mixins: {
+    toolbar: {
+      backgroundColor: 'red',
+    }
+  },
+  breakpoints: {
+    step: 3,
+  },
+  transitions: {
+    duration: {
+      short: 50,
+    },
+  },
+  spacing: {},
+  zIndex: {
+    appBar: 42,
+  },
   overrides: {
     MuiButton: {
       // Name of the styleSheet
@@ -86,29 +115,6 @@ const theme = createMuiTheme({
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
       },
     },
-  },
-});
-
-const customTheme = createMuiTheme({
-  palette: {
-    type: 'dark' as Contrast,
-  },
-});
-
-const customThemePaletteColorPartial = createMuiTheme({
-  palette: {
-    common: {
-      white: '#ffffff'
-    },
-  },
-});
-
-const customThemeTypographyPartial = createMuiTheme({
-  typography: {
-    display4: {
-      fontSize: '18px'
-    },
-    fontSize: 18
   },
 });
 

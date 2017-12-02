@@ -5,10 +5,15 @@ import { StyleRules } from '../styles';
 export interface Mixins {
   gutters: (styles: React.CSSProperties) => React.CSSProperties;
   toolbar: React.CSSProperties;
+  // ... use interface declaration merging to add custom mixins
 }
 
-export default function createMixins<T = {}>(
+export interface MixinsOptions extends Partial<Mixins> {
+  // ... use interface declaration merging to add custom mixin options
+}
+
+export default function createMixins(
   breakpoints: Breakpoints,
   spacing: Spacing,
-  mixins: T
-): Mixins & T;
+  mixins: MixinsOptions,
+): Mixins;
