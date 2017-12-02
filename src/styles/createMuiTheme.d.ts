@@ -7,12 +7,13 @@ import { Transitions } from './transitions';
 import { Typography, TypographyOptions } from './createTypography';
 import { ZIndex } from './zIndex';
 import { Overrides } from './overrides'
+import { DeepPartial } from '..'
 
 export type Direction = 'ltr' | 'rtl';
 
 export interface ThemeOptions {
   direction?: Direction;
-  palette?: Partial<Palette>;
+  palette?: DeepPartial<Palette>;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   mixins?: Partial<Mixins>;
   breakpoints?: Partial<BreakpointsOptions> & Partial<Breakpoints>;
