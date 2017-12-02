@@ -66,7 +66,7 @@ function lastCommitIsHead() {
 }
 
 /**
- * Add new version number to versions.js
+ * Add new version number to versions.js, commit it, and tag the release
  * The checks for HEAD can be removed once HEAD builds are automated, as the first entry will always be HEAD.
  */
 function addMenuVersion(version) {
@@ -85,8 +85,10 @@ function addMenuVersion(version) {
     // Write the file
     fs.writeFileSync(versionsFile, JSON.stringify(versions, null, 2));
 
-  // Commit it (on master branch)
-    execho('git add ' + versionsFile + ' && git commit -m ' + '\'[Docs] Add ' + version + ' to versions.json\'');
+  // Commit it (on master branch & tag the release)
+    execho('git add ' + versionsFile);
+    execho('git commit -m ' + '\'[Docs] Add ' + version + ' to versions.json\'');
+    execho('git tag ' + version);
   }
 }
 
