@@ -60,6 +60,8 @@ export interface Palette {
   getContrastText: (color: string) => string;
 }
 
+export type PaletteOptions = DeepPartial<Palette>;
+
 export default function createPalette(
-  palette: DeepPartial<Palette>
+  palette: PaletteOptions
 ): Palette;
