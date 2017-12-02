@@ -121,21 +121,24 @@ function OverridesTheme() {
 }
 
 // withTheme
-const ThemedComponent: React.SFC<WithTheme> = ({ theme }) => (
-  <div>{theme.spacing.unit}</div>
+const ComponentWithTheme = withTheme()(
+  ({ theme }) => (
+    <div>{theme.spacing.unit}</div>
+  )
 );
-const ComponentWithTheme = withTheme()(ThemedComponent);
+
+<ComponentWithTheme />
 
 // withStyles + withTheme
-interface AllTheProps extends WithTheme {
-  classes: { root: string };
-}
+type AllTheProps = WithTheme & WithStyles<'root'>
 
 const AllTheComposition = withTheme()(
   withStyles(styles)(
     ({ theme, classes }: AllTheProps) => (
   <div className={classes.root}>{theme.palette.text.primary}</div>
 )));
+
+<AllTheComposition />
 
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
