@@ -369,7 +369,7 @@ class Menu extends Component {
       default:
         if (key && key.length === 1) {
           const hotKeys = this.hotKeyHolder.append(key);
-          if (this.setFocusIndexStartsWith(event, hotKeys)) {
+          if (this.setFocusIndexStartsWith(event, hotKeys, filteredChildren)) {
             event.preventDefault();
           }
         }
@@ -377,9 +377,9 @@ class Menu extends Component {
     this.props.onKeyDown(event);
   };
 
-  setFocusIndexStartsWith(event, keys) {
+  setFocusIndexStartsWith(event, keys, filteredChildren) {
     let foundIndex = -1;
-    React.Children.forEach(this.props.children, (child, index) => {
+    React.Children.forEach(filteredChildren, (child, index) => {
       if (foundIndex >= 0) {
         return;
       }
