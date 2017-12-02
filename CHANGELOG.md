@@ -1,5 +1,42 @@
 ## HEAD
 
+
+## 0.20.0
+###### _Dec 2, 2017_
+
+As usual, we are focusing on bug fixes but this time, we introduce an exceptional breaking change, 
+consistent with the removal of `onTouchTap`for `onClick in v0.19.0 (#7624).
+
+Big thanks to the 10 contributors who made this release possible.
+
+##### Breaking Change
+
+- [core] Remove `TouchTap` in favor of `Click` throughout library and docs (#9058) @m2mathew
+
+You need to globally replace any references to `TouchTap` property callbacks with `Click`.
+
+#### Component Fixes / Enhancements
+
+- [AutoComplete] Fix undef dataSource.value (#8864) @michalmikolajczyk
+- [BottomNavigation] Allow `null` child (#8925) @MrSaints
+- [Menu] Use filtered children on setFocusIndexStartsWith (#9316) @alancasagrande
+- [Menu] Fix condition where item is removed from menu before it is used in focus calculation. (#8769) @zentron
+- [Slider] Fix Updating min and max props (#9261) @thomaskempe
+- [Slider] Fix slider being disabled onKeydown error (#9001) @henryj
+- [Stepper] Allow invalid children (#8634) @svengau
+
+#### Docs
+
+- [docs] Add FlyWeekend in showcase (#8812) @tjl9
+- [docs] Add a web app to the showcase (#8767) @maheshj567
+- [docs] Update Home h2 text to match v1 (#9060) @m2mathew
+
+#### Core
+
+- [npm] Upgrade 'inline-style-prefixer' to 3.0.8 (#9320) @m2mathew
+- [RenderToLayer] Remove touchstart events, to prevent double call to onRequestClose (#9118) @m2mathew
+
+
 ## 0.19.4
 ###### _Oct 8, 2017_
 
@@ -18,6 +55,7 @@ Big thanks to the 2 contributors who made this release possible.
 
 - [core] Upgrade dependencies (#8578) @oliviertassinari
 
+
 ## 0.19.3
 ###### _Oct 1, 2017_
 
@@ -34,6 +72,7 @@ Big thanks to the 4 contributors who made this release possible.
 
 - [docs] Correct typo in ListItem docs (#8301) @apearson
 
+
 ## 0.19.2
 ###### _Sep 18, 2017_
 
@@ -49,6 +88,7 @@ Big thanks to the 4 contributors who made this release possible.
 - [docs] Add AlarmDJ.com in showcase (#8220) @ArnonEilat
 - [docs] Add carbon (#8242) @oliviertassinari
 - [docs] Add analytics (#8248) @oliviertassinari
+
 
 ## 0.19.1
 ###### _Sep 2, 2017_
@@ -71,6 +111,7 @@ Big thanks to the 7 contributors who made this release possible.
 
 N.A
 
+
 ## 0.19.0
 ###### _Aug 15, 2017_
 
@@ -86,7 +127,7 @@ This change is paving the way toward supporting the upcoming react@16 release a.
 The `react-tap-event-plugin` dependency was first introduced 3 years ago in order to remove
 the click delay on mobile devices.
 Mobiles devices' browsers have improved since then, it's no longer required.
-It's time to remove that dependency as we have done it a year ago on the `v1-beta` branch.
+It's time to remove this dependency, as we did it a year ago on the `v1-beta` branch.
 You need to replace the `onTouchTap` property callbacks with `onClick`.
 
 ```diff
@@ -118,6 +159,7 @@ Thanks @lostpebble for your hard work!
 
 - [core] Add react^16.0.0-beta.5 in peer dependencies @oliviertassinari (8032d51c3faf4ddc5bcf814c9458fbc227a083e2)
 
+
 ## 0.18.7
 ###### _Jul 23, 2017_
 
@@ -144,6 +186,7 @@ As always, we are focusing on bug fixes.
 
 N.A
 
+
 ## 0.18.6
 ###### _Jul 4, 2017_
 
@@ -166,6 +209,7 @@ As always, we are focusing on bug fixes.
 
 N.A
 
+
 ## 0.18.5
 ###### _Jun 28, 2017_
 
@@ -181,6 +225,7 @@ N.A
 ##### Core
 
 - [tests] correct values expected by autoprefixer (#7267) @djbuckley
+
 
 ## 0.18.4
 ###### _Jun 25, 2017_
@@ -215,6 +260,7 @@ This release keeps focusing on bug fixes.
 
 N.A
 
+
 ## 0.18.3
 ###### _Jun 8, 2017_
 
@@ -222,6 +268,7 @@ N.A
 
 - [DatePicker] Revert #7056 (3d841bd1443c375c32d7ff696011dc9f131d4d13) @oliviertassinari
 - [TextField] Fix disabled input color in Safari (#7065) @amannn
+
 
 ## 0.18.2
 ###### _Jun 7, 2017_
@@ -258,6 +305,7 @@ This release keeps focusing on bug fixes.
 
 - [core] Remove ReactFragment dependency (#6910) @made-aryadinata
 
+
 ## 0.18.1
 ###### _May 13, 2017_
 
@@ -278,6 +326,7 @@ This release keeps focusing on bug fixes.
 
 - [core] Fix breaking change "recompose" version dependency (#6847) @eduardomb
 - React 16 compatibility (#6753) @made-aryadinata
+
 
 ## 0.18.0
 ###### _Apr 30, 2017_
@@ -308,6 +357,7 @@ This PR is introducing a breaking change by removing the ambiguity between defau
 - [docs] Upgrade react-docgen (#6635) @mbrookes
 - [Slider] Add a logarithmic scale example (#6672) @idoco
 
+
 ## 0.17.4
 ###### _Apr 14, 2017_
 
@@ -325,6 +375,7 @@ Thanks @rsolomon for taking care of it!
 
 - [react] Use React 15.5 and prop-types lib (#6577) @rsolomon
 
+
 ## 0.17.3
 ###### _Apr 10, 2017_
 
@@ -332,6 +383,7 @@ Thanks @rsolomon for taking care of it!
 
 - [AutoComplete] Fix overriding TextField event props (#6561) @leMaik
 - [DropDownMenu] Fix the position regression (8829a9d78abedca5de80617448cb99968650c30e) @oliviertassinari
+
 
 ## 0.17.2
 ###### _Apr 9, 2017_
@@ -372,6 +424,7 @@ The latest release of `inline-style-prefixer` is introducing **significant** [pe
 ##### Core
 
 - [npm] Upgrade dependencies (#6343) @oliviertassinari
+
 
 ## 0.17.1
 ###### _Mar 12, 2017_
@@ -457,6 +510,7 @@ We have upgraded the peer dependency of Material-UI. You gonna need:
 - [eslint] Fix errors & warnings & deprecations (#6030) @ArcanisCz
 - [colorManipulator] Add warning to decomposeColor (#5939) @gyfis
 
+
 ## 0.16.7
 ###### _Jan 15, 2017_
 
@@ -496,6 +550,7 @@ Big thanks to the 20 contributors who made this release possible.
 ##### Core
 
 - [test] Use simpler assert API (e017d365f45b07933e8b896f95d6d1455b666516) @oliviertassinari
+
 
 ## 0.16.6
 ###### _Dec 25, 2016_
@@ -540,6 +595,7 @@ You can preview a **very early** version of the `next` branch following [that li
 
 - [core] Add support for Webpack 2/Rollup tree shaking in `svg-icons` sub module (#5774)
 
+
 ## 0.16.5
 ###### _Dec 9, 2016_
 
@@ -579,6 +635,7 @@ This is another release improving the stability of `v0.16.x`.
 
 - [core] Apply 3 different fixes (#5695)
 
+
 ## 0.16.4
 ###### _Nov 17, 2016_
 
@@ -600,6 +657,7 @@ This release is intended to solve an [issue](https://github.com/callemall/materi
 ##### Docs
 
 - [docs] Upgrade React to v15.4.0 (#5575)
+
 
 ## 0.16.2
 ###### _Nov 13, 2016_
@@ -716,6 +774,7 @@ For more details, you can have a look a the [next milestone](https://github.com/
 - [docs] Add react-dnd (7e1d9d3d1d61a3ee8e6dbf57cd2261754a3285f3)
 - [docs] Add Casalova to the showcase (7c0df3be32813ddb003cd47b6529431f3cd41679)
 
+
 ## 0.16.0-rc2
 ###### _Sep 24, 2016_
 
@@ -755,6 +814,7 @@ For more details, you can have a look a the [next milestone](https://github.com/
 - [core] Add babel-runtime to the release (#5221)
 - [core] Use the ^15.0.0 as a dependency for React (#5207)
 - [npm] Upgrade the dependencies (#5161)
+
 
 ## 0.16.0-rc1
 ###### _Sep 8, 2016_
@@ -815,6 +875,7 @@ Examples:
 - [Slider] Clean up the implementation (#5036)
 - [test] Reduce the noise when running the test suite (ea2538e)
 
+
 ## 0.15.4
 ###### _Aug 11, 2016_
 
@@ -828,6 +889,7 @@ Examples:
 
 ##### Docs
 - [js] Explain the ECMAScript `stage-1` dependencies of the examples (#4877)
+
 
 ## 0.15.3
 ###### _Jul 31, 2016_
@@ -870,6 +932,7 @@ Upgrade to React v15.2.1 if you are affected. (#4729)
 - [ROADMAP] Update to what the core team is working on (#4829)
 - [docs] Replaces images on Card page with hosted images (#4748)
 - [showcase] Add https://www.spouti.com (#4806)
+
 
 ## 0.15.2
 ###### _Jul 7, 2016_
@@ -923,6 +986,7 @@ Thanks @vizath, @hhaida, @nathanmarks and @aahan96 for their effort.
 - [SvgIcon] Remove unused style assignment (#4486)
 - [TextField] Keep spreading properties when children is set (#4478)
 - [TextField] Fix multi-line overflow (#4634)
+
 
 ## 0.15.1
 ###### _Jun 16, 2016_
@@ -997,6 +1061,7 @@ Thanks @vizath, @hhaida, @nathanmarks and @aahan96 for their effort.
 ##### Deperecations
 - [SelectField] Deprecate selectFieldRoot prop and replace with menuStyle (#4394)
 
+
 ## 0.15.0
 ###### _May 5, 2016_
 
@@ -1032,6 +1097,7 @@ Please read through the alpha and beta releases of 0.15.0 too as their changes a
 ##### Deprecations
 - [styleResizable] This mixin has been deprecated in favor of `withWidth` HOC (#4126)
 
+
 ## 0.15.0-beta.2
 ###### _Apr 21, 2016_
 
@@ -1055,6 +1121,7 @@ Please read through the alpha and beta releases of 0.15.0 too as their changes a
 
 ##### Deprecations
 - [List] Deprecate the `valueLink` property (#3936)
+
 
 ## 0.15.0-beta.1
 ###### _Apr 13, 2016_
@@ -1173,6 +1240,7 @@ Although we discourage you to use this library like that.
 - [TimePicker] Fix label for 12AM as per material spec (#3781)
 - [TimePicker] ok/cancel labels in time pickers should be of PropTypes.node (#3869)
 
+
 ## 0.15.0-alpha.2
 ###### _Mar 18, 2016_
 
@@ -1270,6 +1338,7 @@ import MUI from 'material-ui'; // no changes here :D
 
 ##### Deprecations
 - [DatePicker] Deprecate `wordings` with `cancelLabel` and `okLabel` (#3412)
+
 
 ## 0.15.0-alpha.1
 ###### _Feb 27, 2016_
@@ -1397,6 +1466,7 @@ from the code with the 0.16.0 release.
 - [Core] Deprecated `ThemeDecorator` in favor of `MuiThemeProvider` (#3267)
 - [Core] Deprecated `theme-manager` and `raw-themes` (#3267)
 
+
 ## 0.14.4
 ###### _Feb 02, 2016_
 
@@ -1417,6 +1487,7 @@ from the code with the 0.16.0 release.
 - [Buttons] Fixed the vertical alignment issue (#3100)
 - [RaisedButton] Fix the default value of `labelPosition` (#3115)
 - [FlatButton] Fix the default value of `labelPosition` (#3115)
+
 
 ## 0.14.3
 ###### _Jan 26, 2016_
@@ -1473,6 +1544,7 @@ Unless you have used these implementation details in your code.
 ##### Deprecations
 - [DropDownIcon] Will be removed with `0.15.0` (#2994)
 
+
 ## 0.14.2
 ###### _Jan 08, 2016_
 
@@ -1494,6 +1566,7 @@ Unless you have used these implementation details in your code.
 - [DatePicker] Update slide direction (#2791)
 - [AutoComplete] Add 2 extra filters for text matching (#2755)
 - [TableRow] Fix row height in IE (#2812)
+
 
 ## 0.14.1
 ###### _Jan 05, 2016_
@@ -1523,6 +1596,7 @@ Unless you have used these implementation details in your code.
 ##### Deprecations
 - [Dialog] Deprecate width (#2753)
 
+
 ## 0.14.0
 ###### _Dec 25, 2015_
 
@@ -1549,6 +1623,7 @@ Have a look at them as well.
 
 ##### Deprecations
 - [DropDownMenu] [SelectField] Deprecated `menuItems`, these components are now composable. (#2565)
+
 
 ## 0.14.0-rc2
 ###### _Dec 15, 2015_
@@ -1632,6 +1707,7 @@ Have a look at them as well.
 - [Dropdown][SelectField] change value PropType to React.PropTypes.any (#2352)
 - [CardActions] prevent children styles from being overridden (#2361)
 
+
 ## 0.13.4
 ###### _Nov 24, 2015_
 
@@ -1649,6 +1725,7 @@ Have a look at them as well.
 - [TextField] Fixed floating label element not allowing focus (#2228)
 - [SelectField] onFocus and onBlur handlers passed to underlying TextField component (#2102)
 
+
 ## 0.13.3
 ###### _Nov 17, 2015_
 
@@ -1665,6 +1742,7 @@ Have a look at them as well.
 - [Dialog] fix page scrolling behind dialog after resizing (#1946)
 - [DatePicker] fix calendar height (#2141)
 - [TimePicker] allow to set time to null (#2108)
+
 
 ## 0.13.2
 ###### _Nov 9, 2015_
@@ -1689,6 +1767,7 @@ Have a look at them as well.
 - Table clickAway triggers onRowSelection (#2054)
 - Theme color fixes for Slider and Toggle (#2016)
 
+
 ## 0.13.1
 ###### _Oct 29, 2015_
 
@@ -1707,6 +1786,7 @@ Have a look at them as well.
 - [TimePicker] added style and textFieldStyle props (#1949)
 - [Card] text color is now pulled from theme (#1995)
 
+
 ## 0.13.0
 ###### _Oct 21, 2015_
 
@@ -1717,6 +1797,7 @@ Have a look at them as well.
 - FloatingActionButton now has iconStyle prop (#1575)
 - Card title and subtitle props can be any node (#1950)
 
+
 ## 0.12.5
 ###### _Oct 21, 2015_
 
@@ -1726,6 +1807,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - DatePicker performance has been improved (#1905)
 - Docs code now follows ESLint rules more strictly (#1778)
 - Removed duplicate keys in component definitions (#1933)
+
 
 ## 0.12.4
 ###### _Oct 19, 2015_
@@ -1740,12 +1822,14 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - Full RTL support included (#1674)
 - react-draggable dependency removed for Slider (#1825)
 
+
 ## 0.12.3
 ###### _Oct 7, 2015_
 
 ##### Component Fixes / Enhancements
 - Quick-fix version until react 0.14 support is somewhat stable
   - Changed react dependency to ~0.13 in package.json (#1836)
+
 
 ## 0.12.2
 ###### _Oct 6, 2015_
@@ -1763,6 +1847,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - FlatButton now has a backgroundColor prop (#1561)
 - Fixed DropdownMenu buggy value prop check (#1768)
 
+
 ## 0.12.1
 ###### _Sep 28, 2015_
 
@@ -1776,6 +1861,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
   - for raw themes (#1742)
 - Remove hard-coded color values from theme-manager
   - Use consistent values from raw theme (#1746)
+
 
 ## 0.12.0
 ###### _Sep 25, 2015_
@@ -1799,6 +1885,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
   - Fixed a bug in dialog where a faulty check caused an error in console
   - Text field ipad scrolling in dialog
 
+
 ## 0.11.1
 ###### _Sep 15, 2015_
 
@@ -1806,6 +1893,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - DatePicker - Updated to new design specs (#1266)
 - LeftNav - Fix sidebar position for browsers that don't support transform3d (#1269)
 - TextField - Added props to override underlineStyle when disabled (#1493)
+
 
 ## 0.11.0
 ###### _Aug 24, 2015_
@@ -1861,11 +1949,13 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - Tooltip - Probably center tooltips when tooltip text changes (#1205)
 - Theme - Added `setContentFontFamily` (#1405)
 
+
 ## 0.10.4
 ###### _Aug 8, 2015_
 
 ##### Component Fixes / Enhancements
 - TouchRipple - Fixed a bug that caused onClick to not fire on the first click (#1370)
+
 
 ## 0.10.3
 ###### _Aug 8, 2015_
@@ -1896,6 +1986,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - Tabs - Added contentContainerClassName prop (#1285)
 - TextField - Added underlineStyle prop (#1343)
 - TimePicker - Added pedantic prop (#1275, #1173)
+
 
 ## 0.10.2
 ###### _Jul 29, 2015_
@@ -1944,6 +2035,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - SvgIcon - Added code to remove some unnecessary renders on hover.
 - Toolbar - Fixed display glitch on Firefox (#839, #1248)
 
+
 ## 0.10.1
 ###### _Jul 13, 2015_
 
@@ -1961,6 +2053,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - Table - Added static width to checkbox columns (#1128)
 - Tabs - Added `inkBarStyle` prop (#1154)
 - TextField - `errorStyle` prop is now being properly merged (#1116)
+
 
 ## 0.10.0
 ###### _Jul 9, 2015_
@@ -2070,6 +2163,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
   - Fixed display glitch with DropDownIcons (#917, #904)
   - Styles are now being properly merged for `DropDownMenu`, `DropDownIcon`, `RaisedButton`, `FontIcon` (#965)
 
+
 ## 0.9.2
 ###### _Jun 20, 2015_
 
@@ -2104,6 +2198,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 ##### Theming
 - Theme spacing can now be overriden (#879)
 
+
 ## 0.9.1
 ###### _Jun 14, 2015_
 
@@ -2125,6 +2220,7 @@ Radio Button Group, Radio Button, Enhanced Switch Label, Text Field, Toggle, Che
 - TimePicker
   - Fixed a bug with the defaultTime setting (#822)
   - Fixed clock handles on Firefox (#825)
+
 
 ## 0.9.0
 ###### _Jun 9, 2015_
@@ -2159,6 +2255,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed style problem that caused text to jump on multi-line inputs
 - Theme (New)
   - This is a high order component that can be used to set your theme overrides (#797)
+
 
 ## 0.8.0
 ###### _May 24, 2015_
@@ -2206,6 +2303,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Linear and Circular Progress Indicators - NEW (#632)
 - TimePicker - NEW (#589)
 
+
 ## 0.7.5
 ###### _Apr. 27, 2015_
 
@@ -2218,6 +2316,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed `props is not defined` error when `onChange` is invoked (#556)
 - Floating Action Button
   - Fixed alignment bug on Chrome when using FAB as a link (#574)
+
 
 ## 0.7.4
 ###### _Apr. 21, 2015_
@@ -2246,6 +2345,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Switches
   - Fixed errors on disabled switches on mobile (#476)
 
+
 ## 0.7.3
 ###### _Apr. 1, 2015_
 
@@ -2260,6 +2360,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed anchor attribute name (#493)
 - Menu
   - Nested menus expand when hovered (#475)
+
 
 ## 0.7.2
 ###### _Mar. 25, 2015_
@@ -2295,6 +2396,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Tabs
   - Added `initialSelectedIndex` prop (#389)
 
+
 ## 0.7.1
 ###### _Mar. 4, 2015_
 
@@ -2325,6 +2427,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Text Field
   - Added onEnterKeyDown prop. (#328)
   - Fixed a bug with setting multiLine values (#356, #357)
+
 
 ## 0.7.0
 ###### _Feb. 13, 2015_
@@ -2368,12 +2471,14 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed a bug with using valueLink with a multiline Text Field (#311)
   - Fixed a bug with multiline defaultValues in a multiline Text Field (#296)
 
+
 ## 0.6.1
 ###### _Jan. 26, 2015_
 
 ##### Fixes
 - Checkbox & Toggle
   - Fixed a bug that caused checkboxes and toggles to not uncheck.
+
 
 ## 0.6.0
 ###### _Jan. 26, 2015_
@@ -2423,6 +2528,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Toolbar
   - Fixed FlatButton positioning inside toolbar (#224)
 
+
 ## 0.5.0
 ###### _Jan. 3, 2015_
 
@@ -2439,6 +2545,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Changed slider cursor (#187)
 - Snackbar **(New)**
   - Added a snackbar component.
+
 
 ## 0.4.1
 ###### _Dec. 25, 2014_
@@ -2472,6 +2579,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Slider
   - Trigger onChange when clicking on slider (#153)
 
+
 ## 0.4.0
 ###### _Dec. 15, 2014_
 
@@ -2498,6 +2606,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Toggle
   - Updated styles to match material design specs
 
+
 ## 0.3.3
 ###### _Dec. 7, 2014_
 
@@ -2517,6 +2626,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Toggle
   - Fixed alignment issue (#118)
   - The inital state of the toggle can now be set with the toggled prop.
+
 
 ## 0.3.2
 ###### _Nov. 30, 2014_
@@ -2542,6 +2652,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed radio button label styles. (#94)
 - Ripple
   - Account for page scrolling on ripple animation. (#93)
+
 
 ## 0.3.1
 ###### _Nov. 28, 2014_
@@ -2574,6 +2685,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 
 ##### Utils
 - Added KeyCodes constants
+
 
 ## 0.3.0
 ###### _Nov. 17, 2014_
@@ -2622,6 +2734,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Removed unnecessary style resets
 - Removed tab highlight color on all elements
 
+
 ## 0.2.2
 ###### _Nov. 11, 2014_
 - Changed project structure to be less confusing. Material-UI components/styles live in the src directory.
@@ -2633,10 +2746,12 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 -  Added hover transitions to menus
 - Improved ripple animation on buttons
 
+
 ## 0.2.1
 ###### _Nov. 8, 2014_
 - Fixed icon font reference. We're now including it as part of the project
   instead of an npm dependency.
+
 
 ## 0.2.0
 ###### _Nov. 7, 2014_
@@ -2655,6 +2770,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Removed isInitiallyOpen prop
 - Input
   - onLineBreak event now passes back event (e) on callback
+
 
 ## 0.1.29
 ###### _Nov. 5, 2014_
