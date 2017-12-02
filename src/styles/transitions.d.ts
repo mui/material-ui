@@ -1,3 +1,5 @@
+import { DeepPartial } from '../index';
+
 export interface Easing {
   easeInOut: string;
   easeOut: string;
@@ -28,5 +30,7 @@ export interface Transitions {
   ): string;
   getAutoHeightDuration(height: number): number;
 }
+
+export type TransitionsOptions = DeepPartial<Transitions>;
 
 export default Transitions;

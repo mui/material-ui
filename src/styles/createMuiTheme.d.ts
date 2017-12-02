@@ -3,7 +3,7 @@ import { Mixins } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
 import { Spacing } from './spacing';
-import { Transitions } from './transitions';
+import { Transitions, TransitionsOptions } from './transitions';
 import { Typography, TypographyOptions } from './createTypography';
 import { ZIndex } from './zIndex';
 import { Overrides } from './overrides'
@@ -17,7 +17,7 @@ export interface ThemeOptions {
   mixins?: Partial<Mixins>;
   breakpoints?: BreakpointsOptions;
   shadows?: Shadows;
-  transitions?: Partial<Transitions>;
+  transitions?: TransitionsOptions;
   spacing?: Partial<Spacing>;
   zIndex?: Partial<ZIndex>;
   overrides?: Overrides;
