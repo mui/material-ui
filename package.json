@@ -148,6 +148,7 @@
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.6",
+    "lz-string": "^1.4.4",
     "marked": "^0.3.6",
     "mocha": "^4.0.1",
     "next": "^4.1.4",
