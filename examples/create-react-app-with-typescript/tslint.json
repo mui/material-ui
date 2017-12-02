@@ -28,12 +28,13 @@
             true,
             {
               "order":[
-              "public-before-private",
-              "static-before-instance",
-              "variables-before-functions"
+                "public-before-private",
+                "static-before-instance",
+                "variables-before-functions"
               ]
             }
-        ],        "no-any": false,
+        ],
+        "no-any": false,
         "no-arg": true,
         "no-bitwise": true,
         "no-console": [
