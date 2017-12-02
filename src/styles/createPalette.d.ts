@@ -1,4 +1,4 @@
-import { Color, Contrast } from '..';
+import { Color, Contrast, DeepPartial } from '..';
 import { CommonColors } from '../colors/common';
 
 interface ShadeText {
@@ -61,5 +61,5 @@ export interface Palette {
 }
 
 export default function createPalette(
-  palette: Partial<Palette>
+  palette: DeepPartial<Palette>
 ): Palette;
