@@ -29,11 +29,15 @@ export default class HourView extends PureComponent {
     const endHour = ampm ? 12 : 23;
 
     const isSelected = (hour) => {
-      if (ampm && hour === 12) {
-        return currentHours === 12 || currentHours === 0;
+      if (ampm) {
+        if (hour === 12) {
+          return currentHours === 12 || currentHours === 0;
+        }
+
+        return currentHours === hour || currentHours - 12 === hour;
       }
 
-      return currentHours === hour || currentHours - 12 === hour;
+      return currentHours === hour;
     };
 
 
