@@ -94,6 +94,14 @@ const customTheme = createMuiTheme({
   },
 });
 
+const customThemePaletteColorPartial = createMuiTheme({
+  palette: {
+    common: {
+      white: '#ffffff'
+    },
+  },
+});
+
 const customThemeTypographyPartial = createMuiTheme({
   typography: {
     display4: {
