@@ -2,13 +2,19 @@ import { Breakpoints } from './createBreakpoints';
 import { Spacing } from './spacing';
 import { StyleRules } from '../styles';
 
-export interface Mixins {
+interface CustomMixins {
+  // Use interface declaration merging to add custom mixins
+}
+
+export interface Mixins extends CustomMixins {
   gutters: (styles: React.CSSProperties) => React.CSSProperties;
   toolbar: React.CSSProperties;
 }
 
-export default function createMixins<T = {}>(
+export type MixinsOptions = Partial<Mixins> & CustomMixins;
+
+export default function createMixins(
   breakpoints: Breakpoints,
   spacing: Spacing,
-  mixins: T
-): Mixins & T;
+  mixins: MixinsOptions,
+): Mixins;

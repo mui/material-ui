@@ -1,5 +1,5 @@
 import { Breakpoints, BreakpointsOptions } from './createBreakpoints';
-import { Mixins } from './createMixins';
+import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
 import { Spacing, SpacingOptions } from './spacing';
@@ -14,7 +14,7 @@ export interface ThemeOptions {
   direction?: Direction;
   palette?: PaletteOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
-  mixins?: Partial<Mixins>;
+  mixins?: MixinsOptions;
   breakpoints?: BreakpointsOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
