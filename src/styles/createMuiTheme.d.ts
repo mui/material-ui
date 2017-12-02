@@ -15,7 +15,7 @@ export interface ThemeOptions {
   palette?: PaletteOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   mixins?: Partial<Mixins>;
-  breakpoints?: Partial<BreakpointsOptions> & Partial<Breakpoints>;
+  breakpoints?: BreakpointsOptions;
   shadows?: Shadows;
   transitions?: Partial<Transitions>;
   spacing?: Partial<Spacing>;
