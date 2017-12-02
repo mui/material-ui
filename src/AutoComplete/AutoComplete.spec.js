@@ -116,7 +116,7 @@ describe('<AutoComplete />', () => {
       );
 
       wrapper.setState({open: true, searchText: 'f'});
-      wrapper.find(Menu).props().onItemTouchTap({}, {
+      wrapper.find(Menu).props().onItemClick({}, {
         key: 0,
       });
       assert.strictEqual(handleNewRequest.callCount, 0);
@@ -143,7 +143,7 @@ describe('<AutoComplete />', () => {
       );
 
       wrapper.setState({open: true, searchText: 'f'});
-      wrapper.find(Menu).props().onItemTouchTap({}, {
+      wrapper.find(Menu).props().onItemClick({}, {
         key: 0,
       });
 
@@ -195,7 +195,7 @@ describe('<AutoComplete />', () => {
   });
 
   describe('prop: searchText', () => {
-    it('onItemTouchTap should not call setState:searchText when searchText is controlled', () => {
+    it('onItemClick should not call setState:searchText when searchText is controlled', () => {
       const wrapper = shallowWithContext(
         <AutoComplete
           dataSource={['foo', 'bar']}
@@ -204,7 +204,7 @@ describe('<AutoComplete />', () => {
       );
 
       wrapper.setState({open: true});
-      wrapper.find(Menu).props().onItemTouchTap({}, {
+      wrapper.find(Menu).props().onItemClick({}, {
         key: 0,
       });
       assert.strictEqual(wrapper.state().searchText, 'f');

@@ -109,9 +109,9 @@ class FloatingActionButton extends Component {
      */
     mini: PropTypes.bool,
     /**
-     * Callback function fired when the button is touch-tapped.
+     * Callback function fired when the button is clicked.
      *
-     * @param {object} event TouchTap event targeting the button.
+     * @param {object} event Click event targeting the button.
      */
     onClick: PropTypes.func,
     /** @ignore */

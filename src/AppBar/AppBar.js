@@ -102,23 +102,23 @@ class AppBar extends Component {
      */
     iconStyleRight: PropTypes.object,
     /**
-     * Callback function for when the left icon is selected via a touch tap.
+     * Callback function for when the left icon is selected via a click.
      *
-     * @param {object} event TouchTap event targeting the left `IconButton`.
+     * @param {object} event Click event targeting the left `IconButton`.
      */
-    onLeftIconButtonTouchTap: PropTypes.func,
+    onLeftIconButtonClick: PropTypes.func,
     /**
-     * Callback function for when the right icon is selected via a touch tap.
+     * Callback function for when the right icon is selected via a click.
      *
-     * @param {object} event TouchTap event targeting the right `IconButton`.
+     * @param {object} event Click event targeting the right `IconButton`.
      */
-    onRightIconButtonTouchTap: PropTypes.func,
+    onRightIconButtonClick: PropTypes.func,
     /**
-     * Callback function for when the title text is selected via a touch tap.
+     * Callback function for when the title text is selected via a click.
      *
-     * @param {object} event TouchTap event targeting the `title` node.
+     * @param {object} event Click event targeting the `title` node.
      */
-    onTitleTouchTap: PropTypes.func,
+    onTitleClick: PropTypes.func,
     /**
      * Determines whether or not to display the Menu icon next to the title.
      * Setting this prop to false will hide the icon.
@@ -161,21 +161,21 @@ class AppBar extends Component {
       and iconClassNameRight cannot be simultaneously defined. Please use one or the other.`);
   }
 
-  handleTouchTapLeftIconButton = (event) => {
-    if (this.props.onLeftIconButtonTouchTap) {
-      this.props.onLeftIconButtonTouchTap(event);
+  handleClickLeftIconButton = (event) => {
+    if (this.props.onLeftIconButtonClick) {
+      this.props.onLeftIconButtonClick(event);
     }
   };
 
-  handleTouchTapRightIconButton = (event) => {
-    if (this.props.onRightIconButtonTouchTap) {
-      this.props.onRightIconButtonTouchTap(event);
+  handleClickRightIconButton = (event) => {
+    if (this.props.onRightIconButtonClick) {
+      this.props.onRightIconButtonClick(event);
     }
   };
 
-  handleTitleTouchTap = (event) => {
-    if (this.props.onTitleTouchTap) {
-      this.props.onTitleTouchTap(event);
+  handleTitleClick = (event) => {
+    if (this.props.onTitleClick) {
+      this.props.onTitleClick(event);
     }
   };
 
@@ -185,14 +185,14 @@ class AppBar extends Component {
       titleStyle,
       iconStyleLeft,
       iconStyleRight,
-      onTitleTouchTap, // eslint-disable-line no-unused-vars
+      onTitleClick, // eslint-disable-line no-unused-vars
       showMenuIconButton,
       iconElementLeft,
       iconElementRight,
       iconClassNameLeft,
       iconClassNameRight,
-      onLeftIconButtonTouchTap, // eslint-disable-line no-unused-vars
-      onRightIconButtonTouchTap, // eslint-disable-line no-unused-vars
+      onLeftIconButtonClick, // eslint-disable-line no-unused-vars
+      onRightIconButtonClick, // eslint-disable-line no-unused-vars
       className,
       style,
       zDepth,
@@ -211,7 +211,7 @@ class AppBar extends Component {
     const titleComponent = typeof title === 'string' || title instanceof String ? 'h1' : 'div';
 
     const titleElement = React.createElement(titleComponent, {
-      onClick: this.handleTitleTouchTap,
+      onClick: this.handleTitleClick,
       style: prepareStyles(Object.assign(styles.title, styles.mainElement, titleStyle)),
     }, title);
 
@@ -232,8 +232,8 @@ class AppBar extends Component {
           iconElementLeftProps.iconStyle = Object.assign({}, iconButtonIconStyle, iconElementLeft.props.iconStyle);
         }
 
-        if (!iconElementLeft.props.onClick && this.props.onLeftIconButtonTouchTap) {
-          iconElementLeftProps.onClick = this.handleTouchTapLeftIconButton;
+        if (!iconElementLeft.props.onClick && this.props.onLeftIconButtonClick) {
+          iconElementLeftProps.onClick = this.handleClickLeftIconButton;
         }
 
         menuElementLeft = (
@@ -249,7 +249,7 @@ class AppBar extends Component {
             style={iconLeftStyle}
             iconStyle={styles.iconButtonIconStyle}
             iconClassName={iconClassNameLeft}
-            onClick={this.handleTouchTapLeftIconButton}
+            onClick={this.handleClickLeftIconButton}
           >
             {iconClassNameLeft ?
               '' :
@@ -288,8 +288,8 @@ class AppBar extends Component {
         default:
       }
 
-      if (!iconElementRight.props.onClick && this.props.onRightIconButtonTouchTap) {
-        iconElementRightProps.onClick = this.handleTouchTapRightIconButton;
+      if (!iconElementRight.props.onClick && this.props.onRightIconButtonClick) {
+        iconElementRightProps.onClick = this.handleClickRightIconButton;
       }
 
       menuElementRight = (
@@ -305,7 +305,7 @@ class AppBar extends Component {
           style={iconRightStyle}
           iconStyle={styles.iconButtonIconStyle}
           iconClassName={iconClassNameRight}
-          onClick={this.handleTouchTapRightIconButton}
+          onClick={this.handleClickRightIconButton}
         />
       );
     }

@@ -153,7 +153,7 @@ class DropDownMenu extends Component {
     /**
      * Callback function fired when a menu item is clicked, other than the one currently selected.
      *
-     * @param {object} event TouchTap event targeting the menu item that was clicked.
+     * @param {object} event Click event targeting the menu item that was clicked.
      * @param {number} key The index of the clicked menu item in the `children` collection.
      * @param {any} value If `multiple` is true, the menu's `value`
      * array with either the menu item's `value` added (if
@@ -280,7 +280,7 @@ class DropDownMenu extends Component {
     }
   }
 
-  handleTouchTapControl = (event) => {
+  handleClickControl = (event) => {
     event.preventDefault();
     if (!this.props.disabled) {
       this.setState({
@@ -313,7 +313,7 @@ class DropDownMenu extends Component {
     }
   };
 
-  handleItemTouchTap = (event, child, index) => {
+  handleItemClick = (event, child, index) => {
     if (this.props.multiple) {
       if (!this.state.open) {
         this.setState({open: true});
@@ -442,7 +442,7 @@ class DropDownMenu extends Component {
         className={className}
         style={prepareStyles(Object.assign({}, styles.root, open && styles.rootWhenOpen, style))}
       >
-        <ClearFix style={styles.control} onClick={this.handleTouchTapControl}>
+        <ClearFix style={styles.control} onClick={this.handleClickControl}>
           <div style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}>
             {displayValue}
           </div>
@@ -476,7 +476,7 @@ class DropDownMenu extends Component {
             onEscKeyDown={this.handleEscKeyDownMenu}
             style={menuStyle}
             listStyle={listStyle}
-            onItemTouchTap={this.handleItemTouchTap}
+            onItemClick={this.handleItemClick}
             onChange={this.handleChange}
             menuItemStyle={menuItemStyle}
             selectedMenuItemStyle={selectedMenuItemStyle}

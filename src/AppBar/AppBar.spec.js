@@ -84,12 +84,12 @@ describe('<AppBar />', () => {
     });
 
     it('should triggers the onClick', () => {
-      const handleTouchTap = spy();
+      const handleClick = spy();
       const wrapper = shallowWithContext(
-        <AppBar iconElementLeft={<IconButton onClick={handleTouchTap}><div /></IconButton>} />
+        <AppBar iconElementLeft={<IconButton onClick={handleClick}><div /></IconButton>} />
       );
       wrapper.find(IconButton).simulate('click');
-      assert.strictEqual(handleTouchTap.callCount, 1);
+      assert.strictEqual(handleClick.callCount, 1);
     });
   });
 
@@ -116,65 +116,65 @@ describe('<AppBar />', () => {
     });
   });
 
-  describe('onLeftIconButtonTouchTap', () => {
+  describe('onLeftIconButtonClick', () => {
     it('should trigger the onClick', () => {
-      const onLeftIconButtonTouchTap = spy();
+      const onLeftIconButtonClick = spy();
       const wrapper = shallowWithContext(
-        <AppBar onLeftIconButtonTouchTap={onLeftIconButtonTouchTap} />
+        <AppBar onLeftIconButtonClick={onLeftIconButtonClick} />
       );
 
       wrapper.find(IconButton).simulate('click');
-      assert.strictEqual(onLeftIconButtonTouchTap.callCount, 1,
-        'should have called onLeftIconButtonTouchTap callback function');
+      assert.strictEqual(onLeftIconButtonClick.callCount, 1,
+        'should have called onLeftIconButtonClick callback function');
     });
 
-    it('should forward the onClick to onLeftIconButtonTouchTap', () => {
-      const handleTouchTap = spy();
+    it('should forward the onClick to onLeftIconButtonClick', () => {
+      const handleClick = spy();
       const wrapper = shallowWithContext(
         <AppBar
           iconElementLeft={<IconButton><div /></IconButton>}
-          onLeftIconButtonTouchTap={handleTouchTap}
+          onLeftIconButtonClick={handleClick}
         />
       );
       wrapper.find(IconButton).simulate('click');
-      assert.strictEqual(handleTouchTap.callCount, 1);
+      assert.strictEqual(handleClick.callCount, 1);
     });
   });
 
-  describe('onRightIconButtonTouchTap', () => {
+  describe('onRightIconButtonClick', () => {
     it('should trigger the onClick', () => {
-      const handleRightIconButtonTouchTap = spy();
+      const handleRightIconButtonClick = spy();
       const wrapper = shallowWithContext(
-        <AppBar onRightIconButtonTouchTap={handleRightIconButtonTouchTap} iconClassNameRight="foo" />
+        <AppBar onRightIconButtonClick={handleRightIconButtonClick} iconClassNameRight="foo" />
       );
 
       wrapper.find(IconButton).at(1).simulate('click');
-      assert.strictEqual(handleRightIconButtonTouchTap.callCount, 1,
-        'should have called onRightIconButtonTouchTap callback function');
+      assert.strictEqual(handleRightIconButtonClick.callCount, 1,
+        'should have called onRightIconButtonClick callback function');
     });
 
-    it('should forward the onClick to onRightIconButtonTouchTap', () => {
-      const handleTouchTap = spy();
+    it('should forward the onClick to onRightIconButtonClick', () => {
+      const handleClick = spy();
       const wrapper = shallowWithContext(
         <AppBar
           iconElementRight={<IconButton><div /></IconButton>}
-          onRightIconButtonTouchTap={handleTouchTap}
+          onRightIconButtonClick={handleClick}
         />
       );
       wrapper.find(IconButton).at(1).simulate('click');
-      assert.strictEqual(handleTouchTap.callCount, 1);
+      assert.strictEqual(handleClick.callCount, 1);
     });
   });
 
-  it('call onTitleTouchTap callback', () => {
-    const onTitleTouchTap = spy();
+  it('call onTitleClick callback', () => {
+    const onTitleClick = spy();
     const wrapper = shallowWithContext(
-      <AppBar title="Title" onTitleTouchTap={onTitleTouchTap} />
+      <AppBar title="Title" onTitleClick={onTitleClick} />
     );
 
     wrapper.find('h1').simulate('click');
-    assert.strictEqual(onTitleTouchTap.callCount, 1,
-      'should have called onTitleTouchTap callback function');
+    assert.strictEqual(onTitleClick.callCount, 1,
+      'should have called onTitleClick callback function');
   });
 
   it('hide menu icon when showMenuIconButton is false', () => {

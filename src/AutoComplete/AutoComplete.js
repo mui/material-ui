@@ -219,7 +219,7 @@ class AutoComplete extends Component {
       open: this.props.open,
       searchText: this.props.searchText || '',
     });
-    this.timerTouchTapCloseId = null;
+    this.timerClickCloseId = null;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -237,7 +237,7 @@ class AutoComplete extends Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timerTouchTapCloseId);
+    clearTimeout(this.timerClickCloseId);
     clearTimeout(this.timerBlurClose);
   }
 
@@ -265,7 +265,7 @@ class AutoComplete extends Component {
     event.preventDefault();
   };
 
-  handleItemTouchTap = (event, child) => {
+  handleItemClick = (event, child) => {
     const dataSource = this.props.dataSource;
     const index = parseInt(child.key, 10);
     const chosenRequest = dataSource[index];
@@ -274,21 +274,21 @@ class AutoComplete extends Component {
     const updateInput = () => this.props.onUpdateInput(searchText, this.props.dataSource, {
       source: 'click',
     });
-    this.timerTouchTapCloseId = () => setTimeout(() => {
-      this.timerTouchTapCloseId = null;
+    this.timerClickCloseId = () => setTimeout(() => {
+      this.timerClickCloseId = null;
       this.close();
       this.props.onNewRequest(chosenRequest, index);
     }, this.props.menuCloseDelay);
 
     if (typeof this.props.searchText !== 'undefined') {
       updateInput();
-      this.timerTouchTapCloseId();
+      this.timerClickCloseId();
     } else {
       this.setState({
         searchText: searchText,
       }, () => {
         updateInput();
-        this.timerTouchTapCloseId();
+        this.timerClickCloseId();
       });
     }
   };
@@ -361,7 +361,7 @@ class AutoComplete extends Component {
   };
 
   handleBlur = (event) => {
-    if (this.state.focusTextField && this.timerTouchTapCloseId === null) {
+    if (this.state.focusTextField && this.timerClickCloseId === null) {
       this.timerBlurClose = setTimeout(() => {
         this.close();
       }, 0);
@@ -511,7 +511,7 @@ class AutoComplete extends Component {
         disableAutoFocus={focusTextField}
         onEscKeyDown={this.handleEscKeyDown}
         initiallyKeyboardFocused={true}
-        onItemTouchTap={this.handleItemTouchTap}
+        onItemClick={this.handleItemClick}
         onMouseDown={this.handleMouseDown}
         style={Object.assign(styles.menu, menuStyle)}
         listStyle={Object.assign(styles.list, listStyle)}

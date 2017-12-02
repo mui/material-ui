@@ -132,7 +132,7 @@ class Master extends Component {
     return styles;
   }
 
-  handleTouchTapLeftIconButton = () => {
+  handleClickLeftIconButton = () => {
     this.setState({
       navDrawerOpen: !this.state.navDrawerOpen,
     });
@@ -207,7 +207,7 @@ class Master extends Component {
           </a>
         </div>
         <AppBar
-          onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
+          onLeftIconButtonClick={this.handleClickLeftIconButton}
           title={title}
           zDepth={0}
           iconElementRight={

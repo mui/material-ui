@@ -234,9 +234,9 @@ class ListItem extends Component {
      */
     nestedListStyle: PropTypes.object,
     /**
-     * Callback function fired when the list item is touch-tapped.
+     * Callback function fired when the list item is clicked.
      *
-     * @param {object} event TouchTap event targeting the list item.
+     * @param {object} event Click event targeting the list item.
      */
     onClick: PropTypes.func,
     /**
@@ -467,7 +467,7 @@ class ListItem extends Component {
     this.props.onMouseLeave(event);
   };
 
-  handleTouchTap = (event) => {
+  handleClick = (event) => {
     if (this.props.onClick) {
       this.props.onClick(event);
     }
@@ -530,7 +530,7 @@ class ListItem extends Component {
     if (iconButton && iconButton.props.onMouseUp) iconButton.props.onMouseUp(event);
   };
 
-  handleRightIconButtonTouchTap = (event) => {
+  handleRightIconButtonClick = (event) => {
     const iconButton = this.props.rightIconButton;
 
     // Stop the event from bubbling up to the list-item
@@ -660,7 +660,7 @@ class ListItem extends Component {
         onKeyboardFocus: this.handleRightIconButtonKeyboardFocus,
         onMouseEnter: this.handleRightIconButtonMouseEnter,
         onMouseLeave: this.handleRightIconButtonMouseLeave,
-        onClick: this.handleRightIconButtonTouchTap,
+        onClick: this.handleRightIconButtonClick,
         onMouseDown: this.handleRightIconButtonMouseUp,
         onMouseUp: this.handleRightIconButtonMouseUp,
       };
@@ -729,7 +729,7 @@ class ListItem extends Component {
               onMouseEnter={this.handleMouseEnter}
               onTouchStart={this.handleTouchStart}
               onTouchEnd={this.handleTouchEnd}
-              onClick={this.handleTouchTap}
+              onClick={this.handleClick}
               disabled={disabled}
               ref={(node) => this.button = node}
               style={Object.assign({}, styles.root, style)}

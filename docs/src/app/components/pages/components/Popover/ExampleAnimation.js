@@ -14,7 +14,7 @@ export default class PopoverExampleAnimation extends React.Component {
     };
   }
 
-  handleTouchTap = (event) => {
+  handleClick = (event) => {
     // This prevents ghost click.
     event.preventDefault();
 
@@ -34,7 +34,7 @@ export default class PopoverExampleAnimation extends React.Component {
     return (
       <div>
         <RaisedButton
-          onClick={this.handleTouchTap}
+          onClick={this.handleClick}
           label="Click me"
         />
         <Popover

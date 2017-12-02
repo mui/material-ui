@@ -11,7 +11,7 @@ export default class SnackbarExampleSimple extends React.Component {
     };
   }
 
-  handleTouchTap = () => {
+  handleClick = () => {
     this.setState({
       open: true,
     });
@@ -27,7 +27,7 @@ export default class SnackbarExampleSimple extends React.Component {
     return (
       <div>
         <RaisedButton
-          onClick={this.handleTouchTap}
+          onClick={this.handleClick}
           label="Add to my calendar"
         />
         <Snackbar

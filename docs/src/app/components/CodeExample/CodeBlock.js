@@ -42,7 +42,7 @@ class CodeBlock extends Component {
     expand: false,
   };
 
-  handleTouchTap = () => {
+  handleClick = () => {
     this.setState({
       expand: !this.state.expand,
     });
@@ -64,7 +64,7 @@ ${this.props.children}
 
     return (
       <div style={styles.root}>
-        <div onClick={this.handleTouchTap} style={styles.codeBlockTitle}>
+        <div onClick={this.handleClick} style={styles.codeBlockTitle}>
           <CodeBlockTitle title={this.props.title} tooltip={tooltip} />
         </div>
         <MarkdownElement style={codeStyle} text={text} />

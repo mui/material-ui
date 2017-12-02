@@ -81,9 +81,9 @@ class Chip extends Component {
     /** @ignore */
     onBlur: PropTypes.func,
     /**
-     * Callback function fired when the `Chip` element is touch-tapped.
+     * Callback function fired when the `Chip` element is clicked.
      *
-     * @param {object} event TouchTap event targeting the element.
+     * @param {object} event Click event targeting the element.
      */
     onClick: PropTypes.func,
     /** @ignore */
@@ -210,7 +210,7 @@ class Chip extends Component {
     this.props.onMouseUp(event);
   };
 
-  handleTouchTapDeleteIcon = (event) => {
+  handleClickDeleteIcon = (event) => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
     this.props.onRequestDelete(event);
@@ -266,7 +266,7 @@ class Chip extends Component {
       <DeleteIcon
         color={styles.deleteIcon.color}
         style={Object.assign(styles.deleteIcon, deleteIconStyle)}
-        onClick={this.handleTouchTapDeleteIcon}
+        onClick={this.handleClickDeleteIcon}
         onMouseEnter={this.handleMouseEnterDeleteIcon}
         onMouseLeave={this.handleMouseLeaveDeleteIcon}
       />

@@ -37,6 +37,13 @@ class IconMenu extends Component {
      */
     className: PropTypes.string,
     /**
+     * Sets the delay in milliseconds before closing the
+     * menu when an item is clicked.
+     * If set to 0 then the auto close functionality
+     * will be disabled.
+     */
+    clickCloseDelay: PropTypes.number,
+    /**
      * This is the `IconButton` to render. This button will open the menu.
      */
     iconButtonElement: PropTypes.element.isRequired,
@@ -57,18 +64,18 @@ class IconMenu extends Component {
      */
     multiple: PropTypes.bool,
     /**
-     * Callback function fired when the `IconButton` element is touch-tapped.
+     * Callback function fired when the `IconButton` element is clicked.
      *
-     * @param {object} event TouchTap event targeting the `IconButton` element.
+     * @param {object} event Click event targeting the `IconButton` element.
      */
     onClick: PropTypes.func,
     /**
-     * Callback function fired when a menu item is selected with a touch-tap.
+     * Callback function fired when a menu item is selected with a click.
      *
-     * @param {object} event TouchTap event targeting the selected menu item element.
+     * @param {object} event Click event targeting the selected menu item element.
      * @param {object} child The selected element.
      */
-    onItemTouchTap: PropTypes.func,
+    onItemClick: PropTypes.func,
     /**
      * Callback function fired when the `IconButton` element is focused or blurred by the keyboard.
      *
@@ -110,13 +117,6 @@ class IconMenu extends Component {
      */
     targetOrigin: propTypes.origin,
     /**
-     * Sets the delay in milliseconds before closing the
-     * menu when an item is clicked.
-     * If set to 0 then the auto close functionality
-     * will be disabled.
-     */
-    touchTapCloseDelay: PropTypes.number,
-    /**
      * If true, the popover will render on top of an invisible
      * layer, which will prevent clicks to the underlying elements.
      */
@@ -131,7 +131,7 @@ class IconMenu extends Component {
     animated: true,
     multiple: false,
     open: null,
-    onItemTouchTap: () => {},
+    onItemClick: () => {},
     onKeyboardFocus: () => {},
     onMouseDown: () => {},
     onMouseLeave: () => {},
@@ -143,7 +143,7 @@ class IconMenu extends Component {
       vertical: 'top',
       horizontal: 'left',
     },
-    touchTapCloseDelay: 200,
+    clickCloseDelay: 200,
     useLayerForClickAway: false,
   };
 
@@ -209,15 +209,15 @@ class IconMenu extends Component {
     });
   }
 
-  handleItemTouchTap = (event, child) => {
-    if (this.props.touchTapCloseDelay !== 0 && !child.props.hasOwnProperty('menuItems')) {
+  handleItemClick = (event, child) => {
+    if (this.props.clickCloseDelay !== 0 && !child.props.hasOwnProperty('menuItems')) {
       const isKeyboard = Events.isKeyboard(event);
       this.timerCloseId = setTimeout(() => {
         this.close(isKeyboard ? 'enter' : 'itemTap', isKeyboard);
-      }, this.props.touchTapCloseDelay);
+      }, this.props.clickCloseDelay);
     }
 
-    this.props.onItemTouchTap(event, child);
+    this.props.onItemClick(event, child);
   };
 
   handleRequestClose = (reason) => {
@@ -236,7 +236,7 @@ class IconMenu extends Component {
       animation,
       iconButtonElement,
       iconStyle,
-      onItemTouchTap, // eslint-disable-line no-unused-vars
+      onItemClick, // eslint-disable-line no-unused-vars
       onKeyboardFocus,
       onMouseDown,
       onMouseLeave,
@@ -248,7 +248,7 @@ class IconMenu extends Component {
       menuStyle,
       style,
       targetOrigin,
-      touchTapCloseDelay, // eslint-disable-line no-unused-vars
+      clickCloseDelay, // eslint-disable-line no-unused-vars
       useLayerForClickAway,
       ...other
     } = this.props;
@@ -295,7 +295,7 @@ You should wrapped it with an <IconButton />.`);
         {...other}
         initiallyKeyboardFocused={this.state.menuInitiallyKeyboardFocused}
         onEscKeyDown={this.handleEscKeyDownMenu}
-        onItemTouchTap={this.handleItemTouchTap}
+        onItemClick={this.handleItemClick}
         style={mergedMenuStyles}
         listStyle={listStyle}
       >

@@ -102,7 +102,7 @@ class AppNavDrawer extends Component {
     window.location = value;
   };
 
-  handleTouchTapHeader = () => {
+  handleClickHeader = () => {
     this.context.router.push('/');
     this.props.onRequestChangeNavDrawer(false);
   };
@@ -126,7 +126,7 @@ class AppNavDrawer extends Component {
         containerStyle={{zIndex: zIndex.drawer - 100}}
       >
         <div style={styles.v1} />
-        <div style={styles.logo} onClick={this.handleTouchTapHeader}>
+        <div style={styles.logo} onClick={this.handleClickHeader}>
           Material-UI
         </div>
         <span style={styles.version}>Version:</span>

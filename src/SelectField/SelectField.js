@@ -114,7 +114,7 @@ class SelectField extends Component {
     /**
      * Callback function fired when a menu item is selected.
      *
-     * @param {object} event TouchTap event targeting the menu item
+     * @param {object} event Click event targeting the menu item
      * that was selected.
      * @param {number} key The index of the selected menu item, or undefined
      * if `multiple` is true.

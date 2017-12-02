@@ -93,7 +93,7 @@ class HomePage extends Component {
           <RaisedButton
             className="demo-button"
             label="Demo"
-            onClick={this.handleTouchTapDemo}
+            onClick={this.handleClickDemo}
             style={styles.demoStyle}
             labelStyle={styles.label}
           />
@@ -199,7 +199,7 @@ class HomePage extends Component {
     );
   }
 
-  handleTouchTapDemo = () => {
+  handleClickDemo = () => {
     this.context.router.push('/components');
   };
 

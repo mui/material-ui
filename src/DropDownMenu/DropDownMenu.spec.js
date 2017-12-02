@@ -84,7 +84,7 @@ describe('<DropDownMenu />', () => {
       wrapper.setState({
         open: true,
       });
-      wrapper.find(Menu).props().onItemTouchTap({
+      wrapper.find(Menu).props().onItemClick({
         persist: () => {},
       });
 
@@ -111,7 +111,7 @@ describe('<DropDownMenu />', () => {
       const event = {
         persist: () => {},
       };
-      wrapper.find(Menu).props().onItemTouchTap(
+      wrapper.find(Menu).props().onItemClick(
         event,
         {
           props: {
