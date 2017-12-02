@@ -7,7 +7,6 @@ import { Transitions } from './transitions';
 import { Typography, TypographyOptions } from './createTypography';
 import { ZIndex } from './zIndex';
 import { Overrides } from './overrides'
-import { DeepPartial } from '..'
 
 export type Direction = 'ltr' | 'rtl';
 
