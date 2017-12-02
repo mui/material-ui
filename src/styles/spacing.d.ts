@@ -1,5 +1,11 @@
+import { DeepPartial } from '../index';
+
 export interface Spacing { 
   unit: number
 }
-declare const spacing: Spacing
-export default spacing
+
+export type SpacingOptions = DeepPartial<Spacing>;
+
+declare const spacing: Spacing;
+
+export default spacing;

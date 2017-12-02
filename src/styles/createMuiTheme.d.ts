@@ -2,7 +2,7 @@ import { Breakpoints, BreakpointsOptions } from './createBreakpoints';
 import { Mixins } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
-import { Spacing } from './spacing';
+import { Spacing, SpacingOptions } from './spacing';
 import { Transitions, TransitionsOptions } from './transitions';
 import { Typography, TypographyOptions } from './createTypography';
 import { ZIndex } from './zIndex';
@@ -18,7 +18,7 @@ export interface ThemeOptions {
   breakpoints?: BreakpointsOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
-  spacing?: Partial<Spacing>;
+  spacing?: SpacingOptions;
   zIndex?: Partial<ZIndex>;
   overrides?: Overrides;
 }
