@@ -5,7 +5,7 @@ import { Shadows } from './shadows';
 import { Spacing, SpacingOptions } from './spacing';
 import { Transitions, TransitionsOptions } from './transitions';
 import { Typography, TypographyOptions } from './createTypography';
-import { ZIndex } from './zIndex';
+import { ZIndex, ZIndexOptions } from './zIndex';
 import { Overrides } from './overrides'
 
 export type Direction = 'ltr' | 'rtl';
@@ -19,7 +19,7 @@ export interface ThemeOptions {
   shadows?: Shadows;
   transitions?: TransitionsOptions;
   spacing?: SpacingOptions;
-  zIndex?: Partial<ZIndex>;
+  zIndex?: ZIndexOptions;
   overrides?: Overrides;
 }
 

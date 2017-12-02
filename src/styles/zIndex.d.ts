@@ -1,3 +1,5 @@
+import { DeepPartial } from '../index';
+
 export interface ZIndex {
   mobileStepper: number;
   menu: number;
@@ -11,5 +13,9 @@ export interface ZIndex {
   snackbar: number;
   tooltip: number;
 }
-declare const zIndex: ZIndex
+
+export type ZIndexOptions = DeepPartial<ZIndex>;
+
+declare const zIndex: ZIndex;
+
 export default zIndex;
