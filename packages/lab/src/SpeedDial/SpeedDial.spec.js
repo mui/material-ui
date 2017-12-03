@@ -1,0 +1,157 @@
+import React from 'react';
+// import keycode from 'keycode';
+import { assert } from 'chai';
+import { spy } from 'sinon';
+import { createMount, createShallow, getClasses } from '../../../../src/test-utils';
+import SpeedDial from './SpeedDial';
+import SpeedDialAction from '../SpeedDialAction';
+import Icon from '../../../../src/Icon';
+import Button from '../../../../src/Button';
+
+describe('<SpeedDial open ariaLabel="mySpeedDial" icon={icon} />', () => {
+  let shallow;
+  let mount;
+  let classes;
+  const icon = <Icon>font_icon</Icon>;
+
+  before(() => {
+    shallow = createShallow({ dive: true });
+    mount = createMount();
+    classes = getClasses(
+      <SpeedDial open ariaLabel="mySpeedDial" icon={icon}>
+        <div />
+      </SpeedDial>,
+    );
+  });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  it('should render a Fade transition', () => {
+    const wrapper = shallow(
+      <SpeedDial ariaLabel="mySpeedDial" icon={icon}>
+        <div />
+      </SpeedDial>,
+    );
+    assert.strictEqual(wrapper.type(), 'div');
+  });
+
+  it('should render a Button', () => {
+    const wrapper = shallow(
+      <SpeedDial ariaLabel="mySpeedDial" icon={icon}>
+        <div />
+      </SpeedDial>,
+    );
+    const buttonWrapper = wrapper.childAt(0).childAt(0);
+    assert.strictEqual(buttonWrapper.type(), Button);
+  });
+
+  it('should render with a null child', () => {
+    const wrapper = shallow(
+      <SpeedDial open ariaLabel="mySpeedDial" icon={icon}>
+        <SpeedDialAction tooltipTitle="One" />
+        {null}
+        <SpeedDialAction tooltipTitle="Three" />
+      </SpeedDial>,
+    );
+    assert.strictEqual(wrapper.find(SpeedDialAction).length, 2);
+  });
+
+  it('should render with the root class', () => {
+    const wrapper = shallow(
+      <SpeedDial open ariaLabel="mySpeedDial" icon={icon}>
+        <div />
+      </SpeedDial>,
+    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+  });
+
+  it('should render with the user and root classes', () => {
+    const wrapper = shallow(
+      <SpeedDial open ariaLabel="mySpeedDial" className="mySpeedDialClass" icon={icon}>
+        <div />
+      </SpeedDial>,
+    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass('mySpeedDialClass'), true);
+  });
+
+  it('should render the actions with the actions class', () => {
+    const wrapper = shallow(
+      <SpeedDial open ariaLabel="mySpeedDial" className="mySpeedDial" icon={icon}>
+        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction" />
+      </SpeedDial>,
+    );
+    const actionsWrapper = wrapper.childAt(1);
+    assert.strictEqual(actionsWrapper.hasClass(classes.actions), true);
+    assert.strictEqual(actionsWrapper.hasClass(classes.actionsClosed), false);
+  });
+
+  it('should render the actions with the actions and actionsClosed classes', () => {
+    const wrapper = shallow(
+      <SpeedDial ariaLabel="mySpeedDial" className="mySpeedDial" icon={icon}>
+        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction" />
+      </SpeedDial>,
+    );
+    const actionsWrapper = wrapper.childAt(1);
+    assert.strictEqual(actionsWrapper.hasClass(classes.actions), true);
+    assert.strictEqual(actionsWrapper.hasClass(classes.actionsClosed), true);
+  });
+
+  it('should pass the open prop to its children', () => {
+    const wrapper = shallow(
+      <SpeedDial open ariaLabel="mySpeedDial" icon={icon}>
+        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction1" />
+        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction2" />
+      </SpeedDial>,
+    );
+    const actionsWrapper = wrapper.childAt(1);
+    assert.strictEqual(actionsWrapper.childAt(0).props().open, true, 'open should be true');
+    assert.strictEqual(actionsWrapper.childAt(1).props().open, true, 'open should be true');
+  });
+
+  // it('has a ref on the Button', () => {
+  //   const wrapper = mount(
+  //     <SpeedDial ariaLabel="mySpeedDial">
+  //       <div />
+  //     </SpeedDial>,
+  //   );
+  //   const buttonWrapper = wrapper.childAt(0).childAt(0);
+  //   assert.strictEqual(buttonWrapper.instance().fab.props['data-mui-test'], 'SpeedDialAction');
+  // });
+
+  describe('prop: onKeyDown', () => {
+    it('should be called when a key is pressed', () => {
+      const handleKeyDown = spy();
+      const wrapper = shallow(
+        <SpeedDial open ariaLabel="mySpeedDial" icon={icon} onKeyDown={handleKeyDown}>
+          <div />
+        </SpeedDial>,
+      );
+      const buttonWrapper = wrapper.childAt(0).childAt(0);
+      const event = {};
+      buttonWrapper.simulate('keyDown', event);
+      assert.strictEqual(handleKeyDown.callCount, 1);
+      assert.strictEqual(handleKeyDown.args[0][0], event);
+    });
+  });
+
+  // describe('escape', () => {
+  //   it('should focus when a esc key is pressed', () => {
+  //     const SpeedDialUnwrapped = unwrap(SpeedDial);
+  //     const wrapper2 = mount(
+  //       <SpeedDialUnwrapped classes={{}} ariaLabel="mySpeedDial">
+  //         <div />
+  //       </SpeedDialUnwrapped>,
+  //     );
+  //     const handleFocus = spy();
+  //     wrapper2.instance().fab.focus = handleFocus;
+  //     wrapper2.find('button').simulate('keydown', {
+  //       preventDefault: () => {},
+  //       keyCode: keycode('esc'),
+  //     });
+  //     assert.strictEqual(handleFocus.callCount, 1);
+  //   });
+  // });
+});

@@ -62,11 +62,11 @@ class AppDrawerNavItem extends React.Component {
   };
 
   render() {
-    const { children, classes, href, openImmediately, title } = this.props;
+    const { children, classes, href, openImmediately, title, ...other } = this.props;
 
     if (href) {
       return (
-        <ListItem className={classes.navLink} disableGutters>
+        <ListItem className={classes.navLink} disableGutters {...other}>
           <Button
             component={props => (
               <Link
@@ -87,7 +87,7 @@ class AppDrawerNavItem extends React.Component {
     }
 
     return (
-      <ListItem className={classes.navItem} disableGutters>
+      <ListItem className={classes.navItem} disableGutters {...other}>
         <Button
           classes={{
             root: classes.button,

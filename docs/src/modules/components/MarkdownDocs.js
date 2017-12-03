@@ -47,6 +47,8 @@ function MarkdownDocs(props, context) {
     }
   }
 
+  const section = markdownLocation.split('/')[4];
+
   return (
     <AppContent className={classes.root}>
       <Head>
@@ -86,7 +88,12 @@ function MarkdownDocs(props, context) {
 ## API
 
 ${headers.components
-            .map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`)
+            .map(
+              component =>
+                `- [&lt;${component} /&gt;](${section === 'lab' ? '/lab' : ''}/api/${kebabCase(
+                  component,
+                )})`,
+            )
             .join('\n')}
           `}
         />
