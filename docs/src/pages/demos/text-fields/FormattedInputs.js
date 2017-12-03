@@ -73,7 +73,7 @@ class FormattedInputs extends React.Component {
       <div className={classes.container}>
         <Input
           value={this.state.textmask}
-          component={TextMaskCustom}
+          inputComponent={TextMaskCustom}
           onChange={this.handleChange('textmask')}
           className={classes.input}
           inputProps={{
@@ -83,7 +83,7 @@ class FormattedInputs extends React.Component {
         <Input
           value={this.state.numberformat}
           onChange={this.handleChange('numberformat')}
-          component={NumberFormatCustom}
+          inputComponent={NumberFormatCustom}
           className={classes.input}
           inputProps={{
             'aria-label': 'Description',

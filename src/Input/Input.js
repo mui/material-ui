@@ -230,11 +230,6 @@ export type Props = {
    */
   className?: string,
   /**
-   * The component used for the input node.
-   * Either a string to use a DOM element or a component.
-   */
-  component?: string | ComponentType<*>,
-  /**
    * The default input value, useful when not controlling the component.
    */
   defaultValue?: string | number,
@@ -263,6 +258,11 @@ export type Props = {
    * The id of the `input` element.
    */
   id?: string,
+  /**
+   * The component used for the native input.
+   * Either a string to use a DOM element or a component.
+   */
+  inputComponent?: string | ComponentType<*>,
   /**
    * Properties applied to the `input` element.
    */
@@ -470,7 +470,6 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       autoFocus,
       classes,
       className: classNameProp,
-      component,
       defaultValue,
       disabled: disabledProp,
       disableUnderline,
@@ -478,6 +477,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       error: errorProp,
       fullWidth,
       id,
+      inputComponent,
       inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
       inputRef,
       margin: marginProp,
@@ -555,8 +555,8 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       ref: this.handleRefInput,
     };
 
-    if (component) {
-      InputComponent = component;
+    if (inputComponent) {
+      InputComponent = inputComponent;
 
       if (isMuiComponent(InputComponent, ['SelectInput'])) {
         inputProps = {
