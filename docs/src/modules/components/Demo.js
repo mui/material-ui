@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -12,12 +10,17 @@ import Tooltip from 'material-ui/Tooltip';
 const styles = theme => ({
   root: {
     position: 'relative',
-    backgroundColor: theme.palette.background.contentFrame,
     marginBottom: 40,
     marginLeft: -theme.spacing.unit * 2,
     marginRight: -theme.spacing.unit * 2,
+    [theme.breakpoints.up('sm')]: {
+      padding: `0 ${theme.spacing.unit}px`,
+      marginLeft: 0,
+      marginRight: 0,
+    },
   },
   demo: theme.mixins.gutters({
+    backgroundColor: theme.palette.background.contentFrame,
     display: 'flex',
     justifyContent: 'center',
     paddingTop: 20,
@@ -29,7 +32,10 @@ const styles = theme => ({
     zIndex: 10,
     position: 'absolute',
     top: 2,
-    right: 7,
+    right: theme.spacing.unit * 2,
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
   },
   code: {
     display: 'none',
@@ -44,13 +50,11 @@ const styles = theme => ({
   [theme.breakpoints.up(600)]: {
     codeButton: {
       display: 'block',
-    },
-    code: {
-      display: 'block',
-    },
-    root: {
-      marginLeft: 0,
-      marginRight: 0,
+      flip: false,
+      zIndex: 10,
+      position: 'absolute',
+      top: 2,
+      right: theme.spacing.unit * 8,
     },
   },
 });
@@ -78,7 +82,7 @@ class Demo extends React.Component<any, any> {
           </IconButton>
         </Tooltip>
         <Collapse in={codeOpen} unmountOnExit>
-          <MarkdownElement dir="ltr" className={classes.code} text={`\`\`\`js\n${raw}\n\`\`\``} />
+          <MarkdownElement dir="ltr" className={classes.code} text={`\`\`\`jsx\n${raw}\n\`\`\``} />
         </Collapse>
         <div className={classes.demo}>
           <DemoComponent />
