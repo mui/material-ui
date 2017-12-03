@@ -10,12 +10,18 @@ import { StandardProps } from '..';
  * here.
  */
 export interface TableCellProps extends StandardProps<
-  React.ThHTMLAttributes<HTMLTableHeaderCellElement> & React.TdHTMLAttributes<HTMLTableDataCellElement>,
+  TableCellBaseProps,
   TableCellClassKey
 > {
+  component?: string | React.ComponentType<TableCellBaseProps>;
   padding?: Padding;
   numeric?: boolean;
 }
+
+export type TableCellBaseProps =
+  & React.ThHTMLAttributes<HTMLTableHeaderCellElement>
+  & React.TdHTMLAttributes<HTMLTableDataCellElement>
+  ;
 
 export type Padding =
   | 'default'

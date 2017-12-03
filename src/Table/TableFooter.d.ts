@@ -2,9 +2,13 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface TableFooterProps extends StandardProps<
-  React.HTMLAttributes<HTMLTableSectionElement>,
+  TableFooterBaseProps,
   TableFooterClassKey
-> {}
+> {
+  component?: string | React.ComponentType<TableFooterBaseProps>;
+}
+
+export type TableFooterBaseProps = React.HTMLAttributes<HTMLTableSectionElement>;
 
 export type TableFooterClassKey =
   | 'root'
