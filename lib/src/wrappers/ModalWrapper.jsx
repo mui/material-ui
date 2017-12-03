@@ -9,8 +9,8 @@ export default class ModalWrapper extends PureComponent {
     value: DomainPropTypes.date,
     children: PropTypes.node.isRequired,
     format: PropTypes.string,
-    onAccept: PropTypes.func.isRequired,
-    onDismiss: PropTypes.func.isRequired,
+    onAccept: PropTypes.func,
+    onDismiss: PropTypes.func,
     dialogContentClassName: PropTypes.string,
     invalidLabel: PropTypes.string,
     labelFunc: PropTypes.func,
@@ -38,12 +38,12 @@ export default class ModalWrapper extends PureComponent {
 
   handleAccept = () => {
     this.togglePicker(); // close
-    this.props.onAccept();
+    this.props.onAccept && this.props.onAccept();
   }
 
   handleDismiss = () => {
     this.togglePicker();
-    this.props.onDismiss();
+    this.props.onDismiss && this.props.onDismiss();
   }
 
   render() {
