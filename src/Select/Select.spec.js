@@ -32,7 +32,7 @@ describe('<Select />', () => {
     assert.strictEqual(wrapper.name(), 'withStyles(Input)');
   });
 
-  it('should provide the classes to the inputComponent', () => {
+  it('should provide the classes to the input component', () => {
     const wrapper = shallow(<Select {...props} />);
     assert.deepEqual(wrapper.props().inputProps.classes, classes);
   });

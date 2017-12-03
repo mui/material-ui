@@ -22,9 +22,7 @@ export interface TextFieldProps extends StandardProps<
   helperTextClassName?: string;
   id?: string;
   inputClassName?: string;
-  InputClassName?: string;
   InputLabelProps?: InputLabelProps;
-  inputProps?: InputProps['inputProps'];
   InputProps?: InputProps;
   inputRef?: React.Ref<any>;
   label?: React.ReactNode;

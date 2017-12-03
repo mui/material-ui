@@ -158,7 +158,7 @@ class Select extends React.Component<ProvidedProps & Props> {
     return React.cloneElement(input, {
       // Most of the logic is implemented in `SelectInput`.
       // The `Select` component is a simple API wrapper to expose something better to play with.
-      inputComponent: SelectInput,
+      component: SelectInput,
       ...other,
       inputProps: {
         ...(input ? input.props.inputProps : {}),

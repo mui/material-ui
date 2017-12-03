@@ -8,7 +8,7 @@ export interface InputProps extends StandardProps<
 > {
   autoComplete?: string;
   autoFocus?: boolean;
-  inputComponent?: React.ReactNode;
+  component?: string | React.ComponentType<InputProps>;
   defaultValue?: string | number;
   disabled?: boolean;
   disableUnderline?: boolean;

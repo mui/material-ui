@@ -66,17 +66,9 @@ export type Props = {
    */
   inputClassName?: string,
   /**
-   * The CSS class name of the `Input` element.
-   */
-  InputClassName?: string,
-  /**
    * Properties applied to the `InputLabel` element.
    */
   InputLabelProps?: Object,
-  /**
-   * Properties applied to the `input` element.
-   */
-  inputProps?: Object,
   /**
    * Properties applied to the `Input` element.
    */
@@ -161,8 +153,6 @@ function TextField(props: Props) {
     error,
     id,
     inputClassName,
-    InputClassName,
-    inputProps: inputPropsProp,
     InputProps,
     inputRef,
     label,
@@ -187,15 +177,6 @@ function TextField(props: Props) {
     ...other
   } = props;
 
-  let inputProps = inputPropsProp;
-
-  if (inputClassName) {
-    inputProps = {
-      className: inputClassName,
-      ...inputProps,
-    };
-  }
-
   warning(
     !select || Boolean(children),
     'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
@@ -205,7 +186,6 @@ function TextField(props: Props) {
     <Input
       autoComplete={autoComplete}
       autoFocus={autoFocus}
-      className={InputClassName}
       defaultValue={defaultValue}
       disabled={disabled}
       multiline={multiline}
@@ -215,10 +195,10 @@ function TextField(props: Props) {
       type={type}
       value={value}
       id={id}
-      inputProps={inputProps}
       inputRef={inputRef}
       onChange={onChange}
       placeholder={placeholder}
+      inputProps={{ className: inputClassName }}
       {...InputProps}
     />
   );

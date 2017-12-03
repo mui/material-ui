@@ -58,11 +58,6 @@ describe('<TextField />', () => {
         wrapper.setProps({ inputClassName: 'foo' });
         assert.strictEqual(wrapper.find(Input).props().inputProps.className, 'foo');
       });
-
-      it('should pass InputClassName to the Input as className', () => {
-        wrapper.setProps({ InputClassName: 'foo' });
-        assert.strictEqual(wrapper.find(Input).hasClass('foo'), true);
-      });
     });
 
     describe('with a label', () => {
@@ -119,9 +114,9 @@ describe('<TextField />', () => {
     });
   });
 
-  describe('prop: inputProps', () => {
+  describe('prop: InputProps', () => {
     it('should apply additional properties to the Input component', () => {
-      const wrapper = mount(<TextField inputProps={{ readOnly: true }} />);
+      const wrapper = mount(<TextField InputProps={{ readOnly: true }} />);
       assert.strictEqual(wrapper.find('input').props().readOnly, true);
     });
   });

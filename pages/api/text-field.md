@@ -13,7 +13,6 @@ filename: /src/TextField/TextField.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | FormHelperTextProps | Object |  | Properties applied to the `FormHelperText` element. |
-| InputClassName | string |  | The CSS class name of the `Input` element. |
 | InputLabelProps | Object |  | Properties applied to the `InputLabel` element. |
 | InputProps | Object |  | Properties applied to the `Input` element. |
 | SelectProps | Object |  | Properties applied to the `Select` element. |
@@ -27,7 +26,6 @@ filename: /src/TextField/TextField.js
 | helperTextClassName | string |  | The CSS class name of the helper text element. |
 | id | string |  | The id of the `input` element. |
 | inputClassName | string |  | The CSS class name of the `input` element. |
-| inputProps | Object |  | Properties applied to the `input` element. |
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
 | label | Node |  | The label content. |
 | labelClassName | string |  | The CSS class name of the label element. |
