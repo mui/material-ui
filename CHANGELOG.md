@@ -2,6 +2,17 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.23
+###### _????, 2017_
+
+### Breaking change
+
+- [TextField] Input/TextField API disamiguation/consistency (#9382) @rosskevin
+
+Some of the convenience properties exposed were confusing and have been removed (`inputProps | InputClassName`).  For advanced configuration 
+any `Input` through `TextField`, use `TextField.InputProps` to pass any property accepted by the `Input`.
+
+
 ## 1.0.0-beta.22
 ###### _Nov 28, 2017_
 
