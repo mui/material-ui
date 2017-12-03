@@ -10,9 +10,10 @@ export interface LabelDisplayedRowsArgs {
 }
 
 export interface TablePaginationProps extends StandardProps<
-  TableCellProps,
+  TablePaginationBaseProps,
   TablePaginationClassKey
 > {
+  component?: string | React.ComponentType<TablePaginationBaseProps>;
   count: number;
   labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
   labelRowsPerPage?: React.ReactNode;
@@ -22,6 +23,8 @@ export interface TablePaginationProps extends StandardProps<
   rowsPerPage: number;
   rowsPerPageOptions?: number[];
 }
+
+export type TablePaginationBaseProps = TableCellProps;
 
 export type TablePaginationClassKey =
   | TableCellClassKey
