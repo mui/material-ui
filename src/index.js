@@ -51,6 +51,7 @@ export { default as Radio, RadioGroup } from './Radio';
 export { default as Reboot } from './Reboot';
 export { default as Select } from './Select';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
+export { default as SpeedDial, SpeedDialIcon, SpeedDialAction } from './SpeedDial';
 export { default as Stepper, Step, StepButton, StepContent, StepLabel } from './Stepper';
 export { MuiThemeProvider, withStyles, withTheme, createMuiTheme } from './styles';
 

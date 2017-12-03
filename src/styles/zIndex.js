@@ -2,11 +2,12 @@
 // like global values in the browser.
 const zIndex = {
   mobileStepper: 1000,
-  appBar: 1100,
-  drawer: 1200,
-  modal: 1300,
-  snackbar: 1400,
-  tooltip: 1500,
+  speedDial: 1100,
+  appBar: 1200,
+  drawer: 1300,
+  modal: 1400,
+  snackbar: 1500,
+  tooltip: 1600,
 };
 
 export default zIndex;

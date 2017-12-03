@@ -36,6 +36,20 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/buttons/FloatingActionButtonZoom'), 'utf8')
 `,
         },
+        'pages/demos/buttons/SpeedDial.js': {
+          js: require('docs/src/pages/demos/buttons/SpeedDial').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/SpeedDial'), 'utf8')
+`,
+        },
+        'pages/demos/buttons/OpenIconSpeedDial.js': {
+          js: require('docs/src/pages/demos/buttons/OpenIconSpeedDial').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/OpenIConSpeedDial'), 'utf8')
+`,
+        },
         'pages/demos/buttons/IconButtons.js': {
           js: require('docs/src/pages/demos/buttons/IconButtons').default,
           raw: preval`
