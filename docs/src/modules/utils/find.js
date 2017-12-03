@@ -51,7 +51,7 @@ function findPagesMarkdown(
 const componentRegex = /^([A-Z][a-z]+)+\.js/;
 
 // Returns the component source in a flat array.
-function findComponents(directory = path.resolve(__dirname, '../../../../src'), components = []) {
+function findComponents(directory, components = []) {
   const items = fs.readdirSync(directory);
 
   items.forEach(item => {
@@ -90,7 +90,7 @@ function findPages(
       .replace(/^.*\/pages/, '')
       .replace('.js', '');
 
-    if (options.front && pathname.indexOf('/demos') === -1 && pathname.indexOf('/api') === -1) {
+    if (options.front && pathname.indexOf('/demos') === -1 && pathname.indexOf('/api') === -1 && pathname.indexOf('/lab') === -1) {
       return;
     }
 

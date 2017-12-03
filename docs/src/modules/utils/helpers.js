@@ -21,7 +21,7 @@ export function pageToTitle(page) {
 
   const name = page.pathname.replace(/.*\//, '');
 
-  if (page.pathname.indexOf('/api') === 0) {
+  if (page.pathname.indexOf('/api') === 0 || page.pathname.indexOf('/lab/api') === 0) {
     return upperFirst(camelCase(name));
   }
 

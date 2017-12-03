@@ -32,7 +32,7 @@ to discuss the approach before submitting a PR.
 - **[Buttons: Floating Action Button](https://material.io/guidelines/components/buttons-floating-action-button.html) ✓**
   - **[Trigger](https://material.io/guidelines/components/buttons-floating-action-button.html#buttons-floating-action-button-transitions) ✓**
   - [Toolbar](https://material.io/guidelines/components/buttons-floating-action-button.html#buttons-floating-action-button-transitions)
-  - [Speed dial](https://material.io/guidelines/components/buttons-floating-action-button.html#buttons-floating-action-button-transitions)
+  - **[Speed dial](https://material.io/guidelines/components/buttons-floating-action-button.html#buttons-floating-action-button-transitions) ~ [Lab](/lab/about)**
   - [Morph](http://www.google.com/design/spec/components/buttons-floating-action-button.html#buttons-floating-action-button-transitions)
   - [Full screen](http://www.google.com/design/spec/components/buttons-floating-action-button.html#buttons-floating-action-button-transitions)
 - **[Cards](https://material.io/guidelines/components/cards.html) ✓**
