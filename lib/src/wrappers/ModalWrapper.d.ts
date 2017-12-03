@@ -5,8 +5,8 @@ import { Utils } from '../utils/utils';
 import {DateTextFieldProps} from '../_shared/DateTextField';
 
 export interface ModalWrapperProps extends DateTextFieldProps {
-    onAccept: ButtonProps['onClick'];
-    onDismiss: ButtonProps['onClick'];
+    onAccept?: ButtonProps['onClick'];
+    onDismiss?: ButtonProps['onClick'];
     dialogContentClassName?: string;
     okLabel?: ReactNode;
     cancelLabel?: ReactNode;
