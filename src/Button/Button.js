@@ -147,6 +147,10 @@ export const styles = (theme: Object) => ({
       boxShadow: theme.shadows[12],
     },
   },
+  mini: {
+    width: 40,
+    height: 40,
+  },
 });
 
 export type Color = 'default' | 'inherit' | 'primary' | 'accent' | 'contrast';
@@ -213,6 +217,10 @@ export type Props = {
    */
   href?: string,
   /**
+   * If `true`, and `fab` is `true`, will use mini floating action button styling.
+   */
+  mini: boolean,
+  /**
    * If `true`, the button will use raised styling.
    */
   raised: boolean,
@@ -244,6 +252,7 @@ class Button extends React.Component<ProvidedProps & Props> {
       disabled,
       disableFocusRipple,
       fab,
+      mini,
       raised,
       ...other
     } = this.props;
@@ -254,6 +263,7 @@ class Button extends React.Component<ProvidedProps & Props> {
         [classes.root]: true,
         [classes.raised]: raised || fab,
         [classes.fab]: fab,
+        [classes.mini]: fab && mini,
         [classes.colorInherit]: color === 'inherit',
         [classes.flatPrimary]: flat && color === 'primary',
         [classes.flatAccent]: flat && color === 'accent',
