@@ -26,6 +26,8 @@ export default class ModalWrapper extends PureComponent {
     okLabel: undefined,
     cancelLabel: undefined,
     format: undefined,
+    onAccept: undefined,
+    onDismiss: undefined
   }
 
   state = {
@@ -38,12 +40,16 @@ export default class ModalWrapper extends PureComponent {
 
   handleAccept = () => {
     this.togglePicker(); // close
-    this.props.onAccept && this.props.onAccept();
+    if (this.props.onAccept) {
+        this.props.onAccept();
+    }
   }
 
   handleDismiss = () => {
     this.togglePicker();
-    this.props.onDismiss && this.props.onDismiss();
+    if (this.props.onDismiss) {
+        this.props.onDismiss();
+    }
   }
 
   render() {
