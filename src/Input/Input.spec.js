@@ -179,7 +179,7 @@ describe('<Input />', () => {
   });
 
   describe('prop: inputComponent', () => {
-    it('should accept any component', () => {
+    it('should accept any html component', () => {
       const wrapper = shallow(<Input inputComponent="span" />);
       assert.strictEqual(wrapper.find('span').length, 1);
     });

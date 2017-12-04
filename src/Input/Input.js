@@ -259,9 +259,8 @@ export type Props = {
    */
   id?: string,
   /**
-   * The component used for the input node.
+   * The component used for the native input.
    * Either a string to use a DOM element or a component.
-   * It's an `input` by default.
    */
   inputComponent?: string | ComponentType<*>,
   /**

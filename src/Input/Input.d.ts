@@ -8,7 +8,6 @@ export interface InputProps extends StandardProps<
 > {
   autoComplete?: string;
   autoFocus?: boolean;
-  inputComponent?: React.ReactNode;
   defaultValue?: string | number;
   disabled?: boolean;
   disableUnderline?: boolean;
@@ -16,6 +15,7 @@ export interface InputProps extends StandardProps<
   error?: boolean;
   fullWidth?: boolean;
   id?: string;
+  inputComponent?: string | React.ComponentType<InputProps>;
   inputProps?:
     | React.TextareaHTMLAttributes<HTMLTextAreaElement>
     | React.InputHTMLAttributes<HTMLInputElement>;

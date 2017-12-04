@@ -23,7 +23,7 @@ filename: /src/Input/Input.js
 | error | boolean |  | If `true`, the input will indicate an error. This is normally obtained via context from FormControl. |
 | fullWidth | boolean | false | If `true`, the input will take up the full width of its container. |
 | id | string |  | The id of the `input` element. |
-| inputComponent | union:&nbsp;string&nbsp;&#124;<br>&nbsp;ComponentType&lt;*><br> |  | The component used for the input node. Either a string to use a DOM element or a component. It's an `input` by default. |
+| inputComponent | union:&nbsp;string&nbsp;&#124;<br>&nbsp;ComponentType&lt;*><br> |  | The component used for the native input. Either a string to use a DOM element or a component. |
 | inputProps | Object |  | Properties applied to the `input` element. |
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
 | margin | union:&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
