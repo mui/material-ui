@@ -1,15 +1,14 @@
 ## HEAD
 
 
-## 0.20.0
-###### _Dec 2, 2017_
+###### _Dec 3, 2017_
 
 As usual, we are focusing on bug fixes but this time, we introduce an exceptional breaking change, 
-consistent with the removal of `onTouchTap`for `onClick in v0.19.0 (#7624).
+consistent with the removal of `onTouchTap`for `onClick` in v0.19.0 (#7624).
 
 Big thanks to the 10 contributors who made this release possible.
 
-##### Breaking Change
+### Breaking Change
 
 - [core] Remove `TouchTap` in favor of `Click` throughout library and docs (#9058) @m2mathew
 
@@ -21,7 +20,7 @@ You need to globally replace any references to `TouchTap` property callbacks wit
 - [BottomNavigation] Allow `null` child (#8925) @MrSaints
 - [Menu] Use filtered children on setFocusIndexStartsWith (#9316) @alancasagrande
 - [Menu] Fix condition where item is removed from menu before it is used in focus calculation. (#8769) @zentron
-- [Slider] Fix Updating min and max props (#9261) @thomaskempe
+- [Slider] Fix Updating min and max props (#9261) @thomaskempel
 - [Slider] Fix slider being disabled onKeydown error (#9001) @henryj
 - [Stepper] Allow invalid children (#8634) @svengau
 
