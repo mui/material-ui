@@ -114,6 +114,7 @@
     "clean-css": "^4.1.9",
     "cross-env": "^5.1.1",
     "doctrine": "^2.0.0",
+    "downshift": "^1.22.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.11.0",
