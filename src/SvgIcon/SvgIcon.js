@@ -4,6 +4,7 @@ import React from 'react';
 import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 
 export const styles = (theme: Object) => ({
   root: {
@@ -17,7 +18,27 @@ export const styles = (theme: Object) => ({
       duration: theme.transitions.duration.shorter,
     }),
   },
+  colorAccent: {
+    color: theme.palette.secondary.A200,
+  },
+  colorAction: {
+    color: theme.palette.action.active,
+  },
+  colorContrast: {
+    color: theme.palette.getContrastText(theme.palette.primary[500]),
+  },
+  colorDisabled: {
+    color: theme.palette.action.disabled,
+  },
+  colorError: {
+    color: theme.palette.error[500],
+  },
+  colorPrimary: {
+    color: theme.palette.primary[500],
+  },
 });
+
+export type Color = 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary';
 
 type ProvidedProps = {
   classes: Object,
@@ -45,6 +66,10 @@ export type Props = {
    */
   className?: string,
   /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: Color,
+  /**
    * Provides a human-readable title for the element that contains it.
    * https://www.w3.org/TR/SVG-access/#Equivalent
    */
@@ -62,16 +87,33 @@ export type Props = {
 class SvgIcon extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     viewBox: '0 0 24 24',
+    color: 'inherit',
   };
 
   static muiName = 'SvgIcon';
 
   render() {
-    const { children, classes, className, titleAccess, viewBox, ...other } = this.props;
+    const {
+      children,
+      classes,
+      className: classNameProp,
+      color,
+      titleAccess,
+      viewBox,
+      ...other
+    } = this.props;
+
+    const className = classNames(
+      classes.root,
+      {
+        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+      },
+      classNameProp,
+    );
 
     return (
       <svg
-        className={classNames(classes.root, className)}
+        className={className}
         focusable="false"
         viewBox={viewBox}
         aria-hidden={titleAccess ? 'false' : 'true'}
