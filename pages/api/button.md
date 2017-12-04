@@ -22,6 +22,7 @@ filename: /src/Button/Button.js
 | disabled | boolean | false | If `true`, the button will be disabled. |
 | fab | boolean | false | If `true`, will use floating action button styling. |
 | href | string |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
+| mini | boolean | false | If `true`, and `fab` is `true`, will use mini floating action button styling. |
 | raised | boolean | false | If `true`, the button will use raised styling. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
@@ -44,6 +45,7 @@ This property accepts the following keys:
 - `raisedContrast`
 - `disabled`
 - `fab`
+- `mini`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Button/Button.js)

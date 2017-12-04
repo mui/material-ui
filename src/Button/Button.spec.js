@@ -159,6 +159,28 @@ describe('<Button />', () => {
     );
   });
 
+  it('should render a mini floating action button', () => {
+    const wrapper = shallow(
+      <Button fab mini>
+        Hello World
+      </Button>,
+    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
+    assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');
+    assert.strictEqual(wrapper.hasClass(classes.mini), true, 'should have the mini class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.flatPrimary),
+      false,
+      'should not have the primary class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.flatAccent),
+      false,
+      'should not have the accent class',
+    );
+  });
+
   it('should render a primary floating action button', () => {
     const wrapper = shallow(
       <Button fab color="primary">
