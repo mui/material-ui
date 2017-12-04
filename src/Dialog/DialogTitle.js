@@ -42,7 +42,7 @@ export type Props = {
   className?: string,
   /**
    * If `true`, the children won't be wrapped by a typography component.
-   * For instance, that can be useful to render a h4 instead of the default h2.
+   * For instance, this can be useful to render an h4 instead of the default h2.
    */
   disableTypography: boolean,
 };
