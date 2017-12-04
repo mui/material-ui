@@ -4,10 +4,10 @@ import { StandardProps, PropTypes } from '..';
 export interface SvgIconProps extends StandardProps<
   React.SVGProps<SVGSVGElement>,
   SvgIconClassKey
-> {
+  > {
+  color?: PropTypes.Color | 'action' | 'contrast' | 'disabled' | 'error';
   titleAccess?: string;
   viewBox?: string;
-  color?: PropTypes.Color | 'action' | 'contrast' | 'disabled' | 'error';
 }
 
 export type SvgIconClassKey =

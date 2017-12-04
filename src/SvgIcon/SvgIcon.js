@@ -97,19 +97,19 @@ class SvgIcon extends React.Component<ProvidedProps & Props> {
       children,
       classes,
       className: classNameProp,
+      color,
       titleAccess,
       viewBox,
       ...other
     } = this.props;
 
-    const colorClass = classes[`color${capitalizeFirstLetter(this.props.color)}`]
-      ? {
-          [classes[`color${capitalizeFirstLetter(this.props.color)}`]]:
-            this.props.color !== 'inherit',
-        }
-      : null;
-
-    const className = classNames('material-icons', classes.root, colorClass, classNameProp);
+    const className = classNames(
+      classes.root,
+      {
+        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+      },
+      classNameProp,
+    );
 
     return (
       <svg

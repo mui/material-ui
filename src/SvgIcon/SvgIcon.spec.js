@@ -49,7 +49,7 @@ describe('<SvgIcon />', () => {
     });
   });
 
-  describe('optional classes', () => {
+  describe('prop: color', () => {
     it('should render with the user and SvgIcon classes', () => {
       const wrapper = shallow(<SvgIcon className="meow">{path}</SvgIcon>);
       assert.strictEqual(wrapper.hasClass('meow'), true, 'should have the "meow" class');
