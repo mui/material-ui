@@ -154,6 +154,8 @@ export const styles = (theme: Object) => {
       // Remove grey highlight
       WebkitTapHighlightColor: theme.palette.common.transparent,
       display: 'block',
+      // Make the flex item shrink with Firefox
+      minWidth: 0,
       width: '100%',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
