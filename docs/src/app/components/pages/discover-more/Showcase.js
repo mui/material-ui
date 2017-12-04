@@ -179,6 +179,12 @@ const appList = [
     img: 'images/showcase/flyweekend.png',
     link: 'https://flyweekend.co',
   },
+  {
+    title: 'smpl - Coworking Space Management',
+    author: 'smpl',
+    img: 'images/showcase/smpl.png',
+    link: 'https://smpl.io/features/your-experience/',
+  },
 ];
 
 const Showcase = () => (
