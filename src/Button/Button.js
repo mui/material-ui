@@ -237,6 +237,7 @@ class Button extends React.Component<ProvidedProps & Props> {
     disabled: false,
     fab: false,
     disableFocusRipple: false,
+    mini: false,
     raised: false,
     disableRipple: false,
     type: 'button',
