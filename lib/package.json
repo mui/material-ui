@@ -40,7 +40,8 @@
   },
   "dependencies": {
     "babel-helpers": "^6.24.1",
-    "moment-range": "^3.0.3"
+    "moment-range": "^3.0.3",
+    "react-text-mask": "^5.0.2"
   },
   "scripts": {
     "test": "jest",

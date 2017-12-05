@@ -3,6 +3,26 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { TextField, InputAdornment, IconButton } from 'material-ui';
 
+import MaskedInput from 'react-text-mask';
+
+class Input extends PureComponent {
+  static propTypes = {
+    mask: PropTypes.any,
+  }
+
+  static defaultProps = {
+    mask: undefined,
+  }
+
+  render() {
+    return (
+      this.props.mask
+        ? <MaskedInput {...this.props} />
+        : <input {...this.props} />
+    );
+  }
+}
+
 export default class DateTextField extends PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
@@ -11,6 +31,7 @@ export default class DateTextField extends PureComponent {
       PropTypes.number,
       PropTypes.instanceOf(Date),
     ]),
+    mask: PropTypes.any,
     disabled: PropTypes.bool,
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
@@ -29,6 +50,7 @@ export default class DateTextField extends PureComponent {
     format: undefined,
     InputProps: undefined,
     keyboard: false,
+    mask: undefined,
   }
 
   constructor(props) {
@@ -72,7 +94,7 @@ export default class DateTextField extends PureComponent {
     const { format } = this.props;
     const oldValue = this.state.value;
     const newValue = moment(e.target.value, format, true);
-    const error = newValue.isValid() ? '' : 'Invalid Date Format';
+    const error = !newValue.isValid() ? '' : 'Invalid Date Format';
 
     this.setState({
       displayValue: e.target.value,
@@ -103,33 +125,39 @@ export default class DateTextField extends PureComponent {
 
   render() {
     const {
-      format, disabled, onClick, invalidLabel, labelFunc, keyboard, ...other
+      format, disabled, onClick, invalidLabel, labelFunc, keyboard, value, mask, ...other
     } = this.props;
     const { displayValue, error } = this.state;
 
     return (
-      <TextField
-        readOnly
-        onClick={this.handleFocus}
-        error={!!error}
-        helperText={error}
-        onKeyPress={this.handleChange}
-        onBlur={e => e.preventDefault() && e.stopPropagation()}
-        disabled={disabled}
-        {...other}
-        onChange={this.handleChange}
-        value={displayValue}
-        InputProps={keyboard ? {
-          endAdornment: (
-            <InputAdornment
-              onClick={this.handleFocus}
-              position="end"
-            >
-              <IconButton>  event  </IconButton>
-            </InputAdornment>
-          ),
-        } : this.props.InputProps}
-      />
+      <div>
+        <TextField
+          readOnly
+          onClick={this.handleFocus}
+          error={!!error}
+          helperText={error}
+          onKeyPress={this.handleChange}
+          onBlur={e => e.preventDefault() && e.stopPropagation()}
+          disabled={disabled}
+          value={displayValue}
+          {...other}
+          onChange={this.handleChange}
+          inputProps={{
+            mask,
+          }}
+          InputProps={keyboard ? {
+            endAdornment: (
+              <InputAdornment
+                onClick={this.handleFocus}
+                position="end"
+              >
+                <IconButton>  event  </IconButton>
+              </InputAdornment>
+            ),
+            inputComponent: Input,
+          } : this.props.InputProps}
+        />
+      </div>
     );
   }
 }
