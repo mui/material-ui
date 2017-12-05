@@ -33,4 +33,5 @@ export interface Transitions {
 
 export type TransitionsOptions = DeepPartial<Transitions>;
 
-export default Transitions;
+declare const transitions: Transitions;
+export default transitions;
