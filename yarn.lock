@@ -2740,6 +2740,10 @@ dot-prop@^4.1.0:
   dependencies:
     is-obj "^1.0.0"
 
+downshift@^1.22.1:
+  version "1.22.1"
+  resolved "https://registry.yarnpkg.com/downshift/-/downshift-1.22.1.tgz#93ba5576f40e9bf83a10bac9806c5b71078776d3"
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
