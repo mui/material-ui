@@ -49,6 +49,7 @@ export default class TimePickerWrapper extends PickerBase {
         value={value}
         format={this.getFormat()}
         onAccept={this.handleAccept}
+        onChange={this.handleChange}
         onDismiss={this.handleDismiss}
         invalidLabel={invalidLabel}
         {...other}

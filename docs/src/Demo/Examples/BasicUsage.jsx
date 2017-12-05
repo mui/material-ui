@@ -23,6 +23,7 @@ export default class BasicUsage extends Component {
           </Typography>
 
           <DatePicker
+            keyboard
             value={selectedDate}
             onChange={this.handleDateChange}
             animateYearScrolling={false}
@@ -35,6 +36,7 @@ export default class BasicUsage extends Component {
           </Typography>
 
           <TimePicker
+            keyboard
             value={selectedDate}
             onChange={this.handleDateChange}
           />

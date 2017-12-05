@@ -89,6 +89,7 @@ export default class DatePickerWrapper extends PickerBase {
         value={value}
         format={format}
         onAccept={this.handleAccept}
+        onChange={this.handleChange}
         onDismiss={this.handleDismiss}
         invalidLabel={invalidLabel}
         labelFunc={labelFunc}

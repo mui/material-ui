@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { TextField } from 'material-ui';
+import { TextField, InputAdornment, IconButton } from 'material-ui';
 
 export default class DateTextField extends PureComponent {
   static propTypes = {
@@ -13,9 +13,12 @@ export default class DateTextField extends PureComponent {
     ]),
     disabled: PropTypes.bool,
     format: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
     onClick: PropTypes.func.isRequired,
     invalidLabel: PropTypes.string,
     labelFunc: PropTypes.func,
+    keyboard: PropTypes.bool,
+    InputProps: PropTypes.shape(),
   }
 
   static defaultProps = {
@@ -24,15 +27,29 @@ export default class DateTextField extends PureComponent {
     value: new Date(),
     labelFunc: undefined,
     format: undefined,
+    InputProps: undefined,
+    keyboard: false,
   }
 
-  getDisplayDate = () => {
+  constructor(props) {
+    super(props);
+
+    this.state = this.updateState(props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.state.value) {
+      this.setState(this.updateState(nextProps));
+    }
+  }
+
+  getDisplayDate = (props) => {
     const {
       value,
       format,
       invalidLabel,
       labelFunc,
-    } = this.props;
+    } = props;
 
     const date = moment(value);
 
@@ -45,15 +62,39 @@ export default class DateTextField extends PureComponent {
       : invalidLabel;
   }
 
-  handleChange = () => {
-    console.warn('Currently not supported keyboad input');
+  updateState = props => ({
+    value: props.value,
+    displayValue: this.getDisplayDate(props),
+    error: '',
+  })
+
+  handleChange = (e) => {
+    const { format } = this.props;
+    const oldValue = this.state.value;
+    const newValue = moment(e.target.value, format, true);
+    const error = newValue.isValid() ? '' : 'Invalid Date Format';
+
+    this.setState({
+      displayValue: e.target.value,
+      value: error ? newValue : oldValue,
+      error,
+    }, () => {
+      if (!error && newValue.format('LLLL') !== oldValue.format('LLLL')) {
+        this.props.onChange(newValue, true);
+      }
+    });
   }
 
   handleFocus = (e) => {
-    e.target.blur();
     e.stopPropagation();
     e.preventDefault();
-    const { disabled, onClick } = this.props;
+    const { disabled, onClick, keyboard } = this.props;
+
+    if (keyboard && e.target.tagName.toLowerCase() !== 'span') {
+      return;
+    }
+
+    e.target.blur();
 
     if (!disabled) {
       onClick(e);
@@ -62,19 +103,32 @@ export default class DateTextField extends PureComponent {
 
   render() {
     const {
-      value, format, disabled, onClick, invalidLabel, labelFunc, ...other
+      format, disabled, onClick, invalidLabel, labelFunc, keyboard, ...other
     } = this.props;
+    const { displayValue, error } = this.state;
 
     return (
       <TextField
         readOnly
-        value={this.getDisplayDate()}
-        onChange={this.handleChange}
         onClick={this.handleFocus}
-        onKeyPress={this.handleFocus}
+        error={!!error}
+        helperText={error}
+        onKeyPress={this.handleChange}
         onBlur={e => e.preventDefault() && e.stopPropagation()}
         disabled={disabled}
         {...other}
+        onChange={this.handleChange}
+        value={displayValue}
+        InputProps={keyboard ? {
+          endAdornment: (
+            <InputAdornment
+              onClick={this.handleFocus}
+              position="end"
+            >
+              <IconButton>  event  </IconButton>
+            </InputAdornment>
+          ),
+        } : this.props.InputProps}
       />
     );
   }
