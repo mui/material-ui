@@ -25,4 +25,5 @@ export type Shadows = [
   string,
   string
 ];
-export default Shadows;
+declare const shadows: Shadows;
+export default shadows;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 
-export type Origin = {
+export type SnackBarOrigin = {
   horizontal?: 'left' | 'center' | 'right' | number;
   vertical?: 'top' | 'center' | 'bottom' | number;
 };
@@ -12,7 +12,7 @@ export interface SnackbarProps extends StandardProps<
   SnackbarClassKey
 > {
   action?: React.ReactElement<any> | React.ReactElement<any>[];
-  anchorOrigin?: Origin;
+  anchorOrigin?: SnackBarOrigin;
   autoHideDuration?: number;
   resumeHideDuration?: number;
   transitionDuration?: TransitionDuration;

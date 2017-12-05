@@ -4,7 +4,7 @@ import { PaperProps } from '../Paper';
 import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 import { ModalProps, ModalClassKey } from '../Modal';
 
-export interface Origin {
+export interface PopoverOrigin {
   horizontal: 'left' | 'center' | 'right' | number;
   vertical: 'top' | 'center' | 'bottom' | number;
 }
@@ -15,7 +15,7 @@ export interface PopoverProps extends StandardProps<
   'onRequestClose'
 > {
   anchorEl?: Object;
-  anchorOrigin?: Origin;
+  anchorOrigin?: PopoverOrigin;
   elevation?: number;
   enteredClassName?: string;
   enteringClassName?: string;
@@ -27,7 +27,7 @@ export interface PopoverProps extends StandardProps<
   onRequestClose?: Function;
   open?: boolean;
   role?: string;
-  transformOrigin?: Origin;
+  transformOrigin?: PopoverOrigin;
   transitionDuration?: TransitionDuration;
   theme?: Object;
   PaperProps?: Partial<PaperProps>;
