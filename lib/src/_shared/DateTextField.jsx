@@ -23,6 +23,7 @@ class Input extends PureComponent {
   }
 }
 
+
 export default class DateTextField extends PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
@@ -94,7 +95,7 @@ export default class DateTextField extends PureComponent {
     const { format } = this.props;
     const oldValue = this.state.value;
     const newValue = moment(e.target.value, format, true);
-    const error = !newValue.isValid() ? '' : 'Invalid Date Format';
+    const error = newValue.isValid() ? '' : 'Invalid Date Format';
 
     this.setState({
       displayValue: e.target.value,
