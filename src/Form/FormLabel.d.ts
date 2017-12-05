@@ -5,11 +5,11 @@ export interface FormLabelProps extends StandardProps<
   React.LabelHTMLAttributes<HTMLLabelElement>,
   FormLabelClassKey
 > {
+  component?: string | React.ComponentType;
   disabled?: boolean;
   error?: boolean;
   focused?: boolean;
   required?: boolean;
-  component?: string | React.ComponentType;
 }
 
 export type FormLabelClassKey =
