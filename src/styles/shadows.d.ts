@@ -1,28 +1,4 @@
-export type Shadows = [
-  'none',
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string
-];
-export default Shadows;
+export type Shadows = Array<string>;
+
+declare const shadows: Shadows;
+export default shadows;
