@@ -1,27 +1,10 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { TextField, InputAdornment, IconButton } from 'material-ui';
 
-import MaskedInput from 'react-text-mask';
-
-class Input extends PureComponent {
-  static propTypes = {
-    mask: PropTypes.any,
-  }
-
-  static defaultProps = {
-    mask: undefined,
-  }
-
-  render() {
-    return (
-      this.props.mask
-        ? <MaskedInput {...this.props} />
-        : <input {...this.props} />
-    );
-  }
-}
+import MaskedInput from './MaskedInput';
 
 export default class DateTextField extends PureComponent {
   static propTypes = {
@@ -94,7 +77,7 @@ export default class DateTextField extends PureComponent {
     const { format } = this.props;
     const oldValue = this.state.value;
     const newValue = moment(e.target.value, format, true);
-    const error = !newValue.isValid() ? '' : 'Invalid Date Format';
+    const error = newValue.isValid() ? '' : 'Invalid Date Format';
 
     this.setState({
       displayValue: e.target.value,
@@ -154,7 +137,7 @@ export default class DateTextField extends PureComponent {
                 <IconButton>  event  </IconButton>
               </InputAdornment>
             ),
-            inputComponent: Input,
+            inputComponent: MaskedInput,
           } : this.props.InputProps}
         />
       </div>
