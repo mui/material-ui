@@ -9,6 +9,7 @@ export interface FormLabelProps extends StandardProps<
   error?: boolean;
   focused?: boolean;
   required?: boolean;
+  component?: string | React.ComponentType;
 }
 
 export type FormLabelClassKey =
