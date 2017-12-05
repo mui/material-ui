@@ -7,7 +7,7 @@ Have a look at the [Create React App with TypeScript](https://github.com/mui-org
 
 The usage of `withStyles` in TypeScript can be a little tricky, so it's worth showing some examples. You can first call `withStyles()` to create a decorator function, like so:
 
-```jsx
+```js
 const decorate = withStyles(({ palette, spacing }) => ({
   root: {
     padding: spacing.unit,
@@ -19,7 +19,7 @@ const decorate = withStyles(({ palette, spacing }) => ({
 
 This can then subsequently be used to decorate either a stateless functional component or a class component. Suppose we have in either case the following props:
 
-```jsx
+```js
 interface Props {
   text: string;
   type: TypographyProps['type'];
@@ -90,12 +90,12 @@ To avoid worrying about this edge case it may be a good habit to always provide 
 
 ## Customization of `Theme`
 
-When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting 
+When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting
 [Typescript's module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
 The following example adds an `appDrawer` property that is merged into the one exported by `material-ui`:
 
-```jsx
+```js
 import { Theme } from 'material-ui/styles/createMuiTheme'
 import { Breakpoint } from 'material-ui/styles/createBreakpoints'
 

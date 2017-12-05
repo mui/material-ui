@@ -9,7 +9,7 @@ import getContext, { getTheme } from 'docs/src/modules/styles/getContext';
 import JssProvider from 'react-jss/lib/JssProvider';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/utils/prism';
-import config from 'docs/src/config';
+import GoogleTag from 'docs/src/modules/components/GoogleTag';
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -43,13 +43,6 @@ class AppWrapper extends React.Component<any, any> {
     if (document.body) {
       document.body.dir = this.props.uiTheme.direction;
     }
-
-    // Wait for the title to be updated.
-    this.googleTimer = setTimeout(() => {
-      window.gtag('config', config.google.id, {
-        page_path: window.location.pathname,
-      });
-    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -71,12 +64,7 @@ class AppWrapper extends React.Component<any, any> {
     }
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.googleTimer);
-  }
-
   styleContext = null;
-  googleTimer = null;
 
   render() {
     const { children, sheetsRegistry } = this.props;
@@ -92,6 +80,7 @@ class AppWrapper extends React.Component<any, any> {
           sheetsManager={this.styleContext.sheetsManager}
         >
           <AppFrame>{children}</AppFrame>
+          <GoogleTag />
         </MuiThemeProvider>
       </JssProvider>
     );

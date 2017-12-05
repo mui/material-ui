@@ -24,13 +24,6 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/JssRegistry'), 'utf8')
 `,
         },
-        'pages/customization/ReactJss.js': {
-          js: require('docs/src/pages/customization/ReactJss').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/ReactJss'), 'utf8')
-`,
-        },
       }}
     />
   );
