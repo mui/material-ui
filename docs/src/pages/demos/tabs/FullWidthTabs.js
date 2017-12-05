@@ -7,12 +7,13 @@ import { withStyles } from 'material-ui/styles';
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
+import Typography from 'material-ui/Typography';
 
 function TabContainer({ children, dir }) {
   return (
-    <div dir={dir} style={{ padding: 8 * 3 }}>
+    <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
       {children}
-    </div>
+    </Typography>
   );
 }
 
@@ -24,6 +25,7 @@ TabContainer.propTypes = {
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
+    width: 500,
   },
 });
 
@@ -44,7 +46,7 @@ class FullWidthTabs extends React.Component {
     const { classes, theme } = this.props;
 
     return (
-      <div className={classes.root} style={{ width: 500 }}>
+      <div className={classes.root}>
         <AppBar position="static" color="default">
           <Tabs
             value={this.state.value}

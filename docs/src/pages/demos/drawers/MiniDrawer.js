@@ -151,9 +151,7 @@ class MiniDrawer extends React.Component {
             </div>
           </Drawer>
           <main className={classes.content}>
-            <Typography type="body1" noWrap>
-              {'You think water moves fast? You should see ice.'}
-            </Typography>
+            <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
           </main>
         </div>
       </div>
