@@ -6,6 +6,7 @@ import { TextField, InputAdornment, IconButton } from 'material-ui';
 
 import MaskedInput from './MaskedInput';
 
+
 export default class DateTextField extends PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
