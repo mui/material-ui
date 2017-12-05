@@ -169,6 +169,7 @@ class ExpansionPanel extends React.Component<ProvidedProps & Props, State> {
       defaultExpanded,
       disabled,
       expanded: expandedProp,
+      onChange,
       ...other
     } = this.props;
     const { expanded } = this.state;
