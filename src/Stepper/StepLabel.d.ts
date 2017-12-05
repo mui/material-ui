@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { Orientation } from './Stepper';
-import { Icon } from './StepButton';
+import { StepButtonIcon } from './StepButton';
 
 export interface StepLabelProps extends StandardProps<
   React.HTMLAttributes<HTMLDivElement>,
