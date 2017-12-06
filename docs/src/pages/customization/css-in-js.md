@@ -155,6 +155,22 @@ function App() {
 export default App;
 ```
 
+## Plugins
+
+JSS uses the concept of plugins to extend his core.
+It's allowing people to cherry-pick the features they need.
+You pay the performance overhead for only what's you are using.
+Given `withStyles` is our internal styling solution, all the plugins aren't available by default. We have added the following list:
+- [jss-global](http://cssinjs.org/jss-global)
+- [jss-nested](http://cssinjs.org/jss-nested)
+- [jss-camel-case](http://cssinjs.org/jss-camel-case)
+- [jss-default-unit](http://cssinjs.org/jss-default-unit)
+- [jss-vendor-prefixer](http://cssinjs.org/jss-vendor-prefixer)
+- [jss-props-sort](http://cssinjs.org/jss-props-sort)
+
+It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default).
+Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left#3-jss-rtl).
+
 ## API
 
 ### `withStyles(styles, [options]) => Higher-order Component`
