@@ -65,9 +65,9 @@ export default class DateTextField extends PureComponent {
 
   state = this.updateState()
 
-  componentDidUpdate = (prevProps) => {
-    if (prevProps.value !== this.state.value) {
-      this.setState(this.updateState(this.props));
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.state.value) {
+      this.setState(this.updateState(nextProps));
     }
   }
 
