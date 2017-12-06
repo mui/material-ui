@@ -23,8 +23,13 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.contentFrame,
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: 20,
-    paddingBottom: 20,
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing.unit * 3,
+      paddingRight: theme.spacing.unit * 3,
+      paddingTop: theme.spacing.unit * 6,
+    },
   }),
   codeButton: {
     flip: false,
