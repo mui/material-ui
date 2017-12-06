@@ -311,21 +311,6 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
     }
   };
 
-  renderRipple() {
-    if (!this.props.disableRipple && !this.props.disabled) {
-      return (
-        <TouchRipple
-          innerRef={node => {
-            this.ripple = node;
-          }}
-          center={this.props.centerRipple}
-        />
-      );
-    }
-
-    return null;
-  }
-
   render() {
     const {
       centerRipple,
@@ -403,7 +388,14 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
         ref={rootRef}
       >
         {children}
-        {this.renderRipple()}
+        {!disableRipple && !disabled ? (
+          <TouchRipple
+            innerRef={node => {
+              this.ripple = node;
+            }}
+            center={centerRipple}
+          />
+        ) : null}
       </ComponentProp>
     );
   }

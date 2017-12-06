@@ -237,7 +237,7 @@ class TouchRipple extends React.Component<ProvidedProps & Props, State> {
     const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
     let ripples = this.state.ripples;
 
-    // Add a ripple to the ripples array
+    // Add a ripple to the ripples array.
     ripples = [
       ...ripples,
       <Ripple
