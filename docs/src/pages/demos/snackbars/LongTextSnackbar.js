@@ -13,9 +13,6 @@ const action = (
 );
 
 const styles = theme => ({
-  root: {
-    marginTop: theme.spacing.unit * 3,
-  },
   snackbar: {
     margin: theme.spacing.unit,
   },
@@ -25,7 +22,7 @@ function LongTextSnackbar(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.root}>
+    <div>
       <SnackbarContent className={classes.snackbar} message="I love snacks." action={action} />
       <SnackbarContent
         className={classes.snackbar}

@@ -45,8 +45,8 @@ export const styles = theme => ({
     alignItems: 'center',
   },
   colorGroup: {
-    padding: '16px 0',
-    margin: '0 15px 0 0',
+    padding: 0,
+    margin: `0 ${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px 0`,
     flexGrow: 1,
     [theme.breakpoints.up('sm')]: {
       flexGrow: 0,

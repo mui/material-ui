@@ -7,12 +7,11 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 
-const styles = theme => ({
+const styles = {
   root: {
-    marginTop: theme.spacing.unit * 3,
     width: '100%',
   },
-});
+};
 
 function SimpleAppBar(props) {
   const { classes } = props;
