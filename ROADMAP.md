@@ -4,7 +4,7 @@ The roadmap is a living document, and it is likely that priorities will change, 
 
 ⚠️ New features based on `v0.19.x` have low priority and will most likely not be reviewed nor merged. We want to focus on bug fixes.
 
-## Version 1 (published on NPM under the next tag)
+## Version 1 (published on NPM under the `next` tag)
 
 Version 1 release is going to be huge ✨.
 We host a temporary [documentation site](https://material-ui-next.com) for the pre-releases.
