@@ -13,6 +13,17 @@ or you can use it in conjunction with our [`Grid`](/layout/grid) component.
 
 Hidden works with a range of breakpoints e.g. `xsUp` or `mdDown`, or one or more breakpoints e.g. `only='sm'` or `only={['md', 'xl']}`.
 Ranges and individual breakpoints can be used simultaneously to achieve very customized behavior.
+The up range is inclusive while the down range is exclusive.
+
+```js
+innerWidth  |xs      sm      md      lg      xl
+            |--------|-------|-------|-------|------->
+width       |  xs    |  sm   |  md   |  lg   |  xl
+
+smUp        |  show  | hide
+mdDown      |  hide          |  show
+
+```
 
 ## Implementations
 
