@@ -157,8 +157,7 @@ export default App;
 
 ## Plugins
 
-JSS uses the concept of plugins to extend his core.
-It's allowing people to cherry-pick the features they need.
+JSS uses the concept of plugins to extend its core, allowing people to cherry-pick the features they need.
 You pay the performance overhead for only what's you are using.
 Given `withStyles` is our internal styling solution, all the plugins aren't available by default. We have added the following list:
 - [jss-global](http://cssinjs.org/jss-global)
