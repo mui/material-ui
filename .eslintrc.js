@@ -68,6 +68,7 @@ module.exports = {
         eventHandlerPropPrefix: 'on',
       },
     ],
+    'react/prefer-stateless-function': 'warn',
     'react/require-default-props': 'off', // airbnb use error
     'react/forbid-prop-types': 'off', // airbnb use error
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx

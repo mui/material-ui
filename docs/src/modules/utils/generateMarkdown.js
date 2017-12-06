@@ -185,9 +185,9 @@ function generateProps(reactAPI) {
         }
       }
 
-      textProps += `| ${propRaw} | ${generatePropType(type)} | ${defaultValue} | ${
-        description
-      } |\n`;
+      textProps += `| ${propRaw} | ${generatePropType(
+        type,
+      )} | ${defaultValue} | ${description} |\n`;
 
       return textProps;
     }, text);
