@@ -13,9 +13,14 @@ import HelpIcon from 'material-ui-icons/Help';
 import ShoppingBasket from 'material-ui-icons/ShoppingBasket';
 import ThumbDown from 'material-ui-icons/ThumbDown';
 import ThumbUp from 'material-ui-icons/ThumbUp';
+import Typography from 'material-ui/Typography';
 
 function TabContainer(props) {
-  return <div style={{ padding: 8 * 3 }}>{props.children}</div>;
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  );
 }
 
 TabContainer.propTypes = {

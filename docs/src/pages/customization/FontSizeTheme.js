@@ -15,7 +15,7 @@ function theme() {
 function FontSizeTheme() {
   return (
     <MuiThemeProvider theme={theme}>
-      <Typography type="body1">body1</Typography>
+      <Typography>body1</Typography>
     </MuiThemeProvider>
   );
 }

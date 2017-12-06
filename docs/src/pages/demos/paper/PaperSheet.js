@@ -22,7 +22,7 @@ function PaperSheet(props) {
         <Typography type="headline" component="h3">
           This is a sheet of paper.
         </Typography>
-        <Typography type="body1" component="p">
+        <Typography component="p">
           Paper can be used to build surface or other elements for your application.
         </Typography>
       </Paper>
