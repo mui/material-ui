@@ -92,9 +92,9 @@ const withWidth = (
         /**
          * Start with the slowest value as low end devices often have a small screen.
          *
-         * innerWidth |0      xs      sm      md      lg      xl
-         *            |-------|-------|-------|-------|-------|------>
-         * width      |  xs   |  xs   |  sm   |  md   |  lg   |  xl
+         * innerWidth |xs      sm      md      lg      xl
+         *            |-------|-------|-------|-------|------>
+         * width      |  xs   |  sm   |  md   |  lg   |  xl
          */
         let index = 1;
         while (width === null && index < breakpointKeys.length) {
