@@ -1,7 +1,7 @@
 export type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla';
 export interface ColorObject {
   type: ColorFormat;
-  color: [number, number, number] | [number, number, number, number];
+  values: [number, number, number] | [number, number, number, number];
 }
 
 export function convertColorToString(color: ColorObject): string;
