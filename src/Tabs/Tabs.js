@@ -161,10 +161,7 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
   };
 
   state = {
-    indicatorStyle: {
-      left: 0,
-      width: 0,
-    },
+    indicatorStyle: {},
     scrollerStyle: {
       marginBottom: 0,
     },

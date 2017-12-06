@@ -23,8 +23,8 @@ export const styles = (theme: Object) => ({
 });
 
 export type IndicatorStyle = {
-  left: number,
-  width: number,
+  left?: number,
+  width?: number,
 };
 
 export type ProvidedProps = {

@@ -4,6 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import scroll from 'scroll';
+import { ShallowWrapper } from 'enzyme';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import Tabs from './Tabs';
@@ -162,6 +163,24 @@ describe('<Tabs />', () => {
         assert.strictEqual(wrapper2.find(TabIndicator).props().style.width, 0);
       });
 
+      it('should work server-side', () => {
+        const wrapper2 = shallow(
+          <Tabs width="md" onChange={noop} value={1}>
+            <Tab />
+            <Tab />
+          </Tabs>,
+          { disableLifecycleMethods: true },
+        );
+        const indicator = new ShallowWrapper(
+          wrapper2
+            .find(Tab)
+            .at(1)
+            .props().indicator,
+          wrapper2,
+        );
+        assert.deepEqual(indicator.props().style, {});
+      });
+
       it('should let the selected <Tab /> render the indicator', () => {
         const wrapper2 = shallow(
           <Tabs width="md" onChange={noop} value={1}>
@@ -246,7 +265,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      assert.strictEqual(consoleErrorMock.callCount(), 2);
+      assert.strictEqual(consoleErrorMock.callCount(), 3);
       assert.strictEqual(
         consoleErrorMock.args()[0][0],
         'Warning: Material-UI: the value provided `2` is invalid',
