@@ -202,7 +202,7 @@ Use the function signature if you need to have access to the theme. It's provide
 
 #### Examples
 
-```js
+```jsx
 import { withStyles } from 'material-ui/styles';
 
 const styles = {
@@ -222,7 +222,7 @@ export default withStyles(styles)(MyComponent);
 
 Also, you can use as [decorators](https://babeljs.io/docs/plugins/transform-decorators/) like so:
 
-```js
+```jsx
 import { withStyles } from 'material-ui/styles';
 
 const styles = {

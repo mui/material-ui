@@ -64,7 +64,7 @@ The key step in server side rendering is to render the initial HTML of our compo
 
 We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`. We will see how this is passed along in our `renderFullPage` function.
 
-```js
+```jsx
 import { renderToString } from 'react-dom/server'
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
