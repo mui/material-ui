@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import DomainPropTypes from '../constants/prop-types';
 
+/* eslint-disable react/sort-comp */
 export default class PickerBase extends PureComponent {
   static propTypes = {
     value: DomainPropTypes.date,
@@ -25,24 +26,20 @@ export default class PickerBase extends PureComponent {
     keyboard: false,
   }
 
-  constructor(props) {
-    super(props);
+  getValidDateOrCurrent = (props = this.props) => {
+    const date = moment(props.value);
 
-    this.state = {
-      date: this.getValidDateOrCurrent(props),
-    };
+    return date.isValid() ? date : moment();
+  }
+
+  state = {
+    date: this.getValidDateOrCurrent(),
   }
 
   componentWillReceiveProps = (nextProps) => {
     if (this.props.value !== nextProps.value) {
       this.setState({ date: this.getValidDateOrCurrent(nextProps) });
     }
-  }
-
-  getValidDateOrCurrent = ({ value }) => {
-    const date = moment(value);
-
-    return date.isValid() ? date : moment();
   }
 
   getFormat = () => {

@@ -7,6 +7,7 @@ import { TextField, InputAdornment, IconButton } from 'material-ui';
 import MaskedInput from './MaskedInput';
 
 
+/* eslint-disable react/sort-comp */
 export default class DateTextField extends PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
@@ -37,18 +38,6 @@ export default class DateTextField extends PureComponent {
     mask: undefined,
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = this.updateState(props);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.value) {
-      this.setState(this.updateState(nextProps));
-    }
-  }
-
   getDisplayDate = (props) => {
     const {
       value,
@@ -68,11 +57,19 @@ export default class DateTextField extends PureComponent {
       : invalidLabel;
   }
 
-  updateState = props => ({
+  updateState = (props = this.props) => ({
     value: props.value,
     displayValue: this.getDisplayDate(props),
     error: '',
   })
+
+  state = this.updateState()
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.value !== this.state.value) {
+      this.setState(this.updateState(this.props));
+    }
+  }
 
   handleChange = (e) => {
     const { format } = this.props;
