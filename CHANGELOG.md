@@ -9,7 +9,7 @@ Changes. Changes everywhere!
 
 - [TextField] Input/TextField API disamiguation/consistency (#9382) @rosskevin
 
-Some of the convenience properties exposed were confusing and have been removed (`inputProps | InputClassName`).  For advanced configuration 
+Some of the convenience properties exposed were confusing and have been removed (`inputProps | InputClassName`).  For advanced configuration
 any `Input` through `TextField`, use `TextField.InputProps` to pass any property accepted by the `Input`.
 
 
@@ -29,6 +29,13 @@ Here are some highlights ✨:
 ### Breaking change
 
 - [Select] Remove InputClasses (#9159) @oliviertassinari
+It's a revert. I have made the unwise call of adding the InputClasses property in an unrelated refactorization pull-request #8942. It was not taking the input classes property into account. It was a breaking change and not needed.
+- [core] Reduce bundle size by 2kB gzipped (#9129) @oliviertassinari
+We have removed some jss plugins from the default bundle:
+  - [jss-expand](https://github.com/cssinjs/jss-expand) (1.3 kB)
+  - [jss-compose](https://github.com/cssinjs/jss-compose) (426 B)
+  - [jss-extend](https://github.com/cssinjs/jss-extend) (702 B)
+  - [jss-template](https://github.com/cssinjs/jss-template) (330 B)
 
 It's a revert.
 I have made the unwise call of adding the InputClasses property in an unrelated refactorization pull-request #8942.
@@ -1613,7 +1620,7 @@ You now have two way to customize absolutely all the CSS injected by Material-UI
 Either the instance level with the `classes` property or the class level with the
 `overrides` theme property.
 
-To [learn more about it](https://material-ui-next.com/customization/overrides), have a look at the documentation. Also, these options are automatically [documented](http://0.0.0.0:3000/component-api/button#classes).
+To learn more about it, have a look at the documentation.
 
 ### Breaking changes
 

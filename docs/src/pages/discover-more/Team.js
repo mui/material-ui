@@ -29,14 +29,14 @@ const members = [
     name: 'Matt Brookes',
     github: 'mbrookes',
     twitter: 'randomtechdude',
-    flag: 'Documentation wizard',
+    flag: 'Documentation wizard 📖',
     city: 'London, UK',
   },
   {
     name: 'Kevin Ross',
     github: 'rosskevin',
     twitter: 'rosskevin',
-    flag: 'Core focus, Flow',
+    flag: 'Core focus',
     city: 'Franklin, Tennessee, US',
   },
   {

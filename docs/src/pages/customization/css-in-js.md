@@ -1,8 +1,8 @@
 # CSS in JS
 
 Material-UI aims to provide strong foundations for building dynamic UIs.
-For the sake of simplicity **we expose the internal styling solution to users**.
-You can use it, but you don't have to. This styling solution is interoperable with other solutions like [PostCSS](https://github.com/postcss/postcss), [CSS modules](https://github.com/css-modules), or [styled-components](https://github.com/styled-components/styled-components).
+For the sake of simplicity, **we expose the internal styling solution to users**.
+You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability) all the other major solutions.
 
 ## Material-UI's styling solution
 
@@ -102,28 +102,6 @@ function App() {
 
 export default App;
 ```
-
-## Interoperability
-
-### React JSS
-
-Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
-We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
-
-In the following demo we demonstrate how to use `injectSheet()` and "the styles as a function of the properties" feature:
-
-```js
-const styles = theme => ({
-  root: {
-    color: props => (props.variant === 'primary'
-      ? theme.palette.primary[500]
-      : 'inherit'),
-    textDecoration: 'inherit',
-  },
-});
-```
-
-{{demo='pages/customization/ReactJss.js'}}
 
 ## JssProvider
 
