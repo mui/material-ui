@@ -74,8 +74,8 @@ export const dark = {
   },
 };
 
-function getContrastText(color) {
-  if (getContrastRatio(color, common.black) < 7) {
+function getContrastText(hue) {
+  if (getContrastRatio(hue, common.black) < 7) {
     return dark.text.primary;
   }
   return light.text.primary;
