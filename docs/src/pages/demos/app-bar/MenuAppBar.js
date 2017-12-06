@@ -13,9 +13,8 @@ import Switch from 'material-ui/Switch';
 import { FormControlLabel, FormGroup } from 'material-ui/Form';
 import Menu, { MenuItem } from 'material-ui/Menu';
 
-const styles = theme => ({
+const styles = {
   root: {
-    marginTop: theme.spacing.unit * 3,
     width: '100%',
   },
   flex: {
@@ -25,7 +24,7 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
-});
+};
 
 class MenuAppBar extends React.Component {
   state = {

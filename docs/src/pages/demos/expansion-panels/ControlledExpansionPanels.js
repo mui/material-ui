@@ -12,7 +12,6 @@ import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 3,
     width: '100%',
   },
   heading: {

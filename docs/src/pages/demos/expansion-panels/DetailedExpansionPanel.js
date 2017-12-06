@@ -17,7 +17,6 @@ import Divider from 'material-ui/Divider';
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 3,
     width: '100%',
   },
   heading: {
