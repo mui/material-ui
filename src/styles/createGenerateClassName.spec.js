@@ -2,6 +2,8 @@
 
 import { assert } from 'chai';
 import createGenerateClassName from './createGenerateClassName';
+import { createGenerateClassNameWithPrefix } from './createGenerateClassName';
+
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 describe('createGenerateClassName', () => {
@@ -59,10 +61,22 @@ describe('createGenerateClassName', () => {
         consoleErrorMock.reset();
       });
 
-      it('should us a short representation', () => {
+      it('should use a c as prefix', () => {
         const rule = { key: 'root' };
         const generateClassName = createGenerateClassName();
         assert.strictEqual(generateClassName(rule), 'c1');
+      });
+
+      it('should use a c as prefix when none is given', () => {
+        const rule = { key: 'root' };
+        const generateClassName = createGenerateClassNameWithPrefix();
+        assert.strictEqual(generateClassName(rule), 'c1');
+      });
+
+      it('should use the given prefix', () => {
+        const rule = { key: 'root' };
+        const generateClassName = createGenerateClassNameWithPrefix('b');
+        assert.strictEqual(generateClassName(rule), 'b1');
       });
 
       it('should warn', () => {
