@@ -419,8 +419,12 @@ class Popover extends React.Component<ProvidedProps & Props> {
       ...other
     } = this.props;
 
+    // Use the ownerDocument of the provided anchorEl to ensure that
+    // we inject the portal into the correct document
+    const document = anchorEl && anchorEl.ownerDocument;
+
     return (
-      <Modal show={open} BackdropInvisible {...other}>
+      <Modal document={document} show={open} BackdropInvisible {...other}>
         <Grow
           appear
           in={open}

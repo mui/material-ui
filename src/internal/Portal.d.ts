@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export interface PortalProps {
+  document?: HTMLDocument;
   open?: boolean;
 }
 
