@@ -2,7 +2,7 @@
 
 import warning from 'warning';
 import type StyleSheet from 'jss/lib/StyleSheet';
-import type { Rule, generateClassName } from 'jss/lib/types';
+import type {Rule, generateClassName} from 'jss/lib/types';
 
 let generatorCounter = 0;
 
@@ -11,8 +11,10 @@ let generatorCounter = 0;
 // We need to reset the rule counter for SSR for each request.
 //
 // It's an improved version of
-// https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
-export default function createGenerateClassName(): generateClassName {
+// https://github.com/cssinjs/jss/blob/4e6a05dd3f7b657 2fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
+
+
+export default function createGenerateClassName(prefix: string = 'c'): generateClassName {
   let ruleCounter = 0;
 
   if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
@@ -41,7 +43,7 @@ export default function createGenerateClassName(): generateClassName {
     );
 
     if (process.env.NODE_ENV === 'production') {
-      return `c${ruleCounter}`;
+      return `${prefix}${ruleCounter}`;
     }
 
     if (sheet && sheet.options.meta) {
@@ -55,4 +57,7 @@ export default function createGenerateClassName(): generateClassName {
 
     return `${rule.key}-${ruleCounter}`;
   };
+}
+export function createGenerateClassNameWithPrefix(prefix: string = 'c'): generateClassName {
+  return createGenerateClassName(prefix);
 }
