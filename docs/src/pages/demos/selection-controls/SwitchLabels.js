@@ -1,5 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import { FormControlLabel, FormGroup } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';

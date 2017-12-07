@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import compose from 'recompose/compose';
 import pure from 'recompose/pure';

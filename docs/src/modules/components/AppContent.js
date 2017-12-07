@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -19,7 +17,7 @@ const styles = theme => ({
   },
 });
 
-function AppContent(props: Object) {
+function AppContent(props) {
   const { className, classes, children } = props;
 
   return <div className={classNames(classes.root, className)}>{children}</div>;

@@ -1,4 +1,3 @@
-// @flow weak
 /* eslint-disable no-underscore-dangle */
 
 import { create, SheetsRegistry } from 'jss';

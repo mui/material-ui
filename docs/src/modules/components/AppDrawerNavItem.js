@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'docs/src/modules/components/Link';
@@ -44,7 +42,7 @@ const styles = theme => ({
   },
 });
 
-class AppDrawerNavItem extends React.Component<Object, Object> {
+class AppDrawerNavItem extends React.Component {
   static defaultProps = {
     openImmediately: false,
   };

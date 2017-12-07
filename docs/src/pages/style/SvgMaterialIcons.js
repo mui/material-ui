@@ -1,5 +1,3 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';

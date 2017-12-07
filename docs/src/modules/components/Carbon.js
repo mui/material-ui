@@ -1,5 +1,3 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -68,7 +66,7 @@ const styles = theme => ({
   },
 });
 
-class Carbon extends React.Component<any> {
+class Carbon extends React.Component {
   componentDidMount() {
     if (process.env.NODE_ENV !== 'production') {
       return;

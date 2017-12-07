@@ -1,5 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import DeleteIcon from 'material-ui-icons/Delete';
 import IconButton from 'material-ui/IconButton';

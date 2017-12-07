@@ -1,5 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -148,7 +146,7 @@ const styles = theme => ({
   },
 });
 
-class AppFrame extends React.Component<any, any> {
+class AppFrame extends React.Component {
   state = {
     mobileOpen: false,
   };
