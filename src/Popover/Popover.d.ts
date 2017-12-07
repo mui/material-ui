@@ -9,10 +9,12 @@ export interface PopoverOrigin {
   vertical: 'top' | 'center' | 'bottom' | number;
 }
 
-export interface Position {
+export interface PopoverPosition {
   top: number;
   left: number;
 }
+
+export type PopoverReference = 'anchorEl' | 'anchorPosition'; 
 
 export interface PopoverProps extends StandardProps<
   ModalProps & Partial<TransitionHandlers>,
@@ -21,8 +23,8 @@ export interface PopoverProps extends StandardProps<
 > {
   anchorEl?: Object;
   anchorOrigin?: PopoverOrigin;
-  anchorPosition?: Position;
-  anchorReference?: 'anchorEl' | 'anchorPosition';
+  anchorPosition?: PopoverPosition;
+  anchorReference?: PopoverReference;
   elevation?: number;
   enteredClassName?: string;
   enteringClassName?: string;
