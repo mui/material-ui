@@ -1,5 +1,3 @@
-// @flow weak
-
 import React from 'react';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { SheetsRegistry } from 'jss';

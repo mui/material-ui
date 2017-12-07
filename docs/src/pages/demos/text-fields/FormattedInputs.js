@@ -1,6 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable react/prefer-stateless-function */
-/* eslint-disable react/no-multi-comp */
 
 import React from 'react';
 import MaskedInput from 'react-text-mask';

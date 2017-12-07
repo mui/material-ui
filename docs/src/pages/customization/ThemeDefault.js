@@ -1,5 +1,3 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';

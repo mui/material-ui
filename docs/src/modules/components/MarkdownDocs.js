@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
@@ -27,21 +25,7 @@ const styles = {
 const demoRegexp = /^demo='(.*)'$/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/v1-beta';
 
-type InjectedProps = {
-  classes: Object,
-  theme?: Object,
-};
-
-type Props = {
-  classes: Object,
-  demos?: { [key: string]: any },
-  markdown: string,
-  // You can define the direction location of the markdown file.
-  // Otherwise, we try to determine it with an heuristic.
-  sourceLocation?: string,
-};
-
-function MarkdownDocs(props: Props & InjectedProps, context: Object) {
+function MarkdownDocs(props, context) {
   const { classes, demos, markdown, sourceLocation: sourceLocationProp } = props;
   const contents = getContents(markdown);
   const headers = getHeaders(markdown);
@@ -99,6 +83,15 @@ ${headers.components
     </AppContent>
   );
 }
+
+MarkdownDocs.propTypes = {
+  classes: PropTypes.object.isRequired,
+  demos: PropTypes.object,
+  markdown: PropTypes.string.isRequired,
+  // You can define the direction location of the markdown file.
+  // Otherwise, we try to determine it with an heuristic.
+  sourceLocation: PropTypes.string,
+};
 
 MarkdownDocs.contextTypes = {
   activePage: PropTypes.shape({

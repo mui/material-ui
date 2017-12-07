@@ -1,5 +1,3 @@
-// @flow weak
-
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
 import kebabCase from 'lodash/kebabCase';
