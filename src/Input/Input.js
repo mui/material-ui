@@ -299,7 +299,7 @@ export type Props = {
    *
    * @param {object} event The event source of the callback
    */
-  onChange?: (event: SyntheticInputEvent<>) => void,
+  onChange?: (event: SyntheticInputEvent<HTMLElement>) => void,
   /**
    * TODO
    */
@@ -417,7 +417,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     }
   };
 
-  handleChange = (event: SyntheticInputEvent<>) => {
+  handleChange = (event: SyntheticInputEvent<HTMLElement>) => {
     if (!this.isControlled()) {
       this.checkDirty(this.input);
     }

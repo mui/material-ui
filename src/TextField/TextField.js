@@ -98,7 +98,7 @@ export type Props = {
    *
    * @param {object} event The event source of the callback
    */
-  onChange?: (event: SyntheticInputEvent<>) => void,
+  onChange?: (event: SyntheticInputEvent<HTMLElement>) => void,
   /**
    * The short hint displayed in the input before the user enters a value.
    */

@@ -108,13 +108,13 @@ export type Props = {
    * @param {object} event The event source of the callback
    * @param {number} page The page selected
    */
-  onChangePage: (event: SyntheticInputEvent<> | null, page: number) => void,
+  onChangePage: (event: SyntheticInputEvent<*> | null, page: number) => void,
   /**
    * Callback fired when the number of rows per page is changed.
    *
    * @param {object} event The event source of the callback
    */
-  onChangeRowsPerPage: (event: SyntheticInputEvent<>) => void,
+  onChangeRowsPerPage: (event: SyntheticInputEvent<*>) => void,
   /**
    * The zero-based index of the current page.
    */
