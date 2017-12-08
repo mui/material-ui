@@ -820,16 +820,14 @@ const SelectTest = () => {
 const ResponsiveComponentTest = () => {
   const ResponsiveComponent = withMobileDialog({
     breakpoint: 'sm',
-  })(({ children, width }) =>
-    <div style={{ width }}>
+  })(({ children, width, fullScreen }) =>
+    <div style={{ width, position: fullScreen ? 'fixed' : 'static' }}>
       {children}
     </div>
   );
   <ResponsiveComponent />;
 
-  const ResponsiveDialogComponent = withMobileDialog<DialogProps>({
-    breakpoint: 'sm',
-  })(Dialog);
+  const ResponsiveDialogComponent = withMobileDialog<DialogProps>()(Dialog);
 };
 
 const TooltipComponentTest = () =>

@@ -5,8 +5,12 @@ export interface WithMobileDialogOptions {
   breakpoint: Breakpoint;
 }
 
+export interface InjectedProps {
+  fullScreen?: boolean;
+}
+
 export default function withMobileDialog<P = {}>(
-  options: WithMobileDialogOptions
+  options?: WithMobileDialogOptions
 ): (
-  component: React.ComponentType<P & Partial<WithWidthProps>>
-) => React.ComponentClass<P & Partial<WithWidthProps>>;
+  component: React.ComponentType<P & InjectedProps & Partial<WithWidthProps>>
+) => React.ComponentType<P & Partial<WithWidthProps>>;
