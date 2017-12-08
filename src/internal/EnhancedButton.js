@@ -190,9 +190,6 @@ class EnhancedButton extends Component {
 
   handleKeyDown = (event) => {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
-      if (keycode(event) === 'enter' && this.state.isKeyboardFocused) {
-        this.handleClick(event);
-      }
       if (keycode(event) === 'esc' && this.state.isKeyboardFocused) {
         this.removeKeyboardFocus(event);
       }
@@ -201,11 +198,6 @@ class EnhancedButton extends Component {
   };
 
   handleKeyUp = (event) => {
-    if (!this.props.disabled && !this.props.disableKeyboardFocus) {
-      if (keycode(event) === 'space' && this.state.isKeyboardFocused) {
-        this.handleClick(event);
-      }
-    }
     this.props.onKeyUp(event);
   };
 
