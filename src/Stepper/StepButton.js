@@ -131,4 +131,4 @@ function StepButton(props: ProvidedProps & Props) {
   );
 }
 
-export default withStyles(styles)(StepButton);
+export default withStyles(styles, { name: 'MuiStepButton' })(StepButton);

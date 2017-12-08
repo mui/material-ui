@@ -55,4 +55,4 @@ function StepIcon(props: ProvidedProps & Props) {
   return icon;
 }
 
-export default withStyles(styles)(StepIcon);
+export default withStyles(styles, { name: 'MuiStepIcon' })(StepIcon);

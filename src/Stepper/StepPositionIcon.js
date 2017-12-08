@@ -66,4 +66,4 @@ function StepPositionIcon(props: ProvidedProps & Props) {
   );
 }
 
-export default withStyles(styles)(StepPositionIcon);
+export default withStyles(styles, { name: 'MuiStepPosition' })(StepPositionIcon);
