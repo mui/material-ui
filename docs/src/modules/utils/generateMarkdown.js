@@ -194,8 +194,15 @@ function generateProps(reactAPI) {
 }
 
 function generateClasses(reactAPI) {
-  return reactAPI.styles.classes.length
-    ? `## CSS API
+  if (!reactAPI.styles.classes.length) {
+    return '';
+  }
+
+  if (!reactAPI.styles.name) {
+    throw new Error(`Missing styles name on ${reactAPI.name} component`);
+  }
+
+  return `## CSS API
 
 You can override all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:
@@ -209,8 +216,7 @@ If using the \`overrides\` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: \`${reactAPI.styles.name}\`.
 
-`
-    : '';
+`;
 }
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;

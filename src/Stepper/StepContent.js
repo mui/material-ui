@@ -130,4 +130,4 @@ StepContent.defaultProps = {
   transitionDuration: 'auto',
 };
 
-export default withStyles(styles)(StepContent);
+export default withStyles(styles, { name: 'MuiStepContent' })(StepContent);

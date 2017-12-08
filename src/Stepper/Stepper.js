@@ -139,4 +139,4 @@ Stepper.defaultProps = {
 
 Stepper.muiName = 'Stepper';
 
-export default withStyles(styles)(Stepper);
+export default withStyles(styles, { name: 'MuiStepper' })(Stepper);

@@ -95,4 +95,4 @@ StepConnector.defaultProps = {
   orientation: 'horizontal',
 };
 
-export default withStyles(styles)(StepConnector);
+export default withStyles(styles, { name: 'MuiStepConnector' })(StepConnector);

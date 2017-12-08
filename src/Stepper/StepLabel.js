@@ -170,4 +170,4 @@ StepLabel.defaultProps = {
 
 StepLabel.muiName = 'StepLabel';
 
-export default withStyles(styles)(StepLabel);
+export default withStyles(styles, { name: 'MuiStepLabel' })(StepLabel);

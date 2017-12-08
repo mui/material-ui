@@ -144,4 +144,4 @@ Step.defaultProps = {
   optional: false,
 };
 
-export default withStyles(styles)(Step);
+export default withStyles(styles, { name: 'MuiStep' })(Step);
