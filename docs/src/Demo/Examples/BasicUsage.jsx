@@ -38,6 +38,7 @@ export default class BasicUsage extends Component {
           <TimePicker
             keyboard
             mask={[/\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
+            placeholder="08:00 AM"
             value={selectedDate}
             onChange={this.handleDateChange}
           />
