@@ -89,7 +89,7 @@ module.exports = {
     'mocha/no-skipped-tests': 'error',
 
     'flowtype/define-flow-type': 'error',
-    'flowtype/require-valid-file-annotation': ['error', 'always'],
+    'flowtype/require-valid-file-annotation': 'off',
     'flowtype/require-parameter-type': 'off',
     'flowtype/require-return-type': 'off',
     'flowtype/space-after-type-colon': 'off',

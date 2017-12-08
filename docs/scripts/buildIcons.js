@@ -1,5 +1,3 @@
-// @flow
-
 import path from 'path';
 import gm from 'gm';
 import display from '../src/modules/scripts/display';

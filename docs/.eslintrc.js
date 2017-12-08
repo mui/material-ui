@@ -3,6 +3,5 @@
 module.exports = {
   rules: {
     'react/no-multi-comp': 'off',
-    'flowtype/require-valid-file-annotation': 'off',
   },
 };

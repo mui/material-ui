@@ -71,18 +71,18 @@ function Link(props, context) {
     classes[`variant${capitalizeFirstLetter(variant)}`],
     classNameProp,
   );
-  let rootProps;
+  let RootProps;
   let children = childrenProp;
 
   if (ComponentProp) {
     ComponentRoot = ComponentProp;
-    rootProps = {
+    RootProps = {
       ...other,
       className,
     };
   } else if (href) {
     ComponentRoot = NextLink;
-    rootProps = {
+    RootProps = {
       href,
       prefetch,
       passHref: true,
@@ -102,13 +102,13 @@ function Link(props, context) {
     );
   } else {
     ComponentRoot = 'a';
-    rootProps = {
+    RootProps = {
       ...other,
       className,
     };
   }
 
-  return <ComponentRoot {...rootProps}>{children}</ComponentRoot>;
+  return <ComponentRoot {...RootProps}>{children}</ComponentRoot>;
 }
 
 Link.defaultProps = {

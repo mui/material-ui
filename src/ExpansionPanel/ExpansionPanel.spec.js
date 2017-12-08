@@ -31,7 +31,7 @@ describe('<ExpansionPanel />', () => {
     assert.strictEqual(wrapper.instance().isControlled, false);
 
     const collapse = wrapper.find(Collapse);
-    assert.strictEqual(collapse.props().containerProps['aria-hidden'], 'true');
+    assert.strictEqual(collapse.props()['aria-hidden'], 'true');
 
     wrapper.setProps({ expanded: true });
     assert.strictEqual(wrapper.state().expanded, false, 'should not change the expanded state');

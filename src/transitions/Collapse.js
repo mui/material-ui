@@ -230,11 +230,10 @@ class Collapse extends React.Component<ProvidedProps & Props> {
         onExiting={this.handleExiting}
         onExit={this.handleExit}
         addEndListener={this.addEndListener}
-        style={{ minHeight: collapsedHeight, ...style }}
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
-        {state => {
+        {(state, otherInner) => {
           return (
             <ComponentProp
               className={classNames(
@@ -244,7 +243,11 @@ class Collapse extends React.Component<ProvidedProps & Props> {
                 },
                 className,
               )}
-              {...containerProps}
+              style={{
+                ...style,
+                minHeight: collapsedHeight,
+              }}
+              {...otherInner}
             >
               <div
                 className={classes.wrapper}

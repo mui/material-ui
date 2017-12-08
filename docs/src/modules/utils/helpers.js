@@ -1,10 +1,8 @@
-// @flow
-
 import warning from 'warning';
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 
-export function titleize(string: String) {
+export function titleize(string) {
   warning(
     typeof string === 'string' && string.length > 0,
     'titleize(string) expects a non empty string argument.',
@@ -20,7 +18,7 @@ export function titleize(string: String) {
     .join(' ');
 }
 
-export function pageToTitle(page: Object) {
+export function pageToTitle(page) {
   if (page.title) {
     return page.title;
   }

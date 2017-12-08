@@ -1,5 +1,3 @@
-// @flow
-
 import actionTypes from 'docs/src/modules/redux/actionTypes';
 
 const initialState = {
@@ -7,23 +5,18 @@ const initialState = {
   direction: 'ltr',
 };
 
-type State = {
-  paletteType: string,
-  direction: string,
-};
-
 const mapping = {
-  [actionTypes.THEME_CHANGE_PALETTE_TYPE]: (state: State, action) => ({
+  [actionTypes.THEME_CHANGE_PALETTE_TYPE]: (state, action) => ({
     ...state,
     paletteType: action.payload.paletteType,
   }),
-  [actionTypes.THEME_CHANGE_DIRECTION]: (state: State, action) => ({
+  [actionTypes.THEME_CHANGE_DIRECTION]: (state, action) => ({
     ...state,
     direction: action.payload.direction,
   }),
 };
 
-function themeReducer(state: State = initialState, action: Object) {
+function themeReducer(state = initialState, action) {
   let newState = state;
 
   if (mapping[action.type]) {
