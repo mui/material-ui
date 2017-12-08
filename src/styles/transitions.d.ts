@@ -32,7 +32,7 @@ export interface Transitions {
 export interface TransitionsOptions {
   easing?: Partial<Easing>;
   duration?: Partial<Duration>;
-  create: (
+  create?: (
     props: string | string[],
     options?: Partial<{ duration: number; easing: string; delay: number }>
   ) => string;
