@@ -34,9 +34,9 @@ export interface TypographyStyle {
   textTransform?: React.CSSProperties['textTransform'];
 }
 
-export type Typography = {[type in Style]: TypographyStyle } & FontStyle;
+export type Typography = Record<Style, TypographyStyle> & FontStyle;
 
-export type TypographyOptions = {[type in Style]?: Partial<TypographyStyle> } & Partial<FontStyle>;
+export type TypographyOptions = Partial<Record<Style, Partial<TypographyStyle>> & FontStyle>;
 
 //export type TypographyOptions = DeepPartial<Typography>;
 
