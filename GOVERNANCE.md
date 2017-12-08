@@ -1,6 +1,6 @@
 # Mui-Org Governance
 
-### Overview
+## Overview
 Mui-Org houses projects related to [Material-UI](http://www.material-ui.com/), a set of [React](https://reactjs.org/) components
 that implement [Google's Material Design](https://material.io/guidelines/material-design/introduction.html)
 specification. Our mission is to create a customizable Material Design implementation
@@ -8,8 +8,8 @@ for anyone to use. We value an open, collaborative, and diverse community where 
 discussions, learn from one another, and contribute to the project. This document describes how
 we govern ourselves, how decisions are made, and how someone could engage with the project.
 
-### Roles & Responsibilities
-##### Users
+## Roles & Responsibilities
+### Users
 Users are members of the community that are using Material-UI or one of Mui-Org's projects. Anyone
 can be a user and we encourage users to participate in the community as much as possible in the
 following ways.
@@ -20,7 +20,7 @@ friends.
 - Give us moral support. A "Thank You" always brightens our day!
 - [Support us on OpenCollective](https://opencollective.com/material-ui).
 
-##### Contributors
+### Contributors
 Contributors are members of the community who contribute to Material-UI or one of Mui-Org's projects
 in concrete ways. Anyone can be a contributor. In addition to their participation as a user, they
 also contribute in the following ways.
@@ -34,7 +34,7 @@ and [issues](https://github.com/mui-org/material-ui/issues).
 [improving our documentation](https://github.com/mui-org/material-ui/tree/v1-beta/docs) by
 [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 
-##### Committers
+### Committers
 Committers are members of the community who are committed to the development, success, and mission
 of Material-UI or one of Mui-Org's projects. New committers are nominated and voted on by existing
 committers. Under rare circumstances, the Core Team can vote to revoke a committer's privilege. In
@@ -47,7 +47,7 @@ approved by the Core Team.
 - Ability to receive payment for work done on Material-UI or one of Mui-Org's projects.
 - Nominate and vote on new committers and Core Team members.
 
-##### Core Team
+### Core Team
 Core Team members are individuals that are invested in the success of Mui-Org. Their
 administrative responsibilities ensure the sustainability and smooth running of Mui-Org. New
 Core Team members are nominated and voted on by existing committers. Under rare circumstances, a
@@ -74,13 +74,13 @@ In addition to their participation as a committer, Core Team members have the fo
 Core Team members cannot vote to approve their own expenses or payments.
 - Vote on changes to project governance.
 
-##### Core Team Chair
+### Core Team Chair
 The Core Team Chair is a single individual that's a coordinator and facilitator of the Core Team.
 The Chair ensures that all governance processes are followed and has the casting vote in case of a
 tie within the Core Team. The Core Team Chair is voted for by the Core Team and can serve as Chair
 until they step down or removed by a two thirds majority vote by the Core Team.
 
-### Resources
+## Resources
 - Governance Models - [http://oss-watch.ac.uk/resources/governancemodels](http://oss-watch.ac.uk/resources/governancemodels)
 - Sustain OSS Report - [https://sustainoss.org/assets/pdf/SustainOSS-west-2017-report.pdf](https://sustainoss.org/assets/pdf/SustainOSS-west-2017-report.pdf)
 - Elinor Ostrom's 8 Principles for Managing A Commons - [http://www.onthecommons.org/magazine/elinor-ostroms-8-principles-managing-commmons#sthash.dqF8J3Bs.dpbs](http://www.onthecommons.org/magazine/elinor-ostroms-8-principles-managing-commmons#sthash.dqF8J3Bs.dpbs)
