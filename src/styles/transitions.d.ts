@@ -1,5 +1,3 @@
-import { DeepPartial } from '../index';
-
 export interface Easing {
   easeInOut: string;
   easeOut: string;
@@ -31,7 +29,17 @@ export interface Transitions {
   getAutoHeightDuration(height: number): number;
 }
 
-export type TransitionsOptions = DeepPartial<Transitions>;
+export interface TransitionsOptions {
+  easing?: Partial<Easing>;
+  duration?: Partial<Duration>;
+  create?: (
+    props: string | string[],
+    options?: Partial<{ duration: number; easing: string; delay: number }>
+  ) => string;
+  getAutoHeightDuration?: (height: number)=>number;
+}
+
+//export type TransitionsOptions = DeepPartial<Transitions>;
 
 declare const transitions: Transitions;
 export default transitions;
