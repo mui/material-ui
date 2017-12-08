@@ -1,4 +1,4 @@
-import { Color, Contrast, DeepPartial } from '..';
+import { Color, Contrast } from '..';
 import { CommonColors } from '../colors/common';
 
 interface ShadeText {
@@ -60,7 +60,30 @@ export interface Palette {
   getContrastText: (color: string) => string;
 }
 
-export type PaletteOptions = DeepPartial<Palette>;
+type PartialShade = {
+  [P in keyof Shade]?: Partial<Shade[P]>;
+};
+type ColorPartial = Partial<Color>;
+
+export interface PaletteOptions {
+  common?: Partial<CommonColors>;
+  type?: Contrast;
+  primary?: ColorPartial;
+  secondary?: ColorPartial;
+  error?: ColorPartial;
+  grey?: ColorPartial;
+  shades?: {
+    dark?: PartialShade;
+    light?: PartialShade;
+  };
+  text?: Partial<ShadeText>;
+  input?: Partial<ShadeInput>;
+  action?: Partial<ShadeAction>;
+  background?: Partial<ShadeBackground>;
+  getContrastText?: (color: string) => string;
+}
+
+//export type PaletteOptions = DeepPartial<Palette>;
 
 export default function createPalette(
   palette: PaletteOptions
