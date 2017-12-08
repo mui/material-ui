@@ -1,5 +1,3 @@
-// @flow
-
 const env = require('babel-preset-env');
 
 const ENV = process.env.BABEL_ENV;

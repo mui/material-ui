@@ -390,7 +390,8 @@ describe('<Collapse />', () => {
 
     it('should work when closed', () => {
       const wrapper = shallow(<Collapse {...props} collapsedHeight={collapsedHeight} />);
-      assert.strictEqual(wrapper.props().style.minHeight, collapsedHeight);
+      const child = new ReactWrapper(wrapper.props().children('entered'));
+      assert.strictEqual(child.props().style.minHeight, collapsedHeight);
     });
 
     it('should be taken into account in handleExiting', () => {

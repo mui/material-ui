@@ -1,5 +1,3 @@
-// @flow
-
 import prism from 'prismjs';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-javascript';
@@ -24,7 +22,7 @@ if (process.browser) {
   }
 }
 
-export function setPrismTheme(theme: string) {
+export function setPrismTheme(theme) {
   styleNode.textContent = theme;
 }
 

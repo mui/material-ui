@@ -88,9 +88,7 @@ function buildDocs(options) {
     writeFileSync(path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.md`), markdown);
     writeFileSync(
       path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.js`),
-      `// @flow
-
-import React from 'react';
+      `import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import markdown from './${kebabCase(reactAPI.name)}.md';

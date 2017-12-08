@@ -165,7 +165,7 @@ class ExpansionPanel extends React.Component<ProvidedProps & Props, State> {
       children: childrenProp,
       classes,
       className: classNameProp,
-      CollapseProps,
+      CollapseProps: CollapsePropsProp,
       defaultExpanded,
       disabled,
       expanded: expandedProp,
@@ -202,7 +202,7 @@ class ExpansionPanel extends React.Component<ProvidedProps & Props, State> {
       return child;
     });
 
-    const containerProps = !expanded
+    const CollapseProps = !expanded
       ? {
           'aria-hidden': 'true',
         }
@@ -211,12 +211,7 @@ class ExpansionPanel extends React.Component<ProvidedProps & Props, State> {
     return (
       <Paper className={className} elevation={1} square {...other}>
         {summary}
-        <Collapse
-          in={expanded}
-          transitionDuration="auto"
-          containerProps={containerProps}
-          {...CollapseProps}
-        >
+        <Collapse in={expanded} timeout="auto" {...CollapseProps} {...CollapsePropsProp}>
           {children}
         </Collapse>
       </Paper>
