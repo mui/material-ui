@@ -11,23 +11,23 @@ describe('<Toolbar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<Toolbar />);
+    classes = getClasses(<Toolbar>foo</Toolbar>);
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<Toolbar />);
+    const wrapper = shallow(<Toolbar>foo</Toolbar>);
     assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render with the user, root and gutters classes', () => {
-    const wrapper = shallow(<Toolbar className="woofToolbar" />);
+    const wrapper = shallow(<Toolbar className="woofToolbar">foo</Toolbar>);
     assert.strictEqual(wrapper.hasClass('woofToolbar'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.gutters), true);
   });
 
   it('should disable the gutters', () => {
-    const wrapper = shallow(<Toolbar disableGutters />);
+    const wrapper = shallow(<Toolbar disableGutters>foo</Toolbar>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.hasClass(classes.gutters),

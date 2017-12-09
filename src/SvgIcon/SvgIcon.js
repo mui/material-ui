@@ -1,12 +1,10 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'inline-block',
     fill: 'currentColor',
@@ -38,42 +36,69 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type Color = 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary';
+function SvgIcon(props) {
+  const {
+    children,
+    classes,
+    className: classNameProp,
+    color,
+    titleAccess,
+    viewBox,
+    ...other
+  } = props;
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+  const className = classNames(
+    classes.root,
+    {
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+    },
+    classNameProp,
+  );
 
-export type Props = {
+  return (
+    <svg
+      className={className}
+      focusable="false"
+      viewBox={viewBox}
+      aria-hidden={titleAccess ? 'false' : 'true'}
+      {...other}
+    >
+      {titleAccess ? <title>{titleAccess}</title> : null}
+      {children}
+    </svg>
+  );
+}
+
+SvgIcon.propTypes = {
   /**
-   * Other base element props.
+   * Node passed into the SVG Icon.
    */
-  [otherProp: string]: any,
-  /**
-   * Elements passed into the SVG Icon.
-   */
-  children: Node,
+  children: PropTypes.node.isRequired,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: Color,
+  color: PropTypes.oneOf([
+    'inherit',
+    'accent',
+    'action',
+    'contrast',
+    'disabled',
+    'error',
+    'primary',
+  ]),
   /**
    * Provides a human-readable title for the element that contains it.
    * https://www.w3.org/TR/SVG-access/#Equivalent
    */
-  titleAccess?: string,
+  titleAccess: PropTypes.string,
   /**
    * Allows you to redefine what the coordinates without units mean inside an svg element.
    * For example, if the SVG element is 500 (width) by 200 (height),
@@ -81,49 +106,14 @@ export type Props = {
    * this means that the coordinates inside the svg will go from the top left corner (0,0)
    * to bottom right (50,20) and each unit will be worth 10px.
    */
-  viewBox: string,
+  viewBox: PropTypes.string,
 };
 
-class SvgIcon extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    viewBox: '0 0 24 24',
-    color: 'inherit',
-  };
+SvgIcon.defaultProps = {
+  color: 'inherit',
+  viewBox: '0 0 24 24',
+};
 
-  static muiName = 'SvgIcon';
-
-  render() {
-    const {
-      children,
-      classes,
-      className: classNameProp,
-      color,
-      titleAccess,
-      viewBox,
-      ...other
-    } = this.props;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
-      },
-      classNameProp,
-    );
-
-    return (
-      <svg
-        className={className}
-        focusable="false"
-        viewBox={viewBox}
-        aria-hidden={titleAccess ? 'false' : 'true'}
-        {...other}
-      >
-        {titleAccess ? <title>{titleAccess}</title> : null}
-        {children}
-      </svg>
-    );
-  }
-}
+SvgIcon.muiName = 'SvgIcon';
 
 export default withStyles(styles, { name: 'MuiSvgIcon' })(SvgIcon);

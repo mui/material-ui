@@ -1,11 +1,9 @@
-// @flow
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import type { Orientation } from './Stepper';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     flex: '1 1 auto',
   },
@@ -37,36 +35,10 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  alternativeLabel: boolean,
-  classes: Object,
-  orientation: Orientation,
-};
-
-export type Props = {
-  /**
-   * @ignore
-   * Set internally by Step when it's supplied with the alternativeLabel property.
-   */
-  alternativeLabel?: boolean,
-  /**
-   * Useful to extend the style applied to the component.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * @ignore
-   */
-  orientation?: Orientation,
-};
-
 /**
  * @ignore - internal component.
  */
-function StepConnector(props: ProvidedProps & Props) {
+function StepConnector(props) {
   const { alternativeLabel, className: classNameProp, classes, orientation, ...other } = props;
 
   const className = classNames(
@@ -89,6 +61,26 @@ function StepConnector(props: ProvidedProps & Props) {
     </div>
   );
 }
+
+StepConnector.propTypes = {
+  /**
+   * @ignore
+   * Set internally by Step when it's supplied with the alternativeLabel property.
+   */
+  alternativeLabel: PropTypes.bool,
+  /**
+   * Useful to extend the style applied to the component.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+};
 
 StepConnector.defaultProps = {
   alternativeLabel: false,

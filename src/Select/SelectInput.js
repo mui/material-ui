@@ -1,7 +1,5 @@
-// @flow
-
 import React from 'react';
-import type { Element, Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
@@ -9,100 +7,10 @@ import Menu from '../Menu/Menu';
 import { isDirty } from '../Input/Input';
 import ArrowDropDownIcon from '../svg-icons/ArrowDropDown';
 
-type ProvidedProps = {
-  classes: Object,
-};
-
-export type Props = {
-  /**
-   * If true, the width of the popover will automatically be set according to the items inside the
-   * menu, otherwise it will be at least the width of the select input.
-   */
-  autoWidth: boolean,
-  /**
-   * The option elements to populate the select with.
-   * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
-   */
-  children: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * The CSS class name of the select element.
-   */
-  className?: string,
-  /**
-   * If `true`, the select will be disabled.
-   */
-  disabled?: boolean,
-  /**
-   * If `true`, the selected item is displayed even if its value is empty.
-   * You can only use it when the `native` property is `false` (default).
-   */
-  displayEmpty: boolean,
-  /**
-   * If `true`, the component will be using a native `select` element.
-   */
-  native: boolean,
-  /**
-   * If true, `value` must be an array and the menu will support multiple selections.
-   * You can only use it when the `native` property is `false` (default).
-   */
-  multiple: boolean,
-  /**
-   * Properties applied to the `Menu` element.
-   */
-  MenuProps?: Object,
-  /**
-   * Name attribute of the `select` or hidden `input` element.
-   */
-  name?: string,
-  /**
-   * @ignore
-   */
-  onBlur?: Function,
-  /**
-   * Callback function fired when a menu item is selected.
-   *
-   * @param {object} event The event source of the callback
-   * @param {object} child The react element that was selected
-   */
-  onChange?: (event: SyntheticUIEvent<*>, child: Element<any>) => void,
-  /**
-   * @ignore
-   */
-  onFocus?: Function,
-  /**
-   * @ignore
-   */
-  readOnly?: boolean,
-  /**
-   * Render the selected value.
-   * You can only use it when the `native` property is `false` (default).
-   */
-  renderValue?: Function,
-  /**
-   * Use that property to pass a ref callback to the native select element.
-   */
-  selectRef?: Function,
-  /**
-   * The value of the component, required for a controlled component.
-   */
-  value?: string | number | $ReadOnlyArray<string | number>,
-};
-
-type State = {
-  open: boolean,
-  anchorEl: ?HTMLElement,
-};
-
 /**
  * @ignore - internal component.
  */
-class SelectInput extends React.Component<ProvidedProps & Props, State> {
-  static muiName = 'SelectInput';
-
+class SelectInput extends React.Component {
   state = {
     anchorEl: null,
     open: false,
@@ -205,14 +113,14 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
     const {
       autoWidth,
       children,
-      className: classNameProp,
       classes,
+      className: classNameProp,
       disabled,
       displayEmpty,
+      MenuProps = {},
+      multiple,
       name,
       native,
-      multiple,
-      MenuProps = {},
       onBlur,
       onChange,
       onFocus,
@@ -255,8 +163,8 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
             onFocus={onFocus}
             value={value}
             readOnly={readOnly}
-            {...other}
             ref={selectRef}
+            {...other}
           >
             {children}
           </select>
@@ -382,5 +290,90 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+SelectInput.propTypes = {
+  /**
+   * If true, the width of the popover will automatically be set according to the items inside the
+   * menu, otherwise it will be at least the width of the select input.
+   */
+  autoWidth: PropTypes.bool,
+  /**
+   * The option elements to populate the select with.
+   * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * The CSS class name of the select element.
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the select will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the selected item is displayed even if its value is empty.
+   * You can only use it when the `native` property is `false` (default).
+   */
+  displayEmpty: PropTypes.bool,
+  /**
+   * Properties applied to the `Menu` element.
+   */
+  MenuProps: PropTypes.object,
+  /**
+   * If true, `value` must be an array and the menu will support multiple selections.
+   * You can only use it when the `native` property is `false` (default).
+   */
+  multiple: PropTypes.bool,
+  /**
+   * Name attribute of the `select` or hidden `input` element.
+   */
+  name: PropTypes.string,
+  /**
+   * If `true`, the component will be using a native `select` element.
+   */
+  native: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback function fired when a menu item is selected.
+   *
+   * @param {object} event The event source of the callback
+   * @param {object} child The react element that was selected
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  readOnly: PropTypes.bool,
+  /**
+   * Render the selected value.
+   * You can only use it when the `native` property is `false` (default).
+   */
+  renderValue: PropTypes.func,
+  /**
+   * Use that property to pass a ref callback to the native select element.
+   */
+  selectRef: PropTypes.func,
+  /**
+   * The value of the component, required for a controlled component.
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ]),
+};
+
+SelectInput.muiName = 'SelectInput';
 
 export default SelectInput;

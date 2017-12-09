@@ -1,12 +1,9 @@
-// @flow
-
 import React from 'react';
-import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     flex: '1 1 auto',
     listStyle: 'none',
@@ -27,63 +24,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * The content of the component.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: ElementType,
-  /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
-   * the list and list items. The property is available to descendant components as the
-   * `dense` context.
-   */
-  dense: boolean,
-  /**
-   * If `true`, vertical padding will be removed from the list.
-   */
-  disablePadding: boolean,
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef?: Function,
-  /**
-   * The content of the component, normally `ListItem`.
-   */
-  subheader?: Node,
-};
-
-class List extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    component: ('ul': ElementType),
-    dense: false,
-    disablePadding: false,
-  };
-
+class List extends React.Component {
   getChildContext() {
     return {
       dense: this.props.dense,
@@ -120,6 +61,50 @@ class List extends React.Component<ProvidedProps & Props> {
     );
   }
 }
+
+List.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
+   * the list and list items. The property is available to descendant components as the
+   * `dense` context.
+   */
+  dense: PropTypes.bool,
+  /**
+   * If `true`, vertical padding will be removed from the list.
+   */
+  disablePadding: PropTypes.bool,
+  /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef: PropTypes.func,
+  /**
+   * The content of the component, normally `ListItem`.
+   */
+  subheader: PropTypes.node,
+};
+
+List.defaultProps = {
+  component: 'ul',
+  dense: false,
+  disablePadding: false,
+};
 
 List.childContextTypes = {
   dense: PropTypes.bool,

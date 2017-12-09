@@ -1,12 +1,9 @@
-// @flow
-
 import React from 'react';
-import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     width: '100%',
@@ -16,43 +13,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * The content of the table, normally `TableHeader` and `TableBody`.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: ElementType,
-};
-
-class Table extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    component: ('table': ElementType),
-  };
-
+class Table extends React.Component {
   getChildContext() {
     // eslint-disable-line class-methods-use-this
     return {
@@ -68,15 +29,38 @@ class Table extends React.Component<ProvidedProps & Props> {
       component: ComponentProp,
       ...other
     } = this.props;
-    const className = classNames(classes.root, classNameProp);
 
     return (
-      <ComponentProp className={className} {...other}>
+      <ComponentProp className={classNames(classes.root, classNameProp)} {...other}>
         {children}
       </ComponentProp>
     );
   }
 }
+
+Table.propTypes = {
+  /**
+   * The content of the table, normally `TableHeader` and `TableBody`.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+};
+
+Table.defaultProps = {
+  component: 'table',
+};
 
 Table.childContextTypes = {
   table: PropTypes.object,

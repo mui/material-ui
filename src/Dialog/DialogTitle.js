@@ -1,12 +1,10 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     margin: 0,
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px \
@@ -15,52 +13,38 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+function DialogTitle(props) {
+  const { children, classes, className, disableTypography, ...other } = props;
 
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
+  return (
+    <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
+      {disableTypography ? children : <Typography type="title">{children}</Typography>}
+    </div>
+  );
+}
+
+DialogTitle.propTypes = {
   /**
    * The content of the component.
    */
-  children?: Node,
+  children: PropTypes.node.isRequired,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * If `true`, the children won't be wrapped by a typography component.
    * For instance, this can be useful to render an h4 instead of the default h2.
    */
-  disableTypography: boolean,
+  disableTypography: PropTypes.bool,
 };
 
-class DialogTitle extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    disableTypography: false,
-  };
-
-  render() {
-    const { children, classes, className, disableTypography, ...other } = this.props;
-
-    return (
-      <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
-        {disableTypography ? children : <Typography type="title">{children}</Typography>}
-      </div>
-    );
-  }
-}
+DialogTitle.defaultProps = {
+  disableTypography: false,
+};
 
 export default withStyles(styles, { name: 'MuiDialogTitle' })(DialogTitle);

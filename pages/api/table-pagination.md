@@ -12,16 +12,16 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| classes | Object |  | Useful to extend the style applied to components. |
-| component | ElementType | TableCell | The component used for the root node. Either a string to use a DOM element or a component. |
+| classes | object |  | Useful to extend the style applied to components. |
+| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | TableCell | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span style="color: #31a148">count *</span> | number |  | The total number of rows. |
-| labelDisplayedRows | signature | ({ from, to, count }) => `${from}-${to} of ${count}` | Useful to customize the displayed rows label. |
-| labelRowsPerPage | Node | 'Rows per page:' | Useful to customize the rows per page label. Invoked with a `{ from, to, count, page }` object. |
-| <span style="color: #31a148">onChangePage *</span> | signature |  | Callback fired when the page is changed.<br><br>**Signature:**<br>`function(event: object, page: number) => void`<br>*event:* The event source of the callback<br>*page:* The page selected |
-| <span style="color: #31a148">onChangeRowsPerPage *</span> | signature |  | Callback fired when the number of rows per page is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
+| labelDisplayedRows | func | ({ from, to, count }) => `${from}-${to} of ${count}` | Useful to customize the displayed rows label. |
+| labelRowsPerPage | node | 'Rows per page:' | Useful to customize the rows per page label. Invoked with a `{ from, to, count, page }` object. |
+| <span style="color: #31a148">onChangePage *</span> | func |  | Callback fired when the page is changed.<br><br>**Signature:**<br>`function(event: object, page: number) => void`<br>*event:* The event source of the callback<br>*page:* The page selected |
+| <span style="color: #31a148">onChangeRowsPerPage *</span> | func |  | Callback fired when the number of rows per page is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span style="color: #31a148">page *</span> | number |  | The zero-based index of the current page. |
 | <span style="color: #31a148">rowsPerPage *</span> | number |  | The number of rows per page. |
-| rowsPerPageOptions | Array | [5, 10, 25] | Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. |
+| rowsPerPageOptions | array | [5, 10, 25] | Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

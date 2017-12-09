@@ -12,8 +12,8 @@ filename: /src/Stepper/StepButton.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | Element |  | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
-| icon | union:&nbsp;Element&lt;any>&nbsp;&#124;<br>&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | The icon displayed by the step label. |
+| children | node |  | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
+| icon | node |  | The icon displayed by the step label. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

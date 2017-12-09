@@ -1,15 +1,11 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import StepIcon from './StepIcon';
-import type { Orientation } from './Stepper';
-import type { Icon } from './StepButton';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -38,81 +34,19 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  active: boolean,
-  alternativeLabel: boolean,
-  classes: Object,
-  completed: boolean,
-  disabled: boolean,
-  icon: Icon,
-  last: boolean,
-  orientation: Orientation,
-};
-
-export type Props = {
-  /**
-   * @ignore
-   * Sets the step as active. Is passed to child components.
-   */
-  active?: boolean,
-  /**
-   * @ignore
-   * Set internally by Stepper when it's supplied with the alternativeLabel property.
-   */
-  alternativeLabel?: boolean,
-  /**
-   * In most cases will simply be a string containing a title for the label.
-   */
-  children: Node,
-  /**
-   * Custom styles for component.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * @ignore
-   * Mark the step as completed. Is passed to child components.
-   */
-  completed?: boolean,
-  /**
-   * Mark the step as disabled, will also disable the button if
-   * `StepLabelButton` is a child of `StepLabel`. Is passed to child components.
-   */
-  disabled?: boolean,
-  /**
-   * The icon displayed by the step label - if not set will be set by Step component.
-   */
-  icon?: Icon,
-  /**
-   * @ignore
-   */
-  last?: boolean,
-  /**
-   * @ignore
-   */
-  optional?: boolean,
-  /**
-   * @ignore
-   */
-  orientation?: Orientation,
-};
-
-function StepLabel(props: ProvidedProps & Props) {
+function StepLabel(props) {
   const {
     active,
+    alternativeLabel,
     children,
     classes,
     className: classNameProp,
     completed,
     disabled,
     icon,
-    orientation,
-    alternativeLabel,
     last,
     optional,
+    orientation,
     ...other
   } = props;
 
@@ -157,6 +91,57 @@ function StepLabel(props: ProvidedProps & Props) {
     </div>
   );
 }
+
+StepLabel.propTypes = {
+  /**
+   * @ignore
+   * Sets the step as active. Is passed to child components.
+   */
+  active: PropTypes.bool,
+  /**
+   * @ignore
+   * Set internally by Stepper when it's supplied with the alternativeLabel property.
+   */
+  alternativeLabel: PropTypes.bool,
+  /**
+   * In most cases will simply be a string containing a title for the label.
+   */
+  children: PropTypes.node,
+  /**
+   * Custom styles for component.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   * Mark the step as completed. Is passed to child components.
+   */
+  completed: PropTypes.bool,
+  /**
+   * Mark the step as disabled, will also disable the button if
+   * `StepLabelButton` is a child of `StepLabel`. Is passed to child components.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * The icon displayed by the step label - if not set will be set by Step component.
+   */
+  icon: PropTypes.node,
+  /**
+   * @ignore
+   */
+  last: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  optional: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+};
 
 StepLabel.defaultProps = {
   active: false,

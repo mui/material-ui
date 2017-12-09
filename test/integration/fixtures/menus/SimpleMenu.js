@@ -1,17 +1,15 @@
-// @flow
-
 import React from 'react';
 import Menu, { MenuItem } from 'src/Menu';
 
 const options = ['Menu Item 1', 'Menu Item 2', 'Menu Item 3'];
 
-class SimpleMenu extends React.Component<any, any> {
+class SimpleMenu extends React.Component {
   state = {
     open: false,
     selectedIndex: undefined,
   };
 
-  handleMenuItemClick = (event: SyntheticUIEvent<>, index: number) => {
+  handleMenuItemClick = (event, index) => {
     this.setState({ selectedIndex: index, open: false });
   };
 

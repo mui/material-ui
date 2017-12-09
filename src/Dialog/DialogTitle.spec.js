@@ -11,16 +11,16 @@ describe('<DialogTitle />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<DialogTitle />);
+    classes = getClasses(<DialogTitle>foo</DialogTitle>);
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<DialogTitle />);
+    const wrapper = shallow(<DialogTitle>foo</DialogTitle>);
     assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<DialogTitle data-my-prop="woofDialogTitle" />);
+    const wrapper = shallow(<DialogTitle data-my-prop="woofDialogTitle">foo</DialogTitle>);
     assert.strictEqual(
       wrapper.prop('data-my-prop'),
       'woofDialogTitle',
@@ -29,7 +29,7 @@ describe('<DialogTitle />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<DialogTitle className="woofDialogTitle" />);
+    const wrapper = shallow(<DialogTitle className="woofDialogTitle">foo</DialogTitle>);
     assert.strictEqual(wrapper.hasClass('woofDialogTitle'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });

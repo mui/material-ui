@@ -12,11 +12,11 @@ filename: /src/Card/CardHeader.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| action | Node |  | The action to display in the card header. |
-| avatar | Node |  | The Avatar for the Card Header. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| subheader | Node |  | The content of the component. |
-| title | Node |  | The content of the Card Title. |
+| action | node |  | The action to display in the card header. |
+| avatar | node |  | The Avatar for the Card Header. |
+| classes | object |  | Useful to extend the style applied to components. |
+| subheader | node |  | The content of the component. |
+| title | node |  | The content of the Card Title. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

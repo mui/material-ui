@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
@@ -11,16 +9,18 @@ describe('<ExpansionPanelActions />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<ExpansionPanelActions />);
+    classes = getClasses(<ExpansionPanelActions>foo</ExpansionPanelActions>);
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<ExpansionPanelActions />);
+    const wrapper = shallow(<ExpansionPanelActions>foo</ExpansionPanelActions>);
     assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<ExpansionPanelActions data-my-prop="woofExpansionPanelActions" />);
+    const wrapper = shallow(
+      <ExpansionPanelActions data-my-prop="woofExpansionPanelActions">foo</ExpansionPanelActions>,
+    );
     assert.strictEqual(
       wrapper.props()['data-my-prop'],
       'woofExpansionPanelActions',
@@ -29,7 +29,9 @@ describe('<ExpansionPanelActions />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<ExpansionPanelActions className="woofExpansionPanelActions" />);
+    const wrapper = shallow(
+      <ExpansionPanelActions className="woofExpansionPanelActions">foo</ExpansionPanelActions>,
+    );
     assert.strictEqual(wrapper.hasClass('woofExpansionPanelActions'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });

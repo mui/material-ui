@@ -12,16 +12,16 @@ filename: /src/Input/InputLabel.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| FormControlClasses | Object |  | `classes` property applied to the `FormControl` element. |
-| children | Node |  | The contents of the `InputLabel`. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| disableAnimation | boolean | false | If `true`, the transition animation is disabled. |
-| disabled | boolean | false | If `true`, apply disabled class. |
-| error | boolean |  | If `true`, the label will be displayed in an error state. |
-| focused | boolean |  | If `true`, the input of this label is focused. |
-| margin | literal |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
-| required | boolean |  | if `true`, the label will indicate that the input is required. |
-| shrink | boolean |  | If `true`, the label is shrunk. |
+| children | node |  | The contents of the `InputLabel`. |
+| classes | object |  | Useful to extend the style applied to components. |
+| disableAnimation | bool | false | If `true`, the transition animation is disabled. |
+| disabled | bool | false | If `true`, apply disabled class. |
+| error | bool |  | If `true`, the label will be displayed in an error state. |
+| focused | bool |  | If `true`, the input of this label is focused. |
+| FormControlClasses | object |  | `classes` property applied to the `FormControl` element. |
+| margin | enum:&nbsp;'dense'<br> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
+| required | bool |  | if `true`, the label will indicate that the input is required. |
+| shrink | bool |  | If `true`, the label is shrunk. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

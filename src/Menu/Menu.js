@@ -1,100 +1,19 @@
-// @flow
 // @inheritedComponent Popover
 
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from './MenuList';
-import type { TransitionCallback } from '../internal/transition';
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * The DOM element used to set the position of the menu.
-   */
-  anchorEl?: ?HTMLElement, // match Popover
-  /**
-   * Menu contents, normally `MenuItem`s.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * Properties applied to the `MenuList` element.
-   */
-  MenuListProps?: Object,
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback
-   */
-  onClose?: Function,
-  /**
-   * Callback fired before the Menu enters.
-   */
-  onEnter?: TransitionCallback,
-  /**
-   * Callback fired when the Menu is entering.
-   */
-  onEntering?: TransitionCallback,
-  /**
-   * Callback fired when the Menu has entered.
-   */
-  onEntered?: TransitionCallback,
-  /**
-   * Callback fired before the Menu exits.
-   */
-  onExit?: TransitionCallback,
-  /**
-   * Callback fired when the Menu is exiting.
-   */
-  onExiting?: TransitionCallback,
-  /**
-   * Callback fired when the Menu has exited.
-   */
-  onExited?: TransitionCallback,
-  /**
-   * If `true`, the menu is visible.
-   */
-  open: boolean,
-  /**
-   * @ignore
-   */
-  PaperProps?: Object,
-  /**
-   * `classes` property applied to the `Popover` element.
-   */
-  PopoverClasses?: Object,
-  /**
-   * The length of the transition in `ms`, or 'auto'
-   */
-  transitionDuration: TransitionDuration,
-};
-
-const rtlOrigin = {
+const RTL_ORIGIN = {
   vertical: 'top',
   horizontal: 'right',
 };
 
-const ltrOrigin = {
+const LTR_ORIGIN = {
   vertical: 'top',
   horizontal: 'left',
 };
@@ -110,12 +29,7 @@ export const styles = {
   },
 };
 
-class Menu extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    open: false,
-    transitionDuration: ('auto': TransitionDuration),
-  };
-
+class Menu extends React.Component {
   componentDidMount() {
     if (this.props.open) {
       this.focus();
@@ -132,7 +46,6 @@ class Menu extends React.Component<ProvidedProps & Props> {
 
   getContentAnchorEl = () => {
     if (!this.menuList || !this.menuList.selectedItem) {
-      // $FlowFixMe
       return findDOMNode(this.menuList).firstChild;
     }
 
@@ -143,14 +56,12 @@ class Menu extends React.Component<ProvidedProps & Props> {
 
   focus = () => {
     if (this.menuList && this.menuList.selectedItem) {
-      // $FlowFixMe
       findDOMNode(this.menuList.selectedItem).focus();
       return;
     }
 
     const menuList = findDOMNode(this.menuList);
     if (menuList && menuList.firstChild) {
-      // $FlowFixMe
       menuList.firstChild.focus();
     }
   };
@@ -165,12 +76,12 @@ class Menu extends React.Component<ProvidedProps & Props> {
 
     // Let's ignore that piece of logic if users are already overriding the width
     // of the menu.
-    // $FlowFixMe
+
     if (menuList && element.clientHeight < menuList.clientHeight && !menuList.style.width) {
       const size = `${getScrollbarSize()}px`;
-      // $FlowFixMe
+
       menuList.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = size;
-      // $FlowFixMe
+
       menuList.style.width = `calc(100% + ${size})`;
     }
 
@@ -209,8 +120,8 @@ class Menu extends React.Component<ProvidedProps & Props> {
         classes={PopoverClasses}
         onEnter={this.handleEnter}
         open={open}
-        anchorOrigin={themeDirection === 'rtl' ? rtlOrigin : ltrOrigin}
-        transformOrigin={themeDirection === 'rtl' ? rtlOrigin : ltrOrigin}
+        anchorOrigin={themeDirection === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
+        transformOrigin={themeDirection === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
         PaperProps={{
           ...PaperProps,
           classes: {
@@ -235,5 +146,83 @@ class Menu extends React.Component<ProvidedProps & Props> {
     );
   }
 }
+
+Menu.propTypes = {
+  /**
+   * The DOM element used to set the position of the menu.
+   */
+  anchorEl: PropTypes.object,
+  /**
+   * Menu contents, normally `MenuItem`s.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * Properties applied to the `MenuList` element.
+   */
+  MenuListProps: PropTypes.object,
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onClose: PropTypes.func,
+  /**
+   * Callback fired before the Menu enters.
+   */
+  onEnter: PropTypes.func,
+  /**
+   * Callback fired when the Menu has entered.
+   */
+  onEntered: PropTypes.func,
+  /**
+   * Callback fired when the Menu is entering.
+   */
+  onEntering: PropTypes.func,
+  /**
+   * Callback fired before the Menu exits.
+   */
+  onExit: PropTypes.func,
+  /**
+   * Callback fired when the Menu has exited.
+   */
+  onExited: PropTypes.func,
+  /**
+   * Callback fired when the Menu is exiting.
+   */
+  onExiting: PropTypes.func,
+  /**
+   * If `true`, the menu is visible.
+   */
+  open: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  PaperProps: PropTypes.object,
+  /**
+   * `classes` property applied to the `Popover` element.
+   */
+  PopoverClasses: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
+   * The length of the transition in `ms`, or 'auto'
+   */
+  transitionDuration: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.oneOf(['auto']),
+  ]),
+};
+
+Menu.defaultProps = {
+  open: false,
+  transitionDuration: 'auto',
+};
 
 export default withStyles(styles, { withTheme: true, name: 'MuiMenu' })(Menu);

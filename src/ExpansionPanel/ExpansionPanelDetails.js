@@ -1,11 +1,9 @@
-// @flow weak
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'flex',
     flexGrow: 1,
@@ -13,30 +11,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * The content of the expansion panel details.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-};
-
-function ExpansionPanelDetails(props: ProvidedProps & Props) {
+function ExpansionPanelDetails(props) {
   const { classes, children, className, ...other } = props;
 
   return (
@@ -45,5 +20,20 @@ function ExpansionPanelDetails(props: ProvidedProps & Props) {
     </div>
   );
 }
+
+ExpansionPanelDetails.propTypes = {
+  /**
+   * The content of the expansion panel details.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+};
 
 export default withStyles(styles, { name: 'MuiExpansionPanelDetails' })(ExpansionPanelDetails);

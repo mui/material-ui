@@ -1,51 +1,16 @@
-// @flow
-
 import React from 'react';
-import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     fontSize: theme.typography.pxToRem(13),
     color: theme.palette.text.primary,
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * The content of the component, normally `TableRow`.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: ElementType,
-};
-
-class TableBody extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    component: ('tbody': ElementType),
-  };
-
+class TableBody extends React.Component {
   getChildContext() {
     // eslint-disable-line class-methods-use-this
     return {
@@ -57,10 +22,10 @@ class TableBody extends React.Component<ProvidedProps & Props> {
 
   render() {
     const {
+      children,
       classes,
       className: classNameProp,
-      children,
-      component: ComponentProp = 'tbody',
+      component: ComponentProp,
       ...other
     } = this.props;
     const className = classNames(classes.root, classNameProp);
@@ -72,6 +37,30 @@ class TableBody extends React.Component<ProvidedProps & Props> {
     );
   }
 }
+
+TableBody.propTypes = {
+  /**
+   * The content of the component, normally `TableRow`.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+};
+
+TableBody.defaultProps = {
+  component: 'tbody',
+};
 
 TableBody.childContextTypes = {
   table: PropTypes.object,

@@ -12,11 +12,11 @@ filename: /src/Table/TableCell.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Node |  | The table cell contents. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| component | ElementType |  | The component used for the root node. Either a string to use a DOM element or a component. |
-| numeric | boolean | false | If `true`, content will align to the right. |
-| padding | union:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> | 'default' | Sets the padding applied to the cell. |
+| children | node |  | The table cell contents. |
+| classes | object |  | Useful to extend the style applied to components. |
+| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. |
+| numeric | bool | false | If `true`, content will align to the right. |
+| padding | enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> | 'default' | Sets the padding applied to the cell. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

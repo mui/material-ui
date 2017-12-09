@@ -11,11 +11,13 @@ describe('<ExpansionPanelDetails />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<ExpansionPanelDetails />);
+    classes = getClasses(<ExpansionPanelDetails>foo</ExpansionPanelDetails>);
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<ExpansionPanelDetails className="woofExpansionPanelDetails" />);
+    const wrapper = shallow(
+      <ExpansionPanelDetails className="woofExpansionPanelDetails">foo</ExpansionPanelDetails>,
+    );
     assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass('woofExpansionPanelDetails'), true);

@@ -12,27 +12,27 @@ filename: /src/Popover/Popover.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| PaperProps | Object |  | Properties applied to the `Paper` element. |
-| anchorEl | HTMLElement |  | This is the DOM element that may be used to set the position of the popover. |
-| anchorOrigin | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.<br>Options: vertical: [top, center, bottom]; horizontal: [left, center, right]. |
-| anchorPosition | signature |  | This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area. |
-| anchorReference | union:&nbsp;'anchorEl'&nbsp;&#124;<br>&nbsp;'anchorPosition'<br> | 'anchorEl' |  |
-| <span style="color: #31a148">children *</span> | Node |  | The content of the component. |
-| classes | Object |  | Useful to extend the style applied to components. |
+| anchorEl | object |  | This is the DOM element that may be used to set the position of the popover. |
+| anchorOrigin | shape | {  vertical: 'top',  horizontal: 'left',} | This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.<br>Options: vertical: [top, center, bottom]; horizontal: [left, center, right]. |
+| anchorPosition | shape |  | This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area. |
+| anchorReference | enum:&nbsp;'anchorEl'&nbsp;&#124;<br>&nbsp;'anchorPosition'<br> | 'anchorEl' |  |
+| children | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
 | elevation | number | 8 | The elevation of the popover. |
-| getContentAnchorEl | Function |  | This function is called in order to retrieve the content anchor element. It's the opposite of the `anchorEl` property. The content anchor element should be an element inside the popover. It's used to correctly scroll and set the position of the popover. The positioning strategy tries to make the content anchor element just above the anchor element. |
+| getContentAnchorEl | func |  | This function is called in order to retrieve the content anchor element. It's the opposite of the `anchorEl` property. The content anchor element should be an element inside the popover. It's used to correctly scroll and set the position of the popover. The positioning strategy tries to make the content anchor element just above the anchor element. |
 | marginThreshold | number | 16 | Specifies how close to the edge of the window the popover can appear. |
-| onClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
-| onEnter | TransitionCallback |  | Callback fired before the component is entering. |
-| onEntered | TransitionCallback |  | Callback fired when the component has entered. |
-| onEntering | TransitionCallback |  | Callback fired when the component is entering. |
-| onExit | TransitionCallback |  | Callback fired before the component is exiting. |
-| onExited | TransitionCallback |  | Callback fired when the component has exited. |
-| onExiting | TransitionCallback |  | Callback fired when the component is exiting. |
-| <span style="color: #31a148">open *</span> | boolean |  | If `true`, the popover is visible. |
-| transformOrigin | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
-| transitionClasses | TransitionClasses |  | The animation classNames applied to the component as it enters or exits. This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames). |
-| transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }&nbsp;&#124;<br>&nbsp;'auto'<br> | 'auto' | Set to 'auto' to automatically calculate transition time based on height. |
+| onClose | func |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
+| onEnter | func |  | Callback fired before the component is entering. |
+| onEntered | func |  | Callback fired when the component has entered. |
+| onEntering | func |  | Callback fired when the component is entering. |
+| onExit | func |  | Callback fired before the component is exiting. |
+| onExited | func |  | Callback fired when the component has exited. |
+| onExiting | func |  | Callback fired when the component is exiting. |
+| open | bool |  | If `true`, the popover is visible. |
+| PaperProps | object |  | Properties applied to the `Paper` element. |
+| transformOrigin | shape | {  vertical: 'top',  horizontal: 'left',} | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
+| transitionClasses | shape |  | The animation classNames applied to the component as it enters or exits. This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames). |
+| transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;{0?: undefined}<br> | 'auto' | Set to 'auto' to automatically calculate transition time based on height. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

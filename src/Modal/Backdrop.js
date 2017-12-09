@@ -1,11 +1,9 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     zIndex: -1,
     width: '100%',
@@ -25,58 +23,40 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Can be used, for instance, to render a letter inside the avatar.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * If `true`, the backdrop is invisible.
-   */
-  invisible: boolean,
-};
-
 /**
  * @ignore - internal component.
  */
-class Backdrop extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    invisible: false,
-  };
+function Backdrop(props) {
+  const { classes, className: classNameProp, invisible, ...other } = props;
 
-  render() {
-    const { children, classes, className, invisible, ...other } = this.props;
+  const className = classNames(
+    classes.root,
+    {
+      [classes.invisible]: invisible,
+    },
+    classNameProp,
+  );
 
-    const backdropClass = classNames(
-      classes.root,
-      {
-        [classes.invisible]: invisible,
-      },
-      className,
-    );
-
-    return (
-      <div data-mui-test="Backdrop" className={backdropClass} aria-hidden="true" {...other}>
-        {children}
-      </div>
-    );
-  }
+  return <div data-mui-test="Backdrop" className={className} aria-hidden="true" {...other} />;
 }
+
+Backdrop.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the backdrop is invisible.
+   */
+  invisible: PropTypes.bool,
+};
+
+Backdrop.defaultProps = {
+  invisible: false,
+};
 
 export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);

@@ -12,9 +12,9 @@ filename: /src/Progress/LinearProgress.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| classes | Object |  | Useful to extend the style applied to components. |
-| color | union:&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'accent'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
-| mode | union:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'&nbsp;&#124;<br>&nbsp;'buffer'&nbsp;&#124;<br>&nbsp;'query'<br> | 'indeterminate' | The mode of show your progress, indeterminate for when there is no value for progress. |
+| classes | object |  | Useful to extend the style applied to components. |
+| color | enum:&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'accent'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
+| mode | enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'&nbsp;&#124;<br>&nbsp;'buffer'&nbsp;&#124;<br>&nbsp;'query'<br> | 'indeterminate' | The mode of show your progress, indeterminate for when there is no value for progress. |
 | value | number |  | The value of progress, only works in determinate and buffer mode. Value between 0 and 100. |
 | valueBuffer | number |  | The value of buffer, only works in buffer mode. Value between 0 and 100. |
 

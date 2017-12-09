@@ -12,9 +12,9 @@ filename: /src/Radio/RadioGroup.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Node |  | The content of the component. |
+| children | node |  | The content of the component. |
 | name | string |  | The name used to reference the value of the control. |
-| onChange | Function |  | Callback fired when a radio button is selected.<br><br>**Signature:**<br>`function(event: object, value: string) => void`<br>*event:* The event source of the callback<br>*value:* The `value` of the selected radio button |
+| onChange | func |  | Callback fired when a radio button is selected.<br><br>**Signature:**<br>`function(event: object, value: string) => void`<br>*event:* The event source of the callback<br>*value:* The `value` of the selected radio button |
 | value | string |  | Value of the selected radio button. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

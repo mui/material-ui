@@ -1,14 +1,12 @@
-// @flow weak
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
 const RADIUS = 12;
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     position: 'relative',
     display: 'inline-flex',
@@ -43,69 +41,46 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Color = 'default' | 'primary' | 'accent';
+function Badge(props) {
+  const { badgeContent, classes, className: classNameProp, color, children, ...other } = props;
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+  const badgeClassName = classNames(classes.badge, {
+    [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+  });
 
-export type Props = {
-  /**
-   * Other div props.
-   */
-  [otherProp: string]: any,
+  return (
+    <div className={classNames(classes.root, classNameProp)} {...other}>
+      {children}
+      <span className={badgeClassName}>{badgeContent}</span>
+    </div>
+  );
+}
+
+Badge.propTypes = {
   /**
    * The content rendered within the badge.
    */
-  badgeContent: Node,
+  badgeContent: PropTypes.node.isRequired,
   /**
    * The badge will be added relative to this node.
    */
-  children: Node,
+  children: PropTypes.node.isRequired,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: Color,
+  color: PropTypes.oneOf(['default', 'primary', 'accent']),
 };
 
-class Badge extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    color: 'default',
-  };
-
-  render() {
-    const {
-      badgeContent,
-      classes,
-      className: classNameProp,
-      color,
-      children,
-      ...other
-    } = this.props;
-    const className = classNames(classes.root, classNameProp);
-    const badgeClassName = classNames(classes.badge, {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
-    });
-
-    return (
-      <div className={className} {...other}>
-        {children}
-        <span className={badgeClassName}>{badgeContent}</span>
-      </div>
-    );
-  }
-}
+Badge.defaultProps = {
+  color: 'default',
+};
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);

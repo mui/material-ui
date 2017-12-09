@@ -1,15 +1,13 @@
-// @flow
 // @inheritedComponent Transition
 
 import React from 'react';
 import classNames from 'classnames';
-import type { Node, ElementType } from 'react';
+import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
-import type { TransitionCallback } from '../internal/transition';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   container: {
     height: 0,
     overflow: 'hidden',
@@ -27,104 +25,11 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
-
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * @ignore
-   */
-  appear: boolean,
-  /**
-   * The content node to be collapsed.
-   */
-  children: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: String,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   * The default value is a `button`.
-   */
-  component: ElementType,
-  /**
-   * The height of the container when collapsed.
-   */
-  collapsedHeight: string,
-  /**
-   * Properties applied to the `Collapse` container.
-   */
-  containerProps?: Object,
-  /**
-   * If `true`, the component will transition in.
-   */
-  in: boolean,
-  /**
-   * @ignore
-   */
-  onEnter?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onEntering?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onEntered?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onExit?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onExiting?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  style?: Object,
-  /**
-   * The duration for the transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   *
-   * Set to 'auto' to automatically calculate transition time based on height.
-   */
-  timeout: TransitionDuration,
-  /**
-   * @ignore
-   */
-  unmountOnExit?: boolean,
-};
-
-class Collapse extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    appear: false,
-    component: ('div': ElementType),
-    collapsedHeight: '0px',
-    timeout: (duration.standard: TransitionDuration),
-  };
-
+class Collapse extends React.Component {
   wrapper = null;
   autoTransitionDuration = undefined;
 
-  handleEnter = (node: HTMLElement) => {
+  handleEnter = node => {
     node.style.height = this.props.collapsedHeight;
 
     if (this.props.onEnter) {
@@ -132,7 +37,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
     }
   };
 
-  handleEntering = (node: HTMLElement) => {
+  handleEntering = node => {
     const { timeout, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
@@ -155,7 +60,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
     }
   };
 
-  handleEntered = (node: HTMLElement) => {
+  handleEntered = node => {
     node.style.height = 'auto';
 
     if (this.props.onEntered) {
@@ -163,7 +68,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
     }
   };
 
-  handleExit = (node: HTMLElement) => {
+  handleExit = node => {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
     node.style.height = `${wrapperHeight}px`;
 
@@ -172,7 +77,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
     }
   };
 
-  handleExiting = (node: HTMLElement) => {
+  handleExiting = node => {
     const { timeout, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
@@ -207,17 +112,17 @@ class Collapse extends React.Component<ProvidedProps & Props> {
       children,
       classes,
       className,
-      component: ComponentProp,
       collapsedHeight,
+      component: ComponentProp,
       containerProps,
       onEnter,
-      onEntering,
       onEntered,
+      onEntering,
       onExit,
       onExiting,
       style,
-      timeout,
       theme,
+      timeout,
       ...other
     } = this.props;
 
@@ -264,6 +169,89 @@ class Collapse extends React.Component<ProvidedProps & Props> {
     );
   }
 }
+
+Collapse.propTypes = {
+  /**
+   * @ignore
+   */
+  appear: PropTypes.bool,
+  /**
+   * The content node to be collapsed.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The height of the container when collapsed.
+   */
+  collapsedHeight: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   * The default value is a `button`.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * Properties applied to the `Collapse` container.
+   */
+  containerProps: PropTypes.object,
+  /**
+   * If `true`, the component will transition in.
+   */
+  in: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onEnter: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onEntered: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onEntering: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExit: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExiting: PropTypes.func,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   *
+   * Set to 'auto' to automatically calculate transition time based on height.
+   */
+  timeout: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.oneOf(['auto']),
+  ]),
+};
+
+Collapse.defaultProps = {
+  appear: false,
+  collapsedHeight: '0px',
+  component: 'div',
+  timeout: duration.standard,
+};
 
 export default withStyles(styles, {
   withTheme: true,

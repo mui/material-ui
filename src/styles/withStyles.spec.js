@@ -143,7 +143,7 @@ describe('withStyles', () => {
     });
 
     it('should work when depending on a theme', () => {
-      const styles = (theme: Object) => ({ root: { padding: theme.spacing.unit } });
+      const styles = theme => ({ root: { padding: theme.spacing.unit } });
       const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
 
       const wrapper = mount(
@@ -216,7 +216,7 @@ describe('withStyles', () => {
       const StyledComponent2 = withStyles(styles2, { name: 'MuiTextField' })(Empty);
 
       // Simulate react-hot-loader behavior
-      wrapper.instance().componentWillReceiveProps = // $FlowExpectedError
+      wrapper.instance().componentWillReceiveProps =
         StyledComponent2.prototype.componentWillReceiveProps;
 
       const classes1 = wrapper.props().classes.root;

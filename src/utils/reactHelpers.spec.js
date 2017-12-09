@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { isMuiComponent, isMuiElement } from './reactHelpers';
@@ -24,7 +22,6 @@ describe('utils/reactHelpers.js', () => {
         [ListItemSecondaryAction, 'ListItemSecondaryAction'],
         [SvgIcon, 'SvgIcon'],
       ].forEach(([Component, muiName]) => {
-        // $FlowFixMe - no idea - rosskevin
         assert.strictEqual(isMuiElement(<Component />, [muiName]), true);
       });
     });

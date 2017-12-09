@@ -12,11 +12,11 @@ Chips represent complex entities in small blocks, such as a contact.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| avatar | Element |  | Avatar element. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| deleteIcon | Element |  | Custom delete icon. Will be shown only if `onDelete` is set. |
-| label | Node |  | The content of the label. |
-| onDelete | signature |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
+| avatar | element |  | Avatar element. |
+| classes | object |  | Useful to extend the style applied to components. |
+| deleteIcon | element |  | Custom delete icon element. Will be shown only if `onDelete` is set. |
+| label | node |  | The content of the label. |
+| onDelete | func |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

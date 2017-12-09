@@ -13,14 +13,14 @@ Use this component if you want to display an extra label.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| checked | union:&nbsp;boolean&nbsp;&#124;<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">control *</span> | Element |  | A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`. |
-| disabled | boolean |  | If `true`, the control will be disabled. |
-| inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
-| <span style="color: #31a148">label *</span> | Node |  | The text to be used in an enclosing label element. |
+| checked | union:&nbsp;bool&nbsp;&#124;<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
+| classes | object |  | Useful to extend the style applied to components. |
+| control | element |  | A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`. |
+| disabled | bool |  | If `true`, the control will be disabled. |
+| inputRef | func |  | Use that property to pass a ref callback to the native input component. |
+| label | node |  | The text to be used in an enclosing label element. |
 | name | string |  |  |
-| onChange | Function |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
+| onChange | func |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
 | value | string |  | The value of the component. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

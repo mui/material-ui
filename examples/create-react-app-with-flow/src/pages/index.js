@@ -25,7 +25,7 @@ type ProvidedProps = {
 };
 
 export type Props = {
-  classes?: Object,
+  classes: Object,
 };
 
 type State = {

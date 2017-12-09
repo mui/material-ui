@@ -1,11 +1,8 @@
-// @flow
-
 import React, { Component } from 'react';
-import type { Node } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 
-const styles = (theme: Object) => ({
+const styles = theme => ({
   '@global': {
     html: {
       WebkitFontSmoothing: 'antialiased', // Antialiasing.
@@ -30,18 +27,7 @@ const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  theme?: Object,
-};
-
-type Props = {
-  children?: Node,
-};
-
-class TestViewer extends Component<ProvidedProps & Props> {
-  static defaultProps = {};
-
+class TestViewer extends Component {
   getChildContext() {
     return {
       url: {
@@ -56,6 +42,11 @@ class TestViewer extends Component<ProvidedProps & Props> {
     return <div className={classes.root}>{children}</div>;
   }
 }
+
+TestViewer.propTypes = {
+  children: PropTypes.node.isRequired,
+  classes: PropTypes.object.isRequired,
+};
 
 TestViewer.childContextTypes = {
   url: PropTypes.object,

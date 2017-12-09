@@ -12,20 +12,20 @@ filename: /src/Menu/Menu.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| MenuListProps | Object |  | Properties applied to the `MenuList` element. |
-| PopoverClasses | Object |  | `classes` property applied to the `Popover` element. |
-| anchorEl | HTMLElement |  | The DOM element used to set the position of the menu. |
-| children | Node |  | Menu contents, normally `MenuItem`s. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| onClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
-| onEnter | TransitionCallback |  | Callback fired before the Menu enters. |
-| onEntered | TransitionCallback |  | Callback fired when the Menu has entered. |
-| onEntering | TransitionCallback |  | Callback fired when the Menu is entering. |
-| onExit | TransitionCallback |  | Callback fired before the Menu exits. |
-| onExited | TransitionCallback |  | Callback fired when the Menu has exited. |
-| onExiting | TransitionCallback |  | Callback fired when the Menu is exiting. |
-| open | boolean | false | If `true`, the menu is visible. |
-| transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }&nbsp;&#124;<br>&nbsp;'auto'<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
+| anchorEl | object |  | The DOM element used to set the position of the menu. |
+| children | node |  | Menu contents, normally `MenuItem`s. |
+| classes | object |  | Useful to extend the style applied to components. |
+| MenuListProps | object |  | Properties applied to the `MenuList` element. |
+| onClose | func |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
+| onEnter | func |  | Callback fired before the Menu enters. |
+| onEntered | func |  | Callback fired when the Menu has entered. |
+| onEntering | func |  | Callback fired when the Menu is entering. |
+| onExit | func |  | Callback fired before the Menu exits. |
+| onExited | func |  | Callback fired when the Menu has exited. |
+| onExiting | func |  | Callback fired when the Menu is exiting. |
+| open | bool | false | If `true`, the menu is visible. |
+| PopoverClasses | object |  | `classes` property applied to the `Popover` element. |
+| transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;{0?: undefined}<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import createBroadcast from 'brcast';
@@ -11,13 +9,8 @@ import exactProp from '../utils/exactProp';
  * It makes the `theme` available down the React tree thanks to React context.
  * This component should preferably be used at **the root of your component tree**.
  */
-class MuiThemeProvider extends React.Component<Object> {
-  static defaultProps = {
-    disableStylesGeneration: false,
-    sheetsManager: null,
-  };
-
-  constructor(props: Object, context: Object) {
+class MuiThemeProvider extends React.Component {
+  constructor(props, context) {
     super(props, context);
 
     // Get the outer theme from the context, can be null
@@ -64,7 +57,7 @@ class MuiThemeProvider extends React.Component<Object> {
   outerTheme = null;
 
   // Simple merge between the outer theme and the local theme
-  mergeOuterLocalTheme(localTheme: Object) {
+  mergeOuterLocalTheme(localTheme) {
     // To support composition of theme.
     if (typeof localTheme === 'function') {
       return localTheme(this.outerTheme);
@@ -108,6 +101,11 @@ MuiThemeProvider.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
+MuiThemeProvider.defaultProps = {
+  disableStylesGeneration: false,
+  sheetsManager: null,
+};
+
 MuiThemeProvider.childContextTypes = {
   ...themeListener.contextTypes,
   muiThemeProviderOptions: PropTypes.object,
@@ -121,7 +119,7 @@ MuiThemeProvider.contextTypes = themeListener.contextTypes;
 let MuiThemeProviderWrapper = MuiThemeProvider;
 
 if (process.env.NODE_ENV !== 'production') {
-  MuiThemeProviderWrapper = (props: any) => <MuiThemeProvider {...props} />;
+  MuiThemeProviderWrapper = props => <MuiThemeProvider {...props} />;
   MuiThemeProviderWrapper.propTypes = exactProp(MuiThemeProvider.propTypes, 'MuiThemeProvider');
 }
 

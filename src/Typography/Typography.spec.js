@@ -11,7 +11,7 @@ describe('<Typography />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<Typography />);
+    classes = getClasses(<Typography>Hello</Typography>);
   });
 
   it('should render the text', () => {

@@ -12,11 +12,11 @@ filename: /src/List/ListItemText.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| classes | Object |  | Useful to extend the style applied to components. |
-| disableTypography | boolean | false | If `true`, the children won't be wrapped by a typography component. For instance, that can be useful to can render an h4 instead of a |
-| inset | boolean | false | If `true`, the children will be indented. This should be used if there is no left avatar or left icon. |
-| primary | Node | false |  |
-| secondary | Node | false |  |
+| classes | object |  | Useful to extend the style applied to components. |
+| disableTypography | bool | false | If `true`, the children won't be wrapped by a typography component. For instance, that can be useful to can render an h4 instead of a |
+| inset | bool | false | If `true`, the children will be indented. This should be used if there is no left avatar or left icon. |
+| primary | node | false |  |
+| secondary | node | false |  |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

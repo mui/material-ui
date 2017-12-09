@@ -1,5 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import { assert } from 'chai';
 import fs from 'fs';
 import path from 'path';

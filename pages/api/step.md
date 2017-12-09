@@ -12,11 +12,11 @@ filename: /src/Stepper/Step.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| active | boolean | false | Sets the step as active. Is passed to child components. |
-| children | Node |  | Should be `Step` sub-components such as `StepLabel`, `StepContent`. |
-| completed | boolean | false | Mark the step as completed. Is passed to child components. |
-| disabled | boolean | false | Mark the step as disabled, will also disable the button if `StepButton` is a child of `Step`. Is passed to child components. |
-| optional | boolean | false | Define this step as optional. |
+| active | bool | false | Sets the step as active. Is passed to child components. |
+| children | node |  | Should be `Step` sub-components such as `StepLabel`, `StepContent`. |
+| completed | bool | false | Mark the step as completed. Is passed to child components. |
+| disabled | bool | false | Mark the step as disabled, will also disable the button if `StepButton` is a child of `Step`. Is passed to child components. |
+| optional | bool | false | Define this step as optional. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

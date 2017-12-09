@@ -1,7 +1,5 @@
-// @flow weak
-
 import React from 'react';
-import type { ElementType, Node } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import keycode from 'keycode';
@@ -10,7 +8,7 @@ import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../uti
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -38,139 +36,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * If `true`, the ripples will be centered.
-   * They won't start at the cursor interaction position.
-   */
-  centerRipple: boolean,
-  /**
-   * The content of the component.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   * The default value is a `button`.
-   */
-  component?: ElementType,
-  /**
-   * If `true`, the base button will be disabled.
-   */
-  disabled?: boolean,
-  /**
-   * If `true`, the ripple effect will be disabled.
-   */
-  disableRipple: boolean,
-  /**
-   * If `true`, the base button will have a keyboard focus ripple.
-   * `disableRipple` must also be `false`.
-   */
-  focusRipple: boolean,
-  /**
-   * The CSS class applied while the component is keyboard focused.
-   */
-  keyboardFocusedClassName?: string,
-  /**
-   * @ignore
-   */
-  onBlur?: Function,
-  /**
-   * @ignore
-   */
-  onClick?: Function,
-  /**
-   * @ignore
-   */
-  onFocus?: Function,
-  /**
-   * Callback fired when the component is focused with a keyboard.
-   * We trigger a `onFocus` callback too.
-   */
-  onKeyboardFocus?: (event: SyntheticEvent<>) => void,
-  /**
-   * @ignore
-   */
-  onKeyDown?: Function,
-  /**
-   * @ignore
-   */
-  onKeyUp?: Function,
-  /**
-   * @ignore
-   */
-  onMouseDown?: Function,
-  /**
-   * @ignore
-   */
-  onMouseLeave?: Function,
-  /**
-   * @ignore
-   */
-  onMouseUp?: Function,
-  /**
-   * @ignore
-   */
-  onTouchEnd?: Function,
-  /**
-   * @ignore
-   */
-  onTouchMove?: Function,
-  /**
-   * @ignore
-   */
-  onTouchStart?: Function,
-  /**
-   * @ignore
-   */
-  role?: string,
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef?: Function,
-  /**
-   * @ignore
-   */
-  tabIndex: number | string,
-  /**
-   * @ignore
-   */
-  type: string,
-};
-
-type State = {
-  keyboardFocused: boolean,
-};
-
-class ButtonBase extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
-    centerRipple: false,
-    focusRipple: false,
-    disableRipple: false,
-    tabIndex: 0,
-    type: 'button',
-  };
-
+class ButtonBase extends React.Component {
   state = {
     keyboardFocused: false,
   };
@@ -400,5 +266,121 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+ButtonBase.propTypes = {
+  /**
+   * If `true`, the ripples will be centered.
+   * They won't start at the cursor interaction position.
+   */
+  centerRipple: PropTypes.bool,
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   * The default value is a `button`.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * If `true`, the base button will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple: PropTypes.bool,
+  /**
+   * If `true`, the base button will have a keyboard focus ripple.
+   * `disableRipple` must also be `false`.
+   */
+  focusRipple: PropTypes.bool,
+  /**
+   * The CSS class applied while the component is keyboard focused.
+   */
+  keyboardFocusedClassName: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * Callback fired when the component is focused with a keyboard.
+   * We trigger a `onFocus` callback too.
+   */
+  onKeyboardFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyUp: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseLeave: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseUp: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onTouchEnd: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onTouchMove: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onTouchStart: PropTypes.func,
+  /**
+   * @ignore
+   */
+  role: PropTypes.string,
+  /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef: PropTypes.func,
+  /**
+   * @ignore
+   */
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * @ignore
+   */
+  type: PropTypes.string,
+};
+
+ButtonBase.defaultProps = {
+  centerRipple: false,
+  disableRipple: false,
+  focusRipple: false,
+  tabIndex: 0,
+  type: 'button',
+};
 
 export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);

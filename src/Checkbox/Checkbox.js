@@ -1,12 +1,10 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import SwitchBase from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   default: {
     color: theme.palette.text.secondary,
   },
@@ -18,108 +16,98 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+function Checkbox(props) {
+  const { checkedIcon, icon, indeterminate, indeterminateIcon, ...other } = props;
 
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
+  return (
+    <SwitchBase
+      checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
+      icon={indeterminate ? indeterminateIcon : icon}
+      {...other}
+    />
+  );
+}
+
+Checkbox.propTypes = {
   /**
    * If `true`, the component is checked.
    */
-  checked?: boolean | string,
+  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   /**
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: Node,
+  checkedIcon: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * @ignore
    */
-  defaultChecked?: boolean,
+  defaultChecked: PropTypes.bool,
   /**
    * If `true`, the switch will be disabled.
    */
-  disabled?: boolean,
+  disabled: PropTypes.bool,
   /**
    * If `true`, the ripple effect will be disabled.
    */
-  disableRipple?: boolean,
+  disableRipple: PropTypes.bool,
   /**
    * The icon to display when the component is unchecked.
    * If a string is provided, it will be used as a font ligature.
    */
-  icon?: Node,
+  icon: PropTypes.node,
   /**
    * If `true`, the component appears indeterminate.
    */
-  indeterminate: boolean,
+  indeterminate: PropTypes.bool,
   /**
    * The icon to display when the component is indeterminate.
    * If a string is provided, it will be used as a font ligature.
    */
-  indeterminateIcon: Node,
+  indeterminateIcon: PropTypes.node,
   /**
    * Properties applied to the `input` element.
    */
-  inputProps?: Object,
+  inputProps: PropTypes.object,
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef?: Function,
+  inputRef: PropTypes.func,
+  /**
+   * The input component property `type`.
+   */
+  inputType: PropTypes.string,
   /*
    * @ignore
    */
-  name?: string,
+  name: PropTypes.string,
   /**
    * Callback fired when the state is changed.
    *
    * @param {object} event The event source of the callback
    * @param {boolean} checked The `checked` value of the switch
    */
-  onChange?: Function,
+  onChange: PropTypes.func,
   /**
    * @ignore
    */
-  tabIndex?: number | string,
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The value of the component.
    */
-  value?: string,
+  value: PropTypes.string,
 };
 
-class Checkbox extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    indeterminate: false,
-    indeterminateIcon: (<IndeterminateCheckBoxIcon />: Node),
-  };
-
-  render() {
-    const { checkedIcon, icon, indeterminate, indeterminateIcon, ...other } = this.props;
-
-    return (
-      <SwitchBase
-        checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
-        icon={indeterminate ? indeterminateIcon : icon}
-        {...other}
-      />
-    );
-  }
-}
+Checkbox.defaultProps = {
+  indeterminate: false,
+  indeterminateIcon: <IndeterminateCheckBoxIcon />,
+};
 
 export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);

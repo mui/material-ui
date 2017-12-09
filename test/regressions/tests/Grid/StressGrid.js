@@ -1,12 +1,10 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
-const styles = (theme: Object) => ({
+const styles = theme => ({
   root: {
     width: 400,
     backgroundColor: theme.palette.secondary.A400,

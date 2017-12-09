@@ -12,9 +12,9 @@ filename: /src/Toolbar/Toolbar.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Node |  | Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| disableGutters | boolean | false | If `true`, disables gutter padding. |
+| <span style="color: #31a148">children *</span> | node |  | Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`. |
+| classes | object |  | Useful to extend the style applied to components. |
+| disableGutters | bool | false | If `true`, disables gutter padding. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

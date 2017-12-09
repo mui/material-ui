@@ -1,12 +1,9 @@
-// @flow
-
 import React from 'react';
-import type { Node, ElementType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     color: 'inherit',
     display: 'table-row',
@@ -32,96 +29,76 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type Context = {
-  table: Object,
-};
-
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * Should be valid `<tr>` children such as `TableCell`.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: ElementType,
-  /**
-   * If `true`, the table row will shade on hover.
-   */
-  hover: boolean,
-  /**
-   * If `true`, the table row will have the selected shading.
-   */
-  selected: boolean,
-};
-
 /**
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
  */
-class TableRow extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    hover: false,
-    selected: false,
-    component: ('tr': ElementType),
-  };
+function TableRow(props, context) {
+  const {
+    children,
+    classes,
+    className: classNameProp,
+    component: Component,
+    hover,
+    selected,
+    ...other
+  } = props;
+  const { table } = context;
 
-  static contextTypes = {
-    table: PropTypes.object,
-  };
+  const className = classNames(
+    classes.root,
+    {
+      [classes.head]: table && table.head,
+      [classes.footer]: table && table.footer,
+      [classes.hover]: table && hover,
+      [classes.selected]: table && selected,
+    },
+    classNameProp,
+  );
 
-  context: Context;
-
-  render() {
-    const {
-      classes,
-      className: classNameProp,
-      children,
-      component: Component,
-      hover,
-      selected,
-      ...other
-    } = this.props;
-    const { table } = this.context;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.head]: table && table.head,
-        [classes.footer]: table && table.footer,
-        [classes.hover]: table && hover,
-        [classes.selected]: table && selected,
-      },
-      classNameProp,
-    );
-
-    return (
-      <Component className={className} {...other}>
-        {children}
-      </Component>
-    );
-  }
+  return (
+    <Component className={className} {...other}>
+      {children}
+    </Component>
+  );
 }
+
+TableRow.propTypes = {
+  /**
+   * Should be valid `<tr>` children such as `TableCell`.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * If `true`, the table row will shade on hover.
+   */
+  hover: PropTypes.bool,
+  /**
+   * If `true`, the table row will have the selected shading.
+   */
+  selected: PropTypes.bool,
+};
+
+TableRow.defaultProps = {
+  component: 'tr',
+  hover: false,
+  selected: false,
+};
+
+TableRow.contextTypes = {
+  table: PropTypes.object,
+};
 
 export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);

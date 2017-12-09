@@ -1,11 +1,10 @@
-// @flow weak
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     position: 'absolute',
     height: 2,
@@ -22,40 +21,10 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type IndicatorStyle = {
-  left?: number,
-  width?: number,
-};
-
-export type ProvidedProps = {
-  classes: Object,
-};
-
-export type Props = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * @ignore
-   * The color of the tab indicator.
-   */
-  color: 'accent' | 'primary' | string,
-  /**
-   * @ignore
-   * The style of the root element.
-   */
-  style: IndicatorStyle,
-};
-
 /**
  * @ignore - internal component.
  */
-function TabIndicator(props: ProvidedProps & Props) {
+function TabIndicator(props) {
   const { classes, className: classNameProp, color, style: styleProp } = props;
   const colorPredefined = ['primary', 'accent'].indexOf(color) !== -1;
   const className = classNames(
@@ -75,5 +44,26 @@ function TabIndicator(props: ProvidedProps & Props) {
 
   return <div className={className} style={style} />;
 }
+
+TabIndicator.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   * The color of the tab indicator.
+   */
+  color: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf(['accent', 'primary'])]),
+  /**
+   * @ignore
+   * The style of the root element.
+   */
+  style: PropTypes.object,
+};
 
 export default withStyles(styles, { name: 'MuiTabIndicator' })(TabIndicator);

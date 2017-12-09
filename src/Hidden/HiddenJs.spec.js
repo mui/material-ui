@@ -1,11 +1,7 @@
-// @flow weak
-/* eslint-disable no-loop-func */
-
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
 import HiddenJs from './HiddenJs';
-import type { Breakpoint } from '../styles/createBreakpoints';
 
 describe('<HiddenJs />', () => {
   let shallow;
@@ -22,11 +18,7 @@ describe('<HiddenJs />', () => {
     return `${breakpoint}${upDownOnly}`;
   }
 
-  function isHidden(
-    hiddenBreakpoints: Array<*>,
-    upDownOnly: 'Up' | 'Down' | 'only',
-    width: Breakpoint,
-  ) {
+  function isHidden(hiddenBreakpoints, upDownOnly, width) {
     hiddenBreakpoints.forEach(breakpoint => {
       const prop = resolvePropName(upDownOnly, breakpoint);
       const descriptions = {
@@ -34,11 +26,11 @@ describe('<HiddenJs />', () => {
         Down: `${prop} is hidden for width: ${width} < ${breakpoint}`,
         only: `${prop} is hidden for width: ${width} === ${breakpoint}`,
       };
-      const props = { width, [prop]: breakpoint };
+      const props = { [prop]: upDownOnly === 'only' ? breakpoint : true };
 
       it(descriptions[upDownOnly], () => {
         const wrapper = shallow(
-          <HiddenJs {...props}>
+          <HiddenJs width={width} {...props}>
             <div>foo</div>
           </HiddenJs>,
         );
@@ -47,11 +39,7 @@ describe('<HiddenJs />', () => {
     });
   }
 
-  function isVisible(
-    visibleBreakpoints: Array<*>,
-    upDownOnly: 'Up' | 'Down' | 'only',
-    width: Breakpoint,
-  ) {
+  function isVisible(visibleBreakpoints, upDownOnly, width) {
     visibleBreakpoints.forEach(breakpoint => {
       const prop = resolvePropName(upDownOnly, breakpoint);
       const descriptions = {
@@ -59,11 +47,11 @@ describe('<HiddenJs />', () => {
         Down: `${prop} is visible for width: ${width} >= ${breakpoint}`,
         only: `${prop} is visible for width: ${width} !== ${breakpoint}`,
       };
-      const props = { width, [prop]: breakpoint };
+      const props = { [prop]: upDownOnly === 'only' ? breakpoint : true };
 
       it(descriptions[upDownOnly], () => {
         const wrapper = shallow(
-          <HiddenJs {...props}>
+          <HiddenJs width={width} {...props}>
             <div>foo</div>
           </HiddenJs>,
         );

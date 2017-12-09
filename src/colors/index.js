@@ -1,5 +1,3 @@
-// @flow
-
 export { default as common } from './common';
 export { default as red } from './red';
 export { default as pink } from './pink';

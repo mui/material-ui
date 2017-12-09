@@ -14,14 +14,14 @@ describe('withMobileDialog', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'Dialog' });
-    classes = getClasses(<Dialog />);
+    classes = getClasses(<Dialog>foo</Dialog>);
   });
 
   function isFullScreen(breakpoints: Array<Breakpoint>, width: Breakpoint) {
     breakpoints.forEach(breakpoint => {
       it(`is for width: ${width} <= ${breakpoint}`, () => {
         const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
-        const wrapper = shallow(<ResponsiveDialog width={width} />);
+        const wrapper = shallow(<ResponsiveDialog width={width}>foo</ResponsiveDialog>);
         assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), true);
       });
     });
@@ -31,7 +31,7 @@ describe('withMobileDialog', () => {
     breakpoints.forEach(breakpoint => {
       it(`is not for width: ${width} > ${breakpoint}`, () => {
         const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
-        const wrapper = shallow(<ResponsiveDialog width={width} />);
+        const wrapper = shallow(<ResponsiveDialog width={width}>foo</ResponsiveDialog>);
         assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), false);
       });
     });

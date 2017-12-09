@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable no-console */
 
 import { mkdir, readFileSync, writeFileSync } from 'fs';

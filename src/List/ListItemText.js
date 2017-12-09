@@ -1,13 +1,10 @@
-// @flow weak
-
 import React from 'react';
-import type { Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     flex: '1 1 auto',
     padding: '0 16px',
@@ -29,97 +26,87 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+function ListItemText(props, context) {
+  const {
+    classes,
+    className: classNameProp,
+    disableTypography,
+    inset,
+    primary,
+    secondary,
+    ...other
+  } = props;
+  const { dense } = context;
+  const className = classNames(
+    classes.root,
+    {
+      [classes.dense]: dense,
+      [classes.inset]: inset,
+    },
+    classNameProp,
+  );
 
-export type Props = {
+  return (
+    <div className={className} {...other}>
+      {primary &&
+        (disableTypography ? (
+          primary
+        ) : (
+          <Typography
+            type="subheading"
+            className={classNames(classes.text, { [classes.textDense]: dense })}
+          >
+            {primary}
+          </Typography>
+        ))}
+      {secondary &&
+        (disableTypography ? (
+          secondary
+        ) : (
+          <Typography
+            color="secondary"
+            type="body1"
+            className={classNames(classes.text, { [classes.textDense]: dense })}
+          >
+            {secondary}
+          </Typography>
+        ))}
+    </div>
+  );
+}
+
+ListItemText.propTypes = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * If `true`, the children won't be wrapped by a typography component.
    * For instance, that can be useful to can render an h4 instead of a
    */
-  disableTypography: boolean,
+  disableTypography: PropTypes.bool,
   /**
    * If `true`, the children will be indented.
    * This should be used if there is no left avatar or left icon.
    */
-  inset: boolean,
-  primary: Node,
-  secondary: Node,
+  inset: PropTypes.bool,
+  primary: PropTypes.node,
+  secondary: PropTypes.node,
 };
 
-class ListItemText extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    disableTypography: false,
-    primary: false,
-    secondary: false,
-    inset: false,
-  };
+ListItemText.defaultProps = {
+  disableTypography: false,
+  inset: false,
+  primary: false,
+  secondary: false,
+};
 
-  static contextTypes = {
-    dense: PropTypes.bool,
-  };
-
-  render() {
-    const {
-      classes,
-      className: classNameProp,
-      disableTypography,
-      primary,
-      secondary,
-      inset,
-      ...other
-    } = this.props;
-    const { dense } = this.context;
-    const className = classNames(
-      classes.root,
-      {
-        [classes.dense]: dense,
-        [classes.inset]: inset,
-      },
-      classNameProp,
-    );
-
-    return (
-      <div className={className} {...other}>
-        {primary &&
-          (disableTypography ? (
-            primary
-          ) : (
-            <Typography
-              type="subheading"
-              className={classNames(classes.text, { [classes.textDense]: dense })}
-            >
-              {primary}
-            </Typography>
-          ))}
-        {secondary &&
-          (disableTypography ? (
-            secondary
-          ) : (
-            <Typography
-              color="secondary"
-              type="body1"
-              className={classNames(classes.text, { [classes.textDense]: dense })}
-            >
-              {secondary}
-            </Typography>
-          ))}
-      </div>
-    );
-  }
-}
+ListItemText.contextTypes = {
+  dense: PropTypes.bool,
+};
 
 export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
@@ -16,7 +14,7 @@ describe('<ExpansionPanel />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = getClasses(<ExpansionPanel />);
+    classes = getClasses(<ExpansionPanel>foo</ExpansionPanel>);
   });
 
   after(() => {
@@ -24,7 +22,7 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should render and have isControlled set to false', () => {
-    const wrapper = shallow(<ExpansionPanel />);
+    const wrapper = shallow(<ExpansionPanel>foo</ExpansionPanel>);
     assert.strictEqual(wrapper.name(), 'withStyles(Paper)');
     assert.strictEqual(wrapper.props().elevation, 1);
     assert.strictEqual(wrapper.props().square, true);
@@ -38,7 +36,7 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should handle defaultExpanded prop', () => {
-    const wrapper = shallow(<ExpansionPanel defaultExpanded />);
+    const wrapper = shallow(<ExpansionPanel defaultExpanded>foo</ExpansionPanel>);
     assert.strictEqual(
       wrapper.instance().isControlled,
       false,
@@ -49,7 +47,7 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should render the custom className and the root class', () => {
-    const wrapper = shallow(<ExpansionPanel className="test-class-name" />);
+    const wrapper = shallow(<ExpansionPanel className="test-class-name">foo</ExpansionPanel>);
     assert.strictEqual(wrapper.hasClass('test-class-name'), true, 'should pass the test className');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
@@ -69,7 +67,7 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should handle the expanded prop', () => {
-    const wrapper = shallow(<ExpansionPanel expanded />);
+    const wrapper = shallow(<ExpansionPanel expanded>foo</ExpansionPanel>);
     assert.strictEqual(wrapper.state().expanded, true);
     assert.strictEqual(wrapper.instance().isControlled, true, 'should set isControlled prop');
 
@@ -113,7 +111,7 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('when disabled should have the disabled class', () => {
-    const wrapper = shallow(<ExpansionPanel disabled />);
+    const wrapper = shallow(<ExpansionPanel disabled>foo</ExpansionPanel>);
     assert.strictEqual(wrapper.hasClass(classes.disabled), true, 'should have the disabled class');
   });
 

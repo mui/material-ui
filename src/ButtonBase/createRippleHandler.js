@@ -1,7 +1,5 @@
-// @flow
-
-function createRippleHandler(instance: Object, eventName: string, action: string, cb: ?Function) {
-  return function handleEvent(event: SyntheticUIEvent<>) {
+function createRippleHandler(instance, eventName, action, cb) {
+  return function handleEvent(event) {
     if (cb) {
       cb.call(instance, event);
     }

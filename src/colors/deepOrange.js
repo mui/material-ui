@@ -1,6 +1,3 @@
-// Wait https://github.com/facebook/flow/issues/380 to be fixed
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 const deepOrange = {
   50: '#fbe9e7',
   100: '#ffccbc',

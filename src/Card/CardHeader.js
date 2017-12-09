@@ -1,14 +1,13 @@
-// @flow
 // @inheritedComponent CardContent
 
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import CardContent from './CardContent';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -30,53 +29,18 @@ export const styles = (theme: Object) => ({
   subheader: {},
 });
 
-type ProvidedProps = {
-  classes: Object,
-};
-
-export type Props = {
-  /**
-   * The action to display in the card header.
-   */
-  action?: Node,
-  /**
-   * The Avatar for the Card Header.
-   */
-  avatar?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * The content of the component.
-   */
-  subheader?: Node,
-  /**
-   * The content of the Card Title.
-   */
-  title?: Node,
-};
-
-function CardHeader(props: ProvidedProps & Props) {
+function CardHeader(props) {
   const { avatar, action, classes, className: classNameProp, subheader, title, ...other } = props;
-
-  // Adjustments that depend on the presence of an avatar
-  const titleType = avatar ? 'body2' : 'headline';
-  const subheaderType = avatar ? 'body2' : 'body1';
 
   return (
     <CardContent className={classNames(classes.root, classNameProp)} {...other}>
       {avatar && <div className={classes.avatar}>{avatar}</div>}
       <div className={classes.content}>
-        <Typography type={titleType} component="span" className={classes.title}>
+        <Typography type={avatar ? 'body2' : 'headline'} component="span" className={classes.title}>
           {title}
         </Typography>
         <Typography
-          type={subheaderType}
+          type={avatar ? 'body2' : 'body1'}
           component="span"
           color="secondary"
           className={classes.subheader}
@@ -88,5 +52,32 @@ function CardHeader(props: ProvidedProps & Props) {
     </CardContent>
   );
 }
+
+CardHeader.propTypes = {
+  /**
+   * The action to display in the card header.
+   */
+  action: PropTypes.node,
+  /**
+   * The Avatar for the Card Header.
+   */
+  avatar: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The content of the component.
+   */
+  subheader: PropTypes.node,
+  /**
+   * The content of the Card Title.
+   */
+  title: PropTypes.node,
+};
 
 export default withStyles(styles, { name: 'MuiCardHeader' })(CardHeader);

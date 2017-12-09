@@ -14,7 +14,6 @@
     "development": {
       "sourceMaps": "both",
       "plugins": [
-        "flow-react-proptypes",
         "transform-flow-strip-types"
       ]
     },
@@ -35,7 +34,6 @@
             }
           }
         ],
-        "flow-react-proptypes",
         "transform-flow-strip-types"
       ]
     },
@@ -66,7 +64,6 @@
     "test": {
       "sourceMaps": "both",
       "plugins": [
-        "flow-react-proptypes",
         "transform-flow-strip-types"
       ]
     },
@@ -79,7 +76,6 @@
         ["transform-react-remove-prop-types", {
           "mode": "wrap",
           "plugins": [
-            ["babel-plugin-flow-react-proptypes", {"omitRuntimeTypeExport": true}],
             "babel-plugin-transform-flow-strip-types"
           ]
         }]

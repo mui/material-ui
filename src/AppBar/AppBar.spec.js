@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
@@ -11,7 +9,7 @@ describe('<AppBar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<AppBar />);
+    classes = getClasses(<AppBar>Hello World</AppBar>);
   });
 
   it('should render a Paper component', () => {
@@ -36,7 +34,7 @@ describe('<AppBar />', () => {
   });
 
   it('should render the custom className and the appBar class', () => {
-    const wrapper = shallow(<AppBar className="test-class-name" />);
+    const wrapper = shallow(<AppBar className="test-class-name">Hello World</AppBar>);
     assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(

@@ -1,12 +1,10 @@
-// @flow
-
 import React from 'react';
-import type { ElementType, Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'block',
     margin: 0,
@@ -62,132 +60,120 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type Type =
-  | 'display4'
-  | 'display3'
-  | 'display2'
-  | 'display1'
-  | 'headline'
-  | 'title'
-  | 'subheading'
-  | 'body2'
-  | 'body1'
-  | 'caption'
-  | 'button';
+function Typography(props) {
+  const {
+    align,
+    classes,
+    className: classNameProp,
+    component: componentProp,
+    color,
+    gutterBottom,
+    headlineMapping,
+    noWrap,
+    paragraph,
+    type,
+    ...other
+  } = props;
 
-type Align = 'inherit' | 'left' | 'center' | 'right' | 'justify';
-type Color = 'inherit' | 'primary' | 'secondary' | 'accent' | 'error' | 'default';
+  const className = classNames(
+    classes.root,
+    classes[type],
+    {
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+      [classes.noWrap]: noWrap,
+      [classes.gutterBottom]: gutterBottom,
+      [classes.paragraph]: paragraph,
+      [classes[`align${capitalizeFirstLetter(align)}`]]: align !== 'inherit',
+    },
+    classNameProp,
+  );
 
-type ProvidedProps = {
-  classes: Object,
+  const Component = componentProp || (paragraph ? 'p' : headlineMapping[type]) || 'span';
+
+  return <Component className={className} {...other} />;
+}
+
+Typography.propTypes = {
   /**
-   * @ignore
+   * Set the text-align on the component.
    */
-  theme?: Object,
-};
-
-export type Props = {
+  align: PropTypes.oneOf(['inherit', 'left', 'center', 'right', 'justify']),
   /**
-   * Other base element props.
+   * The content of the component.
    */
-  [otherProp: string]: any,
-  align: Align,
-  children?: Node,
+  children: PropTypes.node.isRequired,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'accent', 'error', 'default']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    * By default we map the type to a good default headline component.
    */
-  component?: ElementType,
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color: Color,
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * If `true`, the text will have a bottom margin.
    */
-  gutterBottom: boolean,
+  gutterBottom: PropTypes.bool,
   /**
    * We are empirically mapping the type property to a range of different DOM element type.
    * For instance, h1 to h6. If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` property.
    */
-  headlineMapping: { [key: Type]: string },
+  headlineMapping: PropTypes.object,
   /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
-  noWrap: boolean,
+  noWrap: PropTypes.bool,
   /**
    * If `true`, the text will have a bottom margin.
    */
-  paragraph: boolean,
+  paragraph: PropTypes.bool,
   /**
    * Applies the theme typography styles.
    */
-  type: Type,
+  type: PropTypes.oneOf([
+    'display4',
+    'display3',
+    'display2',
+    'display1',
+    'headline',
+    'title',
+    'subheading',
+    'body2',
+    'body1',
+    'caption',
+    'button',
+  ]),
 };
 
-class Typography extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    align: 'inherit',
-    color: 'default',
-    gutterBottom: false,
-    headlineMapping: {
-      display4: 'h1',
-      display3: 'h1',
-      display2: 'h1',
-      display1: 'h1',
-      headline: 'h1',
-      title: 'h2',
-      subheading: 'h3',
-      body2: 'aside',
-      body1: 'p',
-    },
-    noWrap: false,
-    paragraph: false,
-    type: 'body1',
-  };
-
-  render() {
-    const {
-      align,
-      classes,
-      className: classNameProp,
-      component: componentProp,
-      color,
-      gutterBottom,
-      headlineMapping,
-      noWrap,
-      paragraph,
-      type,
-      ...other
-    } = this.props;
-
-    const className = classNames(
-      classes.root,
-      classes[type],
-      {
-        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
-        [classes.noWrap]: noWrap,
-        [classes.gutterBottom]: gutterBottom,
-        [classes.paragraph]: paragraph,
-        [classes[`align${capitalizeFirstLetter(align)}`]]: align !== 'inherit',
-      },
-      classNameProp,
-    );
-
-    const Component = componentProp || (paragraph ? 'p' : headlineMapping[type]) || 'span';
-
-    return <Component className={className} {...other} />;
-  }
-}
+Typography.defaultProps = {
+  align: 'inherit',
+  color: 'default',
+  gutterBottom: false,
+  headlineMapping: {
+    display4: 'h1',
+    display3: 'h1',
+    display2: 'h1',
+    display1: 'h1',
+    headline: 'h1',
+    title: 'h2',
+    subheading: 'h3',
+    body2: 'aside',
+    body1: 'p',
+  },
+  noWrap: false,
+  paragraph: false,
+  type: 'body1',
+};
 
 export default withStyles(styles, { name: 'MuiTypography' })(Typography);

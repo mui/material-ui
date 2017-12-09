@@ -1,7 +1,4 @@
-// @flow weak
-
 import React from 'react';
-import type { Node, ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -14,7 +11,7 @@ import Textarea from './Textarea';
 // @see https://facebook.github.io/react/docs/forms.html#controlled-components
 // @param value
 // @returns {boolean} true if string (including '') or number (including zero)
-export function hasValue(value: ?(number | string | Array<*>)) {
+export function hasValue(value) {
   return value !== undefined && value !== null && !(Array.isArray(value) && value.length === 0);
 }
 
@@ -44,7 +41,7 @@ export function isAdornedStart(obj) {
   return obj.startAdornment;
 }
 
-export const styles = (theme: Object) => {
+export const styles = theme => {
   const placeholder = {
     color: 'currentColor',
     opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
@@ -203,153 +200,6 @@ export const styles = (theme: Object) => {
   };
 };
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * This property helps users to fill forms faster, especially on mobile devices.
-   * The name can be confusing, it's more like an autofill.
-   * You can learn more about it in this article
-   * https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
-   */
-  autoComplete?: string,
-  /**
-   * If `true`, the input will be focused during the first mount.
-   */
-  autoFocus?: boolean,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * The CSS class name of the wrapper element.
-   */
-  className?: string,
-  /**
-   * The default input value, useful when not controlling the component.
-   */
-  defaultValue?: string | number,
-  /**
-   * If `true`, the input will be disabled.
-   */
-  disabled?: boolean,
-  /**
-   * If `true`, the input will not have an underline.
-   */
-  disableUnderline?: boolean,
-  /**
-   * End `InputAdornment` for this component.
-   */
-  endAdornment?: Node,
-  /**
-   * If `true`, the input will indicate an error. This is normally obtained via context from
-   * FormControl.
-   */
-  error?: boolean,
-  /**
-   * If `true`, the input will take up the full width of its container.
-   */
-  fullWidth?: boolean,
-  /**
-   * The id of the `input` element.
-   */
-  id?: string,
-  /**
-   * The component used for the native input.
-   * Either a string to use a DOM element or a component.
-   */
-  inputComponent?: string | ComponentType<*>,
-  /**
-   * Properties applied to the `input` element.
-   */
-  inputProps?: Object,
-  /**
-   * Use that property to pass a ref callback to the native input component.
-   */
-  inputRef?: Function,
-  /**
-   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
-   * FormControl.
-   */
-  margin?: 'dense' | 'none',
-  /**
-   * If `true`, a textarea element will be rendered.
-   */
-  multiline?: boolean,
-  /**
-   * Name attribute of the `input` element.
-   */
-  name?: string,
-  /**
-   * @ignore
-   */
-  readOnly?: boolean,
-  /**
-   * @ignore
-   */
-  onBlur?: (event: SyntheticFocusEvent<>) => void,
-  /**
-   * Callback fired when the value is changed.
-   *
-   * @param {object} event The event source of the callback
-   */
-  onChange?: (event: SyntheticInputEvent<HTMLElement>) => void,
-  /**
-   * TODO
-   */
-  onClean?: () => void,
-  /**
-   * TODO
-   */
-  onDirty?: () => void,
-  /**
-   * @ignore
-   */
-  onFocus?: (event: SyntheticFocusEvent<>) => void,
-  /**
-   * @ignore
-   */
-  onKeyDown?: (event: SyntheticKeyboardEvent<>) => void,
-  /**
-   * @ignore
-   */
-  onKeyUp?: (event: SyntheticKeyboardEvent<>) => void,
-  /**
-   * The short hint displayed in the input before the user enters a value.
-   */
-  placeholder?: string,
-  /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows?: string | number,
-  /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  rowsMax?: string | number,
-  /**
-   * Start `InputAdornment` for this component.
-   */
-  startAdornment?: Node,
-  /**
-   * Type of the input element. It should be a valid HTML5 input type.
-   */
-  type?: string,
-  /**
-   * The input value, required for a controlled component.
-   */
-  value?: string | number | Array<string | number>,
-};
-
-type State = {
-  focused: boolean,
-};
-
 function formControlState(props, context) {
   let disabled = props.disabled;
   let error = props.error;
@@ -376,16 +226,7 @@ function formControlState(props, context) {
   };
 }
 
-class Input extends React.Component<ProvidedProps & Props, State> {
-  static muiName = 'Input';
-
-  static defaultProps = {
-    disableUnderline: false,
-    fullWidth: false,
-    multiline: false,
-    type: 'text',
-  };
-
+class Input extends React.Component {
   state = {
     focused: false,
   };
@@ -523,15 +364,15 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       inputRef,
       margin: marginProp,
       multiline,
+      name,
       onBlur,
-      onFocus,
       onChange,
       onClean,
       onDirty,
+      onFocus,
       onKeyDown,
       onKeyUp,
       placeholder,
-      name,
       readOnly,
       rows,
       rowsMax,
@@ -615,7 +456,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
           onKeyDown={onKeyDown}
           disabled={disabled}
           required={required ? true : undefined}
-          value={(value: any)}
+          value={value}
           id={id}
           name={name}
           defaultValue={defaultValue}
@@ -630,6 +471,154 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+Input.propTypes = {
+  /**
+   * This property helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusing, it's more like an autofill.
+   * You can learn more about it in this article
+   * https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
+   */
+  autoComplete: PropTypes.string,
+  /**
+   * If `true`, the input will be focused during the first mount.
+   */
+  autoFocus: PropTypes.bool,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * The CSS class name of the wrapper element.
+   */
+  className: PropTypes.string,
+  /**
+   * The default input value, useful when not controlling the component.
+   */
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * If `true`, the input will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the input will not have an underline.
+   */
+  disableUnderline: PropTypes.bool,
+  /**
+   * End `InputAdornment` for this component.
+   */
+  endAdornment: PropTypes.node,
+  /**
+   * If `true`, the input will indicate an error. This is normally obtained via context from
+   * FormControl.
+   */
+  error: PropTypes.bool,
+  /**
+   * If `true`, the input will take up the full width of its container.
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * The id of the `input` element.
+   */
+  id: PropTypes.string,
+  /**
+   * The component used for the native input.
+   * Either a string to use a DOM element or a component.
+   */
+  inputComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * Properties applied to the `input` element.
+   */
+  inputProps: PropTypes.object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef: PropTypes.func,
+  /**
+   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+   * FormControl.
+   */
+  margin: PropTypes.oneOf(['dense', 'none']),
+  /**
+   * If `true`, a textarea element will be rendered.
+   */
+  multiline: PropTypes.bool,
+  /**
+   * Name attribute of the `input` element.
+   */
+  name: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback fired when the value is changed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onChange: PropTypes.func,
+  /**
+   * TODO
+   */
+  onClean: PropTypes.func,
+  /**
+   * TODO
+   */
+  onDirty: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyUp: PropTypes.func,
+  /**
+   * The short hint displayed in the input before the user enters a value.
+   */
+  placeholder: PropTypes.string,
+  /**
+   * @ignore
+   */
+  readOnly: PropTypes.bool,
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Start `InputAdornment` for this component.
+   */
+  startAdornment: PropTypes.node,
+  /**
+   * Type of the input element. It should be a valid HTML5 input type.
+   */
+  type: PropTypes.string,
+  /**
+   * The input value, required for a controlled component.
+   */
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ]),
+};
+
+Input.muiName = 'Input';
+
+Input.defaultProps = {
+  disableUnderline: false,
+  fullWidth: false,
+  multiline: false,
+  type: 'text',
+};
 
 Input.contextTypes = {
   muiFormControl: PropTypes.object,

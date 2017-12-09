@@ -1,8 +1,7 @@
 /* eslint-disable react/no-multi-comp, no-underscore-dangle */
-// @flow
 
 import React, { Children } from 'react';
-import type { Element, Node } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
@@ -15,13 +14,17 @@ import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 
 // Use a class component so we can get a reference.
-class TargetChildren extends React.Component<{ element: Element<any> }> {
+class TargetChildren extends React.Component {
   render() {
-    return this.props.element;
+    return this.props.children;
   }
 }
 
-export const styles = (theme: Object) => ({
+TargetChildren.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export const styles = theme => ({
   root: {
     display: 'inline',
     flexDirection: 'inherit', // Makes the wrapper more transparent.
@@ -87,21 +90,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type Placement =
-  | 'bottom-end'
-  | 'bottom-start'
-  | 'bottom'
-  | 'left-end'
-  | 'left-start'
-  | 'left'
-  | 'right-end'
-  | 'right-start'
-  | 'right'
-  | 'top-end'
-  | 'top-start'
-  | 'top';
-
-function flipPlacement(placement: Placement): Placement {
+function flipPlacement(placement) {
   switch (placement) {
     case 'bottom-end':
       return 'bottom-start';
@@ -116,96 +105,7 @@ function flipPlacement(placement: Placement): Placement {
   }
 }
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Tooltip reference component.
-   */
-  children: Element<any>,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * Do not respond to focus events.
-   */
-  disableTriggerFocus: boolean,
-  /**
-   * Do not respond to hover events.
-   */
-  disableTriggerHover: boolean,
-  /**
-   * Do not respond to long press touch events.
-   */
-  disableTriggerTouch: boolean,
-  /**
-   * The relationship between the tooltip and the wrapper component is not clear from the DOM.
-   * By providing this property, we can use aria-describedby to solve the accessibility issue.
-   */
-  id?: string,
-  /**
-   * Callback fired when the tooltip requests to be closed.
-   *
-   * @param {object} event The event source of the callback
-   */
-  onClose?: Function,
-  /**
-   * Callback fired when the tooltip requests to be open.
-   *
-   * @param {object} event The event source of the callback
-   */
-  onOpen?: Function,
-  /**
-   * If `true`, the tooltip is shown.
-   */
-  open?: boolean,
-  /**
-   * Tooltip title.
-   */
-  title: Node,
-  /**
-   * The number of milliseconds to wait before showing the tooltip.
-   */
-  enterDelay: number,
-  /**
-   * The number of milliseconds to wait before hidding the tooltip.
-   */
-  leaveDelay: number,
-  /**
-   * Tooltip placement
-   */
-  placement: Placement,
-  /**
-   * Properties applied to the `Popper` element.
-   */
-  PopperProps?: Object,
-};
-
-type State = {
-  open?: boolean,
-};
-
-class Tooltip extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
-    disableTriggerFocus: false,
-    disableTriggerHover: false,
-    disableTriggerTouch: false,
-    enterDelay: 0,
-    leaveDelay: 0,
-    placement: 'bottom',
-  };
-
+class Tooltip extends React.Component {
   state = {};
 
   componentWillMount() {
@@ -225,7 +125,6 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
     warning(
       !this.children ||
         !this.children.disabled ||
-        // $FlowFixMe
         !this.children.tagName.toLowerCase() === 'button',
       [
         'Material-UI: you are providing a disabled button children to the Tooltip component.',
@@ -378,13 +277,13 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
       enterDelay,
       id,
       leaveDelay,
-      open: openProp,
       onClose,
       onOpen,
-      theme,
-      title,
+      open: openProp,
       placement: rawPlacement,
       PopperProps: { PopperClassName, ...PopperOther } = {},
+      theme,
+      title,
       ...other
     } = this.props;
 
@@ -426,16 +325,15 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
           <Target>
             {({ targetProps }) => (
               <TargetChildren
-                element={
-                  typeof childrenProp !== 'string'
-                    ? React.cloneElement(childrenProp, childrenProps)
-                    : childrenProp
-                }
                 ref={node => {
                   this.children = findDOMNode(node);
                   targetProps.ref(this.children);
                 }}
-              />
+              >
+                {typeof childrenProp !== 'string'
+                  ? React.cloneElement(childrenProp, childrenProps)
+                  : childrenProp}
+              </TargetChildren>
             )}
           </Target>
           <Popper
@@ -481,5 +379,99 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+Tooltip.propTypes = {
+  /**
+   * Tooltip reference node.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * Do not respond to focus events.
+   */
+  disableTriggerFocus: PropTypes.bool,
+  /**
+   * Do not respond to hover events.
+   */
+  disableTriggerHover: PropTypes.bool,
+  /**
+   * Do not respond to long press touch events.
+   */
+  disableTriggerTouch: PropTypes.bool,
+  /**
+   * The number of milliseconds to wait before showing the tooltip.
+   */
+  enterDelay: PropTypes.number,
+  /**
+   * The relationship between the tooltip and the wrapper component is not clear from the DOM.
+   * By providing this property, we can use aria-describedby to solve the accessibility issue.
+   */
+  id: PropTypes.string,
+  /**
+   * The number of milliseconds to wait before hidding the tooltip.
+   */
+  leaveDelay: PropTypes.number,
+  /**
+   * Callback fired when the tooltip requests to be closed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onClose: PropTypes.func,
+  /**
+   * Callback fired when the tooltip requests to be open.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onOpen: PropTypes.func,
+  /**
+   * If `true`, the tooltip is shown.
+   */
+  open: PropTypes.bool,
+  /**
+   * Tooltip placement
+   */
+  placement: PropTypes.oneOf([
+    'bottom-end',
+    'bottom-start',
+    'bottom',
+    'left-end',
+    'left-start',
+    'left',
+    'right-end',
+    'right-start',
+    'right',
+    'top-end',
+    'top-start',
+    'top',
+  ]),
+  /**
+   * Properties applied to the `Popper` element.
+   */
+  PopperProps: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
+   * Tooltip title.
+   */
+  title: PropTypes.node.isRequired,
+};
+
+Tooltip.defaultProps = {
+  disableTriggerFocus: false,
+  disableTriggerHover: false,
+  disableTriggerTouch: false,
+  enterDelay: 0,
+  leaveDelay: 0,
+  placement: 'bottom',
+};
 
 export default withStyles(styles, { name: 'MuiTooltip', withTheme: true })(Tooltip);

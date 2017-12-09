@@ -1,8 +1,7 @@
-// @flow
 // @inheritedComponent Modal
 
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
@@ -10,7 +9,6 @@ import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
-import type { TransitionCallback, TransitionClasses } from '../internal/transition';
 import Grow from '../transitions/Grow';
 import Paper from '../Paper';
 
@@ -79,170 +77,12 @@ export const styles = {
   },
 };
 
-export type Origin = {
-  horizontal: 'left' | 'center' | 'right' | number,
-  vertical: 'top' | 'center' | 'bottom' | number,
-};
-
-export type Position = {
-  top: number,
-  left: number,
-};
-
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-type DefaultProps = {
-  anchorOrigin: Origin,
-  transformOrigin: Origin,
-  marginThreshold: number,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * This is the DOM element that may be used
-   * to set the position of the popover.
-   */
-  anchorEl?: ?HTMLElement,
-  /**
-   * This is the position that may be used
-   * to set the position of the popover.
-   * The coordinates are relative to
-   * the application's client area.
-   */
-  anchorPosition?: Position,
-  /*
-   * This determines which anchor prop to refer to to set
-   * the position of the popover.
-   */
-  anchorReference?: 'anchorEl' | 'anchorPosition',
-  /**
-   * This is the point on the anchor where the popover's
-   * `anchorEl` will attach to. This is not used when the
-   * anchorReference is 'anchorPosition'.
-   *
-   * Options:
-   * vertical: [top, center, bottom];
-   * horizontal: [left, center, right].
-   */
-  anchorOrigin: Origin,
-  /**
-   * The content of the component.
-   */
-  children: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * The elevation of the popover.
-   */
-  elevation?: number,
-  /**
-   * This function is called in order to retrieve the content anchor element.
-   * It's the opposite of the `anchorEl` property.
-   * The content anchor element should be an element inside the popover.
-   * It's used to correctly scroll and set the position of the popover.
-   * The positioning strategy tries to make the content anchor element just above the
-   * anchor element.
-   */
-  getContentAnchorEl?: Function,
-  /**
-   * Specifies how close to the edge of the window the popover can appear.
-   */
-  marginThreshold: number,
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback.
-   */
-  onClose?: Function,
-  /**
-   * Callback fired before the component is entering.
-   */
-  onEnter?: TransitionCallback,
-  /**
-   * Callback fired when the component is entering.
-   */
-  onEntering?: TransitionCallback,
-  /**
-   * Callback fired when the component has entered.
-   */
-  onEntered?: TransitionCallback,
-  /**
-   * Callback fired before the component is exiting.
-   */
-  onExit?: TransitionCallback,
-  /**
-   * Callback fired when the component is exiting.
-   */
-  onExiting?: TransitionCallback,
-  /**
-   * Callback fired when the component has exited.
-   */
-  onExited?: TransitionCallback,
-  /**
-   * If `true`, the popover is visible.
-   */
-  open: boolean,
-  /**
-   * Properties applied to the `Paper` element.
-   */
-  PaperProps?: Object,
-  /**
-   * @ignore
-   */
-  role?: string,
-  /**
-   * This is the point on the popover which
-   * will attach to the anchor's origin.
-   *
-   * Options:
-   * vertical: [top, center, bottom, x(px)];
-   * horizontal: [left, center, right, x(px)].
-   */
-  transformOrigin: Origin,
-  /**
-   * The animation classNames applied to the component as it enters or exits.
-   * This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames).
-   */
-  transitionClasses?: TransitionClasses,
-  /**
-   * Set to 'auto' to automatically calculate transition time based on height.
-   */
-  transitionDuration?: number | { enter?: number, exit?: number } | 'auto',
-};
-
-class Popover extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    anchorReference: 'anchorEl',
-    anchorOrigin: {
-      vertical: 'top',
-      horizontal: 'left',
-    },
-    transformOrigin: {
-      vertical: 'top',
-      horizontal: 'left',
-    },
-    transitionDuration: 'auto',
-    elevation: 8,
-    marginThreshold: 16,
-  };
-
+class Popover extends React.Component {
   componentWillUnmount = () => {
     this.handleResize.cancel();
   };
 
-  setPositioningStyles = (element: HTMLElement) => {
+  setPositioningStyles = element => {
     if (element && element.style) {
       const positioning = this.getPositioningStyle(element);
 
@@ -318,7 +158,6 @@ class Popover extends React.Component<ProvidedProps & Props> {
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
   getAnchorOffset(contentAnchorOffset) {
-    // $FlowFixMe
     const { anchorEl, anchorOrigin, anchorReference, anchorPosition } = this.props;
 
     if (anchorReference === 'anchorPosition') {
@@ -380,7 +219,7 @@ class Popover extends React.Component<ProvidedProps & Props> {
 
   handleGetOffsetLeft = getOffsetLeft;
 
-  handleEnter = (element: HTMLElement) => {
+  handleEnter = element => {
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
@@ -396,20 +235,20 @@ class Popover extends React.Component<ProvidedProps & Props> {
   render() {
     const {
       anchorEl,
-      anchorReference,
-      anchorPosition,
       anchorOrigin,
+      anchorPosition,
+      anchorReference,
       children,
       classes,
       elevation,
       getContentAnchorEl,
       marginThreshold,
       onEnter,
-      onEntering,
       onEntered,
+      onEntering,
       onExit,
-      onExiting,
       onExited,
+      onExiting,
       open,
       PaperProps,
       role,
@@ -451,5 +290,161 @@ class Popover extends React.Component<ProvidedProps & Props> {
     );
   }
 }
+
+Popover.propTypes = {
+  /**
+   * This is the DOM element that may be used
+   * to set the position of the popover.
+   */
+  anchorEl: PropTypes.object,
+  /**
+   * This is the point on the anchor where the popover's
+   * `anchorEl` will attach to. This is not used when the
+   * anchorReference is 'anchorPosition'.
+   *
+   * Options:
+   * vertical: [top, center, bottom];
+   * horizontal: [left, center, right].
+   */
+  anchorOrigin: PropTypes.shape({
+    horizontal: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.oneOf(['left', 'center', 'right']),
+    ]),
+    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
+  }),
+  /**
+   * This is the position that may be used
+   * to set the position of the popover.
+   * The coordinates are relative to
+   * the application's client area.
+   */
+  anchorPosition: PropTypes.shape({
+    top: PropTypes.number,
+    left: PropTypes.number,
+  }),
+  /*
+   * This determines which anchor prop to refer to to set
+   * the position of the popover.
+   */
+  anchorReference: PropTypes.oneOf(['anchorEl', 'anchorPosition']),
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * The elevation of the popover.
+   */
+  elevation: PropTypes.number,
+  /**
+   * This function is called in order to retrieve the content anchor element.
+   * It's the opposite of the `anchorEl` property.
+   * The content anchor element should be an element inside the popover.
+   * It's used to correctly scroll and set the position of the popover.
+   * The positioning strategy tries to make the content anchor element just above the
+   * anchor element.
+   */
+  getContentAnchorEl: PropTypes.func,
+  /**
+   * Specifies how close to the edge of the window the popover can appear.
+   */
+  marginThreshold: PropTypes.number,
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback.
+   */
+  onClose: PropTypes.func,
+  /**
+   * Callback fired before the component is entering.
+   */
+  onEnter: PropTypes.func,
+  /**
+   * Callback fired when the component has entered.
+   */
+  onEntered: PropTypes.func,
+  /**
+   * Callback fired when the component is entering.
+   */
+  onEntering: PropTypes.func,
+  /**
+   * Callback fired before the component is exiting.
+   */
+  onExit: PropTypes.func,
+  /**
+   * Callback fired when the component has exited.
+   */
+  onExited: PropTypes.func,
+  /**
+   * Callback fired when the component is exiting.
+   */
+  onExiting: PropTypes.func,
+  /**
+   * If `true`, the popover is visible.
+   */
+  open: PropTypes.bool,
+  /**
+   * Properties applied to the `Paper` element.
+   */
+  PaperProps: PropTypes.object,
+  /**
+   * @ignore
+   */
+  role: PropTypes.string,
+  /**
+   * This is the point on the popover which
+   * will attach to the anchor's origin.
+   *
+   * Options:
+   * vertical: [top, center, bottom, x(px)];
+   * horizontal: [left, center, right, x(px)].
+   */
+  transformOrigin: PropTypes.shape({
+    horizontal: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.oneOf(['left', 'center', 'right']),
+    ]),
+    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
+  }),
+  /**
+   * The animation classNames applied to the component as it enters or exits.
+   * This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames).
+   */
+  transitionClasses: PropTypes.shape({
+    appear: PropTypes.string,
+    appearActive: PropTypes.string,
+    enter: PropTypes.string,
+    enterActive: PropTypes.string,
+    exit: PropTypes.string,
+    exitActive: PropTypes.string,
+  }),
+  /**
+   * Set to 'auto' to automatically calculate transition time based on height.
+   */
+  transitionDuration: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.oneOf(['auto']),
+  ]),
+};
+
+Popover.defaultProps = {
+  anchorReference: 'anchorEl',
+  anchorOrigin: {
+    vertical: 'top',
+    horizontal: 'left',
+  },
+  elevation: 8,
+  marginThreshold: 16,
+  transformOrigin: {
+    vertical: 'top',
+    horizontal: 'left',
+  },
+  transitionDuration: 'auto',
+};
 
 export default withStyles(styles, { name: 'MuiPopover' })(Popover);

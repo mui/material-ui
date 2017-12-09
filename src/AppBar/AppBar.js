@@ -1,14 +1,13 @@
-// @flow
 // @inheritedComponent Paper
 
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Paper from '../Paper';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -47,65 +46,52 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type Color = 'inherit' | 'primary' | 'accent' | 'default';
-export type Position = 'static' | 'fixed' | 'absolute';
+function AppBar(props) {
+  const { children, classes, className: classNameProp, color, position, ...other } = props;
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+  const className = classNames(
+    classes.root,
+    classes[`position${capitalizeFirstLetter(position)}`],
+    {
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+      'mui-fixed': position === 'fixed', // Useful for the Dialog
+    },
+    classNameProp,
+  );
 
-export type Props = {
+  return (
+    <Paper square component="header" elevation={4} className={className} {...other}>
+      {children}
+    </Paper>
+  );
+}
+
+AppBar.propTypes = {
   /**
    * The content of the component.
    */
-  children?: Node,
+  children: PropTypes.node.isRequired,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: Color,
+  color: PropTypes.oneOf(['inherit', 'primary', 'accent', 'default']),
   /**
    * The positioning type.
    */
-  position: Position,
+  position: PropTypes.oneOf(['static', 'fixed', 'absolute']),
 };
 
-class AppBar extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    color: 'primary',
-    position: 'fixed',
-  };
-
-  render() {
-    const { children, classes, className: classNameProp, color, position, ...other } = this.props;
-
-    const className = classNames(
-      classes.root,
-      classes[`position${capitalizeFirstLetter(position)}`],
-      {
-        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
-        'mui-fixed': position === 'fixed', // Useful for the Dialog
-      },
-      classNameProp,
-    );
-
-    return (
-      <Paper square component="header" elevation={4} className={className} {...other}>
-        {children}
-      </Paper>
-    );
-  }
-}
+AppBar.defaultProps = {
+  color: 'primary',
+  position: 'fixed',
+};
 
 export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);

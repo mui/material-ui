@@ -1,4 +1,3 @@
-// @flow
 // Taken from https://github.com/react-bootstrap/react-overlays/blob/master/src/ModalManager.js
 
 import warning from 'warning';

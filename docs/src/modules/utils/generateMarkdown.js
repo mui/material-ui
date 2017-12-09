@@ -55,12 +55,7 @@ function generatePropDescription(description, type) {
 
   let signature = '';
 
-  if (
-    (type.name === 'func' ||
-      type.name === 'Function' ||
-      (type.name === 'signature' && type.type === 'function')) &&
-    parsed.tags.length > 0
-  ) {
+  if (type.name === 'func' && parsed.tags.length > 0) {
     // Remove new lines from tag descriptions to avoid markdown errors.
     parsed.tags.forEach(tag => {
       if (tag.description) {
@@ -118,7 +113,17 @@ function generatePropType(type) {
         values = type.value.map(v => v.value || v.name);
       }
 
-      values = values.map(escapeCell);
+      values = values.map(value => {
+        if (typeof value === 'string') {
+          return escapeCell(value);
+        }
+
+        return `{${Object.keys(value)
+          .map(subValue => {
+            return `${subValue}?: ${generatePropType(value[subValue])}`;
+          })
+          .join(', ')}}`;
+      });
 
       // Display one value per line as it's better for visibility.
       if (values.length < 5) {
@@ -127,9 +132,6 @@ function generatePropType(type) {
         values = values.join(', ');
       }
       return `${type.name}:&nbsp;${values}<br>`;
-    }
-    case 'HiddenProps': {
-      return `[${type.name}](/layout/hidden)`;
     }
     default:
       return type.name;
@@ -156,39 +158,35 @@ function generateProps(reactAPI) {
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|\n`;
 
-  text = Object.keys(reactAPI.props)
-    .sort()
-    .reduce((textProps, propRaw) => {
-      const prop = getProp(reactAPI.props, propRaw);
-      const description = generatePropDescription(prop.description, prop.flowType || prop.type);
+  text = Object.keys(reactAPI.props).reduce((textProps, propRaw) => {
+    const prop = getProp(reactAPI.props, propRaw);
+    const description = generatePropDescription(prop.description, prop.flowType || prop.type);
 
-      if (description === null) {
-        return textProps;
-      }
-
-      let defaultValue = '';
-
-      if (prop.defaultValue) {
-        defaultValue = escapeCell(prop.defaultValue.value.replace(/\n/g, ''));
-      }
-
-      if (prop.required) {
-        propRaw = `<span style="color: #31a148">${propRaw}\u2009*</span>`;
-      }
-
-      const type = prop.flowType || prop.type;
-      if (type && type.name === 'custom') {
-        if (getDeprecatedInfo(prop.type)) {
-          propRaw = `~~${propRaw}~~`;
-        }
-      }
-
-      textProps += `| ${propRaw} | ${generatePropType(
-        type,
-      )} | ${defaultValue} | ${description} |\n`;
-
+    if (description === null) {
       return textProps;
-    }, text);
+    }
+
+    let defaultValue = '';
+
+    if (prop.defaultValue) {
+      defaultValue = escapeCell(prop.defaultValue.value.replace(/\n/g, ''));
+    }
+
+    if (prop.required) {
+      propRaw = `<span style="color: #31a148">${propRaw}\u2009*</span>`;
+    }
+
+    const type = prop.flowType || prop.type;
+    if (type && type.name === 'custom') {
+      if (getDeprecatedInfo(prop.type)) {
+        propRaw = `~~${propRaw}~~`;
+      }
+    }
+
+    textProps += `| ${propRaw} | ${generatePropType(type)} | ${defaultValue} | ${description} |\n`;
+
+    return textProps;
+  }, text);
 
   return text;
 }

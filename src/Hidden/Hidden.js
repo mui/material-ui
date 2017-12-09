@@ -1,69 +1,35 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import HiddenJs from './HiddenJs';
 import HiddenCss from './HiddenCss';
-import type { Breakpoint } from '../styles/createBreakpoints';
 
-export type Props = {
+/**
+ * Responsively hides children based on the selected implementation.
+ */
+function Hidden(props) {
+  const { implementation, ...other } = props;
+
+  if (implementation === 'js') {
+    return <HiddenJs {...other} />;
+  }
+
+  return <HiddenCss {...other} />;
+}
+
+Hidden.propTypes = {
   /**
    * The content of the component.
    */
-  children: Node,
+  children: PropTypes.node,
   /**
    * @ignore
    */
-  className?: string,
-  /**
-   * Hide the given breakpoint(s).
-   */
-  only?: Breakpoint | Array<Breakpoint>,
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  xsUp?: boolean,
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  smUp?: boolean,
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  mdUp?: boolean,
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  lgUp?: boolean,
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  xlUp?: boolean,
-  /**
-   * If true, screens before this size and down will be hidden.
-   */
-  xsDown?: boolean,
-  /**
-   * If true, screens before this size and down will be hidden.
-   */
-  smDown?: boolean,
-  /**
-   * If true, screens before this size and down will be hidden.
-   */
-  mdDown?: boolean,
-  /**
-   * If true, screens before this size and down will be hidden.
-   */
-  lgDown?: boolean,
-  /**
-   * If true, screens before this size and down will be hidden.
-   */
-  xlDown?: boolean,
+  className: PropTypes.string,
   /**
    * Specify which implementation to use.  'js' is the default, 'css' works better for server
    * side rendering.
    */
-  implementation?: 'js' | 'css',
+  implementation: PropTypes.oneOf(['js', 'css']),
   /**
    * You can use this property when choosing the `js` implementation with server side rendering.
    *
@@ -75,34 +41,68 @@ export type Props = {
    * For instance, you could be using the user-agent or the client-hints.
    * http://caniuse.com/#search=client%20hint
    */
-  initialWidth?: number,
+  initialWidth: PropTypes.number,
+  /**
+   * If true, screens before this size and down will be hidden.
+   */
+  lgDown: PropTypes.bool,
+  /**
+   * If true, screens this size and up will be hidden.
+   */
+  lgUp: PropTypes.bool,
+  /**
+   * If true, screens before this size and down will be hidden.
+   */
+  mdDown: PropTypes.bool,
+  /**
+   * If true, screens this size and up will be hidden.
+   */
+  mdUp: PropTypes.bool,
+  /**
+   * Hide the given breakpoint(s).
+   */
+  only: PropTypes.oneOfType([
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
+  ]),
+  /**
+   * If true, screens before this size and down will be hidden.
+   */
+  smDown: PropTypes.bool,
+  /**
+   * If true, screens this size and up will be hidden.
+   */
+  smUp: PropTypes.bool,
+  /**
+   * If true, screens before this size and down will be hidden.
+   */
+  xlDown: PropTypes.bool,
+  /**
+   * If true, screens this size and up will be hidden.
+   */
+  xlUp: PropTypes.bool,
+  /**
+   * If true, screens before this size and down will be hidden.
+   */
+  xsDown: PropTypes.bool,
+  /**
+   * If true, screens this size and up will be hidden.
+   */
+  xsUp: PropTypes.bool,
 };
-
-/**
- * Responsively hides children based on the selected implementation.
- */
-function Hidden(props: Props) {
-  const { implementation, ...other } = props;
-
-  if (implementation === 'js') {
-    return <HiddenJs {...other} />;
-  }
-
-  return <HiddenCss {...other} />;
-}
 
 Hidden.defaultProps = {
   implementation: 'js',
-  xsUp: false,
-  smUp: false,
-  mdUp: false,
+  lgDown: false,
   lgUp: false,
+  mdDown: false,
+  mdUp: false,
+  smDown: false,
+  smUp: false,
+  xlDown: false,
   xlUp: false,
   xsDown: false,
-  smDown: false,
-  mdDown: false,
-  lgDown: false,
-  xlDown: false,
+  xsUp: false,
 };
 
 export default Hidden;

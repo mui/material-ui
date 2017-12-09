@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -21,7 +20,7 @@ function getTargetChildren(wrapper) {
     wrapper
       .find(Target)
       .props()
-      .children({}).props.element,
+      .children({}).props.children,
     wrapper,
   );
 }
@@ -295,7 +294,7 @@ describe('<Tooltip />', () => {
     it('should recompute the correct position', () => {
       const handleUpdate = spy();
       const wrapper = mount(
-        <TooltipNaked theme={{}} classes={{}} PopperProps={{ component: Hack }}>
+        <TooltipNaked theme={{}} classes={{}} title="foo" PopperProps={{ component: Hack }}>
           <div>Foo</div>
         </TooltipNaked>,
       );

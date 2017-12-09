@@ -1,10 +1,9 @@
-// @flow
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     height: 1,
     margin: 0, // Reset browser default style.
@@ -28,56 +27,46 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+function Divider(props) {
+  const { absolute, classes, className: classNameProp, inset, light, ...other } = props;
 
-export type Props = {
-  absolute: boolean,
+  const className = classNames(
+    classes.root,
+    {
+      [classes.absolute]: absolute,
+      [classes.inset]: inset,
+      [light ? classes.light : classes.default]: true,
+    },
+    classNameProp,
+  );
+
+  return <hr className={className} {...other} />;
+}
+
+Divider.propTypes = {
+  absolute: PropTypes.bool,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * If `true`, the divider will be indented.
    */
-  inset: boolean,
+  inset: PropTypes.bool,
   /**
    * If `true`, the divider will have a lighter color.
    */
-  light: boolean,
+  light: PropTypes.bool,
 };
 
-class Divider extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    absolute: false,
-    inset: false,
-    light: false,
-  };
-
-  render() {
-    const { absolute, classes, className: classNameProp, inset, light, ...other } = this.props;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.absolute]: absolute,
-        [classes.inset]: inset,
-        [light ? classes.light : classes.default]: true,
-      },
-      classNameProp,
-    );
-
-    return <hr className={className} {...other} />;
-  }
-}
+Divider.defaultProps = {
+  absolute: false,
+  inset: false,
+  light: false,
+};
 
 export default withStyles(styles, { name: 'MuiDivider' })(Divider);

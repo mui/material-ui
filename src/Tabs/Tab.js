@@ -1,15 +1,14 @@
-// @flow
 // @inheritedComponent ButtonBase
 
 import React from 'react';
-import type { Element } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     ...theme.typography.button,
     maxWidth: 264,
@@ -88,80 +87,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * If `true`, the tab will be disabled.
-   */
-  disabled: boolean,
-  /**
-   * @ignore
-   */
-  fullWidth?: boolean,
-  /**
-   * The icon element. If a string is provided, it will be used as a font ligature.
-   */
-  icon?: string | Element<any>,
-  /**
-   * @ignore
-   * For server side rendering consideration, we let the selected tab
-   * render the indicator.
-   */
-  indicator?: string | Element<any>,
-  /**
-   * The label element.
-   */
-  label?: string | Element<any>,
-  /**
-   * @ignore
-   */
-  onChange?: (event: SyntheticEvent<>, value: any) => void,
-  /**
-   * @ignore
-   */
-  onClick?: (event: SyntheticEvent<>) => void,
-  /**
-   * @ignore
-   */
-  selected?: boolean,
-  /**
-   * @ignore
-   */
-  style?: Object,
-  /**
-   * @ignore
-   */
-  textColor?: 'accent' | 'primary' | 'inherit' | string,
-  /**
-   * You can provide your own value. Otherwise, we fallback to the child position index.
-   */
-  value?: any,
-};
-
-type State = {
-  wrappedText: boolean,
-};
-
-class Tab extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
-    disabled: false,
-  };
-
+class Tab extends React.Component {
   state = {
     wrappedText: false,
   };
@@ -292,5 +218,69 @@ class Tab extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+Tab.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the tab will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * The icon element. If a string is provided, it will be used as a font ligature.
+   */
+  icon: PropTypes.node,
+  /**
+   * @ignore
+   * For server side rendering consideration, we let the selected tab
+   * render the indicator.
+   */
+  indicator: PropTypes.node,
+  /**
+   * The label element.
+   */
+  label: PropTypes.node,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  selected: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  textColor: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.oneOf(['accent', 'primary', 'inherit']),
+  ]),
+  /**
+   * You can provide your own value. Otherwise, we fallback to the child position index.
+   */
+  value: PropTypes.any,
+};
+
+Tab.defaultProps = {
+  disabled: false,
+};
 
 export default withStyles(styles, { name: 'MuiTab' })(Tab);

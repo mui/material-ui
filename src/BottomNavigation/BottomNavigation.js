@@ -1,11 +1,9 @@
-// @flow weak
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -14,80 +12,73 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+function BottomNavigation(props) {
+  const {
+    children: childrenProp,
+    classes,
+    className: classNameProp,
+    onChange,
+    showLabels,
+    value,
+    ...other
+  } = props;
 
-export type Props = {
+  const className = classNames(classes.root, classNameProp);
+
+  const children = React.Children.map(childrenProp, (child, childIndex) => {
+    if (!React.isValidElement(child)) {
+      return null;
+    }
+
+    const childValue = child.props.value || childIndex;
+    return React.cloneElement(child, {
+      selected: childValue === value,
+      showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
+      value: childValue,
+      onChange,
+    });
+  });
+
+  return (
+    <div className={className} {...other}>
+      {children}
+    </div>
+  );
+}
+
+BottomNavigation.propTypes = {
   /**
    * The content of the component.
    */
-  children: Node,
-  /**
-   * @ignore
-   */
-  className?: string,
+  children: PropTypes.node.isRequired,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback
    * @param {any} value We default to the index of the child
    */
-  onChange?: Function,
+  onChange: PropTypes.func,
   /**
    * If `true`, all `BottomNavigationButton`s will show their labels.
    * By default only the selected `BottomNavigationButton` will show its label.
    */
-  showLabels: boolean,
+  showLabels: PropTypes.bool,
   /**
    * The value of the currently selected `BottomNavigationButton`.
    */
-  value: any,
+  value: PropTypes.any,
 };
 
-class BottomNavigation extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    showLabels: false,
-  };
-
-  render() {
-    const {
-      children: childrenProp,
-      classes,
-      className: classNameProp,
-      onChange,
-      showLabels,
-      value,
-      ...other
-    } = this.props;
-
-    const className = classNames(classes.root, classNameProp);
-
-    const children = React.Children.map(childrenProp, (child, childIndex) => {
-      if (!React.isValidElement(child)) return null;
-      const childValue = child.props.value || childIndex;
-      return React.cloneElement(child, {
-        selected: childValue === value,
-        showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
-        value: childValue,
-        onChange,
-      });
-    });
-
-    return (
-      <div className={className} {...other}>
-        {children}
-      </div>
-    );
-  }
-}
+BottomNavigation.defaultProps = {
+  showLabels: false,
+};
 
 export default withStyles(styles, { name: 'MuiBottomNavigation' })(BottomNavigation);

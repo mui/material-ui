@@ -1,7 +1,5 @@
-// @flow
-
 import React from 'react';
-import type { ComponentType, Element, Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
@@ -10,9 +8,8 @@ import ClickAwayListener from '../utils/ClickAwayListener';
 import { capitalizeFirstLetter, createChainedFunction } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
-import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
-export const styles = (theme: Object) => {
+export const styles = theme => {
   const gutter = theme.spacing.unit * 3;
   const top = { top: 0 };
   const bottom = { bottom: 0 };
@@ -94,136 +91,7 @@ export type Origin = {
   vertical?: 'top' | 'center' | 'bottom' | number,
 };
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * The action to display.
-   */
-  action?: Node,
-  /**
-   * The anchor of the `Snackbar`.
-   */
-  anchorOrigin: Origin,
-  /**
-   * The number of milliseconds to wait before automatically dismissing.
-   * This behavior is disabled by default with the `null` value.
-   */
-  autoHideDuration?: ?number,
-  /**
-   * The number of milliseconds to wait before dismissing after user interaction.
-   * If `autoHideDuration` property isn't specified, it does nothing.
-   * If `autoHideDuration` property is specified but `resumeHideDuration` isn't,
-   * we default to `autoHideDuration / 2` ms.
-   */
-  resumeHideDuration?: number,
-  /**
-   * If you wish the take control over the children of the component you can use that property.
-   * When using it, no `SnackbarContent` component will be rendered.
-   */
-  children?: Element<any>,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * When displaying multiple consecutive Snackbars from a parent rendering a single
-   * <Snackbar/>, add the key property to ensure independent treatment of each message.
-   * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
-   * features such as autoHideDuration may be canceled.
-   */
-  key?: any,
-  /**
-   * The message to display.
-   */
-  message?: Node,
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * Typically `onClose` is used to set state in the parent component,
-   * which is used to control the `Snackbar` `open` prop.
-   *
-   * The `reason` parameter can optionally be used to control the response to `onClose`,
-   * for example ignoring `clickaway`.
-   *
-   * @param {object} event The event source of the callback
-   * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
-   */
-  onClose?: (event: ?Event, reason: string) => void,
-  /**
-   * Callback fired before the transition is entering.
-   */
-  onEnter?: TransitionCallback,
-  /**
-   * Callback fired when the transition is entering.
-   */
-  onEntering?: TransitionCallback,
-  /**
-   * Callback fired when the transition has entered.
-   */
-  onEntered?: TransitionCallback,
-  /**
-   * Callback fired before the transition is exiting.
-   */
-  onExit?: TransitionCallback,
-  /**
-   * Callback fired when the transition is exiting.
-   */
-  onExiting?: TransitionCallback,
-  /**
-   * Callback fired when the transition has exited.
-   */
-  onExited?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onMouseEnter?: Function,
-  /**
-   * @ignore
-   */
-  onMouseLeave?: Function,
-  /**
-   * If true, `Snackbar` is open.
-   */
-  open: boolean,
-  /**
-   * Properties applied to the `SnackbarContent` element.
-   */
-  SnackbarContentProps?: Object,
-  /**
-   * Transition component.
-   */
-  transition?: ComponentType<*>,
-  /**
-   * The duration for the transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   */
-  transitionDuration: TransitionDuration,
-};
-
-type State = {
-  exited: boolean,
-};
-
-class Snackbar extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
-    anchorOrigin: ({ vertical: 'bottom', horizontal: 'center' }: Origin),
-    transitionDuration: ({
-      enter: duration.enteringScreen,
-      exit: duration.leavingScreen,
-    }: TransitionDuration),
-  };
-
+class Snackbar extends React.Component {
   state = {
     // Used to only render active snackbars.
     exited: false,
@@ -326,24 +194,24 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
       action,
       anchorOrigin: { vertical, horizontal },
       autoHideDuration,
-      resumeHideDuration,
       children,
       classes,
       className,
-      transitionDuration,
       message,
+      onClose,
       onEnter,
-      onEntering,
       onEntered,
+      onEntering,
       onExit,
-      onExiting,
       onExited,
+      onExiting,
       onMouseEnter,
       onMouseLeave,
-      onClose,
       open,
+      resumeHideDuration,
       SnackbarContentProps,
       transition: TransitionProp,
+      transitionDuration,
       ...other
     } = this.props;
 
@@ -399,5 +267,134 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+Snackbar.propTypes = {
+  /**
+   * The action to display.
+   */
+  action: PropTypes.node,
+  /**
+   * The anchor of the `Snackbar`.
+   */
+  anchorOrigin: PropTypes.shape({
+    horizontal: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.oneOf(['left', 'center', 'right']),
+    ]),
+    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
+  }),
+  /**
+   * The number of milliseconds to wait before automatically dismissing.
+   * This behavior is disabled by default with the `null` value.
+   */
+  autoHideDuration: PropTypes.number,
+  /**
+   * If you wish the take control over the children of the component you can use this property.
+   * When used, you replace the `SnackbarContent` component with the children.
+   */
+  children: PropTypes.element,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * When displaying multiple consecutive Snackbars from a parent rendering a single
+   * <Snackbar/>, add the key property to ensure independent treatment of each message.
+   * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
+   * features such as autoHideDuration may be canceled.
+   */
+  key: PropTypes.any,
+  /**
+   * The message to display.
+   */
+  message: PropTypes.node,
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * Typically `onClose` is used to set state in the parent component,
+   * which is used to control the `Snackbar` `open` prop.
+   *
+   * The `reason` parameter can optionally be used to control the response to `onClose`,
+   * for example ignoring `clickaway`.
+   *
+   * @param {object} event The event source of the callback
+   * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
+   */
+  onClose: PropTypes.func,
+  /**
+   * Callback fired before the transition is entering.
+   */
+  onEnter: PropTypes.func,
+  /**
+   * Callback fired when the transition has entered.
+   */
+  onEntered: PropTypes.func,
+  /**
+   * Callback fired when the transition is entering.
+   */
+  onEntering: PropTypes.func,
+  /**
+   * Callback fired before the transition is exiting.
+   */
+  onExit: PropTypes.func,
+  /**
+   * Callback fired when the transition has exited.
+   */
+  onExited: PropTypes.func,
+  /**
+   * Callback fired when the transition is exiting.
+   */
+  onExiting: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseEnter: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseLeave: PropTypes.func,
+  /**
+   * If true, `Snackbar` is open.
+   */
+  open: PropTypes.bool,
+  /**
+   * The number of milliseconds to wait before dismissing after user interaction.
+   * If `autoHideDuration` property isn't specified, it does nothing.
+   * If `autoHideDuration` property is specified but `resumeHideDuration` isn't,
+   * we default to `autoHideDuration / 2` ms.
+   */
+  resumeHideDuration: PropTypes.number,
+  /**
+   * Properties applied to the `SnackbarContent` element.
+   */
+  SnackbarContentProps: PropTypes.object,
+  /**
+   * Transition component.
+   */
+  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  transitionDuration: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+  ]),
+};
+
+Snackbar.defaultProps = {
+  anchorOrigin: {
+    vertical: 'bottom',
+    horizontal: 'center',
+  },
+  transitionDuration: {
+    enter: duration.enteringScreen,
+    exit: duration.leavingScreen,
+  },
+};
 
 export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(Snackbar);
