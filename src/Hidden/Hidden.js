@@ -40,23 +40,23 @@ export type Props = {
    */
   xlUp?: boolean,
   /**
-   * If true, screens this size and down will be hidden.
+   * If true, screens before this size and down will be hidden.
    */
   xsDown?: boolean,
   /**
-   * If true, screens this size and down will be hidden.
+   * If true, screens before this size and down will be hidden.
    */
   smDown?: boolean,
   /**
-   * If true, screens this size and down will be hidden.
+   * If true, screens before this size and down will be hidden.
    */
   mdDown?: boolean,
   /**
-   * If true, screens this size and down will be hidden.
+   * If true, screens before this size and down will be hidden.
    */
   lgDown?: boolean,
   /**
-   * If true, screens this size and down will be hidden.
+   * If true, screens before this size and down will be hidden.
    */
   xlDown?: boolean,
   /**

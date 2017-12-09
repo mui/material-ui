@@ -31,7 +31,7 @@ describe('<HiddenJs />', () => {
       const prop = resolvePropName(upDownOnly, breakpoint);
       const descriptions = {
         Up: `${prop} is hidden for width: ${width} >= ${breakpoint}`,
-        Down: `${prop} is hidden for width: ${width} <= ${breakpoint}`,
+        Down: `${prop} is hidden for width: ${width} < ${breakpoint}`,
         only: `${prop} is hidden for width: ${width} === ${breakpoint}`,
       };
       const props = { width, [prop]: breakpoint };
@@ -56,7 +56,7 @@ describe('<HiddenJs />', () => {
       const prop = resolvePropName(upDownOnly, breakpoint);
       const descriptions = {
         Up: `${prop} is visible for width: ${width} < ${breakpoint}`,
-        Down: `${prop} is visible for width: ${width} > ${breakpoint}`,
+        Down: `${prop} is visible for width: ${width} >= ${breakpoint}`,
         only: `${prop} is visible for width: ${width} !== ${breakpoint}`,
       };
       const props = { width, [prop]: breakpoint };
@@ -81,7 +81,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      isHidden(['xs', 'sm', 'md', 'lg', 'xl'], 'Down', 'xs');
+      isHidden(['sm', 'md', 'lg', 'xl'], 'Down', 'xs');
+      isVisible(['xs'], 'Down', 'xs');
     });
 
     describe('only', () => {
@@ -97,8 +98,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      isHidden(['sm', 'md', 'lg', 'xl'], 'Down', 'sm');
-      isVisible(['xs'], 'Down', 'sm');
+      isHidden(['md', 'lg', 'xl'], 'Down', 'sm');
+      isVisible(['xs', 'sm'], 'Down', 'sm');
     });
 
     describe('only', () => {
@@ -114,8 +115,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      isHidden(['md', 'lg', 'xl'], 'Down', 'md');
-      isVisible(['xs', 'sm'], 'Down', 'md');
+      isHidden(['lg', 'xl'], 'Down', 'md');
+      isVisible(['xs', 'sm', 'md'], 'Down', 'md');
     });
 
     describe('only', () => {
@@ -131,8 +132,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      isHidden(['lg', 'xl'], 'Down', 'lg');
-      isVisible(['xs', 'sm', 'md'], 'Down', 'lg');
+      isHidden(['xl'], 'Down', 'lg');
+      isVisible(['xs', 'sm', 'md', 'lg'], 'Down', 'lg');
     });
 
     describe('only', () => {
@@ -147,8 +148,7 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      isHidden(['xl'], 'Down', 'xl');
-      isVisible(['xs', 'sm', 'md', 'lg'], 'Down', 'xl');
+      isVisible(['xs', 'sm', 'md', 'lg', 'xl'], 'Down', 'xl');
     });
 
     describe('only', () => {

@@ -22,7 +22,6 @@ describe('withMobileDialog', () => {
       it(`is for width: ${width} <= ${breakpoint}`, () => {
         const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
         const wrapper = shallow(<ResponsiveDialog width={width} />);
-        // the fullscreen class on the Paper element
         assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), true);
       });
     });
