@@ -10,32 +10,20 @@ import withTheme from '../styles/withTheme';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import type { Breakpoint } from '../styles/createBreakpoints';
 
-/**
- * By default, returns true if screen width is the same or greater than the given breakpoint.
- *
- * @param screenWidth
- * @param breakpoint
- * @param inclusive - defaults to true
- */
-export const isWidthUp = (breakpoint, screenWidth, inclusive = true) => {
+// By default, returns true if screen width is the same or greater than the given breakpoint.
+export const isWidthUp = (breakpoint, width, inclusive = true) => {
   if (inclusive) {
-    return breakpointKeys.indexOf(breakpoint) <= breakpointKeys.indexOf(screenWidth);
+    return breakpointKeys.indexOf(breakpoint) <= breakpointKeys.indexOf(width);
   }
-  return breakpointKeys.indexOf(breakpoint) < breakpointKeys.indexOf(screenWidth);
+  return breakpointKeys.indexOf(breakpoint) < breakpointKeys.indexOf(width);
 };
 
-/**
- * By default, returns true if screen width is the same or less than the given breakpoint.
- *
- * @param screenWidth
- * @param breakpoint
- * @param inclusive - defaults to true
- */
-export const isWidthDown = (breakpoint, screenWidth, inclusive = true) => {
+// By default, returns true if screen width is the same or less than the given breakpoint.
+export const isWidthDown = (breakpoint, width, inclusive = false) => {
   if (inclusive) {
-    return breakpointKeys.indexOf(screenWidth) <= breakpointKeys.indexOf(breakpoint);
+    return breakpointKeys.indexOf(width) <= breakpointKeys.indexOf(breakpoint);
   }
-  return breakpointKeys.indexOf(screenWidth) < breakpointKeys.indexOf(breakpoint);
+  return breakpointKeys.indexOf(width) < breakpointKeys.indexOf(breakpoint);
 };
 
 // optional props introduced by this HOC

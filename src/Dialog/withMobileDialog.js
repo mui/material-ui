@@ -27,7 +27,7 @@ const withMobileDialog = (
   const { breakpoint } = options;
 
   function WithMobileDialog(props: { width: Breakpoint }): Node {
-    return <Component fullScreen={isWidthDown(breakpoint, props.width)} {...props} />;
+    return <Component fullScreen={isWidthDown(breakpoint, props.width, true)} {...props} />;
   }
 
   if (process.env.NODE_ENV !== 'production') {
