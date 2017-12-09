@@ -20,13 +20,13 @@ filename: /src/Snackbar/Snackbar.js
 | classes | Object |  | Useful to extend the style applied to components. |
 | key | any |  | When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/>, add the key property to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
 | message | Node |  | The message to display. |
+| onClose | signature |  | Callback fired when the component requests to be closed.<br>Typically `onClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop.<br>The `reason` parameter can optionally be used to control the response to `onClose`, for example ignoring `clickaway`.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"` |
 | onEnter | TransitionCallback |  | Callback fired before the transition is entering. |
 | onEntered | TransitionCallback |  | Callback fired when the transition has entered. |
 | onEntering | TransitionCallback |  | Callback fired when the transition is entering. |
 | onExit | TransitionCallback |  | Callback fired before the transition is exiting. |
 | onExited | TransitionCallback |  | Callback fired when the transition has exited. |
 | onExiting | TransitionCallback |  | Callback fired when the transition is exiting. |
-| onRequestClose | signature |  | Callback fired when the component requests to be closed.<br>Typically `onRequestClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop.<br>The `reason` parameter can optionally be used to control the response to `onRequestClose`, for example ignoring `clickaway`.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"` |
 | <span style="color: #31a148">open *</span> | boolean |  | If true, `Snackbar` is open. |
 | resumeHideDuration | number |  | The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` property isn't specified, it does nothing. If `autoHideDuration` property is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms. |
 | transition | ComponentType |  | Transition component. |

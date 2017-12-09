@@ -38,7 +38,7 @@ class MenuAppBar extends React.Component {
     this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ anchorEl: null });
   };
 
@@ -87,10 +87,10 @@ class MenuAppBar extends React.Component {
                     horizontal: 'right',
                   }}
                   open={open}
-                  onRequestClose={this.handleRequestClose}
+                  onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleRequestClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleRequestClose}>My account</MenuItem>
+                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
                 </Menu>
               </div>
             )}

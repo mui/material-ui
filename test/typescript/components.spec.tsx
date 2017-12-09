@@ -231,7 +231,7 @@ const ChipsTest = () =>
     <Chip
       avatar={<Avatar src={'image.bmp'} />}
       label="Deletable Chip"
-      onRequestDelete={e => log(e)}
+      onDelete={e => log(e)}
     />
     <Chip
       avatar={
@@ -241,14 +241,14 @@ const ChipsTest = () =>
       }
       label="Clickable Deletable Chip"
       onClick={e => log(e)}
-      onRequestDelete={e => log(e)}
+      onDelete={e => log(e)}
     />
   </div>;
 
 const DialogTest = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
   return (
-    <Dialog onRequestClose={this.handleRequestClose}>
+    <Dialog onClose={e => log(e)}>
       <DialogTitle>Set backup account</DialogTitle>
       <div>
         <List>
@@ -298,7 +298,7 @@ const DrawerTest = () => {
       <Drawer
         type="persistent"
         open={open.left}
-        onRequestClose={e => log(e)}
+        onClose={e => log(e)}
         onClick={e => log(e)}
       >
         List
@@ -307,7 +307,7 @@ const DrawerTest = () => {
         type="temporary"
         anchor="top"
         open={open.top}
-        onRequestClose={e => log(e)}
+        onClose={e => log(e)}
         onClick={e => log(e)}
       >
         List
@@ -316,7 +316,7 @@ const DrawerTest = () => {
         anchor="bottom"
         type="temporary"
         open={open.bottom}
-        onRequestClose={e => log(e)}
+        onClose={e => log(e)}
         onClick={e => log(e)}
       >
         List
@@ -325,7 +325,7 @@ const DrawerTest = () => {
         type="persistent"
         anchor="right"
         open={open.right}
-        onRequestClose={e => log(e)}
+        onClose={e => log(e)}
         onClick={e => log(e)}
       >
         List
@@ -409,7 +409,7 @@ const MenuTest = () => {
       id="lock-menu"
       anchorEl={anchorEl}
       open={true}
-      onRequestClose={e => log(e)}
+      onClose={e => log(e)}
     >
       {options.map((option, index) =>
         <MenuItem
@@ -561,7 +561,7 @@ const SnackbarTest = () =>
       }}
       open={true}
       autoHideDuration={6e3}
-      onRequestClose={e => log(e)}
+      onClose={e => log(e)}
       SnackbarContentProps={{
         'aria-describedby': 'message-id',
       }}

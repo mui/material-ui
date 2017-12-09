@@ -36,16 +36,16 @@ describe('<Snackbar />', () => {
     assert.strictEqual(wrapper.find(Slide).length, 1, 'should use a Slide by default');
   });
 
-  describe('prop: onRequestClose', () => {
+  describe('prop: onClose', () => {
     it('should be call when clicking away', () => {
-      const handleRequestClose = spy();
-      mount(<Snackbar open onRequestClose={handleRequestClose} message="message" />);
+      const handleClose = spy();
+      mount(<Snackbar open onClose={handleClose} message="message" />);
 
       const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
       window.document.body.dispatchEvent(event);
 
-      assert.strictEqual(handleRequestClose.callCount, 1);
-      assert.deepEqual(handleRequestClose.args[0], [event, 'clickaway']);
+      assert.strictEqual(handleClose.callCount, 1);
+      assert.deepEqual(handleClose.args[0], [event, 'clickaway']);
     });
   });
 
@@ -60,125 +60,111 @@ describe('<Snackbar />', () => {
       clock.restore();
     });
 
-    it('should call onRequestClose when the timer is done', () => {
-      const handleRequestClose = spy();
+    it('should call onClose when the timer is done', () => {
+      const handleClose = spy();
       const autoHideDuration = 2e3;
       const wrapper = mount(
         <Snackbar
           open={false}
-          onRequestClose={handleRequestClose}
+          onClose={handleClose}
           message="message"
           autoHideDuration={autoHideDuration}
         />,
       );
 
       wrapper.setProps({ open: true });
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
       clock.tick(autoHideDuration);
-      assert.strictEqual(handleRequestClose.callCount, 1);
-      assert.deepEqual(handleRequestClose.args[0], [null, 'timeout']);
+      assert.strictEqual(handleClose.callCount, 1);
+      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
     });
 
-    it('should not call onRequestClose when the autoHideDuration is reset', () => {
-      const handleRequestClose = spy();
+    it('should not call onClose when the autoHideDuration is reset', () => {
+      const handleClose = spy();
       const autoHideDuration = 2e3;
       const wrapper = mount(
         <Snackbar
           open={false}
-          onRequestClose={handleRequestClose}
+          onClose={handleClose}
           message="message"
           autoHideDuration={autoHideDuration}
         />,
       );
 
       wrapper.setProps({ open: true });
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
       clock.tick(autoHideDuration / 2);
       wrapper.setProps({ autoHideDuration: undefined });
       clock.tick(autoHideDuration / 2);
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
     });
 
     it('should be able to interrupt the timer', () => {
       const handleMouseEnter = spy();
       const handleMouseLeave = spy();
-      const handleRequestClose = spy();
+      const handleClose = spy();
       const autoHideDuration = 2e3;
       const wrapper = mount(
         <Snackbar
           open
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          onRequestClose={handleRequestClose}
+          onClose={handleClose}
           message="message"
           autoHideDuration={autoHideDuration}
         />,
       );
 
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseEnter');
       assert.strictEqual(handleMouseEnter.callCount, 1, 'should trigger mouse enter callback');
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseLeave');
       assert.strictEqual(handleMouseLeave.callCount, 1, 'should trigger mouse leave callback');
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
       clock.tick(2e3);
-      assert.strictEqual(handleRequestClose.callCount, 1);
-      assert.deepEqual(handleRequestClose.args[0], [null, 'timeout']);
+      assert.strictEqual(handleClose.callCount, 1);
+      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
     });
 
-    it('should not call onRequestClose if autoHideDuration is undefined', () => {
-      const handleRequestClose = spy();
+    it('should not call onClose if autoHideDuration is undefined', () => {
+      const handleClose = spy();
       const autoHideDuration = 2e3;
-      mount(
-        <Snackbar
-          open
-          onRequestClose={handleRequestClose}
-          message="message"
-          autoHideDuration={undefined}
-        />,
-      );
+      mount(<Snackbar open onClose={handleClose} message="message" autoHideDuration={undefined} />);
 
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
       clock.tick(autoHideDuration);
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
     });
 
-    it('should not call onRequestClose if autoHideDuration is null', () => {
-      const handleRequestClose = spy();
+    it('should not call onClose if autoHideDuration is null', () => {
+      const handleClose = spy();
       const autoHideDuration = 2e3;
-      mount(
-        <Snackbar
-          open
-          onRequestClose={handleRequestClose}
-          message="message"
-          autoHideDuration={null}
-        />,
-      );
+      mount(<Snackbar open onClose={handleClose} message="message" autoHideDuration={null} />);
 
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
       clock.tick(autoHideDuration);
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
     });
 
-    it('should not call onRequestClose when closed', () => {
-      const handleRequestClose = spy();
+    it('should not call onClose when closed', () => {
+      const handleClose = spy();
       const autoHideDuration = 2e3;
       const wrapper = mount(
         <Snackbar
           open
-          onRequestClose={handleRequestClose}
+          onClose={handleClose}
           message="message"
           autoHideDuration={autoHideDuration}
         />,
       );
 
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
       clock.tick(autoHideDuration / 2);
       wrapper.setProps({ open: false });
       clock.tick(autoHideDuration / 2);
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
     });
   });
 
@@ -193,51 +179,51 @@ describe('<Snackbar />', () => {
       clock.restore();
     });
 
-    it('should not call onRequestClose with not timeout after user interaction', () => {
-      const handleRequestClose = spy();
+    it('should not call onClose with not timeout after user interaction', () => {
+      const handleClose = spy();
       const autoHideDuration = 2e3;
       const resumeHideDuration = 3e3;
       const wrapper = mount(
         <Snackbar
           open
-          onRequestClose={handleRequestClose}
+          onClose={handleClose}
           message="message"
           autoHideDuration={autoHideDuration}
           resumeHideDuration={resumeHideDuration}
         />,
       );
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseEnter');
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseLeave');
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
       clock.tick(2e3);
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
     });
 
-    it('should call onRequestClose when timer done after user interaction', () => {
-      const handleRequestClose = spy();
+    it('should call onClose when timer done after user interaction', () => {
+      const handleClose = spy();
       const autoHideDuration = 2e3;
       const resumeHideDuration = 3e3;
       const wrapper = mount(
         <Snackbar
           open
-          onRequestClose={handleRequestClose}
+          onClose={handleClose}
           message="message"
           autoHideDuration={autoHideDuration}
           resumeHideDuration={resumeHideDuration}
         />,
       );
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseEnter');
       clock.tick(autoHideDuration / 2);
       wrapper.simulate('mouseLeave');
-      assert.strictEqual(handleRequestClose.callCount, 0);
+      assert.strictEqual(handleClose.callCount, 0);
       clock.tick(resumeHideDuration);
-      assert.strictEqual(handleRequestClose.callCount, 1);
-      assert.deepEqual(handleRequestClose.args[0], [null, 'timeout']);
+      assert.strictEqual(handleClose.callCount, 1);
+      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
     });
   });
 

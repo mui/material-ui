@@ -14,9 +14,9 @@ Chips represent complex entities in small blocks, such as a contact.
 |:-----|:-----|:--------|:------------|
 | avatar | Element |  | Avatar element. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| deleteIcon | Element |  | Custom delete icon. Will be shown only if `onRequestDelete` is set. |
+| deleteIcon | Element |  | Custom delete icon. Will be shown only if `onDelete` is set. |
 | label | Node |  | The content of the label. |
-| onRequestDelete | signature |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
+| onDelete | signature |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

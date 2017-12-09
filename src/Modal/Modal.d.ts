@@ -11,14 +11,14 @@ export interface ModalProps extends StandardProps<
   BackdropComponent?: string | React.ComponentType<BackdropProps>;
   BackdropInvisible?: boolean;
   BackdropTransitionDuration?: TransitionDuration;
-  keepMounted?: boolean;
   disableBackdrop?: boolean;
   ignoreBackdropClick?: boolean;
   ignoreEscapeKeyUp?: boolean;
+  keepMounted?: boolean;
   modalManager?: Object;
   onBackdropClick?: React.ReactEventHandler<{}>;
+  onClose?: React.ReactEventHandler<{}>;
   onEscapeKeyUp?: React.ReactEventHandler<{}>;
-  onRequestClose?: React.ReactEventHandler<{}>;
   show?: boolean;
 }
 

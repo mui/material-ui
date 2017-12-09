@@ -119,7 +119,7 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
     });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({
       open: false,
     });
@@ -362,7 +362,7 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
           id={`menu-${name || ''}`}
           anchorEl={this.state.anchorEl}
           open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleClose}
           {...MenuProps}
           MenuListProps={{
             ...MenuProps.MenuListProps,

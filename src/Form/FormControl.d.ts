@@ -5,6 +5,7 @@ export interface FormControlProps extends StandardProps<
   React.HtmlHTMLAttributes<HTMLDivElement>,
   FormControlClassKey
 > {
+  component?: string | React.ComponentType<FormControlProps>;
   disabled?: boolean;
   error?: boolean;
   fullWidth?: boolean;
@@ -12,7 +13,6 @@ export interface FormControlProps extends StandardProps<
   onBlur?: React.EventHandler<any>;
   onFocus?: React.EventHandler<any>;
   required?: boolean;
-  component?: string | React.ComponentType<FormControlProps>;
 }
 
 export type FormControlClassKey =

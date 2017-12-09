@@ -68,10 +68,10 @@ describe('<Menu />', () => {
     );
   });
 
-  it('should pass onRequestClose prop to Popover', () => {
+  it('should pass onClose prop to Popover', () => {
     const fn = () => {};
-    const wrapper = shallow(<Menu onRequestClose={fn} />);
-    assert.strictEqual(wrapper.props().onRequestClose, fn, 'should be the same function');
+    const wrapper = shallow(<Menu onClose={fn} />);
+    assert.strictEqual(wrapper.props().onClose, fn, 'should be the same function');
   });
 
   it('should pass anchorEl prop to Popover', () => {

@@ -35,7 +35,7 @@ class ChipsArray extends React.Component {
     },
   };
 
-  handleRequestDelete = data => () => {
+  handleDelete = data => () => {
     if (data.label === 'ReactJS') {
       alert('Why would you want to delete React?! :)'); // eslint-disable-line no-alert
       return;
@@ -57,7 +57,7 @@ class ChipsArray extends React.Component {
             <Chip
               label={data.label}
               key={data.key}
-              onRequestDelete={this.handleRequestDelete(data)}
+              onDelete={this.handleDelete(data)}
               className={classes.chip}
             />
           );

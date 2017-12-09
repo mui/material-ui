@@ -110,7 +110,7 @@ class ResponsiveDrawer extends React.Component {
               classes={{
                 paper: classes.drawerPaper,
               }}
-              onRequestClose={this.handleDrawerToggle}
+              onClose={this.handleDrawerToggle}
               ModalProps={{
                 keepMounted: true, // Better open performance on mobile.
               }}

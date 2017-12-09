@@ -71,7 +71,7 @@ function reduceChildRoutes(props, activePage, items, childPage, index) {
         key={index}
         title={pageToTitle(childPage)}
         href={childPage.pathname}
-        onClick={props.onRequestClose}
+        onClick={props.onClose}
       />,
     );
   }
@@ -82,13 +82,13 @@ function reduceChildRoutes(props, activePage, items, childPage, index) {
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases/tag/';
 
 function AppDrawer(props, context) {
-  const { classes, className, disablePermanent, mobileOpen, onRequestClose } = props;
+  const { classes, className, disablePermanent, mobileOpen, onClose } = props;
 
   const drawer = (
     <div className={classes.nav}>
       <div className={classes.toolbarIe11}>
         <Toolbar className={classes.toolbar}>
-          <Link className={classes.title} href="/" onClick={onRequestClose}>
+          <Link className={classes.title} href="/" onClick={onClose}>
             <Typography type="title" gutterBottom color="inherit">
               Material-UI
             </Typography>
@@ -117,7 +117,7 @@ function AppDrawer(props, context) {
           }}
           type="temporary"
           open={mobileOpen}
-          onRequestClose={onRequestClose}
+          onClose={onClose}
           ModalProps={{
             keepMounted: true,
           }}
@@ -147,12 +147,12 @@ AppDrawer.propTypes = {
   className: PropTypes.string,
   disablePermanent: PropTypes.bool.isRequired,
   mobileOpen: PropTypes.bool.isRequired,
-  onRequestClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 AppDrawer.contextTypes = {
-  pages: PropTypes.array.isRequired,
   activePage: PropTypes.object,
+  pages: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(AppDrawer);

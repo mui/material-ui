@@ -18,7 +18,7 @@ class ResponsiveDialog extends React.Component {
     this.setState({ open: true });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
@@ -28,11 +28,7 @@ class ResponsiveDialog extends React.Component {
     return (
       <div>
         <Button onClick={this.handleClickOpen}>Open responsive dialog</Button>
-        <Dialog
-          fullScreen={fullScreen}
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
-        >
+        <Dialog fullScreen={fullScreen} open={this.state.open} onClose={this.handleClose}>
           <DialogTitle>{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -41,10 +37,10 @@ class ResponsiveDialog extends React.Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleRequestClose} color="primary">
+            <Button onClick={this.handleClose} color="primary">
               Disagree
             </Button>
-            <Button onClick={this.handleRequestClose} color="primary" autoFocus>
+            <Button onClick={this.handleClose} color="primary" autoFocus>
               Agree
             </Button>
           </DialogActions>

@@ -159,13 +159,13 @@ export type Props = {
    *
    * @param {object} event The event source of the callback
    */
-  onRequestClose?: Function,
+  onClose?: Function,
   /**
    * Callback fired when the tooltip requests to be open.
    *
    * @param {object} event The event source of the callback
    */
-  onRequestOpen?: Function,
+  onOpen?: Function,
   /**
    * If `true`, the tooltip is shown.
    */
@@ -290,12 +290,12 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
       this.setState({ open: true });
     }
 
-    if (this.props.onRequestOpen) {
-      this.props.onRequestOpen(event, true);
+    if (this.props.onOpen) {
+      this.props.onOpen(event, true);
     }
   };
 
-  handleRequestClose = event => {
+  handleClose = event => {
     const { children } = this.props;
     if (typeof children !== 'string') {
       const childrenProps = Children.only(children).props;
@@ -326,8 +326,8 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
       this.setState({ open: false });
     }
 
-    if (this.props.onRequestClose) {
-      this.props.onRequestClose(event, false);
+    if (this.props.onClose) {
+      this.props.onClose(event, false);
     }
   };
 
@@ -379,8 +379,8 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
       id,
       leaveDelay,
       open: openProp,
-      onRequestClose,
-      onRequestOpen,
+      onClose,
+      onOpen,
       theme,
       title,
       placement: rawPlacement,
@@ -402,12 +402,12 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
 
     if (!disableTriggerHover) {
       childrenProps.onMouseOver = this.handleRequestOpen;
-      childrenProps.onMouseLeave = this.handleRequestClose;
+      childrenProps.onMouseLeave = this.handleClose;
     }
 
     if (!disableTriggerFocus) {
       childrenProps.onFocus = this.handleRequestOpen;
-      childrenProps.onBlur = this.handleRequestClose;
+      childrenProps.onBlur = this.handleClose;
     }
 
     if (typeof childrenProp !== 'string' && childrenProp.props) {

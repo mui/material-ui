@@ -148,6 +148,19 @@ export type Props = {
    */
   message?: Node,
   /**
+   * Callback fired when the component requests to be closed.
+   *
+   * Typically `onClose` is used to set state in the parent component,
+   * which is used to control the `Snackbar` `open` prop.
+   *
+   * The `reason` parameter can optionally be used to control the response to `onClose`,
+   * for example ignoring `clickaway`.
+   *
+   * @param {object} event The event source of the callback
+   * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
+   */
+  onClose?: (event: ?Event, reason: string) => void,
+  /**
    * Callback fired before the transition is entering.
    */
   onEnter?: TransitionCallback,
@@ -179,19 +192,6 @@ export type Props = {
    * @ignore
    */
   onMouseLeave?: Function,
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * Typically `onRequestClose` is used to set state in the parent component,
-   * which is used to control the `Snackbar` `open` prop.
-   *
-   * The `reason` parameter can optionally be used to control the response to `onRequestClose`,
-   * for example ignoring `clickaway`.
-   *
-   * @param {object} event The event source of the callback
-   * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
-   */
-  onRequestClose?: (event: ?Event, reason: string) => void,
   /**
    * If true, `Snackbar` is open.
    */
@@ -263,17 +263,17 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
 
   // Timer that controls delay before snackbar auto hides
   setAutoHideTimer(autoHideDuration = null) {
-    if (!this.props.onRequestClose || this.props.autoHideDuration == null) {
+    if (!this.props.onClose || this.props.autoHideDuration == null) {
       return;
     }
 
     clearTimeout(this.timerAutoHide);
     this.timerAutoHide = setTimeout(() => {
-      if (!this.props.onRequestClose || this.props.autoHideDuration == null) {
+      if (!this.props.onClose || this.props.autoHideDuration == null) {
         return;
       }
 
-      this.props.onRequestClose(null, 'timeout');
+      this.props.onClose(null, 'timeout');
     }, autoHideDuration || this.props.autoHideDuration || 0);
   }
 
@@ -294,8 +294,8 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
   };
 
   handleClickAway = (event: Event) => {
-    if (this.props.onRequestClose) {
-      this.props.onRequestClose(event, 'clickaway');
+    if (this.props.onClose) {
+      this.props.onClose(event, 'clickaway');
     }
   };
 
@@ -340,7 +340,7 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
       onExited,
       onMouseEnter,
       onMouseLeave,
-      onRequestClose,
+      onClose,
       open,
       SnackbarContentProps,
       transition: TransitionProp,

@@ -12,7 +12,7 @@ class SimpleMenu extends React.Component {
     this.setState({ open: true, anchorEl: event.currentTarget });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
@@ -30,11 +30,11 @@ class SimpleMenu extends React.Component {
           id="simple-menu"
           anchorEl={this.state.anchorEl}
           open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleRequestClose}>Profile</MenuItem>
-          <MenuItem onClick={this.handleRequestClose}>My account</MenuItem>
-          <MenuItem onClick={this.handleRequestClose}>Logout</MenuItem>
+          <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+          <MenuItem onClick={this.handleClose}>My account</MenuItem>
+          <MenuItem onClick={this.handleClose}>Logout</MenuItem>
         </Menu>
       </div>
     );

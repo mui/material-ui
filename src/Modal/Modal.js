@@ -91,17 +91,23 @@ export type Props = {
    */
   disableBackdrop: boolean,
   /**
-   * If `true`, clicking the backdrop will not fire the `onRequestClose` callback.
+   * If `true`, clicking the backdrop will not fire the `onClose` callback.
    */
   ignoreBackdropClick: boolean,
   /**
-   * If `true`, hitting escape will not fire the `onRequestClose` callback.
+   * If `true`, hitting escape will not fire the `onClose` callback.
    */
   ignoreEscapeKeyUp: boolean,
   /**
    * @ignore
    */
   modalManager: Object,
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onClose?: Function,
   /**
    * Callback fires when the backdrop is clicked on.
    */
@@ -134,12 +140,6 @@ export type Props = {
    * Callback fired when the modal has exited.
    */
   onExited?: TransitionCallback,
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback
-   */
-  onRequestClose?: Function,
   /**
    * If `true`, the Modal is visible.
    */
@@ -298,14 +298,14 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
       return;
     }
 
-    const { onEscapeKeyUp, onRequestClose, ignoreEscapeKeyUp } = this.props;
+    const { onEscapeKeyUp, onClose, ignoreEscapeKeyUp } = this.props;
 
     if (onEscapeKeyUp) {
       onEscapeKeyUp(event);
     }
 
-    if (onRequestClose && !ignoreEscapeKeyUp) {
-      onRequestClose(event);
+    if (onClose && !ignoreEscapeKeyUp) {
+      onClose(event);
     }
   };
 
@@ -314,14 +314,14 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
       return;
     }
 
-    const { onBackdropClick, onRequestClose, ignoreBackdropClick } = this.props;
+    const { onBackdropClick, onClose, ignoreBackdropClick } = this.props;
 
     if (onBackdropClick) {
       onBackdropClick(event);
     }
 
-    if (onRequestClose && !ignoreBackdropClick) {
-      onRequestClose(event);
+    if (onClose && !ignoreBackdropClick) {
+      onClose(event);
     }
   };
 
@@ -356,27 +356,27 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
 
   render() {
     const {
-      disableBackdrop,
-      BackdropComponent,
       BackdropClassName,
-      BackdropTransitionDuration,
+      BackdropComponent,
       BackdropInvisible,
-      ignoreBackdropClick,
-      ignoreEscapeKeyUp,
+      BackdropTransitionDuration,
       children,
       classes,
       className,
+      disableBackdrop,
+      ignoreBackdropClick,
+      ignoreEscapeKeyUp,
       keepMounted,
       modalManager: modalManagerProp,
       onBackdropClick,
-      onEscapeKeyUp,
-      onRequestClose,
+      onClose,
       onEnter,
-      onEntering,
       onEntered,
+      onEntering,
+      onEscapeKeyUp,
       onExit,
-      onExiting,
       onExited,
+      onExiting,
       show,
       ...other
     } = this.props;

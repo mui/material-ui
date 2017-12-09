@@ -36,7 +36,7 @@ class SimpleListMenu extends React.Component {
     this.setState({ selectedIndex: index, open: false });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
@@ -62,7 +62,7 @@ class SimpleListMenu extends React.Component {
           id="lock-menu"
           anchorEl={this.state.anchorEl}
           open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleClose}
         >
           {options.map((option, index) => (
             <MenuItem

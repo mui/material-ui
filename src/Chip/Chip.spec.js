@@ -104,7 +104,7 @@ describe('<Chip />', () => {
             </Avatar>
           }
           label="Text Avatar Chip"
-          onRequestDelete={() => {}}
+          onDelete={() => {}}
           className="my-Chip"
           data-my-prop="woofChip"
         />,
@@ -135,21 +135,17 @@ describe('<Chip />', () => {
     });
 
     it('should fire the function given in onDeleteRequest', () => {
-      const onRequestDeleteSpy = spy();
-      wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
+      const onDeleteSpy = spy();
+      wrapper.setProps({ onDelete: onDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: () => {} });
-      assert.strictEqual(
-        onRequestDeleteSpy.callCount,
-        1,
-        'should have called the onRequestDelete handler',
-      );
+      assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called the onDelete handler');
     });
 
     it('should stop propagation in onDeleteRequest', () => {
-      const onRequestDeleteSpy = spy();
+      const onDeleteSpy = spy();
       const stopPropagationSpy = spy();
-      wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
+      wrapper.setProps({ onDelete: onDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: stopPropagationSpy });
       assert.strictEqual(
@@ -163,25 +159,17 @@ describe('<Chip />', () => {
   describe('prop: deleteIcon', () => {
     it('should fire the function given in onDeleteRequest', () => {
       const wrapper = shallow(
-        <Chip
-          label="Custom delete icon Chip"
-          onRequestDelete={() => {}}
-          deleteIcon={<CheckBox />}
-        />,
+        <Chip label="Custom delete icon Chip" onDelete={() => {}} deleteIcon={<CheckBox />} />,
       );
-      const onRequestDeleteSpy = spy();
-      wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
+      const onDeleteSpy = spy();
+      wrapper.setProps({ onDelete: onDeleteSpy });
 
       wrapper.find(CheckBox).simulate('click', { stopPropagation: () => {} });
-      assert.strictEqual(
-        onRequestDeleteSpy.callCount,
-        1,
-        'should have called the onRequestDelete handler',
-      );
+      assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called the onDelete handler');
     });
 
     it('should render a default icon', () => {
-      const wrapper = mount(<Chip label="Custom delete icon Chip" onRequestDelete={() => {}} />);
+      const wrapper = mount(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
       assert.strictEqual(wrapper.find(CancelIcon).length, 1);
     });
   });
@@ -252,10 +240,10 @@ describe('<Chip />', () => {
       });
     });
 
-    describe('onRequestDelete is defined and `backspace` is pressed', () => {
-      it('should call onRequestDelete', () => {
-        const onRequestDeleteSpy = spy();
-        wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
+    describe('onDelete is defined and `backspace` is pressed', () => {
+      it('should call onDelete', () => {
+        const onDeleteSpy = spy();
+        wrapper.setProps({ onDelete: onDeleteSpy });
 
         const preventDefaultSpy = spy();
         const backspaceKeydownEvent = {
@@ -265,8 +253,8 @@ describe('<Chip />', () => {
         wrapper.find('div').simulate('keydown', backspaceKeydownEvent);
 
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
-        assert.strictEqual(onRequestDeleteSpy.callCount, 1, 'should have called onClick');
-        assert(onRequestDeleteSpy.calledWith(backspaceKeydownEvent));
+        assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called onClick');
+        assert(onDeleteSpy.calledWith(backspaceKeydownEvent));
       });
     });
   });

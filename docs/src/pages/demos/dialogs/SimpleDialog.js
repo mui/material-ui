@@ -21,19 +21,19 @@ const styles = {
 };
 
 class SimpleDialog extends React.Component {
-  handleRequestClose = () => {
-    this.props.onRequestClose(this.props.selectedValue);
+  handleClose = () => {
+    this.props.onClose(this.props.selectedValue);
   };
 
   handleListItemClick = value => {
-    this.props.onRequestClose(value);
+    this.props.onClose(value);
   };
 
   render() {
-    const { classes, onRequestClose, selectedValue, ...other } = this.props;
+    const { classes, onClose, selectedValue, ...other } = this.props;
 
     return (
-      <Dialog onRequestClose={this.handleRequestClose} {...other}>
+      <Dialog onClose={this.handleClose} {...other}>
         <DialogTitle>Set backup account</DialogTitle>
         <div>
           <List>
@@ -64,7 +64,7 @@ class SimpleDialog extends React.Component {
 
 SimpleDialog.propTypes = {
   classes: PropTypes.object.isRequired,
-  onRequestClose: PropTypes.func,
+  onClose: PropTypes.func,
   selectedValue: PropTypes.string,
 };
 
@@ -82,7 +82,7 @@ class SimpleDialogDemo extends React.Component {
     });
   };
 
-  handleRequestClose = value => {
+  handleClose = value => {
     this.setState({ selectedValue: value, open: false });
   };
 
@@ -95,7 +95,7 @@ class SimpleDialogDemo extends React.Component {
         <SimpleDialogWrapped
           selectedValue={this.state.selectedValue}
           open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleClose}
         />
       </div>
     );

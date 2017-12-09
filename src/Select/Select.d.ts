@@ -11,9 +11,9 @@ export interface SelectProps extends StandardProps<
   autoWidth?: boolean;
   displayEmpty?: boolean;
   input?: React.ReactNode;
-  native?: boolean;
-  multiple?: boolean;
   MenuProps?: Partial<MenuProps>;
+  multiple?: boolean;
+  native?: boolean;
   renderValue?: Function;
   value?: Array<string | number> | string | number;
 }

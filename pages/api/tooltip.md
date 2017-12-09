@@ -21,8 +21,8 @@ filename: /src/Tooltip/Tooltip.js
 | enterDelay | number | 0 | The number of milliseconds to wait before showing the tooltip. |
 | id | string |  | The relationship between the tooltip and the wrapper component is not clear from the DOM. By providing this property, we can use aria-describedby to solve the accessibility issue. |
 | leaveDelay | number | 0 | The number of milliseconds to wait before hidding the tooltip. |
-| onRequestClose | Function |  | Callback fired when the tooltip requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
-| onRequestOpen | Function |  | Callback fired when the tooltip requests to be open.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
+| onClose | Function |  | Callback fired when the tooltip requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
+| onOpen | Function |  | Callback fired when the tooltip requests to be open.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean |  | If `true`, the tooltip is shown. |
 | placement | union:&nbsp;, 'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'<br> | 'bottom' | Tooltip placement |
 | <span style="color: #31a148">title *</span> | Node |  | Tooltip title. |

@@ -136,7 +136,7 @@ export type Props = {
    *
    * @param {object} event The event source of the callback
    */
-  onRequestClose?: Function,
+  onClose?: Function,
   /**
    * If `true`, the drawer is open.
    */
@@ -189,7 +189,7 @@ class Drawer extends React.Component<ProvidedProps & Props, State> {
       elevation,
       transitionDuration,
       ModalProps,
-      onRequestClose,
+      onClose,
       open,
       SlideProps,
       theme,
@@ -253,7 +253,7 @@ class Drawer extends React.Component<ProvidedProps & Props, State> {
         BackdropTransitionDuration={transitionDuration}
         className={classNames(classes.modal, className)}
         show={open}
-        onRequestClose={onRequestClose}
+        onClose={onClose}
         {...other}
         {...ModalProps}
       >

@@ -33,7 +33,7 @@ class DialogSelect extends React.Component {
     this.setState({ open: true });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
@@ -47,7 +47,7 @@ class DialogSelect extends React.Component {
           ignoreBackdropClick
           ignoreEscapeKeyUp
           open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleClose}
         >
           <DialogTitle>Fill the form</DialogTitle>
           <DialogContent>
@@ -84,10 +84,10 @@ class DialogSelect extends React.Component {
             </form>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleRequestClose} color="primary">
+            <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleRequestClose} color="primary">
+            <Button onClick={this.handleClose} color="primary">
               Ok
             </Button>
           </DialogActions>

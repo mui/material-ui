@@ -245,7 +245,7 @@ class AppFrame extends React.Component {
         <AppDrawer
           className={classes.drawer}
           disablePermanent={disablePermanent}
-          onRequestClose={this.handleDrawerToggle}
+          onClose={this.handleDrawerToggle}
           mobileOpen={this.state.mobileOpen}
         />
         {children}

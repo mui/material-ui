@@ -10,8 +10,8 @@ export interface CircularProgressProps extends StandardProps<
   min?: number;
   mode?: 'determinate' | 'indeterminate';
   size?: number;
-  value?: number;
   thickness?: number;
+  value?: number;
 }
 
 export type CircularProgressClassKey =

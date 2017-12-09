@@ -9,7 +9,7 @@ export interface MobileStepperProps extends StandardProps<
 > {
   activeStep?: number;
   backButton: React.ReactElement<any>;
-  nextButton: React.ReactElement<any>;  
+  nextButton: React.ReactElement<any>;
   position?: 'bottom' | 'top' | 'static';
   steps: number;
   type?: 'text' | 'dots' | 'progress';

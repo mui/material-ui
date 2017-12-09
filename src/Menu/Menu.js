@@ -42,6 +42,12 @@ export type Props = {
    */
   MenuListProps?: Object,
   /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onClose?: Function,
+  /**
    * Callback fired before the Menu enters.
    */
   onEnter?: TransitionCallback,
@@ -65,12 +71,6 @@ export type Props = {
    * Callback fired when the Menu has exited.
    */
   onExited?: TransitionCallback,
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback
-   */
-  onRequestClose?: Function,
   /**
    * If `true`, the menu is visible.
    */
@@ -183,8 +183,8 @@ class Menu extends React.Component<ProvidedProps & Props> {
     if (key === 'tab') {
       event.preventDefault();
 
-      if (this.props.onRequestClose) {
-        this.props.onRequestClose(event);
+      if (this.props.onClose) {
+        this.props.onClose(event);
       }
     }
   };

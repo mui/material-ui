@@ -156,7 +156,7 @@ describe('<SelectInput />', () => {
         });
       });
 
-      it('should call handleRequestClose', () => {
+      it('should call handleClose', () => {
         wrapper.find(`.${props.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
 

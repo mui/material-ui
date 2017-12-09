@@ -43,18 +43,14 @@ describe('<Popover />', () => {
       assert.strictEqual(wrapper.props().BackdropInvisible, true);
     });
 
-    it('should pass onRequestClose prop to Modal', () => {
+    it('should pass onClose prop to Modal', () => {
       const fn = () => {};
       const wrapper = shallow(
-        <Popover {...props} onRequestClose={fn}>
+        <Popover {...props} onClose={fn}>
           <div />
         </Popover>,
       );
-      assert.strictEqual(
-        wrapper.props().onRequestClose,
-        fn,
-        'should be the onRequestClose function',
-      );
+      assert.strictEqual(wrapper.props().onClose, fn, 'should be the onClose function');
     });
 
     it('should pass open prop to Modal as `show`', () => {

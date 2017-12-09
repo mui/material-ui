@@ -62,5 +62,5 @@ For instance, the `disabled` attribute on an input element. This choice allows t
 
 ### Controllable components
 
- Most of the controllable component are controlled via the `value` and the `onChange` properties.
-However, we also use the `open`/`onRequestClose` combination for display relative state.
+Most of the controllable component are controlled via the `value` and the `onChange` properties.
+However, we also use the `open`/`onClose`/`onOpen` combination for display relative state.

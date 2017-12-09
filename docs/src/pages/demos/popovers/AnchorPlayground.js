@@ -51,7 +51,7 @@ class AnchorPlayground extends React.Component {
     });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({
       open: false,
     });
@@ -90,7 +90,7 @@ class AnchorPlayground extends React.Component {
           anchorEl={anchorEl}
           anchorReference={anchorReference}
           anchorPosition={{ top: positionTop, left: positionLeft }}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleClose}
           anchorOrigin={{
             vertical: anchorOriginVertical,
             horizontal: anchorOriginHorizontal,

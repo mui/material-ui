@@ -27,7 +27,7 @@ class MenuListComposition extends React.Component {
     this.setState({ open: true });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
@@ -59,13 +59,13 @@ class MenuListComposition extends React.Component {
             eventsEnabled={open}
             className={classNames({ [classes.popperClose]: !open })}
           >
-            <ClickAwayListener onClickAway={this.handleRequestClose}>
+            <ClickAwayListener onClickAway={this.handleClose}>
               <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                 <Paper>
                   <MenuList role="menu">
-                    <MenuItem onClick={this.handleRequestClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleRequestClose}>My account</MenuItem>
-                    <MenuItem onClick={this.handleRequestClose}>Logout</MenuItem>
+                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                    <MenuItem onClick={this.handleClose}>Logout</MenuItem>
                   </MenuList>
                 </Paper>
               </Grow>
