@@ -19,7 +19,7 @@ A palette is a collection of hues. By default, Material-UI ships with all palett
 This color palette comprises primary and accent colors that can be used for illustration or to develop your brand colors.
 They’ve been designed to work harmoniously with each other.
 
-For instance, you can use the red color like so:
+For instance, you can refer to a particular hue/shade of the red color from palette like so:
 ```js
 import { red, purple } from 'material-ui/colors';
 
