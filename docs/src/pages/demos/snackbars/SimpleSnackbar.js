@@ -22,7 +22,7 @@ class SimpleSnackbar extends React.Component {
     this.setState({ open: true });
   };
 
-  handleRequestClose = (event, reason) => {
+  handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -42,13 +42,13 @@ class SimpleSnackbar extends React.Component {
           }}
           open={this.state.open}
           autoHideDuration={6000}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleClose}
           SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">Note archived</span>}
           action={[
-            <Button key="undo" color="accent" dense onClick={this.handleRequestClose}>
+            <Button key="undo" color="accent" dense onClick={this.handleClose}>
               UNDO
             </Button>,
             <IconButton
@@ -56,7 +56,7 @@ class SimpleSnackbar extends React.Component {
               aria-label="Close"
               color="inherit"
               className={classes.close}
-              onClick={this.handleRequestClose}
+              onClick={this.handleClose}
             >
               <CloseIcon />
             </IconButton>,

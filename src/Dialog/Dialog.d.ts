@@ -9,16 +9,16 @@ export interface DialogProps extends StandardProps<
   'onBackdropClick' | 'onEscapeKeyUp'
 > {
   fullScreen?: boolean;
+  fullWidth?: boolean;
   ignoreBackdropClick?: boolean;
   ignoreEscapeKeyUp?: boolean;
-  transitionDuration?: TransitionDuration;
   maxWidth?: 'xs' | 'sm' | 'md';
-  fullWidth?: boolean;
   onBackdropClick?: Function;
+  onClose?: React.EventHandler<any>;
   onEscapeKeyUp?: Function;
-  onRequestClose?: React.EventHandler<any>;
   open?: boolean;
   transition?: React.ReactType;
+  transitionDuration?: TransitionDuration;
 }
 
 export type DialogClassKey =

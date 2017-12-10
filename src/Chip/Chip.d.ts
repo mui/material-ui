@@ -6,10 +6,10 @@ export interface ChipProps extends StandardProps<
   ChipClassKey
 > {
   avatar?: React.ReactElement<any>;
-  label?: React.ReactNode;
-  onKeyDown?: React.EventHandler<React.KeyboardEvent<any>>;
-  onRequestDelete?: React.EventHandler<any>;
   deleteIcon?: React.ReactElement<any>;
+  label?: React.ReactNode;
+  onDelete?: React.EventHandler<any>;
+  onKeyDown?: React.EventHandler<React.KeyboardEvent<any>>;
 }
 
 export type ChipClassKey =

@@ -13,7 +13,7 @@ class PositionedSnackbar extends React.Component {
     this.setState({ open: true, ...state });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
@@ -42,7 +42,7 @@ class PositionedSnackbar extends React.Component {
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}
           open={open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleClose}
           SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}

@@ -14,15 +14,15 @@ export interface SnackbarProps extends StandardProps<
   action?: React.ReactElement<any> | React.ReactElement<any>[];
   anchorOrigin?: SnackBarOrigin;
   autoHideDuration?: number;
-  resumeHideDuration?: number;
-  transitionDuration?: TransitionDuration;
   message?: React.ReactElement<any>;
+  onClose?: (event: React.SyntheticEvent<any>, reason: string) => void;
   onMouseEnter?: React.MouseEventHandler<any>;
   onMouseLeave?: React.MouseEventHandler<any>;
-  onRequestClose?: (event: React.SyntheticEvent<any>, reason: string) => void;
   open: boolean;
+  resumeHideDuration?: number;
   SnackbarContentProps?: Object;
   transition?: React.ReactType;
+  transitionDuration?: TransitionDuration;
 }
 
 export type SnackbarClassKey =

@@ -157,9 +157,9 @@ describe('<Modal />', () => {
       assert.strictEqual(transition.props().timeout, 200);
     });
 
-    it('should attach a handler to the backdrop that fires onRequestClose', () => {
-      const onRequestClose = spy();
-      wrapper.setProps({ onRequestClose });
+    it('should attach a handler to the backdrop that fires onClose', () => {
+      const onClose = spy();
+      wrapper.setProps({ onClose });
 
       const handler = wrapper.instance().handleBackdropClick;
       const backdrop = wrapper.find(Backdrop);
@@ -170,21 +170,17 @@ describe('<Modal />', () => {
       );
 
       handler({});
-      assert.strictEqual(onRequestClose.callCount, 1, 'should fire the onRequestClose callback');
+      assert.strictEqual(onClose.callCount, 1, 'should fire the onClose callback');
     });
 
-    it('should let the user disable backdrop click triggering onRequestClose', () => {
-      const onRequestClose = spy();
-      wrapper.setProps({ onRequestClose, ignoreBackdropClick: true });
+    it('should let the user disable backdrop click triggering onClose', () => {
+      const onClose = spy();
+      wrapper.setProps({ onClose, ignoreBackdropClick: true });
 
       const handler = wrapper.instance().handleBackdropClick;
 
       handler({});
-      assert.strictEqual(
-        onRequestClose.callCount,
-        0,
-        'should not fire the onRequestClose callback',
-      );
+      assert.strictEqual(onClose.callCount, 0, 'should not fire the onClose callback');
     });
   });
 
@@ -350,32 +346,32 @@ describe('<Modal />', () => {
 
     describe('called', () => {
       let onEscapeKeyUpStub;
-      let onRequestCloseStub;
+      let onCloseStub;
       let topModalStub;
       let event;
 
       before(() => {
         onEscapeKeyUpStub = stub().returns(true);
-        onRequestCloseStub = stub().returns(true);
+        onCloseStub = stub().returns(true);
         topModalStub = stub();
-        wrapper.setProps({ onEscapeKeyUp: onEscapeKeyUpStub, onRequestClose: onRequestCloseStub });
+        wrapper.setProps({ onEscapeKeyUp: onEscapeKeyUpStub, onClose: onCloseStub });
       });
 
       afterEach(() => {
         onEscapeKeyUpStub.reset();
-        onRequestCloseStub.reset();
+        onCloseStub.reset();
         topModalStub.reset();
       });
 
-      it('when not mounted should not call onEscapeKeyUp and onRequestClose', () => {
+      it('when not mounted should not call onEscapeKeyUp and onClose', () => {
         instance = wrapper.instance();
         instance.mounted = false;
         instance.handleDocumentKeyUp(undefined);
         assert.strictEqual(onEscapeKeyUpStub.callCount, 0);
-        assert.strictEqual(onRequestCloseStub.callCount, 0);
+        assert.strictEqual(onCloseStub.callCount, 0);
       });
 
-      it('when mounted and not TopModal should not call onEscapeKeyUp and onRequestClose', () => {
+      it('when mounted and not TopModal should not call onEscapeKeyUp and onClose', () => {
         topModalStub.returns('false');
         wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
         instance = wrapper.instance();
@@ -384,7 +380,7 @@ describe('<Modal />', () => {
         instance.handleDocumentKeyUp(undefined);
         assert.strictEqual(topModalStub.callCount, 1);
         assert.strictEqual(onEscapeKeyUpStub.callCount, 0);
-        assert.strictEqual(onRequestCloseStub.callCount, 0);
+        assert.strictEqual(onCloseStub.callCount, 0);
       });
 
       it('when mounted, TopModal and event not esc should not call given funcs', () => {
@@ -397,10 +393,10 @@ describe('<Modal />', () => {
         instance.handleDocumentKeyUp(event);
         assert.strictEqual(topModalStub.callCount, 1);
         assert.strictEqual(onEscapeKeyUpStub.callCount, 0);
-        assert.strictEqual(onRequestCloseStub.callCount, 0);
+        assert.strictEqual(onCloseStub.callCount, 0);
       });
 
-      it('should call onEscapeKeyUp and onRequestClose', () => {
+      it('should call onEscapeKeyUp and onClose', () => {
         topModalStub.returns(true);
         wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
         event = { keyCode: keycode('esc') };
@@ -411,11 +407,11 @@ describe('<Modal />', () => {
         assert.strictEqual(topModalStub.callCount, 1);
         assert.strictEqual(onEscapeKeyUpStub.callCount, 1);
         assert.strictEqual(onEscapeKeyUpStub.calledWith(event), true);
-        assert.strictEqual(onRequestCloseStub.callCount, 1);
-        assert.strictEqual(onRequestCloseStub.calledWith(event), true);
+        assert.strictEqual(onCloseStub.callCount, 1);
+        assert.strictEqual(onCloseStub.calledWith(event), true);
       });
 
-      it('when ignoreEscapeKeyUp should call only onRequestClose', () => {
+      it('when ignoreEscapeKeyUp should call only onClose', () => {
         topModalStub.returns(true);
         wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
         wrapper.setProps({ ignoreEscapeKeyUp: true });
@@ -427,7 +423,7 @@ describe('<Modal />', () => {
         assert.strictEqual(topModalStub.callCount, 1);
         assert.strictEqual(onEscapeKeyUpStub.callCount, 1);
         assert.strictEqual(onEscapeKeyUpStub.calledWith(event), true);
-        assert.strictEqual(onRequestCloseStub.callCount, 0);
+        assert.strictEqual(onCloseStub.callCount, 0);
       });
     });
   });

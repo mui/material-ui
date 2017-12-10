@@ -10,7 +10,7 @@ export interface MenuProps extends StandardProps<
 > {
   anchorEl?: HTMLElement;
   MenuListProps?: MenuListProps;
-  onRequestClose?: React.EventHandler<any>;
+  onClose?: React.EventHandler<any>;
   open?: boolean;
   transitionDuration?: TransitionDuration;
 }

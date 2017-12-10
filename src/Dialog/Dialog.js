@@ -83,11 +83,11 @@ export type Props = {
    */
   fullScreen: boolean,
   /**
-   * If `true`, clicking the backdrop will not fire the `onRequestClose` callback.
+   * If `true`, clicking the backdrop will not fire the `onClose` callback.
    */
   ignoreBackdropClick: boolean,
   /**
-   * If `true`, hitting escape will not fire the `onRequestClose` callback.
+   * If `true`, hitting escape will not fire the `onClose` callback.
    */
   ignoreEscapeKeyUp: boolean,
   /**
@@ -110,6 +110,12 @@ export type Props = {
    * Callback fired when the backdrop is clicked.
    */
   onBackdropClick?: Function,
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onClose?: Function,
   /**
    * Callback fired before the dialog enters.
    */
@@ -138,12 +144,6 @@ export type Props = {
    * Callback fired when the dialog has exited.
    */
   onExited?: TransitionCallback,
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback
-   */
-  onRequestClose?: Function,
   /**
    * If `true`, the Dialog is open.
    */
@@ -192,7 +192,7 @@ class Dialog extends React.Component<ProvidedProps & Props> {
       onExit,
       onExiting,
       onExited,
-      onRequestClose,
+      onClose,
       transition: TransitionProp,
       ...other
     } = this.props;
@@ -205,7 +205,7 @@ class Dialog extends React.Component<ProvidedProps & Props> {
         ignoreEscapeKeyUp={ignoreEscapeKeyUp}
         onBackdropClick={onBackdropClick}
         onEscapeKeyUp={onEscapeKeyUp}
-        onRequestClose={onRequestClose}
+        onClose={onClose}
         show={open}
         {...other}
       >

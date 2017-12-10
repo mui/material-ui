@@ -68,7 +68,7 @@ class MouseOverPopover extends Component {
             vertical: 'top',
             horizontal: 'left',
           }}
-          onRequestClose={this.handlePopoverClose}
+          onClose={this.handlePopoverClose}
         >
           <Typography>I use Popover.</Typography>
         </Popover>

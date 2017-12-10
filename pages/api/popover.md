@@ -22,13 +22,13 @@ filename: /src/Popover/Popover.js
 | elevation | number | 8 | The elevation of the popover. |
 | getContentAnchorEl | Function |  | This function is called in order to retrieve the content anchor element. It's the opposite of the `anchorEl` property. The content anchor element should be an element inside the popover. It's used to correctly scroll and set the position of the popover. The positioning strategy tries to make the content anchor element just above the anchor element. |
 | marginThreshold | number | 16 | Specifies how close to the edge of the window the popover can appear. |
+| onClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
 | onEnter | TransitionCallback |  | Callback fired before the component is entering. |
 | onEntered | TransitionCallback |  | Callback fired when the component has entered. |
 | onEntering | TransitionCallback |  | Callback fired when the component is entering. |
 | onExit | TransitionCallback |  | Callback fired before the component is exiting. |
 | onExited | TransitionCallback |  | Callback fired when the component has exited. |
 | onExiting | TransitionCallback |  | Callback fired when the component is exiting. |
-| onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
 | <span style="color: #31a148">open *</span> | boolean |  | If `true`, the popover is visible. |
 | transformOrigin | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
 | transitionClasses | TransitionClasses |  | The animation classNames applied to the component as it enters or exits. This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames). |

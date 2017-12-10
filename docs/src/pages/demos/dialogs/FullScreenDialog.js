@@ -34,7 +34,7 @@ class FullScreenDialog extends React.Component {
     this.setState({ open: true });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
@@ -46,18 +46,18 @@ class FullScreenDialog extends React.Component {
         <Dialog
           fullScreen
           open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleClose}
           transition={Transition}
         >
           <AppBar className={classes.appBar}>
             <Toolbar>
-              <IconButton color="contrast" onClick={this.handleRequestClose} aria-label="Close">
+              <IconButton color="contrast" onClick={this.handleClose} aria-label="Close">
                 <CloseIcon />
               </IconButton>
               <Typography type="title" color="inherit" className={classes.flex}>
                 Sound
               </Typography>
-              <Button color="contrast" onClick={this.handleRequestClose}>
+              <Button color="contrast" onClick={this.handleClose}>
                 save
               </Button>
             </Toolbar>

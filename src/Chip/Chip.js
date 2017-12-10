@@ -110,7 +110,7 @@ export type Props = {
    */
   classes?: Object,
   /**
-   * Custom delete icon. Will be shown only if `onRequestDelete` is set.
+   * Custom delete icon. Will be shown only if `onDelete` is set.
    */
   deleteIcon?: Element<any>,
   /**
@@ -122,14 +122,14 @@ export type Props = {
    */
   onClick?: Function,
   /**
-   * @ignore
-   */
-  onKeyDown?: Function,
-  /**
    * Callback function fired when the delete icon is clicked.
    * If set, the delete icon will be shown.
    */
-  onRequestDelete?: (event: SyntheticEvent<>) => void,
+  onDelete?: (event: SyntheticEvent<>) => void,
+  /**
+   * @ignore
+   */
+  onKeyDown?: Function,
   /**
    * @ignore
    */
@@ -147,22 +147,22 @@ class Chip extends React.Component<ProvidedProps & Props> {
   handleDeleteIconClick = event => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
-    const { onRequestDelete } = this.props;
-    if (onRequestDelete) {
-      onRequestDelete(event);
+    const { onDelete } = this.props;
+    if (onDelete) {
+      onDelete(event);
     }
   };
 
   handleKeyDown = event => {
-    const { onClick, onRequestDelete, onKeyDown } = this.props;
+    const { onClick, onDelete, onKeyDown } = this.props;
     const key = keycode(event);
 
     if (onClick && (key === 'space' || key === 'enter')) {
       event.preventDefault();
       onClick(event);
-    } else if (onRequestDelete && key === 'backspace') {
+    } else if (onDelete && key === 'backspace') {
       event.preventDefault();
-      onRequestDelete(event);
+      onDelete(event);
     } else if (key === 'esc') {
       event.preventDefault();
       if (this.chipRef) {
@@ -183,7 +183,7 @@ class Chip extends React.Component<ProvidedProps & Props> {
       label,
       onClick,
       onKeyDown,
-      onRequestDelete,
+      onDelete,
       deleteIcon: deleteIconProp,
       tabIndex: tabIndexProp,
       ...other
@@ -192,17 +192,17 @@ class Chip extends React.Component<ProvidedProps & Props> {
     const className = classNames(
       classes.root,
       { [classes.clickable]: onClick },
-      { [classes.deletable]: onRequestDelete },
+      { [classes.deletable]: onDelete },
       classNameProp,
     );
 
     let deleteIcon = null;
-    if (onRequestDelete && deleteIconProp && React.isValidElement(deleteIconProp)) {
+    if (onDelete && deleteIconProp && React.isValidElement(deleteIconProp)) {
       deleteIcon = React.cloneElement(deleteIconProp, {
         onClick: this.handleDeleteIconClick,
         className: classNames(classes.deleteIcon, deleteIconProp.props.className),
       });
-    } else if (onRequestDelete) {
+    } else if (onDelete) {
       deleteIcon = (
         <CancelIcon className={classes.deleteIcon} onClick={this.handleDeleteIconClick} />
       );
@@ -219,7 +219,7 @@ class Chip extends React.Component<ProvidedProps & Props> {
     let tabIndex = tabIndexProp;
 
     if (!tabIndex) {
-      tabIndex = onClick || onRequestDelete ? 0 : -1;
+      tabIndex = onClick || onDelete ? 0 : -1;
     }
 
     return (

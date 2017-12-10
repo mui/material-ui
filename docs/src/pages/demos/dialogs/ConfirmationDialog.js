@@ -49,11 +49,11 @@ class ConfirmationDialog extends React.Component {
   };
 
   handleCancel = () => {
-    this.props.onRequestClose(this.props.value);
+    this.props.onClose(this.props.value);
   };
 
   handleOk = () => {
-    this.props.onRequestClose(this.state.value);
+    this.props.onClose(this.state.value);
   };
 
   handleChange = (event, value) => {
@@ -101,7 +101,7 @@ class ConfirmationDialog extends React.Component {
 }
 
 ConfirmationDialog.propTypes = {
-  onRequestClose: PropTypes.func,
+  onClose: PropTypes.func,
   value: PropTypes.string,
 };
 
@@ -129,7 +129,7 @@ class ConfirmationDialogDemo extends React.Component {
     this.setState({ open: true });
   };
 
-  handleRequestClose = value => {
+  handleClose = value => {
     this.setState({ value, open: false });
   };
 
@@ -159,7 +159,7 @@ class ConfirmationDialogDemo extends React.Component {
               paper: classes.dialog,
             }}
             open={this.state.open}
-            onRequestClose={this.handleRequestClose}
+            onClose={this.handleClose}
             value={this.state.value}
           />
         </List>

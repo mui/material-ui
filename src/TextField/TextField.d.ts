@@ -27,8 +27,10 @@ export interface TextFieldProps extends StandardProps<
   inputRef?: React.Ref<any>;
   label?: React.ReactNode;
   labelClassName?: string;
+  margin?: PropTypes.Margin;
   multiline?: boolean;
   name?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   required?: boolean;
   rootRef?: React.Ref<any>;
@@ -38,8 +40,6 @@ export interface TextFieldProps extends StandardProps<
   SelectProps?: SelectProps;
   type?: string;
   value?: string | number;
-  margin?: PropTypes.Margin;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export type TextFieldClassKey =

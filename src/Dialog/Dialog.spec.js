@@ -34,14 +34,14 @@ describe('<Dialog />', () => {
   it('should put Modal specific props on the root Modal node', () => {
     const onBackdropClick = () => {};
     const onEscapeKeyUp = () => {};
-    const onRequestClose = () => {};
+    const onClose = () => {};
     const wrapper = shallow(
       <Dialog
         open
         transitionDuration={100}
         onBackdropClick={onBackdropClick}
         onEscapeKeyUp={onEscapeKeyUp}
-        onRequestClose={onRequestClose}
+        onClose={onClose}
         hideOnBackdropClick={false}
         hideOnEscapeKeyUp={false}
       />,
@@ -50,7 +50,7 @@ describe('<Dialog />', () => {
     assert.strictEqual(wrapper.props().BackdropTransitionDuration, 100);
     assert.strictEqual(wrapper.props().onBackdropClick, onBackdropClick);
     assert.strictEqual(wrapper.props().onEscapeKeyUp, onEscapeKeyUp);
-    assert.strictEqual(wrapper.props().onRequestClose, onRequestClose);
+    assert.strictEqual(wrapper.props().onClose, onClose);
     assert.strictEqual(wrapper.props().hideOnBackdropClick, false);
     assert.strictEqual(wrapper.props().hideOnEscapeKeyUp, false);
   });

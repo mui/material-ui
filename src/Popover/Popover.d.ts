@@ -14,12 +14,12 @@ export interface PopoverPosition {
   left: number;
 }
 
-export type PopoverReference = 'anchorEl' | 'anchorPosition'; 
+export type PopoverReference = 'anchorEl' | 'anchorPosition';
 
 export interface PopoverProps extends StandardProps<
   ModalProps & Partial<TransitionHandlers>,
   PopoverClassKey,
-  'onRequestClose'
+  'onClose'
 > {
   anchorEl?: Object;
   anchorOrigin?: PopoverOrigin;
@@ -33,13 +33,13 @@ export interface PopoverProps extends StandardProps<
   getContentAnchorEl?: Function;
   marginThreshold?: number;
   modal?: boolean;
-  onRequestClose?: Function;
+  onClose?: Function;
   open?: boolean;
+  PaperProps?: Partial<PaperProps>;
   role?: string;
+  theme?: Object;
   transformOrigin?: PopoverOrigin;
   transitionDuration?: TransitionDuration;
-  theme?: Object;
-  PaperProps?: Partial<PaperProps>;
 }
 
 export type PopoverClassKey =

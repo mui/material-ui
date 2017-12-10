@@ -161,6 +161,12 @@ export type Props = {
    */
   marginThreshold: number,
   /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback.
+   */
+  onClose?: Function,
+  /**
    * Callback fired before the component is entering.
    */
   onEnter?: TransitionCallback,
@@ -184,12 +190,6 @@ export type Props = {
    * Callback fired when the component has exited.
    */
   onExited?: TransitionCallback,
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback.
-   */
-  onRequestClose?: Function,
   /**
    * If `true`, the popover is visible.
    */

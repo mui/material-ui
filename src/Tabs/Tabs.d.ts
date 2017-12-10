@@ -11,7 +11,6 @@ export interface TabsProps extends StandardProps<
   centered?: boolean;
   children?: React.ReactNode;
   fullWidth?: boolean;
-  value: any;
   indicatorClassName?: string;
   indicatorColor?: 'accent' | 'primary' | string;
   onChange: (event: React.ChangeEvent<{}>, value: any) => void;
@@ -19,6 +18,7 @@ export interface TabsProps extends StandardProps<
   scrollButtons?: 'auto' | 'on' | 'off';
   TabScrollButton?: React.ReactType,
   textColor?: 'accent' | 'primary' | 'inherit' | string;
+  value: any;
   width?: string;
 }
 

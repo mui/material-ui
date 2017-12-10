@@ -22,7 +22,7 @@ class AlertDialogSlide extends React.Component {
     this.setState({ open: true });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
@@ -35,7 +35,7 @@ class AlertDialogSlide extends React.Component {
             open={this.state.open}
             transition={Transition}
             keepMounted
-            onRequestClose={this.handleRequestClose}
+            onClose={this.handleClose}
           >
             <DialogTitle>{"Use Google's location service?"}</DialogTitle>
             <DialogContent>
@@ -45,10 +45,10 @@ class AlertDialogSlide extends React.Component {
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleRequestClose} color="primary">
+              <Button onClick={this.handleClose} color="primary">
                 Disagree
               </Button>
-              <Button onClick={this.handleRequestClose} color="primary">
+              <Button onClick={this.handleClose} color="primary">
                 Agree
               </Button>
             </DialogActions>

@@ -129,7 +129,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it('should call handleRequestClose & handleRequestOpen', () => {
+  it('should call handleClose & handleRequestOpen', () => {
     const wrapper = shallow(
       <Tooltip placement="top" title="Hello World">
         <button>Hello World</button>
@@ -145,28 +145,28 @@ describe('<Tooltip />', () => {
 
   it('should be controllable', () => {
     const handleRequestOpen = spy();
-    const handleRequestClose = spy();
+    const handleClose = spy();
 
     const wrapper = shallow(
       <Tooltip
         placement="top"
         title="Hello World"
         open
-        onRequestOpen={handleRequestOpen}
-        onRequestClose={handleRequestClose}
+        onOpen={handleRequestOpen}
+        onClose={handleClose}
       >
         <button>Hello World</button>
       </Tooltip>,
     );
     const children = getTargetChildren(wrapper);
     assert.strictEqual(handleRequestOpen.callCount, 0);
-    assert.strictEqual(handleRequestClose.callCount, 0);
+    assert.strictEqual(handleClose.callCount, 0);
     children.simulate('mouseOver', { type: 'mouseover' });
     assert.strictEqual(handleRequestOpen.callCount, 1);
-    assert.strictEqual(handleRequestClose.callCount, 0);
+    assert.strictEqual(handleClose.callCount, 0);
     children.simulate('blur', { type: 'blur' });
     assert.strictEqual(handleRequestOpen.callCount, 1);
-    assert.strictEqual(handleRequestClose.callCount, 1);
+    assert.strictEqual(handleClose.callCount, 1);
   });
 
   describe('touch screen', () => {

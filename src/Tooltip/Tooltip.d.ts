@@ -9,13 +9,12 @@ export interface TooltipProps extends StandardProps<
   disableTriggerFocus?: boolean;
   disableTriggerHover?: boolean;
   disableTriggerTouch?: boolean;
-  id?: string;
-  onRequestClose?: (event: React.ChangeEvent<{}>) => void;
-  onRequestOpen?: (event: React.ChangeEvent<{}>) => void;
-  open?: boolean;
-  title: React.ReactNode;
   enterDelay?: number;
+  id?: string;
   leaveDelay?: number;
+  onClose?: (event: React.ChangeEvent<{}>) => void;
+  onOpen?: (event: React.ChangeEvent<{}>) => void;
+  open?: boolean;
   placement?:
     | 'bottom-end'
     | 'bottom-start'
@@ -30,6 +29,7 @@ export interface TooltipProps extends StandardProps<
     | 'top-start'
     | 'top';
   PopperProps?: object;
+  title: React.ReactNode;
 }
 
 export type TooltipClassKey =

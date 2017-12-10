@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 });
 
-function handleRequestDelete() {
+function handleDelete() {
   alert('You clicked the delete icon.'); // eslint-disable-line no-alert
 }
 
@@ -43,7 +43,7 @@ function Chips(props) {
       <Chip
         avatar={<Avatar src="/static/images/uxceo-128.jpg" />}
         label="Deletable Chip"
-        onRequestDelete={handleRequestDelete}
+        onDelete={handleDelete}
         className={classes.chip}
       />
       <Chip
@@ -54,13 +54,13 @@ function Chips(props) {
         }
         label="Clickable Deletable Chip"
         onClick={handleClick}
-        onRequestDelete={handleRequestDelete}
+        onDelete={handleDelete}
         className={classes.chip}
       />
       <Chip
         label="Custom delete icon Chip"
         onClick={handleClick}
-        onRequestDelete={handleRequestDelete}
+        onDelete={handleDelete}
         className={classes.chip}
         deleteIcon={<Done />}
       />

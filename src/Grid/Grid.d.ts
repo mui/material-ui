@@ -27,15 +27,15 @@ export interface GridProps extends StandardProps<
   GridClassKey,
   'hidden'
 > {
+  alignContent?: GridContentAlignment;
+  alignItems?: GridItemsAlignment;
   component?: string | React.ComponentType<Omit<GridProps, StrippedProps>>;
   container?: boolean;
-  item?: boolean;
-  alignItems?: GridItemsAlignment;
-  alignContent?: GridContentAlignment;
   direction?: GridDirection;
-  spacing?: GridSpacing;
   hidden?: HiddenProps;
+  item?: boolean;
   justify?: GridJustification;
+  spacing?: GridSpacing;
   wrap?: GridWrap;
 }
 

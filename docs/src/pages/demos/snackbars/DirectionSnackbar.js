@@ -29,7 +29,7 @@ class DirectionSnackbar extends React.Component {
     this.setState({ open: true, transition });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
@@ -42,7 +42,7 @@ class DirectionSnackbar extends React.Component {
         <Button onClick={this.handleClick(TransitionDown)}>Down</Button>
         <Snackbar
           open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleClose}
           transition={this.state.transition}
           SnackbarContentProps={{
             'aria-describedby': 'message-id',

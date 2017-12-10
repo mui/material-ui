@@ -5,9 +5,9 @@ export interface CardMediaProps extends StandardProps<
   React.HTMLAttributes<HTMLDivElement>,
   CardMediaClassKey
 > {
+  component?: string | React.ComponentType<CardMediaProps>;
   image?: string;
   src?: string;
-  component?: string | React.ComponentType<CardMediaProps>;
 }
 
 export type CardMediaClassKey =

@@ -15,19 +15,14 @@ class SimpleMenu extends React.Component<any, any> {
     this.setState({ selectedIndex: index, open: false });
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
   render() {
     return (
       <div data-mui-test="SimpleMenu">
-        <Menu
-          id="simple-menu"
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
-          {...this.props}
-        >
+        <Menu id="simple-menu" open={this.state.open} onClose={this.handleClose} {...this.props}>
           {options.map((label, index) => {
             return (
               <MenuItem
