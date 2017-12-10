@@ -148,6 +148,10 @@ const pages = [
         pathname: '/discover-more/vision',
       },
       {
+        pathname: '/discover-more/backers',
+        title: 'Sponsors & Backers',
+      },
+      {
         pathname: '/discover-more/community',
       },
       {
