@@ -86,7 +86,10 @@ function HiddenCss(props: Props) {
   }
 
   if (only) {
-    className.push(classes[`only${capitalizeFirstLetter(only)}`]);
+    const onlyBreakpoints = Array.isArray(only) ? only : [only];
+    onlyBreakpoints.forEach(breakpoint => {
+      className.push(classes[`only${capitalizeFirstLetter(breakpoint)}`]);
+    });
   }
 
   return <span className={className}>{children}</span>;

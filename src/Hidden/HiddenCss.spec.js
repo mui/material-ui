@@ -27,11 +27,37 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
+
       assert.strictEqual(wrapper.type(), 'span');
       assert.strictEqual(wrapper.hasClass(classes.onlySm), true);
+
       const div = wrapper.childAt(0);
       assert.strictEqual(div.type(), 'div');
       assert.strictEqual(div.props().className, 'foo');
+    });
+
+    it('should be ok with only as an array', () => {
+      const wrapper = shallow(
+        <HiddenCss only={['xs', 'sm']}>
+          <div className="foo" />
+        </HiddenCss>,
+      );
+
+      assert.strictEqual(wrapper.type(), 'span');
+      assert.strictEqual(wrapper.props().className[0], classes.onlyXs);
+      assert.strictEqual(wrapper.props().className[1], classes.onlySm);
+    });
+
+    it('should be ok with only as an empty array', () => {
+      const wrapper = shallow(
+        <HiddenCss only={[]}>
+          <div className="foo" />
+        </HiddenCss>,
+      );
+
+      assert.strictEqual(wrapper.type(), 'span');
+      assert.strictEqual(Array.isArray(wrapper.props().className), true);
+      assert.strictEqual(wrapper.props().className.length, 0);
     });
 
     it('should be ok with mdDown', () => {
