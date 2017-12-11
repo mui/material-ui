@@ -69,3 +69,7 @@ For example, if your site prompts for potential subscribers to fill in their ema
 You may make a `Dialog` responsively full screen the dialog using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics).
 
 {{demo='pages/demos/dialogs/ResponsiveDialog.js'}}
+
+## Accessibility
+
+Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Dialog`. Additionally, you may give a description of your modal dialog with the `aria-describedby="id..."` property on the `Dialog`.
