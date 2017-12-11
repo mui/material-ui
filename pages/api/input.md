@@ -49,8 +49,8 @@ This property accepts the following keys:
 - `formControl`
 - `inkbar`
 - `error`
-- `disabled`
 - `focused`
+- `disabled`
 - `underline`
 - `multiline`
 - `fullWidth`

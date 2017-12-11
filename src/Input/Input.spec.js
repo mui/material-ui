@@ -95,6 +95,17 @@ describe('<Input />', () => {
       assert.strictEqual(wrapper.state().focused, false);
       assert.strictEqual(handleBlur.callCount, 1);
     });
+
+    // IE11 bug
+    it('should not respond the the focus event when disabled', () => {
+      const wrapper = shallow(<Input disabled />);
+      const instance = wrapper.instance();
+      const event = {
+        stopPropagation: spy(),
+      };
+      instance.handleFocus(event);
+      assert.strictEqual(event.stopPropagation.callCount, 1);
+    });
   });
 
   it('should disabled the underline', () => {
