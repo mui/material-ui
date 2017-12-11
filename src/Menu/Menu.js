@@ -195,6 +195,7 @@ class Menu extends React.Component<ProvidedProps & Props> {
       classes,
       MenuListProps,
       onEnter,
+      open, // https://github.com/facebook/flow/issues/5253
       PaperProps = {},
       PopoverClasses,
       theme,
@@ -207,6 +208,7 @@ class Menu extends React.Component<ProvidedProps & Props> {
         getContentAnchorEl={this.getContentAnchorEl}
         classes={PopoverClasses}
         onEnter={this.handleEnter}
+        open={open}
         anchorOrigin={themeDirection === 'rtl' ? rtlOrigin : ltrOrigin}
         transformOrigin={themeDirection === 'rtl' ? rtlOrigin : ltrOrigin}
         PaperProps={{

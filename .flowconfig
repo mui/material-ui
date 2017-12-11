@@ -45,4 +45,6 @@ sketchy-null-bool=off
 sketchy-null-mixed=off
 sketchy-null-number=off
 sketchy-null-string=off
+unclear-type=off
+untyped-import=off
 untyped-type-import=off

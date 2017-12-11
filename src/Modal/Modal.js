@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Element, ElementType } from 'react';
+import type { Element as ReactElement, ElementType } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import warning from 'warning';
@@ -71,7 +71,7 @@ export type Props = {
   /**
    * A single child content element.
    */
-  children?: Element<any>,
+  children?: ReactElement<any>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -254,9 +254,9 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
     const modalContent = this.modal && this.modal.lastChild;
     const focusInModal = currentFocus && contains(modalContent, currentFocus);
 
-    if (modalContent && !focusInModal) {
+    if (modalContent instanceof HTMLElement && !focusInModal) {
       if (!modalContent.hasAttribute('tabIndex')) {
-        modalContent.setAttribute('tabIndex', -1);
+        modalContent.setAttribute('tabIndex', '-1');
         warning(
           false,
           'Material-UI: the modal content node does not accept focus. ' +
@@ -284,7 +284,11 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
     const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
     const modalContent = this.modal && this.modal.lastChild;
 
-    if (modalContent && modalContent !== currentFocus && !contains(modalContent, currentFocus)) {
+    if (
+      modalContent instanceof HTMLElement &&
+      modalContent !== currentFocus &&
+      !contains(modalContent, currentFocus)
+    ) {
       modalContent.focus();
     }
   };
