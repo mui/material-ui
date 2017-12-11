@@ -68,9 +68,9 @@ describe('<Modal />', () => {
       describe('focus', () => {
         before(() => {
           instance.modal = spy();
-
-          // Modal checks for div instance.
           instance.modal.lastChild = document.createElement('div');
+          instance.modal.lastChild.setAttribute = spy();
+          instance.modal.lastChild.focus = spy();
         });
 
         describe('modalContent has tabIndex attribute', () => {
