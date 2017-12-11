@@ -256,7 +256,8 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
 
     if (modalContent instanceof HTMLElement && !focusInModal) {
       if (!modalContent.hasAttribute('tabIndex')) {
-        modalContent.setAttribute('tabIndex', '-1');
+        // $FlowFixMe Flow's `setAttribute` expects the value to be a string.
+        modalContent.setAttribute('tabIndex', -1);
         warning(
           false,
           'Material-UI: the modal content node does not accept focus. ' +
