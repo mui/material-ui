@@ -102,10 +102,10 @@ export const styles = (theme: Object) => {
         transform: 'scaleX(1)', // error is always underlined in red
       },
     },
+    focused: {},
     disabled: {
       color: theme.palette.text.disabled,
     },
-    focused: {},
     underline: {
       '&:before': {
         backgroundColor: theme.palette.input.bottomLine,
@@ -350,6 +350,32 @@ type State = {
   focused: boolean,
 };
 
+function formControlState(props, context) {
+  let disabled = props.disabled;
+  let error = props.error;
+  let margin = props.margin;
+
+  if (context.muiFormControl) {
+    if (typeof disabled === 'undefined') {
+      disabled = context.muiFormControl.disabled;
+    }
+
+    if (typeof error === 'undefined') {
+      error = context.muiFormControl.error;
+    }
+
+    if (typeof margin === 'undefined') {
+      margin = context.muiFormControl.margin;
+    }
+  }
+
+  return {
+    disabled,
+    error,
+    margin,
+  };
+}
+
 class Input extends React.Component<ProvidedProps & Props, State> {
   static muiName = 'Input';
 
@@ -376,23 +402,29 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
     // The blur won't fire when the disabled state is set on a focused input.
     // We need to book keep the focused state manually.
-    if (!this.props.disabled && nextProps.disabled) {
+    if (
+      !formControlState(this.props, this.context).disabled &&
+      formControlState(nextProps, nextContext).disabled
+    ) {
       this.setState({
         focused: false,
       });
     }
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillUpdate(nextProps, nextState, nextContext) {
     if (this.isControlled(nextProps)) {
       this.checkDirty(nextProps);
     } // else performed in the onChange
 
     // Book keep the focused state.
-    if (!this.props.disabled && nextProps.disabled) {
+    if (
+      !formControlState(this.props, this.context).disabled &&
+      formControlState(nextProps, nextContext).disabled
+    ) {
       const { muiFormControl } = this.context;
       if (muiFormControl && muiFormControl.onBlur) {
         muiFormControl.onBlur();
@@ -404,6 +436,13 @@ class Input extends React.Component<ProvidedProps & Props, State> {
   input = null;
 
   handleFocus = (event: SyntheticFocusEvent<>) => {
+    // Fix an bug with IE11 where the focus/blur events are triggered
+    // while the input is disabled.
+    if (formControlState(this.props, this.context).disabled) {
+      event.stopPropagation();
+      return;
+    }
+
     this.setState({ focused: true });
     if (this.props.onFocus) {
       this.props.onFocus(event);
@@ -504,23 +543,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     } = this.props;
 
     const { muiFormControl } = this.context;
-    let disabled = disabledProp;
-    let error = errorProp;
-    let margin = marginProp;
-
-    if (muiFormControl) {
-      if (typeof disabled === 'undefined') {
-        disabled = muiFormControl.disabled;
-      }
-
-      if (typeof error === 'undefined') {
-        error = muiFormControl.error;
-      }
-
-      if (typeof margin === 'undefined') {
-        margin = muiFormControl.margin;
-      }
-    }
+    const { disabled, error, margin } = formControlState(this.props, this.context);
 
     const className = classNames(
       classes.root,
