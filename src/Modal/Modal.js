@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Element as ReactElement, ElementType } from 'react';
+import type { Element, ElementType } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import warning from 'warning';
@@ -71,7 +71,7 @@ export type Props = {
   /**
    * A single child content element.
    */
-  children?: ReactElement<any>,
+  children?: Element<any>,
   /**
    * Useful to extend the style applied to components.
    */
