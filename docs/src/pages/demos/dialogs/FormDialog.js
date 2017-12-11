@@ -25,8 +25,12 @@ export default class FormDialog extends React.Component {
     return (
       <div>
         <Button onClick={this.handleClickOpen}>Open form dialog</Button>
-        <Dialog open={this.state.open} onClose={this.handleClose}>
-          <DialogTitle>Subscribe</DialogTitle>
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
           <DialogContent>
             <DialogContentText>
               To subscribe to this website, please enter your email address here. We will send

@@ -24,10 +24,15 @@ class AlertDialog extends React.Component {
     return (
       <div>
         <Button onClick={this.handleClickOpen}>Open alert dialog</Button>
-        <Dialog open={this.state.open} onClose={this.handleClose}>
-          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
-            <DialogContentText>
+            <DialogContentText id="alert-dialog-description">
               Let Google help apps determine location. This means sending anonymous location data to
               Google, even when no apps are running.
             </DialogContentText>

@@ -33,8 +33,8 @@ class SimpleDialog extends React.Component {
     const { classes, onClose, selectedValue, ...other } = this.props;
 
     return (
-      <Dialog onClose={this.handleClose} {...other}>
-        <DialogTitle>Set backup account</DialogTitle>
+      <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
+        <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
         <div>
           <List>
             {emails.map(email => (

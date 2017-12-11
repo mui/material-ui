@@ -69,9 +69,10 @@ class ConfirmationDialog extends React.Component {
         ignoreEscapeKeyUp
         maxWidth="xs"
         onEntering={this.handleEntering}
+        aria-labelledby="confirmation-dialog-title"
         {...other}
       >
-        <DialogTitle>Phone Ringtone</DialogTitle>
+        <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
         <DialogContent>
           <RadioGroup
             ref={node => {

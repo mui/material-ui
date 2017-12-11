@@ -178,22 +178,22 @@ class Dialog extends React.Component<ProvidedProps & Props> {
       classes,
       className,
       fullScreen,
+      fullWidth,
       ignoreBackdropClick,
       ignoreEscapeKeyUp,
-      transitionDuration,
       maxWidth,
-      fullWidth,
-      open,
       onBackdropClick,
-      onEscapeKeyUp,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
       onClose,
+      onEnter,
+      onEntered,
+      onEntering,
+      onEscapeKeyUp,
+      onExit,
+      onExited,
+      onExiting,
+      open,
       transition: TransitionProp,
+      transitionDuration,
       ...other
     } = this.props;
 
@@ -207,6 +207,7 @@ class Dialog extends React.Component<ProvidedProps & Props> {
         onEscapeKeyUp={onEscapeKeyUp}
         onClose={onClose}
         show={open}
+        role="dialog"
         {...other}
       >
         <TransitionProp
