@@ -34,7 +34,7 @@ Your donations directly support office hours, continued enhancements, great docu
 ### What's the difference between Patreon and OpenCollective?
 
 Funds donated via Patreon directly support [Olivier Tassinari](https://github.com/oliviertassinari)'s work on Material-UI.
-Funds donated via OpenCollective are managed with transparent expenses and will be used to compensate work and expenses by core team members.
+Funds donated via OpenCollective are managed transparently and will be used to compensate work and expenses by core team members.
 Your name/logo will receive proper recognition and exposure by donating on either platform.
 
 <h3 align="center">Gold Sponsors</h3>
