@@ -537,7 +537,6 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       rowsMax,
       startAdornment,
       type,
-      // $FlowFixMe
       value,
       ...other
     } = this.props;
@@ -616,7 +615,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
           onKeyDown={onKeyDown}
           disabled={disabled}
           required={required ? true : undefined}
-          value={value}
+          value={(value: any)}
           id={id}
           name={name}
           defaultValue={defaultValue}
