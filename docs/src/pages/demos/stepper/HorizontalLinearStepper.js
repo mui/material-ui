@@ -104,15 +104,16 @@ class HorizontalLinearStepper extends React.Component {
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
             const props = {};
+            const labelProps = {};
             if (this.isStepOptional(index)) {
-              props.optional = true;
+              labelProps.optional = <Typography type="caption">Optional</Typography>;
             }
             if (this.isStepSkipped(index)) {
               props.completed = false;
             }
             return (
               <Step key={label} {...props}>
-                <StepLabel>{label}</StepLabel>
+                <StepLabel {...labelProps}>{label}</StepLabel>
               </Step>
             );
           })}

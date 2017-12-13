@@ -35,7 +35,6 @@ function Step(props) {
     index,
     last,
     orientation,
-    optional,
     ...other
   } = props;
 
@@ -59,7 +58,6 @@ function Step(props) {
           icon: index + 1,
           last,
           orientation,
-          optional,
           ...child.props,
         }),
       )}
@@ -117,10 +115,6 @@ Step.propTypes = {
    */
   last: PropTypes.bool,
   /**
-   * Define this step as optional.
-   */
-  optional: PropTypes.bool,
-  /**
    * @ignore
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
@@ -130,7 +124,6 @@ Step.defaultProps = {
   active: false,
   completed: false,
   disabled: false,
-  optional: false,
 };
 
 export default withStyles(styles, { name: 'MuiStep' })(Step);

@@ -16,7 +16,6 @@ filename: /src/Stepper/Step.js
 | children | node |  | Should be `Step` sub-components such as `StepLabel`, `StepContent`. |
 | completed | bool | false | Mark the step as completed. Is passed to child components. |
 | disabled | bool | false | Mark the step as disabled, will also disable the button if `StepButton` is a child of `Step`. Is passed to child components. |
-| optional | bool | false | Define this step as optional. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

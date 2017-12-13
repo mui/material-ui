@@ -14,7 +14,7 @@ export interface StepLabelProps extends StandardProps<
   disabled?: boolean;
   icon?: StepButtonIcon;
   last?: boolean;
-  optional?: boolean;
+  optional?: React.ReactNode;
   orientation?: Orientation;
 }
 
