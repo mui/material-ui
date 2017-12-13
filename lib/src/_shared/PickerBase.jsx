@@ -13,6 +13,7 @@ export default class PickerBase extends PureComponent {
     format: PropTypes.string,
     labelFunc: PropTypes.func,
     ampm: PropTypes.bool,
+    keyboard: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -22,10 +23,11 @@ export default class PickerBase extends PureComponent {
     labelFunc: undefined,
     format: undefined,
     ampm: true,
+    keyboard: false,
   }
 
-  getValidDateOrCurrent = () => {
-    const date = moment(this.props.value);
+  getValidDateOrCurrent = (props = this.props) => {
+    const date = moment(props.value);
 
     return date.isValid() ? date : moment();
   }
@@ -34,10 +36,24 @@ export default class PickerBase extends PureComponent {
     date: this.getValidDateOrCurrent(),
   }
 
-  componentDidUpdate = (prevProps) => {
-    if (this.props.value !== prevProps.value) {
-      this.setState({ date: this.getValidDateOrCurrent() });
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) {
+      this.setState({ date: this.getValidDateOrCurrent(nextProps) });
     }
+  }
+
+  getFormat = () => {
+    if (this.props.format || this.props.labelFunc) {
+      return this.props.format;
+    }
+
+    return this.props.ampm
+      ? this.default12hFormat
+      : this.default24hFormat;
+  }
+
+  togglePicker = () => {
+    this.wrapper.togglePicker();
   }
 
   handleAccept = () => {
@@ -49,29 +65,18 @@ export default class PickerBase extends PureComponent {
   }
 
   handleDismiss = () => {
-    this.setState({ date: this.getValidDateOrCurrent() });
+    this.setState({ date: this.getValidDateOrCurrent(this.props) });
   }
 
   handleChange = (date, isFinish = true) => {
     this.setState({ date }, () => {
-      if (isFinish && this.props.autoOk) {
+      if (isFinish && (this.props.autoOk || this.props.keyboard)) {
         this.handleAccept();
+      }
+
+      if (isFinish && this.props.autoOk) {
         this.togglePicker();
       }
     });
-  }
-
-  togglePicker = () => {
-    this.wrapper.togglePicker();
-  }
-
-  getFormat = () => {
-    if (this.props.format || this.props.labelFunc) {
-      return this.props.format;
-    }
-
-    return this.props.ampm
-      ? this.default12hFormat
-      : this.default24hFormat;
   }
 }

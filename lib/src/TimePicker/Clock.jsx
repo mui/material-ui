@@ -8,7 +8,7 @@ import { getMinutes, getHours } from '../utils/time-utils';
 
 export class Clock extends Component {
   static propTypes = {
-    type: PropTypes.oneOf(Object.values(clockType)).isRequired,
+    type: PropTypes.oneOf(Object.keys(clockType).map(key => clockType[key])).isRequired,
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,

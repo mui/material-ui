@@ -23,6 +23,7 @@ export class Calendar extends Component {
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
     utils: PropTypes.object,
+    shouldDisableDate: PropTypes.func,
   }
 
   static defaultProps = {
@@ -33,6 +34,7 @@ export class Calendar extends Component {
     rightArrowIcon: undefined,
     renderDay: undefined,
     utils: defaultUtils,
+    shouldDisableDate: () => false,
   }
 
   state = {
@@ -63,9 +65,10 @@ export class Calendar extends Component {
   }
 
   shouldDisableDate = (day) => {
-    const { disableFuture } = this.props;
+    const { disableFuture, shouldDisableDate } = this.props;
     return (
-      (disableFuture && day.isAfter(moment())) || this.validateMinMaxDate(day)
+      (disableFuture && day.isAfter(moment())) || this.validateMinMaxDate(day) ||
+      shouldDisableDate(day)
     );
   }
 
@@ -92,8 +95,8 @@ export class Calendar extends Component {
     return week.map((day) => {
       // should be applied both for wrapper and button
       const disabledClass = classnames({ [classes.disabled]: this.shouldDisableDate(day) });
-      const dayInCurrentMonth = utils.getMonthNumber(day) === currentMonthNumber;
 
+      const dayInCurrentMonth = utils.getMonthNumber(day) === currentMonthNumber;
       const dayClass = classnames(classes.day, disabledClass, {
         [classes.hidden]: !dayInCurrentMonth,
         [classes.selected]: selectedDate.isSame(day, 'day'),

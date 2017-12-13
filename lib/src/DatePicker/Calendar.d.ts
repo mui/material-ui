@@ -2,6 +2,7 @@ import { ComponentClass, ReactElement, ReactNode } from 'react';
 import { IconButtonProps } from 'material-ui/IconButton';
 import { DateType } from '../constants/prop-types';
 import { Utils } from '../utils/utils';
+import { Moment } from 'moment';
 
 type DayComponent = ReactElement<IconButtonProps>;
 
@@ -24,6 +25,7 @@ export interface CalendarProps {
     rightArrowIcon?: ReactNode;
     renderDay?: RenderDay;
     utils?: Utils;
+    shouldDisableDate?: (day: Moment) => boolean;
 }
 
 declare const Calendar: ComponentClass<CalendarProps>;

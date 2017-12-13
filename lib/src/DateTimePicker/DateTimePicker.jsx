@@ -20,7 +20,7 @@ export class DateTimePicker extends Component {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     autoSubmit: PropTypes.bool,
-    openTo: PropTypes.oneOf(Object.values(viewType)),
+    openTo: PropTypes.oneOf(Object.keys(viewType).map(key => viewType[key])),
     disableFuture: PropTypes.bool,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
@@ -32,6 +32,7 @@ export class DateTimePicker extends Component {
     renderDay: PropTypes.func,
     utils: PropTypes.object,
     ampm: PropTypes.bool,
+    shouldDisableDate: PropTypes.func,
   }
 
   static defaultProps = {
@@ -48,6 +49,7 @@ export class DateTimePicker extends Component {
     renderDay: undefined,
     utils: defaultUtils,
     ampm: true,
+    shouldDisableDate: undefined,
   }
 
   state = {
@@ -94,6 +96,7 @@ export class DateTimePicker extends Component {
       renderDay,
       utils,
       ampm,
+      shouldDisableDate,
     } = this.props;
 
     return (
@@ -140,6 +143,7 @@ export class DateTimePicker extends Component {
             rightArrowIcon={rightArrowIcon}
             renderDay={renderDay}
             utils={utils}
+            shouldDisableDate={shouldDisableDate}
           />
         </View>
 

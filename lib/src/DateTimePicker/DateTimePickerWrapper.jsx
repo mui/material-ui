@@ -33,6 +33,7 @@ export class DateTimePickerWrapper extends PickerBase {
     labelFunc: PropTypes.func,
     utils: PropTypes.object,
     ampm: PropTypes.bool,
+    shouldDisableDate: PropTypes.func,
   }
 
   static defaultProps = {
@@ -55,6 +56,7 @@ export class DateTimePickerWrapper extends PickerBase {
     labelFunc: undefined,
     utils: defaultUtils,
     ampm: true,
+    shouldDisableDate: undefined,
   }
 
   default12hFormat = 'MMMM Do hh:mm a'
@@ -83,6 +85,7 @@ export class DateTimePickerWrapper extends PickerBase {
       labelFunc,
       utils,
       ampm,
+      shouldDisableDate,
       ...other
     } = this.props;
 
@@ -94,6 +97,7 @@ export class DateTimePickerWrapper extends PickerBase {
         value={value}
         format={this.getFormat()}
         onAccept={this.handleAccept}
+        onChange={this.handleChange}
         onDismiss={this.handleDismiss}
         dialogContentClassName={dialogClassName}
         invalidLabel={invalidLabel}
@@ -116,6 +120,7 @@ export class DateTimePickerWrapper extends PickerBase {
           renderDay={renderDay}
           utils={utils}
           ampm={ampm}
+          shouldDisableDate={shouldDisableDate}
         />
       </ModalWrapper>
     );

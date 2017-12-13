@@ -98,6 +98,9 @@ labelFunc | func | null | Allow to specify dynamic label for text field `labelFu
 renderDay | fund | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
+shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
+keyboard | boolean | false | Allow to manual input date to the text field
+mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 
 #### Timepicker
 Prop | Type | Default | Definition
@@ -110,6 +113,8 @@ returnMoment | boolean | true | Will return moment object in onChange
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
 ampm | boolean | true | 12h/24h view for hour selection clock
+keyboard | boolean | false | Allow to manual input date to the text field
+mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 
 #### DateTimepicker
 Prop | Type | Default | Definition
@@ -133,6 +138,9 @@ rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 dateRangeIcon | react node, string | 'date_range'| Date tab icon 
 timeIcon | react node, string | 'access_time'| Time tab icon
 ampm | boolean | true | 12h/24h view for hour selection clock
+shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
+keyboard | boolean | false | Allow to manual input date to the text field
+mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 
 ### l10n
 For l10n texts we're currently relying on moment which is stateful. To change the locale you have to import your langauge specific files an change the locale manually via `moment.locale(language)`.
