@@ -31,8 +31,8 @@
     "email": "dmtr.kovalenko@outlook.com"
   },
   "peerDependencies": {
-    "react": "^15.6.2 || ^16.0.0",
-    "react-dom": "^15.6.2 || ^16.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "prop-types": "^15.6.0",
     "material-ui": "^1.0.0-beta.18",
     "classnames": "^2.2.5",
