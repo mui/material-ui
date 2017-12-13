@@ -94,6 +94,7 @@ export class DateTimePickerWrapper extends PickerBase {
         value={value}
         format={this.getFormat()}
         onAccept={this.handleAccept}
+        onChange={this.handleChange}
         onDismiss={this.handleDismiss}
         dialogContentClassName={dialogClassName}
         invalidLabel={invalidLabel}
