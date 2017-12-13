@@ -1,13 +1,9 @@
-// @flow
-
-export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-
 // Sorted ASC by size. That's important.
 // It can't be configured as it's used statically for propTypes.
 export const keys = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 // Keep in mind that @media is inclusive by the CSS specification.
-export default function createBreakpoints(breakpoints: Object) {
+export default function createBreakpoints(breakpoints) {
   const {
     // The breakpoint **start** at this value.
     // For instance with the first breakpoint xs: [xs, sm[.

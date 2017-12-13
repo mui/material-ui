@@ -1,14 +1,11 @@
-// @flow
-
 import React from 'react';
-import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -63,68 +60,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * If `true`, the ListItem will be a button.
-   */
-  button: boolean,
-  /**
-   * The content of the component.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: ElementType,
-  /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
-   */
-  dense: boolean,
-  /**
-   * @ignore
-   */
-  disabled: boolean,
-  /**
-   * If `true`, the left and right padding is removed.
-   */
-  disableGutters: boolean,
-  /**
-   * If `true`, a 1px light border is added to the bottom of the list item.
-   */
-  divider: boolean,
-};
-
-class ListItem extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    button: false,
-    component: ('li': ElementType),
-    dense: false,
-    disabled: false,
-    disableGutters: false,
-    divider: false,
-  };
-
+class ListItem extends React.Component {
   getChildContext() {
     return {
       dense: this.props.dense || this.context.dense || false,
@@ -140,8 +76,8 @@ class ListItem extends React.Component<ProvidedProps & Props> {
       component: componentProp,
       dense,
       disabled,
-      divider,
       disableGutters,
+      divider,
       ...other
     } = this.props;
     const isDense = dense || this.context.dense || false;
@@ -185,6 +121,55 @@ class ListItem extends React.Component<ProvidedProps & Props> {
     return <ComponentMain {...listItemProps}>{children}</ComponentMain>;
   }
 }
+
+ListItem.propTypes = {
+  /**
+   * If `true`, the ListItem will be a button.
+   */
+  button: PropTypes.bool,
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   */
+  dense: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the left and right padding is removed.
+   */
+  disableGutters: PropTypes.bool,
+  /**
+   * If `true`, a 1px light border is added to the bottom of the list item.
+   */
+  divider: PropTypes.bool,
+};
+
+ListItem.defaultProps = {
+  button: false,
+  component: 'li',
+  dense: false,
+  disabled: false,
+  disableGutters: false,
+  divider: false,
+};
 
 ListItem.contextTypes = {
   dense: PropTypes.bool,

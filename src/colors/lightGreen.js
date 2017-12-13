@@ -1,6 +1,3 @@
-// Wait https://github.com/facebook/flow/issues/380 to be fixed
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 const lightGreen = {
   50: '#f1f8e9',
   100: '#dcedc8',

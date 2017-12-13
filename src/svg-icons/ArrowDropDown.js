@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import pure from 'recompose/pure';
 import SvgIcon from '../SvgIcon';

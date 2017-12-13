@@ -1,7 +1,5 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
@@ -18,47 +16,37 @@ export const styles = {
   },
 };
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+function CardActions(props) {
+  const { disableActionSpacing, children, classes, className, ...other } = props;
 
-export type Props = {
+  return (
+    <div className={classNames(classes.root, className)} {...other}>
+      {disableActionSpacing ? children : cloneChildrenWithClassName(children, classes.action)}
+    </div>
+  );
+}
+
+CardActions.propTypes = {
   /**
    * The content of the component.
    */
-  children?: Node,
+  children: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * If `true`, the card actions do not have additional margin.
    */
-  disableActionSpacing: boolean,
+  disableActionSpacing: PropTypes.bool,
 };
 
-class CardActions extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    disableActionSpacing: false,
-  };
-
-  render() {
-    const { disableActionSpacing, children, classes, className, ...other } = this.props;
-
-    return (
-      <div className={classNames(classes.root, className)} {...other}>
-        {disableActionSpacing ? children : cloneChildrenWithClassName(children, classes.action)}
-      </div>
-    );
-  }
-}
+CardActions.defaultProps = {
+  disableActionSpacing: false,
+};
 
 export default withStyles(styles, { name: 'MuiCardActions' })(CardActions);

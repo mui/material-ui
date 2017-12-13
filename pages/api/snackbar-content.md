@@ -12,9 +12,9 @@ filename: /src/Snackbar/SnackbarContent.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| action | Node |  | The action to display. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">message *</span> | Node |  | The message to display. |
+| action | node |  | The action to display. |
+| classes | object |  | Useful to extend the style applied to components. |
+| message | node |  | The message to display. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

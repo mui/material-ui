@@ -12,9 +12,9 @@ filename: /src/Icon/Icon.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Node |  | The name of the icon font ligature. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| color | union:&nbsp;'inherit', 'accent', 'action', 'contrast', 'disabled', 'error', 'primary'<br> | 'inherit' | The color of the component. It's using the theme palette when that makes sense. |
+| children | node |  | The name of the icon font ligature. |
+| classes | object |  | Useful to extend the style applied to components. |
+| color | enum:&nbsp;'inherit', 'accent', 'action', 'contrast', 'disabled', 'error', 'primary'<br> | 'inherit' | The color of the component. It's using the theme palette when that makes sense. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

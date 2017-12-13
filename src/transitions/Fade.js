@@ -1,59 +1,10 @@
-// @flow
 // @inheritedComponent Transition
 
 import React from 'react';
-import type { Element } from 'react';
+import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
-import type { TransitionDuration, TransitionCallback } from '../internal/transition';
-
-type ProvidedProps = {
-  /**
-   * @ignore
-   */
-  theme: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * @ignore
-   */
-  appear: boolean,
-  /**
-   * A single child content element.
-   */
-  children: Element<any>,
-  /**
-   * If `true`, the component will transition in.
-   */
-  in: boolean,
-  /**
-   * @ignore
-   */
-  onEnter?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onEntering?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onExit?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  style?: Object,
-  /**
-   * The duration for the transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   */
-  timeout: TransitionDuration,
-};
 
 const reflow = node => node.scrollTop;
 
@@ -61,16 +12,8 @@ const reflow = node => node.scrollTop;
  * The Fade transition is used by the Modal component.
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Fade extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    appear: true,
-    timeout: ({
-      enter: duration.enteringScreen,
-      exit: duration.leavingScreen,
-    }: TransitionDuration),
-  };
-
-  handleEnter = (node: HTMLElement) => {
+class Fade extends React.Component {
+  handleEnter = node => {
     node.style.opacity = '0';
     reflow(node);
 
@@ -79,12 +22,11 @@ class Fade extends React.Component<ProvidedProps & Props> {
     }
   };
 
-  handleEntering = (node: HTMLElement) => {
+  handleEntering = node => {
     const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
-    // $FlowFixMe - https://github.com/facebook/flow/pull/5161
     node.style.webkitTransition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
@@ -95,12 +37,11 @@ class Fade extends React.Component<ProvidedProps & Props> {
     }
   };
 
-  handleExit = (node: HTMLElement) => {
+  handleExit = node => {
     const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
-    // $FlowFixMe - https://github.com/facebook/flow/pull/5161
     node.style.webkitTransition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
@@ -144,5 +85,56 @@ class Fade extends React.Component<ProvidedProps & Props> {
     );
   }
 }
+
+Fade.propTypes = {
+  /**
+   * @ignore
+   */
+  appear: PropTypes.bool,
+  /**
+   * A single child content element.
+   */
+  children: PropTypes.element,
+  /**
+   * If `true`, the component will transition in.
+   */
+  in: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onEnter: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onEntering: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExit: PropTypes.func,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  timeout: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+  ]),
+};
+
+Fade.defaultProps = {
+  appear: true,
+  timeout: {
+    enter: duration.enteringScreen,
+    exit: duration.leavingScreen,
+  },
+};
 
 export default withTheme()(Fade);

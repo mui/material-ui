@@ -1,6 +1,7 @@
 // @flow
 
-// Needed as the zIndex works with absolute values.
+// We need to centralize the zIndex definitions as they work
+// like global values in the browser.
 const zIndex = {
   mobileStepper: 900,
   menu: 1000,

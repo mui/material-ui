@@ -1,11 +1,9 @@
-// @flow weak
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     position: 'absolute',
     left: 0,
@@ -63,98 +61,85 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type TitlePosition = 'top' | 'bottom';
-export type ActionPosition = 'left' | 'right';
+function GridListTileBar(props) {
+  const {
+    actionIcon,
+    actionPosition,
+    classes,
+    className: classNameProp,
+    subtitle,
+    title,
+    titlePosition,
+    ...other
+  } = props;
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+  const actionPos = actionIcon && actionPosition;
+  const className = classNames(
+    classes.root,
+    {
+      [classes.rootBottom]: titlePosition === 'bottom',
+      [classes.rootTop]: titlePosition === 'top',
+      [classes.rootWithSubtitle]: subtitle,
+    },
+    classNameProp,
+  );
 
-export type Props = {
+  // Remove the margin between the title / subtitle wrapper, and the Action Icon
+  const titleWrapClassName = classNames(classes.titleWrap, {
+    [classes.titleWrapActionLeft]: actionPos === 'left',
+    [classes.titleWrapActionRight]: actionPos === 'right',
+  });
+
+  return (
+    <div className={className} {...other}>
+      <div className={titleWrapClassName}>
+        <div className={classes.title}>{title}</div>
+        {subtitle ? <div className={classes.subtitle}>{subtitle}</div> : null}
+      </div>
+      {actionIcon ? (
+        <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
+          {actionIcon}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+GridListTileBar.propTypes = {
   /**
    * An IconButton element to be used as secondary action target
    * (primary action target is the tile itself).
    */
-  actionIcon?: Node,
+  actionIcon: PropTypes.node,
   /**
    * Position of secondary action IconButton.
    */
-  actionPosition?: ActionPosition,
+  actionPosition: PropTypes.oneOf(['left', 'right']),
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * String or element serving as subtitle (support text).
    */
-  subtitle?: Node,
+  subtitle: PropTypes.node,
   /**
    * Title to be displayed on tile.
    */
-  title: Node,
+  title: PropTypes.node,
   /**
    * Position of the title bar.
    */
-  titlePosition?: TitlePosition,
+  titlePosition: PropTypes.oneOf(['top', 'bottom']),
 };
 
-class GridListTileBar extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    actionPosition: 'right',
-    titlePosition: 'bottom',
-  };
-
-  render() {
-    const {
-      actionIcon,
-      actionPosition,
-      classes,
-      className: classNameProp,
-      subtitle,
-      title,
-      titlePosition,
-      ...other
-    } = this.props;
-
-    const actionPos = actionIcon && actionPosition;
-    const className = classNames(
-      classes.root,
-      {
-        [classes.rootBottom]: titlePosition === 'bottom',
-        [classes.rootTop]: titlePosition === 'top',
-        [classes.rootWithSubtitle]: subtitle,
-      },
-      classNameProp,
-    );
-
-    // Remove the margin between the title / subtitle wrapper, and the Action Icon
-    const titleWrapClassName = classNames(classes.titleWrap, {
-      [classes.titleWrapActionLeft]: actionPos === 'left',
-      [classes.titleWrapActionRight]: actionPos === 'right',
-    });
-
-    return (
-      <div className={className} {...other}>
-        <div className={titleWrapClassName}>
-          <div className={classes.title}>{title}</div>
-          {subtitle ? <div className={classes.subtitle}>{subtitle}</div> : null}
-        </div>
-        {actionIcon ? (
-          <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
-            {actionIcon}
-          </div>
-        ) : null}
-      </div>
-    );
-  }
-}
+GridListTileBar.defaultProps = {
+  actionPosition: 'right',
+  titlePosition: 'bottom',
+};
 
 export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);

@@ -1,100 +1,20 @@
-// @flow
 // @inheritedComponent CSSTransition
 
 import React from 'react';
-import type { Element } from 'react';
+import PropTypes from 'prop-types';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import withTheme from '../styles/withTheme';
-import type { TransitionCallback, TransitionClasses } from '../internal/transition';
 
 // Only exported for tests.
 export function getScale(value: number) {
   return `scale(${value}, ${value ** 2})`;
 }
 
-export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
-
-type ProvidedProps = {
-  /**
-   * @ignore
-   */
-  theme: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * @ignore
-   */
-  appear: boolean,
-  /**
-   * A single child content element.
-   */
-  children: Element<any>,
-  /**
-   * If `true`, show the component; triggers the enter or exit animation.
-   */
-  in: boolean,
-  /**
-   * @ignore
-   */
-  onEnter?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onEntering?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onEntered?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onExit?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onExiting?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onExited?: TransitionCallback,
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef?: Function,
-  /**
-   * @ignore
-   */
-  style?: Object,
-  /**
-   * The animation classNames applied to the component as it enters or exits.
-   * This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames).
-   */
-  transitionClasses: TransitionClasses,
-  /**
-   * The duration for the transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   *
-   * Set to 'auto' to automatically calculate transition time based on height.
-   */
-  timeout: TransitionDuration,
-};
-
 /**
  * The Grow transition is used by the Popover component.
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Grow extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    appear: true,
-    timeout: ('auto': TransitionDuration),
-    transitionClasses: {},
-  };
-
+class Grow extends React.Component {
   autoTimeout = undefined;
 
   handleEnter = (node: HTMLElement) => {
@@ -186,9 +106,9 @@ class Grow extends React.Component<ProvidedProps & Props> {
       onExit,
       rootRef,
       style: styleProp,
-      transitionClasses,
-      timeout,
       theme,
+      timeout,
+      transitionClasses = {},
       ...other
     } = this.props;
 
@@ -217,5 +137,84 @@ class Grow extends React.Component<ProvidedProps & Props> {
     );
   }
 }
+
+Grow.propTypes = {
+  /**
+   * @ignore
+   */
+  appear: PropTypes.bool,
+  /**
+   * A single child content element.
+   */
+  children: PropTypes.element,
+  /**
+   * If `true`, show the component; triggers the enter or exit animation.
+   */
+  in: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onEnter: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onEntered: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onEntering: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExit: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExited: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExiting: PropTypes.func,
+  /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef: PropTypes.func,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   *
+   * Set to 'auto' to automatically calculate transition time based on height.
+   */
+  timeout: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.oneOf(['auto']),
+  ]),
+  /**
+   * The animation classNames applied to the component as it enters or exits.
+   * This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames).
+   */
+  transitionClasses: PropTypes.shape({
+    appear: PropTypes.string,
+    appearActive: PropTypes.string,
+    enter: PropTypes.string,
+    enterActive: PropTypes.string,
+    exit: PropTypes.string,
+    exitActive: PropTypes.string,
+  }),
+};
+
+Grow.defaultProps = {
+  appear: true,
+  timeout: 'auto',
+};
 
 export default withTheme()(Grow);

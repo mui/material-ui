@@ -12,12 +12,12 @@ filename: /src/GridList/GridListTileBar.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| actionIcon | Node |  | An IconButton element to be used as secondary action target (primary action target is the tile itself). |
-| actionPosition | union:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br> | 'right' | Position of secondary action IconButton. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| subtitle | Node |  | String or element serving as subtitle (support text). |
-| <span style="color: #31a148">title *</span> | Node |  | Title to be displayed on tile. |
-| titlePosition | union:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'bottom'<br> | 'bottom' | Position of the title bar. |
+| actionIcon | node |  | An IconButton element to be used as secondary action target (primary action target is the tile itself). |
+| actionPosition | enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br> | 'right' | Position of secondary action IconButton. |
+| classes | object |  | Useful to extend the style applied to components. |
+| subtitle | node |  | String or element serving as subtitle (support text). |
+| title | node |  | Title to be displayed on tile. |
+| titlePosition | enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'bottom'<br> | 'bottom' | Position of the title bar. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

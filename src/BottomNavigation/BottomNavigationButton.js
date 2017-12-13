@@ -1,14 +1,13 @@
-// @flow
 // @inheritedComponent ButtonBase
 
 import React from 'react';
-import type { Node, Element } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
@@ -56,60 +55,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * The icon element. If a string is provided, it will be used as a font ligature.
-   */
-  icon?: string | Element<any>,
-  /**
-   * The label element.
-   */
-  label?: Node,
-  /**
-   * @ignore
-   */
-  onChange?: Function,
-  /**
-   * @ignore
-   */
-  onClick?: Function,
-  /**
-   * @ignore
-   */
-  selected?: boolean,
-  /**
-   * If `true`, the BottomNavigationButton will show its label.
-   */
-  showLabel?: boolean,
-  /**
-   * You can provide your own value. Otherwise, we fallback to the child position index.
-   */
-  value?: any,
-};
-
-class BottomNavigationButton extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {};
-
+class BottomNavigationButton extends React.Component {
   handleChange = event => {
     const { onChange, value, onClick } = this.props;
 
@@ -124,13 +70,13 @@ class BottomNavigationButton extends React.Component<ProvidedProps & Props> {
 
   render() {
     const {
-      label,
-      icon: iconProp,
-      selected,
       classes,
       className: classNameProp,
-      showLabel: showLabelProp,
+      icon: iconProp,
+      label,
       onChange,
+      selected,
+      showLabel: showLabelProp,
       value,
       ...other
     } = this.props;
@@ -162,7 +108,7 @@ class BottomNavigationButton extends React.Component<ProvidedProps & Props> {
     });
 
     return (
-      <ButtonBase className={className} focusRipple {...other} onClick={this.handleChange}>
+      <ButtonBase className={className} focusRipple onClick={this.handleChange} {...other}>
         <span className={classes.wrapper}>
           {icon}
           <span className={labelClassName}>{label}</span>
@@ -171,5 +117,44 @@ class BottomNavigationButton extends React.Component<ProvidedProps & Props> {
     );
   }
 }
+
+BottomNavigationButton.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The icon element. If a string is provided, it will be used as a font ligature.
+   */
+  icon: PropTypes.node,
+  /**
+   * The label element.
+   */
+  label: PropTypes.node,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  selected: PropTypes.bool,
+  /**
+   * If `true`, the BottomNavigationButton will show its label.
+   */
+  showLabel: PropTypes.bool,
+  /**
+   * You can provide your own value. Otherwise, we fallback to the child position index.
+   */
+  value: PropTypes.any,
+};
 
 export default withStyles(styles, { name: 'MuiBottomNavigationButton' })(BottomNavigationButton);

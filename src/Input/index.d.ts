@@ -4,4 +4,3 @@ export { default as InputLabel } from './InputLabel';
 export * from './InputLabel';
 export { default as InputAdornment } from './InputAdornment';
 export * from './InputAdornment';
-// NOTE: Textarea is missing from exports (intentional?)

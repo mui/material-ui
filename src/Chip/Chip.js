@@ -1,15 +1,13 @@
-// @flow
-
 import React from 'react';
-import type { Element, Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
 import CancelIcon from '../svg-icons/Cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
-import Avatar from '../Avatar/Avatar';
+import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
-export const styles = (theme: Object) => {
+export const styles = theme => {
   const height = 32;
   const backgroundColor = emphasize(theme.palette.background.default, 0.12);
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
@@ -53,8 +51,8 @@ export const styles = (theme: Object) => {
     },
     avatar: {
       marginRight: -4,
-      width: 32,
-      height: 32,
+      width: height,
+      height,
       fontSize: theme.typography.pxToRem(16),
     },
     avatarChildren: {
@@ -84,65 +82,11 @@ export const styles = (theme: Object) => {
   };
 };
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * Avatar element.
-   */
-  avatar?: Element<typeof Avatar>,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * Custom delete icon. Will be shown only if `onDelete` is set.
-   */
-  deleteIcon?: Element<any>,
-  /**
-   * The content of the label.
-   */
-  label?: Node,
-  /**
-   * @ignore
-   */
-  onClick?: Function,
-  /**
-   * Callback function fired when the delete icon is clicked.
-   * If set, the delete icon will be shown.
-   */
-  onDelete?: (event: SyntheticEvent<>) => void,
-  /**
-   * @ignore
-   */
-  onKeyDown?: Function,
-  /**
-   * @ignore
-   */
-  tabIndex?: number | string,
-};
-
 /**
  * Chips represent complex entities in small blocks, such as a contact.
  */
-class Chip extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {};
-
-  chipRef: ?HTMLElement = null;
+class Chip extends React.Component {
+  chipRef = null;
 
   handleDeleteIconClick = event => {
     // Stop the event from bubbling up to the `Chip`
@@ -180,11 +124,11 @@ class Chip extends React.Component<ProvidedProps & Props> {
       avatar: avatarProp,
       classes,
       className: classNameProp,
+      deleteIcon: deleteIconProp,
       label,
       onClick,
-      onKeyDown,
       onDelete,
-      deleteIcon: deleteIconProp,
+      onKeyDown,
       tabIndex: tabIndexProp,
       ...other
     } = this.props;
@@ -229,10 +173,10 @@ class Chip extends React.Component<ProvidedProps & Props> {
         tabIndex={tabIndex}
         onClick={onClick}
         onKeyDown={this.handleKeyDown}
-        {...other}
         ref={node => {
           this.chipRef = node;
         }}
+        {...other}
       >
         {avatar}
         <span className={classes.label}>{label}</span>
@@ -241,5 +185,45 @@ class Chip extends React.Component<ProvidedProps & Props> {
     );
   }
 }
+
+Chip.propTypes = {
+  /**
+   * Avatar element.
+   */
+  avatar: PropTypes.element,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * Custom delete icon element. Will be shown only if `onDelete` is set.
+   */
+  deleteIcon: PropTypes.element,
+  /**
+   * The content of the label.
+   */
+  label: PropTypes.node,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * Callback function fired when the delete icon is clicked.
+   * If set, the delete icon will be shown.
+   */
+  onDelete: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
 
 export default withStyles(styles, { name: 'MuiChip' })(Chip);

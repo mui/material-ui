@@ -1,12 +1,10 @@
-// @flow
-
 import React from 'react';
-import type { ElementType, Element } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -33,24 +31,67 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+function Avatar(props) {
+  const {
+    alt,
+    children: childrenProp,
+    childrenClassName: childrenClassNameProp,
+    classes,
+    className: classNameProp,
+    component: ComponentProp,
+    imgProps,
+    sizes,
+    src,
+    srcSet,
+    ...other
+  } = props;
 
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
+  const className = classNames(
+    classes.root,
+    {
+      [classes.colorDefault]: childrenProp && !src && !srcSet,
+    },
+    classNameProp,
+  );
+  let children = null;
+
+  if (childrenProp) {
+    if (
+      childrenClassNameProp &&
+      typeof childrenProp !== 'string' &&
+      React.isValidElement(childrenProp)
+    ) {
+      const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
+      children = React.cloneElement(childrenProp, { className: childrenClassName });
+    } else {
+      children = childrenProp;
+    }
+  } else if (src || srcSet) {
+    children = (
+      <img
+        alt={alt}
+        src={src}
+        srcSet={srcSet}
+        sizes={sizes}
+        className={classes.img}
+        {...imgProps}
+      />
+    );
+  }
+
+  return (
+    <ComponentProp className={className} {...other}>
+      {children}
+    </ComponentProp>
+  );
+}
+
+Avatar.propTypes = {
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.
    */
-  alt?: string,
+  alt: PropTypes.string,
   /**
    * Used to render icon or text elements inside the Avatar.
    * `src` and `alt` props will not be used and no `img` will
@@ -58,104 +99,47 @@ export type Props = {
    *
    * This can be an element, or just a string.
    */
-  children?: string | Element<any>,
+  children: PropTypes.node,
   /**
    * @ignore
    * The className of the child element.
    * Used by Chip and ListItemIcon to style the Avatar icon.
    */
-  childrenClassName?: string,
+  childrenClassName: PropTypes.string,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: ElementType,
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Properties applied to the `img` element when the component
    * is used to display an image.
    */
-  imgProps?: Object,
+  imgProps: PropTypes.object,
   /**
    * The `sizes` attribute for the `img` element.
    */
-  sizes?: string,
+  sizes: PropTypes.string,
   /**
    * The `src` attribute for the `img` element.
    */
-  src?: string,
+  src: PropTypes.string,
   /**
    * The `srcSet` attribute for the `img` element.
    */
-  srcSet?: string,
+  srcSet: PropTypes.string,
 };
 
-class Avatar extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    component: ('div': ElementType),
-  };
-
-  render() {
-    const {
-      alt,
-      classes,
-      className: classNameProp,
-      children: childrenProp,
-      childrenClassName: childrenClassNameProp,
-      component: ComponentProp,
-      imgProps,
-      sizes,
-      src,
-      srcSet,
-      ...other
-    } = this.props;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.colorDefault]: childrenProp && !src && !srcSet,
-      },
-      classNameProp,
-    );
-    let children = null;
-
-    if (childrenProp) {
-      if (
-        childrenClassNameProp &&
-        typeof childrenProp !== 'string' &&
-        React.isValidElement(childrenProp)
-      ) {
-        const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
-        children = React.cloneElement(childrenProp, { className: childrenClassName });
-      } else {
-        children = childrenProp;
-      }
-    } else if (src || srcSet) {
-      children = (
-        <img
-          alt={alt}
-          src={src}
-          srcSet={srcSet}
-          sizes={sizes}
-          className={classes.img}
-          {...imgProps}
-        />
-      );
-    }
-
-    return (
-      <ComponentProp className={className} {...other}>
-        {children}
-      </ComponentProp>
-    );
-  }
-}
+Avatar.defaultProps = {
+  component: 'div',
+};
 
 export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);

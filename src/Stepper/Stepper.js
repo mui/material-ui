@@ -1,15 +1,13 @@
-// @flow
 // @inheritedComponent Paper
 
-import React, { Children } from 'react';
-import type { Element, Node, ChildrenArray } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import StepConnector from './StepConnector';
-import Step from './Step';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'flex',
     padding: theme.spacing.unit * 3,
@@ -23,54 +21,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type Orientation = 'horizontal' | 'vertical';
-
-type ProvidedProps = {
-  activeStep: number,
-  alternativeLabel: boolean,
-  classes: Object,
-  connector: Element<any>,
-  nonLinear: boolean,
-  orientation: Orientation,
-};
-
-export type Props = {
-  /**
-   * Set the active step (zero based index).
-   */
-  activeStep?: number,
-  /**
-   * If set to 'true' and orientation is horizontal,
-   * then the step label will be positioned under the icon.
-   */
-  alternativeLabel?: boolean,
-  /**
-   * Two or more `<Step />` components.
-   */
-  children: ChildrenArray<Element<typeof Step>>,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * A component to be placed between each step.
-   */
-  connector?: Element<typeof StepConnector> | Node,
-  /**
-   * If set the `Stepper` will not assist in controlling steps for linear flow.
-   */
-  nonLinear?: boolean,
-  /**
-   * The stepper orientation (layout flow direction).
-   */
-  orientation?: Orientation,
-};
-
-function Stepper(props: ProvidedProps & Props) {
+function Stepper(props) {
   const {
     activeStep,
     alternativeLabel,
@@ -90,7 +41,7 @@ function Stepper(props: ProvidedProps & Props) {
   );
 
   const connector = connectorProp ? React.cloneElement(connectorProp, { orientation }) : null;
-  const childrenArray = Children.toArray(children);
+  const childrenArray = React.Children.toArray(children);
   const steps = childrenArray.map((step, index) => {
     const controlProps = {
       index,
@@ -128,6 +79,42 @@ function Stepper(props: ProvidedProps & Props) {
     </Paper>
   );
 }
+
+Stepper.propTypes = {
+  /**
+   * Set the active step (zero based index).
+   */
+  activeStep: PropTypes.number,
+  /**
+   * If set to 'true' and orientation is horizontal,
+   * then the step label will be positioned under the icon.
+   */
+  alternativeLabel: PropTypes.bool,
+  /**
+   * Two or more `<Step />` components.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * A component to be placed between each step.
+   */
+  connector: PropTypes.element,
+  /**
+   * If set the `Stepper` will not assist in controlling steps for linear flow.
+   */
+  nonLinear: PropTypes.bool,
+  /**
+   * The stepper orientation (layout flow direction).
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+};
 
 Stepper.defaultProps = {
   activeStep: 0,

@@ -1,43 +1,12 @@
-// @flow
 // @inheritedComponent FormGroup
 
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import FormGroup from '../Form/FormGroup';
 import { find } from '../utils/helpers';
 
-export type Props = {
-  /**
-   * The content of the component.
-   */
-  children?: Node,
-  /**
-   * The name used to reference the value of the control.
-   */
-  name?: string,
-  /**
-   * @ignore
-   */
-  onBlur?: Function,
-  /**
-   * Callback fired when a radio button is selected.
-   *
-   * @param {object} event The event source of the callback
-   * @param {string} value The `value` of the selected radio button
-   */
-  onChange?: Function,
-  /**
-   * @ignore
-   */
-  onKeyDown?: Function,
-  /**
-   * Value of the selected radio button.
-   */
-  value?: string,
-};
-
-class RadioGroup extends React.Component<Props> {
-  radios: Array<HTMLInputElement> = [];
+class RadioGroup extends React.Component {
+  radios = [];
 
   focus = () => {
     if (!this.radios || !this.radios.length) {
@@ -60,7 +29,7 @@ class RadioGroup extends React.Component<Props> {
     focusRadios[0].focus();
   };
 
-  handleRadioChange = (event: SyntheticInputEvent<*>, checked: boolean) => {
+  handleRadioChange = (event, checked) => {
     if (checked && this.props.onChange) {
       this.props.onChange(event, event.target.value);
     }
@@ -94,5 +63,35 @@ class RadioGroup extends React.Component<Props> {
     );
   }
 }
+
+RadioGroup.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * The name used to reference the value of the control.
+   */
+  name: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback fired when a radio button is selected.
+   *
+   * @param {object} event The event source of the callback
+   * @param {string} value The `value` of the selected radio button
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * Value of the selected radio button.
+   */
+  value: PropTypes.string,
+};
 
 export default RadioGroup;

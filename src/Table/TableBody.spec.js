@@ -11,21 +11,21 @@ describe('<TableBody />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<TableBody />);
+    classes = getClasses(<TableBody>foo</TableBody>);
   });
 
   it('should render a tbody', () => {
-    const wrapper = shallow(<TableBody />);
+    const wrapper = shallow(<TableBody>foo</TableBody>);
     assert.strictEqual(wrapper.name(), 'tbody');
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<TableBody component="div" />);
+    const wrapper = shallow(<TableBody component="div">foo</TableBody>);
     assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<TableBody className="woofTableBody" />);
+    const wrapper = shallow(<TableBody className="woofTableBody">foo</TableBody>);
     assert.strictEqual(wrapper.hasClass('woofTableBody'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
@@ -37,7 +37,7 @@ describe('<TableBody />', () => {
   });
 
   it('should define table.body in the child context', () => {
-    const wrapper = shallow(<TableBody />);
+    const wrapper = shallow(<TableBody>foo</TableBody>);
     assert.strictEqual(wrapper.instance().getChildContext().table.body, true);
   });
 });

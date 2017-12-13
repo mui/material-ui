@@ -1,22 +1,20 @@
-// @flow
 // @inheritedComponent Transition
 
 import React from 'react';
-import type { Element } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import Transition from 'react-transition-group/Transition';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
-import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
 const GUTTER = 24;
 
 // Translate the node so he can't be seen on the screen.
 // Later, we gonna translate back the node to his original location
 // with `translate3d(0, 0, 0)`.`
-function getTranslateValue(props, node: HTMLElement) {
+function getTranslateValue(props, node) {
   const { direction } = props;
   const rect = node.getBoundingClientRect();
 
@@ -55,7 +53,7 @@ function getTranslateValue(props, node: HTMLElement) {
   return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
 }
 
-export function setTranslateValue(props: Object, node: HTMLElement | Object) {
+export function setTranslateValue(props, node) {
   const transform = getTranslateValue(props, node);
 
   if (transform) {
@@ -64,81 +62,9 @@ export function setTranslateValue(props: Object, node: HTMLElement | Object) {
   }
 }
 
-export type Direction = 'left' | 'right' | 'up' | 'down';
-
-type ProvidedProps = {
-  /**
-   * @ignore
-   */
-  theme: Object,
-};
-
-export type Props = {
-  /**
-   * Other Transition element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * A single child content element.
-   */
-  children: Element<any>,
-  /**
-   * Direction the child node will enter from.
-   */
-  direction: Direction,
-  /**
-   * If `true`, show the component; triggers the enter or exit animation.
-   */
-  in: boolean,
-  /**
-   * @ignore
-   */
-  onEnter?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onEntering?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onEntered?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onExit?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onExiting?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  onExited?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  style?: Object,
-  /**
-   * The duration for the transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   */
-  timeout: TransitionDuration,
-};
-
-type State = {
-  firstMount: boolean,
-};
-
 const reflow = node => node.scrollTop;
 
-class Slide extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
-    timeout: ({
-      enter: duration.enteringScreen,
-      exit: duration.leavingScreen,
-    }: TransitionDuration),
-  };
-
+class Slide extends React.Component {
   state = {
     // We use this state to handle the server-side rendering.
     firstMount: true,
@@ -194,7 +120,7 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
     }
   }, 166);
 
-  handleEnter = (node: HTMLElement) => {
+  handleEnter = node => {
     setTranslateValue(this.props, node);
     reflow(node);
 
@@ -203,13 +129,12 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
     }
   };
 
-  handleEntering = (node: HTMLElement) => {
+  handleEntering = node => {
     const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
       easing: theme.transitions.easing.easeOut,
     });
-    // $FlowFixMe - https://github.com/facebook/flow/pull/5161
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
       easing: theme.transitions.easing.easeOut,
@@ -221,13 +146,12 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
     }
   };
 
-  handleExit = (node: HTMLElement) => {
+  handleExit = node => {
     const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
       easing: theme.transitions.easing.sharp,
     });
-    // $FlowFixMe - https://github.com/facebook/flow/pull/5161
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
       easing: theme.transitions.easing.sharp,
@@ -239,10 +163,9 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
     }
   };
 
-  handleExited = (node: HTMLElement) => {
+  handleExited = node => {
     // No need for transitions when the component is hidden
     node.style.transition = '';
-    // $FlowFixMe - https://github.com/facebook/flow/pull/5161
     node.style.webkitTransition = '';
 
     if (this.props.onExited) {
@@ -288,5 +211,67 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+Slide.propTypes = {
+  /**
+   * A single child content element.
+   */
+  children: PropTypes.element,
+  /**
+   * Direction the child node will enter from.
+   */
+  direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
+  /**
+   * If `true`, show the component; triggers the enter or exit animation.
+   */
+  in: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onEnter: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onEntered: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onEntering: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExit: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExited: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExiting: PropTypes.func,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  timeout: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+  ]),
+};
+
+Slide.defaultProps = {
+  timeout: {
+    enter: duration.enteringScreen,
+    exit: duration.leavingScreen,
+  },
+};
 
 export default withTheme()(Slide);

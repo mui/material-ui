@@ -1,15 +1,14 @@
-// @flow
 // @inheritedComponent Paper
 
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Collapse from '../transitions/Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = (theme: Object) => {
+export const styles = theme => {
   const transition = {
     duration: theme.transitions.duration.shortest,
     easing: theme.transitions.easing.ease,
@@ -66,65 +65,7 @@ export const styles = (theme: Object) => {
   };
 };
 
-type ProvidedProps = {
-  classes: Object,
-  defaultExpanded: boolean,
-  disabled: boolean,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * The content of the expansion panel.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * Properties applied to the `Collapse` element.
-   */
-  CollapseProps?: Object,
-  /**
-   * If `true`, expands the panel by default.
-   */
-  defaultExpanded?: boolean,
-  /**
-   * If `true`, the panel will be displayed in a disabled state.
-   */
-  disabled: boolean,
-  /**
-   * If `true`, expands the panel, otherwise collapse it.
-   * Setting this prop enables control over the panel.
-   */
-  expanded?: boolean,
-  /**
-   * Callback fired when the expand/collapse state is changed.
-   *
-   * @param {object} event The event source of the callback
-   * @param {boolean} expanded The `expanded` state of the panel
-   */
-  onChange?: Function,
-};
-
-type State = {
-  expanded: boolean,
-};
-
-class ExpansionPanel extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
-    defaultExpanded: false,
-    disabled: false,
-  };
-
+class ExpansionPanel extends React.Component {
   state = {
     expanded: false,
   };
@@ -218,5 +159,49 @@ class ExpansionPanel extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+ExpansionPanel.propTypes = {
+  /**
+   * The content of the expansion panel.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * Properties applied to the `Collapse` element.
+   */
+  CollapseProps: PropTypes.object,
+  /**
+   * If `true`, expands the panel by default.
+   */
+  defaultExpanded: PropTypes.bool,
+  /**
+   * If `true`, the panel will be displayed in a disabled state.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, expands the panel, otherwise collapse it.
+   * Setting this prop enables control over the panel.
+   */
+  expanded: PropTypes.bool,
+  /**
+   * Callback fired when the expand/collapse state is changed.
+   *
+   * @param {object} event The event source of the callback
+   * @param {boolean} expanded The `expanded` state of the panel
+   */
+  onChange: PropTypes.func,
+};
+
+ExpansionPanel.defaultProps = {
+  defaultExpanded: false,
+  disabled: false,
+};
 
 export default withStyles(styles, { name: 'MuiExpansionPanel' })(ExpansionPanel);

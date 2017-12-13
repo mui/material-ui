@@ -1,12 +1,9 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     color: theme.palette.input.helperText,
     fontFamily: theme.typography.fontFamily,
@@ -28,43 +25,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * The content of the component.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * If `true`, the helper text should be displayed in a disabled state.
-   */
-  disabled?: boolean,
-  /**
-   * If `true`, helper text should be displayed in an error state.
-   */
-  error?: boolean,
-  /**
-   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
-   * FormControl.
-   */
-  margin?: 'dense',
-};
-
-function FormHelperText(props: ProvidedProps & Props, context: { muiFormControl: Object }) {
+function FormHelperText(props, context) {
   const {
     children,
     classes,
@@ -110,6 +71,34 @@ function FormHelperText(props: ProvidedProps & Props, context: { muiFormControl:
     </p>
   );
 }
+
+FormHelperText.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the helper text should be displayed in a disabled state.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, helper text should be displayed in an error state.
+   */
+  error: PropTypes.bool,
+  /**
+   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+   * FormControl.
+   */
+  margin: PropTypes.oneOf(['dense']),
+};
 
 FormHelperText.contextTypes = {
   muiFormControl: PropTypes.object,

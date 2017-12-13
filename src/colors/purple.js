@@ -1,6 +1,3 @@
-// Wait https://github.com/facebook/flow/issues/380 to be fixed
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 const purple = {
   50: '#f3e5f5',
   100: '#e1bee7',

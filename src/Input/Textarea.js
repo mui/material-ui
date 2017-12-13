@@ -1,12 +1,11 @@
-// @flow
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 
-const rowsHeight = 24;
+const ROWS_HEIGHT = 24;
 
 export const styles = {
   root: {
@@ -39,71 +38,10 @@ export const styles = {
   },
 };
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-type Rows = string | number;
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * @ignore
-   */
-  defaultValue?: string | number,
-  /**
-   * @ignore
-   */
-  disabled?: boolean,
-  /**
-   * @ignore
-   */
-  onChange?: Function,
-  /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows: Rows,
-  /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  rowsMax?: string | number,
-  /**
-   * Use that property to pass a ref callback to the native textarea element.
-   */
-  textareaRef?: Function,
-  /**
-   * @ignore
-   */
-  value?: string | number,
-};
-
-type State = {
-  height: ?number,
-};
-
 /**
  * @ignore - internal component.
  */
-class Textarea extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
-    rows: (1: Rows),
-  };
-
+class Textarea extends React.Component {
   state = {
     height: null,
   };
@@ -113,7 +51,7 @@ class Textarea extends React.Component<ProvidedProps & Props, State> {
     // so that it can check whether they are dirty
     this.value = this.props.value || this.props.defaultValue || '';
     this.setState({
-      height: Number(this.props.rows) * rowsHeight,
+      height: Number(this.props.rows) * ROWS_HEIGHT,
     });
   }
 
@@ -134,10 +72,10 @@ class Textarea extends React.Component<ProvidedProps & Props, State> {
     this.handleResize.cancel();
   }
 
-  shadow: ?HTMLTextAreaElement;
-  singlelineShadow: ?HTMLTextAreaElement;
-  input: ?HTMLTextAreaElement;
-  value: string | number;
+  shadow = null;
+  singlelineShadow = null;
+  input = null;
+  value = null;
 
   handleResize = debounce(event => {
     this.syncHeightWithShadow(event);
@@ -250,5 +188,48 @@ class Textarea extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+Textarea.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Use that property to pass a ref callback to the native textarea element.
+   */
+  textareaRef: PropTypes.func,
+  /**
+   * @ignore
+   */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};
+
+Textarea.defaultProps = {
+  rows: 1,
+};
 
 export default withStyles(styles, { name: 'MuiTextarea' })(Textarea);

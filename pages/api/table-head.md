@@ -12,9 +12,9 @@ filename: /src/Table/TableHead.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Node |  | The content of the component, normally `TableRow`. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| component | ElementType | 'thead' | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span style="color: #31a148">children *</span> | node |  | The content of the component, normally `TableRow`. |
+| classes | object |  | Useful to extend the style applied to components. |
+| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'thead' | The component used for the root node. Either a string to use a DOM element or a component. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

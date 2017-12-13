@@ -1,12 +1,10 @@
-// @flow weak
-
 import React from 'react';
-import type { Node, ElementType } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     boxSizing: 'border-box',
     lineHeight: '48px',
@@ -35,85 +33,73 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Color = 'default' | 'primary' | 'inherit';
+function ListSubheader(props) {
+  const {
+    children,
+    classes,
+    className: classNameProp,
+    color,
+    component: ComponentProp,
+    disableSticky,
+    inset,
+    ...other
+  } = props;
+  const className = classNames(
+    classes.root,
+    {
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+      [classes.inset]: inset,
+      [classes.sticky]: !disableSticky,
+    },
+    classNameProp,
+  );
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+  return (
+    <ComponentProp className={className} {...other}>
+      {children}
+    </ComponentProp>
+  );
+}
 
-export type Props = {
+ListSubheader.propTypes = {
   /**
    * The content of the component.
    */
-  children?: Node,
+  children: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: PropTypes.oneOf(['default', 'primary', 'inherit']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: ElementType,
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color?: Color,
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * If `true`, the List Subheader will not stick to the top during scroll.
    */
-  disableSticky?: boolean,
+  disableSticky: PropTypes.bool,
   /**
    * If `true`, the List Subheader will be indented.
    */
-  inset?: boolean,
+  inset: PropTypes.bool,
 };
 
-class ListSubheader extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    component: 'li',
-    color: 'default',
-    disableSticky: false,
-    inset: false,
-  };
+ListSubheader.defaultProps = {
+  color: 'default',
+  component: 'li',
+  disableSticky: false,
+  inset: false,
+};
 
-  static muiName = 'ListSubheader';
-
-  render() {
-    const {
-      children,
-      classes,
-      className: classNameProp,
-      component: ComponentProp,
-      color,
-      disableSticky,
-      inset,
-      ...other
-    } = this.props;
-    const className = classNames(
-      classes.root,
-      {
-        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
-        [classes.inset]: inset,
-        [classes.sticky]: !disableSticky,
-      },
-      classNameProp,
-    );
-
-    return (
-      <ComponentProp className={className} {...other}>
-        {children}
-      </ComponentProp>
-    );
-  }
-}
+ListSubheader.muiName = 'ListSubheader';
 
 export default withStyles(styles, { name: 'MuiListSubheader' })(ListSubheader);

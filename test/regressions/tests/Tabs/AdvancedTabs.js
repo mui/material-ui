@@ -1,5 +1,3 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -10,7 +8,7 @@ import Tab from 'material-ui/Tabs/Tab';
 
 const noop = () => {};
 
-const styles = (theme: Object) => ({
+const styles = theme => ({
   root: {
     width: 600,
   },

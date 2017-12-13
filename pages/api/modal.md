@@ -25,25 +25,26 @@ This component shares many concepts with [react-overlays](https://react-bootstra
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | BackdropClassName | string |  | The CSS class name of the backdrop element. |
-| BackdropComponent | ElementType | Backdrop | Pass a component class to use as the backdrop. |
-| BackdropInvisible | boolean | false | If `true`, the backdrop is invisible. |
-| BackdropTransitionDuration | TransitionDuration | 300 | The duration for the backdrop transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
-| children | Element |  | A single child content element. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| disableBackdrop | boolean | false | If `true`, the backdrop is disabled. |
-| ignoreBackdropClick | boolean | false | If `true`, clicking the backdrop will not fire the `onClose` callback. |
-| ignoreEscapeKeyUp | boolean | false | If `true`, hitting escape will not fire the `onClose` callback. |
-| keepMounted | boolean | false | Always keep the children in the DOM. This property can be useful in SEO situation or when you want to maximize the responsiveness of the Modal. |
-| onBackdropClick | Function |  | Callback fires when the backdrop is clicked on. |
-| onClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
-| onEnter | TransitionCallback |  | Callback fired before the modal is entering. |
-| onEntered | TransitionCallback |  | Callback fired when the modal has entered. |
-| onEntering | TransitionCallback |  | Callback fired when the modal is entering. |
-| onEscapeKeyUp | Function |  | Callback fires when the escape key is pressed and the modal is in focus. |
-| onExit | TransitionCallback |  | Callback fired before the modal is exiting. |
-| onExited | TransitionCallback |  | Callback fired when the modal has exited. |
-| onExiting | TransitionCallback |  | Callback fired when the modal is exiting. |
-| <span style="color: #31a148">show *</span> | boolean |  | If `true`, the Modal is visible. |
+| BackdropComponent | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | Backdrop | Pass a component class to use as the backdrop. |
+| BackdropInvisible | bool | false | If `true`, the backdrop is invisible. |
+| BackdropTransitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | 300 | The duration for the backdrop transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| children | element |  | A single child content element. |
+| classes | object |  | Useful to extend the style applied to components. |
+| disableBackdrop | bool | false | If `true`, the backdrop is disabled. |
+| ignoreBackdropClick | bool | false | If `true`, clicking the backdrop will not fire the `onClose` callback. |
+| ignoreEscapeKeyUp | bool | false | If `true`, hitting escape will not fire the `onClose` callback. |
+| keepMounted | bool | false | Always keep the children in the DOM. This property can be useful in SEO situation or when you want to maximize the responsiveness of the Modal. |
+| modalManager | object | createModalManager() | Instance of the modal manager. |
+| onBackdropClick | func |  | Callback fires when the backdrop is clicked on. |
+| onClose | func |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
+| onEnter | func |  | Callback fired before the modal is entering. |
+| onEntered | func |  | Callback fired when the modal has entered. |
+| onEntering | func |  | Callback fired when the modal is entering. |
+| onEscapeKeyUp | func |  | Callback fires when the escape key is pressed and the modal is in focus. |
+| onExit | func |  | Callback fired before the modal is exiting. |
+| onExited | func |  | Callback fired when the modal has exited. |
+| onExiting | func |  | Callback fired when the modal is exiting. |
+| show | bool |  | If `true`, the Modal is visible. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

@@ -1,6 +1,3 @@
-// Wait https://github.com/facebook/flow/issues/380 to be fixed
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 const pink = {
   50: '#fce4ec',
   100: '#f8bbd0',

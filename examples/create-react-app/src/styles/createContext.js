@@ -1,5 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import { create, SheetsRegistry } from 'jss';
 import preset from 'jss-preset-default';
 import { createMuiTheme } from 'material-ui/styles';

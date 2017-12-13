@@ -1,8 +1,7 @@
-// @flow
 // @inheritedComponent TableCell
 
 import React from 'react';
-import type { ElementType, Node } from 'react';
+import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
 import Input from '../Input';
@@ -14,7 +13,7 @@ import Typography from '../Typography';
 import KeyboardArrowLeft from '../svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../svg-icons/KeyboardArrowRight';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     // Increase the specificity to override TableCell.
     '&:last-child': {
@@ -54,93 +53,10 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type LabelDisplayedRowsArgs = {
-  from: number,
-  to: number,
-  count: number,
-  page: number,
-};
-
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-type LabelDisplayedRows = (paginationInfo: LabelDisplayedRowsArgs) => Node;
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: ElementType,
-  /**
-   * @ignore
-   */
-  colSpan?: number,
-  /**
-   * The total number of rows.
-   */
-  count: number,
-  /**
-   * Useful to customize the displayed rows label.
-   */
-  labelDisplayedRows: LabelDisplayedRows,
-  /**
-   * Useful to customize the rows per page label. Invoked with a `{ from, to, count, page }`
-   * object.
-   */
-  labelRowsPerPage: Node,
-  /**
-   * Callback fired when the page is changed.
-   *
-   * @param {object} event The event source of the callback
-   * @param {number} page The page selected
-   */
-  onChangePage: (event: SyntheticInputEvent<*> | null, page: number) => void,
-  /**
-   * Callback fired when the number of rows per page is changed.
-   *
-   * @param {object} event The event source of the callback
-   */
-  onChangeRowsPerPage: (event: SyntheticInputEvent<*>) => void,
-  /**
-   * The zero-based index of the current page.
-   */
-  page: number,
-  /**
-   * The number of rows per page.
-   */
-  rowsPerPage: number,
-  /**
-   * Customizes the options of the rows per page select field. If less than two options are
-   * available, no select field will be displayed.
-   */
-  rowsPerPageOptions: Array<number>,
-};
-
 /**
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
-class TablePagination extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    component: (TableCell: ElementType),
-    labelRowsPerPage: ('Rows per page:': Node),
-    labelDisplayedRows: (({ from, to, count }) => `${from}-${to} of ${count}`: LabelDisplayedRows),
-    rowsPerPageOptions: [5, 10, 25],
-  };
-
+class TablePagination extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { count, onChangePage, rowsPerPage } = nextProps;
     const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
@@ -160,8 +76,8 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
   render() {
     const {
       classes,
-      component: Component,
       colSpan: colSpanProp,
+      component: Component,
       count,
       labelDisplayedRows,
       labelRowsPerPage,
@@ -236,5 +152,71 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
     );
   }
 }
+
+TablePagination.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  colSpan: PropTypes.number,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * The total number of rows.
+   */
+  count: PropTypes.number.isRequired,
+  /**
+   * Useful to customize the displayed rows label.
+   */
+  labelDisplayedRows: PropTypes.func,
+  /**
+   * Useful to customize the rows per page label. Invoked with a `{ from, to, count, page }`
+   * object.
+   */
+  labelRowsPerPage: PropTypes.node,
+  /**
+   * Callback fired when the page is changed.
+   *
+   * @param {object} event The event source of the callback
+   * @param {number} page The page selected
+   */
+  onChangePage: PropTypes.func.isRequired,
+  /**
+   * Callback fired when the number of rows per page is changed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onChangeRowsPerPage: PropTypes.func.isRequired,
+  /**
+   * The zero-based index of the current page.
+   */
+  page: PropTypes.number.isRequired,
+  /**
+   * The number of rows per page.
+   */
+  rowsPerPage: PropTypes.number.isRequired,
+  /**
+   * Customizes the options of the rows per page select field. If less than two options are
+   * available, no select field will be displayed.
+   */
+  rowsPerPageOptions: PropTypes.array,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+};
+
+TablePagination.defaultProps = {
+  component: TableCell,
+  labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
+  labelRowsPerPage: 'Rows per page:',
+  rowsPerPageOptions: [5, 10, 25],
+};
 
 export default withStyles(styles, { withTheme: true, name: 'MuiTablePagination' })(TablePagination);

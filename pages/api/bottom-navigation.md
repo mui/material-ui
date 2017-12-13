@@ -12,11 +12,11 @@ filename: /src/BottomNavigation/BottomNavigation.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | Node |  | The content of the component. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| onChange | Function |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* We default to the index of the child |
-| showLabels | boolean | false | If `true`, all `BottomNavigationButton`s will show their labels. By default only the selected `BottomNavigationButton` will show its label. |
-| <span style="color: #31a148">value *</span> | any |  | The value of the currently selected `BottomNavigationButton`. |
+| <span style="color: #31a148">children *</span> | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
+| onChange | func |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* We default to the index of the child |
+| showLabels | bool | false | If `true`, all `BottomNavigationButton`s will show their labels. By default only the selected `BottomNavigationButton` will show its label. |
+| value | any |  | The value of the currently selected `BottomNavigationButton`. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

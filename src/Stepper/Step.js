@@ -1,12 +1,9 @@
-// @flow
-
 import React from 'react';
-import type { Element, Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import type { Orientation } from './Stepper';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {},
   horizontal: {
     paddingLeft: theme.spacing.unit,
@@ -25,70 +22,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  active: boolean,
-  completed: boolean,
-  classes: Object,
-  disabled: boolean,
-  optional: boolean,
-};
-
-export type Props = {
-  /**
-   * Sets the step as active. Is passed to child components.
-   */
-  active?: boolean,
-  /**
-   * @ignore
-   * Set internally by Stepper when it's supplied with the alternativeLabel property.
-   */
-  alternativeLabel?: boolean,
-  /**
-   * Should be `Step` sub-components such as `StepLabel`, `StepContent`.
-   */
-  children?: Node,
-  /**
-   * @ignore
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * Mark the step as completed. Is passed to child components.
-   */
-  completed?: boolean,
-  /**
-   * @ignore
-   * Passed down from Stepper if alternativeLabel is also set.
-   */
-  connector?: Element<any>,
-  /**
-   * Mark the step as disabled, will also disable the button if
-   * `StepButton` is a child of `Step`. Is passed to child components.
-   */
-  disabled?: boolean,
-  /**
-   * @ignore
-   * Used internally for numbering.
-   */
-  index?: number,
-  /**
-   * @ignore
-   */
-  last?: boolean,
-  /**
-   * Define this step as optional.
-   */
-  optional?: boolean,
-  /**
-   * @ignore
-   */
-  orientation?: Orientation,
-};
-
-function Step(props: ProvidedProps & Props) {
+function Step(props) {
   const {
     active,
     alternativeLabel,
@@ -136,6 +70,61 @@ function Step(props: ProvidedProps & Props) {
     </div>
   );
 }
+
+Step.propTypes = {
+  /**
+   * Sets the step as active. Is passed to child components.
+   */
+  active: PropTypes.bool,
+  /**
+   * @ignore
+   * Set internally by Stepper when it's supplied with the alternativeLabel property.
+   */
+  alternativeLabel: PropTypes.bool,
+  /**
+   * Should be `Step` sub-components such as `StepLabel`, `StepContent`.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * Mark the step as completed. Is passed to child components.
+   */
+  completed: PropTypes.bool,
+  /**
+   * @ignore
+   * Passed down from Stepper if alternativeLabel is also set.
+   */
+  connector: PropTypes.element,
+  /**
+   * Mark the step as disabled, will also disable the button if
+   * `StepButton` is a child of `Step`. Is passed to child components.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * @ignore
+   * Used internally for numbering.
+   */
+  index: PropTypes.number,
+  /**
+   * @ignore
+   */
+  last: PropTypes.bool,
+  /**
+   * Define this step as optional.
+   */
+  optional: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+};
 
 Step.defaultProps = {
   active: false,

@@ -1,16 +1,15 @@
-// @flow
 // @inheritedComponent Paper
 
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import Typography from '../Typography';
 
-export const styles = (theme: Object) => {
-  const type = theme.palette.type === 'light' ? 'dark' : 'light';
-  const backgroundColor = theme.palette.shades[type].background.default;
+export const styles = theme => {
+  const reverseType = theme.palette.type === 'light' ? 'dark' : 'light';
+  const backgroundColor = theme.palette.shades[reverseType].background.default;
 
   return {
     root: {
@@ -43,30 +42,7 @@ export const styles = (theme: Object) => {
   };
 };
 
-type ProvidedProps = {
-  classes: Object,
-};
-
-export type Props = {
-  /**
-   * The action to display.
-   */
-  action?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * The message to display.
-   */
-  message: Node,
-};
-
-function SnackbarContent(props: ProvidedProps & Props) {
+function SnackbarContent(props) {
   const { action, classes, className, message, ...other } = props;
 
   return (
@@ -86,5 +62,24 @@ function SnackbarContent(props: ProvidedProps & Props) {
     </Paper>
   );
 }
+
+SnackbarContent.propTypes = {
+  /**
+   * The action to display.
+   */
+  action: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The message to display.
+   */
+  message: PropTypes.node,
+};
 
 export default withStyles(styles, { name: 'MuiSnackbarContent' })(SnackbarContent);

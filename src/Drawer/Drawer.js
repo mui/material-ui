@@ -1,8 +1,7 @@
-// @flow
 // @inheritedComponent Modal
 
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Modal from '../Modal';
 import withStyles from '../styles/withStyles';
@@ -10,7 +9,6 @@ import Slide from '../transitions/Slide';
 import Paper from '../Paper';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import { duration } from '../styles/transitions';
-import type { TransitionDuration } from '../internal/transition';
 
 function getSlideDirection(anchor) {
   if (anchor === 'left') {
@@ -25,7 +23,7 @@ function getSlideDirection(anchor) {
   return 'up';
 }
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   docked: {
     flex: '0 0 auto',
   },
@@ -86,87 +84,7 @@ export const styles = (theme: Object) => ({
   modal: {}, // Just here so people can override the style.
 });
 
-export type Anchor = 'left' | 'top' | 'right' | 'bottom';
-export type Type = 'permanent' | 'persistent' | 'temporary';
-
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * Side from which the drawer will appear.
-   */
-  anchor: Anchor,
-  /**
-   * The contents of the drawer.
-   */
-  children: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * The elevation of the drawer.
-   */
-  elevation: number,
-  /**
-   * The duration for the transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   */
-  transitionDuration: TransitionDuration,
-  /**
-   * Properties applied to the `Modal` element.
-   */
-  ModalProps?: Object,
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback
-   */
-  onClose?: Function,
-  /**
-   * If `true`, the drawer is open.
-   */
-  open: boolean,
-  /**
-   * Properties applied to the `Slide` element.
-   */
-  SlideProps?: Object,
-  /**
-   * The type of drawer.
-   */
-  type: Type,
-};
-
-type State = {
-  firstMount: boolean,
-};
-
-class Drawer extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
-    anchor: 'left',
-    elevation: 16,
-    transitionDuration: ({
-      enter: duration.enteringScreen,
-      exit: duration.leavingScreen,
-    }: TransitionDuration),
-    open: false,
-    type: 'temporary', // Mobile first.
-  };
-
+class Drawer extends React.Component {
   state = {
     // Let's assume that the Drawer will always be rendered on user space.
     // We use that state is order to skip the appear transition during the
@@ -187,12 +105,12 @@ class Drawer extends React.Component<ProvidedProps & Props, State> {
       classes,
       className,
       elevation,
-      transitionDuration,
       ModalProps,
       onClose,
       open,
       SlideProps,
       theme,
+      transitionDuration,
       type,
       ...other
     } = this.props;
@@ -262,5 +180,70 @@ class Drawer extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+Drawer.propTypes = {
+  /**
+   * Side from which the drawer will appear.
+   */
+  anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
+  /**
+   * The contents of the drawer.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The elevation of the drawer.
+   */
+  elevation: PropTypes.number,
+  /**
+   * Properties applied to the `Modal` element.
+   */
+  ModalProps: PropTypes.object,
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onClose: PropTypes.func,
+  /**
+   * If `true`, the drawer is open.
+   */
+  open: PropTypes.bool,
+  /**
+   * Properties applied to the `Slide` element.
+   */
+  SlideProps: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  transitionDuration: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+  ]),
+  /**
+   * The type of drawer.
+   */
+  type: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
+};
+
+Drawer.defaultProps = {
+  anchor: 'left',
+  elevation: 16,
+  open: false,
+  transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
+  type: 'temporary', // Mobile first.
+};
 
 export default withStyles(styles, { flip: false, withTheme: true, name: 'MuiDrawer' })(Drawer);

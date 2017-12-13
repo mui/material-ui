@@ -1,10 +1,10 @@
 [
   {
     "path": "build/index.js",
-    "limit": "98 KB"
+    "limit": "90.72 KB"
   },
   {
     "path": "test/size/overhead.js",
-    "limit": "25 KB"
+    "limit": "24.05 KB"
   }
 ]

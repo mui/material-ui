@@ -1,11 +1,9 @@
-// @flow weak
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -15,55 +13,45 @@ export const styles = (theme: Object) => ({
   gutters: theme.mixins.gutters({}),
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+function Toolbar(props) {
+  const { children, classes, className: classNameProp, disableGutters, ...other } = props;
 
-export type Props = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
+  const className = classNames(
+    classes.root,
+    {
+      [classes.gutters]: !disableGutters,
+    },
+    classNameProp,
+  );
+
+  return (
+    <div className={className} {...other}>
+      {children}
+    </div>
+  );
+}
+
+Toolbar.propTypes = {
   /**
    * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
    */
-  children?: Node,
+  children: PropTypes.node.isRequired,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * If `true`, disables gutter padding.
    */
-  disableGutters?: boolean,
+  disableGutters: PropTypes.bool,
 };
 
-class Toolbar extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    disableGutters: false,
-  };
-
-  render() {
-    const { children, classes, className: classNameProp, disableGutters, ...other } = this.props;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.gutters]: !disableGutters,
-      },
-      classNameProp,
-    );
-
-    return (
-      <div className={className} {...other}>
-        {children}
-      </div>
-    );
-  }
-}
+Toolbar.defaultProps = {
+  disableGutters: false,
+};
 
 export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);

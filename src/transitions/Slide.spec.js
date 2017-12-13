@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
@@ -100,14 +98,16 @@ describe('<Slide />', () => {
 
   describe('prop: direction', () => {
     it('should update the position', () => {
-      const wrapper = mount(<SlideNaked {...props} in={false} direction="left" />);
+      const wrapper = mount(
+        <SlideNaked {...props} theme={createMuiTheme()} in={false} direction="left" />,
+      );
       const transition = findDOMNode(wrapper.instance().transition);
-      // $FlowExpectedError
+
       const transition1 = transition.style.transform;
       wrapper.setProps({
         direction: 'right',
       });
-      // $FlowExpectedError
+
       const transition2 = transition.style.transform;
       assert.notStrictEqual(transition1, transition2);
     });
@@ -219,9 +219,9 @@ describe('<Slide />', () => {
         </SlideNaked>,
       );
       const transition = findDOMNode(wrapper.instance().transition);
-      // $FlowExpectedError
+
       assert.strictEqual(transition.style.visibility, 'inherit');
-      // $FlowExpectedError
+
       assert.notStrictEqual(transition.style.transform, undefined);
     });
   });
@@ -247,7 +247,7 @@ describe('<Slide />', () => {
       instance.handleResize();
       clock.tick(166);
       const transition = findDOMNode(instance.transition);
-      // $FlowExpectedError
+
       assert.notStrictEqual(transition.style.transform, undefined);
     });
 

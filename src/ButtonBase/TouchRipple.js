@@ -1,6 +1,5 @@
-// @flow weak
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import classNames from 'classnames';
@@ -10,7 +9,7 @@ import Ripple from './Ripple';
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'block',
     position: 'absolute',
@@ -89,40 +88,10 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * If `true`, the ripple starts at the center of the component
-   * rather than at the point of interaction.
-   */
-  center?: boolean,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-};
-
-type State = { nextKey: number, ripples: Array<*> };
-
 /**
  * @ignore - internal component.
  */
-class TouchRipple extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
-    center: false,
-  };
-
+class TouchRipple extends React.Component {
   state = {
     nextKey: 0,
     ripples: [],
@@ -162,8 +131,7 @@ class TouchRipple extends React.Component<ProvidedProps & Props, State> {
 
     const element = fakeElement ? null : ReactDOM.findDOMNode(this);
     const rect = element
-      ? // $FlowFixMe
-        element.getBoundingClientRect()
+      ? element.getBoundingClientRect()
       : {
           width: 0,
           height: 0,
@@ -199,21 +167,9 @@ class TouchRipple extends React.Component<ProvidedProps & Props, State> {
       }
     } else {
       const sizeX =
-        Math.max(
-          // $FlowFixMe
-          Math.abs((element ? element.clientWidth : 0) - rippleX),
-          rippleX,
-        ) *
-          2 +
-        2;
+        Math.max(Math.abs((element ? element.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
       const sizeY =
-        Math.max(
-          // $FlowFixMe
-          Math.abs((element ? element.clientHeight : 0) - rippleY),
-          rippleY,
-        ) *
-          2 +
-        2;
+        Math.max(Math.abs((element ? element.clientHeight : 0) - rippleY), rippleY) * 2 + 2;
       rippleSize = Math.sqrt(Math.pow(sizeX, 2) + Math.pow(sizeY, 2));
     }
 
@@ -307,5 +263,25 @@ class TouchRipple extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+TouchRipple.propTypes = {
+  /**
+   * If `true`, the ripple starts at the center of the component
+   * rather than at the point of interaction.
+   */
+  center: PropTypes.bool,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+};
+
+TouchRipple.defaultProps = {
+  center: false,
+};
 
 export default withStyles(styles, { flip: false, name: 'MuiTouchRipple' })(TouchRipple);

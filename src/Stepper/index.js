@@ -1,5 +1,3 @@
-// @flow
-
 export { default } from './Stepper';
 export { default as Step } from './Step';
 export { default as StepButton } from './StepButton';

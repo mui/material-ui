@@ -1,7 +1,5 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
 
@@ -12,15 +10,10 @@ const isDescendant = (el, target) => {
   return false;
 };
 
-export type Props = {
-  children: Node,
-  onClickAway: (event: Event) => void,
-};
-
 /**
  * Listen for click events that are triggered outside of the component children.
  */
-class ClickAwayListener extends React.Component<Props> {
+class ClickAwayListener extends React.Component {
   componentDidMount() {
     this.mounted = true;
   }
@@ -31,7 +24,7 @@ class ClickAwayListener extends React.Component<Props> {
 
   mounted = false;
 
-  handleClickAway = (event: Event) => {
+  handleClickAway = event => {
     // Ignore events that have been `event.preventDefault()` marked.
     if (event.defaultPrevented) {
       return;
@@ -64,5 +57,10 @@ class ClickAwayListener extends React.Component<Props> {
     );
   }
 }
+
+ClickAwayListener.propTypes = {
+  children: PropTypes.node.isRequired,
+  onClickAway: PropTypes.func.isRequired,
+};
 
 export default ClickAwayListener;

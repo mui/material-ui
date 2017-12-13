@@ -1,14 +1,13 @@
-// @flow
 // @inheritedComponent ButtonBase
 
 import React from 'react';
-import type { ElementType, Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     ...theme.typography.button,
     lineHeight: '1.4em', // Improve readability for multiline button.
@@ -153,143 +152,127 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type Color = 'default' | 'inherit' | 'primary' | 'accent' | 'contrast';
+function Button(props) {
+  const {
+    children,
+    classes,
+    className: classNameProp,
+    color,
+    dense,
+    disabled,
+    disableFocusRipple,
+    fab,
+    mini,
+    raised,
+    ...other
+  } = props;
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+  const flat = !raised && !fab;
+  const className = classNames(
+    classes.root,
+    {
+      [classes.raised]: raised || fab,
+      [classes.fab]: fab,
+      [classes.mini]: fab && mini,
+      [classes.colorInherit]: color === 'inherit',
+      [classes.flatPrimary]: flat && color === 'primary',
+      [classes.flatAccent]: flat && color === 'accent',
+      [classes.flatContrast]: flat && color === 'contrast',
+      [classes.raisedPrimary]: !flat && color === 'primary',
+      [classes.raisedAccent]: !flat && color === 'accent',
+      [classes.raisedContrast]: !flat && color === 'contrast',
+      [classes.dense]: dense,
+      [classes.disabled]: disabled,
+    },
+    classNameProp,
+  );
 
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
+  return (
+    <ButtonBase
+      className={className}
+      disabled={disabled}
+      focusRipple={!disableFocusRipple}
+      keyboardFocusedClassName={classes.keyboardFocused}
+      {...other}
+    >
+      <span className={classes.label}>{children}</span>
+    </ButtonBase>
+  );
+}
+
+Button.propTypes = {
   /**
    * The content of the button.
    */
-  children: Node,
+  children: PropTypes.node.isRequired,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: Color,
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'accent', 'contrast']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    * The default value is a `button`.
    */
-  component?: ElementType,
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Uses a smaller minWidth, ideal for things like card actions.
    */
-  dense: boolean,
+  dense: PropTypes.bool,
   /**
    * If `true`, the button will be disabled.
    */
-  disabled: boolean,
+  disabled: PropTypes.bool,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
    * `disableRipple` must also be true.
    */
-  disableFocusRipple: boolean,
+  disableFocusRipple: PropTypes.bool,
   /**
    * If `true`, the ripple effect will be disabled.
    */
-  disableRipple: boolean,
+  disableRipple: PropTypes.bool,
   /**
    * If `true`, will use floating action button styling.
    */
-  fab: boolean,
+  fab: PropTypes.bool,
   /**
    * The URL to link to when the button is clicked.
    * If defined, an `a` element will be used as the root node.
    */
-  href?: string,
+  href: PropTypes.string,
   /**
    * If `true`, and `fab` is `true`, will use mini floating action button styling.
    */
-  mini: boolean,
+  mini: PropTypes.bool,
   /**
    * If `true`, the button will use raised styling.
    */
-  raised: boolean,
+  raised: PropTypes.bool,
   /**
    * @ignore
    */
-  type: string,
+  type: PropTypes.string,
 };
 
-class Button extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    color: 'default',
-    dense: false,
-    disabled: false,
-    fab: false,
-    disableFocusRipple: false,
-    mini: false,
-    raised: false,
-    disableRipple: false,
-    type: 'button',
-  };
-
-  render() {
-    const {
-      children,
-      classes,
-      className: classNameProp,
-      color,
-      dense,
-      disabled,
-      disableFocusRipple,
-      fab,
-      mini,
-      raised,
-      ...other
-    } = this.props;
-
-    const flat = !raised && !fab;
-    const className = classNames(
-      {
-        [classes.root]: true,
-        [classes.raised]: raised || fab,
-        [classes.fab]: fab,
-        [classes.mini]: fab && mini,
-        [classes.colorInherit]: color === 'inherit',
-        [classes.flatPrimary]: flat && color === 'primary',
-        [classes.flatAccent]: flat && color === 'accent',
-        [classes.flatContrast]: flat && color === 'contrast',
-        [classes.raisedPrimary]: !flat && color === 'primary',
-        [classes.raisedAccent]: !flat && color === 'accent',
-        [classes.raisedContrast]: !flat && color === 'contrast',
-        [classes.dense]: dense,
-        [classes.disabled]: disabled,
-      },
-      classNameProp,
-    );
-
-    return (
-      <ButtonBase
-        className={className}
-        disabled={disabled}
-        focusRipple={!disableFocusRipple}
-        keyboardFocusedClassName={classes.keyboardFocused}
-        {...other}
-      >
-        <span className={classes.label}>{children}</span>
-      </ButtonBase>
-    );
-  }
-}
+Button.defaultProps = {
+  color: 'default',
+  dense: false,
+  disabled: false,
+  disableFocusRipple: false,
+  disableRipple: false,
+  fab: false,
+  mini: false,
+  raised: false,
+  type: 'button',
+};
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);

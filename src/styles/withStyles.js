@@ -1,9 +1,6 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import type { HigherOrderComponent } from 'react-flow-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import getDisplayName from 'recompose/getDisplayName';
@@ -65,45 +62,10 @@ function getDefaultTheme() {
   return defaultTheme;
 }
 
-type Options = {
-  flip?: boolean,
-  withTheme?: boolean,
-  name?: string,
-
-  // Problem: https://github.com/brigand/babel-plugin-flow-react-proptypes/issues/127
-  // import type { StyleSheetFactoryOptions } from 'jss/lib/types';
-  //  ...StyleSheetFactoryOptions,
-  // and the fact that we currently cannot import/spread types with
-  //  https://github.com/brigand/babel-plugin-flow-react-proptypes/issues/106
-  media?: string,
-  meta?: string,
-  index?: number,
-  link?: boolean,
-  element?: HTMLStyleElement,
-  generateClassName?: Function, // generateClassName - use generic to stop the bleeding.
-};
-
-export type RequiredProps = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * Use that property to pass a ref callback to the decorated component.
-   */
-  innerRef?: Function,
-};
-
-// Note, theme is conditionally injected, but flow is static analysis so we need to include it.
-export type InjectedProps = { classes: Object, theme?: Object };
-
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
 // instead, it returns a new component, with a `classes` property.
-const withStyles = (
-  stylesOrCreator: Object,
-  options?: Options = {},
-): HigherOrderComponent<RequiredProps, InjectedProps> => (Component: any): any => {
+const withStyles = (stylesOrCreator, options = {}) => Component => {
   const { withTheme = false, flip, name, ...styleSheetOptions } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || withTheme || typeof name === 'string';
@@ -121,20 +83,8 @@ const withStyles = (
     ].join(' '),
   );
 
-  class Style extends React.Component<RequiredProps> {
-    static contextTypes = {
-      muiThemeProviderOptions: PropTypes.object,
-      ...contextTypes,
-      ...(listenToTheme ? themeListener.contextTypes : {}),
-    };
-
-    // Exposed for tests purposes
-    static options: ?Options;
-
-    // Exposed for test purposes.
-    static Naked = Component;
-
-    constructor(props, context: Object) {
+  class Style extends React.Component {
+    constructor(props, context) {
       super(props, context);
 
       const { muiThemeProviderOptions } = this.context;
@@ -204,7 +154,7 @@ const withStyles = (
       }
     }
 
-    attach(theme: Object) {
+    attach(theme) {
       if (this.disableStylesGeneration) {
         return;
       }
@@ -257,7 +207,7 @@ const withStyles = (
       sheetManagerTheme.refs += 1;
     }
 
-    detach(theme: Object) {
+    detach(theme) {
       if (this.disableStylesGeneration) {
         return;
       }
@@ -348,13 +298,33 @@ const withStyles = (
     }
   }
 
-  hoistNonReactStatics(Style, Component);
+  Style.propTypes = {
+    /**
+     * Useful to extend the style applied to components.
+     */
+    classes: PropTypes.object,
+    /**
+     * Use that property to pass a ref callback to the decorated component.
+     */
+    innerRef: PropTypes.func,
+  };
 
-  // Higher specificity
-  Style.options = options;
+  Style.contextTypes = {
+    muiThemeProviderOptions: PropTypes.object,
+    ...contextTypes,
+    ...(listenToTheme ? themeListener.contextTypes : {}),
+  };
 
   if (process.env.NODE_ENV !== 'production') {
     Style.displayName = wrapDisplayName(Component, 'withStyles');
+  }
+
+  hoistNonReactStatics(Style, Component);
+
+  if (process.env.NODE_ENV !== 'production') {
+    // Exposed for test purposes.
+    Style.Naked = Component;
+    Style.options = options;
   }
 
   return Style;

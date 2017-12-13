@@ -4,7 +4,7 @@
 import { cloneElement, Children, isValidElement } from 'react';
 import type { Node } from 'react';
 
-export function cloneChildrenWithClassName(children?: Node, className: string) {
+export function cloneChildrenWithClassName(children: Node, className: string) {
   return Children.map(children, child => {
     return (
       isValidElement(child) &&

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
@@ -11,21 +9,21 @@ describe('<Table />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<Table />);
+    classes = getClasses(<Table>foo</Table>);
   });
 
   it('should render a table', () => {
-    const wrapper = shallow(<Table />);
+    const wrapper = shallow(<Table>foo</Table>);
     assert.strictEqual(wrapper.name(), 'table');
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<Table component="div" />);
+    const wrapper = shallow(<Table component="div">foo</Table>);
     assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<Table data-my-prop="woofTable" />);
+    const wrapper = shallow(<Table data-my-prop="woofTable">foo</Table>);
     assert.strictEqual(
       wrapper.prop('data-my-prop'),
       'woofTable',
@@ -34,7 +32,7 @@ describe('<Table />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<Table className="woofTable" />);
+    const wrapper = shallow(<Table className="woofTable">foo</Table>);
     assert.strictEqual(wrapper.hasClass('woofTable'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
@@ -46,7 +44,7 @@ describe('<Table />', () => {
   });
 
   it('should define table in the child context', () => {
-    const wrapper = shallow(<Table />);
+    const wrapper = shallow(<Table>foo</Table>);
     assert.deepStrictEqual(wrapper.instance().getChildContext().table, {});
   });
 });

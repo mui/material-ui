@@ -1,12 +1,10 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -18,30 +16,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * The content of the component.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-};
-
-function ExpansionPanelActions(props: ProvidedProps & Props) {
+function ExpansionPanelActions(props) {
   const { children, classes, className, ...other } = props;
 
   return (
@@ -50,5 +25,20 @@ function ExpansionPanelActions(props: ProvidedProps & Props) {
     </div>
   );
 }
+
+ExpansionPanelActions.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+};
 
 export default withStyles(styles, { name: 'MuiExpansionPanelActions' })(ExpansionPanelActions);

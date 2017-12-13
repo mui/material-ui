@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';

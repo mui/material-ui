@@ -1,7 +1,5 @@
-// @flow
-
 import React from 'react';
-import type { Node, ComponentType } from 'react';
+import PropTypes from 'prop-types';
 import warning from 'warning';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
@@ -12,9 +10,8 @@ import scroll from 'scroll';
 import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
-import type { IndicatorStyle } from './TabIndicator';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     overflow: 'hidden',
     minHeight: 48,
@@ -46,120 +43,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type IndicatorColor = 'accent' | 'primary' | string;
-type ScrollButtons = 'auto' | 'on' | 'off';
-type TextColor = 'accent' | 'primary' | 'inherit';
-
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * The CSS class name of the scroll button elements.
-   */
-  buttonClassName?: string,
-  /**
-   * If `true`, the tabs will be centered.
-   * This property is intended for large views.
-   */
-  centered: boolean,
-  /**
-   * The content of the component.
-   */
-  children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * If `true`, the tabs will grow to use all the available space.
-   * This property is intended for small views, like on mobile.
-   */
-  fullWidth: boolean,
-  /**
-   * The CSS class name of the indicator element.
-   */
-  indicatorClassName?: string,
-  /**
-   * Determines the color of the indicator.
-   */
-  indicatorColor: IndicatorColor,
-  /**
-   * Callback fired when the value changes.
-   *
-   * @param {object} event The event source of the callback
-   * @param {number} value We default to the index of the child
-   */
-  onChange: Function,
-  /**
-   * True invokes scrolling properties and allow for horizontally scrolling
-   * (or swiping) the tab bar.
-   */
-  scrollable: boolean,
-  /**
-   * Determine behavior of scroll buttons when tabs are set to scroll
-   * `auto` will only present them on medium and larger viewports
-   * `on` will always present them
-   * `off` will never present them
-   */
-  scrollButtons: ScrollButtons,
-  /**
-   * The component used to render the scroll buttons.
-   */
-  TabScrollButton: ComponentType<*>,
-  /**
-   * Determines the color of the `Tab`.
-   */
-  textColor: TextColor,
-  /**
-   * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this property to `false`.
-   */
-  value: any,
-};
-
-type State = {
-  indicatorStyle: IndicatorStyle,
-  scrollerStyle: Object,
-  showLeftScroll: boolean,
-  showRightScroll: boolean,
-  mounted: boolean,
-};
-
-export type TabsMeta = {
-  clientWidth: number,
-  scrollLeft: number,
-  scrollLeftNormalized: number,
-  scrollWidth: number,
-  // ClientRect
-  left: number,
-  right: number,
-};
-
-class Tabs extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
-    centered: false,
-    fullWidth: false,
-    indicatorColor: 'accent',
-    scrollable: false,
-    scrollButtons: 'auto',
-    TabScrollButton,
-    textColor: 'inherit',
-  };
-
+class Tabs extends React.Component {
   state = {
     indicatorStyle: {},
     scrollerStyle: {
@@ -244,7 +128,7 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
     return conditionalElements;
   };
 
-  getTabsMeta = (value, direction): { tabsMeta: ?TabsMeta, tabMeta: ?ClientRect } => {
+  getTabsMeta = (value, direction) => {
     let tabsMeta;
     if (this.tabs) {
       const rect = this.tabs.getBoundingClientRect();
@@ -396,8 +280,8 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
     const {
       buttonClassName,
       centered,
-      classes,
       children: childrenProp,
+      classes,
       className: classNameProp,
       fullWidth,
       indicatorClassName,
@@ -477,5 +361,88 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+Tabs.propTypes = {
+  /**
+   * The CSS class name of the scroll button elements.
+   */
+  buttonClassName: PropTypes.string,
+  /**
+   * If `true`, the tabs will be centered.
+   * This property is intended for large views.
+   */
+  centered: PropTypes.bool,
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the tabs will grow to use all the available space.
+   * This property is intended for small views, like on mobile.
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * The CSS class name of the indicator element.
+   */
+  indicatorClassName: PropTypes.string,
+  /**
+   * Determines the color of the indicator.
+   */
+  indicatorColor: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf(['accent', 'primary'])]),
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback
+   * @param {number} value We default to the index of the child
+   */
+  onChange: PropTypes.func,
+  /**
+   * True invokes scrolling properties and allow for horizontally scrolling
+   * (or swiping) the tab bar.
+   */
+  scrollable: PropTypes.bool,
+  /**
+   * Determine behavior of scroll buttons when tabs are set to scroll
+   * `auto` will only present them on medium and larger viewports
+   * `on` will always present them
+   * `off` will never present them
+   */
+  scrollButtons: PropTypes.oneOf(['auto', 'on', 'off']),
+  /**
+   * The component used to render the scroll buttons.
+   */
+  TabScrollButton: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * Determines the color of the `Tab`.
+   */
+  textColor: PropTypes.oneOf(['accent', 'primary', 'inherit']),
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
+   * The value of the currently selected `Tab`.
+   * If you don't want any selected `Tab`, you can set this property to `false`.
+   */
+  value: PropTypes.any,
+};
+
+Tabs.defaultProps = {
+  centered: false,
+  fullWidth: false,
+  indicatorColor: 'accent',
+  scrollable: false,
+  scrollButtons: 'auto',
+  TabScrollButton,
+  textColor: 'inherit',
+};
 
 export default withStyles(styles, { withTheme: true, name: 'MuiTabs' })(Tabs);

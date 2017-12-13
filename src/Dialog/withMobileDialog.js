@@ -1,34 +1,23 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
-import type { HigherOrderComponent } from 'react-flow-types';
+import PropTypes from 'prop-types';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withWidth, { isWidthDown } from '../utils/withWidth';
-import type { Breakpoint } from '../styles/createBreakpoints';
-
-type Options = { breakpoint: Breakpoint };
-
-export type InjectedProps = {
-  /**
-   * If isWidthDown(options.breakpoint), return true.
-   */
-  fullScreen?: boolean,
-};
 
 /**
  * Dialog will responsively be full screen *at or below* the given breakpoint
  * (defaults to 'sm' for mobile devices).
  * Notice that this Higher-order Component is incompatible with server side rendering.
  */
-const withMobileDialog = (
-  options: Options = { breakpoint: 'sm' },
-): HigherOrderComponent<{}, InjectedProps> => (Component: any): any => {
-  const { breakpoint } = options;
+const withMobileDialog = (options = {}) => Component => {
+  const { breakpoint = 'sm' } = options;
 
-  function WithMobileDialog(props: { width: Breakpoint }): Node {
+  function WithMobileDialog(props) {
     return <Component fullScreen={isWidthDown(breakpoint, props.width, true)} {...props} />;
   }
+
+  WithMobileDialog.propTypes = {
+    width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']).isRequired,
+  };
 
   if (process.env.NODE_ENV !== 'production') {
     WithMobileDialog.displayName = wrapDisplayName(Component, 'withMobileDialog');

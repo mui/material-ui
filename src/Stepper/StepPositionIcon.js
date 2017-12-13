@@ -1,12 +1,10 @@
-// @flow
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import SvgIcon from '../SvgIcon';
-import type { Icon } from './StepButton';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     fill: theme.palette.action.disabled,
   },
@@ -20,33 +18,10 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-};
-
-export type Props = {
-  /**
-   * Whether this step is active.
-   */
-  active?: boolean,
-  /**
-   * Classses for component style customizations.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * The step position as a number.
-   */
-  position?: Icon,
-};
-
 /**
  * @ignore - internal component.
  */
-function StepPositionIcon(props: ProvidedProps & Props) {
+function StepPositionIcon(props) {
   const { position, classes, className: classNameProp, active } = props;
   const className = classNames(
     classes.root,
@@ -65,5 +40,24 @@ function StepPositionIcon(props: ProvidedProps & Props) {
     </SvgIcon>
   );
 }
+
+StepPositionIcon.propTypes = {
+  /**
+   * Whether this step is active.
+   */
+  active: PropTypes.bool,
+  /**
+   * Classses for component style customizations.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The step position as a number.
+   */
+  position: PropTypes.node,
+};
 
 export default withStyles(styles, { name: 'MuiStepPosition' })(StepPositionIcon);

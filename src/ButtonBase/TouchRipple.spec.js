@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { useFakeTimers } from 'sinon';
 import { assert } from 'chai';

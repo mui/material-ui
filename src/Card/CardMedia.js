@@ -1,9 +1,7 @@
-// @flow
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
-import type { ElementType } from 'react';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -17,92 +15,70 @@ export const styles = {
   },
 };
 
-const mediaComponents = ['video', 'audio', 'picture', 'iframe', 'img'];
+const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+function CardMedia(props) {
+  const { classes, className, component: ComponentProp, image, src, style, ...other } = props;
 
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
+  warning(
+    Boolean(image || src),
+    'Material-UI: either `image` or `src` property must be specified.',
+  );
+
+  const isMediaComponent = MEDIA_COMPONENTS.indexOf(ComponentProp) !== -1;
+  const composedStyle =
+    !isMediaComponent && image ? { backgroundImage: `url(${image})`, ...style } : style;
+  const composedClassName = classNames(
+    {
+      [classes.root]: !isMediaComponent,
+      [classes.rootMedia]: isMediaComponent,
+    },
+    className,
+  );
+
+  return (
+    <ComponentProp
+      className={composedClassName}
+      style={composedStyle}
+      src={isMediaComponent ? image || src : undefined}
+      {...other}
+    />
+  );
+}
+
+CardMedia.propTypes = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
+  /**
+   * Component for rendering image.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Image to be displayed as a background image.
    * Either `image` or `src` prop must be specified.
    * Note that caller must specify height otherwise the image will not be visible.
    */
-  image?: string,
+  image: PropTypes.string,
   /**
    * An alias for `image` property.
    * Available only with media components.
    * Media components: `video`, `audio`, `picture`, `iframe`, `img`.
    */
-  src?: string,
+  src: PropTypes.string,
   /**
    * @ignore
    */
-  style?: Object,
-  /**
-   * Component for rendering image.
-   */
-  component: ElementType,
+  style: PropTypes.object,
 };
 
-class CardMedia extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    component: ('div': ElementType),
-  };
-
-  render() {
-    const {
-      classes,
-      className,
-      image,
-      style,
-      src,
-      component: ComponentProp,
-      ...other
-    } = this.props;
-
-    warning(
-      Boolean(image || src),
-      'Material-UI: either `image` or `src` property must be specified.',
-    );
-
-    const isMediaComponent = mediaComponents.indexOf(ComponentProp) !== -1;
-    const composedStyle =
-      !isMediaComponent && image ? { backgroundImage: `url(${image})`, ...style } : style;
-    const composedClassName = classNames(
-      {
-        [classes.root]: !isMediaComponent,
-        [classes.rootMedia]: isMediaComponent,
-      },
-      className,
-    );
-
-    return (
-      <ComponentProp
-        className={composedClassName}
-        style={composedStyle}
-        src={isMediaComponent ? image || src : undefined}
-        {...other}
-      />
-    );
-  }
-}
+CardMedia.defaultProps = {
+  component: 'div',
+};
 
 export default withStyles(styles, { name: 'MuiCardMedia' })(CardMedia);

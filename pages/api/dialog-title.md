@@ -12,9 +12,9 @@ filename: /src/Dialog/DialogTitle.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Node |  | The content of the component. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| disableTypography | boolean | false | If `true`, the children won't be wrapped by a typography component. For instance, this can be useful to render an h4 instead of the default h2. |
+| <span style="color: #31a148">children *</span> | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
+| disableTypography | bool | false | If `true`, the children won't be wrapped by a typography component. For instance, this can be useful to render an h4 instead of the default h2. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

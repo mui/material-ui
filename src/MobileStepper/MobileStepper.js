@@ -1,15 +1,14 @@
-// @flow weak
 // @inheritedComponent Paper
 
 import React from 'react';
-import type { Element } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import { LinearProgress } from '../Progress';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'row',
@@ -52,105 +51,92 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type Position = 'bottom' | 'top' | 'static';
-export type Type = 'text' | 'dots' | 'progress';
+function MobileStepper(props) {
+  const {
+    activeStep,
+    backButton,
+    classes,
+    className: classNameProp,
+    nextButton,
+    position,
+    steps,
+    type,
+    ...other
+  } = props;
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+  const className = classNames(
+    classes.root,
+    classes[`position${capitalizeFirstLetter(position)}`],
+    classNameProp,
+  );
 
-export type Props = {
+  return (
+    <Paper square elevation={0} className={className} {...other}>
+      {backButton}
+      {type === 'dots' && (
+        <div className={classes.dots}>
+          {[...new Array(steps)].map((_, step) => {
+            const dotClassName = classNames(
+              {
+                [classes.dotActive]: step === activeStep,
+              },
+              classes.dot,
+            );
+            // eslint-disable-next-line react/no-array-index-key
+            return <div key={step} className={dotClassName} />;
+          })}
+        </div>
+      )}
+      {type === 'progress' && (
+        <div className={classes.progress}>
+          <LinearProgress mode="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
+        </div>
+      )}
+      {nextButton}
+    </Paper>
+  );
+}
+
+MobileStepper.propTypes = {
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the type is 'dots'.
    */
-  activeStep?: number,
+  activeStep: PropTypes.number,
   /**
    * A back button element. For instance, it can be be a `Button` or a `IconButton`.
    */
-  backButton: Element<any>,
+  backButton: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * A next button element. For instance, it can be be a `Button` or a `IconButton`.
    */
-  nextButton: Element<any>,
+  nextButton: PropTypes.node,
   /**
    * Set the positioning type.
    */
-  position?: Position,
+  position: PropTypes.oneOf(['bottom', 'top', 'static']),
   /**
    * The total steps.
    */
-  steps: number,
+  steps: PropTypes.number.isRequired,
   /**
    * The type of mobile stepper to use.
    */
-  type?: Type,
+  type: PropTypes.oneOf(['text', 'dots', 'progress']),
 };
 
-class MobileStepper extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    activeStep: 0,
-    position: 'bottom',
-    type: 'dots',
-  };
-
-  render() {
-    const {
-      activeStep = 0,
-      backButton,
-      classes,
-      className: classNameProp,
-      position,
-      type,
-      nextButton,
-      steps,
-      ...other
-    } = this.props;
-
-    const className = classNames(
-      classes.root,
-      classes[`position${capitalizeFirstLetter(position)}`],
-      classNameProp,
-    );
-
-    return (
-      <Paper square elevation={0} className={className} {...other}>
-        {backButton}
-        {type === 'dots' && (
-          <div className={classes.dots}>
-            {[...new Array(steps)].map((_, step) => {
-              const dotClassName = classNames(
-                {
-                  [classes.dotActive]: step === activeStep,
-                },
-                classes.dot,
-              );
-              // eslint-disable-next-line react/no-array-index-key
-              return <div key={step} className={dotClassName} />;
-            })}
-          </div>
-        )}
-        {type === 'progress' && (
-          <div className={classes.progress}>
-            <LinearProgress mode="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
-          </div>
-        )}
-        {nextButton}
-      </Paper>
-    );
-  }
-}
+MobileStepper.defaultProps = {
+  activeStep: 0,
+  position: 'bottom',
+  type: 'dots',
+};
 
 export default withStyles(styles, { name: 'MuiMobileStepper' })(MobileStepper);

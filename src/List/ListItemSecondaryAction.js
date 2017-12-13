@@ -1,11 +1,9 @@
-// @flow weak
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     position: 'absolute',
     right: 4,
@@ -14,30 +12,30 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-};
+function ListItemSecondaryAction(props) {
+  const { children, classes, className, ...other } = props;
 
-export type Props = {
+  return (
+    <div className={classNames(classes.root, className)} {...other}>
+      {children}
+    </div>
+  );
+}
+
+ListItemSecondaryAction.propTypes = {
   /**
    * The content of the component, normally an `IconButton` or selection control.
    */
-  children?: Node,
+  children: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
 };
-
-function ListItemSecondaryAction(props: ProvidedProps & Props) {
-  const { children, classes, className } = props;
-
-  return <div className={classNames(classes.root, className)}>{children}</div>;
-}
 
 ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
 

@@ -1,42 +1,26 @@
-// @flow
-
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import warning from 'warning';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
-import type { HiddenProps } from './types';
-import type { Breakpoint } from '../styles/createBreakpoints';
-
-export type Props = HiddenProps & {
-  /**
-   * The content of the component.
-   */
-  children: Node,
-  /**
-   * @ignore
-   * width prop provided by withWidth decorator
-   */
-  width: Breakpoint,
-};
 
 /**
  * @ignore - internal component.
  */
-function HiddenJs(props: Props) {
+function HiddenJs(props) {
   const {
     children,
-    only,
-    xsUp,
-    smUp,
-    mdUp,
+    lgDown,
     lgUp,
+    mdDown,
+    mdUp,
+    only,
+    smDown,
+    smUp,
+    width,
+    xlDown,
     xlUp,
     xsDown,
-    smDown,
-    mdDown,
-    lgDown,
-    xlDown,
-    width,
+    xsUp,
     ...other
   } = props;
 
@@ -85,5 +69,85 @@ function HiddenJs(props: Props) {
 
   return children;
 }
+
+HiddenJs.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * Specify which implementation to use.  'js' is the default, 'css' works better for server
+   * side rendering.
+   */
+  implementation: PropTypes.oneOf(['js', 'css']),
+  /**
+   * You can use this property when choosing the `js` implementation with server side rendering.
+   *
+   * As `window.innerWidth` is unavailable on the server,
+   * we default to rendering an empty componenent during the first mount.
+   * In some situation you might want to use an heristic to approximate
+   * the screen width of the client browser screen width.
+   *
+   * For instance, you could be using the user-agent or the client-hints.
+   * http://caniuse.com/#search=client%20hint
+   */
+  initialWidth: PropTypes.number,
+  /**
+   * If true, screens before this size and down will be hidden.
+   */
+  lgDown: PropTypes.bool,
+  /**
+   * If true, screens this size and up will be hidden.
+   */
+  lgUp: PropTypes.bool,
+  /**
+   * If true, screens before this size and down will be hidden.
+   */
+  mdDown: PropTypes.bool,
+  /**
+   * If true, screens this size and up will be hidden.
+   */
+  mdUp: PropTypes.bool,
+  /**
+   * Hide the given breakpoint(s).
+   */
+  only: PropTypes.oneOfType([
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
+  ]),
+  /**
+   * If true, screens before this size and down will be hidden.
+   */
+  smDown: PropTypes.bool,
+  /**
+   * If true, screens this size and up will be hidden.
+   */
+  smUp: PropTypes.bool,
+  /**
+   * @ignore
+   * width prop provided by withWidth decorator.
+   */
+  width: PropTypes.string.isRequired,
+  /**
+   * If true, screens before this size and down will be hidden.
+   */
+  xlDown: PropTypes.bool,
+  /**
+   * If true, screens this size and up will be hidden.
+   */
+  xlUp: PropTypes.bool,
+  /**
+   * If true, screens before this size and down will be hidden.
+   */
+  xsDown: PropTypes.bool,
+  /**
+   * If true, screens this size and up will be hidden.
+   */
+  xsUp: PropTypes.bool,
+};
 
 export default withWidth()(HiddenJs);

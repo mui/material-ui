@@ -1,29 +1,12 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import canUseDom from 'dom-helpers/util/inDOM';
-
-export type Props = {
-  /**
-   * The content to portal in order to escape the parent DOM node.
-   */
-  children?: Node,
-  /**
-   * If `true` the children will be mounted into the DOM.
-   */
-  open?: boolean,
-};
 
 /**
  * @ignore - internal component.
  */
-class Portal extends React.Component<Props> {
-  static defaultProps = {
-    open: false,
-  };
-
+class Portal extends React.Component {
   componentDidMount() {
     // Support react@15.x, will be removed at some point
     if (!ReactDOM.createPortal) {
@@ -54,7 +37,7 @@ class Portal extends React.Component<Props> {
     return this.layer;
   }
 
-  layer: ?HTMLElement = null;
+  layer = null;
 
   unrenderLayer() {
     if (!this.layer) {
@@ -99,7 +82,6 @@ class Portal extends React.Component<Props> {
     if (canUseDom) {
       if (open) {
         const layer = this.getLayer();
-        // $FlowFixMe layer is non-null
         return ReactDOM.createPortal(children, layer);
       }
 
@@ -109,5 +91,20 @@ class Portal extends React.Component<Props> {
     return null;
   }
 }
+
+Portal.propTypes = {
+  /**
+   * The content to portal in order to escape the parent DOM node.
+   */
+  children: PropTypes.node,
+  /**
+   * If `true` the children will be mounted into the DOM.
+   */
+  open: PropTypes.bool,
+};
+
+Portal.defaultProps = {
+  open: false,
+};
 
 export default Portal;

@@ -1,7 +1,5 @@
-// @flow
-
 import React from 'react';
-import type { Element, ElementType } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import warning from 'warning';
@@ -17,13 +15,12 @@ import withStyles from '../styles/withStyles';
 import createModalManager from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from '../internal/Portal';
-import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
 // Modals don't open on the server so this won't break concurrency.
 // Could also put this on context.
 const modalManager = createModalManager();
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'flex',
     width: '100%',
@@ -37,118 +34,6 @@ export const styles = (theme: Object) => ({
     visibility: 'hidden',
   },
 });
-
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
-
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
-   * The CSS class name of the backdrop element.
-   */
-  BackdropClassName?: string,
-  /**
-   * Pass a component class to use as the backdrop.
-   */
-  BackdropComponent: ElementType,
-  /**
-   * If `true`, the backdrop is invisible.
-   */
-  BackdropInvisible: boolean,
-  /**
-   * The duration for the backdrop transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   */
-  BackdropTransitionDuration: TransitionDuration,
-  /**
-   * A single child content element.
-   */
-  children?: Element<any>,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * Always keep the children in the DOM.
-   * This property can be useful in SEO situation or
-   * when you want to maximize the responsiveness of the Modal.
-   */
-  keepMounted: boolean,
-  /**
-   * If `true`, the backdrop is disabled.
-   */
-  disableBackdrop: boolean,
-  /**
-   * If `true`, clicking the backdrop will not fire the `onClose` callback.
-   */
-  ignoreBackdropClick: boolean,
-  /**
-   * If `true`, hitting escape will not fire the `onClose` callback.
-   */
-  ignoreEscapeKeyUp: boolean,
-  /**
-   * @ignore
-   */
-  modalManager: Object,
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback
-   */
-  onClose?: Function,
-  /**
-   * Callback fires when the backdrop is clicked on.
-   */
-  onBackdropClick?: Function,
-  /**
-   * Callback fired before the modal is entering.
-   */
-  onEnter?: TransitionCallback,
-  /**
-   * Callback fired when the modal is entering.
-   */
-  onEntering?: TransitionCallback,
-  /**
-   * Callback fired when the modal has entered.
-   */
-  onEntered?: TransitionCallback,
-  /**
-   * Callback fires when the escape key is pressed and the modal is in focus.
-   */
-  onEscapeKeyUp?: Function,
-  /**
-   * Callback fired before the modal is exiting.
-   */
-  onExit?: TransitionCallback,
-  /**
-   * Callback fired when the modal is exiting.
-   */
-  onExiting?: TransitionCallback,
-  /**
-   * Callback fired when the modal has exited.
-   */
-  onExited?: TransitionCallback,
-  /**
-   * If `true`, the Modal is visible.
-   */
-  show: boolean,
-};
-
-type State = {
-  exited: boolean,
-};
 
 /**
  * The modal component provides a solid foundation for creating dialogs,
@@ -165,18 +50,7 @@ type State = {
  *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
-class Modal extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
-    BackdropComponent: (Backdrop: ElementType),
-    BackdropTransitionDuration: (300: TransitionDuration),
-    BackdropInvisible: false,
-    keepMounted: false,
-    disableBackdrop: false,
-    ignoreBackdropClick: false,
-    ignoreEscapeKeyUp: false,
-    modalManager,
-  };
-
+class Modal extends React.Component {
   state = {
     exited: false,
   };
@@ -222,7 +96,6 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
 
   onDocumentKeyUpListener = null;
   onFocusListener = null;
-
   mounted = false;
   lastFocus = undefined;
   modal = null;
@@ -256,7 +129,6 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
 
     if (modalContent instanceof HTMLElement && !focusInModal) {
       if (!modalContent.hasAttribute('tabIndex')) {
-        // $FlowFixMe Flow's `setAttribute` expects the value to be a string.
         modalContent.setAttribute('tabIndex', -1);
         warning(
           false,
@@ -294,7 +166,7 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
     }
   };
 
-  handleDocumentKeyUp = (event: Event) => {
+  handleDocumentKeyUp = event => {
     if (!this.mounted || !this.props.modalManager.isTopModal(this)) {
       return;
     }
@@ -314,7 +186,7 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
     }
   };
 
-  handleBackdropClick = (event: Event) => {
+  handleBackdropClick = event => {
     if (event.target !== event.currentTarget) {
       return;
     }
@@ -339,12 +211,12 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
     this.handleHide();
   };
 
-  renderBackdrop(other: { [key: string]: any } = {}) {
+  renderBackdrop(other = {}) {
     const {
-      BackdropComponent,
       BackdropClassName,
-      BackdropTransitionDuration,
+      BackdropComponent,
       BackdropInvisible,
+      BackdropTransitionDuration,
       show,
     } = this.props;
 
@@ -452,5 +324,115 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
     );
   }
 }
+
+Modal.propTypes = {
+  /**
+   * The CSS class name of the backdrop element.
+   */
+  BackdropClassName: PropTypes.string,
+  /**
+   * Pass a component class to use as the backdrop.
+   */
+  BackdropComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * If `true`, the backdrop is invisible.
+   */
+  BackdropInvisible: PropTypes.bool,
+  /**
+   * The duration for the backdrop transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  BackdropTransitionDuration: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+  ]),
+  /**
+   * A single child content element.
+   */
+  children: PropTypes.element,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the backdrop is disabled.
+   */
+  disableBackdrop: PropTypes.bool,
+  /**
+   * If `true`, clicking the backdrop will not fire the `onClose` callback.
+   */
+  ignoreBackdropClick: PropTypes.bool,
+  /**
+   * If `true`, hitting escape will not fire the `onClose` callback.
+   */
+  ignoreEscapeKeyUp: PropTypes.bool,
+  /**
+   * Always keep the children in the DOM.
+   * This property can be useful in SEO situation or
+   * when you want to maximize the responsiveness of the Modal.
+   */
+  keepMounted: PropTypes.bool,
+  /**
+   * Instance of the modal manager.
+   */
+  modalManager: PropTypes.object,
+  /**
+   * Callback fires when the backdrop is clicked on.
+   */
+  onBackdropClick: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onClose: PropTypes.func,
+  /**
+   * Callback fired before the modal is entering.
+   */
+  onEnter: PropTypes.func,
+  /**
+   * Callback fired when the modal has entered.
+   */
+  onEntered: PropTypes.func,
+  /**
+   * Callback fired when the modal is entering.
+   */
+  onEntering: PropTypes.func,
+  /**
+   * Callback fires when the escape key is pressed and the modal is in focus.
+   */
+  onEscapeKeyUp: PropTypes.func,
+  /**
+   * Callback fired before the modal is exiting.
+   */
+  onExit: PropTypes.func,
+  /**
+   * Callback fired when the modal has exited.
+   */
+  onExited: PropTypes.func,
+  /**
+   * Callback fired when the modal is exiting.
+   */
+  onExiting: PropTypes.func,
+  /**
+   * If `true`, the Modal is visible.
+   */
+  show: PropTypes.bool,
+};
+
+Modal.defaultProps = {
+  BackdropComponent: Backdrop,
+  BackdropInvisible: false,
+  BackdropTransitionDuration: 300,
+  disableBackdrop: false,
+  ignoreBackdropClick: false,
+  ignoreEscapeKeyUp: false,
+  keepMounted: false,
+  modalManager,
+};
 
 export default withStyles(styles, { flip: false, name: 'MuiModal' })(Modal);

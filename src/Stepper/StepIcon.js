@@ -1,13 +1,11 @@
-// @flow
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CheckCircle from '../svg-icons/CheckCircle';
 import withStyles from '../styles/withStyles';
 import StepPositionIcon from './StepPositionIcon';
-import type { Icon } from './StepButton';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     display: 'block',
   },
@@ -16,33 +14,10 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-};
-
-export type Props = {
-  /**
-   * Whether this step is active.
-   */
-  active?: boolean,
-  /**
-   * Classses for component style customizations.
-   */
-  classes?: Object,
-  /**
-   * Mark the step as completed. Is passed to child components.
-   */
-  completed?: boolean,
-  /**
-   * The icon displayed by the step label.
-   */
-  icon?: Icon,
-};
-
 /**
  * @ignore - internal component.
  */
-function StepIcon(props: ProvidedProps & Props) {
+function StepIcon(props) {
   const { completed, icon, active, classes } = props;
 
   if (typeof icon === 'number' || typeof icon === 'string') {
@@ -54,5 +29,24 @@ function StepIcon(props: ProvidedProps & Props) {
 
   return icon;
 }
+
+StepIcon.propTypes = {
+  /**
+   * Whether this step is active.
+   */
+  active: PropTypes.bool,
+  /**
+   * Classses for component style customizations.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * Mark the step as completed. Is passed to child components.
+   */
+  completed: PropTypes.bool,
+  /**
+   * The icon displayed by the step label.
+   */
+  icon: PropTypes.node,
+};
 
 export default withStyles(styles, { name: 'MuiStepIcon' })(StepIcon);

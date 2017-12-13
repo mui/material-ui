@@ -1,8 +1,7 @@
-// @flow
 // @inheritedComponent List
 
 import React from 'react';
-import type { Node } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
@@ -10,30 +9,7 @@ import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import List from '../List';
 
-export type Props = {
-  /**
-   * MenuList contents, normally `MenuItem`s.
-   */
-  children?: Node,
-  /**
-   * @ignore
-   */
-  className?: string,
-  /**
-   * @ignore
-   */
-  onBlur?: Function,
-  /**
-   * @ignore
-   */
-  onKeyDown?: (event: SyntheticUIEvent<>, key: string) => void,
-};
-
-type State = {
-  currentTabIndex: ?number,
-};
-
-class MenuList extends React.Component<Props, State> {
+class MenuList extends React.Component {
   state = {
     currentTabIndex: undefined,
   };
@@ -80,10 +56,8 @@ class MenuList extends React.Component<Props, State> {
       (!currentFocus || (currentFocus && !contains(list, currentFocus)))
     ) {
       if (this.selectedItem) {
-        // $FlowFixMe
         findDOMNode(this.selectedItem).focus();
       } else {
-        // $FlowFixMe
         list.firstChild.focus();
       }
     } else if (key === 'down') {
@@ -106,9 +80,7 @@ class MenuList extends React.Component<Props, State> {
   handleItemFocus = (event: SyntheticUIEvent<>) => {
     const list = findDOMNode(this.list);
     if (list) {
-      // $FlowFixMe
       for (let i = 0; i < list.children.length; i += 1) {
-        // $FlowFixMe
         if (list.children[i] === event.currentTarget) {
           this.setTabIndex(i);
           break;
@@ -125,10 +97,8 @@ class MenuList extends React.Component<Props, State> {
     }
 
     if (currentTabIndex && currentTabIndex >= 0) {
-      // $FlowFixMe
       list.children[currentTabIndex].focus();
     } else {
-      // $FlowFixMe
       list.firstChild.focus();
     }
   }
@@ -136,7 +106,6 @@ class MenuList extends React.Component<Props, State> {
   resetTabIndex() {
     const list = findDOMNode(this.list);
     const currentFocus = activeElement(ownerDocument(list));
-    // $FlowFixMe
     const items = [...list.children];
     const currentFocusIndex = items.indexOf(currentFocus);
 
@@ -185,5 +154,24 @@ class MenuList extends React.Component<Props, State> {
     );
   }
 }
+
+MenuList.propTypes = {
+  /**
+   * MenuList contents, normally `MenuItem`s.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+};
 
 export default MenuList;

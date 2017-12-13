@@ -12,16 +12,16 @@ filename: /src/ButtonBase/ButtonBase.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| centerRipple | boolean | false | If `true`, the ripples will be centered. They won't start at the cursor interaction position. |
-| children | Node |  | The content of the component. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| component | ElementType |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
-| disableRipple | boolean | false | If `true`, the ripple effect will be disabled. |
-| disabled | boolean |  | If `true`, the base button will be disabled. |
-| focusRipple | boolean | false | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
+| centerRipple | bool | false | If `true`, the ripples will be centered. They won't start at the cursor interaction position. |
+| children | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
+| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
+| disabled | bool |  | If `true`, the base button will be disabled. |
+| disableRipple | bool | false | If `true`, the ripple effect will be disabled. |
+| focusRipple | bool | false | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
 | keyboardFocusedClassName | string |  | The CSS class applied while the component is keyboard focused. |
-| onKeyboardFocus | signature |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
-| rootRef | Function |  | Use that property to pass a ref callback to the root component. |
+| onKeyboardFocus | func |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
+| rootRef | func |  | Use that property to pass a ref callback to the root component. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

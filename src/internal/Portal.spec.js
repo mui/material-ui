@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import type { Element } from 'react';
 import ReactDOM from 'react-dom';
@@ -29,29 +27,24 @@ describe('<Portal />', () => {
         reactDomMock.createPortal = ReactDOM.createPortal;
 
         if (verion === 'latest') {
-          // $FlowExpectedError
           ReactDOM.createPortal = (children, layer) => {
-            // $FlowExpectedError
             const element = document.createElement(children.type);
-            // $FlowExpectedError
+
             element.textContent = children.props.children;
-            // $FlowExpectedError
+
             element.setAttribute('id', children.props.id);
             layer.appendChild(element);
             return null;
           };
         } else if (verion === 'old') {
-          // $FlowExpectedError
           ReactDOM.createPortal = null;
-          // $FlowExpectedError
+
           ReactDOM.unstable_renderSubtreeIntoContainer = (
             instance,
             children: Element<*>,
             layer,
           ) => {
-            // $FlowFixMe
             const element = document.createElement(children.type);
-            // $FlowFixMe
             element.textContent = children.props.children;
             element.setAttribute('id', children.props.id);
             layer.appendChild(element);
@@ -66,7 +59,6 @@ describe('<Portal />', () => {
         ReactDOM.createPortal = reactDomMock.createPortal;
 
         if (verion === 'next') {
-          // $FlowExpectedError
           ReactDOM.unstable_renderSubtreeIntoContainer = undefined;
         }
       });

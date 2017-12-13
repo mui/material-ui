@@ -1,13 +1,10 @@
-// @flow
-
 import React from 'react';
-import type { Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { FormLabel } from '../Form';
 
-export const styles = (theme: Object) => ({
+export const styles = theme => ({
   root: {
     transformOrigin: 'top left',
   },
@@ -37,121 +34,105 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
-};
+function InputLabel(props, context) {
+  const {
+    children,
+    classes,
+    className: classNameProp,
+    disableAnimation,
+    disabled,
+    FormControlClasses,
+    margin: marginProp,
+    shrink: shrinkProp,
+    ...other
+  } = props;
 
-export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
+  const { muiFormControl } = context;
+  let shrink = shrinkProp;
+
+  if (typeof shrink === 'undefined' && muiFormControl) {
+    shrink = muiFormControl.dirty || muiFormControl.focused || muiFormControl.adornedStart;
+  }
+
+  let margin = marginProp;
+  if (typeof margin === 'undefined' && muiFormControl) {
+    margin = muiFormControl.margin;
+  }
+
+  const className = classNames(
+    classes.root,
+    {
+      [classes.formControl]: muiFormControl,
+      [classes.animated]: !disableAnimation,
+      [classes.shrink]: shrink,
+      [classes.disabled]: disabled,
+      [classes.labelDense]: margin === 'dense',
+    },
+    classNameProp,
+  );
+
+  return (
+    <FormLabel data-shrink={shrink} className={className} classes={FormControlClasses} {...other}>
+      {children}
+    </FormLabel>
+  );
+}
+
+InputLabel.propTypes = {
   /**
    * The contents of the `InputLabel`.
    */
-  children?: Node,
+  children: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
-  className?: string,
+  className: PropTypes.string,
   /**
    * If `true`, the transition animation is disabled.
    */
-  disableAnimation: boolean,
+  disableAnimation: PropTypes.bool,
   /**
    * If `true`, apply disabled class.
    */
-  disabled: boolean,
+  disabled: PropTypes.bool,
   /**
    * If `true`, the label will be displayed in an error state.
    */
-  error?: boolean,
-  /**
-   * `classes` property applied to the `FormControl` element.
-   */
-  FormControlClasses?: Object,
+  error: PropTypes.bool,
   /**
    * If `true`, the input of this label is focused.
    */
-  focused?: boolean,
+  focused: PropTypes.bool,
+  /**
+   * `classes` property applied to the `FormControl` element.
+   */
+  FormControlClasses: PropTypes.object,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
    */
-  margin?: 'dense',
+  margin: PropTypes.oneOf(['dense']),
   /**
    * if `true`, the label will indicate that the input is required.
    */
-  required?: boolean,
+  required: PropTypes.bool,
   /**
    * If `true`, the label is shrunk.
    */
-  shrink?: boolean,
+  shrink: PropTypes.bool,
 };
 
-class InputLabel extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    disabled: false,
-    disableAnimation: false,
-  };
+InputLabel.defaultProps = {
+  disabled: false,
+  disableAnimation: false,
+};
 
-  static contextTypes = {
-    muiFormControl: PropTypes.object,
-  };
-
-  context: { muiFormControl: Object };
-
-  render() {
-    const {
-      disabled,
-      disableAnimation,
-      children,
-      classes,
-      className: classNameProp,
-      FormControlClasses,
-      shrink: shrinkProp,
-      margin: marginProp,
-      ...other
-    } = this.props;
-
-    const { muiFormControl } = this.context;
-    let shrink = shrinkProp;
-
-    if (typeof shrink === 'undefined' && muiFormControl) {
-      shrink = muiFormControl.dirty || muiFormControl.focused || muiFormControl.adornedStart;
-    }
-
-    let margin = marginProp;
-    if (typeof margin === 'undefined' && muiFormControl) {
-      margin = muiFormControl.margin;
-    }
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.formControl]: muiFormControl,
-        [classes.animated]: !disableAnimation,
-        [classes.shrink]: shrink,
-        [classes.disabled]: disabled,
-        [classes.labelDense]: margin === 'dense',
-      },
-      classNameProp,
-    );
-
-    return (
-      <FormLabel data-shrink={shrink} className={className} classes={FormControlClasses} {...other}>
-        {children}
-      </FormLabel>
-    );
-  }
-}
+InputLabel.contextTypes = {
+  muiFormControl: PropTypes.object,
+};
 
 export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);

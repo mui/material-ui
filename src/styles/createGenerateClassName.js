@@ -1,8 +1,4 @@
-// @flow
-
 import warning from 'warning';
-import type StyleSheet from 'jss/lib/StyleSheet';
-import type { Rule, generateClassName } from 'jss/lib/types';
 
 let generatorCounter = 0;
 
@@ -12,7 +8,7 @@ let generatorCounter = 0;
 //
 // It's an improved version of
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
-export default function createGenerateClassName(): generateClassName {
+export default function createGenerateClassName() {
   let ruleCounter = 0;
 
   if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
@@ -30,7 +26,7 @@ export default function createGenerateClassName(): generateClassName {
     }
   }
 
-  return (rule: Rule, sheet?: StyleSheet): string => {
+  return (rule, styleSheet) => {
     ruleCounter += 1;
     warning(
       ruleCounter < 1e10,
@@ -44,8 +40,8 @@ export default function createGenerateClassName(): generateClassName {
       return `c${ruleCounter}`;
     }
 
-    if (sheet && sheet.options.meta) {
-      let meta = sheet.options.meta;
+    if (styleSheet && styleSheet.options.meta) {
+      let meta = styleSheet.options.meta;
       // Sanitize the string as will be used in development to prefix the generated
       // class name.
       meta = meta.replace(new RegExp(/[!"#$%&'()*+,./:; <=>?@[\\\]^`{|}~]/g), '-');
