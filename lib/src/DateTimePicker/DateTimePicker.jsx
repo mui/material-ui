@@ -32,6 +32,7 @@ export class DateTimePicker extends Component {
     renderDay: PropTypes.func,
     utils: PropTypes.object,
     ampm: PropTypes.bool,
+    shouldDisableDate: PropTypes.func,
   }
 
   static defaultProps = {
@@ -48,6 +49,7 @@ export class DateTimePicker extends Component {
     renderDay: undefined,
     utils: defaultUtils,
     ampm: true,
+    shouldDisableDate: undefined,
   }
 
   state = {
@@ -94,6 +96,7 @@ export class DateTimePicker extends Component {
       renderDay,
       utils,
       ampm,
+      shouldDisableDate,
     } = this.props;
 
     return (
@@ -140,6 +143,7 @@ export class DateTimePicker extends Component {
             rightArrowIcon={rightArrowIcon}
             renderDay={renderDay}
             utils={utils}
+            shouldDisableDate={shouldDisableDate}
           />
         </View>
 
