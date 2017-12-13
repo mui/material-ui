@@ -98,6 +98,7 @@ labelFunc | func | null | Allow to specify dynamic label for text field `labelFu
 renderDay | fund | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
+shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
 keyboard | boolean | false | Allow to manual input date to the text field
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 
@@ -137,6 +138,7 @@ rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 dateRangeIcon | react node, string | 'date_range'| Date tab icon 
 timeIcon | react node, string | 'access_time'| Time tab icon
 ampm | boolean | true | 12h/24h view for hour selection clock
+shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
 keyboard | boolean | false | Allow to manual input date to the text field
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 
