@@ -2,6 +2,7 @@ import { ComponentClass, ReactNode } from 'react';
 import { DateType } from '../constants/prop-types';
 import { Utils } from '../utils/utils';
 import { RenderDay } from './Calendar';
+import { Moment } from 'moment';
 
 export interface DatePickerProps {
     date: object;
@@ -15,6 +16,7 @@ export interface DatePickerProps {
     rightArrowIcon?: ReactNode;
     renderDay?: RenderDay;
     utils?: Utils;
+    shouldDisableDate?: (day: Moment) => boolean;
 }
 
 declare const DatePicker: ComponentClass<DatePickerProps>;

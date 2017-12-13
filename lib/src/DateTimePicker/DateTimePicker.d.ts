@@ -3,6 +3,7 @@ import { DateTimePickerView } from '../constants/date-picker-view';
 import { DateType } from '../constants/prop-types';
 import { Utils } from '../utils/utils';
 import { RenderDay } from '../DatePicker/Calendar';
+import { Moment } from 'moment';
 
 export interface DateTimePickerProps {
   date: object;
@@ -20,6 +21,7 @@ export interface DateTimePickerProps {
   timeIcon?: ReactNode;
   renderDay?: RenderDay;
   utils?: Utils;
+  shouldDisableDate?: (day: Moment) => boolean;
 }
 
 declare const DateTimePicker: ComponentClass<DateTimePickerProps>;

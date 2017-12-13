@@ -4,6 +4,7 @@ import { DateType } from '../constants/prop-types';
 import { Utils } from '../utils/utils';
 import { RenderDay } from '../DatePicker/Calendar';
 import { ModalWrapperProps } from '../wrappers/ModalWrapper';
+import { Moment } from 'moment';
 
 export interface DateTimePickerWrapperProps extends ModalWrapperProps {
   minDate?: DateType;
@@ -22,6 +23,7 @@ export interface DateTimePickerWrapperProps extends ModalWrapperProps {
   timeIcon?: ReactNode;
   renderDay?: RenderDay;
   utils?: Utils;
+  shouldDisableDate?: (day: Moment) => boolean;
 }
 
 declare const DateTimePickerWrapper: ComponentClass<DateTimePickerWrapperProps>;
