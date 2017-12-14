@@ -28,13 +28,13 @@ Material-UI is an MIT-licensed open source project. It's an independent project 
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
 - [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
 
-Through contributions, donations, and sponsorship, you allow Material-UI to thrive.
-Your donations directly support office hours, continued enhancements, great documentation and learning materials!
+Your contributions, donations, and sponsorship allow us to build a sustainable organization. They directly support office hours, continued enhancements, great documentation and learning materials!
 
 ### What's the difference between Patreon and OpenCollective?
 
 Funds donated via Patreon directly support [Olivier Tassinari](https://github.com/oliviertassinari)'s work on Material-UI.
-Funds donated via OpenCollective are managed transparently and will be used to compensate work and expenses by core team members.
+Funds donated via OpenCollective also support Olivier, but will be shared amongst other contributors and pay for operating expenses.
+These funds are managed transparently through the OpenCollective website.
 Your name/logo will receive proper recognition and exposure by donating on either platform.
 
 <h3 align="center">Gold Sponsors</h3>
