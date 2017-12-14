@@ -150,7 +150,7 @@ if (rootElement) {
               ref={node => {
                 this.codesandboxForm = node;
               }}
-              method="get"
+              method="post"
               action="https://codesandbox.io/api/v1/sandboxes/define"
               target="_blank"
             >
