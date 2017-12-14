@@ -33,6 +33,7 @@ export const styles = theme => ({
   },
   input: {
     fontSize: 'inherit',
+    flexShrink: 0,
   },
   selectRoot: {
     marginRight: theme.spacing.unit * 4,
