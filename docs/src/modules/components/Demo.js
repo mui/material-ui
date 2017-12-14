@@ -1,12 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import LZString from 'lz-string';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
 import CodeIcon from 'material-ui-icons/Code';
 import Tooltip from 'material-ui/Tooltip';
+import Github from 'docs/src/modules/components/GitHub';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 const styles = theme => ({
@@ -34,15 +35,15 @@ const styles = theme => ({
       paddingTop: theme.spacing.unit * 6,
     },
   }),
-  codeButton: {
-    flip: false,
+  header: {
     display: 'none',
-    zIndex: 10,
-    position: 'absolute',
-    top: 2,
-    right: theme.spacing.unit * 2,
     [theme.breakpoints.up('sm')]: {
-      display: 'block',
+      display: 'flex',
+      flip: false,
+      zIndex: 10,
+      position: 'absolute',
+      top: 2,
+      right: theme.spacing.unit * 2,
     },
   },
   code: {
@@ -56,17 +57,6 @@ const styles = theme => ({
       overflow: 'auto',
       margin: '0px !important',
       borderRadius: '0px !important',
-    },
-  },
-  codesandbox: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-      flip: false,
-      zIndex: 10,
-      position: 'absolute',
-      top: 2,
-      right: theme.spacing.unit * 8,
     },
   },
 });
@@ -136,33 +126,38 @@ if (rootElement) {
   };
 
   render() {
-    const { classes, js: DemoComponent, raw } = this.props;
+    const { classes, githubLocation, js: DemoComponent, raw } = this.props;
     const { codeOpen } = this.state;
 
     return (
       <div className={classes.root}>
-        <Tooltip title="Edit in codesandbox" placement="top">
-          <div className={classes.codesandbox}>
+        <div className={classes.header}>
+          <form
+            ref={node => {
+              this.codesandboxForm = node;
+            }}
+            method="get"
+            action="https://codesandbox.io/api/v1/sandboxes/define"
+            target="_blank"
+          >
+            <input type="hidden" name="parameters" value="" />
+          </form>
+          <Tooltip title="See the source on GitHub" target="_blank">
+            <IconButton href={githubLocation}>
+              <Github />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Edit in codesandbox">
             <IconButton onClick={this.handleClickCodesandbox}>
               <ModeEditIcon />
             </IconButton>
-            <form
-              ref={node => {
-                this.codesandboxForm = node;
-              }}
-              method="post"
-              action="https://codesandbox.io/api/v1/sandboxes/define"
-              target="_blank"
-            >
-              <input type="hidden" name="parameters" value="" />
-            </form>
-          </div>
-        </Tooltip>
-        <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
-          <IconButton onClick={this.handleClickCodeOpen} className={classes.codeButton}>
-            <CodeIcon />
-          </IconButton>
-        </Tooltip>
+          </Tooltip>
+          <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'}>
+            <IconButton onClick={this.handleClickCodeOpen}>
+              <CodeIcon />
+            </IconButton>
+          </Tooltip>
+        </div>
         <Collapse in={codeOpen} unmountOnExit>
           <MarkdownElement dir="ltr" className={classes.code} text={`\`\`\`jsx\n${raw}\n\`\`\``} />
         </Collapse>
@@ -176,6 +171,7 @@ if (rootElement) {
 
 Demo.propTypes = {
   classes: PropTypes.object.isRequired,
+  githubLocation: PropTypes.string.isRequired,
   js: PropTypes.func.isRequired,
   raw: PropTypes.string.isRequired,
 };

@@ -26,24 +26,24 @@ const demoRegexp = /^demo='(.*)'$/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/v1-beta';
 
 function MarkdownDocs(props, context) {
-  const { classes, demos, markdown, sourceLocation: sourceLocationProp } = props;
+  const { classes, demos, markdown, markdownLocation: markdownLocationProp } = props;
   const contents = getContents(markdown);
   const headers = getHeaders(markdown);
 
-  let sourceLocation = sourceLocationProp || context.activePage.pathname;
+  let markdownLocation = markdownLocationProp || context.activePage.pathname;
 
-  if (!sourceLocationProp) {
+  if (!markdownLocationProp) {
     // Hack for handling the nested demos
-    if (sourceLocation.indexOf('/demos') === 0) {
-      const token = sourceLocation.split('/');
+    if (markdownLocation.indexOf('/demos') === 0) {
+      const token = markdownLocation.split('/');
       token.push(token[token.length - 1]);
-      sourceLocation = token.join('/');
+      markdownLocation = token.join('/');
     }
 
     if (headers.filename) {
-      sourceLocation = headers.filename;
+      markdownLocation = headers.filename;
     } else {
-      sourceLocation = `/docs/src/pages${sourceLocation}.md`;
+      markdownLocation = `/docs/src/pages${markdownLocation}.md`;
     }
   }
 
@@ -53,18 +53,25 @@ function MarkdownDocs(props, context) {
         <title>{`${getTitle(markdown)} - Material-UI`}</title>
       </Head>
       <div className={classes.header}>
-        <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${sourceLocation}`}>
+        <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
           {'Edit this page'}
         </Button>
       </div>
-      <Carbon key={sourceLocation} />
+      <Carbon key={markdownLocation} />
       {contents.map(content => {
         const match = content.match(demoRegexp);
 
         if (match && demos) {
           const name = match[1];
           warning(demos && demos[name], `Missing demo: ${name}.`);
-          return <Demo key={content} js={demos[name].js} raw={demos[name].raw} />;
+          return (
+            <Demo
+              key={content}
+              js={demos[name].js}
+              raw={demos[name].raw}
+              githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+            />
+          );
         }
 
         return <MarkdownElement key={content} text={content} />;
@@ -90,7 +97,7 @@ MarkdownDocs.propTypes = {
   markdown: PropTypes.string.isRequired,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.
-  sourceLocation: PropTypes.string,
+  markdownLocation: PropTypes.string,
 };
 
 MarkdownDocs.contextTypes = {
