@@ -35,6 +35,7 @@ export const light = {
     paper: common.white,
     appBar: grey[100],
     contentFrame: grey[200],
+    chip: grey[300],
   },
   line: {
     stepper: grey[400],
@@ -67,6 +68,7 @@ export const dark = {
     paper: grey[800],
     appBar: grey[900],
     contentFrame: grey[900],
+    chip: grey[800],
   },
   line: {
     // TODO: What should the dark theme have for stepper line? Not stated in style guide
