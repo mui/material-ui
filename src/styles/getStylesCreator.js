@@ -1,7 +1,20 @@
 import warning from 'warning';
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 
+const stylesCreators = new Map();
+
 function getStylesCreator(stylesOrCreator) {
+  // Result is used as a key to the sheet registry, so equality per stylesOrCreator is of utmost
+  // importance.  Returning a new object with create function for the same styles
+  // causes unexpected sheet growth because while:
+  //  - stylesOrCreator === nextStylesOrCreator
+  //  - result !== nextResult.
+  // Solve this here by only creating one for each unique stylesOrCreator
+  let creator = stylesCreators.get(stylesOrCreator);
+  if (creator) {
+    return creator;
+  }
+
   function create(theme, name) {
     const styles = typeof stylesOrCreator === 'function' ? stylesOrCreator(theme) : stylesOrCreator;
 
@@ -26,13 +39,16 @@ function getStylesCreator(stylesOrCreator) {
     return stylesWithOverrides;
   }
 
-  return {
+  creator = {
     create,
     options: {
       index: undefined,
     },
     themingEnabled: typeof stylesOrCreator === 'function',
   };
+
+  stylesCreators.set(stylesOrCreator, creator);
+  return creator;
 }
 
 export default getStylesCreator;
