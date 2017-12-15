@@ -3,7 +3,6 @@
 import { assert } from 'chai';
 import getStylesCreator from './getStylesCreator';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
-import withStyles from './withStyles';
 
 describe('getStylesCreator', () => {
   const name = 'name';

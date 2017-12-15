@@ -3,7 +3,8 @@ import { spy } from 'sinon';
 import { assert } from 'chai';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create, SheetsRegistry } from 'jss';
-import withStyles, { preset } from './withStyles';
+import withStyles from './withStyles';
+import { preset } from './Styled';
 import MuiThemeProvider from './MuiThemeProvider';
 import createMuiTheme from './createMuiTheme';
 import createGenerateClassName from './createGenerateClassName';
@@ -90,7 +91,7 @@ describe('withStyles', () => {
       });
 
       it('should recycle the object between two render if possible', () => {
-        const wrapper = mount(<StyledComponent1 />).find('Empty');
+        const wrapper = mount(<StyledComponent1 />);
         const classes1 = wrapper.find(Empty).props().classes;
         wrapper.update();
         const classes2 = wrapper.find(Empty).props().classes;
@@ -209,19 +210,18 @@ describe('withStyles', () => {
     it('should take the new stylesCreator into account', () => {
       const styles1 = { root: { padding: 1 } };
       const StyledComponent1 = withStyles(styles1, { name: 'MuiEmptyField' })(Empty);
-      const wrapper = mount(<StyledComponent1 />).find('Empty');
+      const wrapper1 = mount(<StyledComponent1 />);
 
       const styles2 = { root: { padding: 2 } };
       const StyledComponent2 = withStyles(styles2, { name: 'MuiEmptyField' })(Empty);
 
       // Simulate react-hot-loader behavior
-      wrapper.instance().componentWillReceiveProps =
+      wrapper1.instance().componentWillReceiveProps =
         StyledComponent2.prototype.componentWillReceiveProps;
 
-      const classes1 = wrapper.props().classes.root;
-      wrapper.setProps({});
-      const classes2 = wrapper.props().classes.root;
-
+      const classes1 = wrapper1.props().classes.root;
+      wrapper1.setProps({});
+      const classes2 = wrapper1.props().classes.root;
       assert.notStrictEqual(classes1, classes2, 'should generate new classes');
     });
   });
