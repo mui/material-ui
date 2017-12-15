@@ -36,12 +36,15 @@ describe('withStyles', () => {
 
     before(() => {
       const styles = { root: { display: 'flex' } };
-      StyledComponent1 = withStyles(styles, { name: 'MuiTextField' })(Empty);
+      StyledComponent1 = withStyles(styles, { name: 'MuiEmptyField' })(Empty);
       classes = getClasses(<StyledComponent1 />);
     });
 
     it('should provide a classes property', () => {
-      const wrapper = shallow(<StyledComponent1 />);
+      mount(<StyledComponent1 />);
+      mount(<StyledComponent1 />);
+      mount(<StyledComponent1 />);
+      const wrapper = mount(<StyledComponent1 />).find('Empty');
       assert.deepEqual(wrapper.props().classes, classes, 'Should provide the classes property');
     });
 
@@ -142,7 +145,7 @@ describe('withStyles', () => {
 
     it('should work when depending on a theme', () => {
       const styles = theme => ({ root: { padding: theme.spacing.unit } });
-      const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
+      const StyledComponent = withStyles(styles, { name: 'MuiEmptyField' })(Empty);
 
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
@@ -152,21 +155,21 @@ describe('withStyles', () => {
         </MuiThemeProvider>,
       );
       assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiEmptyField-root-1' });
       wrapper.setProps({ theme: createMuiTheme() });
       assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root-2' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiEmptyField-root-2' });
     });
 
     it('should support the overrides key', () => {
       const styles = { root: { padding: 8 } };
-      const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
+      const StyledComponent = withStyles(styles, { name: 'MuiEmptyField' })(Empty);
 
       mount(
         <MuiThemeProvider
           theme={createMuiTheme({
             overrides: {
-              MuiTextField: {
+              MuiEmptyField: {
                 root: {
                   padding: 9,
                 },
@@ -207,11 +210,11 @@ describe('withStyles', () => {
   describe('HMR with same state', () => {
     it('should take the new stylesCreator into account', () => {
       const styles1 = { root: { padding: 1 } };
-      const StyledComponent1 = withStyles(styles1, { name: 'MuiTextField' })(Empty);
+      const StyledComponent1 = withStyles(styles1, { name: 'MuiEmptyField' })(Empty);
       const wrapper = shallow(<StyledComponent1 />);
 
       const styles2 = { root: { padding: 2 } };
-      const StyledComponent2 = withStyles(styles2, { name: 'MuiTextField' })(Empty);
+      const StyledComponent2 = withStyles(styles2, { name: 'MuiEmptyField' })(Empty);
 
       // Simulate react-hot-loader behavior
       wrapper.instance().componentWillReceiveProps =
