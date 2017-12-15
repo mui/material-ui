@@ -7,11 +7,8 @@ import withStyles, { preset } from './withStyles';
 import MuiThemeProvider from './MuiThemeProvider';
 import createMuiTheme from './createMuiTheme';
 import createGenerateClassName from './createGenerateClassName';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createMount, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
-
-const styles = { root: { display: 'flex' } };
-export { styles };
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Empty extends React.Component {
@@ -21,11 +18,9 @@ class Empty extends React.Component {
 }
 
 describe('withStyles', () => {
-  let shallow;
   let mount;
 
   before(() => {
-    shallow = createShallow();
     mount = createMount();
   });
 
@@ -38,12 +33,13 @@ describe('withStyles', () => {
     let classes;
 
     before(() => {
+      const styles = { root: { display: 'flex' } };
       StyledComponent1 = withStyles(styles, { name: 'MuiEmptyField' })(Empty);
       classes = getClasses(<StyledComponent1 />);
     });
 
     it('should provide a classes property', () => {
-      mount(<StyledComponent1 />);
+      mount(<StyledComponent1 />); // attempt to grow sheet count - shouldn't change classes
       mount(<StyledComponent1 />);
       mount(<StyledComponent1 />);
       const wrapper = mount(<StyledComponent1 />).find('Empty');
@@ -60,19 +56,19 @@ describe('withStyles', () => {
       });
 
       it('should accept a classes property', () => {
-        const wrapper = shallow(<StyledComponent1 classes={{ root: 'h1' }} />);
+        const wrapper = mount(<StyledComponent1 classes={{ root: 'h1' }} />).find('Empty');
         assert.deepEqual(wrapper.props().classes, { root: `${classes.root} h1` });
         assert.strictEqual(consoleErrorMock.callCount(), 0);
       });
 
       it('should ignore undefined property', () => {
-        const wrapper = shallow(<StyledComponent1 classes={{ root: undefined }} />);
+        const wrapper = mount(<StyledComponent1 classes={{ root: undefined }} />).find('Empty');
         assert.deepEqual(wrapper.props().classes, { root: `${classes.root}` });
         assert.strictEqual(consoleErrorMock.callCount(), 0);
       });
 
       it('should warn if providing a unknown key', () => {
-        const wrapper = shallow(<StyledComponent1 classes={{ bar: 'foo' }} />);
+        const wrapper = mount(<StyledComponent1 classes={{ bar: 'foo' }} />).find('Empty');
 
         assert.deepEqual(wrapper.props().classes, { root: classes.root, bar: 'undefined foo' });
         assert.strictEqual(consoleErrorMock.callCount(), 1);
@@ -83,7 +79,7 @@ describe('withStyles', () => {
       });
 
       it('should warn if providing a non string', () => {
-        const wrapper = shallow(<StyledComponent1 classes={{ root: {} }} />);
+        const wrapper = mount(<StyledComponent1 classes={{ root: {} }} />).find('Empty');
 
         assert.deepEqual(wrapper.props().classes, { root: `${classes.root} [object Object]` });
         assert.strictEqual(consoleErrorMock.callCount(), 2);
@@ -94,7 +90,7 @@ describe('withStyles', () => {
       });
 
       it('should recycle the object between two render if possible', () => {
-        const wrapper = mount(<StyledComponent1 />);
+        const wrapper = mount(<StyledComponent1 />).find('Empty');
         const classes1 = wrapper.find(Empty).props().classes;
         wrapper.update();
         const classes2 = wrapper.find(Empty).props().classes;
@@ -105,7 +101,7 @@ describe('withStyles', () => {
     describe('prop: ref', () => {
       it('should provide a ref on the inner component', () => {
         const handleRef = spy();
-        mount(<StyledComponent1 ref={handleRef} />);
+        mount(<StyledComponent1 ref={handleRef} />).find('Empty');
         assert.strictEqual(handleRef.callCount, 1);
       });
     });
@@ -213,7 +209,7 @@ describe('withStyles', () => {
     it('should take the new stylesCreator into account', () => {
       const styles1 = { root: { padding: 1 } };
       const StyledComponent1 = withStyles(styles1, { name: 'MuiEmptyField' })(Empty);
-      const wrapper = shallow(<StyledComponent1 />);
+      const wrapper = mount(<StyledComponent1 />).find('Empty');
 
       const styles2 = { root: { padding: 2 } };
       const StyledComponent2 = withStyles(styles2, { name: 'MuiEmptyField' })(Empty);
