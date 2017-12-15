@@ -30,8 +30,9 @@ describe('getStylesCreator', () => {
   });
 
   describe('equality', () => {
-    it('result from objects should be equal', () => {
-      assert.strictEqual(getStylesCreator({}), getStylesCreator({}));
+    it('result from object input should be equal', () => {
+      const styles = {};
+      assert.strictEqual(getStylesCreator(styles), getStylesCreator(styles));
     });
   });
 
