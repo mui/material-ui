@@ -29,6 +29,12 @@ describe('getStylesCreator', () => {
     });
   });
 
+  describe('equality', () => {
+    it('result from objects should be equal', () => {
+      assert.strictEqual(getStylesCreator({}), getStylesCreator({}));
+    });
+  });
+
   describe('overrides', () => {
     before(() => {
       consoleErrorMock.spy();
