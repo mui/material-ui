@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
   button: {
@@ -35,7 +34,7 @@ function FlatButtons(props) {
       <Button href="#flat-buttons" className={classes.button}>
         Link
       </Button>
-      <Button disabled component={Link} href="/" className={classes.button}>
+      <Button disabled href="/" className={classes.button}>
         Link disabled
       </Button>
       <Button dense className={classes.button}>
