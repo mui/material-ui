@@ -236,7 +236,7 @@ class AppFrame extends React.Component {
               component="a"
               title="GitHub"
               color="contrast"
-              href="https://github.com/mui-org/material-ui/tree/v1-beta"
+              href="https://github.com/mui-org/material-ui"
             >
               <Github />
             </IconButton>

@@ -37,7 +37,7 @@ function AppFooter(props) {
             <Grid item xs={12} sm={6}>
               <ul className={classes.list}>
                 <li className={classes.listItem}>
-                  <Link href="https://github.com/mui-org/material-ui/tree/v1-beta">GitHub</Link>
+                  <Link href="https://github.com/mui-org/material-ui">GitHub</Link>
                 </li>
                 <li className={classes.listItem}>
                   <Link href="https://twitter.com/MaterialUI">Twitter</Link>
