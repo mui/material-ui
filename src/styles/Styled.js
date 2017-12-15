@@ -78,6 +78,11 @@ class Styled extends React.Component {
       ].join(' '),
     );
 
+    this.listenToTheme =
+      this.stylesCreator.themingEnabled ||
+      props.withTheme ||
+      typeof props.options.name === 'string';
+
     // Attach the stylesCreator to the instance of the component as in the context
     // of react-hot-loader the hooks can be executed in a different closure context:
     // https://github.com/gaearon/react-hot-loader/blob/master/src/patch.dev.js#L107
@@ -87,7 +92,7 @@ class Styled extends React.Component {
       ...this.context[ns.sheetOptions],
     };
     // We use || as it's lazy evaluated.
-    this.theme = props.listenToTheme
+    this.theme = this.listenToTheme
       ? themeListener.initial(context) || getDefaultTheme()
       : noopTheme;
   }
@@ -99,8 +104,7 @@ class Styled extends React.Component {
   }
 
   componentDidMount() {
-    const { listenToTheme } = this.props;
-    if (!listenToTheme) {
+    if (!this.listenToTheme) {
       return;
     }
 
@@ -300,7 +304,6 @@ Styled.propTypes = {
    */
   Component: PropTypes.func,
   flip: PropTypes.bool,
-  listenToTheme: PropTypes.bool,
   /**
    * StyleSheet options
    */
