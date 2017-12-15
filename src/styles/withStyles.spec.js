@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
@@ -13,7 +11,7 @@ import { createShallow, createMount, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Empty extends React.Component<{ classes: Object, theme?: Object }> {
+class Empty extends React.Component {
   render() {
     return <div />;
   }
@@ -99,10 +97,10 @@ describe('withStyles', () => {
       });
     });
 
-    describe('prop: innerRef', () => {
+    describe('prop: ref', () => {
       it('should provide a ref on the inner component', () => {
         const handleRef = spy();
-        mount(<StyledComponent1 innerRef={handleRef} />);
+        mount(<StyledComponent1 ref={handleRef} />);
         assert.strictEqual(handleRef.callCount, 1);
       });
     });

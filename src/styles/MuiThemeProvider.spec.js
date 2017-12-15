@@ -1,5 +1,3 @@
-// @flow
-
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import React from 'react';
@@ -9,7 +7,7 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { renderToString } from 'react-dom/server';
 import { createMount } from '../test-utils';
 import createMuiTheme from './createMuiTheme';
-import { preset } from './withStyles';
+import { preset } from './Styled';
 import Button from '../Button';
 import createGenerateClassName from './createGenerateClassName';
 import withTheme from './withTheme';

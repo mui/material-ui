@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import getDisplayName from 'recompose/getDisplayName';
-import contextTypes from 'react-jss/lib/contextTypes';
+import jssContextTypes from 'react-jss/lib/contextTypes';
 import { create } from 'jss';
 import jssGlobal from 'jss-global';
 import jssNested from 'jss-nested';
@@ -157,12 +157,11 @@ class Styled extends React.Component {
     }
 
     const { Component, flip, options: styleSheetOptions } = this.props;
-    const stylesCreatorSaved = this.stylesCreatorSaved;
-    let sheetManager = this.sheetsManager.get(stylesCreatorSaved);
+    let sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
 
     if (!sheetManager) {
       sheetManager = new Map();
-      this.sheetsManager.set(stylesCreatorSaved, sheetManager);
+      this.sheetsManager.set(this.stylesCreatorSaved, sheetManager);
     }
 
     let sheetManagerTheme = sheetManager.get(theme);
@@ -176,7 +175,7 @@ class Styled extends React.Component {
     }
 
     if (sheetManagerTheme.refs === 0) {
-      const styles = stylesCreatorSaved.create(theme, styleSheetOptions.name);
+      const styles = this.stylesCreatorSaved.create(theme, styleSheetOptions.name);
       let meta;
 
       if (process.env.NODE_ENV !== 'production') {
@@ -190,7 +189,7 @@ class Styled extends React.Component {
         flip: typeof flip === 'boolean' ? flip : theme.direction === 'rtl',
         link: false,
         ...this.sheetOptions,
-        ...stylesCreatorSaved.options,
+        ...this.stylesCreatorSaved.options,
         name: styleSheetOptions.name,
         ...styleSheetOptions,
       });
@@ -212,8 +211,7 @@ class Styled extends React.Component {
       return;
     }
 
-    const stylesCreatorSaved = this.stylesCreatorSaved;
-    const sheetManager = this.sheetsManager.get(stylesCreatorSaved);
+    const sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
     const sheetManagerTheme = sheetManager.get(theme);
 
     sheetManagerTheme.refs -= 1;
@@ -323,7 +321,7 @@ Styled.propTypes = {
 
 Styled.contextTypes = {
   muiThemeProviderOptions: PropTypes.object,
-  ...contextTypes,
+  ...jssContextTypes,
   ...themeListener.contextTypes, // REVIEW (listenToTheme ? themeListener.contextTypes : {}),
 };
 
