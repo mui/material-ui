@@ -95,7 +95,7 @@ onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
-renderDay | fund | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
+renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
@@ -132,7 +132,7 @@ onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChangeg
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
-renderDay | fund | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
+renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 dateRangeIcon | react node, string | 'date_range'| Date tab icon 
