@@ -2,7 +2,7 @@ import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import Styled from './Styled';
-import MYSTYLES from './MYSTYLES';
+import { styles as MYSTYLES } from './withStyles.spec';
 
 // Wrap a component in `Styled` to provide classes.
 const withStyles = (stylesOrCreator, options = {}) => Component => {

@@ -9,7 +9,9 @@ import createMuiTheme from './createMuiTheme';
 import createGenerateClassName from './createGenerateClassName';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
-import MYSTYLES from './MYSTYLES';
+
+const styles = { root: { display: 'flex' } };
+export { styles };
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Empty extends React.Component {
@@ -36,7 +38,7 @@ describe('withStyles', () => {
     let classes;
 
     before(() => {
-      StyledComponent1 = withStyles(MYSTYLES, { name: 'MuiEmptyField' })(Empty);
+      StyledComponent1 = withStyles(styles, { name: 'MuiEmptyField' })(Empty);
       classes = getClasses(<StyledComponent1 />);
     });
 

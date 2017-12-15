@@ -15,7 +15,7 @@ import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
-import MYSTYLES from './MYSTYLES';
+import { styles as MYSTYLES } from './withStyles.spec';
 
 export const preset = () => ({
   plugins: [
@@ -52,6 +52,8 @@ const noopTheme = {};
 // In order to have self-supporting components, we rely on default theme when not provided.
 let defaultTheme;
 
+let LAST_MYSTYLES_AFTER_getStylesCreator = undefined;
+
 function getDefaultTheme() {
   if (defaultTheme) {
     return defaultTheme;
@@ -69,9 +71,9 @@ class Styled extends React.Component {
     super(props, context);
 
     if (props.styles === MYSTYLES) {
-      console.log('yep, good in the constructor');
+      console.log('yep, good in the constructor as props.styles');
     } else {
-      throw new Error('no good in the constructor');
+      throw new Error('no good in the constructor as props.styles');
     }
 
     const { muiThemeProviderOptions } = this.context;
@@ -87,6 +89,16 @@ class Styled extends React.Component {
     }
 
     this.stylesCreator = getStylesCreator(props.styles);
+
+    if (LAST_MYSTYLES_AFTER_getStylesCreator !== undefined) {
+      if (this.stylesCreator === LAST_MYSTYLES_AFTER_getStylesCreator) {
+        console.log('yep, good in the constructor as this.stylesCreator');
+      } else {
+        throw new Error('no good in the constructor as this.stylesCreator');
+      }
+    }
+    LAST_MYSTYLES_AFTER_getStylesCreator = this.stylesCreator;
+
     //    if (this.stylesCreator.options.index === undefined) {
     //      indexCounter += 1;
     //      this.stylesCreator.options.index = indexCounter;
