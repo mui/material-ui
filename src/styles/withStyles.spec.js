@@ -98,10 +98,10 @@ describe('withStyles', () => {
       });
     });
 
-    describe('prop: ref', () => {
+    describe('prop: innerRef', () => {
       it('should provide a ref on the inner component', () => {
         const handleRef = spy();
-        mount(<StyledComponent1 ref={handleRef} />).find('Empty');
+        mount(<StyledComponent1 innerRef={handleRef} />).find('Empty');
         assert.strictEqual(handleRef.callCount, 1);
       });
     });

@@ -7,10 +7,10 @@ import Styled from './Styled';
 // Wrap a component in `Styled` to provide classes.
 const withStyles = (stylesOrCreator, options = {}) => Component => {
   const Style = props => {
-    const { classes, ...componentProps } = props;
+    const { classes, innerRef, ...componentProps } = props;
     return (
       <Styled classes={classes} Component={Component} options={options} styles={stylesOrCreator}>
-        {styledProps => <Component {...styledProps} {...componentProps} />}
+        {styledProps => <Component ref={innerRef} {...styledProps} {...componentProps} />}
       </Styled>
     );
   };
@@ -20,6 +20,10 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
      * Useful to extend the style applied to components.
      */
     classes: PropTypes.object,
+    /**
+     * Use that property to pass a ref callback to the decorated component.
+     */
+    innerRef: PropTypes.func,
   };
 
   if (process.env.NODE_ENV !== 'production') {
