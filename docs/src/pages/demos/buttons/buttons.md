@@ -44,6 +44,7 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
 {{demo='pages/demos/buttons/IconButtons.js'}}
 
 ### Buttons with icons and label
+
 Sometimes you might want to have icons for certain button to enhance the UX of the application as humans recognize logos more than plain text. For example, if you have a delete button you can label it with a dustbin icon.
 
 {{demo='pages/demos/buttons/IconLabelButtons.js'}}
@@ -54,3 +55,30 @@ The Flat Buttons, Raised Buttons, Floating Action Buttons and Icon Buttons are b
 You can take advantage of this lower level component to build custom interactions.
 
 {{demo='pages/demos/buttons/ButtonBases.js'}}
+
+## Third-party routing library
+
+One common use case is to use the button to trigger a navigation to a new page.
+The `ButtonBase` component provides a property to handle this use case: `component`.
+Given that a lot of our interactive elements rely on `ButtonBase`, you should be
+able to take advantage of it everywhere:
+
+```jsx
+import { Link } from 'react-router-dom'
+import Button from 'material-ui/Button';
+
+<Button component={Link} to="/open-collective">
+  Link
+</Button>
+```
+
+or if you want to avoid properties collisions:
+
+```jsx
+import { Link } from 'react-router-dom'
+import Button from 'material-ui/Button';
+
+<Button component={props => <Link to="/open-collective" {...props} />}>
+  Link
+</Button>
+```
