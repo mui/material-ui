@@ -15,7 +15,6 @@ import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
-import { styles as MYSTYLES } from './withStyles.spec';
 
 export const preset = () => ({
   plugins: [
@@ -34,25 +33,13 @@ const jss = create(preset());
 // Use a singleton or the provided one by the context.
 const generateClassName = createGenerateClassName();
 
-// Global index counter to preserve source order.
-// As we create the style sheet during componentWillMount lifecycle,
-// children are handled after the parents, so the order of style elements would
-// be parent->child. It is a problem though when a parent passes a className
-// which needs to override any childs styles. StyleSheet of the child has a higher
-// specificity, because of the source order.
-// So our solution is to render sheets them in the reverse order child->sheet, so
-// that parent has a higher specificity.
-let indexCounter = Number.MIN_SAFE_INTEGER;
-
-export const sheetsManager: Map<*, *> = new Map();
+export const sheetsManager = new Map();
 
 // We use the same empty object to ref count the styles that don't need a theme object.
 const noopTheme = {};
 
 // In order to have self-supporting components, we rely on default theme when not provided.
 let defaultTheme;
-
-let LAST_MYSTYLES_AFTER_getStylesCreator = undefined;
 
 function getDefaultTheme() {
   if (defaultTheme) {
@@ -70,12 +57,6 @@ class Styled extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    if (props.styles === MYSTYLES) {
-      console.log('yep, good in the constructor as props.styles');
-    } else {
-      throw new Error('no good in the constructor as props.styles');
-    }
-
     const { muiThemeProviderOptions } = this.context;
 
     this.jss = this.context[ns.jss] || jss;
@@ -89,28 +70,13 @@ class Styled extends React.Component {
     }
 
     this.stylesCreator = getStylesCreator(props.styles);
-
-    if (LAST_MYSTYLES_AFTER_getStylesCreator !== undefined) {
-      if (this.stylesCreator === LAST_MYSTYLES_AFTER_getStylesCreator) {
-        console.log('yep, good in the constructor as this.stylesCreator');
-      } else {
-        throw new Error('no good in the constructor as this.stylesCreator');
-      }
-    }
-    LAST_MYSTYLES_AFTER_getStylesCreator = this.stylesCreator;
-
-    //    if (this.stylesCreator.options.index === undefined) {
-    //      indexCounter += 1;
-    //      this.stylesCreator.options.index = indexCounter;
-    //    }
-    //
-    //    warning(
-    //      indexCounter < 0,
-    //      [
-    //        'Material-UI: you might have a memory leak.',
-    //        'The indexCounter is not supposed to grow that much.',
-    //      ].join(' '),
-    //    );
+    warning(
+      this.stylesCreator.options.index < 0,
+      [
+        'Material-UI: you might have a memory leak.',
+        'The indexCounter is not supposed to grow that much.',
+      ].join(' '),
+    );
 
     // Attach the stylesCreator to the instance of the component as in the context
     // of react-hot-loader the hooks can be executed in a different closure context:

@@ -3,6 +3,16 @@ import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge i
 
 const stylesCreators = new Map();
 
+// Global index counter to preserve source order.
+// As we create the style sheet during componentWillMount lifecycle,
+// children are handled after the parents, so the order of style elements would
+// be parent->child. It is a problem though when a parent passes a className
+// which needs to override any childs styles. StyleSheet of the child has a higher
+// specificity, because of the source order.
+// So our solution is to render sheets them in the reverse order child->sheet, so
+// that parent has a higher specificity.
+let indexCounter = Number.MIN_SAFE_INTEGER;
+
 function getStylesCreator(stylesOrCreator) {
   // Result is used as a key to the sheet registry, so equality per stylesOrCreator is of utmost
   // importance.  Returning a new object with create function for the same styles
@@ -39,10 +49,11 @@ function getStylesCreator(stylesOrCreator) {
     return stylesWithOverrides;
   }
 
+  indexCounter += 1;
   creator = {
     create,
     options: {
-      index: undefined,
+      index: indexCounter,
     },
     themingEnabled: typeof stylesOrCreator === 'function',
   };
