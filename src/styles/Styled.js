@@ -237,7 +237,15 @@ class Styled extends React.Component {
   theme = null;
 
   render() {
-    const { children, classes: classesProp, Component, styles, withTheme, ...other } = this.props;
+    const {
+      children,
+      classes: classesProp,
+      Component,
+      options,
+      styles,
+      withTheme,
+      ...other
+    } = this.props;
 
     let classes;
     let renderedClasses = {};
@@ -292,7 +300,7 @@ class Styled extends React.Component {
       more.theme = this.theme;
     }
 
-    return children({ ...classes, ...more, ...other });
+    return children({ ...{ classes }, ...more, ...other });
   }
 }
 
