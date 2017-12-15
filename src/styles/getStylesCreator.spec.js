@@ -3,6 +3,7 @@
 import { assert } from 'chai';
 import getStylesCreator from './getStylesCreator';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
+import withStyles from './withStyles';
 
 describe('getStylesCreator', () => {
   const name = 'name';
@@ -56,6 +57,12 @@ describe('getStylesCreator', () => {
         };
       };
       assert.strictEqual(getStylesCreator(styles), getStylesCreator(styles));
+    });
+
+    it('result from different objects should not be equal', () => {
+      const styles1 = { root: { padding: 1 } };
+      const styles2 = { root: { padding: 2 } };
+      assert.notStrictEqual(getStylesCreator(styles1), getStylesCreator(styles2));
     });
   });
 
