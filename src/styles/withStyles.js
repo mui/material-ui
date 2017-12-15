@@ -2,9 +2,16 @@ import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import Styled from './Styled';
+import MYSTYLES from './MYSTYLES';
 
 // Wrap a component in `Styled` to provide classes.
 const withStyles = (stylesOrCreator, options = {}) => Component => {
+  if (stylesOrCreator === MYSTYLES) {
+    console.log('yep, good in the hoc');
+  } else {
+    throw new Error('no good in the hoc');
+  }
+
   const Style = props => {
     return (
       <Styled styles={stylesOrCreator} options={options} Component={Component}>

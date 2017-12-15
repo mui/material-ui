@@ -15,6 +15,7 @@ import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
+import MYSTYLES from './MYSTYLES';
 
 export const preset = () => ({
   plugins: [
@@ -67,6 +68,12 @@ class Styled extends React.Component {
   constructor(props, context) {
     super(props, context);
 
+    if (props.styles === MYSTYLES) {
+      console.log('yep, good in the constructor');
+    } else {
+      throw new Error('no good in the constructor');
+    }
+
     const { muiThemeProviderOptions } = this.context;
 
     this.jss = this.context[ns.jss] || jss;
@@ -80,18 +87,18 @@ class Styled extends React.Component {
     }
 
     this.stylesCreator = getStylesCreator(props.styles);
-    if (this.stylesCreator.options.index === undefined) {
-      indexCounter += 1;
-      this.stylesCreator.options.index = indexCounter;
-    }
-
-    warning(
-      indexCounter < 0,
-      [
-        'Material-UI: you might have a memory leak.',
-        'The indexCounter is not supposed to grow that much.',
-      ].join(' '),
-    );
+    //    if (this.stylesCreator.options.index === undefined) {
+    //      indexCounter += 1;
+    //      this.stylesCreator.options.index = indexCounter;
+    //    }
+    //
+    //    warning(
+    //      indexCounter < 0,
+    //      [
+    //        'Material-UI: you might have a memory leak.',
+    //        'The indexCounter is not supposed to grow that much.',
+    //      ].join(' '),
+    //    );
 
     // Attach the stylesCreator to the instance of the component as in the context
     // of react-hot-loader the hooks can be executed in a different closure context:
