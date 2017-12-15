@@ -48,6 +48,8 @@ function TextField(props) {
     'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
   );
 
+  const { inputProps = {}, ...otherInputProps } = InputProps || {};
+
   const InputComponent = (
     <Input
       autoComplete={autoComplete}
@@ -64,8 +66,8 @@ function TextField(props) {
       inputRef={inputRef}
       onChange={onChange}
       placeholder={placeholder}
-      inputProps={{ className: inputClassName }}
-      {...InputProps}
+      inputProps={{ className: inputClassName, ...inputProps }}
+      {...otherInputProps}
     />
   );
 

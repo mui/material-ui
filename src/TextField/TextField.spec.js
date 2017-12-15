@@ -117,6 +117,18 @@ describe('<TextField />', () => {
       const wrapper = mount(<TextField InputProps={{ readOnly: true }} />);
       assert.strictEqual(wrapper.find('input').props().readOnly, true);
     });
+
+    it('should merge inputClassName with inputProps if provided', () => {
+      const inputProps = { type: 'number', min: 10, max: 100 };
+      const wrapper = mount(<TextField inputClassName="foo" InputProps={{ inputProps }} />);
+      assert.isTrue(wrapper.find('input').hasClass('foo'));
+    });
+
+    it('should override inputClassName if inputProps is included with className', () => {
+      const inputProps = { type: 'number', min: 10, max: 100, className: 'bar' };
+      const wrapper = mount(<TextField inputClassName="foo" InputProps={{ inputProps }} />);
+      assert.isTrue(wrapper.find('input').hasClass(inputProps.className));
+    });
   });
 
   describe('prop: select', () => {
