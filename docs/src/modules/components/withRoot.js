@@ -166,6 +166,9 @@ const pages = [
       {
         pathname: '/discover-more/team',
       },
+      {
+        pathname: '/discover-more/governance',
+      },
     ],
   },
   {
