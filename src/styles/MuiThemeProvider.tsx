@@ -1,17 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import warning from 'warning';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import createBroadcast from 'brcast';
 import themeListener, { CHANNEL } from './themeListener';
 import exactProp from '../utils/exactProp';
+import { Theme } from './createMuiTheme';
+
+export interface MuiThemeProviderProps {
+  children: React.ReactNode;
+  disableStylesGeneration: boolean;
+  sheetsManager?: object;
+  theme: Theme | ((outer: Theme | null) => Theme);
+}
 
 /**
  * This component takes a `theme` property.
  * It makes the `theme` available down the React tree thanks to React context.
  * This component should preferably be used at **the root of your component tree**.
  */
-class MuiThemeProvider extends React.Component {
-  constructor(props, context) {
+const MuiThemeProvider: React.ComponentClass<
+  MuiThemeProviderProps
+> = class MuiThemeProvider extends React.Component<MuiThemeProviderProps> {
+  constructor(props: MuiThemeProviderProps, context: any) {
     super(props, context);
 
     // Get the outer theme from the context, can be null
@@ -32,14 +41,14 @@ class MuiThemeProvider extends React.Component {
 
   componentDidMount() {
     // Subscribe on the outer theme, if present
-    this.unsubscribeId = themeListener.subscribe(this.context, outerTheme => {
+    this.unsubscribeId = themeListener.subscribe(this.context, (outerTheme: object) => {
       this.outerTheme = outerTheme;
       // Forward the parent theme update to the children
       this.broadcast.setState(this.mergeOuterLocalTheme(this.props.theme));
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: MuiThemeProviderProps) {
     // Propagate a local theme update
     if (this.props.theme !== nextProps.theme) {
       this.broadcast.setState(this.mergeOuterLocalTheme(nextProps.theme));
@@ -53,12 +62,12 @@ class MuiThemeProvider extends React.Component {
   }
 
   broadcast = createBroadcast();
-  unsubscribeId = null;
+  unsubscribeId: number = null;
   // We are not using the React state in order to avoid unnecessary rerender.
-  outerTheme = null;
+  outerTheme: object = null;
 
   // Simple merge between the outer theme and the local theme
-  mergeOuterLocalTheme(localTheme) {
+  mergeOuterLocalTheme(localTheme: object) {
     // To support composition of theme.
     if (typeof localTheme === 'function') {
       warning(
@@ -86,7 +95,7 @@ class MuiThemeProvider extends React.Component {
   render() {
     return this.props.children;
   }
-}
+};
 
 MuiThemeProvider.propTypes = {
   /**
@@ -129,10 +138,10 @@ MuiThemeProvider.contextTypes = themeListener.contextTypes;
 // Add a wrapper component to generate some helper messages in the development
 // environment.
 // eslint-disable-next-line import/no-mutable-exports
-let MuiThemeProviderWrapper = MuiThemeProvider;
+let MuiThemeProviderWrapper: any = MuiThemeProvider;
 
 if (process.env.NODE_ENV !== 'production') {
-  MuiThemeProviderWrapper = props => <MuiThemeProvider {...props} />;
+  MuiThemeProviderWrapper = (props: MuiThemeProviderProps) => <MuiThemeProvider {...props} />;
   MuiThemeProviderWrapper.propTypes = exactProp(MuiThemeProvider.propTypes, 'MuiThemeProvider');
 }
 

@@ -2,8 +2,8 @@
 
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { create, SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { renderToString } from 'react-dom/server';
