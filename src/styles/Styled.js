@@ -229,6 +229,7 @@ class Styled extends React.Component {
       classes: classesProp,
       Component,
       flip,
+      name,
       styles,
       withTheme,
       ...other
