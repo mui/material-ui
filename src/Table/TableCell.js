@@ -49,6 +49,7 @@ function TableCell(props, context) {
     classes,
     className: classNameProp,
     component,
+    sortDirection,
     numeric,
     padding,
     ...other
@@ -74,8 +75,13 @@ function TableCell(props, context) {
     classNameProp,
   );
 
+  let ariaSort = null;
+  if (sortDirection) {
+    ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending';
+  }
+
   return (
-    <Component className={className} {...other}>
+    <Component className={className} aria-sort={ariaSort} {...other}>
       {children}
     </Component>
   );
@@ -107,6 +113,10 @@ TableCell.propTypes = {
    * Sets the padding applied to the cell.
    */
   padding: PropTypes.oneOf(['default', 'checkbox', 'dense', 'none']),
+  /**
+   * Set aria-sort direction.
+   */
+  sortDirection: PropTypes.oneOf(['asc', 'desc', false]),
 };
 
 TableCell.defaultProps = {

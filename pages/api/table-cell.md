@@ -17,6 +17,7 @@ filename: /src/Table/TableCell.js
 | component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. |
 | numeric | bool | false | If `true`, content will align to the right. |
 | padding | enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> | 'default' | Sets the padding applied to the cell. |
+| sortDirection | enum:&nbsp;'asc'&nbsp;&#124;<br>&nbsp;'desc'&nbsp;&#124;<br>&nbsp;false<br> |  | Set aria-sort direction. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
