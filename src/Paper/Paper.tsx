@@ -1,10 +1,40 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as classNames from 'classnames';
-import warning from 'warning';
+import warning = require('warning');
 import withStyles from '../styles/withStyles';
+import { StandardProps } from '..';
 
-export const styles = theme => {
+export type PaperClassKey =
+  | 'root'
+  | 'rounded'
+  | 'shadow0'
+  | 'shadow1'
+  | 'shadow2'
+  | 'shadow3'
+  | 'shadow4'
+  | 'shadow5'
+  | 'shadow6'
+  | 'shadow7'
+  | 'shadow8'
+  | 'shadow9'
+  | 'shadow10'
+  | 'shadow11'
+  | 'shadow12'
+  | 'shadow13'
+  | 'shadow14'
+  | 'shadow15'
+  | 'shadow16'
+  | 'shadow17'
+  | 'shadow18'
+  | 'shadow19'
+  | 'shadow20'
+  | 'shadow21'
+  | 'shadow22'
+  | 'shadow23'
+  | 'shadow24'
+  ;
+export const styles = withStyles<PaperClassKey>((theme) => {
   const shadows = {};
   theme.shadows.forEach((shadow, index) => {
     shadows[`shadow${index}`] = {
@@ -21,9 +51,18 @@ export const styles = theme => {
     },
     ...shadows,
   };
-};
+},  { name: 'MuiPaper' })
 
-function Paper(props) {
+export interface PaperProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  PaperClassKey
+  > {
+  component?: string | React.ComponentType<PaperProps>;
+  elevation?: number;
+  square?: boolean;
+}
+
+const Paper: React.StatelessComponent = (props: PaperProps) => {
   const {
     classes,
     className: classNameProp,
@@ -85,4 +124,4 @@ Paper.defaultProps = {
   square: false,
 };
 
-export default withStyles(styles, { name: 'MuiPaper' })(Paper);
+export default (Paper);
