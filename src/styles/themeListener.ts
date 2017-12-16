@@ -3,7 +3,23 @@ import * as PropTypes from 'prop-types';
 // Same value used by react-jss
 export const CHANNEL = '__THEMING__';
 
-const themeListener = {
+// This is using the API from https://github.com/vesparny/brcast
+// interface MuiContext {
+//   getState(): object;
+//   subscribe(callback: Function): Function;
+// }
+
+export interface ThemeListener {
+  contextTypes: {
+    // 'material-ui': object;
+    [key: string]: any;
+  };
+  initial(context: object): object;
+  subscribe(context: object, callback: Function): Function;
+  unsubscribe(context: object, subscriptionId: number): void;
+}
+
+const themeListener: ThemeListener = {
   contextTypes: {
     [CHANNEL]: PropTypes.object,
   },
