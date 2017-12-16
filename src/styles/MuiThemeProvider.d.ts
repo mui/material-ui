@@ -3,7 +3,7 @@ import { Theme } from './createMuiTheme';
 
 export interface MuiThemeProviderProps {
   theme: Theme | ((outer: Theme | null) => Theme);
-  sheetsManager?;
+  sheetsManager?: object;
   children: React.ReactNode;
 }
 

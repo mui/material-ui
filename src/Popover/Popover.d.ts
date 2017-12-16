@@ -18,7 +18,7 @@ export type PopoverReference = 'anchorEl' | 'anchorPosition';
 
 export interface PopoverProps
   extends StandardProps<ModalProps & Partial<TransitionHandlers>, PopoverClassKey, 'onClose'> {
-  anchorEl?;
+  anchorEl?: object;
   anchorOrigin?: PopoverOrigin;
   anchorPosition?: PopoverPosition;
   anchorReference?: PopoverReference;
@@ -34,7 +34,7 @@ export interface PopoverProps
   open?: boolean;
   PaperProps?: Partial<PaperProps>;
   role?: string;
-  theme?;
+  theme?: object;
   transformOrigin?: PopoverOrigin;
   transitionDuration?: TransitionDuration;
 }
