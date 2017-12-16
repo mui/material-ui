@@ -10,7 +10,35 @@ function createShadow(...px: number[]): string {
   ].join(',');
 }
 
-const shadows = [
+export type Shadows = [
+  'none',
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string
+];
+
+const shadows: Shadows = [
   'none',
   createShadow(0, 1, 3, 0, 0, 1, 1, 0, 0, 2, 1, -1),
   createShadow(0, 1, 5, 0, 0, 2, 2, 0, 0, 3, 1, -2),
@@ -39,31 +67,3 @@ const shadows = [
 ];
 
 export default shadows;
-
-// export type Shadows = [
-//   'none',
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string,
-//   string
-//   ];
