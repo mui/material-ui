@@ -224,7 +224,15 @@ class Styled extends React.Component {
   theme = null;
 
   render() {
-    const { children, classes: classesProp, Component, styles, withTheme, ...other } = this.props;
+    const {
+      children,
+      classes: classesProp,
+      Component,
+      flip,
+      styles,
+      withTheme,
+      ...other
+    } = this.props;
 
     let classes;
     let renderedClasses = {};
@@ -297,6 +305,10 @@ Styled.propTypes = {
    * Styles object or function that accepts the Theme and returns an object.
    */
   styles: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  /**
+   * @ignore see note in constructor - this should be unnecessary in this component pattern
+   */
+  withTheme: PropTypes.bool,
 };
 
 Styled.contextTypes = {

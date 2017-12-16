@@ -16,7 +16,10 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
           if (options.withTheme) {
             styledPropsWithOptions.theme = theme;
           }
-          return <Component ref={innerRef} {...styledPropsWithOptions} {...componentProps} />;
+          if (innerRef) {
+            styledPropsWithOptions.ref = innerRef;
+          }
+          return <Component {...styledPropsWithOptions} {...componentProps} />;
         }}
       </Styled>
     );
