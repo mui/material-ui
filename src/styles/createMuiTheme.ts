@@ -46,7 +46,7 @@ export interface Theme {
   overrides?: Overrides;
 }
 
-function createMuiTheme(options?: ThemeOptions): Theme {
+function createMuiTheme(options: ThemeOptions = {}): Theme {
   const {
     palette: paletteInput = {},
     breakpoints: breakpointsInput = {},
