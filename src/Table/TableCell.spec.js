@@ -104,4 +104,14 @@ describe('<TableCell />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.numeric), true, 'should have the numeric class');
   });
+
+  it('should render aria-sort="ascending" when prop sortDirection="asc" provided', () => {
+    const wrapper = shallow(<TableCell sortDirection="asc" />);
+    assert.strictEqual(wrapper.props()['aria-sort'], 'ascending');
+  });
+
+  it('should render aria-sort="descending" when prop sortDirection="desc" provided', () => {
+    const wrapper = shallow(<TableCell sortDirection="desc" />);
+    assert.strictEqual(wrapper.props()['aria-sort'], 'descending');
+  });
 });
