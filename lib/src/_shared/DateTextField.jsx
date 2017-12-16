@@ -73,7 +73,7 @@ export default class DateTextField extends PureComponent {
 
   handleChange = (e) => {
     const { format } = this.props;
-    const oldValue = this.state.value;
+    const oldValue = moment(this.state.value);
     const newValue = moment(e.target.value, format, true);
     const error = newValue.isValid() ? '' : 'Invalid Date Format';
 
