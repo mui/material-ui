@@ -20,7 +20,7 @@ export interface SnackbarProps extends StandardProps<
   onMouseLeave?: React.MouseEventHandler<any>;
   open: boolean;
   resumeHideDuration?: number;
-  SnackbarContentProps?: Object;
+  SnackbarContentProps?;
   transition?: React.ReactType;
   transitionDuration?: TransitionDuration;
 }

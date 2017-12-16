@@ -3,6 +3,6 @@
  *        So the following typigns are not really good.
  */
 export default function createGenerateClassName(): (
-  rule: Object,
-  stylesheet?: Object
+  rule,
+  stylesheet?
 ) => string;

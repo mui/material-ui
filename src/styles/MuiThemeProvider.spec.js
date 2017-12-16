@@ -17,7 +17,7 @@ import MuiThemeProvider from './MuiThemeProvider';
 
 function getThemeSpy() {
   const themeSpy = spy();
-  const ThemeSpy = (props: Object) => {
+  const ThemeSpy = props => {
     themeSpy(props.theme);
     return props.children;
   };

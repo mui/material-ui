@@ -21,7 +21,7 @@ export interface PopoverProps extends StandardProps<
   PopoverClassKey,
   'onClose'
 > {
-  anchorEl?: Object;
+  anchorEl?;
   anchorOrigin?: PopoverOrigin;
   anchorPosition?: PopoverPosition;
   anchorReference?: PopoverReference;
@@ -37,7 +37,7 @@ export interface PopoverProps extends StandardProps<
   open?: boolean;
   PaperProps?: Partial<PaperProps>;
   role?: string;
-  theme?: Object;
+  theme?;
   transformOrigin?: PopoverOrigin;
   transitionDuration?: TransitionDuration;
 }
