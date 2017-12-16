@@ -7,10 +7,11 @@ export type SnackBarOrigin = {
   vertical?: 'top' | 'center' | 'bottom' | number;
 };
 
-export interface SnackbarProps extends StandardProps<
-  React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlers>,
-  SnackbarClassKey
-> {
+export interface SnackbarProps
+  extends StandardProps<
+      React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlers>,
+      SnackbarClassKey
+    > {
   action?: React.ReactElement<any> | React.ReactElement<any>[];
   anchorOrigin?: SnackBarOrigin;
   autoHideDuration?: number;
@@ -32,8 +33,7 @@ export type SnackbarClassKey =
   | 'anchorTopRight'
   | 'anchorBottomRight'
   | 'anchorTopLeft'
-  | 'anchorBottomLeft'
-  ;
+  | 'anchorBottomLeft';
 
 declare const Snackbar: React.ComponentType<SnackbarProps>;
 

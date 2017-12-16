@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Paper, {PaperClassKey, PaperProps} from './Paper';
-import {ClassNameMap} from "../styles/withStyles";
-import {MuiShallow} from "../test-utils/createShallow";
+import Paper, { PaperClassKey, PaperProps } from './Paper';
+import { ClassNameMap } from '../styles/withStyles';
+import { MuiShallow } from '../test-utils/createShallow';
 
 describe('<Paper />', () => {
   let shallow: MuiShallow<PaperProps>; //ReactWrapper<PaperProps, any>;

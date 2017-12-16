@@ -16,11 +16,8 @@ export interface PopoverPosition {
 
 export type PopoverReference = 'anchorEl' | 'anchorPosition';
 
-export interface PopoverProps extends StandardProps<
-  ModalProps & Partial<TransitionHandlers>,
-  PopoverClassKey,
-  'onClose'
-> {
+export interface PopoverProps
+  extends StandardProps<ModalProps & Partial<TransitionHandlers>, PopoverClassKey, 'onClose'> {
   anchorEl?;
   anchorOrigin?: PopoverOrigin;
   anchorPosition?: PopoverPosition;
@@ -42,10 +39,7 @@ export interface PopoverProps extends StandardProps<
   transitionDuration?: TransitionDuration;
 }
 
-export type PopoverClassKey =
-  | ModalClassKey
-  | 'paper'
-  ;
+export type PopoverClassKey = ModalClassKey | 'paper';
 
 declare const Popover: React.ComponentType<PopoverProps>;
 

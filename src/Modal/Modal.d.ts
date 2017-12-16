@@ -3,10 +3,11 @@ import { StandardProps } from '..';
 import { BackdropProps } from './Backdrop';
 import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 
-export interface ModalProps extends StandardProps<
-  React.HtmlHTMLAttributes<HTMLDivElement> & Partial<TransitionHandlers>,
-  ModalClassKey
-> {
+export interface ModalProps
+  extends StandardProps<
+      React.HtmlHTMLAttributes<HTMLDivElement> & Partial<TransitionHandlers>,
+      ModalClassKey
+    > {
   BackdropClassName?: string;
   BackdropComponent?: string | React.ComponentType<BackdropProps>;
   BackdropInvisible?: boolean;
@@ -22,10 +23,7 @@ export interface ModalProps extends StandardProps<
   show?: boolean;
 }
 
-export type ModalClassKey =
-  | 'root'
-  | 'hidden'
-  ;
+export type ModalClassKey = 'root' | 'hidden';
 
 declare const Modal: React.ComponentType<ModalProps>;
 
