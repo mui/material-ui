@@ -6,7 +6,7 @@ import { ClassNameMap } from '../styles/withStyles';
 import { MuiShallow } from '../test-utils/createShallow';
 
 describe('<Paper />', () => {
-  let shallow: MuiShallow<PaperProps>; //ReactWrapper<PaperProps, any>;
+  let shallow: MuiShallow<PaperProps>;
   let classes: ClassNameMap<PaperClassKey>;
 
   before(() => {

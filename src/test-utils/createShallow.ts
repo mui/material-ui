@@ -9,7 +9,10 @@ export interface ShallowOptions {
   untilSelector: EnzymeSelector;
 }
 
-type MuiShallow<P> = (node: ReactElement<P>, options?: MountRendererProps) => ReactWrapper<P, any>;
+export type MuiShallow<P> = (
+  node: ReactElement<P>,
+  options?: MountRendererProps,
+) => ReactWrapper<P, any>;
 
 // Generate an enhanced shallow function.
 export default function createShallow<P>(options1: Partial<ShallowOptions> = {}): MuiShallow<P> {
