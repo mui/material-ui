@@ -1,4 +1,4 @@
-import deepmerge from '../utils/ts-import-workaround/deepmerge';
+import * as deepmerge from 'deepmerge';
 import * as warning from 'warning';
 import createTypography from './createTypography';
 import createBreakpoints from './createBreakpoints';
