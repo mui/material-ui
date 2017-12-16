@@ -14,7 +14,6 @@ export interface StepProps extends StandardProps<
   disabled?: boolean;
   index?: number;
   last?: boolean;
-  optional?: boolean;
   orientation?: Orientation;
 }
 

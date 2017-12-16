@@ -157,15 +157,20 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
         <Stepper alternativeLabel nonLinear activeStep={activeStep}>
           {steps.map((label, index) => {
             const props = {};
+            const buttonProps = {};
             if (this.isStepOptional(index)) {
-              props.optional = true;
+              buttonProps.optional = <Typography type="caption">Optional</Typography>;
             }
             if (this.isStepSkipped(index)) {
               props.completed = false;
             }
             return (
               <Step key={label} {...props}>
-                <StepButton onClick={this.handleStep(index)} completed={this.isStepComplete(index)}>
+                <StepButton
+                  onClick={this.handleStep(index)}
+                  completed={this.isStepComplete(index)}
+                  {...buttonProps}
+                >
                   {label}
                 </StepButton>
               </Step>

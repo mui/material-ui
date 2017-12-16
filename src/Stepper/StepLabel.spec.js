@@ -126,10 +126,10 @@ describe('<StepLabel />', () => {
     });
   });
 
-  describe('prop: optional = true', () => {
-    it('creates a <Typography> component with text "Optional"', () => {
+  describe('prop: optional = Optional Text', () => {
+    it('creates a <Typography> component with text "Optional Text"', () => {
       const wrapper = shallow(
-        <StepLabel icon={1} optional>
+        <StepLabel icon={1} optional={<Typography type="caption">Optional Text</Typography>}>
           Step One
         </StepLabel>,
       );
@@ -137,7 +137,7 @@ describe('<StepLabel />', () => {
         wrapper
           .find(Typography)
           .at(1)
-          .contains('Optional'),
+          .contains('Optional Text'),
         true,
       );
     });

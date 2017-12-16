@@ -14,6 +14,7 @@ filename: /src/Stepper/StepButton.js
 |:-----|:-----|:--------|:------------|
 | children | node |  | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
 | icon | node |  | The icon displayed by the step label. |
+| optional | node |  | The optional node to display. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

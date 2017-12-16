@@ -108,9 +108,9 @@ StepButton.propTypes = {
    */
   last: PropTypes.bool,
   /**
-   * @ignore
+   * The optional node to display.
    */
-  optional: PropTypes.bool,
+  optional: PropTypes.node,
   /**
    * @ignore
    */

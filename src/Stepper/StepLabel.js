@@ -82,11 +82,7 @@ function StepLabel(props) {
         <Typography type="body1" className={labelClassName}>
           {children}
         </Typography>
-        {optional && (
-          <Typography type="caption" className={classes.optional}>
-            Optional
-          </Typography>
-        )}
+        {optional}
       </div>
     </div>
   );
@@ -134,9 +130,9 @@ StepLabel.propTypes = {
    */
   last: PropTypes.bool,
   /**
-   * @ignore
+   * The optional node to display.
    */
-  optional: PropTypes.bool,
+  optional: PropTypes.node,
   /**
    * @ignore
    */
@@ -149,7 +145,6 @@ StepLabel.defaultProps = {
   completed: false,
   disabled: false,
   last: false,
-  optional: false,
   orientation: 'horizontal',
 };
 
