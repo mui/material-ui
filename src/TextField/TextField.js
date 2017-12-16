@@ -22,7 +22,6 @@ function TextField(props) {
     helperText,
     helperTextClassName,
     id,
-    inputClassName,
     InputLabelProps,
     InputProps,
     inputRef,
@@ -48,8 +47,6 @@ function TextField(props) {
     'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
   );
 
-  const { inputProps = {}, ...otherInputProps } = InputProps || {};
-
   const InputComponent = (
     <Input
       autoComplete={autoComplete}
@@ -66,8 +63,7 @@ function TextField(props) {
       inputRef={inputRef}
       onChange={onChange}
       placeholder={placeholder}
-      inputProps={{ className: inputClassName, ...inputProps }}
-      {...otherInputProps}
+      {...InputProps}
     />
   );
 
@@ -153,10 +149,6 @@ TextField.propTypes = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
-  /**
-   * The CSS class name of the `input` element.
-   */
-  inputClassName: PropTypes.string,
   /**
    * Properties applied to the `InputLabel` element.
    */

@@ -51,11 +51,6 @@ describe('<TextField />', () => {
         wrapper = shallow(<TextField multiline />);
         assert.strictEqual(wrapper.childAt(0).props().multiline, true);
       });
-
-      it('should pass inputClassName to the input as className', () => {
-        wrapper.setProps({ inputClassName: 'foo' });
-        assert.strictEqual(wrapper.find(Input).props().inputProps.className, 'foo');
-      });
     });
 
     describe('with a label', () => {
@@ -116,18 +111,6 @@ describe('<TextField />', () => {
     it('should apply additional properties to the Input component', () => {
       const wrapper = mount(<TextField InputProps={{ readOnly: true }} />);
       assert.strictEqual(wrapper.find('input').props().readOnly, true);
-    });
-
-    it('should merge inputClassName with inputProps if provided', () => {
-      const inputProps = { type: 'number', min: 10, max: 100 };
-      const wrapper = mount(<TextField inputClassName="foo" InputProps={{ inputProps }} />);
-      assert.isTrue(wrapper.find('input').hasClass('foo'));
-    });
-
-    it('should override inputClassName if inputProps is included with className', () => {
-      const inputProps = { type: 'number', min: 10, max: 100, className: 'bar' };
-      const wrapper = mount(<TextField inputClassName="foo" InputProps={{ inputProps }} />);
-      assert.isTrue(wrapper.find('input').hasClass(inputProps.className));
     });
   });
 
