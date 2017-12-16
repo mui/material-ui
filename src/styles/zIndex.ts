@@ -1,8 +1,22 @@
-// @flow
+export interface ZIndex {
+  mobileStepper: number;
+  menu: number;
+  appBar: number;
+  drawerOverlay: number;
+  navDrawer: number;
+  dialogOverlay: number;
+  dialog: number;
+  layer: number;
+  popover: number;
+  snackbar: number;
+  tooltip: number;
+}
+
+export type ZIndexOptions = Partial<ZIndex>;
 
 // We need to centralize the zIndex definitions as they work
 // like global values in the browser.
-const zIndex = {
+const zIndex: ZIndex = {
   mobileStepper: 900,
   menu: 1000,
   appBar: 1100,
