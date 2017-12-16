@@ -4,10 +4,10 @@
     "target": "es2015",
     "jsx": "preserve",
     "lib": [
-      "es2016",
       "es2017",
       "dom"
     ],
+    "allowJs": true,
     "outDir": "build",
     "sourceMap": true,
     "noImplicitAny": true,
@@ -23,7 +23,7 @@
     "moduleResolution": "node",
     "noEmit": true
   },
-  "include": ["src/**/*", "test/typescript/*"],
+  "include": ["./src/**/*", "test/typescript/*"],
   "exclude": [
     "build",
     "node_modules"
