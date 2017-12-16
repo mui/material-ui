@@ -22,7 +22,7 @@ function PinnedSubheaderList(props) {
   const { classes } = props;
 
   return (
-    <List className={classes.root} subheader>
+    <List className={classes.root} subheader={<div />}>
       {[0, 1, 2, 3, 4].map(sectionId => (
         <div key={`section-${sectionId}`} className={classes.listSection}>
           <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
