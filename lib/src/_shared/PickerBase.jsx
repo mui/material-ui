@@ -13,7 +13,6 @@ export default class PickerBase extends PureComponent {
     format: PropTypes.string,
     labelFunc: PropTypes.func,
     ampm: PropTypes.bool,
-    keyboard: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -23,7 +22,6 @@ export default class PickerBase extends PureComponent {
     labelFunc: undefined,
     format: undefined,
     ampm: true,
-    keyboard: false,
   }
 
   getValidDateOrCurrent = (props = this.props) => {
@@ -70,13 +68,14 @@ export default class PickerBase extends PureComponent {
 
   handleChange = (date, isFinish = true) => {
     this.setState({ date }, () => {
-      if (isFinish && (this.props.autoOk || this.props.keyboard)) {
-        this.handleAccept();
-      }
-
       if (isFinish && this.props.autoOk) {
+        this.handleAccept();
         this.togglePicker();
       }
     });
+  }
+
+  handleTextFieldChange = (date) => {
+    this.setState({ date }, this.handleAccept);
   }
 }
