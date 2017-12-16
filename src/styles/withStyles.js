@@ -7,12 +7,11 @@ import Styled from './Styled';
 // Wrap a component in `Styled` to provide classes.
 const withStyles = (stylesOrCreator, options = {}) => Component => {
   const Style = props => {
-    const { classes, innerRef, ...componentProps } = props;
+    const { classes: overrides, innerRef, ...componentProps } = props;
     return (
-      <Styled classes={classes} Component={Component} {...options} styles={stylesOrCreator}>
-        {styledProps => {
-          const { theme, ...rest } = styledProps;
-          const styledPropsWithOptions = rest;
+      <Styled classes={overrides} Component={Component} {...options} styles={stylesOrCreator}>
+        {(classes, theme) => {
+          const styledPropsWithOptions = { classes };
           if (options.withTheme) {
             styledPropsWithOptions.theme = theme;
           }
