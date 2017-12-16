@@ -1,13 +1,58 @@
 import * as deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
+import * as warning from 'warning';
 import indigo from '../colors/indigo';
 import pink from '../colors/pink';
 import grey from '../colors/grey';
 import red from '../colors/red';
 import common from '../colors/common';
-import * as warning from 'warning';
 import { getContrastRatio } from './colorManipulator';
+import { Color, Contrast } from '..';
+import { CommonColors } from '../colors/common';
 
-export const light = {
+interface ShadeText {
+  primary: string;
+  secondary: string;
+  disabled: string;
+  hint: string;
+  icon: string;
+  divider: string;
+  lightDivider: string;
+}
+
+interface ShadeInput {
+  bottomLine: string;
+  helperText: string;
+  labelText: string;
+  inputText: string;
+  disabled: string;
+}
+
+interface ShadeAction {
+  active: string;
+  disabled: string;
+}
+
+interface ShadeBackground {
+  appBar: string;
+  contentFrame: string;
+  default: string;
+  chip: string;
+  paper: string;
+}
+
+interface ShadeLine {
+  stepper: string;
+}
+
+export interface Shade {
+  action: ShadeAction;
+  background: ShadeBackground;
+  input: ShadeInput;
+  line: ShadeLine;
+  text: ShadeText;
+}
+
+export const light: Shade = {
   text: {
     primary: 'rgba(0, 0, 0, 0.87)',
     secondary: 'rgba(0, 0, 0, 0.54)',
@@ -40,7 +85,7 @@ export const light = {
   },
 };
 
-export const dark = {
+export const dark: Shade = {
   text: {
     primary: 'rgba(255, 255, 255, 1)',
     secondary: 'rgba(255, 255, 255, 0.7)',
@@ -74,14 +119,53 @@ export const dark = {
   },
 };
 
-function getContrastText(hue) {
+function getContrastText(hue: string) {
   if (getContrastRatio(hue, common.black) < 7) {
     return dark.text.primary;
   }
   return light.text.primary;
 }
 
-export default function createPalette(palette) {
+export interface Palette {
+  common: CommonColors;
+  type: Contrast;
+  primary: Color;
+  secondary: Color;
+  error: Color;
+  grey: Color;
+  shades: {
+    dark: Shade;
+    light: Shade;
+  };
+  text: ShadeText;
+  input: ShadeInput;
+  action: ShadeAction;
+  background: ShadeBackground;
+  getContrastText: (color: string) => string;
+}
+
+type PartialShade = { [P in keyof Shade]?: Partial<Shade[P]> };
+type PartialColor = Partial<Color>;
+
+export interface PaletteOptions {
+  common?: Partial<CommonColors>;
+  type?: Contrast;
+  primary?: PartialColor;
+  secondary?: PartialColor;
+  error?: PartialColor;
+  grey?: PartialColor;
+  shades?: {
+    dark?: PartialShade;
+    light?: PartialShade;
+  };
+  text?: Partial<ShadeText>;
+  input?: Partial<ShadeInput>;
+  action?: Partial<ShadeAction>;
+  background?: Partial<ShadeBackground>;
+  getContrastText?: (color: string) => string;
+}
+
+export default function createPalette(palette: PaletteOptions): Palette {
   const { primary = indigo, secondary = pink, error = red, type = 'light', ...other } = palette;
   const shades = { dark, light };
 
@@ -111,7 +195,7 @@ export default function createPalette(palette) {
 
   // Dev warnings
   if (process.env.NODE_ENV !== 'production') {
-    const difference = (base, compare) => {
+    const difference = (base: object, compare: object) => {
       if (!compare) {
         compare = {};
       }
@@ -119,7 +203,7 @@ export default function createPalette(palette) {
       return Object.keys(base).filter(hue => !compare[hue]);
     };
 
-    const paletteColorError = (name, base, compare) => {
+    const paletteColorError = (name: string, base: object, compare: object) => {
       const missing = difference(base, compare);
       warning(
         missing.length === 0,
@@ -136,5 +220,5 @@ export default function createPalette(palette) {
     paletteColorError('grey', red, paletteOutput.grey);
   }
 
-  return paletteOutput;
+  return paletteOutput as Palette; // cast all partials to fully typed
 }
