@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const DefaultOnSSR = () => null;
 
-class NoSSR extends Component {
+class NoSSR extends React.Component {
   state = {
     mounted: false,
   };

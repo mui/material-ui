@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Dialog, {
@@ -18,7 +18,7 @@ const styles = {
   },
 };
 
-class Index extends Component {
+class Index extends React.Component {
   state = {
     open: false,
   };

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import ExpansionPanel, {
@@ -23,7 +23,7 @@ const styles = theme => ({
   },
 });
 
-class ControlledExpansionPanels extends Component {
+class ControlledExpansionPanels extends React.Component {
   state = {
     expanded: null,
   };

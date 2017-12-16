@@ -1,4 +1,4 @@
-/* eslint-disable no-console, flowtype/require-valid-file-annotation */
+/* eslint-disable no-console */
 
 import chalk from 'chalk';
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { withStyles, MuiThemeProvider } from 'material-ui/styles';
 import wrapDisplayName from 'recompose/wrapDisplayName';
@@ -24,8 +24,8 @@ AppWrapper = withStyles(styles)(AppWrapper);
 
 const context = createContext();
 
-function withRoot(BaseComponent) {
-  class WithRoot extends Component {
+function withRoot(Component) {
+  class WithRoot extends React.Component {
     componentDidMount() {
       // Remove the server-side injected CSS.
       const jssStyles = document.querySelector('#jss-server-side');
@@ -39,7 +39,7 @@ function withRoot(BaseComponent) {
         <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
           <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
             <AppWrapper>
-              <BaseComponent {...this.props} />
+              <Component {...this.props} />
             </AppWrapper>
           </MuiThemeProvider>
         </JssProvider>
@@ -48,7 +48,7 @@ function withRoot(BaseComponent) {
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
+    WithRoot.displayName = wrapDisplayName(Component, 'withRoot');
   }
 
   return WithRoot;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 
@@ -27,7 +27,7 @@ const styles = theme => ({
   },
 });
 
-class TestViewer extends Component {
+class TestViewer extends React.Component {
   getChildContext() {
     return {
       url: {

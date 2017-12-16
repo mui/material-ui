@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles, MuiThemeProvider } from 'material-ui/styles';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import getContext from '../styles/getContext';
@@ -21,11 +21,11 @@ let AppWrapper = props => props.children;
 
 AppWrapper = withStyles(styles)(AppWrapper);
 
-function withRoot(BaseComponent) {
-  class WithRoot extends Component {
+function withRoot(Component) {
+  class WithRoot extends React.Component {
     static getInitialProps(ctx) {
-      if (BaseComponent.getInitialProps) {
-        return BaseComponent.getInitialProps(ctx);
+      if (Component.getInitialProps) {
+        return Component.getInitialProps(ctx);
       }
 
       return {};
@@ -50,7 +50,7 @@ function withRoot(BaseComponent) {
           sheetsManager={this.styleContext.sheetsManager}
         >
           <AppWrapper>
-            <BaseComponent {...this.props} />
+            <Component {...this.props} />
           </AppWrapper>
         </MuiThemeProvider>
       );
@@ -58,7 +58,7 @@ function withRoot(BaseComponent) {
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
+    WithRoot.displayName = wrapDisplayName(Component, 'withRoot');
   }
 
   return WithRoot;

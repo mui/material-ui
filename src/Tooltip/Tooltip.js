@@ -1,6 +1,6 @@
 /* eslint-disable react/no-multi-comp, no-underscore-dangle */
 
-import React, { Children } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
@@ -159,7 +159,7 @@ class Tooltip extends React.Component {
   handleRequestOpen = event => {
     const { children } = this.props;
     if (typeof children !== 'string') {
-      const childrenProps = Children.only(children).props;
+      const childrenProps = React.Children.only(children).props;
 
       if (event.type === 'focus' && childrenProps.onFocus) {
         childrenProps.onFocus(event);
@@ -197,7 +197,7 @@ class Tooltip extends React.Component {
   handleClose = event => {
     const { children } = this.props;
     if (typeof children !== 'string') {
-      const childrenProps = Children.only(children).props;
+      const childrenProps = React.Children.only(children).props;
 
       if (event.type === 'blur' && childrenProps.onBlur) {
         childrenProps.onBlur(event);
@@ -234,7 +234,7 @@ class Tooltip extends React.Component {
     this.ignoreNonTouchEvents = true;
     const { children } = this.props;
     if (typeof children !== 'string') {
-      const childrenProps = Children.only(children).props;
+      const childrenProps = React.Children.only(children).props;
 
       if (childrenProps.onTouchStart) {
         childrenProps.onTouchStart(event);
@@ -251,7 +251,7 @@ class Tooltip extends React.Component {
   handleTouchEnd = event => {
     const { children } = this.props;
     if (typeof children !== 'string') {
-      const childrenProps = Children.only(children).props;
+      const childrenProps = React.Children.only(children).props;
 
       if (childrenProps.onTouchEnd) {
         childrenProps.onTouchEnd(event);

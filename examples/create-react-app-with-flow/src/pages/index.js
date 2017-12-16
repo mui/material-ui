@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import Button from 'material-ui/Button';
 import Dialog, {
   DialogTitle,
@@ -32,7 +32,7 @@ type State = {
   open: boolean,
 };
 
-class Index extends Component<ProvidedProps & Props, State> {
+class Index extends React.Component<ProvidedProps & Props, State> {
   state = {
     open: false,
   };
