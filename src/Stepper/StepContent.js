@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import warning from 'warning';
+import * as warning from 'warning';
 import classNames from 'classnames';
 import Collapse from '../transitions/Collapse';
 import withStyles from '../styles/withStyles';

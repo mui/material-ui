@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import warning from 'warning';
+import * as warning from 'warning';
 import keycode from 'keycode';
 import canUseDom from 'dom-helpers/util/inDOM';
 import contains from 'dom-helpers/query/contains';

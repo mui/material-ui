@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
-import warning from 'warning';
+import * as warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({

@@ -1,8 +1,6 @@
-// @flow weak
+import * as warning from 'warning';
 
-import warning from 'warning';
-
-export function capitalizeFirstLetter(string) {
+export function capitalizeFirstLetter(string: string): string {
   warning(
     typeof string === 'string',
     'Material-UI: capitalizeFirstLetter(string) expects a string argument.',
@@ -11,13 +9,13 @@ export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function contains(obj, pred) {
+export function contains(obj: object, pred: object): boolean {
   return Object.keys(pred).every(key => {
     return obj.hasOwnProperty(key) && obj[key] === pred[key];
   });
 }
 
-export function findIndex(arr: Array<any>, pred: any) {
+export function findIndex(arr: any[], pred: any): number {
   const predType = typeof pred;
   for (let i = 0; i < arr.length; i += 1) {
     if (predType === 'function' && !!pred(arr[i], i, arr) === true) {
@@ -33,7 +31,7 @@ export function findIndex(arr: Array<any>, pred: any) {
   return -1;
 }
 
-export function find(arr: Array<any>, pred: any) {
+export function find<T>(arr: T[], pred: any): T {
   const index = findIndex(arr, pred);
   return index > -1 ? arr[index] : undefined;
 }
@@ -47,7 +45,7 @@ export function find(arr: Array<any>, pred: any) {
  * @param {function} functions to chain
  * @returns {function|null}
  */
-export function createChainedFunction(...funcs: Array<any>) {
+export function createChainedFunction(...funcs: Function[]): Function {
   return funcs.filter(func => func != null).reduce(
     (acc, func) => {
       warning(
@@ -55,7 +53,7 @@ export function createChainedFunction(...funcs: Array<any>) {
         'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.',
       );
 
-      return function chainedFunction(...args) {
+      return function chainedFunction(...args: Function[]) {
         acc.apply(this, args);
         func.apply(this, args);
       };

@@ -3,17 +3,27 @@ import * as PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
 
-const isDescendant = (el, target) => {
+const isDescendant = (el: Node, target: Node): boolean => {
   if (target !== null && target.parentNode) {
     return el === target || isDescendant(el, target.parentNode);
   }
   return false;
 };
 
+export interface ClickAwayListenerProps {
+  children: React.ReactNode;
+  onClickAway: (event: MouseEvent) => void;
+}
+
 /**
  * Listen for click events that are triggered outside of the component children.
  */
-class ClickAwayListener extends React.Component {
+class ClickAwayListener extends React.Component<ClickAwayListenerProps> {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    onClickAway: PropTypes.func.isRequired,
+  };
+
   componentDidMount() {
     this.mounted = true;
   }
@@ -24,7 +34,7 @@ class ClickAwayListener extends React.Component {
 
   mounted = false;
 
-  handleClickAway = event => {
+  handleClickAway = (event: MouseEvent) => {
     // Ignore events that have been `event.preventDefault()` marked.
     if (event.defaultPrevented) {
       return;
@@ -49,18 +59,13 @@ class ClickAwayListener extends React.Component {
     return (
       <EventListener
         target="document"
-        onMouseup={this.handleClickAway}
-        onTouchend={this.handleClickAway}
+        onMouseUp={this.handleClickAway}
+        onTouchEnd={this.handleClickAway}
       >
         {this.props.children}
       </EventListener>
     );
   }
 }
-
-ClickAwayListener.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClickAway: PropTypes.func.isRequired,
-};
 
 export default ClickAwayListener;

@@ -158,6 +158,12 @@
     "@types/node" "*"
     "@types/react" "*"
 
+"@types/react-event-listener@^0.4.4":
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/@types/react-event-listener/-/react-event-listener-0.4.4.tgz#05ebac77c679ca2c5599eed00881fc80b643199e"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@16.0.31":
   version "16.0.31"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.31.tgz#5285da62f3ac62b797f6d0729a1d6181f3180c3e"

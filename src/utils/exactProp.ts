@@ -1,15 +1,15 @@
-// @flow
 // This module is based on https://github.com/airbnb/prop-types-exact repository.
 // However, in order to reduce the number of dependencies and to remove some extra safe checks
 // the module was forked.
+import * as PropTypes from 'prop-types';
 
 export const specialProperty = 'exact-prop: \u200b';
 
-export default function exactProp(propTypes, componentNameInError: string) {
+export default function exactProp(propTypes: typeof PropTypes, componentNameInError: string) {
   return {
     ...propTypes,
     // eslint-disable-next-line prefer-arrow-callback
-    [specialProperty]: props => {
+    [specialProperty]: (props: object) => {
       const unknownProps = Object.keys(props).filter(prop => !propTypes.hasOwnProperty(prop));
       if (unknownProps.length > 0) {
         return new TypeError(

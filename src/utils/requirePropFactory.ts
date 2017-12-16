@@ -1,8 +1,6 @@
-// @flow weak
-
-const requirePropFactory = (componentNameInError: string) => {
+const requirePropFactory = (componentNameInError: string): any => {
   const requireProp = (requiredProp: string) => (
-    props,
+    props: any,
     propName: string,
     componentName?: string,
     location?: string,

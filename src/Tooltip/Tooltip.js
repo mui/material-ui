@@ -5,7 +5,7 @@ import * as PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
-import warning from 'warning';
+import * as warning from 'warning';
 import classNames from 'classnames';
 import { Manager, Target, Popper } from 'react-popper';
 import { capitalizeFirstLetter } from '../utils/helpers';
