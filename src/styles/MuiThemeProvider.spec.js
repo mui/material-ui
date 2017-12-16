@@ -108,9 +108,7 @@ describe('<MuiThemeProvider />', () => {
       const { themeSpy: themeSpy3, ThemeSpy: ThemeSpy3 } = getThemeSpy();
 
       const theme1 = createMuiTheme({ status: { color: 'orange' } });
-
       const theme2 = outerTheme => ({ ...outerTheme, status: { color: 'green' } });
-
       const theme3 = createMuiTheme({ status: { color: 'yellow' } });
 
       const wrapper = mount(
