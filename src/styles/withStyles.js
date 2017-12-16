@@ -9,8 +9,15 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   const Style = props => {
     const { classes, innerRef, ...componentProps } = props;
     return (
-      <Styled classes={classes} Component={Component} options={options} styles={stylesOrCreator}>
-        {styledProps => <Component ref={innerRef} {...styledProps} {...componentProps} />}
+      <Styled classes={classes} Component={Component} {...options} styles={stylesOrCreator}>
+        {styledProps => {
+          const { theme, ...rest } = styledProps;
+          const styledPropsWithOptions = rest;
+          if (options.withTheme) {
+            styledPropsWithOptions.theme = theme;
+          }
+          return <Component ref={innerRef} {...styledPropsWithOptions} {...componentProps} />;
+        }}
       </Styled>
     );
   };

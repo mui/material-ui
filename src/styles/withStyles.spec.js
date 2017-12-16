@@ -47,6 +47,22 @@ describe('withStyles', () => {
       assert.deepEqual(wrapper.props().classes, classes, 'Should provide the classes property');
     });
 
+    describe('option: withTheme', () => {
+      it('should provide a theme property', () => {
+        const styles = { root: { display: 'flex' } };
+        const StyledThemedComponent = withStyles(styles, {
+          name: 'MuiEmptyField',
+          withTheme: true,
+        })(Empty);
+        const wrapper = mount(<StyledThemedComponent />).find('Empty');
+        assert.isNotNull(wrapper.props().theme, 'Should provide the theme property');
+      });
+      it('should not provide a theme property', () => {
+        const wrapper = mount(<StyledComponent1 />).find('Empty');
+        assert.isUndefined(wrapper.props().theme, 'Should NOT provide the theme property');
+      });
+    });
+
     describe('prop: classes', () => {
       before(() => {
         consoleErrorMock.spy();

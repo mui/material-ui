@@ -51,9 +51,6 @@ function getDefaultTheme() {
 }
 
 class Styled extends React.Component {
-  static defaultProps = {
-    withTheme: false,
-  };
   constructor(props, context) {
     super(props, context);
 
@@ -78,10 +75,12 @@ class Styled extends React.Component {
       ].join(' '),
     );
 
+    // FIXME: props.withTheme is NOT needed here, it is legacy and only leftover from
+    // FIXME:   withStyles usage.  I don't know why it is needed for listening -
+    // FIXME:   this is a good question for Olivier. For now, it is passed in, but
+    // FIXME    props.withTheme should be removed
     this.listenToTheme =
-      this.stylesCreator.themingEnabled ||
-      props.withTheme ||
-      typeof props.options.name === 'string';
+      this.stylesCreator.themingEnabled || props.withTheme || typeof props.name === 'string';
 
     // Attach the stylesCreator to the instance of the component as in the context
     // of react-hot-loader the hooks can be executed in a different closure context:
@@ -145,7 +144,7 @@ class Styled extends React.Component {
       return;
     }
 
-    const { Component, flip, options: styleSheetOptions } = this.props;
+    const { Component, flip, name } = this.props;
     let sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
 
     if (!sheetManager) {
@@ -164,13 +163,13 @@ class Styled extends React.Component {
     }
 
     if (sheetManagerTheme.refs === 0) {
-      const styles = this.stylesCreatorSaved.create(theme, styleSheetOptions.name);
+      const styles = this.stylesCreatorSaved.create(theme, name);
       let meta;
 
       if (process.env.NODE_ENV !== 'production') {
         // REVIEW this is going to be bogus - can't have every stylesheet used this way
         //  popping out as 'Styled'
-        meta = styleSheetOptions.name || (Component ? getDisplayName(Component) : 'Styled');
+        meta = name || (Component ? getDisplayName(Component) : 'Styled');
       }
 
       const sheet = this.jss.createStyleSheet(styles, {
@@ -179,8 +178,7 @@ class Styled extends React.Component {
         link: false,
         ...this.sheetOptions,
         ...this.stylesCreatorSaved.options,
-        name: styleSheetOptions.name,
-        ...styleSheetOptions,
+        name,
       });
 
       sheetManagerTheme.sheet = sheet;
@@ -226,15 +224,7 @@ class Styled extends React.Component {
   theme = null;
 
   render() {
-    const {
-      children,
-      classes: classesProp,
-      Component,
-      options,
-      styles,
-      withTheme,
-      ...other
-    } = this.props;
+    const { children, classes: classesProp, Component, styles, withTheme, ...other } = this.props;
 
     let classes;
     let renderedClasses = {};
@@ -281,15 +271,7 @@ class Styled extends React.Component {
       classes = renderedClasses;
     }
 
-    const more = {};
-
-    // Provide the theme to the wrapped component.
-    // So we don't have to use the `withTheme()` Higher-order Component.
-    if (withTheme) {
-      more.theme = this.theme;
-    }
-
-    return children({ ...{ classes }, ...more, ...other });
+    return children({ ...{ classes, theme: this.theme }, ...other });
   }
 }
 
@@ -303,16 +285,18 @@ Styled.propTypes = {
    * @ignore only for better messages when used with withStyles
    */
   Component: PropTypes.func,
+  /**
+   * Override theme rendering right to left (rtl).
+   */
   flip: PropTypes.bool,
   /**
-   * StyleSheet options
+   * StyleSheet name for the component.
    */
-  options: PropTypes.object,
+  name: PropTypes.string,
   /**
    * Styles object or function that accepts the Theme and returns an object.
    */
   styles: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
-  withTheme: PropTypes.bool,
 };
 
 Styled.contextTypes = {

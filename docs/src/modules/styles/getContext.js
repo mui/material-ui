@@ -2,7 +2,7 @@
 
 import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
-import { preset } from 'material-ui/styles/withStyles';
+import { preset } from 'material-ui/styles/Styled';
 import { createMuiTheme } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
