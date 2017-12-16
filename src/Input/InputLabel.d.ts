@@ -6,7 +6,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabe
   disableAnimation?: boolean;
   disabled?: boolean;
   error?: boolean;
-  FormControlClasses?;
+  FormControlClasses?: object;
   focused?: boolean;
   required?: boolean;
   shrink?: boolean;

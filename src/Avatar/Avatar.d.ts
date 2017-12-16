@@ -6,7 +6,7 @@ export interface AvatarProps
   alt?: string;
   childrenClassName?: string;
   component?: string | React.ComponentType<AvatarProps>;
-  imgProps?;
+  imgProps?: object;
   sizes?: string;
   src?: string;
   srcSet?: string;
