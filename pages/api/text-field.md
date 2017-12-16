@@ -6,7 +6,33 @@ filename: /src/TextField/TextField.js
 
 # TextField
 
+The `TextField` is a convenience wrapper for the most common cases (80%).
+It cannot be all things to all people, otherwise the API would grow out of control.
 
+## Advanced Configuration
+
+It's important to understand that the text field is a simple abstraction
+on top of the following components:
+- [FormControl](/api/form-control)
+- [InputLabel](/api/input-label)
+- [Input](/api/input)
+- [FormHelperText](/api/form-helper-text)
+
+If you wish to alter the properties applied to the native input, you can do as follow:
+
+```jsx
+const InputProps = {
+  inputProps: {
+    step: 300,
+  },
+};
+
+return <TextField id="time" type="time" InputProps={InputProps} />;
+```
+
+For advanced cases, please look at the source of TextField and consider either:
+- using the upper case props for passing values direct to the components.
+- using the underlying components directly as shown in the demos.
 
 ## Props
 
