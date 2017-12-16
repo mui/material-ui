@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { spy, stub } from 'sinon';
 import { assert } from 'chai';
 import ReactDOM from 'react-dom';

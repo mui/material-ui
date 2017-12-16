@@ -5,11 +5,8 @@ import { InputProps, InputLabelProps } from '../Input';
 import { FormControlClassKey } from '../Form/FormControl';
 import { SelectProps } from '../Select';
 
-export interface TextFieldProps extends StandardProps<
-  FormControlProps,
-  TextFieldClassKey,
-  'onChange' | 'defaultValue'
-> {
+export interface TextFieldProps
+  extends StandardProps<FormControlProps, TextFieldClassKey, 'onChange' | 'defaultValue'> {
   autoComplete?: string;
   autoFocus?: boolean;
   children?: React.ReactNode;
@@ -41,10 +38,7 @@ export interface TextFieldProps extends StandardProps<
   value?: string | number;
 }
 
-export type TextFieldClassKey =
-  | FormControlClassKey
-  ;
-
+export type TextFieldClassKey = FormControlClassKey;
 
 declare const Input: React.ComponentType<TextFieldProps>;
 

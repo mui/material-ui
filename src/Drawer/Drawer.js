@@ -1,7 +1,7 @@
 // @inheritedComponent Modal
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Modal from '../Modal';
 import withStyles from '../styles/withStyles';

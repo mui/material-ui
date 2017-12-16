@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import canUseDom from 'dom-helpers/util/inDOM';
 

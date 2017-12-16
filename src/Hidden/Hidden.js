@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import HiddenJs from './HiddenJs';
 import HiddenCss from './HiddenCss';
 

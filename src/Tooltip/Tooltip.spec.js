@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { Target, Popper } from 'react-popper';

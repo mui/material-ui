@@ -42,5 +42,5 @@ export type TypographyOptions = Partial<Record<Style, Partial<TypographyStyle>> 
 
 export default function createTypography(
   palette: Palette,
-  typography: TypographyOptions | ((palette: Palette) => TypographyOptions)
+  typography: TypographyOptions | ((palette: Palette) => TypographyOptions),
 ): Typography;

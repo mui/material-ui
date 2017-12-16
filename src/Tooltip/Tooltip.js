@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp, no-underscore-dangle */
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Children } from 'react';
+import * as PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';

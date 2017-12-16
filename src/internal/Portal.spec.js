@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { Element } from 'react';
 import ReactDOM from 'react-dom';
 import { assert } from 'chai';

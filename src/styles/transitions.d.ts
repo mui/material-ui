@@ -24,7 +24,7 @@ export interface Transitions {
   duration: Duration;
   create(
     props: string | string[],
-    options?: Partial<{ duration: number; easing: string; delay: number }>
+    options?: Partial<{ duration: number; easing: string; delay: number }>,
   ): string;
   getAutoHeightDuration(height: number): number;
 }
@@ -34,9 +34,9 @@ export interface TransitionsOptions {
   duration?: Partial<Duration>;
   create?: (
     props: string | string[],
-    options?: Partial<{ duration: number; easing: string; delay: number }>
+    options?: Partial<{ duration: number; easing: string; delay: number }>,
   ) => string;
-  getAutoHeightDuration?: (height: number)=>number;
+  getAutoHeightDuration?: (height: number) => number;
 }
 
 //export type TransitionsOptions = DeepPartial<Transitions>;

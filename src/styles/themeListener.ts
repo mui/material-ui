@@ -15,7 +15,7 @@ export interface ThemeListener {
     [key: string]: any;
   };
   initial(context: object): object;
-  subscribe(context: object, callback: Function): Function;
+  subscribe(context: object, callback: Function): number;
   unsubscribe(context: object, subscriptionId: number): void;
 }
 
