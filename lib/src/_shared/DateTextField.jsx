@@ -91,13 +91,19 @@ export default class DateTextField extends PureComponent {
   handleFocus = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    const { disabled, onClick, keyboard } = this.props;
+    const { keyboard } = this.props;
 
-    if (keyboard && e.target.tagName.toLowerCase() !== 'span') {
+    if (keyboard) {
       return;
     }
 
     e.target.blur();
+
+    this.openPicker(e);
+  }
+
+  openPicker = (e) => {
+    const { disabled, onClick } = this.props;
 
     if (!disabled) {
       onClick(e);
@@ -106,39 +112,38 @@ export default class DateTextField extends PureComponent {
 
   render() {
     const {
-      format, disabled, onClick, invalidLabel, labelFunc, keyboard, value, mask, ...other
+      format, disabled, onClick, invalidLabel, labelFunc, keyboard, value, mask, InputProps,
+      ...other
     } = this.props;
     const { displayValue, error } = this.state;
 
+    const localInputProps = {
+      inputComponent: MaskedInput,
+      inputProps: { mask },
+    };
+
+    if (keyboard) {
+      localInputProps.endAdornment = (
+        <InputAdornment position="end">
+          <IconButton onClick={this.openPicker}>event</IconButton>
+        </InputAdornment>
+      );
+    }
+
     return (
-      <div>
-        <TextField
-          readOnly
-          onClick={this.handleFocus}
-          error={!!error}
-          helperText={error}
-          onKeyPress={this.handleChange}
-          onBlur={e => e.preventDefault() && e.stopPropagation()}
-          disabled={disabled}
-          value={displayValue}
-          {...other}
-          onChange={this.handleChange}
-          inputProps={{
-            mask,
-          }}
-          InputProps={keyboard ? {
-            endAdornment: (
-              <InputAdornment
-                onClick={this.handleFocus}
-                position="end"
-              >
-                <IconButton>  event  </IconButton>
-              </InputAdornment>
-            ),
-            inputComponent: MaskedInput,
-          } : this.props.InputProps}
-        />
-      </div>
+      <TextField
+        readOnly
+        onClick={this.handleFocus}
+        error={!!error}
+        helperText={error}
+        onKeyPress={this.handleChange}
+        onBlur={e => e.preventDefault() && e.stopPropagation()}
+        disabled={disabled}
+        value={displayValue}
+        {...other}
+        onChange={this.handleChange}
+        InputProps={{ ...localInputProps, ...InputProps }}
+      />
     );
   }
 }
