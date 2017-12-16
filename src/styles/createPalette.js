@@ -4,7 +4,7 @@ import pink from '../colors/pink';
 import grey from '../colors/grey';
 import red from '../colors/red';
 import common from '../colors/common';
-import warning from '../utils/ts-import-workaround/warning';
+import * as warning from 'warning';
 import { getContrastRatio } from './colorManipulator';
 
 export const light = {
