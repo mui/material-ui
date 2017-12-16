@@ -1,7 +1,7 @@
 [
   {
     "path": "build/index.js",
-    "limit": "90.73 KB"
+    "limit": "90.72 KB"
   },
   {
     "path": "test/size/overhead.js",
