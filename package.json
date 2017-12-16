@@ -44,7 +44,7 @@
     "size:overhead:why": "size-Limit --why ./test/size/overhead.js",
     "spellcheck": "eslint . --config .eslintrc.spellcheck.js && echo \"eslint: no lint errors\"",
     "test": "yarn lint && yarn flow && yarn typescript && yarn test:unit",
-    "test:unit": "cross-env NODE_ENV=test mocha test/**/*.spec.js src/{,**/}*.spec.js",
+    "test:unit": "cross-env NODE_ENV=test mocha test/**/*.spec.{js,ts,tsx} src/{,**/}*.spec.{js,ts,tsx}",
     "test:watch": "yarn test:unit -w",
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.spec.js src/{,**/}*.spec.js && nyc report -r lcovonly",
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.spec.js src/{,**/}*.spec.js && nyc report --reporter=html",
@@ -85,8 +85,11 @@
   },
   "devDependencies": {
     "@rosskevin/react-docgen": "^3.0.0-beta9",
-    "@types/enzyme": "^3.1.4",
-    "@types/react": "16.0.19",
+    "@types/chai": "^4.0.10",
+    "@types/enzyme": "^3.1.6",
+    "@types/mocha": "^2.2.44",
+    "@types/react": "16.0.31",
+    "@types/react-dom": "^16.0.3",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "autosuggest-highlight": "^3.1.1",
@@ -172,6 +175,7 @@
     "rimraf": "^2.6.2",
     "sinon": "^4.1.2",
     "size-limit": "^0.13.1",
+    "ts-node": "^4.0.2",
     "typescript": "^2.6.1",
     "url-loader": "^0.6.2",
     "vrtest": "^0.2.0",
@@ -180,7 +184,7 @@
     "webpack-bundle-analyzer": "^2.9.1"
   },
   "resolutions": {
-    "@types/react": "16.0.19"
+    "@types/react": "16.0.31"
   },
   "side-effects": false,
   "nyc": {

@@ -1,3 +1,4 @@
+--require ts-node/register
 --require babel-register
 --reporter dot
 --recursive
