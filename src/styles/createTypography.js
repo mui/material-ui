@@ -1,4 +1,4 @@
-import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
+import deepmerge from '../utils/ts-import-workaround/deepmerge';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
