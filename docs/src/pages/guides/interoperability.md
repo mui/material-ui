@@ -33,7 +33,7 @@ const styles = theme => ({
 The `styled()` method works perfectly on all of our components.
 
 ```jsx
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Button from 'material-ui/Button';
 

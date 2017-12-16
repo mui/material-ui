@@ -1,4 +1,4 @@
-/* eslint-disable func-names, flowtype/require-valid-file-annotation */
+/* eslint-disable func-names */
 
 import reactDOM from 'react-dom';
 import Portal from '../../src/internal/Portal';

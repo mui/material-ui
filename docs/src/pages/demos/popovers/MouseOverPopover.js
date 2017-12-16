@@ -1,6 +1,6 @@
-/* eslint-disable flowtype/require-valid-file-annotation, jsx-a11y/mouse-events-have-key-events */
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Popover from 'material-ui/Popover';
 import Typography from 'material-ui/Typography';
@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 });
 
-class MouseOverPopover extends Component {
+class MouseOverPopover extends React.Component {
   state = {
     anchorEl: null,
     popperOpen: false,
