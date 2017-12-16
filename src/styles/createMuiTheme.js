@@ -1,5 +1,5 @@
-import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
-import warning from 'warning';
+import deepmerge from '../utils/ts-import-workaround/deepmerge';
+import warning from '../utils/ts-import-workaround/warning';
 import createTypography from './createTypography';
 import createBreakpoints from './createBreakpoints';
 import createPalette from './createPalette';

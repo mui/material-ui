@@ -1,10 +1,10 @@
-import warning from 'warning';
-import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
+import * as deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import indigo from '../colors/indigo';
 import pink from '../colors/pink';
 import grey from '../colors/grey';
 import red from '../colors/red';
 import common from '../colors/common';
+import warning from '../utils/ts-import-workaround/warning';
 import { getContrastRatio } from './colorManipulator';
 
 export const light = {

@@ -1,4 +1,4 @@
-import warning from 'warning';
+import warning from '../utils/ts-import-workaround/warning';
 
 let generatorCounter = 0;
 
