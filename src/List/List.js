@@ -95,7 +95,7 @@ List.propTypes = {
    */
   rootRef: PropTypes.func,
   /**
-   * The content of the component, normally `ListItem`.
+   * The content of the subheader, normally `ListSubheader`.
    */
   subheader: PropTypes.node,
 };

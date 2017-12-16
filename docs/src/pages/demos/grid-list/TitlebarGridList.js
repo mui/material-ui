@@ -8,7 +8,7 @@ import InfoIcon from 'material-ui-icons/Info';
 import tileData from './tileData';
 
 const styles = theme => ({
-  container: {
+  root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -18,6 +18,9 @@ const styles = theme => ({
   gridList: {
     width: 500,
     height: 450,
+  },
+  icon: {
+    color: 'rgba(255, 255, 255, 0.54)',
   },
 });
 
@@ -42,7 +45,7 @@ function TitlebarGridList(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.container}>
+    <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList}>
         <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
           <Subheader component="div">December</Subheader>
@@ -54,8 +57,8 @@ function TitlebarGridList(props) {
               title={tile.title}
               subtitle={<span>by: {tile.author}</span>}
               actionIcon={
-                <IconButton>
-                  <InfoIcon color="rgba(255, 255, 255, 0.54)" />
+                <IconButton className={classes.icon}>
+                  <InfoIcon />
                 </IconButton>
               }
             />

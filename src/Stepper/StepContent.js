@@ -53,7 +53,7 @@ function StepContent(props) {
       <Transition
         in={active}
         className={classes.transition}
-        transitionDuration={transitionDuration}
+        timeout={transitionDuration}
         unmountOnExit
       >
         {children}
