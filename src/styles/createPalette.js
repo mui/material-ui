@@ -1,5 +1,3 @@
-// @flow
-
 import warning from 'warning';
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import indigo from '../colors/indigo';
@@ -83,7 +81,7 @@ function getContrastText(hue) {
   return light.text.primary;
 }
 
-export default function createPalette(palette: Object) {
+export default function createPalette(palette) {
   const { primary = indigo, secondary = pink, error = red, type = 'light', ...other } = palette;
   const shades = { dark, light };
 

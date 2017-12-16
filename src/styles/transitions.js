@@ -1,4 +1,3 @@
-// @flow
 /* eslint-disable no-param-reassign */
 
 import warning from 'warning';
@@ -33,10 +32,13 @@ export const duration = {
   leavingScreen: 195,
 };
 
-export const formatMs = (milliseconds: number) => `${Math.round(milliseconds)}ms`;
-export const isString = (value: any) => typeof value === 'string';
-export const isNumber = (value: any) => !Number.isNaN(parseFloat(value));
+export const formatMs = milliseconds => `${Math.round(milliseconds)}ms`; // number
+export const isString = value => typeof value === 'string';
+export const isNumber = value => !Number.isNaN(parseFloat(value));
 
+// interface TransitionsOptions {
+// prop?: string, duration?: number, easing?: string, delay?: number
+// }
 /**
  * @param {string|Array} props
  * @param {object} param
@@ -49,8 +51,8 @@ export default {
   easing,
   duration,
   create(
-    props: string | Array<string> = ['all'],
-    options: { prop?: string, duration?: number, easing?: string, delay?: number } = {},
+    props = ['all'], // string | Array<string>
+    options = {},
   ) {
     const {
       duration: durationOption = duration.standard,
@@ -81,7 +83,8 @@ export default {
       )
       .join(',');
   },
-  getAutoHeightDuration(height: ?number) {
+  getAutoHeightDuration(height) {
+    // ?number
     if (!height) {
       return 0;
     }

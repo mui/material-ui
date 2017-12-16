@@ -7,7 +7,7 @@ export default function createShallow(options1 = {}) {
 
   const shallowWithContext = function shallowWithContext(
     node, // : Element<any>,
-    options2, // : Object = {},
+    options2, //  = {},
   ) {
     const options = {
       ...other1,

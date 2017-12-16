@@ -15,7 +15,7 @@ export interface ModalProps extends StandardProps<
   ignoreBackdropClick?: boolean;
   ignoreEscapeKeyUp?: boolean;
   keepMounted?: boolean;
-  modalManager?: Object;
+  modalManager?;
   onBackdropClick?: React.ReactEventHandler<{}>;
   onClose?: React.ReactEventHandler<{}>;
   onEscapeKeyUp?: React.ReactEventHandler<{}>;
