@@ -3,21 +3,22 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 
-function theme(outerTheme) {
-  return createMuiTheme({
-    typography: {
-      fontFamily:
-        '-apple-system,system-ui,BlinkMacSystemFont,' +
-        '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-      body1: {
-        fontWeight: outerTheme.typography.fontWeightMedium,
-      },
-      button: {
-        fontStyle: 'italic',
-      },
+const fontWeightMedium = 500;
+const theme = createMuiTheme({
+  typography: {
+    // Use the system font.
+    fontFamily:
+      '-apple-system,system-ui,BlinkMacSystemFont,' +
+      '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+    fontWeightMedium,
+    body1: {
+      fontWeight: fontWeightMedium,
     },
-  });
-}
+    button: {
+      fontStyle: 'italic',
+    },
+  },
+});
 
 function TypographyTheme() {
   return (

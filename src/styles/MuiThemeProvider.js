@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import warning from 'warning';
 import createBroadcast from 'brcast';
 import themeListener, { CHANNEL } from './themeListener';
 import exactProp from '../utils/exactProp';
@@ -60,6 +61,18 @@ class MuiThemeProvider extends React.Component {
   mergeOuterLocalTheme(localTheme) {
     // To support composition of theme.
     if (typeof localTheme === 'function') {
+      warning(
+        this.outerTheme,
+        [
+          'Material-UI: you are providing a theme function property ' +
+            'to the MuiThemeProvider component:',
+          '<MuiThemeProvider theme={outerTheme => outerTheme} />',
+          '',
+          'However, no outer theme is present.',
+          'Make sure a theme is already injected higher in the React tree ' +
+            'or provide a theme object.',
+        ].join('\n'),
+      );
       return localTheme(this.outerTheme);
     }
 
