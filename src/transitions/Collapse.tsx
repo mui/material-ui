@@ -6,30 +6,57 @@ import * as PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
+import { Theme, WithStyles } from '../styles';
+import { StandardProps } from '..';
+import { TransitionDuration, TransitionProps } from '../internal/transition';
 
-export const styles = theme => ({
-  container: {
-    height: 0,
-    overflow: 'hidden',
-    transition: theme.transitions.create('height'),
-  },
-  entered: {
-    height: 'auto',
-  },
-  wrapper: {
-    // Hack to get children with a negative margin to not falsify the height computation.
-    display: 'flex',
-  },
-  wrapperInner: {
-    width: '100%',
-  },
-});
+export interface CollapseProps
+  extends StandardProps<TransitionProps, CollapseClassKey, 'children'> {
+  children?: React.ReactNode;
+  collapsedHeight?: string;
+  component?: string | React.ComponentType<CollapseProps>;
+  containerProps?: object;
+  theme?: Theme;
+  timeout?: TransitionDuration | 'auto';
+}
 
-class Collapse extends React.Component {
-  wrapper = null;
-  autoTransitionDuration = undefined;
+export type CollapseClassKey = 'container' | 'entered' | 'wrapper' | 'wrapperInner';
+export const styles = withStyles<CollapseClassKey>(
+  ({ transitions }) => ({
+    container: {
+      height: 0,
+      overflow: 'hidden',
+      transition: transitions.create('height'),
+    },
+    entered: {
+      height: 'auto',
+    },
+    wrapper: {
+      // Hack to get children with a negative margin to not falsify the height computation.
+      display: 'flex',
+    },
+    wrapperInner: {
+      width: '100%',
+    },
+  }),
+  {
+    withTheme: true,
+    name: 'MuiCollapse',
+  },
+);
 
-  handleEnter = node => {
+class Collapse extends React.Component<CollapseProps & WithStyles<CollapseClassKey>> {
+  static defaultProps = {
+    appear: false,
+    collapsedHeight: '0px',
+    component: 'div',
+    timeout: duration.standard,
+  };
+
+  wrapper: HTMLElement = null;
+  autoTransitionDuration: number = undefined;
+
+  handleEnter = (node: HTMLElement) => {
     node.style.height = this.props.collapsedHeight;
 
     if (this.props.onEnter) {
@@ -37,7 +64,7 @@ class Collapse extends React.Component {
     }
   };
 
-  handleEntering = node => {
+  handleEntering = (node: HTMLElement) => {
     const { timeout, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
@@ -60,7 +87,7 @@ class Collapse extends React.Component {
     }
   };
 
-  handleEntered = node => {
+  handleEntered = (node: HTMLElement) => {
     node.style.height = 'auto';
 
     if (this.props.onEntered) {
@@ -68,7 +95,7 @@ class Collapse extends React.Component {
     }
   };
 
-  handleExit = node => {
+  handleExit = (node: HTMLElement) => {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
     node.style.height = `${wrapperHeight}px`;
 
@@ -77,7 +104,7 @@ class Collapse extends React.Component {
     }
   };
 
-  handleExiting = node => {
+  handleExiting = (node: HTMLElement) => {
     const { timeout, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
@@ -100,7 +127,7 @@ class Collapse extends React.Component {
     }
   };
 
-  addEndListener = (node, next: Function) => {
+  addEndListener = (node: HTMLElement, next: Function) => {
     if (this.props.timeout === 'auto') {
       setTimeout(next, this.autoTransitionDuration || 0);
     }
@@ -123,7 +150,7 @@ class Collapse extends React.Component {
       style,
       theme,
       timeout,
-      ...other
+      ...other,
     } = this.props;
 
     return (
@@ -138,7 +165,7 @@ class Collapse extends React.Component {
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
-        {(state, otherInner) => {
+        {(state: any, otherInner: any) => {
           return (
             <ComponentProp
               className={classNames(
@@ -170,7 +197,7 @@ class Collapse extends React.Component {
   }
 }
 
-Collapse.propTypes = {
+(Collapse as any).propTypes = {
   /**
    * @ignore
    */
@@ -246,14 +273,4 @@ Collapse.propTypes = {
   ]),
 };
 
-Collapse.defaultProps = {
-  appear: false,
-  collapsedHeight: '0px',
-  component: 'div',
-  timeout: duration.standard,
-};
-
-export default withStyles(styles, {
-  withTheme: true,
-  name: 'MuiCollapse',
-})(Collapse);
+export default styles(Collapse);
