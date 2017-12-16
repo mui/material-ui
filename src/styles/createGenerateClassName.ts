@@ -2,13 +2,16 @@ import * as warning from 'warning';
 
 let generatorCounter = 0;
 
+// FIXME: `jss` TS typings are bad and incomplete ...
+export type GenerateClassName = (rule: any, stylesheet?: any) => string;
+
 // Returns a function which generates unique class names based on counters.
 // When new generator function is created, rule counter is reset.
 // We need to reset the rule counter for SSR for each request.
 //
 // It's an improved version of
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
-export default function createGenerateClassName() {
+export default function createGenerateClassName(): GenerateClassName {
   let ruleCounter = 0;
 
   if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
