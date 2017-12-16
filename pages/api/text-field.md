@@ -22,7 +22,6 @@ filename: /src/TextField/TextField.js
 | helperText | node |  | The helper text content. |
 | helperTextClassName | string |  | The CSS class name of the helper text element. |
 | id | string |  | The id of the `input` element. |
-| inputClassName | string |  | The CSS class name of the `input` element. |
 | InputLabelProps | object |  | Properties applied to the `InputLabel` element. |
 | InputProps | object |  | Properties applied to the `Input` element. |
 | inputRef | func |  | Use that property to pass a ref callback to the native input component. |

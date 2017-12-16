@@ -22,7 +22,6 @@ function TextField(props) {
     helperText,
     helperTextClassName,
     id,
-    inputClassName,
     InputLabelProps,
     InputProps,
     inputRef,
@@ -64,7 +63,6 @@ function TextField(props) {
       inputRef={inputRef}
       onChange={onChange}
       placeholder={placeholder}
-      inputProps={{ className: inputClassName }}
       {...InputProps}
     />
   );
@@ -151,10 +149,6 @@ TextField.propTypes = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
-  /**
-   * The CSS class name of the `input` element.
-   */
-  inputClassName: PropTypes.string,
   /**
    * Properties applied to the `InputLabel` element.
    */
