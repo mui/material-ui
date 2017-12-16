@@ -23,7 +23,11 @@
     "moduleResolution": "node",
     "noEmit": true
   },
-  "include": ["./src/**/*", "test/typescript/*"],
+  "include": [
+    "./typings/**/*",
+    "./src/**/*",
+    "./test/typescript/*"
+  ],
   "exclude": [
     "build",
     "node_modules"
