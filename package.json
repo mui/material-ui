@@ -85,8 +85,10 @@
   "devDependencies": {
     "@rosskevin/react-docgen": "^3.0.0-beta9",
     "@types/chai": "^4.0.10",
+    "@types/classnames": "^2.2.3",
     "@types/enzyme": "^3.1.6",
     "@types/mocha": "^2.2.44",
+    "@types/prop-types": "^15.5.2",
     "@types/react": "16.0.31",
     "@types/react-dom": "^16.0.3",
     "@types/warning": "^3.0.0",

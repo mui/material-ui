@@ -124,6 +124,10 @@
   version "0.22.6"
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.6.tgz#ad8c630a942efe3fc59165857851b55f95de2d50"
 
+"@types/classnames@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.3.tgz#3f0ff6873da793870e20a260cada55982f38a9e5"
+
 "@types/enzyme@^3.1.6":
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.6.tgz#5b6fd8c5d23d2e1d06eca528b54df81c3ee4cbbf"
@@ -138,6 +142,10 @@
 "@types/node@*":
   version "8.5.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.5.1.tgz#4ec3020bcdfe2abffeef9ba3fbf26fca097514b5"
+
+"@types/prop-types@^15.5.2":
+  version "15.5.2"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.2.tgz#3c6b8dceb2906cc87fe4358e809f9d20c8d59be1"
 
 "@types/react-dom@^16.0.3":
   version "16.0.3"
