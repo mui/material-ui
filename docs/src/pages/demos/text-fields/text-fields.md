@@ -11,7 +11,7 @@ Users may enter text, numbers, or mixed-format types of input.
 
 The `TextField` wrapper component is a complete form control including a label, input and help text.
 
-{{demo='pages/demos/text-fields/TextFields.js'}}
+{{"demo": "pages/demos/text-fields/TextFields.js"}}
 
 ## Components
 
@@ -21,7 +21,7 @@ You might also have noticed that some native HTML input properties are missing f
 This is on purpose.
 The component takes care of the most used properties, then it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
 
-{{demo='pages/demos/text-fields/ComposedTextField.js'}}
+{{"demo": "pages/demos/text-fields/ComposedTextField.js"}}
 
 ## Layout
 
@@ -29,25 +29,25 @@ The component takes care of the most used properties, then it's up to the user t
 `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter
 other styles to meet the specification.
 
-{{demo='pages/demos/text-fields/TextFieldMargins.js'}}
+{{"demo": "pages/demos/text-fields/TextFieldMargins.js"}}
 
 ## Input Adornments
 
 `Input` allows the provision of `InputAdornment`.
 These can be used to add a prefix, a suffix or an action to an input.
 
-{{demo='pages/demos/text-fields/InputAdornments.js'}}
+{{"demo": "pages/demos/text-fields/InputAdornments.js"}}
 
 ## Inputs
 
-{{demo='pages/demos/text-fields/Inputs.js'}}
+{{"demo": "pages/demos/text-fields/Inputs.js"}}
 
 ## Formatted inputs
 
 We demonstrate how you could be using third-party libraries to [format your input](https://material.io/guidelines/components/text-fields.html#text-fields-input-types).
 Here, we are using [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
 
-{{demo='pages/demos/text-fields/FormattedInputs.js'}}
+{{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
 ## Customized inputs
 
@@ -56,4 +56,4 @@ but you are not confident jumping in?
 Here is an example of how you can change the main color of an input from "primary" to purple.
 There is no limit.
 
-{{demo='pages/demos/text-fields/CustomizedInputs.js'}}
+{{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}

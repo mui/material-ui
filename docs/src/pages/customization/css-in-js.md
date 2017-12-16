@@ -17,7 +17,7 @@ So, you may have noticed in the demos how this *CSS-in-JS* looks.
 We use the higher-order component created by [`withStyles`](#api)
 to inject an array of styles into the DOM as CSS, using JSS. Here's an example:
 
-{{demo='pages/customization/CssInJs.js'}}
+{{"demo": "pages/customization/CssInJs.js"}}
 
 ## JSS
 
@@ -37,7 +37,7 @@ When rendering on the server, you will need to get all rendered styles as a CSS 
 The `SheetsRegistry` class allows you to manually aggregate and stringify them.
 Read more about [Server Rendering](/guides/server-rendering).
 
-{{demo='pages/customization/JssRegistry.js'}}
+{{"demo": "pages/customization/JssRegistry.js"}}
 
 ## Sheets manager
 

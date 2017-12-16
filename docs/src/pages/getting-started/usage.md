@@ -28,7 +28,7 @@ render(<App />, document.querySelector('#app'));
 
 Yes, it's really all you need to get started as you can see in this live and interactive demo:
 
-{{demo='pages/getting-started/Usage.js'}}
+{{"demo": "pages/getting-started/Usage.js"}}
 
 ## Next steps
 

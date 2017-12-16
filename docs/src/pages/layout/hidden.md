@@ -40,13 +40,13 @@ If you are using server side rendering, you can set `implementation="css"` if yo
 
 Using any breakpoint `up` property, the given *children* will be hidden *at or above* the breakpoint.
 
-{{demo='pages/layout/BreakpointUp.js'}}
+{{"demo": "pages/layout/BreakpointUp.js"}}
 
 ## Breakpoint down
 
 Using any breakpoint `down` property, the given *children* will be hidden *at or below* the breakpoint.
 
-{{demo='pages/layout/BreakpointDown.js'}}
+{{"demo": "pages/layout/BreakpointDown.js"}}
 
 ## Breakpoint only
 
@@ -56,11 +56,11 @@ The `only` property can be used in two ways:
  - list a single breakpoint
  - list an array of breakpoints
 
-{{demo='pages/layout/BreakpointOnly.js'}}
+{{"demo": "pages/layout/BreakpointOnly.js"}}
 
 ## Integration with Grid
 
 It is quite common to alter `Grid` at different responsive breakpoints, and in many cases, you want to hide some of those elements.
 For brevity, where you are already using `Grid`, you may specify `Hidden` behaviors as the `hidden` property.
 
-{{demo='pages/layout/GridIntegration.js'}}
+{{"demo": "pages/layout/GridIntegration.js"}}

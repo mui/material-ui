@@ -8,8 +8,8 @@ components: Divider
 
 ## List Dividers
 
-{{demo='pages/demos/dividers/ListDividers.js'}}
+{{"demo": "pages/demos/dividers/ListDividers.js"}}
 
 ## Inset Dividers
 
-{{demo='pages/demos/dividers/InsetDividers.js'}}
+{{"demo": "pages/demos/dividers/InsetDividers.js"}}

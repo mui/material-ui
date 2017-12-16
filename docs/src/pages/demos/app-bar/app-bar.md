@@ -8,12 +8,12 @@ The [App bar](https://material.io/guidelines/layout/structure.html#structure-app
 
 ## Simple App bar
 
-{{demo='pages/demos/app-bar/SimpleAppBar.js'}}
+{{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
 ## App bar with buttons
 
-{{demo='pages/demos/app-bar/ButtonAppBar.js'}}
+{{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
 
 ## App bar with menu
 
-{{demo='pages/demos/app-bar/MenuAppBar.js'}}
+{{"demo": "pages/demos/app-bar/MenuAppBar.js"}}

@@ -9,10 +9,10 @@ components: BottomNavigation, BottomNavigationButton
 ## Bottom Navigation
 When there are only **three** actions, display both icons and text labels at all times.
 
-{{demo='pages/demos/bottom-navigation/SimpleBottomNavigation.js'}}
+{{"demo": "pages/demos/bottom-navigation/SimpleBottomNavigation.js"}}
 
 ## Bottom Navigation with no label
 
 If there are **four** or **five** actions, display inactive views as icons only.
 
-{{demo='pages/demos/bottom-navigation/LabelBottomNavigation.js'}}
+{{"demo": "pages/demos/bottom-navigation/LabelBottomNavigation.js"}}

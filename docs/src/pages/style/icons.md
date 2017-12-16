@@ -31,7 +31,7 @@ for example `<Icon>star</Icon>`.
 By default, an Icon will inherit the current text color.
 Optionally, you can set the icon color using one of the theme color properties: `accent`, `action`, `contrast`, `disabled`, `error`, & `primary`.
 
-{{demo='pages/style/Icons.js'}}
+{{"demo": "pages/style/Icons.js"}}
 
 ### SVG Icons
 
@@ -43,7 +43,7 @@ or included as a child for other Material-UI components that use icons.
 By default, an Icon will inherit the current text color.
 Optionally, you can set the icon color using one of the theme color properties: `accent`, `action`, `contrast`, `disabled`, `error`, & `primary`.
 
-{{demo='pages/style/SvgIcons.js'}}
+{{"demo": "pages/style/SvgIcons.js"}}
 
 Looking for SVG icons? There are a lot of projects out there.
 We have found one that provides 2,000+ unofficial Material Design Icons: [https://materialdesignicons.com](https://materialdesignicons.com/).
@@ -62,4 +62,4 @@ Keep in mind that we `PascalCase` the names of the icons, for instance:
 - [`alarm`](https://material.io/icons/#ic_alarm) is exposed as `material-ui-icons/Alarm`
 - [`alarm off`](https://material.io/icons/#ic_alarm_off) is exposed as `material-ui-icons/AlarmOff`
 
-{{demo='pages/style/SvgMaterialIcons.js'}}
+{{"demo": "pages/style/SvgMaterialIcons.js"}}

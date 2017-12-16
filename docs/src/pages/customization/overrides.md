@@ -23,7 +23,7 @@ consider the [CSS injection order](/customization/css-in-js#css-injection-order)
 by Material-UI to style a component has the highest specificity possible since the `<link />` is injected at the bottom
 of the `<head />` to ensure the components always render correctly.
 
-{{demo='pages/customization/OverridesClassNames.js'}}
+{{"demo": "pages/customization/OverridesClassNames.js"}}
 
 ### Overriding with classes
 
@@ -40,7 +40,7 @@ you wish to add or override.
 
 Notice that in addition to the button styling, the button label's capitalization has been changed:
 
-{{demo='pages/customization/OverridesClasses.js'}}
+{{"demo": "pages/customization/OverridesClasses.js"}}
 
 ### Overriding with inline-style
 
@@ -50,7 +50,7 @@ These properties are always applied to the root element.
 
 You don't have to worry about CSS specificity as the inline-style takes precedence over the regular CSS.
 
-{{demo='pages/customization/OverridesInlineStyle.js'}}
+{{"demo": "pages/customization/OverridesInlineStyle.js"}}
 
 ## 2. Specific variation of a component
 
@@ -58,7 +58,7 @@ You might need to create a variation of a component and use it in different cont
 
 The best approach is to follow option 1 and then take advantage of the composition power of React by exporting your customized component to use wherever you need it.
 
-{{demo='pages/customization/OverridesComponent.js'}}
+{{"demo": "pages/customization/OverridesComponent.js"}}
 
 ## 3. Material Design variations
 

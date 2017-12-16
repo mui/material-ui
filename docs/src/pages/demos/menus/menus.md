@@ -20,13 +20,13 @@ Choosing an option should immediately ideally commit the option and close the me
 
 **Disambiguation**: In contrast to simple menus, simple dialogs can present additional detail related to the options available for a list item or provide navigational or orthogonal actions related to the primary task. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user’s current context.
 
-{{demo='pages/demos/menus/SimpleMenu.js'}}
+{{"demo": "pages/demos/menus/SimpleMenu.js"}}
 
 ## Selected menus
 
 If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element. The currently selected menu item is set using the `selected` prop.
 
-{{demo='pages/demos/menus/SimpleListMenu.js'}}
+{{"demo": "pages/demos/menus/SimpleListMenu.js"}}
 
 If text in a simple menu wraps to a second line, use a simple dialog instead. Simple dialogs can have rows with varying heights.
 
@@ -34,7 +34,7 @@ If text in a simple menu wraps to a second line, use a simple dialog instead. Si
 
 If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
 
-{{demo='pages/demos/menus/LongMenu.js'}}
+{{"demo": "pages/demos/menus/LongMenu.js"}}
 
 ## MenuList composition
 
@@ -44,11 +44,11 @@ For answering those needs, we expose a `MenuList` component that you can compose
 
 The primary responsibility of the `MenuList` component is to handle the focus.
 
-{{demo='pages/demos/menus/MenuListComposition.js'}}
+{{"demo": "pages/demos/menus/MenuListComposition.js"}}
 
 ## ListItem composition
 
 The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:
 
-{{demo='pages/demos/menus/ListItemComposition.js'}}
+{{"demo": "pages/demos/menus/ListItemComposition.js"}}
