@@ -1,5 +1,5 @@
 import deepmerge from '../utils/ts-import-workaround/deepmerge';
-import warning from '../utils/ts-import-workaround/warning';
+import * as warning from 'warning';
 import createTypography from './createTypography';
 import createBreakpoints from './createBreakpoints';
 import createPalette from './createPalette';

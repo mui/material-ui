@@ -12,7 +12,7 @@ import jssDefaultUnit from 'jss-default-unit';
 import jssVendorPrefixer from 'jss-vendor-prefixer';
 import jssPropsSort from 'jss-props-sort';
 import * as ns from 'react-jss/lib/ns';
-import warning from '../utils/ts-import-workaround/warning';
+import * as warning from 'warning';
 import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';

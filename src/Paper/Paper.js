@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import warning from '../utils/ts-import-workaround/warning';
+import * as warning from 'warning';
 
 export const styles = theme => {
   const shadows = {};
