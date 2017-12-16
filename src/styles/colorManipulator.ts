@@ -8,7 +8,7 @@
  * @param {number} max The upper boundary of the output range
  * @returns {number} A number in the range [min, max]
  */
-function clamp(value, min, max) {
+function clamp(value: number, min: number, max: number): number {
   if (value < min) {
     return min;
   }
@@ -16,6 +16,13 @@ function clamp(value, min, max) {
     return max;
   }
   return value;
+}
+
+export type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla';
+export type ColorValues = [number, number, number] | [number, number, number, number];
+export interface ColorObject {
+  type: ColorFormat;
+  values: ColorValues;
 }
 
 /**
@@ -26,13 +33,13 @@ function clamp(value, min, max) {
  * @param {array} color.values - [n,n,n] or [n,n,n,n]
  * @returns {string} A CSS color string
  */
-export function convertColorToString(color) {
+export function convertColorToString(color: ColorObject): string {
   const { type, values } = color;
 
   if (type.indexOf('rgb') > -1) {
     // Only convert the first 3 values to int (i.e. not alpha)
     for (let i = 0; i < 3; i += 1) {
-      values[i] = parseInt(values[i], 10);
+      values[i] = parseInt(String(values[i]), 10); // FIXME ts - parse seems unnecessary now?
     }
   }
 
@@ -59,7 +66,7 @@ export function convertColorToString(color) {
  *  @param {string} color - Hex color, i.e. #nnn or #nnnnnn
  *  @returns {string} A CSS rgb color string
  */
-export function convertHexToRGB(color) {
+export function convertHexToRGB(color: string): string {
   if (color.length === 4) {
     let extendedColor = '#';
     for (let i = 1; i < color.length; i += 1) {
@@ -85,17 +92,18 @@ export function convertHexToRGB(color) {
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
  * @returns {{type: string, values: number[]}} A MUI color object
  */
-export function decomposeColor(color) {
+export function decomposeColor(color: string): ColorObject {
   if (color.charAt(0) === '#') {
     return decomposeColor(convertHexToRGB(color));
   }
 
   const marker = color.indexOf('(');
   const type = color.substring(0, marker);
-  let values = color.substring(marker + 1, color.length - 1).split(',');
-  values = values.map(value => parseFloat(value));
+  const stringValues = color.substring(marker + 1, color.length - 1).split(',');
+  const values: number[] = [];
+  stringValues.forEach(value => values.push(parseFloat(value)));
 
-  return { type, values };
+  return { type: type as ColorFormat, values: values as ColorValues };
 }
 
 /**
@@ -107,7 +115,7 @@ export function decomposeColor(color) {
  * @param {string} background - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
  * @returns {number} A contrast ratio value in the range 0 - 21 with 2 digit precision.
  */
-export function getContrastRatio(foreground, background) {
+export function getContrastRatio(foreground: string, background: string): number {
   const lumA = getLuminance(foreground);
   const lumB = getLuminance(background);
   const contrastRatio = (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
@@ -124,7 +132,7 @@ export function getContrastRatio(foreground, background) {
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
  * @returns {number} The relative brightness of the color in the range 0 - 1
  */
-export function getLuminance(color) {
+export function getLuminance(color: string): number {
   const decomposedColor = decomposeColor(color);
 
   if (decomposedColor.type.indexOf('rgb') > -1) {
@@ -149,7 +157,7 @@ export function getLuminance(color) {
  * @param {number} coefficient=0.15 - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function emphasize(color, coefficient = 0.15) {
+export function emphasize(color: string, coefficient: number = 0.15): string {
   return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
 }
 
@@ -157,12 +165,12 @@ export function emphasize(color, coefficient = 0.15) {
  * Set the absolute transparency of a color.
  * Any existing alpha values are overwritten.
  *
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {string} cssColor - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
  * @param {number} value - value to set the alpha channel to in the range 0 -1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function fade(color, value) {
-  color = decomposeColor(color);
+export function fade(cssColor: string, value: number): string {
+  const color = decomposeColor(cssColor);
   value = clamp(value, 0, 1);
 
   if (color.type === 'rgb' || color.type === 'hsl') {
@@ -180,8 +188,8 @@ export function fade(color, value) {
  * @param {number} coefficient - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function darken(color, coefficient) {
-  color = decomposeColor(color);
+export function darken(cssColor: string, coefficient: number): string {
+  const color = decomposeColor(cssColor);
   coefficient = clamp(coefficient, 0, 1);
 
   if (color.type.indexOf('hsl') > -1) {
@@ -201,8 +209,8 @@ export function darken(color, coefficient) {
  * @param {number} coefficient - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function lighten(color, coefficient) {
-  color = decomposeColor(color);
+export function lighten(cssColor: string, coefficient: number): string {
+  const color = decomposeColor(cssColor);
   coefficient = clamp(coefficient, 0, 1);
 
   if (color.type.indexOf('hsl') > -1) {
