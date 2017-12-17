@@ -5,7 +5,7 @@ import * as PropTypes from 'prop-types';
 
 export const specialProperty = 'exact-prop: \u200b';
 
-export default function exactProp(propTypes: typeof PropTypes, componentNameInError: string) {
+export default function exactProp(propTypes: object, componentNameInError: string) {
   return {
     ...propTypes,
     // eslint-disable-next-line prefer-arrow-callback
