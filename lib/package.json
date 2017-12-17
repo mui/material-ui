@@ -51,7 +51,6 @@
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build/src",
     "build": "npm run build:bundle && npm run build:es2015 && npm run build:copy",
     "prepublish": "cd .. && npm run test && npm run lint && npm run build && cd -",
-    "webpack": "webpack",
     "lint": "eslint ./src/**/*.js*"
   },
   "devDependencies": {
@@ -81,7 +80,6 @@
     "jest": "^21.2.1",
     "material-ui": "^1.0.0-beta.21",
     "moment": "^2.19.2",
-    "peer-deps-externals-webpack-plugin": "^1.0.2",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
@@ -89,9 +87,7 @@
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.4",
     "rollup-plugin-filesize": "^1.5.0",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "webpack": "^3.5.1",
-    "webpack-bundle-analyzer": "^2.9.0"
+    "rollup-plugin-node-resolve": "^3.0.0"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",
