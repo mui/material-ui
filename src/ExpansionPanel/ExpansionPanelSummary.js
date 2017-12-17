@@ -134,7 +134,6 @@ class ExpansionPanelSummary extends React.Component {
             component="div"
             tabIndex="-1"
             aria-hidden="true"
-            onClick={this.handleChange}
           >
             {expandIcon}
           </IconButton>
