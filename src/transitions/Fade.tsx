@@ -2,18 +2,28 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import Transition from 'react-transition-group/Transition';
+import Transition, { TransitionProps } from 'react-transition-group/Transition';
 import { duration } from '../styles/transitions';
-import withTheme from '../styles/withTheme';
+import withTheme, { WithTheme } from '../styles/withTheme';
 
-const reflow = node => node.scrollTop;
+export interface FadeProps extends TransitionProps {}
+
+const reflow = (node: Element) => node.scrollTop;
 
 /**
  * The Fade transition is used by the Modal component.
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Fade extends React.Component {
-  handleEnter = node => {
+class Fade extends React.Component<FadeProps & WithTheme> {
+  static defaultProps: Partial<FadeProps> = {
+    appear: true,
+    timeout: {
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    },
+  };
+
+  handleEnter = (node: HTMLElement) => {
     node.style.opacity = '0';
     reflow(node);
 
@@ -22,7 +32,7 @@ class Fade extends React.Component {
     }
   };
 
-  handleEntering = node => {
+  handleEntering = (node: HTMLElement) => {
     const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
@@ -37,7 +47,7 @@ class Fade extends React.Component {
     }
   };
 
-  handleExit = node => {
+  handleExit = (node: HTMLElement) => {
     const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
@@ -61,14 +71,14 @@ class Fade extends React.Component {
       onExit,
       style: styleProp,
       theme,
-      ...other
+      ...other,
     } = this.props;
 
     const style = { ...styleProp };
 
     // For server side rendering.
     if (!this.props.in || appear) {
-      style.opacity = '0';
+      style.opacity = 0;
     }
 
     return (
@@ -86,7 +96,7 @@ class Fade extends React.Component {
   }
 }
 
-Fade.propTypes = {
+(Fade as any).propTypes = {
   /**
    * @ignore
    */
@@ -127,14 +137,6 @@ Fade.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
-};
-
-Fade.defaultProps = {
-  appear: true,
-  timeout: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
 };
 
 export default withTheme()(Fade);

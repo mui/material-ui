@@ -2,8 +2,21 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import CSSTransition from 'react-transition-group/CSSTransition';
-import withTheme from '../styles/withTheme';
+import CSSTransition, {
+  CSSTransitionClassNames,
+  CSSTransitionProps,
+} from 'react-transition-group/CSSTransition';
+import withTheme, { WithTheme } from '../styles/withTheme';
+// import { TransitionDuration } from '../internal/transition';
+import { Omit } from '../index';
+
+// export interface GrowProps extends CSSTransitionProps {
+export interface GrowProps extends Omit<CSSTransitionProps, 'timeout' | 'classNames'> {
+  // appear?: boolean;
+  // rootRef?: (n: CSSTransition) => any;
+  timeout?: CSSTransitionProps['timeout'] | 'auto';
+  // transitionClasses?: CSSTransitionClassNames;
+}
 
 // Only exported for tests.
 export function getScale(value: number) {
@@ -14,19 +27,23 @@ export function getScale(value: number) {
  * The Grow transition is used by the Popover component.
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Grow extends React.Component {
-  autoTimeout = undefined;
+class Grow extends React.Component<GrowProps> {
+  static defaultProps: Partial<GrowProps> = {
+    appear: true,
+    timeout: 'auto',
+  };
+  autoTimeout: number = undefined;
 
-  handleEnter = (node: HTMLElement) => {
+  handleEnter = (node: HTMLElement, isAppearing: boolean) => {
     node.style.opacity = '0';
     node.style.transform = getScale(0.75);
 
     if (this.props.onEnter) {
-      this.props.onEnter(node);
+      this.props.onEnter(node, isAppearing);
     }
   };
 
-  handleEntering = (node: HTMLElement) => {
+  handleEntering = (node: HTMLElement, isAppearing: boolean) => {
     const { theme, timeout } = this.props;
     let duration = 0;
 
@@ -54,7 +71,7 @@ class Grow extends React.Component {
     node.style.transform = getScale(1);
 
     if (this.props.onEntering) {
-      this.props.onEntering(node);
+      this.props.onEntering(node, isAppearing);
     }
   };
 
@@ -91,7 +108,7 @@ class Grow extends React.Component {
     }
   };
 
-  addEndListener = (node, next: Function) => {
+  addEndListener = (node: HTMLElement, next: Function) => {
     if (this.props.timeout === 'auto') {
       setTimeout(next, this.autoTimeout || 0);
     }
@@ -109,7 +126,7 @@ class Grow extends React.Component {
       theme,
       timeout,
       transitionClasses = {},
-      ...other
+      ...other,
     } = this.props;
 
     const style = { ...children.props.style, ...styleProp };
@@ -138,7 +155,7 @@ class Grow extends React.Component {
   }
 }
 
-Grow.propTypes = {
+(Grow as any).propTypes = {
   /**
    * @ignore
    */
@@ -210,11 +227,6 @@ Grow.propTypes = {
     exit: PropTypes.string,
     exitActive: PropTypes.string,
   }),
-};
-
-Grow.defaultProps = {
-  appear: true,
-  timeout: 'auto',
 };
 
 export default withTheme()(Grow);

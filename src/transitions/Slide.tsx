@@ -4,9 +4,9 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
-import Transition from 'react-transition-group/Transition';
-import withTheme from '../styles/withTheme';
+import debounce = require('lodash/debounce');
+import Transition, { TransitionProps } from 'react-transition-group/Transition';
+import withTheme, { WithTheme } from '../styles/withTheme';
 import { duration } from '../styles/transitions';
 
 const GUTTER = 24;
@@ -14,14 +14,14 @@ const GUTTER = 24;
 // Translate the node so he can't be seen on the screen.
 // Later, we gonna translate back the node to his original location
 // with `translate3d(0, 0, 0)`.`
-function getTranslateValue(props, node) {
+function getTranslateValue(props: SlideProps, node: HTMLElement) {
   const { direction } = props;
   const rect = node.getBoundingClientRect();
 
   let transform;
 
-  if (node.fakeTransform) {
-    transform = node.fakeTransform;
+  if ((node as any).fakeTransform) {
+    transform = (node as any).fakeTransform;
   } else {
     const computedStyle = window.getComputedStyle(node);
     transform =
@@ -53,7 +53,7 @@ function getTranslateValue(props, node) {
   return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
 }
 
-export function setTranslateValue(props, node) {
+export function setTranslateValue(props: SlideProps, node: HTMLElement) {
   const transform = getTranslateValue(props, node);
 
   if (transform) {
@@ -62,9 +62,23 @@ export function setTranslateValue(props, node) {
   }
 }
 
-const reflow = node => node.scrollTop;
+const reflow = (node: Element) => node.scrollTop;
 
-class Slide extends React.Component {
+export interface SlideProps extends TransitionProps {
+  direction: 'left' | 'right' | 'up' | 'down';
+}
+
+interface State {
+  firstMount: boolean;
+}
+
+class Slide extends React.Component<SlideProps & WithTheme, State> {
+  static defaultProps = {
+    timeout: {
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    },
+  };
   state = {
     // We use this state to handle the server-side rendering.
     firstMount: true,
@@ -86,7 +100,7 @@ class Slide extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: SlideProps) {
     if (prevProps.direction !== this.props.direction && !this.props.in) {
       // We need to update the position of the drawer when the direction change and
       // when it's hidden.
@@ -98,7 +112,7 @@ class Slide extends React.Component {
     this.handleResize.cancel();
   }
 
-  transition = null;
+  transition: any = null;
 
   updatePosition() {
     const element = findDOMNode(this.transition);
@@ -120,16 +134,16 @@ class Slide extends React.Component {
     }
   }, 166);
 
-  handleEnter = node => {
+  handleEnter = (node: HTMLElement, isAppearing: boolean) => {
     setTranslateValue(this.props, node);
     reflow(node);
 
     if (this.props.onEnter) {
-      this.props.onEnter(node);
+      this.props.onEnter(node, isAppearing);
     }
   };
 
-  handleEntering = node => {
+  handleEntering = (node: HTMLElement) => {
     const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
@@ -142,11 +156,11 @@ class Slide extends React.Component {
     node.style.transform = 'translate3d(0, 0, 0)';
     node.style.webkitTransform = 'translate3d(0, 0, 0)';
     if (this.props.onEntering) {
-      this.props.onEntering(node);
+      this.props.onEntering(node, true);
     }
   };
 
-  handleExit = node => {
+  handleExit = (node: HTMLElement) => {
     const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
@@ -163,7 +177,7 @@ class Slide extends React.Component {
     }
   };
 
-  handleExited = node => {
+  handleExited = (node: HTMLElement) => {
     // No need for transitions when the component is hidden
     node.style.transition = '';
     node.style.webkitTransition = '';
@@ -182,7 +196,7 @@ class Slide extends React.Component {
       onExited,
       style: styleProp,
       theme,
-      ...other
+      ...other,
     } = this.props;
 
     const style = { ...styleProp };
@@ -212,7 +226,7 @@ class Slide extends React.Component {
   }
 }
 
-Slide.propTypes = {
+(Slide as any).propTypes = {
   /**
    * A single child content element.
    */
@@ -265,13 +279,6 @@ Slide.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
-};
-
-Slide.defaultProps = {
-  timeout: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
 };
 
 export default withTheme()(Slide);
