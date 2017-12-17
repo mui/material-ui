@@ -46,13 +46,19 @@ export class Clock extends Component {
     this.setTime(e.nativeEvent, true);
   }
 
-  handleUp = (e) => {
+  handleMouseUp = (e) => {
     if (this.isMoving) {
-      e.preventDefault();
+      this.isMoving = false;
+    }
+    this.setTime(e.nativeEvent, true);
+  }
+
+  handleTouchEnd = (e) => {
+    if (this.isMoving) {
       this.setTime(e.nativeEvent, true);
       this.isMoving = false;
     }
-  };
+  }
 
   handleMove = (e) => {
     e.preventDefault();
@@ -94,10 +100,9 @@ export class Clock extends Component {
             role="menu"
             tabIndex={-1}
             className={classes.squareMask}
-            onClick={this.handleClick}
             onTouchMove={this.handleTouchMove}
-            onTouchEnd={this.handleUp}
-            onMouseUp={this.handleUp}
+            onTouchEnd={this.handleTouchEnd}
+            onMouseUp={this.handleMouseUp}
             onMouseMove={this.handleMove}
           />
 
