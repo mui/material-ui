@@ -2,6 +2,115 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.24
+###### *Dec 17, 2017*
+
+Big thanks to the 16 contributors who made this release possible.
+
+Here are some highlights ✨:
+- We have removed Flow from the core components in (#9453).
+You can learn more about the motivation for such important change in the pull-request.
+This changes two important things:
+  - We have reduced the size of the bundle by +7 kB gzipped (-8%).
+  - The propTypes runtime checks are back. You might experience new warnings.
+- We have introduced 4 breaking changes.
+- Now, you can support me on [Patreon](https://www.patreon.com/oliviertassinari) or the community on [OpenCollective](https://opencollective.com/material-ui) (#9460).
+Blog posts are coming.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [Hidden] Fix js/css implementation inconsistency (#9450) @oliviertassinari
+This change is making the js and css breakpoint utils behaving the same way.
+The default parameter of `withWidth.isWidthDown(breakpoint, width, inclusive)` changed:
+```diff
+-inclusive = true
++inclusive = false
+```
+You might want to update the usage of the API by increasing the breakpoing used on the Hidden component:
+```diff
+-<Hidden implementation="js" mdDown>
++<Hidden implementation="js" lgDown>
+```
+Or by going back to the previous behavior:
+```diff
+-isWidthDown(breakpoint, width)
++isWidthDown(breakpoint, width, true)
+```
+
+- [API] Use onClose over onRequestClose (#9451) @oliviertassinari
+Most of our components are stateless by default. It wasn't the case with v0.x. Let's translate this default behavior in the property names of v1.
+```diff
+-onRequestClose
+-onRequestOpen
+-onRequestDelete
++onClose
++onOpen
++onDelete
+```
+
+- [TextField] Remove inputClassName property (#9509) @kgregory
+The existing `InputProps` property can be used to set the className on the input element, making `inputClassName` redundant.  Issue #9508 exposed some conflicting behavior between the two properties and it was decided that removing `inputClassName` would result in a cleaner API.
+```diff
+-  /**
+-   * The CSS class name of the `input` element.
+-   */
+-  inputClassName: PropTypes.string,
+```
+The configuration of the wrapped Input component and its input element should be done through `InputProps`.  To specify a className on the input element:
+```jsx
+<TextField InputProps={{ inputProps: { className: 'foo' } }} />
+```
+
+- [Stepper] "Optional" label in StepLabel should be localizable (#9489) @karaggeorge
+There is no logic attached to the `optional` boolean property. So, we can reduce the abstraction cost. The property is provided closer to where it's needed, and people have full control over how it should be displayed. By chance, it matches the specification.
+```diff
+-<Step optional>
+-  <StepLabel>
++<Step>
++  <StepLabel optional={<Typography type="caption">Optional Text</Typography>}>
+     Label
+   </StepLabel>
+ </Step>
+```
+
+#### Component Fixes / Enhancements
+
+- [Popover] Fix warning formatting (27bab8022545c0cda8cbc80bf9b6df1566b14226) @oliviertassinari
+- [Hidden] Add `only` array support in the CSS implementation (#9457) @Chopinsky
+- [TextField] Fix disabled logic handling (#9472) @oliviertassinari
+- [Dialog] Improve accessibility (#9461) @ianschmitz
+- [TableFooter] Fix text overlapping pagination drop-down (#9497) @mbrookes
+- [ButtonBase] Avoid unnecessary rerender (#9502) @ojab
+- [Chip] Fix color contrast against default dark background (#9501) @mbrookes
+- [Button] Document how to use a third-party routing library (#9506) @nikoladev
+- [MuiThemeProvider] Add a new warning (#9518) @oliviertassinari
+- [TextField] Improve the API documentation (#9514) @oliviertassinari
+- [TableCell] Add missing aria-sort (#9504) @gregnb
+- [ExpansionPanelSummary] Eliminate extra invocation of onClick (#9523) @kgregory
+
+#### Docs
+
+- [docs] Update sentence which might be misinterpreted (#9459) @senthuran16
+- [docs] Correct list API default value (#9462) @t49tran
+- [docs] Fix doc layout when an ad is present (#9473) @zachwolf
+- [docs] Update breakpoint info to be in line with code (#9486) @nikoladev
+- [docs] Fix broken sandbox in docs (#9491) @ajay2507
+- [docs] Add new showcase (#9490) @liganok
+- [docs] Add see source button (#9499) @oliviertassinari
+- [docs] Add a BACKERS.md (#9460) @oliviertassinari
+- [docs] Add Governance page (#9512) @oliviertassinari
+- [docs] Demo options as JSON (#9521) @oliviertassinari
+
+#### Core
+
+- Add Governance Document (#9423) @hai-cea
+- [core] Upgrade to flow 61 (#9471) @rsolomon
+- [core] Remove FlowType from the components implementation (#9453) @oliviertassinari
+- [core] Upgrade the dependencies (#9515) @oliviertassinari
+- [core] Fix wrong usage of the API (#9519) @oliviertassinari
+- [core] Use the same react pattern everywhere (#9520) @oliviertassinari
+
 ## 1.0.0-beta.23
 ###### *Dec 9, 2017*
 
