@@ -9,18 +9,19 @@ Big thanks to the 16 contributors who made this release possible.
 
 Here are some highlights ✨:
 - We have removed Flow from the core components in (#9453).
-You can learn more about the motivation for such important change in the pull-request.
+You can learn more about the motivations in the pull-request.
 This changes two important things:
-  - We have reduced the size of the bundle by +7 kB gzipped (-8%).
+  - We have reduced the size of the bundle by ~8 kB gzipped.
   - The propTypes runtime checks are back. You might experience new warnings.
 - We have introduced 4 breaking changes.
-- Now, you can support me on [Patreon](https://www.patreon.com/oliviertassinari) or the community on [OpenCollective](https://opencollective.com/material-ui) (#9460).
+- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [OpenCollective](https://opencollective.com/material-ui) (#9460).
 Blog posts are coming.
 - And many more bug fixes and documentation improvements.
 
 ### Breaking change
 
 - [Hidden] Fix js/css implementation inconsistency (#9450) @oliviertassinari
+
 This change is making the js and css breakpoint utils behaving the same way.
 The default parameter of `withWidth.isWidthDown(breakpoint, width, inclusive)` changed:
 ```diff
@@ -39,6 +40,7 @@ Or by going back to the previous behavior:
 ```
 
 - [API] Use onClose over onRequestClose (#9451) @oliviertassinari
+
 Most of our components are stateless by default. It wasn't the case with v0.x. Let's translate this default behavior in the property names of v1.
 ```diff
 -onRequestClose
@@ -50,6 +52,7 @@ Most of our components are stateless by default. It wasn't the case with v0.x. L
 ```
 
 - [TextField] Remove inputClassName property (#9509) @kgregory
+
 The existing `InputProps` property can be used to set the className on the input element, making `inputClassName` redundant.  Issue #9508 exposed some conflicting behavior between the two properties and it was decided that removing `inputClassName` would result in a cleaner API.
 ```diff
 -  /**
@@ -63,6 +66,7 @@ The configuration of the wrapped Input component and its input element should be
 ```
 
 - [Stepper] "Optional" label in StepLabel should be localizable (#9489) @karaggeorge
+
 There is no logic attached to the `optional` boolean property. So, we can reduce the abstraction cost. The property is provided closer to where it's needed, and people have full control over how it should be displayed. By chance, it matches the specification.
 ```diff
 -<Step optional>
