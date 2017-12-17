@@ -17,4 +17,4 @@ If you encounter this issue, you need to:
 
 Let's see an example:
 
-{{demo='pages/guides/Composition.js'}}
+{{"demo": "pages/guides/Composition.js"}}

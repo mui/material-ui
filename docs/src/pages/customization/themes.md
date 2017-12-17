@@ -36,7 +36,7 @@ If you want to learn more about color, you can check out [the color section](/st
 
 #### Example
 
-{{demo='pages/customization/Palette.js'}}
+{{"demo": "pages/customization/Palette.js"}}
 
 ### Typography
 
@@ -47,7 +47,7 @@ Those sizes are used across our components.
 Have a look at the following example regarding changing the default values, like the font family.
 If you want to learn more about color, you can check out [the typography section](/style/typography).
 
-{{demo='pages/customization/TypographyTheme.js'}}
+{{"demo": "pages/customization/TypographyTheme.js"}}
 
 #### Font size
 
@@ -67,20 +67,20 @@ html {
 
 *You need to apply the above CSS on the html element of this page to see the below demo render correctly*
 
-{{demo='pages/customization/FontSizeTheme.js'}}
+{{"demo": "pages/customization/FontSizeTheme.js"}}
 
 ### Dark/light theme
 
 You can make a theme dark by setting `type` to `dark`.
 
-{{demo='pages/customization/DarkTheme.js'}}
+{{"demo": "pages/customization/DarkTheme.js"}}
 
 ### The other variables
 
 We have tried to normalize the implementation by adding many more variables: typography, breakpoints, transitions, etc. You can see below what the theme object looks like with the default values.
 If you want to learn more, we suggesting having a look at [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/v1-beta/src/styles/createMuiTheme.js).
 
-{{demo='pages/customization/ThemeDefault.js'}}
+{{"demo": "pages/customization/ThemeDefault.js"}}
 
 ### Adding custom styles
 
@@ -89,7 +89,7 @@ you can also take advantage of the theme.
 It can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
-{{demo='pages/customization/CustomStyles.js'}}
+{{"demo": "pages/customization/CustomStyles.js"}}
 
 ## Customizing all instances of a component type
 
@@ -97,7 +97,7 @@ When the configuration variables aren't powerful enough, you can take advantage 
 `overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM.
 That's a really powerful feature.
 
-{{demo='pages/customization/OverridesTheme.js'}}
+{{"demo": "pages/customization/OverridesTheme.js"}}
 
 The list of these customization points for each component is documented under the **Component API** section.
 For instance, you can have a look at the [Button](/api/button#css-api).
@@ -108,14 +108,14 @@ Alternatively, you can always have a look at the [implementation](https://github
 You might need to access the theme variables inside your React components.
 Let's say you want to display the value of the primary color, you can use the `withTheme()` Higher-order Component to do so. Here is an example:
 
-{{demo='pages/customization/WithTheme.js'}}
+{{"demo": "pages/customization/WithTheme.js"}}
 
 ## Nesting the theme
 
 Our theming solution is very flexible, you can nest multiple theme providers.
 That can be really useful when dealing with different area of your application.
 
-{{demo='pages/customization/Nested.js'}}
+{{"demo": "pages/customization/Nested.js"}}
 
 ## API
 

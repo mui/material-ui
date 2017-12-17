@@ -34,11 +34,11 @@ For more info check out the [typeface](https://www.npmjs.com/package/typeface-ro
 
 ## Component
 
-{{demo='pages/style/Types.js'}}
+{{"demo": "pages/style/Types.js"}}
 
 ## CSS in JS
 
 In some situation you might not be able to use the `Typography` component.
 Hopefully, you might be able to take advantage of the `typography` keys of the theme.
 
-{{demo='pages/style/TypographyTheme.js'}}
+{{"demo": "pages/style/TypographyTheme.js"}}

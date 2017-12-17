@@ -85,7 +85,7 @@ In this case, the file you need to edit is `docs/src/pages/demos/buttons/buttons
 +
 + Sometimes, you need a super button to make your app looks **superb**. Yea ...
 +
-+ {{demo='pages/demos/buttons/SuperButtons.js'}}
++ {{"demo": "pages/demos/buttons/SuperButtons.js"}}
 ```
 
 #### 3. Edit the Next.js page.

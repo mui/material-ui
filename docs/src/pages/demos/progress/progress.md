@@ -18,30 +18,30 @@ For example, a refresh operation should display either a refresh bar or an activ
 
 ### Indeterminate
 
-{{demo='pages/demos/progress/CircularIndeterminate.js'}}
+{{"demo": "pages/demos/progress/CircularIndeterminate.js"}}
 
 ### Interactive Integration
 
-{{demo='pages/demos/progress/CircularIntegration.js'}}
+{{"demo": "pages/demos/progress/CircularIntegration.js"}}
 
 ###  Determinate
 
-{{demo='pages/demos/progress/CircularDeterminate.js'}}
+{{"demo": "pages/demos/progress/CircularDeterminate.js"}}
 
 ## Linear
 
 ### Indeterminate
 
-{{demo='pages/demos/progress/LinearIndeterminate.js'}}
+{{"demo": "pages/demos/progress/LinearIndeterminate.js"}}
 
 ### Determinate
 
-{{demo='pages/demos/progress/LinearDeterminate.js'}}
+{{"demo": "pages/demos/progress/LinearDeterminate.js"}}
 
 ### Buffer
 
-{{demo='pages/demos/progress/LinearBuffer.js'}}
+{{"demo": "pages/demos/progress/LinearBuffer.js"}}
 
 ### Query
 
-{{demo='pages/demos/progress/LinearQuery.js'}}
+{{"demo": "pages/demos/progress/LinearQuery.js"}}

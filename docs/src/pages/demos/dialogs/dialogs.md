@@ -19,7 +19,7 @@ Touch mechanics:
 - Choosing an option immediately commits the option and closes the menu
 - Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
 
-{{demo='pages/demos/dialogs/SimpleDialog.js'}}
+{{"demo": "pages/demos/dialogs/SimpleDialog.js"}}
 
 ## Alerts
 
@@ -38,11 +38,11 @@ If a title is required:
 - Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
 - Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
 
-{{demo='pages/demos/dialogs/AlertDialog.js'}}
+{{"demo": "pages/demos/dialogs/AlertDialog.js"}}
 
 You can also swap out the transition, the next example uses `Slide`.
 
-{{demo='pages/demos/dialogs/AlertDialogSlide.js'}}
+{{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
 
 ## Confirmation dialogs
 
@@ -51,24 +51,24 @@ For example, users can listen to multiple ringtones but only make a final select
 
 Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
-{{demo='pages/demos/dialogs/ConfirmationDialog.js'}}
+{{"demo": "pages/demos/dialogs/ConfirmationDialog.js"}}
 
 ## Full-screen dialogs
 
-{{demo='pages/demos/dialogs/FullScreenDialog.js'}}
+{{"demo": "pages/demos/dialogs/FullScreenDialog.js"}}
 
 ## Form dialogs
 
 Form dialogs allow users to fill out form fields within a dialog.
 For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'
 
-{{demo='pages/demos/dialogs/FormDialog.js'}}
+{{"demo": "pages/demos/dialogs/FormDialog.js"}}
 
 ## Responsive full-screen
 
 You may make a `Dialog` responsively full screen the dialog using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics).
 
-{{demo='pages/demos/dialogs/ResponsiveDialog.js'}}
+{{"demo": "pages/demos/dialogs/ResponsiveDialog.js"}}
 
 ## Accessibility
 

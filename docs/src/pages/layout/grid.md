@@ -22,30 +22,30 @@ The responsive grid focuses on consistent spacing widths, rather than column wid
 Material design margins and columns follow a **8dp** square baseline grid.
 Spacing can be 8, 16, 24, or 40dp wide.
 
-{{demo='pages/layout/SpacingGrid.js'}}
+{{"demo": "pages/layout/SpacingGrid.js"}}
 
 ## Full-width vs Centered
 
 **Full-width grids**: use fluid columns and breakpoints to determine when a layout needs to change.
 
-{{demo='pages/layout/FullWidthGrid.js'}}
+{{"demo": "pages/layout/FullWidthGrid.js"}}
 
 **Centered grids**: use fixed columns and re-flow the layout when all columns (plus a defined margin) no longer fit on the screen.
 
-{{demo='pages/layout/CenteredGrid.js'}}
+{{"demo": "pages/layout/CenteredGrid.js"}}
 
 ## Interactive
 
 Below is an interactive demo that lets you explore the visual results of the different settings:
 
-{{demo='pages/layout/InteractiveGrid.js'}}
+{{"demo": "pages/layout/InteractiveGrid.js"}}
 
 ## Auto-layout
 
 The Auto-layout makes the *items* equitably share the available space.
 That also means you can set the width of one *item* and the others will automatically resize around it.
 
-{{demo='pages/layout/AutoGrid.js'}}
+{{"demo": "pages/layout/AutoGrid.js"}}
 
 ## Limitations
 

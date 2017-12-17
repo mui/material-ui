@@ -20,11 +20,11 @@ If you have multiple options appearing in a list, you can preserve space by usin
 
 If you have a single option, avoid using a checkbox and use an on/off switch instead.
 
-{{demo='pages/demos/selection-controls/Checkboxes.js'}}
+{{"demo": "pages/demos/selection-controls/Checkboxes.js"}}
 
 `FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
 
-{{demo='pages/demos/selection-controls/CheckboxesGroup.js'}}
+{{"demo": "pages/demos/selection-controls/CheckboxesGroup.js"}}
 
 ## Radio Buttons
 
@@ -34,18 +34,18 @@ Otherwise, consider a dropdown, which uses less space than displaying all option
 
 `RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
 
-{{demo='pages/demos/selection-controls/RadioButtonsGroup.js'}}
+{{"demo": "pages/demos/selection-controls/RadioButtonsGroup.js"}}
 
 `Radio` can also be used standalone, without the wrapper.
 
-{{demo='pages/demos/selection-controls/RadioButtons.js'}}
+{{"demo": "pages/demos/selection-controls/RadioButtons.js"}}
 
 ## Switches
 
 On/off switches toggle the state of a single settings option. The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
 
-{{demo='pages/demos/selection-controls/Switches.js'}}
+{{"demo": "pages/demos/selection-controls/Switches.js"}}
 
 `Switch` can also be used with a label description thanks to the `FormControlLabel` component.
-{{demo='pages/demos/selection-controls/SwitchLabels.js'}}
+{{"demo": "pages/demos/selection-controls/SwitchLabels.js"}}
 

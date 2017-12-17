@@ -20,7 +20,7 @@ hover, and click.
 - Chips with the `onRequestDelete` property defined will display a delete
 icon which changes appearance on hover.
 
-{{demo='pages/demos/chips/Chips.js'}}
+{{"demo": "pages/demos/chips/Chips.js"}}
 
 ## Chip array
 An example of rendering multiple Chips from an array of values.
@@ -28,4 +28,4 @@ Deleting a chip removes it from the array. Note that since no
 `onClick` property is defined, the Chip can be focused, but does not
 gain depth while clicked or touched.
 
-{{demo='pages/demos/chips/ChipsArray.js'}}
+{{"demo": "pages/demos/chips/ChipsArray.js"}}

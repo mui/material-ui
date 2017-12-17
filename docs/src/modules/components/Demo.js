@@ -126,7 +126,7 @@ if (rootElement) {
   };
 
   render() {
-    const { classes, githubLocation, js: DemoComponent, raw } = this.props;
+    const { classes, demoOptions, githubLocation, js: DemoComponent, raw } = this.props;
     const { codeOpen } = this.state;
 
     return (
@@ -147,11 +147,13 @@ if (rootElement) {
               <Github />
             </IconButton>
           </Tooltip>
-          <Tooltip title="Edit in codesandbox">
-            <IconButton onClick={this.handleClickCodesandbox}>
-              <ModeEditIcon />
-            </IconButton>
-          </Tooltip>
+          {demoOptions.hideEditButton ? null : (
+            <Tooltip title="Edit in codesandbox">
+              <IconButton onClick={this.handleClickCodesandbox}>
+                <ModeEditIcon />
+              </IconButton>
+            </Tooltip>
+          )}
           <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'}>
             <IconButton onClick={this.handleClickCodeOpen}>
               <CodeIcon />
@@ -171,6 +173,7 @@ if (rootElement) {
 
 Demo.propTypes = {
   classes: PropTypes.object.isRequired,
+  demoOptions: PropTypes.object.isRequired,
   githubLocation: PropTypes.string.isRequired,
   js: PropTypes.func.isRequired,
   raw: PropTypes.string.isRequired,

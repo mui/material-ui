@@ -22,7 +22,7 @@ const styles = {
   },
 };
 
-const demoRegexp = /^demo='(.*)'$/;
+const demoRegexp = /^"demo": "(.*)"/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/v1-beta';
 
 function MarkdownDocs(props, context) {
@@ -62,13 +62,16 @@ function MarkdownDocs(props, context) {
         const match = content.match(demoRegexp);
 
         if (match && demos) {
-          const name = match[1];
+          const demoOptions = JSON.parse(`{${content}}`);
+
+          const name = demoOptions.demo;
           warning(demos && demos[name], `Missing demo: ${name}.`);
           return (
             <Demo
               key={content}
               js={demos[name].js}
               raw={demos[name].raw}
+              demoOptions={demoOptions}
               githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
             />
           );

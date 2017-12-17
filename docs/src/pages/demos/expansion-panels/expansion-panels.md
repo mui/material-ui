@@ -8,16 +8,16 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 ## Simple Expansion Panel
 
-{{demo='pages/demos/expansion-panels/SimpleExpansionPanel.js'}}
+{{"demo": "pages/demos/expansion-panels/SimpleExpansionPanel.js"}}
 
 ## Secondary heading and Columns
 
 Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 
-{{demo='pages/demos/expansion-panels/DetailedExpansionPanel.js'}}
+{{"demo": "pages/demos/expansion-panels/DetailedExpansionPanel.js"}}
 
 ## Controlled Accordion
 
 Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
 
-{{demo='pages/demos/expansion-panels/ControlledExpansionPanels.js'}}
+{{"demo": "pages/demos/expansion-panels/ControlledExpansionPanels.js"}}

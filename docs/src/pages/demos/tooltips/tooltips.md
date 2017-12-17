@@ -8,18 +8,18 @@ The [tooltips](https://material.io/guidelines/components/tooltips.html#) are tex
 
 ## Simple Tooltips
 
-{{demo='pages/demos/tooltips/SimpleTooltips.js'}}
+{{"demo": "pages/demos/tooltips/SimpleTooltips.js"}}
 
 ## Positioned Tooltips
 
 The `Tooltip` has 12 placements choice.
 They don’t have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
-{{demo='pages/demos/tooltips/PositionedTooltips.js'}}
+{{"demo": "pages/demos/tooltips/PositionedTooltips.js"}}
 
 ## Controlled Tooltips
 
-{{demo='pages/demos/tooltips/ControlledTooltips.js'}}
+{{"demo": "pages/demos/tooltips/ControlledTooltips.js"}}
 
 ## Showing and hiding
 

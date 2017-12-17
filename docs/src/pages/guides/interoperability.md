@@ -23,7 +23,7 @@ const styles = theme => ({
 });
 ```
 
-{{demo='pages/guides/ReactJss.js'}}
+{{"demo": "pages/guides/ReactJss.js"}}
 
 ## Styled Components
 

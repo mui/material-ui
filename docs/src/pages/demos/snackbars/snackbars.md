@@ -15,19 +15,19 @@ Only one snackbar may be displayed at a time.
 
 A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
-{{demo='pages/demos/snackbars/SimpleSnackbar.js'}}
+{{"demo": "pages/demos/snackbars/SimpleSnackbar.js"}}
 
 ## Message Length
 
 Some snackbars with varying message length.
 
-{{demo='pages/demos/snackbars/LongTextSnackbar.js'}}
+{{"demo": "pages/demos/snackbars/LongTextSnackbar.js"}}
 
 ## Positioned
 
 There may be circumstances when the placement of the snackbar needs to be more flexible.
 
-{{demo='pages/demos/snackbars/PositionedSnackbar.js'}}
+{{"demo": "pages/demos/snackbars/PositionedSnackbar.js"}}
 
 ## Transitions
 
@@ -35,10 +35,10 @@ There may be circumstances when the placement of the snackbar needs to be more f
 
 Change the direction of the transition. Slide is the default transition.
 
-{{demo='pages/demos/snackbars/DirectionSnackbar.js'}}
+{{"demo": "pages/demos/snackbars/DirectionSnackbar.js"}}
 
 ### Change Transition
 
 Use a different transition all together.
 
-{{demo='pages/demos/snackbars/FadeSnackbar.js'}}
+{{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}

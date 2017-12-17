@@ -19,12 +19,12 @@ Here are some components that are promising:
 
 ## Date pickers
 
-{{demo='pages/demos/pickers/DatePickers.js'}}
+{{"demo": "pages/demos/pickers/DatePickers.js"}}
 
 ## Time pickers
 
-{{demo='pages/demos/pickers/TimePickers.js'}}
+{{"demo": "pages/demos/pickers/TimePickers.js"}}
 
 ## Date & Time pickers
 
-{{demo='pages/demos/pickers/DateAndTimePickers.js'}}
+{{"demo": "pages/demos/pickers/DateAndTimePickers.js"}}
