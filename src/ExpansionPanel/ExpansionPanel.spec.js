@@ -21,31 +21,26 @@ describe('<ExpansionPanel />', () => {
     mount.cleanUp();
   });
 
-  it('should render with isControlled returning false', () => {
+  it('should render and have isControlled set to false', () => {
     const wrapper = shallow(<ExpansionPanel>foo</ExpansionPanel>);
     assert.strictEqual(wrapper.name(), 'withStyles(Paper)');
     assert.strictEqual(wrapper.props().elevation, 1);
     assert.strictEqual(wrapper.props().square, true);
-    assert.strictEqual(wrapper.instance().isControlled(), false);
+    assert.strictEqual(wrapper.instance().isControlled, false);
 
     const collapse = wrapper.find(Collapse);
     assert.strictEqual(collapse.props()['aria-hidden'], 'true');
-  });
 
-  it('should become a controlled component after expanded is provided', () => {
-    const wrapper = shallow(<ExpansionPanel>foo</ExpansionPanel>);
-    assert.strictEqual(wrapper.state().expanded, false, 'should have been initially contracted');
     wrapper.setProps({ expanded: true });
-    assert.strictEqual(wrapper.instance().isControlled(), true, 'should be controlled now');
-    assert.strictEqual(wrapper.state().expanded, true, 'should be expanded');
+    assert.strictEqual(wrapper.state().expanded, false, 'should not change the expanded state');
   });
 
   it('should handle defaultExpanded prop', () => {
     const wrapper = shallow(<ExpansionPanel defaultExpanded>foo</ExpansionPanel>);
     assert.strictEqual(
-      wrapper.instance().isControlled(),
+      wrapper.instance().isControlled,
       false,
-      'isControlled should return false',
+      'should have isControlled state false',
     );
     assert.strictEqual(wrapper.state().expanded, true, 'should set expanded state');
     assert.strictEqual(wrapper.hasClass(classes.expanded), true, 'should have the expanded class');
@@ -74,7 +69,7 @@ describe('<ExpansionPanel />', () => {
   it('should handle the expanded prop', () => {
     const wrapper = shallow(<ExpansionPanel expanded>foo</ExpansionPanel>);
     assert.strictEqual(wrapper.state().expanded, true);
-    assert.strictEqual(wrapper.instance().isControlled(), true, 'isControlled should return true');
+    assert.strictEqual(wrapper.instance().isControlled, true, 'should set isControlled prop');
 
     wrapper.setProps({ expanded: false });
     assert.strictEqual(wrapper.state().expanded, false, 'should have expanded set to false');
