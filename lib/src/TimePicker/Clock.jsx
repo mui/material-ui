@@ -42,10 +42,6 @@ export class Clock extends Component {
     this.setTime(e);
   }
 
-  handleClick = (e) => {
-    this.setTime(e.nativeEvent, true);
-  }
-
   handleMouseUp = (e) => {
     if (this.isMoving) {
       this.isMoving = false;
