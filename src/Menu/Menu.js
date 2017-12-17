@@ -66,7 +66,7 @@ class Menu extends React.Component {
     }
   };
 
-  handleEnter = (element: HTMLElement) => {
+  handleEnter = element => {
     const { theme } = this.props;
 
     const menuList = findDOMNode(this.menuList);
@@ -90,7 +90,7 @@ class Menu extends React.Component {
     }
   };
 
-  handleListKeyDown = (event: SyntheticUIEvent<>, key: string) => {
+  handleListKeyDown = (event, key) => {
     if (key === 'tab') {
       event.preventDefault();
 

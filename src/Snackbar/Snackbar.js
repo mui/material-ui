@@ -86,10 +86,10 @@ export const styles = theme => {
   };
 };
 
-export type Origin = {
-  horizontal?: 'left' | 'center' | 'right' | number,
-  vertical?: 'top' | 'center' | 'bottom' | number,
-};
+//export type Origin = {
+//  horizontal?: 'left' | 'center' | 'right' | number,
+//  vertical?: 'top' | 'center' | 'bottom' | number,
+//};
 
 class Snackbar extends React.Component {
   state = {
@@ -147,21 +147,21 @@ class Snackbar extends React.Component {
 
   timerAutoHide = null;
 
-  handleMouseEnter = (event: SyntheticUIEvent<>) => {
+  handleMouseEnter = event => {
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
     }
     this.handlePause();
   };
 
-  handleMouseLeave = (event: SyntheticUIEvent<>) => {
+  handleMouseLeave = event => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
     }
     this.handleResume();
   };
 
-  handleClickAway = (event: Event) => {
+  handleClickAway = event => {
     if (this.props.onClose) {
       this.props.onClose(event, 'clickaway');
     }

@@ -1,5 +1,3 @@
-// @flow
-
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { assert } from 'chai';

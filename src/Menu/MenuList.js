@@ -22,7 +22,7 @@ class MenuList extends React.Component {
     clearTimeout(this.blurTimer);
   }
 
-  setTabIndex(index: number) {
+  setTabIndex(index) {
     this.setState({ currentTabIndex: index });
   }
 
@@ -30,7 +30,7 @@ class MenuList extends React.Component {
   selectedItem = undefined;
   blurTimer = undefined;
 
-  handleBlur = (event: SyntheticUIEvent<>) => {
+  handleBlur = event => {
     this.blurTimer = setTimeout(() => {
       if (this.list) {
         const list = findDOMNode(this.list);
@@ -46,7 +46,7 @@ class MenuList extends React.Component {
     }
   };
 
-  handleKeyDown = (event: SyntheticUIEvent<>) => {
+  handleKeyDown = event => {
     const list = findDOMNode(this.list);
     const key = keycode(event);
     const currentFocus = activeElement(ownerDocument(list));
@@ -77,7 +77,7 @@ class MenuList extends React.Component {
     }
   };
 
-  handleItemFocus = (event: SyntheticUIEvent<>) => {
+  handleItemFocus = event => {
     const list = findDOMNode(this.list);
     if (list) {
       for (let i = 0; i < list.children.length; i += 1) {

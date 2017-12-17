@@ -28,7 +28,7 @@ const styles = theme => {
 /**
  * @ignore - internal component.
  */
-function HiddenCss(props: Props) {
+function HiddenCss(props) {
   const {
     children,
     classes,

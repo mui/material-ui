@@ -1,5 +1,3 @@
-// @flow
-
 import * as React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount } from '../test-utils';

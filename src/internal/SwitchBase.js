@@ -52,7 +52,7 @@ class SwitchBase extends React.Component {
   button = null;
   isControlled = null;
 
-  handleInputChange = (event: SyntheticInputEvent<*>) => {
+  handleInputChange = event => {
     const checked = event.target.checked;
 
     if (!this.isControlled) {

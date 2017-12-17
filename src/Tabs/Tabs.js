@@ -156,8 +156,8 @@ class Tabs extends React.Component {
     return { tabsMeta, tabMeta };
   };
 
-  tabs: ?HTMLElement = undefined;
-  valueToIndex: { [key: any]: any } = {};
+  tabs = undefined;
+  valueToIndex = {};
 
   handleResize = debounce(() => {
     this.updateIndicatorState(this.props);

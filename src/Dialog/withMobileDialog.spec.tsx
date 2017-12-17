@@ -1,16 +1,16 @@
-// @flow
-
 import * as React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Paper from '../Paper';
-import type { Breakpoint } from '../styles/createBreakpoints';
-import Dialog from './Dialog';
+import { Breakpoint } from '../styles/createBreakpoints';
+import Dialog, { DialogClassKey, DialogProps } from './Dialog';
 import withMobileDialog from './withMobileDialog';
+import { MuiShallow } from '../test-utils/createShallow';
+import { ClassNameMap } from '../styles/withStyles';
 
 describe('withMobileDialog', () => {
-  let shallow;
-  let classes;
+  let shallow: MuiShallow<DialogProps>;
+  let classes: ClassNameMap<DialogClassKey>;
 
   before(() => {
     shallow = createShallow({ untilSelector: 'Dialog' });

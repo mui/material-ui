@@ -1,5 +1,4 @@
 import * as React from 'react';
-import type { Element } from 'react';
 import ReactDOM from 'react-dom';
 import { assert } from 'chai';
 import { createMount, createRender } from '../test-utils';
@@ -39,11 +38,7 @@ describe('<Portal />', () => {
         } else if (verion === 'old') {
           ReactDOM.createPortal = null;
 
-          ReactDOM.unstable_renderSubtreeIntoContainer = (
-            instance,
-            children: Element<*>,
-            layer,
-          ) => {
+          ReactDOM.unstable_renderSubtreeIntoContainer = (instance, children, layer) => {
             const element = document.createElement(children.type);
             element.textContent = children.props.children;
             element.setAttribute('id', children.props.id);

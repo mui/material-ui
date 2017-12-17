@@ -18,7 +18,7 @@ class SelectInput extends React.Component {
 
   ignoreNextBlur = false;
 
-  handleClick = (event: SyntheticMouseEvent<HTMLElement>) => {
+  handleClick = event => {
     // Opening the menu is going to blur the. It will be focused back when closed.
     this.ignoreNextBlur = true;
     this.setState({
@@ -33,7 +33,7 @@ class SelectInput extends React.Component {
     });
   };
 
-  handleItemClick = (child: Element<any>) => (event: SyntheticMouseEvent<> & { target?: any }) => {
+  handleItemClick = child => event => {
     if (!this.props.multiple) {
       this.setState({
         open: false,
@@ -68,7 +68,7 @@ class SelectInput extends React.Component {
     }
   };
 
-  handleBlur = (event: SyntheticFocusEvent<>) => {
+  handleBlur = event => {
     if (this.ignoreNextBlur === true) {
       // The parent components are relying on the bubbling of the event.
       event.stopPropagation();
@@ -81,7 +81,7 @@ class SelectInput extends React.Component {
     }
   };
 
-  handleKeyDown = (event: SyntheticKeyboardEvent<HTMLElement>) => {
+  handleKeyDown = event => {
     if (this.props.readOnly) {
       return;
     }
@@ -97,7 +97,7 @@ class SelectInput extends React.Component {
     }
   };
 
-  handleSelectRef = (node: ?HTMLElement) => {
+  handleSelectRef = node => {
     if (!this.props.selectRef) {
       return;
     }

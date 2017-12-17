@@ -126,7 +126,7 @@ class Textarea extends React.Component {
     this.shadow = node;
   };
 
-  handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+  handleChange = event => {
     this.value = event.target.value;
 
     if (typeof this.props.value === 'undefined' && this.shadow) {

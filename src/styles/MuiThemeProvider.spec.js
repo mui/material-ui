@@ -1,5 +1,3 @@
-// @flow
-
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import * as React from 'react';
