@@ -72,21 +72,22 @@ class ExpansionPanel extends React.Component {
 
   componentWillMount() {
     const { expanded, defaultExpanded } = this.props;
-    this.isControlled = expanded !== undefined;
     this.setState({
-      expanded: this.isControlled ? expanded : defaultExpanded,
+      expanded: this.isControlled() ? expanded : defaultExpanded,
     });
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.isControlled) {
+    if (this.isControlled(nextProps)) {
       this.setState({
         expanded: nextProps.expanded,
       });
     }
   }
 
-  isControlled = null;
+  isControlled = (props = this.props) => {
+    return props.expanded !== undefined;
+  };
 
   handleChange = event => {
     const { onChange } = this.props;
@@ -96,7 +97,7 @@ class ExpansionPanel extends React.Component {
       onChange(event, expanded);
     }
 
-    if (!this.isControlled) {
+    if (!this.isControlled()) {
       this.setState({ expanded });
     }
   };
