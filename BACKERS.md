@@ -53,6 +53,8 @@ Silver Sponsors are those who have pledged $250/month to $500/month to Material-
 
 <h2 align="center">Bronze Sponsors</h2>
 
+Bronze Sponsors are those who have pledged $100/month to $250/month to Material-UI.
+
 #### via [Patreon](https://www.patreon.com/oliviertassinari)
 
 #### via [OpenCollective](https://opencollective.com/material-ui)

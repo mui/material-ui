@@ -16,7 +16,7 @@ const styles = theme => ({
     marginBottom: 40,
     marginLeft: -theme.spacing.unit * 2,
     marginRight: -theme.spacing.unit * 2,
-    overflow: 'auto',
+    clear: 'both',
     [theme.breakpoints.up('sm')]: {
       padding: `0 ${theme.spacing.unit}px`,
       marginLeft: 0,
@@ -142,19 +142,19 @@ if (rootElement) {
           >
             <input type="hidden" name="parameters" value="" />
           </form>
-          <Tooltip title="See the source on GitHub" target="_blank">
+          <Tooltip title="See the source on GitHub" target="_blank" placement="top">
             <IconButton href={githubLocation}>
               <Github />
             </IconButton>
           </Tooltip>
           {demoOptions.hideEditButton ? null : (
-            <Tooltip title="Edit in codesandbox">
+            <Tooltip title="Edit in codesandbox" placement="top">
               <IconButton onClick={this.handleClickCodesandbox}>
                 <ModeEditIcon />
               </IconButton>
             </Tooltip>
           )}
-          <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'}>
+          <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
             <IconButton onClick={this.handleClickCodeOpen}>
               <CodeIcon />
             </IconButton>
