@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { Orientation } from './Stepper';
-import { TransitionDuration } from '../internal/transition';
+import { TransitionDuration } from '../transitions/transition';
 
 export interface StepContentProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepContentClasskey> {

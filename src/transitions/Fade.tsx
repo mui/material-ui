@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import Transition, { TransitionProps } from 'react-transition-group/Transition';
+import Transition from 'react-transition-group/Transition';
 import { duration } from '../styles/transitions';
 import withTheme, { WithTheme } from '../styles/withTheme';
+import { TransitionProps } from './transition';
 
 export interface FadeProps extends TransitionProps {}
 
@@ -23,12 +24,12 @@ class Fade extends React.Component<FadeProps & WithTheme> {
     },
   };
 
-  handleEnter = (node: HTMLElement) => {
+  handleEnter = (node: HTMLElement, isAppearing: boolean) => {
     node.style.opacity = '0';
     reflow(node);
 
     if (this.props.onEnter) {
-      this.props.onEnter(node);
+      this.props.onEnter(node, isAppearing);
     }
   };
 
@@ -43,7 +44,7 @@ class Fade extends React.Component<FadeProps & WithTheme> {
     node.style.opacity = '1';
 
     if (this.props.onEntering) {
-      this.props.onEntering(node);
+      this.props.onEntering(node, true);
     }
   };
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { ModalProps, ModalClassKey } from '../Modal';
-import { TransitionDuration } from '../internal/transition';
+import { TransitionDuration } from '../transitions/transition';
 
 export interface DialogProps
   extends StandardProps<ModalProps, DialogClassKey, 'onBackdropClick' | 'onEscapeKeyUp'> {

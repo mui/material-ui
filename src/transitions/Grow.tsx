@@ -2,20 +2,17 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import CSSTransition, {
-  CSSTransitionClassNames,
-  CSSTransitionProps,
-} from 'react-transition-group/CSSTransition';
+import CSSTransition from 'react-transition-group/CSSTransition';
 import withTheme, { WithTheme } from '../styles/withTheme';
 // import { TransitionDuration } from '../internal/transition';
 import { Omit } from '../index';
+import { CSSTransitionClassNames, CSSTransitionProps } from './transition';
 
-// export interface GrowProps extends CSSTransitionProps {
 export interface GrowProps extends Omit<CSSTransitionProps, 'timeout' | 'classNames'> {
-  // appear?: boolean;
-  // rootRef?: (n: CSSTransition) => any;
+  children: React.ReactElement<any>;
+  rootRef?: (n: any) => any;
   timeout?: CSSTransitionProps['timeout'] | 'auto';
-  // transitionClasses?: CSSTransitionClassNames;
+  transitionClasses?: CSSTransitionClassNames;
 }
 
 // Only exported for tests.
@@ -27,7 +24,7 @@ export function getScale(value: number) {
  * The Grow transition is used by the Popover component.
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Grow extends React.Component<GrowProps> {
+class Grow extends React.Component<GrowProps & WithTheme> {
   static defaultProps: Partial<GrowProps> = {
     appear: true,
     timeout: 'auto',

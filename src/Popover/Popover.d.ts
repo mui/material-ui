@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
-import { TransitionDuration, TransitionHandlers } from '../internal/transition';
+import { TransitionDuration, TransitionHandlers } from '../transitions/transition';
 import { ModalProps, ModalClassKey } from '../Modal';
 
 export interface PopoverOrigin {

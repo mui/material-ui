@@ -8,10 +8,10 @@ import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { Theme, WithStyles } from '../styles';
 import { StandardProps } from '..';
-import { TransitionDuration, TransitionProps } from '../internal/transition';
+import { TransitionDuration, TransitionProps } from './transition';
+import { Omit } from '../index';
 
-export interface CollapseProps
-  extends StandardProps<TransitionProps, CollapseClassKey, 'children'> {
+export interface CollapseProps extends Omit<TransitionProps, 'timeout'> {
   children?: React.ReactNode;
   collapsedHeight?: string;
   component?: string | React.ComponentType<CollapseProps>;
@@ -56,15 +56,15 @@ class Collapse extends React.Component<CollapseProps & WithStyles<CollapseClassK
   wrapper: HTMLElement = null;
   autoTransitionDuration: number = undefined;
 
-  handleEnter = (node: HTMLElement) => {
+  handleEnter = (node: HTMLElement, isAppearing: boolean) => {
     node.style.height = this.props.collapsedHeight;
 
     if (this.props.onEnter) {
-      this.props.onEnter(node);
+      this.props.onEnter(node, isAppearing);
     }
   };
 
-  handleEntering = (node: HTMLElement) => {
+  handleEntering = (node: HTMLElement, isAppearing: boolean) => {
     const { timeout, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
@@ -83,7 +83,7 @@ class Collapse extends React.Component<CollapseProps & WithStyles<CollapseClassK
     node.style.height = `${wrapperHeight}px`;
 
     if (this.props.onEntering) {
-      this.props.onEntering(node);
+      this.props.onEntering(node, isAppearing);
     }
   };
 
@@ -91,7 +91,7 @@ class Collapse extends React.Component<CollapseProps & WithStyles<CollapseClassK
     node.style.height = 'auto';
 
     if (this.props.onEntered) {
-      this.props.onEntered(node);
+      this.props.onEntered(node, true);
     }
   };
 
@@ -273,4 +273,4 @@ class Collapse extends React.Component<CollapseProps & WithStyles<CollapseClassK
   ]),
 };
 
-export default styles(Collapse);
+export default styles<CollapseProps>(Collapse);

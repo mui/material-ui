@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { TransitionDuration, TransitionHandlers } from '../internal/transition';
+import { TransitionDuration, TransitionHandlers } from '../transitions/transition';
 
 export type SnackBarOrigin = {
   horizontal?: 'left' | 'center' | 'right' | number;

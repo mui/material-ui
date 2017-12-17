@@ -5,9 +5,10 @@ import * as PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce = require('lodash/debounce');
-import Transition, { TransitionProps } from 'react-transition-group/Transition';
+import Transition from 'react-transition-group/Transition';
 import withTheme, { WithTheme } from '../styles/withTheme';
 import { duration } from '../styles/transitions';
+import { TransitionProps } from './transition';
 
 const GUTTER = 24;
 
@@ -215,7 +216,7 @@ class Slide extends React.Component<SlideProps & WithTheme, State> {
           appear
           style={style}
           {...other}
-          ref={node => {
+          ref={(node: any) => {
             this.transition = node;
           }}
         >

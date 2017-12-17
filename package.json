@@ -71,7 +71,6 @@
     "@types/react": "16.0.31",
     "@types/react-dom": "^16.0.3",
     "@types/react-event-listener": "^0.4.4",
-    "@types/react-transition-group": "^2.0.6",
     "@types/warning": "^3.0.0",
     "babel-runtime": "^6.26.0",
     "brcast": "^3.0.1",
