@@ -1,7 +1,5 @@
-// @flow
-
-import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
-import warning from 'warning';
+import * as deepmerge from 'deepmerge';
+import * as warning from 'warning';
 import createTypography from './createTypography';
 import createBreakpoints from './createBreakpoints';
 import createPalette from './createPalette';
@@ -11,7 +9,7 @@ import transitions from './transitions';
 import zIndex from './zIndex';
 import spacing from './spacing';
 
-function createMuiTheme(options: Object = {}) {
+function createMuiTheme(options = {}) {
   const {
     palette: paletteInput = {},
     breakpoints: breakpointsInput = {},

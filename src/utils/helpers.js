@@ -11,7 +11,7 @@ export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function contains(obj: Object, pred: Object) {
+export function contains(obj, pred) {
   return Object.keys(pred).every(key => {
     return obj.hasOwnProperty(key) && obj[key] === pred[key];
   });

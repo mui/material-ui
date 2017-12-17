@@ -1,5 +1,3 @@
-// @flow
-
 const { JSDOM } = require('jsdom');
 const Node = require('jsdom/lib/jsdom/living/node-document-position');
 

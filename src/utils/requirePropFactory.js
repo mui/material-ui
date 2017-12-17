@@ -2,7 +2,7 @@
 
 const requirePropFactory = (componentNameInError: string) => {
   const requireProp = (requiredProp: string) => (
-    props: Object,
+    props,
     propName: string,
     componentName?: string,
     location?: string,

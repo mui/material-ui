@@ -2,10 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
-export interface RadioProps extends StandardProps<
-  SwitchBaseProps,
-  RadioClassKey
-> {
+export interface RadioProps extends StandardProps<SwitchBaseProps, RadioClassKey> {
   checked?: boolean | string;
   checkedClassName?: string;
   checkedIcon?: React.ReactNode;
@@ -14,7 +11,7 @@ export interface RadioProps extends StandardProps<
   disabledClassName?: string;
   disableRipple?: boolean;
   icon?: React.ReactNode;
-  inputProps?: Object;
+  inputProps?: object;
   inputRef?: React.Ref<any>;
   name?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
@@ -22,9 +19,7 @@ export interface RadioProps extends StandardProps<
   value?: string;
 }
 
-export type RadioClassKey =
-  | SwitchBaseClassKey
-  ;
+export type RadioClassKey = SwitchBaseClassKey;
 
 declare const Radio: React.ComponentType<RadioProps>;
 

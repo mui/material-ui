@@ -1,4 +1,4 @@
-import warning from 'warning';
+import * as warning from 'warning';
 
 let generatorCounter = 0;
 

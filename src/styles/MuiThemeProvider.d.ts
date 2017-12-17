@@ -3,10 +3,10 @@ import { Theme } from './createMuiTheme';
 
 export interface MuiThemeProviderProps {
   theme: Theme | ((outer: Theme | null) => Theme);
-  sheetsManager?: Object;
+  sheetsManager?: object;
   children: React.ReactNode;
 }
 
-declare const MuiThemeProvider: React.ComponentType<MuiThemeProviderProps>
+declare const MuiThemeProvider: React.ComponentType<MuiThemeProviderProps>;
 
-export default MuiThemeProvider
+export default MuiThemeProvider;

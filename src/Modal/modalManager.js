@@ -42,13 +42,13 @@ Please move the import at the end of the <body>.
  *
  * @internal Used by the Modal to ensure proper focus management.
  */
-function createModalManager({ hideSiblingNodes = true }: Object = {}) {
+function createModalManager({ hideSiblingNodes = true } = {}) {
   const modals = [];
 
   let prevOverflow;
   let prevPaddings = [];
 
-  function add(modal: Object) {
+  function add(modal) {
     const container = getContainer();
     let modalIdx = modals.indexOf(modal);
 
@@ -87,7 +87,7 @@ function createModalManager({ hideSiblingNodes = true }: Object = {}) {
     return modalIdx;
   }
 
-  function remove(modal: Object) {
+  function remove(modal) {
     const container = getContainer();
     const modalIdx = modals.indexOf(modal);
 
@@ -119,7 +119,7 @@ function createModalManager({ hideSiblingNodes = true }: Object = {}) {
     return modalIdx;
   }
 
-  function isTopModal(modal: Object) {
+  function isTopModal(modal) {
     return !!modals.length && modals[modals.length - 1] === modal;
   }
 
