@@ -34,10 +34,10 @@ describe('<ExpansionPanel />', () => {
 
   it('should become a controlled component after expanded is provided', () => {
     const wrapper = shallow(<ExpansionPanel>foo</ExpansionPanel>);
-    assert.isFalse(wrapper.state().expanded, 'should have been initially contracted');
+    assert.strictEqual(wrapper.state().expanded, false, 'should have been initially contracted');
     wrapper.setProps({ expanded: true });
-    assert.isTrue(wrapper.instance().isControlled(), 'should be controlled now');
-    assert.isTrue(wrapper.state().expanded, 'should be expanded');
+    assert.strictEqual(wrapper.instance().isControlled(), true, 'should be controlled now');
+    assert.strictEqual(wrapper.state().expanded, true, 'should be expanded');
   });
 
   it('should handle defaultExpanded prop', () => {

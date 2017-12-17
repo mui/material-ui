@@ -48,7 +48,7 @@ describe('<CardMedia />', () => {
   describe('prop: component', () => {
     it('should render `img` component when `img` specified', () => {
       const wrapper = shallow(<CardMedia image="/foo.jpg" component="img" />);
-      assert.isTrue(wrapper.is('img'));
+      assert.strictEqual(wrapper.type(), 'img');
     });
 
     it('should have `src` prop when media component specified', () => {
