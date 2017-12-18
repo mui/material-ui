@@ -4,7 +4,7 @@
     "target": "es2015",
     "jsx": "react",
     "lib": [
-      "es2017",
+      "es2015",
       "dom"
     ],
     "allowJs": true,
