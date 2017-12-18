@@ -3,4 +3,4 @@ node_js:
   - "8"
 
 script: 
-  - cd lib && npm install --ignore-scripts && npm test && npm run lint && npm run build
+  - cd lib && npm install --ignore-scripts && npm run prepublishOnly
