@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as warning from 'warning';
-import classNames from 'classnames';
+import * as classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import ScrollbarSize from 'react-scrollbar-size';

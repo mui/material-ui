@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import classNames from 'classnames';
+import * as classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';

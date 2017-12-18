@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Menu, { MenuItem } from 'src/Menu';
 
 const options = ['Menu Item 1', 'Menu Item 2', 'Menu Item 3'];

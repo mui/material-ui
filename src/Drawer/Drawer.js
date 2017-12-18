@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import classNames from 'classnames';
+import * as classNames from 'classnames';
 import Modal from '../Modal';
 import withStyles from '../styles/withStyles';
 import Slide from '../transitions/Slide';

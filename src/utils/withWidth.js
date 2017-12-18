@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
-import hoistNonReactStatics from 'hoist-non-react-statics';
+import * as hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withTheme from '../styles/withTheme';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';

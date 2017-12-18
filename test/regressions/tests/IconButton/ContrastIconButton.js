@@ -1,6 +1,4 @@
-// @flow
-
-import React from 'react';
+import * as React from 'react';
 import IconButton from 'material-ui/IconButton';
 import deepOrange from 'material-ui/colors/deepOrange';
 

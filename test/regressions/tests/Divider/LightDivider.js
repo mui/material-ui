@@ -1,6 +1,4 @@
-// @flow
-
-import React from 'react';
+import * as React from 'react';
 import Divider from 'material-ui/Divider';
 
 export default function LightDivider() {

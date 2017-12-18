@@ -1,6 +1,4 @@
-// @flow
-
-import React from 'react';
+import * as React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { ReactWrapper } from 'enzyme';

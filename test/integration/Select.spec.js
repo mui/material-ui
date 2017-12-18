@@ -1,6 +1,4 @@
-// @flow
-
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
 import { createMount } from 'src/test-utils';
 import SelectAndDialog from './fixtures/select/SelectAndDialog';

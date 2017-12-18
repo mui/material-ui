@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import classNames from 'classnames';
+import * as classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.
 

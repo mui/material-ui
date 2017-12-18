@@ -1,6 +1,4 @@
-// @flow
-
-import React from 'react';
+import * as React from 'react';
 import { MenuItem } from 'src/Menu';
 import Select from 'src/Select';
 import Dialog from 'src/Dialog';

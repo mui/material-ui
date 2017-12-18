@@ -1,5 +1,9 @@
+<<<<<<< c5a2837d08aab348025bc599aeba443c193b4412
 import React from 'react';
 import PropTypes from 'prop-types';
+=======
+import React, { Component } from 'react';
+>>>>>>> wip trying test:unit
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';

@@ -6,7 +6,7 @@ import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import * as warning from 'warning';
-import classNames from 'classnames';
+import * as classNames from 'classnames';
 import { Manager, Target, Popper } from 'react-popper';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import common from '../colors/common';

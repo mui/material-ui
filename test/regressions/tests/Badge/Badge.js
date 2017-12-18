@@ -1,6 +1,4 @@
-// @flow
-
-import React from 'react';
+import * as React from 'react';
 import Badge from 'material-ui/Badge';
 import Icon from 'material-ui/Icon';
 

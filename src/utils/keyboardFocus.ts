@@ -1,4 +1,4 @@
-import keycode from 'keycode';
+import * as keycode from 'keycode';
 import * as warning from 'warning';
 import contains from 'dom-helpers/query/contains';
 import addEventListener from '../utils/addEventListener';

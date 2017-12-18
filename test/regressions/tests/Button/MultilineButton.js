@@ -1,6 +1,4 @@
-// @flow
-
-import React from 'react';
+import * as React from 'react';
 import Button from 'material-ui/Button';
 
 export default function MultilineButton() {

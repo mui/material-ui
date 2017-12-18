@@ -1,6 +1,4 @@
-// @flow weak
-
-import React from 'react';
+import * as React from 'react';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
