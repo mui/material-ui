@@ -23,7 +23,7 @@ const styles = {
 //  theme?: Object,
 // };
 
-class Inputs extends Component {
+class Inputs extends React.Component {
   componentDidMount() {
     this.focusInput.focus();
   }
