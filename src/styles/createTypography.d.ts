@@ -22,6 +22,7 @@ export interface FontStyle {
   fontWeightRegular: React.CSSProperties['fontWeight'];
   fontWeightMedium: React.CSSProperties['fontWeight'];
   htmlFontSize?: number;
+  pxToRem: (value: number) => number;
 }
 
 export interface TypographyStyle {
