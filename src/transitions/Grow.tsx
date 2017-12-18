@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import CSSTransition from 'react-transition-group/CSSTransition';
+import * as CSSTransition from 'react-transition-group/CSSTransition';
 import withTheme, { WithTheme } from '../styles/withTheme';
 // import { TransitionDuration } from '../internal/transition';
 import { Omit } from '../index';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import scroll from 'scroll';
+import * as scroll from 'scroll';
 import { ShallowWrapper } from 'enzyme';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';

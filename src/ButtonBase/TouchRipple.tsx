@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
 import * as classNames from 'classnames';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+import * as TransitionGroup from 'react-transition-group/TransitionGroup';
 import withStyles from '../styles/withStyles';
 import Ripple, { RippleClassKey, RippleProps } from './Ripple';
 import { Theme, WithStyles } from '../styles';
