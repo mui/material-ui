@@ -34,32 +34,33 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "prop-types": "^15.6.0",
-    "material-ui": "^1.0.0-beta.18",
+    "material-ui": "^1.0.0-beta.24",
     "classnames": "^2.2.5",
     "moment": "^2.19.2"
   },
   "dependencies": {
-    "babel-helpers": "^6.24.1",
     "moment-range": "^3.0.3",
     "react-text-mask": "^5.0.2"
   },
   "scripts": {
     "test": "jest",
     "start": "cross-env NODE_ENV=development rollup --config --watch",
+    "prebuild": "rimraf build",
     "build:copy": "node copy.js",
     "build:bundle": "cross-env NODE_ENV=production rollup --config",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build/src",
     "build": "npm run build:bundle && npm run build:es2015 && npm run build:copy",
-    "prepublish": "cd .. && npm run test && npm run lint && npm run build && cd -",
-    "webpack": "webpack",
+    "prepublishOnly": "npm run test && npm run lint && npm run build",
+    "prerelease": "npm run build",
+    "release": "np --no-publish && npm publish build",
     "lint": "eslint ./src/**/*.js*"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^8.0.1",
+    "babel-helpers": "^6.24.1",
     "babel-jest": "^21.2.0",
-    "babel-loader": "^7.0.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
@@ -79,9 +80,9 @@
     "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
     "jest": "^21.2.1",
-    "material-ui": "^1.0.0-beta.21",
+    "material-ui": "^1.0.0-beta.24",
     "moment": "^2.19.2",
-    "peer-deps-externals-webpack-plugin": "^1.0.2",
+    "np": "^2.18.3",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
@@ -89,9 +90,7 @@
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.4",
     "rollup-plugin-filesize": "^1.5.0",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "webpack": "^3.5.1",
-    "webpack-bundle-analyzer": "^2.9.0"
+    "rollup-plugin-node-resolve": "^3.0.0"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",
