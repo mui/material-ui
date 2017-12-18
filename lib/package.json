@@ -34,7 +34,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "prop-types": "^15.6.0",
-    "material-ui": "^1.0.0-beta.18",
+    "material-ui": "^1.0.0-beta.24",
     "classnames": "^2.2.5",
     "moment": "^2.19.2"
   },
@@ -79,7 +79,7 @@
     "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
     "jest": "^21.2.1",
-    "material-ui": "^1.0.0-beta.21",
+    "material-ui": "^1.0.0-beta.24",
     "moment": "^2.19.2",
     "peer-deps-externals-webpack-plugin": "^1.0.2",
     "prop-types": "^15.6.0",

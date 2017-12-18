@@ -78,6 +78,8 @@ class App extends Component {
 ### Props documentation
 Here is a list of available props
 
+**Note:** Any prop not recognized by the pickers and their sub-components are passed down to material-ui [TextField](https://material-ui-next.com/api/text-field/#props) component.
+
 #### Datepicker
 * date - string, number, Date object, Moment object ([anything](https://momentjs.com/docs/#/parsing/), that can be parsed by moment)
 
@@ -94,6 +96,8 @@ maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
+okLabel | string | 'OK' | The label for the ok button
+cancelLabel | string | 'CANCEL' | The label for the cancel button
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
 renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
@@ -111,6 +115,8 @@ autoOk | boolean | false | Auto accept time on selection
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
+okLabel | string | 'OK' | The label for the ok button
+cancelLabel | string | 'CANCEL' | The label for the cancel button
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
 ampm | boolean | true | 12h/24h view for hour selection clock
 keyboard | boolean | false | Allow to manual input date to the text field
@@ -131,6 +137,8 @@ maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChangeg
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
+okLabel | string | 'OK' | The label for the ok button
+cancelLabel | string | 'CANCEL' | The label for the cancel button
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
 renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
@@ -153,7 +161,14 @@ moment.locale('fr')
 
 ### Jalali Calendar
 We are fully supporting Jalali calendar system and [right-to-left](https://material-ui-next.com/guides/right-to-left/) material-ui api. Special thanks to @alitaheri.
-Here is a little example of how to use it 
+Here is a little example of how to use it
+
+Don't forget to install [material-ui-pickers-jalali-utils](https://github.com/alitaheri/material-ui-pickers-jalali-utils).
+
+```sh
+npm install material-ui-pickers-jalali-utils
+```
+
 ```jsx
 import { TimePicker, DateTimePicker, DatePicker } from 'material-ui-pickers';
 import jalaliUtils from 'material-ui-pickers-jalali-utils';
