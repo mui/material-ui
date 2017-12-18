@@ -14,7 +14,7 @@ Temporary navigation drawers can toggle open or closed. Closed by default, the d
 The Drawer can be cancelled by clicking the overlay or pressing the Esc key.
 It closes when an item is selected, handled by controlling the `open` prop.
 
-{{"demo": "pages/demos/drawers/TemporaryDrawer.js"}}
+{{"demo": "pages/demos/drawers/TemporaryDrawer.js", "hideEditButton": true}}
 
 ## Permanent drawer
 
@@ -22,7 +22,7 @@ Permanent navigation drawers are always visible and pinned to the left edge, at 
 
 Permanent navigation drawers are the recommended default for desktop.
 
-{{"demo": "pages/demos/drawers/PermanentDrawer.js"}}
+{{"demo": "pages/demos/drawers/PermanentDrawer.js", "hideEditButton": true}}
 
 ## Persistent drawer
 
@@ -36,7 +36,7 @@ When the drawer is outside of the page grid and opens, the drawer forces other c
 Persistent navigation drawers are acceptable for all sizes larger than mobile.
 They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.
 
-{{"demo": "pages/demos/drawers/PersistentDrawer.js"}}
+{{"demo": "pages/demos/drawers/PersistentDrawer.js", "hideEditButton": true}}
 
 ## Mini variant drawer
 
@@ -46,11 +46,11 @@ When expanded, it appears as the standard persistent navigation drawer.
 
 The mini variant is recommended for apps sections that need quick selection access alongside content.
 
-{{"demo": "pages/demos/drawers/MiniDrawer.js"}}
+{{"demo": "pages/demos/drawers/MiniDrawer.js", "hideEditButton": true}}
 
 ## Responsive drawer
 
 The `Hidden` responsive helper component allows showing different types of drawer depending on the screen width.
 A `temporary` drawer is shown for small screens while a `permanent` drawer is shown for wider screens.
 
-{{"demo": "pages/demos/drawers/ResponsiveDrawer.js"}}
+{{"demo": "pages/demos/drawers/ResponsiveDrawer.js", "hideEditButton": true}}
