@@ -20,6 +20,7 @@ export interface CalendarProps {
     minDate?: DateType;
     maxDate?: DateType;
     onChange: (date: object) => void;
+    disablePast?: boolean;
     disableFuture?: boolean;
     leftArrowIcon?: ReactNode;
     rightArrowIcon?: ReactNode;

@@ -10,6 +10,7 @@ export interface DateTimePickerWrapperProps extends ModalWrapperProps {
   minDate?: DateType;
   maxDate?: DateType;
   onChange: (date: object) => void;
+  disablePast?: boolean;
   disableFuture?: boolean;
   autoOk?: boolean;
   autoSubmit?: boolean;
