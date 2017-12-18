@@ -86,10 +86,10 @@ export const styles = theme => {
   };
 };
 
-//export type Origin = {
+// export type Origin = {
 //  horizontal?: 'left' | 'center' | 'right' | number,
 //  vertical?: 'top' | 'center' | 'bottom' | number,
-//};
+// };
 
 class Snackbar extends React.Component {
   state = {

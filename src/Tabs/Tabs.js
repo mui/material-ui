@@ -3,11 +3,11 @@ import * as PropTypes from 'prop-types';
 import * as warning from 'warning';
 import * as classNames from 'classnames';
 import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
 import ScrollbarSize from 'react-scrollbar-size';
 import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
 import scroll from 'scroll';
 import withStyles from '../styles/withStyles';
+import debounce from '../utils/debounce';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 

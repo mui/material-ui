@@ -5,12 +5,12 @@ import * as PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import * as warning from 'warning';
 import contains from 'dom-helpers/query/contains';
-import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../transitions/Grow';
 import Paper from '../Paper';
+import debounce from '../utils/debounce';
 
 function getOffsetTop(rect, vertical) {
   let offset = 0;

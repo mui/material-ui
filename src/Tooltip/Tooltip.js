@@ -1,13 +1,13 @@
 /* eslint-disable react/no-multi-comp, no-underscore-dangle */
 
-import React, { Children } from 'react';
+import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
 import * as warning from 'warning';
 import * as classNames from 'classnames';
 import { Manager, Target, Popper } from 'react-popper';
+import debounce from '../utils/debounce';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import common from '../colors/common';
 import grey from '../colors/grey';
