@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import * as classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
-import debounce from '../utils/debounce';
+import debounce from '../utils/ts-import-workaround/debounce';
 
 export const styles = {
   root: {

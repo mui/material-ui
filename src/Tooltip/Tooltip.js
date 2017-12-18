@@ -7,7 +7,7 @@ import EventListener from 'react-event-listener';
 import * as warning from 'warning';
 import * as classNames from 'classnames';
 import { Manager, Target, Popper } from 'react-popper';
-import debounce from '../utils/debounce';
+import debounce from '../utils/ts-import-workaround/debounce';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import common from '../colors/common';
 import grey from '../colors/grey';

@@ -7,7 +7,7 @@ import ScrollbarSize from 'react-scrollbar-size';
 import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
 import scroll from 'scroll';
 import withStyles from '../styles/withStyles';
-import debounce from '../utils/debounce';
+import debounce from '../utils/ts-import-workaround/debounce';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 

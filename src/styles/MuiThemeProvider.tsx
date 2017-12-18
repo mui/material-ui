@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import createBroadcast from 'brcast';
+import * as createBroadcast from 'brcast';
 import themeListener, { CHANNEL } from './themeListener';
 import exactProp from '../utils/exactProp';
 import { Theme } from './createMuiTheme';

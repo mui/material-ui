@@ -10,7 +10,7 @@ import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../transitions/Grow';
 import Paper from '../Paper';
-import debounce from '../utils/debounce';
+import debounce from '../utils/ts-import-workaround/debounce';
 
 function getOffsetTop(rect, vertical) {
   let offset = 0;
