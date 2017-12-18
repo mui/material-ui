@@ -14,7 +14,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noEmitOnError": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": false,
     "strictNullChecks": false,
     "strictFunctionTypes": true,
     "forceConsistentCasingInFileNames": true,
