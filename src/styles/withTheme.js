@@ -21,7 +21,7 @@ const withTheme = () => Component => {
     constructor(props, context) {
       super(props, context);
       this.state = {
-        // We use || as it's lazy evaluated.
+        // We use || as the function call is lazy evaluated.
         theme: themeListener.initial(context) || getDefaultTheme(),
       };
     }

@@ -66,7 +66,7 @@ function getDefaultTheme() {
 // It does not modify the component passed to it;
 // instead, it returns a new component, with a `classes` property.
 const withStyles = (stylesOrCreator, options = {}) => Component => {
-  const { withTheme = false, flip, name, ...styleSheetOptions } = options;
+  const { withTheme = false, flip = null, name, ...styleSheetOptions } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || withTheme || typeof name === 'string';
 
@@ -107,7 +107,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         generateClassName,
         ...this.context[ns.sheetOptions],
       };
-      // We use || as it's lazy evaluated.
+      // We use || as the function call is lazy evaluated.
       this.theme = listenToTheme ? themeListener.initial(context) || getDefaultTheme() : noopTheme;
     }
 
@@ -228,14 +228,13 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       }
     }
 
-    unsubscribeId = null;
-    jss = null;
-    sheetsManager = sheetsManager;
     disableStylesGeneration = false;
+    jss = null;
+    sheetOptions = null;
+    sheetsManager = sheetsManager;
     stylesCreatorSaved = null;
     theme = null;
-    sheetOptions = null;
-    theme = null;
+    unsubscribeId = null;
 
     render() {
       const { classes: classesProp, innerRef, ...other } = this.props;
