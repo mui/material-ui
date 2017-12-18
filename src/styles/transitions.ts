@@ -49,7 +49,7 @@ export const duration: Duration = {
   leavingScreen: 195,
 };
 
-export const formatMs = (milliseconds: number) => `${Math.round(milliseconds)}ms`; // number
+export const formatMs = (milliseconds: number) => `${Math.round(milliseconds)}ms`;
 export const isString = (value: any) => typeof value === 'string';
 export const isNumber = (value: any) => !Number.isNaN(parseFloat(value));
 
@@ -121,7 +121,6 @@ const transitions: Transitions = {
       .join(',');
   },
   getAutoHeightDuration(height) {
-    // ?number
     if (!height) {
       return 0;
     }

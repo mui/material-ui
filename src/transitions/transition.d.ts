@@ -29,7 +29,6 @@ export interface TransitionProps extends TransitionActions, Partial<TransitionHa
   unmountOnExit?: boolean;
   timeout: number | { enter?: number; exit?: number };
   style?: React.CSSProperties;
-  // [prop: string]: any;
 }
 
 export type TransitionDuration = TransitionProps['timeout'];

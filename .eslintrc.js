@@ -25,8 +25,6 @@ module.exports = {
     },
   },
   rules: {
-    'import/extensions': 'off', // typescript incremental
-    'import/no-unresolved': 'off', // typescript incremental
     'linebreak-style': 'off', // Don't play nicely with Windows.
     'arrow-body-style': 'off', // Not our taste?
     'arrow-parens': 'off', // Incompatible with prettier
@@ -54,6 +52,8 @@ module.exports = {
 
     'babel/object-curly-spacing': ['error', 'always'],
 
+    'import/extensions': 'off', // typescript incremental
+    'import/no-unresolved': 'off', // typescript incremental
     'import/unambiguous': 'off', // scripts
     'import/namespace': ['error', { allowComputed: true }],
     'import/no-extraneous-dependencies': 'off',

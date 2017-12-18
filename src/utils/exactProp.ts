@@ -1,7 +1,6 @@
 // This module is based on https://github.com/airbnb/prop-types-exact repository.
 // However, in order to reduce the number of dependencies and to remove some extra safe checks
 // the module was forked.
-import * as PropTypes from 'prop-types';
 
 export const specialProperty = 'exact-prop: \u200b';
 

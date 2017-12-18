@@ -36,6 +36,7 @@ export type TooltipClassKey =
   | 'tooltipTop'
   | 'tooltipBottom'
   | 'tooltipOpen';
+
 export const styles = withStyles<TooltipClassKey>(
   (theme: Theme) => ({
     root: {
