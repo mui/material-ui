@@ -21,6 +21,7 @@ export class DateTimePicker extends Component {
     onChange: PropTypes.func.isRequired,
     autoSubmit: PropTypes.bool,
     openTo: PropTypes.oneOf(Object.keys(viewType).map(key => viewType[key])),
+    disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
@@ -40,6 +41,7 @@ export class DateTimePicker extends Component {
     maxDate: '2100-01-01',
     autoSubmit: true,
     openTo: viewType.DATE,
+    disablePast: false,
     disableFuture: false,
     showTabs: true,
     leftArrowIcon: undefined,
@@ -88,6 +90,7 @@ export class DateTimePicker extends Component {
       minDate,
       maxDate,
       showTabs,
+      disablePast,
       disableFuture,
       leftArrowIcon,
       rightArrowIcon,
@@ -127,6 +130,7 @@ export class DateTimePicker extends Component {
             minDate={minDate}
             maxDate={maxDate}
             onChange={this.onChange(viewType.DATE)}
+            disablePast={disablePast}
             disableFuture={disableFuture}
             utils={utils}
           />
@@ -138,6 +142,7 @@ export class DateTimePicker extends Component {
             minDate={minDate}
             maxDate={maxDate}
             onChange={this.onChange(viewType.HOUR)}
+            disablePast={disablePast}
             disableFuture={disableFuture}
             leftArrowIcon={leftArrowIcon}
             rightArrowIcon={rightArrowIcon}
