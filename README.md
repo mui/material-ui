@@ -88,6 +88,7 @@ Prop | Type | Default | Definition
 value | date | new Date() | Datepicker value
 format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept date on selection
+disablePast | boolean | false | Disable past dates
 disableFuture | boolean | false | Disable future dates
 animateYearScrolling | boolean | false | Will animate year selection (note that will work for browser supports scrollIntoView api)
 openToYearSelection | boolean | false | Open datepicker from year selection
