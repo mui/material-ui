@@ -18,6 +18,7 @@ export class Calendar extends Component {
     maxDate: DomainPropTypes.date,
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
@@ -29,6 +30,7 @@ export class Calendar extends Component {
   static defaultProps = {
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
+    disablePast: false,
     disableFuture: false,
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
@@ -65,9 +67,11 @@ export class Calendar extends Component {
   }
 
   shouldDisableDate = (day) => {
-    const { disableFuture, shouldDisableDate } = this.props;
+    const { disablePast, disableFuture, shouldDisableDate } = this.props;
     return (
-      (disableFuture && day.isAfter(moment())) || this.validateMinMaxDate(day) ||
+      (disableFuture && day.isAfter(moment(), 'day')) ||
+      (disablePast && day.isBefore(moment(), 'day')) ||
+      this.validateMinMaxDate(day) ||
       shouldDisableDate(day)
     );
   }
