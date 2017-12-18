@@ -130,6 +130,8 @@ value | date | new Date() | Timepicker value
 format | string | 'MMMM Do hh:mm a' | Moment format string for input
 autoOk | boolean | false | Auto accept time on selection
 autoSubmit | boolean | true | On change show next time input (year -> date -> hour -> minute)
+disablePast | boolean | false | Disable past dates
+disableFuture | boolean | false | Disable future dates
 showTabs | boolean | false | Show date/time tabs
 openTo | one of 'year', 'date', 'hour', 'minutes' | 'date' | Open to particular view
 animateYearScrolling | boolean | false | Will animate year selection
