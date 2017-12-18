@@ -1,13 +1,14 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { MenuItem } from 'src/Menu';
 import Select from 'src/Select';
 import Dialog from 'src/Dialog';
 
-type Props = {
-  MenuProps?: Object,
-};
+// interface Props {
+//  MenuProps?: MenuProps;
+// }
 
-function SelectAndDialog(props: Props) {
+function SelectAndDialog(props) {
   return (
     <Dialog open>
       <Select value={10} MenuProps={props.MenuProps}>
@@ -22,4 +23,7 @@ function SelectAndDialog(props: Props) {
   );
 }
 
+SelectAndDialog.propTypes = {
+  MenuProps: PropTypes.object,
+};
 export default SelectAndDialog;

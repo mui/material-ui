@@ -26,7 +26,7 @@
   "include": [
     "./typings/**/*",
     "./src/**/*",
-    "./test/typescript/*"
+    "./test/**/*"
   ],
   "exclude": [
     "build",

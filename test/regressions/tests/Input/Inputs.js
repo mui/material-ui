@@ -3,7 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 =======
 import React, { Component } from 'react';
+<<<<<<< 5ae7d1666744bb195932606894cf22b6dd8ad0af
 >>>>>>> wip trying test:unit
+=======
+import PropTypes from 'prop-types';
+>>>>>>> expand tsc to all of test
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';
@@ -22,7 +26,16 @@ const styles = {
   },
 };
 
+<<<<<<< 5ae7d1666744bb195932606894cf22b6dd8ad0af
 class Inputs extends React.Component {
+=======
+// type Props = {
+//  classes: Object,
+//  theme?: Object,
+// };
+
+class Inputs extends Component {
+>>>>>>> expand tsc to all of test
   componentDidMount() {
     this.focusInput.focus();
   }
@@ -54,7 +67,11 @@ class Inputs extends React.Component {
 }
 
 Inputs.propTypes = {
+<<<<<<< 5ae7d1666744bb195932606894cf22b6dd8ad0af
   classes: PropTypes.object.isRequired,
+=======
+  classes: PropTypes.object,
+>>>>>>> expand tsc to all of test
 };
 
 export default withStyles(styles)(Inputs);
