@@ -25,16 +25,6 @@ class ChipsArray extends React.Component {
     ],
   };
 
-  styles = {
-    chip: {
-      margin: 4,
-    },
-    wrapper: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-  };
-
   handleDelete = data => () => {
     if (data.label === 'ReactJS') {
       alert('Why would you want to delete React?! :)'); // eslint-disable-line no-alert
