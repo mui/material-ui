@@ -50,9 +50,10 @@
     "build:bundle": "cross-env NODE_ENV=production rollup --config",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build/src",
     "build": "npm run build:bundle && npm run build:es2015 && npm run build:copy",
-    "prepublishOnly": "npm run test && npm run lint && npm run build",
-    "prerelease": "npm run build",
-    "release": "np --no-publish && npm publish build",
+    "ci": "npm run test && npm run lint && npm run build",
+    "prerelease": "npm run ci",
+    "release": "np --no-publish",
+    "postrelease": "npm run build && npm publish build",
     "lint": "eslint ./src/**/*.js*"
   },
   "devDependencies": {
