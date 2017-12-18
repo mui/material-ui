@@ -29,6 +29,42 @@ describe('getStylesCreator', () => {
     });
   });
 
+  describe('equality', () => {
+    it('result from object input should be equal', () => {
+      const styles = {};
+      assert.strictEqual(getStylesCreator(styles), getStylesCreator(styles));
+    });
+
+    it('result from function input should be equal', () => {
+      // real sample from Paper.js
+      const styles = theme => {
+        const shadows = {};
+        theme.shadows.forEach((shadow, index) => {
+          shadows[`shadow${index}`] = {
+            boxShadow: shadow,
+          };
+        });
+
+        return {
+          root: {
+            backgroundColor: theme.palette.background.paper,
+          },
+          rounded: {
+            borderRadius: 2,
+          },
+          ...shadows,
+        };
+      };
+      assert.strictEqual(getStylesCreator(styles), getStylesCreator(styles));
+    });
+
+    it('result from different objects should not be equal', () => {
+      const styles1 = { root: { padding: 1 } };
+      const styles2 = { root: { padding: 2 } };
+      assert.notStrictEqual(getStylesCreator(styles1), getStylesCreator(styles2));
+    });
+  });
+
   describe('overrides', () => {
     before(() => {
       consoleErrorMock.spy();
