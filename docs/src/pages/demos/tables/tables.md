@@ -25,7 +25,7 @@ This example demonstrates the use `Checkbox` and clickable rows for selection wi
 
 It uses the `TableSortLabel` component to help style column headings.
 
-{{"demo": "pages/demos/tables/EnhancedTable.js"}}
+{{"demo": "pages/demos/tables/EnhancedTable.js", "hideEditButton": true}}
 
 ## Advanced use cases
 
