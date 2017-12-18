@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
 import * as classNames from 'classnames';
-import * as TransitionGroup from 'react-transition-group/TransitionGroup';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import withStyles from '../styles/withStyles';
-import Ripple, { RippleClassKey } from './Ripple';
+import Ripple, { RippleClassKey, RippleProps } from './Ripple';
 import { Theme, WithStyles } from '../styles';
 
 const DURATION = 550;
@@ -100,7 +100,7 @@ export interface TouchRippleProps {
 
 interface State {
   nextKey: number;
-  ripples: any[];
+  ripples: Array<React.ReactElement<RippleProps>>;
 }
 
 /**
@@ -280,7 +280,6 @@ class TouchRipple extends React.Component<
 
   render() {
     const { center, classes, className, ...other } = this.props;
-
     return (
       <TransitionGroup
         component="span"

@@ -4,9 +4,9 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import * as keycode from 'keycode';
-import contains from 'dom-helpers/query/contains';
-import activeElement from 'dom-helpers/activeElement';
-import ownerDocument from 'dom-helpers/ownerDocument';
+import * as contains from 'dom-helpers/query/contains';
+import * as activeElement from 'dom-helpers/activeElement';
+import * as ownerDocument from 'dom-helpers/ownerDocument';
 import List from '../List';
 
 class MenuList extends React.Component {

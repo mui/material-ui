@@ -2,7 +2,7 @@ import * as React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import * as keycode from 'keycode';
-import contains from 'dom-helpers/query/contains';
+import * as contains from 'dom-helpers/query/contains';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import mockPortal from '../../test/utils/mockPortal';

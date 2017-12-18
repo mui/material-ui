@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import css from 'dom-helpers/style';
+import * as css from 'dom-helpers/style';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Popover from './Popover';
 import mockPortal from '../../test/utils/mockPortal';

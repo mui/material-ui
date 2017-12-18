@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as classNames from 'classnames';
-import * as Transition from 'react-transition-group/Transition';
+import Transition from 'react-transition-group/Transition';
 import { ClassNameMap } from '../styles/withStyles';
 import { TransitionProps } from '../transitions/transition';
 
