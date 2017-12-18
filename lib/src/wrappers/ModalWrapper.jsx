@@ -34,19 +34,19 @@ export default class ModalWrapper extends PureComponent {
     open: false,
   }
 
-  togglePicker = () => {
-    this.setState({ open: !this.state.open });
+  handleClick = () => {
+    this.setState({ open: true });
   }
 
   handleAccept = () => {
-    this.togglePicker(); // close
+    this.setState({ open: false });
     if (this.props.onAccept) {
       this.props.onAccept();
     }
   }
 
   handleDismiss = () => {
-    this.togglePicker();
+    this.setState({ open: false });
     if (this.props.onDismiss) {
       this.props.onDismiss();
     }
@@ -72,7 +72,7 @@ export default class ModalWrapper extends PureComponent {
         <DateTextField
           value={value}
           format={format}
-          onClick={this.togglePicker}
+          onClick={this.handleClick}
           // onFocus={this.togglePicker} <- Currently not properly works with .blur() on TextField
           invalidLabel={invalidLabel}
           labelFunc={labelFunc}
@@ -87,7 +87,7 @@ export default class ModalWrapper extends PureComponent {
           okLabel={okLabel}
           cancelLabel={cancelLabel}
         >
-          { children }
+          {children}
         </ModalDialog>
       </div>
     );
