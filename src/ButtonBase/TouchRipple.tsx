@@ -1,98 +1,119 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+import * as ReactDOM from 'react-dom';
 import * as classNames from 'classnames';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import withStyles from '../styles/withStyles';
-import Ripple from './Ripple';
+import Ripple, { RippleClassKey } from './Ripple';
+import { Theme, WithStyles } from '../styles';
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
 
-export const styles = theme => ({
-  root: {
-    display: 'block',
-    position: 'absolute',
-    overflow: 'hidden',
-    borderRadius: 'inherit',
-    width: '100%',
-    height: '100%',
-    left: 0,
-    top: 0,
-    pointerEvents: 'none',
-    zIndex: 0,
-  },
-  wrapper: {
-    opacity: 1,
-  },
-  wrapperLeaving: {
-    opacity: 0,
-    animation: `mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
-  },
-  wrapperPulsating: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    animation: `mui-ripple-pulsate 1500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
-    rippleVisible: {
-      opacity: 0.2,
+export type TouchRippleClassKey = 'root' | RippleClassKey;
+export const styles = withStyles<TouchRippleClassKey>(
+  (theme: Theme) => ({
+    root: {
+      display: 'block',
+      position: 'absolute',
+      overflow: 'hidden',
+      borderRadius: 'inherit',
+      width: '100%',
+      height: '100%',
+      left: 0,
+      top: 0,
+      pointerEvents: 'none',
+      zIndex: 0,
     },
-  },
-  '@keyframes mui-ripple-enter': {
-    '0%': {
-      transform: 'scale(0)',
-    },
-    '100%': {
-      transform: 'scale(1)',
-    },
-  },
-  '@keyframes mui-ripple-exit': {
-    '0%': {
+    wrapper: {
       opacity: 1,
     },
-    '100%': {
+    wrapperLeaving: {
       opacity: 0,
+      animation: `mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
     },
-  },
-  '@keyframes mui-ripple-pulsate': {
-    '0%': {
+    wrapperPulsating: {
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      animation: `mui-ripple-pulsate 1500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
+      rippleVisible: {
+        opacity: 0.2,
+      },
+    },
+    '@keyframes mui-ripple-enter': {
+      '0%': {
+        transform: 'scale(0)',
+      },
+      '100%': {
+        transform: 'scale(1)',
+      },
+    },
+    '@keyframes mui-ripple-exit': {
+      '0%': {
+        opacity: 1,
+      },
+      '100%': {
+        opacity: 0,
+      },
+    },
+    '@keyframes mui-ripple-pulsate': {
+      '0%': {
+        transform: 'scale(1)',
+      },
+      '50%': {
+        transform: 'scale(0.9)',
+      },
+      '100%': {
+        transform: 'scale(1)',
+      },
+    },
+    ripple: {
+      width: 50,
+      height: 50,
+      left: 0,
+      top: 0,
+      opacity: 0,
+      position: 'absolute',
+      borderRadius: '50%',
+      background: 'currentColor',
+    },
+    rippleVisible: {
+      opacity: 0.3,
       transform: 'scale(1)',
+      animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
     },
-    '50%': {
-      transform: 'scale(0.9)',
+    rippleFast: {
+      animationDuration: '200ms',
     },
-    '100%': {
-      transform: 'scale(1)',
-    },
-  },
-  ripple: {
-    width: 50,
-    height: 50,
-    left: 0,
-    top: 0,
-    opacity: 0,
-    position: 'absolute',
-    borderRadius: '50%',
-    background: 'currentColor',
-  },
-  rippleVisible: {
-    opacity: 0.3,
-    transform: 'scale(1)',
-    animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
-  },
-  rippleFast: {
-    animationDuration: '200ms',
-  },
-});
+  }),
+  { flip: false, name: 'MuiTouchRipple' },
+);
+
+export interface TouchRippleProps {
+  center?: boolean;
+  className?: string;
+}
+
+interface State {
+  nextKey: number;
+  ripples: any[];
+}
 
 /**
  * @ignore - internal component.
  */
-class TouchRipple extends React.Component {
-  state = {
+class TouchRipple extends React.Component<
+  TouchRippleProps & WithStyles<TouchRippleClassKey>,
+  State
+> {
+  static defaultProps = {
+    center: false,
+  };
+  state: State = {
     nextKey: 0,
     ripples: [],
   };
@@ -105,15 +126,19 @@ class TouchRipple extends React.Component {
   ignoringMouseDown = false;
   // We use a timer in order to only show the ripples for touch "click" like events.
   // We don't want to display the ripple for touch scroll events.
-  startTimer = null;
+  startTimer: NodeJS.Timer = null;
   // This is the hook called once the previous timeout is ready.
-  startTimerCommit = null;
+  startTimerCommit: () => void = null;
 
   pulsate = () => {
     this.start({}, { pulsate: true });
   };
 
-  start = (event = {}, options = {}, cb) => {
+  start = (
+    event: any = {},
+    options: { pulsate?: boolean; center?: boolean; fakeElement?: boolean } = {},
+    cb?: () => void,
+  ) => {
     const {
       pulsate = false,
       center = this.props.center || options.pulsate,
@@ -140,9 +165,9 @@ class TouchRipple extends React.Component {
         };
 
     // Get the size of the ripple
-    let rippleX;
-    let rippleY;
-    let rippleSize;
+    let rippleX: number;
+    let rippleY: number;
+    let rippleSize: number;
 
     if (
       center ||
@@ -189,7 +214,13 @@ class TouchRipple extends React.Component {
     }
   };
 
-  startCommit = params => {
+  startCommit = (params: {
+    pulsate: boolean;
+    rippleX: number;
+    rippleY: number;
+    rippleSize: number;
+    cb: () => void;
+  }) => {
     const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
     let ripples = this.state.ripples;
 
@@ -219,7 +250,7 @@ class TouchRipple extends React.Component {
     );
   };
 
-  stop = (event, cb) => {
+  stop = (event: any, cb: () => void) => {
     clearTimeout(this.startTimer);
     const { ripples } = this.state;
 
@@ -264,7 +295,7 @@ class TouchRipple extends React.Component {
   }
 }
 
-TouchRipple.propTypes = {
+(TouchRipple as any).propTypes = {
   /**
    * If `true`, the ripple starts at the center of the component
    * rather than at the point of interaction.
@@ -280,8 +311,4 @@ TouchRipple.propTypes = {
   className: PropTypes.string,
 };
 
-TouchRipple.defaultProps = {
-  center: false,
-};
-
-export default withStyles(styles, { flip: false, name: 'MuiTouchRipple' })(TouchRipple);
+export default styles<TouchRippleProps>(TouchRipple);

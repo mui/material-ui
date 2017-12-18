@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import * as classNames from 'classnames';
 import * as warning from 'warning';
-import keycode from 'keycode';
+import * as keycode from 'keycode';
 import canUseDom from 'dom-helpers/util/inDOM';
 import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';

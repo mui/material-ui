@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { spy, stub } from 'sinon';
 import { assert } from 'chai';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Menu from './Menu';
 import mockPortal from '../../test/utils/mockPortal';

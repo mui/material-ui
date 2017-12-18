@@ -2,12 +2,39 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
+import { ClassNameMap } from '../styles/withStyles';
+import { TransitionProps } from '../transitions/transition';
+
+export type RippleClassKey =
+  | 'root'
+  | 'wrapper'
+  | 'wrapperLeaving'
+  | 'wrapperPulsating'
+  | 'ripple'
+  | 'rippleVisible'
+  | 'rippleFast';
+
+export interface RippleProps extends TransitionProps {
+  classes: ClassNameMap<RippleClassKey>;
+  pulsate?: boolean;
+  rippleSize?: number;
+  rippleX?: number;
+  rippleY?: number;
+}
+
+interface State {
+  rippleVisible: boolean;
+  rippleLeaving: boolean;
+}
 
 /**
  * @ignore - internal component.
  */
-class Ripple extends React.Component {
-  state = {
+class Ripple extends React.Component<RippleProps, State> {
+  static defaultProps = {
+    pulsate: false,
+  };
+  state: State = {
     rippleVisible: false,
     rippleLeaving: false,
   };
@@ -32,7 +59,7 @@ class Ripple extends React.Component {
       rippleX,
       rippleY,
       rippleSize,
-      ...other
+      ...other,
     } = this.props;
     const { rippleVisible, rippleLeaving } = this.state;
 
@@ -67,7 +94,7 @@ class Ripple extends React.Component {
   }
 }
 
-Ripple.propTypes = {
+(Ripple as any).propTypes = {
   /**
    * Useful to extend the style applied to components.
    */
@@ -92,10 +119,6 @@ Ripple.propTypes = {
    * Vertical position of the ripple center.
    */
   rippleY: PropTypes.number,
-};
-
-Ripple.defaultProps = {
-  pulsate: false,
 };
 
 export default Ripple;
