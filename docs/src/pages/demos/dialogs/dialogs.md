@@ -42,7 +42,7 @@ If a title is required:
 
 You can also swap out the transition, the next example uses `Slide`.
 
-{{"demo": "pages/demos/dialogs/AlertDialogSlide.js", "hideEditButton": true}}
+{{"demo": "pages/demos/dialogs/AlertDialogSlide.js"}}
 
 ## Confirmation dialogs
 

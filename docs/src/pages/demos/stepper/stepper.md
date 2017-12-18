@@ -52,7 +52,7 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prope
 
 ## Horizontal Non Linear - Alternative Label
 
-{{"demo": "pages/demos/stepper/HorizontalNonLinearAlternativeLabelStepper.js", hideEditButton: true}}
+{{"demo": "pages/demos/stepper/HorizontalNonLinearAlternativeLabelStepper.js"}}
 
 ## Vertical Stepper
 
