@@ -4,14 +4,13 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as CSSTransition from 'react-transition-group/CSSTransition';
 import withTheme, { WithTheme } from '../styles/withTheme';
-// import { TransitionDuration } from '../internal/transition';
 import { Omit } from '../index';
-import { CSSTransitionClassNames, CSSTransitionProps } from './transition';
+import { CSSTransitionClassNames, CSSTransitionProps, TransitionDuration } from './transition';
 
 export interface GrowProps extends Omit<CSSTransitionProps, 'timeout' | 'classNames'> {
   children: React.ReactElement<any>;
   rootRef?: (n: any) => any;
-  timeout?: CSSTransitionProps['timeout'] | 'auto';
+  timeout?: TransitionDuration | 'auto';
   transitionClasses?: CSSTransitionClassNames;
 }
 

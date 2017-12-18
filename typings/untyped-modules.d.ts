@@ -6,3 +6,4 @@ declare module 'dom-helpers/events/off';
 declare module 'react-transition-group/TransitionGroup';
 declare module 'react-transition-group/CSSTransition';
 declare module 'react-transition-group/Transition';
+declare module 'app-module-path';

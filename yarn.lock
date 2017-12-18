@@ -132,7 +132,13 @@
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/@types/deepmerge/-/deepmerge-1.3.3.tgz#2e937b138854e10a715cb083c713522703a2d2e4"
 
-"@types/enzyme@^3.1.6":
+"@types/enzyme-adapter-react-16@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.0.1.tgz#cb93338ccf6cd1b8fdda91027c4ffe56583537b5"
+  dependencies:
+    "@types/enzyme" "*"
+
+"@types/enzyme@*", "@types/enzyme@^3.1.6":
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.6.tgz#5b6fd8c5d23d2e1d06eca528b54df81c3ee4cbbf"
   dependencies:

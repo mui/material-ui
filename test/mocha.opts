@@ -1,4 +1,4 @@
 --require ts-node/register
 --reporter dot
 --recursive
-test/utils/setup.js
+test/utils/setup.ts
