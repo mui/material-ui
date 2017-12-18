@@ -1,4 +1,6 @@
-function shallowRecursively(wrapper, selector, { context, ...other }) {
+import { CommonWrapper } from 'enzyme';
+
+function shallowRecursively(wrapper: any, selector: string, { context, ...other }: any): any {
   if (wrapper.isEmptyRender() || typeof wrapper.getElement().type === 'string') {
     return wrapper;
   }
@@ -23,6 +25,9 @@ function shallowRecursively(wrapper, selector, { context, ...other }) {
   return shallowRecursively(nextWrapper, selector, { context: newContext });
 }
 
-export default function until(selector, options = {}) {
+export default function until<P = any, S = any>(
+  selector: string,
+  options: object = {},
+): CommonWrapper<P, S> {
   return this.single('until', () => shallowRecursively(this, selector, options));
 }

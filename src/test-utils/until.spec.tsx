@@ -1,11 +1,11 @@
-import assert from 'assert';
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import * as assert from 'assert';
 import { shallow } from 'enzyme';
 import until from './until';
 
 const Div = () => <div />;
-const hoc = Component => () => <Component />;
+const hoc = (Component: React.ComponentType<any>) => () => <Component />;
 
 describe('until', () => {
   it('shallow renders the current wrapper one level deep', () => {
@@ -21,7 +21,7 @@ describe('until', () => {
   });
 
   it('stops shallow rendering when the wrapper is empty', () => {
-    const nullHoc = () => () => null;
+    const nullHoc = () => (): any => null;
     const EnhancedDiv = nullHoc();
     const wrapper = until.call(shallow(<EnhancedDiv />), 'Div');
     assert.strictEqual(wrapper.html(), null);
@@ -85,7 +85,7 @@ describe('until', () => {
     }
   }
 
-  Foo.contextTypes = {
+  (Foo as any).contextTypes = {
     quux: PropTypes.bool.isRequired,
   };
 
@@ -98,10 +98,14 @@ describe('until', () => {
   });
 
   // eslint-disable-next-line react/no-multi-comp
-  class Bar extends React.Component {
+  class Bar extends React.Component<any> {
     static childContextTypes = { quux: PropTypes.bool };
-    getChildContext = () => ({ quux: true });
-    render = () => <Foo />;
+    getChildContext() {
+      ({ quux: true });
+    }
+    render() {
+      return <Foo />;
+    }
   }
 
   it('context propagation passes down context from an intermediary component', () => {
