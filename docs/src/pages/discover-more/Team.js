@@ -64,6 +64,19 @@ const members = [
     flag: 'Community partner, JSS',
     city: 'Berlin, Germany',
   },
+  {
+    name: 'Ken Gregory',
+    github: 'kgregory',
+    flag: 'Community partner',
+    city: 'New Jersey, US',
+  },
+  {
+    name: 'Tom Crockett',
+    github: 'pelotom',
+    twitter: 'pelotom',
+    flag: 'Community partner',
+    city: 'Los Angeles, California, US',
+  },
 ];
 
 const styles = theme => ({
