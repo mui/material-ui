@@ -82,7 +82,6 @@
     "react-transition-group": "^2.2.1",
     "recompose": "^0.26.0",
     "scroll": "^2.0.1",
-    "ts-loader": "^3.2.0",
     "warning": "^3.0.0"
   },
   "devDependencies": {
@@ -148,7 +147,6 @@
     "flow-bin": "^0.61.0",
     "flow-copy-source": "^1.2.1",
     "flow-typed": "^2.2.3",
-    "fork-ts-checker-webpack-plugin": "^0.2.9",
     "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
     "gm": "^1.23.0",
