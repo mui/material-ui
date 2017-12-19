@@ -280,7 +280,7 @@ class SelectInput extends React.Component {
             ...MenuProps.PaperProps,
             style: {
               minWidth: minimumMenuWidth,
-              ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
+              ...MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null,
             },
           }}
         >

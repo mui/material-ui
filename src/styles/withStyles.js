@@ -312,7 +312,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   Style.contextTypes = {
     muiThemeProviderOptions: PropTypes.object,
     ...contextTypes,
-    ...(listenToTheme ? themeListener.contextTypes : {}),
+    ...listenToTheme ? themeListener.contextTypes : {},
   };
 
   if (process.env.NODE_ENV !== 'production') {

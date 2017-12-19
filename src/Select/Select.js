@@ -89,7 +89,7 @@ function Select(props) {
     inputComponent: SelectInput,
     ...other,
     inputProps: {
-      ...(input ? input.props.inputProps : {}),
+      ...input ? input.props.inputProps : {},
       autoWidth,
       children,
       classes,
