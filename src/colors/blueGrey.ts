@@ -1,4 +1,6 @@
-const blueGrey = {
+import { Color } from '../index';
+
+const blueGrey: Color = {
   50: '#eceff1',
   100: '#cfd8dc',
   200: '#b0bec5',

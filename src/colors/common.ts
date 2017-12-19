@@ -1,4 +1,18 @@
-const common = {
+export interface CommonColors {
+  black: string;
+  white: string;
+  transparent: string;
+  fullBlack: string;
+  darkBlack: string;
+  lightBlack: string;
+  minBlack: string;
+  faintBlack: string;
+  fullWhite: string;
+  darkWhite: string;
+  lightWhite: string;
+}
+
+const common: CommonColors = {
   black: '#000',
   white: '#fff',
   transparent: 'rgba(0, 0, 0, 0)',

@@ -1,4 +1,6 @@
-const indigo = {
+import { Color } from '../index';
+
+const indigo: Color = {
   50: '#e8eaf6',
   100: '#c5cae9',
   200: '#9fa8da',

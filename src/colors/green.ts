@@ -1,4 +1,6 @@
-const green = {
+import { Color } from '../index';
+
+const green: Color = {
   50: '#e8f5e9',
   100: '#c8e6c9',
   200: '#a5d6a7',
