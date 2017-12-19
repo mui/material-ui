@@ -34,7 +34,11 @@ export interface TypographyStyle {
   textTransform?: React.CSSProperties['textTransform'];
 }
 
-export type Typography = Record<Style, TypographyStyle> & FontStyle;
+export interface TypographyUtils {
+  pxToRem: (px: number) => string
+}
+
+export type Typography = Record<Style, TypographyStyle> & FontStyle & TypographyUtils;
 
 export type TypographyOptions = Partial<Record<Style, Partial<TypographyStyle>> & FontStyle>;
 
