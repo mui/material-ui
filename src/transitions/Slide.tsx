@@ -5,10 +5,10 @@ import * as PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import Transition from 'react-transition-group/Transition';
 import EventListener from 'react-event-listener';
-import * as debounce from 'lodash/debounce';
 import withTheme, { WithTheme } from '../styles/withTheme';
 import { duration } from '../styles/transitions';
 import { TransitionProps } from './transition';
+import debounce from '../utils/ts-import-workaround/debounce';
 
 const GUTTER = 24;
 
