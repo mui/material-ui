@@ -19,6 +19,10 @@ describe('svg-icons', () => {
     }
 
     fs.readdir(__dirname, (err, files) => {
+      if (err) {
+        throw err;
+      }
+
       files.forEach(file => {
         // Ignore no js files and tests
         if (file.indexOf('.js') === -1 || file.indexOf('spec.js') > -1) {
