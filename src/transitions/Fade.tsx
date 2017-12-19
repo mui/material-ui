@@ -72,7 +72,7 @@ class Fade extends React.Component<FadeProps & WithTheme> {
       onExit,
       style: styleProp,
       theme,
-      ...other,
+      ...other
     } = this.props;
 
     const style = { ...styleProp };

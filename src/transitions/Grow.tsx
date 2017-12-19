@@ -122,7 +122,7 @@ class Grow extends React.Component<GrowProps & WithTheme> {
       theme,
       timeout,
       transitionClasses = {},
-      ...other,
+      ...other
     } = this.props;
 
     const style = { ...children.props.style, ...styleProp };

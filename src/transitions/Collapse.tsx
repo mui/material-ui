@@ -150,7 +150,7 @@ class Collapse extends React.Component<CollapseProps & WithStyles<CollapseClassK
       style,
       theme,
       timeout,
-      ...other,
+      ...other
     } = this.props;
 
     return (

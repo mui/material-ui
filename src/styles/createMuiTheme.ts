@@ -53,7 +53,7 @@ function createMuiTheme(options: ThemeOptions = {}): Theme {
     mixins: mixinsInput = {},
     typography: typographyInput = {},
     shadows: shadowsInput,
-    ...other,
+    ...other
   } = options;
 
   const palette = createPalette(paletteInput);

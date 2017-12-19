@@ -78,7 +78,11 @@
     }
   },
   "ignore": [
-    "scripts/material-ui-babel-preset-env.js"
+    "scripts/material-ui-babel-preset-env.js",
+    "**/*.d.ts",
+    "**/*.spec.js",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
   ]
 }
 

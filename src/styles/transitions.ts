@@ -95,7 +95,7 @@ const transitions: Transitions = {
       duration: durationOption = duration.standard,
       easing: easingOption = easing.easeInOut,
       delay = 0,
-      ...other,
+      ...other
     } = options;
 
     warning(

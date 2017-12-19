@@ -345,7 +345,7 @@ class Tooltip extends React.Component<TooltipProps & WithStyles<TooltipClassKey>
       PopperProps: { PopperClassName = null, ...PopperOther } = {},
       theme,
       title,
-      ...other,
+      ...other
     } = this.props;
 
     const themeDirection = theme && theme.direction;

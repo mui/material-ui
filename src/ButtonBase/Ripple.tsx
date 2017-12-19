@@ -59,7 +59,7 @@ class Ripple extends React.Component<RippleProps, State> {
       rippleX,
       rippleY,
       rippleSize,
-      ...other,
+      ...other
     } = this.props;
     const { rippleVisible, rippleLeaving } = this.state;
 

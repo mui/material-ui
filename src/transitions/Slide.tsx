@@ -197,7 +197,7 @@ class Slide extends React.Component<SlideProps & WithTheme, State> {
       onExited,
       style: styleProp,
       theme,
-      ...other,
+      ...other
     } = this.props;
 
     const style = { ...styleProp };

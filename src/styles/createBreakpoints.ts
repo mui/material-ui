@@ -37,7 +37,7 @@ export default function createBreakpoints(options: BreakpointsOptions): Breakpoi
     },
     unit = 'px',
     step = 5,
-    ...other,
+    ...other
   } = options;
 
   function up(key: Breakpoint) {
