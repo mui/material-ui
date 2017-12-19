@@ -20,7 +20,8 @@
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "noEmit": true
   },
   "include": [
     "./typings/**/*",

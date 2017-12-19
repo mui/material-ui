@@ -34,7 +34,7 @@ const baseConfig = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.(j|t)sx?$/,
         loader: 'babel-loader',
         exclude: /(node_modules)/,
         query: {
