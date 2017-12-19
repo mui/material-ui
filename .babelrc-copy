@@ -1,10 +1,9 @@
 {
   "presets": [
-    "@babel/preset-typescript",
-    "./scripts/material-ui-babel-preset-env",
-    "@babel/preset-stage-1",
-    "@babel/preset-react"
-  ],
+  "@babel/preset-typescript",
+  "./scripts/material-ui-babel-preset-env",
+  "@babel/preset-stage-1",
+  "@babel/preset-react"],
   "plugins": [
     "transform-object-assign"
   ],
@@ -59,9 +58,9 @@
             }
           }
         ],
-        "@babel/plugin-transform-react-constant-elements",
-//        "transform-dev-warning",
-        "@babel/plugin-transform-runtime",
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
         ["transform-react-remove-prop-types", {"mode": "remove"}]
       ]
@@ -74,9 +73,9 @@
     },
     "production": {
       "plugins": [
-        "@babel/plugin-transform-react-constant-elements",
-//        "transform-dev-warning",
-        "@babel/plugin-transform-runtime",
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
         ["transform-react-remove-prop-types", {
           "mode": "wrap",
@@ -88,4 +87,3 @@
     }
   }
 }
-
