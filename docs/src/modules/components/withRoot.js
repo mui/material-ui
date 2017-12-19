@@ -203,11 +203,11 @@ function withRoot(BaseComponent) {
   // Prevent rerendering
   const PureBaseComponent = pure(BaseComponent);
 
-  type WithRootProps = {
-    reduxServerState?: Object,
-    sheetsRegistry?: Object,
-    url: Object,
-  };
+  //  type WithRootProps = {
+  //    reduxServerState?: Object;
+  //    sheetsRegistry?: Object;
+  //    url: Object;
+  //  };
 
   class WithRoot extends React.Component<WithRootProps> {
     static childContextTypes = {
