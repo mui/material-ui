@@ -7,13 +7,13 @@ import * as warning from 'warning';
 import * as classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import { Manager, Target, Popper, IPopperProps } from 'react-popper';
-import * as debounce from 'lodash/debounce';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 import { StyleRulesCallback, WithStyles } from '../styles';
 import { StandardProps } from '../MuiProps';
+import debounce from '../utils/ts-import-workaround/debounce'
 
 // Use a class component so we can get a reference.
 class TargetChildren extends React.Component {
