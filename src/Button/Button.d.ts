@@ -2,11 +2,7 @@ import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
-export interface ButtonProps extends StandardProps<
-  ButtonBaseProps,
-  ButtonClassKey,
-  'component'
-> {
+export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassKey, 'component'> {
   color?: PropTypes.Color | 'contrast';
   component?: string | React.ComponentType<ButtonProps>;
   dense?: boolean;
@@ -33,9 +29,8 @@ export type ButtonClassKey =
   | 'raisedPrimary'
   | 'raisedAccent'
   | 'raisedContrast'
-  | 'fab'
-  ;
+  | 'fab';
 
 declare const Button: React.ComponentType<ButtonProps>;
 
-export default Button
+export default Button;

@@ -10,7 +10,7 @@ export interface InjectedProps {
 }
 
 export default function withMobileDialog<P = {}>(
-  options?: WithMobileDialogOptions
+  options?: WithMobileDialogOptions,
 ): (
-  component: React.ComponentType<P & InjectedProps & Partial<WithWidthProps>>
+  component: React.ComponentType<P & InjectedProps & Partial<WithWidthProps>>,
 ) => React.ComponentType<P & Partial<WithWidthProps>>;

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarClassKey>
-{
+export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarClassKey> {
   actionIcon?: React.ReactNode;
   actionPosition?: 'left' | 'right';
   subtitle?: React.ReactNode;
@@ -21,8 +20,7 @@ export type GridListTileBarClassKey =
   | 'title'
   | 'subtitle'
   | 'actionIconPositionLeft'
-  | 'childImg'
-  ;
+  | 'childImg';
 
 declare const GridListTileBar: React.ComponentType<GridListTileBarProps>;
 

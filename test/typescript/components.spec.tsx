@@ -51,12 +51,7 @@ import {
 import Collapse from '../../src/transitions/Collapse';
 import { GridList } from '../../src/GridList';
 import MobileStepper from '../../src/MobileStepper/MobileStepper';
-import Table, {
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from '../../src/Table';
+import Table, { TableBody, TableCell, TableHead, TableRow } from '../../src/Table';
 import { withStyles, StyleRulesCallback } from '../../src/styles';
 import { withMobileDialog, DialogProps } from '../../src/Dialog';
 import { WithStyles } from '../../src/styles/withStyles';
@@ -65,7 +60,7 @@ import GridListTile from '../../src/GridList/GridListTile';
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
 
-const AppBarTest = () =>
+const AppBarTest = () => (
   <AppBar position="static">
     <Toolbar>
       <IconButton color="contrast" aria-label="Menu">
@@ -76,16 +71,18 @@ const AppBarTest = () =>
       </Typography>
       <Button color="contrast">Login</Button>
     </Toolbar>
-  </AppBar>;
+  </AppBar>
+);
 
 const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
 
 const AvaterClassName = () => <Avatar className="foo" />;
 
-const BadgeTest = () =>
+const BadgeTest = () => (
   <Badge badgeContent={4} color="primary">
     <FakeIcon />
-  </Badge>;
+  </Badge>
+);
 
 const BottomNavigationTest = () => {
   const value = 123;
@@ -99,7 +96,7 @@ const BottomNavigationTest = () => {
   );
 };
 
-const ButtonTest = () =>
+const ButtonTest = () => (
   <div>
     <Button>I am a button!</Button>
     <Button color="contrast">Contrast</Button>
@@ -113,15 +110,12 @@ const ButtonTest = () =>
     <Button tabIndex={1} title="some button">
       Raised
     </Button>
-    <Button component="a">
-      Simple Link
-    </Button>
-    <Button component={props => <a {...props} />}>
-      Complexe Link
-    </Button>
-  </div>;
+    <Button component="a">Simple Link</Button>
+    <Button component={props => <a {...props} />}>Complexe Link</Button>
+  </div>
+);
 
-const IconButtonTest = () =>
+const IconButtonTest = () => (
   <div>
     <IconButton aria-label="Delete">
       <FakeIcon />
@@ -138,9 +132,10 @@ const IconButtonTest = () =>
     <IconButton color="primary" aria-label="Add to shopping cart">
       <FakeIcon />
     </IconButton>
-  </div>;
+  </div>
+);
 
-const CardTest = () =>
+const CardTest = () => (
   <Card>
     <CardContent>
       <Typography type="body1">Word of the Day</Typography>
@@ -156,9 +151,10 @@ const CardTest = () =>
     <CardActions>
       <Button dense>Learn More</Button>
     </CardActions>
-  </Card>;
+  </Card>
+);
 
-const CardMediaTest = () =>
+const CardMediaTest = () => (
   <Card>
     <CardHeader
       avatar={<Avatar aria-label="Recipe">R</Avatar>}
@@ -170,9 +166,8 @@ const CardMediaTest = () =>
     </CardMedia>
     <CardContent>
       <Typography component="p">
-        This impressive paella is a perfect party dish and a fun meal to cook
-        together with your guests. Add 1 cup of frozen peas along with the
-        mussels, if you like.
+        This impressive paella is a perfect party dish and a fun meal to cook together with your
+        guests. Add 1 cup of frozen peas along with the mussels, if you like.
       </Typography>
     </CardContent>
     <CardActions disableActionSpacing>
@@ -192,47 +187,37 @@ const CardMediaTest = () =>
           Method:
         </Typography>
         <Typography paragraph>
-          Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-          set aside for 10 minutes.
+          Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+          minutes.
         </Typography>
         <Typography paragraph>
-          Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-          over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-          stirring occasionally until lightly browned, 6 to 8 minutes. Transfer
-          shrimp to a large plate and set aside, leaving chicken and chorizo in
-          the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-          pepper, and cook, stirring often until thickened and fragrant, about
-          10 minutes. Add saffron broth and remaining 4 1/2 cups chicken broth;
-          bring to a boil.
+          Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high heat.
+          Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly browned, 6
+          to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken and chorizo
+          in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
+          stirring often until thickened and fragrant, about 10 minutes. Add saffron broth and
+          remaining 4 1/2 cups chicken broth; bring to a boil.
         </Typography>
         <Typography paragraph>
-          Add rice and stir very gently to distribute. Top with artichokes and
-          peppers, and cook without stirring, until most of the liquid is
-          absorbed, 15 to 18 minutes. Reduce heat to medium-low, add reserved
-          shrimp and mussels, tucking them down into the rice, and cook again
-          without stirring, until mussels have opened and rice is just tender, 5
-          to 7 minutes more. (Discard any mussels that don’t open.)
+          Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
+          without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
+          medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
+          again without stirring, until mussels have opened and rice is just tender, 5 to 7 minutes
+          more. (Discard any mussels that don’t open.)
         </Typography>
         <Typography>
           Set aside off of the heat to let rest for 10 minutes, and then serve.
         </Typography>
       </CardContent>
     </Collapse>
-  </Card>;
+  </Card>
+);
 
-const ChipsTest = () =>
+const ChipsTest = () => (
   <div>
     <Chip label="Basic Chip" />
-    <Chip
-      avatar={<Avatar>MB</Avatar>}
-      label="Clickable Chip"
-      onClick={e => log(e)}
-    />
-    <Chip
-      avatar={<Avatar src={'image.bmp'} />}
-      label="Deletable Chip"
-      onDelete={e => log(e)}
-    />
+    <Chip avatar={<Avatar>MB</Avatar>} label="Clickable Chip" onClick={e => log(e)} />
+    <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={e => log(e)} />
     <Chip
       avatar={
         <Avatar>
@@ -243,7 +228,8 @@ const ChipsTest = () =>
       onClick={e => log(e)}
       onDelete={e => log(e)}
     />
-  </div>;
+  </div>
+);
 
 const DialogTest = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
@@ -252,12 +238,8 @@ const DialogTest = () => {
       <DialogTitle>Set backup account</DialogTitle>
       <div>
         <List>
-          {emails.map(email =>
-            <ListItem
-              button
-              onClick={e => log(e)}
-              key={email}
-            >
+          {emails.map(email => (
+            <ListItem button onClick={e => log(e)} key={email}>
               <ListItemAvatar>
                 <Avatar>
                   <FakeIcon />
@@ -265,7 +247,7 @@ const DialogTest = () => {
               </ListItemAvatar>
               <ListItemText primary={email} />
             </ListItem>
-          )}
+          ))}
           <ListItem button onClick={e => log(e)}>
             <ListItemAvatar>
               <Avatar>
@@ -280,11 +262,12 @@ const DialogTest = () => {
   );
 };
 
-const DividerTest = () =>
+const DividerTest = () => (
   <div>
     <Divider />
     <Divider light />
-  </div>;
+  </div>
+);
 
 const DrawerTest = () => {
   const open = {
@@ -295,12 +278,7 @@ const DrawerTest = () => {
   };
   return (
     <div>
-      <Drawer
-        type="persistent"
-        open={open.left}
-        onClose={e => log(e)}
-        onClick={e => log(e)}
-      >
+      <Drawer type="persistent" open={open.left} onClose={e => log(e)} onClick={e => log(e)}>
         List
       </Drawer>
       <Drawer
@@ -334,7 +312,7 @@ const DrawerTest = () => {
   );
 };
 
-const ExpansionPanelTest = () =>
+const ExpansionPanelTest = () => (
   <div>
     <ExpansionPanel onChange={e => log(e)} expanded disabled>
       <ExpansionPanelSummary />
@@ -342,18 +320,19 @@ const ExpansionPanelTest = () =>
     </ExpansionPanel>
     <ExpansionPanel defaultExpanded>
       <ExpansionPanelSummary expandIcon={<FakeIcon />}>
-          <Typography>...</Typography>
+        <Typography>...</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-          <Typography>...</Typography>
+        <Typography>...</Typography>
       </ExpansionPanelDetails>
       <ExpansionPanelActions>
-          <Button dense>Save</Button>
+        <Button dense>Save</Button>
       </ExpansionPanelActions>
     </ExpansionPanel>
-  </div>;
+  </div>
+);
 
-const GridTest = () =>
+const GridTest = () => (
   <Grid component={Paper} container>
     <Grid item xs={12}>
       ...
@@ -367,24 +346,21 @@ const GridTest = () =>
     <Grid item hidden={{ smDown: true }} style={{ color: 'red' }}>
       ...
     </Grid>
-  </Grid>;
+  </Grid>
+);
 
-const GridListTest = () =>
+const GridListTest = () => (
   <GridList cellHeight={160} cols={3} onClick={e => log(e)}>
     <GridListTile cols={1} rows={4} onClick={e => log(e)}>
       <img src="img.png" alt="alt text" />
     </GridListTile>,
-  </GridList>;
+  </GridList>
+);
 
-const ListTest = () =>
+const ListTest = () => (
   <List>
-    {[0, 1, 2, 3].map(value =>
-      <ListItem
-        dense
-        button
-        key={value}
-        onClick={e => log(e)}
-      >
+    {[0, 1, 2, 3].map(value => (
+      <ListItem dense button key={value} onClick={e => log(e)}>
         <Checkbox checked={true} tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
@@ -393,8 +369,9 @@ const ListTest = () =>
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
-    )}
-  </List>;
+    ))}
+  </List>
+);
 
 const MenuTest = () => {
   const anchorEl = document.getElementById('foo')!;
@@ -405,26 +382,17 @@ const MenuTest = () => {
   ];
 
   return (
-    <Menu
-      id="lock-menu"
-      anchorEl={anchorEl}
-      open={true}
-      onClose={e => log(e)}
-    >
-      {options.map((option, index) =>
-        <MenuItem
-          key={option}
-          selected={false}
-          onClick={e => log(e)}
-        >
+    <Menu id="lock-menu" anchorEl={anchorEl} open={true} onClose={e => log(e)}>
+      {options.map((option, index) => (
+        <MenuItem key={option} selected={false} onClick={e => log(e)}>
           {option}
         </MenuItem>
-      )}
+      ))}
     </Menu>
   );
 };
 
-const PaperTest = () =>
+const PaperTest = () => (
   <Paper elevation={4}>
     <Typography type="headline" component="h3">
       This is a sheet of paper.
@@ -432,21 +400,24 @@ const PaperTest = () =>
     <Typography type="body1" component="p">
       Paper can be used to build surface or other elements for your application.
     </Typography>
-  </Paper>;
+  </Paper>
+);
 
-const CircularProgessTest = () =>
+const CircularProgessTest = () => (
   <div>
     <CircularProgress />
     <CircularProgress size={50} />
     <CircularProgress color="accent" />
     <CircularProgress color="accent" size={50} />
-  </div>;
+  </div>
+);
 
-const LinearProgressTest = () =>
+const LinearProgressTest = () => (
   <div>
     <LinearProgress mode="determinate" value={12} />
     <LinearProgress color="accent" mode="determinate" value={76} />
-  </div>;
+  </div>
+);
 
 const SelectionControlTest = () => {
   const state = {
@@ -455,60 +426,33 @@ const SelectionControlTest = () => {
     checkedF: true,
   };
 
-  const handleChange = (name: string) => (
-    event: React.SyntheticEvent<any>,
-    checked: boolean
-  ) => log({ [name]: checked });
+  const handleChange = (name: string) => (event: React.SyntheticEvent<any>, checked: boolean) =>
+    log({ [name]: checked });
 
   return (
     <FormGroup row>
       <FormControlLabel
         control={
-          <Checkbox
-            checked={state.checkedA}
-            onChange={handleChange('checkedA')}
-            value="checkedA"
-          />
+          <Checkbox checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" />
         }
         label="Option A"
       />
       <FormControlLabel
         control={
-          <Checkbox
-            checked={state.checkedB}
-            onChange={handleChange('checkedB')}
-            value="checkedB"
-          />
+          <Checkbox checked={state.checkedB} onChange={handleChange('checkedB')} value="checkedB" />
         }
         label="Option B"
       />
-      <FormControlLabel
-        control={<Checkbox value="checkedC" />}
-        label="Option C"
-      />
-      <FormControlLabel
-        disabled
-        control={<Checkbox value="checkedD" />}
-        label="Disabled"
-      />
-      <FormControlLabel
-        disabled
-        control={<Checkbox checked value="checkedE" />}
-        label="Disabled"
-      />
+      <FormControlLabel control={<Checkbox value="checkedC" />} label="Option C" />
+      <FormControlLabel disabled control={<Checkbox value="checkedD" />} label="Disabled" />
+      <FormControlLabel disabled control={<Checkbox checked value="checkedE" />} label="Disabled" />
       <FormControlLabel
         disabled
         control={<Checkbox checked value="checkedE" indeterminate />}
         label="Indeterminate"
       />
       <FormControlLabel
-        control={
-          <Checkbox
-            checked={true}
-            onChange={handleChange('checkedF')}
-            value="checkedF"
-          />
-        }
+        control={<Checkbox checked={true} onChange={handleChange('checkedF')} value="checkedF" />}
         label="Custom color"
       />
     </FormGroup>
@@ -521,39 +465,23 @@ const SwitchTest = () => {
     checkedB: false,
     checkedE: true,
   };
-  const handleChange = (name: string) => (
-    event: React.SyntheticEvent<any>,
-    checked: boolean
-  ) => log({ [name]: checked });
+  const handleChange = (name: string) => (event: React.SyntheticEvent<any>, checked: boolean) =>
+    log({ [name]: checked });
 
   return (
     <div>
-      <Switch
-        checked={state.checkedA}
-        onChange={handleChange('checkedA')}
-        aria-label="checkedA"
-      />
-      <Switch
-        checked={state.checkedB}
-        onChange={handleChange('checkedB')}
-        aria-label="checkedB"
-      />
+      <Switch checked={state.checkedA} onChange={handleChange('checkedA')} aria-label="checkedA" />
+      <Switch checked={state.checkedB} onChange={handleChange('checkedB')} aria-label="checkedB" />
       <Switch checked={false} aria-label="checkedC" disabled />
       <Switch checked aria-label="checkedD" disabled />
-      <Switch
-        checked={state.checkedE}
-        onChange={handleChange('checkedE')}
-        aria-label="checkedD"
-      />
+      <Switch checked={state.checkedE} onChange={handleChange('checkedE')} aria-label="checkedD" />
     </div>
   );
 };
 
-const SnackbarTest = () =>
+const SnackbarTest = () => (
   <div>
-    <Button onClick={e => log(e)}>
-      Open simple snackbar
-    </Button>
+    <Button onClick={e => log(e)}>Open simple snackbar</Button>
     <Snackbar
       anchorOrigin={{
         vertical: 'bottom',
@@ -567,25 +495,16 @@ const SnackbarTest = () =>
       }}
       message={<span id="message-id">Note archived</span>}
       action={[
-        <Button
-          key="undo"
-          color="accent"
-          dense
-          onClick={e => log(e)}
-        >
+        <Button key="undo" color="accent" dense onClick={e => log(e)}>
           UNDO
         </Button>,
-        <IconButton
-          key="close"
-          aria-label="Close"
-          color="inherit"
-          onClick={e => log(e)}
-        >
+        <IconButton key="close" aria-label="Close" color="inherit" onClick={e => log(e)}>
           <FakeIcon />
         </IconButton>,
       ]}
     />
-  </div>;
+  </div>
+);
 
 const SnackbarContentTest = () => {
   const action = (
@@ -602,10 +521,7 @@ const SnackbarContentTest = () => {
           I love cheesecake. I love chocolate.'
         }
       />
-      <SnackbarContent
-        message="I love candy. I love cookies. I love cupcakes."
-        action={action}
-      />
+      <SnackbarContent message="I love candy. I love cookies. I love cupcakes." action={action} />
       <SnackbarContent
         message={
           'I love candy. I love cookies. I love cupcakes. \
@@ -699,21 +615,11 @@ const TableTest = () => {
             {data.map(n => {
               return (
                 <TableRow key={n.id}>
-                  <TableCell>
-                    {n.name}
-                  </TableCell>
-                  <TableCell numeric>
-                    {n.calories}
-                  </TableCell>
-                  <TableCell numeric>
-                    {n.fat}
-                  </TableCell>
-                  <TableCell numeric>
-                    {n.carbs}
-                  </TableCell>
-                  <TableCell numeric>
-                    {n.protein}
-                  </TableCell>
+                  <TableCell>{n.name}</TableCell>
+                  <TableCell numeric>{n.calories}</TableCell>
+                  <TableCell numeric>{n.fat}</TableCell>
+                  <TableCell numeric>{n.carbs}</TableCell>
+                  <TableCell numeric>{n.protein}</TableCell>
                 </TableRow>
               );
             })}
@@ -727,12 +633,9 @@ const TableTest = () => {
 };
 
 const TabsTest = () => {
-  const TabContainer: React.SFC = props =>
-    <div style={{ padding: 20 }}>
-      {props.children}
-    </div>;
+  const TabContainer: React.SFC = props => <div style={{ padding: 20 }}>{props.children}</div>;
 
-  type ClassKey = 'root' | 'button'
+  type ClassKey = 'root' | 'button';
 
   const styles: StyleRulesCallback<ClassKey> = theme => ({
     root: {
@@ -766,18 +669,9 @@ const TabsTest = () => {
               <Tab label="Item Three" />
             </Tabs>
           </AppBar>
-          {this.state.value === 0 &&
-            <TabContainer>
-              {'Item One'}
-            </TabContainer>}
-          {this.state.value === 1 &&
-            <TabContainer>
-              {'Item Two'}
-            </TabContainer>}
-          {this.state.value === 2 &&
-            <TabContainer>
-              {'Item Three'}
-            </TabContainer>}
+          {this.state.value === 0 && <TabContainer>{'Item One'}</TabContainer>}
+          {this.state.value === 1 && <TabContainer>{'Item Two'}</TabContainer>}
+          {this.state.value === 2 && <TabContainer>{'Item Three'}</TabContainer>}
         </div>
       );
     }
@@ -786,7 +680,7 @@ const TabsTest = () => {
   return withStyles(styles)(BasicTabs);
 };
 
-const TextFieldTest = () =>
+const TextFieldTest = () => (
   <div>
     <TextField id="name" label="Name" value={'Alice'} />
     <TextField id="name" label={<strong>Name</strong>} value={'Alice'} />
@@ -794,17 +688,12 @@ const TextFieldTest = () =>
       id="name"
       label="Name"
       value={'Alice'}
-      onChange={event =>
-        log({ name: event.currentTarget.value })}
+      onChange={event => log({ name: event.currentTarget.value })}
     />
-    <TextField
-      id="name"
-      label="Name"
-      value={'Alice'}
-      InputProps={{ classes: { root: 'foo' } }}
-    />
-    <TextField type="number" InputProps={ {inputProps: { min: "0", max: "10", step: "1" }} } />
-  </div>;
+    <TextField id="name" label="Name" value={'Alice'} InputProps={{ classes: { root: 'foo' } }} />
+    <TextField type="number" InputProps={{ inputProps: { min: '0', max: '10', step: '1' } }} />
+  </div>
+);
 
 const SelectTest = () => {
   <Select input={<Input />} value={10} onChange={e => log(e.currentTarget.value)}>
@@ -820,17 +709,15 @@ const SelectTest = () => {
 const ResponsiveComponentTest = () => {
   const ResponsiveComponent = withMobileDialog({
     breakpoint: 'sm',
-  })(({ children, width, fullScreen }) =>
-    <div style={{ width, position: fullScreen ? 'fixed' : 'static' }}>
-      {children}
-    </div>
-  );
+  })(({ children, width, fullScreen }) => (
+    <div style={{ width, position: fullScreen ? 'fixed' : 'static' }}>{children}</div>
+  ));
   <ResponsiveComponent />;
 
   const ResponsiveDialogComponent = withMobileDialog<DialogProps>()(Dialog);
 };
 
-const TooltipComponentTest = () =>
+const TooltipComponentTest = () => (
   <div>
     <Tooltip id="tooltip-top-start" title="Add" placement="top-start">
       <Button>top-start</Button>
@@ -839,9 +726,10 @@ const TooltipComponentTest = () =>
       <Button>top-start</Button>
     </Tooltip>
   </div>
+);
 
-const ClickAwayListenerComponentTest = () =>
+const ClickAwayListenerComponentTest = () => (
   <ClickAwayListener onClickAway={() => {}}>
     <div />
   </ClickAwayListener>
-
+);

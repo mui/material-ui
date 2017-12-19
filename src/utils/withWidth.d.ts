@@ -11,17 +11,17 @@ export interface WithWidthProps {
 export function isWidthDown(
   breakpoint: Breakpoint,
   screenWidth: Breakpoint,
-  inclusive?: boolean
+  inclusive?: boolean,
 ): boolean;
 
 export function isWidthUp(
   breakpoint: Breakpoint,
   screenWidth: Breakpoint,
-  inclusive?: boolean
+  inclusive?: boolean,
 ): boolean;
 
 export default function withWidth(
-  options?: WithWidthOptions
+  options?: WithWidthOptions,
 ): <P>(
-  component: React.ComponentType<P & WithWidthProps>
+  component: React.ComponentType<P & WithWidthProps>,
 ) => React.ComponentClass<P & Partial<WithWidthProps>>;

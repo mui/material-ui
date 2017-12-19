@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface ChipProps extends StandardProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  ChipClassKey
-> {
+export interface ChipProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ChipClassKey> {
   avatar?: React.ReactElement<any>;
   deleteIcon?: React.ReactElement<any>;
   label?: React.ReactNode;
@@ -19,8 +17,7 @@ export type ChipClassKey =
   | 'avatar'
   | 'avatarChildren'
   | 'label'
-  | 'deleteIcon'
-  ;
+  | 'deleteIcon';
 
 declare const Chip: React.ComponentType<ChipProps>;
 

@@ -2,10 +2,7 @@ import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
-export interface IconButtonProps extends StandardProps<
-  ButtonBaseProps,
-  IconButtonClassKey
-> {
+export interface IconButtonProps extends StandardProps<ButtonBaseProps, IconButtonClassKey> {
   buttonRef?: React.Ref<any>;
   color?: PropTypes.Color | 'contrast';
   disabled?: boolean;
@@ -21,8 +18,7 @@ export type IconButtonClassKey =
   | 'colorInherit'
   | 'label'
   | 'icon'
-  | 'keyboardFocused'
-  ;
+  | 'keyboardFocused';
 
 declare const IconButton: React.ComponentType<IconButtonProps>;
 

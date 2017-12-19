@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface CircularProgressProps extends StandardProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  CircularProgressClassKey
-> {
+export interface CircularProgressProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CircularProgressClassKey> {
   color?: 'primary' | 'accent' | 'inherit';
   max?: number;
   min?: number;
@@ -22,9 +20,8 @@ export type CircularProgressClassKey =
   | 'indeterminateSvg'
   | 'circle'
   | 'indeterminateCircle'
-  | 'determinateCircle'
-  ;
+  | 'determinateCircle';
 
 declare const CircularProgress: React.ComponentType<CircularProgressProps>;
 
-export default CircularProgress
+export default CircularProgress;
