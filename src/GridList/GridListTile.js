@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as classNames from 'classnames';
 import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
+import * as debounce from 'lodash/debounce';
 import withStyles from '../styles/withStyles';
 
 export const styles = {

@@ -6,7 +6,7 @@ import * as ReactDOM from 'react-dom';
 import * as warning from 'warning';
 import * as contains from 'dom-helpers/query/contains';
 import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
+import * as debounce from 'lodash/debounce';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../transitions/Grow';

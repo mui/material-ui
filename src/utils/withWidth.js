@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import * as hoistNonReactStatics from 'hoist-non-react-statics';
 import EventListener from 'react-event-listener';
 import wrapDisplayName from 'recompose/wrapDisplayName';
-import debounce from 'lodash/debounce';
+import * as debounce from 'lodash/debounce';
 import withTheme from '../styles/withTheme';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 

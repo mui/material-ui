@@ -6,7 +6,7 @@ import * as scroll from 'scroll';
 import EventListener from 'react-event-listener';
 import ScrollbarSize from 'react-scrollbar-size';
 import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
-import debounce from 'lodash/debounce';
+import * as debounce from 'lodash/debounce';
 import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
