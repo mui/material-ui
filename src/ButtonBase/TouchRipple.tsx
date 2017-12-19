@@ -5,13 +5,13 @@ import * as classNames from 'classnames';
 import * as TransitionGroup from 'react-transition-group/TransitionGroup';
 import withStyles from '../styles/withStyles';
 import Ripple, { RippleClassKey, RippleProps } from './Ripple';
-import { StyleRulesCallback, Theme, WithStyles } from '../styles';
+import { StyleRulesCallback, WithStyles } from '../styles';
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
 
 export type TouchRippleClassKey = 'root' | RippleClassKey;
-export const styles: StyleRulesCallback<TouchRippleClassKey> = (theme: Theme) => ({
+export const styles: StyleRulesCallback<TouchRippleClassKey> = theme => ({
   root: {
     display: 'block',
     position: 'absolute',

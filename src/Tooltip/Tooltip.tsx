@@ -12,7 +12,7 @@ import { capitalizeFirstLetter } from '../utils/helpers';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
-import { StyleRulesCallback, Theme, WithStyles } from '../styles';
+import { StyleRulesCallback, WithStyles } from '../styles';
 import { StandardProps } from '../MuiProps';
 
 // Use a class component so we can get a reference.
@@ -37,7 +37,7 @@ export type TooltipClassKey =
   | 'tooltipBottom'
   | 'tooltipOpen';
 
-export const styles: StyleRulesCallback<TooltipClassKey> = (theme: Theme) => ({
+export const styles: StyleRulesCallback<TooltipClassKey> = theme => ({
   root: {
     display: 'inline',
     flexDirection: 'inherit', // Makes the wrapper more transparent.
