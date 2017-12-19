@@ -6,11 +6,11 @@ import * as ReactDOM from 'react-dom';
 import * as warning from 'warning';
 import * as contains from 'dom-helpers/query/contains';
 import EventListener from 'react-event-listener';
+import debounce from 'lodash/debounce';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../transitions/Grow';
 import Paper from '../Paper';
-import debounce from 'lodash/debounce';
 
 function getOffsetTop(rect, vertical) {
   let offset = 0;
