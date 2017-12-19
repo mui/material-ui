@@ -61,6 +61,7 @@
     "react-dom": "^15.3.0 || ^16.0.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.35",
     "babel-runtime": "^6.26.0",
     "brcast": "^3.0.1",
     "cache-loader": "^1.2.0",
