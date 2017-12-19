@@ -64,6 +64,24 @@ They are easy to debug in development and as short as possible in production:
 - development: `.MuiAppBar-root-12`
 - production: `.c12`
 
+If you don't like this default behavior, you can change it.
+JSS relies on the concept of [class name generator](http://cssinjs.org/js-api/#generate-your-own-class-names).
+
+### Global CSS
+
+We provide a custom implementation of the class name generator for Material-UI needs:
+[`createGenerateClassName()`](#creategenerateclassname-options-class-name-generator).
+As well as the option to make the class names **deterministic** with the `dangerouslyUseGlobalCSS` option. When turned on, the class names will look like this:
+
+- development: `.MuiAppBar-root`
+- production: `.MuiAppBar-root`
+
+⚠️ **Be very cautious when using `dangerouslyUseGlobalCSS`.**
+We provide this option as an escape hatch for quick prototyping.
+Avoid relying on it for code running in production.
+It's very hard to keep track of class name API changes.
+Global CSS is fragile by design.
+
 ## CSS injection order
 
 The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link />` is injected at the bottom of the `<head />`.
@@ -84,17 +102,16 @@ By adjusting the placement of the `insertionPoint` comment within your HTML body
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import preset from 'jss-preset-default';
-import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+import { createGenerateClassName } from 'material-ui/styles';
 
+const generateClassName = createGenerateClassName();
 const jss = create(preset());
-// Custom Material-UI class name generator for better debug and performance.
-jss.options.createGenerateClassName = createGenerateClassName;
 // We define a custom insertion point JSS will look for injecting the styles in the DOM.
 jss.options.insertionPoint = 'insertion-point-jss';
 
 function App() {
   return (
-    <JssProvider jss={jss}>
+    <JssProvider jss={jss} generateClassName={generateClassName}>
       ...
     </JssProvider>
   );
@@ -116,15 +133,14 @@ Here is an example:
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import preset from 'jss-preset-default';
-import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+import { createGenerateClassName } from 'material-ui/styles';
 
+const generateClassName = createGenerateClassName();
 const jss = create(preset());
-// Custom Material-UI class name generator for better debug and performance.
-jss.options.createGenerateClassName = createGenerateClassName;
 
 function App() {
   return (
-    <JssProvider jss={jss}>
+    <JssProvider jss={jss} generateClassName={generateClassName}>
       ...
     </JssProvider>
   );
@@ -217,4 +233,41 @@ class MyComponent extends React.Component {
 }
 
 export default MyComponent
+```
+
+### `createGenerateClassName([options]) => class name generator`
+
+A function which returns a class name generator function.
+
+#### Arguments
+
+1. `options` (*Object* [optional]):
+  - `options.dangerouslyUseGlobalCSS` (Boolean [optional]): Makes the Material-UI class names deterministic. It's `false` by default.
+
+#### Returns
+
+`class name generator`: The generator should be provided to JSS.
+
+#### Examples
+
+```jsx
+import JssProvider from 'react-jss/lib/JssProvider';
+import { create } from 'jss';
+import preset from 'jss-preset-default';
+import { createGenerateClassName } from 'material-ui/styles';
+
+const generateClassName = createGenerateClassName({
+  dangerouslyUseGlobalCSS: true,
+});
+const jss = create(preset());
+
+function App() {
+  return (
+    <JssProvider jss={jss} generateClassName={generateClassName}>
+      ...
+    </JssProvider>
+  );
+}
+
+export default App;
 ```

@@ -36,7 +36,11 @@ function withRoot(Component) {
 
     render() {
       return (
-        <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
+        <JssProvider
+          registry={context.sheetsRegistry}
+          jss={context.jss}
+          generateClassName={context.generateClassName}
+        >
           <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
             <AppWrapper>
               <Component {...this.props} />

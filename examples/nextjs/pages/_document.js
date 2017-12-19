@@ -60,7 +60,11 @@ MyDocument.getInitialProps = ctx => {
   // Get the context to collected side effects.
   const context = getContext();
   const page = ctx.renderPage(Component => props => (
-    <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
+    <JssProvider
+      registry={context.sheetsRegistry}
+      jss={context.jss}
+      generateClassName={context.generateClassName}
+    >
       <Component {...props} />
     </JssProvider>
   ));
