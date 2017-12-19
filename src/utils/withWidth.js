@@ -5,7 +5,7 @@ import * as hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withTheme from '../styles/withTheme';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
-import debounce from './ts-import-workaround/debounce';
+import debounce from 'lodash/debounce';
 
 // By default, returns true if screen width is the same or greater than the given breakpoint.
 export const isWidthUp = (breakpoint, width, inclusive = true) => {

@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import * as classnames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
-import debounce from '../utils/ts-import-workaround/debounce';
+import debounce from 'lodash/debounce';
 
 const ROWS_HEIGHT = 24;
 

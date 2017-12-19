@@ -1,3 +1,4 @@
+/* eslint-disable */
 const env = require('@babel/preset-env');
 
 function _default(api, opts) {

@@ -14,7 +14,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noEmitOnError": true,
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "strictNullChecks": false,
     "strictFunctionTypes": true,
     "forceConsistentCasingInFileNames": true,
@@ -29,7 +29,7 @@
     "./test/**/*"
   ],
   "exclude": [
-    "build",
+    "./build/**/*",
     "node_modules"
   ]
 }

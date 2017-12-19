@@ -1,5 +1,5 @@
 import * as warning from 'warning';
-import deepmerge from '../utils/ts-import-workaround/deepmerge';
+import deepmerge from 'deepmerge';
 
 function getStylesCreator(stylesOrCreator) {
   function create(theme, name) {
