@@ -266,6 +266,18 @@
     "@babel/traverse" "7.0.0-beta.35"
     "@babel/types" "7.0.0-beta.35"
 
+"@babel/node@^7.0.0-beta.35":
+  version "7.0.0-beta.35"
+  resolved "https://registry.yarnpkg.com/@babel/node/-/node-7.0.0-beta.35.tgz#ffd43a9367c4b6ce7a13af6f1dea06b2d23145c8"
+  dependencies:
+    "@babel/polyfill" "7.0.0-beta.35"
+    "@babel/register" "7.0.0-beta.35"
+    commander "^2.8.1"
+    fs-readdir-recursive "^1.0.0"
+    lodash "^4.2.0"
+    output-file-sync "^2.0.0"
+    v8flags "^3.0.0"
+
 "@babel/plugin-check-constants@7.0.0-beta.35":
   version "7.0.0-beta.35"
   resolved "https://registry.yarnpkg.com/@babel/plugin-check-constants/-/plugin-check-constants-7.0.0-beta.35.tgz#18cca7d9fbba746171c879ced7c69defbdc8bc11"
@@ -651,6 +663,13 @@
     "@babel/helper-regex" "7.0.0-beta.35"
     regexpu-core "^4.1.3"
 
+"@babel/polyfill@7.0.0-beta.35":
+  version "7.0.0-beta.35"
+  resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.0.0-beta.35.tgz#49d033c4fdfa54a3a11e8f87239530141650d47a"
+  dependencies:
+    core-js "^2.4.0"
+    regenerator-runtime "^0.11.1"
+
 "@babel/preset-env@^7.0.0-beta.35":
   version "7.0.0-beta.35"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.0.0-beta.35.tgz#634431813b14ebe841f293fbf459a3ffa61d7ef6"
@@ -742,7 +761,7 @@
   dependencies:
     "@babel/plugin-transform-typescript" "7.0.0-beta.35"
 
-"@babel/register@^7.0.0-beta.35":
+"@babel/register@7.0.0-beta.35", "@babel/register@^7.0.0-beta.35":
   version "7.0.0-beta.35"
   resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.0.0-beta.35.tgz#0af044c0476f5f68535feb73242f8da66e0e4a8b"
   dependencies:
@@ -8340,7 +8359,7 @@ regenerator-runtime@^0.10.5:
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
 
-regenerator-runtime@^0.11.0:
+regenerator-runtime@^0.11.0, regenerator-runtime@^0.11.1:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
 

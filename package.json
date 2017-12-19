@@ -32,7 +32,7 @@
     "prebuild": "rimraf build",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.spec.js,*.spec.ts,*.spec.tsx --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --ignore *.spec.js --out-dir ./build/es",
+    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --ignore *.spec.js,*.spec.ts,*.spec.tsx --out-dir ./build/es",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "build:umd:dev": "webpack --config scripts/umd.webpack.config.js",
     "build:umd:prod": "cross-env NODE_ENV=production webpack --config scripts/umd.webpack.config.js",
@@ -87,6 +87,7 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.35",
     "@babel/core": "^7.0.0-beta.35",
+    "@babel/node": "^7.0.0-beta.35",
     "@babel/plugin-transform-react-constant-elements": "^7.0.0-beta.35",
     "@babel/plugin-transform-runtime": "^7.0.0-beta.35",
     "@babel/preset-env": "^7.0.0-beta.35",

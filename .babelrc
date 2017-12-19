@@ -17,10 +17,7 @@
       ]
     },
     "development": {
-      "sourceMaps": "both",
-      "plugins": [
-        "transform-flow-strip-types"
-      ]
+      "sourceMaps": "both"
     },
     "docs-development": {
       "presets": [
@@ -38,8 +35,7 @@
               "docs": "./docs"
             }
           }
-        ],
-        "transform-flow-strip-types"
+        ]
       ]
     },
     "docs-production": {
@@ -67,10 +63,7 @@
       ]
     },
     "test": {
-      "sourceMaps": "both",
-      "plugins": [
-        "transform-flow-strip-types"
-      ]
+      "sourceMaps": "both"
     },
     "production": {
       "plugins": [
@@ -79,13 +72,13 @@
         "@babel/plugin-transform-runtime",
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
         ["transform-react-remove-prop-types", {
-          "mode": "wrap",
-          "plugins": [
-            "babel-plugin-transform-flow-strip-types"
-          ]
+          "mode": "wrap"
         }]
       ]
     }
-  }
+  },
+  "ignore": [
+    "scripts/material-ui-babel-preset-env.js"
+  ]
 }
 
