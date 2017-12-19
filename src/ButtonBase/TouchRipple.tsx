@@ -5,93 +5,90 @@ import * as classNames from 'classnames';
 import * as TransitionGroup from 'react-transition-group/TransitionGroup';
 import withStyles from '../styles/withStyles';
 import Ripple, { RippleClassKey, RippleProps } from './Ripple';
-import { Theme, WithStyles } from '../styles';
+import { StyleRulesCallback, Theme, WithStyles } from '../styles';
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
 
 export type TouchRippleClassKey = 'root' | RippleClassKey;
-export const styles = withStyles<TouchRippleClassKey>(
-  (theme: Theme) => ({
-    root: {
-      display: 'block',
-      position: 'absolute',
-      overflow: 'hidden',
-      borderRadius: 'inherit',
-      width: '100%',
-      height: '100%',
-      left: 0,
-      top: 0,
-      pointerEvents: 'none',
-      zIndex: 0,
+export const styles: StyleRulesCallback<TouchRippleClassKey> = (theme: Theme) => ({
+  root: {
+    display: 'block',
+    position: 'absolute',
+    overflow: 'hidden',
+    borderRadius: 'inherit',
+    width: '100%',
+    height: '100%',
+    left: 0,
+    top: 0,
+    pointerEvents: 'none',
+    zIndex: 0,
+  },
+  wrapper: {
+    opacity: 1,
+  },
+  wrapperLeaving: {
+    opacity: 0,
+    animation: `mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
+  },
+  wrapperPulsating: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    animation: `mui-ripple-pulsate 1500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
+    rippleVisible: {
+      opacity: 0.2,
     },
-    wrapper: {
+  },
+  '@keyframes mui-ripple-enter': {
+    '0%': {
+      transform: 'scale(0)',
+    },
+    '100%': {
+      transform: 'scale(1)',
+    },
+  },
+  '@keyframes mui-ripple-exit': {
+    '0%': {
       opacity: 1,
     },
-    wrapperLeaving: {
+    '100%': {
       opacity: 0,
-      animation: `mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
     },
-    wrapperPulsating: {
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      display: 'block',
-      width: '100%',
-      height: '100%',
-      animation: `mui-ripple-pulsate 1500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
-      rippleVisible: {
-        opacity: 0.2,
-      },
-    },
-    '@keyframes mui-ripple-enter': {
-      '0%': {
-        transform: 'scale(0)',
-      },
-      '100%': {
-        transform: 'scale(1)',
-      },
-    },
-    '@keyframes mui-ripple-exit': {
-      '0%': {
-        opacity: 1,
-      },
-      '100%': {
-        opacity: 0,
-      },
-    },
-    '@keyframes mui-ripple-pulsate': {
-      '0%': {
-        transform: 'scale(1)',
-      },
-      '50%': {
-        transform: 'scale(0.9)',
-      },
-      '100%': {
-        transform: 'scale(1)',
-      },
-    },
-    ripple: {
-      width: 50,
-      height: 50,
-      left: 0,
-      top: 0,
-      opacity: 0,
-      position: 'absolute',
-      borderRadius: '50%',
-      background: 'currentColor',
-    },
-    rippleVisible: {
-      opacity: 0.3,
+  },
+  '@keyframes mui-ripple-pulsate': {
+    '0%': {
       transform: 'scale(1)',
-      animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
     },
-    rippleFast: {
-      animationDuration: '200ms',
+    '50%': {
+      transform: 'scale(0.9)',
     },
-  }),
-  { flip: false, name: 'MuiTouchRipple' },
-);
+    '100%': {
+      transform: 'scale(1)',
+    },
+  },
+  ripple: {
+    width: 50,
+    height: 50,
+    left: 0,
+    top: 0,
+    opacity: 0,
+    position: 'absolute',
+    borderRadius: '50%',
+    background: 'currentColor',
+  },
+  rippleVisible: {
+    opacity: 0.3,
+    transform: 'scale(1)',
+    animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
+  },
+  rippleFast: {
+    animationDuration: '200ms',
+  },
+});
 
 export interface TouchRippleProps {
   center?: boolean;
@@ -310,4 +307,6 @@ class TouchRipple extends React.Component<
   className: PropTypes.string,
 };
 
-export default styles<TouchRippleProps>(TouchRipple);
+export default withStyles<TouchRippleClassKey>(styles, { flip: false, name: 'MuiTouchRipple' })(
+  TouchRipple,
+);

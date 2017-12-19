@@ -6,7 +6,7 @@ import * as PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
-import { Theme, WithStyles } from '../styles';
+import { StyleRulesCallback, Theme, WithStyles } from '../styles';
 import { StandardProps } from '../MuiProps';
 import { TransitionDuration, TransitionProps } from './transition';
 import { Omit } from 'type-zoo';
@@ -21,29 +21,23 @@ export interface CollapseProps extends Omit<TransitionProps, 'timeout'> {
 }
 
 export type CollapseClassKey = 'container' | 'entered' | 'wrapper' | 'wrapperInner';
-export const styles = withStyles<CollapseClassKey>(
-  ({ transitions }) => ({
-    container: {
-      height: 0,
-      overflow: 'hidden',
-      transition: transitions.create('height'),
-    },
-    entered: {
-      height: 'auto',
-    },
-    wrapper: {
-      // Hack to get children with a negative margin to not falsify the height computation.
-      display: 'flex',
-    },
-    wrapperInner: {
-      width: '100%',
-    },
-  }),
-  {
-    withTheme: true,
-    name: 'MuiCollapse',
+export const styles: StyleRulesCallback<CollapseClassKey> = ({ transitions }) => ({
+  container: {
+    height: 0,
+    overflow: 'hidden',
+    transition: transitions.create('height'),
   },
-);
+  entered: {
+    height: 'auto',
+  },
+  wrapper: {
+    // Hack to get children with a negative margin to not falsify the height computation.
+    display: 'flex',
+  },
+  wrapperInner: {
+    width: '100%',
+  },
+});
 
 class Collapse extends React.Component<CollapseProps & WithStyles<CollapseClassKey>> {
   static defaultProps = {
@@ -273,4 +267,6 @@ class Collapse extends React.Component<CollapseProps & WithStyles<CollapseClassK
   ]),
 };
 
-export default styles<CollapseProps>(Collapse);
+export default withStyles<CollapseClassKey>(styles, { withTheme: true, name: 'MuiCollapse' })(
+  Collapse,
+);

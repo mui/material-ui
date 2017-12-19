@@ -12,7 +12,7 @@ import { capitalizeFirstLetter } from '../utils/helpers';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
-import { Theme, WithStyles } from '../styles';
+import { StyleRulesCallback, Theme, WithStyles } from '../styles';
 import { StandardProps } from '../MuiProps';
 
 // Use a class component so we can get a reference.
@@ -37,74 +37,71 @@ export type TooltipClassKey =
   | 'tooltipBottom'
   | 'tooltipOpen';
 
-export const styles = withStyles<TooltipClassKey>(
-  (theme: Theme) => ({
-    root: {
-      display: 'inline',
-      flexDirection: 'inherit', // Makes the wrapper more transparent.
-    },
-    popper: {
-      zIndex: theme.zIndex.tooltip,
-    },
-    popperClose: {
-      pointerEvents: 'none',
-    },
-    tooltip: {
-      background: grey[700],
-      borderRadius: 2,
-      color: common.fullWhite,
-      fontFamily: theme.typography.fontFamily,
-      fontSize: theme.typography.pxToRem(14),
-      minHeight: theme.spacing.unit * 4,
-      lineHeight: '32px',
-      opacity: 0,
+export const styles: StyleRulesCallback<TooltipClassKey> = (theme: Theme) => ({
+  root: {
+    display: 'inline',
+    flexDirection: 'inherit', // Makes the wrapper more transparent.
+  },
+  popper: {
+    zIndex: theme.zIndex.tooltip,
+  },
+  popperClose: {
+    pointerEvents: 'none',
+  },
+  tooltip: {
+    background: grey[700],
+    borderRadius: 2,
+    color: common.fullWhite,
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.pxToRem(14),
+    minHeight: theme.spacing.unit * 4,
+    lineHeight: '32px',
+    opacity: 0,
+    padding: `0 ${theme.spacing.unit}px`,
+    transform: 'scale(0)',
+    transition: theme.transitions.create(['opacity', 'transform'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 22,
+      lineHeight: '22px',
       padding: `0 ${theme.spacing.unit}px`,
-      transform: 'scale(0)',
-      transition: theme.transitions.create(['opacity', 'transform'], {
-        duration: theme.transitions.duration.shortest,
-      }),
-      [theme.breakpoints.up('sm')]: {
-        minHeight: 22,
-        lineHeight: '22px',
-        padding: `0 ${theme.spacing.unit}px`,
-        fontSize: theme.typography.pxToRem(10),
-      },
+      fontSize: theme.typography.pxToRem(10),
     },
-    tooltipLeft: {
-      transformOrigin: 'right center',
-      margin: `0 ${theme.spacing.unit * 3}px`,
-      [theme.breakpoints.up('sm')]: {
-        margin: '0 14px',
-      },
+  },
+  tooltipLeft: {
+    transformOrigin: 'right center',
+    margin: `0 ${theme.spacing.unit * 3}px`,
+    [theme.breakpoints.up('sm')]: {
+      margin: '0 14px',
     },
-    tooltipRight: {
-      transformOrigin: 'left center',
-      margin: `0 ${theme.spacing.unit * 3}px`,
-      [theme.breakpoints.up('sm')]: {
-        margin: '0 14px',
-      },
+  },
+  tooltipRight: {
+    transformOrigin: 'left center',
+    margin: `0 ${theme.spacing.unit * 3}px`,
+    [theme.breakpoints.up('sm')]: {
+      margin: '0 14px',
     },
-    tooltipTop: {
-      transformOrigin: 'center bottom',
-      margin: `${theme.spacing.unit * 3}px 0`,
-      [theme.breakpoints.up('sm')]: {
-        margin: '14px 0',
-      },
+  },
+  tooltipTop: {
+    transformOrigin: 'center bottom',
+    margin: `${theme.spacing.unit * 3}px 0`,
+    [theme.breakpoints.up('sm')]: {
+      margin: '14px 0',
     },
-    tooltipBottom: {
-      transformOrigin: 'center top',
-      margin: `${theme.spacing.unit * 3}px 0`,
-      [theme.breakpoints.up('sm')]: {
-        margin: '14px 0',
-      },
+  },
+  tooltipBottom: {
+    transformOrigin: 'center top',
+    margin: `${theme.spacing.unit * 3}px 0`,
+    [theme.breakpoints.up('sm')]: {
+      margin: '14px 0',
     },
-    tooltipOpen: {
-      opacity: 0.9,
-      transform: 'scale(1)',
-    },
-  }),
-  { name: 'MuiTooltip', withTheme: true },
-);
+  },
+  tooltipOpen: {
+    opacity: 0.9,
+    transform: 'scale(1)',
+  },
+});
 
 export type Placement =
   | 'bottom-end'
@@ -526,4 +523,6 @@ class Tooltip extends React.Component<TooltipProps & WithStyles<TooltipClassKey>
   title: PropTypes.node.isRequired,
 };
 
-export default styles(Tooltip);
+export default withStyles<TooltipClassKey>(styles, { name: 'MuiTooltip', withTheme: true })(
+  Tooltip,
+);
