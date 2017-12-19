@@ -9,6 +9,7 @@ export interface DatePickerProps {
     minDate?: DateType;
     maxDate?: DateType;
     onChange: (date: object, isFinished?: boolean) => void;
+    disablePast?: boolean;
     disableFuture?: boolean;
     animateYearScrolling?: boolean;
     openToYearSelection?: boolean;

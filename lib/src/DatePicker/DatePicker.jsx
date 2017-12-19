@@ -17,6 +17,7 @@ export class DatePicker extends PureComponent {
     maxDate: DomainPropTypes.date,
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
     animateYearScrolling: PropTypes.bool,
     openToYearSelection: PropTypes.bool,
@@ -31,6 +32,7 @@ export class DatePicker extends PureComponent {
   static defaultProps = {
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
+    disablePast: false,
     disableFuture: false,
     animateYearScrolling: undefined,
     openToYearSelection: false,
@@ -75,6 +77,7 @@ export class DatePicker extends PureComponent {
   render() {
     const {
       classes,
+      disablePast,
       disableFuture,
       onChange,
       animateYearScrolling,
@@ -114,6 +117,7 @@ export class DatePicker extends PureComponent {
                 onChange={this.handleYearSelect}
                 minDate={this.minDate}
                 maxDate={this.maxDate}
+                disablePast={disablePast}
                 disableFuture={disableFuture}
                 animateYearScrolling={animateYearScrolling}
                 utils={utils}
@@ -122,6 +126,7 @@ export class DatePicker extends PureComponent {
               <Calendar
                 date={this.date}
                 onChange={onChange}
+                disablePast={disablePast}
                 disableFuture={disableFuture}
                 minDate={this.minDate}
                 maxDate={this.maxDate}

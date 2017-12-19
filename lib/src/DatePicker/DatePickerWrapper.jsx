@@ -21,6 +21,8 @@ export default class DatePickerWrapper extends PickerBase {
     onChange: PropTypes.func.isRequired,
     /* Auto accept date on selection */
     autoOk: PropTypes.bool,
+    /* Disable past dates */
+    disablePast: PropTypes.bool,
     /* Disable future dates */
     disableFuture: PropTypes.bool,
     /* To animate scrolling to current year (with scrollIntoView) */
@@ -52,6 +54,7 @@ export default class DatePickerWrapper extends PickerBase {
     returnMoment: true,
     minDate: undefined,
     maxDate: undefined,
+    disablePast: undefined,
     disableFuture: undefined,
     animateYearScrolling: undefined,
     openToYearSelection: undefined,
@@ -73,6 +76,7 @@ export default class DatePickerWrapper extends PickerBase {
       minDate,
       maxDate,
       onChange,
+      disablePast,
       disableFuture,
       animateYearScrolling,
       openToYearSelection,
@@ -102,6 +106,7 @@ export default class DatePickerWrapper extends PickerBase {
         <DatePicker
           date={date}
           onChange={this.handleChange}
+          disablePast={disablePast}
           disableFuture={disableFuture}
           animateYearScrolling={animateYearScrolling}
           openToYearSelection={openToYearSelection}

@@ -74,6 +74,7 @@ export class DateTimePickerWrapper extends PickerBase {
       maxDate,
       showTabs,
       autoSubmit,
+      disablePast,
       disableFuture,
       returnMoment,
       invalidLabel,
@@ -109,6 +110,7 @@ export class DateTimePickerWrapper extends PickerBase {
           openTo={openTo}
           autoSubmit={autoSubmit}
           onChange={this.handleChange}
+          disablePast={disablePast}
           disableFuture={disableFuture}
           minDate={minDate}
           maxDate={maxDate}

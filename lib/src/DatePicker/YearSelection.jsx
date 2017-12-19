@@ -16,6 +16,7 @@ export class YearSelection extends PureComponent {
     maxDate: DomainPropTypes.date.isRequired,
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    disablePast: PropTypes.bool.isRequired,
     disableFuture: PropTypes.bool.isRequired,
     animateYearScrolling: PropTypes.bool,
     utils: PropTypes.object,
@@ -50,7 +51,7 @@ export class YearSelection extends PureComponent {
 
   render() {
     const {
-      minDate, maxDate, date, classes, disableFuture, utils,
+      minDate, maxDate, date, classes, disablePast, disableFuture, utils,
     } = this.props;
     const currentYear = utils.getYear(date);
 
@@ -62,7 +63,10 @@ export class YearSelection extends PureComponent {
               const yearNumber = utils.getYear(year);
               const className = classnames(classes.yearItem, {
                 [classes.selectedYear]: yearNumber === currentYear,
-                [classes.disabled]: disableFuture && year.isAfter(moment()),
+                [classes.disabled]: (
+                  (disablePast && year.isBefore(moment(), 'year')) ||
+                  (disableFuture && year.isAfter(moment(), 'year'))
+                ),
               });
 
               return (
