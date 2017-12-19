@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { TableCellProps, TableCellClassKey } from './TableCell.d';
 
 export interface LabelDisplayedRowsArgs {

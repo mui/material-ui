@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { FormLabelProps, FormLabelClassKey } from '../Form/FormLabel';
 
 export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabelClassKey> {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { ListProps, ListClassKey } from '../List';
 
 export interface MenuListProps extends StandardProps<ListProps, MenuListClassKey, 'onKeyDown'> {

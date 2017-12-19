@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { MenuProps } from '../Menu';
 
 export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey> {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { CardContentProps, CardContentClassKey } from './CardContent';
 
 export interface CardHeaderProps

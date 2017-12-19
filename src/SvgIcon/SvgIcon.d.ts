@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { Color, StandardProps } from '../MuiProps';
 
 export interface SvgIconProps
   extends StandardProps<React.SVGProps<SVGSVGElement>, SvgIconClassKey> {
-  color?: PropTypes.Color | 'action' | 'contrast' | 'disabled' | 'error';
+  color?: Color | 'action' | 'contrast' | 'disabled' | 'error';
   titleAccess?: string;
   viewBox?: string;
 }

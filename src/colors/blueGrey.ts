@@ -1,4 +1,4 @@
-import { Color } from '../index';
+import { Color } from './index';
 
 const blueGrey: Color = {
   50: '#eceff1',

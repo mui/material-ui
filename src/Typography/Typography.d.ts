@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
 import { Style, TextStyle } from '../styles/createTypography';
+import { Alignment, Color, StandardProps } from '../MuiProps';
 
 export interface TypographyProps
   extends StandardProps<React.HTMLAttributes<HTMLElement>, TypographyClassKey> {
-  align?: PropTypes.Alignment;
-  color?: PropTypes.Color | 'secondary' | 'error';
+  align?: Alignment;
+  color?: Color | 'secondary' | 'error';
   component?: string | React.ComponentType<TypographyProps>;
   gutterBottom?: boolean;
   headlineMapping?: { [type in TextStyle]: string };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { Margin, StandardProps } from '../MuiProps';
 
 export interface FormControlProps
   extends StandardProps<React.HtmlHTMLAttributes<HTMLDivElement>, FormControlClassKey> {
@@ -7,7 +7,7 @@ export interface FormControlProps
   disabled?: boolean;
   error?: boolean;
   fullWidth?: boolean;
-  margin?: PropTypes.Margin;
+  margin?: Margin;
   onBlur?: React.EventHandler<any>;
   onFocus?: React.EventHandler<any>;
   required?: boolean;

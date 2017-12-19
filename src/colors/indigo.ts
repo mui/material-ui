@@ -1,4 +1,4 @@
-import { Color } from '../index';
+import { Color } from './index';
 
 const indigo: Color = {
   50: '#e8eaf6',

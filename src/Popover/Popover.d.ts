@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { PaperProps } from '../Paper';
 import { TransitionDuration, TransitionHandlers } from '../transitions/transition';
 import { ModalProps, ModalClassKey } from '../Modal';

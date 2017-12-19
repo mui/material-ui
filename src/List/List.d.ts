@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 
 export interface ListProps
   extends StandardProps<React.HTMLAttributes<HTMLUListElement>, ListClassKey> {

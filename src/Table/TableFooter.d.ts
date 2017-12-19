@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 
 export interface TableFooterProps extends StandardProps<TableFooterBaseProps, TableFooterClassKey> {
   component?: string | React.ComponentType<TableFooterBaseProps>;

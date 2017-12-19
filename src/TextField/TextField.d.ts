@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
 import { FormControlProps, FormHelperTextProps } from '../Form';
 import { InputProps, InputLabelProps } from '../Input';
 import { FormControlClassKey } from '../Form/FormControl';
 import { SelectProps } from '../Select';
+import { Margin, StandardProps } from '../MuiProps';
 
 export interface TextFieldProps
   extends StandardProps<FormControlProps, TextFieldClassKey, 'onChange' | 'defaultValue'> {
@@ -23,7 +23,7 @@ export interface TextFieldProps
   inputRef?: React.Ref<any>;
   label?: React.ReactNode;
   labelClassName?: string;
-  margin?: PropTypes.Margin;
+  margin?: Margin;
   multiline?: boolean;
   name?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { Color, StandardProps } from '../MuiProps';
 
 export interface IconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, IconClassKey> {
-  color?: PropTypes.Color | 'action' | 'contrast' | 'disabled' | 'error';
+  color?: Color | 'action' | 'contrast' | 'disabled' | 'error';
 }
 
 export type IconClassKey =

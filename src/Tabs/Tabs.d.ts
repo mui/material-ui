@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase/ButtonBase';
 
 export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 'onChange'> {

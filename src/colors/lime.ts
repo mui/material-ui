@@ -1,4 +1,4 @@
-import { Color } from '../index';
+import { Color } from './index';
 
 const lime: Color = {
   50: '#f9fbe7',

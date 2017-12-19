@@ -1,4 +1,4 @@
-import { Color } from '../index';
+import { Color } from './index';
 
 const purple: Color = {
   50: '#f3e5f5',

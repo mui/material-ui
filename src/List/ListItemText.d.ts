@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 
 export interface ListItemTextProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListItemTextClassKey> {

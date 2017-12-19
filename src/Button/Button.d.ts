@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
+import { Color, StandardProps } from '../MuiProps';
 
 export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassKey, 'component'> {
-  color?: PropTypes.Color | 'contrast';
+  color?: Color | 'contrast';
   component?: string | React.ComponentType<ButtonProps>;
   dense?: boolean;
   disabled?: boolean;

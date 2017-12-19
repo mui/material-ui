@@ -10,7 +10,6 @@ import {
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
 import { StyleRulesCallback } from '../../src/styles/withStyles';
-import { Contrast } from '../../src/index';
 import { WithTheme } from '../../src/styles/withTheme';
 
 // Shared types for examples

@@ -1,4 +1,4 @@
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 
 export interface ListItemSecondaryActionProps
   extends StandardProps<{}, ListItemSecondaryActionClassKey> {}

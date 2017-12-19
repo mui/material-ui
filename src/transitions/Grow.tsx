@@ -3,8 +3,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as CSSTransition from 'react-transition-group/CSSTransition';
+import { Omit } from 'type-zoo';
 import withTheme, { WithTheme } from '../styles/withTheme';
-import { Omit } from '../index';
 import { CSSTransitionClassNames, CSSTransitionProps, TransitionDuration } from './transition';
 
 export interface GrowProps extends Omit<CSSTransitionProps, 'timeout' | 'classNames'> {

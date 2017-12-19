@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
 export interface RadioProps extends StandardProps<SwitchBaseProps, RadioClassKey> {

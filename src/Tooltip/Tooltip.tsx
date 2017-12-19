@@ -13,7 +13,7 @@ import common from '../colors/common';
 import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 import { Theme, WithStyles } from '../styles';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 
 // Use a class component so we can get a reference.
 class TargetChildren extends React.Component {

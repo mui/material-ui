@@ -7,9 +7,9 @@ import Transition from 'react-transition-group/Transition';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { Theme, WithStyles } from '../styles';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { TransitionDuration, TransitionProps } from './transition';
-import { Omit } from '../index';
+import { Omit } from 'type-zoo';
 
 export interface CollapseProps extends Omit<TransitionProps, 'timeout'> {
   children?: React.ReactNode;

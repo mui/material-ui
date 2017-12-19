@@ -1,4 +1,4 @@
-import { Color } from '../index';
+import { Color } from './index';
 
 const red: Color = {
   50: '#ffebee',

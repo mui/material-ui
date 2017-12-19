@@ -1,4 +1,4 @@
-import { Color } from '../index';
+import { Color } from './index';
 
 const cyan: Color = {
   50: '#e0f7fa',

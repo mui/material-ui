@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { ButtonBaseProps } from '../ButtonBase';
 import { ButtonBaseClassKey } from '../ButtonBase/ButtonBase';
 

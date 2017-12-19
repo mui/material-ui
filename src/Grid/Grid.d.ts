@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { StandardProps, Omit } from '..';
 import { HiddenProps } from '../Hidden/Hidden';
 import { Breakpoint } from '../styles/createBreakpoints';
+import { StandardProps } from '../MuiProps';
+import { Omit } from 'type-zoo';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
 

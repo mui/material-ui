@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 
 export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarClassKey> {
   actionIcon?: React.ReactNode;

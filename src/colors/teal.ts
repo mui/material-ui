@@ -1,4 +1,4 @@
-import { Color } from '../index';
+import { Color } from './index';
 
 const teal: Color = {
   50: '#e0f2f1',

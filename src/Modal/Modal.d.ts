@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { BackdropProps } from './Backdrop';
 import { TransitionDuration, TransitionHandlers } from '../transitions/transition';
 

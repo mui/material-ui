@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 
 export interface GridListProps
   extends StandardProps<React.HTMLAttributes<HTMLUListElement>, GridListClassKey> {

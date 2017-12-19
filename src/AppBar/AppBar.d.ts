@@ -1,8 +1,8 @@
-import { PropTypes, StandardProps } from '..';
 import { PaperProps, PaperClassKey } from '../Paper/Paper';
+import { Color, StandardProps } from '../MuiProps';
 
 export interface AppBarProps extends StandardProps<PaperProps, AppBarClassKey> {
-  color?: PropTypes.Color;
+  color?: Color;
   position?: 'static' | 'fixed' | 'absolute';
 }
 

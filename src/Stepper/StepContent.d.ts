@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { Orientation } from './Stepper';
 import { TransitionDuration } from '../transitions/transition';
 

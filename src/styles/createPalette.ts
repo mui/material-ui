@@ -6,7 +6,7 @@ import grey from '../colors/grey';
 import red from '../colors/red';
 import common, { CommonColors } from '../colors/common';
 import { getContrastRatio } from './colorManipulator';
-import { Color, Contrast } from '..';
+import { Color, Contrast } from '../colors';
 
 interface ShadeText {
   primary: string;

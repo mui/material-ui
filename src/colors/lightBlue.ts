@@ -1,4 +1,4 @@
-import { Color } from '../index';
+import { Color } from './index';
 
 const lightBlue: Color = {
   50: '#e1f5fe',
