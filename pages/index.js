@@ -54,7 +54,8 @@ const styles = theme => ({
     maxHeight: 200,
   },
   backers: {
-    backgroundColor: theme.palette.common.white,
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.common.white : theme.palette.grey[800],
     padding: theme.spacing.unit * 2,
     display: 'flex',
     justifyContent: 'center',
