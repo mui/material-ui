@@ -4,10 +4,9 @@ import indigo from '../colors/indigo';
 import pink from '../colors/pink';
 import grey from '../colors/grey';
 import red from '../colors/red';
-import common from '../colors/common';
+import common, { CommonColors } from '../colors/common';
 import { getContrastRatio } from './colorManipulator';
 import { Color, Contrast } from '..';
-import { CommonColors } from '../colors/common';
 
 interface ShadeText {
   primary: string;

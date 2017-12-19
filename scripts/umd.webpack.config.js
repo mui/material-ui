@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const LIBRARY_NAME = 'material-ui';
 const baseConfig = {
@@ -32,16 +33,28 @@ const baseConfig = {
     },
   ],
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /(node_modules)/,
-        query: {
-          cacheDirectory: true,
-        },
+        test: /\.(j|t)sx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            // runs second
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
+          },
+          {
+            // runs first
+            loader: 'ts-loader',
+          },
+        ],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', 'js'],
   },
   plugins: [],
 };
