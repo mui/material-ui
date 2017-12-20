@@ -75,6 +75,7 @@ class BottomNavigationButton extends React.Component {
       icon: iconProp,
       label,
       onChange,
+      onClick,
       selected,
       showLabel: showLabelProp,
       value,

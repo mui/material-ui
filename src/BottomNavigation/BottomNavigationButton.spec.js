@@ -90,14 +90,30 @@ describe('<BottomNavigationButton />', () => {
     assert.strictEqual(iconWrapper.is(Icon), true, 'should be an Icon');
   });
 
+  it('should not render an Icon if icon is not provided', () => {
+    const wrapper = shallow(<BottomNavigationButton />);
+    assert.strictEqual(wrapper.find(Icon).exists(), false);
+  });
+
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
       const wrapper = shallow(
-        <BottomNavigationButton icon="book" onClick={handleClick} onChange={() => {}} />,
+        <BottomNavigationButton icon="book" onClick={handleClick} value="foo" />,
       );
-      wrapper.simulate('click');
+      wrapper.simulate('click', 'bar');
       assert.strictEqual(handleClick.callCount, 1, 'it should forward the onClick');
+    });
+  });
+
+  describe('prop: onChange', () => {
+    it('should be called when a click is triggered', () => {
+      const handleChange = spy();
+      const wrapper = shallow(
+        <BottomNavigationButton icon="book" onChange={handleChange} value="foo" />,
+      );
+      wrapper.simulate('click', 'bar');
+      assert.strictEqual(handleChange.callCount, 1, 'it should forward the onChange');
     });
   });
 });
