@@ -22,26 +22,27 @@ const options = [
 class SimpleListMenu extends React.Component {
   state = {
     anchorEl: null,
-    open: false,
     selectedIndex: 1,
   };
 
   button = undefined;
 
   handleClickListItem = event => {
-    this.setState({ open: true, anchorEl: event.currentTarget });
+    this.setState({ anchorEl: event.currentTarget });
   };
 
   handleMenuItemClick = (event, index) => {
-    this.setState({ selectedIndex: index, open: false });
+    this.setState({ selectedIndex: index, anchorEl: null });
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ anchorEl: null });
   };
 
   render() {
     const { classes } = this.props;
+    const { anchorEl } = this.state;
+
     return (
       <div className={classes.root}>
         <List>
@@ -60,8 +61,8 @@ class SimpleListMenu extends React.Component {
         </List>
         <Menu
           id="lock-menu"
-          anchorEl={this.state.anchorEl}
-          open={this.state.open}
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
           {options.map((option, index) => (

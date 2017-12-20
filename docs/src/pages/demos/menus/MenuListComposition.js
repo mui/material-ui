@@ -47,7 +47,7 @@ class MenuListComposition extends React.Component {
         <Manager>
           <Target>
             <Button
-              aria-owns={this.state.open ? 'menu-list' : null}
+              aria-owns={open ? 'menu-list' : null}
               aria-haspopup="true"
               onClick={this.handleClick}
             >
