@@ -43,7 +43,7 @@ function buildDocs(options) {
     name: null,
   };
 
-  const componentStyles = component[`${path.basename(componentPath)}Styles`]
+  const componentStyles = component[`${path.basename(componentPath)}Styles`];
   if (componentStyles && component.default.options) {
     // Collect the customization points of the `classes` property.
     styles.classes = Object.keys(getStylesCreator(componentStyles).create(theme)).filter(
