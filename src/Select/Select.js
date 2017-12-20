@@ -56,7 +56,7 @@ export const styles = theme => ({
     right: 0,
     top: 4,
     color: theme.palette.text.secondary,
-    'pointer-events': 'none', // Don't block pinter events on the select under the icon.
+    'pointer-events': 'none', // Don't block pointer events on the select under the icon.
   },
 });
 
