@@ -18,7 +18,7 @@ export interface TablePaginationProps extends StandardProps<
   labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
   labelRowsPerPage?: React.ReactNode;
   onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
-  onChangeRowsPerPage: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   page: number;
   rowsPerPage: number;
   rowsPerPageOptions?: number[];

@@ -193,7 +193,7 @@ TablePagination.propTypes = {
    *
    * @param {object} event The event source of the callback
    */
-  onChangeRowsPerPage: PropTypes.func.isRequired,
+  onChangeRowsPerPage: PropTypes.func,
   /**
    * The zero-based index of the current page.
    */
