@@ -26,7 +26,7 @@ class Index extends React.Component<WithStyles<keyof typeof styles>, State> {
     open: false,
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({
       open: false,
     });
@@ -41,13 +41,13 @@ class Index extends React.Component<WithStyles<keyof typeof styles>, State> {
   render() {
     return (
       <div className={this.props.classes.root}>
-        <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
+        <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogTitle>Super Secret Password</DialogTitle>
           <DialogContent>
             <DialogContentText>1-2-3-4-5</DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button color="primary" onClick={this.handleRequestClose}>
+            <Button color="primary" onClick={this.handleClose}>
               OK
             </Button>
           </DialogActions>
