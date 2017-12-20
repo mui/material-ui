@@ -1,7 +1,7 @@
 // @inheritedComponent FormGroup
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import FormGroup from '../Form/FormGroup';
 import { find } from '../utils/helpers';
 

@@ -1,7 +1,7 @@
 // @inheritedComponent Modal
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
 import warning from 'warning';
 import contains from 'dom-helpers/query/contains';

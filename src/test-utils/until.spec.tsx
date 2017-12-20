@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import * as assert from 'assert';
 import { shallow } from 'enzyme';
 import until from './until';

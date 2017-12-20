@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import SwitchBase from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';

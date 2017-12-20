@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import * as ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import withStyles from '../styles/withStyles';

@@ -1,7 +1,7 @@
 // @inheritedComponent CSSTransition
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import { Omit } from 'type-zoo';
 import withTheme, { WithTheme } from '../styles/withTheme';

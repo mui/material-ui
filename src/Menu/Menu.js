@@ -1,7 +1,7 @@
 // @inheritedComponent Popover
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import withStyles from '../styles/withStyles';

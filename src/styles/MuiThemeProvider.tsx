@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import createBroadcast from 'brcast';
 import warning from 'warning';
 import themeListener, { CHANNEL } from './themeListener';

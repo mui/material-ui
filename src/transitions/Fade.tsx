@@ -1,7 +1,7 @@
 // @inheritedComponent Transition
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import { duration } from '../styles/transitions';
 import withTheme, { WithTheme } from '../styles/withTheme';

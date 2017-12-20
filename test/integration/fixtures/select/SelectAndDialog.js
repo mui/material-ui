@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { MenuItem } from 'src/Menu';
 import Select from 'src/Select';
 import Dialog from 'src/Dialog';

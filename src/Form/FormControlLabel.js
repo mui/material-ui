@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';

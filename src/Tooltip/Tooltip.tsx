@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp, no-underscore-dangle */
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
 import warning from 'warning';
 import classNames from 'classnames';

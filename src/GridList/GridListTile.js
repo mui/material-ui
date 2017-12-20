@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';

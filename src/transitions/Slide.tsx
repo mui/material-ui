@@ -1,7 +1,7 @@
 // @inheritedComponent Transition
 
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import Transition from 'react-transition-group/Transition';
 import EventListener from 'react-event-listener';

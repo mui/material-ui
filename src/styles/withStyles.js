@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import getDisplayName from 'recompose/getDisplayName';

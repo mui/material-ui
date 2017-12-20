@@ -1,4 +1,4 @@
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 // Same value used by react-jss
 export const CHANNEL = '__THEMING__';
