@@ -158,9 +158,4 @@ BottomNavigationButton.propTypes = {
   value: PropTypes.any,
 };
 
-BottomNavigationButton.defaultProps = {
-  onChange: undefined,
-  onClick: undefined,
-};
-
 export default withStyles(styles, { name: 'MuiBottomNavigationButton' })(BottomNavigationButton);
