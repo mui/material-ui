@@ -26,6 +26,7 @@ export const isWidthDown = (breakpoint, width, inclusive = false) => {
 const withWidth = (options = {}) => Component => {
   const {
     resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
+    withTheme: withThemeOption = false,
   } = options;
 
   class Width extends React.Component {
@@ -46,37 +47,35 @@ const withWidth = (options = {}) => Component => {
     }, resizeInterval);
 
     updateWidth(innerWidth) {
-      if (this.props.theme) {
-        const breakpoints = this.props.theme.breakpoints;
-        let width = null;
+      const breakpoints = this.props.theme.breakpoints;
+      let width = null;
 
-        /**
-         * Start with the slowest value as low end devices often have a small screen.
-         *
-         * innerWidth |xs      sm      md      lg      xl
-         *            |-------|-------|-------|-------|------>
-         * width      |  xs   |  sm   |  md   |  lg   |  xl
-         */
-        let index = 1;
-        while (width === null && index < breakpointKeys.length) {
-          const currentWidth = breakpointKeys[index];
+      /**
+       * Start with the slowest value as low end devices often have a small screen.
+       *
+       * innerWidth |xs      sm      md      lg      xl
+       *            |-------|-------|-------|-------|------>
+       * width      |  xs   |  sm   |  md   |  lg   |  xl
+       */
+      let index = 1;
+      while (width === null && index < breakpointKeys.length) {
+        const currentWidth = breakpointKeys[index];
 
-          // @media are inclusive, so reproduce the behavior here.
-          if (innerWidth < breakpoints.values[currentWidth]) {
-            width = breakpointKeys[index - 1];
-            break;
-          }
-
-          index += 1;
+        // @media are inclusive, so reproduce the behavior here.
+        if (innerWidth < breakpoints.values[currentWidth]) {
+          width = breakpointKeys[index - 1];
+          break;
         }
 
-        width = width || 'xl';
+        index += 1;
+      }
 
-        if (width !== this.state.width) {
-          this.setState({
-            width,
-          });
-        }
+      width = width || 'xl';
+
+      if (width !== this.state.width) {
+        this.setState({
+          width,
+        });
       }
     }
 
@@ -86,6 +85,11 @@ const withWidth = (options = {}) => Component => {
         width: width || this.state.width || initialWidth,
         ...other,
       };
+      const more = {};
+
+      if (withThemeOption) {
+        more.theme = theme;
+      }
 
       // When rendering the component on the server,
       // we have no idea about the client browser screen width.
@@ -99,7 +103,7 @@ const withWidth = (options = {}) => Component => {
 
       return (
         <EventListener target="window" onResize={this.handleResize}>
-          <Component {...props} />
+          <Component {...more} {...props} />
         </EventListener>
       );
     }
@@ -117,7 +121,7 @@ const withWidth = (options = {}) => Component => {
      */
     initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     /**
-     * @ignore,
+     * @ignore
      */
     theme: PropTypes.object.isRequired,
     /**
