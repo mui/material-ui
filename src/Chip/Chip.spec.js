@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as keycode from 'keycode';
+import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import CheckBox from '../svg-icons/CheckBox';

@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import * as getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import createModalManager from './modalManager';
 
 describe('modalManager', () => {

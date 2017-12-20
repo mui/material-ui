@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
-import * as canUseDom from 'dom-helpers/util/inDOM';
+import canUseDom from 'dom-helpers/util/inDOM';
 
 /**
  * @ignore - internal component.

@@ -1,5 +1,5 @@
-import * as addEventListener from 'dom-helpers/events/on';
-import * as removeEventListener from 'dom-helpers/events/off';
+import addEventListener from 'dom-helpers/events/on';
+import removeEventListener from 'dom-helpers/events/off';
 
 export default function(
   eventTarget: EventTarget,

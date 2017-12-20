@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import warning from 'warning';
 import classNames from 'classnames';
-import * as scroll from 'scroll';
+import scroll from 'scroll';
 import EventListener from 'react-event-listener';
 import ScrollbarSize from 'react-scrollbar-size';
 import debounce from 'lodash/debounce';

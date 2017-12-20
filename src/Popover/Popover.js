@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
 import warning from 'warning';
-import * as contains from 'dom-helpers/query/contains';
+import contains from 'dom-helpers/query/contains';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import withStyles from '../styles/withStyles';

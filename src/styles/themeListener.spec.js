@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import * as createBroadcast from 'brcast';
+import createBroadcast from 'brcast';
 import themeListener, { CHANNEL } from './themeListener';
 
 describe('themeListener', () => {

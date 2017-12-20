@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import * as createBroadcast from 'brcast';
+import createBroadcast from 'brcast';
 import warning from 'warning';
 import themeListener, { CHANNEL } from './themeListener';
 import exactProp from '../utils/exactProp';

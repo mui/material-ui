@@ -1,6 +1,6 @@
-import * as keycode from 'keycode';
+import keycode from 'keycode';
 import warning from 'warning';
-import * as contains from 'dom-helpers/query/contains';
+import contains from 'dom-helpers/query/contains';
 import addEventListener from '../utils/addEventListener';
 
 const internal = {

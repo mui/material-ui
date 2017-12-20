@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
-import * as keycode from 'keycode';
+import keycode from 'keycode';
 import warning from 'warning';
 import Menu from '../Menu/Menu';
 import { isDirty } from '../Input/Input';
