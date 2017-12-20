@@ -61,11 +61,17 @@ describe('<CardHeader />', () => {
       assert.strictEqual(title.props().type, 'headline');
     });
 
-    it('should render the subeader as body1 secondary text', () => {
+    it('should render the subheader as body1 secondary text', () => {
       const subheader = wrapper.childAt(1);
       assert.strictEqual(subheader.name(), 'withStyles(Typography)');
       assert.strictEqual(subheader.props().type, 'body1');
       assert.strictEqual(subheader.props().color, 'secondary');
+    });
+
+    it('should not render the subheader if none is given', () => {
+      const title = wrapper.childAt(0);
+      assert.strictEqual(title.name(), 'withStyles(Typography)');
+      assert.strictEqual(wrapper.length, 1);
     });
   });
 

@@ -39,14 +39,16 @@ function CardHeader(props) {
         <Typography type={avatar ? 'body2' : 'headline'} component="span" className={classes.title}>
           {title}
         </Typography>
-        <Typography
-          type={avatar ? 'body2' : 'body1'}
-          component="span"
-          color="secondary"
-          className={classes.subheader}
-        >
-          {subheader}
-        </Typography>
+        {subheader && (
+          <Typography
+            type={avatar ? 'body2' : 'body1'}
+            component="span"
+            color="secondary"
+            className={classes.subheader}
+          >
+            {subheader}
+          </Typography>
+        )}
       </div>
       {action && <div className={classes.action}>{action}</div>}
     </CardContent>
