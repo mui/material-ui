@@ -75,6 +75,7 @@ class BottomNavigationButton extends React.Component {
       icon: iconProp,
       label,
       onChange,
+      onClick,
       selected,
       showLabel: showLabelProp,
       value,
@@ -155,6 +156,11 @@ BottomNavigationButton.propTypes = {
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
   value: PropTypes.any,
+};
+
+BottomNavigationButton.defaultProps = {
+  onChange: undefined,
+  onClick: undefined,
 };
 
 export default withStyles(styles, { name: 'MuiBottomNavigationButton' })(BottomNavigationButton);
