@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 
 export interface BackdropProps extends StandardProps<{}, BackdropClassKey> {
   invisible?: boolean;
@@ -7,10 +7,7 @@ export interface BackdropProps extends StandardProps<{}, BackdropClassKey> {
   [prop: string]: any;
 }
 
-export type BackdropClassKey =
-  | 'root'
-  | 'invisible'
-  ;
+export type BackdropClassKey = 'root' | 'invisible';
 
 declare const Backdrop: React.ComponentType<BackdropProps>;
 

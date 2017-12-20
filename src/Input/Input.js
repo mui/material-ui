@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -41,7 +41,7 @@ export function isAdornedStart(obj) {
   return obj.startAdornment;
 }
 
-export const styles = theme => {
+export const InputStyles = theme => {
   const placeholder = {
     color: 'currentColor',
     opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
@@ -276,7 +276,7 @@ class Input extends React.Component {
   // Holds the input reference
   input = null;
 
-  handleFocus = (event: SyntheticFocusEvent<>) => {
+  handleFocus = event => {
     // Fix an bug with IE11 where the focus/blur events are triggered
     // while the input is disabled.
     if (formControlState(this.props, this.context).disabled) {
@@ -290,14 +290,14 @@ class Input extends React.Component {
     }
   };
 
-  handleBlur = (event: SyntheticFocusEvent<>) => {
+  handleBlur = event => {
     this.setState({ focused: false });
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
   };
 
-  handleChange = (event: SyntheticInputEvent<HTMLElement>) => {
+  handleChange = event => {
     if (!this.isControlled()) {
       this.checkDirty(this.input);
     }
@@ -624,4 +624,4 @@ Input.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiInput' })(Input);
+export default withStyles(InputStyles, { name: 'MuiInput' })(Input);

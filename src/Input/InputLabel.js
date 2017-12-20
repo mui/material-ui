@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { FormLabel } from '../Form';
 
-export const styles = theme => ({
+export const InputLabelStyles = theme => ({
   root: {
     transformOrigin: 'top left',
   },
@@ -135,4 +135,4 @@ InputLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);
+export default withStyles(InputLabelStyles, { name: 'MuiInputLabel' })(InputLabel);

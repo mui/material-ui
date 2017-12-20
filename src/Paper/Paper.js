@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => {
+export const PaperStyles = theme => {
   const shadows = {};
   theme.shadows.forEach((shadow, index) => {
     shadows[`shadow${index}`] = {
@@ -85,4 +85,4 @@ Paper.defaultProps = {
   square: false,
 };
 
-export default withStyles(styles, { name: 'MuiPaper' })(Paper);
+export default withStyles(PaperStyles, { name: 'MuiPaper' })(Paper);

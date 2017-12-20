@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => {
+export const FormLabelStyles = theme => {
   const focusColor = theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'];
   return {
     root: {
@@ -130,4 +130,4 @@ FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiFormLabel' })(FormLabel);
+export default withStyles(FormLabelStyles, { name: 'MuiFormLabel' })(FormLabel);

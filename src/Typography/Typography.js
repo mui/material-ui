@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styles = theme => ({
+export const TypographyStyles = theme => ({
   root: {
     display: 'block',
     margin: 0,
@@ -176,4 +176,4 @@ Typography.defaultProps = {
   type: 'body1',
 };
 
-export default withStyles(styles, { name: 'MuiTypography' })(Typography);
+export default withStyles(TypographyStyles, { name: 'MuiTypography' })(Typography);

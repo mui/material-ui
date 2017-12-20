@@ -1,6 +1,6 @@
 // @inheritedComponent Input
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import SelectInput from './SelectInput';
@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import Input from '../Input'; // Import to enforce the CSS injection order
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = theme => ({
+export const SelectStyles = theme => ({
   root: {
     position: 'relative',
     width: '100%',
@@ -89,7 +89,7 @@ function Select(props) {
     inputComponent: SelectInput,
     ...other,
     inputProps: {
-      ...(input ? input.props.inputProps : {}),
+      ...input ? input.props.inputProps : {},
       autoWidth,
       children,
       classes,
@@ -164,4 +164,4 @@ Select.defaultProps = {
 
 Select.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiSelect' })(Select);
+export default withStyles(SelectStyles, { name: 'MuiSelect' })(Select);

@@ -1,5 +1,3 @@
-// @flow
-
 import { assert } from 'chai';
 import createGenerateClassName from './createGenerateClassName';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';

@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const StepConnectorStyles = theme => ({
   root: {
     flex: '1 1 auto',
   },
@@ -87,4 +87,4 @@ StepConnector.defaultProps = {
   orientation: 'horizontal',
 };
 
-export default withStyles(styles, { name: 'MuiStepConnector' })(StepConnector);
+export default withStyles(StepConnectorStyles, { name: 'MuiStepConnector' })(StepConnector);

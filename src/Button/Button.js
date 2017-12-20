@@ -1,13 +1,13 @@
 // @inheritedComponent ButtonBase
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 
-export const styles = theme => ({
+export const ButtonStyles = theme => ({
   root: {
     ...theme.typography.button,
     lineHeight: '1.4em', // Improve readability for multiline button.
@@ -275,4 +275,4 @@ Button.defaultProps = {
   type: 'button',
 };
 
-export default withStyles(styles, { name: 'MuiButton' })(Button);
+export default withStyles(ButtonStyles, { name: 'MuiButton' })(Button);

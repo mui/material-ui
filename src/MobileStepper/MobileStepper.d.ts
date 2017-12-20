@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { PaperProps, PaperClassKey } from '../Paper';
 import { ButtonProps } from '../Button';
 
-export interface MobileStepperProps extends StandardProps<
-  PaperProps,
-  MobileStepperClassKey
-> {
+export interface MobileStepperProps extends StandardProps<PaperProps, MobileStepperClassKey> {
   activeStep?: number;
   backButton: React.ReactElement<any>;
   nextButton: React.ReactElement<any>;
@@ -23,8 +20,7 @@ export type MobileStepperClassKey =
   | 'dots'
   | 'dot'
   | 'dotActive'
-  | 'progress'
-  ;
+  | 'progress';
 
 declare const MobileStepper: React.ComponentType<MobileStepperProps>;
 

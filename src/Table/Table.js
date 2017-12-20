@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const TableStyles = theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     width: '100%',
@@ -66,4 +66,4 @@ Table.childContextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTable' })(Table);
+export default withStyles(TableStyles, { name: 'MuiTable' })(Table);

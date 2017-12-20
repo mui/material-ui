@@ -1,5 +1,3 @@
-// @flow
-
 import { assert } from 'chai';
 import createPalette, { dark, light } from './createPalette';
 import { indigo, pink, deepOrange, green, common } from '../colors';

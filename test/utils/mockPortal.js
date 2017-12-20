@@ -1,6 +1,6 @@
 /* eslint-disable func-names */
 
-import reactDOM from 'react-dom';
+import * as reactDOM from 'react-dom';
 import Portal from '../../src/internal/Portal';
 
 const portalOrigin = {};

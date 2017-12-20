@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const DialogContentTextStyles = theme => ({
   root: {
     ...theme.typography.subheading,
     color: theme.palette.text.secondary,
@@ -36,4 +36,6 @@ DialogContentText.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiDialogContentText' })(DialogContentText);
+export default withStyles(DialogContentTextStyles, { name: 'MuiDialogContentText' })(
+  DialogContentText,
+);

@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CheckCircle from '../svg-icons/CheckCircle';
 import withStyles from '../styles/withStyles';
 import StepPositionIcon from './StepPositionIcon';
 
-export const styles = theme => ({
+export const StepIconStyles = theme => ({
   root: {
     display: 'block',
   },
@@ -49,4 +49,4 @@ StepIcon.propTypes = {
   icon: PropTypes.node,
 };
 
-export default withStyles(styles, { name: 'MuiStepIcon' })(StepIcon);
+export default withStyles(StepIconStyles, { name: 'MuiStepIcon' })(StepIcon);

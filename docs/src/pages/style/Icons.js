@@ -12,10 +12,10 @@ const styles = {
   },
 };
 
-type ProvidedProps = {
-  classes: Object,
-  theme?: Object,
-};
+//  type ProvidedProps = {
+//    classes: Object,
+//    theme?: Object,
+//  };
 
 function Icons(props: ProvidedProps) {
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import debounce from 'lodash/debounce';
@@ -7,7 +7,7 @@ import withStyles from '../styles/withStyles';
 
 const ROWS_HEIGHT = 24;
 
-export const styles = {
+export const TextareaStyles = {
   root: {
     position: 'relative', // because the shadow has position: 'absolute',
     width: '100%',
@@ -126,7 +126,7 @@ class Textarea extends React.Component {
     this.shadow = node;
   };
 
-  handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+  handleChange = event => {
     this.value = event.target.value;
 
     if (typeof this.props.value === 'undefined' && this.shadow) {
@@ -232,4 +232,4 @@ Textarea.defaultProps = {
   rows: 1,
 };
 
-export default withStyles(styles, { name: 'MuiTextarea' })(Textarea);
+export default withStyles(TextareaStyles, { name: 'MuiTextarea' })(Textarea);

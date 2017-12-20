@@ -1,20 +1,14 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { ListItemProps, ListItemClassKey } from '../List';
 
-export interface MenuItemProps extends StandardProps<
-  ListItemProps,
-  MenuItemClassKey
-> {
+export interface MenuItemProps extends StandardProps<ListItemProps, MenuItemClassKey> {
   component?: string | React.ComponentType<MenuItemProps>;
   role?: string;
   selected?: boolean;
 }
 
-export type MenuItemClassKey =
-  | ListItemClassKey
-  | 'selected'
-  ;
+export type MenuItemClassKey = ListItemClassKey | 'selected';
 
 declare const MenuItem: React.ComponentType<MenuItemProps>;
 

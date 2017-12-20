@@ -1,0 +1,89 @@
+{
+  "presets": [
+  "@babel/preset-typescript",
+  "./scripts/material-ui-babel-preset-env",
+  "@babel/preset-stage-1",
+  "@babel/preset-react"],
+  "plugins": [
+    "transform-object-assign"
+  ],
+  "env": {
+    "coverage": {
+      "plugins": [
+        [
+          "istanbul"
+        ]
+      ]
+    },
+    "development": {
+      "sourceMaps": "both",
+      "plugins": [
+        "transform-flow-strip-types"
+      ]
+    },
+    "docs-development": {
+      "presets": [
+        "next/babel"
+      ],
+      "plugins": [
+        "preval",
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "pages": "./pages",
+              "material-ui": "./src",
+              "material-ui-icons": './packages/material-ui-icons/src',
+              "docs": "./docs"
+            }
+          }
+        ],
+        "transform-flow-strip-types"
+      ]
+    },
+    "docs-production": {
+      "presets": [
+        "next/babel"
+      ],
+      "plugins": [
+        "preval",
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "pages": "./pages",
+              "material-ui": "./src",
+              "material-ui-icons": './packages/material-ui-icons/src',
+              "docs": "./docs"
+            }
+          }
+        ],
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {"mode": "remove"}]
+      ]
+    },
+    "test": {
+      "sourceMaps": "both",
+      "plugins": [
+        "transform-flow-strip-types"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {
+          "mode": "wrap",
+          "plugins": [
+            "babel-plugin-transform-flow-strip-types"
+          ]
+        }]
+      ]
+    }
+  }
+}

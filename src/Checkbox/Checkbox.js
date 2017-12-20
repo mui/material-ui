@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import SwitchBase from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';
 
-export const styles = theme => ({
+export const CheckboxStyles = theme => ({
   default: {
     color: theme.palette.text.secondary,
   },
@@ -110,4 +110,4 @@ Checkbox.defaultProps = {
   indeterminateIcon: <IndeterminateCheckBoxIcon />,
 };
 
-export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);
+export default withStyles(CheckboxStyles, { name: 'MuiCheckbox' })(Checkbox);

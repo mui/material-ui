@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const ExpansionPanelDetailsStyles = theme => ({
   root: {
     display: 'flex',
     flexGrow: 1,
@@ -36,4 +36,6 @@ ExpansionPanelDetails.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiExpansionPanelDetails' })(ExpansionPanelDetails);
+export default withStyles(ExpansionPanelDetailsStyles, { name: 'MuiExpansionPanelDetails' })(
+  ExpansionPanelDetails,
+);

@@ -1,12 +1,12 @@
 // @inheritedComponent Modal
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
-import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
+import debounce from 'lodash/debounce';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../transitions/Grow';
@@ -60,7 +60,7 @@ function getScrollParent(parent, child) {
   return scrollTop;
 }
 
-export const styles = {
+export const PopoverStyles = {
   paper: {
     position: 'absolute',
     overflowY: 'auto',
@@ -228,7 +228,7 @@ class Popover extends React.Component {
   };
 
   handleResize = debounce(() => {
-    const element: any = ReactDOM.findDOMNode(this.transitionEl);
+    const element = ReactDOM.findDOMNode(this.transitionEl);
     this.setPositioningStyles(element);
   }, 166);
 
@@ -447,4 +447,4 @@ Popover.defaultProps = {
   transitionDuration: 'auto',
 };
 
-export default withStyles(styles, { name: 'MuiPopover' })(Popover);
+export default withStyles(PopoverStyles, { name: 'MuiPopover' })(Popover);

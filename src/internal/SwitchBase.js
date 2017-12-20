@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -7,7 +7,7 @@ import CheckBoxOutlineBlankIcon from '../svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../svg-icons/CheckBox';
 import Icon from '../Icon';
 
-export const styles = {
+export const SwitchBaseStyles = {
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -52,7 +52,7 @@ class SwitchBase extends React.Component {
   button = null;
   isControlled = null;
 
-  handleInputChange = (event: SyntheticInputEvent<*>) => {
+  handleInputChange = event => {
     const checked = event.target.checked;
 
     if (!this.isControlled) {
@@ -229,4 +229,4 @@ SwitchBase.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiSwitchBase' })(SwitchBase);
+export default withStyles(SwitchBaseStyles, { name: 'MuiSwitchBase' })(SwitchBase);

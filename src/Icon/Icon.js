@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styles = theme => ({
+export const IconStyles = theme => ({
   root: {
     userSelect: 'none',
   },
@@ -80,4 +80,4 @@ Icon.defaultProps = {
 
 Icon.muiName = 'Icon';
 
-export default withStyles(styles, { name: 'MuiIcon' })(Icon);
+export default withStyles(IconStyles, { name: 'MuiIcon' })(Icon);

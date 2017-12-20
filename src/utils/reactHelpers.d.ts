@@ -1,4 +1,1 @@
-export function cloneChildrenWithClassName<T>(
-  children: React.ReactNode,
-  className: string
-): T[];
+export function cloneChildrenWithClassName<T>(children: React.ReactNode, className: string): T[];

@@ -1,6 +1,6 @@
 // @inheritedComponent Modal
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -10,7 +10,7 @@ import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 
-export const styles = theme => ({
+export const DialogStyles = theme => ({
   root: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -223,4 +223,4 @@ Dialog.defaultProps = {
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };
 
-export default withStyles(styles, { name: 'MuiDialog' })(Dialog);
+export default withStyles(DialogStyles, { name: 'MuiDialog' })(Dialog);

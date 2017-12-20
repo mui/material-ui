@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const ToolbarStyles = theme => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -54,4 +54,4 @@ Toolbar.defaultProps = {
   disableGutters: false,
 };
 
-export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);
+export default withStyles(ToolbarStyles, { name: 'MuiToolbar' })(Toolbar);

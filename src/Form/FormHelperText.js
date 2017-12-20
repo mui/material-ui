@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const FormHelperTextStyles = theme => ({
   root: {
     color: theme.palette.input.helperText,
     fontFamily: theme.typography.fontFamily,
@@ -104,4 +104,4 @@ FormHelperText.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiFormHelperText' })(FormHelperText);
+export default withStyles(FormHelperTextStyles, { name: 'MuiFormHelperText' })(FormHelperText);

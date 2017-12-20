@@ -9,7 +9,7 @@
 // Follow this flexbox Guide to better understand the underlying model:
 // - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -84,7 +84,7 @@ function generateGutter(theme, breakpoint) {
 // alignItems: 'flex-start',
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
-export const styles = theme => ({
+export const GridStyles = theme => ({
   typeContainer: {
     boxSizing: 'border-box',
     display: 'flex',
@@ -350,4 +350,4 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);
+export default withStyles(GridStyles, { name: 'MuiGrid' })(GridWrapper);

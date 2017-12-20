@@ -1,6 +1,4 @@
-// @flow
-
-import React from 'react';
+import * as React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import JssProvider from 'react-jss/lib/JssProvider';
@@ -13,7 +11,7 @@ import { createShallow, createMount, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Empty extends React.Component<{ classes: Object, theme?: Object }> {
+class Empty extends React.Component {
   render() {
     return <div />;
   }

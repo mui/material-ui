@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const ListItemIconStyles = theme => ({
   root: {
     height: 24,
     marginRight: theme.spacing.unit * 2,
@@ -41,4 +41,4 @@ ListItemIcon.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiListItemIcon' })(ListItemIcon);
+export default withStyles(ListItemIconStyles, { name: 'MuiListItemIcon' })(ListItemIcon);

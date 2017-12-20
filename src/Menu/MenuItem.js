@@ -1,12 +1,12 @@
 // @inheritedComponent ListItem
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ListItem from '../List/ListItem';
 
-export const styles = theme => ({
+export const MenuItemStyles = theme => ({
   root: {
     ...theme.typography.subheading,
     height: 24,
@@ -83,4 +83,4 @@ MenuItem.defaultProps = {
   selected: false,
 };
 
-export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);
+export default withStyles(MenuItemStyles, { name: 'MuiMenuItem' })(MenuItem);

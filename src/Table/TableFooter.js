@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const TableFooterStyles = theme => ({
   root: {
     fontSize: theme.typography.pxToRem(12),
     color: theme.palette.text.secondary,
@@ -65,4 +65,4 @@ TableFooter.childContextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTableFooter' })(TableFooter);
+export default withStyles(TableFooterStyles, { name: 'MuiTableFooter' })(TableFooter);

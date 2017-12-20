@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const CardContentStyles = theme => ({
   root: {
     padding: theme.spacing.unit * 2,
     '&:last-child': {
@@ -29,4 +29,4 @@ CardContent.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiCardContent' })(CardContent);
+export default withStyles(CardContentStyles, { name: 'MuiCardContent' })(CardContent);

@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styles = theme => ({
+export const ListItemTextStyles = theme => ({
   root: {
     flex: '1 1 auto',
     padding: '0 16px',
@@ -109,4 +109,4 @@ ListItemText.contextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);
+export default withStyles(ListItemTextStyles, { name: 'MuiListItemText' })(ListItemText);

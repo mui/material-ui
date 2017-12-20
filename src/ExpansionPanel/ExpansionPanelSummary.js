@@ -1,13 +1,13 @@
 // @inheritedComponent ButtonBase
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ButtonBase from '../ButtonBase';
 import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => {
+export const ExpansionPanelSummaryStyles = theme => {
   const transition = {
     duration: theme.transitions.duration.shortest,
     easing: theme.transitions.easing.ease,
@@ -186,4 +186,6 @@ ExpansionPanelSummary.defaultProps = {
 
 ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
 
-export default withStyles(styles, { name: 'MuiExpansionPanelSummary' })(ExpansionPanelSummary);
+export default withStyles(ExpansionPanelSummaryStyles, { name: 'MuiExpansionPanelSummary' })(
+  ExpansionPanelSummary,
+);

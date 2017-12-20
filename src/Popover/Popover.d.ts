@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { PaperProps } from '../Paper';
-import { TransitionDuration, TransitionHandlers } from '../internal/transition';
+import { TransitionDuration, TransitionHandlers } from '../transitions/transition';
 import { ModalProps, ModalClassKey } from '../Modal';
 
 export interface PopoverOrigin {
@@ -16,12 +16,9 @@ export interface PopoverPosition {
 
 export type PopoverReference = 'anchorEl' | 'anchorPosition';
 
-export interface PopoverProps extends StandardProps<
-  ModalProps & Partial<TransitionHandlers>,
-  PopoverClassKey,
-  'onClose'
-> {
-  anchorEl?: Object;
+export interface PopoverProps
+  extends StandardProps<ModalProps & Partial<TransitionHandlers>, PopoverClassKey, 'onClose'> {
+  anchorEl?: object;
   anchorOrigin?: PopoverOrigin;
   anchorPosition?: PopoverPosition;
   anchorReference?: PopoverReference;
@@ -37,15 +34,12 @@ export interface PopoverProps extends StandardProps<
   open?: boolean;
   PaperProps?: Partial<PaperProps>;
   role?: string;
-  theme?: Object;
+  theme?: object;
   transformOrigin?: PopoverOrigin;
   transitionDuration?: TransitionDuration;
 }
 
-export type PopoverClassKey =
-  | ModalClassKey
-  | 'paper'
-  ;
+export type PopoverClassKey = ModalClassKey | 'paper';
 
 declare const Popover: React.ComponentType<PopoverProps>;
 

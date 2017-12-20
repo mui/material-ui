@@ -1,18 +1,35 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es5",
-    "lib": ["es6", "dom"],
-    "sourceMap": true,
+    "target": "es2015",
     "jsx": "react",
-    "moduleResolution": "node",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "allowJs": true,
+    "outDir": "build",
+    "sourceMap": true,
     "noImplicitAny": true,
-    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noEmitOnError": true,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": false,
     "strictFunctionTypes": true,
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noEmit": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "noEmit": true
   },
-  "include": ["src/**/*", "test/typescript/*"]
+  "include": [
+    "./typings/**/*",
+    "./src/**/*",
+    "./test/**/*"
+  ],
+  "exclude": [
+    "./build/**/*",
+    "node_modules"
+  ]
 }

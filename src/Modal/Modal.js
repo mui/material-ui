@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import warning from 'warning';
 import keycode from 'keycode';
@@ -20,7 +20,7 @@ import Portal from '../internal/Portal';
 // Could also put this on context.
 const modalManager = createModalManager();
 
-export const styles = theme => ({
+export const ModalStyles = theme => ({
   root: {
     display: 'flex',
     width: '100%',
@@ -435,4 +435,4 @@ Modal.defaultProps = {
   modalManager,
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiModal' })(Modal);
+export default withStyles(ModalStyles, { flip: false, name: 'MuiModal' })(Modal);

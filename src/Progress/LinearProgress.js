@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
@@ -6,7 +6,7 @@ import withStyles from '../styles/withStyles';
 
 const TRANSITION_DURATION = 4; // 400ms
 
-export const styles = theme => ({
+export const LinearProgressStyles = theme => ({
   root: {
     position: 'relative',
     overflow: 'hidden',
@@ -248,4 +248,4 @@ LinearProgress.defaultProps = {
   mode: 'indeterminate',
 };
 
-export default withStyles(styles, { name: 'MuiLinearProgress' })(LinearProgress);
+export default withStyles(LinearProgressStyles, { name: 'MuiLinearProgress' })(LinearProgress);

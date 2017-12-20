@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-for */
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styles = theme => ({
+export const FormControlLabelStyles = theme => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -134,4 +134,6 @@ FormControlLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiFormControlLabel' })(FormControlLabel);
+export default withStyles(FormControlLabelStyles, { name: 'MuiFormControlLabel' })(
+  FormControlLabel,
+);

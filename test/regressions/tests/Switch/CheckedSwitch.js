@@ -1,6 +1,4 @@
-// @flow
-
-import React from 'react';
+import * as React from 'react';
 import Switch from 'material-ui/Switch';
 
 export default function CheckedSwitch() {

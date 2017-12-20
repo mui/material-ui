@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styles = theme => ({
+export const DialogTitleStyles = theme => ({
   root: {
     margin: 0,
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px \
@@ -47,4 +47,4 @@ DialogTitle.defaultProps = {
   disableTypography: false,
 };
 
-export default withStyles(styles, { name: 'MuiDialogTitle' })(DialogTitle);
+export default withStyles(DialogTitleStyles, { name: 'MuiDialogTitle' })(DialogTitle);

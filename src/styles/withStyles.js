@@ -1,6 +1,5 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import getDisplayName from 'recompose/getDisplayName';
@@ -13,6 +12,7 @@ import jssDefaultUnit from 'jss-default-unit';
 import jssVendorPrefixer from 'jss-vendor-prefixer';
 import jssPropsSort from 'jss-props-sort';
 import * as ns from 'react-jss/lib/ns';
+import warning from 'warning';
 import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
@@ -45,7 +45,7 @@ const generateClassName = createGenerateClassName();
 // that parent has a higher specificity.
 let indexCounter = Number.MIN_SAFE_INTEGER;
 
-export const sheetsManager: Map<*, *> = new Map();
+export const sheetsManager = new Map();
 
 // We use the same empty object to ref count the styles that don't need a theme object.
 const noopTheme = {};
@@ -311,7 +311,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   Style.contextTypes = {
     muiThemeProviderOptions: PropTypes.object,
     ...contextTypes,
-    ...(listenToTheme ? themeListener.contextTypes : {}),
+    ...listenToTheme ? themeListener.contextTypes : {},
   };
 
   if (process.env.NODE_ENV !== 'production') {

@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styles = theme => ({
+export const TabIndicatorStyles = theme => ({
   root: {
     position: 'absolute',
     height: 2,
@@ -66,4 +66,4 @@ TabIndicator.propTypes = {
   style: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTabIndicator' })(TabIndicator);
+export default withStyles(TabIndicatorStyles, { name: 'MuiTabIndicator' })(TabIndicator);

@@ -1,6 +1,6 @@
 // @inheritedComponent ButtonBase
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -10,7 +10,7 @@ import Icon from '../Icon';
 import { isMuiElement } from '../utils/reactHelpers';
 import '../SvgIcon'; // Ensure CSS specificity
 
-export const styles = theme => ({
+export const IconButtonStyles = theme => ({
   root: {
     textAlign: 'center',
     flex: '0 0 auto',
@@ -139,4 +139,4 @@ IconButton.defaultProps = {
   disableRipple: false,
 };
 
-export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);
+export default withStyles(IconButtonStyles, { name: 'MuiIconButton' })(IconButton);

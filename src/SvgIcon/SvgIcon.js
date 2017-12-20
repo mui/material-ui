@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styles = theme => ({
+export const SvgIconStyles = theme => ({
   root: {
     display: 'inline-block',
     fill: 'currentColor',
@@ -116,4 +116,4 @@ SvgIcon.defaultProps = {
 
 SvgIcon.muiName = 'SvgIcon';
 
-export default withStyles(styles, { name: 'MuiSvgIcon' })(SvgIcon);
+export default withStyles(SvgIconStyles, { name: 'MuiSvgIcon' })(SvgIcon);

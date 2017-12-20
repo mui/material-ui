@@ -1,20 +1,15 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { FormGroupProps, FormGroupClassKey } from '../Form/FormGroup';
 
-export interface RadioGroupProps extends StandardProps<
-  FormGroupProps,
-  RadioGroupClassKey,
-  'onChange'
-> {
+export interface RadioGroupProps
+  extends StandardProps<FormGroupProps, RadioGroupClassKey, 'onChange'> {
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, value: string) => void;
   value?: string;
 }
 
-export type RadioGroupClassKey =
-  | FormGroupClassKey
-  ;
+export type RadioGroupClassKey = FormGroupClassKey;
 
 declare const RadioGroup: React.ComponentType<RadioGroupProps>;
 

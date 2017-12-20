@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const ListItemSecondaryActionStyles = theme => ({
   root: {
     position: 'absolute',
     right: 4,
@@ -39,4 +39,6 @@ ListItemSecondaryAction.propTypes = {
 
 ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
 
-export default withStyles(styles, { name: 'MuiListItemSecondaryAction' })(ListItemSecondaryAction);
+export default withStyles(ListItemSecondaryActionStyles, { name: 'MuiListItemSecondaryAction' })(
+  ListItemSecondaryAction,
+);

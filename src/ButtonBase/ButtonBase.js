@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
@@ -8,7 +8,7 @@ import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../uti
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
-export const styles = theme => ({
+export const ButtonBaseStyles = theme => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -42,7 +42,7 @@ class ButtonBase extends React.Component {
   };
 
   componentDidMount() {
-    this.button = findDOMNode(this);
+    this.button = ReactDOM.findDOMNode(this);
     listenForFocusKeys();
   }
 
@@ -383,4 +383,4 @@ ButtonBase.defaultProps = {
   type: 'button',
 };
 
-export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);
+export default withStyles(ButtonBaseStyles, { name: 'MuiButtonBase' })(ButtonBase);

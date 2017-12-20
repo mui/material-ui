@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash/debounce';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
 import withStyles from '../styles/withStyles';
 
-export const styles = {
+export const GridListTileStyles = {
   root: {
     boxSizing: 'border-box',
     flexShrink: 0,
@@ -155,4 +155,4 @@ GridListTile.defaultProps = {
   rows: 1,
 };
 
-export default withStyles(styles, { name: 'MuiGridListTile' })(GridListTile);
+export default withStyles(GridListTileStyles, { name: 'MuiGridListTile' })(GridListTile);

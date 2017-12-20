@@ -1,5 +1,5 @@
 import warning from 'warning';
-import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
+import deepmerge from 'deepmerge';
 
 function getStylesCreator(stylesOrCreator) {
   function create(theme, name) {

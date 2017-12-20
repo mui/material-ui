@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
@@ -9,7 +9,7 @@ import { capitalizeFirstLetter, createChainedFunction } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
 
-export const styles = theme => {
+export const SnackbarStyles = theme => {
   const gutter = theme.spacing.unit * 3;
   const top = { top: 0 };
   const bottom = { bottom: 0 };
@@ -86,10 +86,10 @@ export const styles = theme => {
   };
 };
 
-export type Origin = {
-  horizontal?: 'left' | 'center' | 'right' | number,
-  vertical?: 'top' | 'center' | 'bottom' | number,
-};
+// export type Origin = {
+//  horizontal?: 'left' | 'center' | 'right' | number,
+//  vertical?: 'top' | 'center' | 'bottom' | number,
+// };
 
 class Snackbar extends React.Component {
   state = {
@@ -147,21 +147,21 @@ class Snackbar extends React.Component {
 
   timerAutoHide = null;
 
-  handleMouseEnter = (event: SyntheticUIEvent<>) => {
+  handleMouseEnter = event => {
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
     }
     this.handlePause();
   };
 
-  handleMouseLeave = (event: SyntheticUIEvent<>) => {
+  handleMouseLeave = event => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
     }
     this.handleResume();
   };
 
-  handleClickAway = (event: Event) => {
+  handleClickAway = event => {
     if (this.props.onClose) {
       this.props.onClose(event, 'clickaway');
     }
@@ -397,4 +397,4 @@ Snackbar.defaultProps = {
   },
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(Snackbar);
+export default withStyles(SnackbarStyles, { flip: false, name: 'MuiSnackbar' })(Snackbar);

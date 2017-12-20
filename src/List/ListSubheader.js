@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styles = theme => ({
+export const ListSubheaderStyles = theme => ({
   root: {
     boxSizing: 'border-box',
     lineHeight: '48px',
@@ -102,4 +102,4 @@ ListSubheader.defaultProps = {
 
 ListSubheader.muiName = 'ListSubheader';
 
-export default withStyles(styles, { name: 'MuiListSubheader' })(ListSubheader);
+export default withStyles(ListSubheaderStyles, { name: 'MuiListSubheader' })(ListSubheader);

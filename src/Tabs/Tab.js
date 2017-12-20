@@ -1,6 +1,6 @@
 // @inheritedComponent ButtonBase
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -8,7 +8,7 @@ import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 
-export const styles = theme => ({
+export const TabStyles = theme => ({
   root: {
     ...theme.typography.button,
     maxWidth: 264,
@@ -107,7 +107,7 @@ class Tab extends React.Component {
     }
   }
 
-  handleChange = (event: SyntheticEvent<>) => {
+  handleChange = event => {
     const { onChange, value, onClick } = this.props;
 
     if (onChange) {
@@ -283,4 +283,4 @@ Tab.defaultProps = {
   disabled: false,
 };
 
-export default withStyles(styles, { name: 'MuiTab' })(Tab);
+export default withStyles(TabStyles, { name: 'MuiTab' })(Tab);

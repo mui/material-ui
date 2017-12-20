@@ -1,17 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import classNames from 'classnames';
-import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
-import ScrollbarSize from 'react-scrollbar-size';
-import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
 import scroll from 'scroll';
+import EventListener from 'react-event-listener';
+import ScrollbarSize from 'react-scrollbar-size';
+import debounce from 'lodash/debounce';
+import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
 import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 
-export const styles = theme => ({
+export const TabsStyles = theme => ({
   root: {
     overflow: 'hidden',
     minHeight: 48,
@@ -156,8 +156,8 @@ class Tabs extends React.Component {
     return { tabsMeta, tabMeta };
   };
 
-  tabs: ?HTMLElement = undefined;
-  valueToIndex: { [key: any]: any } = {};
+  tabs = undefined;
+  valueToIndex = {};
 
   handleResize = debounce(() => {
     this.updateIndicatorState(this.props);
@@ -445,4 +445,4 @@ Tabs.defaultProps = {
   textColor: 'inherit',
 };
 
-export default withStyles(styles, { withTheme: true, name: 'MuiTabs' })(Tabs);
+export default withStyles(TabsStyles, { withTheme: true, name: 'MuiTabs' })(Tabs);

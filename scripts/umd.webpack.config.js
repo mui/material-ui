@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const LIBRARY_NAME = 'material-ui';
 const baseConfig = {
   entry: {
-    'material-ui': path.join(__dirname, '../src/index.js'),
+    'material-ui': path.join(__dirname, '../src/index.ts'),
   },
   output: {
     path: path.join(__dirname, '../build/umd'),
@@ -34,7 +34,7 @@ const baseConfig = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.(j|t)sx?$/,
         loader: 'babel-loader',
         exclude: /(node_modules)/,
         query: {
@@ -42,6 +42,9 @@ const baseConfig = {
         },
       },
     ],
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
   },
   plugins: [],
 };

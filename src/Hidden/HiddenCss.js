@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
-const styles = theme => {
+const HiddenCssStyles = theme => {
   const hidden = {
     display: 'none',
   };
@@ -28,7 +28,7 @@ const styles = theme => {
 /**
  * @ignore - internal component.
  */
-function HiddenCss(props: Props) {
+function HiddenCss(props) {
   const {
     children,
     classes,
@@ -158,4 +158,4 @@ HiddenCss.propTypes = {
   xsUp: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiHiddenCss' })(HiddenCss);
+export default withStyles(HiddenCssStyles, { name: 'MuiHiddenCss' })(HiddenCss);

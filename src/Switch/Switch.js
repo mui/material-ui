@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import SwitchBase from '../internal/SwitchBase';
 
-export const styles = theme => ({
+export const SwitchStyles = theme => ({
   root: {
     display: 'inline-flex',
     width: 62,
@@ -148,4 +148,4 @@ Switch.propTypes = {
   value: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiSwitch' })(Switch);
+export default withStyles(SwitchStyles, { name: 'MuiSwitch' })(Switch);

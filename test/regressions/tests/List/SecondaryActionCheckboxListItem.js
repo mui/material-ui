@@ -1,6 +1,4 @@
-// @flow
-
-import React from 'react';
+import * as React from 'react';
 import { ListItem, ListItemText, ListItemSecondaryAction } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 

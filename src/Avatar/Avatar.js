@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
 
-export const styles = theme => ({
+export const AvatarStyles = theme => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -142,4 +142,4 @@ Avatar.defaultProps = {
   component: 'div',
 };
 
-export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);
+export default withStyles(AvatarStyles, { name: 'MuiAvatar' })(Avatar);

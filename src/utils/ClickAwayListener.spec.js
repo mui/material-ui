@@ -1,7 +1,5 @@
-// @flow
-
-import React from 'react';
-import { findDOMNode } from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createMount } from '../test-utils';
@@ -51,7 +49,7 @@ describe('<ClickAwayListener />', () => {
       );
 
       const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
-      const el = findDOMNode(wrapper.instance());
+      const el = ReactDOM.findDOMNode(wrapper.instance());
       if (el) {
         el.dispatchEvent(event);
       }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { MenuProps } from '../Menu';
 
 export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey> {
@@ -10,7 +10,7 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
   name?: string;
   native: boolean;
   onBlur?: React.FocusEventHandler<any>;
-  onChange?: (event: React.ChangeEvent<{}>, child: React.ReactNode) => void,
+  onChange?: (event: React.ChangeEvent<{}>, child: React.ReactNode) => void;
   onFocus?: React.FocusEventHandler<any>;
   readOnly?: boolean;
   renderValue?: Function;
@@ -18,13 +18,7 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
   value?: string | number | Array<string | number>;
 }
 
-export type SelectInputClassKey =
-  | 'root'
-  | 'select'
-  | 'selectMenu'
-  | 'disabled'
-  | 'icon'
-  ;
+export type SelectInputClassKey = 'root' | 'select' | 'selectMenu' | 'disabled' | 'icon';
 
 declare const SelectInput: React.ComponentType<SelectInputProps>;
 

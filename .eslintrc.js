@@ -52,6 +52,8 @@ module.exports = {
 
     'babel/object-curly-spacing': ['error', 'always'],
 
+    'import/extensions': 'off', // typescript incremental
+    'import/no-unresolved': 'off', // typescript incremental
     'import/unambiguous': 'off', // scripts
     'import/namespace': ['error', { allowComputed: true }],
     'import/no-extraneous-dependencies': 'off',

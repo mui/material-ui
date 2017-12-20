@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import StepIcon from './StepIcon';
 
-export const styles = theme => ({
+export const StepLabelStyles = theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -150,4 +150,4 @@ StepLabel.defaultProps = {
 
 StepLabel.muiName = 'StepLabel';
 
-export default withStyles(styles, { name: 'MuiStepLabel' })(StepLabel);
+export default withStyles(StepLabelStyles, { name: 'MuiStepLabel' })(StepLabel);

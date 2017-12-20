@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const ListStyles = theme => ({
   root: {
     flex: '1 1 auto',
     listStyle: 'none',
@@ -110,4 +110,4 @@ List.childContextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiList' })(List);
+export default withStyles(ListStyles, { name: 'MuiList' })(List);

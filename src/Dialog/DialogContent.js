@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => {
+export const DialogContentStyles = theme => {
   const spacing = theme.spacing.unit * 3;
   return {
     root: {
@@ -42,4 +42,4 @@ DialogContent.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiDialogContent' })(DialogContent);
+export default withStyles(DialogContentStyles, { name: 'MuiDialogContent' })(DialogContent);

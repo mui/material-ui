@@ -1,5 +1,10 @@
 {
-  "presets": ["./scripts/material-ui-babel-preset-env", "stage-1", "react"],
+  "presets": [
+    "@babel/preset-typescript",
+    "./scripts/material-ui-babel-preset-env",
+    "@babel/preset-stage-1",
+    "@babel/preset-react"
+  ],
   "plugins": [
     "transform-object-assign"
   ],
@@ -12,10 +17,7 @@
       ]
     },
     "development": {
-      "sourceMaps": "both",
-      "plugins": [
-        "transform-flow-strip-types"
-      ]
+      "sourceMaps": "both"
     },
     "docs-development": {
       "presets": [
@@ -29,12 +31,11 @@
             "alias": {
               "pages": "./pages",
               "material-ui": "./src",
-              "material-ui-icons": './packages/material-ui-icons/src',
+              "material-ui-icons": "./packages/material-ui-icons/src",
               "docs": "./docs"
             }
           }
-        ],
-        "transform-flow-strip-types"
+        ]
       ]
     },
     "docs-production": {
@@ -49,37 +50,35 @@
             "alias": {
               "pages": "./pages",
               "material-ui": "./src",
-              "material-ui-icons": './packages/material-ui-icons/src',
+              "material-ui-icons": "./packages/material-ui-icons/src",
               "docs": "./docs"
             }
           }
         ],
-        "transform-react-constant-elements",
-        "transform-dev-warning",
-        "transform-runtime",
+        "@babel/plugin-transform-react-constant-elements",
+//        "transform-dev-warning",
+        "@babel/plugin-transform-runtime",
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
         ["transform-react-remove-prop-types", {"mode": "remove"}]
       ]
     },
     "test": {
-      "sourceMaps": "both",
-      "plugins": [
-        "transform-flow-strip-types"
-      ]
+      "sourceMaps": "both"
     },
     "production": {
       "plugins": [
-        "transform-react-constant-elements",
-        "transform-dev-warning",
-        "transform-runtime",
+        "@babel/plugin-transform-react-constant-elements",
+//        "transform-dev-warning",
+        "@babel/plugin-transform-runtime",
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
         ["transform-react-remove-prop-types", {
-          "mode": "wrap",
-          "plugins": [
-            "babel-plugin-transform-flow-strip-types"
-          ]
+          "mode": "wrap"
         }]
       ]
     }
-  }
+  },
+  "ignore": [
+    "scripts/material-ui-babel-preset-env.js"
+  ]
 }
+

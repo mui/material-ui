@@ -1,6 +1,6 @@
 // @inheritedComponent Paper
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Collapse from '../transitions/Collapse';
@@ -8,7 +8,7 @@ import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = theme => {
+export const ExpansionPanelStyles = theme => {
   const transition = {
     duration: theme.transitions.duration.shortest,
     easing: theme.transitions.easing.ease,
@@ -204,4 +204,4 @@ ExpansionPanel.defaultProps = {
   disabled: false,
 };
 
-export default withStyles(styles, { name: 'MuiExpansionPanel' })(ExpansionPanel);
+export default withStyles(ExpansionPanelStyles, { name: 'MuiExpansionPanel' })(ExpansionPanel);

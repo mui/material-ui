@@ -1,6 +1,6 @@
-// @flow
+const AppModulePath = require('app-module-path');
 
-require('app-module-path').addPath(`${__dirname}'./../../`);
+AppModulePath.addPath(`${__dirname}'./../../`);
 
 const createDOM = require('./createDOM');
 

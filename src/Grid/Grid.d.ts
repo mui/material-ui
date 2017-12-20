@@ -1,11 +1,18 @@
 import * as React from 'react';
-import { StandardProps, Omit } from '..';
 import { HiddenProps } from '../Hidden/Hidden';
 import { Breakpoint } from '../styles/createBreakpoints';
+import { StandardProps } from '../MuiProps';
+import { Omit } from 'type-zoo';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
 
-export type GridContentAlignment = 'stretch' | 'center' | 'flex-start' | 'flex-end' |'space-between' | 'space-around';
+export type GridContentAlignment =
+  | 'stretch'
+  | 'center'
+  | 'flex-start'
+  | 'flex-end'
+  | 'space-between'
+  | 'space-around';
 
 export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
@@ -22,11 +29,12 @@ export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 export type GridSize = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-export interface GridProps extends StandardProps<
-  React.HTMLAttributes<HTMLElement> & Partial<Record<Breakpoint, boolean | GridSize>>,
-  GridClassKey,
-  'hidden'
-> {
+export interface GridProps
+  extends StandardProps<
+      React.HTMLAttributes<HTMLElement> & Partial<Record<Breakpoint, boolean | GridSize>>,
+      GridClassKey,
+      'hidden'
+    > {
   alignContent?: GridContentAlignment;
   alignItems?: GridItemsAlignment;
   component?: string | React.ComponentType<Omit<GridProps, StrippedProps>>;
@@ -76,8 +84,7 @@ export type GridClassKey =
   | 'grid-xs-9'
   | 'grid-xs-10'
   | 'grid-xs-11'
-  | 'grid-xs-12'
-  ;
+  | 'grid-xs-12';
 
 declare const Grid: React.ComponentType<GridProps>;
 
@@ -100,5 +107,4 @@ type StrippedProps =
   | 'sm'
   | 'md'
   | 'lg'
-  | 'xl'
-  ;
+  | 'xl';

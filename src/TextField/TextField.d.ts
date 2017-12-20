@@ -1,15 +1,12 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
 import { FormControlProps, FormHelperTextProps } from '../Form';
 import { InputProps, InputLabelProps } from '../Input';
 import { FormControlClassKey } from '../Form/FormControl';
 import { SelectProps } from '../Select';
+import { Margin, StandardProps } from '../MuiProps';
 
-export interface TextFieldProps extends StandardProps<
-  FormControlProps,
-  TextFieldClassKey,
-  'onChange' | 'defaultValue'
-> {
+export interface TextFieldProps
+  extends StandardProps<FormControlProps, TextFieldClassKey, 'onChange' | 'defaultValue'> {
   autoComplete?: string;
   autoFocus?: boolean;
   children?: React.ReactNode;
@@ -26,7 +23,7 @@ export interface TextFieldProps extends StandardProps<
   inputRef?: React.Ref<any>;
   label?: React.ReactNode;
   labelClassName?: string;
-  margin?: PropTypes.Margin;
+  margin?: Margin;
   multiline?: boolean;
   name?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -41,10 +38,7 @@ export interface TextFieldProps extends StandardProps<
   value?: string | number;
 }
 
-export type TextFieldClassKey =
-  | FormControlClassKey
-  ;
-
+export type TextFieldClassKey = FormControlClassKey;
 
 declare const Input: React.ComponentType<TextFieldProps>;
 

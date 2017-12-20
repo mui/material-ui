@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonCheckedIcon from '../svg-icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '../svg-icons/RadioButtonUnchecked';
 
-export const styles = theme => ({
+export const RadioStyles = theme => ({
   default: {
     color: theme.palette.text.secondary,
   },
@@ -96,4 +96,4 @@ Radio.propTypes = {
   value: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiRadio' })(Radio);
+export default withStyles(RadioStyles, { name: 'MuiRadio' })(Radio);

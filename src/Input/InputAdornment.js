@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const InputAdornmentStyles = theme => ({
   root: {
     'label + div > &': {
       marginTop: -theme.spacing.unit * 2,
@@ -84,4 +84,4 @@ InputAdornment.defaultProps = {
   disableTypography: false,
 };
 
-export default withStyles(styles, { name: 'MuiInputAdornment' })(InputAdornment);
+export default withStyles(InputAdornmentStyles, { name: 'MuiInputAdornment' })(InputAdornment);

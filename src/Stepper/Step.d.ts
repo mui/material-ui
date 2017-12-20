@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { Orientation } from './Stepper';
 
-export interface StepProps extends StandardProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  StepClasskey
-> {
+export interface StepProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepClasskey> {
   active?: boolean;
   alternativeLabel?: boolean;
   children?: React.ReactNode;
@@ -17,11 +15,7 @@ export interface StepProps extends StandardProps<
   orientation?: Orientation;
 }
 
-export type StepClasskey =
-  | 'root'
-  | 'horizontal'
-  | 'alternativeLabel'
-  ;
+export type StepClasskey = 'root' | 'horizontal' | 'alternativeLabel';
 
 declare const Step: React.ComponentType<StepProps>;
 

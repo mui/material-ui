@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import * as classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';
 
@@ -17,6 +17,11 @@ const styles = {
     width: 300,
   },
 };
+
+// type Props = {
+//  classes: Object,
+//  theme?: Object,
+// };
 
 class Inputs extends React.Component {
   componentDidMount() {
@@ -50,7 +55,7 @@ class Inputs extends React.Component {
 }
 
 Inputs.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
 };
 
 export default withStyles(styles)(Inputs);

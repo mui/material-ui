@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
@@ -21,7 +21,7 @@ describe('<TouchRipple />', () => {
     mount.cleanUp();
   });
 
-  it('should render a <ReactTransitionGroup> component', () => {
+  it('should render a <TransitionGroup> component', () => {
     const wrapper = shallow(<TouchRipple />);
     assert.strictEqual(wrapper.name(), 'TransitionGroup');
     assert.strictEqual(wrapper.props().component, 'span', 'should be pass a span as the component');

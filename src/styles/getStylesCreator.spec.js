@@ -1,5 +1,3 @@
-// @flow
-
 import { assert } from 'chai';
 import getStylesCreator from './getStylesCreator';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';

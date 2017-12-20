@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import SvgIcon from '../SvgIcon';
 
-export const styles = theme => ({
+export const StepPositionIconStyles = theme => ({
   root: {
     fill: theme.palette.action.disabled,
   },
@@ -60,4 +60,4 @@ StepPositionIcon.propTypes = {
   position: PropTypes.node,
 };
 
-export default withStyles(styles, { name: 'MuiStepPosition' })(StepPositionIcon);
+export default withStyles(StepPositionIconStyles, { name: 'MuiStepPosition' })(StepPositionIcon);
