@@ -31,7 +31,7 @@
             "alias": {
               "pages": "./pages",
               "material-ui": "./src",
-              "material-ui-icons": './packages/material-ui-icons/src',
+              "material-ui-icons": "./packages/material-ui-icons/src",
               "docs": "./docs"
             }
           }
@@ -50,7 +50,7 @@
             "alias": {
               "pages": "./pages",
               "material-ui": "./src",
-              "material-ui-icons": './packages/material-ui-icons/src',
+              "material-ui-icons": "./packages/material-ui-icons/src",
               "docs": "./docs"
             }
           }
@@ -78,11 +78,7 @@
     }
   },
   "ignore": [
-    "scripts/material-ui-babel-preset-env.js",
-    "**/*.d.ts",
-    "**/*.spec.js",
-    "**/*.spec.ts",
-    "**/*.spec.tsx"
+    "scripts/material-ui-babel-preset-env.js"
   ]
 }
 
