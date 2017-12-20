@@ -1,9 +1,7 @@
-// @flow
-
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { create, SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { renderToString } from 'react-dom/server';
@@ -17,7 +15,7 @@ import MuiThemeProvider from './MuiThemeProvider';
 
 function getThemeSpy() {
   const themeSpy = spy();
-  const ThemeSpy = (props: Object) => {
+  const ThemeSpy = props => {
     themeSpy(props.theme);
     return props.children;
   };

@@ -16,3 +16,5 @@ flow-typed
 /packages/material-ui-codemod/src/*/*.spec*
 /examples/create-react-app/build
 /.git
+# we don't have flow configured anymore
+/examples/create-react-app-with-flow

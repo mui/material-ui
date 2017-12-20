@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 
-export interface SelectProps extends StandardProps<
-  InputProps,
-  SelectClassKey,
-  'value'
-> {
+export interface SelectProps extends StandardProps<InputProps, SelectClassKey, 'value'> {
   autoWidth?: boolean;
   displayEmpty?: boolean;
   input?: React.ReactNode;
@@ -18,13 +14,7 @@ export interface SelectProps extends StandardProps<
   value?: Array<string | number> | string | number;
 }
 
-export type SelectClassKey =
-  | 'root'
-  | 'select'
-  | 'selectMenu'
-  | 'disabled'
-  | 'icon'
-  ;
+export type SelectClassKey = 'root' | 'select' | 'selectMenu' | 'disabled' | 'icon';
 
 declare const Select: React.ComponentType<SelectProps>;
 

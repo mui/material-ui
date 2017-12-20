@@ -1,5 +1,5 @@
-import React from 'react';
-import keycode from 'keycode';
+import * as React from 'react';
+import * as keycode from 'keycode';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';

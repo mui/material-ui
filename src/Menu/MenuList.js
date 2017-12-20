@@ -1,12 +1,12 @@
 // @inheritedComponent List
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import keycode from 'keycode';
-import contains from 'dom-helpers/query/contains';
-import activeElement from 'dom-helpers/activeElement';
-import ownerDocument from 'dom-helpers/ownerDocument';
+import * as keycode from 'keycode';
+import * as contains from 'dom-helpers/query/contains';
+import * as activeElement from 'dom-helpers/activeElement';
+import * as ownerDocument from 'dom-helpers/ownerDocument';
 import List from '../List';
 
 class MenuList extends React.Component {
@@ -22,7 +22,7 @@ class MenuList extends React.Component {
     clearTimeout(this.blurTimer);
   }
 
-  setTabIndex(index: number) {
+  setTabIndex(index) {
     this.setState({ currentTabIndex: index });
   }
 
@@ -30,7 +30,7 @@ class MenuList extends React.Component {
   selectedItem = undefined;
   blurTimer = undefined;
 
-  handleBlur = (event: SyntheticUIEvent<>) => {
+  handleBlur = event => {
     this.blurTimer = setTimeout(() => {
       if (this.list) {
         const list = findDOMNode(this.list);
@@ -46,7 +46,7 @@ class MenuList extends React.Component {
     }
   };
 
-  handleKeyDown = (event: SyntheticUIEvent<>) => {
+  handleKeyDown = event => {
     const list = findDOMNode(this.list);
     const key = keycode(event);
     const currentFocus = activeElement(ownerDocument(list));
@@ -77,7 +77,7 @@ class MenuList extends React.Component {
     }
   };
 
-  handleItemFocus = (event: SyntheticUIEvent<>) => {
+  handleItemFocus = event => {
     const list = findDOMNode(this.list);
     if (list) {
       for (let i = 0; i < list.children.length; i += 1) {

@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 import Paper from 'material-ui/Paper';

@@ -5,5 +5,5 @@ export interface RenderOptions {
 }
 
 export default function createRender(
-  options?: Partial<RenderOptions>
+  options?: Partial<RenderOptions>,
 ): typeof render & { cleanUp: Function };

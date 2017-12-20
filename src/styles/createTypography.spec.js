@@ -1,5 +1,3 @@
-// @flow
-
 import { assert } from 'chai';
 import createPalette from './createPalette';
 import createTypography from './createTypography';

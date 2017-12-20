@@ -1,11 +1,8 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
-export interface SwitchProps extends StandardProps<
-  SwitchBaseProps,
-  SwitchClassKey
-> {
+export interface SwitchProps extends StandardProps<SwitchBaseProps, SwitchClassKey> {
   checked?: boolean | string;
   checkedClassName?: string;
   checkedIcon?: React.ReactNode;
@@ -21,11 +18,7 @@ export interface SwitchProps extends StandardProps<
   value?: string;
 }
 
-export type SwitchClassKey =
-  | SwitchBaseClassKey
-  | 'bar'
-  | 'icon'
-  ;
+export type SwitchClassKey = SwitchBaseClassKey | 'bar' | 'icon';
 
 declare const Switch: React.ComponentType<SwitchProps>;
 

@@ -1,9 +1,7 @@
-// @flow
-
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import keycode from 'keycode';
+import * as keycode from 'keycode';
 import { createShallow, createMount } from '../test-utils';
 import Menu, { MenuItem } from '../Menu';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';

@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { Color, StandardProps } from '../MuiProps';
 
-export interface IconProps extends StandardProps<
-  React.HTMLAttributes<HTMLSpanElement>,
-  IconClassKey
-> {
-  color?: PropTypes.Color | 'action' | 'contrast' | 'disabled' | 'error';
+export interface IconProps
+  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, IconClassKey> {
+  color?: Color | 'action' | 'contrast' | 'disabled' | 'error';
 }
 
 export type IconClassKey =
@@ -15,8 +13,7 @@ export type IconClassKey =
   | 'colorContrast'
   | 'colorDisabled'
   | 'colorError'
-  | 'colorPrimary'
-  ;
+  | 'colorPrimary';
 
 declare const Icon: React.ComponentType<IconProps>;
 

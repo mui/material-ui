@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import * as classNames from 'classnames';
 import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
 import withStyles from '../styles/withStyles';
+import debounce from '../utils/ts-import-workaround/debounce';
 
 export const styles = {
   root: {

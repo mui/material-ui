@@ -1,9 +1,9 @@
 // @inheritedComponent Popover
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import * as getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from './MenuList';
@@ -66,7 +66,7 @@ class Menu extends React.Component {
     }
   };
 
-  handleEnter = (element: HTMLElement) => {
+  handleEnter = element => {
     const { theme } = this.props;
 
     const menuList = findDOMNode(this.menuList);
@@ -90,7 +90,7 @@ class Menu extends React.Component {
     }
   };
 
-  handleListKeyDown = (event: SyntheticUIEvent<>, key: string) => {
+  handleListKeyDown = (event, key) => {
     if (key === 'tab') {
       event.preventDefault();
 

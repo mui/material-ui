@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import debounce from 'lodash/debounce';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import * as classnames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
+import debounce from '../utils/ts-import-workaround/debounce';
 
 const ROWS_HEIGHT = 24;
 
@@ -126,7 +126,7 @@ class Textarea extends React.Component {
     this.shadow = node;
   };
 
-  handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+  handleChange = event => {
     this.value = event.target.value;
 
     if (typeof this.props.value === 'undefined' && this.shadow) {

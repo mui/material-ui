@@ -1,16 +1,16 @@
 // @inheritedComponent Modal
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import warning from 'warning';
-import contains from 'dom-helpers/query/contains';
-import debounce from 'lodash/debounce';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import * as ReactDOM from 'react-dom';
+import * as warning from 'warning';
+import * as contains from 'dom-helpers/query/contains';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../transitions/Grow';
 import Paper from '../Paper';
+import debounce from '../utils/ts-import-workaround/debounce';
 
 function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -228,7 +228,7 @@ class Popover extends React.Component {
   };
 
   handleResize = debounce(() => {
-    const element: any = ReactDOM.findDOMNode(this.transitionEl);
+    const element = ReactDOM.findDOMNode(this.transitionEl);
     this.setPositioningStyles(element);
   }, 166);
 

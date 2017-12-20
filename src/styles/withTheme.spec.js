@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
-import createBroadcast from 'brcast';
+import * as createBroadcast from 'brcast';
 import { createShallow, createMount } from '../test-utils';
 import { CHANNEL } from './themeListener';
 import withTheme from './withTheme';

@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import warning from 'warning';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import * as warning from 'warning';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
@@ -28,7 +28,7 @@ const styles = theme => {
 /**
  * @ignore - internal component.
  */
-function HiddenCss(props: Props) {
+function HiddenCss(props) {
   const {
     children,
     classes,

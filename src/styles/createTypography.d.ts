@@ -22,6 +22,7 @@ export interface FontStyle {
   fontWeightRegular: React.CSSProperties['fontWeight'];
   fontWeightMedium: React.CSSProperties['fontWeight'];
   htmlFontSize?: number;
+  pxToRem: (value: number) => number;
 }
 
 export interface TypographyStyle {
@@ -46,5 +47,5 @@ export type TypographyOptions = Partial<Record<Style, Partial<TypographyStyle>> 
 
 export default function createTypography(
   palette: Palette,
-  typography: TypographyOptions | ((palette: Palette) => TypographyOptions)
+  typography: TypographyOptions | ((palette: Palette) => TypographyOptions),
 ): Typography;

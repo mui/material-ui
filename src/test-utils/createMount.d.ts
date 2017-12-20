@@ -5,7 +5,7 @@ export interface MountOptions {
 }
 
 export default function createMount(
-  options?: Partial<MountOptions>
+  options?: Partial<MountOptions>,
 ): typeof mount & {
   attachTo: HTMLElement;
   cleanUp: Function;

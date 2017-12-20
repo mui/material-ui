@@ -7,6 +7,7 @@ export function detectKeyboardFocus(
   },
   element: Element,
   cb: Function,
-  attempt: number
+  attempt: number,
 ): never;
+
 export function listenForFocusKeys(): never;

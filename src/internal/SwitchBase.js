@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import * as classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
 import CheckBoxOutlineBlankIcon from '../svg-icons/CheckBoxOutlineBlank';
@@ -52,7 +52,7 @@ class SwitchBase extends React.Component {
   button = null;
   isControlled = null;
 
-  handleInputChange = (event: SyntheticInputEvent<*>) => {
+  handleInputChange = event => {
     const checked = event.target.checked;
 
     if (!this.isControlled) {

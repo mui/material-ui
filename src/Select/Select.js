@@ -1,8 +1,8 @@
 // @inheritedComponent Input
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import warning from 'warning';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import * as warning from 'warning';
 import SelectInput from './SelectInput';
 import withStyles from '../styles/withStyles';
 import Input from '../Input'; // Import to enforce the CSS injection order
@@ -89,7 +89,7 @@ function Select(props) {
     inputComponent: SelectInput,
     ...other,
     inputProps: {
-      ...(input ? input.props.inputProps : {}),
+      ...input ? input.props.inputProps : {},
       autoWidth,
       children,
       classes,

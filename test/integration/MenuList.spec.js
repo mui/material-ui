@@ -1,7 +1,5 @@
-// @flow
-
-import React from 'react';
-import keycode from 'keycode';
+import * as React from 'react';
+import * as keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import MenuList from 'src/Menu/MenuList';

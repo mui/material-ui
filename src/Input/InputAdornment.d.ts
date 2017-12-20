@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 
 export interface InputAdornmentProps extends StandardProps<{}, InputAdornmentClassKey> {
   component?: string | React.ComponentType<InputAdornmentProps>;
@@ -7,11 +7,7 @@ export interface InputAdornmentProps extends StandardProps<{}, InputAdornmentCla
   position: 'start' | 'end';
 }
 
-export type InputAdornmentClassKey =
-  | 'root'
-  | 'positionStart'
-  | 'positionEnd'
-  ;
+export type InputAdornmentClassKey = 'root' | 'positionStart' | 'positionEnd';
 
 declare const InputAdornment: React.ComponentType<InputAdornmentProps>;
 

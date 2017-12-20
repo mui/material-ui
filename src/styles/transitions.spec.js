@@ -1,5 +1,3 @@
-// @flow
-
 import { assert } from 'chai';
 import { stub } from 'sinon';
 import transitions, { easing, duration, formatMs, isString, isNumber } from './transitions';

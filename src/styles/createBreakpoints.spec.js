@@ -1,5 +1,3 @@
-// @flow
-
 import { assert } from 'chai';
 import createBreakpoints from './createBreakpoints';
 

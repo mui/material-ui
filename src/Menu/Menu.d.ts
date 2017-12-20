@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { PopoverProps, PopoverClassKey } from '../Popover';
-import { TransitionDuration, TransitionHandlers } from '../internal/transition';
+import { TransitionDuration, TransitionHandlers } from '../transitions/transition';
 import { MenuListProps } from './MenuList';
-import { StandardProps } from '..';
+import { StandardProps } from '../MuiProps';
 
-export interface MenuProps extends StandardProps<
-  PopoverProps & Partial<TransitionHandlers>,
-  MenuClassKey
-> {
+export interface MenuProps
+  extends StandardProps<PopoverProps & Partial<TransitionHandlers>, MenuClassKey> {
   anchorEl?: HTMLElement;
   MenuListProps?: MenuListProps;
   onClose?: React.EventHandler<any>;
@@ -15,10 +13,7 @@ export interface MenuProps extends StandardProps<
   transitionDuration?: TransitionDuration;
 }
 
-export type MenuClassKey =
-  | PopoverClassKey
-  | 'root'
-  ;
+export type MenuClassKey = PopoverClassKey | 'root';
 
 declare const Menu: React.ComponentType<MenuProps>;
 

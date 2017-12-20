@@ -25,26 +25,22 @@ const DecoratedSFC = decorate<Props>(({ text, type, color, classes }) => (
 const DecoratedClass = decorate(
   class extends React.Component<Props & WithStyles<'root'>> {
     render() {
-      const { text, type, color, classes } = this.props
+      const { text, type, color, classes } = this.props;
       return (
         <Typography type={type} color={color} classes={classes}>
           {text}
         </Typography>
-      )
+      );
     }
-  }
+  },
 );
 
 const DecoratedNoProps = decorate<{}>(
   class extends React.Component<WithStyles<'root'>> {
     render() {
-      return (
-        <Typography classes={this.props.classes}>
-          Hello, World!
-        </Typography>
-      )
+      return <Typography classes={this.props.classes}>Hello, World!</Typography>;
     }
-  }
+  },
 );
 
 const sfcElem = <DecoratedSFC text="Hello, World!" type="title" color="accent" />;

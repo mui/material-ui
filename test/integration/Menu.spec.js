@@ -1,10 +1,8 @@
-// @flow
-
-import React from 'react';
-import keycode from 'keycode';
+import * as React from 'react';
+import * as keycode from 'keycode';
+import * as TestUtils from 'react-dom/test-utils';
 import { assert } from 'chai';
 import { ReactWrapper } from 'enzyme';
-import TestUtils from 'react-dom/test-utils';
 import { createMount } from 'src/test-utils';
 import Popover from 'src/Popover';
 import SimpleMenu from './fixtures/menus/SimpleMenu';

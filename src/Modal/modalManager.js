@@ -1,10 +1,10 @@
 // Taken from https://github.com/react-bootstrap/react-overlays/blob/master/src/ModalManager.js
 
-import warning from 'warning';
-import isWindow from 'dom-helpers/query/isWindow';
-import ownerDocument from 'dom-helpers/ownerDocument';
-import canUseDom from 'dom-helpers/util/inDOM';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import * as warning from 'warning';
+import * as isWindow from 'dom-helpers/query/isWindow';
+import * as ownerDocument from 'dom-helpers/ownerDocument';
+import * as canUseDom from 'dom-helpers/util/inDOM';
+import * as getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import { hideSiblings, showSiblings, ariaHidden } from '../utils/manageAriaHidden';
 
 function getPaddingRight(node) {
@@ -42,13 +42,13 @@ Please move the import at the end of the <body>.
  *
  * @internal Used by the Modal to ensure proper focus management.
  */
-function createModalManager({ hideSiblingNodes = true }: Object = {}) {
+function createModalManager({ hideSiblingNodes = true } = {}) {
   const modals = [];
 
   let prevOverflow;
   let prevPaddings = [];
 
-  function add(modal: Object) {
+  function add(modal) {
     const container = getContainer();
     let modalIdx = modals.indexOf(modal);
 
@@ -87,7 +87,7 @@ function createModalManager({ hideSiblingNodes = true }: Object = {}) {
     return modalIdx;
   }
 
-  function remove(modal: Object) {
+  function remove(modal) {
     const container = getContainer();
     const modalIdx = modals.indexOf(modal);
 
@@ -119,7 +119,7 @@ function createModalManager({ hideSiblingNodes = true }: Object = {}) {
     return modalIdx;
   }
 
-  function isTopModal(modal: Object) {
+  function isTopModal(modal) {
     return !!modals.length && modals[modals.length - 1] === modal;
   }
 

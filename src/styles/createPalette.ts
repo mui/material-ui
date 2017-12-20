@@ -1,0 +1,223 @@
+import * as deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
+import * as warning from 'warning';
+import indigo from '../colors/indigo';
+import pink from '../colors/pink';
+import grey from '../colors/grey';
+import red from '../colors/red';
+import common, { CommonColors } from '../colors/common';
+import { getContrastRatio } from './colorManipulator';
+import { Color, Contrast } from '../colors';
+
+interface ShadeText {
+  primary: string;
+  secondary: string;
+  disabled: string;
+  hint: string;
+  icon: string;
+  divider: string;
+  lightDivider: string;
+}
+
+interface ShadeInput {
+  bottomLine: string;
+  helperText: string;
+  labelText: string;
+  inputText: string;
+  disabled: string;
+}
+
+interface ShadeAction {
+  active: string;
+  disabled: string;
+}
+
+interface ShadeBackground {
+  appBar: string;
+  contentFrame: string;
+  default: string;
+  chip: string;
+  paper: string;
+}
+
+interface ShadeLine {
+  stepper: string;
+}
+
+export interface Shade {
+  action: ShadeAction;
+  background: ShadeBackground;
+  input: ShadeInput;
+  line: ShadeLine;
+  text: ShadeText;
+}
+
+export const light: Shade = {
+  text: {
+    primary: 'rgba(0, 0, 0, 0.87)',
+    secondary: 'rgba(0, 0, 0, 0.54)',
+    disabled: 'rgba(0, 0, 0, 0.38)',
+    hint: 'rgba(0, 0, 0, 0.38)',
+    icon: 'rgba(0, 0, 0, 0.38)',
+    divider: 'rgba(0, 0, 0, 0.12)',
+    lightDivider: 'rgba(0, 0, 0, 0.075)',
+  },
+  input: {
+    bottomLine: 'rgba(0, 0, 0, 0.42)',
+    helperText: 'rgba(0, 0, 0, 0.54)',
+    labelText: 'rgba(0, 0, 0, 0.54)',
+    inputText: 'rgba(0, 0, 0, 0.87)',
+    disabled: 'rgba(0, 0, 0, 0.42)',
+  },
+  action: {
+    active: 'rgba(0, 0, 0, 0.54)',
+    disabled: 'rgba(0, 0, 0, 0.26)',
+  },
+  background: {
+    default: grey[50],
+    paper: common.white,
+    appBar: grey[100],
+    contentFrame: grey[200],
+    chip: grey[300],
+  },
+  line: {
+    stepper: grey[400],
+  },
+};
+
+export const dark: Shade = {
+  text: {
+    primary: 'rgba(255, 255, 255, 1)',
+    secondary: 'rgba(255, 255, 255, 0.7)',
+    disabled: 'rgba(255, 255, 255, 0.5)',
+    hint: 'rgba(255, 255, 255, 0.5)',
+    icon: 'rgba(255, 255, 255, 0.5)',
+    divider: 'rgba(255, 255, 255, 0.12)',
+    lightDivider: 'rgba(255, 255, 255, 0.075)',
+  },
+  input: {
+    bottomLine: 'rgba(255, 255, 255, 0.7)',
+    helperText: 'rgba(255, 255, 255, 0.7)',
+    labelText: 'rgba(255, 255, 255, 0.7)',
+    inputText: 'rgba(255, 255, 255, 1)',
+    disabled: 'rgba(255, 255, 255, 0.5)',
+  },
+  action: {
+    active: 'rgba(255, 255, 255, 1)',
+    disabled: 'rgba(255, 255, 255, 0.3)',
+  },
+  background: {
+    default: '#303030',
+    paper: grey[800],
+    appBar: grey[900],
+    contentFrame: grey[900],
+    chip: grey[800],
+  },
+  line: {
+    // TODO: What should the dark theme have for stepper line? Not stated in style guide
+    stepper: grey[400],
+  },
+};
+
+function getContrastText(hue: string) {
+  if (getContrastRatio(hue, common.black) < 7) {
+    return dark.text.primary;
+  }
+  return light.text.primary;
+}
+
+export interface Palette {
+  common: CommonColors;
+  type: Contrast;
+  primary: Color;
+  secondary: Color;
+  error: Color;
+  grey: Color;
+  shades: {
+    dark: Shade;
+    light: Shade;
+  };
+  text: ShadeText;
+  input: ShadeInput;
+  action: ShadeAction;
+  background: ShadeBackground;
+  getContrastText: (color: string) => string;
+}
+
+type PartialShade = { [P in keyof Shade]?: Partial<Shade[P]> };
+type PartialColor = Partial<Color>;
+
+export interface PaletteOptions {
+  common?: Partial<CommonColors>;
+  type?: Contrast;
+  primary?: PartialColor;
+  secondary?: PartialColor;
+  error?: PartialColor;
+  grey?: PartialColor;
+  shades?: {
+    dark?: PartialShade;
+    light?: PartialShade;
+  };
+  text?: Partial<ShadeText>;
+  input?: Partial<ShadeInput>;
+  action?: Partial<ShadeAction>;
+  background?: Partial<ShadeBackground>;
+  getContrastText?: (color: string) => string;
+}
+
+export default function createPalette(palette: PaletteOptions): Palette {
+  const { primary = indigo, secondary = pink, error = red, type = 'light', ...other } = palette;
+  const shades = { dark, light };
+
+  warning(Boolean(shades[type]), `Material-UI: the palette type \`${type}\` is not supported.`);
+
+  const paletteOutput = deepmerge(
+    {
+      common,
+      type,
+      primary,
+      secondary,
+      error,
+      grey,
+      shades,
+      text: shades[type].text,
+      input: shades[type].input,
+      action: shades[type].action,
+      background: shades[type].background,
+      line: shades[type].line,
+      getContrastText,
+    },
+    other,
+    {
+      clone: false, // No need to clone deep
+    },
+  );
+
+  // Dev warnings
+  if (process.env.NODE_ENV !== 'production') {
+    const difference = (base: object, compare: object) => {
+      if (!compare) {
+        compare = {};
+      }
+
+      return Object.keys(base).filter(hue => !compare[hue]);
+    };
+
+    const paletteColorError = (name: string, base: object, compare: object) => {
+      const missing = difference(base, compare);
+      warning(
+        missing.length === 0,
+        [
+          `Material-UI: ${name} color is missing the following hues: ${missing.join(',')}`,
+          'See the default colors, indigo, or pink, as exported from material-ui/colors.',
+        ].join('\n'),
+      );
+    };
+
+    paletteColorError('primary', indigo, paletteOutput.primary);
+    paletteColorError('secondary', pink, paletteOutput.secondary);
+    paletteColorError('error', red, paletteOutput.error);
+    paletteColorError('grey', red, paletteOutput.grey);
+  }
+
+  return paletteOutput as Palette; // cast all partials to fully typed
+}

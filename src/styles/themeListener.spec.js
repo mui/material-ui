@@ -1,7 +1,5 @@
-// @flow
-
 import { assert } from 'chai';
-import createBroadcast from 'brcast';
+import * as createBroadcast from 'brcast';
 import themeListener, { CHANNEL } from './themeListener';
 
 describe('themeListener', () => {
