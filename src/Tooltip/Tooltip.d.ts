@@ -6,6 +6,7 @@ export interface TooltipProps extends StandardProps<
   TooltipClassKey,
   'title'
 > {
+  children: React.ReactElement<any>;
   disableTriggerFocus?: boolean;
   disableTriggerHover?: boolean;
   disableTriggerTouch?: boolean;

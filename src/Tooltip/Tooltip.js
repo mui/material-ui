@@ -158,16 +158,14 @@ class Tooltip extends React.Component {
 
   handleRequestOpen = event => {
     const { children } = this.props;
-    if (typeof children !== 'string') {
-      const childrenProps = React.Children.only(children).props;
+    const childrenProps = children.props;
 
-      if (event.type === 'focus' && childrenProps.onFocus) {
-        childrenProps.onFocus(event);
-      }
+    if (event.type === 'focus' && childrenProps.onFocus) {
+      childrenProps.onFocus(event);
+    }
 
-      if (event.type === 'mouseover' && childrenProps.onMouseOver) {
-        childrenProps.onMouseOver(event);
-      }
+    if (event.type === 'mouseover' && childrenProps.onMouseOver) {
+      childrenProps.onMouseOver(event);
     }
 
     if (this.ignoreNonTouchEvents && event.type !== 'touchstart') {
@@ -196,16 +194,14 @@ class Tooltip extends React.Component {
 
   handleClose = event => {
     const { children } = this.props;
-    if (typeof children !== 'string') {
-      const childrenProps = React.Children.only(children).props;
+    const childrenProps = children.props;
 
-      if (event.type === 'blur' && childrenProps.onBlur) {
-        childrenProps.onBlur(event);
-      }
+    if (event.type === 'blur' && childrenProps.onBlur) {
+      childrenProps.onBlur(event);
+    }
 
-      if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
-        childrenProps.onMouseLeave(event);
-      }
+    if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
+      childrenProps.onMouseLeave(event);
     }
 
     clearTimeout(this.leaveTimer);
@@ -233,12 +229,10 @@ class Tooltip extends React.Component {
   handleTouchStart = event => {
     this.ignoreNonTouchEvents = true;
     const { children } = this.props;
-    if (typeof children !== 'string') {
-      const childrenProps = React.Children.only(children).props;
+    const childrenProps = children.props;
 
-      if (childrenProps.onTouchStart) {
-        childrenProps.onTouchStart(event);
-      }
+    if (childrenProps.onTouchStart) {
+      childrenProps.onTouchStart(event);
     }
 
     clearTimeout(this.touchTimer);
@@ -250,12 +244,10 @@ class Tooltip extends React.Component {
 
   handleTouchEnd = event => {
     const { children } = this.props;
-    if (typeof children !== 'string') {
-      const childrenProps = React.Children.only(children).props;
+    const childrenProps = children.props;
 
-      if (childrenProps.onTouchEnd) {
-        childrenProps.onTouchEnd(event);
-      }
+    if (childrenProps.onTouchEnd) {
+      childrenProps.onTouchEnd(event);
     }
 
     clearTimeout(this.touchTimer);
@@ -309,15 +301,13 @@ class Tooltip extends React.Component {
       childrenProps.onBlur = this.handleClose;
     }
 
-    if (typeof childrenProp !== 'string' && childrenProp.props) {
-      warning(
-        !childrenProp.props.title,
-        [
-          'Material-UI: you have been providing a `title` property to the child of <Tooltip />.',
-          `Remove this title property \`${childrenProp.props.title}\` or the Tooltip component.`,
-        ].join('\n'),
-      );
-    }
+    warning(
+      !childrenProp.props.title,
+      [
+        'Material-UI: you have been providing a `title` property to the child of <Tooltip />.',
+        `Remove this title property \`${childrenProp.props.title}\` or the Tooltip component.`,
+      ].join('\n'),
+    );
 
     return (
       <EventListener target="window" onResize={this.handleResize}>
@@ -330,9 +320,7 @@ class Tooltip extends React.Component {
                   targetProps.ref(this.children);
                 }}
               >
-                {typeof childrenProp !== 'string'
-                  ? React.cloneElement(childrenProp, childrenProps)
-                  : childrenProp}
+                {React.cloneElement(childrenProp, childrenProps)}
               </TargetChildren>
             )}
           </Target>
@@ -382,9 +370,9 @@ class Tooltip extends React.Component {
 
 Tooltip.propTypes = {
   /**
-   * Tooltip reference node.
+   * Tooltip reference element.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.element.isRequired,
   /**
    * Useful to extend the style applied to components.
    */

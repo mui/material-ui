@@ -12,7 +12,7 @@ filename: /src/Tooltip/Tooltip.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | node |  | Tooltip reference node. |
+| <span style="color: #31a148">children *</span> | element |  | Tooltip reference element. |
 | classes | object |  | Useful to extend the style applied to components. |
 | disableTriggerFocus | bool | false | Do not respond to focus events. |
 | disableTriggerHover | bool | false | Do not respond to hover events. |
