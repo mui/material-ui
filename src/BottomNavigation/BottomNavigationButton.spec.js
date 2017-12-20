@@ -92,7 +92,7 @@ describe('<BottomNavigationButton />', () => {
 
   it('should not render an Icon if icon is not provided', () => {
     const wrapper = shallow(<BottomNavigationButton />);
-    assert.isFalse(wrapper.find(Icon).exists());
+    assert.strictEqual(wrapper.find(Icon).exists(), false);
   });
 
   describe('prop: onClick', () => {
