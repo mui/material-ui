@@ -1,5 +1,5 @@
 import * as keycode from 'keycode';
-import * as warning from 'warning';
+import warning from 'warning';
 import * as contains from 'dom-helpers/query/contains';
 import addEventListener from '../utils/addEventListener';
 

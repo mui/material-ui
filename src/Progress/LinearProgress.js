@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import * as classNames from 'classnames';
-import * as warning from 'warning';
+import classNames from 'classnames';
+import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 const TRANSITION_DURATION = 4; // 400ms

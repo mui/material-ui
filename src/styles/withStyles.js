@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import * as hoistNonReactStatics from 'hoist-non-react-statics';
+import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import getDisplayName from 'recompose/getDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
@@ -12,7 +12,7 @@ import jssDefaultUnit from 'jss-default-unit';
 import jssVendorPrefixer from 'jss-vendor-prefixer';
 import jssPropsSort from 'jss-props-sort';
 import * as ns from 'react-jss/lib/ns';
-import * as warning from 'warning';
+import warning from 'warning';
 import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';

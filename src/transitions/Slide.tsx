@@ -8,7 +8,7 @@ import EventListener from 'react-event-listener';
 import withTheme, { WithTheme } from '../styles/withTheme';
 import { duration } from '../styles/transitions';
 import { TransitionProps } from './transition';
-import debounce from '../utils/ts-import-workaround/debounce';
+import debounce from 'lodash/debounce';
 
 const GUTTER = 24;
 

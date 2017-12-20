@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-import * as warning from 'warning';
+import warning from 'warning';
 
 export interface Easing {
   easeInOut: string;

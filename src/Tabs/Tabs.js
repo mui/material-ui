@@ -1,15 +1,15 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import * as warning from 'warning';
-import * as classNames from 'classnames';
+import warning from 'warning';
+import classNames from 'classnames';
 import * as scroll from 'scroll';
 import EventListener from 'react-event-listener';
 import ScrollbarSize from 'react-scrollbar-size';
+import debounce from 'lodash/debounce';
 import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
 import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
-import debounce from '../utils/ts-import-workaround/debounce';
 
 export const styles = theme => ({
   root: {

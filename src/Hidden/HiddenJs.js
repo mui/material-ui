@@ -1,5 +1,5 @@
 import * as PropTypes from 'prop-types';
-import * as warning from 'warning';
+import warning from 'warning';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
 

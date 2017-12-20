@@ -1,6 +1,6 @@
 // Taken from https://github.com/react-bootstrap/react-overlays/blob/master/src/ModalManager.js
 
-import * as warning from 'warning';
+import warning from 'warning';
 import * as isWindow from 'dom-helpers/query/isWindow';
 import * as ownerDocument from 'dom-helpers/ownerDocument';
 import * as canUseDom from 'dom-helpers/util/inDOM';

@@ -1,5 +1,5 @@
-import * as deepmerge from 'deepmerge';
-import * as warning from 'warning';
+import deepmerge from 'deepmerge';
+import warning from 'warning';
 import createTypography from './createTypography';
 import createBreakpoints from './createBreakpoints';
 import createPalette from './createPalette';

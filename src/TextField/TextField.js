@@ -1,7 +1,7 @@
 // @inheritedComponent FormControl
 
 import * as React from 'react';
-import * as warning from 'warning';
+import warning from 'warning';
 import * as PropTypes from 'prop-types';
 import Input, { InputLabel } from '../Input';
 import FormControl from '../Form/FormControl';

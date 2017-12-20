@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import * as warning from 'warning';
+import warning from 'warning';
 import SelectInput from './SelectInput';
 import withStyles from '../styles/withStyles';
 import Input from '../Input'; // Import to enforce the CSS injection order

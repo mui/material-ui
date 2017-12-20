@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 import * as keycode from 'keycode';
-import * as warning from 'warning';
+import warning from 'warning';
 import Menu from '../Menu/Menu';
 import { isDirty } from '../Input/Input';
 import ArrowDropDownIcon from '../svg-icons/ArrowDropDown';

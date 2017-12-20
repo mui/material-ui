@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { FormLabel } from '../Form';
 

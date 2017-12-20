@@ -1,5 +1,5 @@
-import * as warning from 'warning';
-import * as deepmerge from 'deepmerge';
+import warning from 'warning';
+import deepmerge from 'deepmerge';
 
 function getStylesCreator(stylesOrCreator) {
   function create(theme, name) {

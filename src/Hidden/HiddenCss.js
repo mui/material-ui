@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import * as warning from 'warning';
+import warning from 'warning';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import withStyles from '../styles/withStyles';

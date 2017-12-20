@@ -1,6 +1,6 @@
 import * as React from 'react';
 import wrapDisplayName from 'recompose/wrapDisplayName';
-import * as hoistNonReactStatics from 'hoist-non-react-statics';
+import hoistNonReactStatics from 'hoist-non-react-statics';
 import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 

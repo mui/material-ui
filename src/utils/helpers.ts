@@ -1,4 +1,4 @@
-import * as warning from 'warning';
+import warning from 'warning';
 
 export function capitalizeFirstLetter(string: string): string {
   warning(

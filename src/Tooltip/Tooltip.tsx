@@ -3,8 +3,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as ReactDOM from 'react-dom';
-import * as warning from 'warning';
-import * as classNames from 'classnames';
+import warning from 'warning';
+import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import { Manager, Target, Popper, IPopperProps } from 'react-popper';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -13,7 +13,7 @@ import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 import { StyleRulesCallback, WithStyles } from '../styles';
 import { StandardProps } from '../MuiProps';
-import debounce from '../utils/ts-import-workaround/debounce'
+import debounce from 'lodash/debounce'
 
 // Use a class component so we can get a reference.
 class TargetChildren extends React.Component {
