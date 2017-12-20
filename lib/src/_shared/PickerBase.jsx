@@ -50,10 +50,6 @@ export default class PickerBase extends PureComponent {
       : this.default24hFormat;
   }
 
-  togglePicker = () => {
-    this.wrapper.togglePicker();
-  }
-
   handleAccept = () => {
     const dateToReturn = this.props.returnMoment
       ? this.state.date
@@ -70,7 +66,7 @@ export default class PickerBase extends PureComponent {
     this.setState({ date }, () => {
       if (isFinish && this.props.autoOk) {
         this.handleAccept();
-        this.togglePicker();
+        this.wrapper.close();
       }
     });
   }
