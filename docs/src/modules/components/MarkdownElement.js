@@ -191,7 +191,7 @@ const styles = theme => ({
     },
     '& blockquote': {
       borderLeft: `5px solid ${theme.palette.text.hint}`,
-      background: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.paper,
       padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 3}px`,
       margin: `${theme.spacing.unit * 3}px 0`,
     },

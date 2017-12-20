@@ -26,7 +26,7 @@ export const styles = theme => ({
     pointerEvents: 'none',
   },
   tooltip: {
-    background: grey[700],
+    backgroundColor: grey[700],
     borderRadius: 2,
     color: common.fullWhite,
     fontFamily: theme.typography.fontFamily,
@@ -101,7 +101,7 @@ class Tooltip extends React.Component {
   componentWillMount() {
     const { props } = this;
 
-    this.isControlled = props.open !== undefined;
+    this.isControlled = props.open != null;
 
     if (!this.isControlled) {
       // not controlled, use internal state

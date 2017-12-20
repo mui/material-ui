@@ -11,7 +11,7 @@ import SendIcon from 'material-ui-icons/Send';
 const styles = theme => ({
   menuItem: {
     '&:focus': {
-      background: theme.palette.primary[500],
+      backgroundColor: theme.palette.primary[500],
       '& $text, & $icon': {
         color: theme.palette.common.white,
       },

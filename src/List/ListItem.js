@@ -17,7 +17,7 @@ export const styles = theme => ({
     position: 'relative',
   },
   keyboardFocused: {
-    background: theme.palette.text.divider,
+    backgroundColor: theme.palette.text.divider,
   },
   default: {
     paddingTop: 12,

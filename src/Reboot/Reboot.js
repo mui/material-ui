@@ -17,9 +17,9 @@ const styles = theme => ({
     },
     body: {
       margin: 0, // Remove the margin in all browsers
-      background: theme.palette.background.default,
+      backgroundColor: theme.palette.background.default,
       '@media print': {
-        background: theme.palette.common.white,
+        backgroundColor: theme.palette.common.white,
       },
     },
   },

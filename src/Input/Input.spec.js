@@ -136,6 +136,12 @@ describe('<Input />', () => {
   });
 
   describe('controlled', () => {
+    it('should considered [] as controlled', () => {
+      const wrapper = shallow(<Input value={[]} />);
+      const instance = wrapper.instance();
+      assert.strictEqual(instance.isControlled, true, 'isControlled should return true');
+    });
+
     ['', 0].forEach(value => {
       describe(`${typeof value} value`, () => {
         let wrapper;

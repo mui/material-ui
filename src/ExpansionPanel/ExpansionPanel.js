@@ -72,7 +72,7 @@ class ExpansionPanel extends React.Component {
 
   componentWillMount() {
     const { expanded, defaultExpanded } = this.props;
-    this.isControlled = expanded !== undefined;
+    this.isControlled = expanded != null;
     this.setState({
       expanded: this.isControlled ? expanded : defaultExpanded,
     });

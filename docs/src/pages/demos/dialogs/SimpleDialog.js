@@ -15,7 +15,7 @@ import blue from 'material-ui/colors/blue';
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 const styles = {
   avatar: {
-    background: blue[100],
+    backgroundColor: blue[100],
     color: blue[600],
   },
 };

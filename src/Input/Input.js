@@ -232,7 +232,7 @@ class Input extends React.Component {
   };
 
   componentWillMount() {
-    this.isControlled = hasValue(this.props.value);
+    this.isControlled = this.props.value != null;
 
     if (this.isControlled) {
       this.checkDirty(this.props);

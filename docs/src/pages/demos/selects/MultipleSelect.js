@@ -44,7 +44,7 @@ class MultipleSelect extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
 
     return (
       <div className={classes.container}>
@@ -69,7 +69,10 @@ class MultipleSelect extends React.Component {
                 key={name}
                 value={name}
                 style={{
-                  fontWeight: this.state.name.indexOf(name) !== -1 ? '500' : '400',
+                  fontWeight:
+                    this.state.name.indexOf(name) === -1
+                      ? theme.typography.fontWeightRegular
+                      : theme.typography.fontWeightMedium,
                 }}
               >
                 {name}
@@ -84,6 +87,7 @@ class MultipleSelect extends React.Component {
 
 MultipleSelect.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MultipleSelect);
+export default withStyles(styles, { withTheme: true })(MultipleSelect);

@@ -60,7 +60,6 @@ class Menu extends React.Component {
 
   handleEnter = element => {
     const { theme } = this.props;
-
     const menuList = findDOMNode(this.menuList);
 
     // Focus so the scroll computation of the Popover works as expected.
@@ -68,12 +67,9 @@ class Menu extends React.Component {
 
     // Let's ignore that piece of logic if users are already overriding the width
     // of the menu.
-
     if (menuList && element.clientHeight < menuList.clientHeight && !menuList.style.width) {
       const size = `${getScrollbarSize()}px`;
-
       menuList.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = size;
-
       menuList.style.width = `calc(100% + ${size})`;
     }
 

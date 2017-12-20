@@ -9,22 +9,19 @@ import ListItem from '../List/ListItem';
 export const styles = theme => ({
   root: {
     ...theme.typography.subheading,
-    height: 24,
+    height: theme.spacing.unit * 3,
     boxSizing: 'content-box',
-    background: 'none',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    '&:focus': {
-      background: theme.palette.text.divider,
-    },
     '&:hover': {
+      backgroundColor: theme.palette.text.lightDivider,
+    },
+    '&$selected': {
       backgroundColor: theme.palette.text.divider,
     },
   },
-  selected: {
-    backgroundColor: theme.palette.text.divider,
-  },
+  selected: {},
 });
 
 function MenuItem(props) {
