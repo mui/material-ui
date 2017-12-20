@@ -49,16 +49,17 @@ import FlatButton from 'material-ui/FlatButton'; // v0.x
 import Button from 'material-ui-next/Button'; // v1.x
 ```
 2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
-3. Add both MuiThemeProviders alongside eachother like the following example
+3. `MuiThemeProvider` is optional for v1.x. Still, you are free to use v0.x and v1.x versions of the component at the same time like so:
 ```js
 import React from 'react';
 import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'material-ui-next/styles';
 import { MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-const themeV1 = createMuiTheme({/* theme for v1*/});
+const themeV1 = createMuiTheme({/* theme for v1 */});
 const themeV0 = getMuiTheme({/* theme v0.x */});
-const App = () => (
+function App() {
+  return
   <NewMuiThemeProvider theme={themeV1}>
      <MuiThemeProvider muiTheme={themeV0}>
         {/*Components*/}
