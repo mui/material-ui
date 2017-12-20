@@ -50,7 +50,7 @@ import Button from 'material-ui-next/Button'; // v1.x
 ```
 2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
 3. `MuiThemeProvider` is optional for v1.x. Still, you are free to use v0.x and v1.x versions of the component at the same time like so:
-```js
+```jsx
 import React from 'react';
 import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'material-ui-next/styles';
 import { MuiThemeProvider } from 'material-ui';
@@ -58,14 +58,17 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const themeV1 = createMuiTheme({/* theme for v1 */});
 const themeV0 = getMuiTheme({/* theme v0.x */});
+
 function App() {
-  return
-  <NewMuiThemeProvider theme={themeV1}>
-     <MuiThemeProvider muiTheme={themeV0}>
-        {/*Components*/}
-     </MuiThemeProvider>
-  </NewMuiThemeProvider>
-);
+  return (
+    <NewMuiThemeProvider theme={themeV1}>
+       <MuiThemeProvider muiTheme={themeV0}>
+          {/*Components*/}
+       </MuiThemeProvider>
+    </NewMuiThemeProvider>
+  );
+}
+
 export default App;
 ```
 4. After that, you are free to migrate one component instance at the time.
