@@ -35,7 +35,7 @@ Toolbar.propTypes = {
   /**
    * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
