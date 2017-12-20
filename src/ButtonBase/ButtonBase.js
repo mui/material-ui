@@ -8,7 +8,7 @@ import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../uti
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
-export const styles = theme => ({
+export const ButtonBaseStyles = theme => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -383,4 +383,4 @@ ButtonBase.defaultProps = {
   type: 'button',
 };
 
-export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);
+export default withStyles(ButtonBaseStyles, { name: 'MuiButtonBase' })(ButtonBase);

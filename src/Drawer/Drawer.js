@@ -23,7 +23,7 @@ function getSlideDirection(anchor) {
   return 'up';
 }
 
-export const styles = theme => ({
+export const DrawerStyles = theme => ({
   docked: {
     flex: '0 0 auto',
   },
@@ -246,4 +246,6 @@ Drawer.defaultProps = {
   type: 'temporary', // Mobile first.
 };
 
-export default withStyles(styles, { flip: false, withTheme: true, name: 'MuiDrawer' })(Drawer);
+export default withStyles(DrawerStyles, { flip: false, withTheme: true, name: 'MuiDrawer' })(
+  Drawer,
+);

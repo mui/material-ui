@@ -7,7 +7,7 @@ import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import StepConnector from './StepConnector';
 
-export const styles = theme => ({
+export const StepperStyles = theme => ({
   root: {
     display: 'flex',
     padding: theme.spacing.unit * 3,
@@ -126,4 +126,4 @@ Stepper.defaultProps = {
 
 Stepper.muiName = 'Stepper';
 
-export default withStyles(styles, { name: 'MuiStepper' })(Stepper);
+export default withStyles(StepperStyles, { name: 'MuiStepper' })(Stepper);

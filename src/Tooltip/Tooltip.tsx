@@ -13,7 +13,7 @@ import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 import { StyleRulesCallback, WithStyles } from '../styles';
 import { StandardProps } from '../MuiProps';
-import debounce from 'lodash/debounce'
+import debounce from 'lodash/debounce';
 
 // Use a class component so we can get a reference.
 class TargetChildren extends React.Component {
@@ -37,7 +37,7 @@ export type TooltipClassKey =
   | 'tooltipBottom'
   | 'tooltipOpen';
 
-export const styles: StyleRulesCallback<TooltipClassKey> = theme => ({
+export const TooltipStyles: StyleRulesCallback<TooltipClassKey> = theme => ({
   root: {
     display: 'inline',
     flexDirection: 'inherit', // Makes the wrapper more transparent.
@@ -523,6 +523,6 @@ class Tooltip extends React.Component<TooltipProps & WithStyles<TooltipClassKey>
   title: PropTypes.node.isRequired,
 };
 
-export default withStyles<TooltipClassKey>(styles, { name: 'MuiTooltip', withTheme: true })(
+export default withStyles<TooltipClassKey>(TooltipStyles, { name: 'MuiTooltip', withTheme: true })(
   Tooltip,
 );

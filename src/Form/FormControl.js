@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import { isDirty, isAdornedStart } from '../Input/Input';
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = theme => ({
+export const FormControlStyles = theme => ({
   root: {
     display: 'inline-flex',
     flexDirection: 'column',
@@ -214,4 +214,4 @@ FormControl.childContextTypes = {
   muiFormControl: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);
+export default withStyles(FormControlStyles, { name: 'MuiFormControl' })(FormControl);

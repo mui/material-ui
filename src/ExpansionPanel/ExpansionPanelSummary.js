@@ -7,7 +7,7 @@ import ButtonBase from '../ButtonBase';
 import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => {
+export const ExpansionPanelSummaryStyles = theme => {
   const transition = {
     duration: theme.transitions.duration.shortest,
     easing: theme.transitions.easing.ease,
@@ -186,4 +186,6 @@ ExpansionPanelSummary.defaultProps = {
 
 ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
 
-export default withStyles(styles, { name: 'MuiExpansionPanelSummary' })(ExpansionPanelSummary);
+export default withStyles(ExpansionPanelSummaryStyles, { name: 'MuiExpansionPanelSummary' })(
+  ExpansionPanelSummary,
+);

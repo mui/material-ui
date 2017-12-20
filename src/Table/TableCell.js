@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import { darken, fade, lighten } from '../styles/colorManipulator';
 
-export const styles = theme => ({
+export const TableCellStyles = theme => ({
   root: {
     // Workaround for a rendering bug with spanned columns in Chrome 62.0.
     // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
@@ -128,4 +128,4 @@ TableCell.contextTypes = {
   table: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);
+export default withStyles(TableCellStyles, { name: 'MuiTableCell' })(TableCell);

@@ -11,7 +11,7 @@ const DURATION = 550;
 export const DELAY_RIPPLE = 80;
 
 export type TouchRippleClassKey = 'root' | RippleClassKey;
-export const styles: StyleRulesCallback<TouchRippleClassKey> = theme => ({
+export const TouchRippleStyles: StyleRulesCallback<TouchRippleClassKey> = theme => ({
   root: {
     display: 'block',
     position: 'absolute',
@@ -307,6 +307,7 @@ class TouchRipple extends React.Component<
   className: PropTypes.string,
 };
 
-export default withStyles<TouchRippleClassKey>(styles, { flip: false, name: 'MuiTouchRipple' })(
-  TouchRipple,
-);
+export default withStyles<TouchRippleClassKey>(TouchRippleStyles, {
+  flip: false,
+  name: 'MuiTouchRipple',
+})(TouchRipple);

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.
 
-export const styles = theme => ({
+export const DialogActionsStyles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -57,4 +57,4 @@ DialogActions.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiDialogActions' })(DialogActions);
+export default withStyles(DialogActionsStyles, { name: 'MuiDialogActions' })(DialogActions);

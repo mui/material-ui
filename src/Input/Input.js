@@ -41,7 +41,7 @@ export function isAdornedStart(obj) {
   return obj.startAdornment;
 }
 
-export const styles = theme => {
+export const InputStyles = theme => {
   const placeholder = {
     color: 'currentColor',
     opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
@@ -624,4 +624,4 @@ Input.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiInput' })(Input);
+export default withStyles(InputStyles, { name: 'MuiInput' })(Input);

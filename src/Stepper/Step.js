@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const StepStyles = theme => ({
   root: {},
   horizontal: {
     paddingLeft: theme.spacing.unit,
@@ -126,4 +126,4 @@ Step.defaultProps = {
   disabled: false,
 };
 
-export default withStyles(styles, { name: 'MuiStep' })(Step);
+export default withStyles(StepStyles, { name: 'MuiStep' })(Step);

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 
-export const styles = {
+export const GridListTileStyles = {
   root: {
     boxSizing: 'border-box',
     flexShrink: 0,
@@ -155,4 +155,4 @@ GridListTile.defaultProps = {
   rows: 1,
 };
 
-export default withStyles(styles, { name: 'MuiGridListTile' })(GridListTile);
+export default withStyles(GridListTileStyles, { name: 'MuiGridListTile' })(GridListTile);

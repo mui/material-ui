@@ -84,7 +84,7 @@ function generateGutter(theme, breakpoint) {
 // alignItems: 'flex-start',
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
-export const styles = theme => ({
+export const GridStyles = theme => ({
   typeContainer: {
     boxSizing: 'border-box',
     display: 'flex',
@@ -350,4 +350,4 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);
+export default withStyles(GridStyles, { name: 'MuiGrid' })(GridWrapper);

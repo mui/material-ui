@@ -7,7 +7,7 @@ import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Paper from '../Paper';
 
-export const styles = theme => ({
+export const AppBarStyles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -94,4 +94,4 @@ AppBar.defaultProps = {
   position: 'fixed',
 };
 
-export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);
+export default withStyles(AppBarStyles, { name: 'MuiAppBar' })(AppBar);

@@ -7,7 +7,7 @@ import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import Typography from '../Typography';
 
-export const styles = theme => {
+export const SnackbarContentStyles = theme => {
   const reverseType = theme.palette.type === 'light' ? 'dark' : 'light';
   const backgroundColor = theme.palette.shades[reverseType].background.default;
 
@@ -82,4 +82,4 @@ SnackbarContent.propTypes = {
   message: PropTypes.node,
 };
 
-export default withStyles(styles, { name: 'MuiSnackbarContent' })(SnackbarContent);
+export default withStyles(SnackbarContentStyles, { name: 'MuiSnackbarContent' })(SnackbarContent);

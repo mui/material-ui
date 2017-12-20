@@ -8,7 +8,7 @@ import Paper from '../Paper';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import { LinearProgress } from '../Progress';
 
-export const styles = theme => ({
+export const MobileStepperStyles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'row',
@@ -139,4 +139,4 @@ MobileStepper.defaultProps = {
   type: 'dots',
 };
 
-export default withStyles(styles, { name: 'MuiMobileStepper' })(MobileStepper);
+export default withStyles(MobileStepperStyles, { name: 'MuiMobileStepper' })(MobileStepper);

@@ -6,7 +6,7 @@ import ButtonBase from '../ButtonBase';
 import KeyboardArrowLeft from '../svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../svg-icons/KeyboardArrowRight';
 
-export const styles = theme => ({
+export const TabScrollButtonStyles = theme => ({
   root: {
     color: 'inherit',
     flex: `0 0 ${theme.spacing.unit * 7}px`,
@@ -59,4 +59,4 @@ TabScrollButton.defaultProps = {
   visible: true,
 };
 
-export default withStyles(styles, { name: 'MuiTabScrollButton' })(TabScrollButton);
+export default withStyles(TabScrollButtonStyles, { name: 'MuiTabScrollButton' })(TabScrollButton);

@@ -10,7 +10,7 @@ import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 
-export const styles = theme => ({
+export const DialogStyles = theme => ({
   root: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -223,4 +223,4 @@ Dialog.defaultProps = {
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };
 
-export default withStyles(styles, { name: 'MuiDialog' })(Dialog);
+export default withStyles(DialogStyles, { name: 'MuiDialog' })(Dialog);

@@ -7,7 +7,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 
-export const styles = theme => ({
+export const BottomNavigationButtonStyles = theme => ({
   root: {
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
@@ -157,4 +157,6 @@ BottomNavigationButton.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiBottomNavigationButton' })(BottomNavigationButton);
+export default withStyles(BottomNavigationButtonStyles, { name: 'MuiBottomNavigationButton' })(
+  BottomNavigationButton,
+);

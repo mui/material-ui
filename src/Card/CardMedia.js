@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
-export const styles = {
+export const CardMediaStyles = {
   root: {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -81,4 +81,4 @@ CardMedia.defaultProps = {
   component: 'div',
 };
 
-export default withStyles(styles, { name: 'MuiCardMedia' })(CardMedia);
+export default withStyles(CardMediaStyles, { name: 'MuiCardMedia' })(CardMedia);

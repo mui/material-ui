@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styles = theme => ({
+export const FormControlLabelStyles = theme => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -134,4 +134,6 @@ FormControlLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiFormControlLabel' })(FormControlLabel);
+export default withStyles(FormControlLabelStyles, { name: 'MuiFormControlLabel' })(
+  FormControlLabel,
+);

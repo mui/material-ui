@@ -7,7 +7,7 @@ import CheckBoxOutlineBlankIcon from '../svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../svg-icons/CheckBox';
 import Icon from '../Icon';
 
-export const styles = {
+export const SwitchBaseStyles = {
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -229,4 +229,4 @@ SwitchBase.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiSwitchBase' })(SwitchBase);
+export default withStyles(SwitchBaseStyles, { name: 'MuiSwitchBase' })(SwitchBase);

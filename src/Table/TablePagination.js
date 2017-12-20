@@ -13,7 +13,7 @@ import Typography from '../Typography';
 import KeyboardArrowLeft from '../svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../svg-icons/KeyboardArrowRight';
 
-export const styles = theme => ({
+export const TablePaginationStyles = theme => ({
   root: {
     // Increase the specificity to override TableCell.
     '&:last-child': {
@@ -220,4 +220,6 @@ TablePagination.defaultProps = {
   rowsPerPageOptions: [5, 10, 25],
 };
 
-export default withStyles(styles, { withTheme: true, name: 'MuiTablePagination' })(TablePagination);
+export default withStyles(TablePaginationStyles, { withTheme: true, name: 'MuiTablePagination' })(
+  TablePagination,
+);

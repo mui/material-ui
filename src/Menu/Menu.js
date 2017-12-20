@@ -18,7 +18,7 @@ const LTR_ORIGIN = {
   horizontal: 'left',
 };
 
-export const styles = {
+export const MenuStyles = {
   paper: {
     // specZ: The maximum height of a simple menu should be one or more rows less than the view
     // height. This ensures a tappable area outside of the simple menu with which to dismiss
@@ -225,4 +225,4 @@ Menu.defaultProps = {
   transitionDuration: 'auto',
 };
 
-export default withStyles(styles, { withTheme: true, name: 'MuiMenu' })(Menu);
+export default withStyles(MenuStyles, { withTheme: true, name: 'MuiMenu' })(Menu);

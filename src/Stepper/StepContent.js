@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Collapse from '../transitions/Collapse';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const StepContentStyles = theme => ({
   root: {
     marginTop: theme.spacing.unit,
     marginLeft: 12, // half icon
@@ -124,4 +124,4 @@ StepContent.defaultProps = {
   transitionDuration: 'auto',
 };
 
-export default withStyles(styles, { name: 'MuiStepContent' })(StepContent);
+export default withStyles(StepContentStyles, { name: 'MuiStepContent' })(StepContent);

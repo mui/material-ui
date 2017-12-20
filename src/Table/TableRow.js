@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const TableRowStyles = theme => ({
   root: {
     color: 'inherit',
     display: 'table-row',
@@ -101,4 +101,4 @@ TableRow.contextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);
+export default withStyles(TableRowStyles, { name: 'MuiTableRow' })(TableRow);

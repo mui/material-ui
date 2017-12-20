@@ -43,9 +43,10 @@ function buildDocs(options) {
     name: null,
   };
 
-  if (component.styles && component.default.options) {
+  const componentStyles = component[`${path.basename(componentPath)}Styles`]
+  if (componentStyles && component.default.options) {
     // Collect the customization points of the `classes` property.
-    styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
+    styles.classes = Object.keys(getStylesCreator(componentStyles).create(theme)).filter(
       className => !className.match(/^(@media|@keyframes)/),
     );
     styles.name = component.default.options.name;

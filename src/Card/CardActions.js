@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
-export const styles = {
+export const CardActionsStyles = {
   root: {
     height: 52,
     display: 'flex',
@@ -49,4 +49,4 @@ CardActions.defaultProps = {
   disableActionSpacing: false,
 };
 
-export default withStyles(styles, { name: 'MuiCardActions' })(CardActions);
+export default withStyles(CardActionsStyles, { name: 'MuiCardActions' })(CardActions);

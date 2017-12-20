@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const GridListTileBarStyles = theme => ({
   root: {
     position: 'absolute',
     left: 0,
@@ -142,4 +142,4 @@ GridListTileBar.defaultProps = {
   titlePosition: 'bottom',
 };
 
-export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);
+export default withStyles(GridListTileBarStyles, { name: 'MuiGridListTileBar' })(GridListTileBar);

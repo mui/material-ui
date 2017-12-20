@@ -17,6 +17,6 @@ export type StandardProps<C, ClassKey extends string, Removals extends keyof C =
     style?: Partial<React.CSSProperties>;
   };
 
-export type Alignment = 'inherit'| 'left' | 'center' | 'right' | 'justify';
+export type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
 export type Color = 'inherit' | 'primary' | 'accent' | 'default';
 export type Margin = 'none' | 'dense' | 'normal';

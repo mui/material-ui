@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = theme => ({
+export const ListitemStyles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -179,4 +179,4 @@ ListItem.childContextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiListItem' })(ListItem);
+export default withStyles(ListitemStyles, { name: 'MuiListItem' })(ListItem);

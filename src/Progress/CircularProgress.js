@@ -10,7 +10,7 @@ function getRelativeValue(value, min, max) {
   return (clampedValue - min) / (max - min);
 }
 
-export const styles = theme => ({
+export const CircularProgressStyles = theme => ({
   root: {
     display: 'inline-block',
   },
@@ -178,4 +178,6 @@ CircularProgress.defaultProps = {
   value: 0,
 };
 
-export default withStyles(styles, { name: 'MuiCircularProgress', flip: false })(CircularProgress);
+export default withStyles(CircularProgressStyles, { name: 'MuiCircularProgress', flip: false })(
+  CircularProgress,
+);

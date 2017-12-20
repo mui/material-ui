@@ -20,7 +20,7 @@ import Portal from '../internal/Portal';
 // Could also put this on context.
 const modalManager = createModalManager();
 
-export const styles = theme => ({
+export const ModalStyles = theme => ({
   root: {
     display: 'flex',
     width: '100%',
@@ -435,4 +435,4 @@ Modal.defaultProps = {
   modalManager,
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiModal' })(Modal);
+export default withStyles(ModalStyles, { flip: false, name: 'MuiModal' })(Modal);

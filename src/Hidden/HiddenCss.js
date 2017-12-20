@@ -5,7 +5,7 @@ import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
-const styles = theme => {
+const HiddenCssStyles = theme => {
   const hidden = {
     display: 'none',
   };
@@ -158,4 +158,4 @@ HiddenCss.propTypes = {
   xsUp: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiHiddenCss' })(HiddenCss);
+export default withStyles(HiddenCssStyles, { name: 'MuiHiddenCss' })(HiddenCss);

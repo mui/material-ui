@@ -9,7 +9,7 @@ import { capitalizeFirstLetter, createChainedFunction } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
 
-export const styles = theme => {
+export const SnackbarStyles = theme => {
   const gutter = theme.spacing.unit * 3;
   const top = { top: 0 };
   const bottom = { bottom: 0 };
@@ -397,4 +397,4 @@ Snackbar.defaultProps = {
   },
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(Snackbar);
+export default withStyles(SnackbarStyles, { flip: false, name: 'MuiSnackbar' })(Snackbar);

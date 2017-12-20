@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const DividerStyles = theme => ({
   root: {
     height: 1,
     margin: 0, // Reset browser default style.
@@ -69,4 +69,4 @@ Divider.defaultProps = {
   light: false,
 };
 
-export default withStyles(styles, { name: 'MuiDivider' })(Divider);
+export default withStyles(DividerStyles, { name: 'MuiDivider' })(Divider);

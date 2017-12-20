@@ -60,7 +60,7 @@ function getScrollParent(parent, child) {
   return scrollTop;
 }
 
-export const styles = {
+export const PopoverStyles = {
   paper: {
     position: 'absolute',
     overflowY: 'auto',
@@ -447,4 +447,4 @@ Popover.defaultProps = {
   transitionDuration: 'auto',
 };
 
-export default withStyles(styles, { name: 'MuiPopover' })(Popover);
+export default withStyles(PopoverStyles, { name: 'MuiPopover' })(Popover);

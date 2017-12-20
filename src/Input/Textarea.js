@@ -7,7 +7,7 @@ import withStyles from '../styles/withStyles';
 
 const ROWS_HEIGHT = 24;
 
-export const styles = {
+export const TextareaStyles = {
   root: {
     position: 'relative', // because the shadow has position: 'absolute',
     width: '100%',
@@ -232,4 +232,4 @@ Textarea.defaultProps = {
   rows: 1,
 };
 
-export default withStyles(styles, { name: 'MuiTextarea' })(Textarea);
+export default withStyles(TextareaStyles, { name: 'MuiTextarea' })(Textarea);

@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import Input from '../Input'; // Import to enforce the CSS injection order
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = theme => ({
+export const SelectStyles = theme => ({
   root: {
     position: 'relative',
     width: '100%',
@@ -164,4 +164,4 @@ Select.defaultProps = {
 
 Select.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiSelect' })(Select);
+export default withStyles(SelectStyles, { name: 'MuiSelect' })(Select);

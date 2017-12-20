@@ -21,7 +21,7 @@ export interface CollapseProps extends Omit<TransitionProps, 'timeout'> {
 }
 
 export type CollapseClassKey = 'container' | 'entered' | 'wrapper' | 'wrapperInner';
-export const styles: StyleRulesCallback<CollapseClassKey> = ({ transitions }) => ({
+export const CollapseStyles: StyleRulesCallback<CollapseClassKey> = ({ transitions }) => ({
   container: {
     height: 0,
     overflow: 'hidden',
@@ -267,6 +267,7 @@ class Collapse extends React.Component<CollapseProps & WithStyles<CollapseClassK
   ]),
 };
 
-export default withStyles<CollapseClassKey>(styles, { withTheme: true, name: 'MuiCollapse' })(
-  Collapse,
-);
+export default withStyles<CollapseClassKey>(CollapseStyles, {
+  withTheme: true,
+  name: 'MuiCollapse',
+})(Collapse);

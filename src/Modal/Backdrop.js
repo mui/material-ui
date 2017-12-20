@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const BackdropStyles = theme => ({
   root: {
     zIndex: -1,
     width: '100%',
@@ -59,4 +59,4 @@ Backdrop.defaultProps = {
   invisible: false,
 };
 
-export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);
+export default withStyles(BackdropStyles, { name: 'MuiBackdrop' })(Backdrop);

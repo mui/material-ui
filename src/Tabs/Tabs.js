@@ -11,7 +11,7 @@ import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 
-export const styles = theme => ({
+export const TabsStyles = theme => ({
   root: {
     overflow: 'hidden',
     minHeight: 48,
@@ -445,4 +445,4 @@ Tabs.defaultProps = {
   textColor: 'inherit',
 };
 
-export default withStyles(styles, { withTheme: true, name: 'MuiTabs' })(Tabs);
+export default withStyles(TabsStyles, { withTheme: true, name: 'MuiTabs' })(Tabs);

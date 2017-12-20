@@ -7,7 +7,7 @@ import CancelIcon from '../svg-icons/Cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
-export const styles = theme => {
+export const ChipStyles = theme => {
   const height = 32;
   const backgroundColor = theme.palette.background.chip;
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
@@ -226,4 +226,4 @@ Chip.propTypes = {
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
-export default withStyles(styles, { name: 'MuiChip' })(Chip);
+export default withStyles(ChipStyles, { name: 'MuiChip' })(Chip);

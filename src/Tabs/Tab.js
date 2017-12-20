@@ -8,7 +8,7 @@ import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 
-export const styles = theme => ({
+export const TabStyles = theme => ({
   root: {
     ...theme.typography.button,
     maxWidth: 264,
@@ -283,4 +283,4 @@ Tab.defaultProps = {
   disabled: false,
 };
 
-export default withStyles(styles, { name: 'MuiTab' })(Tab);
+export default withStyles(TabStyles, { name: 'MuiTab' })(Tab);

@@ -7,7 +7,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import ArrowDownwardIcon from '../svg-icons/ArrowDownward';
 
-export const styles = theme => ({
+export const TableSortLabelStyles = theme => ({
   root: {
     cursor: 'pointer',
     display: 'inline-flex',
@@ -99,4 +99,4 @@ TableSortLabel.defaultProps = {
   direction: 'desc',
 };
 
-export default withStyles(styles, { name: 'MuiTableSortLabel' })(TableSortLabel);
+export default withStyles(TableSortLabelStyles, { name: 'MuiTableSortLabel' })(TableSortLabel);

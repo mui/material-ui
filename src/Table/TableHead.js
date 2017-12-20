@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const TableHeadStyles = theme => ({
   root: {
     fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightMedium,
@@ -66,4 +66,4 @@ TableHead.childContextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTableHead' })(TableHead);
+export default withStyles(TableHeadStyles, { name: 'MuiTableHead' })(TableHead);

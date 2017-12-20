@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = {
+export const FormStyles = {
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -59,4 +59,4 @@ FormGroup.defaultProps = {
   row: false,
 };
 
-export default withStyles(styles, { name: 'MuiFormGroup' })(FormGroup);
+export default withStyles(FormStyles, { name: 'MuiFormGroup' })(FormGroup);

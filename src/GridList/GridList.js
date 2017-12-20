@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = {
+export const GridListStyles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -97,4 +97,4 @@ GridList.defaultProps = {
   spacing: 4,
 };
 
-export default withStyles(styles, { name: 'MuiGridList' })(GridList);
+export default withStyles(GridListStyles, { name: 'MuiGridList' })(GridList);

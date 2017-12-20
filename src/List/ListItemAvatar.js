@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const ListItemAvatarStyles = theme => ({
   root: {
     width: 36,
     height: 36,
@@ -68,4 +68,4 @@ ListItemAvatar.contextTypes = {
 
 ListItemAvatar.muiName = 'ListItemAvatar';
 
-export default withStyles(styles, { name: 'MuiListItemAvatar' })(ListItemAvatar);
+export default withStyles(ListItemAvatarStyles, { name: 'MuiListItemAvatar' })(ListItemAvatar);

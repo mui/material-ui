@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
-export const styles = theme => ({
+export const ExpansionPanelActionsStyles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -41,4 +41,6 @@ ExpansionPanelActions.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiExpansionPanelActions' })(ExpansionPanelActions);
+export default withStyles(ExpansionPanelActionsStyles, { name: 'MuiExpansionPanelActions' })(
+  ExpansionPanelActions,
+);

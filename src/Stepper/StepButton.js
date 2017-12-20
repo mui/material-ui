@@ -8,7 +8,7 @@ import ButtonBase from '../ButtonBase';
 import StepLabel from './StepLabel';
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = {
+export const StepButtonStyles = {
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -117,4 +117,4 @@ StepButton.propTypes = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 
-export default withStyles(styles, { name: 'MuiStepButton' })(StepButton);
+export default withStyles(StepButtonStyles, { name: 'MuiStepButton' })(StepButton);
