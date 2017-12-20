@@ -1,6 +1,6 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
 
 const isDescendant = (el: Node, target: Node): boolean => {
@@ -42,7 +42,7 @@ class ClickAwayListener extends React.Component<ClickAwayListenerProps> {
 
     // IE11 support, which trigger the handleClickAway even after the unbind
     if (this.mounted) {
-      const el = findDOMNode(this);
+      const el = ReactDOM.findDOMNode(this);
 
       if (
         event.target instanceof HTMLElement &&

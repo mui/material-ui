@@ -1,8 +1,8 @@
 // @inheritedComponent Transition
 
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import Transition from 'react-transition-group/Transition';
 import EventListener from 'react-event-listener';
 import withTheme, { WithTheme } from '../styles/withTheme';
@@ -116,7 +116,7 @@ class Slide extends React.Component<SlideProps & WithTheme, State> {
   transition: any = null;
 
   updatePosition() {
-    const element = findDOMNode(this.transition);
+    const element = ReactDOM.findDOMNode(this.transition);
     if (element instanceof HTMLElement) {
       element.style.visibility = 'inherit';
       setTranslateValue(this.props, element);
@@ -129,7 +129,7 @@ class Slide extends React.Component<SlideProps & WithTheme, State> {
       return;
     }
 
-    const node = findDOMNode(this.transition);
+    const node = ReactDOM.findDOMNode(this.transition);
     if (node instanceof HTMLElement) {
       setTranslateValue(this.props, node);
     }

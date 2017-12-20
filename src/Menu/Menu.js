@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
@@ -46,21 +46,21 @@ class Menu extends React.Component {
 
   getContentAnchorEl = () => {
     if (!this.menuList || !this.menuList.selectedItem) {
-      return findDOMNode(this.menuList).firstChild;
+      return ReactDOM.findDOMNode(this.menuList).firstChild;
     }
 
-    return findDOMNode(this.menuList.selectedItem);
+    return ReactDOM.findDOMNode(this.menuList.selectedItem);
   };
 
   menuList = undefined;
 
   focus = () => {
     if (this.menuList && this.menuList.selectedItem) {
-      findDOMNode(this.menuList.selectedItem).focus();
+      ReactDOM.findDOMNode(this.menuList.selectedItem).focus();
       return;
     }
 
-    const menuList = findDOMNode(this.menuList);
+    const menuList = ReactDOM.findDOMNode(this.menuList);
     if (menuList && menuList.firstChild) {
       menuList.firstChild.focus();
     }
@@ -69,7 +69,7 @@ class Menu extends React.Component {
   handleEnter = element => {
     const { theme } = this.props;
 
-    const menuList = findDOMNode(this.menuList);
+    const menuList = ReactDOM.findDOMNode(this.menuList);
 
     // Focus so the scroll computation of the Popover works as expected.
     this.focus();

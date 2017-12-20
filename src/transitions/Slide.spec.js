@@ -1,7 +1,7 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { findDOMNode } from 'react-dom';
 import { createShallow, createMount, unwrap } from '../test-utils';
 import Slide, { setTranslateValue } from './Slide';
 import transitions, { easing } from '../styles/transitions';
@@ -101,7 +101,7 @@ describe('<Slide />', () => {
       const wrapper = mount(
         <SlideNaked {...props} theme={createMuiTheme()} in={false} direction="left" />,
       );
-      const transition = findDOMNode(wrapper.instance().transition);
+      const transition = ReactDOM.findDOMNode(wrapper.instance().transition);
 
       const transition1 = transition.style.transform;
       wrapper.setProps({
@@ -218,7 +218,7 @@ describe('<Slide />', () => {
           <div>Foo</div>
         </SlideNaked>,
       );
-      const transition = findDOMNode(wrapper.instance().transition);
+      const transition = ReactDOM.findDOMNode(wrapper.instance().transition);
 
       assert.strictEqual(transition.style.visibility, 'inherit');
 
@@ -246,7 +246,7 @@ describe('<Slide />', () => {
       const instance = wrapper.instance();
       instance.handleResize();
       clock.tick(166);
-      const transition = findDOMNode(instance.transition);
+      const transition = ReactDOM.findDOMNode(instance.transition);
 
       assert.notStrictEqual(transition.style.transform, undefined);
     });
