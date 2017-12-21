@@ -111,10 +111,11 @@ describe('withStyles', () => {
   describe('mount', () => {
     let sheetsRegistry;
     let jss;
+    let generateClassName;
 
     beforeEach(() => {
       jss = create(preset());
-      jss.options.createGenerateClassName = createGenerateClassName;
+      generateClassName = createGenerateClassName();
       sheetsRegistry = new SheetsRegistry();
     });
 
@@ -124,7 +125,7 @@ describe('withStyles', () => {
 
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
-          <JssProvider registry={sheetsRegistry} jss={jss}>
+          <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
             <StyledComponent />
           </JssProvider>
         </MuiThemeProvider>,
@@ -148,7 +149,7 @@ describe('withStyles', () => {
 
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
-          <JssProvider registry={sheetsRegistry} jss={jss}>
+          <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
             <StyledComponent />
           </JssProvider>
         </MuiThemeProvider>,
@@ -176,7 +177,7 @@ describe('withStyles', () => {
             },
           })}
         >
-          <JssProvider registry={sheetsRegistry} jss={jss}>
+          <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
             <StyledComponent />
           </JssProvider>
         </MuiThemeProvider>,
@@ -193,7 +194,7 @@ describe('withStyles', () => {
 
         const wrapper = mount(
           <MuiThemeProvider theme={createMuiTheme()} disableStylesGeneration>
-            <JssProvider registry={sheetsRegistry} jss={jss}>
+            <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
               <StyledComponent />
             </JssProvider>
           </MuiThemeProvider>,

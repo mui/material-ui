@@ -3,10 +3,9 @@
 import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
 import { preset } from 'material-ui/styles/withStyles';
-import { createMuiTheme } from 'material-ui/styles';
+import { createMuiTheme, createGenerateClassName } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
-import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 
 export function getTheme(theme) {
   return createMuiTheme({
@@ -26,7 +25,6 @@ const theme = getTheme({
 
 // Configure JSS
 const jss = create({ plugins: [...preset().plugins, rtl()] });
-jss.options.createGenerateClassName = createGenerateClassName;
 jss.options.insertionPoint = 'insertion-point-jss';
 
 function createContext() {
@@ -37,7 +35,7 @@ function createContext() {
     sheetsManager: new Map(),
     // This is needed in order to inject the critical CSS.
     sheetsRegistry: new SheetsRegistry(),
-    generateClassName: jss.options.createGenerateClassName(),
+    generateClassName: createGenerateClassName(),
   };
 }
 

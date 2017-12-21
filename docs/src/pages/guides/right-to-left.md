@@ -30,15 +30,17 @@ import { create } from 'jss';
 import preset from 'jss-preset-default';
 import rtl from 'jss-rtl';
 import JssProvider from 'react-jss/lib/JssProvider';
-import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+import { createGenerateClassName } from 'material-ui/styles';
 
 // Configure JSS
 const jss = create({ plugins: [...preset().plugins, rtl()] });
-jss.options.createGenerateClassName = createGenerateClassName;
+
+// Custom Material-UI class name generator.
+const generateClassName = createGenerateClassName();
 
 function RTL(props) {
   return (
-    <JssProvider jss={jss}>
+    <JssProvider jss={jss} generateClassName={generateClassName}>
       {props.children}
     </JssProvider>
   );

@@ -6,9 +6,11 @@ let generatorCounter = 0;
 // When new generator function is created, rule counter is reset.
 // We need to reset the rule counter for SSR for each request.
 //
-// It's an improved version of
+// It's inspired by
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
-export default function createGenerateClassName() {
+export default function createGenerateClassName(options = {}) {
+  const { dangerouslyUseGlobalCSS = false } = options;
+  const escapeRegex = /([[\].#*$><+~=|^:(),"'`])/g;
   let ruleCounter = 0;
 
   if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
@@ -36,15 +38,37 @@ export default function createGenerateClassName() {
       ].join(''),
     );
 
+    // Code branch the whole block at the expense of more code.
+    if (dangerouslyUseGlobalCSS) {
+      if (styleSheet && styleSheet.options.meta) {
+        let meta = styleSheet.options.meta;
+        // Sanitize the string as will be used to prefix the generated class name.
+        meta = meta.replace(escapeRegex, '-');
+
+        if (meta.match(/^Mui/)) {
+          return `${meta}-${rule.key}`;
+        }
+
+        if (process.env.NODE_ENV !== 'production') {
+          return `${meta}-${rule.key}-${ruleCounter}`;
+        }
+      }
+
+      if (process.env.NODE_ENV === 'production') {
+        return `c${ruleCounter}`;
+      }
+
+      return `${rule.key}-${ruleCounter}`;
+    }
+
     if (process.env.NODE_ENV === 'production') {
       return `c${ruleCounter}`;
     }
 
     if (styleSheet && styleSheet.options.meta) {
       let meta = styleSheet.options.meta;
-      // Sanitize the string as will be used in development to prefix the generated
-      // class name.
-      meta = meta.replace(new RegExp(/[!"#$%&'()*+,./:; <=>?@[\\\]^`{|}~]/g), '-');
+      // Sanitize the string as will be used to prefix the generated class name.
+      meta = meta.replace(escapeRegex, '-');
 
       return `${meta}-${rule.key}-${ruleCounter}`;
     }

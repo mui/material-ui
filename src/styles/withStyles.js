@@ -179,10 +179,10 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
       if (sheetManagerTheme.refs === 0) {
         const styles = stylesCreatorSaved.create(theme, name);
-        let meta;
+        let meta = name;
 
-        if (process.env.NODE_ENV !== 'production') {
-          meta = name || getDisplayName(Component);
+        if (process.env.NODE_ENV !== 'production' && !meta) {
+          meta = getDisplayName(Component);
         }
 
         const sheet = this.jss.createStyleSheet(styles, {

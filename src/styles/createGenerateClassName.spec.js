@@ -1,5 +1,3 @@
-// @flow
-
 import { assert } from 'chai';
 import createGenerateClassName from './createGenerateClassName';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
@@ -16,12 +14,73 @@ describe('createGenerateClassName', () => {
     });
   });
 
+  it('should escape correctly', () => {
+    const generateClassName = createGenerateClassName();
+    assert.strictEqual(
+      generateClassName(
+        { key: 'root' },
+        {
+          options: {
+            meta: 'pure(MuiButton)',
+          },
+        },
+      ),
+      'pure-MuiButton--root-1',
+    );
+  });
+
+  describe('options: dangerouslyUseGlobalCSS', () => {
+    it('should use a global class name', () => {
+      const generateClassName = createGenerateClassName({
+        dangerouslyUseGlobalCSS: true,
+      });
+      assert.strictEqual(
+        generateClassName(
+          {
+            key: 'root',
+          },
+          {
+            options: {
+              meta: 'MuiButton',
+            },
+          },
+        ),
+        'MuiButton-root',
+      );
+      assert.strictEqual(
+        generateClassName(
+          {
+            key: 'root',
+          },
+          {
+            options: {
+              meta: 'Button',
+            },
+          },
+        ),
+        'Button-root-2',
+      );
+    });
+
+    it('should default to a non deterministic name', () => {
+      const generateClassName = createGenerateClassName({
+        dangerouslyUseGlobalCSS: true,
+      });
+      assert.strictEqual(
+        generateClassName({
+          key: 'root',
+        }),
+        'root-1',
+      );
+    });
+  });
+
   describe('formatting', () => {
     it('should take the sheet meta in development if available', () => {
       const rule = { key: 'root' };
-      const sheet = { options: { meta: 'Button' } };
+      const styleSheet = { options: { meta: 'Button' } };
       const generateClassName = createGenerateClassName();
-      assert.strictEqual(generateClassName(rule, sheet), 'Button-root-1');
+      assert.strictEqual(generateClassName(rule, styleSheet), 'Button-root-1');
     });
 
     it('should use a base 10 representation', () => {
@@ -59,9 +118,17 @@ describe('createGenerateClassName', () => {
         consoleErrorMock.reset();
       });
 
-      it('should us a short representation', () => {
+      it('should output a short representation', () => {
         const rule = { key: 'root' };
         const generateClassName = createGenerateClassName();
+        assert.strictEqual(generateClassName(rule), 'c1');
+      });
+
+      it('should work with global CSS', () => {
+        const rule = { key: 'root' };
+        const generateClassName = createGenerateClassName({
+          dangerouslyUseGlobalCSS: true,
+        });
         assert.strictEqual(generateClassName(rule), 'c1');
       });
 
