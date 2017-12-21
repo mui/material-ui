@@ -6,6 +6,8 @@ import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Menu from './Menu';
 import mockPortal from '../../test/utils/mockPortal';
 
+const ELEMENT_NODE = 1;
+
 describe('<Menu />', () => {
   let shallow;
   let classes;
@@ -184,7 +186,6 @@ describe('<Menu />', () => {
     it('should call menuList focus when no menuList', () => {
       delete instance.menuList;
       // convince react-dom to pass the node back
-      const ELEMENT_NODE = 1;
       instance.menuList = { ...menuListSpy, nodeType: ELEMENT_NODE };
       instance.handleEnter(elementForHandleEnter);
       assert.strictEqual(selectedItemFocusSpy.callCount, 0);
@@ -193,7 +194,6 @@ describe('<Menu />', () => {
 
     it('should call menuList focus when menuList but no menuList.selectedItem ', () => {
       // convince react-dom to pass the node back
-      const ELEMENT_NODE = 1;
       instance.menuList = { ...menuListSpy, nodeType: ELEMENT_NODE };
       delete instance.menuList.selectedItem;
       instance.handleEnter(elementForHandleEnter);
@@ -203,11 +203,13 @@ describe('<Menu />', () => {
 
     describe('menuList.selectedItem exists', () => {
       before(() => {
-        instance.menuList = {};
-        instance.menuList.selectedItem = SELECTED_ITEM_KEY;
+        // convince react-dom to pass the node back
+        instance.menuList = { ...menuListSpy, nodeType: ELEMENT_NODE };
       });
 
       it('should call selectedItem focus when there is a menuList.selectedItem', () => {
+        //        selectedItem: { ...selectedItemFocusSpy, nodeType: ELEMENT_NODE },
+        //        instance.menuList.selectedItem = SELECTED_ITEM_KEY;
         instance.handleEnter(elementForHandleEnter);
         assert.strictEqual(selectedItemFocusSpy.callCount, 1);
         assert.strictEqual(menuListFocusSpy.callCount, 0);
