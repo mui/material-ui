@@ -34,6 +34,7 @@ export class DateTimePicker extends Component {
     utils: PropTypes.object,
     ampm: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
+    animateYearScrolling: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -52,6 +53,7 @@ export class DateTimePicker extends Component {
     utils: defaultUtils,
     ampm: true,
     shouldDisableDate: undefined,
+    animateYearScrolling: false,
   }
 
   state = {
@@ -100,6 +102,7 @@ export class DateTimePicker extends Component {
       utils,
       ampm,
       shouldDisableDate,
+      animateYearScrolling,
     } = this.props;
 
     return (
@@ -133,6 +136,7 @@ export class DateTimePicker extends Component {
             disablePast={disablePast}
             disableFuture={disableFuture}
             utils={utils}
+            animateYearScrolling={animateYearScrolling}
           />
         </View>
 
