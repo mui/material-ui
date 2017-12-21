@@ -692,4 +692,28 @@ describe('<Popover />', () => {
       assert.strictEqual(wrapper.instance().getContentAnchorOffset(element), 45);
     });
   });
+
+  describe('prop: action', () => {
+    it('should be able to access updatePosition function', () => {
+      let popoverActions = {};
+      mount(
+        <Popover
+          action={actions => {
+            popoverActions = actions;
+          }}
+        >
+          <div>content #1</div>
+          <div>content #2</div>
+          <div>content #3</div>
+        </Popover>,
+      );
+
+      assert.strictEqual(
+        typeof popoverActions.updatePosition === 'function',
+        true,
+        'Should be a function.',
+      );
+      popoverActions.updatePosition();
+    });
+  });
 });

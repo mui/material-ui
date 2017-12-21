@@ -12,6 +12,7 @@ filename: /src/Popover/Popover.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| action | func |  | This is callback property. It's called by the component on mount. This is useful when you want to trigger an action programmatically. It currently only supports updatePosition() action.<br><br>**Signature:**<br>`function(actions: object) => void`<br>*actions:* This object contains all posible actions that can be triggered programmatically. |
 | anchorEl | object |  | This is the DOM element that may be used to set the position of the popover. |
 | anchorOrigin | shape | {  vertical: 'top',  horizontal: 'left',} | This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.<br>Options: vertical: [top, center, bottom]; horizontal: [left, center, right]. |
 | anchorPosition | shape |  | This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area. |
