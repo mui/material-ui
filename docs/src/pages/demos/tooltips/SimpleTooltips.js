@@ -36,7 +36,7 @@ function SimpleTooltips(props) {
       </Tooltip>
       <br />
       <br />
-      <Typography>The fab on the right is absolutly positionned:</Typography>
+      <Typography>The fab on the right is absolutely positioned:</Typography>
       <Tooltip placement="bottom" title="Position absolute">
         <Button fab color="accent" className={props.classes.absolute}>
           <AddIcon />
