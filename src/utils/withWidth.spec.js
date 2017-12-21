@@ -4,6 +4,7 @@ import { useFakeTimers } from 'sinon';
 import { createMount, createShallow } from '../test-utils';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import createBreakpoints from '../styles/createBreakpoints';
+import createMuiTheme from '../styles/createMuiTheme';
 
 const Empty = () => <div />;
 const EmptyWithWidth = withWidth()(Empty);
@@ -118,6 +119,21 @@ describe('withWidth', () => {
       // Second mount on the client
       assert.strictEqual(wrapper2.find(Empty).props().width, TEST_ENV_WIDTH);
       assert.strictEqual(TEST_ENV_WIDTH !== 'lg', true);
+    });
+  });
+
+  describe('option: withTheme', () => {
+    it('should inject the theme', () => {
+      const EmptyWithWidth2 = withWidth({ withTheme: true })(Empty);
+      const wrapper = mount(<EmptyWithWidth2 />);
+      assert.strictEqual(typeof wrapper.find(Empty).props().theme, 'object');
+    });
+
+    it('should forward the theme', () => {
+      const EmptyWithWidth2 = withWidth({ withTheme: true })(Empty);
+      const theme = createMuiTheme();
+      const wrapper = mount(<EmptyWithWidth2 theme={theme} />);
+      assert.strictEqual(wrapper.find(Empty).props().theme, theme);
     });
   });
 });
