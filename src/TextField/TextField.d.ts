@@ -38,7 +38,7 @@ export interface TextFieldProps extends StandardProps<
   select?: boolean;
   SelectProps?: SelectProps;
   type?: string;
-  value?: string | number;
+  value?: Array<string | number> | string | number;
 }
 
 export type TextFieldClassKey =

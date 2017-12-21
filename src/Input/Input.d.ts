@@ -28,7 +28,7 @@ export interface InputProps extends StandardProps<
   rowsMax?: string | number;
   startAdornment?: React.ReactNode;
   type?: string;
-  value?: string | number;
+  value?: Array<string | number> | string | number;
   onClean?: () => void;
   onDirty?: () => void;
   /**
