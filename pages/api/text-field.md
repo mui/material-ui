@@ -65,7 +65,7 @@ For advanced cases, please look at the source of TextField and consider either:
 | select | bool | false | Render a `Select` element while passing the `Input` element to `Select` as `input` parameter. If this option is set you must pass the options of the select as children. |
 | SelectProps | object |  | Properties applied to the `Select` element. |
 | type | string |  | Type attribute of the `Input` element. It should be a valid HTML5 input type. |
-| value | union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | The value of the `Input` element, required for a controlled component. |
+| value | union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;{name?: undefined, value?: undefined}<br> |  | The value of the `Input` element, required for a controlled component. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
