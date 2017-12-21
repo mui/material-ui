@@ -183,13 +183,18 @@ describe('<Menu />', () => {
 
     it('should call menuList focus when no menuList', () => {
       delete instance.menuList;
+      // convince react-dom to pass the node back
+      const ELEMENT_NODE = 1;
+      instance.menuList = { ...menuListSpy, nodeType: ELEMENT_NODE };
       instance.handleEnter(elementForHandleEnter);
       assert.strictEqual(selectedItemFocusSpy.callCount, 0);
       assert.strictEqual(menuListFocusSpy.callCount, 1);
     });
 
     it('should call menuList focus when menuList but no menuList.selectedItem ', () => {
-      instance.menuList = {};
+      // convince react-dom to pass the node back
+      const ELEMENT_NODE = 1;
+      instance.menuList = { ...menuListSpy, nodeType: ELEMENT_NODE };
       delete instance.menuList.selectedItem;
       instance.handleEnter(elementForHandleEnter);
       assert.strictEqual(selectedItemFocusSpy.callCount, 0);
