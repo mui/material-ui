@@ -34,6 +34,7 @@ export class DateTimePickerWrapper extends PickerBase {
     utils: PropTypes.object,
     ampm: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
+    animateYearScrolling: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -57,6 +58,7 @@ export class DateTimePickerWrapper extends PickerBase {
     utils: defaultUtils,
     ampm: true,
     shouldDisableDate: undefined,
+    animateYearScrolling: false,
   }
 
   default12hFormat = 'MMMM Do hh:mm a'
@@ -87,6 +89,7 @@ export class DateTimePickerWrapper extends PickerBase {
       utils,
       ampm,
       shouldDisableDate,
+      animateYearScrolling,
       ...other
     } = this.props;
 
@@ -123,6 +126,7 @@ export class DateTimePickerWrapper extends PickerBase {
           utils={utils}
           ampm={ampm}
           shouldDisableDate={shouldDisableDate}
+          animateYearScrolling={animateYearScrolling}
         />
       </ModalWrapper>
     );
