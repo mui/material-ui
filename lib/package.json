@@ -52,7 +52,7 @@
     "build": "npm run build:bundle && npm run build:es2015 && npm run build:copy",
     "ci": "npm run test && npm run lint && npm run build",
     "prerelease": "npm run ci",
-    "release": "np --no-publish --no-publish",
+    "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
     "lint": "eslint ./src/**/*.js*"
   },
