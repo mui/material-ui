@@ -31,8 +31,8 @@
     "email": "dmtr.kovalenko@outlook.com"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "prop-types": "^15.6.0",
     "material-ui": "^1.0.0-beta.24",
     "classnames": "^2.2.5",
@@ -85,8 +85,8 @@
     "moment": "^2.19.2",
     "np": "^2.18.3",
     "prop-types": "^15.6.0",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "rollup": "^0.51.8",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.4",
