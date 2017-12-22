@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, IconButton } from 'material-ui';
+import { withStyles, IconButton, Typography } from 'material-ui';
 import * as defaultUtils from '../utils/utils';
 
 export const CalendarHeader = (props) => {
@@ -26,9 +26,9 @@ export const CalendarHeader = (props) => {
           {rtl ? rightArrowIcon : leftArrowIcon}
         </IconButton>
 
-        <div className={classes.monthName}>
+        <Typography type="subheading">
           {utils.getCalendarHeaderText(currentMonth)}
-        </div>
+        </Typography>
 
         <IconButton onClick={selectNextMonth}>
           {rtl ? leftArrowIcon : rightArrowIcon}
@@ -78,9 +78,6 @@ const styles = theme => ({
     fontSize: 13,
     textAlign: 'center',
     color: theme.palette.text.hint,
-  },
-  monthName: {
-    color: theme.palette.text.primary,
   },
 });
 
