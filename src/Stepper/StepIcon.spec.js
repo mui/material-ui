@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
+import CheckCircle from '../internal/svg-icons/CheckCircle';
 import { createShallow, createMount } from '../test-utils';
-import CheckCircle from '../svg-icons/CheckCircle';
 import StepIcon from './StepIcon';
 import StepPositionIcon from './StepPositionIcon';
 

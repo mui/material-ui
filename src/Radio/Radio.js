@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '../styles/withStyles';
 import SwitchBase from '../internal/SwitchBase';
-import RadioButtonCheckedIcon from '../svg-icons/RadioButtonChecked';
-import RadioButtonUncheckedIcon from '../svg-icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
+import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
+import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   default: {

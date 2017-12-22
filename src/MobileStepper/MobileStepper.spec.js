@@ -1,9 +1,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
+import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import Button from '../Button/Button';
-import KeyboardArrowLeft from '../svg-icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '../svg-icons/KeyboardArrowRight';
 import { LinearProgress } from '../Progress';
 import MobileStepper from './MobileStepper';
 

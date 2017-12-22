@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import CheckCircle from '../svg-icons/CheckCircle';
+import CheckCircle from '../internal/svg-icons/CheckCircle';
 import withStyles from '../styles/withStyles';
 import StepPositionIcon from './StepPositionIcon';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { assert } from 'chai';
+import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
+import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import { getClasses, createMount } from '../test-utils';
 import Radio from './Radio';
-import RadioButtonCheckedIcon from '../svg-icons/RadioButtonChecked';
-import RadioButtonUncheckedIcon from '../svg-icons/RadioButtonUnchecked';
 
 describe('<Radio />', () => {
   let classes;

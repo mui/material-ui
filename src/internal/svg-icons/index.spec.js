@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow } from '../../test-utils';
 
 describe('svg-icons', () => {
   let shallow;
