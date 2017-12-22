@@ -78,6 +78,14 @@ export const styles = {
 };
 
 class Popover extends React.Component {
+  componentDidMount() {
+    if (this.props.action) {
+      this.props.action({
+        updatePosition: this.handleResize,
+      });
+    }
+  }
+
   componentWillUnmount = () => {
     this.handleResize.cancel();
   };
@@ -85,7 +93,6 @@ class Popover extends React.Component {
   setPositioningStyles = element => {
     if (element && element.style) {
       const positioning = this.getPositioningStyle(element);
-
       element.style.top = positioning.top;
       element.style.left = positioning.left;
       element.style.transformOrigin = positioning.transformOrigin;
@@ -255,6 +262,7 @@ class Popover extends React.Component {
       transformOrigin,
       transitionClasses,
       transitionDuration,
+      action,
       ...other
     } = this.props;
 
@@ -292,6 +300,15 @@ class Popover extends React.Component {
 }
 
 Popover.propTypes = {
+  /**
+   * This is callback property. It's called by the component on mount.
+   * This is useful when you want to trigger an action programmatically.
+   * It currently only supports updatePosition() action.
+   *
+   * @param {object} actions This object contains all posible actions
+   * that can be triggered programmatically.
+   */
+  action: PropTypes.func,
   /**
    * This is the DOM element that may be used
    * to set the position of the popover.
