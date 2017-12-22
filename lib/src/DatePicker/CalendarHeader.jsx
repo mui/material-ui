@@ -37,7 +37,13 @@ export const CalendarHeader = (props) => {
 
       <div className={classes.daysHeader}>
         {utils.getWeekdays().map(day => (
-          <div key={day} className={classes.dayLabel}> {day} </div>
+          <Typography
+            key={day}
+            type="caption"
+            className={classes.dayLabel}
+          >
+            {day}
+          </Typography>
         ))}
       </div>
     </div>
@@ -75,7 +81,6 @@ const styles = theme => ({
   dayLabel: {
     width: 36,
     margin: '0 2px',
-    fontSize: 13,
     textAlign: 'center',
     color: theme.palette.text.hint,
   },
