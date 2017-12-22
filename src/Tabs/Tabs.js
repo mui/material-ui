@@ -238,7 +238,7 @@ class Tabs extends Component {
         <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}>
           {tabs}
         </div>
-        <div style={prepareStyles(Object.assign({}, {width: inkBarContainerWidth}, inkBarContainerStyle))}>
+        <div style={prepareStyles(Object.assign({width: inkBarContainerWidth}, inkBarContainerStyle))}>
           {inkBar}
         </div>
         <div
