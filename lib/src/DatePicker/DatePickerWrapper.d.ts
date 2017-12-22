@@ -10,6 +10,7 @@ export interface DatePickerWrapperProps extends ModalWrapperProps {
     maxDate?: DateType;
     onChange: (date: object) => void;
     autoOk?: boolean;
+    disablePast?: boolean;
     disableFuture?: boolean;
     animateYearScrolling?: boolean;
     openToYearSelection?: boolean;

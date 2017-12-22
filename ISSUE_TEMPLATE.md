@@ -1,0 +1,30 @@
+<!-- Thanks so much for your time taking to open an issue, your work is appreciated! ❤️ -->
+
+## Environment
+
+| Tech                | Version |
+|---------------------|---------|
+| material-ui-pickers |         |
+| material-ui         |         |
+| React               |         |
+| Browser             |         |
+| Platform            |         |
+
+## Steps to reproduce
+1.
+2.
+3.
+
+## Expected behavior
+<!-- What behavior do you expect? -->
+
+## Actual behavior
+<!-- What behavior do you see? -->
+
+## Live example
+<!--
+    Live examples help us to investigate bugs and save our time.
+    Please try to make this example as simple as possible.
+    To create an example you can use this playground:
+    https://codesandbox.io/s/6wxqo5mxnz
+-->

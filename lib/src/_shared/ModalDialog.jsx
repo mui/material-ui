@@ -10,7 +10,7 @@ const styles = {
   },
   dialog: {
     width: dialogWidth,
-    height: 420,
+    height: 424,
 
     '&:first-child': {
       padding: 0,

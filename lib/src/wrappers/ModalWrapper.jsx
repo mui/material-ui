@@ -34,19 +34,23 @@ export default class ModalWrapper extends PureComponent {
     open: false,
   }
 
-  handleClick = () => {
+  open = () => {
     this.setState({ open: true });
   }
 
-  handleAccept = () => {
+  close = () => {
     this.setState({ open: false });
+  }
+
+  handleAccept = () => {
+    this.close();
     if (this.props.onAccept) {
       this.props.onAccept();
     }
   }
 
   handleDismiss = () => {
-    this.setState({ open: false });
+    this.close();
     if (this.props.onDismiss) {
       this.props.onDismiss();
     }
@@ -72,7 +76,7 @@ export default class ModalWrapper extends PureComponent {
         <DateTextField
           value={value}
           format={format}
-          onClick={this.handleClick}
+          onClick={this.open}
           // onFocus={this.togglePicker} <- Currently not properly works with .blur() on TextField
           invalidLabel={invalidLabel}
           labelFunc={labelFunc}

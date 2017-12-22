@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-beta.9",
+  "version": "1.0.0-beta.10",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "build/dist/material-ui-pickers.cjs.js",
@@ -52,7 +52,7 @@
     "build": "npm run build:bundle && npm run build:es2015 && npm run build:copy",
     "ci": "npm run test && npm run lint && npm run build",
     "prerelease": "npm run ci",
-    "release": "np --no-publish",
+    "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
     "lint": "eslint ./src/**/*.js*"
   },
