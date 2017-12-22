@@ -2,6 +2,63 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.25
+###### *Dec 22, 2017*
+
+Big thanks to the 16 contributors who made this release possible.
+
+Here are some highlights ✨:
+- 100% test coverage. Thanks @leMaik for the last mile #9596!
+- The first introduction of Global CSS 😱.
+We have introduced a `dangerouslyUseGlobalCSS` option to the class name generator #9558.
+We discourage people from using this option in production.
+However, it can be a quick escape hatch when prototyping.
+It's making the class names predictable, for instance:
+```diff
+-c291
++MuiButton-raised
+```
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+None, merry christmas 🎄.
+
+#### Component Fixes / Enhancements
+
+- [typescript] Add Typography pxToRem (#9547) @jaredpetker
+- [Select] Typo fix (#9567) @bordagabor
+- [CardHeader] Add conditional rendering of the subheader (#9572) @jwwisgerhof
+- [Tooltip] children should be an element (#9568) @oliviertassinari
+- [BottomNavigationButton] onClick and onChange handler overwritten (#9564) @kgregory
+- [typescript] Add typings to reactHelpers (#9565) @SSW-SCIENTIFIC
+- [TablePagination] Make onChangeRowsPerPage optional (#9563) @evantrimboli
+- [Toolbar] Make the children optional (#9581) @oliviertassinari
+- [withWidth] Add withTheme option (#9586) @oliviertassinari
+- [docs] Add more interoperability examples (#9558) @oliviertassinari
+- [TextField] Make TextField's "value" prop type match Input (#9594) @jaminthorns
+- [Popover] Add action property (#9588) @gregnb
+- [Modal] Increase test coverage (#9596) @leMaik
+
+#### Docs
+
+- [docs] Second iteration on the ad placement (#9524) @oliviertassinari
+- [docs] Remove unused styes object from ChipsArray demo (#9540) @mbrookes
+- [docs] Hide sandbox button on drawer and grid-list demos (#9537) @lukePeavey
+- [docs] Fix typo `masterial-ui` to `material-ui` (#9544) @Ginkoid
+- [docs] Add two new members (#9543) @oliviertassinari
+- [docs] Fix dark theme toggle of website home page content (#9560) @Tuaniwan
+- [docs] Improve migration guide (#9566) @fonzy2013
+- [examples] Fix after the latest breaking changes (#9553) @Tuaniwan
+- [docs] Fix basic typos in copy text (#9591) @hathix
+
+#### Core
+
+- [test] Report the potential svg-icon test error (#9559) @oliviertassinari
+- [.editorconfig] Add max_line_length (#9580) @mbrookes
+- [core] Move svg-icons to the internal folder (#9601) @oliviertassinari
+- [core] Upgrade the dependencies (#9606) @oliviertassinari
+
 ## 1.0.0-beta.24
 ###### *Dec 17, 2017*
 
