@@ -124,6 +124,13 @@ describe('<Modal />', () => {
             assert.strictEqual(instance.modal.lastChild.focus.callCount, 1, 'should call focus');
           });
         });
+
+        it('should focus the modal content when focusing the modal', () => {
+          document.body.blur(); // remove focus from modal content
+          instance.handleFocusListener();
+          assert.strictEqual(instance.modal.lastChild.focus.callCount, 1, 'should call focus');
+          instance.modal.lastChild.focus.reset();
+        });
       });
     });
   });
@@ -179,6 +186,37 @@ describe('<Modal />', () => {
 
       handler({});
       assert.strictEqual(onClose.callCount, 0, 'should not fire the onClose callback');
+    });
+
+    it('should call through to the user specified onBackdropClick callback', () => {
+      const onBackdropClick = spy();
+      wrapper.setProps({ onBackdropClick });
+
+      const handler = wrapper.instance().handleBackdropClick;
+
+      handler({});
+      assert.strictEqual(onBackdropClick.callCount, 1, 'should fire the onBackdropClick callback');
+    });
+
+    it('should ignore the backdrop click if the event did not come from the backdrop', () => {
+      const onBackdropClick = spy();
+      wrapper.setProps({ onBackdropClick });
+
+      const handler = wrapper.instance().handleBackdropClick;
+
+      handler({
+        target: {
+          /* a dom node */
+        },
+        currentTarget: {
+          /* another dom node */
+        },
+      });
+      assert.strictEqual(
+        onBackdropClick.callCount,
+        0,
+        'should not fire the onBackdropClick callback',
+      );
     });
   });
 
