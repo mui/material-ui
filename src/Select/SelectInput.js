@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
+import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Menu from '../Menu/Menu';
 import { isDirty } from '../Input/Input';
-import ArrowDropDownIcon from '../svg-icons/ArrowDropDown';
 
 /**
  * @ignore - internal component.

@@ -2,11 +2,11 @@ import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import CheckBox from '../svg-icons/CheckBox';
+import CheckBox from '../internal/svg-icons/CheckBox';
+import CancelIcon from '../internal/svg-icons/Cancel';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Avatar from '../Avatar';
 import Chip from './Chip';
-import CancelIcon from '../svg-icons/Cancel';
 
 describe('<Chip />', () => {
   let shallow;

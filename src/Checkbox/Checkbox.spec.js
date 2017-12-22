@@ -1,8 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
+import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import { createShallow, getClasses, createMount } from '../test-utils';
 import Checkbox from './Checkbox';
-import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';
 
 describe('<Checkbox />', () => {
   let shallow;

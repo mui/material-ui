@@ -1,10 +1,10 @@
 import React from 'react';
 import { assert } from 'chai';
+import CheckCircle from '../internal/svg-icons/CheckCircle';
 import { createShallow, createMount } from '../test-utils';
 import Step from './Step';
 import StepConnector from './StepConnector';
 import Stepper from './Stepper';
-import CheckCircle from '../svg-icons/CheckCircle';
 
 describe('<Stepper />', () => {
   let shallow;

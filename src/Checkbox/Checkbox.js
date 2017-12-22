@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '../styles/withStyles';
 import SwitchBase from '../internal/SwitchBase';
-import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';
+import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
+import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   default: {
