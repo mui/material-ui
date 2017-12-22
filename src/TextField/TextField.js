@@ -24,16 +24,15 @@ import Select from '../Select/Select';
  * If you wish to alter the properties applied to the native input, you can do as follow:
  *
  * ```jsx
- * const InputProps = {
- *   inputProps: {
- *     step: 300,
- *   },
+ * const inputProps = {
+ *   step: 300,
  * };
  *
- * return <TextField id="time" type="time" InputProps={InputProps} />;
+ * return <TextField id="time" type="time" inputProps={inputProps} />;
  * ```
  *
- * For advanced cases, please look at the source of TextField and consider either:
+ * For advanced cases, please look at the source of TextField by clicking on the
+ * "Edit this page" button above. Consider either:
  * - using the upper case props for passing values direct to the components.
  * - using the underlying components directly as shown in the demos.
  */
@@ -52,6 +51,7 @@ function TextField(props) {
     helperTextClassName,
     id,
     InputLabelProps,
+    inputProps,
     InputProps,
     inputRef,
     label,
@@ -92,6 +92,7 @@ function TextField(props) {
       inputRef={inputRef}
       onChange={onChange}
       placeholder={placeholder}
+      inputProps={inputProps}
       {...InputProps}
     />
   );
@@ -186,6 +187,10 @@ TextField.propTypes = {
    * Properties applied to the `Input` element.
    */
   InputProps: PropTypes.object,
+  /**
+   * Properties applied to the native `input` element.
+   */
+  inputProps: PropTypes.object,
   /**
    * Use that property to pass a ref callback to the native input component.
    */
