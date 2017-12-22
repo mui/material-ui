@@ -252,7 +252,11 @@ TextField.propTypes = {
   /**
    * The value of the `Input` element, required for a controlled component.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ]),
 };
 
 TextField.defaultProps = {
