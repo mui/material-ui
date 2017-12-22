@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { withStyles } from 'material-ui';
+import { Typography, withStyles } from 'material-ui';
 
 const positions = {
   0: [0, 40],
@@ -58,41 +58,42 @@ export class ClockNumber extends Component {
 
     const className = classnames(classes.clockNumber, {
       [classes.selected]: selected,
-      [classes.inner]: isInner,
     });
 
     return (
-      <div
+      <Typography
+        type={isInner ? 'body1' : 'subheading'}
+        component="span"
         className={className}
         style={this.getTransformStyle(index, isInner)}
       >
         { label }
-      </div>
+      </Typography>
     );
   }
 }
 
-const styles = theme => ({
-  clockNumber: {
-    width: 32,
-    height: 32,
-    position: 'absolute',
-    left: 'calc(50% - 16px)',
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: '50%',
-    color: theme.palette.type === 'light'
-      ? theme.palette.text.primary
-      : theme.palette.text.hint,
-  },
-  selected: {
-    color: 'white',
-  },
-  inner: {
-    fontSize: 14,
-  },
-});
+const styles = (theme) => {
+  const size = theme.spacing.unit * 4;
+  return {
+    clockNumber: {
+      width: size,
+      height: size,
+      position: 'absolute',
+      left: `calc(50% - ${size / 2}px)`,
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: '50%',
+      color: theme.palette.type === 'light'
+        ? theme.palette.text.primary
+        : theme.palette.text.hint,
+    },
+    selected: {
+      color: theme.palette.common.white,
+    },
+  };
+};
 
 export default withStyles(styles, { name: 'MuiPickersClockNumber' })(ClockNumber);
 
