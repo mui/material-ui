@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, IconButton } from 'material-ui';
 
@@ -135,7 +135,7 @@ export class Calendar extends Component {
     const { classes, utils } = this.props;
 
     return (
-      <div className={classes.container}>
+      <Fragment>
         <CalendarHeader
           currentMonth={currentMonth}
           onMonthChange={this.handleChangeMonth}
@@ -147,7 +147,7 @@ export class Calendar extends Component {
         <div className={classes.calendar}>
           {this.renderWeeks()}
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
