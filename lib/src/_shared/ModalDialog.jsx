@@ -37,7 +37,7 @@ const ModalDialog = ({
       <Button
         color="primary"
         onClick={onDismiss}
-        tabIndex={-1}
+        aria-label={cancelLabel}
       >
         { cancelLabel }
       </Button>
@@ -45,6 +45,7 @@ const ModalDialog = ({
       <Button
         color="primary"
         onClick={onAccept}
+        aria-label={okLabel}
       >
         { okLabel }
       </Button>
