@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui';
 import PickerToolbar from '../_shared/PickerToolbar';
@@ -73,7 +73,7 @@ export class TimePicker extends Component {
       : classes.hourMinuteLabel;
 
     return (
-      <div className={classes.container}>
+      <Fragment>
         <PickerToolbar className={classes.toolbar}>
           <div className={hourMinuteClassName}>
             <ToolbarButton
@@ -139,8 +139,7 @@ export class TimePicker extends Component {
                 utils={utils}
               />
         }
-      </div>
-
+      </Fragment>
     );
   }
 }

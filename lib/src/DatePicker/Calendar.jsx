@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, IconButton } from 'material-ui';
 
@@ -100,16 +100,17 @@ export class Calendar extends Component {
     return week.map((day) => {
       // should be applied both for wrapper and button
       const disabledClass = classnames({ [classes.disabled]: this.shouldDisableDate(day) });
-
       const dayInCurrentMonth = utils.getMonthNumber(day) === currentMonthNumber;
+      const isHidden = !dayInCurrentMonth;
+
       const dayClass = classnames(classes.day, disabledClass, {
-        [classes.hidden]: !dayInCurrentMonth,
+        [classes.hidden]: isHidden,
         [classes.current]: day.isSame(now, 'day'),
         [classes.selected]: selectedDate.isSame(day, 'day'),
       });
 
       let dayComponent = (
-        <IconButton className={dayClass}>
+        <IconButton className={dayClass} tabIndex={isHidden ? -1 : 0}>
           <span> {utils.getDayText(day)} </span>
         </IconButton>
       );
@@ -137,7 +138,7 @@ export class Calendar extends Component {
     const { classes, utils } = this.props;
 
     return (
-      <div className={classes.container}>
+      <Fragment>
         <CalendarHeader
           currentMonth={currentMonth}
           onMonthChange={this.handleChangeMonth}
@@ -149,7 +150,7 @@ export class Calendar extends Component {
         <div className={classes.calendar}>
           {this.renderWeeks()}
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

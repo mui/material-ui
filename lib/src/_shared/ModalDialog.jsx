@@ -10,7 +10,7 @@ const styles = {
   },
   dialog: {
     width: dialogWidth,
-    height: 424,
+    height: 420,
 
     '&:first-child': {
       padding: 0,
@@ -37,7 +37,7 @@ const ModalDialog = ({
       <Button
         color="primary"
         onClick={onDismiss}
-        tabIndex={-1}
+        aria-label={cancelLabel}
       >
         { cancelLabel }
       </Button>
@@ -45,6 +45,7 @@ const ModalDialog = ({
       <Button
         color="primary"
         onClick={onAccept}
+        aria-label={okLabel}
       >
         { okLabel }
       </Button>

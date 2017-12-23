@@ -1,7 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { withStyles } from 'material-ui';
 
 import Calendar from './Calendar';
 import YearSelection from './YearSelection';
@@ -15,7 +14,6 @@ export class DatePicker extends PureComponent {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
-    classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
@@ -76,7 +74,6 @@ export class DatePicker extends PureComponent {
 
   render() {
     const {
-      classes,
       disablePast,
       disableFuture,
       onChange,
@@ -90,7 +87,7 @@ export class DatePicker extends PureComponent {
     const { showYearSelection } = this.state;
 
     return (
-      <div className={classes.container}>
+      <Fragment>
         <PickerToolbar>
           <ToolbarButton
             type="subheading"
@@ -137,14 +134,10 @@ export class DatePicker extends PureComponent {
                 shouldDisableDate={shouldDisableDate}
               />
         }
-      </div>
+      </Fragment>
     );
   }
 }
 
-const styles = () => ({
-
-});
-
-export default withStyles(styles, { name: 'MuiPickersDatePicker' })(DatePicker);
+export default DatePicker;
 
