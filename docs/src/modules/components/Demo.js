@@ -145,20 +145,29 @@ if (rootElement) {
           >
             <input type="hidden" name="parameters" value="" />
           </form>
-          <Tooltip title="See the source on GitHub" target="_blank" placement="top">
-            <IconButton href={githubLocation}>
+          <Tooltip
+            id="demo-github"
+            title="See the source on GitHub"
+            target="_blank"
+            placement="top"
+          >
+            <IconButton href={githubLocation} aria-labelledby="demo-github">
               <Github />
             </IconButton>
           </Tooltip>
           {demoOptions.hideEditButton ? null : (
-            <Tooltip title="Edit in codesandbox" placement="top">
-              <IconButton onClick={this.handleClickCodesandbox}>
+            <Tooltip id="demo-codesandbox" title="Edit in codesandbox" placement="top">
+              <IconButton onClick={this.handleClickCodesandbox} aria-labelledby="demo-codesandbox">
                 <ModeEditIcon />
               </IconButton>
             </Tooltip>
           )}
-          <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
-            <IconButton onClick={this.handleClickCodeOpen}>
+          <Tooltip
+            id="demo-source"
+            title={codeOpen ? 'Hide the source' : 'Show the source'}
+            placement="top"
+          >
+            <IconButton onClick={this.handleClickCodeOpen} aria-labelledby="demo-source">
               <CodeIcon />
             </IconButton>
           </Tooltip>
