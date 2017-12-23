@@ -37,7 +37,6 @@ const ModalDialog = ({
       <Button
         color="primary"
         onClick={onDismiss}
-        tabIndex={-1}
       >
         { cancelLabel }
       </Button>
