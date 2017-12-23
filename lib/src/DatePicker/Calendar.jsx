@@ -157,7 +157,8 @@ export class Calendar extends Component {
 
 const styles = theme => ({
   calendar: {
-    marginTop: 5,
+    height: 36 * 6,
+    marginTop: theme.spacing.unit * 1.5,
   },
   hidden: {
     opacity: 0,
