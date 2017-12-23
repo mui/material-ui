@@ -99,15 +99,16 @@ export class Calendar extends Component {
     return week.map((day) => {
       // should be applied both for wrapper and button
       const disabledClass = classnames({ [classes.disabled]: this.shouldDisableDate(day) });
-
       const dayInCurrentMonth = utils.getMonthNumber(day) === currentMonthNumber;
+      const isHidden = !dayInCurrentMonth;
+
       const dayClass = classnames(classes.day, disabledClass, {
-        [classes.hidden]: !dayInCurrentMonth,
+        [classes.hidden]: isHidden,
         [classes.selected]: selectedDate.isSame(day, 'day'),
       });
 
       let dayComponent = (
-        <IconButton className={dayClass}>
+        <IconButton className={dayClass} tabIndex={isHidden ? -1 : 0}>
           <span> {utils.getDayText(day)} </span>
         </IconButton>
       );
