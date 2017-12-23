@@ -116,7 +116,7 @@ export class Clock extends Component {
   }
 }
 
-const styles = (theme) => ({
+const styles = theme => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
