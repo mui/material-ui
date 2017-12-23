@@ -59,15 +59,15 @@ function Dialog(props) {
     className,
     fullScreen,
     fullWidth,
-    ignoreBackdropClick,
-    ignoreEscapeKeyUp,
+    disableBackdropClick,
+    disableEscapeKeyDown,
     maxWidth,
     onBackdropClick,
     onClose,
     onEnter,
     onEntered,
     onEntering,
-    onEscapeKeyUp,
+    onEscapeKeyDown,
     onExit,
     onExited,
     onExiting,
@@ -80,13 +80,15 @@ function Dialog(props) {
   return (
     <Modal
       className={classNames(classes.root, className)}
-      BackdropTransitionDuration={transitionDuration}
-      ignoreBackdropClick={ignoreBackdropClick}
-      ignoreEscapeKeyUp={ignoreEscapeKeyUp}
+      BackdropProps={{
+        transitionDuration,
+      }}
+      disableBackdropClick={disableBackdropClick}
+      disableEscapeKeyDown={disableEscapeKeyDown}
       onBackdropClick={onBackdropClick}
-      onEscapeKeyUp={onEscapeKeyUp}
+      onEscapeKeyDown={onEscapeKeyDown}
       onClose={onClose}
-      show={open}
+      open={open}
       role="dialog"
       {...other}
     >
@@ -134,6 +136,14 @@ Dialog.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, clicking the backdrop will not fire the `onClose` callback.
+   */
+  disableBackdropClick: PropTypes.bool,
+  /**
+   * If `true`, hitting escape will not fire the `onClose` callback.
+   */
+  disableEscapeKeyDown: PropTypes.bool,
+  /**
    * If `true`, it will be full-screen
    */
   fullScreen: PropTypes.bool,
@@ -141,14 +151,6 @@ Dialog.propTypes = {
    * If specified, stretches dialog to max width.
    */
   fullWidth: PropTypes.bool,
-  /**
-   * If `true`, clicking the backdrop will not fire the `onClose` callback.
-   */
-  ignoreBackdropClick: PropTypes.bool,
-  /**
-   * If `true`, hitting escape will not fire the `onClose` callback.
-   */
-  ignoreEscapeKeyUp: PropTypes.bool,
   /**
    * Determine the max width of the dialog.
    * The dialog width grows with the size of the screen, this property is useful
@@ -179,9 +181,10 @@ Dialog.propTypes = {
    */
   onEntering: PropTypes.func,
   /**
-   * Callback fires when the escape key is released and the modal is in focus.
+   * Callback fired when the escape key is pressed,
+   * `disableKeyboard` is false and the modal is in focus.
    */
-  onEscapeKeyUp: PropTypes.func,
+  onEscapeKeyDown: PropTypes.func,
   /**
    * Callback fired before the dialog exits.
    */
@@ -197,7 +200,7 @@ Dialog.propTypes = {
   /**
    * If `true`, the Dialog is open.
    */
-  open: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
   /**
    * Transition component.
    */
@@ -215,10 +218,9 @@ Dialog.propTypes = {
 Dialog.defaultProps = {
   fullScreen: false,
   fullWidth: false,
-  ignoreBackdropClick: false,
-  ignoreEscapeKeyUp: false,
+  disableBackdropClick: false,
+  disableEscapeKeyDown: false,
   maxWidth: 'sm',
-  open: false,
   transition: Fade,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };

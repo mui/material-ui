@@ -9,26 +9,16 @@ import { StandardProps } from '..';
  * Since it is not decided via prop, we have create loose typings
  * here.
  */
-export interface TableCellProps extends StandardProps<
-  TableCellBaseProps,
-  TableCellClassKey
-> {
+export interface TableCellProps extends StandardProps<TableCellBaseProps, TableCellClassKey> {
   component?: string | React.ComponentType<TableCellBaseProps>;
   padding?: Padding;
   numeric?: boolean;
 }
 
-export type TableCellBaseProps =
-  & React.ThHTMLAttributes<HTMLTableHeaderCellElement>
-  & React.TdHTMLAttributes<HTMLTableDataCellElement>
-  ;
+export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableHeaderCellElement> &
+  React.TdHTMLAttributes<HTMLTableDataCellElement>;
 
-export type Padding =
-  | 'default'
-  | 'checkbox'
-  | 'dense'
-  | 'none'
-  ;
+export type Padding = 'default' | 'checkbox' | 'dense' | 'none';
 
 export type TableCellClassKey =
   | 'root'
@@ -37,8 +27,7 @@ export type TableCellClassKey =
   | 'paddingDefault'
   | 'paddingCompact'
   | 'paddingCheckbox'
-  | 'footer'
-  ;
+  | 'footer';
 
 declare const TableCell: React.ComponentType<TableCellProps>;
 

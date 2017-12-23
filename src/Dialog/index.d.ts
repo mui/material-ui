@@ -8,7 +8,5 @@ export { default as DialogContent } from './DialogContent';
 export * from './DialogContent';
 export { default as DialogContentText } from './DialogContentText';
 export * from './DialogContentText';
-export {
-  default as withMobileDialog,
-} from './withMobileDialog';
+export { default as withMobileDialog } from './withMobileDialog';
 export * from './withMobileDialog';

@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
+import { FormLabel } from '../Form';
 import InputLabel from './InputLabel';
 
 describe('<InputLabel />', () => {
@@ -14,7 +15,7 @@ describe('<InputLabel />', () => {
 
   it('should render a FormLabel', () => {
     const wrapper = shallow(<InputLabel>Foo</InputLabel>);
-    assert.strictEqual(wrapper.name(), 'withStyles(FormLabel)');
+    assert.strictEqual(wrapper.type(), FormLabel);
     assert.strictEqual(wrapper.childAt(0).text(), 'Foo');
   });
 

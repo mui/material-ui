@@ -9,12 +9,12 @@ describe('<Backdrop />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<Backdrop />);
+    classes = getClasses(<Backdrop open />);
   });
 
   it('should render a backdrop div', () => {
-    const wrapper = shallow(<Backdrop className="woofBackdrop" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    const wrapper = shallow(<Backdrop open className="woofBackdrop" />);
     assert.strictEqual(wrapper.hasClass('woofBackdrop'), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.root), true);
   });
 });

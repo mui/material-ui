@@ -7,6 +7,4 @@ export interface ShallowOptions {
   untilSelector: EnzymeSelector;
 }
 
-export default function createShallow(
-  options?: Partial<ShallowOptions>
-): typeof shallow;
+export default function createShallow(options?: Partial<ShallowOptions>): typeof shallow;

@@ -1,19 +1,20 @@
 import * as React from 'react';
-import { StyledComponentProps } from './styles'
-export { StyledComponentProps }
+import { StyledComponentProps } from './styles';
+export { StyledComponentProps };
 
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
  * certain `classes`, on which one can also set a top-level `className` and inline
  * `style`.
  */
-export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> =
-  & Omit<C & { classes: any }, 'classes' | Removals>
-  & StyledComponentProps<ClassKey>
-  & {
+export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> = Omit<
+  C & { classes: any },
+  'classes' | Removals
+> &
+  StyledComponentProps<ClassKey> & {
     className?: string;
     style?: Partial<React.CSSProperties>;
-  }
+  };
 
 export type Contrast = 'light' | 'dark';
 export interface Color {
@@ -39,11 +40,9 @@ export interface Color {
  * https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-307871458
  */
 
- /** @internal */
-type Diff<T extends string, U extends string> = (
-  { [P in T]: P } &
-  { [P in U]: never } & { [x: string]: never }
-)[T];
+/** @internal */
+type Diff<T extends string, U extends string> = ({ [P in T]: P } &
+  { [P in U]: never } & { [x: string]: never })[T];
 
 /** @internal */
 export type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
@@ -96,9 +95,10 @@ export {
   ListSubheader,
 } from './List';
 export { default as Menu, MenuItem, MenuList } from './Menu';
-export { default as Modal } from './Modal';
+export { default as Modal, Backdrop, ModalManager } from './Modal';
 export { default as Paper } from './Paper';
 export { default as Popover } from './Popover';
+export { default as Portal } from './Portal';
 export { CircularProgress, LinearProgress } from './Progress';
 export { default as Radio, RadioGroup } from './Radio';
 export { default as Select } from './Select';

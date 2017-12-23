@@ -3,8 +3,11 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount } from '../test-utils';
+import Select from '../Select';
+import IconButton from '../IconButton';
 import TableFooter from './TableFooter';
 import TablePagination from './TablePagination';
+import Typography from '../Typography';
 import TableRow from './TableRow';
 
 describe('<TablePagination />', () => {
@@ -31,7 +34,7 @@ describe('<TablePagination />', () => {
         rowsPerPage={5}
       />,
     );
-    assert.strictEqual(wrapper.name(), 'withStyles(TableCell)');
+    assert.strictEqual(wrapper.name(), 'WithStyles');
   });
 
   it('should spread custom props on the root node', () => {
@@ -63,7 +66,7 @@ describe('<TablePagination />', () => {
           rowsPerPage={5}
         />,
       );
-      assert.strictEqual(wrapper.name(), 'withStyles(TableCell)');
+      assert.strictEqual(wrapper.name(), 'WithStyles');
       assert.notStrictEqual(wrapper.props().colSpan, undefined);
     });
 
@@ -152,8 +155,8 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const backButton = wrapper.find('withStyles(IconButton)').at(0);
-      const nextButton = wrapper.find('withStyles(IconButton)').at(1);
+      const backButton = wrapper.find(IconButton).at(0);
+      const nextButton = wrapper.find(IconButton).at(1);
       assert.strictEqual(backButton.props().disabled, true);
       assert.strictEqual(nextButton.props().disabled, false);
     });
@@ -175,8 +178,8 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const backButton = wrapper.find('withStyles(IconButton)').at(0);
-      const nextButton = wrapper.find('withStyles(IconButton)').at(1);
+      const backButton = wrapper.find(IconButton).at(0);
+      const nextButton = wrapper.find(IconButton).at(1);
       assert.strictEqual(backButton.props().disabled, false);
       assert.strictEqual(nextButton.props().disabled, true);
     });
@@ -201,7 +204,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const nextButton = wrapper.find('withStyles(IconButton)').at(1);
+      const nextButton = wrapper.find(IconButton).at(1);
       nextButton.simulate('click');
       assert.strictEqual(page, 2);
     });
@@ -226,7 +229,7 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      const nextButton = wrapper.find('withStyles(IconButton)').at(0);
+      const nextButton = wrapper.find(IconButton).at(0);
       nextButton.simulate('click');
       assert.strictEqual(page, 0);
     });
@@ -278,7 +281,7 @@ describe('<TablePagination />', () => {
       );
       assert.strictEqual(
         wrapper
-          .find('withStyles(Typography)')
+          .find(Typography)
           .at(1)
           .text(),
         '0-0 of 0',
@@ -333,7 +336,7 @@ describe('<TablePagination />', () => {
       );
 
       assert.strictEqual(wrapper.text().indexOf('Rows per page'), -1);
-      assert.strictEqual(wrapper.find('withStyles(Select)').length, 0);
+      assert.strictEqual(wrapper.find(Select).length, 0);
     });
   });
 });

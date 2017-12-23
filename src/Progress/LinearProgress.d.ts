@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface LinearProgressProps extends StandardProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  LinearProgressClassKey
-> {
+export interface LinearProgressProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, LinearProgressClassKey> {
   color?: 'primary' | 'accent';
   mode?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
   value?: number;
@@ -29,8 +27,7 @@ export type LinearProgressClassKey =
   | 'determinateBar1'
   | 'bufferBar1'
   | 'bufferBar2Primary'
-  | 'bufferBar2Accent'
-  ;
+  | 'bufferBar2Accent';
 
 declare const LinearProgress: React.ComponentType<LinearProgressProps>;
 

@@ -106,7 +106,7 @@ class Menu extends React.Component {
       classes,
       MenuListProps,
       onEnter,
-      open, // https://github.com/facebook/flow/issues/5253
+      open,
       PaperProps = {},
       PopoverClasses,
       theme,
@@ -197,7 +197,7 @@ Menu.propTypes = {
   /**
    * If `true`, the menu is visible.
    */
-  open: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
   /**
    * @ignore
    */
@@ -221,7 +221,6 @@ Menu.propTypes = {
 };
 
 Menu.defaultProps = {
-  open: false,
   transitionDuration: 'auto',
 };
 

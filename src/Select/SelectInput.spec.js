@@ -127,7 +127,7 @@ describe('<SelectInput />', () => {
         const portalLayer = wrapper
           .find('Portal')
           .instance()
-          .getLayer();
+          .getMountNode();
         portalLayer.querySelectorAll('li')[1].click();
         assert.strictEqual(wrapper.state().open, false);
         assert.strictEqual(handleChange.callCount, 1);
@@ -163,7 +163,7 @@ describe('<SelectInput />', () => {
         const portalLayer = wrapper
           .find('Portal')
           .instance()
-          .getLayer();
+          .getMountNode();
         const backdrop = portalLayer.querySelector('[data-mui-test="Backdrop"]');
         backdrop.click();
         assert.strictEqual(wrapper.state().open, false);
@@ -270,7 +270,7 @@ describe('<SelectInput />', () => {
         const portalLayer = wrapper
           .find('Portal')
           .instance()
-          .getLayer();
+          .getMountNode();
 
         portalLayer.querySelectorAll('li')[1].click();
         assert.strictEqual(wrapper.state().open, true);

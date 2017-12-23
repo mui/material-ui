@@ -76,8 +76,7 @@ function TextField(props) {
     'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
   );
 
-  const helperTextId = helperText && id ? `${id}-mui-helper-text` : undefined;
-
+  const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const InputComponent = (
     <Input
       autoComplete={autoComplete}
@@ -101,13 +100,13 @@ function TextField(props) {
 
   return (
     <FormControl
-      fullWidth={fullWidth}
+      aria-describedby={helperTextId}
       className={className}
       error={error}
-      required={required}
-      aria-describedby={helperTextId}
-      {...other}
+      fullWidth={fullWidth}
       ref={rootRef}
+      required={required}
+      {...other}
     >
       {label && (
         <InputLabel htmlFor={id} className={labelClassName} {...InputLabelProps}>

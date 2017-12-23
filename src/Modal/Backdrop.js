@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import Fade from '../transitions/Fade';
 
 export const styles = theme => ({
   root: {
@@ -13,31 +14,26 @@ export const styles = theme => ({
     left: 0,
     // Remove grey highlight
     WebkitTapHighlightColor: theme.palette.common.transparent,
-    backgroundColor: theme.palette.common.lightBlack,
-    transition: theme.transitions.create('opacity'),
     willChange: 'opacity',
-    opacity: 0,
+    backgroundColor: theme.palette.common.lightBlack,
   },
   invisible: {
     backgroundColor: theme.palette.common.transparent,
   },
 });
 
-/**
- * @ignore - internal component.
- */
 function Backdrop(props) {
-  const { classes, className: classNameProp, invisible, ...other } = props;
+  const { classes, invisible, open, transitionDuration, ...other } = props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.invisible]: invisible,
-    },
-    classNameProp,
+  const className = classNames(classes.root, {
+    [classes.invisible]: invisible,
+  });
+
+  return (
+    <Fade appear in={open} timeout={transitionDuration} {...other}>
+      <div data-mui-test="Backdrop" className={className} aria-hidden="true" />
+    </Fade>
   );
-
-  return <div data-mui-test="Backdrop" className={className} aria-hidden="true" {...other} />;
 }
 
 Backdrop.propTypes = {
@@ -46,13 +42,22 @@ Backdrop.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * If `true`, the backdrop is invisible.
+   * It can be used when rendering a popover or a custom select component.
    */
   invisible: PropTypes.bool,
+  /**
+   * If `true`, the backdrop is open.
+   */
+  open: PropTypes.bool.isRequired,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  transitionDuration: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+  ]),
 };
 
 Backdrop.defaultProps = {

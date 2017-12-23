@@ -9,20 +9,10 @@ import warning from 'warning';
 import classNames from 'classnames';
 import { Manager, Target, Popper } from 'react-popper';
 import { capitalizeFirstLetter } from '../utils/helpers';
+import RefHolder from '../internal/RefHolder';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
-
-// Use a class component so we can get a reference.
-class TargetChildren extends React.Component {
-  render() {
-    return this.props.children;
-  }
-}
-
-TargetChildren.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export const styles = theme => ({
   root: {
@@ -314,14 +304,14 @@ class Tooltip extends React.Component {
         <Manager className={classNames(classes.root, className)} {...other}>
           <Target>
             {({ targetProps }) => (
-              <TargetChildren
+              <RefHolder
                 ref={node => {
                   this.children = findDOMNode(node);
                   targetProps.ref(this.children);
                 }}
               >
                 {React.cloneElement(childrenProp, childrenProps)}
-              </TargetChildren>
+              </RefHolder>
             )}
           </Target>
           <Popper

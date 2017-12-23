@@ -181,8 +181,8 @@ class Textarea extends React.Component {
           defaultValue={defaultValue}
           value={value}
           onChange={this.handleChange}
-          {...other}
           ref={this.handleRefInput}
+          {...other}
         />
       </div>
     );

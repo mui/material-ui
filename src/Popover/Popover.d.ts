@@ -16,15 +16,13 @@ export interface PopoverPosition {
 
 export type PopoverReference = 'anchorEl' | 'anchorPosition';
 
-export interface PopoverProps extends StandardProps<
-  ModalProps & Partial<TransitionHandlers>,
-  PopoverClassKey,
-  'onClose'
-> {
+export interface PopoverProps
+  extends StandardProps<ModalProps & Partial<TransitionHandlers>, PopoverClassKey, 'children'> {
   anchorEl?: Object;
   anchorOrigin?: PopoverOrigin;
   anchorPosition?: PopoverPosition;
   anchorReference?: PopoverReference;
+  children?: React.ReactNode;
   elevation?: number;
   enteredClassName?: string;
   enteringClassName?: string;
@@ -33,8 +31,6 @@ export interface PopoverProps extends StandardProps<
   getContentAnchorEl?: Function;
   marginThreshold?: number;
   modal?: boolean;
-  onClose?: Function;
-  open?: boolean;
   PaperProps?: Partial<PaperProps>;
   role?: string;
   theme?: Object;
@@ -42,10 +38,7 @@ export interface PopoverProps extends StandardProps<
   transitionDuration?: TransitionDuration;
 }
 
-export type PopoverClassKey =
-  | ModalClassKey
-  | 'paper'
-  ;
+export type PopoverClassKey = ModalClassKey | 'paper';
 
 declare const Popover: React.ComponentType<PopoverProps>;
 

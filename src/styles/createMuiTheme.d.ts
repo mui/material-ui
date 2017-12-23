@@ -6,7 +6,7 @@ import { Spacing, SpacingOptions } from './spacing';
 import { Transitions, TransitionsOptions } from './transitions';
 import { Typography, TypographyOptions } from './createTypography';
 import { ZIndex, ZIndexOptions } from './zIndex';
-import { Overrides } from './overrides'
+import { Overrides } from './overrides';
 
 export type Direction = 'ltr' | 'rtl';
 
@@ -36,6 +36,4 @@ export interface Theme {
   overrides?: Overrides;
 }
 
-export default function createMuiTheme(
-  options?: ThemeOptions
-): Theme;
+export default function createMuiTheme(options?: ThemeOptions): Theme;

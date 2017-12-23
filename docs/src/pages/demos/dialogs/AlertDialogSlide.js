@@ -7,7 +7,6 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 import Slide from 'material-ui/transitions/Slide';
-import NoSSR from 'docs/src/modules/components/NoSSR'; // Temporary workaround for SSR Portal issue.
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -30,34 +29,32 @@ class AlertDialogSlide extends React.Component {
     return (
       <div>
         <Button onClick={this.handleClickOpen}>Slide in alert dialog</Button>
-        <NoSSR>
-          <Dialog
-            open={this.state.open}
-            transition={Transition}
-            keepMounted
-            onClose={this.handleClose}
-            aria-labelledby="alert-dialog-slide-title"
-            aria-describedby="alert-dialog-slide-description"
-          >
-            <DialogTitle id="alert-dialog-slide-title">
-              {"Use Google's location service?"}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-slide-description">
-                Let Google help apps determine location. This means sending anonymous location data
-                to Google, even when no apps are running.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleClose} color="primary">
-                Disagree
-              </Button>
-              <Button onClick={this.handleClose} color="primary">
-                Agree
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </NoSSR>
+        <Dialog
+          open={this.state.open}
+          transition={Transition}
+          keepMounted
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            {"Use Google's location service?"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              Let Google help apps determine location. This means sending anonymous location data to
+              Google, even when no apps are running.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Disagree
+            </Button>
+            <Button onClick={this.handleClose} color="primary">
+              Agree
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }

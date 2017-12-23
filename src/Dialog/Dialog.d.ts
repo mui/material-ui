@@ -3,20 +3,11 @@ import { StandardProps } from '..';
 import { ModalProps, ModalClassKey } from '../Modal';
 import { TransitionDuration } from '../internal/transition';
 
-export interface DialogProps extends StandardProps<
-  ModalProps,
-  DialogClassKey,
-  'onBackdropClick' | 'onEscapeKeyUp'
-> {
+export interface DialogProps extends StandardProps<ModalProps, DialogClassKey, 'children'> {
+  children?: React.ReactNode;
   fullScreen?: boolean;
   fullWidth?: boolean;
-  ignoreBackdropClick?: boolean;
-  ignoreEscapeKeyUp?: boolean;
   maxWidth?: 'xs' | 'sm' | 'md';
-  onBackdropClick?: Function;
-  onClose?: React.EventHandler<any>;
-  onEscapeKeyUp?: Function;
-  open?: boolean;
   transition?: React.ReactType;
   transitionDuration?: TransitionDuration;
 }
@@ -29,8 +20,7 @@ export type DialogClassKey =
   | 'paperWidthSm'
   | 'paperWidthMd'
   | 'fullWidth'
-  | 'fullScreen'
-  ;
+  | 'fullScreen';
 
 declare const Dialog: React.ComponentType<DialogProps>;
 

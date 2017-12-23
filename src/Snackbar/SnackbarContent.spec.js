@@ -14,7 +14,7 @@ describe('<SnackbarContent />', () => {
 
   it('should render a Paper with classes', () => {
     const wrapper = shallow(<SnackbarContent message="message" />);
-    assert.strictEqual(wrapper.name(), 'Paper');
+    assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

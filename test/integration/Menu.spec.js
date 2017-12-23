@@ -51,7 +51,7 @@ describe('<Menu> integration', () => {
       portalLayer = wrapper
         .find('Portal')
         .instance()
-        .getLayer();
+        .getMountNode();
       assert.strictEqual(
         document.activeElement,
         portalLayer.querySelectorAll('li')[0],
@@ -131,7 +131,7 @@ describe('<Menu> integration', () => {
       const portalLayer = wrapper
         .find('Portal')
         .instance()
-        .getLayer();
+        .getMountNode();
       assert.strictEqual(
         document.activeElement,
         portalLayer.querySelectorAll('li')[2],
@@ -143,7 +143,7 @@ describe('<Menu> integration', () => {
       const portalLayer = wrapper
         .find('Portal')
         .instance()
-        .getLayer();
+        .getMountNode();
       const item = portalLayer.querySelector('ul').children[1];
       item.click();
       assert.strictEqual(wrapper.state().selectedIndex, 1, 'should be index 1');
@@ -155,7 +155,7 @@ describe('<Menu> integration', () => {
       const portalLayer = wrapper
         .find('Portal')
         .instance()
-        .getLayer();
+        .getMountNode();
       assert.strictEqual(
         document.activeElement,
         portalLayer.querySelectorAll('li')[1],

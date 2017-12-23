@@ -1,11 +1,8 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface TooltipProps extends StandardProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  TooltipClassKey,
-  'title'
-> {
+export interface TooltipProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
   children: React.ReactElement<any>;
   disableTriggerFocus?: boolean;
   disableTriggerHover?: boolean;
@@ -42,8 +39,7 @@ export type TooltipClassKey =
   | 'tooltipRight'
   | 'tooltipTop'
   | 'tooltipBottom'
-  | 'tooltipOpen'
-  ;
+  | 'tooltipOpen';
 
 declare const Tooltip: React.ComponentType<TooltipProps>;
 

@@ -19,7 +19,7 @@ filename: /src/Snackbar/Snackbar.js
 | classes | object |  | Useful to extend the style applied to components. |
 | key | any |  | When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/>, add the key property to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
 | message | node |  | The message to display. |
-| onClose | func |  | Callback fired when the component requests to be closed.<br>Typically `onClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop.<br>The `reason` parameter can optionally be used to control the response to `onClose`, for example ignoring `clickaway`.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"` |
+| onClose | func |  | Callback fired when the component requests to be closed. Typically `onClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop. The `reason` parameter can optionally be used to control the response to `onClose`, for example ignoring `clickaway`.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"` |
 | onEnter | func |  | Callback fired before the transition is entering. |
 | onEntered | func |  | Callback fired when the transition has entered. |
 | onEntering | func |  | Callback fired when the transition is entering. |

@@ -23,7 +23,7 @@ describe('<Tab />', () => {
 
   it('should render with the root class', () => {
     const wrapper = shallow(<Tab textColor="inherit" />);
-    assert.strictEqual(wrapper.name(), 'withStyles(ButtonBase)');
+    assert.strictEqual(wrapper.name(), 'WithStyles');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

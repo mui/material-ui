@@ -1,5 +1,5 @@
-export interface Spacing { 
-  unit: number
+export interface Spacing {
+  unit: number;
 }
 
 export type SpacingOptions = Partial<Spacing>;

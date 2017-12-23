@@ -2,11 +2,12 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
-export interface ListItemProps extends StandardProps<
-  ButtonBaseProps & React.LiHTMLAttributes<HTMLElement>,
-  ListItemClassKey,
-  'component'
-> {
+export interface ListItemProps
+  extends StandardProps<
+      ButtonBaseProps & React.LiHTMLAttributes<HTMLElement>,
+      ListItemClassKey,
+      'component'
+    > {
   button?: boolean;
   component?: string | React.ComponentType<ListItemProps>;
   dense?: boolean;
@@ -24,8 +25,7 @@ export type ListItemClassKey =
   | 'divider'
   | 'gutters'
   | 'button'
-  | 'secondaryAction'
-  ;
+  | 'secondaryAction';
 
 declare const ListItem: React.ComponentType<ListItemProps>;
 

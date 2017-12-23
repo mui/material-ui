@@ -64,7 +64,7 @@ describe('<SwitchBase />', () => {
 
   it('should render an IconButton', () => {
     const wrapper = shallow(<SwitchBase />);
-    assert.strictEqual(wrapper.name(), 'withStyles(IconButton)');
+    assert.strictEqual(wrapper.name(), 'WithStyles');
   });
 
   it('should render an icon and input inside the button by default', () => {

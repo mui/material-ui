@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import find from 'lodash/find';
 import { Provider } from 'react-redux';
 import pure from 'recompose/pure';
-import wrapDisplayName from 'recompose/wrapDisplayName';
 import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
@@ -130,6 +129,9 @@ const pages = [
       {
         pathname: '/layout/css-in-js',
         title: 'CSS in JS',
+      },
+      {
+        pathname: '/layout/portal',
       },
     ],
   },
@@ -266,10 +268,6 @@ function withRoot(BaseComponent) {
         </Provider>
       );
     }
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
   }
 
   return WithRoot;

@@ -29,7 +29,7 @@ filename: /src/Popover/Popover.js
 | onExit | func |  | Callback fired before the component is exiting. |
 | onExited | func |  | Callback fired when the component has exited. |
 | onExiting | func |  | Callback fired when the component is exiting. |
-| open | bool |  | If `true`, the popover is visible. |
+| <span style="color: #31a148">open *</span> | bool |  | If `true`, the popover is visible. |
 | PaperProps | object |  | Properties applied to the `Paper` element. |
 | transformOrigin | shape | {  vertical: 'top',  horizontal: 'left',} | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
 | transitionClasses | shape |  | The animation classNames applied to the component as it enters or exits. This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames). |

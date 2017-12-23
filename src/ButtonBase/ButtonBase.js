@@ -250,8 +250,8 @@ class ButtonBase extends React.Component {
         tabIndex={disabled ? -1 : tabIndex}
         className={className}
         {...buttonProps}
-        {...other}
         ref={rootRef}
+        {...other}
       >
         {children}
         {!disableRipple && !disabled ? (

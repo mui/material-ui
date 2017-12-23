@@ -1,31 +1,30 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { BackdropProps } from './Backdrop';
-import { TransitionDuration, TransitionHandlers } from '../internal/transition';
+import { PortalProps } from '../Portal';
 
-export interface ModalProps extends StandardProps<
-  React.HtmlHTMLAttributes<HTMLDivElement> & Partial<TransitionHandlers>,
-  ModalClassKey
-> {
-  BackdropClassName?: string;
+export interface ModalProps
+  extends StandardProps<
+      React.HtmlHTMLAttributes<HTMLDivElement> & Partial<PortalProps>,
+      ModalClassKey
+    > {
   BackdropComponent?: string | React.ComponentType<BackdropProps>;
-  BackdropInvisible?: boolean;
-  BackdropTransitionDuration?: TransitionDuration;
-  disableBackdrop?: boolean;
-  ignoreBackdropClick?: boolean;
-  ignoreEscapeKeyUp?: boolean;
+  BackdropProps?: BackdropProps;
+  disableAutoFocus?: boolean;
+  disableBackdropClick?: boolean;
+  disableEnforceFocus?: boolean;
+  disableEscapeKeyDown?: boolean;
+  disableRestoreFocus?: boolean;
+  hideBackdrop?: boolean;
   keepMounted?: boolean;
-  modalManager?: Object;
+  manager?: Object;
   onBackdropClick?: React.ReactEventHandler<{}>;
   onClose?: React.ReactEventHandler<{}>;
-  onEscapeKeyUp?: React.ReactEventHandler<{}>;
-  show?: boolean;
+  onEscapeKeyDown?: React.ReactEventHandler<{}>;
+  open: boolean;
 }
 
-export type ModalClassKey =
-  | 'root'
-  | 'hidden'
-  ;
+export type ModalClassKey = 'root' | 'hidden';
 
 declare const Modal: React.ComponentType<ModalProps>;
 

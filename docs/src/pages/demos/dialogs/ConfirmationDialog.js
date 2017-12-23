@@ -65,8 +65,8 @@ class ConfirmationDialog extends React.Component {
 
     return (
       <Dialog
-        ignoreBackdropClick
-        ignoreEscapeKeyUp
+        disableBackdropClick
+        disableEscapeKeyDown
         maxWidth="xs"
         onEntering={this.handleEntering}
         aria-labelledby="confirmation-dialog-title"

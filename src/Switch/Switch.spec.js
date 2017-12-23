@@ -3,6 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
+import SwitchBase from '../internal/SwitchBase';
 import Switch from './Switch';
 
 describe('<Switch />', () => {
@@ -37,7 +38,7 @@ describe('<Switch />', () => {
 
     it('should render SwitchBase with a custom span icon with the icon class', () => {
       const switchBase = wrapper.childAt(0);
-      assert.strictEqual(switchBase.name(), 'withStyles(SwitchBase)');
+      assert.strictEqual(switchBase.type(), SwitchBase);
       assert.strictEqual(switchBase.props().icon.type, 'span');
       assert.strictEqual(switchBase.props().icon.props.className, classes.icon);
     });

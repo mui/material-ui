@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import wrapDisplayName from 'recompose/wrapDisplayName';
 import withWidth, { isWidthDown } from '../utils/withWidth';
 
 /**
@@ -18,10 +17,6 @@ const withMobileDialog = (options = {}) => Component => {
   WithMobileDialog.propTypes = {
     width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']).isRequired,
   };
-
-  if (process.env.NODE_ENV !== 'production') {
-    WithMobileDialog.displayName = wrapDisplayName(Component, 'withMobileDialog');
-  }
 
   return withWidth()(WithMobileDialog);
 };

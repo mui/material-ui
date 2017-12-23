@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import wrapDisplayName from 'recompose/wrapDisplayName';
 import withTheme from '../styles/withTheme';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 
@@ -29,7 +28,7 @@ const withWidth = (options = {}) => Component => {
     withTheme: withThemeOption = false,
   } = options;
 
-  class Width extends React.Component {
+  class WithWidth extends React.Component {
     state = {
       width: undefined,
     };
@@ -109,7 +108,7 @@ const withWidth = (options = {}) => Component => {
     }
   }
 
-  Width.propTypes = {
+  WithWidth.propTypes = {
     /**
      * As `window.innerWidth` is unavailable on the server,
      * we default to rendering an empty componenent during the first mount.
@@ -130,13 +129,9 @@ const withWidth = (options = {}) => Component => {
     width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   };
 
-  if (process.env.NODE_ENV !== 'production') {
-    Width.displayName = wrapDisplayName(Component, 'withWidth');
-  }
+  hoistNonReactStatics(WithWidth, Component);
 
-  hoistNonReactStatics(Width, Component);
-
-  return withTheme()(Width);
+  return withTheme()(WithWidth);
 };
 
 export default withWidth;

@@ -3,6 +3,7 @@ import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
+import Paper from '../Paper';
 import Button from '../Button/Button';
 import { LinearProgress } from '../Progress';
 import MobileStepper from './MobileStepper';
@@ -33,7 +34,7 @@ describe('<MobileStepper />', () => {
 
   it('should render a Paper component', () => {
     const wrapper = shallow(<MobileStepper {...defaultProps} />);
-    assert.strictEqual(wrapper.name(), 'withStyles(Paper)');
+    assert.strictEqual(wrapper.type(), Paper);
     assert.strictEqual(wrapper.props().elevation, 0, 'should have no elevation');
   });
 

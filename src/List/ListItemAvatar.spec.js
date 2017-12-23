@@ -55,7 +55,7 @@ describe('<ListItemAvatar />', () => {
           },
         },
       );
-      assert.strictEqual(wrapper.name(), 'withStyles(Avatar)');
+      assert.strictEqual(wrapper.type(), Avatar);
       assert.strictEqual(consoleErrorMock.callCount(), 0);
     });
 

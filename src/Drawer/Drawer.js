@@ -33,7 +33,7 @@ export const styles = theme => ({
     flexDirection: 'column',
     height: '100vh',
     flex: '1 0 auto',
-    zIndex: theme.zIndex.navDrawer,
+    zIndex: theme.zIndex.drawer,
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
     // temporary style
     position: 'fixed',
@@ -168,9 +168,11 @@ class Drawer extends React.Component {
     // type === temporary
     return (
       <Modal
-        BackdropTransitionDuration={transitionDuration}
+        BackdropProps={{
+          transitionDuration,
+        }}
         className={classNames(classes.modal, className)}
-        show={open}
+        open={open}
         onClose={onClose}
         {...other}
         {...ModalProps}

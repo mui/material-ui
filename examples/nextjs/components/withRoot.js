@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles, MuiThemeProvider } from 'material-ui/styles';
-import wrapDisplayName from 'recompose/wrapDisplayName';
 import getContext from '../styles/getContext';
 
 // Apply some reset
@@ -55,10 +54,6 @@ function withRoot(Component) {
         </MuiThemeProvider>
       );
     }
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    WithRoot.displayName = wrapDisplayName(Component, 'withRoot');
   }
 
   return WithRoot;

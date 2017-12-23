@@ -267,26 +267,26 @@ class Popover extends React.Component {
     } = this.props;
 
     return (
-      <Modal show={open} BackdropInvisible {...other}>
+      <Modal open={open} BackdropProps={{ invisible: true }} {...other}>
         <Grow
           appear
           in={open}
           onEnter={this.handleEnter}
-          onEntering={onEntering}
           onEntered={onEntered}
+          onEntering={onEntering}
           onExit={onExit}
-          onExiting={onExiting}
           onExited={onExited}
+          onExiting={onExiting}
           role={role}
-          transitionClasses={transitionClasses}
-          timeout={transitionDuration}
           rootRef={node => {
             this.transitionEl = node;
           }}
+          timeout={transitionDuration}
+          transitionClasses={transitionClasses}
         >
           <Paper
-            data-mui-test="Popover"
             className={classes.paper}
+            data-mui-test="Popover"
             elevation={elevation}
             {...PaperProps}
           >
@@ -403,7 +403,7 @@ Popover.propTypes = {
   /**
    * If `true`, the popover is visible.
    */
-  open: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
   /**
    * Properties applied to the `Paper` element.
    */
