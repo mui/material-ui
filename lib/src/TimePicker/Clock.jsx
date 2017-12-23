@@ -116,12 +116,12 @@ export class Clock extends Component {
   }
 }
 
-const styles = () => ({
+const styles = (theme) => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    marginTop: 40,
+    margin: [theme.spacing.unit * 4, 0, theme.spacing.unit],
   },
   clock: {
     backgroundColor: 'rgba(0,0,0,.07)',
