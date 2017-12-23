@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui';
 
 import View from './DateTimePickerView';
 import YearSelection from '../DatePicker/YearSelection';
@@ -106,7 +105,7 @@ export class DateTimePicker extends Component {
     } = this.props;
 
     return (
-      <div>
+      <Fragment>
         <DatetimePickerHeader
           date={date}
           openView={openView}
@@ -173,13 +172,9 @@ export class DateTimePicker extends Component {
             utils={utils}
           />
         </View>
-      </div>
+      </Fragment>
     );
   }
 }
 
-const styles = () => ({
-
-});
-
-export default withStyles(styles)(DateTimePicker);
+export default DateTimePicker;
