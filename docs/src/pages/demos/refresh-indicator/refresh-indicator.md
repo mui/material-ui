@@ -1,0 +1,19 @@
+---
+components: RefreshIndicator
+---
+
+# Refresh Indicators
+
+A `RefreshIndicator` is used to indicate pull-to-refresh behavior.
+
+## Ready
+
+The `ready` status can be used in response to a pull-to-refresh action, with the `percentage` tracking the depth of the "pull". The `size` property determines the icon size in pixels, and the `color` property its color, except at percentage 100, when the colour switches to the secondary color.
+
+{{"demo": "pages/demos/refresh-indicator/ReadyIndicator.js"}}
+
+## Loading
+
+The `loading` status displays an indeterminate indicator, intended to to be used while content is loading. The `loadingColor` prop can be used to set the indicator color, which defaults to the secondary color.
+
+{{"demo": "pages/demos/refresh-indicator/LoadingIndicator.js"}}
