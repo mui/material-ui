@@ -26,7 +26,7 @@ export const CalendarHeader = (props) => {
           {rtl ? rightArrowIcon : leftArrowIcon}
         </IconButton>
 
-        <Typography type="subheading">
+        <Typography type="body1">
           {utils.getCalendarHeaderText(currentMonth)}
         </Typography>
 
@@ -71,7 +71,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: '10px 0 20px',
+    marginBottom: theme.spacing.unit,
   },
   daysHeader: {
     display: 'flex',

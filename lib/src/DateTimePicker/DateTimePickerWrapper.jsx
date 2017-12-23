@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import classnames from 'classnames';
 import { withStyles } from 'material-ui';
 
 import DomainPropTypes from '../constants/prop-types';
@@ -93,8 +92,6 @@ export class DateTimePickerWrapper extends PickerBase {
       ...other
     } = this.props;
 
-    const dialogClassName = classnames(classes.dialogContent, { [classes.noTabs]: !showTabs });
-
     return (
       <ModalWrapper
         ref={(node) => { this.wrapper = node; }}
@@ -103,7 +100,7 @@ export class DateTimePickerWrapper extends PickerBase {
         onAccept={this.handleAccept}
         onChange={this.handleTextFieldChange}
         onDismiss={this.handleDismiss}
-        dialogContentClassName={dialogClassName}
+        dialogContentClassName={classes.dialogContent}
         invalidLabel={invalidLabel}
         labelFunc={labelFunc}
         {...other}
@@ -135,11 +132,7 @@ export class DateTimePickerWrapper extends PickerBase {
 
 const styles = {
   dialogContent: {
-    height: 470,
     width: 310,
-  },
-  noTabs: {
-    height: 422,
   },
 };
 
