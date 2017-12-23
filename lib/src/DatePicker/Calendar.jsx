@@ -95,6 +95,7 @@ export class Calendar extends Component {
 
     const selectedDate = date.clone().startOf('day');
     const currentMonthNumber = utils.getMonthNumber(this.state.currentMonth);
+    const now = moment();
 
     return week.map((day) => {
       // should be applied both for wrapper and button
@@ -103,6 +104,7 @@ export class Calendar extends Component {
       const dayInCurrentMonth = utils.getMonthNumber(day) === currentMonthNumber;
       const dayClass = classnames(classes.day, disabledClass, {
         [classes.hidden]: !dayInCurrentMonth,
+        [classes.current]: day.isSame(now, 'day'),
         [classes.selected]: selectedDate.isSame(day, 'day'),
       });
 
@@ -163,13 +165,19 @@ const styles = theme => ({
   day: {
     width: 36,
     height: 36,
-    fontSize: 14,
+    fontSize: theme.typography.caption.fontSize,
     margin: '0 2px',
     color: theme.palette.text.primary,
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+  current: {
+    color: theme.palette.primary[500],
+    fontWeight: 600,
   },
   selected: {
-    color: theme.palette.primary[700],
-    backgroundColor: theme.palette.primary[200],
+    color: theme.palette.common.white,
+    backgroundColor: theme.palette.primary[500],
+    fontWeight: theme.typography.fontWeightMedium,
   },
   disabled: {
     pointerEvents: 'none',
