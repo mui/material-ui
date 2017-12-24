@@ -5,7 +5,7 @@ import Paper from '../Paper';
 import { CircularProgress } from '../Progress';
 import withStyles from '../styles/withStyles';
 
-const VIEWBOX_SIZE = 32;
+const SIZE = 50; // same as CircularProgress
 
 export const styles = theme => ({
   root: {
@@ -15,7 +15,7 @@ export const styles = theme => ({
 
 class RefreshIndicator extends React.Component {
   getPaddingSize() {
-    const padding = this.props.size * 0.1;
+    const padding = this.props.size * 0.14;
     return padding;
   }
 
@@ -23,13 +23,12 @@ class RefreshIndicator extends React.Component {
     return this.props.size - this.getPaddingSize() * 2;
   }
 
-
   getCircleAttr() {
     return {
-      radiu: VIEWBOX_SIZE / 2 - 5,
-      originX: VIEWBOX_SIZE / 2,
-      originY: VIEWBOX_SIZE / 2,
-      strokeWidth: 3,
+      radius: SIZE / 2 - 5,
+      originX: SIZE / 2,
+      originY: SIZE / 2,
+      strokeWidth: 5,
     };
   }
 
@@ -52,7 +51,7 @@ class RefreshIndicator extends React.Component {
     const isLoading = this.props.status === 'loading';
     const p1 = isLoading ? 1 : this.getFactor();
     const circle = this.getCircleAttr();
-    const perimeter = Math.PI * 2 * circle.radiu;
+    const perimeter = Math.PI * 2 * circle.radius;
 
     const [beginDeg, endDeg] = this.getArcDeg();
     const arcLen = (endDeg - beginDeg) * perimeter / 360;
@@ -73,7 +72,7 @@ class RefreshIndicator extends React.Component {
       attr: {
         cx: circle.originX,
         cy: circle.originY,
-        r: circle.radiu,
+        r: circle.radius,
       },
     };
   }
@@ -82,7 +81,7 @@ class RefreshIndicator extends React.Component {
     const p1 = this.getFactor();
     const circle = this.getCircleAttr();
 
-    const triangleCx = circle.originX + circle.radiu;
+    const triangleCx = circle.originX + circle.radius;
     const triangleCy = circle.originY;
     const dx = (circle.strokeWidth * 7 / 4) * p1;
     const trianglePath = `${(triangleCx - dx)},${triangleCy} ${(triangleCx + dx)},${
@@ -111,7 +110,7 @@ class RefreshIndicator extends React.Component {
     const currStep = (step || 0) % 3;
 
     const circle = this.getCircleAttr();
-    const perimeter = Math.PI * 2 * circle.radiu;
+    const perimeter = Math.PI * 2 * circle.radius;
     const arcLen = perimeter * 0.64;
 
     let strokeDasharray;
@@ -160,10 +159,12 @@ class RefreshIndicator extends React.Component {
 
     let childrenCmp = null;
     if (this.props.status !== 'ready') {
+      const circleStyle = this.getCircleStyle(paperSize);
       childrenCmp=(
         <CircularProgress
           color="accent"
-          size={this.props.size - 10}
+          size={paperSize}
+          thickness={3 * SIZE / 32}
         />
       );
     } else {
@@ -175,7 +176,7 @@ class RefreshIndicator extends React.Component {
             width: paperSize,
             height: paperSize,
           }}
-          viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
+          viewBox={`0 0 ${SIZE} ${SIZE}`}
         >
           <circle
             style={circleStyle.style}
@@ -205,7 +206,7 @@ class RefreshIndicator extends React.Component {
     return (
       <Paper
         className={classNames(classes.root, classNameProp)}
-        style={{ width: size, height: size }}
+        style={{ width: size, height: size, padding: this.getPaddingSize() }}
         {...other}
       >
         {this.renderChildren()}
