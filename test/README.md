@@ -102,6 +102,10 @@ In our `vrtest` config this is set as the default, although it can be overridden
 testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
 ```
 
+In addition to docker, the visual regression tests depend on either 
+[ImageMagick](https://www.imagemagick.org/)
+or [GraphicsMagick](http://http://www.graphicsmagick.org/) being installed.
+
 ## Writing Tests
 
 For all unit tests, please use the [shallow renderer](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md) from `enzyme` unless the Component being tested requires a DOM. [Here's](https://github.com/mui-org/material-ui/blob/master/src/Avatar/Avatar.spec.js) a small shallow rendered test to get you started.
