@@ -210,20 +210,24 @@ class AppFrame extends React.Component {
             )}
             <div className={classes.grow} />
             <AppSearch />
-            <Tooltip title="Toggle light/dark theme" enterDelay={300}>
+            <Tooltip id="appbar-theme" title="Toggle light/dark theme" enterDelay={300}>
               <IconButton
                 color="contrast"
-                aria-label="change theme"
                 onClick={this.handleTogglePaletteType}
+                aria-labelledby="appbar-theme"
               >
                 <LightbulbOutline />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Toggle right-to-left/left-to-right" enterDelay={300}>
+            <Tooltip
+              id="appbar-direction"
+              title="Toggle right-to-left/left-to-right"
+              enterDelay={300}
+            >
               <IconButton
                 color="contrast"
-                aria-label="change direction"
                 onClick={this.handleToggleDirection}
+                aria-labelledby="appbar-direction"
               >
                 {uiTheme.direction === 'rtl' ? (
                   <FormatTextdirectionLToR />
@@ -232,14 +236,16 @@ class AppFrame extends React.Component {
                 )}
               </IconButton>
             </Tooltip>
-            <IconButton
-              component="a"
-              title="GitHub"
-              color="contrast"
-              href="https://github.com/mui-org/material-ui"
-            >
-              <Github />
-            </IconButton>
+            <Tooltip id="appbar-github" title="Material-UI GitHub repo" enterDelay={300}>
+              <IconButton
+                component="a"
+                color="contrast"
+                href="https://github.com/mui-org/material-ui"
+                aria-labelledby="appbar-github"
+              >
+                <Github />
+              </IconButton>
+            </Tooltip>
           </Toolbar>
         </AppBar>
         <AppDrawer
