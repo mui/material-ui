@@ -21,16 +21,15 @@ on top of the following components:
 If you wish to alter the properties applied to the native input, you can do as follow:
 
 ```jsx
-const InputProps = {
-  inputProps: {
-    step: 300,
-  },
+const inputProps = {
+  step: 300,
 };
 
-return <TextField id="time" type="time" InputProps={InputProps} />;
+return <TextField id="time" type="time" inputProps={inputProps} />;
 ```
 
-For advanced cases, please look at the source of TextField and consider either:
+For advanced cases, please look at the source of TextField by clicking on the
+"Edit this page" button above. Consider either:
 - using the upper case props for passing values direct to the components.
 - using the underlying components directly as shown in the demos.
 
@@ -50,6 +49,7 @@ For advanced cases, please look at the source of TextField and consider either:
 | id | string |  | The id of the `input` element. |
 | InputLabelProps | object |  | Properties applied to the `InputLabel` element. |
 | InputProps | object |  | Properties applied to the `Input` element. |
+| inputProps | object |  | Properties applied to the native `input` element. |
 | inputRef | func |  | Use that property to pass a ref callback to the native input component. |
 | label | node |  | The label content. |
 | labelClassName | string |  | The CSS class name of the label element. |

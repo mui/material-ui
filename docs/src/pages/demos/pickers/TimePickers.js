@@ -29,10 +29,8 @@ function TimePickers(props) {
         InputLabelProps={{
           shrink: true,
         }}
-        InputProps={{
-          inputProps: {
-            step: 300, // 5 min
-          },
+        inputProps={{
+          step: 300, // 5 min
         }}
       />
     </form>
