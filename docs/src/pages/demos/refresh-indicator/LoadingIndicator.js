@@ -1,30 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
+import RefreshIndicator, { RefreshableContainer } from 'material-ui/RefreshIndicator';
 
 const styles = theme => ({
 });
 
-function LoadingIndicator(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <RefreshIndicator
-        size={40}
-        left={10}
-        top={0}
-        status="loading"
-      />
-      <RefreshIndicator
-        size={50}
-        left={70}
-        top={0}
-        loadingColor="#FF9800"
-        status="loading"
-      />
-    </div>
-  );
+class LoadingIndicator extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = { loading: false }
+  }
+
+  handleRefresh = () => {
+    this.setState({ loading: true })
+    setTimeout(() => this.setState({ loading: false }), 5000)
+  }
+
+  render () {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <RefreshIndicator
+          size={40}
+          left={10}
+          top={0}
+          status="loading"
+        />
+        <RefreshIndicator
+          size={50}
+          left={70}
+          top={0}
+          loadingColor="#FF9800"
+          status="loading"
+        />
+
+        and
+        <RefreshableContainer style={{ height: 200 }} onRefresh={this.handleRefresh} loading={this.state.loading}>
+          {[...Array(100).keys()].map((i) => (
+            <div key={i}>Item #{i}</div>
+          ))}
+        </RefreshableContainer>
+      </div>
+    );
+  }
 }
 
 LoadingIndicator.propTypes = {

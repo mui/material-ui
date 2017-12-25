@@ -200,13 +200,14 @@ class RefreshIndicator extends React.Component {
       percentage,
       size,
       status,
+      style,
       ...other    
     } = this.props;
 
     return (
       <Paper
         className={classNames(classes.root, classNameProp)}
-        style={{ width: size, height: size, padding: this.getPaddingSize() }}
+        style={{ width: size, height: size, padding: this.getPaddingSize(), ...style }}
         {...other}
       >
         {this.renderChildren()}
