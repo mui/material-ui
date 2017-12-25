@@ -14,7 +14,7 @@ class LoadingIndicator extends React.Component {
 
   handleRefresh = () => {
     this.setState({ loading: true })
-    setTimeout(() => this.setState({ loading: false }), 5000)
+    setTimeout(() => this.setState({ loading: false }), 1000)
   }
 
   render () {
