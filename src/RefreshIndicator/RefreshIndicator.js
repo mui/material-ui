@@ -33,15 +33,16 @@ class RefreshIndicator extends React.Component {
   }
 
   getArcDeg() {
-    const p = this.props.percentage / 100;
+    const p = Math.min(this.props.percentage, 100) / 100;
+    const pOver100 = Math.max(0, (this.props.percentage - 100) / 100);
 
-    const beginDeg = p * 120;
-    const endDeg = p * 410;
+    const beginDeg = p * 120 + pOver100 * 410;
+    const endDeg = p * 410 + pOver100 * 410;
     return [beginDeg, endDeg];
   }
 
   getFactor() {
-    const p = this.props.percentage / 100;
+    const p = Math.min(this.props.percentage, 100) / 100;
     const p1 = Math.min(1, p / 0.4);
 
     return p1;
@@ -61,7 +62,7 @@ class RefreshIndicator extends React.Component {
       style: {
         strokeDasharray: `${arcLen}, ${(perimeter - arcLen)}`,
         strokeDashoffset: dashOffset,
-        stroke: (isLoading || this.props.percentage === 100) ?
+        stroke: (isLoading || this.props.percentage >= 100) ?
           (this.props.loadingColor || this.props.theme.palette.primary[500]) :
           (this.props.color || this.props.theme.palette.grey[300]),
         strokeLinecap: 'round',
@@ -91,7 +92,7 @@ class RefreshIndicator extends React.Component {
 
     return {
       style: {
-        fill: this.props.percentage === 100 ?
+        fill: this.props.percentage >= 100 ?
           (this.props.loadingColor || this.props.theme.palette.primary[500]) :
           (this.props.color || this.props.theme.palette.grey[300]),
         transform: `rotate(${endDeg}deg)`,
