@@ -104,56 +104,6 @@ class RefreshIndicator extends React.Component {
     };
   }
 
-  scalePath(path, step) {
-    if (this.props.status !== 'loading') return;
-
-    const currStep = (step || 0) % 3;
-
-    const circle = this.getCircleAttr();
-    const perimeter = Math.PI * 2 * circle.radius;
-    const arcLen = perimeter * 0.64;
-
-    let strokeDasharray;
-    let strokeDashoffset;
-    let transitionDuration;
-
-    if (currStep === 0) {
-      strokeDasharray = '1, 200';
-      strokeDashoffset = 0;
-      transitionDuration = '0ms';
-    } else if (currStep === 1) {
-      strokeDasharray = `${arcLen}, 200`;
-      strokeDashoffset = -15;
-      transitionDuration = '750ms';
-    } else {
-      strokeDasharray = `${arcLen}, 200`;
-      strokeDashoffset = -(perimeter - 1);
-      transitionDuration = '850ms';
-    }
-
-    autoPrefix.set(path.style, 'strokeDasharray', strokeDasharray);
-    autoPrefix.set(path.style, 'strokeDashoffset', strokeDashoffset);
-    autoPrefix.set(path.style, 'transitionDuration', transitionDuration);
-
-    this.scalePathTimer = setTimeout(() => this.scalePath(path, currStep + 1), currStep ? 750 : 250);
-  }
-
-  rotateWrapper(wrapper) {
-    if (this.props.status !== 'loading') return;
-
-    autoPrefix.set(wrapper.style, 'transform', null);
-    autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)');
-    autoPrefix.set(wrapper.style, 'transitionDuration', '0ms');
-
-    this.rotateWrapperSecondTimer = setTimeout(() => {
-      autoPrefix.set(wrapper.style, 'transform', 'rotate(1800deg)');
-      autoPrefix.set(wrapper.style, 'transitionDuration', '10s');
-      autoPrefix.set(wrapper.style, 'transitionTimingFunction', 'linear');
-    }, 50);
-
-    this.rotateWrapperTimer = setTimeout(() => this.rotateWrapper(wrapper), 10050);
-  }
-
   renderChildren () {
     const paperSize = this.getPaperSize();
 
