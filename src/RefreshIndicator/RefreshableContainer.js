@@ -99,7 +99,7 @@ class RefreshableContainer extends React.Component {
         {...other}
       >
         <RefreshIndicator
-          percentage={Math.min(100, Math.max(0, touchDelta - Math.max(0, touchDelta - 95) * 0.6))}
+          percentage={Math.max(0, touchDelta - Math.max(0, touchDelta - 95) * 0.6)}
           status={loading ? 'loading' : 'ready'}
           className={classes.indicator}
           style={{
