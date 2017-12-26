@@ -50,6 +50,10 @@ export default class PickerBase extends PureComponent {
       : this.default24hFormat;
   }
 
+  handleClear = () => {
+    this.props.onChange(null);
+  }
+
   handleAccept = () => {
     const dateToReturn = this.props.returnMoment
       ? this.state.date
