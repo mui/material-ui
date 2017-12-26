@@ -13,6 +13,7 @@ export interface DateTextFieldProps extends TextFieldProps {
     format?: string;
     invalidLabel?: string;
     labelFunc?: (date: object, invalidLabel: string) => string;
+    keyboardIcon?: string;
 }
 
 declare const DateTextField: ComponentClass<DateTextFieldProps>;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, IconButton } from 'material-ui';
+import { withStyles, IconButton, Typography } from 'material-ui';
 import * as defaultUtils from '../utils/utils';
 
 export const CalendarHeader = (props) => {
@@ -26,9 +26,9 @@ export const CalendarHeader = (props) => {
           {rtl ? rightArrowIcon : leftArrowIcon}
         </IconButton>
 
-        <div className={classes.monthName}>
+        <Typography type="body1">
           {utils.getCalendarHeaderText(currentMonth)}
-        </div>
+        </Typography>
 
         <IconButton onClick={selectNextMonth}>
           {rtl ? leftArrowIcon : rightArrowIcon}
@@ -37,7 +37,13 @@ export const CalendarHeader = (props) => {
 
       <div className={classes.daysHeader}>
         {utils.getWeekdays().map(day => (
-          <div key={day} className={classes.dayLabel}> {day} </div>
+          <Typography
+            key={day}
+            type="caption"
+            className={classes.dayLabel}
+          >
+            {day}
+          </Typography>
         ))}
       </div>
     </div>
@@ -65,7 +71,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: '10px 0 20px',
+    marginBottom: theme.spacing.unit,
   },
   daysHeader: {
     display: 'flex',
@@ -75,12 +81,8 @@ const styles = theme => ({
   dayLabel: {
     width: 36,
     margin: '0 2px',
-    fontSize: 13,
     textAlign: 'center',
     color: theme.palette.text.hint,
-  },
-  monthName: {
-    color: theme.palette.text.primary,
   },
 });
 

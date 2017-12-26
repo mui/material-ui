@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
     "eslint-config-react-app": "^2.0.1",
     "jss": "^9.3.3",
     "jss-preset-default": "^4.0.1",
