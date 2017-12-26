@@ -76,7 +76,7 @@ function TextField(props) {
     'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
   );
 
-  const helperTextId = helperText && id ? `${id}-$mui_helper_text$` : undefined;
+  const helperTextId = helperText && id ? `${id}-mui-helper-text` : undefined;
 
   const InputComponent = (
     <Input
