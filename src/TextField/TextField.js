@@ -92,7 +92,10 @@ function TextField(props) {
       inputRef={inputRef}
       onChange={onChange}
       placeholder={placeholder}
-      inputProps={inputProps}
+      inputProps={{
+        'aria-required': required,
+        ...inputProps,
+      }}
       {...InputProps}
     />
   );
