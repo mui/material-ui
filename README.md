@@ -154,6 +154,7 @@ ampm | boolean | true | 12h/24h view for hour selection clock
 shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
 keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node, string | 'event' | Keyboard adornment icon
+invalidDateMessage | string | 'Invalid Date Format' | Message, appearing when date cannot be parsed
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 
 ### l10n
