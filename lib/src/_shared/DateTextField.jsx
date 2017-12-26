@@ -57,7 +57,7 @@ export default class DateTextField extends PureComponent {
     const date = moment(value);
 
     if (labelFunc) {
-      return labelFunc(date, invalidLabel);
+      return labelFunc(isEmpty ? null : date, invalidLabel);
     }
 
     if (isEmpty) {
