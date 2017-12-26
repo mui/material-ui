@@ -135,7 +135,7 @@ export default class DateTextField extends PureComponent {
       inputComponent: MaskedInput,
       inputProps: {
         mask,
-        readOnly: true,
+        readOnly: !keyboard,
       },
     };
 
