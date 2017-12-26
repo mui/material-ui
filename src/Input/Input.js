@@ -464,6 +464,8 @@ class Input extends React.Component {
           type={type}
           readOnly={readOnly}
           rows={rows}
+          aria-required={required}
+          aria-invalid={error}
           {...inputProps}
         />
         {endAdornment}

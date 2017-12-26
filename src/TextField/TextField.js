@@ -94,11 +94,7 @@ function TextField(props) {
       inputRef={inputRef}
       onChange={onChange}
       placeholder={placeholder}
-      inputProps={{
-        'aria-required': required,
-        'aria-invalid': error,
-        ...inputProps,
-      }}
+      inputProps={inputProps}
       {...InputProps}
     />
   );
