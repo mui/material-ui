@@ -188,6 +188,7 @@ TextField.propTypes = {
   helperTextClassName: PropTypes.string,
   /**
    * The id of the `input` element.
+   * Use that property to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
   /**
