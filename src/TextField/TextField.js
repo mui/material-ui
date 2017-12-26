@@ -122,11 +122,7 @@ function TextField(props) {
         InputComponent
       )}
       {helperText && (
-        <FormHelperText
-          className={helperTextClassName}
-          id={helperTextId}
-          {...FormHelperTextProps}
-        >
+        <FormHelperText className={helperTextClassName} id={helperTextId} {...FormHelperTextProps}>
           {helperText}
         </FormHelperText>
       )}
