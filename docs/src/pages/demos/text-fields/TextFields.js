@@ -124,12 +124,14 @@ class TextFields extends React.Component {
           margin="normal"
         />
         <TextField
+          id="with-placeholder"
           label="With placeholder"
           placeholder="Placeholder"
           className={classes.textField}
           margin="normal"
         />
         <TextField
+          id="textarea"
           label="With placeholder multiline"
           placeholder="Placeholder"
           multiline
