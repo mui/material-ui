@@ -24,6 +24,7 @@ If you dont want to use icon font, or you are already use `material-ui-icons` yo
 * rightArrowIcon - arrow right for datepicker
 * dateRangeIcon - date tab icon for datetimepicker
 * timeIcon - time tab icon for datetimepicker
+* keyboardIcon - icon for keyboard end adornmentic
  
 ### Usage
 Here is a quick example of how to use this package
