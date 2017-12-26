@@ -128,6 +128,7 @@ export default class DateTextField extends PureComponent {
       disabled,
       onClick,
       invalidLabel,
+      invalidDateMessage,
       emptyLabel,
       labelFunc,
       keyboard,
