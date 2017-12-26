@@ -150,7 +150,6 @@ export default class DateTextField extends PureComponent {
         onClick={this.handleFocus}
         error={!!error}
         helperText={error}
-        onKeyPress={this.handleChange}
         onBlur={e => e.preventDefault() && e.stopPropagation()}
         disabled={disabled}
         value={displayValue}
