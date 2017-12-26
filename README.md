@@ -105,6 +105,7 @@ leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
 keyboard | boolean | false | Allow to manual input date to the text field
+keyboardIcon | react node, string | 'event' | Keyboard adornment icon
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 
 #### Timepicker
@@ -121,6 +122,7 @@ cancelLabel | string | 'CANCEL' | The label for the cancel button
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
 ampm | boolean | true | 12h/24h view for hour selection clock
 keyboard | boolean | false | Allow to manual input date to the text field
+keyboardIcon | react node, string | 'event' | Keyboard adornment icon
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 
 #### DateTimepicker
@@ -151,6 +153,7 @@ timeIcon | react node, string | 'access_time'| Time tab icon
 ampm | boolean | true | 12h/24h view for hour selection clock
 shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
 keyboard | boolean | false | Allow to manual input date to the text field
+keyboardIcon | react node, string | 'event' | Keyboard adornment icon
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 
 ### l10n

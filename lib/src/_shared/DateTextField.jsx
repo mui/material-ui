@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { TextField, InputAdornment, IconButton } from 'material-ui';
+import { TextField, InputAdornment, IconButton, Icon } from 'material-ui';
 
 import MaskedInput from './MaskedInput';
 
@@ -25,6 +25,7 @@ export default class DateTextField extends PureComponent {
     labelFunc: PropTypes.func,
     keyboard: PropTypes.bool,
     InputProps: PropTypes.shape(),
+    keyboardIcon: PropTypes.node,
   }
 
   static defaultProps = {
@@ -36,6 +37,7 @@ export default class DateTextField extends PureComponent {
     InputProps: undefined,
     keyboard: false,
     mask: undefined,
+    keyboardIcon: 'event',
   }
 
   getDisplayDate = (props) => {
@@ -112,7 +114,16 @@ export default class DateTextField extends PureComponent {
 
   render() {
     const {
-      format, disabled, onClick, invalidLabel, labelFunc, keyboard, value, mask, InputProps,
+      format,
+      disabled,
+      onClick,
+      invalidLabel,
+      labelFunc,
+      keyboard,
+      value,
+      mask,
+      InputProps,
+      keyboardIcon,
       ...other
     } = this.props;
     const { displayValue, error } = this.state;
@@ -125,7 +136,7 @@ export default class DateTextField extends PureComponent {
     if (keyboard) {
       localInputProps.endAdornment = (
         <InputAdornment position="end">
-          <IconButton onClick={this.openPicker}>event</IconButton>
+          <IconButton onClick={this.openPicker}> <Icon> {keyboardIcon} </Icon> </IconButton>
         </InputAdornment>
       );
     }
