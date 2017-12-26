@@ -46,7 +46,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 | fullWidth | bool |  | If `true`, the input will take up the full width of its container. |
 | helperText | node |  | The helper text content. |
 | helperTextClassName | string |  | The CSS class name of the helper text element. |
-| id | string |  | The id of the `input` element. |
+| id | string |  | The id of the `input` element. Use that property to make `label` and `helperText` accessible for screen readers. |
 | InputLabelProps | object |  | Properties applied to the `InputLabel` element. |
 | InputProps | object |  | Properties applied to the `Input` element. |
 | inputProps | object |  | Properties applied to the native `input` element. |

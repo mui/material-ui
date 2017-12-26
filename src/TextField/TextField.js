@@ -76,6 +76,8 @@ function TextField(props) {
     'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
   );
 
+  const helperTextId = helperText && id ? `${id}-mui-helper-text` : undefined;
+
   const InputComponent = (
     <Input
       autoComplete={autoComplete}
@@ -103,6 +105,7 @@ function TextField(props) {
       className={className}
       error={error}
       required={required}
+      aria-describedby={helperTextId}
       {...other}
       ref={rootRef}
     >
@@ -119,7 +122,7 @@ function TextField(props) {
         InputComponent
       )}
       {helperText && (
-        <FormHelperText className={helperTextClassName} {...FormHelperTextProps}>
+        <FormHelperText className={helperTextClassName} id={helperTextId} {...FormHelperTextProps}>
           {helperText}
         </FormHelperText>
       )}
@@ -177,6 +180,7 @@ TextField.propTypes = {
   helperTextClassName: PropTypes.string,
   /**
    * The id of the `input` element.
+   * Use that property to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
   /**
