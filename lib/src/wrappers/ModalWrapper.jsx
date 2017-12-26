@@ -18,6 +18,7 @@ export default class ModalWrapper extends PureComponent {
     okLabel: PropTypes.string,
     cancelLabel: PropTypes.string,
     clearLabel: PropTypes.string,
+    clearable: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -32,6 +33,7 @@ export default class ModalWrapper extends PureComponent {
     onAccept: undefined,
     onDismiss: undefined,
     onClear: undefined,
+    clearable: true,
   }
 
   state = {
@@ -81,6 +83,7 @@ export default class ModalWrapper extends PureComponent {
       okLabel,
       cancelLabel,
       clearLabel,
+      clearable,
       ...other
     } = this.props;
 
@@ -105,6 +108,7 @@ export default class ModalWrapper extends PureComponent {
           clearLabel={clearLabel}
           okLabel={okLabel}
           cancelLabel={cancelLabel}
+          clearable={clearable}
         >
           {children}
         </ModalDialog>

@@ -25,13 +25,14 @@ const styles = {
 const ModalDialog = ({
   children,
   classes,
-  onClear,
   onAccept,
   onDismiss,
-  clearLabel,
+  onClear,
   okLabel,
   cancelLabel,
+  clearLabel,
   dialogContentClassName,
+  clearable,
   ...other
 }) => (
   <Dialog onClose={onDismiss} classes={{ paper: classes.dialogRoot }} {...other}>
@@ -41,16 +42,18 @@ const ModalDialog = ({
 
     <DialogActions
       classes={{
-        action: classes.dialogActions,
+        action: clearable && classes.dialogActions,
       }}
     >
-      <Button
-        color="primary"
-        onClick={onClear}
-        aria-label={clearLabel}
-      >
-        { clearLabel }
-      </Button>
+      {clearable &&
+        <Button
+          color="primary"
+          onClick={onClear}
+          aria-label={clearLabel}
+        >
+          { clearLabel }
+        </Button>
+      }
       <Button
         color="primary"
         onClick={onDismiss}
@@ -81,6 +84,7 @@ ModalDialog.propTypes = {
   okLabel: PropTypes.string,
   cancelLabel: PropTypes.string,
   clearLabel: PropTypes.string,
+  clearable: PropTypes.bool.isRequired,
 };
 
 ModalDialog.defaultProps = {
