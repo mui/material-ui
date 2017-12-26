@@ -15,13 +15,20 @@ const styles = {
       padding: 0,
     },
   },
+  dialogActions: {
+    '&:first-child': {
+      marginRight: 'auto',
+    },
+  },
 };
 
 const ModalDialog = ({
   children,
   classes,
+  onClear,
   onAccept,
   onDismiss,
+  clearLabel,
   okLabel,
   cancelLabel,
   dialogContentClassName,
@@ -32,7 +39,18 @@ const ModalDialog = ({
       { children }
     </DialogContent>
 
-    <DialogActions>
+    <DialogActions
+      classes={{
+        action: classes.dialogActions,
+      }}
+    >
+      <Button
+        color="primary"
+        onClick={onClear}
+        aria-label={clearLabel}
+      >
+        { clearLabel }
+      </Button>
       <Button
         color="primary"
         onClick={onDismiss}
@@ -57,16 +75,19 @@ ModalDialog.propTypes = {
   children: PropTypes.node.isRequired,
   onAccept: PropTypes.func.isRequired,
   onDismiss: PropTypes.func.isRequired,
+  onClear: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   dialogContentClassName: PropTypes.string,
   okLabel: PropTypes.string,
   cancelLabel: PropTypes.string,
+  clearLabel: PropTypes.string,
 };
 
 ModalDialog.defaultProps = {
   dialogContentClassName: '',
   okLabel: 'OK',
   cancelLabel: 'Cancel',
+  clearLabel: 'Clear',
 };
 
 export default withStyles(styles, { name: 'MuiPickersModal' })(ModalDialog);
