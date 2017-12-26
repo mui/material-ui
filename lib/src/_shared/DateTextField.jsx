@@ -106,6 +106,12 @@ export default class DateTextField extends PureComponent {
     this.openPicker(e);
   }
 
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.openPicker(e);
+    }
+  }
+
   openPicker = (e) => {
     const { disabled, onClick } = this.props;
 
@@ -150,6 +156,7 @@ export default class DateTextField extends PureComponent {
         onClick={this.handleFocus}
         error={!!error}
         helperText={error}
+        onKeyPress={this.handleKeyPress}
         onBlur={e => e.preventDefault() && e.stopPropagation()}
         disabled={disabled}
         value={displayValue}
