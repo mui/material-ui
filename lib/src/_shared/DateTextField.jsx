@@ -139,7 +139,10 @@ export default class DateTextField extends PureComponent {
 
     const localInputProps = {
       inputComponent: MaskedInput,
-      inputProps: { mask },
+      inputProps: {
+        mask,
+        readOnly: !keyboard,
+      },
     };
 
     if (keyboard) {
@@ -152,7 +155,6 @@ export default class DateTextField extends PureComponent {
 
     return (
       <TextField
-        readOnly
         onClick={this.handleFocus}
         error={!!error}
         helperText={error}
