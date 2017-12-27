@@ -4,6 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import ButtonBase from '../ButtonBase';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
 
 const ExpansionPanelSummaryNaked = unwrap(ExpansionPanelSummary);
@@ -25,7 +26,7 @@ describe('<ExpansionPanelSummary />', () => {
 
   it('should render a ButtonBase', () => {
     const wrapper = shallow(<ExpansionPanelSummary />);
-    assert.strictEqual(wrapper.name(), 'withStyles(ButtonBase)');
+    assert.strictEqual(wrapper.type(), ButtonBase);
   });
 
   it('should render with the user and root classes', () => {

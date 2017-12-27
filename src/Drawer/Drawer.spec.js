@@ -3,8 +3,8 @@ import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Slide from '../transitions/Slide';
 import createMuiTheme from '../styles/createMuiTheme';
-import Modal from '../Modal';
 import Paper from '../Paper';
+import Modal from '../Modal';
 import Drawer from './Drawer';
 
 describe('<Drawer />', () => {
@@ -27,7 +27,7 @@ describe('<Drawer />', () => {
           <div />
         </Drawer>,
       );
-      assert.strictEqual(wrapper.name(), 'withStyles(Modal)');
+      assert.strictEqual(wrapper.name(), 'WithStyles');
     });
 
     it('should render Slide > Paper inside the Modal', () => {
@@ -45,7 +45,7 @@ describe('<Drawer />', () => {
       );
 
       const paper = slide.childAt(0);
-      assert.strictEqual(paper.length === 1 && paper.name(), 'withStyles(Paper)');
+      assert.strictEqual(paper.length === 1 && paper.name(), 'WithStyles');
 
       assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
     });
@@ -72,7 +72,7 @@ describe('<Drawer />', () => {
           </Drawer>,
         );
         assert.strictEqual(
-          wrapper.find(Modal).props().BackdropTransitionDuration,
+          wrapper.find(Modal).props().BackdropProps.transitionDuration,
           transitionDuration,
         );
       });
@@ -121,8 +121,8 @@ describe('<Drawer />', () => {
       const modal = wrapper;
       const slide = modal.find(Slide);
 
-      assert.strictEqual(modal.prop('show'), false, 'should not show the modal');
-      assert.strictEqual(slide.prop('in'), false, 'should not transition in');
+      assert.strictEqual(modal.props().open, false, 'should not show the modal');
+      assert.strictEqual(slide.props().in, false, 'should not transition in');
     });
 
     describe('opening and closing', () => {
@@ -137,20 +137,20 @@ describe('<Drawer />', () => {
       });
 
       it('should start closed', () => {
-        assert.strictEqual(wrapper.props().show, false, 'should not show the modal');
-        assert.strictEqual(wrapper.find(Slide).prop('in'), false, 'should not transition in');
+        assert.strictEqual(wrapper.props().open, false, 'should not show the modal');
+        assert.strictEqual(wrapper.find(Slide).props().in, false, 'should not transition in');
       });
 
       it('should open', () => {
         wrapper.setProps({ open: true });
-        assert.strictEqual(wrapper.props().show, true, 'should show the modal');
-        assert.strictEqual(wrapper.find(Slide).prop('in'), true, 'should transition in');
+        assert.strictEqual(wrapper.props().open, true, 'should show the modal');
+        assert.strictEqual(wrapper.find(Slide).props().in, true, 'should transition in');
       });
 
       it('should close', () => {
         wrapper.setProps({ open: false });
-        assert.strictEqual(wrapper.props().show, false, 'should not show the modal');
-        assert.strictEqual(wrapper.find(Slide).prop('in'), false, 'should not transition in');
+        assert.strictEqual(wrapper.props().open, false, 'should not show the modal');
+        assert.strictEqual(wrapper.find(Slide).props().in, false, 'should not transition in');
       });
     });
   });
@@ -174,10 +174,10 @@ describe('<Drawer />', () => {
     it('should render Slide > Paper inside the div', () => {
       const slide = wrapper.childAt(0);
       assert.strictEqual(slide.length, 1);
-      assert.strictEqual(slide.name(), 'withTheme(Slide)');
+      assert.strictEqual(slide.type(), Slide);
 
       const paper = slide.childAt(0);
-      assert.strictEqual(paper.length === 1 && paper.name(), 'withStyles(Paper)');
+      assert.strictEqual(paper.length === 1 && paper.name(), 'WithStyles');
     });
   });
 
@@ -203,7 +203,7 @@ describe('<Drawer />', () => {
       assert.strictEqual(slide.name(), 'div');
 
       const paper = slide.childAt(0);
-      assert.strictEqual(paper.length === 1 && paper.name(), 'withStyles(Paper)');
+      assert.strictEqual(paper.length === 1 && paper.name(), 'WithStyles');
     });
   });
 

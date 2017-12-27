@@ -1,10 +1,7 @@
 import { PropTypes, StandardProps } from '..';
 import { PaperProps, PaperClassKey } from '../Paper/Paper';
 
-export interface AppBarProps extends StandardProps<
-  PaperProps,
-  AppBarClassKey
-> {
+export interface AppBarProps extends StandardProps<PaperProps, AppBarClassKey> {
   color?: PropTypes.Color;
   position?: 'static' | 'fixed' | 'absolute';
 }
@@ -16,8 +13,7 @@ export type AppBarClassKey =
   | 'positionStatic'
   | 'colorDefault'
   | 'colorPrimary'
-  | 'colorAccent'
-  ;
+  | 'colorAccent';
 
 declare const AppBar: React.ComponentType<AppBarProps>;
 

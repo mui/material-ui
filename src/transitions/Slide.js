@@ -200,10 +200,10 @@ class Slide extends React.Component {
           onExited={this.handleExited}
           appear
           style={style}
-          {...other}
           ref={node => {
             this.transition = node;
           }}
+          {...other}
         >
           {children}
         </Transition>

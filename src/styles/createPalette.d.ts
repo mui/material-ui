@@ -60,9 +60,7 @@ export interface Palette {
   getContrastText: (color: string) => string;
 }
 
-type PartialShade = {
-  [P in keyof Shade]?: Partial<Shade[P]>;
-};
+type PartialShade = { [P in keyof Shade]?: Partial<Shade[P]> };
 type ColorPartial = Partial<Color>;
 
 export interface PaletteOptions {
@@ -85,6 +83,4 @@ export interface PaletteOptions {
 
 //export type PaletteOptions = DeepPartial<Palette>;
 
-export default function createPalette(
-  palette: PaletteOptions
-): Palette;
+export default function createPalette(palette: PaletteOptions): Palette;

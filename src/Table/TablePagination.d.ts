@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { TableCellProps, TableCellClassKey } from './TableCell.d'
+import { TableCellProps, TableCellClassKey } from './TableCell.d';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -9,10 +9,8 @@ export interface LabelDisplayedRowsArgs {
   page: number;
 }
 
-export interface TablePaginationProps extends StandardProps<
-  TablePaginationBaseProps,
-  TablePaginationClassKey
-> {
+export interface TablePaginationProps
+  extends StandardProps<TablePaginationBaseProps, TablePaginationClassKey> {
   component?: string | React.ComponentType<TablePaginationBaseProps>;
   count: number;
   labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
@@ -34,8 +32,7 @@ export type TablePaginationClassKey =
   | 'input'
   | 'selectRoot'
   | 'select'
-  | 'actions'
-  ;
+  | 'actions';
 
 declare const TablePagination: React.ComponentType<TablePaginationProps>;
 

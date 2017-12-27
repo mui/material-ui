@@ -1,18 +1,17 @@
-// @flow weak
-
 const BLACKLIST = ['template', 'script', 'style'];
 
-const isHidable = ({ nodeType, tagName }) =>
-  nodeType === 1 && BLACKLIST.indexOf(tagName.toLowerCase()) === -1;
+function isHidable(node) {
+  return node.nodeType === 1 && BLACKLIST.indexOf(node.tagName.toLowerCase()) === -1;
+}
 
-const siblings = (container, mount, cb) => {
+function siblings(container, mount, callback) {
   mount = [].concat(mount); // eslint-disable-line no-param-reassign
   [].forEach.call(container.children, node => {
     if (mount.indexOf(node) === -1 && isHidable(node)) {
-      cb(node);
+      callback(node);
     }
   });
-};
+}
 
 export function ariaHidden(show, node) {
   if (!node) {

@@ -25,7 +25,7 @@ describe('<Select> integration', () => {
       const portalLayer = wrapper
         .find('Portal')
         .instance()
-        .getLayer();
+        .getMountNode();
       const selectDisplay = portalLayer.querySelector('[data-mui-test="SelectDisplay"]');
 
       wrapper.setProps({

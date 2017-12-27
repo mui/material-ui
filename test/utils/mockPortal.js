@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 
 import reactDOM from 'react-dom';
-import Portal from '../../src/internal/Portal';
+import Portal from '../../src/Portal';
 
 const portalOrigin = {};
 
@@ -12,8 +12,8 @@ const mockPortal = {
       return this.props.children;
     };
 
-    portalOrigin.getLayer = Portal.prototype.getLayer;
-    Portal.prototype.getLayer = function() {
+    portalOrigin.getMountNode = Portal.prototype.getMountNode;
+    Portal.prototype.getMountNode = function() {
       return reactDOM.findDOMNode(this);
     };
   },
@@ -22,8 +22,8 @@ const mockPortal = {
       Portal.prototype.render = portalOrigin.render;
     }
 
-    if (portalOrigin.getLayer) {
-      Portal.prototype.getLayer = portalOrigin.getLayer;
+    if (portalOrigin.getMountNode) {
+      Portal.prototype.getMountNode = portalOrigin.getMountNode;
     }
   },
 };

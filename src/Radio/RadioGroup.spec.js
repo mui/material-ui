@@ -2,6 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount } from '../test-utils';
+import FormGroup from '../Form/FormGroup';
 import RadioGroup from './RadioGroup';
 import Radio from './Radio';
 
@@ -14,7 +15,7 @@ describe('<RadioGroup />', () => {
 
   it('should render a FormGroup with the radiogroup role', () => {
     const wrapper = shallow(<RadioGroup value="" />);
-    assert.strictEqual(wrapper.name(), 'withStyles(FormGroup)');
+    assert.strictEqual(wrapper.type(), FormGroup);
     assert.strictEqual(wrapper.props().role, 'radiogroup');
   });
 

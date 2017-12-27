@@ -185,7 +185,7 @@ class Snackbar extends React.Component {
     }
   };
 
-  handleTransitionExited = () => {
+  handleExited = () => {
     this.setState({ exited: true });
   };
 
@@ -228,7 +228,7 @@ class Snackbar extends React.Component {
       onEntered,
       onExit,
       onExiting,
-      onExited: createChainedFunction(this.handleTransitionExited, onExited),
+      onExited: createChainedFunction(this.handleExited, onExited),
     };
     const transitionContent = children || (
       <SnackbarContent message={message} action={action} {...SnackbarContentProps} />
@@ -314,10 +314,8 @@ Snackbar.propTypes = {
   message: PropTypes.node,
   /**
    * Callback fired when the component requests to be closed.
-   *
    * Typically `onClose` is used to set state in the parent component,
    * which is used to control the `Snackbar` `open` prop.
-   *
    * The `reason` parameter can optionally be used to control the response to `onClose`,
    * for example ignoring `clickaway`.
    *

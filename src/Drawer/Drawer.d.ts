@@ -5,13 +5,12 @@ import { TransitionDuration } from '../internal/transition';
 import { SlideProps } from '../transitions/Slide';
 import { Theme } from '../styles/createMuiTheme';
 
-export interface DrawerProps extends StandardProps<
-  ModalProps,
-  DrawerClassKey
-> {
+export interface DrawerProps
+  extends StandardProps<ModalProps, DrawerClassKey, 'open' | 'children'> {
   anchor?: 'left' | 'top' | 'right' | 'bottom';
+  children?: React.ReactNode;
   elevation?: number;
-  ModalProps?: ModalProps
+  ModalProps?: ModalProps;
   open?: boolean;
   SlideProps?: SlideProps;
   theme?: Theme;
@@ -31,8 +30,7 @@ export type DrawerClassKey =
   | 'paperAnchorDockedTop'
   | 'paperAnchorDockedRight'
   | 'paperAnchorDockedBottom'
-  | 'modal'
-  ;
+  | 'modal';
 
 declare const Drawer: React.ComponentType<DrawerProps>;
 

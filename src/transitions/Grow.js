@@ -129,8 +129,8 @@ class Grow extends React.Component {
         appear={appear}
         style={style}
         timeout={timeout === 'auto' ? null : timeout}
-        {...other}
         ref={rootRef}
+        {...other}
       >
         {children}
       </CSSTransition>

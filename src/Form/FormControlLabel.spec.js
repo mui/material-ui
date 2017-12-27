@@ -22,7 +22,6 @@ describe('FormControlLabel', () => {
   it('should render the label text inside an additional element', () => {
     const wrapper = shallow(<FormControlLabel label="Pizza" control={<div />} />);
     const label = wrapper.childAt(1);
-    assert.strictEqual(FormControlLabel.displayName, 'withStyles(FormControlLabel)');
     assert.strictEqual(wrapper.name(), 'label');
     assert.strictEqual(label.childAt(0).text(), 'Pizza', 'should be the label text');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the "root" class');
@@ -54,7 +53,7 @@ describe('FormControlLabel', () => {
 
   it('should mount without issue', () => {
     const wrapper = mount(<FormControlLabel label="Pizza" control={<Checkbox />} />);
-    assert.strictEqual(wrapper.name(), 'withStyles(FormControlLabel)');
+    assert.strictEqual(wrapper.type(), FormControlLabel);
   });
 
   describe('with muiFormControl context', () => {

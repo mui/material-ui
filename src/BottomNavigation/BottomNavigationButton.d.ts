@@ -2,11 +2,8 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
-export interface BottomNavigationButtonProps extends StandardProps<
-  ButtonBaseProps,
-  BottomNavigationButtonClassKey,
-  'onChange'
-> {
+export interface BottomNavigationButtonProps
+  extends StandardProps<ButtonBaseProps, BottomNavigationButtonClassKey, 'onChange'> {
   icon?: string | React.ReactElement<any>;
   label?: React.ReactNode;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
@@ -24,8 +21,7 @@ export type BottomNavigationButtonClassKey =
   | 'label'
   | 'selectedLabel'
   | 'hiddenLabel'
-  | 'icon'
-  ;
+  | 'icon';
 
 declare const BottomNavigationButton: React.ComponentType<BottomNavigationButtonProps>;
 

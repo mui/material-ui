@@ -3,6 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
+import Typography from '../Typography';
 import InputAdornment from './InputAdornment';
 
 describe('<InputAdornment />', () => {
@@ -30,7 +31,7 @@ describe('<InputAdornment />', () => {
 
   it('should wrap text children in a Typography', () => {
     const wrapper = shallow(<InputAdornment position="start">foo</InputAdornment>);
-    assert.strictEqual(wrapper.childAt(0).name(), 'withStyles(Typography)');
+    assert.strictEqual(wrapper.childAt(0).type(), Typography);
   });
 
   it('should have the root and start class when position is start', () => {

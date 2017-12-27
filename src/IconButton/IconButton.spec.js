@@ -3,6 +3,7 @@ import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Icon from '../Icon';
+import ButtonBase from '../ButtonBase';
 import IconButton from './IconButton';
 
 describe('<IconButton />', () => {
@@ -22,7 +23,7 @@ describe('<IconButton />', () => {
 
   it('should render a ButtonBase', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
-    assert.strictEqual(wrapper.name(), 'withStyles(ButtonBase)');
+    assert.strictEqual(wrapper.type(), ButtonBase);
   });
 
   it('should render an inner label span (bloody safari)', () => {

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import wrapDisplayName from 'recompose/wrapDisplayName';
 import getDisplayName from 'recompose/getDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
 import { create } from 'jss';
@@ -83,7 +82,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     ].join(' '),
   );
 
-  class Style extends React.Component {
+  class WithStyles extends React.Component {
     constructor(props, context) {
       super(props, context);
 
@@ -297,7 +296,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     }
   }
 
-  Style.propTypes = {
+  WithStyles.propTypes = {
     /**
      * Useful to extend the style applied to components.
      */
@@ -308,25 +307,21 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     innerRef: PropTypes.func,
   };
 
-  Style.contextTypes = {
+  WithStyles.contextTypes = {
     muiThemeProviderOptions: PropTypes.object,
     ...contextTypes,
     ...(listenToTheme ? themeListener.contextTypes : {}),
   };
 
-  if (process.env.NODE_ENV !== 'production') {
-    Style.displayName = wrapDisplayName(Component, 'withStyles');
-  }
-
-  hoistNonReactStatics(Style, Component);
+  hoistNonReactStatics(WithStyles, Component);
 
   if (process.env.NODE_ENV !== 'production') {
     // Exposed for test purposes.
-    Style.Naked = Component;
-    Style.options = options;
+    WithStyles.Naked = Component;
+    WithStyles.options = options;
   }
 
-  return Style;
+  return WithStyles;
 };
 
 export default withStyles;

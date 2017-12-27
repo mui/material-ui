@@ -2,6 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import { createShallow, createMount } from '../test-utils';
+import Paper from '../Paper';
 import Step from './Step';
 import StepConnector from './StepConnector';
 import Stepper from './Stepper';
@@ -35,7 +36,7 @@ describe('<Stepper />', () => {
         <Step />
       </Stepper>,
     );
-    assert.strictEqual(wrapper.name(), 'withStyles(Paper)');
+    assert.strictEqual(wrapper.type(), Paper);
     assert.strictEqual(wrapper.props().elevation, 0, 'should have no elevation');
   });
 

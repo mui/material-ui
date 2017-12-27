@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface TextareaProps extends StandardProps<
-  React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-  TextareaClassKey,
-  'rows'
-> {
+export interface TextareaProps
+  extends StandardProps<
+      React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+      TextareaClassKey,
+      'rows'
+    > {
   defaultValue?: any;
   disabled?: boolean;
   rows?: string | number;
@@ -14,11 +15,7 @@ export interface TextareaProps extends StandardProps<
   value?: string;
 }
 
-export type TextareaClassKey =
-  | 'root'
-  | 'shadow'
-  | 'textarea'
-  ;
+export type TextareaClassKey = 'root' | 'shadow' | 'textarea';
 
 declare const Textarea: React.ComponentType<TextareaProps>;
 

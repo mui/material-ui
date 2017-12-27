@@ -54,7 +54,7 @@ class List extends React.Component {
     );
 
     return (
-      <ComponentProp className={className} {...other} ref={rootRef}>
+      <ComponentProp className={className} ref={rootRef} {...other}>
         {subheader}
         {children}
       </ComponentProp>

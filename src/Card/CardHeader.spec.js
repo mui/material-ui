@@ -57,20 +57,20 @@ describe('<CardHeader />', () => {
 
     it('should render the title as headline text', () => {
       const title = wrapper.childAt(0);
-      assert.strictEqual(title.name(), 'withStyles(Typography)');
+      assert.strictEqual(title.name(), 'WithStyles');
       assert.strictEqual(title.props().type, 'headline');
     });
 
     it('should render the subheader as body1 secondary text', () => {
       const subheader = wrapper.childAt(1);
-      assert.strictEqual(subheader.name(), 'withStyles(Typography)');
+      assert.strictEqual(subheader.name(), 'WithStyles');
       assert.strictEqual(subheader.props().type, 'body1');
       assert.strictEqual(subheader.props().color, 'secondary');
     });
 
     it('should not render the subheader if none is given', () => {
       const title = wrapper.childAt(0);
-      assert.strictEqual(title.name(), 'withStyles(Typography)');
+      assert.strictEqual(title.name(), 'WithStyles');
       assert.strictEqual(wrapper.length, 1);
     });
   });
@@ -100,7 +100,7 @@ describe('<CardHeader />', () => {
         'should have the content class',
       );
       const title = container.childAt(0);
-      assert.strictEqual(title.name(), 'withStyles(Typography)');
+      assert.strictEqual(title.name(), 'WithStyles');
       assert.strictEqual(title.props().type, 'body2');
     });
 
@@ -112,7 +112,7 @@ describe('<CardHeader />', () => {
         'should have the content class',
       );
       const subheader = container.childAt(1);
-      assert.strictEqual(subheader.name(), 'withStyles(Typography)');
+      assert.strictEqual(subheader.name(), 'WithStyles');
       assert.strictEqual(subheader.props().type, 'body2');
       assert.strictEqual(subheader.props().color, 'secondary');
     });

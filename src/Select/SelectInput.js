@@ -261,8 +261,8 @@ class SelectInput extends React.Component {
           value={Array.isArray(value) ? value.join(',') : value}
           name={name}
           readOnly={readOnly}
-          {...other}
           ref={this.handleSelectRef}
+          {...other}
           type="hidden"
         />
         <ArrowDropDownIcon className={classes.icon} />

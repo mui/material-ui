@@ -35,7 +35,7 @@ export interface TypographyStyle {
 }
 
 export interface TypographyUtils {
-  pxToRem: (px: number) => string
+  pxToRem: (px: number) => string;
 }
 
 export type Typography = Record<Style, TypographyStyle> & FontStyle & TypographyUtils;
@@ -46,5 +46,5 @@ export type TypographyOptions = Partial<Record<Style, Partial<TypographyStyle>> 
 
 export default function createTypography(
   palette: Palette,
-  typography: TypographyOptions | ((palette: Palette) => TypographyOptions)
+  typography: TypographyOptions | ((palette: Palette) => TypographyOptions),
 ): Typography;

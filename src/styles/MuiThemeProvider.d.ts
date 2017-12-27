@@ -7,6 +7,6 @@ export interface MuiThemeProviderProps {
   children: React.ReactNode;
 }
 
-declare const MuiThemeProvider: React.ComponentType<MuiThemeProviderProps>
+declare const MuiThemeProvider: React.ComponentType<MuiThemeProviderProps>;
 
-export default MuiThemeProvider
+export default MuiThemeProvider;

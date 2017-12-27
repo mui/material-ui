@@ -14,21 +14,21 @@ Dialogs are overlaid modal paper based components with a backdrop.
 |:-----|:-----|:--------|:------------|
 | <span style="color: #31a148">children *</span> | node |  | Dialog children, usually the included sub-components. |
 | classes | object |  | Useful to extend the style applied to components. |
+| disableBackdropClick | bool | false | If `true`, clicking the backdrop will not fire the `onClose` callback. |
+| disableEscapeKeyDown | bool | false | If `true`, hitting escape will not fire the `onClose` callback. |
 | fullScreen | bool | false | If `true`, it will be full-screen |
 | fullWidth | bool | false | If specified, stretches dialog to max width. |
-| ignoreBackdropClick | bool | false | If `true`, clicking the backdrop will not fire the `onClose` callback. |
-| ignoreEscapeKeyUp | bool | false | If `true`, hitting escape will not fire the `onClose` callback. |
 | maxWidth | enum:&nbsp;'xs'&nbsp;&#124;<br>&nbsp;'sm'&nbsp;&#124;<br>&nbsp;'md'<br> | 'sm' | Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. |
 | onBackdropClick | func |  | Callback fired when the backdrop is clicked. |
 | onClose | func |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | onEnter | func |  | Callback fired before the dialog enters. |
 | onEntered | func |  | Callback fired when the dialog has entered. |
 | onEntering | func |  | Callback fired when the dialog is entering. |
-| onEscapeKeyUp | func |  | Callback fires when the escape key is released and the modal is in focus. |
+| onEscapeKeyDown | func |  | Callback fired when the escape key is pressed, `disableKeyboard` is false and the modal is in focus. |
 | onExit | func |  | Callback fired before the dialog exits. |
 | onExited | func |  | Callback fired when the dialog has exited. |
 | onExiting | func |  | Callback fired when the dialog is exiting. |
-| open | bool | false | If `true`, the Dialog is open. |
+| <span style="color: #31a148">open *</span> | bool |  | If `true`, the Dialog is open. |
 | transition | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | Fade | Transition component. |
 | transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | { enter: duration.enteringScreen, exit: duration.leavingScreen } | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 

@@ -114,6 +114,8 @@ MuiThemeProvider.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
+MuiThemeProvider.propTypes = exactProp(MuiThemeProvider.propTypes, 'MuiThemeProvider');
+
 MuiThemeProvider.defaultProps = {
   disableStylesGeneration: false,
   sheetsManager: null,
@@ -126,14 +128,4 @@ MuiThemeProvider.childContextTypes = {
 
 MuiThemeProvider.contextTypes = themeListener.contextTypes;
 
-// Add a wrapper component to generate some helper messages in the development
-// environment.
-// eslint-disable-next-line import/no-mutable-exports
-let MuiThemeProviderWrapper = MuiThemeProvider;
-
-if (process.env.NODE_ENV !== 'production') {
-  MuiThemeProviderWrapper = props => <MuiThemeProvider {...props} />;
-  MuiThemeProviderWrapper.propTypes = exactProp(MuiThemeProvider.propTypes, 'MuiThemeProvider');
-}
-
-export default MuiThemeProviderWrapper;
+export default MuiThemeProvider;

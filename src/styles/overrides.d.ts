@@ -162,4 +162,4 @@ type ComponentNameToClassKey = {
   MuiToolbar: ToolbarClassKey;
   MuiTooltip: TooltipClassKey;
   MuiTypography: TypographyClassKey;
-}
+};

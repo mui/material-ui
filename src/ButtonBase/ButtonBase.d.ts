@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface ButtonBaseProps extends StandardProps<
-  React.AnchorHTMLAttributes<HTMLElement> & React.ButtonHTMLAttributes<HTMLElement>,
-  ButtonBaseClassKey
-> {
+export interface ButtonBaseProps
+  extends StandardProps<
+      React.AnchorHTMLAttributes<HTMLElement> & React.ButtonHTMLAttributes<HTMLElement>,
+      ButtonBaseClassKey
+    > {
   centerRipple?: boolean;
   component?: string | React.ComponentType<ButtonBaseProps>;
   disableRipple?: boolean;
@@ -14,10 +15,7 @@ export interface ButtonBaseProps extends StandardProps<
   rootRef?: React.Ref<any>;
 }
 
-export type ButtonBaseClassKey =
-  | 'root'
-  | 'disabled'
-  ;
+export type ButtonBaseClassKey = 'root' | 'disabled';
 
 declare const ButtonBase: React.ComponentType<ButtonBaseProps>;
 

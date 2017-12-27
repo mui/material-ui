@@ -28,7 +28,7 @@ describe('<TextField />', () => {
 
     describe('structure', () => {
       it('should be a FormControl', () => {
-        assert.strictEqual(wrapper.name(), 'withStyles(FormControl)');
+        assert.strictEqual(wrapper.name(), 'WithStyles');
         assert.strictEqual(wrapper.dive().name(), 'FormControl');
       });
 

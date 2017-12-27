@@ -29,7 +29,7 @@ describe('<Checkbox />', () => {
 
   it('should render a div with a SwitchBase', () => {
     const wrapper = shallow(<Checkbox />);
-    assert.strictEqual(wrapper.name(), 'withStyles(SwitchBase)');
+    assert.strictEqual(wrapper.name(), 'WithStyles');
   });
 
   describe('prop: indeterminate', () => {

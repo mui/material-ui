@@ -2,11 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase/ButtonBase';
 
-export interface TabsProps extends StandardProps<
-  ButtonBaseProps,
-  TabsClassKey,
-  'onChange'
-> {
+export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 'onChange'> {
   buttonClassName?: string;
   centered?: boolean;
   children?: React.ReactNode;
@@ -16,7 +12,7 @@ export interface TabsProps extends StandardProps<
   onChange: (event: React.ChangeEvent<{}>, value: any) => void;
   scrollable?: boolean;
   scrollButtons?: 'auto' | 'on' | 'off';
-  TabScrollButton?: React.ReactType,
+  TabScrollButton?: React.ReactType;
   textColor?: 'accent' | 'primary' | 'inherit' | string;
   value: any;
   width?: string;
@@ -28,8 +24,7 @@ export type TabsClassKey =
   | 'scrollingContainer'
   | 'fixed'
   | 'scrollable'
-  | 'centered'
-  ;
+  | 'centered';
 
 declare const Tabs: React.ComponentType<TabsProps>;
 

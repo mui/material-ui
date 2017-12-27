@@ -1,7 +1,9 @@
 import * as React from 'react';
 
 export interface PortalProps {
-  open?: boolean;
+  children: React.ReactElement<any>;
+  container?: object | Function;
+  onRendered?: Function;
 }
 
 export default class Portal extends React.Component<PortalProps> {}

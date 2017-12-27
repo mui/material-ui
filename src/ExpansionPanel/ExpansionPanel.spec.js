@@ -3,6 +3,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Collapse from '../transitions/Collapse';
+import Paper from '../Paper';
 import ExpansionPanel from './ExpansionPanel';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
 
@@ -23,7 +24,7 @@ describe('<ExpansionPanel />', () => {
 
   it('should render and have isControlled set to false', () => {
     const wrapper = shallow(<ExpansionPanel>foo</ExpansionPanel>);
-    assert.strictEqual(wrapper.name(), 'withStyles(Paper)');
+    assert.strictEqual(wrapper.type(), Paper);
     assert.strictEqual(wrapper.props().elevation, 1);
     assert.strictEqual(wrapper.props().square, true);
     assert.strictEqual(wrapper.instance().isControlled, false);
@@ -60,9 +61,9 @@ describe('<ExpansionPanel />', () => {
       </ExpansionPanel>,
     );
 
-    assert.strictEqual(wrapper.childAt(0).name(), 'withStyles(ExpansionPanelSummary)');
+    assert.strictEqual(wrapper.childAt(0).type(), ExpansionPanelSummary);
     const collapse = wrapper.childAt(1);
-    assert.strictEqual(collapse.name(), 'withStyles(Collapse)');
+    assert.strictEqual(collapse.type(), Collapse);
     assert.strictEqual(collapse.children().length, 1, 'collapse should have 1 children div');
   });
 
@@ -82,7 +83,7 @@ describe('<ExpansionPanel />', () => {
         <ExpansionPanelSummary />
       </ExpansionPanel>,
     );
-    assert.strictEqual(wrapper.name(), 'withStyles(ExpansionPanel)');
+    assert.strictEqual(wrapper.type(), ExpansionPanel);
     wrapper.find(ExpansionPanelSummary).simulate('click');
     assert.strictEqual(handleChange.callCount, 1, 'it should forward the onChange');
   });

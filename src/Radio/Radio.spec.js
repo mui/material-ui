@@ -2,14 +2,17 @@ import React from 'react';
 import { assert } from 'chai';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
-import { getClasses, createMount } from '../test-utils';
+import { getClasses, createShallow, createMount } from '../test-utils';
+import SwitchBase from '../internal/SwitchBase';
 import Radio from './Radio';
 
 describe('<Radio />', () => {
+  let shallow;
   let classes;
   let mount;
 
   before(() => {
+    shallow = createShallow({ dive: true });
     classes = getClasses(<Radio />);
     mount = createMount();
   });
@@ -26,10 +29,9 @@ describe('<Radio />', () => {
     });
   });
 
-  describe('default Radio export', () => {
-    it('should be a SwitchBase with the displayName set for debugging', () => {
-      assert.strictEqual(Radio.displayName, 'withStyles(Radio)');
-    });
+  it('should be using SwitchBase', () => {
+    const wrapper = shallow(<Radio />);
+    assert.strictEqual(wrapper.type(), SwitchBase);
   });
 
   describe('prop: unchecked', () => {

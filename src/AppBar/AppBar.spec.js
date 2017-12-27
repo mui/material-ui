@@ -14,7 +14,7 @@ describe('<AppBar />', () => {
 
   it('should render a Paper component', () => {
     const wrapper = shallow(<AppBar>Hello World</AppBar>);
-    assert.strictEqual(wrapper.name(), 'withStyles(Paper)');
+    assert.strictEqual(wrapper.name(), 'WithStyles');
     assert.strictEqual(wrapper.props().elevation, 4, 'should render with a 4dp shadow');
   });
 
