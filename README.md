@@ -102,7 +102,7 @@ emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
 okLabel | string | 'OK' | The label for the ok button
 cancelLabel | string | 'Cancel' | The label for the cancel button
 clearLabel | string | 'Clear' | The label for the clear button
-labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
+labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
@@ -125,7 +125,7 @@ emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
 okLabel | string | 'OK' | The label for the ok button
 cancelLabel | string | 'Cancel' | The label for the cancel button
 clearLabel | string | 'Clear' | The label for the clear button
-labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
+labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 ampm | boolean | true | 12h/24h view for hour selection clock
 keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node, string | 'event' | Keyboard adornment icon
@@ -153,7 +153,7 @@ emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
 okLabel | string | 'OK' | The label for the ok button
 cancelLabel | string | 'Cancel' | The label for the cancel button
 clearLabel | string | 'Clear' | The label for the clear button
-labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
+labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
