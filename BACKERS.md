@@ -84,6 +84,11 @@ Bronze Sponsors are those who have pledged $100/month to $250/month to Material-
 
 #### via [Patreon](https://www.patreon.com/oliviertassinari)
 
+| ♥️ |   |   |   |   |
+|---|---|---|---|---|
+| Olivier Baumann | Linus Gubenis | Scott Fortmann-Roe | Yosmany García Alfonso | cocoanton |
+| Hong Yuan | Lucas Nascimento | Bogdan Bezuz Citireag | | |
+
 #### via [OpenCollective](https://opencollective.com/material-ui)
 
 <a href="https://opencollective.com/material-ui#backers" target="_blank"><img src="https://opencollective.com/material-ui/backers.svg?width=890"></a>
