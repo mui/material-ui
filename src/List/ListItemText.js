@@ -7,6 +7,7 @@ import Typography from '../Typography';
 export const styles = theme => ({
   root: {
     flex: '1 1 auto',
+    minWidth: 0,
     padding: '0 16px',
     '&:first-child': {
       paddingLeft: 0,
