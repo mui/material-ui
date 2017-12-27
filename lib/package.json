@@ -54,7 +54,8 @@
     "prerelease": "npm run ci",
     "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
-    "lint": "eslint ./src/**/*.js*"
+    "lint": "eslint ./src/**/*.js*",
+    "lint-fix": "npm run lint -- --fix"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

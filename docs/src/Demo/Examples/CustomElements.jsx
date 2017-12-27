@@ -21,9 +21,16 @@ class CustomElements extends Component {
     this.setState({ selectedDate: date.clone().startOf('week') });
   }
 
-  formatWeekSelectLabel = (date, invalidLabel) => (date && date.isValid()
-    ? `Week of ${date.clone().startOf('week').format('MMM Do')}`
-    : invalidLabel)
+  formatWeekSelectLabel = (date, invalidLabel) => {
+    if (date === null) {
+      return '';
+    }
+
+    return date && date.isValid() ?
+      `Week of ${date.clone().startOf('week').format('MMM Do')}`
+      :
+      invalidLabel;
+  }
 
   renderCustomDayForDateTime = (date, selectedDate, dayInCurrentMonth, dayComponent) => {
     const { classes } = this.props;
