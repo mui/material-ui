@@ -195,7 +195,7 @@ jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
 <DateTimePicker
   okLabel="تأیید"
   cancelLabel="لغو"
-  labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
+  labelFunc={date => date === null ? '' : jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
   value={selectedDate}
   onChange={this.handleDateChange}
   utils={jalaliUtils}
