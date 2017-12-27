@@ -11,7 +11,7 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       backgroundColor: theme.palette.primary[500],
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       backgroundColor: theme.palette.secondary.A400,
     },
   },

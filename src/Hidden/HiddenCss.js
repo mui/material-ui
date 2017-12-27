@@ -110,7 +110,7 @@ HiddenCss.propTypes = {
    */
   initialWidth: PropTypes.number,
   /**
-   * If true, screens before this size and down will be hidden.
+   * If true, screens this size and down will be hidden.
    */
   lgDown: PropTypes.bool,
   /**
@@ -118,7 +118,7 @@ HiddenCss.propTypes = {
    */
   lgUp: PropTypes.bool,
   /**
-   * If true, screens before this size and down will be hidden.
+   * If true, screens this size and down will be hidden.
    */
   mdDown: PropTypes.bool,
   /**
@@ -133,7 +133,7 @@ HiddenCss.propTypes = {
     PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
   ]),
   /**
-   * If true, screens before this size and down will be hidden.
+   * If true, screens this size and down will be hidden.
    */
   smDown: PropTypes.bool,
   /**
@@ -141,7 +141,7 @@ HiddenCss.propTypes = {
    */
   smUp: PropTypes.bool,
   /**
-   * If true, screens before this size and down will be hidden.
+   * If true, screens this size and down will be hidden.
    */
   xlDown: PropTypes.bool,
   /**
@@ -149,7 +149,7 @@ HiddenCss.propTypes = {
    */
   xlUp: PropTypes.bool,
   /**
-   * If true, screens before this size and down will be hidden.
+   * If true, screens this size and down will be hidden.
    */
   xsDown: PropTypes.bool,
   /**

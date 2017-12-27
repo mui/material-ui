@@ -81,7 +81,7 @@ export const styles = theme => ({
     },
   },
   labelWrapped: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: theme.typography.pxToRem(theme.typography.fontSize - 2),
     },
   },

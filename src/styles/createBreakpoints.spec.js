@@ -21,8 +21,20 @@ describe('createBreakpoints', () => {
   });
 
   describe('down', () => {
-    it('should work', () => {
-      assert.strictEqual(breakpoints.down('md'), '@media (max-width:959.95px)');
+    it('should work for xs', () => {
+      assert.strictEqual(breakpoints.down('xs'), '@media (max-width:599.95px)');
+    });
+
+    it('should work for md', () => {
+      assert.strictEqual(breakpoints.down('md'), '@media (max-width:1279.95px)');
+    });
+
+    it('should apply to no sizes if unknown size is specified', () => {
+      assert.strictEqual(breakpoints.down('xxl'), '@media (max-width:-0.05px)');
+    });
+
+    it('should apply to all sizes for xl', () => {
+      assert.strictEqual(breakpoints.down('xl'), '@media (min-width:0px)');
     });
   });
 

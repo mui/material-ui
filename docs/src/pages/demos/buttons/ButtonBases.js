@@ -14,7 +14,7 @@ const styles = theme => ({
   image: {
     position: 'relative',
     height: 200,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       width: '100% !important', // Overrides inline-style
       height: 100,
     },
