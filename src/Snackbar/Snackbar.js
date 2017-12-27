@@ -284,8 +284,10 @@ Snackbar.propTypes = {
     vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
   }),
   /**
-   * The number of milliseconds to wait before automatically dismissing.
-   * This behavior is disabled by default with the `null` value.
+   * The number of milliseconds to wait before automatically calling the
+   * `onClose` function. `onClose` should then set the state of the `open`
+   * prop to hide the Snackbar. This behavior is disabled by default with
+   * the `null` value.
    */
   autoHideDuration: PropTypes.number,
   /**
@@ -317,7 +319,8 @@ Snackbar.propTypes = {
    * Typically `onClose` is used to set state in the parent component,
    * which is used to control the `Snackbar` `open` prop.
    * The `reason` parameter can optionally be used to control the response to `onClose`,
-   * for example ignoring `clickaway`.
+   * for example ignoring `clickaway`. If `autoHideDuration` is specified, this function
+   * will be called once the timer has expired.
    *
    * @param {object} event The event source of the callback
    * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
