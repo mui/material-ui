@@ -71,7 +71,7 @@
     "jss": "^9.3.3",
     "jss-preset-default": "^4.0.1",
     "keycode": "^2.1.9",
-    "lodash": "^4.17.4",
+    "lodash": "^4.2.0",
     "normalize-scroll-left": "^0.1.2",
     "prop-types": "^15.6.0",
     "react-event-listener": "^0.5.1",
