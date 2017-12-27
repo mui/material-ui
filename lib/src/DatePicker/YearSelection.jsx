@@ -74,7 +74,7 @@ export class YearSelection extends PureComponent {
                   role="button"
                   key={utils.getYearText(year)}
                   className={className}
-                  tabIndex={yearNumber}
+                  tabIndex={0}
                   onClick={() => this.onYearSelect(yearNumber)}
                   onKeyPress={() => this.onYearSelect(yearNumber)}
                 >
