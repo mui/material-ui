@@ -62,12 +62,13 @@ export class YearSelection extends PureComponent {
             .map((year) => {
               const yearNumber = utils.getYear(year);
               const isSelected = yearNumber === currentYear;
+              const isDisabled = (
+                (disablePast && year.isBefore(moment(), 'year')) ||
+                (disableFuture && year.isAfter(moment(), 'year'))
+              );
               const className = classnames(classes.year, {
                 [classes.selectedYear]: isSelected,
-                [classes.disabled]: (
-                  (disablePast && year.isBefore(moment(), 'year')) ||
-                  (disableFuture && year.isAfter(moment(), 'year'))
-                ),
+                [classes.disabled]: isDisabled,
               });
 
               return (
@@ -76,7 +77,7 @@ export class YearSelection extends PureComponent {
                   component="div"
                   key={utils.getYearText(year)}
                   className={className}
-                  tabIndex={0}
+                  tabIndex={isDisabled ? -1 : 0}
                   onClick={() => this.onYearSelect(yearNumber)}
                   onKeyPress={() => this.onYearSelect(yearNumber)}
                   color={isSelected ? 'primary' : 'default'}
