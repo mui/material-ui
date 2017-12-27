@@ -26,13 +26,14 @@ export default function createBreakpoints(breakpoints) {
 
   function down(key) {
     const endIndex = keys.indexOf(key) + 1;
+    const upperbound = values[keys[endIndex]];
 
     if (endIndex === keys.length) {
       // xl down applies to all sizes
       return up('xs');
     }
 
-    const value = typeof values[keys[endIndex]] === 'number' ? values[keys[endIndex]] : key;
+    const value = typeof upperbound === 'number' && endIndex > 0 ? upperbound : key;
     return `@media (max-width:${value - step / 100}${unit})`;
   }
 

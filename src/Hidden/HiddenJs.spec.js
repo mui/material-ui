@@ -135,6 +135,7 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
+      isHidden(['xl'], 'Down', 'xl');
       isVisible(['xs', 'sm', 'md', 'lg'], 'Down', 'xl');
     });
 
