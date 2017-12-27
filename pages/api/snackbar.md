@@ -14,7 +14,7 @@ filename: /src/Snackbar/Snackbar.js
 |:-----|:-----|:--------|:------------|
 | action | node |  | The action to display. |
 | anchorOrigin | shape | {  vertical: 'bottom',  horizontal: 'center',} | The anchor of the `Snackbar`. |
-| autoHideDuration | number |  | The number of milliseconds to wait before automatically dismissing. This behavior is disabled by default with the `null` value. |
+| autoHideDuration | number |  | The number of milliseconds to wait before automatically calling the `onClose` function. `onClose` should then set the state of the `open` prop to hide the Snackbar. This behavior is disabled by default with the `null` value. |
 | children | element |  | If you wish the take control over the children of the component you can use this property. When used, you replace the `SnackbarContent` component with the children. |
 | classes | object |  | Useful to extend the style applied to components. |
 | key | any |  | When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/>, add the key property to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
