@@ -90,7 +90,7 @@ export class YearSelection extends PureComponent {
 
 const styles = theme => ({
   container: {
-    maxHeight: 320,
+    maxHeight: 300,
     overflowY: 'auto',
     justifyContent: 'center',
   },
