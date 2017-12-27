@@ -30,10 +30,19 @@ export const styles = theme => ({
 });
 
 function CardHeader(props) {
-  const { avatar, action, classes, className: classNameProp, subheader, title, ...other } = props;
+  const {
+    action,
+    avatar,
+    classes,
+    className: classNameProp,
+    component: Component,
+    subheader,
+    title,
+    ...other
+  } = props;
 
   return (
-    <CardContent className={classNames(classes.root, classNameProp)} {...other}>
+    <Component className={classNames(classes.root, classNameProp)} {...other}>
       {avatar && <div className={classes.avatar}>{avatar}</div>}
       <div className={classes.content}>
         <Typography type={avatar ? 'body2' : 'headline'} component="span" className={classes.title}>
@@ -51,7 +60,7 @@ function CardHeader(props) {
         )}
       </div>
       {action && <div className={classes.action}>{action}</div>}
-    </CardContent>
+    </Component>
   );
 }
 
@@ -73,6 +82,11 @@ CardHeader.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
    * The content of the component.
    */
   subheader: PropTypes.node,
@@ -80,6 +94,10 @@ CardHeader.propTypes = {
    * The content of the Card Title.
    */
   title: PropTypes.node,
+};
+
+CardHeader.defaultProps = {
+  component: CardContent,
 };
 
 export default withStyles(styles, { name: 'MuiCardHeader' })(CardHeader);
