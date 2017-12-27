@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
 import DateTextField from '../_shared/DateTextField';
@@ -88,7 +88,7 @@ export default class ModalWrapper extends PureComponent {
     } = this.props;
 
     return (
-      <div>
+      <Fragment>
         <DateTextField
           value={value}
           format={format}
@@ -112,7 +112,7 @@ export default class ModalWrapper extends PureComponent {
         >
           {children}
         </ModalDialog>
-      </div>
+      </Fragment>
     );
   }
 }
