@@ -319,8 +319,7 @@ Snackbar.propTypes = {
    * Typically `onClose` is used to set state in the parent component,
    * which is used to control the `Snackbar` `open` prop.
    * The `reason` parameter can optionally be used to control the response to `onClose`,
-   * for example ignoring `clickaway`. If `autoHideDuration` is specified, this function
-   * will be called once the timer has expired.
+   * for example ignoring `clickaway`.
    *
    * @param {object} event The event source of the callback
    * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`

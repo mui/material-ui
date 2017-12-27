@@ -4,9 +4,15 @@ import kebabCase from 'lodash/kebabCase';
 import { pageToTitle } from './helpers';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/v1-beta';
+const PATH_REPLACE_REGEX = /\\/g;
+const PATH_SEPARATOR = '/';
+
+function normalizePath(path) {
+  return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
+}
 
 function generateHeader(reactAPI) {
-  return ['---', `filename: ${reactAPI.filename}`, '---'].join('\n');
+  return ['---', `filename: ${normalizePath(reactAPI.filename)}`, '---'].join('\n');
 }
 
 function getDeprecatedInfo(type) {
@@ -207,7 +213,9 @@ This property accepts the following keys:
 ${reactAPI.styles.classes.map(className => `- \`${className}\``).join('\n')}
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${reactAPI.filename})
+and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
+    reactAPI.filename,
+  )})
 for more detail.
 
 If using the \`overrides\` key of the theme as documented
