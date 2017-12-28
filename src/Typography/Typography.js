@@ -101,7 +101,7 @@ Typography.propTypes = {
   /**
    * The content of the component.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */

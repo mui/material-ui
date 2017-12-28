@@ -13,7 +13,7 @@ filename: /src/Typography/Typography.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | align | enum:&nbsp;'inherit', 'left', 'center', 'right', 'justify'<br> | 'inherit' | Set the text-align on the component. |
-| <span style="color: #31a148">children *</span> | node |  | The content of the component. |
+| children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
 | color | enum:&nbsp;'inherit', 'primary', 'secondary', 'accent', 'error', 'default'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
 | component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. By default we map the type to a good default headline component. |

@@ -284,8 +284,10 @@ Snackbar.propTypes = {
     vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
   }),
   /**
-   * The number of milliseconds to wait before automatically dismissing.
-   * This behavior is disabled by default with the `null` value.
+   * The number of milliseconds to wait before automatically calling the
+   * `onClose` function. `onClose` should then set the state of the `open`
+   * prop to hide the Snackbar. This behavior is disabled by default with
+   * the `null` value.
    */
   autoHideDuration: PropTypes.number,
   /**

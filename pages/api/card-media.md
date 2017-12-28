@@ -13,7 +13,7 @@ filename: /src/Card/CardMedia.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | Component for rendering image. |
+| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | Component for rendering image. Either a string to use a DOM element or a component. |
 | image | string |  | Image to be displayed as a background image. Either `image` or `src` prop must be specified. Note that caller must specify height otherwise the image will not be visible. |
 | src | string |  | An alias for `image` property. Available only with media components. Media components: `video`, `audio`, `picture`, `iframe`, `img`. |
 

@@ -76,12 +76,14 @@ class TablePagination extends React.Component {
 
   render() {
     const {
+      backIconButtonProps,
       classes,
       colSpan: colSpanProp,
       component: Component,
       count,
       labelDisplayedRows,
       labelRowsPerPage,
+      nextIconButtonProps,
       onChangePage,
       onChangeRowsPerPage,
       page,
@@ -138,12 +140,17 @@ class TablePagination extends React.Component {
             })}
           </Typography>
           <div className={classes.actions}>
-            <IconButton onClick={this.handleBackButtonClick} disabled={page === 0}>
+            <IconButton
+              onClick={this.handleBackButtonClick}
+              disabled={page === 0}
+              {...backIconButtonProps}
+            >
               {themeDirection === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
             </IconButton>
             <IconButton
               onClick={this.handleNextButtonClick}
               disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+              {...nextIconButtonProps}
             >
               {themeDirection === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
             </IconButton>
@@ -155,6 +162,10 @@ class TablePagination extends React.Component {
 }
 
 TablePagination.propTypes = {
+  /**
+   * Properties applied to the back arrow `IconButton` component.
+   */
+  backIconButtonProps: PropTypes.object,
   /**
    * Useful to extend the style applied to components.
    */
@@ -181,6 +192,10 @@ TablePagination.propTypes = {
    * object.
    */
   labelRowsPerPage: PropTypes.node,
+  /**
+   * Properties applied to the next arrow `IconButton` component.
+   */
+  nextIconButtonProps: PropTypes.object,
   /**
    * Callback fired when the page is changed.
    *

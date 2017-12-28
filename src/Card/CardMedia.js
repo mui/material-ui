@@ -57,6 +57,7 @@ CardMedia.propTypes = {
   className: PropTypes.string,
   /**
    * Component for rendering image.
+   * Either a string to use a DOM element or a component.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
