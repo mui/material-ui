@@ -257,3 +257,7 @@ function GlobalCSSButton() {
 
 export default GlobalCSSButton;
 ```
+
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2zv5m0j37p)
+
+**Note:** JSS inject their styles at the bottom of the `<head />`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order) as we do in the demo.
