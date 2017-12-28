@@ -12,7 +12,7 @@ import Textarea from './Textarea';
 // @param value
 // @returns {boolean} true if string (including '') or number (including zero)
 export function hasValue(value) {
-  return value !== undefined && value !== null && !(Array.isArray(value) && value.length === 0);
+  return value != null && !(Array.isArray(value) && value.length === 0);
 }
 
 // Determine if field is dirty (a.k.a. filled).
@@ -232,13 +232,15 @@ class Input extends React.Component {
   };
 
   componentWillMount() {
-    if (this.isControlled()) {
+    this.isControlled = hasValue(this.props.value);
+
+    if (this.isControlled) {
       this.checkDirty(this.props);
     }
   }
 
   componentDidMount() {
-    if (!this.isControlled()) {
+    if (!this.isControlled) {
       this.checkDirty(this.input);
     }
   }
@@ -257,7 +259,7 @@ class Input extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    if (this.isControlled(nextProps)) {
+    if (this.isControlled) {
       this.checkDirty(nextProps);
     } // else performed in the onChange
 
@@ -298,7 +300,7 @@ class Input extends React.Component {
   };
 
   handleChange = (event: SyntheticInputEvent<HTMLElement>) => {
-    if (!this.isControlled()) {
+    if (!this.isControlled) {
       this.checkDirty(this.input);
     }
 
@@ -316,14 +318,6 @@ class Input extends React.Component {
       this.props.inputProps.ref(node);
     }
   };
-
-  // A controlled input accepts its current value as a prop.
-  //
-  // @see https://facebook.github.io/react/docs/forms.html#controlled-components
-  // @returns {boolean} true if string (including '') or number (including zero)
-  isControlled(props = this.props) {
-    return hasValue(props.value);
-  }
 
   checkDirty(obj) {
     const { muiFormControl } = this.context;

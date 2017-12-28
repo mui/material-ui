@@ -49,7 +49,7 @@ class InputAdornments extends React.Component {
         <FormControl fullWidth className={classes.formControl}>
           <InputLabel htmlFor="amount">Amount</InputLabel>
           <Input
-            id="amount"
+            id="adornment-amount"
             value={this.state.amount}
             onChange={this.handleChange('amount')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
@@ -60,7 +60,7 @@ class InputAdornments extends React.Component {
           aria-describedby="weight-helper-text"
         >
           <Input
-            id="weight"
+            id="adornment-weight"
             value={this.state.weight}
             onChange={this.handleChange('weight')}
             endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
@@ -70,7 +70,7 @@ class InputAdornments extends React.Component {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input
-            id="password"
+            id="adornment-password"
             type={this.state.showPassword ? 'text' : 'password'}
             value={this.state.password}
             onChange={this.handleChange('password')}
