@@ -136,14 +136,6 @@ describe('<Input />', () => {
   });
 
   describe('controlled', () => {
-    it('should fire the onDirty callback when moving from uncontrolled to controlled', () => {
-      const handleDirty = spy();
-      const wrapper = shallow(<Input value={undefined} onDirty={handleDirty} />);
-      assert.strictEqual(handleDirty.callCount, 0);
-      wrapper.setProps({ value: 'foo' });
-      assert.strictEqual(handleDirty.callCount, 1);
-    });
-
     ['', 0].forEach(value => {
       describe(`${typeof value} value`, () => {
         let wrapper;
@@ -158,7 +150,7 @@ describe('<Input />', () => {
 
         it('should check that the component is controlled', () => {
           const instance = wrapper.instance();
-          assert.strictEqual(instance.isControlled(), true, 'isControlled() should return true');
+          assert.strictEqual(instance.isControlled, true, 'isControlled should return true');
         });
 
         // don't test number because zero is a dirty state, whereas '' is not
@@ -211,7 +203,7 @@ describe('<Input />', () => {
 
     it('should check that the component is uncontrolled', () => {
       const instance = wrapper.instance();
-      assert.strictEqual(instance.isControlled(), false, 'isControlled() should return false');
+      assert.strictEqual(instance.isControlled, false, 'isControlled should return false');
     });
 
     it('should fire the onDirty callback when dirtied', () => {
@@ -343,32 +335,32 @@ describe('<Input />', () => {
     });
 
     it('should not call checkDirty if controlled', () => {
-      instance.isControlled = () => true;
+      instance.isControlled = true;
       instance.componentDidMount();
       assert.strictEqual(instance.checkDirty.callCount, 0);
     });
 
     it('should call checkDirty if controlled', () => {
-      instance.isControlled = () => false;
+      instance.isControlled = false;
       instance.componentDidMount();
       assert.strictEqual(instance.checkDirty.callCount, 1);
     });
 
     it('should call checkDirty with input value', () => {
-      instance.isControlled = () => false;
+      instance.isControlled = false;
       instance.input = 'woofinput';
       instance.componentDidMount();
       assert.strictEqual(instance.checkDirty.calledWith(instance.input), true);
     });
 
     it('should call or not call checkDirty consistently', () => {
-      instance.isControlled = () => true;
+      instance.isControlled = true;
       instance.componentDidMount();
       assert.strictEqual(instance.checkDirty.callCount, 0);
-      instance.isControlled = () => false;
+      instance.isControlled = false;
       instance.componentDidMount();
       assert.strictEqual(instance.checkDirty.callCount, 1);
-      instance.isControlled = () => true;
+      instance.isControlled = true;
       instance.componentDidMount();
       assert.strictEqual(instance.checkDirty.callCount, 1);
     });
