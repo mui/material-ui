@@ -118,7 +118,7 @@ class ResponsiveDrawer extends React.Component {
               {drawer}
             </Drawer>
           </Hidden>
-          <Hidden mdDown implementation="css">
+          <Hidden smDown implementation="css">
             <Drawer
               type="permanent"
               open

@@ -37,7 +37,7 @@ export const styles = theme => ({
     justifyContent: 'center',
   },
   buttonAuto: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
   },

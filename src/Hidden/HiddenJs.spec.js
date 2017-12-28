@@ -69,8 +69,7 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      isHidden(['sm', 'md', 'lg', 'xl'], 'Down', 'xs');
-      isVisible(['xs'], 'Down', 'xs');
+      isHidden(['xs', 'sm', 'md', 'lg', 'xl'], 'Down', 'xs');
     });
 
     describe('only', () => {
@@ -86,8 +85,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      isHidden(['md', 'lg', 'xl'], 'Down', 'sm');
-      isVisible(['xs', 'sm'], 'Down', 'sm');
+      isHidden(['sm', 'md', 'lg', 'xl'], 'Down', 'sm');
+      isVisible(['xs'], 'Down', 'sm');
     });
 
     describe('only', () => {
@@ -103,8 +102,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      isHidden(['lg', 'xl'], 'Down', 'md');
-      isVisible(['xs', 'sm', 'md'], 'Down', 'md');
+      isHidden(['md', 'lg', 'xl'], 'Down', 'md');
+      isVisible(['xs', 'sm'], 'Down', 'md');
     });
 
     describe('only', () => {
@@ -120,8 +119,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      isHidden(['xl'], 'Down', 'lg');
-      isVisible(['xs', 'sm', 'md', 'lg'], 'Down', 'lg');
+      isHidden(['lg', 'xl'], 'Down', 'lg');
+      isVisible(['xs', 'sm', 'md'], 'Down', 'lg');
     });
 
     describe('only', () => {
@@ -136,7 +135,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      isVisible(['xs', 'sm', 'md', 'lg', 'xl'], 'Down', 'xl');
+      isHidden(['xl'], 'Down', 'xl');
+      isVisible(['xs', 'sm', 'md', 'lg'], 'Down', 'xl');
     });
 
     describe('only', () => {

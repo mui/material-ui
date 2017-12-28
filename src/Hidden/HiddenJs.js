@@ -97,7 +97,7 @@ HiddenJs.propTypes = {
    */
   initialWidth: PropTypes.number,
   /**
-   * If true, screens before this size and down will be hidden.
+   * If true, screens this size and down will be hidden.
    */
   lgDown: PropTypes.bool,
   /**
@@ -105,7 +105,7 @@ HiddenJs.propTypes = {
    */
   lgUp: PropTypes.bool,
   /**
-   * If true, screens before this size and down will be hidden.
+   * If true, screens this size and down will be hidden.
    */
   mdDown: PropTypes.bool,
   /**
@@ -120,7 +120,7 @@ HiddenJs.propTypes = {
     PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
   ]),
   /**
-   * If true, screens before this size and down will be hidden.
+   * If true, screens this size and down will be hidden.
    */
   smDown: PropTypes.bool,
   /**
@@ -133,7 +133,7 @@ HiddenJs.propTypes = {
    */
   width: PropTypes.string.isRequired,
   /**
-   * If true, screens before this size and down will be hidden.
+   * If true, screens this size and down will be hidden.
    */
   xlDown: PropTypes.bool,
   /**
@@ -141,7 +141,7 @@ HiddenJs.propTypes = {
    */
   xlUp: PropTypes.bool,
   /**
-   * If true, screens before this size and down will be hidden.
+   * If true, screens this size and down will be hidden.
    */
   xsDown: PropTypes.bool,
   /**
