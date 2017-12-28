@@ -1,6 +1,95 @@
 # Interoperability with Style Libraries
 
-This guide aims to help Material UI users to use Style Libraries like Glamorous, Styled-components or CSS Modules.
+While it is simple to use the JSS based styling solution provided by Material-UI to style your application, 
+it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries. 
+
+This guide aims to document the most popular alternatives, but you should find that the principals
+applied here can be adapted to other libraries.
+
+We have provided examples for the following styling solutions:
+
+- [Raw CSS](#raw-css)
+- [Global CSS](#global-css)
+- [React JSS](#react-jss)
+- [CSS Modules](#css-modules)
+- [Styled Components](#styled-components)
+- [Glamorous](#glamorous)
+- [Glamor](#glamor)
+
+## Raw CSS
+
+Nothing fancy, just plain old CSS. Why reinventing the wheel when it has been working for decades?
+
+**RawCSSButton.css**
+```css
+.button {
+  background-color: grey;
+  color: pink;
+  width: 240px;
+}
+```
+
+**RawCSSButton.js**
+```jsx
+import React from 'react';
+import Button from 'material-ui/Button';
+
+function RawCSSButton() {
+  return (
+    <div>
+      <Button color="accent" raised>
+        Material-UI
+      </Button>
+      <Button color="accent" raised className="button">
+        Raw CSS
+      </Button>
+    </div>
+  );
+}
+
+export default RawCSSButton;
+```
+
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vmv2mz9785)
+
+**Note:** JSS injects its styles at the bottom of the `<head />`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order) as we do in the demo.
+
+## Global CSS
+
+Explicitly providing the class names to the component is too much effort?
+Rest assured, we provide an option to make the class names **deterministic** for quick
+prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
+
+**GlobalCSSButton.css**
+```css
+.MuiButton-root {
+  background-color: grey;
+  color: pink;
+  width: 240px;
+}
+```
+
+**GlobalCSSButton.js**
+```jsx
+import React from 'react';
+import Button from 'material-ui/Button';
+
+function GlobalCSSButton() {
+  return (
+    <div>
+      <Button color="accent" raised>
+        Global CSS
+      </Button>
+    </div>
+  );
+}
+
+export default GlobalCSSButton;
+```
+
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2zv5m0j37p)
+
+**Note:** JSS injects its styles at the bottom of the `<head />`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order) as we do in the demo.
 
 ## React JSS
 
@@ -107,7 +196,7 @@ export default StyledComponentsButton;
 ![stars](https://img.shields.io/github/stars/paypal/glamorous.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/glamorous.svg?)
 
-A clean way to apply styles to Material-UI components with glamorous It's just passing our component as a glamorous param. We are gona take the [raised button example](/demos/buttons/#raised-buttons) from Material-UI documentation and use glamorous to style it:
+A clean way to apply styles to Material-UI components with glamorous It's just passing our component as a glamorous param. We're going to take the [raised button example](/demos/buttons/#raised-buttons) from Material-UI documentation and use glamorous to style it:
 
 ```jsx
 import React from 'react';
@@ -186,78 +275,3 @@ export default GlamorButton;
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ov5l1j2j8z)
 
 **Note:** Both Glamor and JSS inject their styles at the bottom of the `<head />`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order) as we do in the demo.
-
-## Raw CSS
-
-Nothing fancy, just plain old CSS. Why reinventing the wheel when it has been working for decades?
-
-**RawCSSButton.css**
-```css
-.button {
-  background-color: grey;
-  color: pink;
-  width: 240px;
-}
-```
-
-**RawCSSButton.js**
-```jsx
-import React from 'react';
-import Button from 'material-ui/Button';
-
-function RawCSSButton() {
-  return (
-    <div>
-      <Button color="accent" raised>
-        Material-UI
-      </Button>
-      <Button color="accent" raised className="button">
-        Raw CSS
-      </Button>
-    </div>
-  );
-}
-
-export default RawCSSButton;
-```
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vmv2mz9785)
-
-**Note:** JSS inject their styles at the bottom of the `<head />`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order) as we do in the demo.
-
-## Global CSS
-
-Explicitly providing the class names to the component is too much effort?
-Rest assured, we provide an option to make the class names **deterministic** for quick
-prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
-
-**GlobalCSSButton.css**
-```css
-.MuiButton-root {
-  background-color: grey;
-  color: pink;
-  width: 240px;
-}
-```
-
-**GlobalCSSButton.js**
-```jsx
-import React from 'react';
-import Button from 'material-ui/Button';
-
-function GlobalCSSButton() {
-  return (
-    <div>
-      <Button color="accent" raised>
-        Global CSS
-      </Button>
-    </div>
-  );
-}
-
-export default GlobalCSSButton;
-```
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2zv5m0j37p)
-
-**Note:** JSS inject their styles at the bottom of the `<head />`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order) as we do in the demo.
