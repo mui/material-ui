@@ -89,7 +89,7 @@ class TemporaryDrawer extends React.Component {
             {fullList}
           </div>
         </Drawer>
-        <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
+        <Drawer anchor="right" open={this.state.right} onRequestClose={this.toggleDrawer('right', false)}>
           <div
             tabIndex={0}
             role="button"
