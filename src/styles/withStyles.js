@@ -186,6 +186,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
         const sheet = this.jss.createStyleSheet(styles, {
           meta,
+          classNamePrefix: meta,
           flip: typeof flip === 'boolean' ? flip : theme.direction === 'rtl',
           link: false,
           ...this.sheetOptions,

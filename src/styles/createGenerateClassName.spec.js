@@ -14,18 +14,35 @@ describe('createGenerateClassName', () => {
     });
   });
 
-  it('should escape correctly', () => {
+  it('should escape parenthesis', () => {
     const generateClassName = createGenerateClassName();
     assert.strictEqual(
       generateClassName(
         { key: 'root' },
         {
           options: {
-            meta: 'pure(MuiButton)',
+            classNamePrefix: 'pure(MuiButton)',
+            jss: {},
           },
         },
       ),
       'pure-MuiButton--root-1',
+    );
+  });
+
+  it('should escape spaces', () => {
+    const generateClassName = createGenerateClassName();
+    assert.strictEqual(
+      generateClassName(
+        { key: 'root' },
+        {
+          options: {
+            classNamePrefix: 'foo bar',
+            jss: {},
+          },
+        },
+      ),
+      'foo-bar-root-1',
     );
   });
 
@@ -41,7 +58,8 @@ describe('createGenerateClassName', () => {
           },
           {
             options: {
-              meta: 'MuiButton',
+              classNamePrefix: 'MuiButton',
+              jss: {},
             },
           },
         ),
@@ -54,7 +72,8 @@ describe('createGenerateClassName', () => {
           },
           {
             options: {
-              meta: 'Button',
+              classNamePrefix: 'Button',
+              jss: {},
             },
           },
         ),
@@ -78,7 +97,7 @@ describe('createGenerateClassName', () => {
   describe('formatting', () => {
     it('should take the sheet meta in development if available', () => {
       const rule = { key: 'root' };
-      const styleSheet = { options: { meta: 'Button' } };
+      const styleSheet = { options: { classNamePrefix: 'Button' } };
       const generateClassName = createGenerateClassName();
       assert.strictEqual(generateClassName(rule, styleSheet), 'Button-root-1');
     });
