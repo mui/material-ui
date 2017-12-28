@@ -96,7 +96,7 @@ const pages = [
       },
       {
         pathname: '/guides/interoperability',
-        title: 'Interoperability',
+        title: 'Style Library Interoperability',
       },
     ],
   },
