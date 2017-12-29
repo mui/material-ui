@@ -92,13 +92,13 @@ export default class DateTextField extends PureComponent {
       format,
       invalidDateMessage,
       clearable,
-      onChange,
       onClear,
     } = this.props;
 
     if (clearable && e.target.value === '') {
-      onChange(null);
-      if (onClear) {
+      if (this.props.value === null) {
+        this.setState(this.updateState());
+      } else if (onClear) {
         onClear();
       }
 
@@ -115,7 +115,7 @@ export default class DateTextField extends PureComponent {
       error,
     }, () => {
       if (!error && newValue.format('LLLL') !== oldValue.format('LLLL')) {
-        onChange(newValue, true);
+        this.props.onChange(newValue, true);
       }
     });
   }

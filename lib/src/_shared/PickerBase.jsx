@@ -77,7 +77,7 @@ export default class PickerBase extends PureComponent {
 
   handleTextFieldChange = (date) => {
     if (date === null) {
-      this.props.onChange(null);
+      this.handleClear();
     } else {
       this.setState({ date }, this.handleAccept);
     }
