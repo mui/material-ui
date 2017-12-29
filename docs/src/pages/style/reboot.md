@@ -38,5 +38,5 @@ This ensures that the declared width of the element is never exceeded due to pad
 
 ### Typography
 
-- We enable the font antialiasing for better display of the Roboto font.
+- Font antialiasing is enabled for better display of the Roboto font.
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default).
