@@ -48,6 +48,7 @@ export { default as Popover } from './Popover';
 export { default as Portal } from './Portal';
 export { CircularProgress, LinearProgress } from './Progress';
 export { default as Radio, RadioGroup } from './Radio';
+export { default as Reboot } from './Reboot';
 export { default as Select } from './Select';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
 export { default as Stepper, Step, StepButton, StepContent, StepLabel } from './Stepper';

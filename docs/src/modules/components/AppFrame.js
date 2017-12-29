@@ -6,6 +6,7 @@ import NProgress from 'nprogress';
 import Router from 'next/router';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
+import Reboot from 'material-ui/Reboot';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
@@ -44,21 +45,6 @@ Router.onRouteChangeError = () => {
 
 const styles = theme => ({
   '@global': {
-    html: {
-      background: theme.palette.background.default,
-      WebkitFontSmoothing: 'antialiased', // Antialiasing.
-      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-      boxSizing: 'border-box',
-      '@media print': {
-        background: theme.palette.common.white,
-      },
-    },
-    '*, *:before, *:after': {
-      boxSizing: 'inherit',
-    },
-    body: {
-      margin: 0,
-    },
     '#nprogress': {
       pointerEvents: 'none',
       '& .bar': {
@@ -193,6 +179,7 @@ class AppFrame extends React.Component {
 
     return (
       <div className={classes.root}>
+        <Reboot />
         <AppBar className={appBarClassName}>
           <Toolbar>
             <IconButton

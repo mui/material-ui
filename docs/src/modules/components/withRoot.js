@@ -104,6 +104,9 @@ const pages = [
     pathname: '/style',
     children: [
       {
+        pathname: '/style/reboot',
+      },
+      {
         pathname: '/style/color',
       },
       {

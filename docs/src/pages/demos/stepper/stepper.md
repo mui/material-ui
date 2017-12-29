@@ -26,9 +26,9 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 ## Horizontal Linear
 
-The `<Stepper>` can be controlled by passing the current step index (zero-based) as the `activeStep` property. `<Stepper>` orientation is set using the `orientation` property.
+The `Stepper` can be controlled by passing the current step index (zero-based) as the `activeStep` property. `Stepper` orientation is set using the `orientation` property.
 
-This example also shows the use of an optional step by placing the `optional` property on the second `<Step>` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
+This example also shows the use of an optional step by placing the `optional` property on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
 
 {{"demo": "pages/demos/stepper/HorizontalLinearStepper.js"}}
 
@@ -38,7 +38,7 @@ Non-linear steppers allow users to enter a multi-step flow at any point.
 
 This example is similar to the regular horizontal stepper, except steps are no longer automatically set to `disabled={true}` based on the `activeStep` property.
 
-We've used the `<StepButton>` here to demonstrate clickable step labels as well as setting the `completed`
+We've used the `StepButton` here to demonstrate clickable step labels as well as setting the `completed`
 flag however because steps can be accessed in a non-linear fashion it's up to your own implementation to
 determine when all steps are completed (or even if they need to be completed).
 
@@ -46,7 +46,7 @@ determine when all steps are completed (or even if they need to be completed).
 
 ## Horizontal Linear - Alternative Label
 
-Labels can be placed below the step icon by setting the `alternativeLabel` property on the `<Stepper>` component.
+Labels can be placed below the step icon by setting the `alternativeLabel` property on the `Stepper` component.
 
 {{"demo": "pages/demos/stepper/HorizontalLinearAlternativeLabelStepper.js"}}
 
