@@ -10,9 +10,13 @@ let generatorCounter = 0;
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
 export default function createGenerateClassName(options = {}) {
   const { dangerouslyUseGlobalCSS = false } = options;
-  const escapeRegex = /([[\].#*$><+~=|^:(),"'`])/g;
+  const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
   let ruleCounter = 0;
 
+  // HMR can lead us to instantiating many class name generator.
+  // The warning is only triggered in production.
+  // We expect people from instantiating a class name generator per new request on the server.
+  // The warning is only triggered client side.
   if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
     generatorCounter += 1;
 
@@ -40,17 +44,17 @@ export default function createGenerateClassName(options = {}) {
 
     // Code branch the whole block at the expense of more code.
     if (dangerouslyUseGlobalCSS) {
-      if (styleSheet && styleSheet.options.meta) {
-        let meta = styleSheet.options.meta;
+      if (styleSheet && styleSheet.options.classNamePrefix) {
+        let classNamePrefix = styleSheet.options.classNamePrefix;
         // Sanitize the string as will be used to prefix the generated class name.
-        meta = meta.replace(escapeRegex, '-');
+        classNamePrefix = classNamePrefix.replace(escapeRegex, '-');
 
-        if (meta.match(/^Mui/)) {
-          return `${meta}-${rule.key}`;
+        if (classNamePrefix.match(/^Mui/)) {
+          return `${classNamePrefix}-${rule.key}`;
         }
 
         if (process.env.NODE_ENV !== 'production') {
-          return `${meta}-${rule.key}-${ruleCounter}`;
+          return `${classNamePrefix}-${rule.key}-${ruleCounter}`;
         }
       }
 
@@ -65,12 +69,12 @@ export default function createGenerateClassName(options = {}) {
       return `c${ruleCounter}`;
     }
 
-    if (styleSheet && styleSheet.options.meta) {
-      let meta = styleSheet.options.meta;
+    if (styleSheet && styleSheet.options.classNamePrefix) {
+      let classNamePrefix = styleSheet.options.classNamePrefix;
       // Sanitize the string as will be used to prefix the generated class name.
-      meta = meta.replace(escapeRegex, '-');
+      classNamePrefix = classNamePrefix.replace(escapeRegex, '-');
 
-      return `${meta}-${rule.key}-${ruleCounter}`;
+      return `${classNamePrefix}-${rule.key}-${ruleCounter}`;
     }
 
     return `${rule.key}-${ruleCounter}`;
