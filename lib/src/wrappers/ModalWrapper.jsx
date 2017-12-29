@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
 import DateTextField from '../_shared/DateTextField';
@@ -11,11 +11,14 @@ export default class ModalWrapper extends PureComponent {
     format: PropTypes.string,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
+    onClear: PropTypes.func,
     dialogContentClassName: PropTypes.string,
     invalidLabel: PropTypes.string,
     labelFunc: PropTypes.func,
     okLabel: PropTypes.string,
     cancelLabel: PropTypes.string,
+    clearLabel: PropTypes.string,
+    clearable: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -25,9 +28,12 @@ export default class ModalWrapper extends PureComponent {
     labelFunc: undefined,
     okLabel: undefined,
     cancelLabel: undefined,
+    clearLabel: undefined,
     format: undefined,
     onAccept: undefined,
     onDismiss: undefined,
+    onClear: undefined,
+    clearable: true,
   }
 
   state = {
@@ -56,6 +62,13 @@ export default class ModalWrapper extends PureComponent {
     }
   }
 
+  handleClear = () => {
+    this.close();
+    if (this.props.onClear) {
+      this.props.onClear();
+    }
+  }
+
   render() {
     const {
       value,
@@ -64,15 +77,18 @@ export default class ModalWrapper extends PureComponent {
       dialogContentClassName,
       onAccept,
       onDismiss,
+      onClear,
       invalidLabel,
       labelFunc,
       okLabel,
       cancelLabel,
+      clearLabel,
+      clearable,
       ...other
     } = this.props;
 
     return (
-      <div>
+      <Fragment>
         <DateTextField
           value={value}
           format={format}
@@ -85,15 +101,18 @@ export default class ModalWrapper extends PureComponent {
 
         <ModalDialog
           open={this.state.open}
+          onClear={this.handleClear}
           onAccept={this.handleAccept}
           onDismiss={this.handleDismiss}
           dialogContentClassName={dialogContentClassName}
+          clearLabel={clearLabel}
           okLabel={okLabel}
           cancelLabel={cancelLabel}
+          clearable={clearable}
         >
           {children}
         </ModalDialog>
-      </div>
+      </Fragment>
     );
   }
 }

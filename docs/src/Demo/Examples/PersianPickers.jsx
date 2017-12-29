@@ -29,7 +29,7 @@ export default class BasicUsage extends Component {
           <DatePicker
             okLabel="تأیید"
             cancelLabel="لغو"
-            labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD')}
+            labelFunc={date => date === null ? '' : jMoment(date).format('jYYYY/jMM/jDD')}
             value={selectedDate}
             onChange={this.handleDateChange}
             animateYearScrolling={false}
@@ -45,7 +45,7 @@ export default class BasicUsage extends Component {
           <TimePicker
             okLabel="تأیید"
             cancelLabel="لغو"
-            labelFunc={date => jMoment(date).format('hh:mm A')}
+            labelFunc={date => date === null ? '' : jMoment(date).format('hh:mm A')}
             value={selectedDate}
             onChange={this.handleDateChange}
             utils={jalaliUtils}
@@ -60,7 +60,7 @@ export default class BasicUsage extends Component {
           <DateTimePicker
             okLabel="تأیید"
             cancelLabel="لغو"
-            labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
+            labelFunc={date => date === null ? '' : jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
             value={selectedDate}
             onChange={this.handleDateChange}
             utils={jalaliUtils}

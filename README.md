@@ -97,10 +97,12 @@ minDate | date | '1900-01-01' | Minimum selectable date
 maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
-invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
+invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
+emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
 okLabel | string | 'OK' | The label for the ok button
-cancelLabel | string | 'CANCEL' | The label for the cancel button
-labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
+cancelLabel | string | 'Cancel' | The label for the cancel button
+clearLabel | string | 'Clear' | The label for the clear button
+labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
@@ -108,6 +110,7 @@ shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable c
 keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node, string | 'event' | Keyboard adornment icon
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
+clearable | boolean | true | If `false`, clear button is not displayed
 
 #### Timepicker
 Prop | Type | Default | Definition
@@ -117,14 +120,17 @@ format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept time on selection
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
-invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
+invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
+emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
 okLabel | string | 'OK' | The label for the ok button
-cancelLabel | string | 'CANCEL' | The label for the cancel button
-labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
+cancelLabel | string | 'Cancel' | The label for the cancel button
+clearLabel | string | 'Clear' | The label for the clear button
+labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 ampm | boolean | true | 12h/24h view for hour selection clock
 keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node, string | 'event' | Keyboard adornment icon
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
+clearable | boolean | true | If `false`, clear button is not displayed
 
 #### DateTimepicker
 Prop | Type | Default | Definition
@@ -142,10 +148,12 @@ minDate | date | '1900-01-01' | Minimum selectable date
 maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChangeg
-invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
+invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
+emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
 okLabel | string | 'OK' | The label for the ok button
-cancelLabel | string | 'CANCEL' | The label for the cancel button
-labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
+cancelLabel | string | 'Cancel' | The label for the cancel button
+clearLabel | string | 'Clear' | The label for the clear button
+labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
@@ -157,6 +165,7 @@ keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node, string | 'event' | Keyboard adornment icon
 invalidDateMessage | string | 'Invalid Date Format' | Message, appearing when date cannot be parsed
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
+clearable | boolean | true | If `false`, clear button is not displayed
 
 ### l10n
 For l10n texts we're currently relying on moment which is stateful. To change the locale you have to import your langauge specific files an change the locale manually via `moment.locale(language)`.
@@ -186,7 +195,7 @@ jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
 <DateTimePicker
   okLabel="تأیید"
   cancelLabel="لغو"
-  labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
+  labelFunc={date => date === null ? '' : jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
   value={selectedDate}
   onChange={this.handleDateChange}
   utils={jalaliUtils}

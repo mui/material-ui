@@ -96,6 +96,7 @@ export default class DatePickerWrapper extends PickerBase {
         ref={(node) => { this.wrapper = node; }}
         value={value}
         format={format}
+        onClear={this.handleClear}
         onAccept={this.handleAccept}
         onChange={this.handleTextFieldChange}
         onDismiss={this.handleDismiss}

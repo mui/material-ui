@@ -22,6 +22,7 @@ export default class DateTextField extends PureComponent {
     onChange: PropTypes.func.isRequired,
     onClick: PropTypes.func.isRequired,
     invalidLabel: PropTypes.string,
+    emptyLabel: PropTypes.string,
     labelFunc: PropTypes.func,
     keyboard: PropTypes.bool,
     InputProps: PropTypes.shape(),
@@ -32,6 +33,7 @@ export default class DateTextField extends PureComponent {
   static defaultProps = {
     disabled: false,
     invalidLabel: 'Unknown',
+    emptyLabel: '',
     value: new Date(),
     labelFunc: undefined,
     format: undefined,
@@ -47,13 +49,19 @@ export default class DateTextField extends PureComponent {
       value,
       format,
       invalidLabel,
+      emptyLabel,
       labelFunc,
     } = props;
 
+    const isEmpty = value === null;
     const date = moment(value);
 
     if (labelFunc) {
-      return labelFunc(date, invalidLabel);
+      return labelFunc(isEmpty ? null : date, invalidLabel);
+    }
+
+    if (isEmpty) {
+      return emptyLabel;
     }
 
     return date.isValid()
@@ -106,6 +114,12 @@ export default class DateTextField extends PureComponent {
     this.openPicker(e);
   }
 
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.openPicker(e);
+    }
+  }
+
   openPicker = (e) => {
     const { disabled, onClick } = this.props;
 
@@ -120,6 +134,8 @@ export default class DateTextField extends PureComponent {
       disabled,
       onClick,
       invalidLabel,
+      invalidDateMessage,
+      emptyLabel,
       labelFunc,
       keyboard,
       value,
@@ -132,7 +148,10 @@ export default class DateTextField extends PureComponent {
 
     const localInputProps = {
       inputComponent: MaskedInput,
-      inputProps: { mask },
+      inputProps: {
+        mask: value === null ? null : mask,
+        readOnly: !keyboard,
+      },
     };
 
     if (keyboard) {
@@ -145,11 +164,10 @@ export default class DateTextField extends PureComponent {
 
     return (
       <TextField
-        readOnly
         onClick={this.handleFocus}
         error={!!error}
         helperText={error}
-        onKeyPress={this.handleChange}
+        onKeyPress={this.handleKeyPress}
         onBlur={e => e.preventDefault() && e.stopPropagation()}
         disabled={disabled}
         value={displayValue}
