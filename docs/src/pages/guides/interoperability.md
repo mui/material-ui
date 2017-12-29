@@ -58,7 +58,7 @@ export default RawCSSButton;
 
 Explicitly providing the class names to the component is too much effort?
 Rest assured, we provide an option to make the class names **deterministic** for quick
-prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
+prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js#global-css).
 
 **GlobalCSSButton.css**
 ```css
