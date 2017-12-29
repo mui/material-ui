@@ -111,15 +111,7 @@ function generatePropType(type) {
 
     case 'union':
     case 'enum': {
-      let values;
-      if (type.raw) {
-        // flow union
-        values = type.raw.split('|').map(v => v.trim());
-      } else {
-        values = type.value.map(v => v.value || v.name);
-      }
-
-      values = values.map(value => {
+      let values = type.value.map(v => v.value || v.name).map(value => {
         if (typeof value === 'string') {
           return escapeCell(value);
         }
