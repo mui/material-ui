@@ -69,10 +69,8 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || withTheme || typeof name === 'string';
 
-  if (stylesCreator.options.index === undefined) {
-    indexCounter += 1;
-    stylesCreator.options.index = indexCounter;
-  }
+  indexCounter += 1;
+  stylesCreator.options.index = indexCounter;
 
   warning(
     indexCounter < 0,
@@ -86,10 +84,9 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     constructor(props, context) {
       super(props, context);
 
-      const { muiThemeProviderOptions } = this.context;
-
       this.jss = this.context[ns.jss] || jss;
 
+      const { muiThemeProviderOptions } = this.context;
       if (muiThemeProviderOptions) {
         if (muiThemeProviderOptions.sheetsManager) {
           this.sheetsManager = muiThemeProviderOptions.sheetsManager;

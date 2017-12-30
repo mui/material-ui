@@ -62,7 +62,7 @@ can implement optimizations for development and production.
 They are easy to debug in development and as short as possible in production:
 
 - development: `.MuiAppBar-root-12`
-- production: `.c12`
+- production: `.jss12`
 
 If you don't like this default behavior, you can change it.
 JSS relies on the concept of [class name generator](http://cssinjs.org/js-api/#generate-your-own-class-names).
@@ -184,11 +184,11 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
 It will be linked to the component.
 Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]):
-  - `options.withTheme` (Boolean [optional]): Provide the `theme` object to the component as a property. It's `false` by default.
+  - `options.withTheme` (Boolean [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
-    If the value isn't provided, we will try to fallback to the name of the component.
-  - `options.flip` (*Boolean* [optional]): When set to false, this sheet will opt-out of `rtl` transformation.
-  - The other keys are forwarded to the options argument of [jss.createStyleSheet()](http://cssinjs.org/js-api/#create-style-sheet).
+    If the value isn't provided, it will try to fallback to the name of the component.
+  - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/js-api/#create-style-sheet).
 
 #### Returns
 
@@ -242,7 +242,8 @@ A function which returns a class name generator function.
 #### Arguments
 
 1. `options` (*Object* [optional]):
-  - `options.dangerouslyUseGlobalCSS` (Boolean [optional]): Makes the Material-UI class names deterministic. It's `false` by default.
+  - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
+  - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
 
 #### Returns
 
@@ -258,6 +259,7 @@ import { createGenerateClassName } from 'material-ui/styles';
 
 const generateClassName = createGenerateClassName({
   dangerouslyUseGlobalCSS: true,
+  productionPrefix: 'c',
 });
 const jss = create(preset());
 

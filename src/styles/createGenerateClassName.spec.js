@@ -140,7 +140,7 @@ describe('createGenerateClassName', () => {
       it('should output a short representation', () => {
         const rule = { key: 'root' };
         const generateClassName = createGenerateClassName();
-        assert.strictEqual(generateClassName(rule), 'c1');
+        assert.strictEqual(generateClassName(rule), 'jss1');
       });
 
       it('should work with global CSS', () => {
@@ -148,7 +148,7 @@ describe('createGenerateClassName', () => {
         const generateClassName = createGenerateClassName({
           dangerouslyUseGlobalCSS: true,
         });
-        assert.strictEqual(generateClassName(rule), 'c1');
+        assert.strictEqual(generateClassName(rule), 'jss1');
       });
 
       it('should warn', () => {

@@ -9,15 +9,21 @@ let generatorCounter = 0;
 // It's inspired by
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
 export default function createGenerateClassName(options = {}) {
-  const { dangerouslyUseGlobalCSS = false } = options;
+  const { dangerouslyUseGlobalCSS = false, productionPrefix = 'jss' } = options;
   const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
   let ruleCounter = 0;
 
-  // HMR can lead us to instantiating many class name generator.
-  // The warning is only triggered in production.
-  // We expect people from instantiating a class name generator per new request on the server.
-  // The warning is only triggered client side.
-  if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
+  // - HMR can lead to many class name generators being instantiated,
+  // so the warning is only triggered in production.
+  // - We expect a class name generator to be instantiated per new request on the server,
+  // so the warning is only triggered client side.
+  // - People can get away with multiple class name generator
+  // by modifying the `productionPrefix`.
+  if (
+    process.env.NODE_ENV === 'production' &&
+    typeof window !== 'undefined' &&
+    productionPrefix === 'jss'
+  ) {
     generatorCounter += 1;
 
     if (generatorCounter > 2) {
@@ -45,36 +51,36 @@ export default function createGenerateClassName(options = {}) {
     // Code branch the whole block at the expense of more code.
     if (dangerouslyUseGlobalCSS) {
       if (styleSheet && styleSheet.options.classNamePrefix) {
-        let classNamePrefix = styleSheet.options.classNamePrefix;
+        let prefix = styleSheet.options.classNamePrefix;
         // Sanitize the string as will be used to prefix the generated class name.
-        classNamePrefix = classNamePrefix.replace(escapeRegex, '-');
+        prefix = prefix.replace(escapeRegex, '-');
 
-        if (classNamePrefix.match(/^Mui/)) {
-          return `${classNamePrefix}-${rule.key}`;
+        if (prefix.match(/^Mui/)) {
+          return `${prefix}-${rule.key}`;
         }
 
         if (process.env.NODE_ENV !== 'production') {
-          return `${classNamePrefix}-${rule.key}-${ruleCounter}`;
+          return `${prefix}-${rule.key}-${ruleCounter}`;
         }
       }
 
       if (process.env.NODE_ENV === 'production') {
-        return `c${ruleCounter}`;
+        return `${productionPrefix}${ruleCounter}`;
       }
 
       return `${rule.key}-${ruleCounter}`;
     }
 
     if (process.env.NODE_ENV === 'production') {
-      return `c${ruleCounter}`;
+      return `${productionPrefix}${ruleCounter}`;
     }
 
     if (styleSheet && styleSheet.options.classNamePrefix) {
-      let classNamePrefix = styleSheet.options.classNamePrefix;
+      let prefix = styleSheet.options.classNamePrefix;
       // Sanitize the string as will be used to prefix the generated class name.
-      classNamePrefix = classNamePrefix.replace(escapeRegex, '-');
+      prefix = prefix.replace(escapeRegex, '-');
 
-      return `${classNamePrefix}-${rule.key}-${ruleCounter}`;
+      return `${prefix}-${rule.key}-${ruleCounter}`;
     }
 
     return `${rule.key}-${ruleCounter}`;

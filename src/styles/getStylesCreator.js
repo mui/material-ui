@@ -2,8 +2,10 @@ import warning from 'warning';
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 
 function getStylesCreator(stylesOrCreator) {
+  const themingEnabled = typeof stylesOrCreator === 'function';
+
   function create(theme, name) {
-    const styles = typeof stylesOrCreator === 'function' ? stylesOrCreator(theme) : stylesOrCreator;
+    const styles = themingEnabled ? stylesOrCreator(theme) : stylesOrCreator;
 
     if (!theme.overrides || !name || !theme.overrides[name]) {
       return styles;
@@ -28,10 +30,8 @@ function getStylesCreator(stylesOrCreator) {
 
   return {
     create,
-    options: {
-      index: undefined,
-    },
-    themingEnabled: typeof stylesOrCreator === 'function',
+    options: {},
+    themingEnabled,
   };
 }
 
