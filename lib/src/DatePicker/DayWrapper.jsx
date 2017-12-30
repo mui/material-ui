@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-class Day extends PureComponent {
+class DayWrapper extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     onSelect: PropTypes.func.isRequired,
@@ -34,4 +34,4 @@ class Day extends PureComponent {
   }
 }
 
-export default Day;
+export default DayWrapper;
