@@ -77,7 +77,6 @@ export default class ModalWrapper extends PureComponent {
       dialogContentClassName,
       onAccept,
       onDismiss,
-      onClear,
       invalidLabel,
       labelFunc,
       okLabel,
@@ -96,6 +95,7 @@ export default class ModalWrapper extends PureComponent {
           // onFocus={this.togglePicker} <- Currently not properly works with .blur() on TextField
           invalidLabel={invalidLabel}
           labelFunc={labelFunc}
+          clearable={clearable}
           {...other}
         />
 
