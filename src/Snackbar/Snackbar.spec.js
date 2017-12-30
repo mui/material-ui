@@ -47,6 +47,49 @@ describe('<Snackbar />', () => {
     });
   });
 
+  describe('Consecutive messages', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+    it('should allow for consecutive messages', () => {
+      const messageCount = 2;
+      let wrapper;
+      const handleCloseSpy = spy();
+      const handleClose = () => {
+        wrapper.setProps({ open: false }); // Parent state updated
+        handleCloseSpy();
+      };
+      const handleExitedSpy = spy();
+      const handleExited = () => {
+        handleExitedSpy();
+        if (handleExitedSpy.callCount <= messageCount) {
+          wrapper.setProps({ open: true });
+        }
+      };
+      const duration = 250;
+      wrapper = mount(
+        <Snackbar
+          open={false}
+          onClose={handleClose}
+          onExited={handleExited}
+          message="message"
+          autoHideDuration={duration}
+          transitionDuration={duration}
+        />,
+      );
+      wrapper.setProps({ open: true });
+      clock.tick(messageCount * (duration * 2));
+      assert.strictEqual(handleCloseSpy.callCount, messageCount);
+      assert.strictEqual(handleExitedSpy.callCount, messageCount);
+    });
+  });
+
   describe('prop: autoHideDuration', () => {
     let clock;
 

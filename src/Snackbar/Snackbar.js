@@ -110,7 +110,7 @@ class Snackbar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.open && this.state.exited) {
+    if (nextProps.open) {
       this.setState({ exited: false });
     }
   }
