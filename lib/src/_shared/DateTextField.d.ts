@@ -7,7 +7,7 @@ export interface DateTextFieldProps extends TextFieldProps {
     value: any;
     mask?: any;
     onChange: (date: object) => void;
-    onClear: (date: object) => void;
+    onClear: () => void;
     InputProps: any;
     keyboard?: boolean;
     disabled?: boolean;
