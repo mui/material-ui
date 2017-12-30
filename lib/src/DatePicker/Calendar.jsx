@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, IconButton } from 'material-ui';
+import { withStyles } from 'material-ui';
 
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
-import classnames from 'classnames';
 import CalendarHeader from './CalendarHeader';
 import DomainPropTypes from '../constants/prop-types';
 import * as defaultUtils from '../utils/utils';
 import DayWrapper from './DayWrapper';
+import Day from './Day';
 
 const moment = extendMoment(Moment);
 
@@ -91,7 +91,7 @@ export class Calendar extends Component {
 
   renderDays = (week) => {
     const {
-      classes, date, renderDay, utils,
+      date, renderDay, utils,
     } = this.props;
 
     const selectedDate = date.clone().startOf('day');
@@ -99,22 +99,18 @@ export class Calendar extends Component {
     const now = moment();
 
     return week.map((day) => {
-      // should be applied both for wrapper and button
       const disabled = this.shouldDisableDate(day);
-      const disabledClass = classnames({ [classes.disabled]: disabled });
       const dayInCurrentMonth = utils.getMonthNumber(day) === currentMonthNumber;
-      const isHidden = !dayInCurrentMonth;
-
-      const dayClass = classnames(classes.day, disabledClass, {
-        [classes.hidden]: isHidden,
-        [classes.current]: day.isSame(now, 'day'),
-        [classes.selected]: selectedDate.isSame(day, 'day'),
-      });
 
       let dayComponent = (
-        <IconButton className={dayClass} tabIndex={isHidden ? -1 : 0}>
-          <span> {utils.getDayText(day)} </span>
-        </IconButton>
+        <Day
+          current={day.isSame(now, 'day')}
+          hidden={!dayInCurrentMonth}
+          disabled={disabled}
+          selected={selectedDate.isSame(day, 'day')}
+        >
+          {utils.getDayText(day)}
+        </Day>
       );
 
       if (renderDay) {
@@ -161,31 +157,6 @@ const styles = theme => ({
   calendar: {
     height: 36 * 6,
     marginTop: theme.spacing.unit * 1.5,
-  },
-  hidden: {
-    opacity: 0,
-    pointerEvents: 'none',
-  },
-  day: {
-    width: 36,
-    height: 36,
-    fontSize: theme.typography.caption.fontSize,
-    margin: '0 2px',
-    color: theme.palette.text.primary,
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-  current: {
-    color: theme.palette.primary[500],
-    fontWeight: 600,
-  },
-  selected: {
-    color: theme.palette.common.white,
-    backgroundColor: theme.palette.primary[500],
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-  disabled: {
-    pointerEvents: 'none',
-    color: theme.palette.text.hint,
   },
   week: {
     display: 'flex',
