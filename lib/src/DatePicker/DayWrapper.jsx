@@ -5,12 +5,14 @@ class DayWrapper extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     onSelect: PropTypes.func.isRequired,
-    dayInCurrentMonth: PropTypes.bool,
     day: PropTypes.any.isRequired,
+    dayInCurrentMonth: PropTypes.bool,
+    disabled: PropTypes.bool,
   }
 
   static defaultProps = {
     dayInCurrentMonth: true,
+    disabled: false,
   }
 
   handleClick = () => {
@@ -19,12 +21,12 @@ class DayWrapper extends PureComponent {
 
   render() {
     const {
-      children, day, dayInCurrentMonth, onSelect, ...other
+      children, day, dayInCurrentMonth, disabled, onSelect, ...other
     } = this.props;
     return (
       <div
-        onClick={dayInCurrentMonth ? this.handleClick : undefined}
-        onKeyPress={dayInCurrentMonth ? this.handleClick : undefined}
+        onClick={dayInCurrentMonth && !disabled ? this.handleClick : undefined}
+        onKeyPress={dayInCurrentMonth && !disabled ? this.handleClick : undefined}
         role="presentation"
         {...other}
       >

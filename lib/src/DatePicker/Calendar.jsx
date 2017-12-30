@@ -100,7 +100,8 @@ export class Calendar extends Component {
 
     return week.map((day) => {
       // should be applied both for wrapper and button
-      const disabledClass = classnames({ [classes.disabled]: this.shouldDisableDate(day) });
+      const disabled = this.shouldDisableDate(day);
+      const disabledClass = classnames({ [classes.disabled]: disabled });
       const dayInCurrentMonth = utils.getMonthNumber(day) === currentMonthNumber;
       const isHidden = !dayInCurrentMonth;
 
@@ -125,6 +126,7 @@ export class Calendar extends Component {
           key={day.toString()}
           day={day}
           dayInCurrentMonth={dayInCurrentMonth}
+          disabled={disabled}
           onSelect={this.onDateSelect}
         >
           {dayComponent}
