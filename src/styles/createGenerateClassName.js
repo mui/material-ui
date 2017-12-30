@@ -17,7 +17,7 @@ export default function createGenerateClassName(options = {}) {
   // so the warning is only triggered in production.
   // - We expect a class name generator to be instantiated per new request on the server,
   // so the warning is only triggered client side.
-  // - People can get away with multiple class name generator
+  // - You can get away with having multiple class name generators
   // by modifying the `productionPrefix`.
   if (
     process.env.NODE_ENV === 'production' &&
