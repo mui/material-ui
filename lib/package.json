@@ -5,6 +5,7 @@
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "build/dist/material-ui-pickers.cjs.js",
   "module": "build/dist/material-ui-pickers.es.js",
+  "types": "./src/index.d.ts",
   "keywords": [
     "material-ui",
     "pickers",
