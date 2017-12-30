@@ -71,6 +71,7 @@ function Typography(props) {
     headlineMapping,
     noWrap,
     paragraph,
+    rootRef,
     type,
     ...other
   } = props;
@@ -90,7 +91,7 @@ function Typography(props) {
 
   const Component = componentProp || (paragraph ? 'p' : headlineMapping[type]) || 'span';
 
-  return <Component className={className} {...other} />;
+  return <Component className={className} ref={rootRef} {...other} />;
 }
 
 Typography.propTypes = {
@@ -138,6 +139,10 @@ Typography.propTypes = {
    * If `true`, the text will have a bottom margin.
    */
   paragraph: PropTypes.bool,
+  /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef: PropTypes.func,
   /**
    * Applies the theme typography styles.
    */
