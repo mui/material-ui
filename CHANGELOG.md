@@ -2,15 +2,116 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.26
+###### *Dec 30, 2017*
+
+Big thanks to the 12 contributors who made this release possible.
+
+Here are some highlights ✨:
+- @kgregory has made the breakpoint down behavior more intuitive. As of now, it's inclusive (#9632).
+- We have introduced a new component to kickstart an elegant, consistent, and simple baseline to build upon: `Reboot` (#9661).
+- The `Portal` and `Modal` components have been revamped to solve the core issues raised by the community (#9613). Those components are now documented.
+
+### Breaking change
+
+- [Portal] Second iteration on the component (#9613)
+
+Some properties have been renamed:
+
+```diff
+<Dialog
+- ignoreBackdropClick
+- ignoreEscapeKeyUp
++ disableBackdropClick
++ disableEscapeKeyDown
+```
+
+```diff
+<Modal
+- show
+- disableBackdrop
+- ignoreBackdropClick
+- ignoreEscapeKeyUp
+- modalManager
++ open
++ hideBackdrop
++ disableBackdropClick
++ disableEscapeKeyDown
++ manager
+```
+
+The zIndex object has been updated to match the usage.
+
+```diff
+  const zIndex = {
+-  mobileStepper: 900,
+-  menu: 1000,
++  mobileStepper: 1000,
+   appBar: 1100,
+-  drawerOverlay: 1200,
+-  navDrawer: 1300,
+-  dialogOverlay: 1400,
+-  dialog: 1500,
+-  layer: 2000,
+-  popover: 2100,
+-  snackbar: 2900,
+-  tooltip: 3000,
++  drawer: 1200,
++  modal: 1300,
++  snackbar: 1400,
++  tooltip: 1500,
+  };
+```
+
+- [breakpoint] Down properties are now inclusive (#9632) @kgregory
+  - `createBreakpoints.down()` is now inclusive of the specified breakpoint
+  - `isWidthDown()` is now inclusive of the specified breakpoint by default
+  - `<Hidden />` will include the breakpoints associated with its *Down* properties regardless of whether CSS or JS is used.
+
+#### Component Fixes / Enhancements
+
+- [TextField] Add inputProps back (#9604) @oliviertassinari
+- [TextField] Accessibility improvements (#9617) @cherniavskii
+- [ListItemText] Fix noWrap primary text ellipsis (#9631) @dr-js
+- [Typography] Remove children required constraint (#9633) @hendratommy
+- [CardHeader] Add component property (#9634) @oliviertassinari
+- [Snackbar] Clarify that autoHideDuration calls onClose (#9628) @evantrimboli
+- [Table] Add aria-label's to pagination left/right arrows (#9622) @gregnb
+- [Input] More predictible value behavior (#9647) @oliviertassinari
+- [styles] Make sure to escape whitespace (#9644) @jedwards1211
+- [Reboot] New component (#9661) @oliviertassinari
+- [Snackbar] Allow consecutive messages to display (#9670) @tkvw
+- [styles] Reduce the likeliness of conflict (#9671) @oliviertassinari
+- [typescript] Make Tabs onChange prop optional (#9668) @pelotom
+- [Avatar] Handle non-square images (#9672) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix AppBar and Demo button labels (#9607) @mbrookes
+- [docs] Fix 414 HTTP issue (#9635) @oliviertassinari
+- [docs] Update backers.md (#9636) @oliviertassinari
+- [docs] Add a missing codesandbox demo (#9657) @oliviertassinari
+- [docs] Interoperability guide: Fix grammar and rework structure (#9658) @mbrookes
+- [docs] Remove dead code in generateMarkdown (#9662) @oliviertassinari
+- [docs] Interop guide: change Global CSS link from API to description (#9664) @oliviertassinari
+- [docs] Add mui-datatables (#9667) @gregnb
+- [docs] Small tweaks (#9669) @oliviertassinari
+
+#### Core
+
+- [test] Document the ImageMagick / GraphicsMagick dependancy (#9608) @mbrookes
+- [typescript] re-declare `isMuiElement` and `isMuiComponent` as typeguard (#9630) @SSW-SCIENTIFIC
+- [core] Upgrade the dependencies (#9642) @oliviertassinari
+
 ## 1.0.0-beta.25
 ###### *Dec 22, 2017*
 
 Big thanks to the 16 contributors who made this release possible.
 
 Here are some highlights ✨:
-- 100% test coverage. Thanks @leMaik for the last mile #9596!
+- 100% test coverage. Thanks @leMaik for the last mile (#9596)!
 - The first introduction of Global CSS 😱.
-We have introduced a `dangerouslyUseGlobalCSS` option to the class name generator #9558.
+We have introduced a `dangerouslyUseGlobalCSS` option to the class name generator (#9558).
 We discourage people from using this option in production.
 However, it can be a quick escape hatch when prototyping.
 It's making the class names predictable, for instance:
@@ -342,7 +443,7 @@ Big thanks to the 18 contributors who made this release possible.
 Here are some highlights ✨:
 - @alexhayes and @vladimirpekez have done an awesome job migrating the Stepper component
 to the `v1-beta` branch (#8291). Thank you!
-- @kof Has been working hard and tightly with us to improve JSS, we have upgraded the dependency to v9 (#9111)
+- @kof Has been working hard and tightly with us to improve JSS, we have upgraded the dependency to v9 (#9111).
 - And many more bug fixes and documentation improvements.
 
 ### Breaking change
@@ -415,7 +516,7 @@ Here are some highlights ✨:
 We should soon be able to start porting new components.
 - The test coverage increased by 0.5% thanks to @leMaik effort (#8910, #8911).
 We are very close to 100%.
-- The internal `ClickAwayListener` component was made public (#8967)
+- The internal `ClickAwayListener` component was made public (#8967).
 
 ### Breaking change
 
@@ -476,11 +577,11 @@ The `Input` and `FormLabel` component do no longer inherit the font-size. You mi
 Big thanks to the 17 contributors who made this release possible.
 
 Here are some highlights ✨:
-- We managed to do it! We have upgraded all the dependencies to react@16 🚀. (#8889)
+- We managed to do it! We have upgraded all the dependencies to react@16 🚀 (#8889).
   We will keep react@15 support for some time in order to help the migration from v0.x to v1.x.
 - We have fixed an important bug of `withStyles()` with react-hot-loader.
-  Thanks a lot @rrousselGit for the support. (#8897)
-- We have introduced 3 soft breaking changes. (#8830, #8858, #8916)
+  Thanks a lot @rrousselGit for the support (#8897).
+- We have introduced 3 soft breaking changes (#8830, #8858, #8916).
 - And many more bug fixes and documentation improvements.
 
 ### Breaking change
@@ -562,10 +663,10 @@ Here are some highlights ✨:
 Big thanks to the 14 contributors who made this release possible.
 
 Here are some highlights ✨:
-- New InputAdornment component (#8504)
+- New InputAdornment component (#8504).
 - New [Frequently asked questions](https://github.com/mui-org/material-ui/blob/4df547d56448cedf70977d6e2463b38eaf64d1c7/docs/src/pages/getting-started/frequently-asked-questions.md) documentation section
-- We have saved 1 KB gzip by removing our internal react-transition-group fork (#8785)
-- We have made one step further in order to upgrade all our development dependencies to react@16 (#8804)
+- We have saved 1 KB gzip by removing our internal react-transition-group fork (#8785).
+- We have made one step further in order to upgrade all our development dependencies to react@16 (#8804).
 
 ### Breaking change
 
