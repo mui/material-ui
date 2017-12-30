@@ -140,10 +140,6 @@ class Drawer extends React.Component {
     return width + 10;
   }
 
-  getTranslateMultiplier() {
-    return this.props.openSecondary ? 1 : -1;
-  }
-
   enableSwipeHandling () {
     document.body.addEventListener('touchstart', this.onBodyTouchStart)
   }
@@ -155,22 +151,15 @@ class Drawer extends React.Component {
   onBodyTouchStart = (event) => {
     const swipeAreaWidth = 30 // this.props.swipeAreaWidth;
 
-    // TODO handle rtl
-    const touchStartX = /*this.context.muiTheme.isRtl ?
-      (document.body.offsetWidth - event.touches[0].pageX) :*/
+    const touchStartX = this.getAnchor() === 'right' ?
+      (document.body.offsetWidth - event.touches[0].pageX) :
       event.touches[0].pageX;
     const touchStartY = event.touches[0].pageY; // TODO handle up/down swiping
 
     // Open only if swiping while closed
     if (swipeAreaWidth !== null && !this.props.open) {
-      // TODO handle up/down/rtl swiping
-      //if (this.props.openSecondary) {
-      //  // If openSecondary is true calculate from the far right
-      //  if (touchStartX < document.body.offsetWidth - swipeAreaWidth) return;
-      //} else {
-        // If openSecondary is false calculate from the far left
-        if (touchStartX > swipeAreaWidth) return;
-      //}
+      // TODO handle up/down swiping
+      if (touchStartX > swipeAreaWidth) return;
     }
 
     if (!this.props.open &&
@@ -196,9 +185,9 @@ class Drawer extends React.Component {
   }
 
   setPosition(translateX) {
-    const rtlTranslateMultiplier = /*this.context.muiTheme.isRtl ? -1 :*/ 1; // TODO
+    const rtlTranslateMultiplier = this.getAnchor() === 'right' ? 1 : -1; // TODO up/down
     const drawer = ReactDOM.findDOMNode(this.drawer);
-    const transformCSS = `translate(${(this.getTranslateMultiplier() * rtlTranslateMultiplier * translateX)}px, 0)`;
+    const transformCSS = `translate(${(rtlTranslateMultiplier * translateX)}px, 0)`;
     drawer.style.transform = transformCSS // TODO prefixing
 
     const backdrop = ReactDOM.findDOMNode(this.backdrop)
@@ -209,8 +198,8 @@ class Drawer extends React.Component {
     return Math.min(
              Math.max(
                this.state.swiping === 'closing' ?
-                 this.getTranslateMultiplier() * (currentX - this.swipeStartX) :
-                 this.getMaxTranslateX() - this.getTranslateMultiplier() * (this.swipeStartX - currentX),
+                 -(currentX - this.swipeStartX) :
+                 this.getMaxTranslateX() + (this.swipeStartX - currentX),
                0
              ),
              this.getMaxTranslateX()
@@ -218,10 +207,10 @@ class Drawer extends React.Component {
   }
 
   onBodyTouchMove = (event) => {
-    const currentX = /*this.context.muiTheme.isRtl ?
-      (document.body.offsetWidth - event.touches[0].pageX) :*/ // TODO rtl support
+    const currentX = this.getAnchor() === 'right' ?
+      (document.body.offsetWidth - event.touches[0].pageX) :
       event.touches[0].pageX;
-    const currentY = event.touches[0].pageY;
+    const currentY = event.touches[0].pageY; // TODO up/down
 
     if (this.state.swiping) {
       event.preventDefault();
@@ -248,8 +237,8 @@ class Drawer extends React.Component {
 
   onBodyTouchEnd = (event) => {
     if (this.state.swiping) {
-      const currentX = /*this.context.muiTheme.isRtl ?
-        (document.body.offsetWidth - event.changedTouches[0].pageX) :*/ // TODO rtl + up/down support
+      const currentX = this.getAnchor() === 'right' ?
+        (document.body.offsetWidth - event.changedTouches[0].pageX) : // TODO up/down support
         event.changedTouches[0].pageX;
       const translateRatio = this.getTranslateX(currentX) / this.getMaxTranslateX();
 
@@ -285,9 +274,17 @@ class Drawer extends React.Component {
     this.removeBodyTouchListeners();
   };
 
+  getAnchor () {
+    let anchor = this.props.anchor;
+    if (this.props.theme.direction === 'rtl' && ['left', 'right'].indexOf(anchor) !== -1) {
+      anchor = anchor === 'left' ? 'right' : 'left';
+    }
+    return anchor;
+  }
+
   render() {
     const {
-      anchor: anchorProp,
+      anchor, // eslint-disable-line
       children,
       classes,
       className,
@@ -297,16 +294,13 @@ class Drawer extends React.Component {
       open,
       PaperProps,
       SlideProps,
-      theme,
+      theme, // eslint-disable-line
       transitionDuration,
       variant,
       ...other
     } = this.props;
 
-    let anchor = anchorProp;
-    if (theme.direction === 'rtl' && ['left', 'right'].indexOf(anchor) !== -1) {
-      anchor = anchor === 'left' ? 'right' : 'left';
-    }
+    const anchor = this.getAnchor();
 
     const drawer = (
       <Paper
