@@ -8,6 +8,7 @@ import classnames from 'classnames';
 import CalendarHeader from './CalendarHeader';
 import DomainPropTypes from '../constants/prop-types';
 import * as defaultUtils from '../utils/utils';
+import DayWrapper from './DayWrapper';
 
 const moment = extendMoment(Moment);
 
@@ -120,15 +121,15 @@ export class Calendar extends Component {
       }
 
       return (
-        <div
-          key={day.toString()}
-          onClick={() => dayInCurrentMonth && this.onDateSelect(day)}
-          onKeyPress={() => dayInCurrentMonth && this.onDateSelect(day)}
+        <DayWrapper
           className={disabledClass}
-          role="presentation"
+          key={day.toString()}
+          day={day}
+          dayInCurrentMonth={dayInCurrentMonth}
+          onSelect={this.onDateSelect}
         >
           {dayComponent}
-        </div>
+        </DayWrapper>
       );
     });
   }
