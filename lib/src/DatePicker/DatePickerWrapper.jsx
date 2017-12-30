@@ -67,8 +67,6 @@ export default class DatePickerWrapper extends PickerBase {
     shouldDisableDate: undefined,
   }
 
-  getRef = (node) => { this.wrapper = node; }
-
   render() {
     const { date } = this.state;
     const {
