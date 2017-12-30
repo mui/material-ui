@@ -40,7 +40,6 @@ class List extends React.Component {
       children,
       dense,
       subheader,
-      rootRef,
       ...other
     } = this.props;
     const className = classNames(
@@ -54,7 +53,7 @@ class List extends React.Component {
     );
 
     return (
-      <ComponentProp className={className} ref={rootRef} {...other}>
+      <ComponentProp className={className} {...other}>
         {subheader}
         {children}
       </ComponentProp>
@@ -90,10 +89,6 @@ List.propTypes = {
    * If `true`, vertical padding will be removed from the list.
    */
   disablePadding: PropTypes.bool,
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef: PropTypes.func,
   /**
    * The content of the subheader, normally `ListSubheader`.
    */
