@@ -24,10 +24,11 @@ export const styles = theme => ({
     backgroundColor: emphasize(theme.palette.background.default, 0.26),
   },
   img: {
-    maxWidth: '100%',
     width: '100%',
-    height: 'auto',
+    height: '100%',
     textAlign: 'center',
+    // Handle non-square image. The property isn't supported by IE11.
+    objectFit: 'cover',
   },
 });
 
