@@ -2,16 +2,16 @@
 
 Because the scope of problems Material-UI solves is limited, we try to play nicely with
 other libraries.
-We have built a carefully curated collection of libraries that worth giving a look at.
-Feel free to submit a pull-request to add more projects. We will accept them if they match our criterias.
+We have built a carefully curated collection of libraries that worth giving a look.
+Feel free to submit a pull-request to add more projects; we will accept them if they match our criteria.
 
 ## Material-UI Specific Projects
 
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features.
-- [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Components, that implement Material Design date and time pickers for Material-UI.
+- [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Components that implement Material Design date and time pickers for Material-UI.
 - [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker) A TimePicker for Material-UI.
 - [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [Wertarbyte](https://next.mui.wertarbyte.com/) Wertarbyte are using Material-UI for many of their projects. This is a collection of complimentary components they have built.
+- [Wertarbyte](https://next.mui.wertarbyte.com/) Wertarbyte are using Material-UI for many of their projects. This is a collection of complementary components they have built.
 
 ## Complementary Projects
 
