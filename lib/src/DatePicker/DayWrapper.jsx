@@ -1,6 +1,17 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 class Day extends PureComponent {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    dayInCurrentMonth: PropTypes.bool,
+    day: PropTypes.any.isRequired,
+  }
+
+  static defaultProps = {
+    dayInCurrentMonth: true,
+  }
 
   handleClick = () => {
     this.props.onSelect(this.props.day);
@@ -19,7 +30,7 @@ class Day extends PureComponent {
       >
         {children}
       </div>
-    )
+    );
   }
 }
 
