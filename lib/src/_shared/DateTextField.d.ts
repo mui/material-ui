@@ -7,13 +7,16 @@ export interface DateTextFieldProps extends TextFieldProps {
     value: any;
     mask?: any;
     onChange: (date: object) => void;
+    onClear: (date: object) => void;
     InputProps: any;
     keyboard?: boolean;
     disabled?: boolean;
     format?: string;
     invalidLabel?: string;
+    emptyLabel?: string;
     labelFunc?: (date: object, invalidLabel: string) => string;
     keyboardIcon?: string;
+    clearable?: boolean;
 }
 
 declare const DateTextField: ComponentClass<DateTextFieldProps>;
