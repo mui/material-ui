@@ -40,6 +40,8 @@ const DecoratedSFC = decorate<Props>(({ text, type, color, classes }) => (
 Class components are a little more cumbersome. Due to a [current limitation in TypeScript's decorator support](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles` can't be used as a class decorator. Instead, we decorate a class component like so:
 
 ```jsx
+import { WithStyles } from 'material-ui/styles';
+
 const DecoratedClass = decorate(
   class extends React.Component<Props & WithStyles<'root'>> {
     render() {
@@ -48,7 +50,7 @@ const DecoratedClass = decorate(
         <Typography type={type} color={color} classes={classes}>
           {text}
         </Typography>
-      )
+      );
     }
   }
 );
@@ -57,6 +59,8 @@ const DecoratedClass = decorate(
 Note that in the class example you didn't need to annotate `<Props>` in the call to `decorate`; type inference took care of everything. One caveat is that if your styled component takes _no_ additional props in addition to `classes`. The natural thing would be to write:
 
 ```jsx
+import { WithStyles } from 'material-ui/styles';
+
 const DecoratedNoProps = decorate(
   class extends React.Component<WithStyles<'root'>> {
     render() {
@@ -64,7 +68,7 @@ const DecoratedNoProps = decorate(
         <Typography classes={this.props.classes}>
           Hello, World!
         </Typography>
-      )
+      );
     }
   }
 );
@@ -73,6 +77,8 @@ const DecoratedNoProps = decorate(
 Unfortunately, TypeScript infers the wrong type in this case and you'll have trouble when you go to make an element of this component. In this case, you'll need to provide an explicit `{}` type argument, like so:
 
 ```jsx
+import { WithStyles } from 'material-ui/styles';
+
 const DecoratedNoProps = decorate<{}>( // <-- note the type argument!
   class extends React.Component<WithStyles<'root'>> {
     render() {
@@ -80,7 +86,7 @@ const DecoratedNoProps = decorate<{}>( // <-- note the type argument!
         <Typography classes={this.props.classes}>
           Hello, World!
         </Typography>
-      )
+      );
     }
   }
 );
@@ -96,8 +102,8 @@ When adding custom properties to the `Theme`, you may continue to use it in a st
 The following example adds an `appDrawer` property that is merged into the one exported by `material-ui`:
 
 ```js
-import { Theme } from 'material-ui/styles/createMuiTheme'
-import { Breakpoint } from 'material-ui/styles/createBreakpoints'
+import { Theme } from 'material-ui/styles/createMuiTheme';
+import { Breakpoint } from 'material-ui/styles/createBreakpoints';
 
 declare module 'material-ui/styles/createMuiTheme' {
   interface Theme {
@@ -119,7 +125,7 @@ declare module 'material-ui/styles/createMuiTheme' {
 And a custom theme factory with additional defaulted options:
 
 ```js
-import {default as createMuiTheme, ThemeOptions} from 'material-ui/styles/createMuiTheme'
+import createMuiTheme, { ThemeOptions } from 'material-ui/styles/createMuiTheme';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createMuiTheme({
@@ -135,7 +141,7 @@ export default function createMyTheme(options: ThemeOptions) {
 This could be used like:
 
 ```js
-import createMyTheme from './styles/createMyTheme'
+import createMyTheme from './styles/createMyTheme';
 
-const theme = createMyTheme({appDrawer: {breakpoint: 'md'}})
+const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 ```

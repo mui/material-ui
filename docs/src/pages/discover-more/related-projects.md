@@ -11,6 +11,7 @@ Feel free to submit a pull-request to add more projects. We will accept them if 
 - [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Components, that implement Material Design date and time pickers for Material-UI.
 - [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker) A TimePicker for Material-UI.
 - [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
+- [Wertarbyte](https://next.mui.wertarbyte.com/) Wertarbyte are using Material-UI for many of their projects. This is a collection of complimentary components they have built.
 
 ## Complementary Projects
 
