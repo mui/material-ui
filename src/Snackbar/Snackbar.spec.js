@@ -47,6 +47,61 @@ describe('<Snackbar />', () => {
     });
   });
 
+  describe('Consecutive messages', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('should support synchronous onExited callback', () => {
+      const messageCount = 2;
+      let wrapper;
+      const handleCloseSpy = spy();
+      const handleClose = () => {
+        wrapper.setProps({ open: false });
+        handleCloseSpy();
+      };
+      const handleExitedSpy = spy();
+      const handleExited = () => {
+        handleExitedSpy();
+        if (handleExitedSpy.callCount < messageCount) {
+          wrapper.setProps({ open: true });
+        }
+      };
+      const duration = 250;
+      wrapper = mount(
+        <Snackbar
+          open={false}
+          onClose={handleClose}
+          onExited={handleExited}
+          message="message"
+          autoHideDuration={duration}
+          transitionDuration={duration / 2}
+        />,
+      );
+      assert.strictEqual(handleCloseSpy.callCount, 0);
+      assert.strictEqual(handleExitedSpy.callCount, 0);
+      wrapper.setProps({ open: true });
+      clock.tick(duration);
+      assert.strictEqual(handleCloseSpy.callCount, 1);
+      assert.strictEqual(handleExitedSpy.callCount, 0);
+      clock.tick(duration / 2);
+      assert.strictEqual(handleCloseSpy.callCount, 1);
+      assert.strictEqual(handleExitedSpy.callCount, 1);
+      clock.tick(duration);
+      assert.strictEqual(handleCloseSpy.callCount, messageCount);
+      assert.strictEqual(handleExitedSpy.callCount, 1);
+      clock.tick(duration / 2);
+      assert.strictEqual(handleCloseSpy.callCount, messageCount);
+      assert.strictEqual(handleExitedSpy.callCount, messageCount);
+    });
+  });
+
   describe('prop: autoHideDuration', () => {
     let clock;
 
