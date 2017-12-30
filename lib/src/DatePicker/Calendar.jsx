@@ -122,7 +122,6 @@ export class Calendar extends Component {
 
       return (
         <DayWrapper
-          className={disabledClass}
           key={day.toString()}
           day={day}
           dayInCurrentMonth={dayInCurrentMonth}
