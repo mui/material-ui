@@ -184,10 +184,10 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
 It will be linked to the component.
 Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]):
-  - `options.withTheme` (Boolean [optional]): Default to `false`. Provide the `theme` object to the component as a property.
-  - `options.name` (*String* [optional]): Default to `null`. The name of the style sheet. Useful for debugging.
-    If the value isn't provided, we will try to fallback to the name of the component.
-  - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, we follow `theme.direction`.
+  - `options.withTheme` (Boolean [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+  - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
+    If the value isn't provided, it will try to fallback to the name of the component.
+  - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
   - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](http://cssinjs.org/js-api/#create-style-sheet).
 
 #### Returns
@@ -242,8 +242,8 @@ A function which returns a class name generator function.
 #### Arguments
 
 1. `options` (*Object* [optional]):
-  - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Default to `false`. Makes the Material-UI class names deterministic.
-  - `options.productionPrefix` (*String* [optional]): Default to `'jss'`. The string used to prefix the class names in production.
+  - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
+  - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
 
 #### Returns
 

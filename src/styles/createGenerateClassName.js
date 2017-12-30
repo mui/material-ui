@@ -13,11 +13,12 @@ export default function createGenerateClassName(options = {}) {
   const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
   let ruleCounter = 0;
 
-  // - HMR can lead us to instantiating many class name generator.
-  // The warning is only triggered in production.
-  // - We expect people from instantiating a class name generator per new request on the server.
-  // The warning is only triggered client side.
-  // - People can get away by modifying the productionPrefix.
+  // - HMR can lead to many class name generators being instantiated,
+  // so the warning is only triggered in production.
+  // - We expect a class name generator to be instantiated per new request on the server,
+  // so the warning is only triggered client side.
+  // - People can get away with multiple class name generator
+  // by modifying the `productionPrefix`.
   if (
     process.env.NODE_ENV === 'production' &&
     typeof window !== 'undefined' &&
