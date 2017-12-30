@@ -1,6 +1,7 @@
 // @inheritedComponent Modal
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Modal from '../Modal';
@@ -98,6 +99,192 @@ class Drawer extends React.Component {
     });
   }
 
+  componentDidMount () {
+    if (this.props.type === 'temporary') {
+      this.enableSwipeHandling()
+    }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.props.type !== 'temporary' && nextProps.type === 'temporary') {
+      this.enableSwipeHandling()
+    } else if (this.props.type === 'temporary' && nextProps.type !== 'temporary') {
+      this.disableSwipeHandling()
+    }
+  }
+
+  componentWillUnmount () {
+    this.disableSwipeHandling()
+    this.removeBodyTouchListeners()
+  }
+
+  getTranslatedWidth() {
+    // if (typeof this.props.width === 'string') {
+    //   if (!/^\d+(\.\d+)?%$/.test(this.props.width)) {
+    //     throw new Error('Not a valid percentage format.');
+    //   }
+    //   const width = parseFloat(this.props.width) / 100.0;
+    //   // We are doing our best on the Server to render a consistent UI, hence the
+    //   // default value of 10000
+    //   return typeof window !== 'undefined' ? width * window.innerWidth : 10000;
+    // } else {
+    //   return this.props.width;
+    // }
+
+    const drawer = ReactDOM.findDOMNode(this.drawer);
+    return drawer.clientWidth // TODO
+  }
+
+  getMaxTranslateX() {
+    const width = this.getTranslatedWidth() || this.context.muiTheme.drawer.width;
+    return width + 10;
+  }
+
+  getTranslateMultiplier() {
+    return this.props.openSecondary ? 1 : -1;
+  }
+
+  enableSwipeHandling () {
+    document.body.addEventListener('touchstart', this.onBodyTouchStart)
+  }
+
+  disableSwipeHandling () {
+    document.body.removeEventListener('touchstart', this.onBodyTouchStart)
+  }
+
+  onBodyTouchStart = (event) => {
+    const swipeAreaWidth = 30 // this.props.swipeAreaWidth;
+
+    // TODO handle rtl
+    const touchStartX = /*this.context.muiTheme.isRtl ?
+      (document.body.offsetWidth - event.touches[0].pageX) :*/
+      event.touches[0].pageX;
+    const touchStartY = event.touches[0].pageY; // TODO handle up/down swiping
+
+    // Open only if swiping while closed
+    if (swipeAreaWidth !== null && !this.props.open) {
+      // TODO handle up/down/rtl swiping
+      //if (this.props.openSecondary) {
+      //  // If openSecondary is true calculate from the far right
+      //  if (touchStartX < document.body.offsetWidth - swipeAreaWidth) return;
+      //} else {
+        // If openSecondary is false calculate from the far left
+        if (touchStartX > swipeAreaWidth) return;
+      //}
+    }
+
+    if (!this.props.open &&
+         (/*openNavEventHandler !== this.onBodyTouchStart ||*/ // TODO why?!
+          this.props.disableSwipeToOpen)
+       ) {
+      return;
+    }
+
+    this.maybeSwiping = true;
+    this.touchStartX = touchStartX;
+    this.touchStartY = touchStartY;
+
+    document.body.addEventListener('touchmove', this.onBodyTouchMove);
+    document.body.addEventListener('touchend', this.onBodyTouchEnd);
+    document.body.addEventListener('touchcancel', this.onBodyTouchEnd);
+  };
+
+  removeBodyTouchListeners () {
+    document.body.removeEventListener('touchmove', this.onBodyTouchMove);
+    document.body.removeEventListener('touchend', this.onBodyTouchEnd);
+    document.body.removeEventListener('touchcancel', this.onBodyTouchEnd);
+  }
+
+  setPosition(translateX) {
+    const rtlTranslateMultiplier = /*this.context.muiTheme.isRtl ? -1 :*/ 1; // TODO
+    const drawer = ReactDOM.findDOMNode(this.drawer);
+    const transformCSS = `translate(${(this.getTranslateMultiplier() * rtlTranslateMultiplier * translateX)}px, 0)`;
+    drawer.style.transform = transformCSS // TODO prefixing
+
+    const backdrop = ReactDOM.findDOMNode(this.backdrop)
+    backdrop.style.opacity = 1 - translateX / this.getMaxTranslateX();
+  }
+
+  getTranslateX(currentX) {
+    return Math.min(
+             Math.max(
+               this.state.swiping === 'closing' ?
+                 this.getTranslateMultiplier() * (currentX - this.swipeStartX) :
+                 this.getMaxTranslateX() - this.getTranslateMultiplier() * (this.swipeStartX - currentX),
+               0
+             ),
+             this.getMaxTranslateX()
+           );
+  }
+
+  onBodyTouchMove = (event) => {
+    const currentX = /*this.context.muiTheme.isRtl ?
+      (document.body.offsetWidth - event.touches[0].pageX) :*/ // TODO rtl support
+      event.touches[0].pageX;
+    const currentY = event.touches[0].pageY;
+
+    if (this.state.swiping) {
+      event.preventDefault();
+      this.setPosition(this.getTranslateX(currentX));
+    } else if (this.maybeSwiping) {
+      const dXAbs = Math.abs(currentX - this.touchStartX);
+      const dYAbs = Math.abs(currentY - this.touchStartY);
+      // If the user has moved his thumb ten pixels in either direction,
+      // we can safely make an assumption about whether he was intending
+      // to swipe or scroll.
+      const threshold = 10;
+
+      if (dXAbs > threshold && dYAbs <= threshold) {
+        this.swipeStartX = currentX;
+        this.setState({
+          swiping: this.props.open ? 'closing' : 'opening',
+        });
+        this.setPosition(this.getTranslateX(currentX));
+      } else if (dXAbs <= threshold && dYAbs > threshold) {
+        this.onBodyTouchEnd();
+      }
+    }
+  };
+
+  onBodyTouchEnd = (event) => {
+    if (this.state.swiping) {
+      const currentX = /*this.context.muiTheme.isRtl ?
+        (document.body.offsetWidth - event.changedTouches[0].pageX) :*/ // TODO rtl + up/down support
+        event.changedTouches[0].pageX;
+      const translateRatio = this.getTranslateX(currentX) / this.getMaxTranslateX();
+
+      this.maybeSwiping = false;
+      const swiping = this.state.swiping;
+      this.setState({
+        swiping: null,
+      });
+
+      // We have to open or close after setting swiping to null,
+      // because only then CSS transition is enabled.
+      if (translateRatio > 0.5) {
+        if (swiping === 'opening') {
+          this.setPosition(this.getMaxTranslateX());
+        } else {
+          if (this.props.onClose != null) {
+            this.props.onClose();
+          }
+        }
+      } else {
+        if (swiping === 'opening') {
+          if (this.props.onOpen != null) {
+            this.props.onOpen();
+          }
+        } else {
+          this.setPosition(0);
+        }
+      }
+    } else {
+      this.maybeSwiping = false;
+    }
+
+    this.removeBodyTouchListeners();
+  };
+
   render() {
     const {
       anchor: anchorProp,
@@ -128,6 +315,7 @@ class Drawer extends React.Component {
         className={classNames(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
           [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
         })}
+        ref={(ref) => { this.drawer = ref }}
         {...PaperProps}
       >
         {children}
@@ -144,7 +332,7 @@ class Drawer extends React.Component {
 
     const slidingDrawer = (
       <Slide
-        in={open}
+        in={open || (type === 'temporary' && this.maybeSwiping)}
         direction={getSlideDirection(anchor)}
         timeout={transitionDuration}
         appear={!this.state.firstMount}
@@ -166,10 +354,11 @@ class Drawer extends React.Component {
     return (
       <Modal
         BackdropProps={{
-          transitionDuration,
+          ref: (ref) => { this.backdrop = ref },
+          transitionDuration
         }}
         className={classNames(classes.modal, className)}
-        open={open}
+        open={open || (type === 'temporary' && this.maybeSwiping)}
         onClose={onClose}
         {...other}
         {...ModalProps}
@@ -211,6 +400,12 @@ Drawer.propTypes = {
    * @param {object} event The event source of the callback
    */
   onClose: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be opened.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onOpen: PropTypes.func,
   /**
    * If `true`, the drawer is open.
    */

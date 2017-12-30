@@ -85,7 +85,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth }) {
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases/tag/';
 
 function AppDrawer(props, context) {
-  const { classes, className, disablePermanent, mobileOpen, onClose } = props;
+  const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
 
   const drawer = (
     <div className={classes.nav}>
@@ -120,6 +120,7 @@ function AppDrawer(props, context) {
           }}
           variant="temporary"
           open={mobileOpen}
+          onOpen={onOpen}
           onClose={onClose}
           ModalProps={{
             keepMounted: true,
