@@ -6,12 +6,12 @@ import classnames from 'classnames';
 
 class Year extends PureComponent {
   static propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.node.isRequired,
     classes: PropTypes.object.isRequired,
     disabled: PropTypes.bool,
     onSelect: PropTypes.func.isRequired,
     selected: PropTypes.bool,
-    year: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
   }
 
   static defaultProps = {
