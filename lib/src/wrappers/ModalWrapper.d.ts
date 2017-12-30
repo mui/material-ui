@@ -10,6 +10,8 @@ export interface ModalWrapperProps extends DateTextFieldProps {
     dialogContentClassName?: string;
     okLabel?: ReactNode;
     cancelLabel?: ReactNode;
+    clearLabel?: ReactNode;
+    clearable?: boolean;
 }
 
 declare const ModalWrapper: ComponentClass<ModalWrapperProps>;
