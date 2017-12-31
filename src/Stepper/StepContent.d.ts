@@ -12,7 +12,7 @@ export interface StepContentProps
   last?: boolean;
   optional?: boolean;
   orientation?: Orientation;
-  transition?: Function;
+  transition?: React.ReactType;
   transitionDuration?: TransitionDuration | 'auto';
 }
 
