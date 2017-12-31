@@ -11,7 +11,7 @@ export interface RadioProps extends StandardProps<SwitchBaseProps, RadioClassKey
   disabledClassName?: string;
   disableRipple?: boolean;
   icon?: React.ReactNode;
-  inputProps?: Object;
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   inputRef?: React.Ref<any>;
   name?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
