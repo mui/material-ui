@@ -60,7 +60,7 @@ export class DateTimePicker extends Component {
     meridiemMode: this.props.date.hours() >= 12 ? 'pm' : 'am',
   }
 
-  onChange = nextView => (time, isFinish = true) => {
+  onChange = (time, isFinish = true, nextView) => {
     this.handleChange(time);
 
     if (isFinish && this.props.autoSubmit) {
@@ -82,6 +82,18 @@ export class DateTimePicker extends Component {
   handleChange = (time, isFinish = false) => {
     const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm);
     this.props.onChange(withMeridiem, isFinish);
+  }
+
+  handleYearChange = (date, isFinish) => {
+    this.onChange(date, isFinish, viewType.DATE);
+  }
+
+  handleDayChange = (date, isFinish) => {
+    this.onChange(date, isFinish, viewType.HOUR);
+  }
+
+  handleHourChange = (time, isFinish) => {
+    this.onChange(time, isFinish, viewType.MINUTES);
   }
 
   render() {
@@ -131,7 +143,7 @@ export class DateTimePicker extends Component {
             date={date}
             minDate={minDate}
             maxDate={maxDate}
-            onChange={this.onChange(viewType.DATE)}
+            onChange={this.handleYearChange}
             disablePast={disablePast}
             disableFuture={disableFuture}
             utils={utils}
@@ -144,7 +156,7 @@ export class DateTimePicker extends Component {
             date={date}
             minDate={minDate}
             maxDate={maxDate}
-            onChange={this.onChange(viewType.HOUR)}
+            onChange={this.handleDayChange}
             disablePast={disablePast}
             disableFuture={disableFuture}
             leftArrowIcon={leftArrowIcon}
@@ -159,7 +171,7 @@ export class DateTimePicker extends Component {
           <HourView
             date={date}
             meridiemMode={meridiemMode}
-            onChange={this.onChange(viewType.MINUTES)}
+            onChange={this.handleHourChange}
             utils={utils}
             ampm={ampm}
           />
