@@ -170,8 +170,13 @@ class Drawer extends React.Component {
     }
 
     this.maybeSwiping = true;
+    this.forceUpdate();
     this.touchStartX = touchStartX;
     this.touchStartY = touchStartY;
+
+    if (!this.props.open) {
+      this.setPosition(this.getMaxTranslateX() - swipeAreaWidth)
+    }
 
     document.body.addEventListener('touchmove', this.onBodyTouchMove);
     document.body.addEventListener('touchend', this.onBodyTouchEnd);
@@ -195,11 +200,12 @@ class Drawer extends React.Component {
   }
 
   getTranslateX(currentX) {
+    const swipeAreaWidth = 30 // this.props.swipeAreaWidth;
     return Math.min(
              Math.max(
                this.state.swiping === 'closing' ?
                  -(currentX - this.swipeStartX) :
-                 this.getMaxTranslateX() + (this.swipeStartX - currentX),
+                 this.getMaxTranslateX() + (this.swipeStartX - currentX) - swipeAreaWidth,
                0
              ),
              this.getMaxTranslateX()
@@ -267,8 +273,12 @@ class Drawer extends React.Component {
           this.setPosition(0);
         }
       }
-    } else {
+    } else if (this.maybeSwiping) {
+      if (!this.props.open) {
+        event.preventDefault(); // prevent ghost clicks in the menu
+      }
       this.maybeSwiping = false;
+      this.forceUpdate();
     }
 
     this.removeBodyTouchListeners();
@@ -353,7 +363,7 @@ class Drawer extends React.Component {
           transitionDuration,
         }}
         className={classNames(classes.modal, className)}
-        open={open || (type === 'temporary' && this.maybeSwiping)}
+        open={open || (type === 'temporary' && !!this.maybeSwiping)}
         onClose={onClose}
         {...other}
         {...ModalProps}
