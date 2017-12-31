@@ -119,25 +119,12 @@ class Drawer extends React.Component {
   }
 
   getTranslatedWidth() {
-    // if (typeof this.props.width === 'string') {
-    //   if (!/^\d+(\.\d+)?%$/.test(this.props.width)) {
-    //     throw new Error('Not a valid percentage format.');
-    //   }
-    //   const width = parseFloat(this.props.width) / 100.0;
-    //   // We are doing our best on the Server to render a consistent UI, hence the
-    //   // default value of 10000
-    //   return typeof window !== 'undefined' ? width * window.innerWidth : 10000;
-    // } else {
-    //   return this.props.width;
-    // }
-
     const drawer = ReactDOM.findDOMNode(this.drawer);
-    return drawer.clientWidth // TODO
+    return drawer.clientWidth // TODO server-side rendering?
   }
 
   getMaxTranslateX() {
-    const width = this.getTranslatedWidth() || this.context.muiTheme.drawer.width;
-    return width + 10;
+    return this.getTranslatedWidth() || this.context.muiTheme.drawer.width;
   }
 
   enableSwipeHandling () {
@@ -149,7 +136,7 @@ class Drawer extends React.Component {
   }
 
   onBodyTouchStart = (event) => {
-    const swipeAreaWidth = 30 // this.props.swipeAreaWidth;
+    const swipeAreaWidth = this.props.swipeAreaWidth;
 
     const touchStartX = this.getAnchor() === 'right' ?
       (document.body.offsetWidth - event.touches[0].pageX) :
@@ -193,14 +180,15 @@ class Drawer extends React.Component {
     const rtlTranslateMultiplier = this.getAnchor() === 'right' ? 1 : -1; // TODO up/down
     const drawer = ReactDOM.findDOMNode(this.drawer);
     const transformCSS = `translate(${(rtlTranslateMultiplier * translateX)}px, 0)`;
-    drawer.style.transform = transformCSS // TODO prefixing
+    drawer.style.transform = transformCSS
+    drawer.style.webkitTransform = transformCSS
 
     const backdrop = ReactDOM.findDOMNode(this.backdrop)
     backdrop.style.opacity = 1 - translateX / this.getMaxTranslateX();
   }
 
   getTranslateX(currentX) {
-    const swipeAreaWidth = 30 // this.props.swipeAreaWidth;
+    const swipeAreaWidth = this.props.swipeAreaWidth;
     return Math.min(
              Math.max(
                this.state.swiping === 'closing' ?
@@ -304,8 +292,9 @@ class Drawer extends React.Component {
       open,
       PaperProps,
       SlideProps,
+      swipeAreaWidth, // eslint-disable-line
       theme, // eslint-disable-line
-      transitionDuration,
+      transitionDuration: transitionDurationProp,
       variant,
       ...other
     } = this.props;
@@ -424,6 +413,10 @@ Drawer.propTypes = {
    */
   SlideProps: PropTypes.object,
   /**
+   * The width of the left most (or right most) area in pixels where the drawer can be swiped open from.
+   */
+  swipeAreaWidth: PropTypes.number,
+  /**
    * @ignore
    */
   theme: PropTypes.object.isRequired,
@@ -445,6 +438,7 @@ Drawer.defaultProps = {
   anchor: 'left',
   elevation: 16,
   open: false,
+  swipeAreaWidth: 20,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
   variant: 'temporary', // Mobile first.
 };
