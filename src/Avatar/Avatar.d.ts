@@ -6,7 +6,7 @@ export interface AvatarProps
   alt?: string;
   childrenClassName?: string;
   component?: React.ReactType<AvatarProps>;
-  imgProps?: Object;
+  imgProps?: React.HtmlHTMLAttributes<HTMLImageElement>;
   sizes?: string;
   src?: string;
   srcSet?: string;
