@@ -34,9 +34,9 @@ module.ignore_non_literal_requires=true
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=.
 
+suppress_type=$FlowFixMe
 suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
 suppress_comment= \\(.\\|\n\\)*\\$FlowExpectedError
-suppress_type=$FlowToDo
 
 [lints]
 

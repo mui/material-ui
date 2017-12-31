@@ -86,7 +86,7 @@
   "devDependencies": {
     "@rosskevin/react-docgen": "^3.0.0-beta9",
     "@types/enzyme": "^3.1.4",
-    "@types/react": "16.0.19",
+    "@types/react": "16.0.31",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "autosuggest-highlight": "^3.1.1",
@@ -128,18 +128,18 @@
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-spellcheck": "^0.0.8",
     "eventsource-polyfill": "^0.9.6",
-    "fg-loadcss": "^1.3.1",
+    "fg-loadcss": "^2.0.1",
     "file-loader": "^1.1.5",
-    "flow-bin": "^0.61.0",
+    "flow-bin": "^0.62.0",
     "flow-copy-source": "^1.2.1",
     "flow-typed": "^2.2.3",
-    "fs-extra": "^4.0.2",
+    "fs-extra": "^5.0.0",
     "glob": "^7.1.2",
     "gm": "^1.23.0",
     "jsdom": "^11.3.0",
     "json-loader": "^0.5.7",
     "jss-rtl": "^0.2.1",
-    "karma": "^1.7.1",
+    "karma": "^2.0.0",
     "karma-browserstack-launcher": "^1.3.0",
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.5",
@@ -165,7 +165,7 @@
     "react-swipeable-views": "^0.12.10",
     "react-test-renderer": "^16.1.1",
     "react-text-mask": "^5.0.2",
-    "recast": "^0.12.9",
+    "recast": "^0.13.0",
     "recursive-readdir-sync": "^1.0.6",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
@@ -180,7 +180,7 @@
     "webpack-bundle-analyzer": "^2.9.1"
   },
   "resolutions": {
-    "@types/react": "16.0.19"
+    "@types/react": "16.0.31"
   },
   "side-effects": false,
   "nyc": {

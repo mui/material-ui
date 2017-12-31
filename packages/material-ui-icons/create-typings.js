@@ -1,4 +1,3 @@
-// @flow
 /* eslint-disable no-console */
 
 // Generate type definitions for `material-ui-icons`.
