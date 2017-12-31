@@ -17,7 +17,7 @@ export interface ModalProps
   disableRestoreFocus?: boolean;
   hideBackdrop?: boolean;
   keepMounted?: boolean;
-  manager?: Object;
+  manager?: ModalManager;
   onBackdropClick?: React.ReactEventHandler<{}>;
   onClose?: React.ReactEventHandler<{}>;
   onEscapeKeyDown?: React.ReactEventHandler<{}>;
