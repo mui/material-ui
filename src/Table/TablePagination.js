@@ -235,4 +235,4 @@ TablePagination.defaultProps = {
   rowsPerPageOptions: [5, 10, 25],
 };
 
-export default withStyles(styles, { withTheme: true, name: 'MuiTablePagination' })(TablePagination);
+export default withStyles(styles, { name: 'MuiTablePagination', withTheme: true })(TablePagination);

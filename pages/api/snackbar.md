@@ -29,7 +29,7 @@ filename: /src/Snackbar/Snackbar.js
 | open | bool |  | If true, `Snackbar` is open. |
 | resumeHideDuration | number |  | The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` property isn't specified, it does nothing. If `autoHideDuration` property is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms. |
 | SnackbarContentProps | object |  | Properties applied to the `SnackbarContent` element. |
-| transition | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | Transition component. |
+| transition | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | Slide | Transition component. |
 | transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

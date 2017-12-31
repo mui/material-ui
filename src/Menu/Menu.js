@@ -36,14 +36,6 @@ class Menu extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (!prevProps.open && this.props.open) {
-      // Needs to refocus as when a menu is rendered into another Modal,
-      // the first modal might change the focus to prevent any leak.
-      this.focus();
-    }
-  }
-
   getContentAnchorEl = () => {
     if (!this.menuList || !this.menuList.selectedItem) {
       return findDOMNode(this.menuList).firstChild;
@@ -66,7 +58,7 @@ class Menu extends React.Component {
     }
   };
 
-  handleEnter = (element: HTMLElement) => {
+  handleEnter = element => {
     const { theme } = this.props;
 
     const menuList = findDOMNode(this.menuList);
@@ -90,7 +82,7 @@ class Menu extends React.Component {
     }
   };
 
-  handleListKeyDown = (event: SyntheticUIEvent<>, key: string) => {
+  handleListKeyDown = (event, key) => {
     if (key === 'tab') {
       event.preventDefault();
 
@@ -106,7 +98,6 @@ class Menu extends React.Component {
       classes,
       MenuListProps,
       onEnter,
-      open,
       PaperProps = {},
       PopoverClasses,
       theme,
@@ -119,7 +110,6 @@ class Menu extends React.Component {
         getContentAnchorEl={this.getContentAnchorEl}
         classes={PopoverClasses}
         onEnter={this.handleEnter}
-        open={open}
         anchorOrigin={themeDirection === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
         transformOrigin={themeDirection === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
         PaperProps={{
@@ -224,4 +214,4 @@ Menu.defaultProps = {
   transitionDuration: 'auto',
 };
 
-export default withStyles(styles, { withTheme: true, name: 'MuiMenu' })(Menu);
+export default withStyles(styles, { name: 'MuiMenu', withTheme: true })(Menu);

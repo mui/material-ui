@@ -260,15 +260,22 @@ class Popover extends React.Component {
       PaperProps,
       role,
       transformOrigin,
-      transitionClasses,
+      transition: TransitionProp,
       transitionDuration,
       action,
       ...other
     } = this.props;
 
+    const transitionProps = {};
+
+    // The provided transition might not support the auto timeout value.
+    if (TransitionProp === Grow) {
+      transitionProps.timeout = transitionDuration;
+    }
+
     return (
       <Modal open={open} BackdropProps={{ invisible: true }} {...other}>
-        <Grow
+        <TransitionProp
           appear
           in={open}
           onEnter={this.handleEnter}
@@ -281,8 +288,7 @@ class Popover extends React.Component {
           ref={node => {
             this.transitionEl = node;
           }}
-          timeout={transitionDuration}
-          transitionClasses={transitionClasses}
+          {...transitionProps}
         >
           <Paper
             className={classes.paper}
@@ -293,7 +299,7 @@ class Popover extends React.Component {
             <EventListener target="window" onResize={this.handleResize} />
             {children}
           </Paper>
-        </Grow>
+        </TransitionProp>
       </Modal>
     );
   }
@@ -428,17 +434,9 @@ Popover.propTypes = {
     vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
   }),
   /**
-   * The animation classNames applied to the component as it enters or exits.
-   * This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames).
+   * Transition component.
    */
-  transitionClasses: PropTypes.shape({
-    appear: PropTypes.string,
-    appearActive: PropTypes.string,
-    enter: PropTypes.string,
-    enterActive: PropTypes.string,
-    exit: PropTypes.string,
-    exitActive: PropTypes.string,
-  }),
+  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */
@@ -461,6 +459,7 @@ Popover.defaultProps = {
     vertical: 'top',
     horizontal: 'left',
   },
+  transition: Grow,
   transitionDuration: 'auto',
 };
 

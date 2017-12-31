@@ -52,3 +52,9 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:
 
 {{"demo": "pages/demos/menus/ListItemComposition.js"}}
+
+## Change Transition
+
+Use a different transition all together.
+
+{{"demo": "pages/demos/menus/FadeMenu.js"}}

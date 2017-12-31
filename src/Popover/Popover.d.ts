@@ -24,10 +24,6 @@ export interface PopoverProps
   anchorReference?: PopoverReference;
   children?: React.ReactNode;
   elevation?: number;
-  enteredClassName?: string;
-  enteringClassName?: string;
-  exitedClassName?: string;
-  exitingClassName?: string;
   getContentAnchorEl?: Function;
   marginThreshold?: number;
   modal?: boolean;
@@ -35,6 +31,7 @@ export interface PopoverProps
   role?: string;
   theme?: Object;
   transformOrigin?: PopoverOrigin;
+  transition?: React.ReactType;
   transitionDuration?: TransitionDuration;
 }
 

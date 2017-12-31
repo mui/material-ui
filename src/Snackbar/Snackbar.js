@@ -86,11 +86,6 @@ export const styles = theme => {
   };
 };
 
-export type Origin = {
-  horizontal?: 'left' | 'center' | 'right' | number,
-  vertical?: 'top' | 'center' | 'bottom' | number,
-};
-
 class Snackbar extends React.Component {
   state = {
     // Used to only render active snackbars.
@@ -219,30 +214,11 @@ class Snackbar extends React.Component {
       return null;
     }
 
-    const transitionProps = {
-      in: open,
-      appear: true,
-      timeout: transitionDuration,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited: createChainedFunction(this.handleExited, onExited),
-    };
-    const transitionContent = children || (
-      <SnackbarContent message={message} action={action} {...SnackbarContentProps} />
-    );
+    const transitionProps = {};
 
-    let transition;
-    if (TransitionProp) {
-      transition = <TransitionProp {...transitionProps}>{transitionContent}</TransitionProp>;
-    } else {
-      transition = (
-        <Slide direction={vertical === 'top' ? 'down' : 'up'} {...transitionProps}>
-          {transitionContent}
-        </Slide>
-      );
+    // The provided transition might not support the direction property.
+    if (TransitionProp === Slide) {
+      transitionProps.direction = vertical === 'top' ? 'down' : 'up';
     }
 
     return (
@@ -260,7 +236,22 @@ class Snackbar extends React.Component {
             onMouseLeave={this.handleMouseLeave}
             {...other}
           >
-            {transition}
+            <TransitionProp
+              appear
+              in={open}
+              onEnter={onEnter}
+              onEntered={onEntered}
+              onEntering={onEntering}
+              onExit={onExit}
+              onExited={createChainedFunction(this.handleExited, onExited)}
+              onExiting={onExiting}
+              timeout={transitionDuration}
+              {...transitionProps}
+            >
+              {children || (
+                <SnackbarContent message={message} action={action} {...SnackbarContentProps} />
+              )}
+            </TransitionProp>
           </div>
         </ClickAwayListener>
       </EventListener>
@@ -391,6 +382,7 @@ Snackbar.defaultProps = {
     vertical: 'bottom',
     horizontal: 'center',
   },
+  transition: Slide,
   transitionDuration: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,

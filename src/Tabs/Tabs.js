@@ -445,4 +445,4 @@ Tabs.defaultProps = {
   textColor: 'inherit',
 };
 
-export default withStyles(styles, { withTheme: true, name: 'MuiTabs' })(Tabs);
+export default withStyles(styles, { name: 'MuiTabs', withTheme: true })(Tabs);
