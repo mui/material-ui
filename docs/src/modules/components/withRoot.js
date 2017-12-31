@@ -66,38 +66,38 @@ const pages = [
         title: 'API',
       },
       {
-        pathname: '/guides/composition',
-      },
-      {
         pathname: '/guides/minimizing-bundle-size',
       },
       {
-        pathname: '/guides/server-rendering',
-      },
-      {
-        pathname: '/guides/testing',
+        pathname: '/guides/interoperability',
+        title: 'Style Library Interoperability',
       },
       {
         pathname: '/guides/migration-v0.x',
         title: 'Migration from v0.x',
       },
       {
+        pathname: '/guides/server-rendering',
+      },
+      {
+        pathname: '/guides/composition',
+      },
+      {
         pathname: '/guides/comparison',
       },
       {
-        pathname: '/guides/flow',
+        pathname: '/guides/testing',
       },
       {
         pathname: '/guides/typescript',
         title: 'TypeScript',
       },
       {
-        pathname: '/guides/right-to-left',
-        title: 'Right-to-left',
+        pathname: '/guides/flow',
       },
       {
-        pathname: '/guides/interoperability',
-        title: 'Style Library Interoperability',
+        pathname: '/guides/right-to-left',
+        title: 'Right-to-left',
       },
     ],
   },
