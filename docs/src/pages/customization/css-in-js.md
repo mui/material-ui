@@ -37,7 +37,7 @@ When rendering on the server, you will need to get all rendered styles as a CSS 
 The `SheetsRegistry` class allows you to manually aggregate and stringify them.
 Read more about [Server Rendering](/guides/server-rendering).
 
-{{"demo": "pages/customization/JssRegistry.js"}}
+{{"demo": "pages/customization/JssRegistry.js", "hideEditButton": true}}
 
 ## Sheets manager
 

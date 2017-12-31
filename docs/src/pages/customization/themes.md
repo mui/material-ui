@@ -73,7 +73,7 @@ html {
 
 You can make a theme dark by setting `type` to `dark`.
 
-{{"demo": "pages/customization/DarkTheme.js"}}
+{{"demo": "pages/customization/DarkTheme.js", "hideEditButton": true}}
 
 ### The other variables
 
