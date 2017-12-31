@@ -55,6 +55,6 @@ You can use the same list composition features with the `MenuItem` component:
 
 ## Change Transition
 
-Use a different transition all together.
+Use a different transition altogether.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
