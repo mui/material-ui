@@ -7,7 +7,7 @@ export interface ButtonBaseProps
       ButtonBaseClassKey
     > {
   centerRipple?: boolean;
-  component?: string | React.ComponentType<ButtonBaseProps>;
+  component?: React.ReactType<ButtonBaseProps>;
   disableRipple?: boolean;
   focusRipple?: boolean;
   keyboardFocusedClassName?: string;

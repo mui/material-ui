@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface TableHeadProps extends StandardProps<TableHeadBaseProps, TableHeadClassKey> {
-  component?: string | React.ComponentType<TableHeadBaseProps>;
+  component?: React.ReactType<TableHeadBaseProps>;
 }
 
 export type TableHeadBaseProps = React.HTMLAttributes<HTMLTableSectionElement>;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface FormLabelProps extends StandardProps<FormLabelBaseProps, FormLabelClassKey> {
-  component?: string | React.ComponentType<FormLabelBaseProps>;
+  component?: React.ReactType<FormLabelBaseProps>;
   disabled?: boolean;
   error?: boolean;
   focused?: boolean;

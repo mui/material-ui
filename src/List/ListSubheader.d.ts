@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 
 export interface ListSubheaderProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListSubheaderClassKey> {
-  component?: string | React.ComponentType<ListSubheaderProps>;
+  component?: React.ReactType<ListSubheaderProps>;
   color?: 'default' | 'primary' | 'inherit';
   inset?: boolean;
   disableSticky?: boolean;

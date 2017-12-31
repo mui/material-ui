@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 
 export interface ListProps
   extends StandardProps<React.HTMLAttributes<HTMLUListElement>, ListClassKey> {
-  component?: string | React.ComponentType<ListProps>;
+  component?: React.ReactType<ListProps>;
   dense?: boolean;
   disablePadding?: boolean;
   rootRef?: React.Ref<any>;

@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 
 export interface PaperProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, PaperClassKey> {
-  component?: string | React.ComponentType<PaperProps>;
+  component?: React.ReactType<PaperProps>;
   elevation?: number;
   square?: boolean;
 }
