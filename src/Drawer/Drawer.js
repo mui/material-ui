@@ -301,6 +301,7 @@ class Drawer extends React.Component {
     } = this.props;
 
     const anchor = this.getAnchor();
+    const transitionDuration = this.maybeSwiping ? 0 : transitionDurationProp; // prevent flickering when swiping fast
 
     const drawer = (
       <Paper
@@ -349,7 +350,7 @@ class Drawer extends React.Component {
       <Modal
         BackdropProps={{
           ref: (ref) => { this.backdrop = ref },
-          transitionDuration
+          transitionDuration,
         }}
         className={classNames(classes.modal, className)}
         open={open || (type === 'temporary' && this.maybeSwiping)}
