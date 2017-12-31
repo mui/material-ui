@@ -104,7 +104,6 @@ class Grow extends React.Component {
       onEnter,
       onEntering,
       onExit,
-      rootRef,
       style: styleProp,
       theme,
       timeout,
@@ -129,7 +128,6 @@ class Grow extends React.Component {
         appear={appear}
         style={style}
         timeout={timeout === 'auto' ? null : timeout}
-        ref={rootRef}
         {...other}
       >
         {children}
@@ -175,10 +173,6 @@ Grow.propTypes = {
    * @ignore
    */
   onExiting: PropTypes.func,
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef: PropTypes.func,
   /**
    * @ignore
    */

@@ -49,7 +49,6 @@ class SwitchBase extends React.Component {
   }
 
   input = null;
-  button = null;
   isControlled = null;
 
   handleInputChange = (event: SyntheticInputEvent<*>) => {
@@ -67,9 +66,9 @@ class SwitchBase extends React.Component {
   render() {
     const {
       checked: checkedProp,
+      checkedIcon,
       classes,
       className: classNameProp,
-      checkedIcon,
       disabled: disabledProp,
       icon: iconProp,
       inputProps,
@@ -111,9 +110,6 @@ class SwitchBase extends React.Component {
         disabled={disabled}
         tabIndex={null}
         role={undefined}
-        rootRef={node => {
-          this.button = node;
-        }}
         {...other}
       >
         {icon}
@@ -126,13 +122,8 @@ class SwitchBase extends React.Component {
           disabled={disabled}
           tabIndex={tabIndex}
           value={value}
+          ref={inputRef}
           {...inputProps}
-          ref={node => {
-            this.input = node;
-            if (inputRef) {
-              inputRef(node);
-            }
-          }}
         />
       </IconButton>
     );

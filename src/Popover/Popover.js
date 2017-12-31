@@ -278,7 +278,7 @@ class Popover extends React.Component {
           onExited={onExited}
           onExiting={onExiting}
           role={role}
-          rootRef={node => {
+          ref={node => {
             this.transitionEl = node;
           }}
           timeout={transitionDuration}
