@@ -118,13 +118,13 @@ class Drawer extends React.Component {
     this.removeBodyTouchListeners()
   }
 
-  getTranslatedWidth() {
+  getDrawerSize() {
     const drawer = ReactDOM.findDOMNode(this.drawer);
-    return drawer.clientWidth // TODO server-side rendering?
+    return { width: drawer.clientWidth, height: drawer.clientHeight } // TODO server-side rendering?
   }
 
-  getMaxTranslateX() {
-    return this.getTranslatedWidth() || this.context.muiTheme.drawer.width;
+  getMaxTranslateX() { // TODO drop this function
+    return ['left', 'right'].includes(this.getAnchor()) ? this.getDrawerSize().width : this.getDrawerSize().height;
   }
 
   enableSwipeHandling () {
@@ -141,18 +141,20 @@ class Drawer extends React.Component {
     const touchStartX = this.getAnchor() === 'right' ?
       (document.body.offsetWidth - event.touches[0].pageX) :
       event.touches[0].pageX;
-    const touchStartY = event.touches[0].pageY; // TODO handle up/down swiping
+    const touchStartY = this.getAnchor() === 'bottom' ?
+      (window.innerHeight - event.touches[0].clientY) :
+      event.touches[0].clientY;
 
     // Open only if swiping while closed
-    if (swipeAreaWidth !== null && !this.props.open) {
-      // TODO handle up/down swiping
-      if (touchStartX > swipeAreaWidth) return;
+    if (!this.props.open) {
+      if (['left', 'right'].includes(this.getAnchor())) {
+        if (touchStartX > swipeAreaWidth) return;
+      } else { // anchor is top/bottom
+        if (touchStartY > swipeAreaWidth) return;
+      }
     }
 
-    if (!this.props.open &&
-         (/*openNavEventHandler !== this.onBodyTouchStart ||*/ // TODO why?!
-          this.props.disableSwipeToOpen)
-       ) {
+    if (!this.props.open && this.props.disableSwipeToOpen) {
       return;
     }
 
@@ -165,7 +167,7 @@ class Drawer extends React.Component {
       this.setPosition(this.getMaxTranslateX() - swipeAreaWidth)
     }
 
-    document.body.addEventListener('touchmove', this.onBodyTouchMove);
+    document.body.addEventListener('touchmove', this.onBodyTouchMove, { passive: false });
     document.body.addEventListener('touchend', this.onBodyTouchEnd);
     document.body.addEventListener('touchcancel', this.onBodyTouchEnd);
   };
@@ -176,24 +178,27 @@ class Drawer extends React.Component {
     document.body.removeEventListener('touchcancel', this.onBodyTouchEnd);
   }
 
-  setPosition(translateX) {
-    const rtlTranslateMultiplier = this.getAnchor() === 'right' ? 1 : -1; // TODO up/down
+  setPosition(translate) {
+    const rtlTranslateMultiplier = ['right', 'bottom'].includes(this.getAnchor()) ? 1 : -1;
     const drawer = ReactDOM.findDOMNode(this.drawer);
-    const transformCSS = `translate(${(rtlTranslateMultiplier * translateX)}px, 0)`;
+    const transformCSS = ['left', 'right'].includes(this.getAnchor()) ?
+      `translate(${(rtlTranslateMultiplier * translate)}px, 0)` :
+      `translate(0, ${(rtlTranslateMultiplier * translate)}px)`;
     drawer.style.transform = transformCSS
     drawer.style.webkitTransform = transformCSS
 
     const backdrop = ReactDOM.findDOMNode(this.backdrop)
-    backdrop.style.opacity = 1 - translateX / this.getMaxTranslateX();
+    backdrop.style.opacity = 1 - translate / this.getMaxTranslateX();
   }
 
   getTranslateX(currentX) {
     const swipeAreaWidth = this.props.swipeAreaWidth;
+    const swipeStart = ['left', 'right'].includes(this.getAnchor());
     return Math.min(
              Math.max(
                this.state.swiping === 'closing' ?
-                 -(currentX - this.swipeStartX) :
-                 this.getMaxTranslateX() + (this.swipeStartX - currentX) - swipeAreaWidth,
+                 -(currentX - swipeStart) :
+                 this.getMaxTranslateX() + (swipeStart - currentX) - swipeAreaWidth,
                0
              ),
              this.getMaxTranslateX()
@@ -201,14 +206,19 @@ class Drawer extends React.Component {
   }
 
   onBodyTouchMove = (event) => {
-    const currentX = this.getAnchor() === 'right' ?
+    const anchor = this.getAnchor();
+    const horizontalSwipe = ['left', 'right'].includes(anchor);
+
+    const currentX = anchor === 'right' ?
       (document.body.offsetWidth - event.touches[0].pageX) :
       event.touches[0].pageX;
-    const currentY = event.touches[0].pageY; // TODO up/down
+    const currentY =  anchor === 'bottom' ?
+      (window.innerHeight - event.touches[0].clientY) :
+      event.touches[0].clientY;
 
     if (this.state.swiping) {
       event.preventDefault();
-      this.setPosition(this.getTranslateX(currentX));
+      this.setPosition(this.getTranslateX(horizontalSwipe ? currentX : currentY));
     } else if (this.maybeSwiping) {
       const dXAbs = Math.abs(currentX - this.touchStartX);
       const dYAbs = Math.abs(currentY - this.touchStartY);
@@ -217,12 +227,17 @@ class Drawer extends React.Component {
       // to swipe or scroll.
       const threshold = 10;
 
-      if (dXAbs > threshold && dYAbs <= threshold) {
+      const isSwiping = horizontalSwipe ?
+        (dXAbs > threshold && dYAbs <= threshold) :
+        (dYAbs > threshold && dXAbs <= threshold)
+
+      if (isSwiping) {
         this.swipeStartX = currentX;
+        this.swipeStartY = currentY;
         this.setState({
           swiping: this.props.open ? 'closing' : 'opening',
         });
-        this.setPosition(this.getTranslateX(currentX));
+        this.setPosition(this.getTranslateX(horizontalSwipe ? currentX : currentY));
       } else if (dXAbs <= threshold && dYAbs > threshold) {
         this.onBodyTouchEnd();
       }
@@ -231,10 +246,16 @@ class Drawer extends React.Component {
 
   onBodyTouchEnd = (event) => {
     if (this.state.swiping) {
-      const currentX = this.getAnchor() === 'right' ?
-        (document.body.offsetWidth - event.changedTouches[0].pageX) : // TODO up/down support
+      const anchor = this.getAnchor();
+      const currentX = anchor === 'right' ?
+        (document.body.offsetWidth - event.changedTouches[0].pageX) :
         event.changedTouches[0].pageX;
-      const translateRatio = this.getTranslateX(currentX) / this.getMaxTranslateX();
+      const currentY =  anchor === 'bottom' ?
+        (window.innerHeight - event.changedTouches[0].clientY) :
+        event.changedTouches[0].clientY;
+      const translateRatio = ['left', 'right'].includes(anchor) ?
+        this.getTranslateX(currentX) / this.getDrawerSize().width :
+        this.getTranslateX(currentY) / this.getDrawerSize().height;
 
       this.maybeSwiping = false;
       const swiping = this.state.swiping;
@@ -262,7 +283,7 @@ class Drawer extends React.Component {
         }
       }
     } else if (this.maybeSwiping) {
-      if (!this.props.open) {
+      if (!this.props.open && event != null) {
         event.preventDefault(); // prevent ghost clicks in the menu
       }
       this.maybeSwiping = false;
@@ -286,6 +307,7 @@ class Drawer extends React.Component {
       children,
       classes,
       className,
+      disableSwipeToOpen, // eslint-disable-line
       elevation,
       ModalProps,
       onClose,
@@ -381,6 +403,10 @@ Drawer.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, the drawer cannot be opened by swiping from the edge of the screen.
+   */
+  disableSwipeToOpen: PropTypes.bool,
+  /**
    * The elevation of the drawer.
    */
   elevation: PropTypes.number,
@@ -436,6 +462,7 @@ Drawer.propTypes = {
 
 Drawer.defaultProps = {
   anchor: 'left',
+  disableSwipeToOpen: false,
   elevation: 16,
   open: false,
   swipeAreaWidth: 20,
