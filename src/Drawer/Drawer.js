@@ -306,7 +306,7 @@ class Drawer extends React.Component {
 
   render() {
     const {
-      anchor, // eslint-disable-line
+      anchor: anchorProp, // eslint-disable-line
       children,
       classes,
       className,
