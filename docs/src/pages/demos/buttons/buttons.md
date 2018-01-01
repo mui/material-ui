@@ -1,5 +1,5 @@
 ---
-components: Button, IconButton, ButtonBase
+components: Button, IconButton, ButtonBase, Zoom
 ---
 
 # Buttons
@@ -34,6 +34,18 @@ When pressed, it may contain more related actions.
 Only one floating action button is recommended per screen to represent the most common action.
 
 {{"demo": "pages/demos/buttons/FloatingActionButtons.js"}}
+
+The floating action button animates onto the screen as an expanding piece of material, by default.
+
+A floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear,
+then reappear if its action changes.
+
+The Zoom transition can be used to achieve this. Note that since both the exiting and entering
+animations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's
+animation to finish before the new one enters.
+
+
+{{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
 ## Icon Buttons
 

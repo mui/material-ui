@@ -6,3 +6,5 @@ export { default as Fade } from './Fade';
 export * from './Fade';
 export { default as Collapse } from './Collapse';
 export * from './Collapse';
+export { default as Zoom } from './Zoom';
+export * from './Zoom';

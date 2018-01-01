@@ -76,6 +76,6 @@ export { default as Typography } from './Typography';
 export { default as TextField } from './TextField';
 export { default as Toolbar } from './Toolbar';
 export { default as Tooltip } from './Tooltip';
-export { Slide, Grow, Fade, Collapse } from './transitions';
+export { Slide, Grow, Fade, Collapse, Zoom } from './transitions';
 
 export { default as withWidth } from './utils/withWidth';
