@@ -8,9 +8,9 @@ class Day extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     classes: PropTypes.object.isRequired,
+    current: PropTypes.bool,
     disabled: PropTypes.bool,
     hidden: PropTypes.bool,
-    current: PropTypes.bool,
     selected: PropTypes.bool,
   }
 
