@@ -14,6 +14,12 @@ export type StyleRulesCallback<ClassKey extends string = string> = (
   theme: Theme,
 ) => StyleRules<ClassKey>;
 
+export interface StylesCreator {
+  create(theme: Theme, name: string): StyleRules;
+  options: { index: number };
+  themingEnabled: boolean;
+}
+
 export interface WithStylesOptions {
   flip?: boolean;
   withTheme?: boolean;
