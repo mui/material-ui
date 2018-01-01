@@ -5,7 +5,7 @@ class DayWrapper extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     onSelect: PropTypes.func.isRequired,
-    day: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
     dayInCurrentMonth: PropTypes.bool,
     disabled: PropTypes.bool,
   }
@@ -16,12 +16,12 @@ class DayWrapper extends PureComponent {
   }
 
   handleClick = () => {
-    this.props.onSelect(this.props.day);
+    this.props.onSelect(this.props.value);
   }
 
   render() {
     const {
-      children, day, dayInCurrentMonth, disabled, onSelect, ...other
+      children, value, dayInCurrentMonth, disabled, onSelect, ...other
     } = this.props;
     return (
       <div

@@ -120,7 +120,7 @@ export class Calendar extends Component {
       return (
         <DayWrapper
           key={day.toString()}
-          day={day}
+          value={day}
           dayInCurrentMonth={dayInCurrentMonth}
           disabled={disabled}
           onSelect={this.onDateSelect}
