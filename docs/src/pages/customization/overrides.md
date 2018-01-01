@@ -58,7 +58,7 @@ You might need to create a variation of a component and use it in different cont
 
 The best approach is to follow option 1 and then take advantage of the composition power of React by exporting your customized component to use wherever you need it.
 
-{{"demo": "pages/customization/OverridesComponent.js"}}
+{{"demo": "pages/customization/OverridesComponent.js", "hideEditButton": true}}
 
 ## 3. Material Design variations
 
