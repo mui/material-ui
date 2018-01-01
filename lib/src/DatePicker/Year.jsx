@@ -11,7 +11,7 @@ class Year extends PureComponent {
     disabled: PropTypes.bool,
     onSelect: PropTypes.func.isRequired,
     selected: PropTypes.bool,
-    year: PropTypes.number.isRequired,
+    value: PropTypes.any.isRequired,
   }
 
   static defaultProps = {
@@ -20,12 +20,12 @@ class Year extends PureComponent {
   }
 
   handleClick = () => {
-    this.props.onSelect(this.props.year);
+    this.props.onSelect(this.props.value);
   }
 
   render() {
     const {
-      classes, selected, disabled, year, children, ...other
+      classes, selected, disabled, value, children, ...other
     } = this.props;
 
     return (

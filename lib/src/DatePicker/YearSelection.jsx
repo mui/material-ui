@@ -77,7 +77,7 @@ export class YearSelection extends PureComponent {
                     (disablePast && year.isBefore(moment(), 'year')) ||
                     (disableFuture && year.isAfter(moment(), 'year'))
                   )}
-                  year={yearNumber}
+                  value={yearNumber}
                   key={utils.getYearText(year)}
                   onSelect={this.onYearSelect}
                   ref={selected
