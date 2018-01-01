@@ -1,5 +1,5 @@
 ---
-components: BottomNavigation, BottomNavigationButton
+components: BottomNavigation, BottomNavigationAction
 ---
 
 # Bottom Navigation

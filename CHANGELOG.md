@@ -131,7 +131,7 @@ None, merry christmas 🎄.
 - [Select] Typo fix (#9567) @bordagabor
 - [CardHeader] Add conditional rendering of the subheader (#9572) @jwwisgerhof
 - [Tooltip] children should be an element (#9568) @oliviertassinari
-- [BottomNavigationButton] onClick and onChange handler overwritten (#9564) @kgregory
+- [BottomNavigationAction] onClick and onChange handler overwritten (#9564) @kgregory
 - [typescript] Add typings to reactHelpers (#9565) @SSW-SCIENTIFIC
 - [TablePagination] Make onChangeRowsPerPage optional (#9563) @evantrimboli
 - [Toolbar] Make the children optional (#9581) @oliviertassinari
@@ -1393,7 +1393,7 @@ If you want to avoid the default browser required property handling, you can add
 - [FormControlLabel] Allow for node in the label prop (#7903) @Taldrain
 - [ListItemIcon] Icon should not shrink fixes (#7917) @gulderov
 - [withResponsiveFullScreen] missed type import (#7926) @rosskevin
-- [typescript] Fixes/improvements for withWith/withStyle/BottomNavigationButton (#7897) @sebald
+- [typescript] Fixes/improvements for withWith/withStyle/BottomNavigationAction (#7897) @sebald
 - [typescript] Update typings to popover changes (#7937) @sebald
 - [Popover] Expose the component (#7927) @oliviertassinari
 - [ButtonBase] Better warning message (#7904) @oliviertassinari

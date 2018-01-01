@@ -1,10 +1,10 @@
 ---
-filename: /src/BottomNavigation/BottomNavigationButton.js
+filename: /src/BottomNavigation/BottomNavigationAction.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# BottomNavigationButton
+# BottomNavigationAction
 
 
 
@@ -15,7 +15,7 @@ filename: /src/BottomNavigation/BottomNavigationButton.js
 | classes | object |  | Useful to extend the style applied to components. |
 | icon | node |  | The icon element. If a string is provided, it will be used as a font ligature. |
 | label | node |  | The label element. |
-| showLabel | bool |  | If `true`, the BottomNavigationButton will show its label. |
+| showLabel | bool |  | If `true`, the BottomNavigationAction will show its label. |
 | value | any |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
@@ -34,12 +34,12 @@ This property accepts the following keys:
 - `icon`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/BottomNavigation/BottomNavigationButton.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/BottomNavigation/BottomNavigationAction.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
-you need to use the following style sheet name: `MuiBottomNavigationButton`.
+you need to use the following style sheet name: `MuiBottomNavigationAction`.
 
 ## Inheritance
 

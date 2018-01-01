@@ -1,2 +1,2 @@
 export { default } from './BottomNavigation';
-export { default as BottomNavigationButton } from './BottomNavigationButton';
+export { default as BottomNavigationAction } from './BottomNavigationAction';
