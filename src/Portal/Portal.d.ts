@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export interface PortalProps {
   children: React.ReactElement<any>;
-  container?: object | (() => Element);
+  container?: React.ReactInstance | (() => React.ReactInstance);
   onRendered?: () => any;
 }
 
