@@ -67,12 +67,12 @@ BottomNavigation.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, all `BottomNavigationButton`s will show their labels.
-   * By default only the selected `BottomNavigationButton` will show its label.
+   * If `true`, all `BottomNavigationAction`s will show their labels.
+   * By default only the selected `BottomNavigationAction` will show its label.
    */
   showLabels: PropTypes.bool,
   /**
-   * The value of the currently selected `BottomNavigationButton`.
+   * The value of the currently selected `BottomNavigationAction`.
    */
   value: PropTypes.any,
 };

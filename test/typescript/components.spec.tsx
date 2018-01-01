@@ -4,7 +4,7 @@ import {
   Avatar,
   Badge,
   BottomNavigation,
-  BottomNavigationButton,
+  BottomNavigationAction,
   Button,
   Card,
   CardActions,
@@ -92,9 +92,9 @@ const BottomNavigationTest = () => {
 
   return (
     <BottomNavigation value={value} onChange={event => log(event)} showLabels>
-      <BottomNavigationButton label="Recents" icon={<FakeIcon />} />
-      <BottomNavigationButton label="Favorites" />
-      <BottomNavigationButton label={<span>Nearby</span>} icon={<FakeIcon />} />
+      <BottomNavigationAction label="Recents" icon={<FakeIcon />} />
+      <BottomNavigationAction label="Favorites" />
+      <BottomNavigationAction label={<span>Nearby</span>} icon={<FakeIcon />} />
     </BottomNavigation>
   );
 };

@@ -3,7 +3,7 @@ import { AvatarClassKey } from '../Avatar/Avatar';
 import { BackdropClassKey } from '../Modal/Backdrop';
 import { BadgeClassKey } from '../Badge/Badge';
 import { BottomNavigationClassKey } from '../BottomNavigation/BottomNavigation';
-import { BottomNavigationButtonClassKey } from '../BottomNavigation/BottomNavigationButton';
+import { BottomNavigationActionClassKey } from '../BottomNavigation/BottomNavigationAction';
 import { ButtonClassKey } from '../Button/Button';
 import { ButtonBaseClassKey } from '../ButtonBase/ButtonBase';
 import { CardClassKey } from '../Card/Card';
@@ -88,7 +88,7 @@ type ComponentNameToClassKey = {
   MuiBackdrop: BackdropClassKey;
   MuiBadge: BadgeClassKey;
   MuiBottomNavigation: BottomNavigationClassKey;
-  MuiBottomNavigationButton: BottomNavigationButtonClassKey;
+  MuiBottomNavigationAction: BottomNavigationActionClassKey;
   MuiButton: ButtonClassKey;
   MuiButtonBase: ButtonBaseClassKey;
   // MuiCard: CardClassKey;

@@ -55,7 +55,7 @@ export const styles = theme => ({
   },
 });
 
-class BottomNavigationButton extends React.Component {
+class BottomNavigationAction extends React.Component {
   handleChange = event => {
     const { onChange, value, onClick } = this.props;
 
@@ -119,7 +119,7 @@ class BottomNavigationButton extends React.Component {
   }
 }
 
-BottomNavigationButton.propTypes = {
+BottomNavigationAction.propTypes = {
   /**
    * Useful to extend the style applied to components.
    */
@@ -149,7 +149,7 @@ BottomNavigationButton.propTypes = {
    */
   selected: PropTypes.bool,
   /**
-   * If `true`, the BottomNavigationButton will show its label.
+   * If `true`, the BottomNavigationAction will show its label.
    */
   showLabel: PropTypes.bool,
   /**
@@ -158,4 +158,4 @@ BottomNavigationButton.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiBottomNavigationButton' })(BottomNavigationButton);
+export default withStyles(styles, { name: 'MuiBottomNavigationAction' })(BottomNavigationAction);
