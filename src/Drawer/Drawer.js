@@ -314,6 +314,7 @@ class Drawer extends React.Component {
       elevation,
       ModalProps,
       onClose,
+      onOpen, // eslint-disable-line
       open,
       PaperProps,
       SlideProps,
