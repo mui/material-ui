@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { findDOMNode } from 'react-dom';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import { withStyles } from 'material-ui';
@@ -38,9 +39,13 @@ export class YearSelection extends PureComponent {
     onChange(newDate);
   }
 
+  getSelectedYearRef = (ref) => {
+    this.selectedYearRef = ref;
+  }
+
   scrollToCurrentYear = () => {
-    const { animateYearScrolling, classes } = this.props;
-    const currentYearElement = document.getElementsByClassName(classes.selected)[0];
+    const { animateYearScrolling } = this.props;
+    const currentYearElement = findDOMNode(this.selectedYearRef);
 
     if (currentYearElement) {
       currentYearElement.scrollIntoView({
@@ -48,6 +53,8 @@ export class YearSelection extends PureComponent {
       });
     }
   }
+
+  selectedYearRef = undefined;
 
   render() {
     const {
@@ -61,10 +68,11 @@ export class YearSelection extends PureComponent {
           Array.from(moment.range(minDate, maxDate).by('year'))
             .map((year) => {
               const yearNumber = utils.getYear(year);
+              const selected = yearNumber === currentYear;
 
               return (
                 <Year
-                  selected={yearNumber === currentYear}
+                  selected={selected}
                   disabled={(
                     (disablePast && year.isBefore(moment(), 'year')) ||
                     (disableFuture && year.isAfter(moment(), 'year'))
@@ -72,6 +80,10 @@ export class YearSelection extends PureComponent {
                   year={yearNumber}
                   key={utils.getYearText(year)}
                   onSelect={this.onYearSelect}
+                  ref={selected
+                    ? this.getSelectedYearRef
+                    : undefined
+                  }
                 >
                   {utils.getYearText(year)}
                 </Year>
