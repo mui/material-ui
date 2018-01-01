@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { ListItemProps, ListItemClassKey } from '../List';
 
 export interface MenuItemProps extends StandardProps<ListItemProps, MenuItemClassKey> {
-  component?: string | React.ComponentType<MenuItemProps>;
+  component?: React.ReactType<MenuItemProps>;
   role?: string;
   selected?: boolean;
 }

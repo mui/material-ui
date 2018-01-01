@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface TableRowProps extends StandardProps<TableRowBaseProps, TableRowClassKey> {
-  component?: string | React.ComponentType<TableRowBaseProps>;
+  component?: React.ReactType<TableRowBaseProps>;
   hover?: boolean;
   selected?: boolean;
 }

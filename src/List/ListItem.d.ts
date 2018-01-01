@@ -9,7 +9,7 @@ export interface ListItemProps
       'component'
     > {
   button?: boolean;
-  component?: string | React.ComponentType<ListItemProps>;
+  component?: React.ReactType<ListItemProps>;
   dense?: boolean;
   disabled?: boolean;
   disableGutters?: boolean;

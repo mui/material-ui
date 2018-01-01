@@ -16,7 +16,7 @@ export interface InputProps
   error?: boolean;
   fullWidth?: boolean;
   id?: string;
-  inputComponent?: string | React.ComponentType<InputProps>;
+  inputComponent?: React.ReactType<InputProps>;
   inputProps?:
     | React.TextareaHTMLAttributes<HTMLTextAreaElement>
     | React.InputHTMLAttributes<HTMLInputElement>;

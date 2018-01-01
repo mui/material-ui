@@ -4,7 +4,7 @@ import { StandardProps } from '..';
 export interface GridListTileProps
   extends StandardProps<React.HTMLAttributes<HTMLLIElement>, GridListTileClassKey> {
   cols?: number;
-  component?: string | React.ComponentType<GridListTileProps>;
+  component?: React.ReactType<GridListTileProps>;
   rows?: number;
 }
 

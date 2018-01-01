@@ -4,7 +4,7 @@ import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
 export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassKey, 'component'> {
   color?: PropTypes.Color | 'contrast';
-  component?: string | React.ComponentType<ButtonProps>;
+  component?: React.ReactType<ButtonProps>;
   dense?: boolean;
   disabled?: boolean;
   disableFocusRipple?: boolean;
