@@ -12,8 +12,7 @@
     "@types/jest": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "@types/recompose": "latest"
+    "@types/react-dom": "latest"
   },
   "scripts": {
     "start": "react-scripts-ts start",

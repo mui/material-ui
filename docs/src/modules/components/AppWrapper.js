@@ -4,8 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MuiThemeProvider } from 'material-ui/styles';
-import getContext, { getTheme } from 'docs/src/modules/styles/getContext';
+import Reboot from 'material-ui/Reboot';
 import JssProvider from 'react-jss/lib/JssProvider';
+import getPageContext, { getTheme } from 'docs/src/modules/styles/getPageContext';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/utils/prism';
 import GoogleTag from 'docs/src/modules/components/GoogleTag';
@@ -23,7 +24,7 @@ if (process.browser && !global.__INSERTION_POINT__) {
 
 class AppWrapper extends React.Component {
   componentWillMount() {
-    this.styleContext = getContext();
+    this.pageContext = this.props.pageContext || getPageContext();
   }
 
   componentDidMount() {
@@ -49,7 +50,7 @@ class AppWrapper extends React.Component {
       nextProps.uiTheme.paletteType !== this.props.uiTheme.paletteType ||
       nextProps.uiTheme.direction !== this.props.uiTheme.direction
     ) {
-      this.styleContext.theme = getTheme(nextProps.uiTheme);
+      this.pageContext.theme = getTheme(nextProps.uiTheme);
 
       if (nextProps.uiTheme.paletteType === 'light') {
         setPrismTheme(lightTheme);
@@ -63,21 +64,22 @@ class AppWrapper extends React.Component {
     }
   }
 
-  styleContext = null;
+  context = null;
 
   render() {
-    const { children, sheetsRegistry } = this.props;
+    const { children } = this.props;
 
     return (
       <JssProvider
-        registry={sheetsRegistry}
-        jss={this.styleContext.jss}
-        generateClassName={this.styleContext.generateClassName}
+        jss={this.pageContext.jss}
+        registry={this.pageContext.sheetsRegistry}
+        generateClassName={this.pageContext.generateClassName}
       >
         <MuiThemeProvider
-          theme={this.styleContext.theme}
-          sheetsManager={this.styleContext.sheetsManager}
+          theme={this.pageContext.theme}
+          sheetsManager={this.pageContext.sheetsManager}
         >
+          <Reboot />
           <AppFrame>{children}</AppFrame>
           <GoogleTag />
         </MuiThemeProvider>
@@ -88,7 +90,7 @@ class AppWrapper extends React.Component {
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  sheetsRegistry: PropTypes.object,
+  pageContext: PropTypes.object,
   uiTheme: PropTypes.object.isRequired,
 };
 

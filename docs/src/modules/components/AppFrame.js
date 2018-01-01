@@ -6,7 +6,6 @@ import NProgress from 'nprogress';
 import Router from 'next/router';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
-import Reboot from 'material-ui/Reboot';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
@@ -179,7 +178,6 @@ class AppFrame extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Reboot />
         <AppBar className={appBarClassName}>
           <Toolbar>
             <IconButton

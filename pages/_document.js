@@ -1,14 +1,14 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import CleanCSS from 'clean-css';
-import getContext from 'docs/src/modules/styles/getContext';
+import getPageContext from 'docs/src/modules/styles/getPageContext';
 import config from 'docs/src/config';
 
 const cleanCSS = new CleanCSS();
 
 class MyDocument extends Document {
   render() {
-    const { canonical, stylesContext } = this.props;
+    const { canonical, pageContext } = this.props;
 
     return (
       <html lang="en" dir="ltr">
@@ -33,7 +33,7 @@ class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={stylesContext.theme.palette.primary[500]} />
+          <meta name="theme-color" content={pageContext.theme.palette.primary[500]} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
@@ -56,6 +56,7 @@ class MyDocument extends Document {
             content="React Components that Implement Google's Material Design."
           />
           <meta property="og:image" content="https://material-ui-next.com/static/brand.png" />
+          <meta property="og:locale" content="en_US" />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="canonical" href={canonical} />
         </Head>
@@ -98,20 +99,20 @@ MyDocument.getInitialProps = ctx => {
   // 1. page.getInitialProps
   // 3. page.render
 
-  // Get the context to collected side effects.
-  const context = getContext();
+  // Get the context of the page to collected side effects.
+  const pageContext = getPageContext();
   const page = ctx.renderPage(Component => props => (
-    <Component sheetsRegistry={context.sheetsRegistry} {...props} />
+    <Component pageContext={pageContext} {...props} />
   ));
 
-  let css = context.sheetsRegistry.toString();
+  let css = pageContext.sheetsRegistry.toString();
   if (process.env.NODE_ENV === 'production') {
     css = cleanCSS.minify(css).styles;
   }
 
   return {
     ...page,
-    stylesContext: context,
+    pageContext,
     canonical: `https://material-ui-next.com${ctx.req.url.replace(/\/$/, '')}/`,
     styles: (
       <style

@@ -27,7 +27,7 @@ const theme = getTheme({
 const jss = create({ plugins: [...preset().plugins, rtl()] });
 jss.options.insertionPoint = 'insertion-point-jss';
 
-function createContext() {
+function createPageContext() {
   return {
     jss,
     theme,
@@ -39,16 +39,16 @@ function createContext() {
   };
 }
 
-export default function getContext() {
+export default function getPageContext() {
   // Make sure to create a new store for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!process.browser) {
-    return createContext();
+    return createPageContext();
   }
 
   // Reuse context on the client-side
   if (!global.__INIT_MATERIAL_UI__) {
-    global.__INIT_MATERIAL_UI__ = createContext();
+    global.__INIT_MATERIAL_UI__ = createPageContext();
   }
 
   return global.__INIT_MATERIAL_UI__;
