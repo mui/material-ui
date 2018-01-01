@@ -1,27 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import pure from 'recompose/pure';
 import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
+import Tooltip from 'material-ui/Tooltip';
 
 const styles = theme => ({
   '@global': {
     '#carbonads': {
       padding: theme.spacing.unit,
-      zIndex: 1,
-      boxSizing: 'content-box',
       backgroundColor: theme.palette.background.paper,
-      borderRadius: 4,
-      position: 'relative',
-      [theme.breakpoints.up('sm')]: {
-        margin: `${theme.spacing.unit * 2}px ${theme.spacing.unit}px ${theme.spacing.unit}px`,
-        maxWidth: 130,
-        float: 'right',
-      },
-      [theme.breakpoints.up('xl')]: {
-        position: 'fixed',
-        margin: 0,
-        right: theme.spacing.unit * 2,
-        bottom: theme.spacing.unit * 2,
-      },
       '& img': {
         verticalAlign: 'middle',
       },
@@ -47,16 +35,18 @@ const styles = theme => ({
         display: 'block',
         marginTop: theme.spacing.unit / 2,
         position: 'absolute',
-        right: 4,
-        bottom: 4,
+        right: 0,
+        bottom: 0,
+        padding: theme.spacing.unit,
         [theme.breakpoints.up('sm')]: {
           marginTop: 0,
           position: 'static',
+          padding: 0,
         },
       },
     },
   },
-  ad: {
+  root: {
     minHeight: 116,
     margin: `${theme.spacing.unit}px 0 0`,
     [theme.breakpoints.up('sm')]: {
@@ -64,9 +54,41 @@ const styles = theme => ({
       minHeight: 0,
     },
   },
+  ad: {
+    zIndex: 1,
+    borderRadius: 4,
+    position: 'relative',
+    [theme.breakpoints.up('sm')]: {
+      margin: `${theme.spacing.unit * 2}px ${theme.spacing.unit}px ${theme.spacing.unit}px`,
+      maxWidth: 130 + theme.spacing.unit * 2,
+      float: 'right',
+    },
+    [theme.breakpoints.up('xl')]: {
+      position: 'fixed',
+      margin: 0,
+      right: theme.spacing.unit * 2,
+      bottom: theme.spacing.unit * 2,
+    },
+  },
+  info: {
+    ...theme.typography.caption,
+    position: 'absolute',
+    padding: theme.spacing.unit,
+    cursor: 'default',
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+      bottom: 0,
+      right: 0,
+    },
+  },
 });
 
 class Carbon extends React.Component {
+  state = {
+    adblock: null,
+  };
+
   componentDidMount() {
     if (process.env.NODE_ENV !== 'production') {
       return;
@@ -80,11 +102,77 @@ class Carbon extends React.Component {
     if (ad) {
       ad.appendChild(script);
     }
+
+    this.checkAdblock();
   }
+
+  componentWillUnmount() {
+    clearTimeout(this.timerAdblock);
+  }
+
+  timerAdblock = null;
+
+  checkAdblock = (attempt = 1) => {
+    if (document.querySelector('#carbonads')) {
+      this.setState({
+        adblock: false,
+      });
+      return;
+    }
+
+    if (attempt < 3) {
+      this.timerAdblock = setTimeout(() => {
+        this.checkAdblock(attempt + 1);
+      }, 500);
+    } else {
+      this.setState({
+        adblock: true,
+      });
+    }
+  };
 
   render() {
     const { classes } = this.props;
-    return <div className={classes.ad} id="ad" />;
+    const { adblock } = this.state;
+
+    if (adblock) {
+      return (
+        <div className={classes.root}>
+          <div className={classes.ad}>
+            <div id="carbonads">
+              <Typography gutterBottom>Like Material-UI?</Typography>
+              <Typography gutterBottom>
+                {`If you don't mind tech-related ads, and want to support Open Source,
+                please whitelist Material-UI in your ad blocker.`}
+              </Typography>
+              <Typography>
+                Thank you!{' '}
+                <span role="img" aria-label="Love">
+                  ❤️
+                </span>
+              </Typography>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className={classes.root}>
+        <div className={classes.ad}>
+          <div id="ad" />
+          {adblock === false && (
+            <Tooltip
+              id="ad-info"
+              title="This ad is designed to support Open Source."
+              placement="left"
+            >
+              <span className={classes.info}>i</span>
+            </Tooltip>
+          )}
+        </div>
+      </div>
+    );
   }
 }
 
@@ -92,4 +180,4 @@ Carbon.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Carbon);
+export default pure(withStyles(styles)(Carbon));

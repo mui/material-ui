@@ -25,6 +25,7 @@ export default function createTypography(palette: Object, typography: Object | F
   return deepmerge(
     {
       pxToRem,
+      round,
       fontFamily,
       fontSize,
       fontWeightLight,
