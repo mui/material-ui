@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 class DayWrapper extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    onSelect: PropTypes.func.isRequired,
-    value: PropTypes.any.isRequired,
     dayInCurrentMonth: PropTypes.bool,
     disabled: PropTypes.bool,
+    onSelect: PropTypes.func.isRequired,
+    value: PropTypes.any.isRequired,
   }
 
   static defaultProps = {
