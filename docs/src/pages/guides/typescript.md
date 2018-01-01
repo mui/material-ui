@@ -11,7 +11,7 @@ The usage of `withStyles` in TypeScript can be a little tricky, so it's worth sh
 const decorate = withStyles(({ palette, spacing }) => ({
   root: {
     padding: spacing.unit,
-    background: palette.background,
+    backgroundColor: palette.background,
     color: palette.primary,
   },
 }));

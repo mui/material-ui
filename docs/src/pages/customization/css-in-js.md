@@ -201,7 +201,7 @@ import { withStyles } from 'material-ui/styles';
 
 const styles = {
   root: {
-    background: 'red',
+    backgroundColor: 'red',
   },
 };
 
@@ -221,7 +221,7 @@ import { withStyles } from 'material-ui/styles';
 
 const styles = {
   root: {
-    background: 'red',
+    backgroundColor: 'red',
   },
 };
 

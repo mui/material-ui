@@ -21,11 +21,11 @@ export const styles = theme => ({
   },
   hover: {
     '&:hover': {
-      background: theme.palette.background.contentFrame,
+      backgroundColor: theme.palette.background.contentFrame,
     },
   },
   selected: {
-    background: theme.palette.background.appBar,
+    backgroundColor: theme.palette.background.appBar,
   },
 });
 

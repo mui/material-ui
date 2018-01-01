@@ -11,7 +11,7 @@ const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: '360px',
-    background: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,
   },
 });
 

@@ -7,7 +7,7 @@ import IconButton from 'material-ui/IconButton';
 
 export default function PrimaryActionCheckboxListItem() {
   return (
-    <div style={{ background: '#fff', width: 300 }}>
+    <div style={{ backgroundColor: '#fff', width: 300 }}>
       <ListItem button>
         <Checkbox tabIndex={-1} disableRipple />
         <ListItemText primary="Primary" />

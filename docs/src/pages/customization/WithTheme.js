@@ -10,12 +10,12 @@ function WithTheme(props) {
 
   const styles = {
     primaryText: {
-      background: theme.palette.background.default,
+      backgroundColor: theme.palette.background.default,
       padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
       color: primaryText,
     },
     primaryColor: {
-      background: primaryColor,
+      backgroundColor: primaryColor,
       padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
       color: '#fff',
     },

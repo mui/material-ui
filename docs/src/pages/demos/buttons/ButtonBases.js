@@ -57,7 +57,7 @@ const styles = theme => ({
     right: 0,
     top: 0,
     bottom: 0,
-    background: theme.palette.common.black,
+    backgroundColor: theme.palette.common.black,
     opacity: 0.4,
     transition: theme.transitions.create('opacity'),
   },
@@ -68,7 +68,7 @@ const styles = theme => ({
   imageMarked: {
     height: 3,
     width: 18,
-    background: theme.palette.common.white,
+    backgroundColor: theme.palette.common.white,
     position: 'absolute',
     bottom: -2,
     left: 'calc(50% - 9px)',

@@ -7,7 +7,7 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 
 export default function AvatarListItem() {
   return (
-    <div style={{ background: '#fff', width: 300 }}>
+    <div style={{ backgroundColor: '#fff', width: 300 }}>
       <ListItem>
         <Avatar>
           <Icon>folder</Icon>

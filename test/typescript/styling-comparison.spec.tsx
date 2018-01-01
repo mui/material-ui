@@ -5,7 +5,7 @@ import { withStyles, WithStyles } from '../../src/styles';
 const decorate = withStyles(({ palette, spacing }) => ({
   root: {
     padding: spacing.unit,
-    background: palette.background,
+    backgroundColor: palette.background,
     color: palette.primary,
   },
 }));

@@ -41,7 +41,9 @@ describe('getStylesCreator', () => {
     it('should be able to overrides some rules, deep', () => {
       const theme = {
         overrides: {
-          [name]: { root: { color: 'white', '&:hover': { borderRadius: 2, background: 'black' } } },
+          [name]: {
+            root: { color: 'white', '&:hover': { borderRadius: 2, backgroundColor: 'black' } },
+          },
         },
       };
       const styles = stylesCreator.create(theme, name);
@@ -51,7 +53,7 @@ describe('getStylesCreator', () => {
           '&:hover': {
             color: 'red',
             borderRadius: 2,
-            background: 'black',
+            backgroundColor: 'black',
           },
         },
       });

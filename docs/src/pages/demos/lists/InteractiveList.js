@@ -23,7 +23,7 @@ const styles = theme => ({
     maxWidth: 752,
   },
   demo: {
-    background: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,
   },
   title: {
     margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,

@@ -33,12 +33,12 @@ class List extends React.Component {
 
   render() {
     const {
+      children,
       classes,
       className: classNameProp,
       component: ComponentProp,
-      disablePadding,
-      children,
       dense,
+      disablePadding,
       subheader,
       ...other
     } = this.props;

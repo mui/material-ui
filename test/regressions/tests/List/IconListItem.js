@@ -6,7 +6,7 @@ import { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
 
 export default function IconListItem() {
   return (
-    <div style={{ background: '#fff', width: 300 }}>
+    <div style={{ backgroundColor: '#fff', width: 300 }}>
       <ListItem>
         <ListItemIcon>
           <Icon>phone</Icon>

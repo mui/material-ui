@@ -23,7 +23,7 @@ interface ComponentProps {
 const styles: StyleRulesCallback<'root'> = ({ palette, spacing }) => ({
   root: {
     padding: spacing.unit,
-    background: palette.background,
+    backgroundColor: palette.background,
     color: palette.primary,
   },
 });
@@ -62,12 +62,12 @@ const StyledExampleThree = withStyles(styleRule)<{}>(ComponentWithChildren);
 // Also works with a plain object
 const stylesAsPojo = {
   root: {
-    background: 'hotpink',
+    backgroundColor: 'hotpink',
   },
 };
 
 const AnotherStyledSFC = withStyles({
-  root: { background: 'hotpink' },
+  root: { backgroundColor: 'hotpink' },
 })(({ classes }) => <div className={classes.root}>Stylish!</div>);
 
 // Overriding styles

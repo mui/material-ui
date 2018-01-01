@@ -30,7 +30,7 @@ const styles = theme => ({
   },
   textFieldInput: {
     borderRadius: 4,
-    background: theme.palette.common.white,
+    backgroundColor: theme.palette.common.white,
     border: '1px solid #ced4da',
     fontSize: 16,
     padding: '10px 12px',
