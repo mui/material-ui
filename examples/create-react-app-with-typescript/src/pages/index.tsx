@@ -7,21 +7,21 @@ import Dialog, {
   DialogActions,
 } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
-import withStyles, { WithStyles } from 'material-ui/styles/withStyles';
-import withRoot from '../components/withRoot';
+import withStyles, { WithStyles, StyleRulesCallback } from 'material-ui/styles/withStyles';
+import withRoot from '../withRoot';
 
-const styles = {
+const styles: StyleRulesCallback<'root'> = theme => ({
   root: {
     textAlign: 'center',
-    paddingTop: 200,
+    paddingTop: theme.spacing.unit * 20,
   },
-};
+});
 
 type State = {
   open: boolean,
 };
 
-class Index extends React.Component<WithStyles<keyof typeof styles>, State> {
+class Index extends React.Component<WithStyles<'root'>, State> {
   state = {
     open: false,
   };

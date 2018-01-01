@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import find from 'lodash/find';
 import { Provider } from 'react-redux';
-import pure from 'recompose/pure';
 import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
@@ -205,47 +204,8 @@ function findActivePage(currentPages, url) {
   return activePage;
 }
 
-function withRoot(BaseComponent) {
-  // Prevent rerendering
-  const PureBaseComponent = pure(BaseComponent);
-
-  type WithRootProps = {
-    reduxServerState?: Object,
-    sheetsRegistry?: Object,
-    url: Object,
-  };
-
-  class WithRoot extends React.Component<WithRootProps> {
-    static childContextTypes = {
-      url: PropTypes.object,
-      pages: PropTypes.array,
-      activePage: PropTypes.object,
-    };
-
-    static getInitialProps(ctx) {
-      let initialProps = {};
-      const redux = initRedux({});
-
-      if (BaseComponent.getInitialProps) {
-        const baseComponentInitialProps = BaseComponent.getInitialProps({ ...ctx, redux });
-        initialProps = {
-          ...baseComponentInitialProps,
-          ...initialProps,
-        };
-      }
-
-      if (process.browser) {
-        return initialProps;
-      }
-
-      return {
-        ...initialProps,
-        // No need to include other initial Redux state because when it
-        // initialises on the client-side it'll create it again anyway
-        reduxServerState: redux.getState(),
-      };
-    }
-
+function withRoot(Component) {
+  class WithRoot extends React.Component {
     constructor(props, context) {
       super(props, context);
       this.redux = initRedux(this.props.reduxServerState || {});
@@ -262,17 +222,53 @@ function withRoot(BaseComponent) {
     redux = null;
 
     render() {
-      const { sheetsRegistry, ...other } = this.props;
+      const { pageContext, ...other } = this.props;
 
       return (
         <Provider store={this.redux}>
-          <AppWrapper sheetsRegistry={sheetsRegistry}>
-            <PureBaseComponent initialProps={other} />
+          <AppWrapper pageContext={pageContext}>
+            <Component initialProps={other} />
           </AppWrapper>
         </Provider>
       );
     }
   }
+
+  WithRoot.propTypes = {
+    pageContext: PropTypes.object,
+    reduxServerState: PropTypes.object,
+    url: PropTypes.object,
+  };
+
+  WithRoot.childContextTypes = {
+    url: PropTypes.object,
+    pages: PropTypes.array,
+    activePage: PropTypes.object,
+  };
+
+  WithRoot.getInitialProps = ctx => {
+    let initialProps = {};
+    const redux = initRedux({});
+
+    if (Component.getInitialProps) {
+      const componentInitialProps = Component.getInitialProps({ ...ctx, redux });
+      initialProps = {
+        ...componentInitialProps,
+        ...initialProps,
+      };
+    }
+
+    if (process.browser) {
+      return initialProps;
+    }
+
+    return {
+      ...initialProps,
+      // No need to include other initial Redux state because when it
+      // initialises on the client-side it'll create it again anyway
+      reduxServerState: redux.getState(),
+    };
+  };
 
   return WithRoot;
 }

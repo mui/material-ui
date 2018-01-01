@@ -10,21 +10,20 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
+import withRoot from '../withRoot';
 
-const styles = {
+const styles = (theme: Object) => ({
   root: {
     textAlign: 'center',
-    paddingTop: 200,
+    paddingTop: theme.spacing.unit * 20,
   },
-};
+});
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
 };
 
-export type Props = {
+type Props = {
   classes: Object,
 };
 

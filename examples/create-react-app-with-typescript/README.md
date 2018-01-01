@@ -17,4 +17,4 @@ yarn start
 
 ## The idea behind the example
 
-This example demonstrate how you can use [Create React App](https://github.com/facebookincubator/create-react-app) with [TypeScript](https://www.typescriptlang.org/).
+This example demonstrate how you can use [Create React App](https://github.com/facebookincubator/create-react-app) with [TypeScript](https://github.com/Microsoft/TypeScript).

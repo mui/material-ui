@@ -72,6 +72,6 @@ In order to promote consistency and manage the user interface as a whole, Materi
 
 ### Customizing all instances of a component type
 
-When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme`
-to potentially change every single style injected by Material-UI into the DOM. Learn more about it in
-the [themes](/customization/themes#customizing-all-instances-of-a-component-type)section of the documentation.
+When the configuration variables aren't powerful enough,
+you can take advantage of the `overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM.
+Learn more about it in the [themes](/customization/themes#customizing-all-instances-of-a-component-type) section of the documentation.

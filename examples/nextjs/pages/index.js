@@ -9,14 +9,14 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import withRoot from '../components/withRoot';
+import withRoot from '../src/withRoot';
 
-const styles = {
+const styles = theme => ({
   root: {
     textAlign: 'center',
-    paddingTop: 200,
+    paddingTop: theme.spacing.unit * 20,
   },
-};
+});
 
 class Index extends React.Component {
   state = {
@@ -36,9 +36,12 @@ class Index extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
+    const { open } = this.state;
+
     return (
-      <div className={this.props.classes.root}>
-        <Dialog open={this.state.open} onClose={this.handleClose}>
+      <div className={classes.root}>
+        <Dialog open={open} onClose={this.handleClose}>
           <DialogTitle>Super Secret Password</DialogTitle>
           <DialogContent>
             <DialogContentText>1-2-3-4-5</DialogContentText>
