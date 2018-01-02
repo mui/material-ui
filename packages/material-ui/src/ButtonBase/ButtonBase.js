@@ -191,11 +191,7 @@ class ButtonBase extends React.Component {
     }
   });
 
-  handleFocus = event => {
-    if (this.props.disabled) {
-      return;
-    }
-
+  handleFocus = createRippleHandler(this, 'Focus', 'start', event => {
     // Fix for https://github.com/facebook/react/issues/7769
     if (!this.button) {
       this.button = event.currentTarget;
@@ -205,11 +201,7 @@ class ButtonBase extends React.Component {
     detectFocusVisible(this, this.button, () => {
       this.onFocusVisibleHandler(event);
     });
-
-    if (this.props.onFocus) {
-      this.props.onFocus(event);
-    }
-  };
+  });
 
   render() {
     const {

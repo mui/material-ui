@@ -185,6 +185,17 @@ describe('<ButtonBase />', () => {
       );
     });
 
+    it('should start the ripple when the button receives focus', () => {
+      wrapper.instance().ripple = { start: spy() };
+      wrapper.simulate('focus', { persist: () => {} });
+
+      assert.strictEqual(
+        wrapper.instance().ripple.start.callCount,
+        1,
+        'should call start on the ripple',
+      );
+    });
+
     it('should stop the ripple when the button blurs', () => {
       wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('blur', {});
