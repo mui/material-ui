@@ -87,6 +87,7 @@
     "@rosskevin/react-docgen": "^3.0.0-beta9",
     "@types/enzyme": "^3.1.4",
     "@types/react": "16.0.31",
+    "@types/jss": "^9.3.0",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "autosuggest-highlight": "^3.1.1",

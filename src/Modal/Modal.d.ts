@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps, ModalManager } from '..';
 import { BackdropProps } from './Backdrop';
 import { PortalProps } from '../Portal';
 
@@ -17,7 +17,7 @@ export interface ModalProps
   disableRestoreFocus?: boolean;
   hideBackdrop?: boolean;
   keepMounted?: boolean;
-  manager?: Object;
+  manager?: ModalManager;
   onBackdropClick?: React.ReactEventHandler<{}>;
   onClose?: React.ReactEventHandler<{}>;
   onEscapeKeyDown?: React.ReactEventHandler<{}>;

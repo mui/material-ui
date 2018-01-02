@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { TableCellProps, TableCellClassKey } from './TableCell.d';
+import { IconButtonProps } from '../IconButton/IconButton';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -11,12 +12,12 @@ export interface LabelDisplayedRowsArgs {
 
 export interface TablePaginationProps
   extends StandardProps<TablePaginationBaseProps, TablePaginationClassKey> {
-  backIconButtonProps?: Object;
+  backIconButtonProps?: IconButtonProps;
   component?: React.ReactType<TablePaginationBaseProps>;
   count: number;
   labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
   labelRowsPerPage?: React.ReactNode;
-  nextIconButtonProps?: Object;
+  nextIconButtonProps?: IconButtonProps;
   onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   page: number;

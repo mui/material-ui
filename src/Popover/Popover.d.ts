@@ -18,18 +18,17 @@ export type PopoverReference = 'anchorEl' | 'anchorPosition';
 
 export interface PopoverProps
   extends StandardProps<ModalProps & Partial<TransitionHandlers>, PopoverClassKey, 'children'> {
-  anchorEl?: Object;
+  anchorEl?: HTMLElement;
   anchorOrigin?: PopoverOrigin;
   anchorPosition?: PopoverPosition;
   anchorReference?: PopoverReference;
   children?: React.ReactNode;
   elevation?: number;
-  getContentAnchorEl?: Function;
+  getContentAnchorEl?: (element: HTMLElement) => HTMLElement;
   marginThreshold?: number;
   modal?: boolean;
   PaperProps?: Partial<PaperProps>;
   role?: string;
-  theme?: Object;
   transformOrigin?: PopoverOrigin;
   transition?: React.ReactType;
   transitionDuration?: TransitionDuration;
