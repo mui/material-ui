@@ -4931,6 +4931,10 @@ is-directory@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/is-directory/-/is-directory-0.3.1.tgz#61339b6f2475fc772fd9c9d83f5c8575dc154ae1"
 
+is-dom@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/is-dom/-/is-dom-1.0.9.tgz#483832d52972073de12b9fe3f60320870da8370d"
+
 is-dotfile@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/is-dotfile/-/is-dotfile-1.0.3.tgz#a6a2f32ffd2dfb04f5ca25ecd0f6b83cf798a1e1"
@@ -7849,6 +7853,13 @@ react-hot-loader@3.1.1:
     react-proxy "^3.0.0-alpha.0"
     redbox-react "^1.3.6"
     source-map "^0.6.1"
+
+react-inspector@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/react-inspector/-/react-inspector-2.2.2.tgz#c04f5248fa92ab6c23e37960e725fb7f48c34d05"
+  dependencies:
+    babel-runtime "^6.26.0"
+    is-dom "^1.0.9"
 
 react-jss@^8.1.0:
   version "8.2.0"

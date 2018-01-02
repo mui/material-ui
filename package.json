@@ -160,6 +160,7 @@
     "react": "^16.1.1",
     "react-autosuggest": "^9.3.2",
     "react-dom": "^16.1.1",
+    "react-inspector": "^2.2.2",
     "react-number-format": "^3.0.2",
     "react-redux": "^5.0.6",
     "react-swipeable-views": "^0.12.10",

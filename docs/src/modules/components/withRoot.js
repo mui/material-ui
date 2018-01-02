@@ -52,6 +52,10 @@ const pages = [
         pathname: '/customization/themes',
       },
       {
+        pathname: '/customization/theme-default',
+        title: 'Default Theme',
+      },
+      {
         pathname: '/customization/css-in-js',
         title: 'CSS in JS',
       },
