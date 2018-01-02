@@ -7,7 +7,15 @@ That’s what we hope to answer for you here.
 
 We’d like your help keeping this document up-to-date because the JavaScript world moves fast!
 If you notice an inaccuracy or something that doesn’t seem quite right, please let us know by
-[opening an issue](https://github.com/mui-org/material-ui/issues/new?title=[Docs]+Inaccuracy+in+comparison+guide).
+[opening an issue](https://github.com/mui-org/material-ui/issues/new?title=[docs]+Inaccuracy+in+comparison+guide).
+
+We cover the following libraries:
+
+- [Material-UI](#material-ui)
+- [Material Design Lite (MDL)](#material-design-lite-mdl-)
+- [Material Components Web (MDC-web)](#material-components-web-mdc-web-)
+- [Materialize](#materialize)
+- [React Toolbox](#react-toolbox)
 
 ## Material-UI
 

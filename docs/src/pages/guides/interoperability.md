@@ -1,4 +1,4 @@
-# Interoperability with Style Libraries
+# Style Library Interoperability
 
 While it is simple to use the JSS based styling solution provided by Material-UI to style your application,
 it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries.

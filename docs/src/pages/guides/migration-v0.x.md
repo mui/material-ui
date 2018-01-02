@@ -1,4 +1,4 @@
-# Migration from v0.x
+# Migration From v0.x
 
 ## FAQ
 
