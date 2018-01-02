@@ -33,11 +33,11 @@ export class TimePicker extends Component {
   setMeridiemMode = mode => () => {
     this.setState(
       { meridiemMode: mode },
-      () => this.handleChange(false)(this.props.date, false),
+      () => this.handleChange(this.props.date, false, false),
     );
   }
 
-  handleChange = openMinutes => (time, isFinish) => {
+  handleChange(time, isFinish, openMinutes) {
     const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm);
 
     if (isFinish) {
@@ -50,6 +50,15 @@ export class TimePicker extends Component {
     }
 
     this.props.onChange(withMeridiem, false);
+  }
+
+
+  handleHourChange = (time, isFinish) => {
+    this.handleChange(time, isFinish, true);
+  }
+
+  handleMinutesChange = (time, isFinish) => {
+    this.handleChange(time, isFinish, false);
   }
 
   openMinutesView = () => {
@@ -128,14 +137,14 @@ export class TimePicker extends Component {
               <HourView
                 date={date}
                 meridiemMode={meridiemMode}
-                onChange={this.handleChange(true)}
+                onChange={this.handleHourChange}
                 utils={utils}
                 ampm={ampm}
               />
             :
               <MinutesView
                 date={date}
-                onChange={this.handleChange(false)}
+                onChange={this.handleMinutesChange}
                 utils={utils}
               />
         }

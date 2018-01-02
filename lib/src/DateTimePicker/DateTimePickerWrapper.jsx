@@ -94,12 +94,13 @@ export class DateTimePickerWrapper extends PickerBase {
 
     return (
       <ModalWrapper
-        ref={(node) => { this.wrapper = node; }}
+        ref={this.getRef}
         value={value}
         format={this.getFormat()}
         onAccept={this.handleAccept}
         onChange={this.handleTextFieldChange}
         onDismiss={this.handleDismiss}
+        onClear={this.handleClear}
         dialogContentClassName={classes.dialogContent}
         invalidLabel={invalidLabel}
         labelFunc={labelFunc}

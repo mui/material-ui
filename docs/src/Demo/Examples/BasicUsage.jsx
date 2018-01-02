@@ -24,6 +24,7 @@ export default class BasicUsage extends Component {
 
           <DatePicker
             keyboard
+            clearable
             value={selectedDate}
             onChange={this.handleDateChange}
             animateYearScrolling={false}

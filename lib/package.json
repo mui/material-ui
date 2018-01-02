@@ -1,10 +1,11 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-beta.11",
+  "version": "1.0.0-beta.12",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "build/dist/material-ui-pickers.cjs.js",
   "module": "build/dist/material-ui-pickers.es.js",
+  "types": "./src/index.d.ts",
   "keywords": [
     "material-ui",
     "pickers",
@@ -54,7 +55,8 @@
     "prerelease": "npm run ci",
     "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
-    "lint": "eslint ./src/**/*.js*"
+    "lint": "eslint ./src/**/*.js*",
+    "lint-fix": "npm run lint -- --fix"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -71,7 +73,7 @@
     "babel-preset-latest": "^6.24.1",
     "classnames": "^2.2.5",
     "cross-env": "^5.1.0",
-    "enzyme": "^3.2.0",
+    "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^16.0.0",
@@ -81,7 +83,7 @@
     "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
     "jest": "^21.2.1",
-    "material-ui": "^1.0.0-beta.24",
+    "material-ui": "^1.0.0-beta.26",
     "moment": "^2.19.2",
     "np": "^2.18.3",
     "prop-types": "^15.6.0",

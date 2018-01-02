@@ -20,18 +20,22 @@ export default class DateTextField extends PureComponent {
     disabled: PropTypes.bool,
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    onClear: PropTypes.func,
     onClick: PropTypes.func.isRequired,
     invalidLabel: PropTypes.string,
+    emptyLabel: PropTypes.string,
     labelFunc: PropTypes.func,
     keyboard: PropTypes.bool,
     InputProps: PropTypes.shape(),
     keyboardIcon: PropTypes.node,
     invalidDateMessage: PropTypes.string,
+    clearable: PropTypes.bool,
   }
 
   static defaultProps = {
     disabled: false,
     invalidLabel: 'Unknown',
+    emptyLabel: '',
     value: new Date(),
     labelFunc: undefined,
     format: undefined,
@@ -40,6 +44,8 @@ export default class DateTextField extends PureComponent {
     mask: undefined,
     keyboardIcon: 'event',
     invalidDateMessage: 'Invalid Date Format',
+    clearable: false,
+    onClear: undefined,
   }
 
   getDisplayDate = (props) => {
@@ -47,13 +53,19 @@ export default class DateTextField extends PureComponent {
       value,
       format,
       invalidLabel,
+      emptyLabel,
       labelFunc,
     } = props;
 
+    const isEmpty = value === null;
     const date = moment(value);
 
     if (labelFunc) {
-      return labelFunc(date, invalidLabel);
+      return labelFunc(isEmpty ? null : date, invalidLabel);
+    }
+
+    if (isEmpty) {
+      return emptyLabel;
     }
 
     return date.isValid()
@@ -75,8 +87,29 @@ export default class DateTextField extends PureComponent {
     }
   }
 
+  handleBlur = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   handleChange = (e) => {
-    const { format, invalidDateMessage } = this.props;
+    const {
+      format,
+      invalidDateMessage,
+      clearable,
+      onClear,
+    } = this.props;
+
+    if (clearable && e.target.value === '') {
+      if (this.props.value === null) {
+        this.setState(this.updateState());
+      } else if (onClear) {
+        onClear();
+      }
+
+      return;
+    }
+
     const oldValue = moment(this.state.value);
     const newValue = moment(e.target.value, format, true);
     const error = newValue.isValid() ? '' : invalidDateMessage;
@@ -106,6 +139,12 @@ export default class DateTextField extends PureComponent {
     this.openPicker(e);
   }
 
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.openPicker(e);
+    }
+  }
+
   openPicker = (e) => {
     const { disabled, onClick } = this.props;
 
@@ -120,6 +159,10 @@ export default class DateTextField extends PureComponent {
       disabled,
       onClick,
       invalidLabel,
+      invalidDateMessage,
+      clearable,
+      onClear,
+      emptyLabel,
       labelFunc,
       keyboard,
       value,
@@ -132,7 +175,10 @@ export default class DateTextField extends PureComponent {
 
     const localInputProps = {
       inputComponent: MaskedInput,
-      inputProps: { mask },
+      inputProps: {
+        mask: value === null ? null : mask,
+        readOnly: !keyboard,
+      },
     };
 
     if (keyboard) {
@@ -145,12 +191,11 @@ export default class DateTextField extends PureComponent {
 
     return (
       <TextField
-        readOnly
         onClick={this.handleFocus}
         error={!!error}
         helperText={error}
-        onKeyPress={this.handleChange}
-        onBlur={e => e.preventDefault() && e.stopPropagation()}
+        onKeyPress={this.handleKeyPress}
+        onBlur={this.handleBlur}
         disabled={disabled}
         value={displayValue}
         {...other}
