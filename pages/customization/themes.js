@@ -36,13 +36,6 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/DarkTheme'), 'utf8')
 `,
         },
-        'pages/customization/ThemeDefault.js': {
-          js: require('docs/src/pages/customization/ThemeDefault').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/ThemeDefault'), 'utf8')
-`,
-        },
         'pages/customization/CustomStyles.js': {
           js: require('docs/src/pages/customization/CustomStyles').default,
           raw: preval`
