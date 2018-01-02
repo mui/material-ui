@@ -119,8 +119,7 @@ class Drawer extends React.Component {
   }
 
   getMaxTranslate() {
-    const drawer = ReactDOM.findDOMNode(this.drawer); // TODO what about server-side rendering?
-    return this.isHorizontalSwiping() ? drawer.clientWidth : drawer.clientHeight;
+    return this.isHorizontalSwiping() ? this.drawer.clientWidth : this.drawer.clientHeight;
   }
 
   enableSwipeHandling() {
@@ -175,15 +174,13 @@ class Drawer extends React.Component {
 
   setPosition(translate) {
     const rtlTranslateMultiplier = ['right', 'bottom'].includes(this.getAnchor()) ? 1 : -1;
-    const drawer = ReactDOM.findDOMNode(this.drawer);
     const transformCSS = this.isHorizontalSwiping()
       ? `translate(${rtlTranslateMultiplier * translate}px, 0)`
       : `translate(0, ${rtlTranslateMultiplier * translate}px)`;
-    drawer.style.transform = transformCSS;
-    drawer.style.webkitTransform = transformCSS;
+    this.drawer.style.transform = transformCSS;
+    this.drawer.style.webkitTransform = transformCSS;
 
-    const backdrop = ReactDOM.findDOMNode(this.backdrop);
-    backdrop.style.opacity = 1 - translate / this.getMaxTranslate();
+    this.backdrop.style.opacity = 1 - translate / this.getMaxTranslate();
   }
 
   getTranslate(current) {
@@ -235,7 +232,9 @@ class Drawer extends React.Component {
           swiping: this.props.open ? 'closing' : 'opening',
         });
         this.setPosition(this.getTranslate(horizontalSwipe ? currentX : currentY));
-      } else if (dXAbs <= threshold && dYAbs > threshold) {
+      } else if (horizontalSwipe
+        ? (dXAbs <= threshold && dYAbs > threshold)
+        : (dYAbs <= threshold && dXAbs > threshold)) {
         this.onBodyTouchEnd();
       }
     }
@@ -335,7 +334,9 @@ class Drawer extends React.Component {
         className={classNames(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
           [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
         })}
-        ref={(ref) => { this.drawer = ref }}
+        ref={ref => {
+          this.drawer = ref != null ? ReactDOM.findDOMNode(ref) : null;
+        }}
         {...PaperProps}
       >
         {children}
@@ -352,7 +353,7 @@ class Drawer extends React.Component {
 
     const slidingDrawer = (
       <Slide
-        in={open || (type === 'temporary' && this.maybeSwiping)}
+        in={open || (type === 'temporary' && !!this.maybeSwiping)}
         direction={getSlideDirection(anchor)}
         timeout={transitionDuration}
         appear={!this.state.firstMount}
@@ -375,7 +376,7 @@ class Drawer extends React.Component {
       <Modal
         BackdropProps={{
           ref: ref => {
-            this.backdrop = ref;
+            this.backdrop = ref != null ? ReactDOM.findDOMNode(ref) : null;
           },
           transitionDuration,
         }}

@@ -1,24 +1,34 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { spy } from 'sinon';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import mockPortal from '../../test/utils/mockPortal';
 import Slide from '../transitions/Slide';
 import createMuiTheme from '../styles/createMuiTheme';
 import Paper from '../Paper';
 import Modal from '../Modal';
 import Drawer from './Drawer';
 
-describe('<Drawer />', () => {
+describe.only('<Drawer />', () => {
   let shallow;
+  let mount;
   let classes;
 
   before(() => {
     shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(
       <Drawer>
         <div />
       </Drawer>,
     );
+    mockPortal.init();
   });
+
+  after(() => {
+    mount.cleanUp();
+    mockPortal.reset();
+  })
 
   describe('prop: variant=temporary', () => {
     it('should render a Modal', () => {
@@ -134,6 +144,7 @@ describe('<Drawer />', () => {
             <h1>Hello</h1>
           </Drawer>,
         );
+        wrapper.update()
       });
 
       it('should start closed', () => {
@@ -153,6 +164,121 @@ describe('<Drawer />', () => {
         assert.strictEqual(wrapper.find(Slide).props().in, false, 'should not transition in');
       });
     });
+
+    describe.only('swipe to open', () => {
+      const DrawerNaked = unwrap(Drawer);
+
+      const fireBodyMouseEvent = (name, properties) => {
+        const event = document.createEvent('MouseEvents');
+        event.initEvent(name, true, true);
+        Object.keys(properties).forEach((key) => { event[key] = properties[key] });
+        document.body.dispatchEvent(event);
+      };
+      let wrapper;
+
+      beforeEach(() => {
+        wrapper = mount(
+          <DrawerNaked classes={{}} theme={{ direction: 'ltr' }}>
+            <h1>Hello</h1>
+          </DrawerNaked>,
+        )
+        // mock the drawer and backdrop DOM nodes
+        // using Object.defineProperties seems to be the only way that works fine with enzyme
+        // we use custom getter and setter to prevent react from adding the real dom component (that has
+        // no clientWidth/clientHeight in jsdom)
+        let backdrop = { style: { opacity: 1 } }
+        let drawer = { clientWidth: 250, clientHeight: 250, style: {} }
+        Object.defineProperties(wrapper.instance(), {
+          drawer: {
+            get: () => drawer,
+            set: () => {}
+          },
+          backdrop: {
+            get: () => backdrop,
+            set: () => {}
+          }
+        });
+      });
+
+      const bodyWidth = document.body.offsetWidth // jsdom emulates these
+      const windowHeight = window.innerHeight
+      const toTouchPoint = ({x, y}) => ({pageX: x, clientY: y})
+      const tests = [{
+        anchor: 'left',
+        openTouches: [{x: 0, y: 0}, {x: 20, y: 0}, {x: 180, y: 0}].map(toTouchPoint),
+        closeTouches: [{x: 200, y: 0}, {x: 180, y: 0}, {x: 10, y: 0}].map(toTouchPoint),
+        edgeTouch: {x: 10, y: 50}
+      }, {
+        anchor: 'right',
+        openTouches: [{x: bodyWidth, y: 0}, {x: bodyWidth - 20, y: 0}, {x: bodyWidth - 180, y: 0}].map(toTouchPoint),
+        closeTouches: [{x: bodyWidth - 200, y: 0}, {x: bodyWidth - 180, y: 0}, {x: bodyWidth - 10, y: 0}].map(toTouchPoint),
+        edgeTouch: {x: bodyWidth - 10, y: 50}
+      }, {
+        anchor: 'top',
+        openTouches: [{x: 0, y: 0}, {x: 0, y: 20}, {x: 0, y: 180}].map(toTouchPoint),
+        closeTouches: [{x: 0, y: 200}, {x: 0, y: 180}, {x: 0, y: 10}].map(toTouchPoint),
+        edgeTouch: {x: 50, y: 10}
+      }, {
+        anchor: 'bottom',
+        openTouches: [{x: 0, y: windowHeight}, {x: 0, y: windowHeight - 20}, {x: 0, y: windowHeight - 180}].map(toTouchPoint),
+        closeTouches: [{x: 0, y: windowHeight - 200}, {x: 0, y: windowHeight - 180}, {x: 0, y: windowHeight - 10}].map(toTouchPoint),
+        edgeTouch: {x: 50, y: windowHeight - 10}
+      }]
+
+      tests.forEach((params) => {
+        it(`should open and close when swiping from ${params.anchor}`, () => {
+          wrapper.setProps({ anchor: params.anchor });
+
+          // simulate open swipe
+          const handleOpen = spy();
+          wrapper.setProps({ onOpen: handleOpen })
+
+          fireBodyMouseEvent('touchstart', {touches: [params.openTouches[0]]})
+          assert.strictEqual(wrapper.instance().maybeSwiping, true, 'should be listening for swipe')
+          fireBodyMouseEvent('touchmove', {touches: [params.openTouches[1]]})
+          assert.strictEqual(wrapper.state().swiping, 'opening', 'should be opening')
+          fireBodyMouseEvent('touchend', {changedTouches: [params.openTouches[2]]})
+          assert.strictEqual(handleOpen.callCount, 1, 'should call onOpen')
+
+          // simulate close swipe
+          const handleClose = spy();
+          wrapper.setProps({ open: true, onClose: handleClose })
+          fireBodyMouseEvent('touchstart', {touches: [params.closeTouches[0]]});
+          assert.strictEqual(wrapper.instance().maybeSwiping, true, 'should be listening for swipe');
+          fireBodyMouseEvent('touchmove', {touches: [params.closeTouches[1]]});
+          assert.strictEqual(wrapper.state().swiping, 'closing', 'should be closing');
+          fireBodyMouseEvent('touchend', {changedTouches: [params.closeTouches[2]]});
+          assert.strictEqual(handleClose.callCount, 1, 'should call onClose');
+        });
+
+        it('should slide in a bit when touching near the edge', () => {
+          wrapper.setProps({ anchor: params.anchor });
+
+          // mock the internal setPosition function that moves the drawer while swiping
+          const setPosition = spy();
+          Object.defineProperty(wrapper.instance(), 'setPosition', { value: setPosition });
+
+          const handleOpen = spy();
+          const handleClose = spy();
+          wrapper.setProps({ onOpen: handleOpen, onClose: handleClose });
+          fireBodyMouseEvent('touchstart', {touches: [params.edgeTouch]})
+          assert.strictEqual(wrapper.instance().maybeSwiping, true, 'should be listening for swipe')
+          assert.strictEqual(setPosition.callCount, 1, 'should slide in a bit')
+          fireBodyMouseEvent('touchend', {changedTouches: [params.edgeTouch]})
+          assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen')
+          assert.strictEqual(handleClose.callCount, 0, 'should not call onClose')
+        });
+      });
+
+      it('removes event listeners on unmount', () => {
+        fireBodyMouseEvent('touchstart', {touches: [{pageX: 0, clientY: 0}]})
+        wrapper.unmount();
+        // should trigger setState warning if listeners aren't cleaned.
+        fireBodyMouseEvent('touchmove', {touches: [{pageX: 180, clientY: 0}]});
+        // should trigger setState warning if swipe handling is not cleaned, too
+        fireBodyMouseEvent('touchstart', {touches: [{pageX: 0, clientY: 0}]});
+      })
+    })
   });
 
   describe('prop: variant=persistent', () => {
@@ -231,6 +357,20 @@ describe('<Drawer />', () => {
       wrapper.setProps({ anchor: 'bottom' });
       assert.strictEqual(wrapper.find(Slide).props().direction, 'up');
     });
+
+    it('should recognize left and right as horizontal swiping directions', () => {
+      wrapper.setProps({ anchor: 'left' });
+      assert.strictEqual(wrapper.instance().isHorizontalSwiping(), true);
+
+      wrapper.setProps({ anchor: 'right' });
+      assert.strictEqual(wrapper.instance().isHorizontalSwiping(), true);
+
+      wrapper.setProps({ anchor: 'top' });
+      assert.strictEqual(wrapper.instance().isHorizontalSwiping(), false);
+
+      wrapper.setProps({ anchor: 'bottom' });
+      assert.strictEqual(wrapper.instance().isHorizontalSwiping(), false);
+    })
   });
 
   describe('Right To Left', () => {
