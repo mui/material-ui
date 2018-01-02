@@ -20,8 +20,10 @@ export const styles = theme => ({
     outline: 'none',
     border: 0,
     borderRadius: 0,
+    padding: 0, // Reset default style
     cursor: 'pointer',
     userSelect: 'none',
+    verticalAlign: 'middle',
     appearance: 'none',
     textDecoration: 'none',
     // So we take precedent over the style of a native <a /> element.

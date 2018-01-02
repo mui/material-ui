@@ -11,6 +11,8 @@ export const styles = theme => ({
     display: 'inline-flex',
     alignItems: 'center',
     cursor: 'pointer',
+    // For correct alignment with the text.
+    verticalAlign: 'middle',
     // Remove grey highlight
     WebkitTapHighlightColor: theme.palette.common.transparent,
     marginLeft: -14,

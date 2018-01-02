@@ -10,6 +10,8 @@ export const styles = theme => ({
     width: 62,
     position: 'relative',
     flexShrink: 0,
+    // For correct alignment with the text.
+    verticalAlign: 'middle',
   },
   bar: {
     borderRadius: 7,

@@ -10,6 +10,8 @@ export const styles = theme => ({
   root: {
     position: 'relative',
     display: 'inline-flex',
+    // For correct alignment with the text.
+    verticalAlign: 'middle',
   },
   badge: {
     display: 'flex',

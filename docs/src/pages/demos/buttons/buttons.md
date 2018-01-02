@@ -44,7 +44,6 @@ The Zoom transition can be used to achieve this. Note that since both the exitin
 animations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's
 animation to finish before the new one enters.
 
-
 {{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
 ## Icon Buttons

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import vrtest from 'vrtest/client';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
@@ -100,11 +99,9 @@ tests.forEach(test => {
   suite.createTest(test.name, () => {
     const TestCase = test.case;
     ReactDOM.render(
-      <MuiThemeProvider theme={createMuiTheme()}>
-        <TestViewer>
-          <TestCase />
-        </TestViewer>
-      </MuiThemeProvider>,
+      <TestViewer>
+        <TestCase />
+      </TestViewer>,
       rootEl,
     );
   });

@@ -9,6 +9,7 @@ export const styles = theme => ({
     'label + div > &': {
       marginTop: -theme.spacing.unit * 2,
       height: 26,
+      display: 'flex',
     },
   },
   positionStart: {

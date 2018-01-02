@@ -102,7 +102,7 @@ In our `vrtest` config this is set as the default, although it can be overridden
 testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
 ```
 
-In addition to docker, the visual regression tests depend on either 
+In addition to docker, the visual regression tests depend on either
 [ImageMagick](https://www.imagemagick.org/)
 or [GraphicsMagick](http://http://www.graphicsmagick.org/) being installed.
 
