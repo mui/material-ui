@@ -50,6 +50,8 @@ export default class PickerBase extends PureComponent {
       : this.default24hFormat;
   }
 
+  getRef = (node) => { this.wrapper = node; }
+
   handleClear = () => {
     this.props.onChange(null);
   }

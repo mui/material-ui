@@ -87,6 +87,11 @@ export default class DateTextField extends PureComponent {
     }
   }
 
+  handleBlur = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   handleChange = (e) => {
     const {
       format,
@@ -190,7 +195,7 @@ export default class DateTextField extends PureComponent {
         error={!!error}
         helperText={error}
         onKeyPress={this.handleKeyPress}
-        onBlur={e => e.preventDefault() && e.stopPropagation()}
+        onBlur={this.handleBlur}
         disabled={disabled}
         value={displayValue}
         {...other}
