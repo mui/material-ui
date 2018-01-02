@@ -20,9 +20,7 @@ export const styles = theme => ({
     color: theme.palette.text.disabled,
     cursor: 'default',
   },
-  label: {
-    userSelect: 'none',
-  },
+  label: {},
 });
 
 /**
