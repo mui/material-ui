@@ -1,24 +1,29 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from '../test-utils';
+import Transition from 'react-transition-group/Transition';
+import { createShallow, createMount } from '../test-utils';
 import Fade from './Fade';
 
 describe('<Fade />', () => {
   let shallow;
-  const props = {
+  let mount;
+  const defaultProps = {
     in: true,
     children: <div />,
   };
 
   before(() => {
     shallow = createShallow({ dive: true });
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a Transition', () => {
-    const wrapper = shallow(<Fade {...props} />);
+    const wrapper = shallow(<Fade {...defaultProps} />);
     assert.strictEqual(wrapper.name(), 'Transition');
   });
 
@@ -31,7 +36,7 @@ describe('<Fade />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<Fade {...props} {...handlers} />);
+      const wrapper = shallow(<Fade {...defaultProps} {...handlers} />);
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
@@ -47,7 +52,7 @@ describe('<Fade />', () => {
     let instance;
 
     before(() => {
-      wrapper = shallow(<Fade {...props} />);
+      wrapper = shallow(<Fade {...defaultProps} />);
       instance = wrapper.instance();
     });
 
@@ -73,6 +78,17 @@ describe('<Fade />', () => {
         instance.handleExit(element);
         assert.strictEqual(element.style.opacity, '0', 'should set the opacity to 0');
       });
+    });
+  });
+
+  describe('prop: appear', () => {
+    it('should work when initially hidden', () => {
+      const wrapper = mount(
+        <Fade in={false} appear>
+          <div>Foo</div>
+        </Fade>,
+      );
+      assert.deepEqual(wrapper.find(Transition).props().style, {});
     });
   });
 });

@@ -13,6 +13,14 @@ const reflow = node => node.scrollTop;
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Zoom extends React.Component {
+  state = {
+    mounted: false,
+  };
+
+  componentDidMount() {
+    this.setState({ mounted: true }); // eslint-disable-line react/no-did-mount-set-state
+  }
+
   handleEnter = node => {
     node.style.transform = 'scale(0)';
     reflow(node);
@@ -69,7 +77,7 @@ class Zoom extends React.Component {
     const style = { ...styleProp };
 
     // For server side rendering.
-    if (!this.props.in || appear) {
+    if (!this.props.in && !this.state.mounted && appear) {
       style.transform = 'scale(0)';
     }
 

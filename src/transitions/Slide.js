@@ -66,12 +66,11 @@ const reflow = node => node.scrollTop;
 
 class Slide extends React.Component {
   state = {
-    // We use this state to handle the server-side rendering.
-    firstMount: true,
+    mounted: false,
   };
 
   componentDidMount() {
-    // state.firstMount handle SSR, once the component is mounted, we need
+    // state.mounted handle SSR, once the component is mounted, we need
     // to properly hide it.
     if (!this.props.in) {
       // We need to set initial translate values of transition element
@@ -82,7 +81,7 @@ class Slide extends React.Component {
 
   componentWillReceiveProps() {
     this.setState({
-      firstMount: false,
+      mounted: true,
     });
   }
 
@@ -187,7 +186,8 @@ class Slide extends React.Component {
 
     const style = { ...styleProp };
 
-    if (!this.props.in && this.state.firstMount) {
+    // We use this state to handle the server-side rendering.
+    if (!this.props.in && this.state.mounted) {
       style.visibility = 'hidden';
     }
 

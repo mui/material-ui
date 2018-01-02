@@ -13,7 +13,9 @@ import EditIcon from 'material-ui-icons/ModeEdit';
 import UpIcon from 'material-ui-icons/KeyboardArrowUp';
 import green from 'material-ui/colors/green';
 
-function TabContainer({ children, dir }) {
+function TabContainer(props) {
+  const { children, dir } = props;
+
   return (
     <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
       {children}
@@ -39,11 +41,11 @@ const styles = theme => ({
     right: theme.spacing.unit * 2,
   },
   fabGreen: {
-    background: green[500],
+    backgroundColor: green[500],
   },
 });
 
-class FullWidthTabs extends React.Component {
+class FloatingActionButtonZoom extends React.Component {
   state = {
     value: 0,
   };
@@ -107,6 +109,8 @@ class FullWidthTabs extends React.Component {
         </SwipeableViews>
         {fabs.map((fab, index) => (
           <Zoom
+            appear={false}
+            key={fab.color}
             in={this.state.value === index}
             timeout={transitionDuration}
             enterDelay={transitionDuration.exit}
@@ -122,9 +126,9 @@ class FullWidthTabs extends React.Component {
   }
 }
 
-FullWidthTabs.propTypes = {
+FloatingActionButtonZoom.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(FullWidthTabs);
+export default withStyles(styles, { withTheme: true })(FloatingActionButtonZoom);

@@ -1,6 +1,6 @@
 /* eslint-disable func-names */
 
-import reactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 import Portal from '../../src/Portal';
 
 const portalOrigin = {};
@@ -14,7 +14,7 @@ const mockPortal = {
 
     portalOrigin.getMountNode = Portal.prototype.getMountNode;
     Portal.prototype.getMountNode = function() {
-      return reactDOM.findDOMNode(this);
+      return ReactDOM.findDOMNode(this);
     };
   },
   reset: () => {
