@@ -60,4 +60,4 @@ If you want to prevent a specific rule-set from being affected by the `rtl` tran
 
 *Use the direction toggle button on the top left corner to see the effect*
 
-{{"demo": "pages/guides/RtlOptOut.js"}}
+{{"demo": "pages/guides/RtlOptOut.js", "hideEditButton": true}}

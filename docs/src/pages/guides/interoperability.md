@@ -1,7 +1,7 @@
 # Interoperability with Style Libraries
 
-While it is simple to use the JSS based styling solution provided by Material-UI to style your application, 
-it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries. 
+While it is simple to use the JSS based styling solution provided by Material-UI to style your application,
+it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries.
 
 This guide aims to document the most popular alternatives, but you should find that the principals
 applied here can be adapted to other libraries.
@@ -112,7 +112,7 @@ const styles = theme => ({
 });
 ```
 
-{{"demo": "pages/guides/ReactJss.js"}}
+{{"demo": "pages/guides/ReactJss.js", "hideEditButton": true}}
 
 ## CSS Modules
 
