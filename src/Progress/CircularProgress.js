@@ -153,7 +153,7 @@ CircularProgress.propTypes = {
   /**
    * The size of the circle.
    */
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * @ignore
    */

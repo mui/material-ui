@@ -17,7 +17,7 @@ filename: /src/Progress/CircularProgress.js
 | max | number | 100 | The max value of progress in determinate mode. |
 | min | number | 0 | The min value of progress in determinate mode. |
 | mode | enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'<br> | 'indeterminate' | The mode of show your progress. Indeterminate for when there is no value for progress. Determinate for controlled progress value. |
-| size | number | 40 | The size of the circle. |
+| size | union:&nbsp;number&nbsp;&#124;<br>&nbsp;string<br> | 40 | The size of the circle. |
 | thickness | number | 3.6 | The thickness of the circle. |
 | value | number | 0 | The value of progress in determinate mode. |
 
