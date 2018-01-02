@@ -7,7 +7,7 @@ export interface CircularProgressProps
   max?: number;
   min?: number;
   mode?: 'determinate' | 'indeterminate';
-  size?: number;
+  size?: number | string;
   thickness?: number;
   value?: number;
 }
