@@ -29,78 +29,20 @@ const pages = [
         pathname: '/getting-started/usage',
       },
       {
-        pathname: '/getting-started/example-projects',
-      },
-      {
         pathname: '/getting-started/supported-components',
       },
       {
         pathname: '/getting-started/supported-platforms',
       },
       {
+        pathname: '/getting-started/example-projects',
+      },
+      {
         pathname: '/getting-started/frequently-asked-questions',
       },
-    ],
-  },
-  {
-    pathname: '/customization',
-    children: [
       {
-        pathname: '/customization/overrides',
-      },
-      {
-        pathname: '/customization/themes',
-      },
-      {
-        pathname: '/customization/theme-default',
-        title: 'Default Theme',
-      },
-      {
-        pathname: '/customization/css-in-js',
-        title: 'CSS in JS',
-      },
-    ],
-  },
-  {
-    pathname: '/guides',
-    children: [
-      {
-        pathname: '/guides/api',
-        title: 'API',
-      },
-      {
-        pathname: '/guides/minimizing-bundle-size',
-      },
-      {
-        pathname: '/guides/interoperability',
-        title: 'Style Library Interoperability',
-      },
-      {
-        pathname: '/guides/migration-v0.x',
-        title: 'Migration from v0.x',
-      },
-      {
-        pathname: '/guides/server-rendering',
-      },
-      {
-        pathname: '/guides/composition',
-      },
-      {
-        pathname: '/guides/comparison',
-      },
-      {
-        pathname: '/guides/testing',
-      },
-      {
-        pathname: '/guides/typescript',
-        title: 'TypeScript',
-      },
-      {
-        pathname: '/guides/flow',
-      },
-      {
-        pathname: '/guides/right-to-left',
-        title: 'Right-to-left',
+        pathname: '/getting-started/comparison',
+        title: 'Comparison With Other Libraries',
       },
     ],
   },
@@ -151,10 +93,78 @@ const pages = [
     title: 'Component API',
   },
   {
+    pathname: '/customization',
+    children: [
+      {
+        pathname: '/customization/overrides',
+      },
+      {
+        pathname: '/customization/themes',
+      },
+      {
+        pathname: '/customization/theme-default',
+        title: 'Default Theme',
+      },
+      {
+        pathname: '/customization/css-in-js',
+        title: 'CSS in JS',
+      },
+    ],
+  },
+  {
+    pathname: '/guides',
+    children: [
+      {
+        pathname: '/guides/api',
+        title: 'API',
+      },
+      {
+        pathname: '/guides/minimizing-bundle-size',
+      },
+      {
+        pathname: '/guides/interoperability',
+        title: 'Style Library Interoperability',
+      },
+      {
+        pathname: '/guides/migration-v0.x',
+        title: 'Migration From v0.x',
+      },
+      {
+        pathname: '/guides/server-rendering',
+      },
+      {
+        pathname: '/guides/composition',
+      },
+      {
+        pathname: '/guides/testing',
+      },
+      {
+        pathname: '/guides/typescript',
+        title: 'TypeScript',
+      },
+      {
+        pathname: '/guides/flow',
+      },
+      {
+        pathname: '/guides/right-to-left',
+        title: 'Right-to-left',
+      },
+    ],
+  },
+  {
     pathname: '/discover-more',
     children: [
       {
         pathname: '/discover-more/vision',
+      },
+      {
+        pathname: '/discover-more/roadmap',
+      },
+      {
+        pathname: '/discover-more/governance',
+      },
+      {
+        pathname: '/discover-more/team',
       },
       {
         pathname: '/discover-more/backers',
@@ -168,15 +178,6 @@ const pages = [
       },
       {
         pathname: '/discover-more/related-projects',
-      },
-      {
-        pathname: '/discover-more/roadmap',
-      },
-      {
-        pathname: '/discover-more/team',
-      },
-      {
-        pathname: '/discover-more/governance',
       },
     ],
   },
