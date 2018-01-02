@@ -34,6 +34,7 @@ export default class BasicUsage extends Component {
           </Typography>
 
           <DatePicker
+            clearable
             okLabel="تأیید"
             cancelLabel="لغو"
             clearLabel="پاک کردن"
@@ -51,6 +52,7 @@ export default class BasicUsage extends Component {
           </Typography>
 
           <TimePicker
+            clearable
             okLabel="تأیید"
             cancelLabel="لغو"
             clearLabel="پاک کردن"
@@ -69,7 +71,6 @@ export default class BasicUsage extends Component {
           <DateTimePicker
             okLabel="تأیید"
             cancelLabel="لغو"
-            clearable={false}
             labelFunc={date => format(date, 'jYYYY/jMM/jDD hh:mm A')}
             value={selectedDate}
             onChange={this.handleDateChange}
