@@ -110,7 +110,7 @@ shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable c
 keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node, string | 'event' | Keyboard adornment icon
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
-clearable | boolean | true | If `false`, clear button is not displayed
+clearable | boolean | false | If `true`, clear button will be displayed
 
 #### Timepicker
 Prop | Type | Default | Definition
@@ -130,7 +130,7 @@ ampm | boolean | true | 12h/24h view for hour selection clock
 keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node, string | 'event' | Keyboard adornment icon
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
-clearable | boolean | true | If `false`, clear button is not displayed
+clearable | boolean | false | If `true`, clear button will be displayed
 
 #### DateTimepicker
 Prop | Type | Default | Definition
@@ -165,7 +165,7 @@ keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node, string | 'event' | Keyboard adornment icon
 invalidDateMessage | string | 'Invalid Date Format' | Message, appearing when date cannot be parsed
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
-clearable | boolean | true | If `false`, clear button is not displayed
+clearable | boolean | false | If `true`, clear button will be displayed
 
 ### l10n
 For l10n texts we're currently relying on moment which is stateful. To change the locale you have to import your langauge specific files an change the locale manually via `moment.locale(language)`.

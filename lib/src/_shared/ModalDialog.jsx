@@ -15,6 +15,11 @@ const styles = {
       padding: 0,
     },
   },
+  dialogActions: {
+    '&:first-child': {
+      marginRight: 'auto',
+    },
+  },
 };
 
 const ModalDialog = ({
@@ -35,8 +40,13 @@ const ModalDialog = ({
       { children }
     </DialogContent>
 
-    <DialogActions>
-      {clearable &&
+    <DialogActions
+      classes={{
+        action: clearable && classes.dialogActions,
+      }}
+    >
+
+      { clearable &&
         <Button
           color="primary"
           onClick={onClear}

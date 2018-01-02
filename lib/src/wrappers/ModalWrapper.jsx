@@ -33,7 +33,7 @@ export default class ModalWrapper extends PureComponent {
     onAccept: undefined,
     onDismiss: undefined,
     onClear: undefined,
-    clearable: true,
+    clearable: false,
   }
 
   state = {

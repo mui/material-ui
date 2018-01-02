@@ -44,7 +44,7 @@ export default class DateTextField extends PureComponent {
     mask: undefined,
     keyboardIcon: 'event',
     invalidDateMessage: 'Invalid Date Format',
-    clearable: true,
+    clearable: false,
     onClear: undefined,
   }
 
