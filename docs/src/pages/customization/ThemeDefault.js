@@ -5,7 +5,7 @@ import { withTheme } from 'material-ui/styles';
 
 const style = {
   maxWidth: '100%',
-  maxHeight: 400,
+  maxHeight: '100%',
   overflow: 'auto',
 };
 
