@@ -24,5 +24,4 @@ For feature requests please include a link to the relevant section of Material D
 
 - Please begin the title with '[ComponentName]' where appropriate, and use a succint description. "doesn't work" doesn't help others find similar issues.
 - Please don't group multiple topics into one issue, but instead each should be its own issue.
-- And please don't just comment '+1' on an issue. It spams the maintainers and doesn't help move the issue forward. Use github "reactions" inatead.
-
+- And please don't just comment '+1' on an issue. It spams the maintainers and doesn't help move the issue forward. Use github "reactions" instead.
