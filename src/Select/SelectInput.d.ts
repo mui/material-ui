@@ -14,7 +14,9 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
   onFocus?: React.FocusEventHandler<any>;
   readOnly?: boolean;
   renderValue?: (value: SelectInputProps['value']) => React.ReactNode;
-  selectRef?: (ref: HTMLSelectElement | {node: HTMLInputElement, value: SelectInputProps['value']}) => void;
+  selectRef?: (
+    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps['value'] },
+  ) => void;
   value?: string | number | Array<string | number>;
 }
 
