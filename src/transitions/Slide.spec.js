@@ -12,7 +12,7 @@ const SlideNaked = unwrap(Slide);
 describe('<Slide />', () => {
   let shallow;
   let mount;
-  const props = {
+  const defaultProps = {
     in: true,
     children: <div />,
     direction: 'down',
@@ -28,7 +28,7 @@ describe('<Slide />', () => {
   });
 
   it('should render a Transition', () => {
-    const wrapper = shallow(<Slide {...props} />);
+    const wrapper = shallow(<Slide {...defaultProps} />);
     assert.strictEqual(wrapper.name(), 'EventListener');
     assert.strictEqual(wrapper.childAt(0).name(), 'Transition');
   });
@@ -42,7 +42,7 @@ describe('<Slide />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<Slide {...props} {...handlers} />).childAt(0);
+      const wrapper = shallow(<Slide {...defaultProps} {...handlers} />).childAt(0);
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
@@ -66,7 +66,7 @@ describe('<Slide />', () => {
     beforeEach(() => {
       wrapper = shallow(
         <Slide
-          {...props}
+          {...defaultProps}
           timeout={{
             enter: enterDuration,
             exit: leaveDuration,
@@ -99,7 +99,7 @@ describe('<Slide />', () => {
   describe('prop: direction', () => {
     it('should update the position', () => {
       const wrapper = mount(
-        <SlideNaked {...props} theme={createMuiTheme()} in={false} direction="left" />,
+        <SlideNaked {...defaultProps} theme={createMuiTheme()} in={false} direction="left" />,
       );
       const transition = findDOMNode(wrapper.instance().transition);
 
@@ -118,7 +118,7 @@ describe('<Slide />', () => {
     let instance;
 
     before(() => {
-      wrapper = shallow(<Slide {...props} />);
+      wrapper = shallow(<Slide {...defaultProps} />);
       instance = wrapper.instance();
     });
 
@@ -274,7 +274,7 @@ describe('<Slide />', () => {
     });
 
     it('should do nothing when visible', () => {
-      const wrapper = shallow(<Slide {...props} />);
+      const wrapper = shallow(<Slide {...defaultProps} />);
       const instance = wrapper.instance();
       instance.handleResize();
       clock.tick(166);

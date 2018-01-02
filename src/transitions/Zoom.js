@@ -9,10 +9,10 @@ import withTheme from '../styles/withTheme';
 const reflow = node => node.scrollTop;
 
 /**
- * The Fade transition is used by the Modal component.
+ * The Zoom transition is used by the SpeedDial component.
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
-class Fade extends React.Component {
+class Zoom extends React.Component {
   state = {
     mounted: false,
   };
@@ -22,7 +22,7 @@ class Fade extends React.Component {
   }
 
   handleEnter = node => {
-    node.style.opacity = '0';
+    node.style.transform = 'scale(0)';
     reflow(node);
 
     if (this.props.onEnter) {
@@ -32,13 +32,14 @@ class Fade extends React.Component {
 
   handleEntering = node => {
     const { theme, timeout } = this.props;
-    node.style.transition = theme.transitions.create('opacity', {
+    node.style.transition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
-    node.style.webkitTransition = theme.transitions.create('opacity', {
+    node.style.webkitTransition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
-    node.style.opacity = '1';
+    node.style.transform = 'scale(1)';
+    node.style.transitionDelay = `${this.props.enterDelay}ms`;
 
     if (this.props.onEntering) {
       this.props.onEntering(node);
@@ -47,13 +48,13 @@ class Fade extends React.Component {
 
   handleExit = node => {
     const { theme, timeout } = this.props;
-    node.style.transition = theme.transitions.create('opacity', {
+    node.style.transition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
-    node.style.webkitTransition = theme.transitions.create('opacity', {
+    node.style.webkitTransition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
-    node.style.opacity = '0';
+    node.style.transform = 'scale(0)';
 
     if (this.props.onExit) {
       this.props.onExit(node);
@@ -64,6 +65,7 @@ class Fade extends React.Component {
     const {
       appear,
       children,
+      enterDelay,
       onEnter,
       onEntering,
       onExit,
@@ -76,7 +78,7 @@ class Fade extends React.Component {
 
     // For server side rendering.
     if (!this.props.in && !this.state.mounted && appear) {
-      style.opacity = '0';
+      style.transform = 'scale(0)';
     }
 
     return (
@@ -94,7 +96,7 @@ class Fade extends React.Component {
   }
 }
 
-Fade.propTypes = {
+Zoom.propTypes = {
   /**
    * @ignore
    */
@@ -103,6 +105,10 @@ Fade.propTypes = {
    * A single child content element.
    */
   children: PropTypes.element,
+  /**
+   * The duration before the enter animation starts in milliseconds.
+   */
+  enterDelay: PropTypes.number,
   /**
    * If `true`, the component will transition in.
    */
@@ -137,12 +143,13 @@ Fade.propTypes = {
   ]),
 };
 
-Fade.defaultProps = {
+Zoom.defaultProps = {
   appear: true,
+  enterDelay: 0,
   timeout: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,
   },
 };
 
-export default withTheme()(Fade);
+export default withTheme()(Zoom);

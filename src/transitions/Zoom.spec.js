@@ -3,9 +3,9 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import Transition from 'react-transition-group/Transition';
 import { createShallow, createMount } from '../test-utils';
-import Fade from './Fade';
+import Zoom from './Zoom';
 
-describe('<Fade />', () => {
+describe('<Zoom />', () => {
   let shallow;
   let mount;
   const defaultProps = {
@@ -23,7 +23,7 @@ describe('<Fade />', () => {
   });
 
   it('should render a Transition', () => {
-    const wrapper = shallow(<Fade {...defaultProps} />);
+    const wrapper = shallow(<Zoom {...defaultProps} />);
     assert.strictEqual(wrapper.name(), 'Transition');
   });
 
@@ -36,7 +36,7 @@ describe('<Fade />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<Fade {...defaultProps} {...handlers} />);
+      const wrapper = shallow(<Zoom {...defaultProps} {...handlers} />);
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
@@ -52,31 +52,43 @@ describe('<Fade />', () => {
     let instance;
 
     before(() => {
-      wrapper = shallow(<Fade {...defaultProps} />);
+      wrapper = shallow(<Zoom {...defaultProps} />);
       instance = wrapper.instance();
     });
 
     describe('handleEnter()', () => {
-      it('should set element opacity to 0 initially', () => {
-        const element = { style: { opacity: 1 } };
+      it('should set element transform to scale(0) initially', () => {
+        const element = { style: { transform: 'scale(1)' } };
         instance.handleEnter(element);
-        assert.strictEqual(element.style.opacity, '0', 'should set the opacity to 0');
+        assert.strictEqual(
+          element.style.transform,
+          'scale(0)',
+          'should set the transform to scale(0)',
+        );
       });
     });
 
     describe('handleEntering()', () => {
-      it('should set opacity to 1', () => {
-        const element = { style: { opacity: 0 } };
+      it('should set transform to scale(1)', () => {
+        const element = { style: { transform: 'scale(0)' } };
         instance.handleEntering(element);
-        assert.strictEqual(element.style.opacity, '1', 'should set the opacity to 1');
+        assert.strictEqual(
+          element.style.transform,
+          'scale(1)',
+          'should set the transform to scale(1)',
+        );
       });
     });
 
     describe('handleExit()', () => {
-      it('should set opacity to the 0', () => {
-        const element = { style: { opacity: 1 } };
+      it('should set transform to the scale(0)', () => {
+        const element = { style: { transform: 'scale(1)' } };
         instance.handleExit(element);
-        assert.strictEqual(element.style.opacity, '0', 'should set the opacity to 0');
+        assert.strictEqual(
+          element.style.transform,
+          'scale(0)',
+          'should set the transform to scale(0)',
+        );
       });
     });
   });
@@ -84,9 +96,9 @@ describe('<Fade />', () => {
   describe('prop: appear', () => {
     it('should work when initially hidden', () => {
       const wrapper = mount(
-        <Fade in={false} appear>
+        <Zoom in={false} appear>
           <div>Foo</div>
-        </Fade>,
+        </Zoom>,
       );
       assert.deepEqual(wrapper.find(Transition).props().style, {});
     });
