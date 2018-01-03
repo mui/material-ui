@@ -2,11 +2,10 @@ import * as React from 'react';
 import { StandardProps, ModalManager } from '..';
 import { BackdropProps } from './Backdrop';
 import { PortalProps } from '../Portal';
-import { TransitionHandlers } from '../internal/transition';
 
 export interface ModalProps
   extends StandardProps<
-      React.HtmlHTMLAttributes<HTMLDivElement> & Partial<PortalProps> & Partial<TransitionHandlers>,
+      React.HtmlHTMLAttributes<HTMLDivElement> & Partial<PortalProps>,
       ModalClassKey
     > {
   BackdropComponent?: React.ReactType<BackdropProps>;
