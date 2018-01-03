@@ -287,6 +287,8 @@ For instance, you can find a [CodeSandbox](https://codesandbox.io/) edit button 
 
 - [TextField] API disamiguation/consistency (#9382) @rosskevin
 Some of the convenience properties exposed were confusing and have been removed (`inputProps | InputClassName`).  For advanced configuration any `Input` through `TextField`, use `TextField.InputProps` to pass any property accepted by the `Input`.
+- [SvgIcon] Add color property (#9367) @kale5in
+By consistency with the other components, the color property is no longer apply to the `<svg>`. Instead, it's used to apply normalized color.
 
 #### Component Fixes / Enhancements
 
@@ -303,7 +305,6 @@ Some of the convenience properties exposed were confusing and have been removed 
 - [typescript] Allow function to be passed as MuiThemeProvider theme prop (#9354) @ianschmitz
 - [typescript] Extract WithTheme for external use (#9363) @rosskevin
 - [Input] Fix input shrink issue in Firefox (#9384) @t-cst
-- [SvgIcon] Add color property (#9367) @kale5in
 - [typescript] Wrong default export in shadows.d.ts and transitions.d.ts (#9395) @PavelPZ
 - [typescript] Add "component" to FormLabelProps (#9398) @smacpherson64
 - [typescript] Rename overloaded type "Icon" in StepButton and StepConnector (#9397) @PavelPZ
