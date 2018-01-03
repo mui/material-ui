@@ -1,13 +1,8 @@
 export interface ZIndex {
   mobileStepper: number;
-  menu: number;
   appBar: number;
-  drawerOverlay: number;
-  navDrawer: number;
-  dialogOverlay: number;
-  dialog: number;
-  layer: number;
-  popover: number;
+  drawer: number;
+  modal: number;
   snackbar: number;
   tooltip: number;
 }
