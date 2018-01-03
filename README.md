@@ -96,6 +96,22 @@ Yes, it's really all you need to get started as you can see in this live and int
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4j7m47vlm4)
 
+## Should I start with v1-beta?
+
+Yes, you should. We often get this question:
+
+> Should I start with v1-beta? Beta is a beta, so it's not a final product and I'm not guaranteed anything.
+
+Some users are starting projects with v0.x which given the quality and stability of v1 they shouldn't be. The v1-beta effort started in May 2016.
+They are just creating extra work for themselves as they will have to transition at some point.
+Many of us are already using v1-beta in production with no problems and resolving the occasional breaking change is less hassle than upgrading from v0.x to v1-beta.
+
+Material-UI will never be a final product, you will never be guaranteed anything whether with v0.x, v1, or a future release.
+We are keeping v1 in beta so we can release breaking changes without having them slowing us down.
+
+[The release notes](https://github.com/mui-org/material-ui/releases) always describe the breaking changes introduced with each release.
+Bite the bullet and go for v1-beta.
+
 ## Questions
 
 For *how-to* questions and other non-issues,
