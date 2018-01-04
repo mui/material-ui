@@ -10,6 +10,7 @@ export const styles = {
     display: 'flex',
     alignItems: 'center',
     padding: '2px 4px',
+    boxSizing: 'border-box',
   },
   action: {
     margin: '0 4px',

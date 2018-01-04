@@ -7,6 +7,7 @@ import { FormControlLabel } from 'material-ui/Form';
 export default function DisabledSwitch() {
   return (
     <div>
+      {'Disabled '}
       <FormControlLabel control={<Switch />} label="Foo" disabled />
       <Switch disabled />
       <Switch checked disabled />
