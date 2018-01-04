@@ -78,7 +78,7 @@ class Master extends Component {
       v1Link: {
         color: '#fff',
         textDecoration: 'underline',
-  },
+      },
       v1Spacer: {
         height: 40,
       },
