@@ -5419,6 +5419,10 @@ jss-default-unit@^8.0.0:
   dependencies:
     is-observable "^0.2.0"
 
+jss-default-unit@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/jss-default-unit/-/jss-default-unit-8.0.2.tgz#cc1e889bae4c0b9419327b314ab1c8e2826890e6"
+
 jss-expand@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/jss-expand/-/jss-expand-5.0.0.tgz#8eadb782f29ec5f1d285451dd38052d5ac51644a"
