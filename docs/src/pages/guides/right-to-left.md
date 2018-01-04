@@ -27,7 +27,7 @@ Once you have created a new JSS instance with the plugin, you need to make it av
 
 ```jsx
 import { create } from 'jss';
-import { preset } from 'material-ui/styles/withStyles';
+import preset from 'jss-preset-default';
 import rtl from 'jss-rtl';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { createGenerateClassName } from 'material-ui/styles';

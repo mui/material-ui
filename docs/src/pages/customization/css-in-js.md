@@ -101,7 +101,7 @@ By adjusting the placement of the `insertionPoint` comment within your HTML body
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import { preset } from 'material-ui/styles/withStyles'; 
+import preset from 'jss-preset-default';
 import { createGenerateClassName } from 'material-ui/styles';
 
 const generateClassName = createGenerateClassName();
@@ -132,7 +132,7 @@ Here is an example:
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import { preset } from 'material-ui/styles/withStyles';
+import preset from 'jss-preset-default';
 import { createGenerateClassName } from 'material-ui/styles';
 
 const generateClassName = createGenerateClassName();
@@ -253,19 +253,16 @@ A function which returns a class name generator function.
 
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
-import { create } from 'jss';
-import { preset } from 'material-ui/styles/withStyles';
 import { createGenerateClassName } from 'material-ui/styles';
 
 const generateClassName = createGenerateClassName({
   dangerouslyUseGlobalCSS: true,
   productionPrefix: 'c',
 });
-const jss = create(preset());
 
 function App() {
   return (
-    <JssProvider jss={jss} generateClassName={generateClassName}>
+    <JssProvider generateClassName={generateClassName}>
       ...
     </JssProvider>
   );
