@@ -3,13 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "jss": "latest",
-    "jss-preset-default": "latest",
     "material-ui": "next",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-jss": "latest",
     "react-scripts": "latest"
   },
   "scripts": {
