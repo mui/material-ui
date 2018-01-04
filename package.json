@@ -41,7 +41,7 @@
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "size": "size-limit",
     "size:why": "size-limit --why build/index.js",
-    "size:overhead:why": "size-Limit --why ./test/size/overhead.js",
+    "size:overhead:why": "size-limit --why ./test/size/overhead.js",
     "spellcheck": "eslint . --config .eslintrc.spellcheck.js && echo \"eslint: no lint errors\"",
     "test": "yarn lint && yarn flow && yarn typescript && yarn test:unit",
     "test:unit": "cross-env NODE_ENV=test mocha test/**/*.spec.js src/{,**/}*.spec.js",
