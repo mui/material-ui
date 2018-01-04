@@ -5,6 +5,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import SwitchBase from './SwitchBase';
+import IconButton from '../IconButton';
 import Icon from '../Icon';
 
 function assertIsChecked(wrapper) {
@@ -64,7 +65,7 @@ describe('<SwitchBase />', () => {
 
   it('should render an IconButton', () => {
     const wrapper = shallow(<SwitchBase />);
-    assert.strictEqual(wrapper.name(), 'WithStyles');
+    assert.strictEqual(wrapper.type(), IconButton);
   });
 
   it('should render an icon and input inside the button by default', () => {

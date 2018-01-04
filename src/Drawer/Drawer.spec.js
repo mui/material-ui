@@ -27,7 +27,7 @@ describe('<Drawer />', () => {
           <div />
         </Drawer>,
       );
-      assert.strictEqual(wrapper.name(), 'WithStyles');
+      assert.strictEqual(wrapper.type(), Modal);
     });
 
     it('should render Slide > Paper inside the Modal', () => {
@@ -45,7 +45,7 @@ describe('<Drawer />', () => {
       );
 
       const paper = slide.childAt(0);
-      assert.strictEqual(paper.length === 1 && paper.name(), 'WithStyles');
+      assert.strictEqual(paper.length === 1 && paper.type(), Paper);
 
       assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
     });
@@ -177,7 +177,7 @@ describe('<Drawer />', () => {
       assert.strictEqual(slide.type(), Slide);
 
       const paper = slide.childAt(0);
-      assert.strictEqual(paper.length === 1 && paper.name(), 'WithStyles');
+      assert.strictEqual(paper.length === 1 && paper.type(), Paper);
     });
   });
 
@@ -203,7 +203,7 @@ describe('<Drawer />', () => {
       assert.strictEqual(slide.name(), 'div');
 
       const paper = slide.childAt(0);
-      assert.strictEqual(paper.length === 1 && paper.name(), 'WithStyles');
+      assert.strictEqual(paper.length === 1 && paper.type(), Paper);
     });
   });
 

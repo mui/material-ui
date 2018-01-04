@@ -3,6 +3,7 @@ import { assert } from 'chai';
 import { createShallow, createMount } from '../test-utils';
 import Input, { InputLabel } from '../Input';
 import FormHelperText from '../Form/FormHelperText';
+import FormControl from '../Form/FormControl';
 import TextField from './TextField';
 import Select from '../Select/Select';
 
@@ -28,8 +29,7 @@ describe('<TextField />', () => {
 
     describe('structure', () => {
       it('should be a FormControl', () => {
-        assert.strictEqual(wrapper.name(), 'WithStyles');
-        assert.strictEqual(wrapper.dive().name(), 'FormControl');
+        assert.strictEqual(wrapper.type(), FormControl);
       });
 
       it('should pass className to the FormControl', () => {

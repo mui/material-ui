@@ -4,6 +4,7 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import css from 'dom-helpers/style';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Grow from '../transitions/Grow';
+import Paper from '../Paper';
 import mockPortal from '../../test/utils/mockPortal';
 import Popover from './Popover';
 
@@ -38,7 +39,6 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.strictEqual(wrapper.name(), 'WithStyles');
       assert.strictEqual(wrapper.props().BackdropProps.invisible, true);
     });
 
@@ -150,7 +150,7 @@ describe('<Popover />', () => {
         </Popover>,
       );
       assert.strictEqual(wrapper.children().length, 1, 'should have one child');
-      assert.strictEqual(wrapper.childAt(0).name(), 'WithTheme');
+      assert.strictEqual(wrapper.childAt(0).type(), Grow);
       assert.strictEqual(
         wrapper.childAt(0).props().appear,
         true,
@@ -209,8 +209,8 @@ describe('<Popover />', () => {
         wrapper
           .childAt(0)
           .childAt(0)
-          .name(),
-        'WithStyles',
+          .type(),
+        Paper,
       );
     });
 

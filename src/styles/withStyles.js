@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import getDisplayName from 'recompose/getDisplayName';
+import wrapDisplayName from 'recompose/wrapDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
 import { create } from 'jss';
 import jssGlobal from 'jss-global';
@@ -310,6 +311,10 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     ...contextTypes,
     ...(listenToTheme ? themeListener.contextTypes : {}),
   };
+
+  if (process.env.NODE_ENV !== 'production') {
+    WithStyles.displayName = wrapDisplayName(Component, 'WithStyles');
+  }
 
   hoistNonReactStatics(WithStyles, Component);
 

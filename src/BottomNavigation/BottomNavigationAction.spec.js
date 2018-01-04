@@ -16,8 +16,7 @@ describe('<BottomNavigationAction />', () => {
   });
 
   it('should render a ButtonBase', () => {
-    const wrapper = shallow(<BottomNavigationAction icon={icon} />);
-    assert.strictEqual(wrapper.name(), 'WithStyles');
+    shallow(<BottomNavigationAction icon={icon} />);
   });
 
   it('should render with the root class', () => {

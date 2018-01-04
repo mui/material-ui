@@ -3,6 +3,7 @@ import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Tab from './Tab';
+import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 
 describe('<Tab />', () => {
@@ -23,7 +24,7 @@ describe('<Tab />', () => {
 
   it('should render with the root class', () => {
     const wrapper = shallow(<Tab textColor="inherit" />);
-    assert.strictEqual(wrapper.name(), 'WithStyles');
+    assert.strictEqual(wrapper.type(), ButtonBase);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

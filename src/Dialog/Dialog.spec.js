@@ -5,6 +5,7 @@ import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Paper from '../Paper';
 import Fade from '../transitions/Fade';
+import Modal from '../Modal';
 import Dialog from './Dialog';
 
 describe('<Dialog />', () => {
@@ -21,7 +22,7 @@ describe('<Dialog />', () => {
 
   it('should render a Modal', () => {
     const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-    assert.strictEqual(wrapper.name(), 'WithStyles');
+    assert.strictEqual(wrapper.type(), Modal);
   });
 
   it('should render a Modal with transition', () => {
@@ -94,7 +95,7 @@ describe('<Dialog />', () => {
     assert.strictEqual(fade.type(), Fade);
 
     const paper = fade.childAt(0);
-    assert.strictEqual(paper.length === 1 && paper.name(), 'WithStyles');
+    assert.strictEqual(paper.length === 1 && paper.type(), Paper);
 
     assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the dialog class');
   });
