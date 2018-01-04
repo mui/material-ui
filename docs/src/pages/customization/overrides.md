@@ -34,7 +34,7 @@ For instance, you can have a look at the [Button CSS API](/api/button#css-api).
 Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/v1-beta/src/Button/Button.js).
 
 This example also uses `withStyles()` (see above), but here, `OverridesClasses` is using Button's `classes` prop to
-provide an array containing the **names of classes to override** (keys), and the **CSS class names to apply** (values).
+provide an object that maps the **names of classes to override** (keys) to the **CSS class names to apply** (values).
 The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles
 you wish to add or override.
 
