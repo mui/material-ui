@@ -105,7 +105,7 @@ export { default as Reboot } from './Reboot';
 export { default as Select } from './Select';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
 export { default as Stepper, Step, StepButton, StepContent, StepLabel } from './Stepper';
-export { MuiThemeProvider, withStyles, WithStyles, withTheme, createMuiTheme } from './styles';
+export { MuiThemeProvider, withStyles, WithStyles, withTheme, createMuiTheme, jssPreset } from './styles';
 
 import * as colors from './colors';
 
