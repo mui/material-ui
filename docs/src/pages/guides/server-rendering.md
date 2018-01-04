@@ -69,7 +69,7 @@ import { renderToString } from 'react-dom/server'
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import preset from 'jss-preset-default';
+import { preset } from 'material-ui/styles/withStyles';
 // import rtl from 'jss-rtl'; // in-case you're supporting rtl
 import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from 'material-ui/styles';
 import { green, red } from 'material-ui/colors';
