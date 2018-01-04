@@ -106,14 +106,11 @@ function Dialog(props) {
         <Paper
           data-mui-test="Dialog"
           elevation={24}
-          className={classNames(
-            classes.paper,
-            classes[`paperWidth${capitalizeFirstLetter(maxWidth)}`],
-            {
-              [classes.fullScreen]: fullScreen,
-              [classes.fullWidth]: fullWidth,
-            },
-          )}
+          className={classNames(classes.paper, {
+            [classes[`paperWidth${maxWidth ? capitalizeFirstLetter(maxWidth) : ''}`]]: maxWidth,
+            [classes.fullScreen]: fullScreen,
+            [classes.fullWidth]: fullWidth,
+          })}
         >
           {children}
         </Paper>
@@ -155,9 +152,9 @@ Dialog.propTypes = {
    * Determine the max width of the dialog.
    * The dialog width grows with the size of the screen, this property is useful
    * on the desktop where you might need some coherent different width size across your
-   * application.
+   * application. Set 'false' to turn off.
    */
-  maxWidth: PropTypes.oneOf(['xs', 'sm', 'md']),
+  maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', false]),
   /**
    * Callback fired when the backdrop is clicked.
    */

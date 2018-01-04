@@ -4,15 +4,11 @@ import { ModalProps, ModalClassKey } from '../Modal';
 import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 
 export interface DialogProps
-  extends StandardProps<
-      ModalProps & Partial<TransitionHandlers>,
-      DialogClassKey,
-      'children'
-    > {
+  extends StandardProps<ModalProps & Partial<TransitionHandlers>, DialogClassKey, 'children'> {
   children?: React.ReactNode;
   fullScreen?: boolean;
   fullWidth?: boolean;
-  maxWidth?: 'xs' | 'sm' | 'md';
+  maxWidth?: 'xs' | 'sm' | 'md' | false;
   transition?: React.ReactType;
   transitionDuration?: TransitionDuration;
 }
