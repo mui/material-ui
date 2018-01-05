@@ -309,6 +309,9 @@ const DrawerTest = () => {
         open={open.top}
         onClose={event => log(event)}
         onClick={event => log(event)}
+        ModalProps={{
+          hideBackdrop: true
+        }}
       >
         List
       </Drawer>

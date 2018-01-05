@@ -14,9 +14,9 @@ export interface DrawerProps
   anchor?: 'left' | 'top' | 'right' | 'bottom';
   children?: React.ReactNode;
   elevation?: number;
-  ModalProps?: ModalProps;
+  ModalProps?: Partial<ModalProps>;
   open?: boolean;
-  SlideProps?: SlideProps;
+  SlideProps?: Partial<SlideProps>;
   theme?: Theme;
   transitionDuration?: TransitionDuration;
   type?: 'permanent' | 'persistent' | 'temporary';
