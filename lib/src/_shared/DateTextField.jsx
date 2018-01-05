@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { TextField, InputAdornment, IconButton, Icon } from 'material-ui';
+import { TextField as MuiTextField, InputAdornment, IconButton, Icon } from 'material-ui';
 
 import MaskedInput from './MaskedInput';
 
@@ -30,6 +30,7 @@ export default class DateTextField extends PureComponent {
     keyboardIcon: PropTypes.node,
     invalidDateMessage: PropTypes.string,
     clearable: PropTypes.bool,
+    TextField: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }
 
   static defaultProps = {
@@ -46,6 +47,7 @@ export default class DateTextField extends PureComponent {
     invalidDateMessage: 'Invalid Date Format',
     clearable: false,
     onClear: undefined,
+    TextField: undefined,
   }
 
   getDisplayDate = (props) => {
@@ -169,6 +171,7 @@ export default class DateTextField extends PureComponent {
       mask,
       InputProps,
       keyboardIcon,
+      TextField = MuiTextField,
       ...other
     } = this.props;
     const { displayValue, error } = this.state;
