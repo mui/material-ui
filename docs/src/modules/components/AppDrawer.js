@@ -151,7 +151,7 @@ AppDrawer.propTypes = {
 };
 
 AppDrawer.contextTypes = {
-  activePage: PropTypes.object,
+  activePage: PropTypes.object.isRequired,
   pages: PropTypes.array.isRequired,
 };
 

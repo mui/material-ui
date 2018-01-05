@@ -2,8 +2,7 @@
 
 import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
-import { preset } from 'material-ui/styles/withStyles';
-import { createMuiTheme, createGenerateClassName } from 'material-ui/styles';
+import { createMuiTheme, createGenerateClassName, jssPreset } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
 
@@ -24,7 +23,7 @@ const theme = getTheme({
 });
 
 // Configure JSS
-const jss = create({ plugins: [...preset().plugins, rtl()] });
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 jss.options.insertionPoint = 'insertion-point-jss';
 
 function createPageContext() {
