@@ -6,6 +6,7 @@ import { createShallow, createMount } from '../test-utils';
 import Select from '../Select';
 import IconButton from '../IconButton';
 import TableFooter from './TableFooter';
+import TableCell from './TableCell';
 import TablePagination from './TablePagination';
 import Typography from '../Typography';
 import TableRow from './TableRow';
@@ -34,7 +35,7 @@ describe('<TablePagination />', () => {
         rowsPerPage={5}
       />,
     );
-    assert.strictEqual(wrapper.name(), 'WithStyles');
+    assert.strictEqual(wrapper.type(), TableCell);
   });
 
   it('should spread custom props on the root node', () => {
@@ -66,7 +67,7 @@ describe('<TablePagination />', () => {
           rowsPerPage={5}
         />,
       );
-      assert.strictEqual(wrapper.name(), 'WithStyles');
+      assert.strictEqual(wrapper.type(), TableCell);
       assert.notStrictEqual(wrapper.props().colSpan, undefined);
     });
 

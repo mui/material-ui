@@ -2,6 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import { createShallow, getClasses, createMount } from '../test-utils';
+import SwitchBase from '../internal/SwitchBase';
 import Checkbox from './Checkbox';
 
 describe('<Checkbox />', () => {
@@ -29,7 +30,7 @@ describe('<Checkbox />', () => {
 
   it('should render a div with a SwitchBase', () => {
     const wrapper = shallow(<Checkbox />);
-    assert.strictEqual(wrapper.name(), 'WithStyles');
+    assert.strictEqual(wrapper.type(), SwitchBase);
   });
 
   describe('prop: indeterminate', () => {

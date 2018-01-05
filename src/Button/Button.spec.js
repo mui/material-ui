@@ -2,6 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createRender, getClasses } from '../test-utils';
 import Button from './Button';
+import ButtonBase from '../ButtonBase';
 
 describe('<Button />', () => {
   let shallow;
@@ -16,7 +17,7 @@ describe('<Button />', () => {
 
   it('should render a <ButtonBase> element', () => {
     const wrapper = shallow(<Button>Hello World</Button>);
-    assert.strictEqual(wrapper.name(), 'WithStyles');
+    assert.strictEqual(wrapper.type(), ButtonBase);
     assert.strictEqual(
       wrapper.props().type,
       'button',

@@ -1,5 +1,6 @@
 import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
+import wrapDisplayName from 'recompose/wrapDisplayName';
 import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 
@@ -47,6 +48,10 @@ const withTheme = () => Component => {
   }
 
   WithTheme.contextTypes = themeListener.contextTypes;
+
+  if (process.env.NODE_ENV !== 'production') {
+    WithTheme.displayName = wrapDisplayName(Component, 'WithTheme');
+  }
 
   hoistNonReactStatics(WithTheme, Component);
 

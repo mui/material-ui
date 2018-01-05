@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
+import wrapDisplayName from 'recompose/wrapDisplayName';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import withTheme from '../styles/withTheme';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
@@ -128,6 +129,10 @@ const withWidth = (options = {}) => Component => {
      */
     width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   };
+
+  if (process.env.NODE_ENV !== 'production') {
+    WithWidth.displayName = wrapDisplayName(Component, 'WithWidth');
+  }
 
   hoistNonReactStatics(WithWidth, Component);
 
