@@ -35,4 +35,4 @@ Yes, it's really all you need to get started as you can see in this live and int
 Now that you have an idea about the basic setup, it's time to learn more about:
 - How to provide [the Material Design font and typography](/style/typography).
 - How to take advantage of the [theming solution](/customization/themes).
-- How to [override](customization/overrides) the look and feel of the components.
+- How to [override](/customization/overrides) the look and feel of the components.
