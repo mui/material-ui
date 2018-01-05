@@ -157,8 +157,9 @@ const styles = theme => ({
     },
     '& td': {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 5}px ${theme.spacing.unit}px ${theme
-        .spacing.unit * 3}px`,
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px ${theme.spacing.unit}px ${
+        theme.spacing.unit
+      }px`,
       textAlign: 'left',
     },
     '& td:last-child': {
@@ -174,7 +175,7 @@ const styles = theme => ({
     '& th': {
       whiteSpace: 'pre',
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      padding: `0 ${theme.spacing.unit * 5}px 0 ${theme.spacing.unit * 3}px`,
+      padding: `0 ${theme.spacing.unit * 2}px 0 ${theme.spacing.unit}px`,
       textAlign: 'left',
     },
     '& th:last-child': {
