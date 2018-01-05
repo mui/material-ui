@@ -5,7 +5,6 @@ import AddIcon from 'material-ui-icons/Add';
 import Button from 'material-ui/Button';
 import DeleteIcon from 'material-ui-icons/Delete';
 import IconButton from 'material-ui/IconButton';
-import Typography from 'material-ui/Typography';
 import Tooltip from 'material-ui/Tooltip';
 
 const styles = theme => ({
@@ -13,10 +12,9 @@ const styles = theme => ({
     margin: theme.spacing.unit * 2,
   },
   absolute: {
-    flip: false,
     position: 'absolute',
-    bottom: 32,
-    right: 32,
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 3,
   },
 });
 
@@ -24,20 +22,19 @@ function SimpleTooltips(props) {
   const { classes } = props;
   return (
     <div>
-      <Tooltip id="tooltip-icon" title="Delete" placement="bottom">
+      <Tooltip id="tooltip-icon" title="Delete">
         <IconButton aria-label="Delete">
           <DeleteIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip id="tooltip-fab" className={classes.fab} title="Add" placement="bottom">
+      <Tooltip id="tooltip-fab" className={classes.fab} title="Add">
         <Button fab color="primary" aria-label="Add">
           <AddIcon />
         </Button>
       </Tooltip>
       <br />
       <br />
-      <Typography>The fab on the right is absolutely positioned:</Typography>
-      <Tooltip placement="bottom" title="Position absolute">
+      <Tooltip title="FAB 'position: absolute;'">
         <Button fab color="accent" className={props.classes.absolute}>
           <AddIcon />
         </Button>
