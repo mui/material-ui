@@ -33,7 +33,7 @@ component is documented in the **Component API** section.
 For instance, you can have a look at the [Button CSS API](/api/button#css-api).
 Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/v1-beta/src/Button/Button.js).
 
-This example also uses `withStyles()` (see above), but here, `OverridesClasses` is using Button's `classes` prop to
+This example also uses `withStyles()` (see above), but here, `OverridesClasses` is using `Button`'s `classes` prop to
 provide an object that maps the **names of classes to override** (keys) to the **CSS class names to apply** (values).
 The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles
 you wish to add or override.
@@ -66,9 +66,9 @@ The Material Design specification documents different variations of certain comp
 
 Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components) documentation to find out the current status of all supported Material Design components.
 
-## 4. User global theme variation
+## 4. Global theme variation
 
-In order to promote consistency and manage the user interface as a whole, Material-UI provide mechanisms to apply global changes. You can tweak the [configuration variables](/customization/themes#configuration-variables).
+In order to promote consistency between components, and manage the user interface appearance as a whole, Material-UI provides a mechanism to apply global changes by adjusting the [theme configuration variables](/customization/themes#theme-configuration-variables).
 
 ### Customizing all instances of a component type
 

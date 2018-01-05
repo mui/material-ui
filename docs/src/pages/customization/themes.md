@@ -16,9 +16,9 @@ However, this is optional; Material-UI components come with a default theme.
 so you need to make sure that `MuiThemeProvider` is a parent of the components you are trying to customize.
 You can learn more about this in [the API section](#muithemeprovider).
 
-## Configuration variables
+## Theme configuration variables
 
-Changing the configurations variables is the most effective way to match Material-UI to your needs. By default, your Material-UI application will use the light theme.
+Changing the theme configuration variables is the most effective way to match Material-UI to your needs. By default, your Material-UI application will use the light theme.
 
 ### Palette
 
