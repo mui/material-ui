@@ -4,7 +4,7 @@ components: Reboot
 
 # Reboot
 
-You might be familiar with [normalize.css](https://github.com/necolas/normalize.css), A collection of HTML element and attribute style-normalizations.
+You might be familiar with [normalize.css](https://github.com/necolas/normalize.css), a collection of HTML element and attribute style-normalizations.
 Material-UI provides a `Reboot` component to kickstart an elegant, consistent, and simple baseline to build upon.
 
 ```jsx
@@ -27,14 +27,14 @@ export default MyApp;
 ### Page
 
 The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
-- We remove the margin in all browsers.
-- We apply the default Material Design background color.
+- The margin in all browsers is removed.
+- The default Material Design background color is applied.
 
 ### Layout
 
-- The box-sizing is globally set on the `<html>` element to `border-box`.
-Every element—including `*::before` and `*::after` are declared to inherit the property.
-This ensures that the declared width of the element is never exceeded due to padding or border.
+- `box-sizing` is set globally on the `<html>` element to `border-box`.
+Every element—including `*::before` and `*::after` are declared to inherit this property, 
+which ensures that the declared width of the element is never exceeded due to padding or border.
 
 ### Typography
 
