@@ -42,6 +42,7 @@ function SvgIcon(props) {
     classes,
     className: classNameProp,
     color,
+    nativeColor,
     titleAccess,
     viewBox,
     ...other
@@ -60,6 +61,7 @@ function SvgIcon(props) {
       className={className}
       focusable="false"
       viewBox={viewBox}
+      color={nativeColor}
       aria-hidden={titleAccess ? 'false' : 'true'}
       {...other}
     >
@@ -71,7 +73,7 @@ function SvgIcon(props) {
 
 SvgIcon.propTypes = {
   /**
-   * Node passed into the SVG Icon.
+   * Node passed into the SVG element.
    */
   children: PropTypes.node.isRequired,
   /**
@@ -84,6 +86,7 @@ SvgIcon.propTypes = {
   className: PropTypes.string,
   /**
    * The color of the component. It's using the theme palette when that makes sense.
+   * You can use the `nativeColor` property to apply a color attribute to the SVG element.
    */
   color: PropTypes.oneOf([
     'inherit',
@@ -95,15 +98,19 @@ SvgIcon.propTypes = {
     'primary',
   ]),
   /**
+   * Applies a color attribute to the SVG element.
+   */
+  nativeColor: PropTypes.string,
+  /**
    * Provides a human-readable title for the element that contains it.
    * https://www.w3.org/TR/SVG-access/#Equivalent
    */
   titleAccess: PropTypes.string,
   /**
-   * Allows you to redefine what the coordinates without units mean inside an svg element.
+   * Allows you to redefine what the coordinates without units mean inside an SVG element.
    * For example, if the SVG element is 500 (width) by 200 (height),
    * and you pass viewBox="0 0 50 20",
-   * this means that the coordinates inside the svg will go from the top left corner (0,0)
+   * this means that the coordinates inside the SVG will go from the top left corner (0,0)
    * to bottom right (50,20) and each unit will be worth 10px.
    */
   viewBox: PropTypes.string,
