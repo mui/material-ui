@@ -8,11 +8,11 @@ class ControlledTooltips extends React.Component {
     open: false,
   };
 
-  handleIconButtonClose = () => {
+  handleTooltipClose = () => {
     this.setState({ open: false });
   };
 
-  handleIconButtonOpen = () => {
+  handleTooltipOpen = () => {
     this.setState({ open: true });
   };
 
@@ -21,10 +21,10 @@ class ControlledTooltips extends React.Component {
       <Tooltip
         id="tooltip-controlled"
         title="Delete"
-        onClose={this.handleIconButtonClose}
+        onClose={this.handleTooltipClose}
         enterDelay={300}
         leaveDelay={300}
-        onOpen={this.handleIconButtonOpen}
+        onOpen={this.handleTooltipOpen}
         open={this.state.open}
         placement="bottom"
       >

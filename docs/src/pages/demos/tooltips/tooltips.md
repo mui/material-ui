@@ -23,6 +23,6 @@ They don’t have directional arrows; instead, they rely on motion emanating fro
 
 ## Showing and hiding
 
-The tooltip is immediately shown when the user's mouse hovers over the element and immediately hides when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the properties `enterDelay` and `leaveDelay`.
+The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the properties `enterDelay` and `leaveDelay`, as shown in the Controlled Tooltips demo above.
 
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTriggerTouch` property.
