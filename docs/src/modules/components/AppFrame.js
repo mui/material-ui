@@ -255,7 +255,7 @@ AppFrame.propTypes = {
 AppFrame.contextTypes = {
   activePage: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
 };
 
 export default compose(

@@ -190,7 +190,7 @@ const pages = [
 function findActivePage(currentPages, url) {
   const activePage = find(currentPages, page => {
     if (page.children) {
-      return url.pathname.indexOf(page.pathname) !== -1;
+      return url.pathname.indexOf(page.pathname) === 0;
     }
 
     // Should be an exact match if no children
