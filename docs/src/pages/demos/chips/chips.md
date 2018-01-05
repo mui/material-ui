@@ -17,7 +17,7 @@ Examples of Chips, using an image Avatar, SVG Icon Avatar, "Letter"
 and (string) Avatar.
 - Chips with the `onClick` property defined change appearance on focus,
 hover, and click.
-- Chips with the `onRequestDelete` property defined will display a delete
+- Chips with the `onDelete` property defined will display a delete
 icon which changes appearance on hover.
 
 {{"demo": "pages/demos/chips/Chips.js"}}
