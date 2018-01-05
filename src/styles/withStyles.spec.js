@@ -5,7 +5,8 @@ import { spy } from 'sinon';
 import { assert } from 'chai';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create, SheetsRegistry } from 'jss';
-import withStyles, { preset } from './withStyles';
+import jssPreset from './jssPreset';
+import withStyles from './withStyles';
 import MuiThemeProvider from './MuiThemeProvider';
 import createMuiTheme from './createMuiTheme';
 import createGenerateClassName from './createGenerateClassName';
@@ -114,7 +115,7 @@ describe('withStyles', () => {
     let generateClassName;
 
     beforeEach(() => {
-      jss = create(preset());
+      jss = create(jssPreset());
       generateClassName = createGenerateClassName();
       sheetsRegistry = new SheetsRegistry();
     });

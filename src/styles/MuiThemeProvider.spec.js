@@ -4,12 +4,11 @@ import { spy } from 'sinon';
 import { assert } from 'chai';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { create, SheetsRegistry } from 'jss';
+import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { renderToString } from 'react-dom/server';
 import { createMount } from '../test-utils';
 import createMuiTheme from './createMuiTheme';
-import { preset } from './withStyles';
 import Button from '../Button';
 import createGenerateClassName from './createGenerateClassName';
 import withTheme from './withTheme';
@@ -74,11 +73,10 @@ describe('<MuiThemeProvider />', () => {
     it('should be able to extract the styles', () => {
       const theme = createMuiTheme();
       const sheetsRegistry = new SheetsRegistry();
-      const jss = create(preset());
-      jss.options.createGenerateClassName = createGenerateClassName;
+      const generateClassName = createGenerateClassName();
 
       const markup = renderToString(
-        <JssProvider registry={sheetsRegistry} jss={jss}>
+        <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
           <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
             <Button>Hello World</Button>
           </MuiThemeProvider>

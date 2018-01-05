@@ -26,7 +26,8 @@ It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/perfor
 It is about 8 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 
 If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
-The best place to start is by looking at the features that each [plugin](http://cssinjs.org/plugins) provides. Material-UI uses the [jss-preset-default](http://cssinjs.org/jss-preset-default) module. You can always add new plugins if needed with the [`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup) helper.
+The best place to start is by looking at the features that each [plugin](http://cssinjs.org/plugins) provides. Material-UI uses [few of them](#plugins).
+You can always add new plugins if needed with the [`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup) helper.
 
 If you wish to build your own instance of `jss` **and** support *rtl* make sure you also include the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
 Check the jss-rtl [readme](https://github.com/alitaheri/jss-rtl#simple-usage) to learn how.
@@ -101,17 +102,16 @@ By adjusting the placement of the `insertionPoint` comment within your HTML body
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import preset from 'jss-preset-default';
-import { createGenerateClassName } from 'material-ui/styles';
+import { createGenerateClassName, jssPreset } from 'material-ui/styles';
 
-const generateClassName = createGenerateClassName();
-const jss = create(preset());
+const jss = create(jssPreset());
 // We define a custom insertion point JSS will look for injecting the styles in the DOM.
 jss.options.insertionPoint = 'insertion-point-jss';
+jss.options.createGenerateClassName = createGenerateClassName;
 
 function App() {
   return (
-    <JssProvider jss={jss} generateClassName={generateClassName}>
+    <JssProvider jss={jss}>
       ...
     </JssProvider>
   );
@@ -132,11 +132,10 @@ Here is an example:
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import preset from 'jss-preset-default';
-import { createGenerateClassName } from 'material-ui/styles';
+import { createGenerateClassName, jssPreset } from 'material-ui/styles';
 
 const generateClassName = createGenerateClassName();
-const jss = create(preset());
+const jss = create(jssPreset());
 
 function App() {
   return (
@@ -253,19 +252,16 @@ A function which returns a class name generator function.
 
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
-import { create } from 'jss';
-import preset from 'jss-preset-default';
 import { createGenerateClassName } from 'material-ui/styles';
 
 const generateClassName = createGenerateClassName({
   dangerouslyUseGlobalCSS: true,
   productionPrefix: 'c',
 });
-const jss = create(preset());
 
 function App() {
   return (
-    <JssProvider jss={jss} generateClassName={generateClassName}>
+    <JssProvider generateClassName={generateClassName}>
       ...
     </JssProvider>
   );

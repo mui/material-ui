@@ -68,9 +68,6 @@ We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`.
 import { renderToString } from 'react-dom/server'
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { create } from 'jss';
-import preset from 'jss-preset-default';
-// import rtl from 'jss-rtl'; // in-case you're supporting rtl
 import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from 'material-ui/styles';
 import { green, red } from 'material-ui/colors';
 
@@ -87,14 +84,11 @@ function handleRender(req, res) {
     },
   });
 
-  // Configure JSS
-  const jss = create(preset());
-  // const jss = create({ plugins: [...preset().plugins, rtl()] }); // in-case you're supporting rtl
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
   const html = renderToString(
-    <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
+    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
       <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
         <App />
       </MuiThemeProvider>

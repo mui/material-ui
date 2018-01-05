@@ -5,31 +5,15 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 import getDisplayName from 'recompose/getDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
 import { create } from 'jss';
-import jssGlobal from 'jss-global';
-import jssNested from 'jss-nested';
-import jssCamelCase from 'jss-camel-case';
-import jssDefaultUnit from 'jss-default-unit';
-import jssVendorPrefixer from 'jss-vendor-prefixer';
-import jssPropsSort from 'jss-props-sort';
 import * as ns from 'react-jss/lib/ns';
+import jssPreset from './jssPreset';
 import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
 
-export const preset = () => ({
-  plugins: [
-    jssGlobal(),
-    jssNested(),
-    jssCamelCase(),
-    jssDefaultUnit(),
-    jssVendorPrefixer(),
-    jssPropsSort(),
-  ],
-});
-
 // New JSS instance.
-const jss = create(preset());
+const jss = create(jssPreset());
 
 // Use a singleton or the provided one by the context.
 const generateClassName = createGenerateClassName();
