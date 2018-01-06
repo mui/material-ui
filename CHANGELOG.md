@@ -22,7 +22,7 @@ Instead, you can use the `ref` property in combinaison with `findDOMNode()` or a
 
 - [Popover] New transition property (#9682) @oliviertassinari
 
-Remove the `transitionClasses` property of the Popover component, instead, people can provide their own transition component.
+Remove the `transitionClasses` property of the Popover component. Instead, you can provide a transition component.
 
 - [BottomNavigation] Rename BottomNavigationButton to BottomNavigationAction (#9692) @mbrookes
 
