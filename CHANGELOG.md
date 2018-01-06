@@ -2,6 +2,83 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.27
+###### *Jan 6, 2018*
+
+Big thanks to the 19 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A strong focus on the documentation.
+- Add a new Zoom component (#9693) @mbrookes
+- Better vertical alignment of our components (#9709) @oliviertassinari
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [core] Remove some rootRef properties (#9676) @cherniavskii
+Remove the rootRef property from the Grow and List component.
+Instead, you can use the `ref` property in combinaison with `findDOMNode()` or a [RootRef](https://gist.github.com/oliviertassinari/fa1cd34a3fff67553631606109bed124) helper.
+- [Popover] New transition property (#9682) @oliviertassinari
+Remove the `transitionClasses` property of the Popover component, instead, people can provide their own transition component.
+- [BottomNavigation] Rename BottomNavigationButton to BottomNavigationAction (#9692) @mbrookes
+```diff
+-import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
++import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
+```
+- [core] Update jss plugins dependencies (#9732) @cherniavskii
+You might be relying on the transitive dependency of Material-UI: `jss-preset-default`.
+If you do, you need to declare the dependency in your package.json. Material-UI will no longer install it for you.
+Alternatively, you can use our preset to save bundle size.
+```diff
+-import preset from 'jss-preset-default';
++import { jssPreset } from 'material-ui/styles';
+```
+
+#### Component Fixes / Enhancements
+
+- [Menu] Better select, hover, focus logic (#9570) @Skaronator
+- [CircularProgress] Accept as string size property (#9700) @jedwards1211
+- [Zoom] New transition component (#9693) @mbrookes
+- [Modal] Add TransitionHandlers to Modal props TypeScript definitions (#9723) @pvdstel
+- [style] Add vertical-align: middle (#9709) @oliviertassinari
+- [Dialog] Allow fullWidth option of false (#9724) @gregnb
+- [SvgIcon] Add a nativeColor property (#9740) @oliviertassinari
+- [typescript] Make Modal-/SlideProps on Drawer Partial (#9743) @DaIgeb
+- [typescript] Use React.ReactType instead of string | ComponentType (#9686) @pelotom
+- [typescript] Style/replace object and function in typedef (#9678) @t49tran
+- [typescript] Update zIndex props to latest changes (#9720) @radicand
+- [FormControlLabel] Allow highlighted options to be selectable (#9713) @Chopinsky
+
+#### Docs
+
+- [flow] Update the documentation and the example (#9679) @oliviertassinari
+- [docs] Fix missing sandbox files (#9685) @lukePeavey
+- [Portal] Fix typo (#9688) @ifndefdeadmau5
+- [examples] Use Reboot (#9691) @oliviertassinari
+- [docs] Add a fallback ad (#9694) @oliviertassinari
+- [examples] Keep working on the Next.js example (#9695) @oliviertassinari
+- [docs] Hide sandbox button on more demos (#9696) @lukePeavey
+- [docs] Minor Markdown Fix: Update SUPPORT.md (#9702) @TorzuoliH
+- [docs] Move 'Default Theme' to it's own section (#9697) @mbrookes
+- [docs] Reorder Drawer items (#9704) @mbrookes
+- [docs] Bite the bullet and go for v1-beta (#9706) @oliviertassinari
+- [docs] Add project in showcase.md (#9725) @shady831213
+- [docs] Fix error in overriding with classes (#9726) @rubencosta
+- [docs] Tweak Dialog maxWidth prop description (#9729) @mbrookes
+- [docs] Add a reference to create-react-app-with-flow (#9735) @oliviertassinari
+- [docs] Fix link of "How to override the look and feel of the components." (#9739) @enavarrocu
+- [docs] Fix Chip onDelete property (#9741) @vkentta
+- [docs] Reduce the api docs table cell padding (#9752) @mbrookes
+- [docs] Misc docs fixes (#9747) @mbrookes
+- [docs] Fix two small regressions (#9753) @oliviertassinari
+- [docs] Tidy up Tooltips demos (#9755) @mbrookes
+
+#### Core
+
+- [core] Fix typo in size:overhead:why script (#9728) @cherniavskii
+- [core] Follow the React HOC convention (#9733) @oliviertassinari
+- [github] Add Support Requests bot config file (#9751) @mbrookes
+
 ## 1.0.0-beta.26
 ###### *Dec 30, 2017*
 
@@ -11,6 +88,7 @@ Here are some highlights ✨:
 - @kgregory has made the breakpoint down behavior more intuitive. As of now, it's inclusive (#9632).
 - We have introduced a new component to kickstart an elegant, consistent, and simple baseline to build upon: `Reboot` (#9661).
 - The `Portal` and `Modal` components have been revamped to solve the core issues raised by the community (#9613). Those components are now documented.
+- And many more bug fixes and documentation improvements.
 
 ### Breaking change
 
