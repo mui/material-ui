@@ -161,7 +161,7 @@ describe('<ListItemText />', () => {
 
   it('should render primary and secondary text with customisable classes', () => {
     const textClasses = {
-      text: 'GeneralText',
+      textPrimary: 'GeneralText',
       textSecondary: 'SecondaryText',
     };
     const wrapper = shallow(

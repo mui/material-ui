@@ -21,11 +21,17 @@ export const styles = theme => ({
   dense: {
     fontSize: theme.typography.pxToRem(13),
   },
-  text: {}, // Present to allow external customization,
-  textSecondary: {}, // Present to allow external customization on secondary text
-  textDense: {
-    fontSize: 'inherit',
+  textPrimary: {
+    '&$textDense': {
+      fontSize: 'inherit',
+    },
   },
+  textSecondary: {
+    '&$textDense': {
+      fontSize: 'inherit',
+    },
+  },
+  textDense: {},
 });
 
 function ListItemText(props, context) {
@@ -56,7 +62,7 @@ function ListItemText(props, context) {
         ) : (
           <Typography
             type="subheading"
-            className={classNames(classes.text, { [classes.textDense]: dense })}
+            className={classNames(classes.textPrimary, { [classes.textDense]: dense })}
           >
             {primary}
           </Typography>
@@ -66,11 +72,11 @@ function ListItemText(props, context) {
           secondary
         ) : (
           <Typography
-            color="secondary"
             type="body1"
-            className={classNames(classes.text, classes.textSecondary, {
+            className={classNames(classes.textSecondary, {
               [classes.textDense]: dense,
             })}
+            color="secondary"
           >
             {secondary}
           </Typography>
