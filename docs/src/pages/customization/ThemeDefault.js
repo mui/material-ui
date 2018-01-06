@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, withTheme } from 'material-ui/styles';
 import Inspector from 'react-inspector';
+import { withStyles, withTheme } from 'material-ui/styles';
+import { FormControlLabel } from 'material-ui/Form';
+import Switch from 'material-ui/Switch';
 
 const styles = theme => ({
   root: {
@@ -12,23 +14,40 @@ const styles = theme => ({
   },
 });
 
-function ThemeDefault(props) {
-  const { classes, theme } = props;
+class ThemeDefault extends React.Component {
+  state = {
+    checked: false,
+  };
 
-  // Expose the theme as a global variable so people can play with it.
-  if (process.browser) {
-    window.theme = theme;
+  render() {
+    const { classes, theme } = this.props;
+    const { checked } = this.state;
+
+    // Expose the theme as a global variable so people can play with it.
+    if (process.browser) {
+      window.theme = theme;
+    }
+
+    return (
+      <div className={classes.root}>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={checked}
+              onChange={(event, value) => this.setState({ checked: value })}
+            />
+          }
+          label="Expand all"
+        />
+        <Inspector
+          theme={theme.palette.type === 'light' ? 'chromeLight' : 'chromeDark'}
+          data={theme}
+          expandLevel={checked ? 100 : 1}
+          key={`${checked}-${theme.palette.type}`} // Remount
+        />
+      </div>
+    );
   }
-
-  return (
-    <div className={classes.root}>
-      <Inspector
-        theme={theme.palette.type === 'light' ? 'chromeLight' : 'chromeDark'}
-        data={theme}
-        expandLevel={1}
-      />
-    </div>
-  );
 }
 
 ThemeDefault.propTypes = {
