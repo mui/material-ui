@@ -158,4 +158,35 @@ describe('<ListItemText />', () => {
       'should have the secondary text',
     );
   });
+
+  it('should render primary and secondary text with customisable classes', () => {
+    const textClasses = {
+      textPrimary: 'GeneralText',
+      textSecondary: 'SecondaryText',
+    };
+    const wrapper = shallow(
+      <ListItemText
+        primary="This is the primary text"
+        secondary="This is the secondary text"
+        classes={textClasses}
+      />,
+    );
+
+    assert.strictEqual(
+      wrapper
+        .childAt(0)
+        .props()
+        .className.includes('GeneralText'),
+      true,
+      'should have the primary text class',
+    );
+    assert.strictEqual(
+      wrapper
+        .childAt(1)
+        .props()
+        .className.includes('SecondaryText'),
+      true,
+      'should have the secondary text class',
+    );
+  });
 });

@@ -27,7 +27,8 @@ This property accepts the following keys:
 - `root`
 - `inset`
 - `dense`
-- `text`
+- `textPrimary`
+- `textSecondary`
 - `textDense`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

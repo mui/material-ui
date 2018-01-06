@@ -9,7 +9,13 @@ export interface ListItemTextProps
   secondary?: React.ReactNode;
 }
 
-export type ListItemTextClassKey = 'root' | 'inset' | 'dense' | 'text' | 'textDense';
+export type ListItemTextClassKey =
+  | 'root'
+  | 'inset'
+  | 'dense'
+  | 'textPrimary'
+  | 'textSecondary'
+  | 'textDense';
 
 declare const ListItemText: React.ComponentType<ListItemTextProps>;
 
