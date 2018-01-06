@@ -15,7 +15,7 @@ filename: /src/Card/CardHeader.js
 | action | node |  | The action to display in the card header. |
 | avatar | node |  | The Avatar for the Card Header. |
 | classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | CardContent | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
 | subheader | node |  | The content of the component. |
 | title | node |  | The content of the Card Title. |
 
@@ -39,10 +39,6 @@ for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiCardHeader`.
-
-## Inheritance
-
-The properties of the [&lt;CardContent /&gt;](/api/card-content) component are also available.
 
 ## Demos
 

@@ -21,12 +21,12 @@ export const styles = theme => ({
   dense: {
     fontSize: theme.typography.pxToRem(13),
   },
-  textPrimary: {
+  primary: {
     '&$textDense': {
       fontSize: 'inherit',
     },
   },
-  textSecondary: {
+  secondary: {
     '&$textDense': {
       fontSize: 'inherit',
     },
@@ -62,7 +62,7 @@ function ListItemText(props, context) {
         ) : (
           <Typography
             type="subheading"
-            className={classNames(classes.textPrimary, { [classes.textDense]: dense })}
+            className={classNames(classes.primary, { [classes.textDense]: dense })}
           >
             {primary}
           </Typography>
@@ -73,7 +73,7 @@ function ListItemText(props, context) {
         ) : (
           <Typography
             type="body1"
-            className={classNames(classes.textSecondary, {
+            className={classNames(classes.secondary, {
               [classes.textDense]: dense,
             })}
             color="secondary"

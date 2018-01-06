@@ -1,16 +1,14 @@
-// @inheritedComponent CardContent
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
-import CardContent from './CardContent';
 
 export const styles = theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
+    padding: theme.spacing.unit * 2,
   },
   avatar: {
     flex: '0 0 auto',
@@ -97,7 +95,7 @@ CardHeader.propTypes = {
 };
 
 CardHeader.defaultProps = {
-  component: CardContent,
+  component: 'div',
 };
 
 export default withStyles(styles, { name: 'MuiCardHeader' })(CardHeader);
