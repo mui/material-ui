@@ -16,7 +16,7 @@ export const styles = theme => {
     root: {
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.typography.pxToRem(13),
-      display: 'flex',
+      display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
       height,
@@ -24,7 +24,6 @@ export const styles = theme => {
       backgroundColor,
       borderRadius: height / 2,
       whiteSpace: 'nowrap',
-      width: 'fit-content',
       transition: theme.transitions.create(),
       // label will inherit this from root, then `clickable` class overrides this for both
       cursor: 'default',
