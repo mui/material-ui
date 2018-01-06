@@ -1,8 +1,12 @@
 import React from 'react';
 import { create } from 'jss';
-import preset from 'jss-preset-default';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from 'material-ui/styles';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  createGenerateClassName,
+  jssPreset,
+} from 'material-ui/styles';
 import purple from 'material-ui/colors/purple';
 import green from 'material-ui/colors/green';
 import Reboot from 'material-ui/Reboot';
@@ -18,7 +22,7 @@ const theme = createMuiTheme({
 
 // Create a JSS instance with the default preset of plugins.
 // It's optional.
-const jss = create(preset());
+const jss = create(jssPreset());
 
 // The standard class name generator.
 // It's optional.
