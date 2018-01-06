@@ -16,7 +16,7 @@ export const styles = theme => ({
     backgroundColor: theme.palette.primary[100],
   },
   primaryColorBar: {
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary[theme.palette.primaryShade],
   },
   primaryDashed: {
     background: `radial-gradient(${theme.palette.primary[100]} 0%, ${

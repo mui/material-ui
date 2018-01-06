@@ -15,10 +15,10 @@ export const styles = theme => ({
     display: 'inline-block',
   },
   primaryColor: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary[theme.palette.primaryShade],
   },
   accentColor: {
-    color: theme.palette.secondary.A200,
+    color: theme.palette.secondary[theme.palette.secondaryShade],
   },
   svgIndeterminate: {
     animation: 'mui-progress-circular-rotate 1.4s linear infinite',

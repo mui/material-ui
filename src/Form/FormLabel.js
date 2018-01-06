@@ -17,7 +17,7 @@ export const styles = theme => {
       color: focusColor,
     },
     error: {
-      color: theme.palette.error.A400,
+      color: theme.palette.error[theme.palette.errorShade],
     },
     disabled: {
       color: theme.palette.input.disabled,

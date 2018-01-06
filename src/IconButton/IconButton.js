@@ -25,13 +25,13 @@ export const styles = theme => ({
     }),
   },
   colorAccent: {
-    color: theme.palette.secondary.A200,
+    color: theme.palette.secondary[theme.palette.secondaryShade],
   },
   colorContrast: {
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    color: theme.palette.getContrastText(theme.palette.primary[theme.palette.primaryShade]),
   },
   colorPrimary: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary[theme.palette.primaryShade],
   },
   colorInherit: {
     color: 'inherit',

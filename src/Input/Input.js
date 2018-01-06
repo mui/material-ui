@@ -95,7 +95,7 @@ export const styles = theme => {
     },
     error: {
       '&:after': {
-        backgroundColor: theme.palette.error.A400,
+        backgroundColor: theme.palette.error[theme.palette.errorShade],
         transform: 'scaleX(1)', // error is always underlined in red
       },
     },

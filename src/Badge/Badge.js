@@ -34,12 +34,12 @@ export const styles = theme => ({
     zIndex: 1, // Render the badge on top of potential ripples.
   },
   colorPrimary: {
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    backgroundColor: theme.palette.primary[theme.palette.primaryShade],
+    color: theme.palette.getContrastText(theme.palette.primary[theme.palette.primaryShade]),
   },
   colorAccent: {
-    backgroundColor: theme.palette.secondary.A200,
-    color: theme.palette.getContrastText(theme.palette.secondary.A200),
+    backgroundColor: theme.palette.secondary[theme.palette.secondaryShade],
+    color: theme.palette.getContrastText(theme.palette.secondary[theme.palette.secondaryShade]),
   },
 });
 
