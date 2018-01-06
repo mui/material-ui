@@ -18,9 +18,9 @@ Here are some highlights ✨:
 - [core] Remove some rootRef properties (#9676) @cherniavskii
 
 Remove the rootRef property from the Grow and List component.
-Instead, you can use the `ref` property in combinaison with `findDOMNode()` or a [RootRef](https://gist.github.com/oliviertassinari/fa1cd34a3fff67553631606109bed124) helper.
+Instead, you can use the `ref` property in combination with `findDOMNode()` or a [RootRef](https://gist.github.com/oliviertassinari/fa1cd34a3fff67553631606109bed124) helper.
 
-- [Popover] New transition property (#9682) @oliviertassinari
+- [Popover] New `transition` property (#9682) @oliviertassinari
 
 Remove the `transitionClasses` property of the Popover component. Instead, you can provide a transition component.
 
