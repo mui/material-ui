@@ -21,7 +21,8 @@ export const styles = theme => ({
   dense: {
     fontSize: theme.typography.pxToRem(13),
   },
-  text: {}, // Present to allow external customization
+  text: {}, // Present to allow external customization,
+  textSecondary: {}, // Present to allow external customization on secondary text
   textDense: {
     fontSize: 'inherit',
   },
@@ -67,7 +68,9 @@ function ListItemText(props, context) {
           <Typography
             color="secondary"
             type="body1"
-            className={classNames(classes.text, { [classes.textDense]: dense })}
+            className={classNames(classes.text, classes.textSecondary, {
+              [classes.textDense]: dense,
+            })}
           >
             {secondary}
           </Typography>
