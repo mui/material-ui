@@ -16,16 +16,23 @@ Here are some highlights ✨:
 ### Breaking change
 
 - [core] Remove some rootRef properties (#9676) @cherniavskii
+
 Remove the rootRef property from the Grow and List component.
 Instead, you can use the `ref` property in combinaison with `findDOMNode()` or a [RootRef](https://gist.github.com/oliviertassinari/fa1cd34a3fff67553631606109bed124) helper.
+
 - [Popover] New transition property (#9682) @oliviertassinari
+
 Remove the `transitionClasses` property of the Popover component, instead, people can provide their own transition component.
+
 - [BottomNavigation] Rename BottomNavigationButton to BottomNavigationAction (#9692) @mbrookes
+
 ```diff
 -import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
 +import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
 ```
+
 - [core] Update jss plugins dependencies (#9732) @cherniavskii
+
 You might be relying on the transitive dependency of Material-UI: `jss-preset-default`.
 If you do, you need to declare the dependency in your package.json. Material-UI will no longer install it for you.
 Alternatively, you can use our preset to save bundle size.
