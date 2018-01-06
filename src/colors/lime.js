@@ -13,7 +13,6 @@ const lime = {
   A200: '#eeff41',
   A400: '#c6ff00',
   A700: '#aeea00',
-  contrastDefaultColor: 'dark',
 };
 
 export default lime;

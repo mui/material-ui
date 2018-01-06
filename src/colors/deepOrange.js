@@ -13,7 +13,6 @@ const deepOrange = {
   A200: '#ff6e40',
   A400: '#ff3d00',
   A700: '#dd2c00',
-  contrastDefaultColor: 'light',
 };
 
 export default deepOrange;

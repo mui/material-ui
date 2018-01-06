@@ -13,7 +13,6 @@ const teal = {
   A200: '#64ffda',
   A400: '#1de9b6',
   A700: '#00bfa5',
-  contrastDefaultColor: 'dark',
 };
 
 export default teal;

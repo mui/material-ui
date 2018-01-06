@@ -13,7 +13,6 @@ const orange = {
   A200: '#ffab40',
   A400: '#ff9100',
   A700: '#ff6d00',
-  contrastDefaultColor: 'dark',
 };
 
 export default orange;

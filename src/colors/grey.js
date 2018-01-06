@@ -13,7 +13,6 @@ const grey = {
   A200: '#aaaaaa',
   A400: '#303030',
   A700: '#616161',
-  contrastDefaultColor: 'dark',
 };
 
 export default grey;
