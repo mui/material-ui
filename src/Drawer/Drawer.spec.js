@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
+import ReactDOM, { findDOMNode } from 'react-dom';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import mockPortal from '../../test/utils/mockPortal';
 import Slide from '../transitions/Slide';
@@ -165,39 +166,43 @@ describe.only('<Drawer />', () => {
       });
     });
 
-    describe.only('swipe to open', () => {
-      const DrawerNaked = unwrap(Drawer);
+    describe('swipe to open', () => {
+      let wrapper;
+      let instance;
+      let DrawerNaked;
+      let findDOMNodeStub;
 
-      const fireBodyMouseEvent = (name, properties) => {
+      function fireBodyMouseEvent (name, properties) {
         const event = document.createEvent('MouseEvents');
         event.initEvent(name, true, true);
         Object.keys(properties).forEach((key) => { event[key] = properties[key] });
         document.body.dispatchEvent(event);
-      };
-      let wrapper;
+      }
+
+      before(() => {
+        DrawerNaked = unwrap(Drawer);
+
+        // mock the drawer DOM node, since jsdom doesn't do layouting but its size is required
+        const findDOMNode = ReactDOM.findDOMNode
+        findDOMNodeStub = stub(ReactDOM, 'findDOMNode').callsFake(arg => {
+          if (arg instanceof Paper) {
+            return { clientWidth: 250, clientHeight: 250, style: {} };
+          } else {
+            return findDOMNode(arg)
+          }
+        });
+      });
+
+      after(() =>  {
+        findDOMNodeStub.restore();
+      });
 
       beforeEach(() => {
         wrapper = mount(
           <DrawerNaked classes={{}} theme={{ direction: 'ltr' }}>
             <h1>Hello</h1>
-          </DrawerNaked>,
-        )
-        // mock the drawer and backdrop DOM nodes
-        // using Object.defineProperties seems to be the only way that works fine with enzyme
-        // we use custom getter and setter to prevent react from adding the real dom component (that has
-        // no clientWidth/clientHeight in jsdom)
-        let backdrop = { style: { opacity: 1 } }
-        let drawer = { clientWidth: 250, clientHeight: 250, style: {} }
-        Object.defineProperties(wrapper.instance(), {
-          drawer: {
-            get: () => drawer,
-            set: () => {}
-          },
-          backdrop: {
-            get: () => backdrop,
-            set: () => {}
-          }
-        });
+          </DrawerNaked>
+        );
       });
 
       const bodyWidth = document.body.offsetWidth // jsdom emulates these
@@ -232,7 +237,6 @@ describe.only('<Drawer />', () => {
           // simulate open swipe
           const handleOpen = spy();
           wrapper.setProps({ onOpen: handleOpen })
-
           fireBodyMouseEvent('touchstart', {touches: [params.openTouches[0]]})
           assert.strictEqual(wrapper.instance().maybeSwiping, true, 'should be listening for swipe')
           fireBodyMouseEvent('touchmove', {touches: [params.openTouches[1]]})
@@ -250,8 +254,8 @@ describe.only('<Drawer />', () => {
           fireBodyMouseEvent('touchend', {changedTouches: [params.closeTouches[2]]});
           assert.strictEqual(handleClose.callCount, 1, 'should call onClose');
         });
-
-        it('should slide in a bit when touching near the edge', () => {
+        
+        it(`should slide in a bit when touching near the ${params.anchor} edge`, () => {
           wrapper.setProps({ anchor: params.anchor });
 
           // mock the internal setPosition function that moves the drawer while swiping
