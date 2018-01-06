@@ -270,8 +270,12 @@ class Tooltip extends React.Component {
 
     const themeDirection = theme && theme.direction;
     const placement = themeDirection === 'rtl' ? flipPlacement(rawPlacement) : rawPlacement;
-    const open = this.isControlled ? openProp : this.state.open;
+    let open = this.isControlled ? openProp : this.state.open;
     const childrenProps = {};
+
+    if (title === '') {
+      open = false;
+    }
 
     childrenProps['aria-describedby'] = id;
 
@@ -437,7 +441,7 @@ Tooltip.propTypes = {
    */
   theme: PropTypes.object.isRequired,
   /**
-   * Tooltip title.
+   * Tooltip title. Zero-length titles string are never displayed.
    */
   title: PropTypes.node.isRequired,
 };

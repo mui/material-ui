@@ -77,6 +77,17 @@ describe('<Tooltip />', () => {
     assert.strictEqual(popperChildren.childAt(0).hasClass(classes.tooltip), true);
   });
 
+  describe('prop: title', () => {
+    it('should not display if the title is an empty string', () => {
+      const wrapper = shallow(
+        <Tooltip open title="">
+          <span>Hello World</span>
+        </Tooltip>,
+      );
+      assert.strictEqual(wrapper.find(Popper).hasClass(classes.popperClose), true);
+    });
+  });
+
   describe('prop: placement', () => {
     it('should have top placement', () => {
       const wrapper = shallow(
