@@ -15,4 +15,5 @@ flow-typed
 /packages/material-ui-icons/build
 /packages/material-ui-codemod/src/*/*.spec*
 /examples/create-react-app/build
+/examples/create-react-app-with-jss/build
 /.git
