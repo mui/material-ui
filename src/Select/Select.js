@@ -2,11 +2,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import SelectInput from './SelectInput';
 import withStyles from '../styles/withStyles';
 import Input from '../Input'; // Import to enforce the CSS injection order
-import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = theme => ({
   root: {
@@ -73,15 +71,6 @@ function Select(props) {
     renderValue,
     ...other
   } = props;
-
-  // Instead of `Element<typeof Input>` to have more flexibility.
-  warning(
-    isMuiElement(input, ['Input']),
-    [
-      'Material-UI: you have provided an invalid value to the `input` property.',
-      'We expect an element instance of the `Input` component.',
-    ].join('\n'),
-  );
 
   return React.cloneElement(input, {
     // Most of the logic is implemented in `SelectInput`.
