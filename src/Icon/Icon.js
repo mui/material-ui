@@ -9,13 +9,13 @@ export const styles = theme => ({
     userSelect: 'none',
   },
   colorAccent: {
-    color: theme.palette.secondary.A200,
+    color: theme.palette.secondary[theme.palette.secondaryShade],
   },
   colorAction: {
     color: theme.palette.action.active,
   },
   colorContrast: {
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    color: theme.palette.getContrastText(theme.palette.primary[theme.palette.primaryShade]),
   },
   colorDisabled: {
     color: theme.palette.action.disabled,
@@ -24,7 +24,7 @@ export const styles = theme => ({
     color: theme.palette.error[500],
   },
   colorPrimary: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary[theme.palette.primaryShade],
   },
 });
 

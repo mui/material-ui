@@ -23,7 +23,7 @@ export const styles = theme => ({
   },
   selected: {
     paddingTop: 6,
-    color: theme.palette.primary[500],
+    color: theme.palette.primary[theme.palette.primaryShade],
   },
   selectedIconOnly: {
     paddingTop: theme.spacing.unit * 2,

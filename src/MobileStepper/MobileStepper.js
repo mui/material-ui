@@ -44,7 +44,7 @@ export const styles = theme => ({
     margin: '0 2px',
   },
   dotActive: {
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary[theme.palette.primaryShade],
   },
   progress: {
     width: '50%',

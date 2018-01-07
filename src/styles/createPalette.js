@@ -76,33 +76,45 @@ export const dark = {
   },
 };
 
-function getContrastText(hue) {
-  if (getContrastRatio(hue, common.black) < 7) {
+function getContrastText(color) {
+  if (getContrastRatio(color, common.black) < 7) {
     return dark.text.primary;
   }
   return light.text.primary;
 }
 
 export default function createPalette(palette: Object) {
-  const { primary = indigo, secondary = pink, error = red, type = 'light', ...other } = palette;
-  const shades = { dark, light };
+  const {
+    primary = indigo,
+    primaryShade = 500,
+    secondary = pink,
+    secondaryShade = 'A200',
+    error = red,
+    errorShade = 'A400',
+    type = 'light',
+    ...other
+  } = palette;
+  const types = { dark, light };
 
-  warning(Boolean(shades[type]), `Material-UI: the palette type \`${type}\` is not supported.`);
+  warning(Boolean(types[type]), `Material-UI: the palette type \`${type}\` is not supported.`);
 
   const paletteOutput = deepmerge(
     {
       common,
       type,
       primary,
+      primaryShade,
       secondary,
+      secondaryShade,
       error,
+      errorShade,
       grey,
-      shades,
-      text: shades[type].text,
-      input: shades[type].input,
-      action: shades[type].action,
-      background: shades[type].background,
-      line: shades[type].line,
+      types,
+      text: types[type].text,
+      input: types[type].input,
+      action: types[type].action,
+      background: types[type].background,
+      line: types[type].line,
       getContrastText,
     },
     other,
@@ -118,24 +130,24 @@ export default function createPalette(palette: Object) {
         compare = {};
       }
 
-      return Object.keys(base).filter(hue => !compare[hue]);
+      return Object.keys(base).filter(shade => !compare[shade]);
     };
 
-    const paletteColorError = (name, base, compare) => {
+    const paletteHueError = (name, base, compare) => {
       const missing = difference(base, compare);
       warning(
         missing.length === 0,
         [
-          `Material-UI: ${name} color is missing the following hues: ${missing.join(',')}`,
+          `Material-UI: theme.${name} does not have the following shades: 
+          ${missing.join(',')}`,
           'See the default colors, indigo, or pink, as exported from material-ui/colors.',
         ].join('\n'),
       );
     };
 
-    paletteColorError('primary', indigo, paletteOutput.primary);
-    paletteColorError('secondary', pink, paletteOutput.secondary);
-    paletteColorError('error', red, paletteOutput.error);
-    paletteColorError('grey', red, paletteOutput.grey);
+    paletteHueError('primary', indigo, paletteOutput.primary);
+    paletteHueError('secondary', pink, paletteOutput.secondary);
+    paletteHueError('error', red, paletteOutput.error);
   }
 
   return paletteOutput;

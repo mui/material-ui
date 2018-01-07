@@ -18,7 +18,7 @@ export const styles = theme => ({
     marginTop: theme.spacing.unit / 2,
   },
   error: {
-    color: theme.palette.error.A400,
+    color: theme.palette.error[theme.palette.errorShade],
   },
   disabled: {
     color: theme.palette.input.disabled,

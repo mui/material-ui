@@ -45,9 +45,9 @@ export const styles = theme => ({
     justifyContent: 'inherit',
   },
   flatPrimary: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary[theme.palette.primaryShade],
     '&:hover': {
-      backgroundColor: fade(theme.palette.primary[500], 0.12),
+      backgroundColor: fade(theme.palette.primary[theme.palette.primaryShade], 0.12),
       // Reset on mouse devices
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -55,9 +55,9 @@ export const styles = theme => ({
     },
   },
   flatAccent: {
-    color: theme.palette.secondary.A200,
+    color: theme.palette.secondary[theme.palette.secondaryShade],
     '&:hover': {
-      backgroundColor: fade(theme.palette.secondary.A200, 0.12),
+      backgroundColor: fade(theme.palette.secondary[theme.palette.secondaryShade], 0.12),
       // Reset on mouse devices
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -65,9 +65,12 @@ export const styles = theme => ({
     },
   },
   flatContrast: {
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    color: theme.palette.getContrastText(theme.palette.primary[theme.palette.primaryShade]),
     '&:hover': {
-      backgroundColor: fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.12),
+      backgroundColor: fade(
+        theme.palette.getContrastText(theme.palette.primary[theme.palette.primaryShade]),
+        0.12,
+      ),
       // Reset on mouse devices
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -108,29 +111,29 @@ export const styles = theme => ({
   },
   keyboardFocused: {},
   raisedPrimary: {
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
-    backgroundColor: theme.palette.primary[500],
+    color: theme.palette.getContrastText(theme.palette.primary[theme.palette.primaryShade]),
+    backgroundColor: theme.palette.primary[theme.palette.primaryShade],
     '&:hover': {
       backgroundColor: theme.palette.primary[700],
       // Reset on mouse devices
       '@media (hover: none)': {
-        backgroundColor: theme.palette.primary[500],
+        backgroundColor: theme.palette.primary[theme.palette.primaryShade],
       },
     },
   },
   raisedAccent: {
-    color: theme.palette.getContrastText(theme.palette.secondary.A200),
-    backgroundColor: theme.palette.secondary.A200,
+    color: theme.palette.getContrastText(theme.palette.secondary[theme.palette.secondaryShade]),
+    backgroundColor: theme.palette.secondary[theme.palette.secondaryShade],
     '&:hover': {
       backgroundColor: theme.palette.secondary.A400,
       // Reset on mouse devices
       '@media (hover: none)': {
-        backgroundColor: theme.palette.secondary.A200,
+        backgroundColor: theme.palette.secondary[theme.palette.secondaryShade],
       },
     },
   },
   raisedContrast: {
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    color: theme.palette.getContrastText(theme.palette.primary[theme.palette.primaryShade]),
   },
   disabled: {
     color: theme.palette.action.disabled,
