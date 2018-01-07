@@ -1,9 +1,6 @@
-import { ComponentClass, ReactNode } from 'react';
-import { DateType } from '../constants/prop-types';
-import { Utils } from '../utils/utils';
-import { TextFieldProps } from 'material-ui/TextField';
+import { ComponentClass, InputHTMLAttributes } from 'react';
 
-export interface DateTextFieldProps extends TextFieldProps {
+export interface MaskedInputProps extends InputHTMLAttributes<MaskedInputProps> {
     mask?: any;
 }
 

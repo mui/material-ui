@@ -14,6 +14,7 @@ export interface DateTimePickerProps {
   disableFuture?: boolean;
   autoSubmit?: boolean;
   showTabs?: boolean;
+  animateYearScrolling?: boolean;
   ampm?: boolean;
   openTo?: DateTimePickerView;
   leftArrowIcon: ReactNode;
