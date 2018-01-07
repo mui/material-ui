@@ -2,6 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { findDOMNode } from 'react-dom';
+import Transition from 'react-transition-group/Transition';
 import { createShallow, createMount, unwrap } from '../test-utils';
 import Slide, { setTranslateValue } from './Slide';
 import transitions, { easing } from '../styles/transitions';
@@ -278,6 +279,13 @@ describe('<Slide />', () => {
       const instance = wrapper.instance();
       instance.handleResize();
       clock.tick(166);
+    });
+  });
+
+  describe('server side', () => {
+    it('should be initially hidden', () => {
+      const wrapper = shallow(<Slide {...defaultProps} in={false} />);
+      assert.strictEqual(wrapper.find(Transition).props().style.visibility, 'hidden');
     });
   });
 });

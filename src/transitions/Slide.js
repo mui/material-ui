@@ -187,7 +187,9 @@ class Slide extends React.Component {
     const style = { ...styleProp };
 
     // We use this state to handle the server-side rendering.
-    if (!this.props.in && this.state.mounted) {
+    // We don't know the width of the children ahead of time.
+    // We need to render it.
+    if (!this.props.in && !this.state.mounted) {
       style.visibility = 'hidden';
     }
 
