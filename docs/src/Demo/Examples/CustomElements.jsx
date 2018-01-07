@@ -69,7 +69,7 @@ class CustomElements extends Component {
     return (
       <div className={wrapperClassName}>
         <IconButton className={dayClassName}>
-          <span> { date.format('DD')} </span>
+          <span> { date.format('D')} </span>
         </IconButton>
       </div>
     );
