@@ -55,7 +55,7 @@ export default withTheme()(withStyles(styles)(Modal));
 
 ## How can I access the DOM element?
 
-You can use the `ref` property in conjunction to the [`findDOMNode()`](https://reactjs.org/docs/react-dom.html#finddomnode) React API. Or you can [use an abstraction](https://github.com/facebook/react/issues/11401#issuecomment-340543801):
+You can use the `ref` property in conjunction with the [`findDOMNode()`](https://reactjs.org/docs/react-dom.html#finddomnode) React API. Or you can [use an abstraction](https://github.com/facebook/react/issues/11401#issuecomment-340543801):
 
 ```jsx
 import React from 'react';
@@ -93,7 +93,7 @@ Usage:
 
 ## Material-UI is awesome. How can I support the project?
 
-There are a lot of ways to support Material-UI:
+There are many ways to support Material-UI:
 - Improve [the documentation](https://github.com/mui-org/material-ui/tree/v1-beta/docs).- Help others to get started.- [Spread the word](https://twitter.com/MaterialUI).- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui).If you use Material-UI in a commercial project and would like to support its continued development by becoming a **Sponsor**,
 or in a side or hobby project and would like to become a backer, you can do so through [OpenCollective](https://opencollective.com/material-ui).
 
