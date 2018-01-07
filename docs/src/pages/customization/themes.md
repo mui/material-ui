@@ -32,7 +32,7 @@ The theme expose the following color intentions:
 - secondary - used to represent secondary interface elements for a user.
 - error - used to represent interface elements that the user should be careful of.
 
-The palette uses the hues prefixed with `A` (`A200`, etc.) for the accent color and the hues unprefixed for the other intentions.
+The palette uses the shades prefixed with `A` (`A200`, etc.) for the accent color and the hues unprefixed for the other intentions.
 If you want to learn more about color, you can check out [the color section](/style/color).
 
 #### Example
