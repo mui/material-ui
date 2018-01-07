@@ -7,7 +7,7 @@ import pink from '../colors/pink';
 import grey from '../colors/grey';
 import red from '../colors/red';
 import common from '../colors/common';
-import { getLuminance, getContrastRatio } from './colorManipulator';
+import { getContrastRatio } from './colorManipulator';
 
 export const light = {
   text: {
@@ -71,33 +71,48 @@ export const dark = {
     chip: grey[800],
   },
   line: {
-    // TODO: What should the dark theme have for stepper line? Not stated in style guide
-    stepper: grey[400],
+    stepper: grey[600],
   },
 };
 
-function getContrastText(color) {
-  const contrastColor = getLuminance(color) <= 0.295 ? dark.text.primary : light.text.primary;
-  const contrastRatio = getContrastRatio(color, contrastColor);
-
-  if (process.env.NODE_ENV !== 'production') {
-    warning(
-      contrastRatio > 3,
-      [
-        `Material-UI: the contrast ratio of ${contrastRatio}:1 for ${contrastColor} on ${color}`,
-        'falls below the WACG recommended absolute minimum contrast ratio of 3:1.',
-        'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
-      ].join('\n'),
-    );
-  }
-  return contrastColor;
-}
-
 export default function createPalette(palette: Object) {
-  const { primary = indigo, secondary = pink, error = red, type = 'light', ...other } = palette;
+  const {
+    primary = indigo,
+    secondary = pink,
+    error = red,
+    type = 'light',
+    // Same value used by material-components-web
+    // https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L49
+    contrastThreshold = 3.1,
+    ...other
+  } = palette;
   const shades = { dark, light };
 
   warning(Boolean(shades[type]), `Material-UI: the palette type \`${type}\` is not supported.`);
+
+  function getContrastText(background) {
+    // Use the same logic than
+    // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
+    // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
+    const contrastText =
+      getContrastRatio(background, dark.text.primary) >= contrastThreshold
+        ? dark.text.primary
+        : light.text.primary;
+
+    if (process.env.NODE_ENV !== 'production') {
+      const contrast = getContrastRatio(background, contrastText);
+      warning(
+        contrast >= 3,
+        [
+          `Material-UI: the contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
+          'falls below the WACG recommended absolute minimum contrast ratio of 3:1.',
+          'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
+        ].join('\n'),
+      );
+    }
+
+    return contrastText;
+  }
 
   const paletteOutput = deepmerge(
     {
@@ -113,7 +128,7 @@ export default function createPalette(palette: Object) {
       action: shades[type].action,
       background: shades[type].background,
       line: shades[type].line,
-      contrastThreshold: 0.295,
+      contrastThreshold,
       getContrastText,
     },
     other,

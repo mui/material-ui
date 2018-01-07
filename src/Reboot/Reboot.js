@@ -16,9 +16,10 @@ const styles = theme => ({
       boxSizing: 'inherit',
     },
     body: {
-      margin: 0, // Remove the margin in all browsers
+      margin: 0, // Remove the margin in all browsers.
       backgroundColor: theme.palette.background.default,
       '@media print': {
+        // Save printer ink.
         backgroundColor: theme.palette.common.white,
       },
     },

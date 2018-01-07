@@ -91,33 +91,33 @@ describe('utils/colorManipulator', () => {
   });
 
   describe('getContrastRatio', () => {
-    it('returns a ratio of 21 for black : white', () => {
+    it('returns a ratio black : white', () => {
       assert.strictEqual(getContrastRatio('#000', '#FFF'), 21);
     });
 
-    it('returns a ratio of 1 for black : black', () => {
+    it('returns a ratio black : black', () => {
       assert.strictEqual(getContrastRatio('#000', '#000'), 1);
     });
 
-    it('returns a ratio of 1 for white : white', () => {
+    it('returns a ratio white : white', () => {
       assert.strictEqual(getContrastRatio('#FFF', '#FFF'), 1);
     });
 
-    it('returns a ratio of 3.92 for dark-grey : light-grey', () => {
-      assert.strictEqual(getContrastRatio('#707070', '#E5E5E5'), 3.93);
+    it('returns a ratio for dark-grey : light-grey', () => {
+      assert.approximately(getContrastRatio('#707070', '#E5E5E5'), 3.93, 0.01);
     });
 
-    it('returns a ratio of 3.93 for black : light-grey', () => {
-      assert.strictEqual(getContrastRatio('#000', '#888'), 5.92);
+    it('returns a ratio for black : light-grey', () => {
+      assert.approximately(getContrastRatio('#000', '#888'), 5.92, 0.01);
     });
   });
 
   describe('getLuminance', () => {
-    it('returns a luminance of 1 for rgb white', () => {
+    it('returns a valid luminance for rgb white', () => {
       assert.strictEqual(getLuminance('rgb(0, 0, 0)'), 0);
     });
 
-    it('returns a luminance of 1 for rgb white', () => {
+    it('returns a valid luminance for rgb white', () => {
       assert.strictEqual(getLuminance('rgb(255, 255, 255)'), 1);
     });
 
@@ -129,7 +129,7 @@ describe('utils/colorManipulator', () => {
       assert.strictEqual(getLuminance('rgb(255, 127, 0)'), 0.364);
     });
 
-    it('returns a normalized luminance from an hsl color', () => {
+    it('returns a valid luminance from an hsl color', () => {
       assert.strictEqual(getLuminance('hsl(100, 100%, 50%)'), 0.5);
     });
 
