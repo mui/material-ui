@@ -13,7 +13,6 @@ const purple = {
   A200: '#e040fb',
   A400: '#d500f9',
   A700: '#aa00ff',
-  contrastDefaultColor: 'light',
 };
 
 export default purple;

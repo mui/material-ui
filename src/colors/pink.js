@@ -13,7 +13,6 @@ const pink = {
   A200: '#ff4081',
   A400: '#f50057',
   A700: '#c51162',
-  contrastDefaultColor: 'light',
 };
 
 export default pink;

@@ -13,7 +13,6 @@ const red = {
   A200: '#ff5252',
   A400: '#ff1744',
   A700: '#d50000',
-  contrastDefaultColor: 'light',
 };
 
 export default red;

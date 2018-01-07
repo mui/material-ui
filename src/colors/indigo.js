@@ -13,7 +13,6 @@ const indigo = {
   A200: '#536dfe',
   A400: '#3d5afe',
   A700: '#304ffe',
-  contrastDefaultColor: 'light',
 };
 
 export default indigo;

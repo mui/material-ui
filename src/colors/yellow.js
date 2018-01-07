@@ -13,7 +13,6 @@ const yellow = {
   A200: '#ffff00',
   A400: '#ffea00',
   A700: '#ffd600',
-  contrastDefaultColor: 'dark',
 };
 
 export default yellow;

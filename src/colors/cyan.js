@@ -13,7 +13,6 @@ const cyan = {
   A200: '#18ffff',
   A400: '#00e5ff',
   A700: '#00b8d4',
-  contrastDefaultColor: 'dark',
 };
 
 export default cyan;

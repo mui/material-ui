@@ -13,7 +13,6 @@ const lightGreen = {
   A200: '#b2ff59',
   A400: '#76ff03',
   A700: '#64dd17',
-  contrastDefaultColor: 'dark',
 };
 
 export default lightGreen;
