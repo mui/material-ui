@@ -13,7 +13,6 @@ const blue = {
   A200: '#448aff',
   A400: '#2979ff',
   A700: '#2962ff',
-  contrastDefaultColor: 'light',
 };
 
 export default blue;
