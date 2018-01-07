@@ -21,8 +21,8 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.primary[500] : theme.palette.primary[800],
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+      theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
+    color: theme.palette.getContrastText(theme.palette.primary.main),
   },
   content: {
     paddingTop: theme.spacing.unit * 8,

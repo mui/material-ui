@@ -45,9 +45,9 @@ export const styles = theme => ({
     justifyContent: 'inherit',
   },
   flatPrimary: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
     '&:hover': {
-      backgroundColor: fade(theme.palette.primary[500], 0.12),
+      backgroundColor: fade(theme.palette.primary.main, 0.12),
       // Reset on mouse devices
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -55,9 +55,9 @@ export const styles = theme => ({
     },
   },
   flatAccent: {
-    color: theme.palette.secondary.A200,
+    color: theme.palette.secondary.light,
     '&:hover': {
-      backgroundColor: fade(theme.palette.secondary.A200, 0.12),
+      backgroundColor: fade(theme.palette.secondary.light, 0.12),
       // Reset on mouse devices
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -65,9 +65,9 @@ export const styles = theme => ({
     },
   },
   flatContrast: {
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    color: theme.palette.primary.contrastText,
     '&:hover': {
-      backgroundColor: fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.12),
+      backgroundColor: fade(theme.palette.primary.contrastText, 0.12),
       // Reset on mouse devices
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -108,29 +108,29 @@ export const styles = theme => ({
   },
   keyboardFocused: {},
   raisedPrimary: {
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
-    backgroundColor: theme.palette.primary[500],
+    color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.primary.main,
     '&:hover': {
-      backgroundColor: theme.palette.primary[700],
+      backgroundColor: theme.palette.primary.dark,
       // Reset on mouse devices
       '@media (hover: none)': {
-        backgroundColor: theme.palette.primary[500],
+        backgroundColor: theme.palette.primary.main,
       },
     },
   },
   raisedAccent: {
-    color: theme.palette.getContrastText(theme.palette.secondary.A200),
-    backgroundColor: theme.palette.secondary.A200,
+    color: theme.palette.getContrastText(theme.palette.secondary.light),
+    backgroundColor: theme.palette.secondary.light,
     '&:hover': {
-      backgroundColor: theme.palette.secondary.A400,
+      backgroundColor: theme.palette.secondary.main,
       // Reset on mouse devices
       '@media (hover: none)': {
-        backgroundColor: theme.palette.secondary.A200,
+        backgroundColor: theme.palette.secondary.light,
       },
     },
   },
   raisedContrast: {
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    color: theme.palette.primary.contrastText,
   },
   disabled: {
     color: theme.palette.action.disabled,

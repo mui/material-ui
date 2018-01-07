@@ -47,16 +47,16 @@ export const styles = theme => ({
     color: 'inherit',
   },
   colorPrimary: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
   },
   colorSecondary: {
     color: theme.palette.text.secondary,
   },
   colorAccent: {
-    color: theme.palette.secondary.A400,
+    color: theme.palette.secondary.main,
   },
   colorError: {
-    color: theme.palette.error.A400,
+    color: theme.palette.error.main,
   },
 });
 

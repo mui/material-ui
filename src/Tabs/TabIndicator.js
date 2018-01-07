@@ -14,10 +14,10 @@ export const styles = theme => ({
     willChange: 'left, width',
   },
   colorAccent: {
-    backgroundColor: theme.palette.secondary.A200,
+    backgroundColor: theme.palette.secondary.light,
   },
   colorPrimary: {
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary.main,
   },
 });
 

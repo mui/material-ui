@@ -13,27 +13,27 @@ export const styles = theme => ({
     height: 5,
   },
   primaryColor: {
-    backgroundColor: theme.palette.primary[100],
+    backgroundColor: theme.palette.primary.light,
   },
   primaryColorBar: {
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary.main,
   },
   primaryDashed: {
-    background: `radial-gradient(${theme.palette.primary[100]} 0%, ${
-      theme.palette.primary[100]
+    background: `radial-gradient(${theme.palette.primary.light} 0%, ${
+      theme.palette.primary.light
     } 16%, transparent 42%)`,
     backgroundSize: '10px 10px',
     backgroundPosition: '0px -23px',
   },
   accentColor: {
-    backgroundColor: theme.palette.secondary.A100,
+    backgroundColor: theme.palette.secondary.light,
   },
   accentColorBar: {
-    backgroundColor: theme.palette.secondary.A400,
+    backgroundColor: theme.palette.secondary.main,
   },
   accentDashed: {
-    background: `radial-gradient(${theme.palette.secondary.A100} 0%, ${
-      theme.palette.secondary.A100
+    background: `radial-gradient(${theme.palette.secondary.light} 0%, ${
+      theme.palette.secondary.light
     } 16%, transparent 42%)`,
     backgroundSize: '10px 10px',
     backgroundPosition: '0px -23px',
@@ -84,11 +84,11 @@ export const styles = theme => ({
   },
   bufferBar2Primary: {
     transition: `transform .${TRANSITION_DURATION}s linear`,
-    backgroundColor: theme.palette.primary[100],
+    backgroundColor: theme.palette.primary.light,
   },
   bufferBar2Accent: {
     transition: `transform .${TRANSITION_DURATION}s linear`,
-    backgroundColor: theme.palette.secondary.A100,
+    backgroundColor: theme.palette.secondary.light,
   },
   // Legends:
   // || represents the viewport

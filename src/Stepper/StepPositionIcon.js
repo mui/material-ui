@@ -9,10 +9,10 @@ export const styles = theme => ({
     fill: theme.palette.action.disabled,
   },
   active: {
-    fill: theme.palette.primary[500],
+    fill: theme.palette.primary.main,
   },
   text: {
-    fill: theme.palette.getContrastText(theme.palette.primary[500]),
+    fill: theme.palette.primary.contrastText,
     fontSize: theme.typography.caption.fontSize,
     fontFamily: theme.typography.fontFamily,
   },
