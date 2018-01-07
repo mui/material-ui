@@ -152,6 +152,7 @@ AppDrawer.propTypes = {
   disablePermanent: PropTypes.bool.isRequired,
   mobileOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  onOpen: PropTypes.func.isRequired,
 };
 
 AppDrawer.contextTypes = {
