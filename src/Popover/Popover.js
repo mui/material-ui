@@ -410,13 +410,15 @@ class Popover extends Component {
   }
 
   render() {
-    return (
-      <div style={styles.root}>
-        <EventListener
+    const eventListener = this.state.open ?
+      (<EventListener
           target={this.props.scrollableContainer}
           onScroll={this.handleScroll}
           onResize={this.handleResize}
-        />
+        />) : null;
+    return (
+      <div style={styles.root}>
+        {eventListener}
         <RenderToLayer
           ref={(ref) => this.popoverRefs.layer = ref}
           open={this.state.open}
