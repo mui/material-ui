@@ -27,6 +27,13 @@ It uses the `TableSortLabel` component to help style column headings.
 
 {{"demo": "pages/demos/tables/EnhancedTable.js"}}
 
+## Custom Table Pagination Action
+
+The `Action` property of the `TablePagination` component allows the implementation of
+custom actions.
+
+{{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
+
 ## Advanced use cases
 
 For more advanced use cases you might be able to take advantage of [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/). It's a data grid for Material-UI with paging, sorting, filtering, grouping and editing features.

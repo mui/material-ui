@@ -100,14 +100,13 @@ class Menu extends React.Component {
       ...other
     } = this.props;
 
-    const themeDirection = theme && theme.direction;
     return (
       <Popover
         getContentAnchorEl={this.getContentAnchorEl}
         classes={PopoverClasses}
         onEnter={this.handleEnter}
-        anchorOrigin={themeDirection === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
-        transformOrigin={themeDirection === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
+        anchorOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
+        transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
         PaperProps={{
           ...PaperProps,
           classes: {
