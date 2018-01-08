@@ -12,6 +12,7 @@ filename: /src/Tabs/Tabs.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| action | func |  | This is callback property. It's called by the component on mount. This is useful when you want to trigger an action programmatically. It currently only supports updateIndicator() action.<br><br>**Signature:**<br>`function(actions: object) => void`<br>*actions:* This object contains all posible actions that can be triggered programmatically. |
 | buttonClassName | string |  | The CSS class name of the scroll button elements. |
 | centered | bool | false | If `true`, the tabs will be centered. This property is intended for large views. |
 | children | node |  | The content of the component. |

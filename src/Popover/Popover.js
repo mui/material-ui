@@ -235,7 +235,7 @@ class Popover extends React.Component {
   };
 
   handleResize = debounce(() => {
-    const element: any = ReactDOM.findDOMNode(this.transitionEl);
+    const element = ReactDOM.findDOMNode(this.transitionEl);
     this.setPositioningStyles(element);
   }, 166);
 

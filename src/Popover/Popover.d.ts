@@ -18,6 +18,7 @@ export type PopoverReference = 'anchorEl' | 'anchorPosition';
 
 export interface PopoverProps
   extends StandardProps<ModalProps & Partial<TransitionHandlers>, PopoverClassKey, 'children'> {
+  action?: (actions: object) => void;
   anchorEl?: HTMLElement;
   anchorOrigin?: PopoverOrigin;
   anchorPosition?: PopoverPosition;
