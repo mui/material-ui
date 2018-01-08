@@ -52,6 +52,33 @@ describe('<Tabs />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
+  describe('prop: action', () => {
+    it('should be able to access updateIndicator function', () => {
+      let tabsActions = {};
+      mount(
+        <Tabs
+          width="md"
+          onChange={noop}
+          value={0}
+          className="woofTabs"
+          action={actions => {
+            tabsActions = actions;
+          }}
+        >
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      assert.strictEqual(
+        typeof tabsActions.updateIndicator === 'function',
+        true,
+        'Should be a function.',
+      );
+      tabsActions.updateIndicator();
+    });
+  });
+
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
       const wrapper = shallow(

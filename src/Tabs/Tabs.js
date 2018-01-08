@@ -59,6 +59,12 @@ class Tabs extends React.Component {
     this.setState({ mounted: true });
     this.updateIndicatorState(this.props);
     this.updateScrollButtonState();
+
+    if (this.props.action) {
+      this.props.action({
+        updateIndicator: this.handleResize,
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -278,6 +284,7 @@ class Tabs extends React.Component {
 
   render() {
     const {
+      action,
       buttonClassName,
       centered,
       children: childrenProp,
@@ -363,6 +370,15 @@ class Tabs extends React.Component {
 }
 
 Tabs.propTypes = {
+  /**
+   * This is callback property. It's called by the component on mount.
+   * This is useful when you want to trigger an action programmatically.
+   * It currently only supports updateIndicator() action.
+   *
+   * @param {object} actions This object contains all posible actions
+   * that can be triggered programmatically.
+   */
+  action: PropTypes.func,
   /**
    * The CSS class name of the scroll button elements.
    */

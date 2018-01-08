@@ -3,6 +3,7 @@ import { StandardProps } from '..';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase/ButtonBase';
 
 export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 'onChange'> {
+  action?: (actions: object) => void;
   buttonClassName?: string;
   centered?: boolean;
   children?: React.ReactNode;
