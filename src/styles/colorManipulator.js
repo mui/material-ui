@@ -1,6 +1,8 @@
 // @flow weak
 /* eslint-disable no-use-before-define */
 
+import warning from 'warning';
+
 /**
  * Returns a number whose value is limited to the given range.
  *
@@ -10,6 +12,11 @@
  * @returns {number} A number in the range [min, max]
  */
 function clamp(value, min, max) {
+  warning(
+    value >= min && value <= max,
+    `Material-UI: the value provided ${value} is out of range [${min}, ${max}].`,
+  );
+
   if (value < min) {
     return min;
   }
