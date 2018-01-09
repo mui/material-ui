@@ -13,7 +13,7 @@ export const styles = theme => ({
 });
 
 function CardContent(props) {
-  const { classes, className, component: ComponentProp = 'div', ...other } = props;
+  const { classes, className, component: ComponentProp, ...other } = props;
 
   return <ComponentProp className={classNames(classes.root, className)} {...other} />;
 }
