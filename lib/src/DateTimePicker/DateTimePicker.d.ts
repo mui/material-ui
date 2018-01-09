@@ -9,7 +9,7 @@ export interface DateTimePickerProps {
   date: object;
   minDate?: DateType;
   maxDate?: DateType;
-  onChange: (date: object, isFinished?: boolean) => void;
+  onChange: (date: Date, isFinished: boolean, viewType?: DateTimePickerView) => void;
   disablePast?: boolean;
   disableFuture?: boolean;
   autoSubmit?: boolean;

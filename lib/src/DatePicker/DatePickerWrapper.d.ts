@@ -8,7 +8,7 @@ import { Moment } from 'moment';
 export interface DatePickerWrapperProps extends ModalWrapperProps {
     minDate?: DateType;
     maxDate?: DateType;
-    onChange: (date: object) => void;
+    onChange: (date: Date) => void;
     autoOk?: boolean;
     disablePast?: boolean;
     disableFuture?: boolean;

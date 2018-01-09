@@ -3,7 +3,7 @@ import { Utils } from '../utils/utils';
 
 export interface MinutesViewProps {
     date: object;
-    onChange: (date: object, isFinished?: boolean) => void;
+    onChange: (date: Date, isFinished?: boolean) => void;
     utils?: Utils;
 }
 

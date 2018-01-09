@@ -1,21 +1,19 @@
-import { ComponentClass, ReactNode } from 'react';
-import { DateType } from '../constants/prop-types';
-import { Utils } from '../utils/utils';
+import { ComponentClass } from 'react';
+import { DateType } from '../constants/prop-types'
 import { TextFieldProps } from 'material-ui/TextField';
+import {Omit} from 'material-ui'
 
-export interface DateTextFieldProps extends TextFieldProps {
-    value: any;
+export interface DateTextFieldProps extends Omit<TextFieldProps, 'onChange' | 'value'> {
+    value: DateType;
     mask?: any;
-    onChange: (date: object) => void;
-    onClear: () => void;
-    InputProps: any;
+    onChange: (date: Date, foo: boolean) => void;
+    onClear?: () => void;
     keyboard?: boolean;
-    disabled?: boolean;
     format?: string;
     invalidLabel?: string;
     emptyLabel?: string;
-    labelFunc?: (date: object, invalidLabel: string) => string;
-    keyboardIcon?: ReactNode;
+    labelFunc?: (date: Date, invalidLabel: string) => string;
+    keyboardIcon?: string;
     invalidDateMessage?: string;
     clearable?: boolean;
 }
