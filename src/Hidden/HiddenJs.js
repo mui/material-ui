@@ -95,7 +95,7 @@ HiddenJs.propTypes = {
    * For instance, you could be using the user-agent or the client-hints.
    * http://caniuse.com/#search=client%20hint
    */
-  initialWidth: PropTypes.number,
+  initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   /**
    * If true, screens this size and down will be hidden.
    */
