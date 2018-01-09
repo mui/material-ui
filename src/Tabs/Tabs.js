@@ -198,11 +198,10 @@ class Tabs extends React.Component {
     const { theme } = this.props;
 
     if (this.tabs) {
-      const themeDirection = theme && theme.direction;
-      const multiplier = themeDirection === 'rtl' ? -1 : 1;
+      const multiplier = theme.direction === 'rtl' ? -1 : 1;
       const nextScrollLeft = this.tabs.scrollLeft + delta * multiplier;
       // Fix for Edge
-      const invert = themeDirection === 'rtl' && detectScrollType() === 'reverse' ? -1 : 1;
+      const invert = theme.direction === 'rtl' && detectScrollType() === 'reverse' ? -1 : 1;
       scroll.left(this.tabs, invert * nextScrollLeft);
     }
   };
@@ -210,13 +209,12 @@ class Tabs extends React.Component {
   updateIndicatorState(props) {
     const { theme, value } = props;
 
-    const themeDirection = theme && theme.direction;
-    const { tabsMeta, tabMeta } = this.getTabsMeta(value, themeDirection);
+    const { tabsMeta, tabMeta } = this.getTabsMeta(value, theme.direction);
     let left = 0;
 
     if (tabMeta && tabsMeta) {
       const correction =
-        themeDirection === 'rtl'
+        theme.direction === 'rtl'
           ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth
           : tabsMeta.scrollLeft;
       left = tabMeta.left - tabsMeta.left + correction;
@@ -240,9 +238,7 @@ class Tabs extends React.Component {
 
   scrollSelectedIntoView = () => {
     const { theme, value } = this.props;
-
-    const themeDirection = theme && theme.direction;
-    const { tabsMeta, tabMeta } = this.getTabsMeta(value, themeDirection);
+    const { tabsMeta, tabMeta } = this.getTabsMeta(value, theme.direction);
 
     if (!tabMeta || !tabsMeta) {
       return;
@@ -261,17 +257,16 @@ class Tabs extends React.Component {
 
   updateScrollButtonState = () => {
     const { scrollable, scrollButtons, theme } = this.props;
-    const themeDirection = theme && theme.direction;
 
     if (this.tabs && scrollable && scrollButtons !== 'off') {
       const { scrollWidth, clientWidth } = this.tabs;
-      const scrollLeft = getNormalizedScrollLeft(this.tabs, themeDirection);
+      const scrollLeft = getNormalizedScrollLeft(this.tabs, theme.direction);
 
       const showLeftScroll =
-        themeDirection === 'rtl' ? scrollWidth > clientWidth + scrollLeft : scrollLeft > 0;
+        theme.direction === 'rtl' ? scrollWidth > clientWidth + scrollLeft : scrollLeft > 0;
 
       const showRightScroll =
-        themeDirection === 'rtl' ? scrollLeft > 0 : scrollWidth > clientWidth + scrollLeft;
+        theme.direction === 'rtl' ? scrollLeft > 0 : scrollWidth > clientWidth + scrollLeft;
 
       if (
         showLeftScroll !== this.state.showLeftScroll ||

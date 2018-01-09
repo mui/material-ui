@@ -268,8 +268,7 @@ class Tooltip extends React.Component {
       ...other
     } = this.props;
 
-    const themeDirection = theme && theme.direction;
-    const placement = themeDirection === 'rtl' ? flipPlacement(rawPlacement) : rawPlacement;
+    const placement = theme.direction === 'rtl' ? flipPlacement(rawPlacement) : rawPlacement;
     let open = this.isControlled ? openProp : this.state.open;
     const childrenProps = {};
 

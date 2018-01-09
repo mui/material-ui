@@ -12,6 +12,7 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| Actions | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | TablePaginationActions | The component used for displaying the actions. Either a string to use a DOM element or a component. |
 | backIconButtonProps | object |  | Properties applied to the back arrow `IconButton` component. |
 | classes | object |  | Useful to extend the style applied to components. |
 | component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | TableCell | The component used for the root node. Either a string to use a DOM element or a component. |
