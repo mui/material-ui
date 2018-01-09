@@ -201,7 +201,7 @@ export const styles = theme => {
 };
 
 function formControlState(props, context) {
-  let disabled = props.disabled;
+  let disabled = props.disabled || (props.inputProps && props.inputProps.disabled); // ts needs ()
   let error = props.error;
   let margin = props.margin;
 
