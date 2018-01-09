@@ -4,5 +4,5 @@ coverage:
   status:
     patch:
       default:
-        threshold: 0.1%
+        threshold: 0.0%
 comment: false
