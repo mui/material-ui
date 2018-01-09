@@ -8,13 +8,12 @@ export type StepButtonIcon = React.ReactElement<any> | string | number;
 export interface StepButtonProps extends StandardProps<ButtonBaseProps, StepButtonClasskey> {
   active?: boolean;
   alternativeLabel?: boolean;
-  children: React.ReactElement<any>;
   completed?: boolean;
   disabled?: boolean;
   icon?: StepButtonIcon;
   last?: boolean;
   optional?: React.ReactNode;
-  orientation: Orientation;
+  orientation?: Orientation;
 }
 
 export type StepButtonClasskey = ButtonBaseClassKey | 'root' | 'alternativeLabel';
