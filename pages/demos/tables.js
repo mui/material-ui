@@ -22,6 +22,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tables/EnhancedTable'), 'utf8')
 `,
         },
+        'pages/demos/tables/CustomPaginationActionsTable.js': {
+          js: require('docs/src/pages/demos/tables/CustomPaginationActionsTable').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tables/CustomPaginationActionsTable'), 'utf8')
+`,
+        },
       }}
     />
   );

@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import keycode from 'keycode';
 import Table, {
   TableBody,
   TableCell,
@@ -36,15 +35,6 @@ const columnData = [
 ];
 
 class EnhancedTableHead extends React.Component {
-  static propTypes = {
-    numSelected: PropTypes.number.isRequired,
-    onRequestSort: PropTypes.func.isRequired,
-    onSelectAllClick: PropTypes.func.isRequired,
-    order: PropTypes.string.isRequired,
-    orderBy: PropTypes.string.isRequired,
-    rowCount: PropTypes.number.isRequired,
-  };
-
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
@@ -91,6 +81,15 @@ class EnhancedTableHead extends React.Component {
     );
   }
 }
+
+EnhancedTableHead.propTypes = {
+  numSelected: PropTypes.number.isRequired,
+  onRequestSort: PropTypes.func.isRequired,
+  onSelectAllClick: PropTypes.func.isRequired,
+  order: PropTypes.string.isRequired,
+  orderBy: PropTypes.string.isRequired,
+  rowCount: PropTypes.number.isRequired,
+};
 
 const toolbarStyles = theme => ({
   root: {
@@ -225,12 +224,6 @@ class EnhancedTable extends React.Component {
     this.setState({ selected: [] });
   };
 
-  handleKeyDown = (event, id) => {
-    if (keycode(event) === 'space') {
-      this.handleClick(event, id);
-    }
-  };
-
   handleClick = (event, id) => {
     const { selected } = this.state;
     const selectedIndex = selected.indexOf(id);
@@ -287,7 +280,6 @@ class EnhancedTable extends React.Component {
                   <TableRow
                     hover
                     onClick={event => this.handleClick(event, n.id)}
-                    onKeyDown={event => this.handleKeyDown(event, n.id)}
                     role="checkbox"
                     aria-checked={isSelected}
                     tabIndex={-1}
