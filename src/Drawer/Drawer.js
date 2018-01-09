@@ -115,9 +115,8 @@ class Drawer extends React.Component {
       ...other
     } = this.props;
 
-    const rtl = theme && theme.direction === 'rtl';
     let anchor = anchorProp;
-    if (rtl && ['left', 'right'].includes(anchor)) {
+    if (theme.direction === 'rtl' && ['left', 'right'].includes(anchor)) {
       anchor = anchor === 'left' ? 'right' : 'left';
     }
 

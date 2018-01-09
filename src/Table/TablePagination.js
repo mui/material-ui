@@ -2,16 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import withStyles from '../styles/withStyles';
-import IconButton from '../IconButton';
 import Input from '../Input';
 import { MenuItem } from '../Menu';
 import Select from '../Select';
 import TableCell from './TableCell';
 import Toolbar from '../Toolbar';
 import Typography from '../Typography';
+import TablePaginationActions from './TablePaginationActions';
 
 export const styles = theme => ({
   root: {
@@ -76,6 +74,7 @@ class TablePagination extends React.Component {
 
   render() {
     const {
+      Actions,
       backIconButtonProps,
       classes,
       colSpan: colSpanProp,
@@ -89,7 +88,6 @@ class TablePagination extends React.Component {
       page,
       rowsPerPage,
       rowsPerPageOptions,
-      theme,
       ...other
     } = this.props;
 
@@ -98,8 +96,6 @@ class TablePagination extends React.Component {
     if (Component === TableCell || Component === 'td') {
       colSpan = colSpanProp || 1000; // col-span over everything
     }
-
-    const themeDirection = theme && theme.direction;
 
     return (
       <Component className={classes.root} colSpan={colSpan} {...other}>
@@ -139,22 +135,14 @@ class TablePagination extends React.Component {
               page,
             })}
           </Typography>
-          <div className={classes.actions}>
-            <IconButton
-              onClick={this.handleBackButtonClick}
-              disabled={page === 0}
-              {...backIconButtonProps}
-            >
-              {themeDirection === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            </IconButton>
-            <IconButton
-              onClick={this.handleNextButtonClick}
-              disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-              {...nextIconButtonProps}
-            >
-              {themeDirection === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </IconButton>
-          </div>
+          <Actions
+            backIconButtonProps={backIconButtonProps}
+            count={count}
+            nextIconButtonProps={nextIconButtonProps}
+            onChangePage={onChangePage}
+            page={page}
+            rowsPerPage={rowsPerPage}
+          />
         </Toolbar>
       </Component>
     );
@@ -162,6 +150,11 @@ class TablePagination extends React.Component {
 }
 
 TablePagination.propTypes = {
+  /**
+   * The component used for displaying the actions.
+   * Either a string to use a DOM element or a component.
+   */
+  Actions: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Properties applied to the back arrow `IconButton` component.
    */
@@ -222,17 +215,14 @@ TablePagination.propTypes = {
    * available, no select field will be displayed.
    */
   rowsPerPageOptions: PropTypes.array,
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
 };
 
 TablePagination.defaultProps = {
+  Actions: TablePaginationActions,
   component: TableCell,
   labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
   labelRowsPerPage: 'Rows per page:',
   rowsPerPageOptions: [5, 10, 25],
 };
 
-export default withStyles(styles, { name: 'MuiTablePagination', withTheme: true })(TablePagination);
+export default withStyles(styles, { name: 'MuiTablePagination' })(TablePagination);
