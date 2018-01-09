@@ -17,6 +17,7 @@ export interface DateTimePickerWrapperProps extends ModalWrapperProps {
   returnMoment?: boolean;
   showTabs?: boolean;
   ampm?: boolean;
+  animateYearScrolling?: boolean;
   openTo?: DateTimePickerView;
   leftArrowIcon: ReactNode;
   rightArrowIcon: ReactNode;

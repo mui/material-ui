@@ -15,7 +15,8 @@ export interface DateTextFieldProps extends TextFieldProps {
     invalidLabel?: string;
     emptyLabel?: string;
     labelFunc?: (date: object, invalidLabel: string) => string;
-    keyboardIcon?: string;
+    keyboardIcon?: ReactNode;
+    invalidDateMessage?: string;
     clearable?: boolean;
 }
 
