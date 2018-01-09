@@ -76,6 +76,7 @@ import { TabScrollButtonClassKey } from '../Tabs/TabScrollButton';
 import { TextareaClassKey } from '../Input/Textarea';
 import { ToolbarClassKey } from '../Toolbar/Toolbar';
 import { TooltipClassKey } from '../Tooltip/Tooltip';
+import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography/Typography';
 
 export type Overrides = {
@@ -161,5 +162,6 @@ type ComponentNameToClassKey = {
   // MuiTextField: TextFieldClassKey;
   MuiToolbar: ToolbarClassKey;
   MuiTooltip: TooltipClassKey;
+  MuiTouchRipple: TouchRippleClassKey;
   MuiTypography: TypographyClassKey;
 };
