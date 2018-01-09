@@ -1,9 +1,10 @@
 import { ComponentClass } from 'react';
 import { Utils } from '../utils/utils';
 import { ModalWrapperProps } from '../wrappers/ModalWrapper';
+import { Moment } from 'moment'
 
 export interface TimePickerWrapperProps extends ModalWrapperProps {
-    onChange: (date: Date) => void;
+    onChange: (date: Moment) => void;
     autoOk?: boolean;
     returnMoment?: boolean;
     ampm?: boolean;

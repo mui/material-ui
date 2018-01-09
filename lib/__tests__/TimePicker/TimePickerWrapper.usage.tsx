@@ -1,9 +1,7 @@
 import * as React from 'react'
 import { Fragment, Component } from 'react';
 import TimePickerWrapper  from '../../src/TimePicker/TimePickerWrapper';
-
-// FIXME: src vs exported component names a source of confusion
-// FIXME https://github.com/dmtrKovalenko/material-ui-pickers/issues/169
+import { Moment } from 'moment'
 
 // initially from the docs site
 export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
@@ -11,8 +9,8 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
     selectedDate: new Date(),
   }
 
-  handleChange = (date: Date) => {
-    this.setState({ selectedDate: date });
+  handleChange = (date: Moment) => {
+    this.setState({ selectedDate: date.toDate() });
   }
 
   render() {

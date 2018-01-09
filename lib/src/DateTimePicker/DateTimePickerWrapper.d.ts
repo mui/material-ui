@@ -9,7 +9,7 @@ import { Moment } from 'moment';
 export interface DateTimePickerWrapperProps extends ModalWrapperProps {
   minDate?: DateType;
   maxDate?: DateType;
-  onChange: (date: Date) => void;
+  onChange: (date: Moment) => void;
   disablePast?: boolean;
   disableFuture?: boolean;
   autoOk?: boolean;
@@ -19,8 +19,8 @@ export interface DateTimePickerWrapperProps extends ModalWrapperProps {
   ampm?: boolean;
   animateYearScrolling?: boolean;
   openTo?: DateTimePickerView;
-  leftArrowIcon: ReactNode;
-  rightArrowIcon: ReactNode;
+  leftArrowIcon?: ReactNode;
+  rightArrowIcon?: ReactNode;
   dateRangeIcon?: ReactNode;
   timeIcon?: ReactNode;
   renderDay?: RenderDay;

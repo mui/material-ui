@@ -6,7 +6,7 @@ export interface YearSelectionProps {
     date: object;
     minDate?: DateType;
     maxDate?: DateType;
-    onChange: (date: Date) => void;
+    onChange: (date: Moment) => void;
     disablePast?: boolean;
     disableFuture?: boolean;
     animateYearScrolling?: boolean;
