@@ -30,6 +30,7 @@ export default class DateTextField extends PureComponent {
     keyboardIcon: PropTypes.node,
     invalidDateMessage: PropTypes.string,
     clearable: PropTypes.bool,
+    TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }
 
   static defaultProps = {
@@ -46,6 +47,7 @@ export default class DateTextField extends PureComponent {
     invalidDateMessage: 'Invalid Date Format',
     clearable: false,
     onClear: undefined,
+    TextFieldComponent: TextField,
   }
 
   getDisplayDate = (props) => {
@@ -169,6 +171,7 @@ export default class DateTextField extends PureComponent {
       mask,
       InputProps,
       keyboardIcon,
+      TextFieldComponent,
       ...other
     } = this.props;
     const { displayValue, error } = this.state;
@@ -190,7 +193,7 @@ export default class DateTextField extends PureComponent {
     }
 
     return (
-      <TextField
+      <TextFieldComponent
         onClick={this.handleFocus}
         error={!!error}
         helperText={error}
