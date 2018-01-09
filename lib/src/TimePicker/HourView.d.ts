@@ -1,8 +1,9 @@
 import { ComponentClass } from 'react';
 import { Utils } from '../utils/utils';
+import { Moment } from 'moment';
 
 export interface HourViewProps {
-    date: object;
+    date: Moment;
     onChange: (date: Moment, isFinished?: boolean) => void;
     ampm?: boolean;
     utils?: Utils;

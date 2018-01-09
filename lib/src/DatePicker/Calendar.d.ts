@@ -16,7 +16,7 @@ export type RenderDay =
 
 
 export interface CalendarProps {
-    date: object;
+    date: Moment;
     minDate?: DateType;
     maxDate?: DateType;
     onChange: (date: Moment) => void;

@@ -5,7 +5,7 @@ import { RenderDay } from './Calendar';
 import { Moment } from 'moment';
 
 export interface DatePickerProps {
-    date: object;
+    date: Moment;
     minDate?: DateType;
     maxDate?: DateType;
     onChange: (date: Moment, isFinished?: boolean) => void;
