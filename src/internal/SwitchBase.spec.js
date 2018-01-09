@@ -237,24 +237,16 @@ describe('<SwitchBase />', () => {
   });
 
   describe('handleInputChange()', () => {
-    let wrapper;
-    let instance;
-    let event;
-    let onChangeSpy;
-
-    before(() => {
-      event = {
-        target: {
-          checked: false,
-        },
-      };
-      onChangeSpy = spy();
-      wrapper = mount(<SwitchBaseNaked classes={{}} />);
-      wrapper.setProps({ onChange: onChangeSpy });
-      instance = wrapper.instance();
-    });
+    const event = {
+      target: {
+        checked: false,
+      },
+    };
 
     it('should call onChange exactly once with event', () => {
+      const onChangeSpy = spy();
+      const wrapper = mount(<SwitchBaseNaked classes={{}} onChange={onChangeSpy} />);
+      const instance = wrapper.instance();
       instance.handleInputChange(event);
 
       assert.strictEqual(onChangeSpy.callCount, 1);
@@ -264,21 +256,15 @@ describe('<SwitchBase />', () => {
     });
 
     describe('controlled', () => {
-      let checked;
-
-      before(() => {
-        checked = true;
-        wrapper.setProps({ checked });
-        instance = wrapper.instance();
-        instance.isControlled = true;
-        instance.handleInputChange(event);
-      });
-
-      after(() => {
-        onChangeSpy.reset();
-      });
-
       it('should call onChange once', () => {
+        const checked = true;
+        const onChangeSpy = spy();
+        const wrapper = mount(
+          <SwitchBaseNaked classes={{}} checked={checked} onChange={onChangeSpy} />,
+        );
+        const instance = wrapper.instance();
+        instance.handleInputChange(event);
+
         assert.strictEqual(onChangeSpy.callCount, 1);
         assert.strictEqual(
           onChangeSpy.calledWith(event, !checked),
@@ -290,17 +276,16 @@ describe('<SwitchBase />', () => {
 
     describe('not controlled no input', () => {
       let checkedMock;
+      let wrapper;
+      let onChangeSpy;
 
       before(() => {
+        onChangeSpy = spy();
+        wrapper = mount(<SwitchBaseNaked classes={{}} onChange={onChangeSpy} />);
         checkedMock = true;
-        instance = wrapper.instance();
-        instance.isControlled = false;
+        const instance = wrapper.instance();
         wrapper.setState({ checked: checkedMock });
         instance.handleInputChange(event);
-      });
-
-      after(() => {
-        onChangeSpy.reset();
       });
 
       it('should call onChange exactly once', () => {

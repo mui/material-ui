@@ -116,7 +116,7 @@ class SwitchBase extends React.Component {
         <input
           type={inputType}
           name={name}
-          checked={this.isControlled ? checkedProp : undefined}
+          checked={checkedProp}
           onChange={this.handleInputChange}
           className={classes.input}
           disabled={disabled}
