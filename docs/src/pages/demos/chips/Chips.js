@@ -4,20 +4,16 @@ import { withStyles } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import FaceIcon from 'material-ui-icons/Face';
-import Done from 'material-ui-icons/Done';
-import grey from 'material-ui/colors/grey';
+import DoneIcon from 'material-ui-icons/Done';
 
 const styles = theme => ({
-  chip: {
-    margin: theme.spacing.unit,
-  },
-  svgIcon: {
-    color: grey[800],
-  },
-  row: {
+  root: {
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
+  },
+  chip: {
+    margin: theme.spacing.unit,
   },
 });
 
@@ -32,7 +28,7 @@ function handleClick() {
 function Chips(props) {
   const { classes } = props;
   return (
-    <div className={classes.row}>
+    <div className={classes.root}>
       <Chip label="Basic Chip" className={classes.chip} />
       <Chip
         avatar={<Avatar>MB</Avatar>}
@@ -49,7 +45,7 @@ function Chips(props) {
       <Chip
         avatar={
           <Avatar>
-            <FaceIcon className={classes.svgIcon} />
+            <FaceIcon />
           </Avatar>
         }
         label="Clickable Deletable Chip"
@@ -62,7 +58,7 @@ function Chips(props) {
         onClick={handleClick}
         onDelete={handleDelete}
         className={classes.chip}
-        deleteIcon={<Done />}
+        deleteIcon={<DoneIcon />}
       />
     </div>
   );
