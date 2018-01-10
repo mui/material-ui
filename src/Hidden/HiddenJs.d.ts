@@ -2,17 +2,18 @@ import * as React from 'react';
 import { Breakpoint } from '../styles/createBreakpoints';
 
 export interface HiddenJsProps {
-  only?: Breakpoint | Array<Breakpoint>;
-  xsUp?: boolean;
-  smUp?: boolean;
-  mdUp?: boolean;
+  initialWidth?: Breakpoint;
+  lgDown?: boolean;
   lgUp?: boolean;
+  mdDown?: boolean;
+  mdUp?: boolean;
+  only?: Breakpoint | Array<Breakpoint>;
+  smDown?: boolean;
+  smUp?: boolean;
+  xlDown?: boolean;
   xlUp?: boolean;
   xsDown?: boolean;
-  smDown?: boolean;
-  mdDown?: boolean;
-  lgDown?: boolean;
-  xlDown?: boolean;
+  xsUp?: boolean;
 }
 
 declare const HiddenJs: React.ComponentType<HiddenJsProps>;
