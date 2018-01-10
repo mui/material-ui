@@ -13,7 +13,7 @@ It's using [react-transition-group](https://github.com/reactjs/react-transition-
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | element |  | A single child content element. |
+| children | union:&nbsp;element&nbsp;&#124;<br>&nbsp;func<br> |  | A single child content element. |
 | in | bool |  | If `true`, the component will transition in. |
 | timeout | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 

@@ -218,7 +218,7 @@ Slide.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
    * Direction the child node will enter from.
    */

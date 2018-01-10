@@ -13,7 +13,7 @@ export interface TransitionHandlers {
 }
 
 export interface TransitionProps extends Partial<TransitionHandlers> {
-  children: React.ReactElement<any>;
+  children: React.ReactElement<any> | Function;
   style?: React.CSSProperties;
   className?: string;
   in: boolean;
