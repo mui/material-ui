@@ -1,13 +1,11 @@
-import { ComponentClass, ReactNode } from 'react';
-import { DateType } from '../constants/prop-types';
+import { ComponentClass } from 'react';
 import { Utils } from '../utils/utils';
 import { ModalWrapperProps } from '../wrappers/ModalWrapper';
+import { PickerBaseProps } from '../_shared/PickerBase'
+import { Omit } from 'material-ui'
 
-export interface TimePickerWrapperProps extends ModalWrapperProps {
-    onChange: (date: object) => void;
-    autoOk?: boolean;
-    returnMoment?: boolean;
-    ampm?: boolean;
+export interface TimePickerWrapperProps extends PickerBaseProps,
+  Omit<ModalWrapperProps, 'onChange'> {
     utils?: Utils;
 }
 

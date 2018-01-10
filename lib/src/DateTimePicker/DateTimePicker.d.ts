@@ -6,10 +6,10 @@ import { RenderDay } from '../DatePicker/Calendar';
 import { Moment } from 'moment';
 
 export interface DateTimePickerProps {
-  date: object;
+  date: Moment;
   minDate?: DateType;
   maxDate?: DateType;
-  onChange: (date: object, isFinished?: boolean) => void;
+  onChange: (date: Moment, isFinished: boolean, viewType?: DateTimePickerView) => void;
   disablePast?: boolean;
   disableFuture?: boolean;
   autoSubmit?: boolean;
