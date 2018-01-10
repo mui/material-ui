@@ -13,8 +13,8 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
     selectedDate: new Date(),
   }
 
-  handleChange = (date: Moment) => {
-    this.setState({ selectedDate: date.toDate() });
+  handleChange = (date: Moment | Date) => {
+    this.setState({ selectedDate: date as Date });
   }
 
   render() {
@@ -42,12 +42,8 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
     selectedDate: new Date(),
   }
 
-  handleDateChange = (date: Moment) => {
-    this.setState({ selectedDate: date.toDate() });
-  }
-
-  handleWeekChange = (date: Moment) => {
-    this.setState({ selectedDate: date.startOf('week').toDate() });
+  handleDateChange = (date: Moment | Date) => {
+    this.setState({ selectedDate: (date as Moment).toDate() });
   }
 
   formatWeekSelectLabel = (date: Moment, invalidLabel: string) => {
@@ -106,6 +102,7 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
           onChange={this.handleDateChange}
           renderDay={this.renderWrappedDefaultDay}
           labelFunc={this.formatWeekSelectLabel}
+          returnMoment
         />
       </Fragment>
     );

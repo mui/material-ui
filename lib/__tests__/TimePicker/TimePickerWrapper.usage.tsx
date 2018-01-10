@@ -9,8 +9,8 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
     selectedDate: new Date(),
   }
 
-  handleChange = (date: Moment) => {
-    this.setState({ selectedDate: date.toDate() });
+  handleChange = (date: Moment | Date) => {
+    this.setState({ selectedDate: (date as Date) });
   }
 
   render() {

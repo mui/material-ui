@@ -17,8 +17,8 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
     selectedDate: new Date(),
   }
 
-  handleChange = (date: Moment) => {
-    this.setState({ selectedDate: date.toDate() });
+  handleChange = (date: Moment | Date) => {
+    this.setState({ selectedDate: date as Date });
   }
 
   render() {
@@ -67,8 +67,8 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
     selectedDate: new Date(),
   }
 
-  handleDateChange = (date: Moment) => {
-    this.setState({ selectedDate: date.toDate() });
+  handleDateChange = (date: Moment | Date) => {
+    this.setState({ selectedDate: (date as Moment).toDate() });
   }
 
   renderCustomDayForDateTime = (day: Moment, selectedDate: Moment, dayInCurrentMonth: boolean, dayComponent: DayComponent) => {
@@ -96,6 +96,7 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
           value={selectedDate}
           onChange={this.handleDateChange}
           renderDay={this.renderCustomDayForDateTime}
+          returnMoment
         />
       </Fragment>
     );

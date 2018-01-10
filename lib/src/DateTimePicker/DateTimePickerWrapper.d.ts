@@ -5,18 +5,17 @@ import { Utils } from '../utils/utils';
 import { RenderDay } from '../DatePicker/Calendar';
 import { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import { Moment } from 'moment';
+import { PickerBaseProps } from '../_shared/PickerBase'
+import { Omit } from 'material-ui'
 
-export interface DateTimePickerWrapperProps extends ModalWrapperProps {
+export interface DateTimePickerWrapperProps extends PickerBaseProps,
+  Omit<ModalWrapperProps, 'onChange'> {
   minDate?: DateType;
   maxDate?: DateType;
-  onChange: (date: Moment) => void;
   disablePast?: boolean;
   disableFuture?: boolean;
-  autoOk?: boolean;
   autoSubmit?: boolean;
-  returnMoment?: boolean;
   showTabs?: boolean;
-  ampm?: boolean;
   animateYearScrolling?: boolean;
   openTo?: DateTimePickerView;
   leftArrowIcon?: ReactNode;
