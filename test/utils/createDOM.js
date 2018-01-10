@@ -23,6 +23,7 @@ function createDOM() {
     setEnd: () => {},
     commonAncestorContainer: {
       nodeName: 'BODY',
+      ownerDocument: document,
     },
   });
 

@@ -3,8 +3,8 @@ import { StandardProps } from '..';
 
 export interface CardContentProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CardContentClassKey> {
-  	component?: React.ReactType<CardContentProps>;
-  }
+  component?: React.ReactType<CardContentProps>;
+}
 
 export type CardContentClassKey = 'root';
 

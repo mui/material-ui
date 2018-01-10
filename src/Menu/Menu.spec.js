@@ -173,8 +173,8 @@ describe('<Menu />', () => {
     });
 
     beforeEach(() => {
-      menuListFocusSpy.reset();
-      selectedItemFocusSpy.reset();
+      menuListFocusSpy.resetHistory();
+      selectedItemFocusSpy.resetHistory();
     });
 
     it('should call props.onEnter with element if exists', () => {

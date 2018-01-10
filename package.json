@@ -75,7 +75,7 @@
     "jss-global": "^3.0.0",
     "jss-nested": "^6.0.1",
     "jss-props-sort": "^6.0.0",
-    "jss-vendor-prefixer": "^7.0.0",
+    "jss-vendor-prefixer": "^8.0.0",
     "keycode": "^2.1.9",
     "lodash": "^4.2.0",
     "normalize-scroll-left": "^0.1.2",
@@ -92,7 +92,7 @@
   "devDependencies": {
     "@rosskevin/react-docgen": "^3.0.0-beta9",
     "@types/enzyme": "^3.1.4",
-    "@types/react": "16.0.31",
+    "@types/react": "16.0.34",
     "@types/react-transition-group": "^2.0.6",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
@@ -188,7 +188,7 @@
     "webpack-bundle-analyzer": "^2.9.1"
   },
   "resolutions": {
-    "@types/react": "16.0.31"
+    "@types/react": "16.0.34"
   },
   "side-effects": false,
   "nyc": {

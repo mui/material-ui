@@ -329,30 +329,34 @@ class Tooltip extends React.Component {
               this.popper = node;
             }}
           >
-            {({ popperProps, restProps }) => (
-              <div
-                {...popperProps}
-                {...restProps}
-                style={{
-                  ...popperProps.style,
-                  left: popperProps.style.left || 0,
-                  ...restProps.style,
-                }}
-              >
+            {({ popperProps, restProps }) => {
+              const actualPlacement = popperProps['data-placement'] || placement;
+              return (
                 <div
-                  id={id}
-                  role="tooltip"
-                  aria-hidden={!open}
-                  className={classNames(
-                    classes.tooltip,
-                    { [classes.tooltipOpen]: open },
-                    classes[`tooltip${capitalizeFirstLetter(placement.split('-')[0])}`],
-                  )}
+                  {...popperProps}
+                  {...restProps}
+                  style={{
+                    ...popperProps.style,
+                    top: popperProps.style.top || 0,
+                    left: popperProps.style.left || 0,
+                    ...restProps.style,
+                  }}
                 >
-                  {title}
+                  <div
+                    id={id}
+                    role="tooltip"
+                    aria-hidden={!open}
+                    className={classNames(
+                      classes.tooltip,
+                      { [classes.tooltipOpen]: open },
+                      classes[`tooltip${capitalizeFirstLetter(actualPlacement.split('-')[0])}`],
+                    )}
+                  >
+                    {title}
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            }}
           </Popper>
         </Manager>
       </EventListener>

@@ -12,6 +12,7 @@ import Tooltip from './Tooltip';
 
 const TooltipNaked = unwrap(Tooltip);
 
+// Remove the style from the DOM element.
 // eslint-disable-next-line react/prop-types
 const Hack = ({ style, innerRef, ...other }) => <div ref={innerRef} {...other} />;
 
@@ -310,9 +311,11 @@ describe('<Tooltip />', () => {
         </TooltipNaked>,
       );
       const instance = wrapper.instance();
-      instance.popper._popper.scheduleUpdate = handleUpdate;
       instance.handleResize();
-      clock.tick(166);
+      assert.strictEqual(handleUpdate.callCount, 0);
+      clock.tick(1);
+      instance.popper._popper.scheduleUpdate = handleUpdate;
+      clock.tick(165);
       assert.strictEqual(handleUpdate.callCount, 1);
     });
   });

@@ -252,7 +252,7 @@ describe('<SwitchBase />', () => {
       assert.strictEqual(onChangeSpy.callCount, 1);
       assert.strictEqual(onChangeSpy.calledWith(event), true);
 
-      onChangeSpy.reset();
+      onChangeSpy.resetHistory();
     });
 
     describe('controlled', () => {

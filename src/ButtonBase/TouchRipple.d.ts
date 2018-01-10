@@ -3,14 +3,11 @@ import { TransitionGroup } from 'react-transition-group';
 import { StandardProps } from '..';
 
 export interface TouchRippleProps
-  extends StandardProps<
-    TransitionGroup.TransitionGroupProps,
-    TouchRippleClassKey
-  > {
+  extends StandardProps<TransitionGroup.TransitionGroupProps, TouchRippleClassKey> {
   center?: boolean;
 }
 
-export type TouchRippleClassKey = 
+export type TouchRippleClassKey =
   | 'root'
   | 'wrapper'
   | 'wrapperLeaving'
