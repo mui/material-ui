@@ -64,14 +64,6 @@ class TablePagination extends React.Component {
     }
   }
 
-  handleBackButtonClick = event => {
-    this.props.onChangePage(event, this.props.page - 1);
-  };
-
-  handleNextButtonClick = event => {
-    this.props.onChangePage(event, this.props.page + 1);
-  };
-
   render() {
     const {
       Actions,
