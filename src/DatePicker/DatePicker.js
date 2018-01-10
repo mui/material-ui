@@ -146,6 +146,8 @@ class DatePicker extends Component {
      * and an [example implementation](https://github.com/alitaheri/material-ui-persian-date-picker-utils)
      * for more information.
      */
+    inputStyle: PropTypes.object,
+
     utils: PropTypes.object,
     /**
      * Sets the date for the Date Picker programmatically.
@@ -299,6 +301,7 @@ class DatePicker extends Component {
       hideCalendarDate,
       style,
       textFieldStyle,
+      inputStyle,
       utils,
       ...other
     } = this.props;
@@ -314,6 +317,7 @@ class DatePicker extends Component {
           onClick={this.handleClick}
           ref="input"
           style={textFieldStyle}
+          inputStyle={inputStyle}
           value={this.state.date ? formatDate(this.state.date) : ''}
         />
         <DatePickerDialog
