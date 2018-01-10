@@ -154,7 +154,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.6",
     "lz-string": "^1.4.4",
-    "marked": "^0.3.6",
+    "marked": "^0.3.12",
     "mocha": "^4.0.1",
     "next": "^4.1.4",
     "nprogress": "^0.2.0",
