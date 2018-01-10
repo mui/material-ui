@@ -84,7 +84,7 @@ import Button from 'material-ui/Button';
 
 function App() {
   return (
-    <Button>
+    <Button raised color="primary">
       Hello World
     </Button>
   );
