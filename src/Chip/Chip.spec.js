@@ -216,7 +216,7 @@ describe('<Chip />', () => {
       });
 
       afterEach(() => {
-        onClickSpy.reset();
+        onClickSpy.resetHistory();
       });
 
       it('should call onClick when `space` is pressed ', () => {
