@@ -104,7 +104,7 @@ Zoom.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
    * The duration before the enter animation starts in milliseconds.
    */

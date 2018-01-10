@@ -102,7 +102,7 @@ Fade.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
    * If `true`, the component will transition in.
    */

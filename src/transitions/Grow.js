@@ -144,7 +144,7 @@ Grow.propTypes = {
   /**
    * A single child content element.
    */
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
    * If `true`, show the component; triggers the enter or exit animation.
    */
