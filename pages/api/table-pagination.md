@@ -39,6 +39,7 @@ This property accepts the following keys:
 - `input`
 - `selectRoot`
 - `select`
+- `selectIcon`
 - `actions`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
