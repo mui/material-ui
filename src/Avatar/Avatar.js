@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { emphasize } from '../styles/colorManipulator';
 
 export const styles = theme => ({
   root: {
@@ -21,7 +20,7 @@ export const styles = theme => ({
   },
   colorDefault: {
     color: theme.palette.background.default,
-    backgroundColor: emphasize(theme.palette.background.default, 0.26),
+    backgroundColor: theme.palette.background.avatar,
   },
   img: {
     width: '100%',

@@ -31,11 +31,12 @@ export const light = {
     disabled: 'rgba(0, 0, 0, 0.26)',
   },
   background: {
-    default: grey[50],
     paper: common.white,
+    default: grey[50],
     appBar: grey[100],
     contentFrame: grey[200],
     chip: grey[300],
+    avatar: grey[400],
   },
   line: {
     stepper: grey[400],
@@ -64,11 +65,12 @@ export const dark = {
     disabled: 'rgba(255, 255, 255, 0.3)',
   },
   background: {
-    default: '#303030',
     paper: grey[800],
+    default: '#303030',
     appBar: grey[900],
     contentFrame: grey[900],
-    chip: grey[800],
+    chip: grey[700],
+    avatar: grey[600],
   },
   line: {
     stepper: grey[600],

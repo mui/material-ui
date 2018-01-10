@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import keycode from 'keycode';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
+import grey from '../colors/grey';
 import { emphasize, fade } from '../styles/colorManipulator';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
@@ -52,6 +53,7 @@ export const styles = theme => {
       marginRight: -4,
       width: height,
       height,
+      color: theme.palette.type === 'light' ? grey[700] : grey[300],
       fontSize: theme.typography.pxToRem(16),
     },
     avatarChildren: {

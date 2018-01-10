@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
+import Paper from 'material-ui/Paper';
+import TagFacesIcon from 'material-ui-icons/TagFaces';
 
 const styles = theme => ({
-  chip: {
-    margin: theme.spacing.unit / 2,
-  },
-  row: {
+  root: {
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
+    padding: theme.spacing.unit / 2,
+  },
+  chip: {
+    margin: theme.spacing.unit / 2,
   },
 });
 
@@ -18,15 +22,15 @@ class ChipsArray extends React.Component {
   state = {
     chipData: [
       { key: 0, label: 'Angular' },
-      { key: 1, label: 'JQuery' },
+      { key: 1, label: 'jQuery' },
       { key: 2, label: 'Polymer' },
-      { key: 3, label: 'ReactJS' },
+      { key: 3, label: 'React' },
       { key: 4, label: 'Vue.js' },
     ],
   };
 
   handleDelete = data => () => {
-    if (data.label === 'ReactJS') {
+    if (data.label === 'React') {
       alert('Why would you want to delete React?! :)'); // eslint-disable-line no-alert
       return;
     }
@@ -41,18 +45,29 @@ class ChipsArray extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.row}>
+      <Paper className={classes.root}>
         {this.state.chipData.map(data => {
+          let avatar = null;
+
+          if (data.label === 'React') {
+            avatar = (
+              <Avatar>
+                <TagFacesIcon className={classes.svgIcon} />
+              </Avatar>
+            );
+          }
+
           return (
             <Chip
-              label={data.label}
               key={data.key}
+              avatar={avatar}
+              label={data.label}
               onDelete={this.handleDelete(data)}
               className={classes.chip}
             />
           );
         })}
-      </div>
+      </Paper>
     );
   }
 }
