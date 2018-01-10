@@ -62,6 +62,7 @@
     "react-dom": "^15.3.0 || ^16.0.0"
   },
   "dependencies": {
+    "@types/jss": "^9.3.0",
     "babel-runtime": "^6.26.0",
     "brcast": "^3.0.1",
     "classnames": "^2.2.5",
@@ -91,7 +92,6 @@
   "devDependencies": {
     "@rosskevin/react-docgen": "^3.0.0-beta9",
     "@types/enzyme": "^3.1.4",
-    "@types/jss": "^9.3.0",
     "@types/react": "16.0.31",
     "@types/react-transition-group": "^2.0.6",
     "app-module-path": "^2.2.0",
