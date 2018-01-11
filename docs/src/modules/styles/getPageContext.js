@@ -4,14 +4,12 @@ import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
 import { createMuiTheme, createGenerateClassName, jssPreset } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
-import orange from 'material-ui/colors/orange';
 
 export function getTheme(theme) {
   return createMuiTheme({
     direction: theme.direction,
     palette: {
       primary: { main: blue[500] },
-      secondary: { main: orange.A400 },
       type: theme.paletteType,
     },
   });

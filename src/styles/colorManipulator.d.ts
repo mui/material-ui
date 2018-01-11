@@ -4,7 +4,7 @@ export interface ColorObject {
   values: [number, number, number] | [number, number, number, number];
 }
 
-export function convertColorToString(color: ColorObject): string;
+export function recomposeColor(color: ColorObject): string;
 export function convertHexToRGB(hex: string): string;
 export function decomposeColor(color: string): ColorObject;
 export function getContrastRatio(foreground: string, background: string): number;
