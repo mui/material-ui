@@ -96,19 +96,16 @@ export default function createPalette(palette: Object) {
     // Same value used by material-components-web
     // https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L49
     contrastThreshold = 3,
-    tonalOffset = 0.07,
+    tonalOffset = 0.2,
     ...other
   } = palette;
 
-  // Looking at material-components-web,
-  // lighten() and darken() might not be enough:
-  // https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L83
   if (!primary.light) {
     primary.light = lighten(primary.main, tonalOffset);
   }
 
   if (!primary.dark) {
-    primary.dark = darken(primary.main, tonalOffset);
+    primary.dark = darken(primary.main, tonalOffset * 1.5);
   }
 
   if (!secondary.light) {
@@ -116,7 +113,7 @@ export default function createPalette(palette: Object) {
   }
 
   if (!secondary.dark) {
-    secondary.dark = darken(secondary.main, tonalOffset);
+    secondary.dark = darken(secondary.main, tonalOffset * 1.5);
   }
 
   function getContrastText(background) {

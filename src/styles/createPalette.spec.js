@@ -134,13 +134,13 @@ describe('createPalette()', () => {
     );
     assert.strictEqual(
       palette.primary.light,
-      lighten(deepOrange[500], 0.07),
-      'should use lighten(deepOrange[500], 0.07) as the primary light color',
+      lighten(deepOrange[500], 0.2),
+      'should use lighten(deepOrange[500], 0.2) as the primary light color',
     );
     assert.strictEqual(
       palette.primary.dark,
-      darken(deepOrange[500], 0.07),
-      'should use farken(deepOrange[500], 0.07) as the primary dark color',
+      darken(deepOrange[500], 0.3),
+      'should use darken(deepOrange[500], 0.3) as the primary dark color',
     );
     assert.strictEqual(
       palette.secondary.main,
@@ -149,13 +149,13 @@ describe('createPalette()', () => {
     );
     assert.strictEqual(
       palette.secondary.light,
-      lighten(green.A400, 0.07),
-      'should use lighten(green.A400, 0.07) as the secondary light color',
+      lighten(green.A400, 0.2),
+      'should use lighten(green.A400, 0.2) as the secondary light color',
     );
     assert.strictEqual(
       palette.secondary.dark,
-      darken(green.A400, 0.07),
-      'should use darken(green.A400, 0.07) as the secondary dark color',
+      darken(green.A400, 0.3),
+      'should use darken(green.A400, 0.3) as the secondary dark color',
     );
   });
 
@@ -177,8 +177,8 @@ describe('createPalette()', () => {
     );
     assert.strictEqual(
       palette.primary.dark,
-      darken(deepOrange[500], 0.1),
-      'should use farken(deepOrange[500], 0.1) as the primary dark color',
+      darken(deepOrange[500], 0.15),
+      'should use darken(deepOrange[500], 0.1) as the primary dark color',
     );
     assert.strictEqual(
       palette.secondary.main,
@@ -192,7 +192,7 @@ describe('createPalette()', () => {
     );
     assert.strictEqual(
       palette.secondary.dark,
-      darken(green.A400, 0.1),
+      darken(green.A400, 0.15),
       'should use darken(green.A400, 0.1) as the secondary dark color',
     );
   });
