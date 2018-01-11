@@ -131,6 +131,14 @@ class SelectInput extends React.Component {
       ...other
     } = this.props;
 
+    const childrenNodes =
+      typeof children === 'function'
+        ? children({
+            close: this.handleClose,
+            open: this.state.open,
+          })
+        : children;
+
     if (native) {
       warning(
         multiple === false,
@@ -166,7 +174,7 @@ class SelectInput extends React.Component {
             ref={selectRef}
             {...other}
           >
-            {children}
+            {childrenNodes}
           </select>
           <ArrowDropDownIcon className={classes.icon} />
         </div>
@@ -194,7 +202,7 @@ class SelectInput extends React.Component {
       }
     }
 
-    const items = React.Children.map(children, child => {
+    const items = React.Children.map(childrenNodes, child => {
       if (!React.isValidElement(child)) {
         return null;
       }
@@ -301,7 +309,7 @@ SelectInput.propTypes = {
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
    */
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   /**
    * Useful to extend the style applied to components.
    */

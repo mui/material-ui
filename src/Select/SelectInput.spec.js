@@ -58,6 +58,14 @@ describe('<SelectInput />', () => {
     );
   });
 
+  it('should accept a function as children', () => {
+    shallow(
+      <SelectInput {...props}>
+        {({ open }) => <MenuItem>{`this menu item is ${open}`}</MenuItem>}
+      </SelectInput>,
+    );
+  });
+
   describe('prop: readOnly', () => {
     it('should not trigger any event with readOnly', () => {
       const wrapper = shallow(<SelectInput {...props} readOnly />);
@@ -168,6 +176,32 @@ describe('<SelectInput />', () => {
         backdrop.click();
         assert.strictEqual(wrapper.state().open, false);
       });
+
+      it('should call handleClose', () => {
+        wrapper.find(`.${props.classes.select}`).simulate('click');
+        assert.strictEqual(wrapper.state().open, true);
+
+        const portalLayer = wrapper
+          .find('Portal')
+          .instance()
+          .getMountNode();
+        const backdrop = portalLayer.querySelector('[data-mui-test="Backdrop"]');
+        backdrop.click();
+        assert.strictEqual(wrapper.state().open, false);
+      });
+    });
+
+    it('prop: onChange using children function close argument', () => {
+      const wrapper = mount(
+        <SelectInput {...props}>
+          {({ close, open }) => <MenuItem onClick={close}>{`this menu item is ${open}`}</MenuItem>}
+        </SelectInput>,
+      );
+
+      wrapper.find(`.${props.classes.select}`).simulate('click');
+      assert.strictEqual(wrapper.state().open, true);
+      wrapper.find('MenuItem').simulate('click');
+      assert.strictEqual(wrapper.state().open, false);
     });
   });
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
+import Button from 'material-ui/Button';
 import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 
@@ -37,6 +38,7 @@ const names = [
 class MultipleSelect extends React.Component {
   state = {
     name: [],
+    nameWithClose: [],
   };
 
   handleChange = event => {
@@ -78,6 +80,48 @@ class MultipleSelect extends React.Component {
                 {name}
               </MenuItem>
             ))}
+          </Select>
+        </FormControl>
+
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="name-multiple">Name</InputLabel>
+          <Select
+            multiple
+            value={this.state.nameWithClose}
+            onChange={e => this.setState({ nameWithClose: e.target.value })}
+            input={<Input id="name-multiple" />}
+            renderValue={selected => selected.filter(x => x).join(', ')}
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                  width: 200,
+                },
+              },
+            }}
+          >
+            {({ close }) =>
+              names
+                .map(name => (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    style={{
+                      fontWeight:
+                        this.state.name.indexOf(name) === -1
+                          ? theme.typography.fontWeightRegular
+                          : theme.typography.fontWeightMedium,
+                    }}
+                  >
+                    {name}
+                  </MenuItem>
+                ))
+                .concat(
+                  <MenuItem>
+                    <Button onClick={close}>close</Button>
+                  </MenuItem>,
+                )
+            }
           </Select>
         </FormControl>
       </div>
