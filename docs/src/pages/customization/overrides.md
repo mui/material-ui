@@ -68,10 +68,20 @@ Material-UI attempts to implement all of these variations. Please refer to the [
 
 ## 4. Global theme variation
 
+### Theme variables
+
 In order to promote consistency between components, and manage the user interface appearance as a whole, Material-UI provides a mechanism to apply global changes by adjusting the [theme configuration variables](/customization/themes#theme-configuration-variables).
 
-### Customizing all instances of a component type
+### Global theme override
+
+Do you want to customize **all the instances** of a component type?
 
 When the configuration variables aren't powerful enough,
 you can take advantage of the `overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM.
-Learn more about it in the [themes](/customization/themes#customizing-all-instances-of-a-component-type) section of the documentation.
+Learn more about it in the [themes section](/customization/themes#customizing-all-instances-of-a-component-type) of the documentation.
+
+### Global CSS override
+
+Also, you can customize all the instance of a component with CSS.
+We expose a `dangerouslyUseGlobalCSS` option to do so.
+Learn more about it in the [CSS in JS section](/customization/css-in-js#global-css) of the documentation. It's very similar to what people do with Bootstrap.
