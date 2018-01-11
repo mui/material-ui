@@ -3,12 +3,12 @@ import { StandardProps } from '..';
 import { CollapseProps } from '../transitions/Collapse';
 import { PaperProps, PaperClassKey } from '../Paper';
 
-export interface ExpansionPanelProps extends StandardProps<PaperProps, ExpansionPanelClassKey> {
+export interface ExpansionPanelProps extends StandardProps<PaperProps, ExpansionPanelClassKey, 'onChange'> {
   CollapseProps?: React.ComponentType<CollapseProps>;
   defaultExpanded?: boolean;
   disabled?: boolean;
   expanded?: boolean;
-  onChange?: React.ReactEventHandler<{}>;
+  onChange?: (event: React.ChangeEvent<{}>, expanded: boolean) => void;
 }
 
 export type ExpansionPanelClassKey = PaperClassKey | 'disabled' | 'expanded';

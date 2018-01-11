@@ -339,7 +339,7 @@ const DrawerTest = () => {
 
 const ExpansionPanelTest = () =>
   <div>
-    <ExpansionPanel onChange={event => log(event)} expanded disabled>
+    <ExpansionPanel onChange={(event, expanded) => log(event, expanded)} expanded disabled>
       <ExpansionPanelSummary />
       <ExpansionPanelDetails />
     </ExpansionPanel>
