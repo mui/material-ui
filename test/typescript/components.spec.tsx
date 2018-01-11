@@ -49,7 +49,7 @@ import {
   Input,
 } from '../../src';
 import Collapse from '../../src/transitions/Collapse';
-import { GridList } from '../../src/GridList';
+import GridList from '../../src/GridList';
 import MobileStepper from '../../src/MobileStepper/MobileStepper';
 import Table, {
   TableBody,
@@ -847,4 +847,3 @@ const ClickAwayListenerComponentTest = () =>
   <ClickAwayListener onClickAway={() => {}}>
     <div />
   </ClickAwayListener>
-
