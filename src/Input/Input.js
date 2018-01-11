@@ -74,7 +74,6 @@ export const styles = theme => {
     },
     inkbar: {
       '&:after': {
-        // FIXME: 'dark' & 'light' were accent colors before the theme change
         backgroundColor: theme.palette.primary[theme.palette.type === 'light' ? 'dark' : 'light'],
         left: 0,
         bottom: 0,
