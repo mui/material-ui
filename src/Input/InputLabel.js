@@ -13,7 +13,7 @@ export const styles = theme => ({
     left: 0,
     top: 0,
     // slight alteration to spec spacing to match visual spec result
-    transform: `translate(0, ${theme.spacing.unit * 3 - 1}px) scale(1)`,
+    transform: `translate(0, ${theme.spacing.unit * 3}px) scale(1)`,
   },
   labelDense: {
     // Compensation for the `Input.inputDense` style.

@@ -35,15 +35,15 @@ export const styles = theme => ({
   },
   selectRoot: {
     marginRight: theme.spacing.unit * 4,
+    marginLeft: theme.spacing.unit,
+    color: theme.palette.text.secondary,
   },
   select: {
-    marginLeft: theme.spacing.unit,
-    width: 34,
-    textAlign: 'right',
-    paddingRight: 22,
-    color: theme.palette.text.secondary,
-    height: 32,
-    lineHeight: '32px',
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit * 2,
+  },
+  selectIcon: {
+    top: 1,
   },
   actions: {
     flexShrink: 0,
@@ -100,7 +100,11 @@ class TablePagination extends React.Component {
           )}
           {rowsPerPageOptions.length > 1 && (
             <Select
-              classes={{ root: classes.selectRoot, select: classes.select }}
+              classes={{
+                root: classes.selectRoot,
+                select: classes.select,
+                icon: classes.selectIcon,
+              }}
               input={
                 <Input
                   classes={{

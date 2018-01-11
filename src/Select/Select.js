@@ -18,10 +18,9 @@ export const styles = theme => ({
     // When interacting quickly, the text can end up selected.
     // Native select can't be selected either.
     userSelect: 'none',
-    padding: `0 ${theme.spacing.unit * 4}px 2px 0`,
+    paddingRight: theme.spacing.unit * 4,
     width: `calc(100% - ${theme.spacing.unit * 4}px)`,
     minWidth: theme.spacing.unit * 2, // So it doesn't collapse.
-    height: `calc(1em + ${theme.spacing.unit * 2 - 2}px)`,
     cursor: 'pointer',
     '&:focus': {
       // Show that it's not an text input
@@ -44,7 +43,6 @@ export const styles = theme => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    lineHeight: `calc(1em + ${theme.spacing.unit * 2 - 2}px)`,
   },
   disabled: {
     cursor: 'default',
