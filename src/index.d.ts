@@ -85,6 +85,7 @@ export { default as Icon } from './Icon';
 export { default as IconButton } from './IconButton';
 export { default as Input, InputLabel } from './Input';
 export { default as Grid } from './Grid';
+export { default as GridList, GridListTile, GridListTileBar } from './GridList';
 export {
   default as List,
   ListItem,
