@@ -4,7 +4,9 @@ import { withStyles } from 'material-ui/styles';
 import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
+import { ListItemText } from 'material-ui/List';
 import Select from 'material-ui/Select';
+import Checkbox from 'material-ui/Checkbox';
 
 const styles = theme => ({
   container: {
@@ -20,6 +22,14 @@ const styles = theme => ({
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
 
 const names = [
   'Oliver Hansen',
@@ -34,13 +44,28 @@ const names = [
   'Kelly Snyder',
 ];
 
+const tags = [
+  'material-ui',
+  'google-material',
+  'react-components',
+  'react',
+  'javascript',
+  'material-design',
+  'material',
+];
+
 class MultipleSelect extends React.Component {
   state = {
     name: [],
+    tag: new Set(), // immutableJS would be better in a real app
   };
 
-  handleChange = event => {
+  handleNameChange = event => {
     this.setState({ name: event.target.value });
+  };
+
+  handleTagChange = event => {
+    this.setState({ tag: new Set(event.target.value) });
   };
 
   render() {
@@ -53,16 +78,9 @@ class MultipleSelect extends React.Component {
           <Select
             multiple
             value={this.state.name}
-            onChange={this.handleChange}
+            onChange={this.handleNameChange}
             input={<Input id="name-multiple" />}
-            MenuProps={{
-              PaperProps: {
-                style: {
-                  maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                  width: 200,
-                },
-              },
-            }}
+            MenuProps={MenuProps}
           >
             {names.map(name => (
               <MenuItem
@@ -76,6 +94,24 @@ class MultipleSelect extends React.Component {
                 }}
               >
                 {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="tag-multiple">Tag</InputLabel>
+          <Select
+            multiple
+            value={[...this.state.tag]}
+            onChange={this.handleTagChange}
+            input={<Input id="tag-multiple" />}
+            renderValue={selected => selected.join(', ')}
+            MenuProps={MenuProps}
+          >
+            {tags.map(tag => (
+              <MenuItem key={tag} value={tag}>
+                <Checkbox checked={this.state.tag.has(tag)} />
+                <ListItemText primary={tag} />
               </MenuItem>
             ))}
           </Select>
