@@ -169,6 +169,28 @@ describe('<SelectInput />', () => {
         assert.strictEqual(wrapper.state().open, false);
       });
     });
+
+    describe('prop: open (controlled)', () => {
+      class ControlledWrapper extends React.Component {
+        state = { open: false };
+        handleToggle = (e, open = !this.state.open) => this.setState({ open });
+        render() {
+          return (
+            <SelectInput {...props} open={this.state.open} onToggle={this.handleToggle}>
+              <MenuItem onClick={e => this.toggle(e, false)}>close</MenuItem>
+            </SelectInput>
+          );
+        }
+      }
+
+      it('should allow to control closing by passing onClose props', () => {
+        const wrapper = mount(<ControlledWrapper />);
+        wrapper.find(`.${props.classes.select}`).simulate('click');
+        assert.strictEqual(wrapper.state().open, true);
+        wrapper.find('MenuItem').simulate('click');
+        assert.strictEqual(wrapper.state().open, false);
+      });
+    });
   });
 
   describe('prop: native=true', () => {

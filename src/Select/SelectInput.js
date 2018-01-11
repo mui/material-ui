@@ -18,25 +18,37 @@ class SelectInput extends React.Component {
 
   ignoreNextBlur = false;
 
+  isControlled = this.props.open !== undefined;
+
+  update = this.isControlled
+    ? ({ event, open, anchorEl }) => {
+        this.props.onToggle(event, open);
+        this.setState({ anchorEl });
+      }
+    : ({ open, anchorEl }) => this.setState({ open, anchorEl });
+
   handleClick = event => {
     // Opening the menu is going to blur the. It will be focused back when closed.
     this.ignoreNextBlur = true;
-    this.setState({
+    this.update({
       open: true,
       anchorEl: event.currentTarget,
+      event,
     });
   };
 
-  handleClose = () => {
-    this.setState({
+  handleClose = event => {
+    this.update({
       open: false,
+      event,
     });
   };
 
   handleItemClick = child => event => {
     if (!this.props.multiple) {
-      this.setState({
+      this.update({
         open: false,
+        event,
       });
     }
 
@@ -90,9 +102,10 @@ class SelectInput extends React.Component {
       event.preventDefault();
       // Opening the menu is going to blur the. It will be focused back when closed.
       this.ignoreNextBlur = true;
-      this.setState({
+      this.update({
         open: true,
         anchorEl: event.currentTarget,
+        event,
       });
     }
   };
@@ -124,6 +137,8 @@ class SelectInput extends React.Component {
       onBlur,
       onChange,
       onFocus,
+      onToggle,
+      open,
       readOnly,
       renderValue,
       selectRef,
@@ -269,7 +284,7 @@ class SelectInput extends React.Component {
         <Menu
           id={`menu-${name || ''}`}
           anchorEl={this.state.anchorEl}
-          open={this.state.open}
+          open={this.isControlled ? open : this.state.open}
           onClose={this.handleClose}
           {...MenuProps}
           MenuListProps={{
@@ -351,6 +366,23 @@ SelectInput.propTypes = {
    * @ignore
    */
   onFocus: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be closed.
+   * Useful in controlled mode (see open)
+   *
+   * @param {object} event The event source of the callback
+   * @param {boolean} force optional argument to force the open or close behavior
+   */
+  onToggle: PropTypes.func,
+  /**
+   * Control `select` open state
+   * You can only use it when the `native` property is `false` (default).
+   */
+  open: PropTypes.bool,
+  /**
+   * Render the selected value.
+   * You can only use it when the `native` property is `false` (default).
+   */
   /**
    * @ignore
    */

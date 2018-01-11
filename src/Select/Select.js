@@ -67,6 +67,8 @@ function Select(props) {
     multiple,
     native,
     renderValue,
+    open,
+    onToggle,
     ...other
   } = props;
 
@@ -85,6 +87,8 @@ function Select(props) {
       multiple,
       MenuProps,
       renderValue,
+      open,
+      onToggle,
     },
   });
 }
@@ -126,6 +130,19 @@ Select.propTypes = {
    * If `true`, the component will be using a native `select` element.
    */
   native: PropTypes.bool,
+  /**
+   * Callback fired when the component requests to be closed.
+   * Useful in controlled mode (see open)
+   *
+   * @param {object} event The event source of the callback
+   * @param {boolean} force optional argument to force the open or close behavior
+   */
+  onToggle: PropTypes.func,
+  /**
+   * Control `select` open state
+   * You can only use it when the `native` property is `false` (default).
+   */
+  open: PropTypes.bool,
   /**
    * Render the selected value.
    * You can only use it when the `native` property is `false` (default).

@@ -10,6 +10,8 @@ export interface SelectProps extends StandardProps<InputProps, SelectClassKey, '
   MenuProps?: Partial<MenuProps>;
   multiple?: boolean;
   native?: boolean;
+  onToggle?: (event: React.ChangeEvent<{}>, open?: Boolean) => void;
+  open?: boolean;
   renderValue?: (value: SelectProps['value']) => React.ReactNode;
   value?: Array<string | number> | string | number;
 }
