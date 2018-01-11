@@ -82,6 +82,6 @@ Learn more about it in the [themes section](/customization/themes#customizing-al
 
 ### Global CSS override
 
-Also, you can customize all the instance of a component with CSS.
+You can also customize all instances of a component with CSS.
 We expose a `dangerouslyUseGlobalCSS` option to do so.
-Learn more about it in the [CSS in JS section](/customization/css-in-js#global-css) of the documentation. It's very similar to what people do with Bootstrap.
+Learn more about it in the [CSS in JS section](/customization/css-in-js#global-css) of the documentation. It's very similar to how you would customize Bootstrap.

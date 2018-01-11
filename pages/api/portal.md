@@ -16,7 +16,7 @@ and take the control of our destiny.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span style="color: #31a148">children *</span> | node |  | The children to render into the `container`. |
-| container | union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br> |  | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. By default, it's using the body of the the top-level document object. So, it's simply `document.body` most of the time. |
+| container | union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br> |  | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. By default, it's using the body of the the top-level document object, so it's simply `document.body` most of the time. |
 | onRendered | func |  | Callback fired once the children has been mounted into the `container`. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
