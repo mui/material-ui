@@ -117,7 +117,7 @@ Typography.propTypes = {
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
-   * By default we map the type to a good default headline component.
+   * By default, it maps the type to a good default headline component.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
