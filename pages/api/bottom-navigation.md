@@ -15,7 +15,7 @@ filename: /src/BottomNavigation/BottomNavigation.js
 | <span style="color: #31a148">children *</span> | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
 | onChange | func |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* We default to the index of the child |
-| showLabels | bool | false | If `true`, all `BottomNavigationAction`s will show their labels. By default only the selected `BottomNavigationAction` will show its label. |
+| showLabels | bool | false | If `true`, all `BottomNavigationAction`s will show their labels. By default, only the selected `BottomNavigationAction` will show its label. |
 | value | any |  | The value of the currently selected `BottomNavigationAction`. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
