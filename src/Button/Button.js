@@ -150,6 +150,9 @@ export const styles = theme => ({
     width: 40,
     height: 40,
   },
+  fullWidth: {
+    width: '100%',
+  },
 });
 
 function Button(props) {
@@ -162,6 +165,7 @@ function Button(props) {
     disabled,
     disableFocusRipple,
     fab,
+    fullWidth,
     mini,
     raised,
     ...other
@@ -183,6 +187,7 @@ function Button(props) {
       [classes.raisedContrast]: !flat && color === 'contrast',
       [classes.dense]: dense,
       [classes.disabled]: disabled,
+      [classes.fullWidth]: fullWidth,
     },
     classNameProp,
   );
@@ -245,6 +250,10 @@ Button.propTypes = {
    */
   fab: PropTypes.bool,
   /**
+   * If `true`, the button will take up the full width of its container.
+   */
+  fullWidth: PropTypes.bool,
+  /**
    * The URL to link to when the button is clicked.
    * If defined, an `a` element will be used as the root node.
    */
@@ -270,6 +279,7 @@ Button.defaultProps = {
   disableFocusRipple: false,
   disableRipple: false,
   fab: false,
+  fullWidth: false,
   mini: false,
   raised: false,
   type: 'button',
