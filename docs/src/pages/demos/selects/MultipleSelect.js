@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
+import { ListItemText } from 'material-ui/List';
 import Select from 'material-ui/Select';
 import Checkbox from 'material-ui/Checkbox';
 
@@ -21,6 +22,14 @@ const styles = theme => ({
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
 
 const names = [
   'Oliver Hansen',
@@ -71,23 +80,17 @@ class MultipleSelect extends React.Component {
             value={this.state.name}
             onChange={this.handleNameChange}
             input={<Input id="name-multiple" />}
-            MenuProps={{
-              PaperProps: {
-                style: {
-                  maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                  width: 200,
-                },
-              },
-            }}
+            MenuProps={MenuProps}
           >
             {names.map(name => (
               <MenuItem
                 key={name}
                 value={name}
                 style={{
-                  fontWeight: this.state.name.includes(name)
-                    ? theme.typography.fontWeightRegular
-                    : theme.typography.fontWeightMedium,
+                  fontWeight:
+                    this.state.name.indexOf(name) === -1
+                      ? theme.typography.fontWeightRegular
+                      : theme.typography.fontWeightMedium,
                 }}
               >
                 {name}
@@ -95,7 +98,6 @@ class MultipleSelect extends React.Component {
             ))}
           </Select>
         </FormControl>
-
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="tag-multiple">Tag</InputLabel>
           <Select
@@ -104,27 +106,12 @@ class MultipleSelect extends React.Component {
             onChange={this.handleTagChange}
             input={<Input id="tag-multiple" />}
             renderValue={selected => selected.join(', ')}
-            MenuProps={{
-              PaperProps: {
-                style: {
-                  maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                  width: 250,
-                },
-              },
-            }}
+            MenuProps={MenuProps}
           >
             {tags.map(tag => (
-              <MenuItem
-                key={tag}
-                value={tag}
-                style={{
-                  fontWeight: this.state.tag.has(tag)
-                    ? theme.typography.fontWeightRegular
-                    : theme.typography.fontWeightMedium,
-                }}
-              >
+              <MenuItem key={tag} value={tag}>
                 <Checkbox checked={this.state.tag.has(tag)} />
-                {tag}
+                <ListItemText primary={tag} />
               </MenuItem>
             ))}
           </Select>
