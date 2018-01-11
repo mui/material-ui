@@ -17,7 +17,7 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
   selectRef?: (
     ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps['value'] },
   ) => void;
-  value?: string | number | Array<string | number>;
+  value?: string | number | Array<string | number> | Set<string | number>;
 }
 
 export type SelectInputClassKey = 'root' | 'select' | 'selectMenu' | 'disabled' | 'icon';
