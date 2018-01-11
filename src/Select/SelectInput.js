@@ -50,13 +50,9 @@ class SelectInput extends React.Component {
       }
 
       if (this.props.multiple) {
-        value = Array.isArray(this.props.value) ? [...this.props.value] : [];
-        const itemIndex = value.indexOf(child.props.value);
-        if (itemIndex === -1) {
-          value.push(child.props.value);
-        } else {
-          value.splice(itemIndex, 1);
-        }
+        const set = new Set(Array.isArray(this.props.value) ? this.props.value : []);
+        set.delete(child.props.value);
+        value = [...set];
       } else {
         value = child.props.value;
       }
@@ -201,14 +197,16 @@ class SelectInput extends React.Component {
       let selected;
 
       if (multiple) {
-        if (!Array.isArray(value)) {
+        if (typeof value.has === 'function') {
+          selected = value.has(child.props.value);
+        } else if (typeof value.includes === 'function') {
+          selected = value.includes(child.props.value);
+        } else {
           throw new Error(
             'Material-UI: the `value` property must be an array ' +
               'when using the `Select` component with `multiple`.',
           );
         }
-
-        selected = value.indexOf(child.props.value) !== -1;
         if (selected && computeDisplay) {
           displayMultiple.push(child.props.children);
         }
@@ -371,6 +369,9 @@ SelectInput.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    PropTypes.shape({
+      has: PropTypes.func.isRequired,
+    }),
   ]),
 };
 
