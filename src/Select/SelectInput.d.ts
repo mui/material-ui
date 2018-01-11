@@ -18,6 +18,7 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
     ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps['value'] },
   ) => void;
   value?: string | number | Array<string | number>;
+  children: React.ReactNode | ((o: Object) => React.ReactNode);
 }
 
 export type SelectInputClassKey = 'root' | 'select' | 'selectMenu' | 'disabled' | 'icon';
