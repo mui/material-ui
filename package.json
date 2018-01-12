@@ -29,6 +29,7 @@
     "docs:start": "next start",
     "docs:export": "next export -o docs/export",
     "docs:deploy": "yarn docs:build && yarn docs:export && firebase deploy",
+    "docs:size-why": "DOCS_STATS_ENABLED=true yarn docs:build",
     "prebuild": "rimraf build",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.spec.js --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",

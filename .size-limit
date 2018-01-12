@@ -1,10 +1,17 @@
 [
   {
+    "description": "The initial cost people pay for using one component",
+    "path": "test/size/overhead.js",
+    "limit": "25.6 KB"
+  },
+  {
+    "description": "The size of the whole library.",
     "path": "build/index.js",
     "limit": "95.6 KB"
   },
   {
-    "path": "test/size/overhead.js",
-    "limit": "25.6 KB"
+    "description": "The main bundle of the documentation",
+    "path": ".next/app.js",
+    "limit": "156 KB"
   }
 ]
