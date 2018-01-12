@@ -3,7 +3,8 @@ import { StandardProps } from '..';
 import { CollapseProps } from '../transitions/Collapse';
 import { PaperProps, PaperClassKey } from '../Paper';
 
-export interface ExpansionPanelProps extends StandardProps<PaperProps, ExpansionPanelClassKey, 'onChange'> {
+export interface ExpansionPanelProps
+  extends StandardProps<PaperProps, ExpansionPanelClassKey, 'onChange'> {
   CollapseProps?: React.ComponentType<CollapseProps>;
   defaultExpanded?: boolean;
   disabled?: boolean;

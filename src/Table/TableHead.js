@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const styles = {
-  root: {},
-};
-
 class TableHead extends React.Component {
   getChildContext() {
     // eslint-disable-line class-methods-use-this

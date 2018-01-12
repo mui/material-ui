@@ -21,11 +21,20 @@ export const styles = theme => ({
     textAlign: 'right',
     flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
   },
-  head: {
+  typeHead: {
     color: theme.palette.text.secondary,
     fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightMedium,
     position: 'relative', // Workaround for Tooltip positioning issue.
+  },
+  typeBody: {
+    fontSize: theme.typography.pxToRem(13),
+    color: theme.palette.text.primary,
+  },
+  typeFooter: {
+    borderBottom: 0,
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(12),
   },
   paddingDefault: {
     padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 7}px ${theme.spacing.unit /
@@ -39,11 +48,6 @@ export const styles = theme => ({
   },
   paddingCheckbox: {
     padding: '0 12px',
-  },
-  footer: {
-    borderBottom: 0,
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.pxToRem(12),
   },
 });
 
@@ -74,8 +78,9 @@ function TableCell(props, context) {
       [classes[`padding${capitalizeFirstLetter(padding)}`]]:
         padding !== 'none' && padding !== 'default',
       [classes.paddingDefault]: padding !== 'none',
-      [classes.head]: type ? type === 'head' : table && table.head,
-      [classes.footer]: type ? type === 'footer' : table && table.footer,
+      [classes.typeHead]: type ? type === 'head' : table && table.head,
+      [classes.typeBody]: type ? type === 'body' : table && table.body,
+      [classes.typeFooter]: type ? type === 'footer' : table && table.footer,
     },
     classNameProp,
   );
@@ -123,7 +128,8 @@ TableCell.propTypes = {
    */
   sortDirection: PropTypes.oneOf(['asc', 'desc', false]),
   /**
-   * Specify the cell type
+   * Specify the cell type.
+   * By default, the parent TableHead, TableBody or TableFooter parent component set the value.
    */
   type: PropTypes.oneOf(['head', 'body', 'footer']),
 };
@@ -131,7 +137,6 @@ TableCell.propTypes = {
 TableCell.defaultProps = {
   numeric: false,
   padding: 'default',
-  type: null,
 };
 
 TableCell.contextTypes = {

@@ -64,7 +64,6 @@ import { SwitchClassKey } from '../Switch/Switch';
 import { TabClassKey } from '../Tabs/Tab';
 import { TabIndicatorClassKey } from '../Tabs/TabIndicator';
 import { TableClassKey } from '../Table/Table';
-import { TableBodyClassKey } from '../Table/TableBody';
 import { TableCellClassKey } from '../Table/TableCell';
 import { TablePaginationClassKey } from '../Table/TablePagination';
 import { TableRowClassKey } from '../Table/TableRow';
@@ -147,7 +146,6 @@ type ComponentNameToClassKey = {
   MuiTab: TabClassKey;
   MuiTabIndicator: TabIndicatorClassKey;
   MuiTable: TableClassKey;
-  MuiTableBody: TableBodyClassKey;
   MuiTableCell: TableCellClassKey;
   MuiTablePagination: TablePaginationClassKey;
   MuiTableRow: TableRowClassKey;

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { StandardProps } from '..';
 
-export interface TableHeadProps extends StandardProps<TableHeadBaseProps, never> {
+export interface TableHeadProps extends TableHeadBaseProps {
   component?: React.ReactType<TableHeadBaseProps>;
 }
 
