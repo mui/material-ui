@@ -99,6 +99,34 @@ describe('<TableCell />', () => {
     assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
   });
 
+  it('should render with the head class when type is head, overriding context', () => {
+    const wrapper = shallow(<TableCell />);
+    wrapper.setContext({ table: { footer: true } });
+    wrapper.setProps({ type: 'head' });
+    assert.strictEqual(wrapper.hasClass(classes.head), true);
+  });
+
+  it('should render without head class when type is body, overriding context', () => {
+    const wrapper = shallow(<TableCell />);
+    wrapper.setContext({ table: { head: true } });
+    wrapper.setProps({ type: 'body' });
+    assert.strictEqual(wrapper.hasClass(classes.head), false);
+  });
+
+  it('should render without footer class when type is body, overriding context', () => {
+    const wrapper = shallow(<TableCell />);
+    wrapper.setContext({ table: { footer: true } });
+    wrapper.setProps({ type: 'body' });
+    assert.strictEqual(wrapper.hasClass(classes.footer), false);
+  });
+
+  it('should render with the footer class when type is footer, overriding context', () => {
+    const wrapper = shallow(<TableCell />);
+    wrapper.setContext({ table: { head: true } });
+    wrapper.setProps({ type: 'footer' });
+    assert.strictEqual(wrapper.hasClass(classes.footer), true);
+  });
+
   it('should render with the numeric class', () => {
     const wrapper = shallow(<TableCell numeric />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);

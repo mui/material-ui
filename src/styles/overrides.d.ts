@@ -66,8 +66,6 @@ import { TabIndicatorClassKey } from '../Tabs/TabIndicator';
 import { TableClassKey } from '../Table/Table';
 import { TableBodyClassKey } from '../Table/TableBody';
 import { TableCellClassKey } from '../Table/TableCell';
-import { TableFooterClassKey } from '../Table/TableFooter';
-import { TableHeadClassKey } from '../Table/TableHead';
 import { TablePaginationClassKey } from '../Table/TablePagination';
 import { TableRowClassKey } from '../Table/TableRow';
 import { TableSortLabelClassKey } from '../Table/TableSortLabel';
@@ -151,8 +149,6 @@ type ComponentNameToClassKey = {
   MuiTable: TableClassKey;
   MuiTableBody: TableBodyClassKey;
   MuiTableCell: TableCellClassKey;
-  MuiTableFooter: TableFooterClassKey;
-  MuiTableHead: TableHeadClassKey;
   MuiTablePagination: TablePaginationClassKey;
   MuiTableRow: TableRowClassKey;
   MuiTableSortLabel: TableSortLabelClassKey;

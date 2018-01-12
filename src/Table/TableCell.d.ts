@@ -13,12 +13,15 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, TableC
   component?: React.ReactType<TableCellBaseProps>;
   padding?: Padding;
   numeric?: boolean;
+  type?: Type;
 }
 
 export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableHeaderCellElement> &
   React.TdHTMLAttributes<HTMLTableDataCellElement>;
 
 export type Padding = 'default' | 'checkbox' | 'dense' | 'none';
+
+export type Type = 'head' | 'body' | 'footer';
 
 export type TableCellClassKey =
   | 'root'

@@ -22,6 +22,8 @@ export const styles = theme => ({
     flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
   },
   head: {
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightMedium,
     position: 'relative', // Workaround for Tooltip positioning issue.
   },
@@ -40,6 +42,8 @@ export const styles = theme => ({
   },
   footer: {
     borderBottom: 0,
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(12),
   },
 });
 
@@ -52,6 +56,7 @@ function TableCell(props, context) {
     sortDirection,
     numeric,
     padding,
+    type,
     ...other
   } = props;
   const { table } = context;
@@ -69,8 +74,8 @@ function TableCell(props, context) {
       [classes[`padding${capitalizeFirstLetter(padding)}`]]:
         padding !== 'none' && padding !== 'default',
       [classes.paddingDefault]: padding !== 'none',
-      [classes.head]: table && table.head,
-      [classes.footer]: table && table.footer,
+      [classes.head]: type ? type === 'head' : table && table.head,
+      [classes.footer]: type ? type === 'footer' : table && table.footer,
     },
     classNameProp,
   );
@@ -117,11 +122,16 @@ TableCell.propTypes = {
    * Set aria-sort direction.
    */
   sortDirection: PropTypes.oneOf(['asc', 'desc', false]),
+  /**
+   * Specify the cell type
+   */
+  type: PropTypes.oneOf(['head', 'body', 'footer']),
 };
 
 TableCell.defaultProps = {
   numeric: false,
   padding: 'default',
+  type: null,
 };
 
 TableCell.contextTypes = {
