@@ -21,7 +21,7 @@ export const styles = theme => ({
     color: theme.palette.action.disabled,
   },
   colorError: {
-    color: theme.palette.error[500],
+    color: theme.palette.error.main,
   },
   colorPrimary: {
     color: theme.palette.primary.main,
