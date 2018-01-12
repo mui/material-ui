@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
 
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';

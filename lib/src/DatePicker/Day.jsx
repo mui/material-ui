@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
-import { IconButton, withStyles } from 'material-ui';
 import classnames from 'classnames';
+import withStyles from 'material-ui/styles/withStyles';
+import IconButton from 'material-ui/IconButton';
 
 class Day extends PureComponent {
   static propTypes = {
