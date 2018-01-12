@@ -36,9 +36,10 @@ export const CalendarHeader = (props) => {
       </div>
 
       <div className={classes.daysHeader}>
-        {utils.getWeekdays().map(day => (
+        {utils.getWeekdays().map((day, index) => (
           <Typography
-            key={day}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
             type="caption"
             className={classes.dayLabel}
           >
