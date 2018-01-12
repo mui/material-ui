@@ -31,3 +31,6 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
  web: https://myblog831213.herokuapp.com/
  project: https://github.com/shady831213/myBlog
  
+### 7. SlidesUp
+  SlidesUp is a platform to help conference organizers plan their events.
+  https://test.app.slidesup.com/confs/boston-conference-2017/agenda
