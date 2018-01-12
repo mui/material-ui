@@ -18,7 +18,7 @@ filename: /src/Table/TableCell.js
 | numeric | bool | false | If `true`, content will align to the right. |
 | padding | enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> | 'default' | Sets the padding applied to the cell. |
 | sortDirection | enum:&nbsp;'asc'&nbsp;&#124;<br>&nbsp;'desc'&nbsp;&#124;<br>&nbsp;false<br> |  | Set aria-sort direction. |
-| type | enum:&nbsp;'head'&nbsp;&#124;<br>&nbsp;'body'&nbsp;&#124;<br>&nbsp;'footer'<br> |  | Specify the cell type. By default, the parent TableHead, TableBody or TableFooter parent component set the value. |
+| type | enum:&nbsp;'head'&nbsp;&#124;<br>&nbsp;'body'&nbsp;&#124;<br>&nbsp;'footer'<br> |  | Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

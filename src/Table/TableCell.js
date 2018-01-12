@@ -129,7 +129,7 @@ TableCell.propTypes = {
   sortDirection: PropTypes.oneOf(['asc', 'desc', false]),
   /**
    * Specify the cell type.
-   * By default, the parent TableHead, TableBody or TableFooter parent component set the value.
+   * By default, the TableHead, TableBody or TableFooter parent component set the value.
    */
   type: PropTypes.oneOf(['head', 'body', 'footer']),
 };
