@@ -3,7 +3,6 @@ const pkg = require('./package.json');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
 
-const ENABLE_STATS = false;
 process.env.MATERIAL_UI_VERSION = pkg.version;
 
 module.exports = {
@@ -16,7 +15,7 @@ module.exports = {
       }),
     ]);
 
-    if (ENABLE_STATS) {
+    if (process.env.DOCS_STATS_ENABLED) {
       plugins.push(
         // For all options see https://github.com/th0r/webpack-bundle-analyzer#as-plugin
         new BundleAnalyzerPlugin({

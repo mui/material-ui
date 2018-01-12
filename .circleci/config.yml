@@ -69,18 +69,21 @@ jobs:
           name: Can we generate the build?
           command: yarn build
       - run:
+          name: Can we build the docs?
+          command: yarn docs:build
+      - run:
           name: Is the size acceptable?
           command: yarn size
+  test_browser:
+    <<: *defaults
+    steps:
+      - *restore_repo
       - run:
           name: Can we generate the api of the docs?
           command: yarn docs:api
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
-  test_browser:
-    <<: *defaults
-    steps:
-      - *restore_repo
       - run:
           name: Tests real browsers
           command: yarn test:karma
