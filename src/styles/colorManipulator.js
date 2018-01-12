@@ -36,13 +36,13 @@ export function convertHexToRGB(color: string) {
   color = color.substr(1);
 
   const re = new RegExp(`.{1,${color.length / 3}}`, 'g');
-  color = color.match(re);
+  let colors = color.match(re);
 
-  if (color[0].length === 1) {
-    color = color.map(n => n + n);
+  if (colors && colors[0].length === 1) {
+    colors = colors.map(n => n + n);
   }
 
-  return `rgb(${color.map(n => parseInt(n, 16)).join(', ')})`;
+  return colors ? `rgb(${colors.map(n => parseInt(n, 16)).join(', ')})` : '';
 }
 
 /**

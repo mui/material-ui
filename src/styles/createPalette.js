@@ -83,11 +83,13 @@ export default function createPalette(palette: Object) {
       light: indigo[300],
       main: indigo[500],
       dark: indigo[700],
+      contrastText: '',
     },
     secondary = {
       light: pink.A200,
       main: pink.A400,
       dark: pink.A700,
+      contrastText: '',
     },
     error = {
       main: red[500],
@@ -140,11 +142,11 @@ export default function createPalette(palette: Object) {
     return contrastText;
   }
 
-  if (!primary.contrastText) {
+  if (!primary.contrastText || primary.contrastText === '') {
     primary.contrastText = getContrastText(primary.main);
   }
 
-  if (!secondary.contrastText) {
+  if (!secondary.contrastText || secondary.contrastText === '') {
     secondary.contrastText = getContrastText(secondary.main);
   }
 
