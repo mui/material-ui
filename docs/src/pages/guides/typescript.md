@@ -94,6 +94,44 @@ const DecoratedNoProps = decorate<{}>( // <-- note the type argument!
 
 To avoid worrying about this edge case it may be a good habit to always provide an explicit type argument to `decorate`.
 
+### Injecting Multiple Classes
+
+TypeScript does not support variadic types, therefore there is no clean way to type usage of `withStyles` that injects multiple classes into a component. There is a hacky workaround that allows you to get support for classes inside your component while only exposing the props you define.
+
+Take the following code as an example: We define our own props in the `Prop`-type, while the props the component actually receives is a union of our `Prop`-type and a `WithStyles`-type for each respective style we defined (`one` and `two`). To prevent TypeScript from exposing the props set through `withStyles` to the consumers of our component, we cast it to a `React.ComponentType<Props>` before exporting it. 
+
+```tsx
+import { Theme, withStyles, WithStyles } from "material-ui/styles";
+import * as React from "react";
+
+const style = (theme: Theme) => ({
+  one: {
+    backgroundColor: "red",
+  },
+  two: {
+    backgroundColor: "pink",
+  },
+});
+
+type Props = {
+   someProp: string;
+};
+
+type PropsWithStyles = Props & WithStyles<"one"> & WithStyles<"two">;
+
+const MyComponent: React.SFC<PropsWithStyles> = ({
+  classes,
+  ...props
+}: PropsWithStyles) => (
+  <div>
+    <div className={classes.one}>One</div>
+    <div className={classes.two}>Two</div>
+  </div>
+);
+
+export default withStyles(style)(MyComponent) as React.ComponentType<Props>;
+```
+
 ## Customization of `Theme`
 
 When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting
