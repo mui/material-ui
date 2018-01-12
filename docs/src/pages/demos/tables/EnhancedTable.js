@@ -19,6 +19,7 @@ import IconButton from 'material-ui/IconButton';
 import Tooltip from 'material-ui/Tooltip';
 import DeleteIcon from 'material-ui-icons/Delete';
 import FilterListIcon from 'material-ui-icons/FilterList';
+import { lighten } from 'material-ui/styles/colorManipulator';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -98,12 +99,12 @@ const toolbarStyles = theme => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-          color: theme.palette.secondary.A700,
-          backgroundColor: theme.palette.secondary.A100,
+          color: theme.palette.secondary.dark,
+          backgroundColor: lighten(theme.palette.secondary.light, 0.4),
         }
       : {
-          color: theme.palette.secondary.A100,
-          backgroundColor: theme.palette.secondary.A700,
+          color: lighten(theme.palette.secondary.light, 0.4),
+          backgroundColor: theme.palette.secondary.dark,
         },
   spacer: {
     flex: '1 1 100%',

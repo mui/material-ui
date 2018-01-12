@@ -9,10 +9,10 @@ const styles = theme => ({
   root: {
     padding: theme.spacing.unit,
     [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.primary[500],
+      backgroundColor: theme.palette.primary.main,
     },
     [theme.breakpoints.down('sm')]: {
-      backgroundColor: theme.palette.secondary.A400,
+      backgroundColor: theme.palette.secondary.main,
     },
   },
 });

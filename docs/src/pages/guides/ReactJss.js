@@ -7,7 +7,7 @@ import Typography from 'material-ui/Typography';
 // 1. We define the styles.
 const styles = theme => ({
   root: {
-    color: props => (props.variant === 'primary' ? theme.palette.primary[500] : 'inherit'),
+    color: props => (props.variant === 'primary' ? theme.palette.primary.main : 'inherit'),
     textDecoration: 'inherit',
     '&:hover': {
       textDecoration: 'underline',

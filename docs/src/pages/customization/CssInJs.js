@@ -14,7 +14,7 @@ const styles = theme => ({
     },
   },
   primary: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
   },
 });
 

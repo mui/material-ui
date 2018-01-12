@@ -16,10 +16,10 @@ const styles = theme => ({
     color: 'inherit',
   },
   variantPrimary: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
   },
   variantAccent: {
-    color: theme.palette.secondary.A400,
+    color: theme.palette.secondary.main,
   },
   variantButton: {
     '&:hover': {
