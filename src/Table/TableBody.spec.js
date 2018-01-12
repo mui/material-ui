@@ -2,16 +2,14 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow } from '../test-utils';
 import TableBody from './TableBody';
 
 describe('<TableBody />', () => {
   let shallow;
-  let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
-    classes = getClasses(<TableBody>foo</TableBody>);
+    shallow = createShallow();
   });
 
   it('should render a tbody', () => {
@@ -24,10 +22,9 @@ describe('<TableBody />', () => {
     assert.strictEqual(wrapper.name(), 'div');
   });
 
-  it('should render with the user and root classes', () => {
+  it('should render with the user and class', () => {
     const wrapper = shallow(<TableBody className="woofTableBody">foo</TableBody>);
     assert.strictEqual(wrapper.hasClass('woofTableBody'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render children', () => {
