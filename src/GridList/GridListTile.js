@@ -64,11 +64,11 @@ class GridListTile extends React.Component {
       imgElement.width / imgElement.height >
       imgElement.parentNode.offsetWidth / imgElement.parentNode.offsetHeight
     ) {
-      imgElement.classList.remove(this.props.classes.imgFullWidth);
-      imgElement.classList.add(this.props.classes.imgFullHeight);
+      imgElement.classList.remove(...this.props.classes.imgFullWidth.split(' '));
+      imgElement.classList.add(...this.props.classes.imgFullHeight.split(' '));
     } else {
-      imgElement.classList.remove(this.props.classes.imgFullHeight);
-      imgElement.classList.add(this.props.classes.imgFullWidth);
+      imgElement.classList.remove(...this.props.classes.imgFullHeight.split(' '));
+      imgElement.classList.add(...this.props.classes.imgFullWidth.split(' '));
     }
 
     imgElement.removeEventListener('load', this.fit);
