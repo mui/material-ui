@@ -132,7 +132,7 @@ function TextField(props) {
 TextField.propTypes = {
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
-   * The name can be confusion, it's more like an autofill.
+   * The name can be confusing, it's more like an autofill.
    * You can learn about it with that article
    * https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
    */
