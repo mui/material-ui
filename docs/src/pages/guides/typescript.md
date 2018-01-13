@@ -96,7 +96,7 @@ To avoid worrying about this edge case it may be a good habit to always provide 
 
 ### Injecting Multiple Classes
 
-Injecting multiple classes into a component is straightforward possible. Take the following code for example: The classes `one` and `two` are both available with type information on the `classes`-prop passed in by `withStyles`.
+Injecting multiple classes into a component is as straightforward as possible. Take the following code for example. The classes `one` and `two` are both available with type information on the `classes`-prop passed in by `withStyles`.
 
 ```tsx
 import { Theme, withStyles, WithStyles } from "material-ui/styles";
