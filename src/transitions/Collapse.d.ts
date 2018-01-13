@@ -8,7 +8,6 @@ export interface CollapseProps
   children?: React.ReactNode;
   collapsedHeight?: string;
   component?: React.ReactType<CollapseProps>;
-  containerProps?: Object;
   theme?: Theme;
   timeout?: TransitionDuration | 'auto';
 }
