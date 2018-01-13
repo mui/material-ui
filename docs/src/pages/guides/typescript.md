@@ -127,7 +127,7 @@ const Component: React.SFC<PropsWithStyles> = ({
   </div>
 );
 
-export default withStyles(style)(Component);
+export default withStyles(style)<Props>(Component);
 ```
 
 ## Customization of `Theme`
