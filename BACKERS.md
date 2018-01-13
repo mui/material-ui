@@ -19,6 +19,18 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 
 #### via [Patreon](https://www.patreon.com/oliviertassinari)
 
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://www.creative-tim.com" target="_blank">
+          <img width="126px" src="https://avatars1.githubusercontent.com/u/20172349">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 #### via [OpenCollective](https://opencollective.com/material-ui)
 
 <a href="https://opencollective.com/material-ui/tiers/gold-sponsors/0/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/0/avatar.svg"></a>
@@ -87,7 +99,8 @@ Bronze Sponsors are those who have pledged $100/month to $250/month to Material-
 | ♥️ |   |   |   |   |
 |---|---|---|---|---|
 | Olivier Baumann | Linus Gubenis | Scott Fortmann-Roe | Yosmany García Alfonso | cocoanton |
-| Hong Yuan | Lucas Nascimento | the-noob | | |
+| Hong Yuan | Lucas Nascimento | the-noob | Thomas Hermann | Diana-Alina Olaru |
+| Daniel Faust |
 
 #### via [OpenCollective](https://opencollective.com/material-ui)
 

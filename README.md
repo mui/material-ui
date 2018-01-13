@@ -22,7 +22,24 @@
 
 </div>
 
-<h2 align="center">Supporting Material-UI</h2>
+## Installation
+
+Material-UI is available as an [npm package](https://www.npmjs.org/package/material-ui).
+
+**[Stable channel (v0.x)](http://material-ui.com/)**
+```sh
+npm install --save material-ui
+```
+
+**[Pre-release channel (v1-beta)](https://material-ui-next.com/)**
+([Recommended](#should-i-start-with-v1-beta) for new projects.)
+```sh
+npm install --save material-ui@next
+```
+
+Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
+
+## Supporting Material-UI
 
 Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome [backers](/BACKERS.md). If you'd like to join them, please consider:
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
@@ -43,6 +60,18 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 
 #### via [Patreon](https://www.patreon.com/oliviertassinari)
 
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://www.creative-tim.com" target="_blank">
+          <img width="126px" src="https://avatars1.githubusercontent.com/u/20172349">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 #### via [OpenCollective](https://opencollective.com/material-ui)
 
 <a href="https://opencollective.com/material-ui/tiers/gold-sponsors/0/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/0/avatar.svg"></a>
@@ -55,23 +84,6 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 <a href="https://opencollective.com/material-ui/tiers/gold-sponsors/7/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/7/avatar.svg"></a>
 <a href="https://opencollective.com/material-ui/tiers/gold-sponsors/8/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/8/avatar.svg"></a>
 <a href="https://opencollective.com/material-ui/tiers/gold-sponsors/9/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/9/avatar.svg"></a>
-
-## Installation
-
-Material-UI is available as an [npm package](https://www.npmjs.org/package/material-ui).
-
-**[Stable channel (v0.x)](http://material-ui.com/)**
-```sh
-npm install --save material-ui
-```
-
-**[Pre-release channel (v1-beta)](https://material-ui-next.com/)**
-([Recommended](#should-i-start-with-v1-beta) for new projects.)
-```sh
-npm install --save material-ui@next
-```
-
-Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
 
 ## Usage (v1-beta)
 

@@ -28,8 +28,8 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 8,
     paddingBottom: theme.spacing.unit * 8,
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing.unit * 16,
-      paddingBottom: theme.spacing.unit * 14,
+      paddingTop: theme.spacing.unit * 12,
+      paddingBottom: theme.spacing.unit * 10,
     },
   },
   text: {
@@ -114,6 +114,18 @@ thanks to the support of these awesome [backers](/discover-more/backers).
 Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 
 #### via [Patreon](https://www.patreon.com/oliviertassinari)
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://www.creative-tim.com" target="_blank">
+          <img width="126px" src="https://avatars1.githubusercontent.com/u/20172349">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 #### via [OpenCollective](https://opencollective.com/material-ui)
 
