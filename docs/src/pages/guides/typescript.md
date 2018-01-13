@@ -96,9 +96,7 @@ To avoid worrying about this edge case it may be a good habit to always provide 
 
 ### Injecting Multiple Classes
 
-TypeScript does not support variadic types, therefore there is no clean way to type usage of `withStyles` that injects multiple classes into a component. However, there is a hacky workaround that allows you to get support for classes inside your component while only exposing the props you define.
-
-Take the following code for example: The actual props of the component are defined in the `Prop`-type, while the props the component actually receives is a union of the `Prop`-type and a `WithStyles`-type for each respective style defined (`one` and `two`). To prevent TypeScript from exposing the props set through `withStyles` to the consumers of the component, the component is cast to a `React.ComponentType<Props>` before being exported. 
+Injecting multiple classes into a component is straightforward possible. Take the following code for example: The classes `one` and `two` are both available with type information on the `classes`-prop passed in by `withStyles`.
 
 ```tsx
 import { Theme, withStyles, WithStyles } from "material-ui/styles";
@@ -117,9 +115,9 @@ type Props = {
    someProp: string;
 };
 
-type PropsWithStyles = Props & WithStyles<"one"> & WithStyles<"two">;
+type PropsWithStyles = Props & WithStyles<"one" | "two">;
 
-const MyComponent: React.SFC<PropsWithStyles> = ({
+const Component: React.SFC<PropsWithStyles> = ({
   classes,
   ...props
 }: PropsWithStyles) => (
@@ -129,7 +127,7 @@ const MyComponent: React.SFC<PropsWithStyles> = ({
   </div>
 );
 
-export default withStyles(style)(MyComponent) as React.ComponentType<Props>;
+export default withStyles(style)(Component);
 ```
 
 ## Customization of `Theme`
