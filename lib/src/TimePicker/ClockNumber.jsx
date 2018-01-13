@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Typography, withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
+import Typography from 'material-ui/Typography';
 
 const positions = {
   0: [0, 40],
@@ -96,4 +97,3 @@ const styles = (theme) => {
 };
 
 export default withStyles(styles, { name: 'MuiPickersClockNumber' })(ClockNumber);
-

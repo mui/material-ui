@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import HourView from './HourView';
