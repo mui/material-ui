@@ -111,12 +111,18 @@ class Grow extends React.Component {
       ...other
     } = this.props;
 
-    const style = { ...children.props.style, ...styleProp };
+    let style = {};
 
     // For server side rendering.
     if (!this.props.in || appear) {
       style.opacity = '0';
     }
+
+    style = {
+      ...style,
+      ...styleProp,
+      ...(React.isValidElement(children) ? children.props.style : {}),
+    };
 
     return (
       <CSSTransition

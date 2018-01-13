@@ -184,7 +184,7 @@ class Slide extends React.Component {
       ...other
     } = this.props;
 
-    const style = { ...styleProp };
+    let style = {};
 
     // We use this state to handle the server-side rendering.
     // We don't know the width of the children ahead of time.
@@ -192,6 +192,12 @@ class Slide extends React.Component {
     if (!this.props.in && !this.state.mounted) {
       style.visibility = 'hidden';
     }
+
+    style = {
+      ...style,
+      ...styleProp,
+      ...(React.isValidElement(children) ? children.props.style : {}),
+    };
 
     return (
       <EventListener target="window" onResize={this.handleResize}>

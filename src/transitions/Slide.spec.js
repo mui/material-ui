@@ -34,6 +34,28 @@ describe('<Slide />', () => {
     assert.strictEqual(wrapper.childAt(0).name(), 'Transition');
   });
 
+  it('should not override children styles', () => {
+    const wrapper = mount(
+      <SlideNaked
+        {...defaultProps}
+        style={{ color: 'red', backgroundColor: 'yellow' }}
+        theme={createMuiTheme()}
+      >
+        <div style={{ color: 'blue' }} />
+      </SlideNaked>,
+    );
+    assert.deepEqual(
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .props().style,
+      {
+        backgroundColor: 'yellow',
+        color: 'blue',
+      },
+    );
+  });
+
   describe('event callbacks', () => {
     it('should fire event callbacks', () => {
       const events = ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'];

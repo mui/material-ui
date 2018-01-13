@@ -74,12 +74,18 @@ class Zoom extends React.Component {
       ...other
     } = this.props;
 
-    const style = { ...styleProp };
+    let style = {};
 
     // For server side rendering.
     if (!this.props.in && !this.state.mounted && appear) {
       style.transform = 'scale(0)';
     }
+
+    style = {
+      ...style,
+      ...styleProp,
+      ...(React.isValidElement(children) ? children.props.style : {}),
+    };
 
     return (
       <Transition
