@@ -8,5 +8,5 @@ export default function createMount(
   options?: Partial<MountOptions>,
 ): typeof mount & {
   attachTo: HTMLElement;
-  cleanUp: Function;
+  cleanUp(): void;
 };
