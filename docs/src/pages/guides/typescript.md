@@ -94,6 +94,42 @@ const DecoratedNoProps = decorate<{}>( // <-- note the type argument!
 
 To avoid worrying about this edge case it may be a good habit to always provide an explicit type argument to `decorate`.
 
+### Injecting Multiple Classes
+
+Injecting multiple classes into a component is as straightforward as possible. Take the following code for example. The classes `one` and `two` are both available with type information on the `classes`-prop passed in by `withStyles`.
+
+```tsx
+import { Theme, withStyles, WithStyles } from "material-ui/styles";
+import * as React from "react";
+
+const style = (theme: Theme) => ({
+  one: {
+    backgroundColor: "red",
+  },
+  two: {
+    backgroundColor: "pink",
+  },
+});
+
+type Props = {
+   someProp: string;
+};
+
+type PropsWithStyles = Props & WithStyles<"one" | "two">;
+
+const Component: React.SFC<PropsWithStyles> = ({
+  classes,
+  ...props
+}: PropsWithStyles) => (
+  <div>
+    <div className={classes.one}>One</div>
+    <div className={classes.two}>Two</div>
+  </div>
+);
+
+export default withStyles(style)<Props>(Component);
+```
+
 ## Customization of `Theme`
 
 When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting
