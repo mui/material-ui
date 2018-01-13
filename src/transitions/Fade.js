@@ -61,16 +61,34 @@ class Fade extends React.Component {
   };
 
   render() {
-    const { appear, children, onEnter, onEntering, onExit, theme, ...other } = this.props;
+    const {
+      appear,
+      children,
+      onEnter,
+      onEntering,
+      onExit,
+      style: styleProp,
+      theme,
+      ...other
+    } = this.props;
+
+    let style = {};
 
     // For server side rendering.
-    const styleServer =
-      !this.props.in && !this.state.mounted && appear ? { style: { opacity: '0' } } : null;
+    if (!this.props.in && !this.state.mounted && appear) {
+      style.opacity = '0';
+    }
+
+    style = {
+      ...style,
+      ...styleProp,
+      ...(React.isValidElement(children) ? children.props.style : {}),
+    };
 
     return (
       <Transition
         appear={appear}
-        {...styleServer}
+        style={style}
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}

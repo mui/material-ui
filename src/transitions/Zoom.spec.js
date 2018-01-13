@@ -100,7 +100,7 @@ describe('<Zoom />', () => {
           <div>Foo</div>
         </Zoom>,
       );
-      assert.equal(wrapper.find(Transition).props().style, undefined);
+      assert.deepEqual(wrapper.find(Transition).props().style, {});
     });
   });
 });

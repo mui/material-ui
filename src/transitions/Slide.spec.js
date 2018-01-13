@@ -35,20 +35,24 @@ describe('<Slide />', () => {
   });
 
   it('should not override children styles', () => {
-    const style = { color: 'blue' };
-    const wrapper = shallow(
-      <Slide {...defaultProps}>
-        <div style={style} />
-      </Slide>,
+    const wrapper = mount(
+      <SlideNaked
+        {...defaultProps}
+        style={{ color: 'red', backgroundColor: 'yellow' }}
+        theme={createMuiTheme()}
+      >
+        <div style={{ color: 'blue' }} />
+      </SlideNaked>,
     );
-    assert.strictEqual(wrapper.name(), 'EventListener');
-    assert.strictEqual(wrapper.childAt(0).name(), 'Transition');
     assert.deepEqual(
       wrapper
         .childAt(0)
         .childAt(0)
         .props().style,
-      style,
+      {
+        backgroundColor: 'yellow',
+        color: 'blue',
+      },
     );
   });
 

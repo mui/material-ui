@@ -173,13 +173,31 @@ class Slide extends React.Component {
   };
 
   render() {
-    const { children, onEnter, onEntering, onExit, onExited, theme, ...other } = this.props;
+    const {
+      children,
+      onEnter,
+      onEntering,
+      onExit,
+      onExited,
+      style: styleProp,
+      theme,
+      ...other
+    } = this.props;
+
+    let style = {};
 
     // We use this state to handle the server-side rendering.
     // We don't know the width of the children ahead of time.
     // We need to render it.
-    const styleServer =
-      !this.props.in && !this.state.mounted ? { style: { visibility: 'hidden' } } : null;
+    if (!this.props.in && !this.state.mounted) {
+      style.visibility = 'hidden';
+    }
+
+    style = {
+      ...style,
+      ...styleProp,
+      ...(React.isValidElement(children) ? children.props.style : {}),
+    };
 
     return (
       <EventListener target="window" onResize={this.handleResize}>
@@ -189,7 +207,7 @@ class Slide extends React.Component {
           onExit={this.handleExit}
           onExited={this.handleExited}
           appear
-          {...styleServer}
+          style={style}
           ref={node => {
             this.transition = node;
           }}
