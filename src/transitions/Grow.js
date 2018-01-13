@@ -104,19 +104,14 @@ class Grow extends React.Component {
       onEnter,
       onEntering,
       onExit,
-      style: styleProp,
       theme,
       timeout,
       transitionClasses = {},
       ...other
     } = this.props;
 
-    const style = { ...children.props.style, ...styleProp };
-
     // For server side rendering.
-    if (!this.props.in || appear) {
-      style.opacity = '0';
-    }
+    const styleServer = !this.props.in || appear ? { style: { opacity: '0' } } : null;
 
     return (
       <CSSTransition
@@ -126,7 +121,7 @@ class Grow extends React.Component {
         onExit={this.handleExit}
         addEndListener={this.addEndListener}
         appear={appear}
-        style={style}
+        {...styleServer}
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >

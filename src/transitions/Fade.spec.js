@@ -88,7 +88,7 @@ describe('<Fade />', () => {
           <div>Foo</div>
         </Fade>,
       );
-      assert.deepEqual(wrapper.find(Transition).props().style, {});
+      assert.equal(wrapper.find(Transition).props().style, undefined);
     });
   });
 });

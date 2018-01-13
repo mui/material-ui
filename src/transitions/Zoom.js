@@ -69,22 +69,18 @@ class Zoom extends React.Component {
       onEnter,
       onEntering,
       onExit,
-      style: styleProp,
       theme,
       ...other
     } = this.props;
 
-    const style = { ...styleProp };
-
     // For server side rendering.
-    if (!this.props.in && !this.state.mounted && appear) {
-      style.transform = 'scale(0)';
-    }
+    const styleServer =
+      !this.props.in && !this.state.mounted && appear ? { style: { transform: 'scale(0)' } } : null;
 
     return (
       <Transition
         appear={appear}
-        style={style}
+        {...styleServer}
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}

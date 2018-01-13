@@ -34,6 +34,24 @@ describe('<Slide />', () => {
     assert.strictEqual(wrapper.childAt(0).name(), 'Transition');
   });
 
+  it('should not override children styles', () => {
+    const style = { color: 'blue' };
+    const wrapper = shallow(
+      <Slide {...defaultProps}>
+        <div style={style} />
+      </Slide>,
+    );
+    assert.strictEqual(wrapper.name(), 'EventListener');
+    assert.strictEqual(wrapper.childAt(0).name(), 'Transition');
+    assert.deepEqual(
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .props().style,
+      style,
+    );
+  });
+
   describe('event callbacks', () => {
     it('should fire event callbacks', () => {
       const events = ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'];
