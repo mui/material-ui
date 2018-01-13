@@ -8,6 +8,7 @@ describe('<GridListTile />', () => {
   let shallow;
   let mount;
   let classes;
+  const GridListTileNaked = unwrap(GridListTile);
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -70,10 +71,9 @@ describe('<GridListTile />', () => {
     let wrapper;
 
     beforeEach(() => {
-      const GridListTileNaked = unwrap(GridListTile);
       wrapper = mount(
         <GridListTileNaked
-          classes={{ imgFullWidth: 'imgFullWidth', imgFullHeight: 'imgFullHeight' }}
+          classes={{ imgFullWidth: 'imgFullWidth foo', imgFullHeight: 'imgFullHeight' }}
         >
           <img alt="test" />
         </GridListTileNaked>,
