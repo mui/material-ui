@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Inspector from 'react-inspector';
-import { withStyles, withTheme } from 'material-ui/styles';
+import { withStyles, withTheme, createMuiTheme } from 'material-ui/styles';
 import { FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 
@@ -20,8 +20,15 @@ class ThemeDefault extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme: docsTheme } = this.props;
     const { checked } = this.state;
+
+    const theme = createMuiTheme({
+      palette: {
+        type: docsTheme.palette.type,
+      },
+      direction: docsTheme.direction,
+    });
 
     // Expose the theme as a global variable so people can play with it.
     if (process.browser) {
