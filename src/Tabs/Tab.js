@@ -29,7 +29,7 @@ export const styles = theme => ({
     color: theme.palette.text.secondary,
   },
   rootAccentSelected: {
-    color: theme.palette.secondary.A200,
+    color: theme.palette.secondary.light,
   },
   rootAccentDisabled: {
     color: theme.palette.text.disabled,
@@ -38,7 +38,7 @@ export const styles = theme => ({
     color: theme.palette.text.secondary,
   },
   rootPrimarySelected: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
   },
   rootPrimaryDisabled: {
     color: theme.palette.text.disabled,

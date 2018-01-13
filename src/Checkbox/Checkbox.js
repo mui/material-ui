@@ -9,7 +9,7 @@ export const styles = theme => ({
     color: theme.palette.text.secondary,
   },
   checked: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
   },
   disabled: {
     color: theme.palette.action.disabled,

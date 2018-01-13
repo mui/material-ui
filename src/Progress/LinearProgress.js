@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
+import { lighten } from '../styles/colorManipulator';
 
 const TRANSITION_DURATION = 4; // 400ms
 
@@ -13,28 +14,30 @@ export const styles = theme => ({
     height: 5,
   },
   primaryColor: {
-    backgroundColor: theme.palette.primary[100],
+    backgroundColor: lighten(theme.palette.primary.light, 0.6),
   },
   primaryColorBar: {
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary.main,
   },
   primaryDashed: {
-    background: `radial-gradient(${theme.palette.primary[100]} 0%, ${
-      theme.palette.primary[100]
-    } 16%, transparent 42%)`,
+    background: `radial-gradient(${lighten(theme.palette.primary.light, 0.6)} 0%, ${lighten(
+      theme.palette.primary.light,
+      0.6,
+    )} 16%, transparent 42%)`,
     backgroundSize: '10px 10px',
     backgroundPosition: '0px -23px',
   },
   accentColor: {
-    backgroundColor: theme.palette.secondary.A100,
+    backgroundColor: lighten(theme.palette.secondary.light, 0.4),
   },
   accentColorBar: {
-    backgroundColor: theme.palette.secondary.A400,
+    backgroundColor: theme.palette.secondary.main,
   },
   accentDashed: {
-    background: `radial-gradient(${theme.palette.secondary.A100} 0%, ${
-      theme.palette.secondary.A100
-    } 16%, transparent 42%)`,
+    background: `radial-gradient(${lighten(theme.palette.secondary.light, 0.4)} 0%, ${lighten(
+      theme.palette.secondary.light,
+      0.6,
+    )} 16%, transparent 42%)`,
     backgroundSize: '10px 10px',
     backgroundPosition: '0px -23px',
   },
@@ -84,11 +87,11 @@ export const styles = theme => ({
   },
   bufferBar2Primary: {
     transition: `transform .${TRANSITION_DURATION}s linear`,
-    backgroundColor: theme.palette.primary[100],
+    backgroundColor: lighten(theme.palette.primary.light, 0.6),
   },
   bufferBar2Accent: {
     transition: `transform .${TRANSITION_DURATION}s linear`,
-    backgroundColor: theme.palette.secondary.A100,
+    backgroundColor: lighten(theme.palette.secondary.light, 0.4),
   },
   // Legends:
   // || represents the viewport

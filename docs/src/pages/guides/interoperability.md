@@ -105,7 +105,7 @@ In the following demo we demonstrate how to use `injectSheet()` and "the styles 
 const styles = theme => ({
  root: {
    color: props => (props.variant === 'primary'
-     ? theme.palette.primary[500]
+     ? theme.palette.primary.main
      : 'inherit'),
    textDecoration: 'inherit',
  },

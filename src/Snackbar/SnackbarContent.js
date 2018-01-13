@@ -9,7 +9,7 @@ import Typography from '../Typography';
 
 export const styles = theme => {
   const reverseType = theme.palette.type === 'light' ? 'dark' : 'light';
-  const backgroundColor = theme.palette.shades[reverseType].background.default;
+  const backgroundColor = theme.palette.types[reverseType].background.default;
 
   return {
     root: {

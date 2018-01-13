@@ -10,7 +10,7 @@ export const styles = theme => ({
     display: 'block',
   },
   completed: {
-    fill: theme.palette.primary[500],
+    fill: theme.palette.primary.main,
   },
 });
 

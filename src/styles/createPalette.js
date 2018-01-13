@@ -7,7 +7,7 @@ import pink from '../colors/pink';
 import grey from '../colors/grey';
 import red from '../colors/red';
 import common from '../colors/common';
-import { getContrastRatio } from './colorManipulator';
+import { getContrastRatio, darken, lighten } from './colorManipulator';
 
 export const light = {
   text: {
@@ -79,21 +79,47 @@ export const dark = {
 
 export default function createPalette(palette: Object) {
   const {
-    primary = indigo,
-    secondary = pink,
-    error = red,
+    primary = {
+      light: indigo[300],
+      main: indigo[500],
+      dark: indigo[700],
+      contrastText: '',
+    },
+    secondary = {
+      light: pink.A200,
+      main: pink.A400,
+      dark: pink.A700,
+      contrastText: '',
+    },
+    error = {
+      main: red[500],
+    },
     type = 'light',
     // Same value used by material-components-web
     // https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L49
-    contrastThreshold = 3.1,
+    contrastThreshold = 3,
+    tonalOffset = 0.2,
     ...other
   } = palette;
-  const shades = { dark, light };
 
-  warning(Boolean(shades[type]), `Material-UI: the palette type \`${type}\` is not supported.`);
+  if (!primary.light) {
+    primary.light = lighten(primary.main, tonalOffset);
+  }
+
+  if (!primary.dark) {
+    primary.dark = darken(primary.main, tonalOffset * 1.5);
+  }
+
+  if (!secondary.light) {
+    secondary.light = lighten(secondary.main, tonalOffset);
+  }
+
+  if (!secondary.dark) {
+    secondary.dark = darken(secondary.main, tonalOffset * 1.5);
+  }
 
   function getContrastText(background) {
-    // Use the same logic than
+    // Use the same logic as
     // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
     // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
     const contrastText =
@@ -116,6 +142,17 @@ export default function createPalette(palette: Object) {
     return contrastText;
   }
 
+  if (!primary.contrastText || primary.contrastText === '') {
+    primary.contrastText = getContrastText(primary.main);
+  }
+
+  if (!secondary.contrastText || secondary.contrastText === '') {
+    secondary.contrastText = getContrastText(secondary.main);
+  }
+
+  const types = { dark, light };
+  warning(Boolean(types[type]), `Material-UI: the palette type \`${type}\` is not supported.`);
+
   const paletteOutput = deepmerge(
     {
       common,
@@ -124,12 +161,12 @@ export default function createPalette(palette: Object) {
       secondary,
       error,
       grey,
-      shades,
-      text: shades[type].text,
-      input: shades[type].input,
-      action: shades[type].action,
-      background: shades[type].background,
-      line: shades[type].line,
+      types,
+      text: types[type].text,
+      input: types[type].input,
+      action: types[type].action,
+      background: types[type].background,
+      line: types[type].line,
       contrastThreshold,
       getContrastText,
     },
@@ -138,33 +175,6 @@ export default function createPalette(palette: Object) {
       clone: false, // No need to clone deep
     },
   );
-
-  // Dev warnings
-  if (process.env.NODE_ENV !== 'production') {
-    const difference = (base, compare) => {
-      if (!compare) {
-        compare = {};
-      }
-
-      return Object.keys(base).filter(hue => !compare[hue]);
-    };
-
-    const paletteColorError = (name, base, compare) => {
-      const missing = difference(base, compare);
-      warning(
-        missing.length === 0,
-        [
-          `Material-UI: ${name} color is missing the following hues: ${missing.join(',')}`,
-          'See the default colors, indigo, or pink, as exported from material-ui/colors.',
-        ].join('\n'),
-      );
-    };
-
-    paletteColorError('primary', indigo, paletteOutput.primary);
-    paletteColorError('secondary', pink, paletteOutput.secondary);
-    paletteColorError('error', red, paletteOutput.error);
-    paletteColorError('grey', red, paletteOutput.grey);
-  }
 
   return paletteOutput;
 }

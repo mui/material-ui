@@ -1,24 +1,23 @@
 # Themes
 
-Themes let you apply a consistent tone to your app.
-It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.
+The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 
-The theme specifies the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
-To promote greater consistency between apps, light and dark themes are available to choose from.
-We use [jss](https://github.com/cssinjs/jss) under the hood.
+Themes let you apply a consistent tone to your app. It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.
+
+To promote greater consistency between apps, light and dark theme types are available to choose from. By default, components use the light theme type.
 
 ## Theme provider
 
-If you wish to customise the theme, you need to use the `MuiThemeProvider` component in order to inject a theme into your application. 
+If you wish to customize the theme, you need to use the `MuiThemeProvider` component in order to inject a theme into your application. 
 However, this is optional; Material-UI components come with a default theme.
 
-`MuiThemeProvider` relies on the context feature of React to pass the theme down,
+`MuiThemeProvider` relies on the context feature of React to pass the theme down to the components,
 so you need to make sure that `MuiThemeProvider` is a parent of the components you are trying to customize.
 You can learn more about this in [the API section](#muithemeprovider).
 
 ## Theme configuration variables
 
-Changing the theme configuration variables is the most effective way to match Material-UI to your needs. By default, your Material-UI application will use the light theme.
+Changing the theme configuration variables is the most effective way to match Material-UI to your needs.
 
 ### Palette
 
@@ -30,10 +29,63 @@ The theme expose the following color intentions:
 
 - primary - used to represent primary interface elements for a user.
 - secondary - used to represent secondary interface elements for a user.
-- error - used to represent interface elements that the user should be careful of.
+- error - used to represent interface elements that the user should be made aware of.
 
-The palette uses the shades prefixed with `A` (`A200`, etc.) for the accent color and the hues unprefixed for the other intentions.
+The default palette uses the shades prefixed with `A` (`A200`, etc.) for the accent color 
+and the un-prefixed shades for the other intentions, 
+but you are free to select any shade when customizing the colors, 
+or simply pass in any HTML color value as a string.
+
 If you want to learn more about color, you can check out [the color section](/style/color).
+
+#### Default palette
+
+You may override the default palette values by including a `palette` object as part of your theme. 
+The following example illustrates how you could recreate the the default palette values. 
+
+
+```jsx
+import { createMuiTheme } from 'material-ui/styles';
+import indigo from 'material-ui/colors/indigo';
+import pink from 'material-ui/colors/pink';
+import red from 'material-ui/colors/red';
+
+const defaultTheme = createMuiTheme()
+
+// All the following keys are optional.
+// We try our best to provide a great default value.
+const theme = createMuiTheme({
+  palette: {
+    contrastThreshold: 3.1,
+    tonalOffset: 0.07,
+    primary: {
+      light: indigo[300],
+      main: indigo[500],
+      dark: indigo[700],
+      contrastText: defaultTheme.palette.getContrastText(indigo[500]),
+    },
+    secondary: {
+      light: pink.A200,
+      main: pink.A400,
+      dark: pink.A700,
+      contrastText: defaultTheme.palette.getContrastText(pink.A400),
+    },
+    error: red.A400,
+  },
+});
+```
+
+If `palette.primary` or `palette.secondary` objects are provided, 
+they will replace the defaults.
+
+If the `dark` and / or `light` keys are omitted, their value(s) will be calculated from `main`, 
+according to the `tonalOffset` value.
+
+If `contrastText` is omitted, its value will be calculated to contrast with `main`, 
+according to the`contrastThreshold` value.
+
+Both the `tonalOffset` and `contrastThreshold` values may be customized as needed. 
+Note that `contrastThreshold` follows a non-linear curve.
 
 #### Example
 
@@ -41,7 +93,7 @@ If you want to learn more about color, you can check out [the color section](/st
 
 ### Dark/light theme
 
-You can make a theme dark by setting `type` to `dark`.
+You can make the theme dark by setting `type` to `dark`.
 
 {{"demo": "pages/customization/DarkTheme.js", "hideEditButton": true}}
 
@@ -53,7 +105,7 @@ The theme provides a **limited set of type sizes** that work well together along
 These sizes are used across the components.
 
 Have a look at the following example regarding changing the default values, such as the font family.
-If you want to learn more about typograpy, you can check out [the typography section](/style/typography).
+If you want to learn more about typography, you can check out [the typography section](/style/typography).
 
 {{"demo": "pages/customization/TypographyTheme.js"}}
 
@@ -73,7 +125,7 @@ html {
 }
 ```
 
-*You need to apply the above CSS on the html element of this page to see the below demo render correctly*
+*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
 
 {{"demo": "pages/customization/FontSizeTheme.js"}}
 

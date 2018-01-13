@@ -74,7 +74,7 @@ export const styles = theme => {
     },
     inkbar: {
       '&:after': {
-        backgroundColor: theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'],
+        backgroundColor: theme.palette.primary[theme.palette.type === 'light' ? 'dark' : 'light'],
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -95,7 +95,7 @@ export const styles = theme => {
     },
     error: {
       '&:after': {
-        backgroundColor: theme.palette.error.A400,
+        backgroundColor: theme.palette.error.main,
         transform: 'scaleX(1)', // error is always underlined in red
       },
     },

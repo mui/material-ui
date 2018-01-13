@@ -9,22 +9,22 @@ export const styles = theme => ({
     userSelect: 'none',
   },
   colorAccent: {
-    color: theme.palette.secondary.A200,
+    color: theme.palette.secondary.light,
   },
   colorAction: {
     color: theme.palette.action.active,
   },
   colorContrast: {
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    color: theme.palette.primary.contrastText,
   },
   colorDisabled: {
     color: theme.palette.action.disabled,
   },
   colorError: {
-    color: theme.palette.error[500],
+    color: theme.palette.error.main,
   },
   colorPrimary: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
   },
 });
 

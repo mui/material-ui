@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => {
-  const focusColor = theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'];
+  const focusColor = theme.palette.primary[theme.palette.type === 'light' ? 'dark' : 'light'];
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
@@ -17,7 +17,7 @@ export const styles = theme => {
       color: focusColor,
     },
     error: {
-      color: theme.palette.error.A400,
+      color: theme.palette.error.main,
     },
     disabled: {
       color: theme.palette.input.disabled,

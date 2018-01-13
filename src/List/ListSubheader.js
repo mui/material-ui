@@ -17,7 +17,7 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(theme.typography.fontSize),
   },
   colorPrimary: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
   },
   colorInherit: {
     color: 'inherit',

@@ -45,10 +45,10 @@ export const styles = theme => ({
     }),
   },
   checked: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
     transform: 'translateX(14px)',
     '& + $bar': {
-      backgroundColor: theme.palette.primary[500],
+      backgroundColor: theme.palette.primary.main,
       opacity: 0.5,
     },
   },

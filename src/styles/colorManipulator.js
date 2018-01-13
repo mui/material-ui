@@ -11,7 +11,7 @@ import warning from 'warning';
  * @param {number} max The upper boundary of the output range
  * @returns {number} A number in the range [min, max]
  */
-function clamp(value, min, max) {
+function clamp(value, min = 0, max = 1) {
   warning(
     value >= min && value <= max,
     `Material-UI: the value provided ${value} is out of range [${min}, ${max}].`,
@@ -27,62 +27,22 @@ function clamp(value, min, max) {
 }
 
 /**
- * Converts a color object with type and values to a string.
- *
- * @param {object} color - Decomposed color
- * @param {string} color.type - One of, 'rgb', 'rgba', 'hsl', 'hsla'
- * @param {array} color.values - [n,n,n] or [n,n,n,n]
- * @returns {string} A CSS color string
- */
-export function convertColorToString(color: Object) {
-  const { type, values } = color;
-
-  if (type.indexOf('rgb') > -1) {
-    // Only convert the first 3 values to int (i.e. not alpha)
-    for (let i = 0; i < 3; i += 1) {
-      values[i] = parseInt(values[i], 10);
-    }
-  }
-
-  let colorString;
-
-  if (type.indexOf('hsl') > -1) {
-    colorString = `${color.type}(${values[0]}, ${values[1]}%, ${values[2]}%`;
-  } else {
-    colorString = `${color.type}(${values[0]}, ${values[1]}, ${values[2]}`;
-  }
-
-  if (values.length === 4) {
-    colorString += `, ${color.values[3]})`;
-  } else {
-    colorString += ')';
-  }
-
-  return colorString;
-}
-
-/**
  * Converts a color from CSS hex format to CSS rgb format.
  *
  *  @param {string} color - Hex color, i.e. #nnn or #nnnnnn
  *  @returns {string} A CSS rgb color string
  */
 export function convertHexToRGB(color: string) {
-  if (color.length === 4) {
-    let extendedColor = '#';
-    for (let i = 1; i < color.length; i += 1) {
-      extendedColor += color.charAt(i) + color.charAt(i);
-    }
-    color = extendedColor;
+  color = color.substr(1);
+
+  const re = new RegExp(`.{1,${color.length / 3}}`, 'g');
+  let colors = color.match(re);
+
+  if (colors && colors[0].length === 1) {
+    colors = colors.map(n => n + n);
   }
 
-  const values = {
-    r: parseInt(color.substr(1, 2), 16),
-    g: parseInt(color.substr(3, 2), 16),
-    b: parseInt(color.substr(5, 2), 16),
-  };
-
-  return `rgb(${values.r}, ${values.g}, ${values.b})`;
+  return colors ? `rgb(${colors.map(n => parseInt(n, 16)).join(', ')})` : '';
 }
 
 /**
@@ -91,7 +51,7 @@ export function convertHexToRGB(color: string) {
  * Note: Does not support rgb % values.
  *
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
- * @returns {{type: string, values: number[]}} A MUI color object
+ * @returns {object} - A MUI color object: {type: string, values: number[]}
  */
 export function decomposeColor(color: string) {
   if (color.charAt(0) === '#') {
@@ -104,6 +64,31 @@ export function decomposeColor(color: string) {
   values = values.map(value => parseFloat(value));
 
   return { type, values };
+}
+
+/**
+ * Converts a color object with type and values to a string.
+ *
+ * @param {object} color - Decomposed color
+ * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla'
+ * @param {array} color.values - [n,n,n] or [n,n,n,n]
+ * @returns {string} A CSS color string
+ */
+export function recomposeColor(color: Object) {
+  const { type } = color;
+  let { values } = color;
+
+  if (type.indexOf('rgb') > -1) {
+    // Only convert the first 3 values to int (i.e. not alpha)
+    values = values.map((n, i) => (i < 3 ? parseInt(n, 10) : n));
+  }
+
+  if (type.indexOf('hsl') > -1) {
+    values[1] = `${values[1]}%`;
+    values[2] = `${values[2]}%`;
+  }
+
+  return `${color.type}(${values.join(', ')})`;
 }
 
 /**
@@ -169,14 +154,14 @@ export function emphasize(color: string, coefficient: number = 0.15) {
  */
 export function fade(color: string, value: number) {
   color = decomposeColor(color);
-  value = clamp(value, 0, 1);
+  value = clamp(value);
 
   if (color.type === 'rgb' || color.type === 'hsl') {
     color.type += 'a';
   }
   color.values[3] = value;
 
-  return convertColorToString(color);
+  return recomposeColor(color);
 }
 
 /**
@@ -188,7 +173,7 @@ export function fade(color: string, value: number) {
  */
 export function darken(color: string, coefficient: number) {
   color = decomposeColor(color);
-  coefficient = clamp(coefficient, 0, 1);
+  coefficient = clamp(coefficient);
 
   if (color.type.indexOf('hsl') > -1) {
     color.values[2] *= 1 - coefficient;
@@ -197,7 +182,7 @@ export function darken(color: string, coefficient: number) {
       color.values[i] *= 1 - coefficient;
     }
   }
-  return convertColorToString(color);
+  return recomposeColor(color);
 }
 
 /**
@@ -209,7 +194,7 @@ export function darken(color: string, coefficient: number) {
  */
 export function lighten(color: string, coefficient: number) {
   color = decomposeColor(color);
-  coefficient = clamp(coefficient, 0, 1);
+  coefficient = clamp(coefficient);
 
   if (color.type.indexOf('hsl') > -1) {
     color.values[2] += (100 - color.values[2]) * coefficient;
@@ -219,5 +204,5 @@ export function lighten(color: string, coefficient: number) {
     }
   }
 
-  return convertColorToString(color);
+  return recomposeColor(color);
 }

@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import {
-  convertColorToString,
+  recomposeColor,
   convertHexToRGB,
   darken,
   decomposeColor,
@@ -21,10 +21,10 @@ describe('utils/colorManipulator', () => {
     consoleErrorMock.reset();
   });
 
-  describe('convertColorToString', () => {
+  describe('recomposeColor', () => {
     it('converts a decomposed rgb color object to a string` ', () => {
       assert.strictEqual(
-        convertColorToString({
+        recomposeColor({
           type: 'rgb',
           values: [255, 255, 255],
         }),
@@ -34,7 +34,7 @@ describe('utils/colorManipulator', () => {
 
     it('converts a decomposed rgba color object to a string` ', () => {
       assert.strictEqual(
-        convertColorToString({
+        recomposeColor({
           type: 'rgba',
           values: [255, 255, 255, 0.5],
         }),
@@ -44,7 +44,7 @@ describe('utils/colorManipulator', () => {
 
     it('converts a decomposed hsl color object to a string` ', () => {
       assert.strictEqual(
-        convertColorToString({
+        recomposeColor({
           type: 'hsl',
           values: [100, 50, 25],
         }),
@@ -54,7 +54,7 @@ describe('utils/colorManipulator', () => {
 
     it('converts a decomposed hsla color object to a string` ', () => {
       assert.strictEqual(
-        convertColorToString({
+        recomposeColor({
           type: 'hsla',
           values: [100, 50, 25, 0.5],
         }),
@@ -158,7 +158,7 @@ describe('utils/colorManipulator', () => {
       assert.strictEqual(emphasize('rgb(250, 240, 230)', 0.3), darken('rgb(250, 240, 230)', 0.3));
     });
 
-    it('lightens a dark rgb color with the c0efficient 0.15 by default', () => {
+    it('lightens a dark rgb color with the coefficient 0.15 by default', () => {
       assert.strictEqual(emphasize('rgb(1, 2, 3)'), lighten('rgb(1, 2, 3)', 0.15));
     });
 

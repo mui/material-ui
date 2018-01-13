@@ -6,7 +6,7 @@ import { withTheme } from 'material-ui/styles';
 function WithTheme(props) {
   const { theme } = props;
   const primaryText = theme.palette.text.primary;
-  const primaryColor = theme.palette.primary[500];
+  const primaryColor = theme.palette.primary.main;
 
   const styles = {
     primaryText: {

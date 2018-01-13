@@ -20,7 +20,7 @@ const styles = theme => ({
   title: {
     color: theme.palette.text.secondary,
     '&:hover': {
-      color: theme.palette.primary[500],
+      color: theme.palette.primary.main,
     },
   },
   // https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
