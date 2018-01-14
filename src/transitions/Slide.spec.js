@@ -175,7 +175,7 @@ describe('<Slide />', () => {
         assert.strictEqual(element.style.transform, 'translateY(100vh) translateY(-200px)');
         wrapper.setProps({ direction: 'down' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, -500px, 0)');
+        assert.strictEqual(element.style.transform, 'translateY(-524px)');
       });
 
       it('should reset the previous transition if needed', () => {
@@ -229,7 +229,7 @@ describe('<Slide />', () => {
         assert.strictEqual(element.style.transform, 'translateY(100vh) translateY(-200px)');
         wrapper.setProps({ direction: 'down' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, -500px, 0)');
+        assert.strictEqual(element.style.transform, 'translateY(-524px)');
       });
     });
   });
