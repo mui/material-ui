@@ -274,6 +274,10 @@ describe('<Drawer />', () => {
         it(`should open and close when swiping from ${params.anchor}`, () => {
           wrapper.setProps({ anchor: params.anchor });
 
+          // mock the internal setPosition function that moves the drawer while swiping
+          const setPosition = spy();
+          wrapper.instance().setPosition = setPosition;
+
           // simulate open swipe
           const handleOpen = spy();
           wrapper.setProps({ onOpen: handleOpen });
@@ -285,10 +289,17 @@ describe('<Drawer />', () => {
           );
           fireBodyMouseEvent('touchmove', { touches: [params.openTouches[1]] });
           assert.strictEqual(wrapper.state().swiping, 'opening', 'should be opening');
+          fireBodyMouseEvent('touchmove', { touches: [params.openTouches[2]] });
           fireBodyMouseEvent('touchend', { changedTouches: [params.openTouches[2]] });
           assert.strictEqual(handleOpen.callCount, 1, 'should call onOpen');
+          assert.strictEqual(
+            setPosition.callCount,
+            3,
+            'should move the drawer on touchstart and touchmove',
+          );
 
           // simulate close swipe
+          setPosition.resetHistory();
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
           fireBodyMouseEvent('touchstart', { touches: [params.closeTouches[0]] });
@@ -299,8 +310,72 @@ describe('<Drawer />', () => {
           );
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
           assert.strictEqual(wrapper.state().swiping, 'closing', 'should be closing');
+          fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[2]] });
           fireBodyMouseEvent('touchend', { changedTouches: [params.closeTouches[2]] });
           assert.strictEqual(handleClose.callCount, 1, 'should call onClose');
+          assert.strictEqual(setPosition.callCount, 2, 'should move the drawer on touchmove');
+        });
+
+        it(`should stay closed when not swiping far enough from ${params.anchor}`, () => {
+          wrapper.setProps({ anchor: params.anchor });
+
+          // simulate open swipe that doesn't swipe far enough
+          const handleOpen = spy();
+          wrapper.setProps({ onOpen: handleOpen });
+          fireBodyMouseEvent('touchstart', { touches: [params.openTouches[0]] });
+          assert.strictEqual(
+            wrapper.instance().maybeSwiping,
+            true,
+            'should be listening for swipe',
+          );
+          fireBodyMouseEvent('touchmove', { touches: [params.openTouches[1]] });
+          assert.strictEqual(wrapper.state().swiping, 'opening', 'should be opening');
+          fireBodyMouseEvent('touchend', { changedTouches: [params.openTouches[1]] });
+          assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen');
+        });
+
+        it(`should stay opened when not swiping ${params.anchor} far enough`, () => {
+          wrapper.setProps({ anchor: params.anchor, open: true });
+
+          // simulate close swipe that doesn't swipe far enough
+          const handleClose = spy();
+          wrapper.setProps({ open: true, onClose: handleClose });
+          fireBodyMouseEvent('touchstart', { touches: [params.closeTouches[0]] });
+          assert.strictEqual(
+            wrapper.instance().maybeSwiping,
+            true,
+            'should be listening for swipe',
+          );
+          fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
+          assert.strictEqual(wrapper.state().swiping, 'closing', 'should be closing');
+          fireBodyMouseEvent('touchend', { changedTouches: [params.closeTouches[1]] });
+          assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
+        });
+
+        it('should not start swiping when swiping in the wrong direction', () => {
+          wrapper.setProps({ anchor: params.anchor });
+
+          fireBodyMouseEvent('touchstart', { touches: [params.openTouches[0]] });
+          if (['left', 'right'].includes(params.anchor)) {
+            fireBodyMouseEvent('touchmove', {
+              touches: [
+                {
+                  pageX: params.openTouches[0].pageX,
+                  clientY: params.openTouches[0].clientY + 50,
+                },
+              ],
+            });
+          } else {
+            fireBodyMouseEvent('touchmove', {
+              touches: [
+                {
+                  pageX: params.openTouches[0].pageX + 50,
+                  clientY: params.openTouches[0].clientY,
+                },
+              ],
+            });
+          }
+          assert.equal(wrapper.state().swiping, null, 'should not be swiping');
         });
 
         it(`should slide in a bit when touching near the ${params.anchor} edge`, () => {
@@ -308,7 +383,7 @@ describe('<Drawer />', () => {
 
           // mock the internal setPosition function that moves the drawer while swiping
           const setPosition = spy();
-          Object.defineProperty(wrapper.instance(), 'setPosition', { value: setPosition });
+          wrapper.instance().setPosition = setPosition;
 
           const handleOpen = spy();
           const handleClose = spy();
@@ -333,6 +408,17 @@ describe('<Drawer />', () => {
         fireBodyMouseEvent('touchmove', { touches: [{ pageX: 180, clientY: 0 }] });
         // should trigger setState warning if swipe handling is not cleaned, too
         fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+      });
+
+      it('toggles swipe handling when the type is changed', () => {
+        // type is 'temporary' by default
+        spy(wrapper.instance(), 'disableSwipeHandling');
+        wrapper.setProps({ type: 'persistent' });
+        assert.strictEqual(wrapper.instance().disableSwipeHandling.callCount, 1);
+
+        spy(wrapper.instance(), 'enableSwipeHandling');
+        wrapper.setProps({ type: 'temporary' });
+        assert.strictEqual(wrapper.instance().enableSwipeHandling.callCount, 1);
       });
     });
   });
