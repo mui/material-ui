@@ -9,7 +9,7 @@ Big thanks to the 22 contributors who made this release possible.
 
 Here are some highlights ✨:
 - A new theme palette system (#9794) @mbrookes. It's an important simplification.
-- A more flexibile and customization friendly table components (#9852) @kgregory.
+- More flexibile and customization friendly table components (#9852) @kgregory.
 - A new gold sponsor: [Creative Tim](https://www.creative-tim.com/), thank you!
 - And many more bug fixes and documentation improvements.
 
