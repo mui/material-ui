@@ -39,7 +39,7 @@ describe('<Drawer />', () => {
         </Drawer>,
       );
       assert.strictEqual(wrapper.type(), Modal);
-      
+
       // temporary drawers need to be unmounted in the tests to remove the touchstart event handler
       wrapper.unmount();
     });
@@ -200,7 +200,8 @@ describe('<Drawer />', () => {
         // mock the drawer DOM node, since jsdom doesn't do layouting but its size is required
         const findDOMNode = ReactDOM.findDOMNode;
         findDOMNodeStub = stub(ReactDOM, 'findDOMNode').callsFake(arg => {
-          if (arg instanceof Paper) { // mock the drawer's DOM node
+          if (arg instanceof Paper) {
+            // mock the drawer's DOM node
             return { clientWidth: 250, clientHeight: 250, style: {} };
           }
           return findDOMNode(arg);
@@ -221,7 +222,7 @@ describe('<Drawer />', () => {
 
       afterEach(() => {
         wrapper.unmount();
-      })
+      });
 
       const bodyWidth = document.body.offsetWidth; // jsdom emulates these
       const windowHeight = window.innerHeight;
@@ -401,7 +402,7 @@ describe('<Drawer />', () => {
 
     after(() => {
       wrapper.unmount();
-    })
+    });
 
     it('should return the opposing slide direction', () => {
       wrapper.setProps({ anchor: 'left' });
