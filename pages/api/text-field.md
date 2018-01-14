@@ -37,7 +37,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| autoComplete | string |  | This property helps users to fill forms faster, especially on mobile devices. The name can be confusion, it's more like an autofill. You can learn about it with that article https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill |
+| autoComplete | string |  | This property helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it here: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill |
 | autoFocus | bool |  | If `true`, the input will be focused during the first mount. |
 | defaultValue | string |  | The default value of the `Input` element. |
 | disabled | bool |  | If `true`, the input will be disabled. |
