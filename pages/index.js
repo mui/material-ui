@@ -103,13 +103,13 @@ function PageHome(props) {
         <MarkdownElement
           className={classes.backersBody}
           text={`
-<h2 align="center">Supporting Material-UI</h2>
+<h2 style="text-align: center;">Supporting Material-UI</h2>
 
 Material-UI is an MIT-licensed open source project.
 It's an independent project with ongoing development made possible entirely
 thanks to the support of these awesome [backers](/discover-more/backers).
 
-<h3 align="center">Gold Sponsors</h3>
+<h3 style="text-align: center;">Gold Sponsors</h3>
 
 Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 
@@ -118,9 +118,9 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="middle">
+      <td>
         <a href="https://www.creative-tim.com" target="_blank">
-          <img width="126px" src="https://avatars1.githubusercontent.com/u/20172349">
+          <img width="126" src="https://avatars1.githubusercontent.com/u/20172349" alt="0">
         </a>
       </td>
     </tr>

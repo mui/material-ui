@@ -13,12 +13,10 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          <title>Material-UI</title>
           <meta
             name="description"
             content="React Components that Implement Google's Material Design."
           />
-          <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
             name="viewport"

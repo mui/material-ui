@@ -12,7 +12,7 @@ describe('<HiddenCss />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'span' });
+    shallow = createShallow({ untilSelector: 'div' });
     classes = getClasses(
       <HiddenCss>
         <div />
@@ -28,7 +28,7 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
 
-      assert.strictEqual(wrapper.type(), 'span');
+      assert.strictEqual(wrapper.type(), 'div');
       assert.strictEqual(wrapper.hasClass(classes.onlySm), true);
 
       const div = wrapper.childAt(0);
@@ -43,7 +43,7 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
 
-      assert.strictEqual(wrapper.type(), 'span');
+      assert.strictEqual(wrapper.type(), 'div');
       assert.strictEqual(wrapper.props().className[0], classes.onlyXs);
       assert.strictEqual(wrapper.props().className[1], classes.onlySm);
     });
@@ -55,7 +55,7 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
 
-      assert.strictEqual(wrapper.type(), 'span');
+      assert.strictEqual(wrapper.type(), 'div');
       assert.strictEqual(Array.isArray(wrapper.props().className), true);
       assert.strictEqual(wrapper.props().className.length, 0);
     });
@@ -82,7 +82,7 @@ describe('<HiddenCss />', () => {
   describe('prop: children', () => {
     it('should work when text Node', () => {
       const wrapper = shallow(<HiddenCss mdUp>foo</HiddenCss>);
-      assert.strictEqual(wrapper.type(), 'span');
+      assert.strictEqual(wrapper.type(), 'div');
       assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
       assert.strictEqual(wrapper.childAt(0).text(), 'foo');
     });
@@ -93,7 +93,7 @@ describe('<HiddenCss />', () => {
           <Foo />
         </HiddenCss>,
       );
-      assert.strictEqual(wrapper.type(), 'span');
+      assert.strictEqual(wrapper.type(), 'div');
       assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
       assert.strictEqual(wrapper.childAt(0).is(Foo), true);
     });
@@ -107,7 +107,7 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
 
-      assert.strictEqual(wrapper.type(), 'span');
+      assert.strictEqual(wrapper.type(), 'div');
       assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
       assert.strictEqual(wrapper.childAt(0).is(Foo), true);
       assert.strictEqual(wrapper.childAt(1).is(Foo), true);

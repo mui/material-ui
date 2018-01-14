@@ -60,6 +60,13 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
 
+    it('should not apply role="button" if type="button"', () => {
+      const wrapper = shallow(<ButtonBase>Hello</ButtonBase>);
+      assert.strictEqual(wrapper.name(), 'button');
+      assert.strictEqual(wrapper.props().type, 'button', 'should not set a type');
+      assert.strictEqual(wrapper.props().role, undefined, 'should role to button');
+    });
+
     it('should change the button type to span and set role="button"', () => {
       const wrapper = shallow(<ButtonBase component="span">Hello</ButtonBase>);
       assert.strictEqual(wrapper.name(), 'span');
