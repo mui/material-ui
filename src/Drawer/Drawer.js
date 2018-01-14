@@ -242,7 +242,7 @@ class Drawer extends React.Component {
     this.removeBodyTouchListeners();
   };
 
-  getAnchor () {
+  getAnchor() {
     let anchor = this.props.anchor;
     if (this.props.theme.direction === 'rtl' && ['left', 'right'].indexOf(anchor) !== -1) {
       anchor = anchor === 'left' ? 'right' : 'left';
