@@ -21,6 +21,8 @@ export default class DatePickerWrapper extends PickerBase {
     onChange: PropTypes.func.isRequired,
     /* Auto accept date on selection */
     autoOk: PropTypes.bool,
+    /* Disable past dates */
+    disablePast: PropTypes.bool,
     /* Disable future dates */
     disableFuture: PropTypes.bool,
     /* To animate scrolling to current year (with scrollIntoView) */
@@ -41,6 +43,8 @@ export default class DatePickerWrapper extends PickerBase {
     renderDay: PropTypes.func,
     /* Date displaying utils */
     utils: PropTypes.object,
+    /* Disable specific date hook */
+    shouldDisableDate: PropTypes.func,
   }
 
   static defaultProps = {
@@ -50,6 +54,7 @@ export default class DatePickerWrapper extends PickerBase {
     returnMoment: true,
     minDate: undefined,
     maxDate: undefined,
+    disablePast: undefined,
     disableFuture: undefined,
     animateYearScrolling: undefined,
     openToYearSelection: undefined,
@@ -59,6 +64,7 @@ export default class DatePickerWrapper extends PickerBase {
     renderDay: undefined,
     labelFunc: undefined,
     utils: defaultUtils,
+    shouldDisableDate: undefined,
   }
 
   render() {
@@ -70,6 +76,7 @@ export default class DatePickerWrapper extends PickerBase {
       minDate,
       maxDate,
       onChange,
+      disablePast,
       disableFuture,
       animateYearScrolling,
       openToYearSelection,
@@ -80,15 +87,18 @@ export default class DatePickerWrapper extends PickerBase {
       renderDay,
       labelFunc,
       utils,
+      shouldDisableDate,
       ...other
     } = this.props;
 
     return (
       <ModalWrapper
-        ref={(node) => { this.wrapper = node; }}
+        ref={this.getRef}
         value={value}
         format={format}
+        onClear={this.handleClear}
         onAccept={this.handleAccept}
+        onChange={this.handleTextFieldChange}
         onDismiss={this.handleDismiss}
         invalidLabel={invalidLabel}
         labelFunc={labelFunc}
@@ -97,6 +107,7 @@ export default class DatePickerWrapper extends PickerBase {
         <DatePicker
           date={date}
           onChange={this.handleChange}
+          disablePast={disablePast}
           disableFuture={disableFuture}
           animateYearScrolling={animateYearScrolling}
           openToYearSelection={openToYearSelection}
@@ -106,6 +117,7 @@ export default class DatePickerWrapper extends PickerBase {
           rightArrowIcon={rightArrowIcon}
           renderDay={renderDay}
           utils={utils}
+          shouldDisableDate={shouldDisableDate}
         />
       </ModalWrapper>
     );

@@ -31,7 +31,7 @@ export default class BasicUsage extends Component {
 
         <div className="picker">
           <Typography type="headline" align="center" gutterBottom>
-          Custom
+            Custom
           </Typography>
 
           <DateTimePicker

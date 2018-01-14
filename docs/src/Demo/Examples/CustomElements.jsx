@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { IconButton, Typography, withStyles } from 'material-ui';
+import classNames from 'classnames';
 import { DateTimePicker, DatePicker } from 'material-ui-pickers';
 
 class CustomElements extends Component {
@@ -20,16 +21,23 @@ class CustomElements extends Component {
     this.setState({ selectedDate: date.clone().startOf('week') });
   }
 
-  formatWeekSelectLabel = (date, invalidLabel) => (date && date.isValid()
-    ? `Week of ${date.clone().startOf('week').format('MMM Do')}`
-    : invalidLabel)
+  formatWeekSelectLabel = (date, invalidLabel) => {
+    if (date === null) {
+      return '';
+    }
+
+    return date && date.isValid() ?
+      `Week of ${date.clone().startOf('week').format('MMM Do')}`
+      :
+      invalidLabel;
+  }
 
   renderCustomDayForDateTime = (date, selectedDate, dayInCurrentMonth, dayComponent) => {
     const { classes } = this.props;
 
-    const dayClassName = [
-      (date.isSame(selectedDate, 'day')) && classes.customDayHighlight,
-    ].join(' ');
+    const dayClassName = classNames({
+      [classes.customDayHighlight]: date.isSame(selectedDate, 'day'),
+    });
 
     return (
       <div className={classes.dayWrapper}>
@@ -54,22 +62,21 @@ class CustomElements extends Component {
     const firstDay = date.isSame(startDate, 'day');
     const lastDay = date.isSame(endDate, 'day');
 
-    const wrapperClassName = [
-      dayIsBetween ? classes.highlight : null,
-      firstDay ? classes.firstHighlight : null,
-      lastDay ? classes.endHighlight : null,
-    ].join(' ');
+    const wrapperClassName = classNames({
+      [classes.highlight]: dayIsBetween,
+      [classes.firstHighlight]: firstDay,
+      [classes.endHighlight]: lastDay,
+    });
 
-    const dayClassName = [
-      classes.day,
-      (!dayInCurrentMonth) && classes.nonCurrentMonthDay,
-      (!dayInCurrentMonth && dayIsBetween) && classes.highlightNonCurrentMonthDay,
-    ].join(' ');
+    const dayClassName = classNames(classes.day, {
+      [classes.nonCurrentMonthDay]: !dayInCurrentMonth,
+      [classes.highlightNonCurrentMonthDay]: !dayInCurrentMonth && dayIsBetween,
+    });
 
     return (
       <div className={wrapperClassName}>
         <IconButton className={dayClassName}>
-          <span> { date.format('DD')} </span>
+          <span> { date.format('D')} </span>
         </IconButton>
       </div>
     );
@@ -117,9 +124,9 @@ const styles = theme => ({
   day: {
     width: 36,
     height: 36,
-    fontSize: 14,
+    fontSize: theme.typography.caption.fontSize,
     margin: '0 2px',
-    color: theme.palette.text.primary,
+    color: 'inherit',
   },
   customDayHighlight: {
     position: 'absolute',
@@ -127,17 +134,18 @@ const styles = theme => ({
     bottom: 0,
     left: '2px',
     right: '2px',
-    border: '2px solid #6270bf',
+    border: `2px solid ${theme.palette.primary[100]}`,
     borderRadius: '50%',
   },
   nonCurrentMonthDay: {
-    color: '#BCBCBC',
+    color: theme.palette.common.minBlack,
   },
   highlightNonCurrentMonthDay: {
     color: '#676767',
   },
   highlight: {
-    background: '#9fa8da',
+    background: theme.palette.primary[500],
+    color: theme.palette.common.white,
   },
   firstHighlight: {
     extend: 'highlight',

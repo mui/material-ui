@@ -4,24 +4,27 @@ import { DateType } from '../constants/prop-types';
 import { Utils } from '../utils/utils';
 import { RenderDay } from '../DatePicker/Calendar';
 import { ModalWrapperProps } from '../wrappers/ModalWrapper';
+import { Moment } from 'moment';
+import { PickerBaseProps } from '../_shared/PickerBase'
+import { Omit } from 'material-ui'
 
-export interface DateTimePickerWrapperProps extends ModalWrapperProps {
+export interface DateTimePickerWrapperProps extends PickerBaseProps,
+  Omit<ModalWrapperProps, 'onChange'> {
   minDate?: DateType;
   maxDate?: DateType;
-  onChange: (date: object) => void;
+  disablePast?: boolean;
   disableFuture?: boolean;
-  autoOk?: boolean;
   autoSubmit?: boolean;
-  returnMoment?: boolean;
   showTabs?: boolean;
-  ampm?: boolean;
+  animateYearScrolling?: boolean;
   openTo?: DateTimePickerView;
-  leftArrowIcon: ReactNode;
-  rightArrowIcon: ReactNode;
+  leftArrowIcon?: ReactNode;
+  rightArrowIcon?: ReactNode;
   dateRangeIcon?: ReactNode;
   timeIcon?: ReactNode;
   renderDay?: RenderDay;
   utils?: Utils;
+  shouldDisableDate?: (day: Moment) => boolean;
 }
 
 declare const DateTimePickerWrapper: ComponentClass<DateTimePickerWrapperProps>;

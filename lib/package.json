@@ -1,10 +1,11 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.12",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "build/dist/material-ui-pickers.cjs.js",
   "module": "build/dist/material-ui-pickers.es.js",
+  "types": "./src/index.d.ts",
   "keywords": [
     "material-ui",
     "pickers",
@@ -31,34 +32,44 @@
     "email": "dmtr.kovalenko@outlook.com"
   },
   "peerDependencies": {
-    "react": "^15.6.2 || ^16.0.0",
-    "react-dom": "^15.6.2 || ^16.0.0",
-    "prop-types": "^15.6.0",
-    "material-ui": "^1.0.0-beta.18",
     "classnames": "^2.2.5",
-    "moment": "^2.19.2"
+    "material-ui": "^1.0.0-beta.24",
+    "moment": "^2.19.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "dependencies": {
-    "babel-helpers": "^6.24.1",
-    "moment-range": "^3.0.3"
+    "moment-range": "^3.0.3",
+    "react-text-mask": "^5.0.2"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest && npm run typescript",
+    "typescript": "tsc -p tsconfig.json",
     "start": "cross-env NODE_ENV=development rollup --config --watch",
+    "prebuild": "rimraf build",
     "build:copy": "node copy.js",
     "build:bundle": "cross-env NODE_ENV=production rollup --config",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build/src",
     "build": "npm run build:bundle && npm run build:es2015 && npm run build:copy",
-    "prepublish": "npm run test && npm run lint && npm run build",
-    "webpack": "webpack",
-    "lint": "eslint ./src/**/*.js*"
+    "ci": "npm run test && npm run lint && npm run build",
+    "prerelease": "npm run ci",
+    "release": "np --no-publish --any-branch",
+    "postrelease": "npm run build && npm publish build",
+    "lint": "eslint ./src/**/*.js*",
+    "lint-fix": "npm run lint -- --fix"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.3",
+    "@types/jss": "^9.3.0",
+    "@types/moment": "^2.13.0",
+    "@types/prop-types": "^15.5.2",
+    "@types/react": "^16.0.34",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^8.0.1",
+    "babel-helpers": "^6.24.1",
     "babel-jest": "^21.2.0",
-    "babel-loader": "^7.0.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
@@ -68,7 +79,7 @@
     "babel-preset-latest": "^6.24.1",
     "classnames": "^2.2.5",
     "cross-env": "^5.1.0",
-    "enzyme": "^3.2.0",
+    "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^16.0.0",
@@ -78,19 +89,18 @@
     "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
     "jest": "^21.2.1",
-    "material-ui": "^1.0.0-beta.21",
+    "material-ui": "^1.0.0-beta.26",
     "moment": "^2.19.2",
-    "peer-deps-externals-webpack-plugin": "^1.0.2",
+    "np": "^2.18.3",
     "prop-types": "^15.6.0",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "rollup": "^0.51.8",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.4",
     "rollup-plugin-filesize": "^1.5.0",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "webpack": "^3.5.1",
-    "webpack-bundle-analyzer": "^2.9.0"
+    "typescript": "^2.6.2"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",

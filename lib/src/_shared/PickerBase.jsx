@@ -24,8 +24,8 @@ export default class PickerBase extends PureComponent {
     ampm: true,
   }
 
-  getValidDateOrCurrent = () => {
-    const date = moment(this.props.value);
+  getValidDateOrCurrent = (props = this.props) => {
+    const date = moment(props.value);
 
     return date.isValid() ? date : moment();
   }
@@ -34,10 +34,26 @@ export default class PickerBase extends PureComponent {
     date: this.getValidDateOrCurrent(),
   }
 
-  componentDidUpdate = (prevProps) => {
-    if (this.props.value !== prevProps.value) {
-      this.setState({ date: this.getValidDateOrCurrent() });
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) {
+      this.setState({ date: this.getValidDateOrCurrent(nextProps) });
     }
+  }
+
+  getFormat = () => {
+    if (this.props.format || this.props.labelFunc) {
+      return this.props.format;
+    }
+
+    return this.props.ampm
+      ? this.default12hFormat
+      : this.default24hFormat;
+  }
+
+  getRef = (node) => { this.wrapper = node; }
+
+  handleClear = () => {
+    this.props.onChange(null);
   }
 
   handleAccept = () => {
@@ -49,29 +65,23 @@ export default class PickerBase extends PureComponent {
   }
 
   handleDismiss = () => {
-    this.setState({ date: this.getValidDateOrCurrent() });
+    this.setState({ date: this.getValidDateOrCurrent(this.props) });
   }
 
   handleChange = (date, isFinish = true) => {
     this.setState({ date }, () => {
       if (isFinish && this.props.autoOk) {
         this.handleAccept();
-        this.togglePicker();
+        this.wrapper.close();
       }
     });
   }
 
-  togglePicker = () => {
-    this.wrapper.togglePicker();
-  }
-
-  getFormat = () => {
-    if (this.props.format || this.props.labelFunc) {
-      return this.props.format;
+  handleTextFieldChange = (date) => {
+    if (date === null) {
+      this.handleClear();
+    } else {
+      this.setState({ date }, this.handleAccept);
     }
-
-    return this.props.ampm
-      ? this.default12hFormat
-      : this.default24hFormat;
   }
 }

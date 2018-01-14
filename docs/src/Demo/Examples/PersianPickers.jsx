@@ -7,6 +7,13 @@ import jalaliUtils from 'material-ui-pickers-jalali-utils';
 
 jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
 
+function format(date, formatting) {
+  if (date === null) {
+    return '';
+  }
+  return jMoment(date).locale('fa').format(formatting);
+}
+
 export default class BasicUsage extends Component {
   state = {
     selectedDate: moment(),
@@ -27,9 +34,11 @@ export default class BasicUsage extends Component {
           </Typography>
 
           <DatePicker
+            clearable
             okLabel="تأیید"
             cancelLabel="لغو"
-            labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD')}
+            clearLabel="پاک کردن"
+            labelFunc={date => format(date, 'jYYYY/jMM/jDD')}
             value={selectedDate}
             onChange={this.handleDateChange}
             animateYearScrolling={false}
@@ -43,9 +52,11 @@ export default class BasicUsage extends Component {
           </Typography>
 
           <TimePicker
+            clearable
             okLabel="تأیید"
             cancelLabel="لغو"
-            labelFunc={date => jMoment(date).format('hh:mm A')}
+            clearLabel="پاک کردن"
+            labelFunc={date => format(date, 'hh:mm A')}
             value={selectedDate}
             onChange={this.handleDateChange}
             utils={jalaliUtils}
@@ -60,7 +71,7 @@ export default class BasicUsage extends Component {
           <DateTimePicker
             okLabel="تأیید"
             cancelLabel="لغو"
-            labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
+            labelFunc={date => format(date, 'jYYYY/jMM/jDD hh:mm A')}
             value={selectedDate}
             onChange={this.handleDateChange}
             utils={jalaliUtils}

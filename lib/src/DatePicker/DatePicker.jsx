@@ -1,7 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { withStyles } from 'material-ui';
 
 import Calendar from './Calendar';
 import YearSelection from './YearSelection';
@@ -15,8 +14,8 @@ export class DatePicker extends PureComponent {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
-    classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
     animateYearScrolling: PropTypes.bool,
     openToYearSelection: PropTypes.bool,
@@ -25,11 +24,13 @@ export class DatePicker extends PureComponent {
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
     utils: PropTypes.object,
+    shouldDisableDate: PropTypes.func,
   }
 
   static defaultProps = {
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
+    disablePast: false,
     disableFuture: false,
     animateYearScrolling: undefined,
     openToYearSelection: false,
@@ -38,6 +39,7 @@ export class DatePicker extends PureComponent {
     rightArrowIcon: undefined,
     renderDay: undefined,
     utils: defaultUtils,
+    shouldDisableDate: undefined,
   }
 
   state = {
@@ -71,7 +73,7 @@ export class DatePicker extends PureComponent {
 
   render() {
     const {
-      classes,
+      disablePast,
       disableFuture,
       onChange,
       animateYearScrolling,
@@ -79,11 +81,12 @@ export class DatePicker extends PureComponent {
       rightArrowIcon,
       renderDay,
       utils,
+      shouldDisableDate,
     } = this.props;
     const { showYearSelection } = this.state;
 
     return (
-      <div className={classes.container}>
+      <Fragment>
         <PickerToolbar>
           <ToolbarButton
             type="subheading"
@@ -110,6 +113,7 @@ export class DatePicker extends PureComponent {
                 onChange={this.handleYearSelect}
                 minDate={this.minDate}
                 maxDate={this.maxDate}
+                disablePast={disablePast}
                 disableFuture={disableFuture}
                 animateYearScrolling={animateYearScrolling}
                 utils={utils}
@@ -118,6 +122,7 @@ export class DatePicker extends PureComponent {
               <Calendar
                 date={this.date}
                 onChange={onChange}
+                disablePast={disablePast}
                 disableFuture={disableFuture}
                 minDate={this.minDate}
                 maxDate={this.maxDate}
@@ -125,16 +130,13 @@ export class DatePicker extends PureComponent {
                 rightArrowIcon={rightArrowIcon}
                 renderDay={renderDay}
                 utils={utils}
+                shouldDisableDate={shouldDisableDate}
               />
         }
-      </div>
+      </Fragment>
     );
   }
 }
 
-const styles = () => ({
-
-});
-
-export default withStyles(styles, { name: 'MuiPickersDatePicker' })(DatePicker);
+export default DatePicker;
 

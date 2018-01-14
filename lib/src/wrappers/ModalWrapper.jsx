@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
 import DateTextField from '../_shared/DateTextField';
@@ -11,11 +11,14 @@ export default class ModalWrapper extends PureComponent {
     format: PropTypes.string,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
+    onClear: PropTypes.func,
     dialogContentClassName: PropTypes.string,
     invalidLabel: PropTypes.string,
     labelFunc: PropTypes.func,
     okLabel: PropTypes.string,
     cancelLabel: PropTypes.string,
+    clearLabel: PropTypes.string,
+    clearable: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -25,30 +28,44 @@ export default class ModalWrapper extends PureComponent {
     labelFunc: undefined,
     okLabel: undefined,
     cancelLabel: undefined,
+    clearLabel: undefined,
     format: undefined,
     onAccept: undefined,
     onDismiss: undefined,
+    onClear: undefined,
+    clearable: false,
   }
 
   state = {
     open: false,
   }
 
-  togglePicker = () => {
-    this.setState({ open: !this.state.open });
+  open = () => {
+    this.setState({ open: true });
+  }
+
+  close = () => {
+    this.setState({ open: false });
   }
 
   handleAccept = () => {
-    this.togglePicker(); // close
+    this.close();
     if (this.props.onAccept) {
       this.props.onAccept();
     }
   }
 
   handleDismiss = () => {
-    this.togglePicker();
+    this.close();
     if (this.props.onDismiss) {
       this.props.onDismiss();
+    }
+  }
+
+  handleClear = () => {
+    this.close();
+    if (this.props.onClear) {
+      this.props.onClear();
     }
   }
 
@@ -64,32 +81,38 @@ export default class ModalWrapper extends PureComponent {
       labelFunc,
       okLabel,
       cancelLabel,
+      clearLabel,
+      clearable,
       ...other
     } = this.props;
 
     return (
-      <div>
+      <Fragment>
         <DateTextField
           value={value}
           format={format}
-          onClick={this.togglePicker}
+          onClick={this.open}
           // onFocus={this.togglePicker} <- Currently not properly works with .blur() on TextField
           invalidLabel={invalidLabel}
           labelFunc={labelFunc}
+          clearable={clearable}
           {...other}
         />
 
         <ModalDialog
           open={this.state.open}
+          onClear={this.handleClear}
           onAccept={this.handleAccept}
           onDismiss={this.handleDismiss}
           dialogContentClassName={dialogContentClassName}
+          clearLabel={clearLabel}
           okLabel={okLabel}
           cancelLabel={cancelLabel}
+          clearable={clearable}
         >
-          { children }
+          {children}
         </ModalDialog>
-      </div>
+      </Fragment>
     );
   }
 }

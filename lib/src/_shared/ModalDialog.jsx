@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Dialog, DialogActions, DialogContent, Button, withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
+import Button from 'material-ui/Button';
+import Dialog from 'material-ui/Dialog/Dialog';
+import DialogActions from 'material-ui/Dialog/DialogActions';
+import DialogContent from 'material-ui/Dialog/DialogContent';
 
 const dialogWidth = 310;
 const styles = {
@@ -10,10 +14,14 @@ const styles = {
   },
   dialog: {
     width: dialogWidth,
-    height: 420,
 
     '&:first-child': {
       padding: 0,
+    },
+  },
+  dialogActions: {
+    '&:first-child': {
+      marginRight: 'auto',
     },
   },
 };
@@ -23,21 +31,38 @@ const ModalDialog = ({
   classes,
   onAccept,
   onDismiss,
+  onClear,
   okLabel,
   cancelLabel,
+  clearLabel,
   dialogContentClassName,
+  clearable,
   ...other
 }) => (
-  <Dialog onRequestClose={onDismiss} classes={{ paper: classes.dialogRoot }} {...other}>
+  <Dialog onClose={onDismiss} classes={{ paper: classes.dialogRoot }} {...other}>
     <DialogContent className={classnames(classes.dialog, dialogContentClassName)}>
       { children }
     </DialogContent>
 
-    <DialogActions>
+    <DialogActions
+      classes={{
+        action: clearable && classes.dialogActions,
+      }}
+    >
+
+      { clearable &&
+        <Button
+          color="primary"
+          onClick={onClear}
+          aria-label={clearLabel}
+        >
+          { clearLabel }
+        </Button>
+      }
       <Button
         color="primary"
         onClick={onDismiss}
-        tabIndex={-1}
+        aria-label={cancelLabel}
       >
         { cancelLabel }
       </Button>
@@ -45,6 +70,7 @@ const ModalDialog = ({
       <Button
         color="primary"
         onClick={onAccept}
+        aria-label={okLabel}
       >
         { okLabel }
       </Button>
@@ -57,16 +83,20 @@ ModalDialog.propTypes = {
   children: PropTypes.node.isRequired,
   onAccept: PropTypes.func.isRequired,
   onDismiss: PropTypes.func.isRequired,
+  onClear: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   dialogContentClassName: PropTypes.string,
   okLabel: PropTypes.string,
   cancelLabel: PropTypes.string,
+  clearLabel: PropTypes.string,
+  clearable: PropTypes.bool.isRequired,
 };
 
 ModalDialog.defaultProps = {
   dialogContentClassName: '',
   okLabel: 'OK',
   cancelLabel: 'Cancel',
+  clearLabel: 'Clear',
 };
 
 export default withStyles(styles, { name: 'MuiPickersModal' })(ModalDialog);

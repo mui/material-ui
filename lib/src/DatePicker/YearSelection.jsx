@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { findDOMNode } from 'react-dom';
 import Moment from 'moment';
-import classnames from 'classnames';
 import { extendMoment } from 'moment-range';
-import { withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
 import DomainPropTypes from '../constants/prop-types';
 import * as defaultUtils from '../utils/utils';
+import Year from './Year';
 
 const moment = extendMoment(Moment);
 
@@ -16,6 +17,7 @@ export class YearSelection extends PureComponent {
     maxDate: DomainPropTypes.date.isRequired,
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    disablePast: PropTypes.bool.isRequired,
     disableFuture: PropTypes.bool.isRequired,
     animateYearScrolling: PropTypes.bool,
     utils: PropTypes.object,
@@ -37,9 +39,13 @@ export class YearSelection extends PureComponent {
     onChange(newDate);
   }
 
+  getSelectedYearRef = (ref) => {
+    this.selectedYearRef = ref;
+  }
+
   scrollToCurrentYear = () => {
-    const { animateYearScrolling, classes } = this.props;
-    const currentYearElement = document.getElementsByClassName(classes.selectedYear)[0];
+    const { animateYearScrolling } = this.props;
+    const currentYearElement = findDOMNode(this.selectedYearRef);
 
     if (currentYearElement) {
       currentYearElement.scrollIntoView({
@@ -48,9 +54,11 @@ export class YearSelection extends PureComponent {
     }
   }
 
+  selectedYearRef = undefined;
+
   render() {
     const {
-      minDate, maxDate, date, classes, disableFuture, utils,
+      minDate, maxDate, date, classes, disablePast, disableFuture, utils,
     } = this.props;
     const currentYear = utils.getYear(date);
 
@@ -60,22 +68,25 @@ export class YearSelection extends PureComponent {
           Array.from(moment.range(minDate, maxDate).by('year'))
             .map((year) => {
               const yearNumber = utils.getYear(year);
-              const className = classnames(classes.yearItem, {
-                [classes.selectedYear]: yearNumber === currentYear,
-                [classes.disabled]: disableFuture && year.isAfter(moment()),
-              });
+              const selected = yearNumber === currentYear;
 
               return (
-                <div
-                  role="button"
+                <Year
+                  selected={selected}
+                  disabled={(
+                    (disablePast && year.isBefore(moment(), 'year')) ||
+                    (disableFuture && year.isAfter(moment(), 'year'))
+                  )}
+                  value={yearNumber}
                   key={utils.getYearText(year)}
-                  className={className}
-                  tabIndex={yearNumber}
-                  onClick={() => this.onYearSelect(yearNumber)}
-                  onKeyPress={() => this.onYearSelect(yearNumber)}
+                  onSelect={this.onYearSelect}
+                  ref={selected
+                    ? this.getSelectedYearRef
+                    : undefined
+                  }
                 >
                   {utils.getYearText(year)}
-                </div>
+                </Year>
               );
             })
         }
@@ -84,30 +95,12 @@ export class YearSelection extends PureComponent {
   }
 }
 
-const styles = theme => ({
+const styles = {
   container: {
-    maxHeight: 320,
+    maxHeight: 300,
     overflowY: 'auto',
     justifyContent: 'center',
   },
-  yearItem: {
-    height: 36,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    outline: 'none',
-    color: theme.palette.text.primary,
-  },
-  selectedYear: {
-    fontSize: 26,
-    margin: '10px 0',
-    color: theme.palette.primary[500],
-  },
-  disabled: {
-    pointerEvents: 'none',
-    color: theme.palette.text.hint,
-  },
-});
+};
 
 export default withStyles(styles, { name: 'MuiPickersYearSelection' })(YearSelection);

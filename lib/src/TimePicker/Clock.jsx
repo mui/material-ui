@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
 
 import ClockPointer from './ClockPointer';
 import * as clockType from '../constants/clock-types';
@@ -8,7 +8,7 @@ import { getMinutes, getHours } from '../utils/time-utils';
 
 export class Clock extends Component {
   static propTypes = {
-    type: PropTypes.oneOf(Object.values(clockType)).isRequired,
+    type: PropTypes.oneOf(Object.keys(clockType).map(key => clockType[key])).isRequired,
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -38,17 +38,23 @@ export class Clock extends Component {
   }
 
   handleTouchMove = (e) => {
+    this.isMoving = true;
     this.setTime(e);
   }
 
-  handleTouchEnd = (e) => {
-    this.setTime(e, true);
+  handleMouseUp = (e) => {
+    if (this.isMoving) {
+      this.isMoving = false;
+    }
+    this.setTime(e.nativeEvent, true);
   }
 
-  handleUp = (event) => {
-    event.preventDefault();
-    this.setTime(event.nativeEvent, true);
-  };
+  handleTouchEnd = (e) => {
+    if (this.isMoving) {
+      this.setTime(e.nativeEvent, true);
+      this.isMoving = false;
+    }
+  }
 
   handleMove = (e) => {
     e.preventDefault();
@@ -92,7 +98,7 @@ export class Clock extends Component {
             className={classes.squareMask}
             onTouchMove={this.handleTouchMove}
             onTouchEnd={this.handleTouchEnd}
-            onMouseUp={this.handleUp}
+            onMouseUp={this.handleMouseUp}
             onMouseMove={this.handleMove}
           />
 
@@ -110,12 +116,12 @@ export class Clock extends Component {
   }
 }
 
-const styles = () => ({
+const styles = theme => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    marginTop: 40,
+    margin: [[theme.spacing.unit * 4, 0, theme.spacing.unit]],
   },
   clock: {
     backgroundColor: 'rgba(0,0,0,.07)',

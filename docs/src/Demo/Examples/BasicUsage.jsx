@@ -23,6 +23,8 @@ export default class BasicUsage extends Component {
           </Typography>
 
           <DatePicker
+            keyboard
+            clearable
             value={selectedDate}
             onChange={this.handleDateChange}
             animateYearScrolling={false}
@@ -35,6 +37,9 @@ export default class BasicUsage extends Component {
           </Typography>
 
           <TimePicker
+            keyboard
+            mask={[/\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
+            placeholder="08:00 AM"
             value={selectedDate}
             onChange={this.handleDateChange}
           />

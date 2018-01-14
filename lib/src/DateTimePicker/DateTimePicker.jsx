@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui';
 
 import View from './DateTimePickerView';
 import YearSelection from '../DatePicker/YearSelection';
@@ -20,7 +19,8 @@ export class DateTimePicker extends Component {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     autoSubmit: PropTypes.bool,
-    openTo: PropTypes.oneOf(Object.values(viewType)),
+    openTo: PropTypes.oneOf(Object.keys(viewType).map(key => viewType[key])),
+    disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
@@ -32,6 +32,8 @@ export class DateTimePicker extends Component {
     renderDay: PropTypes.func,
     utils: PropTypes.object,
     ampm: PropTypes.bool,
+    shouldDisableDate: PropTypes.func,
+    animateYearScrolling: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -39,6 +41,7 @@ export class DateTimePicker extends Component {
     maxDate: '2100-01-01',
     autoSubmit: true,
     openTo: viewType.DATE,
+    disablePast: false,
     disableFuture: false,
     showTabs: true,
     leftArrowIcon: undefined,
@@ -48,6 +51,8 @@ export class DateTimePicker extends Component {
     renderDay: undefined,
     utils: defaultUtils,
     ampm: true,
+    shouldDisableDate: undefined,
+    animateYearScrolling: false,
   }
 
   state = {
@@ -55,7 +60,7 @@ export class DateTimePicker extends Component {
     meridiemMode: this.props.date.hours() >= 12 ? 'pm' : 'am',
   }
 
-  onChange = nextView => (time, isFinish = true) => {
+  onChange = (time, isFinish = true, nextView) => {
     this.handleChange(time);
 
     if (isFinish && this.props.autoSubmit) {
@@ -79,6 +84,18 @@ export class DateTimePicker extends Component {
     this.props.onChange(withMeridiem, isFinish);
   }
 
+  handleYearChange = (date, isFinish) => {
+    this.onChange(date, isFinish, viewType.DATE);
+  }
+
+  handleDayChange = (date, isFinish) => {
+    this.onChange(date, isFinish, viewType.HOUR);
+  }
+
+  handleHourChange = (time, isFinish) => {
+    this.onChange(time, isFinish, viewType.MINUTES);
+  }
+
   render() {
     const { openView, meridiemMode } = this.state;
     const {
@@ -86,6 +103,7 @@ export class DateTimePicker extends Component {
       minDate,
       maxDate,
       showTabs,
+      disablePast,
       disableFuture,
       leftArrowIcon,
       rightArrowIcon,
@@ -94,10 +112,12 @@ export class DateTimePicker extends Component {
       renderDay,
       utils,
       ampm,
+      shouldDisableDate,
+      animateYearScrolling,
     } = this.props;
 
     return (
-      <div>
+      <Fragment>
         <DatetimePickerHeader
           date={date}
           openView={openView}
@@ -123,9 +143,11 @@ export class DateTimePicker extends Component {
             date={date}
             minDate={minDate}
             maxDate={maxDate}
-            onChange={this.onChange(viewType.DATE)}
+            onChange={this.handleYearChange}
+            disablePast={disablePast}
             disableFuture={disableFuture}
             utils={utils}
+            animateYearScrolling={animateYearScrolling}
           />
         </View>
 
@@ -134,12 +156,14 @@ export class DateTimePicker extends Component {
             date={date}
             minDate={minDate}
             maxDate={maxDate}
-            onChange={this.onChange(viewType.HOUR)}
+            onChange={this.handleDayChange}
+            disablePast={disablePast}
             disableFuture={disableFuture}
             leftArrowIcon={leftArrowIcon}
             rightArrowIcon={rightArrowIcon}
             renderDay={renderDay}
             utils={utils}
+            shouldDisableDate={shouldDisableDate}
           />
         </View>
 
@@ -147,7 +171,7 @@ export class DateTimePicker extends Component {
           <HourView
             date={date}
             meridiemMode={meridiemMode}
-            onChange={this.onChange(viewType.MINUTES)}
+            onChange={this.handleHourChange}
             utils={utils}
             ampm={ampm}
           />
@@ -160,13 +184,9 @@ export class DateTimePicker extends Component {
             utils={utils}
           />
         </View>
-      </div>
+      </Fragment>
     );
   }
 }
 
-const styles = () => ({
-
-});
-
-export default withStyles(styles)(DateTimePicker);
+export default DateTimePicker;

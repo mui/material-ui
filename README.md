@@ -24,6 +24,7 @@ If you dont want to use icon font, or you are already use `material-ui-icons` yo
 * rightArrowIcon - arrow right for datepicker
 * dateRangeIcon - date tab icon for datetimepicker
 * timeIcon - time tab icon for datetimepicker
+* keyboardIcon - icon for keyboard end adornmentic
  
 ### Usage
 Here is a quick example of how to use this package
@@ -78,6 +79,8 @@ class App extends Component {
 ### Props documentation
 Here is a list of available props
 
+**Note:** Any prop not recognized by the pickers and their sub-components are passed down to material-ui [TextField](https://material-ui-next.com/api/text-field/#props) component.
+
 #### Datepicker
 * date - string, number, Date object, Moment object ([anything](https://momentjs.com/docs/#/parsing/), that can be parsed by moment)
 
@@ -86,6 +89,7 @@ Prop | Type | Default | Definition
 value | date | new Date() | Datepicker value
 format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept date on selection
+disablePast | boolean | false | Disable past dates
 disableFuture | boolean | false | Disable future dates
 animateYearScrolling | boolean | false | Will animate year selection (note that will work for browser supports scrollIntoView api)
 openToYearSelection | boolean | false | Open datepicker from year selection
@@ -93,11 +97,21 @@ minDate | date | '1900-01-01' | Minimum selectable date
 maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
-invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
-labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
-renderDay | fund | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
+invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
+emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
+okLabel | string | 'OK' | The label for the ok button
+cancelLabel | string | 'Cancel' | The label for the cancel button
+clearLabel | string | 'Clear' | The label for the clear button
+labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
+renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
+shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
+keyboard | boolean | false | Allow to manual input date to the text field
+keyboardIcon | react node, string | 'event' | Keyboard adornment icon
+mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
+clearable | boolean | false | If `true`, clear button will be displayed
+TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 
 #### Timepicker
 Prop | Type | Default | Definition
@@ -107,9 +121,18 @@ format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept time on selection
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
-invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
-labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
+invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
+emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
+okLabel | string | 'OK' | The label for the ok button
+cancelLabel | string | 'Cancel' | The label for the cancel button
+clearLabel | string | 'Clear' | The label for the clear button
+labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 ampm | boolean | true | 12h/24h view for hour selection clock
+keyboard | boolean | false | Allow to manual input date to the text field
+keyboardIcon | react node, string | 'event' | Keyboard adornment icon
+mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
+clearable | boolean | false | If `true`, clear button will be displayed
+TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 
 #### DateTimepicker
 Prop | Type | Default | Definition
@@ -118,6 +141,8 @@ value | date | new Date() | Timepicker value
 format | string | 'MMMM Do hh:mm a' | Moment format string for input
 autoOk | boolean | false | Auto accept time on selection
 autoSubmit | boolean | true | On change show next time input (year -> date -> hour -> minute)
+disablePast | boolean | false | Disable past dates
+disableFuture | boolean | false | Disable future dates
 showTabs | boolean | false | Show date/time tabs
 openTo | one of 'year', 'date', 'hour', 'minutes' | 'date' | Open to particular view
 animateYearScrolling | boolean | false | Will animate year selection
@@ -125,14 +150,25 @@ minDate | date | '1900-01-01' | Minimum selectable date
 maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChangeg
-invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
-labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`
-renderDay | fund | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
+invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
+emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
+okLabel | string | 'OK' | The label for the ok button
+cancelLabel | string | 'Cancel' | The label for the cancel button
+clearLabel | string | 'Clear' | The label for the clear button
+labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
+renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 dateRangeIcon | react node, string | 'date_range'| Date tab icon 
 timeIcon | react node, string | 'access_time'| Time tab icon
 ampm | boolean | true | 12h/24h view for hour selection clock
+shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
+keyboard | boolean | false | Allow to manual input date to the text field
+keyboardIcon | react node, string | 'event' | Keyboard adornment icon
+invalidDateMessage | string | 'Invalid Date Format' | Message, appearing when date cannot be parsed
+mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
+clearable | boolean | false | If `true`, clear button will be displayed
+TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 
 ### l10n
 For l10n texts we're currently relying on moment which is stateful. To change the locale you have to import your langauge specific files an change the locale manually via `moment.locale(language)`.
@@ -145,7 +181,14 @@ moment.locale('fr')
 
 ### Jalali Calendar
 We are fully supporting Jalali calendar system and [right-to-left](https://material-ui-next.com/guides/right-to-left/) material-ui api. Special thanks to @alitaheri.
-Here is a little example of how to use it 
+Here is a little example of how to use it
+
+Don't forget to install [material-ui-pickers-jalali-utils](https://github.com/alitaheri/material-ui-pickers-jalali-utils).
+
+```sh
+npm install material-ui-pickers-jalali-utils
+```
+
 ```jsx
 import { TimePicker, DateTimePicker, DatePicker } from 'material-ui-pickers';
 import jalaliUtils from 'material-ui-pickers-jalali-utils';
@@ -155,7 +198,7 @@ jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
 <DateTimePicker
   okLabel="تأیید"
   cancelLabel="لغو"
-  labelFunc={date => jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
+  labelFunc={date => date === null ? '' : jMoment(date).format('jYYYY/jMM/jDD hh:mm A')}
   value={selectedDate}
   onChange={this.handleDateChange}
   utils={jalaliUtils}

@@ -45,10 +45,12 @@ export default class TimePickerWrapper extends PickerBase {
 
     return (
       <ModalWrapper
-        ref={(node) => { this.wrapper = node; }}
+        ref={this.getRef}
         value={value}
         format={this.getFormat()}
+        onClear={this.handleClear}
         onAccept={this.handleAccept}
+        onChange={this.handleTextFieldChange}
         onDismiss={this.handleDismiss}
         invalidLabel={invalidLabel}
         {...other}

@@ -61,7 +61,7 @@ class Demo extends Component {
 
             <a href="https://github.com/dmtrKovalenko/material-ui-pickers">
               <IconButton>
-                <Github color="white" />
+                <Github color="contrast" />
               </IconButton>
             </a>
           </Toolbar>

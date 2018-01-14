@@ -1,19 +1,19 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import { withStyles, IconButton } from "material-ui";
+import withStyles from "material-ui/styles/withStyles";
 
 import Moment from "moment";
 import { extendMoment } from "moment-range";
-import classnames from "classnames";
 import CalendarHeader from "./CalendarHeader";
 import DomainPropTypes from "../constants/prop-types";
 import * as defaultUtils from "../utils/utils";
-
-// dependencies of material-ui
-import EventListener from 'react-event-listener';
-import keycode from 'keycode';
+import DayWrapper from "./DayWrapper";
+import Day from "./Day";
 
 const moment = extendMoment(Moment);
+
+import EventListener from 'react-event-listener';
+import keycode from 'keycode';
 
 export class Calendar extends Component {
   static propTypes = {
@@ -22,21 +22,25 @@ export class Calendar extends Component {
     maxDate: DomainPropTypes.date,
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
-    utils: PropTypes.object
+    utils: PropTypes.object,
+    shouldDisableDate: PropTypes.func
   };
 
   static defaultProps = {
     minDate: "1900-01-01",
     maxDate: "2100-01-01",
+    disablePast: false,
     disableFuture: false,
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
     renderDay: undefined,
-    utils: defaultUtils
+    utils: defaultUtils,
+    shouldDisableDate: () => false
   };
 
   state = {
@@ -68,9 +72,12 @@ export class Calendar extends Component {
   };
 
   shouldDisableDate = day => {
-    const { disableFuture } = this.props;
+    const { disablePast, disableFuture, shouldDisableDate } = this.props;
     return (
-      (disableFuture && day.isAfter(moment())) || this.validateMinMaxDate(day)
+      (disableFuture && day.isAfter(moment(), "day")) ||
+      (disablePast && day.isBefore(moment(), "day")) ||
+      this.validateMinMaxDate(day) ||
+      shouldDisableDate(day)
     );
   };
 
@@ -118,33 +125,31 @@ export class Calendar extends Component {
         return;
     }
 
-    // if event was handled, prevent other side-effects (e.g. page scroll)
+    // if event was handled prevent other side effects (e.g. page scroll)
     event.preventDefault();
   };
 
   renderDays = week => {
-    const { classes, date, renderDay, utils } = this.props;
+    const { date, renderDay, utils } = this.props;
 
     const selectedDate = date.clone().startOf("day");
     const currentMonthNumber = utils.getMonthNumber(this.state.currentMonth);
+    const now = moment();
 
     return week.map(day => {
-      // should be applied both for wrapper and button
-      const disabledClass = classnames({
-        [classes.disabled]: this.shouldDisableDate(day)
-      });
+      const disabled = this.shouldDisableDate(day);
       const dayInCurrentMonth =
         utils.getMonthNumber(day) === currentMonthNumber;
 
-      const dayClass = classnames(classes.day, disabledClass, {
-        [classes.hidden]: !dayInCurrentMonth,
-        [classes.selected]: selectedDate.isSame(day, "day")
-      });
-
       let dayComponent = (
-        <IconButton className={dayClass}>
-          <span> {utils.getDayText(day)} </span>
-        </IconButton>
+        <Day
+          current={day.isSame(now, "day")}
+          hidden={!dayInCurrentMonth}
+          disabled={disabled}
+          selected={selectedDate.isSame(day, "day")}
+        >
+          {utils.getDayText(day)}
+        </Day>
       );
 
       if (renderDay) {
@@ -157,25 +162,31 @@ export class Calendar extends Component {
       }
 
       return (
-        <div
+        <DayWrapper
           key={day.toString()}
-          onClick={(dayInCurrentMonth && (event => this.onDateSelect(day))) || null}
-          onKeyPress={(dayInCurrentMonth && (event => this.onDateSelect(day))) || null}
-          className={disabledClass}
-          role="presentation"
+          value={day}
+          dayInCurrentMonth={dayInCurrentMonth}
+          disabled={disabled}
+          onSelect={this.onDateSelect}
         >
           {dayComponent}
-        </div>
+        </DayWrapper>
       );
     });
   };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      currentMonth: this.props.utils.getStartOfMonth(nextProps.date)
+    })
+  }
 
   render() {
     const { currentMonth } = this.state;
     const { classes, utils } = this.props;
 
     return (
-      <div className={classes.container}>
+      <Fragment>
         <EventListener target="window" onKeyDown={this.handleKeyDown} />
 
         <CalendarHeader
@@ -187,33 +198,15 @@ export class Calendar extends Component {
         />
 
         <div className={classes.calendar}>{this.renderWeeks()}</div>
-      </div>
+      </Fragment>
     );
   }
 }
 
 const styles = theme => ({
   calendar: {
-    marginTop: 5
-  },
-  hidden: {
-    opacity: 0,
-    pointerEvents: "none"
-  },
-  day: {
-    width: 36,
-    height: 36,
-    fontSize: 14,
-    margin: "0 2px",
-    color: theme.palette.text.primary
-  },
-  selected: {
-    color: theme.palette.primary[700],
-    backgroundColor: theme.palette.primary[200]
-  },
-  disabled: {
-    pointerEvents: "none",
-    color: theme.palette.text.hint
+    height: 36 * 6,
+    marginTop: theme.spacing.unit * 1.5
   },
   week: {
     display: "flex",

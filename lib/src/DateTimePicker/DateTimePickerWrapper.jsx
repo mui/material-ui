@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import classnames from 'classnames';
-import { withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
 
 import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
@@ -33,6 +32,8 @@ export class DateTimePickerWrapper extends PickerBase {
     labelFunc: PropTypes.func,
     utils: PropTypes.object,
     ampm: PropTypes.bool,
+    shouldDisableDate: PropTypes.func,
+    animateYearScrolling: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -55,6 +56,8 @@ export class DateTimePickerWrapper extends PickerBase {
     labelFunc: undefined,
     utils: defaultUtils,
     ampm: true,
+    shouldDisableDate: undefined,
+    animateYearScrolling: false,
   }
 
   default12hFormat = 'MMMM Do hh:mm a'
@@ -72,6 +75,7 @@ export class DateTimePickerWrapper extends PickerBase {
       maxDate,
       showTabs,
       autoSubmit,
+      disablePast,
       disableFuture,
       returnMoment,
       invalidLabel,
@@ -83,19 +87,21 @@ export class DateTimePickerWrapper extends PickerBase {
       labelFunc,
       utils,
       ampm,
+      shouldDisableDate,
+      animateYearScrolling,
       ...other
     } = this.props;
 
-    const dialogClassName = classnames(classes.dialogContent, { [classes.noTabs]: !showTabs });
-
     return (
       <ModalWrapper
-        ref={(node) => { this.wrapper = node; }}
+        ref={this.getRef}
         value={value}
         format={this.getFormat()}
         onAccept={this.handleAccept}
+        onChange={this.handleTextFieldChange}
         onDismiss={this.handleDismiss}
-        dialogContentClassName={dialogClassName}
+        onClear={this.handleClear}
+        dialogContentClassName={classes.dialogContent}
         invalidLabel={invalidLabel}
         labelFunc={labelFunc}
         {...other}
@@ -105,6 +111,7 @@ export class DateTimePickerWrapper extends PickerBase {
           openTo={openTo}
           autoSubmit={autoSubmit}
           onChange={this.handleChange}
+          disablePast={disablePast}
           disableFuture={disableFuture}
           minDate={minDate}
           maxDate={maxDate}
@@ -116,6 +123,8 @@ export class DateTimePickerWrapper extends PickerBase {
           renderDay={renderDay}
           utils={utils}
           ampm={ampm}
+          shouldDisableDate={shouldDisableDate}
+          animateYearScrolling={animateYearScrolling}
         />
       </ModalWrapper>
     );
@@ -124,11 +133,7 @@ export class DateTimePickerWrapper extends PickerBase {
 
 const styles = {
   dialogContent: {
-    height: 470,
     width: 310,
-  },
-  noTabs: {
-    height: 422,
   },
 };
 
