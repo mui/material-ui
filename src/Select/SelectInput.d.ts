@@ -11,8 +11,9 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
   native: boolean;
   onBlur?: React.FocusEventHandler<any>;
   onChange?: (event: React.ChangeEvent<{}>, child: React.ReactNode) => void;
-  onToggle?: (event: React.ChangeEvent<{}>, open?: Boolean) => void;
+  onClose?: (event: React.ChangeEvent<{}>) => void;
   onFocus?: React.FocusEventHandler<any>;
+  onOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
   readOnly?: boolean;
   renderValue?: (value: SelectInputProps['value']) => React.ReactNode;

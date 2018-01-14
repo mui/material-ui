@@ -22,7 +22,11 @@ class SelectInput extends React.Component {
 
   update = this.isControlled
     ? ({ event, open, anchorEl }) => {
-        this.props.onToggle(event, open);
+        if (open) {
+          this.props.onOpen(event);
+        } else {
+          this.props.onClose(event);
+        }
         this.setState({ anchorEl });
       }
     : ({ open, anchorEl }) => this.setState({ open, anchorEl });
@@ -136,8 +140,9 @@ class SelectInput extends React.Component {
       native,
       onBlur,
       onChange,
+      onClose,
       onFocus,
-      onToggle,
+      onOpen,
       open,
       readOnly,
       renderValue,
@@ -363,26 +368,28 @@ SelectInput.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * Callback fired when the component requests to be closed.
+   * Useful in controlled mode (see open).
+   *
+   * @param {object} event The event source of the callback
+   */
+  onClose: PropTypes.func,
+  /**
    * @ignore
    */
   onFocus: PropTypes.func,
   /**
-   * Callback fired when the component requests to be closed.
-   * Useful in controlled mode (see open)
+   * Callback fired when the component requests to be opened.
+   * Useful in controlled mode (see open).
    *
    * @param {object} event The event source of the callback
-   * @param {boolean} force optional argument to force the open or close behavior
    */
-  onToggle: PropTypes.func,
+  onOpen: PropTypes.func,
   /**
-   * Control `select` open state
+   * Control `select` open state.
    * You can only use it when the `native` property is `false` (default).
    */
   open: PropTypes.bool,
-  /**
-   * Render the selected value.
-   * You can only use it when the `native` property is `false` (default).
-   */
   /**
    * @ignore
    */

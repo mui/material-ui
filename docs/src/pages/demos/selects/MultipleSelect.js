@@ -7,8 +7,6 @@ import { FormControl } from 'material-ui/Form';
 import { ListItemText } from 'material-ui/List';
 import Select from 'material-ui/Select';
 import Checkbox from 'material-ui/Checkbox';
-import IconButton from 'material-ui/IconButton';
-import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   container: {
@@ -60,8 +58,6 @@ class MultipleSelect extends React.Component {
   state = {
     name: [],
     tag: new Set(), // immutableJS would be better in a real app
-    nameWithClose: [],
-    open: false, // managed state for the third select
   };
 
   handleNameChange = event => {
@@ -102,7 +98,6 @@ class MultipleSelect extends React.Component {
             ))}
           </Select>
         </FormControl>
-
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="tag-multiple">Tag</InputLabel>
           <Select
@@ -119,40 +114,6 @@ class MultipleSelect extends React.Component {
                 <ListItemText primary={tag} />
               </MenuItem>
             ))}
-          </Select>
-        </FormControl>
-
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="name-close-multiple">Name</InputLabel>
-          <Select
-            multiple
-            open={this.state.open}
-            value={this.state.nameWithClose}
-            onChange={e => this.setState({ nameWithClose: e.target.value })}
-            onToggle={(e, open = !this.state.open) => this.setState({ open })}
-            input={<Input id="name-close-multiple" />}
-            renderValue={selected => selected.filter(x => x).join(', ')}
-            MenuProps={MenuProps}
-          >
-            {[
-              <MenuItem key="_x" style={{ background: 'transparent' }}>
-                <Typography type="caption">controlled</Typography>
-                <IconButton
-                  aria-label="Close"
-                  color="inherit"
-                  style={{ marginLeft: 'auto' }}
-                  onClick={() => this.setState({ open: false })}
-                >
-                  close
-                </IconButton>
-              </MenuItem>,
-            ].concat(
-              names.map(name => (
-                <MenuItem key={name} value={name}>
-                  {name}
-                </MenuItem>
-              )),
-            )}
           </Select>
         </FormControl>
       </div>

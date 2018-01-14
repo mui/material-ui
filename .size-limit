@@ -7,7 +7,7 @@
   {
     "name": "The size of the whole library.",
     "path": "build/index.js",
-    "limit": "96 KB"
+    "limit": "96.1 KB"
   },
   {
     "name": "The main bundle of the documentation",
