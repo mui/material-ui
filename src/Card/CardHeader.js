@@ -50,7 +50,7 @@ function CardHeader(props) {
           <Typography
             type={avatar ? 'body2' : 'body1'}
             component="span"
-            color="secondary"
+            color="textSecondary"
             className={classes.subheader}
           >
             {subheader}

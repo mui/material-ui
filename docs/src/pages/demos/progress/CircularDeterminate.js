@@ -22,10 +22,15 @@ function CircularDeterminate(props) {
         min={0}
         max={50}
       />
-      <CircularProgress className={classes.progress} color="accent" mode="determinate" value={75} />
       <CircularProgress
         className={classes.progress}
-        color="accent"
+        color="secondary"
+        mode="determinate"
+        value={75}
+      />
+      <CircularProgress
+        className={classes.progress}
+        color="secondary"
         size={50}
         mode="determinate"
         value={25}

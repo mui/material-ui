@@ -63,13 +63,13 @@ const FakeIcon = () => <div>ICON</div>;
 const AppBarTest = () => (
   <AppBar position="static">
     <Toolbar>
-      <IconButton color="contrast" aria-label="Menu">
+      <IconButton color="inherit" aria-label="Menu">
         <FakeIcon />
       </IconButton>
       <Typography type="title" color="inherit">
         Title
       </Typography>
-      <Button color="contrast">Login</Button>
+      <Button color="inherit">Login</Button>
     </Toolbar>
   </AppBar>
 );
@@ -99,7 +99,7 @@ const BottomNavigationTest = () => {
 const ButtonTest = () => (
   <div>
     <Button>I am a button!</Button>
-    <Button color="contrast">Contrast</Button>
+    <Button color="inherit">Contrast</Button>
     <Button disabled>Disabled</Button>
     <Button href="#flat-buttons">Link</Button>
     <Button dense>Dense</Button>
@@ -123,10 +123,10 @@ const IconButtonTest = () => (
     <IconButton aria-label="Delete" disabled>
       <FakeIcon />
     </IconButton>
-    <IconButton color="accent" aria-label="Add an alarm">
+    <IconButton color="secondary" aria-label="Add an alarm">
       <FakeIcon />
     </IconButton>
-    <IconButton color="contrast" aria-label="Add to shopping cart">
+    <IconButton color="inherit" aria-label="Add to shopping cart">
       <FakeIcon />
     </IconButton>
     <IconButton color="primary" aria-label="Add to shopping cart">
@@ -419,15 +419,15 @@ const CircularProgessTest = () => (
   <div>
     <CircularProgress />
     <CircularProgress size={50} />
-    <CircularProgress color="accent" />
-    <CircularProgress color="accent" size={50} />
+    <CircularProgress color="secondary" />
+    <CircularProgress color="secondary" size={50} />
   </div>
 );
 
 const LinearProgressTest = () => (
   <div>
     <LinearProgress mode="determinate" value={12} />
-    <LinearProgress color="accent" mode="determinate" value={76} />
+    <LinearProgress color="secondary" mode="determinate" value={76} />
   </div>
 );
 
@@ -508,7 +508,7 @@ const SnackbarTest = () => (
       }}
       message={<span id="message-id">Note archived</span>}
       action={[
-        <Button key="undo" color="accent" dense onClick={event => log(event)}>
+        <Button key="undo" color="secondary" dense onClick={event => log(event)}>
           UNDO
         </Button>,
         <IconButton key="close" aria-label="Close" color="inherit" onClick={event => log(event)}>
@@ -521,7 +521,7 @@ const SnackbarTest = () => (
 
 const SnackbarContentTest = () => {
   const action = (
-    <Button color="accent" dense>
+    <Button color="secondary" dense>
       lorem ipsum dolorem
     </Button>
   );

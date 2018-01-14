@@ -3,14 +3,13 @@ import { StandardProps, PropTypes } from '..';
 
 export interface IconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, IconClassKey> {
-  color?: PropTypes.Color | 'action' | 'contrast' | 'disabled' | 'error';
+  color?: PropTypes.Color | 'action' | 'disabled' | 'error';
 }
 
 export type IconClassKey =
   | 'root'
-  | 'colorAccent'
+  | 'colorSecondary'
   | 'colorAction'
-  | 'colorContrast'
   | 'colorDisabled'
   | 'colorError'
   | 'colorPrimary';

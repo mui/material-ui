@@ -5,7 +5,7 @@ import { Style, TextStyle } from '../styles/createTypography';
 export interface TypographyProps
   extends StandardProps<React.HTMLAttributes<HTMLElement>, TypographyClassKey> {
   align?: PropTypes.Alignment;
-  color?: PropTypes.Color | 'secondary' | 'error';
+  color?: PropTypes.Color | 'textSecondary' | 'error';
   component?: React.ReactType<TypographyProps>;
   gutterBottom?: boolean;
   headlineMapping?: { [type in TextStyle]: string };
@@ -36,7 +36,7 @@ export type TypographyClassKey =
   | 'paragraph'
   | 'colorInherit'
   | 'colorSecondary'
-  | 'colorAccent';
+  | 'colorTextSecondary';
 
 declare const Typography: React.ComponentType<TypographyProps>;
 

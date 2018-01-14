@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 
 const SIZE = 50;
 
@@ -14,10 +15,10 @@ export const styles = theme => ({
   root: {
     display: 'inline-block',
   },
-  primaryColor: {
+  colorPrimary: {
     color: theme.palette.primary.main,
   },
-  accentColor: {
+  colorSecondary: {
     color: theme.palette.secondary.light,
   },
   svgIndeterminate: {
@@ -92,7 +93,9 @@ function CircularProgress(props) {
     <div
       className={classNames(
         classes.root,
-        color !== 'inherit' && classes[`${color}Color`],
+        {
+          [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+        },
         className,
       )}
       style={{ width: size, height: size, ...style }}
@@ -135,7 +138,7 @@ CircularProgress.propTypes = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['primary', 'accent', 'inherit']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
    * The max value of progress in determinate mode.
    */

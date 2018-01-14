@@ -16,7 +16,7 @@ function LinearQuery(props) {
     <div className={classes.root}>
       <LinearProgress mode="query" />
       <br />
-      <LinearProgress color="accent" mode="query" />
+      <LinearProgress color="secondary" mode="query" />
     </div>
   );
 }

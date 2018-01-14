@@ -37,7 +37,7 @@ export const styles = theme => ({
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
   },
-  colorAccent: {
+  colorSecondary: {
     backgroundColor: theme.palette.secondary.light,
     color: theme.palette.getContrastText(theme.palette.secondary.light),
   },
@@ -78,7 +78,7 @@ Badge.propTypes = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['default', 'primary', 'accent']),
+  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
 };
 
 Badge.defaultProps = {

@@ -187,7 +187,7 @@ class PersistentDrawer extends React.Component {
           >
             <Toolbar disableGutters={!open}>
               <IconButton
-                color="contrast"
+                color="inherit"
                 aria-label="open drawer"
                 onClick={this.handleDrawerOpen}
                 className={classNames(classes.menuButton, open && classes.hide)}

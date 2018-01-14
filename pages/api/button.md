@@ -14,7 +14,7 @@ filename: /src/Button/Button.js
 |:-----|:-----|:--------|:------------|
 | <span style="color: #31a148">children *</span> | node |  | The content of the button. |
 | classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'default', 'inherit', 'primary', 'accent', 'contrast'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
+| color | enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
 | component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
 | dense | bool | false | Uses a smaller minWidth, ideal for things like card actions. |
 | disabled | bool | false | If `true`, the button will be disabled. |
@@ -36,14 +36,12 @@ This property accepts the following keys:
 - `dense`
 - `label`
 - `flatPrimary`
-- `flatAccent`
-- `flatContrast`
+- `flatSecondary`
 - `colorInherit`
 - `raised`
 - `keyboardFocused`
 - `raisedPrimary`
-- `raisedAccent`
-- `raisedContrast`
+- `raisedSecondary`
 - `disabled`
 - `fab`
 - `mini`

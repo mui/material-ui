@@ -19,29 +19,17 @@ describe('<CircularProgress />', () => {
 
   it('should render with the primary color by default', () => {
     const wrapper = shallow(<CircularProgress />);
-    assert.strictEqual(
-      wrapper.hasClass(classes.primaryColor),
-      true,
-      'should have the primaryColor class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
   });
 
   it('should render with the primary color', () => {
     const wrapper = shallow(<CircularProgress color="primary" />);
-    assert.strictEqual(
-      wrapper.hasClass(classes.primaryColor),
-      true,
-      'should have the primaryColor class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
   });
 
-  it('should render with the accent color', () => {
-    const wrapper = shallow(<CircularProgress color="accent" />);
-    assert.strictEqual(
-      wrapper.hasClass(classes.accentColor),
-      true,
-      'should have the accentColor class',
-    );
+  it('should render with the secondary color', () => {
+    const wrapper = shallow(<CircularProgress color="secondary" />);
+    assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
   });
 
   it('should render with the user and root classes', () => {

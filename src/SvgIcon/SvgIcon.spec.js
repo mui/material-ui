@@ -56,13 +56,9 @@ describe('<SvgIcon />', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the SvgIcon class');
     });
 
-    it('should render with the accent color', () => {
-      const wrapper = shallow(<SvgIcon color="accent">{path}</SvgIcon>);
-      assert.strictEqual(
-        wrapper.hasClass(classes.colorAccent),
-        true,
-        'should have the "accent" color',
-      );
+    it('should render with the secondary color', () => {
+      const wrapper = shallow(<SvgIcon color="secondary">{path}</SvgIcon>);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
     });
 
     it('should render with the action color', () => {
@@ -71,15 +67,6 @@ describe('<SvgIcon />', () => {
         wrapper.hasClass(classes.colorAction),
         true,
         'should have the "action" color',
-      );
-    });
-
-    it('should render with the contrast color', () => {
-      const wrapper = shallow(<SvgIcon color="contrast">{path}</SvgIcon>);
-      assert.strictEqual(
-        wrapper.hasClass(classes.colorContrast),
-        true,
-        'should have the "contrast" color',
       );
     });
 

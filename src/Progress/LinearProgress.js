@@ -27,13 +27,13 @@ export const styles = theme => ({
     backgroundSize: '10px 10px',
     backgroundPosition: '0px -23px',
   },
-  accentColor: {
+  secondaryColor: {
     backgroundColor: lighten(theme.palette.secondary.light, 0.4),
   },
-  accentColorBar: {
+  secondaryColorBar: {
     backgroundColor: theme.palette.secondary.main,
   },
-  accentDashed: {
+  secondaryDashed: {
     background: `radial-gradient(${lighten(theme.palette.secondary.light, 0.4)} 0%, ${lighten(
       theme.palette.secondary.light,
       0.6,
@@ -84,14 +84,6 @@ export const styles = theme => ({
   bufferBar1: {
     zIndex: 1,
     transition: `transform .${TRANSITION_DURATION}s linear`,
-  },
-  bufferBar2Primary: {
-    transition: `transform .${TRANSITION_DURATION}s linear`,
-    backgroundColor: lighten(theme.palette.primary.light, 0.6),
-  },
-  bufferBar2Accent: {
-    transition: `transform .${TRANSITION_DURATION}s linear`,
-    backgroundColor: lighten(theme.palette.secondary.light, 0.4),
   },
   // Legends:
   // || represents the viewport
@@ -150,14 +142,14 @@ function LinearProgress(props) {
 
   const dashedClass = classNames(classes.dashed, {
     [classes.primaryDashed]: color === 'primary',
-    [classes.accentDashed]: color === 'accent',
+    [classes.secondaryDashed]: color === 'secondary',
   });
 
   const rootClassName = classNames(
     classes.root,
     {
       [classes.primaryColor]: color === 'primary',
-      [classes.accentColor]: color === 'accent',
+      [classes.secondaryColor]: color === 'secondary',
       [classes.rootBuffer]: mode === 'buffer',
       [classes.rootQuery]: mode === 'query',
     },
@@ -165,7 +157,7 @@ function LinearProgress(props) {
   );
   const primaryClassName = classNames(classes.bar, {
     [classes.primaryColorBar]: color === 'primary',
-    [classes.accentColorBar]: color === 'accent',
+    [classes.secondaryColorBar]: color === 'secondary',
     [classes.indeterminateBar1]: mode === 'indeterminate' || mode === 'query',
     [classes.determinateBar1]: mode === 'determinate',
     [classes.bufferBar1]: mode === 'buffer',
@@ -174,8 +166,8 @@ function LinearProgress(props) {
     [classes.bufferBar2]: mode === 'buffer',
     [classes.primaryColorBar]: color === 'primary' && mode !== 'buffer',
     [classes.primaryColor]: color === 'primary' && mode === 'buffer',
-    [classes.accentColorBar]: color === 'accent' && mode !== 'buffer',
-    [classes.accentColor]: color === 'accent' && mode === 'buffer',
+    [classes.secondaryColorBar]: color === 'secondary' && mode !== 'buffer',
+    [classes.secondaryColor]: color === 'secondary' && mode === 'buffer',
     [classes.indeterminateBar2]: mode === 'indeterminate' || mode === 'query',
   });
   const inlineStyles = { primary: {}, secondary: {} };
@@ -228,7 +220,7 @@ LinearProgress.propTypes = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['primary', 'accent']),
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The mode of show your progress, indeterminate
    * for when there is no value for progress.

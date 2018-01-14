@@ -38,9 +38,9 @@ describe('<Tab />', () => {
 
   describe('prop: selected', () => {
     it('should render with the selected and root classes', () => {
-      const wrapper = shallow(<Tab selected textColor="accent" />);
-      assert.strictEqual(wrapper.hasClass(classes.rootAccentSelected), true);
-      assert.strictEqual(wrapper.hasClass(classes.rootAccent), true);
+      const wrapper = shallow(<Tab selected textColor="secondary" />);
+      assert.strictEqual(wrapper.hasClass(classes.rootSecondarySelected), true);
+      assert.strictEqual(wrapper.hasClass(classes.rootSecondary), true);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.props()['aria-selected'], true);
     });
@@ -48,9 +48,9 @@ describe('<Tab />', () => {
 
   describe('prop: disabled', () => {
     it('should render with the disabled and root classes', () => {
-      const wrapper = shallow(<Tab disabled textColor="accent" />);
-      assert.strictEqual(wrapper.hasClass(classes.rootAccentDisabled), true);
-      assert.strictEqual(wrapper.hasClass(classes.rootAccent), true);
+      const wrapper = shallow(<Tab disabled textColor="secondary" />);
+      assert.strictEqual(wrapper.hasClass(classes.rootSecondaryDisabled), true);
+      assert.strictEqual(wrapper.hasClass(classes.rootSecondary), true);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
   });

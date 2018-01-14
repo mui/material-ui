@@ -13,7 +13,7 @@ export type AppBarClassKey =
   | 'positionStatic'
   | 'colorDefault'
   | 'colorPrimary'
-  | 'colorAccent';
+  | 'colorSecondary';
 
 declare const AppBar: React.ComponentType<AppBarProps>;
 

@@ -67,8 +67,8 @@ describe('<ListItemText />', () => {
       assert.strictEqual(wrapper.childAt(0).props().type, 'body1');
       assert.strictEqual(
         wrapper.childAt(0).props().color,
-        'secondary',
-        'should have the secondary property',
+        'textSecondary',
+        'should have the text secondary property',
       );
       assert.strictEqual(
         wrapper
@@ -107,7 +107,7 @@ describe('<ListItemText />', () => {
 
       assert.strictEqual(wrapper.childAt(1).type(), Typography);
       assert.strictEqual(wrapper.childAt(1).props().type, 'body1');
-      assert.strictEqual(wrapper.childAt(1).props().color, 'secondary');
+      assert.strictEqual(wrapper.childAt(1).props().color, 'textSecondary');
       assert.strictEqual(
         wrapper
           .childAt(1)
@@ -148,7 +148,7 @@ describe('<ListItemText />', () => {
 
     assert.strictEqual(wrapper.childAt(1).type(), Typography);
     assert.strictEqual(wrapper.childAt(1).props().type, 'body1');
-    assert.strictEqual(wrapper.childAt(1).props().color, 'secondary');
+    assert.strictEqual(wrapper.childAt(1).props().color, 'textSecondary');
     assert.strictEqual(
       wrapper
         .childAt(1)

@@ -68,7 +68,7 @@ class Index extends React.Component<ProvidedProps & Props, State> {
         <Typography type="subheading" gutterBottom>
           example project
         </Typography>
-        <Button raised color="accent" onClick={this.handleClick}>
+        <Button raised color="secondary" onClick={this.handleClick}>
           Super Secret Password
         </Button>
       </div>

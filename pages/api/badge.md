@@ -15,7 +15,7 @@ filename: /src/Badge/Badge.js
 | <span style="color: #31a148">badgeContent *</span> | node |  | The content rendered within the badge. |
 | <span style="color: #31a148">children *</span> | node |  | The badge will be added relative to this node. |
 | classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'accent'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
+| color | enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -26,7 +26,7 @@ This property accepts the following keys:
 - `root`
 - `badge`
 - `colorPrimary`
-- `colorAccent`
+- `colorSecondary`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Badge/Badge.js)

@@ -3,7 +3,7 @@ import { StandardProps, PropTypes } from '..';
 
 export interface SvgIconProps
   extends StandardProps<React.SVGProps<SVGSVGElement>, SvgIconClassKey> {
-  color?: PropTypes.Color | 'action' | 'contrast' | 'disabled' | 'error';
+  color?: PropTypes.Color | 'action' | 'disabled' | 'error';
   nativeColor?: string;
   titleAccess?: string;
   viewBox?: string;
@@ -11,9 +11,8 @@ export interface SvgIconProps
 
 export type SvgIconClassKey =
   | 'root'
-  | 'colorAccent'
+  | 'colorSecondary'
   | 'colorAction'
-  | 'colorContrast'
   | 'colorDisabled'
   | 'colorError'
   | 'colorPrimary';

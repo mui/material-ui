@@ -34,13 +34,9 @@ describe('<Icon />', () => {
       assert.strictEqual(wrapper.hasClass('meow'), true, 'should have the "meow" class');
     });
 
-    it('should render with the accent color', () => {
-      const wrapper = shallow(<Icon color="accent">account_circle</Icon>);
-      assert.strictEqual(
-        wrapper.hasClass(classes.colorAccent),
-        true,
-        'should have the "accent" color',
-      );
+    it('should render with the secondary color', () => {
+      const wrapper = shallow(<Icon color="secondary">account_circle</Icon>);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
     });
 
     it('should render with the action color', () => {
@@ -49,15 +45,6 @@ describe('<Icon />', () => {
         wrapper.hasClass(classes.colorAction),
         true,
         'should have the "action" color',
-      );
-    });
-
-    it('should render with the contrast color', () => {
-      const wrapper = shallow(<Icon color="contrast">account_circle</Icon>);
-      assert.strictEqual(
-        wrapper.hasClass(classes.colorContrast),
-        true,
-        'should have the "contrast" color',
       );
     });
 

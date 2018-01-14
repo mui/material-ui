@@ -8,7 +8,7 @@ export interface BadgeProps
   color?: PropTypes.Color;
 }
 
-export type BadgeClassKey = 'root' | 'badge' | 'colorPrimary' | 'colorAccent';
+export type BadgeClassKey = 'root' | 'badge' | 'colorPrimary' | 'colorSecondary';
 
 declare const Badge: React.ComponentType<BadgeProps>;
 

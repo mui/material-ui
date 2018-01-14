@@ -75,22 +75,15 @@ describe('<Badge />', () => {
     );
   });
 
-  it('renders children and have accent styles', () => {
+  it('renders children and have secondary styles', () => {
     const wrapper = shallow(
-      <Badge badgeContent={10} color="accent">
+      <Badge badgeContent={10} color="secondary">
         {testChildren}
       </Badge>,
     );
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
-    assert.strictEqual(
-      wrapper
-        .find('span')
-        .at(1)
-        .hasClass(classes.colorAccent),
-      true,
-      'should have accent class',
-    );
+    assert.strictEqual(wrapper.find('span').hasClass(classes.colorSecondary), true);
   });
 
   it('renders children and overwrite root styles', () => {

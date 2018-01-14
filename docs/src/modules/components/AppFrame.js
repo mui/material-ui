@@ -181,7 +181,7 @@ class AppFrame extends React.Component {
         <AppBar className={appBarClassName}>
           <Toolbar>
             <IconButton
-              color="contrast"
+              color="inherit"
               aria-label="open drawer"
               onClick={this.handleDrawerToggle}
               className={navIconClassName}
@@ -197,7 +197,7 @@ class AppFrame extends React.Component {
             <AppSearch />
             <Tooltip id="appbar-theme" title="Toggle light/dark theme" enterDelay={300}>
               <IconButton
-                color="contrast"
+                color="inherit"
                 onClick={this.handleTogglePaletteType}
                 aria-labelledby="appbar-theme"
               >
@@ -210,7 +210,7 @@ class AppFrame extends React.Component {
               enterDelay={300}
             >
               <IconButton
-                color="contrast"
+                color="inherit"
                 onClick={this.handleToggleDirection}
                 aria-labelledby="appbar-direction"
               >
@@ -224,7 +224,7 @@ class AppFrame extends React.Component {
             <Tooltip id="appbar-github" title="Material-UI GitHub repo" enterDelay={300}>
               <IconButton
                 component="a"
-                color="contrast"
+                color="inherit"
                 href="https://github.com/mui-org/material-ui"
                 aria-labelledby="appbar-github"
               >

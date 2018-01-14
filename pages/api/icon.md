@@ -14,7 +14,7 @@ filename: /src/Icon/Icon.js
 |:-----|:-----|:--------|:------------|
 | children | node |  | The name of the icon font ligature. |
 | classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'inherit', 'accent', 'action', 'contrast', 'disabled', 'error', 'primary'<br> | 'inherit' | The color of the component. It's using the theme palette when that makes sense. |
+| color | enum:&nbsp;'inherit', 'secondary', 'action', 'disabled', 'error', 'primary'<br> | 'inherit' | The color of the component. It's using the theme palette when that makes sense. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -23,9 +23,8 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `colorAccent`
+- `colorSecondary`
 - `colorAction`
-- `colorContrast`
 - `colorDisabled`
 - `colorError`
 - `colorPrimary`

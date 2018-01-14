@@ -29,9 +29,8 @@ function SvgIcons(props) {
   return (
     <div className={classes.root}>
       <HomeIcon />
-      <HomeIcon color="accent" />
+      <HomeIcon color="secondary" />
       <HomeIcon color="action" />
-      <HomeIcon color="contrast" />
       <HomeIcon color="disabled" />
       <HomeIcon
         className={classes.icon}

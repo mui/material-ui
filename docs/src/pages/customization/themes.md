@@ -76,7 +76,6 @@ palette: {
 
 This example illustrates how you could recreate the the default palette values:
 
-
 ```jsx
 import { createMuiTheme } from 'material-ui/styles';
 import indigo from 'material-ui/colors/indigo';
@@ -120,12 +119,15 @@ Note that `contrastThreshold` follows a non-linear curve.
 
 {{"demo": "pages/customization/Palette.js"}}
 
+#### Color tool
+
+Lacking imagination? The Material Design team has built an awesome [palette configuration tool](/style/color#color-tool) to help you.
+
 ### Dark/light theme
 
 You can make the theme dark by setting `type` to `dark`.
 
 {{"demo": "pages/customization/DarkTheme.js", "hideEditButton": true}}
-
 
 ### Typography
 

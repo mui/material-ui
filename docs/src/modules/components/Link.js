@@ -18,7 +18,7 @@ const styles = theme => ({
   variantPrimary: {
     color: theme.palette.primary.main,
   },
-  variantAccent: {
+  variantSecondary: {
     color: theme.palette.secondary.main,
   },
   variantButton: {
@@ -131,7 +131,7 @@ Link.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func,
   prefetch: PropTypes.bool,
-  variant: PropTypes.oneOf(['default', 'primary', 'accent', 'button']),
+  variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'button']),
 };
 
 export default withStyles(styles)(Link);

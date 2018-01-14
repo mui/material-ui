@@ -76,7 +76,7 @@ function ListItemText(props, context) {
             className={classNames(classes.secondary, {
               [classes.textDense]: dense,
             })}
-            color="secondary"
+            color="textSecondary"
           >
             {secondary}
           </Typography>

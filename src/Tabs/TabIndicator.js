@@ -13,11 +13,11 @@ export const styles = theme => ({
     transition: theme.transitions.create(),
     willChange: 'left, width',
   },
-  colorAccent: {
-    backgroundColor: theme.palette.secondary.light,
-  },
   colorPrimary: {
     backgroundColor: theme.palette.primary.main,
+  },
+  colorSecondary: {
+    backgroundColor: theme.palette.secondary.light,
   },
 });
 
@@ -26,7 +26,7 @@ export const styles = theme => ({
  */
 function TabIndicator(props) {
   const { classes, className: classNameProp, color, style: styleProp } = props;
-  const colorPredefined = ['primary', 'accent'].indexOf(color) !== -1;
+  const colorPredefined = ['primary', 'secondary'].indexOf(color) !== -1;
   const className = classNames(
     classes.root,
     {
@@ -58,7 +58,7 @@ TabIndicator.propTypes = {
    * @ignore
    * The color of the tab indicator.
    */
-  color: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf(['accent', 'primary'])]),
+  color: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf(['primary', 'secondary'])]),
   /**
    * @ignore
    * The style of the root element.

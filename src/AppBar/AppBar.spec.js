@@ -25,11 +25,7 @@ describe('<AppBar />', () => {
       true,
       'should not have the primary class',
     );
-    assert.strictEqual(
-      wrapper.hasClass(classes.colorAccent),
-      false,
-      'should not have the accent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.colorSecondary), false);
   });
 
   it('should render the custom className and the appBar class', () => {
@@ -51,26 +47,18 @@ describe('<AppBar />', () => {
       true,
       'should not have the primary class',
     );
-    assert.strictEqual(
-      wrapper.hasClass(classes.colorAccent),
-      false,
-      'should not have the accent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.colorSecondary), false);
   });
 
-  it('should render an accent app bar', () => {
-    const wrapper = shallow(<AppBar color="accent">Hello World</AppBar>);
+  it('should render an secondary app bar', () => {
+    const wrapper = shallow(<AppBar color="secondary">Hello World</AppBar>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.hasClass(classes.colorPrimary),
       false,
       'should not have the primary class',
     );
-    assert.strictEqual(
-      wrapper.hasClass(classes.colorAccent),
-      true,
-      'should not have the accent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
   });
 
   describe('Dialog', () => {

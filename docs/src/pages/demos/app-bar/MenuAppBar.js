@@ -59,7 +59,7 @@ class MenuAppBar extends React.Component {
         </FormGroup>
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
             <Typography type="title" color="inherit" className={classes.flex}>
@@ -71,7 +71,7 @@ class MenuAppBar extends React.Component {
                   aria-owns={open ? 'menu-appbar' : null}
                   aria-haspopup="true"
                   onClick={this.handleMenu}
-                  color="contrast"
+                  color="inherit"
                 >
                   <AccountCircle />
                 </IconButton>

@@ -56,6 +56,8 @@ We provide a separate NPM package,
 [material-ui-icons](https://www.npmjs.com/package/material-ui-icons),
 that includes the 900+ official material system icons: [material.io/icons](https://material.io/icons/) converted to `SvgIcon` components.
 
+[![icons](/static/images/icons/icons.png)](https://material.io/icons/#ic_alarm)
+
 Let's say you are looking for a specific icon.
 You can take advantage of the **search bar** of [material.io/icons](https://material.io/icons/) to find it.
 Keep in mind that we `PascalCase` the names of the icons, for instance:

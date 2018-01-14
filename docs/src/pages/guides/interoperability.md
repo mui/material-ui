@@ -37,10 +37,10 @@ import Button from 'material-ui/Button';
 function RawCSSButton() {
   return (
     <div>
-      <Button color="accent" raised>
+      <Button color="secondary" raised>
         Material-UI
       </Button>
-      <Button color="accent" raised className="button">
+      <Button color="secondary" raised className="button">
         Raw CSS
       </Button>
     </div>
@@ -77,7 +77,7 @@ import Button from 'material-ui/Button';
 function GlobalCSSButton() {
   return (
     <div>
-      <Button color="accent" raised>
+      <Button color="secondary" raised>
         Global CSS
       </Button>
     </div>
@@ -140,10 +140,10 @@ import Button from 'material-ui/Button';
 function CSSModulesButton() {
   return (
     <div>
-      <Button color="accent" raised>
+      <Button color="secondary" raised>
         Material-UI
       </Button>
-      <Button color="accent" raised className={styles.button}>
+      <Button color="secondary" raised className={styles.button}>
         CSS Modules
       </Button>
     </div>
@@ -174,10 +174,10 @@ const StyledButton = styled(Button)`
 function StyledComponentsButton() {
   return (
     <div>
-      <Button color="accent" raised>
+      <Button color="secondary" raised>
         Material-UI
       </Button>
-      <StyledButton color="accent" raised>
+      <StyledButton color="secondary" raised>
         Styled Components
       </StyledButton>
     </div>
@@ -212,10 +212,10 @@ const StyledButton = glamorous(Button)({
 function GlamorousButton() {
   return (
     <div>
-      <Button color="accent" raised>
+      <Button color="secondary" raised>
         Material-UI
       </Button>
-      <StyledButton color="accent" raised>
+      <StyledButton color="secondary" raised>
         Glamorous
       </StyledButton>
     </div>
@@ -259,10 +259,10 @@ const className = buttonClasses.toString();
 function GlamorButton() {
   return (
     <div>
-      <Button color="accent" raised>
+      <Button color="secondary" raised>
         Material-UI
       </Button>
-      <Button color="accent" className={className} raised>
+      <Button color="secondary" className={className} raised>
         Glamor
       </Button>
     </div>

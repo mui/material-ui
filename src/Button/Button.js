@@ -54,20 +54,10 @@ export const styles = theme => ({
       },
     },
   },
-  flatAccent: {
+  flatSecondary: {
     color: theme.palette.secondary.light,
     '&:hover': {
       backgroundColor: fade(theme.palette.secondary.light, 0.12),
-      // Reset on mouse devices
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-  },
-  flatContrast: {
-    color: theme.palette.primary.contrastText,
-    '&:hover': {
-      backgroundColor: fade(theme.palette.primary.contrastText, 0.12),
       // Reset on mouse devices
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -118,7 +108,7 @@ export const styles = theme => ({
       },
     },
   },
-  raisedAccent: {
+  raisedSecondary: {
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.light,
     '&:hover': {
@@ -128,9 +118,6 @@ export const styles = theme => ({
         backgroundColor: theme.palette.secondary.light,
       },
     },
-  },
-  raisedContrast: {
-    color: theme.palette.primary.contrastText,
   },
   disabled: {
     color: theme.palette.action.disabled,
@@ -180,11 +167,9 @@ function Button(props) {
       [classes.mini]: fab && mini,
       [classes.colorInherit]: color === 'inherit',
       [classes.flatPrimary]: flat && color === 'primary',
-      [classes.flatAccent]: flat && color === 'accent',
-      [classes.flatContrast]: flat && color === 'contrast',
+      [classes.flatSecondary]: flat && color === 'secondary',
       [classes.raisedPrimary]: !flat && color === 'primary',
-      [classes.raisedAccent]: !flat && color === 'accent',
-      [classes.raisedContrast]: !flat && color === 'contrast',
+      [classes.raisedSecondary]: !flat && color === 'secondary',
       [classes.dense]: dense,
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
@@ -221,7 +206,7 @@ Button.propTypes = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'accent', 'contrast']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

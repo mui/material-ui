@@ -22,11 +22,8 @@ function FlatButtons(props) {
       <Button color="primary" className={classes.button}>
         Primary
       </Button>
-      <Button color="accent" className={classes.button}>
-        Accent
-      </Button>
-      <Button color="contrast" className={classes.button}>
-        Contrast
+      <Button color="secondary" className={classes.button}>
+        Secondary
       </Button>
       <Button disabled className={classes.button}>
         Disabled

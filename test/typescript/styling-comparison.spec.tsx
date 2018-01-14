@@ -43,6 +43,6 @@ const DecoratedNoProps = decorate<{}>(
   },
 );
 
-const sfcElem = <DecoratedSFC text="Hello, World!" type="title" color="accent" />;
-const classElem = <DecoratedClass text="Hello, World!" type="title" color="accent" />;
+const sfcElem = <DecoratedSFC text="Hello, World!" type="title" color="secondary" />;
+const classElem = <DecoratedClass text="Hello, World!" type="title" color="secondary" />;
 const noPropsElem = <DecoratedNoProps />;

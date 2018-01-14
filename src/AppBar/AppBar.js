@@ -40,7 +40,7 @@ export const styles = theme => ({
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
   },
-  colorAccent: {
+  colorSecondary: {
     backgroundColor: theme.palette.secondary.light,
     color: theme.palette.getContrastText(theme.palette.secondary.light),
   },
@@ -82,7 +82,7 @@ AppBar.propTypes = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'accent', 'default']),
+  color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'default']),
   /**
    * The positioning type.
    */
