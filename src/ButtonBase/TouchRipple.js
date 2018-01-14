@@ -37,9 +37,6 @@ export const styles = theme => ({
     width: '100%',
     height: '100%',
     animation: `mui-ripple-pulsate 1500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
-    rippleVisible: {
-      opacity: 0.2,
-    },
   },
   '@keyframes mui-ripple-enter': {
     '0%': {

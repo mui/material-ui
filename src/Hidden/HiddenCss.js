@@ -76,7 +76,7 @@ function HiddenCss(props: Props) {
     });
   }
 
-  return <span className={className}>{children}</span>;
+  return <div className={className}>{children}</div>;
 }
 
 HiddenCss.propTypes = {
