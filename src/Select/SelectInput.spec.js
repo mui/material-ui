@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
@@ -13,7 +11,7 @@ import mockPortal from '../../test/utils/mockPortal';
 describe('<SelectInput />', () => {
   let shallow;
   let mount;
-  const props = {
+  const defaultProps = {
     classes: { select: 'select' },
     autoWidth: false,
     value: 10,
@@ -45,13 +43,13 @@ describe('<SelectInput />', () => {
   });
 
   it('should render a correct top element', () => {
-    const wrapper = shallow(<SelectInput {...props} />);
+    const wrapper = shallow(<SelectInput {...defaultProps} />);
     assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should accept invalid child', () => {
     shallow(
-      <SelectInput {...props}>
+      <SelectInput {...defaultProps}>
         {null}
         <MenuItem />
       </SelectInput>,
@@ -60,21 +58,25 @@ describe('<SelectInput />', () => {
 
   describe('prop: readOnly', () => {
     it('should not trigger any event with readOnly', () => {
-      const wrapper = shallow(<SelectInput {...props} readOnly />);
-      wrapper.find(`.${props.classes.select}`).simulate('keyDown', { which: keycode('down') });
+      const wrapper = shallow(<SelectInput {...defaultProps} readOnly />);
+      wrapper
+        .find(`.${defaultProps.classes.select}`)
+        .simulate('keyDown', { which: keycode('down') });
       assert.strictEqual(wrapper.state().open, false);
     });
   });
 
   describe('prop: MenuProps', () => {
     it('should apply additional properties to the Menu component', () => {
-      const wrapper = shallow(<SelectInput {...props} MenuProps={{ transitionDuration: 100 }} />);
+      const wrapper = shallow(
+        <SelectInput {...defaultProps} MenuProps={{ transitionDuration: 100 }} />,
+      );
       assert.strictEqual(wrapper.find(Menu).props().transitionDuration, 100);
     });
 
     it('should be able to override PaperProps minWidth', () => {
       const wrapper = shallow(
-        <SelectInput {...props} MenuProps={{ PaperProps: { style: { minWidth: 12 } } }} />,
+        <SelectInput {...defaultProps} MenuProps={{ PaperProps: { style: { minWidth: 12 } } }} />,
       );
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 12);
     });
@@ -83,28 +85,28 @@ describe('<SelectInput />', () => {
   describe('prop: displayEmpty', () => {
     it('should display the selected item even if its value is empty', () => {
       const wrapper = shallow(
-        <SelectInput {...props} value="" displayEmpty>
+        <SelectInput {...defaultProps} value="" displayEmpty>
           <MenuItem value="">Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </SelectInput>,
       );
-      assert.strictEqual(wrapper.find(`.${props.classes.select}`).props().children, 'Ten');
+      assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).props().children, 'Ten');
     });
   });
 
   describe('prop: renderValue', () => {
     it('should use the property to render the value', () => {
       const renderValue = x => String(-x);
-      const wrapper = shallow(<SelectInput {...props} renderValue={renderValue} />);
-      assert.strictEqual(wrapper.find(`.${props.classes.select}`).props().children, '-10');
+      const wrapper = shallow(<SelectInput {...defaultProps} renderValue={renderValue} />);
+      assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).props().children, '-10');
     });
   });
 
   describe('prop: native=false', () => {
     it('should provide a value', () => {
       assert.throw(() => {
-        shallow(<SelectInput {...props} value={undefined} />);
+        shallow(<SelectInput {...defaultProps} value={undefined} />);
       }, /the `value` property is required/);
     });
 
@@ -116,13 +118,17 @@ describe('<SelectInput />', () => {
       beforeEach(() => {
         handleChange = spy();
         wrapper = mount(
-          <SelectInput {...props} onChange={handleChange} MenuProps={{ transitionDuration: 0 }} />,
+          <SelectInput
+            {...defaultProps}
+            onChange={handleChange}
+            MenuProps={{ transitionDuration: 0 }}
+          />,
         );
         instance = wrapper.instance();
       });
 
       it('should call onChange when clicking an item', () => {
-        wrapper.find(`.${props.classes.select}`).simulate('click');
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
         const portalLayer = wrapper
           .find('Portal')
@@ -138,26 +144,28 @@ describe('<SelectInput />', () => {
         const handleBlur = spy();
         wrapper.setProps({ onBlur: handleBlur });
 
-        wrapper.find(`.${props.classes.select}`).simulate('click');
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
         assert.strictEqual(instance.ignoreNextBlur, true);
-        wrapper.find(`.${props.classes.select}`).simulate('blur');
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
         assert.strictEqual(handleBlur.callCount, 0);
         assert.strictEqual(instance.ignoreNextBlur, false);
-        wrapper.find(`.${props.classes.select}`).simulate('blur');
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
         assert.strictEqual(handleBlur.callCount, 1);
       });
 
       ['space', 'up', 'down'].forEach(key => {
         it(`'should open menu when pressed ${key} key on select`, () => {
-          wrapper.find(`.${props.classes.select}`).simulate('keyDown', { which: keycode(key) });
+          wrapper
+            .find(`.${defaultProps.classes.select}`)
+            .simulate('keyDown', { which: keycode(key) });
           assert.strictEqual(wrapper.state().open, true);
           assert.strictEqual(instance.ignoreNextBlur, true);
         });
       });
 
       it('should call handleClose', () => {
-        wrapper.find(`.${props.classes.select}`).simulate('click');
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
 
         const portalLayer = wrapper
@@ -169,12 +177,41 @@ describe('<SelectInput />', () => {
         assert.strictEqual(wrapper.state().open, false);
       });
     });
+
+    describe('prop: open (controlled)', () => {
+      class ControlledWrapper extends React.Component {
+        state = {
+          open: false,
+        };
+
+        render() {
+          return (
+            <SelectInput
+              {...defaultProps}
+              open={this.state.open}
+              onClose={() => this.setState({ open: false })}
+              onOpen={() => this.setState({ open: true })}
+            >
+              <MenuItem onClick={() => this.setState({ open: false })}>close</MenuItem>
+            </SelectInput>
+          );
+        }
+      }
+
+      it('should allow to control closing by passing onClose props', () => {
+        const wrapper = mount(<ControlledWrapper />);
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
+        assert.strictEqual(wrapper.state().open, true);
+        wrapper.find('MenuItem').simulate('click');
+        assert.strictEqual(wrapper.state().open, false);
+      });
+    });
   });
 
   describe('prop: native=true', () => {
     it('should render a native select', () => {
       const wrapper = shallow(
-        <SelectInput {...props} native>
+        <SelectInput {...defaultProps} native>
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -186,7 +223,7 @@ describe('<SelectInput />', () => {
     it('should response to update event', () => {
       const handleChange = spy();
       const wrapper = mount(
-        <SelectInput {...props} native onChange={handleChange}>
+        <SelectInput {...defaultProps} native onChange={handleChange}>
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
           <option value={30}>Thirty</option>
@@ -201,13 +238,13 @@ describe('<SelectInput />', () => {
 
   describe('prop: autoWidth', () => {
     it('should take the anchor width into account', () => {
-      const wrapper = shallow(<SelectInput {...props} />);
+      const wrapper = shallow(<SelectInput {...defaultProps} />);
       wrapper.setState({ anchorEl: { clientWidth: 14 } });
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 14);
     });
 
     it('should not take the anchor width into account', () => {
-      const wrapper = shallow(<SelectInput {...props} autoWidth />);
+      const wrapper = shallow(<SelectInput {...defaultProps} autoWidth />);
       wrapper.setState({ anchorEl: { clientWidth: 14 } });
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, undefined);
     });
@@ -223,7 +260,7 @@ describe('<SelectInput />', () => {
     });
 
     it('should serialize multiple select value', () => {
-      const wrapper = shallow(<SelectInput {...props} value={[10, 30]} multiple />);
+      const wrapper = shallow(<SelectInput {...defaultProps} value={[10, 30]} multiple />);
       assert.strictEqual(wrapper.find('input').props().value, '10,30');
       assert.deepEqual(wrapper.find(MenuItem).map(wrapper2 => wrapper2.props().selected), [
         true,
@@ -234,12 +271,12 @@ describe('<SelectInput />', () => {
 
     it('should throw if non array', () => {
       assert.throw(() => {
-        shallow(<SelectInput {...props} multiple />);
+        shallow(<SelectInput {...defaultProps} multiple />);
       }, /the `value` property must be an array/);
     });
 
     it('should warn if the input is invalid', () => {
-      shallow(<SelectInput {...props} multiple native />);
+      shallow(<SelectInput {...defaultProps} multiple native />);
       assert.match(
         consoleErrorMock.args()[0][0],
         /Material-UI: you can not use the `native` and `multiple`/,
@@ -254,7 +291,7 @@ describe('<SelectInput />', () => {
         handleChange = spy();
         wrapper = mount(
           <SelectInput
-            {...props}
+            {...defaultProps}
             multiple
             value={[20, 30]}
             name="age"
@@ -265,7 +302,7 @@ describe('<SelectInput />', () => {
       });
 
       it('should call onChange when clicking an item', () => {
-        wrapper.find(`.${props.classes.select}`).simulate('click');
+        wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
         const portalLayer = wrapper
           .find('Portal')

@@ -18,25 +18,41 @@ class SelectInput extends React.Component {
 
   ignoreNextBlur = false;
 
+  isControlled = this.props.open !== undefined;
+
+  update = this.isControlled
+    ? ({ event, open, anchorEl }) => {
+        if (open) {
+          this.props.onOpen(event);
+        } else {
+          this.props.onClose(event);
+        }
+        this.setState({ anchorEl });
+      }
+    : ({ open, anchorEl }) => this.setState({ open, anchorEl });
+
   handleClick = event => {
     // Opening the menu is going to blur the. It will be focused back when closed.
     this.ignoreNextBlur = true;
-    this.setState({
+    this.update({
       open: true,
       anchorEl: event.currentTarget,
+      event,
     });
   };
 
-  handleClose = () => {
-    this.setState({
+  handleClose = event => {
+    this.update({
       open: false,
+      event,
     });
   };
 
   handleItemClick = child => event => {
     if (!this.props.multiple) {
-      this.setState({
+      this.update({
         open: false,
+        event,
       });
     }
 
@@ -90,9 +106,10 @@ class SelectInput extends React.Component {
       event.preventDefault();
       // Opening the menu is going to blur the. It will be focused back when closed.
       this.ignoreNextBlur = true;
-      this.setState({
+      this.update({
         open: true,
         anchorEl: event.currentTarget,
+        event,
       });
     }
   };
@@ -123,7 +140,10 @@ class SelectInput extends React.Component {
       native,
       onBlur,
       onChange,
+      onClose,
       onFocus,
+      onOpen,
+      open,
       readOnly,
       renderValue,
       selectRef,
@@ -269,7 +289,7 @@ class SelectInput extends React.Component {
         <Menu
           id={`menu-${name || ''}`}
           anchorEl={this.state.anchorEl}
-          open={this.state.open}
+          open={this.isControlled ? open : this.state.open}
           onClose={this.handleClose}
           {...MenuProps}
           MenuListProps={{
@@ -348,9 +368,28 @@ SelectInput.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * Callback fired when the component requests to be closed.
+   * Useful in controlled mode (see open).
+   *
+   * @param {object} event The event source of the callback
+   */
+  onClose: PropTypes.func,
+  /**
    * @ignore
    */
   onFocus: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be opened.
+   * Useful in controlled mode (see open).
+   *
+   * @param {object} event The event source of the callback
+   */
+  onOpen: PropTypes.func,
+  /**
+   * Control `select` open state.
+   * You can only use it when the `native` property is `false` (default).
+   */
+  open: PropTypes.bool,
   /**
    * @ignore
    */

@@ -66,6 +66,9 @@ function Select(props) {
     MenuProps,
     multiple,
     native,
+    onClose,
+    onOpen,
+    open,
     renderValue,
     ...other
   } = props;
@@ -81,9 +84,12 @@ function Select(props) {
       children,
       classes,
       displayEmpty,
-      native,
-      multiple,
       MenuProps,
+      multiple,
+      native,
+      onClose,
+      onOpen,
+      open,
       renderValue,
     },
   });
@@ -126,6 +132,32 @@ Select.propTypes = {
    * If `true`, the component will be using a native `select` element.
    */
   native: PropTypes.bool,
+  /**
+   * Callback function fired when a menu item is selected.
+   *
+   * @param {object} event The event source of the callback
+   * @param {object} child The react element that was selected
+   */
+  onChange: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be closed.
+   * Useful in controlled mode (see open).
+   *
+   * @param {object} event The event source of the callback
+   */
+  onClose: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be opened.
+   * Useful in controlled mode (see open).
+   *
+   * @param {object} event The event source of the callback
+   */
+  onOpen: PropTypes.func,
+  /**
+   * Control `select` open state.
+   * You can only use it when the `native` property is `false` (default).
+   */
+  open: PropTypes.bool,
   /**
    * Render the selected value.
    * You can only use it when the `native` property is `false` (default).
