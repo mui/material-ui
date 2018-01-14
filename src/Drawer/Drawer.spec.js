@@ -39,6 +39,9 @@ describe('<Drawer />', () => {
         </Drawer>,
       );
       assert.strictEqual(wrapper.type(), Modal);
+      
+      // temporary drawers need to be unmounted in the tests to remove the touchstart event handler
+      wrapper.unmount();
     });
 
     it('should render Slide > Paper inside the Modal', () => {
@@ -57,8 +60,9 @@ describe('<Drawer />', () => {
 
       const paper = slide.childAt(0);
       assert.strictEqual(paper.length === 1 && paper.type(), Paper);
-
       assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
+
+      wrapper.unmount();
     });
 
     describe('transitionDuration property', () => {
@@ -74,6 +78,7 @@ describe('<Drawer />', () => {
           </Drawer>,
         );
         assert.strictEqual(wrapper.find(Slide).props().timeout, transitionDuration);
+        wrapper.unmount();
       });
 
       it("should be passed to to Modal's BackdropTransitionDuration when open=true", () => {
@@ -86,6 +91,7 @@ describe('<Drawer />', () => {
           wrapper.find(Modal).props().BackdropProps.transitionDuration,
           transitionDuration,
         );
+        wrapper.unmount();
       });
     });
 
@@ -97,6 +103,7 @@ describe('<Drawer />', () => {
         </Drawer>,
       );
       assert.strictEqual(wrapper.find(Modal).props().BackdropTransitionDuration, testDuration);
+      wrapper.unmount();
     });
 
     it('should set the custom className for Modal when variant is temporary', () => {
@@ -109,6 +116,7 @@ describe('<Drawer />', () => {
       const modal = wrapper.find(Modal);
 
       assert.strictEqual(modal.hasClass('woofDrawer'), true, 'should have the woofDrawer class');
+      wrapper.unmount();
     });
 
     it('should set the Paper className', () => {
@@ -120,6 +128,7 @@ describe('<Drawer />', () => {
       const paper = wrapper.find(Paper);
       assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
       assert.strictEqual(paper.hasClass('woofDrawer'), true, 'should have the woofDrawer class');
+      wrapper.unmount();
     });
 
     it('should be closed by default', () => {
@@ -134,6 +143,7 @@ describe('<Drawer />', () => {
 
       assert.strictEqual(modal.props().open, false, 'should not show the modal');
       assert.strictEqual(slide.props().in, false, 'should not transition in');
+      wrapper.unmount();
     });
 
     describe('opening and closing', () => {
@@ -146,6 +156,10 @@ describe('<Drawer />', () => {
           </Drawer>,
         );
         wrapper.update();
+      });
+
+      after(() => {
+        wrapper.unmount();
       });
 
       it('should start closed', () => {
@@ -186,7 +200,7 @@ describe('<Drawer />', () => {
         // mock the drawer DOM node, since jsdom doesn't do layouting but its size is required
         const findDOMNode = ReactDOM.findDOMNode;
         findDOMNodeStub = stub(ReactDOM, 'findDOMNode').callsFake(arg => {
-          if (arg instanceof Paper) {
+          if (arg instanceof Paper) { // mock the drawer's DOM node
             return { clientWidth: 250, clientHeight: 250, style: {} };
           }
           return findDOMNode(arg);
@@ -204,6 +218,10 @@ describe('<Drawer />', () => {
           </DrawerNaked>,
         );
       });
+
+      afterEach(() => {
+        wrapper.unmount();
+      })
 
       const bodyWidth = document.body.offsetWidth; // jsdom emulates these
       const windowHeight = window.innerHeight;
@@ -381,6 +399,10 @@ describe('<Drawer />', () => {
       );
     });
 
+    after(() => {
+      wrapper.unmount();
+    })
+
     it('should return the opposing slide direction', () => {
       wrapper.setProps({ anchor: 'left' });
       assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
@@ -422,6 +444,10 @@ describe('<Drawer />', () => {
           <div />
         </Drawer>,
       );
+    });
+
+    after(() => {
+      wrapper.unmount();
     });
 
     it('should switch left and right anchor when theme is right-to-left', () => {
