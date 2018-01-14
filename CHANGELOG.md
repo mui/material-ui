@@ -2,6 +2,129 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.28
+###### *Jan 14, 2018*
+
+Big thanks to the 22 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A new theme palette system (#9794) @mbrookes. It's an important simplification.
+- A more flexibile and customization friendly table components (#9852) @kgregory.
+- A new gold sponsor: [Creative Tim](https://www.creative-tim.com/), thank you!
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [core] Revise the theme.palette.primary & secondary approach (#9794) @mbrookes
+
+It's an important simplification of the palette system. You can now directly use the [“official” Color Tool](https://material.io/color/).
+- Instead of using a rich color object of 14 different keys, we rely on an object of 4 different keys: `light`, `main`, `dark` and `contrastText`.
+- Providing the full-color object used to be required. Now, we will provide a nice default to the different values using the `main` value.
+
+```diff
+import { createMuiTheme } from 'material-ui/styles';
+import blue from 'material-ui/colors/blue';
+import pink from 'material-ui/colors/pink';
+
+const theme = createMuiTheme({
+  palette: {
+-   primary: blue,
+-   secondary: pink,
++   primary: {
++     light: blue[300],
++     main: blue[500],
++     dark: blue[700],
++   },
++   secondary: {
++     light: pink[300],
++     main: pink[500],
++     dark: pink[700],
++   }
+    type: theme.paletteType,
+  },
+});
+```
+
+- [ListItemText] Add extra class to style secondary text (#9759) @t49tran
+
+```diff
+<ListItem
+  classes={{
+-   text: 'my-class',
++   textPrimary: 'my-class',
+  }}
+/>
+```
+
+- [CardHeader] Remove CardContent inheritance (#9764) @oliviertassinari
+
+Rename ListItemText classes for consitancy with the CardHeader component:
+```diff
+-- `textPrimary`
+-- `textSecondary`
++- `primary`
++- `secondary`
+```
+
+- [TableCell] Add type property (#9852) @kgregory
+
+`TableHead`, `TableBody` and `TableFooter` no longer offer a CSS API, which means their `root` classes are no longer available.
+To style the root element in these components, a `className` prop can be passed, as all non-API props will be spread to the root element.
+
+#### Component Fixes / Enhancements
+
+- [Tooltip] Zero-length titles string are never displayed (#9766) @oliviertassinari
+- [Chip] Replace instrinic CSS 'fit-content' with 'inline-flex' (#9767) @gregnb
+- [Slide] Fix an animation regression (#9773) @oliviertassinari
+- [Select] Remove the input warning (#9774) @oliviertassinari
+- [Tabs] Add action property (#9780) @gregnb
+- [StepButton] Fix TypeScript definition (#9796) @hapood
+- [CardContent] Add component property (#9789) @caub
+- [TablePagination] Add an Actions property (#9785) @axlider
+- [SwitchBase] Enable React input warning (#9814) @oliviertassinari
+- [SwitchBase] Remove duplicate typescript definitions inherited (#9816) @rosskevin
+- [Hidden] Update initialWidth propTypes (#9815) @djeeg
+- [Transition] Extend children propTypes (#9819) @oliviertassinari
+- [TablePagination] Remove dead code (#9831) @leMaik
+- [theme] Polish background scale (#9829) @oliviertassinari
+- [ExpansionPanel] Fix typescript definitions of onChange event (#9832) @Jocaetano
+- [GridList] Remove named export (#9836) @remcohaszing
+- [GridList] Export through main index.js (#9833) @remcohaszing
+- [Portal] Document default value (#9841) @oliviertassinari
+- [Button] Add fullWidth boolean property (#9842) @oliviertassinari
+- [Select] Improve vertical alignment (#9827) @jedwards1211
+- [GridListTile] Fix error when overriding classes (#9862) @KevinAsher
+- [transitions] Improve the style override logic (#9858) @caub
+- [Select] Add open, onClose and onOpen properties (#9844) @caub
+
+#### Docs
+
+- [docs] Add Expand All switch to default theme tree (#9762) @mbrookes
+- [docs] Remove unneeded dependencies from examples (#9746) @cherniavskii
+- [docs] Clarify the usage of innerRef property of withStyles (#9765) @nareshbhatia
+- [docs] Improve color / theme docs (#9771) @mbrookes
+- [docs] Add How can I access the DOM element? in the FAQ (#9768) @oliviertassinari
+- [examples] Add a Gatsby example (#9779) @oliviertassinari
+- [docs] Alternatives to CRA (#9810) @oliviertassinari
+- [docs] Add missing code from example (#9830) @RyanTaite
+- [docs] Add Global CSS override section (#9843) @oliviertassinari
+- [docs] Add example for Select with Checkbox in MenuItems (#9835) @caub
+- [docs] Add SlidesUp to the Showcase (#9854) @bhatiak
+- [docs] Track the bundle size (#9853) @oliviertassinari
+- [docs] Display the default theme (#9859) @oliviertassinari
+- [docs] Add paragraph on withStyles with multiple classes (#9851) @clentfort
+- [docs] Add new backers (#9863) @oliviertassinari
+
+#### Core
+
+- [core] Remove contastDefaultColor (#9772) @mbrookes
+- [core] Revise theme contrastText approach, remove contrastDefaultColor (#9063) @mbrookes
+- [color] Add a warning when an invalid value is provided (#9783) @oliviertassinari
+- [typescript] Add TouchRipple typings (#9812) @msiadak
+- [test] Enforce 100% test coverage in Codecov (#9813) @leMaik
+- [typescript] Move @types/jss from devDependencies to dependencies (#9817) @pelotom
+- [core] Upgrade the dependencies 😢 (#9828)
+
 ## 1.0.0-beta.27
 ###### *Jan 6, 2018*
 
