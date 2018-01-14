@@ -180,7 +180,7 @@
     "redux-logger": "^3.0.6",
     "rimraf": "^2.6.2",
     "sinon": "^4.1.2",
-    "size-limit": "^0.13.1",
+    "size-limit": "^0.14.0",
     "typescript": "^2.6.1",
     "url-loader": "^0.6.2",
     "vrtest": "^0.2.0",
