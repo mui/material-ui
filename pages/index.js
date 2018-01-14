@@ -129,16 +129,16 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 
 #### via [OpenCollective](https://opencollective.com/material-ui)
 
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/0/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/0/avatar.svg"></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/1/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/1/avatar.svg"></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/2/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/2/avatar.svg"></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/3/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/3/avatar.svg"></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/4/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/4/avatar.svg"></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/5/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/5/avatar.svg"></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/6/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/6/avatar.svg"></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/7/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/7/avatar.svg"></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/8/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/8/avatar.svg"></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/9/website" target="_blank"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/9/avatar.svg"></a>
+<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/0/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/0/avatar.svg" alt="0" /></a>
+<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/1/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/1/avatar.svg" alt="1" /></a>
+<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/2/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/2/avatar.svg" alt="2" /></a>
+<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/3/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/3/avatar.svg" alt="3" /></a>
+<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/4/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/4/avatar.svg" alt="4" /></a>
+<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/5/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/5/avatar.svg" alt="5" /></a>
+<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/6/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/6/avatar.svg" alt="6" /></a>
+<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/7/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/7/avatar.svg" alt="7" /></a>
+<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/8/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/8/avatar.svg" alt="8" /></a>
+<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/9/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/9/avatar.svg" alt="9" /></a>
         `}
         />
       </div>
