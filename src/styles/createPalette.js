@@ -95,8 +95,6 @@ export default function createPalette(palette: Object) {
       main: red[500],
     },
     type = 'light',
-    // Same value used by material-components-web
-    // https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L49
     contrastThreshold = 3,
     tonalOffset = 0.2,
     ...other
