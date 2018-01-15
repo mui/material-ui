@@ -5517,7 +5517,7 @@ jss-vendor-prefixer@^8.0.0:
   dependencies:
     css-vendor "^1.0.0"
 
-jss@^9.3.2, jss@^9.3.3:
+jss@^9.3.2, jss@^9.5.0:
   version "9.5.1"
   resolved "https://registry.yarnpkg.com/jss/-/jss-9.5.1.tgz#c869f38cdc44a32f4425fe007ea46b8891536326"
   dependencies:
