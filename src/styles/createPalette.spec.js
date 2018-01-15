@@ -2,7 +2,7 @@
 
 import { assert } from 'chai';
 import createPalette, { dark, light } from './createPalette';
-import { indigo, pink, deepOrange, green } from '../colors';
+import { indigo, pink, deepOrange, green, red } from '../colors';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import { lighten, darken } from '../styles/colorManipulator';
 
@@ -58,6 +58,11 @@ describe('createPalette()', () => {
       'should use dark.text.primary as the default secondary contrastText color',
     );
     assert.strictEqual(
+      palette.error.main,
+      red[500],
+      'should use red[500] as the default error main color',
+    );
+    assert.strictEqual(
       palette.text,
       light.text,
       'should use light theme text for a light theme by default',
@@ -68,6 +73,7 @@ describe('createPalette()', () => {
     const palette = createPalette({
       primary: deepOrange,
       secondary: green,
+      error: pink,
     });
     assert.strictEqual(
       palette.primary.main,
@@ -99,6 +105,11 @@ describe('createPalette()', () => {
       green.A700,
       'should use green.A700 as the secondary dark color',
     );
+    assert.strictEqual(
+      palette.error.main,
+      pink[500],
+      'should use pink[500] as the error main color',
+    );
     assert.strictEqual(palette.text, light.text, 'should use light theme text');
   });
 
@@ -115,6 +126,9 @@ describe('createPalette()', () => {
         light: green.A200,
         dark: green.A700,
         contrastText: '#000000',
+      },
+      error: {
+        main: pink[500],
       },
     });
     assert.strictEqual(
@@ -156,6 +170,11 @@ describe('createPalette()', () => {
       palette.secondary.contrastText,
       '#000000',
       'should use #000000 as the secondary contrastText color',
+    );
+    assert.strictEqual(
+      palette.error.main,
+      pink[500],
+      'should use pink[500] as the error main color',
     );
     assert.strictEqual(palette.text, light.text, 'should use light theme text');
   });
