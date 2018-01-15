@@ -83,8 +83,6 @@ import indigo from 'material-ui/colors/indigo';
 import pink from 'material-ui/colors/pink';
 import red from 'material-ui/colors/red';
 
-const defaultTheme = createMuiTheme()
-
 // All the following keys are optional.
 // We try our best to provide a great default value.
 const theme = createMuiTheme({
