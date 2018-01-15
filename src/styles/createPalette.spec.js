@@ -197,6 +197,17 @@ describe('createPalette()', () => {
     );
   });
 
+  it('should allow to initialize palette {primary, secondary, error} as primitive', () => {
+    const palette = createPalette({
+      primary: deepOrange[500],
+      secondary: green.A400,
+      error: pink[200],
+    });
+    assert.strictEqual(palette.primary.main, deepOrange[500]);
+    assert.strictEqual(palette.secondary.main, green.A400);
+    assert.strictEqual(palette.error.main, pink[200]);
+  });
+
   it('should calculate contrastText using the provided contrastThreshold', () => {
     const palette = createPalette({ contrastThreshold: 7 });
     assert.strictEqual(

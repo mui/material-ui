@@ -79,19 +79,19 @@ export const dark = {
 
 export default function createPalette(palette: Object) {
   const {
-    primary = {
+    primary: primaryValue = {
       light: indigo[300],
       main: indigo[500],
       dark: indigo[700],
       contrastText: '',
     },
-    secondary = {
+    secondary: secondaryValue = {
       light: pink.A200,
       main: pink.A400,
       dark: pink.A700,
       contrastText: '',
     },
-    error = {
+    error: errorValue = {
       main: red[500],
     },
     type = 'light',
@@ -101,6 +101,10 @@ export default function createPalette(palette: Object) {
     tonalOffset = 0.2,
     ...other
   } = palette;
+
+  const primary = typeof primaryValue === 'string' ? { main: primaryValue } : primaryValue;
+  const secondary = typeof secondaryValue === 'string' ? { main: secondaryValue } : secondaryValue;
+  const error = typeof errorValue === 'string' ? { main: errorValue } : primaryValue;
 
   if (!primary.light) {
     primary.light = lighten(primary.main, tonalOffset);
