@@ -27,7 +27,7 @@ export interface TooltipProps
     | 'top-end'
     | 'top-start'
     | 'top';
-  PopperProps?: PopperProps;
+  PopperProps?: Partial<PopperProps>;
   title: React.ReactNode;
 }
 
