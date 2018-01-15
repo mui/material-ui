@@ -9,7 +9,7 @@ export function getTheme(theme) {
   return createMuiTheme({
     direction: theme.direction,
     palette: {
-      primary: { light: blue[300], main: blue[500], dark: blue[700] },
+      primary: blue,
       type: theme.paletteType,
     },
   });

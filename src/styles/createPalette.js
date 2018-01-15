@@ -1,5 +1,3 @@
-// @flow
-
 import warning from 'warning';
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import indigo from '../colors/indigo';
@@ -100,20 +98,34 @@ export default function createPalette(palette: Object) {
     ...other
   } = palette;
 
-  if (!primary.light) {
-    primary.light = lighten(primary.main, tonalOffset);
+  function addLightOrDark(intent, direction, shade) {
+    if (!intent[direction]) {
+      if (intent.hasOwnProperty(shade)) {
+        intent[direction] = intent[shade];
+      } else if (direction === 'light') {
+        intent.light = lighten(intent.main, tonalOffset);
+      } else if (direction === 'dark') {
+        intent.dark = darken(intent.main, tonalOffset * 1.5);
+      }
+    }
   }
 
-  if (!primary.dark) {
-    primary.dark = darken(primary.main, tonalOffset * 1.5);
+  if (!primary.main && primary[500]) {
+    primary.main = primary[500];
   }
 
-  if (!secondary.light) {
-    secondary.light = lighten(secondary.main, tonalOffset);
+  addLightOrDark(primary, 'light', '300');
+  addLightOrDark(primary, 'dark', '700');
+
+  if (!secondary.main && secondary.A400) {
+    secondary.main = secondary.A400;
   }
 
-  if (!secondary.dark) {
-    secondary.dark = darken(secondary.main, tonalOffset * 1.5);
+  addLightOrDark(secondary, 'light', 'A200');
+  addLightOrDark(secondary, 'dark', 'A700');
+
+  if (!error.main && error[500]) {
+    error.main = error[500];
   }
 
   function getContrastText(background) {

@@ -14,7 +14,7 @@ const styles = theme => ({
   },
   appBar: {
     backgroundColor: theme.palette.primary.main,
-    color: theme.palette.getContrastText(theme.palette.primary.main),
+    color: theme.palette.primary.contrastText,
   },
 });
 

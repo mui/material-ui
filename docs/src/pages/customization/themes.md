@@ -8,7 +8,7 @@ To promote greater consistency between apps, light and dark theme types are avai
 
 ## Theme provider
 
-If you wish to customize the theme, you need to use the `MuiThemeProvider` component in order to inject a theme into your application. 
+If you wish to customize the theme, you need to use the `MuiThemeProvider` component in order to inject a theme into your application.
 However, this is optional; Material-UI components come with a default theme.
 
 `MuiThemeProvider` relies on the context feature of React to pass the theme down to the components,
@@ -25,23 +25,56 @@ Changing the theme configuration variables is the most effective way to match Ma
 
 A color intention is a mapping of a palette to a given intention within your application.
 
-The theme expose the following color intentions:
+The theme exposes the following color intentions:
 
 - primary - used to represent primary interface elements for a user.
 - secondary - used to represent secondary interface elements for a user.
 - error - used to represent interface elements that the user should be made aware of.
 
-The default palette uses the shades prefixed with `A` (`A200`, etc.) for the accent color 
-and the un-prefixed shades for the other intentions, 
-but you are free to select any shade when customizing the colors, 
-or simply pass in any HTML color value as a string.
+The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention,
+and the un-prefixed shades for the other intentions.
 
 If you want to learn more about color, you can check out [the color section](/style/color).
 
-#### Default palette
+#### Custom palette
 
-You may override the default palette values by including a `palette` object as part of your theme. 
-The following example illustrates how you could recreate the the default palette values. 
+You may override the default palette values by including a `palette` object as part of your theme.
+
+If any of the `palette.primary`, `palette.secondary` or `palette.error` 'intent' objects are provided,
+they will replace the defaults.
+
+The intent objects accept either a color object, or an object with one or more of the following keys:
+
+```
+{ light: '', main: '', dark: '', contrastText: '' }
+```
+
+**Using a color object**
+
+If the intent provides a color object, the following mapping is used to populate the required keys:
+
+
+```jsx
+palette: {
+  primary: {
+    light: primaryColor[300],
+    main: primaryColor[500],
+    dark: primaryColor[700],
+    contrastText: getContrastText(primaryColor[500]),
+  },
+  secondary: {
+    light: secondaryColor.A200,
+    main: secondaryColor.A400,
+    dark: secondaryColor.A700,
+    contrastText: getContrastText(secondaryColor.A400),
+  },
+  error: {
+    main: errorColor[500],
+  },
+},
+```
+
+This example illustrates how you could recreate the the default palette values:
 
 
 ```jsx
@@ -50,26 +83,14 @@ import indigo from 'material-ui/colors/indigo';
 import pink from 'material-ui/colors/pink';
 import red from 'material-ui/colors/red';
 
-const defaultTheme = createMuiTheme()
-
 // All the following keys are optional.
 // We try our best to provide a great default value.
 const theme = createMuiTheme({
   palette: {
     contrastThreshold: 3,
     tonalOffset: 0.2,
-    primary: {
-      light: indigo[300],
-      main: indigo[500],
-      dark: indigo[700],
-      contrastText: defaultTheme.palette.getContrastText(indigo[500]),
-    },
-    secondary: {
-      light: pink.A200,
-      main: pink.A400,
-      dark: pink.A700,
-      contrastText: defaultTheme.palette.getContrastText(pink.A400),
-    },
+    primary: indigo,
+    secondary: pink,
     error: {
       main: red[500],
     },
@@ -77,16 +98,22 @@ const theme = createMuiTheme({
 });
 ```
 
-If `palette.primary` or `palette.secondary` objects are provided, 
-they will replace the defaults.
+**Providing the colors directly**
 
-If the `dark` and / or `light` keys are omitted, their value(s) will be calculated from `main`, 
+If the intent object contains custom colors using any of the
+`main`, `light`, `dark` or `contrastText` keys, these map as follows:
+
+- If the `dark` and / or `light` keys are omitted, their value(s) will be calculated from `main`,
 according to the `tonalOffset` value.
 
-If `contrastText` is omitted, its value will be calculated to contrast with `main`, 
+- If `contrastText` is omitted, its value will be calculated to contrast with `main`,
 according to the`contrastThreshold` value.
 
-Both the `tonalOffset` and `contrastThreshold` values may be customized as needed. 
+Both the `tonalOffset` and `contrastThreshold` values may be customized as needed.
+A higher value for `tonalOffset` will make calculate values for `light` lighter, and `dark` darker.
+A higher value for `contrastThreshold` increases the point at which a background color is considered
+light, and given a dark `contrastText`.
+
 Note that `contrastThreshold` follows a non-linear curve.
 
 #### Example
