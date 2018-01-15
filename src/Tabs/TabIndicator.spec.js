@@ -15,7 +15,7 @@ describe('<TabIndicator />', () => {
 
   it('should render with the root class', () => {
     const wrapper = shallow(<TabIndicator color="accent" style={style} />);
-    assert.strictEqual(wrapper.name(), 'div');
+    assert.strictEqual(wrapper.name(), 'span');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
@@ -29,7 +29,7 @@ describe('<TabIndicator />', () => {
   describe('prop: className', () => {
     it('should append the className on the root element', () => {
       const wrapper = shallow(<TabIndicator color="accent" style={style} className="foo" />);
-      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the property class');
     });
   });
