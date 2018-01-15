@@ -22,7 +22,7 @@ export interface SnackbarProps
   onMouseLeave?: React.MouseEventHandler<any>;
   open: boolean;
   resumeHideDuration?: number;
-  SnackbarContentProps?: SnackbarContentProps;
+  SnackbarContentProps?: Partial<SnackbarContentProps>;
   transition?: React.ReactType;
   transitionDuration?: TransitionDuration;
 }
