@@ -83,6 +83,7 @@ function TextField(props) {
       autoFocus={autoFocus}
       defaultValue={defaultValue}
       disabled={disabled}
+      fullWidth={fullWidth}
       multiline={multiline}
       name={name}
       rows={rows}
