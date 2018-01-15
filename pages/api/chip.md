@@ -14,6 +14,7 @@ Chips represent complex entities in small blocks, such as a contact.
 |:-----|:-----|:--------|:------------|
 | avatar | element |  | Avatar element. |
 | classes | object |  | Useful to extend the style applied to components. |
+| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
 | deleteIcon | element |  | Custom delete icon element. Will be shown only if `onDelete` is set. |
 | label | node |  | The content of the label. |
 | onDelete | func |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
