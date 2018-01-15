@@ -70,7 +70,7 @@
     "deepmerge": "^2.0.1",
     "dom-helpers": "^3.2.1",
     "hoist-non-react-statics": "^2.3.1",
-    "jss": "^9.3.3",
+    "jss": "^9.5.0",
     "jss-camel-case": "^6.0.0",
     "jss-default-unit": "^8.0.2",
     "jss-global": "^3.0.0",
