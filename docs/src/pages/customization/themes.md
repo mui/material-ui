@@ -77,7 +77,7 @@ const theme = createMuiTheme({
 });
 ```
 
-If `palette.primary` or `palette.secondary` objects are provided, 
+If `palette.primary` or `palette.secondary` objects or color strings are provided, 
 they will replace the defaults.
 
 If the `dark` and / or `light` keys are omitted, their value(s) will be calculated from `main`, 
