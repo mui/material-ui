@@ -22,7 +22,7 @@ const styles = theme => ({
     alignItems: 'center',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
-    color: theme.palette.getContrastText(theme.palette.primary.main),
+    color: theme.palette.primary.contrastText,
   },
   content: {
     paddingTop: theme.spacing.unit * 8,

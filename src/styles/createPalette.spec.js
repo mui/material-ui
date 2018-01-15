@@ -64,6 +64,44 @@ describe('createPalette()', () => {
     );
   });
 
+  it('should create a palette with Material colors', () => {
+    const palette = createPalette({
+      primary: deepOrange,
+      secondary: green,
+    });
+    assert.strictEqual(
+      palette.primary.main,
+      deepOrange[500],
+      'should use deepOrange[500] as the primary main color',
+    );
+    assert.strictEqual(
+      palette.primary.light,
+      deepOrange[300],
+      'should use deepOrange[300] as the primary light color',
+    );
+    assert.strictEqual(
+      palette.primary.dark,
+      deepOrange[700],
+      'should use deepOrange[700] as the primary dark color',
+    );
+    assert.strictEqual(
+      palette.secondary.main,
+      green.A400,
+      'should use green.A400 as the secondary main color',
+    );
+    assert.strictEqual(
+      palette.secondary.light,
+      green.A200,
+      'should use green.A200 as the secondary light color',
+    );
+    assert.strictEqual(
+      palette.secondary.dark,
+      green.A700,
+      'should use green.A700 as the secondary dark color',
+    );
+    assert.strictEqual(palette.text, light.text, 'should use light theme text');
+  });
+
   it('should create a palette with custom colors', () => {
     const palette = createPalette({
       primary: {
