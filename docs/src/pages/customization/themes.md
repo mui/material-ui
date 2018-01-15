@@ -70,7 +70,9 @@ const theme = createMuiTheme({
       dark: pink.A700,
       contrastText: defaultTheme.palette.getContrastText(pink.A400),
     },
-    error: red.A400,
+    error: {
+      main: red[500],
+    },
   },
 });
 ```
