@@ -33,9 +33,6 @@ import {
     color.A200 as string;
     color.A400 as string;
     color.A700 as string;
-
-    // Check if contrastDefaultColor is a string too
-    color.contrastDefaultColor as string;
 });
 
 const {

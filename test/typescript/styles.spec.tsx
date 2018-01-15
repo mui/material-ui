@@ -10,8 +10,8 @@ import {
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
 import { StyleRulesCallback } from '../../src/styles/withStyles';
-import { Contrast } from '../../src/index';
-import {WithTheme} from "../../src/styles/withTheme";
+import blue from '../../src/colors/blue';
+import { WithTheme } from '../../src/styles/withTheme';
 
 // Shared types for examples
 type ComponentClassNames = 'root';
@@ -28,15 +28,16 @@ const styles: StyleRulesCallback<'root'> = ({ palette, spacing }) => ({
   },
 });
 
-const StyledExampleOne = withStyles(styles)<
-  ComponentProps
->(({ classes, text }) => <div className={classes.root}>{text}</div>);
+const StyledExampleOne = withStyles(styles)<ComponentProps>(({ classes, text }) => (
+  <div className={classes.root}>{text}</div>
+));
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.SFC<
-  ComponentProps & WithStyles<ComponentClassNames>
-> = ({ classes, text }) => <div className={classes.root}>{text}</div>;
+const Component: React.SFC<ComponentProps & WithStyles<ComponentClassNames>> = ({
+  classes,
+  text,
+}) => <div className={classes.root}>{text}</div>;
 
 const StyledExampleTwo = withStyles(styles)(Component);
 <StyledExampleTwo text="I am styled!" />;
@@ -74,6 +75,7 @@ const AnotherStyledSFC = withStyles({
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
+    primary: blue,
     common: {
       white: '#ffffff',
     },
@@ -87,7 +89,7 @@ const theme = createMuiTheme({
   mixins: {
     toolbar: {
       backgroundColor: 'red',
-    }
+    },
   },
   breakpoints: {
     step: 3,
@@ -118,6 +120,14 @@ const theme = createMuiTheme({
   },
 });
 
+const theme2 = createMuiTheme({
+  palette: {
+    primary: {
+      main: blue[500],
+    },
+  },
+});
+
 function OverridesTheme() {
   return (
     <MuiThemeProvider theme={theme}>
@@ -127,24 +137,20 @@ function OverridesTheme() {
 }
 
 // withTheme
-const ComponentWithTheme = withTheme()(
-  ({ theme }) => (
-    <div>{theme.spacing.unit}</div>
-  )
-);
+const ComponentWithTheme = withTheme()(({ theme }) => <div>{theme.spacing.unit}</div>);
 
-<ComponentWithTheme />
+<ComponentWithTheme />;
 
 // withStyles + withTheme
-type AllTheProps = WithTheme & WithStyles<'root'>
+type AllTheProps = WithTheme & WithStyles<'root'>;
 
 const AllTheComposition = withTheme()(
-  withStyles(styles)(
-    ({ theme, classes }: AllTheProps) => (
-  <div className={classes.root}>{theme.palette.text.primary}</div>
-)));
+  withStyles(styles)(({ theme, classes }: AllTheProps) => (
+    <div className={classes.root}>{theme.palette.text.primary}</div>
+  )),
+);
 
-<AllTheComposition />
+<AllTheComposition />;
 
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
@@ -155,7 +161,7 @@ const DecoratedComponent = withStyles(styles)(
       const { classes, text } = this.props;
       return <div className={classes.root}>{text}</div>;
     }
-  }
+  },
 );
 
 // no 'classes' property required at element creation time (#8267)

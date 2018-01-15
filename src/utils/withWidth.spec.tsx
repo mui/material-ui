@@ -5,13 +5,13 @@ import withStyles, { WithStyles } from '../styles/withStyles';
 import withWidth, { WithWidthProps } from '../utils/withWidth';
 
 const styles = (theme: Theme) => ({
-    root: {
-        backgroundColor: theme.palette.common.faintBlack,
-    },
+  root: {
+    backgroundColor: theme.palette.common.faintBlack,
+  },
 });
 
 interface IHelloProps {
-    name?: string;
+  name?: string;
 }
 
 export class Hello extends React.Component<IHelloProps & WithWidthProps & WithStyles<'root'>> {

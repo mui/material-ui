@@ -75,19 +75,29 @@ export const dark = {
   },
 };
 
+function addLightOrDark(intent, direction, shade, tonalOffset) {
+  if (!intent[direction]) {
+    if (intent.hasOwnProperty(shade)) {
+      intent[direction] = intent[shade];
+    } else if (direction === 'light') {
+      intent.light = lighten(intent.main, tonalOffset);
+    } else if (direction === 'dark') {
+      intent.dark = darken(intent.main, tonalOffset * 1.5);
+    }
+  }
+}
+
 export default function createPalette(palette: Object) {
   const {
     primary = {
       light: indigo[300],
       main: indigo[500],
       dark: indigo[700],
-      contrastText: '',
     },
     secondary = {
       light: pink.A200,
       main: pink.A400,
       dark: pink.A700,
-      contrastText: '',
     },
     error = {
       main: red[500],
@@ -98,31 +108,17 @@ export default function createPalette(palette: Object) {
     ...other
   } = palette;
 
-  function addLightOrDark(intent, direction, shade) {
-    if (!intent[direction]) {
-      if (intent.hasOwnProperty(shade)) {
-        intent[direction] = intent[shade];
-      } else if (direction === 'light') {
-        intent.light = lighten(intent.main, tonalOffset);
-      } else if (direction === 'dark') {
-        intent.dark = darken(intent.main, tonalOffset * 1.5);
-      }
-    }
-  }
-
   if (!primary.main && primary[500]) {
     primary.main = primary[500];
   }
-
-  addLightOrDark(primary, 'light', '300');
-  addLightOrDark(primary, 'dark', '700');
+  addLightOrDark(primary, 'light', '300', tonalOffset);
+  addLightOrDark(primary, 'dark', '700', tonalOffset);
 
   if (!secondary.main && secondary.A400) {
     secondary.main = secondary.A400;
   }
-
-  addLightOrDark(secondary, 'light', 'A200');
-  addLightOrDark(secondary, 'dark', 'A700');
+  addLightOrDark(secondary, 'light', 'A200', tonalOffset);
+  addLightOrDark(secondary, 'dark', 'A700', tonalOffset);
 
   if (!error.main && error[500]) {
     error.main = error[500];
@@ -152,11 +148,11 @@ export default function createPalette(palette: Object) {
     return contrastText;
   }
 
-  if (!primary.contrastText || primary.contrastText === '') {
+  if (!primary.contrastText) {
     primary.contrastText = getContrastText(primary.main);
   }
 
-  if (!secondary.contrastText || secondary.contrastText === '') {
+  if (!secondary.contrastText) {
     secondary.contrastText = getContrastText(secondary.main);
   }
 
