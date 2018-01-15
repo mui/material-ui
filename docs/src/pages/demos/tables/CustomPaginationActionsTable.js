@@ -174,6 +174,7 @@ class CustomPaginationActionsTable extends React.Component {
             <TableFooter>
               <TableRow>
                 <TablePagination
+                  colSpan={3}
                   count={data.length}
                   rowsPerPage={rowsPerPage}
                   page={page}

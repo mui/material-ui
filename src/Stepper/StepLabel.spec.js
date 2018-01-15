@@ -118,7 +118,7 @@ describe('<StepLabel />', () => {
       );
       assert.include(
         wrapper
-          .find('div')
+          .find('span')
           .at(1)
           .props().className,
         'my-custom-class',

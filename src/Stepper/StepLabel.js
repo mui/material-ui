@@ -63,9 +63,9 @@ function StepLabel(props) {
   });
 
   return (
-    <div className={className} {...other}>
+    <span className={className} {...other}>
       {icon && (
-        <div
+        <span
           className={classNames(classes.iconContainer, {
             [classes.iconContainerNoAlternative]: !alternativeLabel,
           })}
@@ -76,15 +76,15 @@ function StepLabel(props) {
             icon={icon}
             alternativeLabel={alternativeLabel}
           />
-        </div>
+        </span>
       )}
-      <div>
-        <Typography type="body1" className={labelClassName}>
+      <span>
+        <Typography type="body1" component="span" className={labelClassName}>
           {children}
         </Typography>
         {optional}
-      </div>
-    </div>
+      </span>
+    </span>
   );
 }
 

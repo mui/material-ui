@@ -33,7 +33,7 @@ export const styles = theme => ({
   circleIndeterminate: {
     animation: 'mui-progress-circular-dash 1.4s ease-in-out infinite',
     // Some default value that looks fine waiting for the animation to kicks in.
-    strokeDasharray: '80,200',
+    strokeDasharray: '80px, 200px',
     strokeDashoffset: 0,
   },
   '@keyframes mui-progress-circular-rotate': {
@@ -43,16 +43,16 @@ export const styles = theme => ({
   },
   '@keyframes mui-progress-circular-dash': {
     '0%': {
-      strokeDasharray: '1,200',
+      strokeDasharray: '1px, 200px',
       strokeDashoffset: 0,
     },
     '50%': {
-      strokeDasharray: '100,200',
-      strokeDashoffset: -15,
+      strokeDasharray: '100px, 200px',
+      strokeDashoffset: '-15px',
     },
     '100%': {
-      strokeDasharray: '100,200',
-      strokeDashoffset: -120,
+      strokeDasharray: '100px, 200px',
+      strokeDashoffset: '-120px',
     },
   },
 });

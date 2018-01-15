@@ -51,10 +51,10 @@ function Badge(props) {
   });
 
   return (
-    <div className={classNames(classes.root, classNameProp)} {...other}>
+    <span className={classNames(classes.root, classNameProp)} {...other}>
       {children}
       <span className={badgeClassName}>{badgeContent}</span>
-    </div>
+    </span>
   );
 }
 

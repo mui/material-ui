@@ -117,13 +117,13 @@ function ButtonBases(props) {
           <span className={classes.imageBackdrop} />
           <span className={classes.imageButton}>
             <Typography
-              component="h3"
+              component="span"
               type="subheading"
               color="inherit"
               className={classes.imageTitle}
             >
               {image.title}
-              <div className={classes.imageMarked} />
+              <span className={classes.imageMarked} />
             </Typography>
           </span>
         </ButtonBase>

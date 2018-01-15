@@ -31,7 +31,13 @@ describe('<Badge />', () => {
     );
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
-    assert.strictEqual(wrapper.find('span').hasClass('testBadgeClassName'), true);
+    assert.strictEqual(
+      wrapper
+        .find('span')
+        .at(1)
+        .hasClass('testBadgeClassName'),
+      true,
+    );
   });
 
   it('renders children by default', () => {
@@ -60,7 +66,10 @@ describe('<Badge />', () => {
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
     assert.strictEqual(
-      wrapper.find('span').hasClass(classes.colorPrimary),
+      wrapper
+        .find('span')
+        .at(1)
+        .hasClass(classes.colorPrimary),
       true,
       'should have primary class',
     );
@@ -75,7 +84,10 @@ describe('<Badge />', () => {
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
     assert.strictEqual(
-      wrapper.find('span').hasClass(classes.colorAccent),
+      wrapper
+        .find('span')
+        .at(1)
+        .hasClass(classes.colorAccent),
       true,
       'should have accent class',
     );
