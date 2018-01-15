@@ -157,7 +157,7 @@ class Tab extends React.Component {
 
     if (labelProp !== undefined) {
       label = (
-        <div className={classes.labelContainer}>
+        <span className={classes.labelContainer}>
           <span
             className={classNames(classes.label, {
               [classes.labelWrapped]: this.state.wrappedText,
@@ -168,7 +168,7 @@ class Tab extends React.Component {
           >
             {labelProp}
           </span>
-        </div>
+        </span>
       );
     }
 

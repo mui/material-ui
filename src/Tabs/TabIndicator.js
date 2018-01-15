@@ -42,7 +42,7 @@ function TabIndicator(props) {
         backgroundColor: color,
       };
 
-  return <div className={className} style={style} />;
+  return <span className={className} style={style} />;
 }
 
 TabIndicator.propTypes = {

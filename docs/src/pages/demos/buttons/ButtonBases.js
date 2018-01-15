@@ -108,14 +108,14 @@ function ButtonBases(props) {
             width: image.width,
           }}
         >
-          <div
+          <span
             className={classes.imageSrc}
             style={{
               backgroundImage: `url(${image.url})`,
             }}
           />
-          <div className={classes.imageBackdrop} />
-          <div className={classes.imageButton}>
+          <span className={classes.imageBackdrop} />
+          <span className={classes.imageButton}>
             <Typography
               component="h3"
               type="subheading"
@@ -125,7 +125,7 @@ function ButtonBases(props) {
               {image.title}
               <div className={classes.imageMarked} />
             </Typography>
-          </div>
+          </span>
         </ButtonBase>
       ))}
     </div>
