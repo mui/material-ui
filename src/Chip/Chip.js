@@ -125,6 +125,7 @@ class Chip extends React.Component {
       avatar: avatarProp,
       classes,
       className: classNameProp,
+      component: ComponentProp,
       deleteIcon: deleteIconProp,
       label,
       onClick,
@@ -168,7 +169,7 @@ class Chip extends React.Component {
     }
 
     return (
-      <div
+      <ComponentProp
         role="button"
         className={className}
         tabIndex={tabIndex}
@@ -182,7 +183,7 @@ class Chip extends React.Component {
         {avatar}
         <span className={classes.label}>{label}</span>
         {deleteIcon}
-      </div>
+      </ComponentProp>
     );
   }
 }
@@ -200,6 +201,11 @@ Chip.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Custom delete icon element. Will be shown only if `onDelete` is set.
    */
@@ -225,6 +231,10 @@ Chip.propTypes = {
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
+
+Chip.defaultProps = {
+  component: 'div',
 };
 
 export default withStyles(styles, { name: 'MuiChip' })(Chip);
