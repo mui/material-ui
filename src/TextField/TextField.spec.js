@@ -51,6 +51,11 @@ describe('<TextField />', () => {
         wrapper = shallow(<TextField multiline />);
         assert.strictEqual(wrapper.childAt(0).props().multiline, true);
       });
+
+      it('should forward the fullWidth prop to Input', () => {
+        wrapper = shallow(<TextField fullWidth />);
+        assert.strictEqual(wrapper.childAt(0).props().fullWidth, true);
+      });
     });
 
     describe('with a label', () => {
