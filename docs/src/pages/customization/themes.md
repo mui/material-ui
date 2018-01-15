@@ -56,8 +56,8 @@ const defaultTheme = createMuiTheme()
 // We try our best to provide a great default value.
 const theme = createMuiTheme({
   palette: {
-    contrastThreshold: 3.1,
-    tonalOffset: 0.07,
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
     primary: {
       light: indigo[300],
       main: indigo[500],
