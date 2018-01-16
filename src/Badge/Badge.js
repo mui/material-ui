@@ -44,17 +44,25 @@ export const styles = theme => ({
 });
 
 function Badge(props) {
-  const { badgeContent, classes, className: classNameProp, color, children, ...other } = props;
+  const {
+    badgeContent,
+    children,
+    classes,
+    className: classNameProp,
+    color,
+    component: ComponentProp,
+    ...other
+  } = props;
 
   const badgeClassName = classNames(classes.badge, {
     [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
   });
 
   return (
-    <span className={classNames(classes.root, classNameProp)} {...other}>
+    <ComponentProp className={classNames(classes.root, classNameProp)} {...other}>
       {children}
       <span className={badgeClassName}>{badgeContent}</span>
-    </span>
+    </ComponentProp>
   );
 }
 
@@ -79,10 +87,16 @@ Badge.propTypes = {
    * The color of the component. It's using the theme palette when that makes sense.
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
 Badge.defaultProps = {
   color: 'default',
+  component: 'span',
 };
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);
