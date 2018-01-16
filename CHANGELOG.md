@@ -2,6 +2,47 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.29
+###### *Jan 16, 2018*
+
+Big thanks to the 9 contributors who made this release possible.
+
+We are making a release earlier than expected.
+The release schedule norm has been so far: one every weekend.
+1.0.0-beta.28 have introduced important pain points we want to address quickly:
+- The 1.0.0-beta.28 palette change was made non-breaking (#9889) @mbrookes
+- The JSS issues have been fixed
+- The TypeScript definitions have been updated
+
+### Breaking change
+
+N.A
+
+#### Component Fixes / Enhancements
+
+- [TextField] Add fullWidth propagation to Input (#9888) @enbyted
+- [Chip] Add component property (#9890) @caub
+- [palette] Update the TypeScript definitions (#9896) @oliviertassinari
+
+#### Docs
+
+- [examples] Update for revised theme approach (#9878) @mbrookes
+- [examples] Update Gatsby example to work (#9877) @magicmark
+- [docs] Additional corrections to palette code sample (#9883) @mbrookes
+- [docs] Update showcase.md (#9894) @gerges-beshay
+
+#### Core
+
+- [core] Fix w3c validation errors (#9899) @sambhav-gore
+- [core] Make palette change non-breaking (#9889) @mbrookes
+- [core] Fix some w3c issues (#9872) @oliviertassinari
+- [core] Upgrade jss to 9.5.0 (#9885) @cesardeazevedo
+- [core] Fix some w3c validation errors (#9895) @sambhav-gore
+- [typescript] Remove JSS stub module declaration (#9898) @pelotom
+- [typescript] Move @types/react-transition-group from devDependencies to dependencies (#9897) @pelotom
+- [typescript] Remove generic object and function types (#9822) @pelotom
+- [core] Go back to jss-vendor-prefixer@7 (#9904) @oliviertassinari
+
 ## 1.0.0-beta.28
 ###### *Jan 14, 2018*
 
