@@ -119,7 +119,7 @@ export const styles = theme => ({
     },
   },
   raisedAccent: {
-    color: theme.palette.getContrastText(theme.palette.secondary.light),
+    color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.light,
     '&:hover': {
       backgroundColor: theme.palette.secondary.main,
