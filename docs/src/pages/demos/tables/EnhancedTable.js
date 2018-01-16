@@ -307,6 +307,7 @@ class EnhancedTable extends React.Component {
             <TableFooter>
               <TableRow>
                 <TablePagination
+                  colSpan={6}
                   count={data.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
