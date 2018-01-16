@@ -58,7 +58,7 @@ function MarkdownDocs(props, context) {
         </Button>
       </div>
       <Carbon key={markdownLocation} />
-      {contents.map(content => {
+      {contents.map((content, index) => {
         const match = content.match(demoRegexp);
 
         if (match && demos) {
@@ -71,6 +71,7 @@ function MarkdownDocs(props, context) {
               key={content}
               js={demos[name].js}
               raw={demos[name].raw}
+              index={index}
               demoOptions={demoOptions}
               githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
             />

@@ -129,7 +129,7 @@ if (rootElement) {
   };
 
   render() {
-    const { classes, demoOptions, githubLocation, js: DemoComponent, raw } = this.props;
+    const { classes, demoOptions, githubLocation, index, js: DemoComponent, raw } = this.props;
     const { codeOpen } = this.state;
 
     return (
@@ -145,29 +145,31 @@ if (rootElement) {
           >
             <input type="hidden" name="parameters" value="" />
           </form>
-          <Tooltip
-            id="demo-github"
-            title="See the source on GitHub"
-            target="_blank"
-            placement="top"
-          >
-            <IconButton href={githubLocation} aria-labelledby="demo-github">
+          <Tooltip id={`demo-github-${index}`} title="See the source on GitHub" placement="top">
+            <IconButton
+              href={githubLocation}
+              target="_blank"
+              aria-labelledby={`demo-github-${index}`}
+            >
               <Github />
             </IconButton>
           </Tooltip>
           {demoOptions.hideEditButton ? null : (
-            <Tooltip id="demo-codesandbox" title="Edit in codesandbox" placement="top">
-              <IconButton onClick={this.handleClickCodesandbox} aria-labelledby="demo-codesandbox">
+            <Tooltip id={`demo-codesandbox-${index}`} title="Edit in codesandbox" placement="top">
+              <IconButton
+                onClick={this.handleClickCodesandbox}
+                aria-labelledby={`demo-codesandbox-${index}`}
+              >
                 <ModeEditIcon />
               </IconButton>
             </Tooltip>
           )}
           <Tooltip
-            id="demo-source"
+            id={`demo-source-${index}`}
             title={codeOpen ? 'Hide the source' : 'Show the source'}
             placement="top"
           >
-            <IconButton onClick={this.handleClickCodeOpen} aria-labelledby="demo-source">
+            <IconButton onClick={this.handleClickCodeOpen} aria-labelledby={`demo-source-${index}`}>
               <CodeIcon />
             </IconButton>
           </Tooltip>
@@ -187,6 +189,7 @@ Demo.propTypes = {
   classes: PropTypes.object.isRequired,
   demoOptions: PropTypes.object.isRequired,
   githubLocation: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
   js: PropTypes.func.isRequired,
   raw: PropTypes.string.isRequired,
 };

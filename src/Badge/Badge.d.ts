@@ -6,6 +6,7 @@ export interface BadgeProps
   badgeContent: React.ReactNode;
   children: React.ReactNode;
   color?: PropTypes.Color;
+  component?: React.ReactType<BadgeProps>;
 }
 
 export type BadgeClassKey = 'root' | 'badge' | 'colorPrimary' | 'colorSecondary';
