@@ -13,18 +13,18 @@ export interface TabProps extends StandardProps<ButtonBaseProps, TabClassKey, 'o
   onClick?: React.EventHandler<any>;
   selected?: boolean;
   style?: React.CSSProperties;
-  textColor?: string | 'accent' | 'primary' | 'inherit';
+  textColor?: string | 'secondary' | 'primary' | 'inherit';
 }
 
 export type TabClassKey =
   | ButtonBaseClassKey
   | 'rootLabelIcon'
-  | 'rootAccent'
-  | 'rootAccentSelected'
-  | 'rootAccentDisabled'
   | 'rootPrimary'
   | 'rootPrimarySelected'
   | 'rootPrimaryDisabled'
+  | 'rootSecondary'
+  | 'rootSecondarySelected'
+  | 'rootSecondaryDisabled'
   | 'rootInherit'
   | 'rootInheritSelected'
   | 'rootInheritDisabled'

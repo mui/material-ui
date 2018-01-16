@@ -127,10 +127,10 @@ function Team(props) {
             <div className={classes.details}>
               <CardContent>
                 <Typography type="headline">{member.name}</Typography>
-                <Typography type="subheading" color="secondary">
+                <Typography type="subheading" color="textSecondary">
                   {member.flag}
                 </Typography>
-                <Typography type="body2" color="secondary">
+                <Typography type="body2" color="textSecondary">
                   {member.city}
                 </Typography>
               </CardContent>

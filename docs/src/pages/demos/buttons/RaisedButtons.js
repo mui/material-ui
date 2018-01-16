@@ -22,13 +22,10 @@ function RaisedButtons(props) {
       <Button raised color="primary" className={classes.button}>
         Primary
       </Button>
-      <Button raised color="accent" className={classes.button}>
-        Accent
+      <Button raised color="secondary" className={classes.button}>
+        Secondary
       </Button>
-      <Button raised color="contrast" className={classes.button}>
-        Contrast
-      </Button>
-      <Button raised color="accent" disabled className={classes.button}>
+      <Button raised color="secondary" disabled className={classes.button}>
         Disabled
       </Button>
       <input

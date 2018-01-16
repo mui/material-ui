@@ -75,9 +75,9 @@ describe('<Badge />', () => {
     );
   });
 
-  it('renders children and have accent styles', () => {
+  it('renders children and have secondary styles', () => {
     const wrapper = shallow(
-      <Badge badgeContent={10} color="accent">
+      <Badge badgeContent={10} color="secondary">
         {testChildren}
       </Badge>,
     );
@@ -87,9 +87,8 @@ describe('<Badge />', () => {
       wrapper
         .find('span')
         .at(1)
-        .hasClass(classes.colorAccent),
+        .hasClass(classes.colorSecondary),
       true,
-      'should have accent class',
     );
   });
 

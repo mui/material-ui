@@ -48,7 +48,7 @@ export type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
 
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
-  type Color = 'inherit' | 'primary' | 'accent' | 'default';
+  type Color = 'inherit' | 'primary' | 'secondary' | 'default';
   type Margin = 'none' | 'dense' | 'normal';
 }
 

@@ -16,7 +16,7 @@ function LinearIndeterminate(props) {
     <div className={classes.root}>
       <LinearProgress />
       <br />
-      <LinearProgress color="accent" />
+      <LinearProgress color="secondary" />
     </div>
   );
 }

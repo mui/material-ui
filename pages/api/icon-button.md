@@ -16,7 +16,7 @@ regarding the available icon options.
 | buttonRef | func |  | Use that property to pass a ref callback to the native button component. |
 | children | node |  | The icon element. If a string is provided, it will be used as an icon font ligature. |
 | classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'default', 'inherit', 'primary', 'contrast', 'accent'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
+| color | enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
 | disabled | bool | false | If `true`, the button will be disabled. |
 | disableRipple | bool | false | If `true`, the ripple will be disabled. |
 | rootRef | func |  | Use that property to pass a ref callback to the root component. |
@@ -28,8 +28,7 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `colorAccent`
-- `colorContrast`
+- `colorSecondary`
 - `colorPrimary`
 - `colorInherit`
 - `disabled`

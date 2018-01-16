@@ -25,13 +25,13 @@ export const styles = theme => ({
   rootLabelIcon: {
     height: 72,
   },
-  rootAccent: {
+  rootSecondary: {
     color: theme.palette.text.secondary,
   },
-  rootAccentSelected: {
+  rootSecondarySelected: {
     color: theme.palette.secondary.light,
   },
-  rootAccentDisabled: {
+  rootSecondaryDisabled: {
     color: theme.palette.text.disabled,
   },
   rootPrimary: {
@@ -186,7 +186,7 @@ class Tab extends React.Component {
 
     let style = {};
 
-    if (textColor !== 'accent' && textColor !== 'inherit') {
+    if (textColor !== 'secondary' && textColor !== 'inherit') {
       style.color = textColor;
     }
 
@@ -271,7 +271,7 @@ Tab.propTypes = {
    */
   textColor: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.oneOf(['accent', 'primary', 'inherit']),
+    PropTypes.oneOf(['secondary', 'primary', 'inherit']),
   ]),
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.

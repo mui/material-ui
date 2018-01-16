@@ -41,7 +41,7 @@ class LinearDeterminate extends React.Component {
       <div className={classes.root}>
         <LinearProgress mode="determinate" value={this.state.completed} />
         <br />
-        <LinearProgress color="accent" mode="determinate" value={this.state.completed} />
+        <LinearProgress color="secondary" mode="determinate" value={this.state.completed} />
       </div>
     );
   }

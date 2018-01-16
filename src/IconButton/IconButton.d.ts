@@ -4,7 +4,7 @@ import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
 export interface IconButtonProps extends StandardProps<ButtonBaseProps, IconButtonClassKey> {
   buttonRef?: React.Ref<any>;
-  color?: PropTypes.Color | 'contrast';
+  color?: PropTypes.Color;
   disabled?: boolean;
   disableRipple?: boolean;
   rootRef?: React.Ref<any>;
@@ -12,9 +12,8 @@ export interface IconButtonProps extends StandardProps<ButtonBaseProps, IconButt
 
 export type IconButtonClassKey =
   | ButtonBaseClassKey
-  | 'colorAccent'
-  | 'colorContrast'
   | 'colorPrimary'
+  | 'colorSecondary'
   | 'colorInherit'
   | 'label'
   | 'icon'

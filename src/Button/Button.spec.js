@@ -35,11 +35,7 @@ describe('<Button />', () => {
       false,
       'should not have the primary class',
     );
-    assert.strictEqual(
-      wrapper.hasClass(classes.flatAccent),
-      false,
-      'should not have the accent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.flatSecondary), false);
   });
 
   it('should render the custom className and the root class', () => {
@@ -58,15 +54,11 @@ describe('<Button />', () => {
       true,
       'should have the primary class',
     );
-    assert.strictEqual(
-      wrapper.hasClass(classes.flatAccent),
-      false,
-      'should not have the accent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.flatSecondary), false);
   });
 
-  it('should render an accent button', () => {
-    const wrapper = shallow(<Button color="accent">Hello World</Button>);
+  it('should render an secondary button', () => {
+    const wrapper = shallow(<Button color="secondary">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.raised), false, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
@@ -75,11 +67,7 @@ describe('<Button />', () => {
       false,
       'should not have the primary class',
     );
-    assert.strictEqual(
-      wrapper.hasClass(classes.flatAccent),
-      true,
-      'should not have the accent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.flatSecondary), true);
   });
 
   it('should render a raised button', () => {
@@ -92,11 +80,7 @@ describe('<Button />', () => {
       false,
       'should not have the primary class',
     );
-    assert.strictEqual(
-      wrapper.hasClass(classes.flatAccent),
-      false,
-      'should not have the accent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.flatSecondary), false);
   });
 
   it('should render a raised primary button', () => {
@@ -113,16 +97,12 @@ describe('<Button />', () => {
       true,
       'should not have the primary class',
     );
-    assert.strictEqual(
-      wrapper.hasClass(classes.raisedAccent),
-      false,
-      'should not have the accent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.raisedSecondary), false);
   });
 
-  it('should render a raised accent button', () => {
+  it('should render a raised secondary button', () => {
     const wrapper = shallow(
-      <Button raised color="accent">
+      <Button raised color="secondary">
         Hello World
       </Button>,
     );
@@ -135,9 +115,9 @@ describe('<Button />', () => {
       'should not have the primary class',
     );
     assert.strictEqual(
-      wrapper.hasClass(classes.raisedAccent),
+      wrapper.hasClass(classes.raisedSecondary),
       true,
-      'should have the accent class',
+      'should have the secondary class',
     );
   });
 
@@ -151,11 +131,7 @@ describe('<Button />', () => {
       false,
       'should not have the primary class',
     );
-    assert.strictEqual(
-      wrapper.hasClass(classes.flatAccent),
-      false,
-      'should not have the accent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.flatSecondary), false);
   });
 
   it('should render a mini floating action button', () => {
@@ -173,11 +149,7 @@ describe('<Button />', () => {
       false,
       'should not have the primary class',
     );
-    assert.strictEqual(
-      wrapper.hasClass(classes.flatAccent),
-      false,
-      'should not have the accent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.flatSecondary), false);
   });
 
   it('should render a primary floating action button', () => {
@@ -194,16 +166,12 @@ describe('<Button />', () => {
       true,
       'should have the primary class',
     );
-    assert.strictEqual(
-      wrapper.hasClass(classes.raisedAccent),
-      false,
-      'should not have the accent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.raisedSecondary), false);
   });
 
-  it('should render an accent floating action button', () => {
+  it('should render an secondary floating action button', () => {
     const wrapper = shallow(
-      <Button fab color="accent">
+      <Button fab color="secondary">
         Hello World
       </Button>,
     );
@@ -216,9 +184,9 @@ describe('<Button />', () => {
       'should not have the primary class',
     );
     assert.strictEqual(
-      wrapper.hasClass(classes.raisedAccent),
+      wrapper.hasClass(classes.raisedSecondary),
       true,
-      'should have the accent class',
+      'should have the secondary class',
     );
   });
 

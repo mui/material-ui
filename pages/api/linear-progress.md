@@ -13,7 +13,7 @@ filename: /src/Progress/LinearProgress.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'accent'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
+| color | enum:&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
 | mode | enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'&nbsp;&#124;<br>&nbsp;'buffer'&nbsp;&#124;<br>&nbsp;'query'<br> | 'indeterminate' | The mode of show your progress, indeterminate for when there is no value for progress. |
 | value | number |  | The value of progress, only works in determinate and buffer mode. Value between 0 and 100. |
 | valueBuffer | number |  | The value of buffer, only works in buffer mode. Value between 0 and 100. |
@@ -28,9 +28,9 @@ This property accepts the following keys:
 - `primaryColor`
 - `primaryColorBar`
 - `primaryDashed`
-- `accentColor`
-- `accentColorBar`
-- `accentDashed`
+- `secondaryColor`
+- `secondaryColorBar`
+- `secondaryDashed`
 - `bar`
 - `dashed`
 - `bufferBar2`
@@ -40,8 +40,6 @@ This property accepts the following keys:
 - `indeterminateBar2`
 - `determinateBar1`
 - `bufferBar1`
-- `bufferBar2Primary`
-- `bufferBar2Accent`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Progress/LinearProgress.js)

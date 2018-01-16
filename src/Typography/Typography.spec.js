@@ -66,8 +66,8 @@ describe('<Typography />', () => {
 
   [
     ['primary', 'colorPrimary'],
+    ['textSecondary', 'colorTextSecondary'],
     ['secondary', 'colorSecondary'],
-    ['accent', 'colorAccent'],
     ['inherit', 'colorInherit'],
     ['error', 'colorError'],
   ].forEach(([color, className]) => {

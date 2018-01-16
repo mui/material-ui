@@ -18,7 +18,7 @@ function SimpleBadge(props) {
       <Badge className={classes.badge} badgeContent={4} color="primary">
         <MailIcon />
       </Badge>
-      <Badge className={classes.badge} badgeContent={10} color="accent">
+      <Badge className={classes.badge} badgeContent={10} color="secondary">
         <MailIcon />
       </Badge>
       <IconButton>

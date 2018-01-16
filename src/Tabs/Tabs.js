@@ -407,7 +407,10 @@ Tabs.propTypes = {
   /**
    * Determines the color of the indicator.
    */
-  indicatorColor: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf(['accent', 'primary'])]),
+  indicatorColor: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.oneOf(['secondary', 'primary']),
+  ]),
   /**
    * Callback fired when the value changes.
    *
@@ -434,7 +437,7 @@ Tabs.propTypes = {
   /**
    * Determines the color of the `Tab`.
    */
-  textColor: PropTypes.oneOf(['accent', 'primary', 'inherit']),
+  textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
   /**
    * @ignore
    */
@@ -449,7 +452,7 @@ Tabs.propTypes = {
 Tabs.defaultProps = {
   centered: false,
   fullWidth: false,
-  indicatorColor: 'accent',
+  indicatorColor: 'secondary',
   scrollable: false,
   scrollButtons: 'auto',
   TabScrollButton,

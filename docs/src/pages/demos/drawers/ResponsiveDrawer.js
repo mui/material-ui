@@ -90,7 +90,7 @@ class ResponsiveDrawer extends React.Component {
           <AppBar className={classes.appBar}>
             <Toolbar>
               <IconButton
-                color="contrast"
+                color="inherit"
                 aria-label="open drawer"
                 onClick={this.handleDrawerToggle}
                 className={classes.navIconHide}

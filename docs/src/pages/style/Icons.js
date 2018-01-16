@@ -21,9 +21,8 @@ function Icons(props: ProvidedProps) {
   return (
     <div className={props.classes.root}>
       <Icon>add_circle</Icon>
-      <Icon color="accent">add_circle</Icon>
+      <Icon color="secondary">add_circle</Icon>
       <Icon color="action">add_circle</Icon>
-      <Icon color="contrast">add_circle</Icon>
       <Icon color="disabled">add_circle</Icon>
       <Icon color="primary" style={{ fontSize: 30 }}>
         add_circle

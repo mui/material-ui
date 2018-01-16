@@ -8,14 +8,11 @@ export const styles = theme => ({
   root: {
     userSelect: 'none',
   },
-  colorAccent: {
+  colorSecondary: {
     color: theme.palette.secondary.light,
   },
   colorAction: {
     color: theme.palette.action.active,
-  },
-  colorContrast: {
-    color: theme.palette.primary.contrastText,
   },
   colorDisabled: {
     color: theme.palette.action.disabled,
@@ -63,15 +60,7 @@ Icon.propTypes = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf([
-    'inherit',
-    'accent',
-    'action',
-    'contrast',
-    'disabled',
-    'error',
-    'primary',
-  ]),
+  color: PropTypes.oneOf(['inherit', 'secondary', 'action', 'disabled', 'error', 'primary']),
 };
 
 Icon.defaultProps = {

@@ -14,7 +14,7 @@ filename: /src/AppBar/AppBar.js
 |:-----|:-----|:--------|:------------|
 | <span style="color: #31a148">children *</span> | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'accent'&nbsp;&#124;<br>&nbsp;'default'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
+| color | enum:&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'default'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
 | position | enum:&nbsp;'static'&nbsp;&#124;<br>&nbsp;'fixed'&nbsp;&#124;<br>&nbsp;'absolute'<br> | 'fixed' | The positioning type. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
@@ -29,7 +29,7 @@ This property accepts the following keys:
 - `positionStatic`
 - `colorDefault`
 - `colorPrimary`
-- `colorAccent`
+- `colorSecondary`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/AppBar/AppBar.js)

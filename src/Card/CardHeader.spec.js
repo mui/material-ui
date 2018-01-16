@@ -66,7 +66,7 @@ describe('<CardHeader />', () => {
       const subheader = wrapper.childAt(1);
       assert.strictEqual(subheader.type(), Typography);
       assert.strictEqual(subheader.props().type, 'body1');
-      assert.strictEqual(subheader.props().color, 'secondary');
+      assert.strictEqual(subheader.props().color, 'textSecondary');
     });
 
     it('should not render the subheader if none is given', () => {
@@ -115,7 +115,7 @@ describe('<CardHeader />', () => {
       const subheader = container.childAt(1);
       assert.strictEqual(subheader.type(), Typography);
       assert.strictEqual(subheader.props().type, 'body2');
-      assert.strictEqual(subheader.props().color, 'secondary');
+      assert.strictEqual(subheader.props().color, 'textSecondary');
     });
   });
 });

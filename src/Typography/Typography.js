@@ -49,10 +49,10 @@ export const styles = theme => ({
   colorPrimary: {
     color: theme.palette.primary.main,
   },
-  colorSecondary: {
+  colorTextSecondary: {
     color: theme.palette.text.secondary,
   },
-  colorAccent: {
+  colorSecondary: {
     color: theme.palette.secondary.main,
   },
   colorError: {
@@ -113,7 +113,7 @@ Typography.propTypes = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'accent', 'error', 'default']),
+  color: PropTypes.oneOf(['inherit', 'primary', 'textSecondary', 'secondary', 'error', 'default']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

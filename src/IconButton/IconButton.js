@@ -24,11 +24,8 @@ export const styles = theme => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-  colorAccent: {
+  colorSecondary: {
     color: theme.palette.secondary.light,
-  },
-  colorContrast: {
-    color: theme.palette.primary.contrastText,
   },
   colorPrimary: {
     color: theme.palette.primary.main,
@@ -118,7 +115,7 @@ IconButton.propTypes = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'contrast', 'accent']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
    * If `true`, the button will be disabled.
    */

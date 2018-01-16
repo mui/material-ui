@@ -9,12 +9,12 @@ export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 
   children?: React.ReactNode;
   fullWidth?: boolean;
   indicatorClassName?: string;
-  indicatorColor?: 'accent' | 'primary' | string;
+  indicatorColor?: 'secondary' | 'primary' | string;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   scrollable?: boolean;
   scrollButtons?: 'auto' | 'on' | 'off';
   TabScrollButton?: React.ReactType;
-  textColor?: 'accent' | 'primary' | 'inherit' | string;
+  textColor?: 'secondary' | 'primary' | 'inherit' | string;
   value: any;
   width?: string;
 }

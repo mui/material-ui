@@ -21,8 +21,8 @@ export default class IconLabelTabs extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
           fullWidth
-          indicatorColor="accent"
-          textColor="accent"
+          indicatorColor="secondary"
+          textColor="secondary"
         >
           <Tab icon={<PhoneIcon />} label="RECENTS" />
           <Tab icon={<FavoriteIcon />} label="FAVORITES" />

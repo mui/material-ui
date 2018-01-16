@@ -41,6 +41,7 @@ const styles = theme => ({
     right: theme.spacing.unit * 2,
   },
   fabGreen: {
+    color: theme.palette.common.white,
     backgroundColor: green[500],
   },
 });
@@ -72,12 +73,12 @@ class FloatingActionButtonZoom extends React.Component {
         icon: <AddIcon />,
       },
       {
-        color: 'accent',
+        color: 'secondary',
         className: classes.fab,
         icon: <EditIcon />,
       },
       {
-        color: 'contrast',
+        color: 'inherit',
         className: classNames(classes.fab, classes.fabGreen),
         icon: <UpIcon />,
       },

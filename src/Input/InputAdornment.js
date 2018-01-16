@@ -44,7 +44,7 @@ function InputAdornment(props) {
       {...other}
     >
       {typeof children === 'string' && !disableTypography ? (
-        <Typography color="secondary">{children}</Typography>
+        <Typography color="textSecondary">{children}</Typography>
       ) : (
         children
       )}

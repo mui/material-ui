@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 
 export interface LinearProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, LinearProgressClassKey> {
-  color?: 'primary' | 'accent';
+  color?: 'primary' | 'secondary';
   mode?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
   value?: number;
   valueBuffer?: number;
@@ -14,9 +14,9 @@ export type LinearProgressClassKey =
   | 'primaryColor'
   | 'primaryColorBar'
   | 'primaryDashed'
-  | 'accentColor'
-  | 'accentColorBar'
-  | 'accentDashed'
+  | 'secondaryColor'
+  | 'secondaryColorBar'
+  | 'secondaryDashed'
   | 'bar'
   | 'dashed'
   | 'bufferBar2'
@@ -26,8 +26,6 @@ export type LinearProgressClassKey =
   | 'indeterminateBar2'
   | 'determinateBar1'
   | 'bufferBar1'
-  | 'bufferBar2Primary'
-  | 'bufferBar2Accent';
 
 declare const LinearProgress: React.ComponentType<LinearProgressProps>;
 
