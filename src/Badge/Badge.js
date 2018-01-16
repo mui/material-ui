@@ -38,8 +38,8 @@ export const styles = theme => ({
     color: theme.palette.primary.contrastText,
   },
   colorSecondary: {
-    backgroundColor: theme.palette.secondary.light,
-    color: theme.palette.getContrastText(theme.palette.secondary.light),
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText,
   },
 });
 

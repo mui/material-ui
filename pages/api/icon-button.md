@@ -28,9 +28,9 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `colorSecondary`
-- `colorPrimary`
 - `colorInherit`
+- `colorPrimary`
+- `colorSecondary`
 - `disabled`
 - `label`
 - `icon`

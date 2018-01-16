@@ -8,8 +8,11 @@ export const styles = theme => ({
   root: {
     userSelect: 'none',
   },
+  colorPrimary: {
+    color: theme.palette.primary.main,
+  },
   colorSecondary: {
-    color: theme.palette.secondary.light,
+    color: theme.palette.secondary.main,
   },
   colorAction: {
     color: theme.palette.action.active,
@@ -19,9 +22,6 @@ export const styles = theme => ({
   },
   colorError: {
     color: theme.palette.error.main,
-  },
-  colorPrimary: {
-    color: theme.palette.primary.main,
   },
 });
 

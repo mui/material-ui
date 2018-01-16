@@ -55,9 +55,9 @@ export const styles = theme => ({
     },
   },
   flatSecondary: {
-    color: theme.palette.secondary.light,
+    color: theme.palette.secondary.main,
     '&:hover': {
-      backgroundColor: fade(theme.palette.secondary.light, 0.12),
+      backgroundColor: fade(theme.palette.secondary.main, 0.12),
       // Reset on mouse devices
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -110,12 +110,12 @@ export const styles = theme => ({
   },
   raisedSecondary: {
     color: theme.palette.secondary.contrastText,
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.secondary.main,
     '&:hover': {
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: theme.palette.secondary.dark,
       // Reset on mouse devices
       '@media (hover: none)': {
-        backgroundColor: theme.palette.secondary.light,
+        backgroundColor: theme.palette.secondary.main,
       },
     },
   },

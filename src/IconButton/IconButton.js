@@ -24,14 +24,14 @@ export const styles = theme => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-  colorSecondary: {
-    color: theme.palette.secondary.light,
+  colorInherit: {
+    color: 'inherit',
   },
   colorPrimary: {
     color: theme.palette.primary.main,
   },
-  colorInherit: {
-    color: 'inherit',
+  colorSecondary: {
+    color: theme.palette.secondary.main,
   },
   disabled: {
     color: theme.palette.action.disabled,

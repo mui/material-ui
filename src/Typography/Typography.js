@@ -49,11 +49,11 @@ export const styles = theme => ({
   colorPrimary: {
     color: theme.palette.primary.main,
   },
-  colorTextSecondary: {
-    color: theme.palette.text.secondary,
-  },
   colorSecondary: {
     color: theme.palette.secondary.main,
+  },
+  colorTextSecondary: {
+    color: theme.palette.text.secondary,
   },
   colorError: {
     color: theme.palette.error.main,
