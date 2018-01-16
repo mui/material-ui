@@ -34,8 +34,8 @@ const accent2 = purple.A200; // #E040FB (alternative method)
 
 ## Color tool
 
-Material Design team has built an awesome palette configuration tool: [https://material.io/color](material.io/color).
-It will help you create, share, and apply color palettes to your UI, as well as measure the accessibility level of any color combination.
+The Material Design team has built an awesome palette configuration tool: [https://material.io/color](material.io/color).
+It will help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
 [![color tool](/static/images/color/colorTool.png)](https://material.io/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336)
 

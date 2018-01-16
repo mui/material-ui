@@ -83,7 +83,13 @@ describe('<Badge />', () => {
     );
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
-    assert.strictEqual(wrapper.find('span').hasClass(classes.colorSecondary), true);
+    assert.strictEqual(
+      wrapper
+        .find('span')
+        .at(1)
+        .hasClass(classes.colorSecondary),
+      true,
+    );
   });
 
   it('renders children and overwrite root styles', () => {
