@@ -7,16 +7,14 @@ Changes. Changes everywhere!
 
 Big thanks to the 9 contributors who made this release possible.
 
-We are making a release earlier than expected.
-The release schedule norm has been so far: one every weekend.
-1.0.0-beta.28 have introduced important pain points we want to address quickly:
+We are making a release earlier than expected. The release schedule norm has been so far: one every weekend. `1.0.0-beta.28` has introduced important pain points we want to address quickly:
 - The 1.0.0-beta.28 palette change was made non-breaking (#9889) @mbrookes
 - The JSS issues have been fixed
 - The TypeScript definitions have been updated
 
 ### Breaking change
 
-N.A
+N/A
 
 #### Component Fixes / Enhancements
 
