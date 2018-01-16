@@ -114,7 +114,6 @@ class Collapse extends React.Component {
       className,
       collapsedHeight,
       component: ComponentProp,
-      containerProps,
       onEnter,
       onEntered,
       onEntering,
@@ -196,10 +195,6 @@ Collapse.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  /**
-   * Properties applied to the `Collapse` container.
-   */
-  containerProps: PropTypes.object,
   /**
    * If `true`, the component will transition in.
    */

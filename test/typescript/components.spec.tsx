@@ -503,7 +503,8 @@ const SnackbarTest = () => (
       autoHideDuration={6e3}
       onClose={event => log(event)}
       SnackbarContentProps={{
-        'aria-describedby': 'message-id',
+        // 'aria-describedby': 'message-id',
+        // ^ will work once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/22582 is merged.
       }}
       message={<span id="message-id">Note archived</span>}
       action={[

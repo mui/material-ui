@@ -12,7 +12,7 @@ export interface TabProps extends StandardProps<ButtonBaseProps, TabClassKey, 'o
   onChange?: (event: React.ChangeEvent<{ checked: boolean }>, value: any) => void;
   onClick?: React.EventHandler<any>;
   selected?: boolean;
-  style?: object;
+  style?: React.CSSProperties;
   textColor?: string | 'accent' | 'primary' | 'inherit';
 }
 

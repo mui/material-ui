@@ -1,1 +1,3 @@
-export default function jssPreset(): object;
+import { JSSOptions } from 'jss';
+
+export default function jssPreset(): JSSOptions;

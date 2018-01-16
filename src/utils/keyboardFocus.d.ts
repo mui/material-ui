@@ -6,7 +6,7 @@ export function detectKeyboardFocus(
     keyboardFocusMaxCheckTimes: number;
   },
   element: Element,
-  cb: Function,
+  cb: () => void,
   attempt: number,
 ): never;
 export function listenForFocusKeys(): never;

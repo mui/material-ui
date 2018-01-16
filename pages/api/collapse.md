@@ -16,7 +16,6 @@ filename: /src/transitions/Collapse.js
 | classes | object |  | Useful to extend the style applied to components. |
 | collapsedHeight | string | '0px' | The height of the container when collapsed. |
 | component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
-| containerProps | object |  | Properties applied to the `Collapse` container. |
 | in | bool |  | If `true`, the component will transition in. |
 | timeout | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;{0?: undefined}<br> | duration.standard | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.<br>Set to 'auto' to automatically calculate transition time based on height. |
 

@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase/ButtonBase';
 
 export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 'onChange'> {
-  action?: (actions: object) => void;
+  action?: (actions: TabsActions) => void;
   buttonClassName?: string;
   centered?: boolean;
   children?: React.ReactNode;
@@ -25,7 +25,12 @@ export type TabsClassKey =
   | 'scrollingContainer'
   | 'fixed'
   | 'scrollable'
-  | 'centered';
+  | 'centered'
+  ;
+
+export interface TabsActions {
+  updateIndicator(): void;
+}
 
 declare const Tabs: React.ComponentType<TabsProps>;
 
