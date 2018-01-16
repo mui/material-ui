@@ -19,6 +19,13 @@ describe('<FormHelperText />', () => {
     assert.strictEqual(wrapper.hasClass('woofHelperText'), true, 'should have the user class');
   });
 
+  describe('prop: component', () => {
+    it('should render the prop component', () => {
+      const wrapper = shallow(<FormHelperText component="div" />);
+      assert.strictEqual(wrapper.name(), 'div');
+    });
+  });
+
   describe('prop: error', () => {
     it('should have an error class', () => {
       const wrapper = shallow(<FormHelperText error />);

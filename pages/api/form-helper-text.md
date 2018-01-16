@@ -14,6 +14,7 @@ filename: /src/Form/FormHelperText.js
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
+| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'p' | The component used for the root node. Either a string to use a DOM element or a component. |
 | disabled | bool |  | If `true`, the helper text should be displayed in a disabled state. |
 | error | bool |  | If `true`, helper text should be displayed in an error state. |
 | margin | enum:&nbsp;'dense'<br> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |

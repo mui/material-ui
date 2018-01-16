@@ -33,6 +33,7 @@ function FormHelperText(props, context) {
     disabled: disabledProp,
     error: errorProp,
     margin: marginProp,
+    component: ComponentProp,
     ...other
   } = props;
   const { muiFormControl } = context;
@@ -66,9 +67,9 @@ function FormHelperText(props, context) {
   );
 
   return (
-    <p className={className} {...other}>
+    <ComponentProp className={className} {...other}>
       {children}
-    </p>
+    </ComponentProp>
   );
 }
 
@@ -86,6 +87,11 @@ FormHelperText.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
    * If `true`, the helper text should be displayed in a disabled state.
    */
   disabled: PropTypes.bool,
@@ -98,6 +104,10 @@ FormHelperText.propTypes = {
    * FormControl.
    */
   margin: PropTypes.oneOf(['dense']),
+};
+
+FormHelperText.defaultProps = {
+  component: 'p',
 };
 
 FormHelperText.contextTypes = {
