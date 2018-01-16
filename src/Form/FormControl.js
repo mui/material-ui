@@ -89,9 +89,7 @@ class FormControl extends React.Component {
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
-    if (!this.state.focused) {
-      this.setState({ focused: true });
-    }
+    this.setState(state => (!state.focused ? { focused: true } : null));
   };
 
   handleBlur = event => {
@@ -101,9 +99,7 @@ class FormControl extends React.Component {
     if (this.props.onBlur && event) {
       this.props.onBlur(event);
     }
-    if (this.state.focused) {
-      this.setState({ focused: false });
-    }
+    this.setState(state => (state.focused ? { focused: false } : null));
   };
 
   handleDirty = () => {
