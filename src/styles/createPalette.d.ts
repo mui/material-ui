@@ -1,4 +1,4 @@
-import { Color, Contrast } from '..';
+import { Color, PaletteType } from '..';
 import { CommonColors } from '../colors/common';
 
 interface ShadeText {
@@ -32,6 +32,16 @@ interface ShadeBackground {
   status: string;
 }
 
+type PaletteColor = Partial<
+  | {
+      light?: string;
+      main: string;
+      dark?: string;
+      contrastText?: string;
+    }
+  | Color
+>;
+
 export interface Shade {
   text: ShadeText;
   input: ShadeInput;
@@ -44,10 +54,12 @@ export const dark: Shade;
 
 export interface Palette {
   common: CommonColors;
-  type: Contrast;
-  primary: Color;
-  secondary: Color;
-  error: Color;
+  type: PaletteType;
+  contrastThreshold: number;
+  tonalOffset: number;
+  primary: PaletteColor;
+  secondary: PaletteColor;
+  error: PaletteColor;
   grey: Color;
   shades: {
     dark: Shade;
@@ -65,10 +77,10 @@ type ColorPartial = Partial<Color>;
 
 export interface PaletteOptions {
   common?: Partial<CommonColors>;
-  type?: Contrast;
-  primary?: ColorPartial;
-  secondary?: ColorPartial;
-  error?: ColorPartial;
+  type?: PaletteType;
+  primary?: PaletteColor;
+  secondary?: PaletteColor;
+  error?: PaletteColor;
   grey?: ColorPartial;
   shades?: {
     dark?: PartialShade;

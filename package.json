@@ -38,7 +38,7 @@
     "build:umd:dev": "webpack --config scripts/umd.webpack.config.js",
     "build:umd:prod": "cross-env NODE_ENV=production webpack --config scripts/umd.webpack.config.js",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:copy-files && yarn build:umd:dev && yarn build:umd:prod",
-    "prettier": "find . -name \"*.js\" -o -name \"*.d.ts\" | grep -v -f .eslintignore | xargs prettier --write",
+    "prettier": "find . -name \"*.js\" -o -name \"*.d.ts\" -o -name \"*.tsx\" | grep -v -f .eslintignore | xargs prettier --write",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "size": "size-limit",
     "size:why": "size-limit --why build/index.js",
