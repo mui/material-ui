@@ -35,7 +35,7 @@ export const styles = theme => ({
     animation: 'mui-progress-circular-dash 1.4s ease-in-out infinite',
     // Some default value that looks fine waiting for the animation to kicks in.
     strokeDasharray: '80px, 200px',
-    strokeDashoffset: 0,
+    strokeDashoffset: '0px', // Add the unit to fix a Edge 16 and below bug.
   },
   '@keyframes mui-progress-circular-rotate': {
     '100%': {
@@ -45,7 +45,7 @@ export const styles = theme => ({
   '@keyframes mui-progress-circular-dash': {
     '0%': {
       strokeDasharray: '1px, 200px',
-      strokeDashoffset: 0,
+      strokeDashoffset: '0px',
     },
     '50%': {
       strokeDasharray: '100px, 200px',
