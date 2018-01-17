@@ -4,6 +4,4 @@ export interface RenderOptions {
   render: typeof render;
 }
 
-export default function createRender(
-  options?: Partial<RenderOptions>,
-): typeof render;
+export default function createRender(options?: Partial<RenderOptions>): typeof render;

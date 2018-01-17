@@ -14,6 +14,7 @@ filename: /src/Divider/Divider.js
 |:-----|:-----|:--------|:------------|
 | absolute | bool | false |  |
 | classes | object |  | Useful to extend the style applied to components. |
+| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'hr' | The component used for the root node. Either a string to use a DOM element or a component. |
 | inset | bool | false | If `true`, the divider will be indented. |
 | light | bool | false | If `true`, the divider will have a lighter color. |
 
@@ -24,8 +25,8 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `default`
 - `inset`
+- `default`
 - `light`
 - `absolute`
 

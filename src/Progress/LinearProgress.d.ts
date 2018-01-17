@@ -25,7 +25,7 @@ export type LinearProgressClassKey =
   | 'indeterminateBar1'
   | 'indeterminateBar2'
   | 'determinateBar1'
-  | 'bufferBar1'
+  | 'bufferBar1';
 
 declare const LinearProgress: React.ComponentType<LinearProgressProps>;
 

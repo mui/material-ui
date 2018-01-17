@@ -113,7 +113,7 @@ class Collapse extends React.Component {
       classes,
       className,
       collapsedHeight,
-      component: ComponentProp,
+      component: Component,
       onEnter,
       onEntered,
       onEntering,
@@ -139,7 +139,7 @@ class Collapse extends React.Component {
       >
         {(state, otherInner) => {
           return (
-            <ComponentProp
+            <Component
               className={classNames(
                 classes.container,
                 {
@@ -161,7 +161,7 @@ class Collapse extends React.Component {
               >
                 <div className={classes.wrapperInner}>{children}</div>
               </div>
-            </ComponentProp>
+            </Component>
           );
         }}
       </Transition>

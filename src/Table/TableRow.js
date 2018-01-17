@@ -35,7 +35,6 @@ export const styles = theme => ({
  */
 function TableRow(props, context) {
   const {
-    children,
     classes,
     className: classNameProp,
     component: Component,
@@ -56,11 +55,7 @@ function TableRow(props, context) {
     classNameProp,
   );
 
-  return (
-    <Component className={className} {...other}>
-      {children}
-    </Component>
-  );
+  return <Component className={className} {...other} />;
 }
 
 TableRow.propTypes = {

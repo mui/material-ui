@@ -21,14 +21,14 @@ function GridList(props) {
     classes,
     className: classNameProp,
     cols,
-    component: ComponentProp,
+    component: Component,
     spacing,
     style,
     ...other
   } = props;
 
   return (
-    <ComponentProp
+    <Component
       className={classNames(classes.root, classNameProp)}
       style={{ margin: -spacing / 2, ...style }}
       {...other}
@@ -48,7 +48,7 @@ function GridList(props) {
           ),
         });
       })}
-    </ComponentProp>
+    </Component>
   );
 }
 

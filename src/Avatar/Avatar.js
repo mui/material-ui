@@ -38,7 +38,7 @@ function Avatar(props) {
     childrenClassName: childrenClassNameProp,
     classes,
     className: classNameProp,
-    component: ComponentProp,
+    component: Component,
     imgProps,
     sizes,
     src,
@@ -80,9 +80,9 @@ function Avatar(props) {
   }
 
   return (
-    <ComponentProp className={className} {...other}>
+    <Component className={className} {...other}>
       {children}
-    </ComponentProp>
+    </Component>
   );
 }
 

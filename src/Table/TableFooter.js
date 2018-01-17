@@ -12,9 +12,9 @@ class TableFooter extends React.Component {
   }
 
   render() {
-    const { children, component: ComponentProp, ...other } = this.props;
+    const { component: Component, ...other } = this.props;
 
-    return <ComponentProp {...other}>{children}</ComponentProp>;
+    return <Component {...other} />;
   }
 }
 

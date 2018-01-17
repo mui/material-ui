@@ -35,11 +35,10 @@ export const styles = theme => ({
 
 function ListSubheader(props) {
   const {
-    children,
     classes,
     className: classNameProp,
     color,
-    component: ComponentProp,
+    component: Component,
     disableSticky,
     inset,
     ...other
@@ -54,11 +53,7 @@ function ListSubheader(props) {
     classNameProp,
   );
 
-  return (
-    <ComponentProp className={className} {...other}>
-      {children}
-    </ComponentProp>
-  );
+  return <Component className={className} {...other} />;
 }
 
 ListSubheader.propTypes = {

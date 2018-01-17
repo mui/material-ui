@@ -164,7 +164,7 @@ function Grid(props) {
     alignItems,
     classes,
     className: classNameProp,
-    component: ComponentProp,
+    component: Component,
     container,
     direction,
     hidden,
@@ -210,12 +210,12 @@ function Grid(props) {
   if (hidden) {
     return (
       <Hidden {...hidden}>
-        <ComponentProp {...gridProps} />
+        <Component {...gridProps} />
       </Hidden>
     );
   }
 
-  return <ComponentProp {...gridProps} />;
+  return <Component {...gridProps} />;
 }
 
 Grid.propTypes = {

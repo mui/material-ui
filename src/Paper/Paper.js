@@ -27,7 +27,7 @@ function Paper(props) {
   const {
     classes,
     className: classNameProp,
-    component: ComponentProp,
+    component: Component,
     square,
     elevation,
     ...other
@@ -47,12 +47,12 @@ function Paper(props) {
     classNameProp,
   );
 
-  return <ComponentProp className={className} {...other} />;
+  return <Component className={className} {...other} />;
 }
 
 Paper.propTypes = {
   /**
-   * @ignore
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

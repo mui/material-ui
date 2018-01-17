@@ -18,14 +18,14 @@ export const styles = {
 const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 
 function CardMedia(props) {
-  const { classes, className, component: ComponentProp, image, src, style, ...other } = props;
+  const { classes, className, component: Component, image, src, style, ...other } = props;
 
   warning(
     Boolean(image || src),
     'Material-UI: either `image` or `src` property must be specified.',
   );
 
-  const isMediaComponent = MEDIA_COMPONENTS.indexOf(ComponentProp) !== -1;
+  const isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;
   const composedStyle =
     !isMediaComponent && image ? { backgroundImage: `url(${image})`, ...style } : style;
   const composedClassName = classNames(
@@ -37,7 +37,7 @@ function CardMedia(props) {
   );
 
   return (
-    <ComponentProp
+    <Component
       className={composedClassName}
       style={composedStyle}
       src={isMediaComponent ? image || src : undefined}
