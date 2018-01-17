@@ -90,7 +90,7 @@ class AnchorPlayground extends React.Component {
           anchorEl={anchorEl}
           anchorReference={anchorReference}
           anchorPosition={{ top: positionTop, left: positionLeft }}
-          onClose={this.handleClose}
+          onRequestClose={this.handleClose}
           anchorOrigin={{
             vertical: anchorOriginVertical,
             horizontal: anchorOriginHorizontal,
