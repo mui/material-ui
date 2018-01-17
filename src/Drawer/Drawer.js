@@ -97,6 +97,7 @@ class Drawer extends React.Component {
     if (this.props.type === 'temporary') {
       this.enableSwipeHandling();
     }
+    this.mounted = true;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -114,9 +115,13 @@ class Drawer extends React.Component {
   componentWillUnmount() {
     this.disableSwipeHandling();
     this.removeBodyTouchListeners();
+    this.mounted = false;
   }
 
   onBodyTouchStart = event => {
+    // sometimes the event handler is called after unbinding it
+    if (!this.mounted) return;
+
     const swipeAreaWidth = this.props.swipeAreaWidth;
 
     const touchStartX =
@@ -151,6 +156,9 @@ class Drawer extends React.Component {
   };
 
   onBodyTouchMove = event => {
+    // sometimes the event handler is called after unbinding it
+    if (!this.mounted) return;
+
     const anchor = this.getAnchor();
     const horizontalSwipe = this.isHorizontalSwiping();
 
@@ -196,6 +204,9 @@ class Drawer extends React.Component {
   };
 
   onBodyTouchEnd = event => {
+    // sometimes the event handler is called after unbinding it
+    if (!this.mounted) return;
+
     if (this.state.swiping) {
       const anchor = this.getAnchor();
       const currentX =
