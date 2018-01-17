@@ -23,9 +23,13 @@ Nothing fancy, just plain old CSS. Why reinventing the wheel when it has been wo
 **RawCSSButton.css**
 ```css
 .button {
-  background-color: grey;
-  color: pink;
-  width: 240px;
+  background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
 }
 ```
 
@@ -37,10 +41,10 @@ import Button from 'material-ui/Button';
 function RawCSSButton() {
   return (
     <div>
-      <Button color="secondary" raised>
+      <Button>
         Material-UI
       </Button>
-      <Button color="secondary" raised className="button">
+      <Button className="button">
         Raw CSS
       </Button>
     </div>
@@ -63,9 +67,13 @@ prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js#global-css).
 **GlobalCSSButton.css**
 ```css
 .MuiButton-root {
-  background-color: grey;
-  color: pink;
-  width: 240px;
+  background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
 }
 ```
 
@@ -77,7 +85,7 @@ import Button from 'material-ui/Button';
 function GlobalCSSButton() {
   return (
     <div>
-      <Button color="secondary" raised>
+      <Button>
         Global CSS
       </Button>
     </div>
@@ -99,20 +107,7 @@ export default GlobalCSSButton;
 Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
 We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
 
-In the following demo we demonstrate how to use `injectSheet()` and "the styles as a function of the properties" feature:
-
-```js
-const styles = theme => ({
- root: {
-   color: props => (props.variant === 'primary'
-     ? theme.palette.primary.main
-     : 'inherit'),
-   textDecoration: 'inherit',
- },
-});
-```
-
-{{"demo": "pages/guides/ReactJss.js", "hideEditButton": true}}
+{{"demo": "pages/guides/ReactJss.js"}}
 
 ## CSS Modules
 
@@ -124,9 +119,13 @@ bundling solution people are using.
 **CSSModulesButton.css**
 ```css
 .button {
-  background-color: grey;
-  color: pink;
-  width: 240px;
+  background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
 }
 ```
 
@@ -140,10 +139,10 @@ import Button from 'material-ui/Button';
 function CSSModulesButton() {
   return (
     <div>
-      <Button color="secondary" raised>
+      <Button>
         Material-UI
       </Button>
-      <Button color="secondary" raised className={styles.button}>
+      <Button className={styles.button}>
         CSS Modules
       </Button>
     </div>
@@ -166,18 +165,22 @@ import styled from 'styled-components';
 import Button from 'material-ui/Button';
 
 const StyledButton = styled(Button)`
-  background-color: grey;
-  color: pink;
-  width: 240px;
+  background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
 `;
 
 function StyledComponentsButton() {
   return (
     <div>
-      <Button color="secondary" raised>
+      <Button>
         Material-UI
       </Button>
-      <StyledButton color="secondary" raised>
+      <StyledButton>
         Styled Components
       </StyledButton>
     </div>
@@ -204,18 +207,22 @@ import glamorous from 'glamorous';
 import Button from 'material-ui/Button';
 
 const StyledButton = glamorous(Button)({
-  backgroundColor: 'grey',
-  color: 'pink',
-  width: 240
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  borderRadius: 3,
+  border: 0,
+  color: 'white',
+  height: 48,
+  padding: '0 30px',
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
 });
 
 function GlamorousButton() {
   return (
     <div>
-      <Button color="secondary" raised>
+      <Button>
         Material-UI
       </Button>
-      <StyledButton color="secondary" raised>
+      <StyledButton>
         Glamorous
       </StyledButton>
     </div>
@@ -244,9 +251,13 @@ import classnames from 'classnames';
 import Button from 'material-ui/Button';
 
 const buttonStyles = {
-  backgroundColor: 'grey',
-  color: 'pink',
-  width: 240,
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  borderRadius: 3,
+  border: 0,
+  color: 'white',
+  height: 48,
+  padding: '0 30px',
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
 };
 
 // First we get the classNames with Glamor css function
@@ -259,10 +270,10 @@ const className = buttonClasses.toString();
 function GlamorButton() {
   return (
     <div>
-      <Button color="secondary" raised>
+      <Button>
         Material-UI
       </Button>
-      <Button color="secondary" className={className} raised>
+      <Button className={className}>
         Glamor
       </Button>
     </div>

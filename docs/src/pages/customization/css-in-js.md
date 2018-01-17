@@ -92,6 +92,10 @@ You might, however, also want to override these styles, for example with styled-
 If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point) to handle this situation.
 By adjusting the placement of the `insertionPoint` comment within your HTML body you can [control the order](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
+### HTML comment
+
+The simplest approach:
+
 ```jsx
 <head>
   <!-- insertion-point-jss -->
@@ -104,14 +108,76 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from 'material-ui/styles';
 
+const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
 // We define a custom insertion point JSS will look for injecting the styles in the DOM.
 jss.options.insertionPoint = 'insertion-point-jss';
-jss.options.createGenerateClassName = createGenerateClassName;
 
 function App() {
   return (
-    <JssProvider jss={jss}>
+    <JssProvider jss={jss} generateClassName={generateClassName}>
+      ...
+    </JssProvider>
+  );
+}
+
+export default App;
+```
+
+### HTML noscript
+
+create-react-app strips HTML comments when creating the production build.
+To get around the issue, you can use a `<noscript>` element:
+
+```jsx
+<head>
+  <noscript id="insertion-point-jss"></noscript>
+  <title>Material-UI</title>
+</head>
+```
+
+```jsx
+import JssProvider from 'react-jss/lib/JssProvider';
+import { create } from 'jss';
+import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+
+const generateClassName = createGenerateClassName();
+const jss = create(jssPreset());
+// We define a custom insertion point JSS will look for injecting the styles in the DOM.
+jss.options.insertionPoint = 'insertion-point-jss';
+
+function App() {
+  return (
+    <JssProvider jss={jss} generateClassName={generateClassName}>
+      ...
+    </JssProvider>
+  );
+}
+
+export default App;
+```
+
+### JS createComment
+
+codesandbox.io prevents the access to the `<head>` element.
+To get around the issue, you can use the JavaScript `document.createComment()` API:
+
+```jsx
+import JssProvider from 'react-jss/lib/JssProvider';
+import { create } from 'jss';
+import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+
+const styleNode = document.createComment("insertion-point-jss");
+document.head.insertBefore(styleNode, document.head.firstChild);
+
+const generateClassName = createGenerateClassName();
+const jss = create(jssPreset());
+// We define a custom insertion point JSS will look for injecting the styles in the DOM.
+jss.options.insertionPoint = 'insertion-point-jss';
+
+function App() {
+  return (
+    <JssProvider jss={jss} generateClassName={generateClassName}>
       ...
     </JssProvider>
   );
