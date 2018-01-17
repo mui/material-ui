@@ -28,7 +28,7 @@ export type TableCellClassKey =
   | 'numeric'
   | 'head'
   | 'paddingDefault'
-  | 'paddingCompact'
+  | 'paddingDense'
   | 'paddingCheckbox'
   | 'footer';
 
