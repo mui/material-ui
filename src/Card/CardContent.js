@@ -13,9 +13,9 @@ export const styles = theme => ({
 });
 
 function CardContent(props) {
-  const { classes, className, component: ComponentProp, ...other } = props;
+  const { classes, className, component: Component, ...other } = props;
 
-  return <ComponentProp className={classNames(classes.root, className)} {...other} />;
+  return <Component className={classNames(classes.root, className)} {...other} />;
 }
 
 CardContent.propTypes = {

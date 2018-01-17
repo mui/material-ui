@@ -120,10 +120,9 @@ class FormControl extends React.Component {
 
   render() {
     const {
-      children,
       classes,
       className,
-      component: ComponentProp = 'div',
+      component: Component,
       disabled,
       error,
       fullWidth,
@@ -132,7 +131,7 @@ class FormControl extends React.Component {
     } = this.props;
 
     return (
-      <ComponentProp
+      <Component
         className={classNames(
           classes.root,
           {
@@ -145,9 +144,7 @@ class FormControl extends React.Component {
         {...other}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
-      >
-        {children}
-      </ComponentProp>
+      />
     );
   }
 }

@@ -87,18 +87,10 @@ class GridListTile extends React.Component {
   }
 
   render() {
-    const {
-      children,
-      classes,
-      className,
-      cols,
-      component: ComponentProp,
-      rows,
-      ...other
-    } = this.props;
+    const { children, classes, className, cols, component: Component, rows, ...other } = this.props;
 
     return (
-      <ComponentProp className={classNames(classes.root, className)} {...other}>
+      <Component className={classNames(classes.root, className)} {...other}>
         <EventListener target="window" onResize={this.handleResize} />
         <div className={classes.tile}>
           {React.Children.map(children, child => {
@@ -114,7 +106,7 @@ class GridListTile extends React.Component {
             return child;
           })}
         </div>
-      </ComponentProp>
+      </Component>
     );
   }
 }

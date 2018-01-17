@@ -36,7 +36,7 @@ class List extends React.Component {
       children,
       classes,
       className: classNameProp,
-      component: ComponentProp,
+      component: Component,
       dense,
       disablePadding,
       subheader,
@@ -53,10 +53,10 @@ class List extends React.Component {
     );
 
     return (
-      <ComponentProp className={className} {...other}>
+      <Component className={className} {...other}>
         {subheader}
         {children}
-      </ComponentProp>
+      </Component>
     );
   }
 }

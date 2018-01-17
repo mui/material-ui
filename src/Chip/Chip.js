@@ -125,7 +125,7 @@ class Chip extends React.Component {
       avatar: avatarProp,
       classes,
       className: classNameProp,
-      component: ComponentProp,
+      component: Component,
       deleteIcon: deleteIconProp,
       label,
       onClick,
@@ -169,7 +169,7 @@ class Chip extends React.Component {
     }
 
     return (
-      <ComponentProp
+      <Component
         role="button"
         className={className}
         tabIndex={tabIndex}
@@ -183,7 +183,7 @@ class Chip extends React.Component {
         {avatar}
         <span className={classes.label}>{label}</span>
         {deleteIcon}
-      </ComponentProp>
+      </Component>
     );
   }
 }

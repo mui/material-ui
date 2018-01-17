@@ -27,13 +27,12 @@ export const styles = theme => ({
 
 function FormHelperText(props, context) {
   const {
-    children,
     classes,
     className: classNameProp,
     disabled: disabledProp,
     error: errorProp,
     margin: marginProp,
-    component: ComponentProp,
+    component: Component,
     ...other
   } = props;
   const { muiFormControl } = context;
@@ -66,11 +65,7 @@ function FormHelperText(props, context) {
     classNameProp,
   );
 
-  return (
-    <ComponentProp className={className} {...other}>
-      {children}
-    </ComponentProp>
-  );
+  return <Component className={className} {...other} />;
 }
 
 FormHelperText.propTypes = {

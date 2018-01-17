@@ -12,6 +12,7 @@ filename: /src/Paper/Paper.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
 | component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
 | elevation | number | 2 | Shadow depth, corresponds to `dp` in the spec. It's accepting values between 0 and 24 inclusive. |

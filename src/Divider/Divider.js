@@ -10,11 +10,11 @@ export const styles = theme => ({
     border: 'none',
     flexShrink: 0,
   },
-  default: {
-    backgroundColor: theme.palette.text.divider,
-  },
   inset: {
     marginLeft: 72,
+  },
+  default: {
+    backgroundColor: theme.palette.text.divider,
   },
   light: {
     backgroundColor: theme.palette.text.lightDivider,
@@ -28,19 +28,27 @@ export const styles = theme => ({
 });
 
 function Divider(props) {
-  const { absolute, classes, className: classNameProp, inset, light, ...other } = props;
+  const {
+    absolute,
+    classes,
+    className: classNameProp,
+    component: Component,
+    inset,
+    light,
+    ...other
+  } = props;
 
   const className = classNames(
     classes.root,
     {
       [classes.absolute]: absolute,
       [classes.inset]: inset,
-      [light ? classes.light : classes.default]: true,
     },
+    light ? classes.light : classes.default,
     classNameProp,
   );
 
-  return <hr className={className} {...other} />;
+  return <Component className={className} {...other} />;
 }
 
 Divider.propTypes = {
@@ -54,6 +62,11 @@ Divider.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
    * If `true`, the divider will be indented.
    */
   inset: PropTypes.bool,
@@ -65,6 +78,7 @@ Divider.propTypes = {
 
 Divider.defaultProps = {
   absolute: false,
+  component: 'hr',
   inset: false,
   light: false,
 };

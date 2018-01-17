@@ -6,5 +6,5 @@ interface GenerateClassNameOptions {
 }
 
 export default function createGenerateClassName(
-  options?: GenerateClassNameOptions
+  options?: GenerateClassNameOptions,
 ): GenerateClassName<any>;

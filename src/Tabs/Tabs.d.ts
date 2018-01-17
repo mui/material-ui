@@ -25,8 +25,7 @@ export type TabsClassKey =
   | 'scrollingContainer'
   | 'fixed'
   | 'scrollable'
-  | 'centered'
-  ;
+  | 'centered';
 
 export interface TabsActions {
   updateIndicator(): void;
