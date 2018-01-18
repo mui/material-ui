@@ -90,16 +90,16 @@ This way, we ensure the components always render correctly.
 
 You might, however, also want to override these styles, for example with styled-components.
 If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point) to handle this situation.
-By adjusting the placement of the `insertionPoint` comment within your HTML body you can [control the order](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+By adjusting the placement of the `insertionPoint` within your HTML head you can [control the order](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
 ### HTML comment
 
-The simplest approach:
+The simplest approach is to add an HTML comment that determines where JSS will inject the styles:
 
 ```jsx
 <head>
-  <!-- insertion-point-jss -->
-  <title>Material-UI</title>
+  <!-- jss-insertion-point -->
+  <link href="..." />
 </head>
 ```
 
@@ -110,8 +110,8 @@ import { createGenerateClassName, jssPreset } from 'material-ui/styles';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
-// We define a custom insertion point JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = 'insertion-point-jss';
+// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+jss.options.insertionPoint = 'jss-insertion-point';
 
 function App() {
   return (
@@ -126,13 +126,13 @@ export default App;
 
 ### HTML noscript
 
-create-react-app strips HTML comments when creating the production build.
+[Create React App](https://github.com/facebookincubator/create-react-app) strips HTML comments when creating the production build.
 To get around the issue, you can use a `<noscript>` element:
 
 ```jsx
 <head>
-  <noscript id="insertion-point-jss"></noscript>
-  <title>Material-UI</title>
+  <noscript id="jss-insertion-point"></noscript>
+  <link href="..." />
 </head>
 ```
 
@@ -143,8 +143,8 @@ import { createGenerateClassName, jssPreset } from 'material-ui/styles';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
-// We define a custom insertion point JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = 'insertion-point-jss';
+// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+jss.options.insertionPoint = 'jss-insertion-point';
 
 function App() {
   return (
@@ -167,13 +167,13 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from 'material-ui/styles';
 
-const styleNode = document.createComment("insertion-point-jss");
+const styleNode = document.createComment("jss-insertion-point");
 document.head.insertBefore(styleNode, document.head.firstChild);
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
-// We define a custom insertion point JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = 'insertion-point-jss';
+// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+jss.options.insertionPoint = 'jss-insertion-point';
 
 function App() {
   return (
