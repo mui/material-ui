@@ -1,52 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import injectSheet from 'react-jss/lib/injectSheet';
-import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
 
-// 1. We define the styles.
-const styles = theme => ({
-  root: {
-    color: props => (props.variant === 'primary' ? theme.palette.primary.main : 'inherit'),
-    textDecoration: 'inherit',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
+const styles = {
+  button: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
   },
-});
-
-function MyLink(props) {
-  const { children, classes, className, variant, sheet, theme, ...other } = props;
-
-  return (
-    <a className={classNames(classes.root, className)} {...other}>
-      {children}
-    </a>
-  );
-}
-
-MyLink.propTypes = {
-  children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  sheet: PropTypes.object,
-  theme: PropTypes.object,
-  variant: PropTypes.oneOf(['primary', 'default']),
 };
 
-// 2. We inject the styles.
-const MyLinkStyled = injectSheet(styles)(MyLink);
-
-export default function ReactJss() {
+function ReactJss(props) {
   return (
-    <Typography type="subheading">
-      <MyLinkStyled href="#" variant="default">
-        MyLink
-      </MyLinkStyled>
-      {' - '}
-      <MyLinkStyled href="#" variant="primary">
-        {'primary'}
-      </MyLinkStyled>
-    </Typography>
+    <div>
+      <Button>Material-UI</Button>
+      <Button className={props.classes.button}>react-jss</Button>
+    </div>
   );
 }
+
+ReactJss.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default injectSheet(styles)(ReactJss);
