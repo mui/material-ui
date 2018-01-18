@@ -10,14 +10,30 @@ For optimal user experience, material design interfaces need to be able to adapt
 Material-UI uses a **simplified** implementation of the original [specification](https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints).
 
 Each breakpoint matches with a *fixed* screen width:
-- **xs**, extra-small: 0dp or larger
-- **sm**, small: 600dp or larger
-- **md**, medium: 960dp or larger
-- **lg**, large: 1280dp or larger
-- **xl**, xlarge: 1920dp or larger
+- **xs**, extra-small: 0px or larger
+- **sm**, small: 600px or larger
+- **md**, medium: 960px or larger
+- **lg**, large: 1280px or larger
+- **xl**, xlarge: 1920px or larger
+
+Those values can always be customized.
+You will find them in the theme under the [`breakpoints.values`](/customization/theme-default?expend-path=$.breakpoints.values) path.
 
 ## z-index
 
 Several Material-UI components utilize `z-index`, the CSS property that helps control layout by providing a third axis to arrange content.
 We utilize a default z-index scale in Material-UI that's been designed to properly layer drawers,
 modals, snackbars, tooltips, and more.
+
+These values start at an arbitrary number, high and specific enough to ideally avoid conflicts.
+
+- mobile stepper: 1000
+- app bar: 1100
+- drawer: 1200
+- modal: 1300
+- snackbar: 1400
+- tooltip: 1500
+
+Those values can always be customized.
+You will find them in the theme under the [`zIndex`](/customization/theme-default?expend-path=$.zIndex) path.
+We don’t encourage customization of these individual values; should you change one, you likely need to change them all.

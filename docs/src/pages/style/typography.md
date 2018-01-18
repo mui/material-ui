@@ -39,6 +39,6 @@ For more info check out the [typeface](https://www.npmjs.com/package/typeface-ro
 ## CSS in JS
 
 In some situation you might not be able to use the `Typography` component.
-Hopefully, you might be able to take advantage of the `typography` keys of the theme.
+Hopefully, you might be able to take advantage of the [`typography`](/customization/theme-default?expend-path=$.typography) keys of the theme.
 
 {{"demo": "pages/style/TypographyTheme.js"}}
