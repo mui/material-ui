@@ -112,6 +112,26 @@ Then, you will need to add the following code:
 
 In case you missed something, [we have a real example that can be used as a summary report]((https://github.com/mui-org/material-ui/pull/8922/files)).
 
+## How do I use my local distribution of material-ui in any project?
+
+Sometimes it is good to test your changes in a real case scenario, in order to do that you can install your local distribution of Material-UI in any project.
+
+First, you have to build your local distribution of Material-UI:
+
+```shell
+# From the root folder of the material-ui project
+yarn build
+```
+
+Then, you can add Material-UI to any project you want to try your changes:
+
+```shell
+# From the root folder of any project
+yarn add file:/path/to/material-ui/folder
+```
+
+Now, every time you import `material-ui` in your project, it is going to use your local distribution.
+
 ## Roadmap
 
 To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [ROADMAP](https://github.com/mui-org/material-ui/blob/v1-beta/ROADMAP.md).
