@@ -13,8 +13,8 @@ export type ListItemTextClassKey =
   | 'root'
   | 'inset'
   | 'dense'
-  | 'textPrimary'
-  | 'textSecondary'
+  | 'primary'
+  | 'secondary'
   | 'textDense';
 
 declare const ListItemText: React.ComponentType<ListItemTextProps>;
