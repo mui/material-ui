@@ -94,7 +94,12 @@ Usage:
 ## Material-UI is awesome. How can I support the project?
 
 There are many ways to support Material-UI:
-- Improve [the documentation](https://github.com/mui-org/material-ui/tree/v1-beta/docs).- Help others to get started.- [Spread the word](https://twitter.com/MaterialUI).- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui).If you use Material-UI in a commercial project and would like to support its continued development by becoming a **Sponsor**,
+- Improve [the documentation](https://github.com/mui-org/material-ui/tree/v1-beta/docs).
+- Help others to get started.
+- [Spread the word](https://twitter.com/MaterialUI).
+- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui) or [issues marked as question](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.
+
+If you use Material-UI in a commercial project and would like to support its continued development by becoming a **Sponsor**,
 or in a side or hobby project and would like to become a backer, you can do so through [OpenCollective](https://opencollective.com/material-ui).
 
 All funds raised are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
