@@ -4,13 +4,17 @@ import withStyles from 'material-ui/styles/withStyles';
 
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
+import EventListener from 'react-event-listener';
+import keycode from 'keycode';
 import CalendarHeader from './CalendarHeader';
 import DomainPropTypes from '../constants/prop-types';
 import * as defaultUtils from '../utils/utils';
 import DayWrapper from './DayWrapper';
 import Day from './Day';
 
+
 const moment = extendMoment(Moment);
+
 
 export class Calendar extends Component {
   static propTypes = {
@@ -24,9 +28,11 @@ export class Calendar extends Component {
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
+    /** @ignore */
+    theme: PropTypes.object.isRequired,
     utils: PropTypes.object,
     shouldDisableDate: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     minDate: '1900-01-01',
@@ -38,24 +44,64 @@ export class Calendar extends Component {
     renderDay: undefined,
     utils: defaultUtils,
     shouldDisableDate: () => false,
-  }
+  };
 
   state = {
     currentMonth: this.props.utils.getStartOfMonth(this.props.date),
+  };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      currentMonth: this.props.utils.getStartOfMonth(nextProps.date),
+    });
   }
 
   onDateSelect = (day) => {
     const { date } = this.props;
-    const updatedDate = day.clone()
+    const updatedDate = day
+      .clone()
       .hours(date.hours())
       .minutes(date.minutes());
 
     this.props.onChange(updatedDate);
-  }
+  };
 
   handleChangeMonth = (newMonth) => {
     this.setState({ currentMonth: newMonth });
-  }
+  };
+
+  handleKeyDown = (event) => {
+    const { onChange, theme, date } = this.props;
+
+    switch (keycode(event)) {
+      case 'up':
+        onChange(date.clone().subtract(7, 'days'));
+        break;
+      case 'down':
+        onChange(date.clone().add(7, 'days'));
+        break;
+      case 'left':
+        if (theme.direction === 'ltr') {
+          onChange(date.clone().subtract(1, 'day'));
+        } else {
+          onChange(date.clone().add(1, 'day'));
+        }
+        break;
+      case 'right':
+        if (theme.direction === 'ltr') {
+          onChange(date.clone().add(1, 'day'));
+        } else {
+          onChange(date.clone().subtract(1, 'day'));
+        }
+        break;
+      default:
+        // if keycode is not handled, stop execution
+        return;
+    }
+
+    // if event was handled prevent other side effects (e.g. page scroll)
+    event.preventDefault();
+  };
 
   validateMinMaxDate = (day) => {
     const { minDate, maxDate } = this.props;
@@ -65,7 +111,7 @@ export class Calendar extends Component {
       (minDate && day.isBefore(startOfDay(minDate))) ||
       (maxDate && day.isAfter(startOfDay(maxDate)))
     );
-  }
+  };
 
   shouldDisableDate = (day) => {
     const { disablePast, disableFuture, shouldDisableDate } = this.props;
@@ -75,7 +121,7 @@ export class Calendar extends Component {
       this.validateMinMaxDate(day) ||
       shouldDisableDate(day)
     );
-  }
+  };
 
   renderWeeks = () => {
     const { utils } = this.props;
@@ -83,16 +129,18 @@ export class Calendar extends Component {
     const weeks = utils.getWeekArray(currentMonth);
 
     return weeks.map(week => (
-      <div key={`week-${week[0].toString()}`} className={this.props.classes.week}>
+      <div
+        key={`week-${week[0].toString()}`}
+        className={this.props.classes.week}
+      >
         {this.renderDays(week)}
       </div>
     ));
-  }
+  };
+
 
   renderDays = (week) => {
-    const {
-      date, renderDay, utils,
-    } = this.props;
+    const { date, renderDay, utils } = this.props;
 
     const selectedDate = date.clone().startOf('day');
     const currentMonthNumber = utils.getMonthNumber(this.state.currentMonth);
@@ -100,7 +148,8 @@ export class Calendar extends Component {
 
     return week.map((day) => {
       const disabled = this.shouldDisableDate(day);
-      const dayInCurrentMonth = utils.getMonthNumber(day) === currentMonthNumber;
+      const dayInCurrentMonth =
+        utils.getMonthNumber(day) === currentMonthNumber;
 
       let dayComponent = (
         <Day
@@ -114,7 +163,12 @@ export class Calendar extends Component {
       );
 
       if (renderDay) {
-        dayComponent = renderDay(day, selectedDate, dayInCurrentMonth, dayComponent);
+        dayComponent = renderDay(
+          day,
+          selectedDate,
+          dayInCurrentMonth,
+          dayComponent,
+        );
       }
 
       return (
@@ -129,7 +183,7 @@ export class Calendar extends Component {
         </DayWrapper>
       );
     });
-  }
+  };
 
   render() {
     const { currentMonth } = this.state;
@@ -137,6 +191,8 @@ export class Calendar extends Component {
 
     return (
       <Fragment>
+        <EventListener target="window" onKeyDown={this.handleKeyDown} />
+
         <CalendarHeader
           currentMonth={currentMonth}
           onMonthChange={this.handleChangeMonth}
@@ -145,9 +201,7 @@ export class Calendar extends Component {
           utils={utils}
         />
 
-        <div className={classes.calendar}>
-          {this.renderWeeks()}
-        </div>
+        <div className={classes.calendar}>{this.renderWeeks()}</div>
       </Fragment>
     );
   }
@@ -164,4 +218,7 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles, { name: 'MuiPickersCalendar' })(Calendar);
+export default withStyles(styles, {
+  name: 'MuiPickersCalendar',
+  withTheme: true,
+})(Calendar);
