@@ -50,8 +50,8 @@ This property accepts the following keys:
 - `paragraph`
 - `colorInherit`
 - `colorPrimary`
-- `colorTextSecondary`
 - `colorSecondary`
+- `colorTextSecondary`
 - `colorError`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

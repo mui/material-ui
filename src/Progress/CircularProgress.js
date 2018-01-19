@@ -19,7 +19,7 @@ export const styles = theme => ({
     color: theme.palette.primary.main,
   },
   colorSecondary: {
-    color: theme.palette.secondary.light,
+    color: theme.palette.secondary.main,
   },
   svgIndeterminate: {
     animation: 'mui-progress-circular-rotate 1.4s linear infinite',

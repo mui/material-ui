@@ -25,14 +25,9 @@ export const styles = theme => ({
   rootLabelIcon: {
     height: 72,
   },
-  rootSecondary: {
-    color: theme.palette.text.secondary,
-  },
-  rootSecondarySelected: {
-    color: theme.palette.secondary.light,
-  },
-  rootSecondaryDisabled: {
-    color: theme.palette.text.disabled,
+  rootInherit: {
+    color: 'inherit',
+    opacity: 0.7,
   },
   rootPrimary: {
     color: theme.palette.text.secondary,
@@ -43,9 +38,14 @@ export const styles = theme => ({
   rootPrimaryDisabled: {
     color: theme.palette.text.disabled,
   },
-  rootInherit: {
-    color: 'inherit',
-    opacity: 0.7,
+  rootSecondary: {
+    color: theme.palette.text.secondary,
+  },
+  rootSecondarySelected: {
+    color: theme.palette.secondary.main,
+  },
+  rootSecondaryDisabled: {
+    color: theme.palette.text.disabled,
   },
   rootInheritSelected: {
     opacity: 1,

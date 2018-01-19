@@ -17,7 +17,7 @@ export const styles = theme => ({
     backgroundColor: theme.palette.primary.main,
   },
   colorSecondary: {
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.secondary.main,
   },
 });
 
