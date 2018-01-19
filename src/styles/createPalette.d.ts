@@ -30,6 +30,7 @@ interface ShadeBackground {
   appBar: string;
   contentFrame: string;
   status: string;
+  avatar: string;
 }
 
 type PaletteColor = Partial<
