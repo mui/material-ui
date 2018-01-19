@@ -187,15 +187,6 @@ class EnhancedSwitch extends Component {
     if (code === 'tab') {
       this.tabPressed = true;
     }
-    if (this.state.isKeyboardFocused && code === 'space') {
-      this.handleChange(event);
-    }
-  };
-
-  handleKeyUp = (event) => {
-    if (this.state.isKeyboardFocused && keycode(event) === 'space') {
-      this.handleChange(event);
-    }
   };
 
   /**
