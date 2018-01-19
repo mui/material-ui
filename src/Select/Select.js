@@ -43,6 +43,7 @@ export const styles = theme => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
+    lineHeight: '1.1875em', // Reset (19px), match the native input line-height
   },
   disabled: {
     cursor: 'default',
