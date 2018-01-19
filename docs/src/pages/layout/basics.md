@@ -16,7 +16,7 @@ Each breakpoint matches with a *fixed* screen width:
 - **lg**, large: 1280px or larger
 - **xl**, xlarge: 1920px or larger
 
-Those values can always be customized.
+These values can always be customized.
 You will find them in the theme under the [`breakpoints.values`](/customization/theme-default?expend-path=$.breakpoints.values) path.
 
 ## z-index
@@ -34,6 +34,6 @@ These values start at an arbitrary number, high and specific enough to ideally a
 - snackbar: 1400
 - tooltip: 1500
 
-Those values can always be customized.
-You will find them in the theme under the [`zIndex`](/customization/theme-default?expend-path=$.zIndex) path.
-We don’t encourage customization of these individual values; should you change one, you likely need to change them all.
+These values can always be customized.
+You will find them in the theme under the [`zIndex`](/customization/theme-default?expend-path=$.zIndex) key.
+We don’t encourage customization of individual values; should you change one, you likely need to change them all.

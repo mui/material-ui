@@ -13,11 +13,11 @@ This can be accomplished using [CSS-in-JS](/customization/css-in-js).
 
 ## API
 
-### `theme.breakpoings.up(key) => media query`
+### `theme.breakpoints.up(key) => media query`
 
 #### Arguments
 
-1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixel.
+1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Returns
 
@@ -38,11 +38,11 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoings.down(key) => media query`
+### `theme.breakpoints.down(key) => media query`
 
 #### Arguments
 
-1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixel.
+1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Returns
 
@@ -64,7 +64,7 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoings.only(key) => media query`
+### `theme.breakpoints.only(key) => media query`
 
 #### Arguments
 
@@ -90,7 +90,7 @@ const styles = theme => ({
 });
 ```
 
-### `theme.breakpoings.between(start, end) => media query`
+### `theme.breakpoints.between(start, end) => media query`
 
 #### Arguments
 
