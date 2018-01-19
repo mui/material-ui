@@ -20,20 +20,21 @@ const styles = theme => ({
   media: {
     height: 194,
   },
+  actions: {
+    display: 'flex',
+  },
   expand: {
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
+    marginLeft: 'auto',
   },
   expandOpen: {
     transform: 'rotate(180deg)',
   },
   avatar: {
     backgroundColor: red[500],
-  },
-  flexGrow: {
-    flex: '1 1 auto',
   },
 });
 
@@ -75,14 +76,13 @@ class RecipeReviewCard extends React.Component {
               your guests. Add 1 cup of frozen peas along with the mussels, if you like.
             </Typography>
           </CardContent>
-          <CardActions disableActionSpacing>
+          <CardActions className={classes.actions} disableActionSpacing>
             <IconButton aria-label="Add to favorites">
               <FavoriteIcon />
             </IconButton>
             <IconButton aria-label="Share">
               <ShareIcon />
             </IconButton>
-            <div className={classes.flexGrow} />
             <IconButton
               className={classnames(classes.expand, {
                 [classes.expandOpen]: this.state.expanded,
