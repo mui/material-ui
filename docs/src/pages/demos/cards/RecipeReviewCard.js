@@ -21,21 +21,21 @@ const styles = theme => ({
     height: 194,
   },
   actions: {
-    display: 'flex'
+    display: 'flex',
   },
   expand: {
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
-    marginLeft: 'auto'
+    marginLeft: 'auto',
   },
   expandOpen: {
     transform: 'rotate(180deg)',
   },
   avatar: {
     backgroundColor: red[500],
-  }
+  },
 });
 
 class RecipeReviewCard extends React.Component {
