@@ -26,11 +26,12 @@ export type Type = 'head' | 'body' | 'footer';
 export type TableCellClassKey =
   | 'root'
   | 'numeric'
-  | 'head'
+  | 'typeHead'
+  | 'typeBody'
+  | 'typeFooter'
   | 'paddingDefault'
   | 'paddingDense'
-  | 'paddingCheckbox'
-  | 'footer';
+  | 'paddingCheckbox';
 
 declare const TableCell: React.ComponentType<TableCellProps>;
 
