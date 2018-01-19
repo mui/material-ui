@@ -24,7 +24,7 @@ interface Props {
   text: string;
   type: TypographyProps['type'];
   color: TypographyProps['color'];
-}
+};
 ```
 
 Functional components are straightforward:

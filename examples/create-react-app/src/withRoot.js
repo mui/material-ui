@@ -21,6 +21,11 @@ const theme = createMuiTheme({
   },
 });
 
+// Expose the theme as a global variable so people can play with it.
+if (process.browser) {
+  window.theme = theme;
+}
+
 function withRoot(Component) {
   function WithRoot(props) {
     // MuiThemeProvider makes the theme available down the React tree

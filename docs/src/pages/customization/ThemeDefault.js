@@ -1,4 +1,5 @@
 import React from 'react';
+import url from 'url';
 import PropTypes from 'prop-types';
 import Inspector from 'react-inspector';
 import { withStyles, withTheme, createMuiTheme } from 'material-ui/styles';
@@ -7,21 +8,44 @@ import Switch from 'material-ui/Switch';
 
 const styles = theme => ({
   root: {
-    padding: 8 * 2,
+    padding: theme.spacing.unit * 2,
+    paddingTop: 0,
     backgroundColor: theme.palette.type === 'light' ? '#fff' : 'rgb(36, 36, 36)',
-    minHeight: 8 * 40,
+    minHeight: theme.spacing.unit * 40,
     width: '100%',
+  },
+  switch: {
+    paddingBottom: theme.spacing.unit,
   },
 });
 
 class ThemeDefault extends React.Component {
   state = {
     checked: false,
+    expandPaths: null,
   };
+
+  componentDidMount() {
+    const URL = url.parse(document.location.href, true);
+    const expandPath = URL.query['expend-path'];
+
+    if (!expandPath) {
+      return;
+    }
+
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({
+      expandPaths: expandPath.split('.').reduce((acc, path) => {
+        const last = acc.length > 0 ? `${acc[acc.length - 1]}.` : '';
+        acc.push(last + path);
+        return acc;
+      }, []),
+    });
+  }
 
   render() {
     const { classes, theme: docsTheme } = this.props;
-    const { checked } = this.state;
+    const { checked, expandPaths } = this.state;
 
     const theme = createMuiTheme({
       palette: {
@@ -30,14 +54,10 @@ class ThemeDefault extends React.Component {
       direction: docsTheme.direction,
     });
 
-    // Expose the theme as a global variable so people can play with it.
-    if (process.browser) {
-      window.theme = theme;
-    }
-
     return (
       <div className={classes.root}>
         <FormControlLabel
+          className={classes.switch}
           control={
             <Switch
               checked={checked}
@@ -49,6 +69,7 @@ class ThemeDefault extends React.Component {
         <Inspector
           theme={theme.palette.type === 'light' ? 'chromeLight' : 'chromeDark'}
           data={theme}
+          expandPaths={expandPaths}
           expandLevel={checked ? 100 : 1}
           key={`${checked}-${theme.palette.type}`} // Remount
         />

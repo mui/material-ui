@@ -40,13 +40,18 @@ If you want to learn more about color, you can check out [the color section](/st
 
 You may override the default palette values by including a `palette` object as part of your theme.
 
-If any of the `palette.primary`, `palette.secondary` or `palette.error` 'intent' objects are provided,
+If any of the [`palette.primary`](/customization/theme-default?expend-path=$.palette.primary), [`palette.secondary`](/customization/theme-default?expend-path=$.palette.secondary) or [`palette.error`](/customization/theme-default?expend-path=$.palette.error) 'intent' objects are provided,
 they will replace the defaults.
 
 The intent objects accept either a color object, or an object with one or more of the following keys:
 
-```
-{ light: '', main: '', dark: '', contrastText: '' }
+```jsx
+interface PaletteColor {
+  light?: string;
+  main: string;
+  dark?: string;
+  contrastText?: string;
+};
 ```
 
 **Using a color object**
@@ -86,13 +91,18 @@ import red from 'material-ui/colors/red';
 // We try our best to provide a great default value.
 const theme = createMuiTheme({
   palette: {
-    contrastThreshold: 3,
-    tonalOffset: 0.2,
     primary: indigo,
     secondary: pink,
     error: {
       main: red[500],
     },
+    // Used by `getContrastText()` to maximize the contrast between the background and
+    // the text.
+    contrastThreshold: 3,
+    // Used by the functions below to shift a color's luminance by approximately
+    // two index within its tonal palette.
+    // E.g., shift from Red 500 to Red 300 or Red 700.
+    tonalOffset: 0.2,
   },
 });
 ```
