@@ -46,9 +46,6 @@ export const styles = theme => ({
     width: '1em',
     height: '1em',
   },
-  keyboardFocused: {
-    backgroundColor: theme.palette.text.divider,
-  },
 });
 
 /**
@@ -69,7 +66,7 @@ function IconButton(props) {
         className,
       )}
       centerRipple
-      keyboardFocusedClassName={classes.keyboardFocused}
+      focusRipple
       disabled={disabled}
       rootRef={buttonRef}
       ref={rootRef}
