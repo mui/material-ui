@@ -220,8 +220,10 @@ describe('createPalette()', () => {
     const palette = createPalette({
       primary: { main: deepOrange[500] },
       secondary: { main: green.A400 },
+      error: { main: red[500] },
       tonalOffset: 0.1,
     });
+    // primary
     assert.strictEqual(
       palette.primary.main,
       deepOrange[500],
@@ -237,6 +239,7 @@ describe('createPalette()', () => {
       darken(deepOrange[500], 0.15),
       'should use darken(deepOrange[500], 0.1) as the primary dark color',
     );
+    // secondary
     assert.strictEqual(
       palette.secondary.main,
       green.A400,
@@ -251,6 +254,18 @@ describe('createPalette()', () => {
       palette.secondary.dark,
       darken(green.A400, 0.15),
       'should use darken(green.A400, 0.1) as the secondary dark color',
+    );
+    // error
+    assert.strictEqual(palette.error.main, red[500], 'should use red[500] as the error main color');
+    assert.strictEqual(
+      palette.error.light,
+      lighten(red[500], 0.1),
+      'should use lighten(red[500], 0.1) as the error light color',
+    );
+    assert.strictEqual(
+      palette.error.dark,
+      darken(red[500], 0.15),
+      'should use darken(red[500], 0.1) as the error dark color',
     );
   });
 
