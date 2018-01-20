@@ -5,15 +5,15 @@ import messages from 'docs/src/messages';
 
 class Notifications extends React.Component {
   state = {
-    snackbarOpen: false,
-    snackbarMessage: {},
+    open: false,
+    message: {},
   };
 
   componentDidMount = () => {
-    this.handleSnackbarMessage();
+    this.handleMessage();
   };
 
-  handleSnackbarMessage = () => {
+  handleMessage = () => {
     let lastMessage = document.cookie.replace(
       /(?:(?:^|.*;\s*)lastMessage\s*=\s*([^;]*).*$)|^.*$/,
       '$1',
@@ -29,33 +29,33 @@ class Notifications extends React.Component {
 
     if (message) {
       this.setState({
-        snackbarMessage: message,
-        snackbarOpen: true,
+        message: message,
+        open: true,
       });
     }
   };
 
-  handleSnackbarClose = () => {
-    this.setState({ snackbarOpen: false });
-    document.cookie = `lastMessage=${this.state.snackbarMessage.id};path=/;max-age=31536000`;
+  handleClose = () => {
+    this.setState({ open: false });
+    document.cookie = `lastMessage=${this.state.message.id};path=/;max-age=31536000`;
   };
 
   render() {
     return (
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={this.state.snackbarOpen}
+        open={this.state.open}
         SnackbarContentProps={{
           'aria-describedby': 'message',
         }}
-        message={<span id="message">{this.state.snackbarMessage.text}</span>}
-        key={this.state.snackbarMessage.id}
+        message={<span id="message">{this.state.message.text}</span>}
+        key={this.state.message.id}
         action={
-          <Button dense color="secondary" onClick={this.handleSnackbarClose}>
+          <Button dense color="secondary" onClick={this.handleClose}>
             Close
           </Button>
         }
-        onExited={this.handleSnackbarMessage}
+        onExited={this.handleMessage}
       />
     );
   }
