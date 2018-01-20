@@ -29,7 +29,7 @@ class Notifications extends React.Component {
 
     if (message) {
       this.setState({
-        message: message,
+        message,
         open: true,
       });
     }
@@ -48,7 +48,10 @@ class Notifications extends React.Component {
         SnackbarContentProps={{
           'aria-describedby': 'message',
         }}
-        message={<span id="message">{this.state.message.text}</span>}
+        message={
+          // eslint-disable-next-line react/no-danger
+          <span id="message" dangerouslySetInnerHTML={{ __html: this.state.message.text }} />
+        }
         key={this.state.message.id}
         action={
           <Button dense color="secondary" onClick={this.handleClose}>

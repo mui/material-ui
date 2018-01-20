@@ -1,5 +1,3 @@
-import React from 'react';
-
 const messages = [
   {
     id: 1,
@@ -9,32 +7,13 @@ const messages = [
   },
   {
     id: 2,
-    text: (
-      <span>
-        Check out the{' '}
-        <a
-          style={{ color: 'white' }}
-          href="https://medium.com/@haicea/material-ui-sustainability-progress-report-9246d8b2149d"
-        >
-          Material-UI Sustainability Progress Report!
-        </a>
-      </span>
-    ),
+    text:
+      'Check out the <a style="color: white;" href="https://medium.com/@haicea/material-ui-sustainability-progress-report-9246d8b2149d">Material-UI Sustainability Progress Report! </a>',
   },
   {
     id: 3,
-    text: (
-      <span>
-        {"We've released v1.0.0-beta.30. Please check the"}{' '}
-        <a
-          style={{ color: 'white' }}
-          href="https://github.com/mui-org/material-ui/releases/tag/v1.0.0-beta.30"
-        >
-          release notes{' '}
-        </a>
-        for breaking changes.
-      </span>
-    ),
+    text:
+      'We\'ve released v1.0.0-beta.30. Please check the <a style="color: white;" href="https://github.com/mui-org/material-ui/releases/tag/v1.0.0-beta.30"> release notes</a> for breaking changes.',
   },
 ];
 
