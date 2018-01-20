@@ -9,7 +9,9 @@ import Typography from 'material-ui/Typography';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
+import Button from 'material-ui/Button';
 import Tooltip from 'material-ui/Tooltip';
+import Snackbar from 'material-ui/Snackbar';
 import MenuIcon from 'material-ui-icons/Menu';
 import LightbulbOutline from 'material-ui-icons/LightbulbOutline';
 import FormatTextdirectionLToR from 'material-ui-icons/FormatTextdirectionLToR';
@@ -19,6 +21,7 @@ import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import actionTypes from 'docs/src/modules/redux/actionTypes';
+import messages from 'docs/src/messages';
 
 // Disaply a progress bar between route transitions
 NProgress.configure({
@@ -134,6 +137,39 @@ const styles = theme => ({
 class AppFrame extends React.Component {
   state = {
     mobileOpen: false,
+    snackbarOpen: false,
+    snackbarMessage: {},
+  };
+
+  componentDidMount = () => {
+    this.handleSnackbarMessage();
+  };
+
+  handleSnackbarMessage = () => {
+    let lastMessage = document.cookie.replace(
+      /(?:(?:^|.*;\s*)lastMessage\s*=\s*([^;]*).*$)|^.*$/,
+      '$1',
+    );
+
+    if (lastMessage === '') {
+      lastMessage = 0;
+    }
+
+    const message = messages.find(m => {
+      return m.id > lastMessage;
+    });
+
+    if (message) {
+      this.setState({
+        snackbarMessage: message,
+        snackbarOpen: true,
+      });
+    }
+  };
+
+  handleSnackbarClose = () => {
+    this.setState({ snackbarOpen: false });
+    document.cookie = `lastMessage=${this.state.snackbarMessage.id};path=/;max-age=31536000`;
   };
 
   handleDrawerToggle = () => {
@@ -233,6 +269,21 @@ class AppFrame extends React.Component {
             </Tooltip>
           </Toolbar>
         </AppBar>
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          open={this.state.snackbarOpen}
+          SnackbarContentProps={{
+            'aria-describedby': 'message',
+          }}
+          message={<span id="message">{this.state.snackbarMessage.text}</span>}
+          key={this.state.snackbarMessage.id}
+          action={
+            <Button dense color="secondary" onClick={this.handleSnackbarClose}>
+              Close
+            </Button>
+          }
+          onExited={this.handleSnackbarMessage}
+        />
         <AppDrawer
           className={classes.drawer}
           disablePermanent={disablePermanent}
