@@ -11,12 +11,12 @@ const messages = [
     id: 2,
     text: (
       <span>
-        Check out the Material-UI Sustainability{' '}
+        Check out the{' '}
         <a
           style={{ color: 'white' }}
           href="https://medium.com/@haicea/material-ui-sustainability-progress-report-9246d8b2149d"
         >
-          Progress Report!
+          Material-UI Sustainability Progress Report!
         </a>
       </span>
     ),
@@ -25,7 +25,7 @@ const messages = [
     id: 3,
     text: (
       <span>
-        {"We've released v1.0.0-beta.30. Check the"}{' '}
+        {"We've released v1.0.0-beta.30. Please check the"}{' '}
         <a
           style={{ color: 'white' }}
           href="https://github.com/mui-org/material-ui/releases/tag/v1.0.0-beta.30"
