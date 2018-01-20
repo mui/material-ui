@@ -19,13 +19,17 @@ function ListDividers(props) {
       <ListItem button>
         <ListItemText primary="Inbox" />
       </ListItem>
-      <Divider light />
+      <Divider />
       <ListItem button>
         <ListItemText primary="Drafts" />
       </ListItem>
       <Divider />
       <ListItem button>
         <ListItemText primary="Trash" />
+      </ListItem>
+      <Divider light />
+      <ListItem button>
+        <ListItemText primary="Spam" />
       </ListItem>
     </List>
   );

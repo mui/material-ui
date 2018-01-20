@@ -1,34 +1,25 @@
 import { Color, PaletteType } from '..';
 import { CommonColors } from '../colors/common';
 
-interface ShadeText {
+interface TypeText {
   primary: string;
   secondary: string;
   disabled: string;
   hint: string;
-  icon: string;
-  divider: string;
-  lightDivider: string;
 }
 
-interface ShadeInput {
-  bottomLine: string;
-  helperText: string;
-  labelText: string;
-  inputText: string;
-  disabled: string;
-}
-
-interface ShadeAction {
+interface TypeAction {
   active: string;
+  hover: string;
+  selected: string;
   disabled: string;
+  disabledBackground: string;
 }
 
-interface ShadeBackground {
+interface TypeBackground {
   default: string;
   paper: string;
   appBar: string;
-  contentFrame: string;
   status: string;
   avatar: string;
 }
@@ -43,15 +34,14 @@ type PaletteColor = Partial<
   | Color
 >;
 
-export interface Shade {
-  text: ShadeText;
-  input: ShadeInput;
-  action: ShadeAction;
-  background: ShadeBackground;
+export interface TypeObject {
+  text: TypeText;
+  action: TypeAction;
+  background: TypeBackground;
 }
 
-export const light: Shade;
-export const dark: Shade;
+export const light: TypeObject;
+export const dark: TypeObject;
 
 export interface Palette {
   common: CommonColors;
@@ -62,18 +52,17 @@ export interface Palette {
   secondary: PaletteColor;
   error: PaletteColor;
   grey: Color;
-  shades: {
-    dark: Shade;
-    light: Shade;
+  types: {
+    dark: TypeObject;
+    light: TypeObject;
   };
-  text: ShadeText;
-  input: ShadeInput;
-  action: ShadeAction;
-  background: ShadeBackground;
+  text: TypeText;
+  action: TypeAction;
+  background: TypeBackground;
   getContrastText: (color: string) => string;
 }
 
-type PartialShade = { [P in keyof Shade]?: Partial<Shade[P]> };
+type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
 type ColorPartial = Partial<Color>;
 
 export interface PaletteOptions {
@@ -83,14 +72,13 @@ export interface PaletteOptions {
   secondary?: PaletteColor;
   error?: PaletteColor;
   grey?: ColorPartial;
-  shades?: {
-    dark?: PartialShade;
-    light?: PartialShade;
+  types?: {
+    dark?: PartialTypeObject;
+    light?: PartialTypeObject;
   };
-  text?: Partial<ShadeText>;
-  input?: Partial<ShadeInput>;
-  action?: Partial<ShadeAction>;
-  background?: Partial<ShadeBackground>;
+  text?: Partial<TypeText>;
+  action?: Partial<TypeAction>;
+  background?: Partial<TypeBackground>;
   getContrastText?: (color: string) => string;
 }
 

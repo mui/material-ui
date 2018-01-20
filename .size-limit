@@ -2,12 +2,12 @@
   {
     "name": "The initial cost people pay for using one component",
     "path": "test/size/overhead.js",
-    "limit": "24.9 KB"
+    "limit": "24.7 KB"
   },
   {
     "name": "The size of the whole library.",
     "path": "build/index.js",
-    "limit": "96.4 KB"
+    "limit": "96.1 KB"
   },
   {
     "name": "The main bundle of the documentation",

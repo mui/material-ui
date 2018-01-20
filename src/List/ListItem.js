@@ -17,7 +17,7 @@ export const styles = theme => ({
     position: 'relative',
   },
   keyboardFocused: {
-    backgroundColor: theme.palette.text.divider,
+    backgroundColor: theme.palette.action.hover,
   },
   default: {
     paddingTop: 12,
@@ -31,7 +31,7 @@ export const styles = theme => ({
     opacity: 0.5,
   },
   divider: {
-    borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+    borderBottom: `1px solid ${theme.palette.divider}`,
   },
   gutters: {
     paddingLeft: theme.spacing.unit * 2,
@@ -43,7 +43,7 @@ export const styles = theme => ({
     }),
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: theme.palette.text.divider,
+      backgroundColor: theme.palette.action.hover,
       // Reset on mouse devices
       '@media (hover: none)': {
         backgroundColor: 'transparent',

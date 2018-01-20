@@ -13,19 +13,25 @@ export const styles = theme => ({
     },
     verticalAlign: 'middle',
   },
-  head: {
+  typeHead: {
     height: 56,
   },
-  footer: {
+  typeFooter: {
     height: 56,
+  },
+  selected: {
+    backgroundColor:
+      theme.palette.type === 'light'
+        ? 'rgba(0, 0, 0, 0.04)' // grey[100]
+        : 'rgba(255, 255, 255, 0.08)',
   },
   hover: {
     '&:hover': {
-      backgroundColor: theme.palette.background.contentFrame,
+      backgroundColor:
+        theme.palette.type === 'light'
+          ? 'rgba(0, 0, 0, 0.07)' // grey[200]
+          : 'rgba(255, 255, 255, 0.14)',
     },
-  },
-  selected: {
-    backgroundColor: theme.palette.background.appBar,
   },
 });
 
@@ -47,8 +53,8 @@ function TableRow(props, context) {
   const className = classNames(
     classes.root,
     {
-      [classes.head]: table && table.head,
-      [classes.footer]: table && table.footer,
+      [classes.typeHead]: table && table.head,
+      [classes.typeFooter]: table && table.footer,
       [classes.hover]: table && hover,
       [classes.selected]: table && selected,
     },

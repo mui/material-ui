@@ -24,7 +24,8 @@ const styles = theme => ({
     },
   },
   demo: theme.mixins.gutters({
-    backgroundColor: theme.palette.background.contentFrame,
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
     display: 'flex',
     justifyContent: 'center',
     paddingTop: theme.spacing.unit * 2,

@@ -11,7 +11,9 @@ export const styles = theme => ({
     marginLeft: 12, // half icon
     paddingLeft: theme.spacing.unit + 12, // margin + half icon
     paddingRight: theme.spacing.unit,
-    borderLeft: `1px solid ${theme.palette.line.stepper}`,
+    borderLeft: `1px solid ${
+      theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
+    }`,
   },
   last: {
     borderLeft: 'none',

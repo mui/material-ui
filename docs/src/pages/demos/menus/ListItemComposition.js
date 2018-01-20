@@ -12,12 +12,12 @@ const styles = theme => ({
   menuItem: {
     '&:focus': {
       backgroundColor: theme.palette.primary.main,
-      '& $text, & $icon': {
+      '& $primary, & $icon': {
         color: theme.palette.common.white,
       },
     },
   },
-  text: {},
+  primary: {},
   icon: {},
 });
 
@@ -31,19 +31,19 @@ function ListItemComposition(props) {
           <ListItemIcon className={classes.icon}>
             <SendIcon />
           </ListItemIcon>
-          <ListItemText classes={{ text: classes.text }} inset primary="Sent mail" />
+          <ListItemText classes={{ primary: classes.primary }} inset primary="Sent mail" />
         </MenuItem>
         <MenuItem className={classes.menuItem}>
           <ListItemIcon className={classes.icon}>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText classes={{ text: classes.text }} inset primary="Drafts" />
+          <ListItemText classes={{ primary: classes.primary }} inset primary="Drafts" />
         </MenuItem>
         <MenuItem className={classes.menuItem}>
           <ListItemIcon className={classes.icon}>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText classes={{ text: classes.text }} inset primary="Inbox" />
+          <ListItemText classes={{ primary: classes.primary }} inset primary="Inbox" />
         </MenuItem>
       </MenuList>
     </Paper>

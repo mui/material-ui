@@ -12,8 +12,8 @@ export const styles = theme => ({
     borderBottom: `1px solid
     ${
       theme.palette.type === 'light'
-        ? lighten(fade(theme.palette.text.lightDivider, 1), 0.925)
-        : darken(fade(theme.palette.text.lightDivider, 1), 0.685)
+        ? lighten(fade(theme.palette.divider, 1), 0.88)
+        : darken(fade(theme.palette.divider, 1), 0.8)
     }`,
     textAlign: 'left',
   },

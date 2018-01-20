@@ -70,16 +70,16 @@ export const styles = theme => ({
     maxHeight: '100vh',
   },
   paperAnchorDockedLeft: {
-    borderRight: `1px solid ${theme.palette.text.divider}`,
+    borderRight: `1px solid ${theme.palette.divider}`,
   },
   paperAnchorDockedTop: {
-    borderBottom: `1px solid ${theme.palette.text.divider}`,
+    borderBottom: `1px solid ${theme.palette.divider}`,
   },
   paperAnchorDockedRight: {
-    borderLeft: `1px solid ${theme.palette.text.divider}`,
+    borderLeft: `1px solid ${theme.palette.divider}`,
   },
   paperAnchorDockedBottom: {
-    borderTop: `1px solid ${theme.palette.text.divider}`,
+    borderTop: `1px solid ${theme.palette.divider}`,
   },
   modal: {}, // Just here so people can override the style.
 });

@@ -33,7 +33,6 @@ export const styles = theme => {
     },
     disabled: {
       opacity: 0.38,
-      color: theme.palette.action.disabled,
     },
     content: {
       display: 'flex',
@@ -48,7 +47,6 @@ export const styles = theme => {
       margin: '20px 0',
     },
     expandIcon: {
-      color: theme.palette.text.icon,
       position: 'absolute',
       top: '50%',
       right: theme.spacing.unit,

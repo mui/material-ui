@@ -10,7 +10,8 @@ const styles = theme => ({
   root: {
     padding: theme.spacing.unit * 2,
     paddingTop: 0,
-    backgroundColor: theme.palette.type === 'light' ? '#fff' : 'rgb(36, 36, 36)',
+    // Match <Inspector /> default theme.
+    backgroundColor: theme.palette.type === 'light' ? theme.palette.common.white : '#242424',
     minHeight: theme.spacing.unit * 40,
     width: '100%',
   },

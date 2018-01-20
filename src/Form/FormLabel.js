@@ -3,27 +3,24 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => {
-  const focusColor = theme.palette.primary[theme.palette.type === 'light' ? 'dark' : 'light'];
-  return {
-    root: {
-      fontFamily: theme.typography.fontFamily,
-      color: theme.palette.input.labelText,
-      fontSize: theme.typography.pxToRem(16),
-      lineHeight: 1,
-      padding: 0,
-    },
-    focused: {
-      color: focusColor,
-    },
-    error: {
-      color: theme.palette.error.main,
-    },
-    disabled: {
-      color: theme.palette.input.disabled,
-    },
-  };
-};
+export const styles = theme => ({
+  root: {
+    fontFamily: theme.typography.fontFamily,
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(16),
+    lineHeight: 1,
+    padding: 0,
+  },
+  focused: {
+    color: theme.palette.primary[theme.palette.type === 'light' ? 'dark' : 'light'],
+  },
+  error: {
+    color: theme.palette.error.main,
+  },
+  disabled: {
+    color: theme.palette.text.disabled,
+  },
+});
 
 function FormLabel(props, context) {
   const {
