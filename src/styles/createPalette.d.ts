@@ -33,15 +33,14 @@ interface ShadeBackground {
   avatar: string;
 }
 
-type PaletteColor = Partial<
-  | {
-      light?: string;
-      main: string;
-      dark?: string;
-      contrastText?: string;
-    }
-  | Color
->;
+export type PaletteColor = SimplePaletteColor | Partial<Color>;
+
+export interface SimplePaletteColor {
+  light?: string;
+  main: string;
+  dark?: string;
+  contrastText?: string;
+}
 
 export interface Shade {
   text: ShadeText;
