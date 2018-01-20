@@ -36,7 +36,7 @@ export const styles = theme => ({
     display: 'block',
     width: '100%',
     height: '100%',
-    animation: `mui-ripple-pulsate 1500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
+    animation: `mui-ripple-pulsate 2500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
   },
   '@keyframes mui-ripple-enter': {
     '0%': {
@@ -59,7 +59,7 @@ export const styles = theme => ({
       transform: 'scale(1)',
     },
     '50%': {
-      transform: 'scale(0.9)',
+      transform: 'scale(0.92)',
     },
     '100%': {
       transform: 'scale(1)',

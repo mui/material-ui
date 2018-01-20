@@ -16,8 +16,7 @@ export type IconButtonClassKey =
   | 'colorSecondary'
   | 'colorInherit'
   | 'label'
-  | 'icon'
-  | 'keyboardFocused';
+  | 'icon';
 
 declare const IconButton: React.ComponentType<IconButtonProps>;
 
