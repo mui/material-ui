@@ -47,6 +47,14 @@ That also means you can set the width of one *item* and the others will automati
 
 {{"demo": "pages/layout/AutoGrid.js"}}
 
+## Auto-layout without wrapping
+
+Following example shows Auto-Layout without wrapping of items to next row.
+The prop `noAutoMinWidth` can be used for an *item* which takes all the remaining space in the *container*. 
+Similar to previous example of Auto-Layout, other columns resize around it.
+
+{{"demo": "pages/layout/AutoGridNoWrap.js"}}
+
 ## Limitations
 
 There is one limitation with the negative margin we use to implement the spacing between items.

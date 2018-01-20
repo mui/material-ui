@@ -96,6 +96,9 @@ export const styles = theme => ({
     flex: '0 0 auto',
     margin: '0', // For instance, it's useful when used with a `figure` element.
   },
+  noAutoMinWidth: {
+    minWidth: 0,
+  },
   'direction-xs-column': {
     flexDirection: 'column',
   },
@@ -172,6 +175,7 @@ function Grid(props) {
     justify,
     lg,
     md,
+    noAutoMinWidth,
     sm,
     spacing,
     wrap,
@@ -184,6 +188,7 @@ function Grid(props) {
     {
       [classes.typeContainer]: container,
       [classes.typeItem]: item,
+      [classes.noAutoMinWidth]: noAutoMinWidth,
       [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
       [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
       [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
@@ -288,6 +293,10 @@ Grid.propTypes = {
    */
   md: PropTypes.oneOf([true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
+   * If `true`, the component min-width will be set to zero.
+   */
+  noAutoMinWidth: PropTypes.bool,
+  /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    */
@@ -322,6 +331,7 @@ Grid.defaultProps = {
   direction: 'row',
   item: false,
   justify: 'flex-start',
+  noAutoMinWidth: false,
   spacing: 16,
   wrap: 'wrap',
 };
@@ -343,6 +353,7 @@ if (process.env.NODE_ENV !== 'production') {
     justify: requireProp('container'),
     lg: requireProp('item'),
     md: requireProp('item'),
+    noAutoMinWidth: requireProp('noAutoMinWidth'),
     sm: requireProp('item'),
     spacing: requireProp('container'),
     wrap: requireProp('container'),

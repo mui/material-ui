@@ -24,6 +24,7 @@ filename: /src/Grid/Grid.js
 | justify | enum:&nbsp;'flex-start', 'center', 'flex-end', 'space-between', 'space-around'<br> | 'flex-start' | Defines the `justify-content` style property. It is applied for all screen sizes. |
 | lg | enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden. |
 | md | enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `md` breakpoint and wider screens if not overridden. |
+| noAutoMinWidth | bool | false | If `true`, the component min-width will be set to zero. |
 | sm | enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `sm` breakpoint and wider screens if not overridden. |
 | spacing | enum:&nbsp;0, 8, 16, 24, 40<br> | 16 | Defines the space between the type `item` component. It can only be used on a type `container` component. |
 | wrap | enum:&nbsp;'nowrap'&nbsp;&#124;<br>&nbsp;'wrap'&nbsp;&#124;<br>&nbsp;'wrap-reverse'<br> | 'wrap' | Defines the `flex-wrap` style property. It's applied for all screen sizes. |
@@ -38,6 +39,7 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `typeContainer`
 - `typeItem`
+- `noAutoMinWidth`
 - `direction-xs-column`
 - `direction-xs-column-reverse`
 - `direction-xs-row-reverse`
