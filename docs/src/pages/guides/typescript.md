@@ -94,7 +94,7 @@ const DecoratedNoProps = decorate<{}>( // <-- note the type argument!
 );
 ```
 
-Scenario 2: `Props` is a union type. To avoid getting a compiler error, you'll need to provide an explict type argument: 
+Scenario 2: `Props` is a union type. Again, to avoid getting a compiler error, you'll need to provide an explict type argument: 
 
 ```jsx
 import { WithStyles } from 'material-ui/styles';
