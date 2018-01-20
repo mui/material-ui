@@ -56,7 +56,9 @@ const DecoratedClass = decorate(
 );
 ```
 
-Note that in the class example you didn't need to annotate `<Props>` in the call to `decorate`; type inference took care of everything. One caveat is that if your styled component takes _no_ additional props in addition to `classes`. The natural thing would be to write:
+Note that in the class example you didn't need to annotate `<Props>` in the call to `decorate`; type inference took care of everything. However, there are 2 scenarios where you _do_ need to provide an explicit type argument to `decorate`. 
+
+Scenario 1: your styled component takes _no_ additional props in addition to `classes`. The natural thing would be to write:
 
 ```jsx
 import { WithStyles } from 'material-ui/styles';
@@ -92,7 +94,38 @@ const DecoratedNoProps = decorate<{}>( // <-- note the type argument!
 );
 ```
 
-To avoid worrying about this edge case it may be a good habit to always provide an explicit type argument to `decorate`.
+Scenario 2: `Props` is a union type. Again, to avoid getting a compiler error, you'll need to provide an explict type argument: 
+
+```jsx
+import { WithStyles } from 'material-ui/styles';
+
+interface Book {
+  category: "book";
+  author: string;
+}
+
+interface Painting {
+  category: "painting";
+  artist: string;
+}
+
+type Props = Book | Painting;
+
+const DecoratedUnionProps = decorate<Props>( // <-- without the type argument, we'd get a compiler error!
+  class extends React.Component<Props & WithStyles<'root'>> {
+    render() {
+      const props = this.props;
+      return (
+        <Typography classes={props.classes}>
+          {props.category === "book" ? props.author : props.artist}
+        </Typography>
+      );
+    }
+  }
+);
+```
+
+To avoid worrying about these 2 edge cases, it may be a good habit to always provide an explicit type argument to `decorate`.
 
 ### Injecting Multiple Classes
 
