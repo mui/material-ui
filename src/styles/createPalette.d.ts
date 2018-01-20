@@ -33,13 +33,20 @@ interface ShadeBackground {
   avatar: string;
 }
 
-export type PaletteColor = SimplePaletteColor | Partial<Color>;
+export type PaletteColorOptions = SimplePaletteColorOptions | Partial<Color>;
 
-export interface SimplePaletteColor {
+export interface SimplePaletteColorOptions {
   light?: string;
   main: string;
   dark?: string;
   contrastText?: string;
+}
+
+export interface PaletteColor {
+  light: string;
+  main: string;
+  dark: string;
+  contrastText: string;
 }
 
 export interface Shade {
@@ -78,9 +85,9 @@ type ColorPartial = Partial<Color>;
 export interface PaletteOptions {
   common?: Partial<CommonColors>;
   type?: PaletteType;
-  primary?: PaletteColor;
-  secondary?: PaletteColor;
-  error?: PaletteColor;
+  primary?: PaletteColorOptions;
+  secondary?: PaletteColorOptions;
+  error?: PaletteColorOptions;
   grey?: ColorPartial;
   shades?: {
     dark?: PartialShade;
