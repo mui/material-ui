@@ -14,11 +14,11 @@ export const styles = theme => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    '&:hover': {
-      backgroundColor: theme.palette.text.lightDivider,
-    },
     '&$selected': {
-      backgroundColor: theme.palette.text.divider,
+      backgroundColor: theme.palette.action.selected,
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
     },
   },
   selected: {},

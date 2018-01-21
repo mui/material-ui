@@ -153,6 +153,10 @@ export function emphasize(color: string, coefficient: number = 0.15) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function fade(color: string, value: number) {
+  warning(color, `Material-UI: missing color argument in fade(${color}, ${value}).`);
+
+  if (!color) return color;
+
   color = decomposeColor(color);
   value = clamp(value);
 
@@ -172,6 +176,10 @@ export function fade(color: string, value: number) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function darken(color: string, coefficient: number) {
+  warning(color, `Material-UI: missing color argument in darken(${color}, ${coefficient}).`);
+
+  if (!color) return color;
+
   color = decomposeColor(color);
   coefficient = clamp(coefficient);
 
@@ -193,6 +201,10 @@ export function darken(color: string, coefficient: number) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function lighten(color: string, coefficient: number) {
+  warning(color, `Material-UI: missing color argument in lighten(${color}, ${coefficient}).`);
+
+  if (!color) return color;
+
   color = decomposeColor(color);
   coefficient = clamp(coefficient);
 

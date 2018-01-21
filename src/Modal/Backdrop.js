@@ -15,7 +15,7 @@ export const styles = theme => ({
     // Remove grey highlight
     WebkitTapHighlightColor: theme.palette.common.transparent,
     willChange: 'opacity',
-    backgroundColor: theme.palette.common.lightBlack,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   invisible: {
     backgroundColor: theme.palette.common.transparent,

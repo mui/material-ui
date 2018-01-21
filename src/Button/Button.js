@@ -79,7 +79,7 @@ export const styles = theme => ({
     },
     '&$disabled': {
       boxShadow: theme.shadows[0],
-      backgroundColor: theme.palette.text.divider,
+      backgroundColor: theme.palette.action.disabledBackground,
     },
     '&:hover': {
       backgroundColor: theme.palette.grey.A100,
@@ -88,11 +88,7 @@ export const styles = theme => ({
         backgroundColor: theme.palette.grey[300],
       },
       '&$disabled': {
-        backgroundColor: theme.palette.text.divider,
-        // Reset on mouse devices
-        '@media (hover: none)': {
-          backgroundColor: theme.palette.grey[300],
-        },
+        backgroundColor: theme.palette.action.disabledBackground,
       },
     },
   },

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { fade } from '../styles/colorManipulator';
 
 export const styles = theme => ({
   root: {
@@ -14,10 +15,10 @@ export const styles = theme => ({
     marginLeft: 72,
   },
   default: {
-    backgroundColor: theme.palette.text.divider,
+    backgroundColor: theme.palette.divider,
   },
   light: {
-    backgroundColor: theme.palette.text.lightDivider,
+    backgroundColor: fade(theme.palette.divider, 0.08),
   },
   absolute: {
     position: 'absolute',

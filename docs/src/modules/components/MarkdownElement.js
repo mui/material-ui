@@ -146,7 +146,7 @@ const styles = theme => ({
       overflow: 'hidden',
     },
     '& thead': {
-      fontSize: 12,
+      fontSize: 13,
       fontWeight: theme.typography.fontWeightMedium,
       color: theme.palette.text.secondary,
     },
@@ -156,7 +156,7 @@ const styles = theme => ({
       color: theme.palette.text.primary,
     },
     '& td': {
-      borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+      borderBottom: `1px solid ${theme.palette.divider}`,
       padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px ${theme.spacing.unit}px ${
         theme.spacing.unit
       }px`,
@@ -174,7 +174,8 @@ const styles = theme => ({
     },
     '& th': {
       whiteSpace: 'pre',
-      borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      fontWeight: theme.typography.fontWeightMedium,
       padding: `0 ${theme.spacing.unit * 2}px 0 ${theme.spacing.unit}px`,
       textAlign: 'left',
     },

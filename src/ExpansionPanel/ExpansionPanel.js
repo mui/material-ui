@@ -27,7 +27,7 @@ export const styles = theme => {
         height: 1,
         content: '""',
         opacity: 1,
-        backgroundColor: theme.palette.text.divider,
+        backgroundColor: theme.palette.divider,
         transition: theme.transitions.create(['opacity', 'background-color'], transition),
       },
       '&:first-child': {
@@ -60,7 +60,7 @@ export const styles = theme => {
       },
     },
     disabled: {
-      backgroundColor: theme.palette.text.divider,
+      backgroundColor: theme.palette.action.disabledBackground,
     },
   };
 };

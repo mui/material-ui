@@ -1,15 +1,9 @@
 export interface CommonColors {
-  black: string;
-  white: string;
   transparent: string;
+  black: string;
   fullBlack: string;
-  darkBlack: string;
-  lightBlack: string;
-  minBlack: string;
-  faintBlack: string;
+  white: string;
   fullWhite: string;
-  darkWhite: string;
-  lightWhite: string;
 }
 
 declare const common: CommonColors;

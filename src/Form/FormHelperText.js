@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   root: {
-    color: theme.palette.input.helperText,
+    color: theme.palette.text.secondary,
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(12),
     textAlign: 'left',
@@ -21,7 +21,7 @@ export const styles = theme => ({
     color: theme.palette.error.main,
   },
   disabled: {
-    color: theme.palette.input.disabled,
+    color: theme.palette.text.disabled,
   },
 });
 

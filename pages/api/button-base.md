@@ -6,7 +6,9 @@ filename: /src/ButtonBase/ButtonBase.js
 
 # ButtonBase
 
-
+`ButtonBase` contains as few styles as possible.
+It aims to be a building block for people who want to create a simple button.
+It contains a load of style reset and some focus/ripple logic.
 
 ## Props
 

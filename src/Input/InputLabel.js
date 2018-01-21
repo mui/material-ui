@@ -30,7 +30,7 @@ export const styles = theme => ({
     }),
   },
   disabled: {
-    color: theme.palette.input.disabled,
+    color: theme.palette.text.disabled,
   },
 });
 

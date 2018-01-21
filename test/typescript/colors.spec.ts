@@ -36,17 +36,11 @@ import {
 });
 
 const {
-    black, white, transparent,
-    fullBlack, darkBlack, lightBlack,
-    minBlack, faintBlack,
-    fullWhite, darkWhite, lightWhite
+    black, white, transparent, fullBlack, fullWhite
 } = common;
 
 [
-    black, white, transparent,
-    fullBlack, darkBlack, lightBlack,
-    minBlack, faintBlack,
-    fullWhite, darkWhite, lightWhite
+    black, white, transparent, fullBlack, fullWhite
 ].forEach(color => {
     color as string;
 });

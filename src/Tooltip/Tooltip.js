@@ -11,7 +11,6 @@ import { Manager, Target, Popper } from 'react-popper';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import RefHolder from '../internal/RefHolder';
 import common from '../colors/common';
-import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -26,7 +25,7 @@ export const styles = theme => ({
     pointerEvents: 'none',
   },
   tooltip: {
-    backgroundColor: grey[700],
+    backgroundColor: theme.palette.grey[700],
     borderRadius: 2,
     color: common.fullWhite,
     fontFamily: theme.typography.fontFamily,

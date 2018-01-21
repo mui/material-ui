@@ -38,6 +38,11 @@ export const styles = theme => ({
   },
 });
 
+/**
+ * `ButtonBase` contains as few styles as possible.
+ * It aims to be a building block for people who want to create a simple button.
+ * It contains a load of style reset and some focus/ripple logic.
+ */
 class ButtonBase extends React.Component {
   state = {
     keyboardFocused: false,

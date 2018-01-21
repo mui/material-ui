@@ -42,9 +42,10 @@ export function isAdornedStart(obj) {
 }
 
 export const styles = theme => {
+  const light = theme.palette.type === 'light';
   const placeholder = {
     color: 'currentColor',
-    opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
+    opacity: light ? 0.42 : 0.5,
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shorter,
       easing: theme.transitions.easing.ease,
@@ -54,8 +55,9 @@ export const styles = theme => {
     opacity: 0,
   };
   const placeholderVisible = {
-    opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
+    opacity: light ? 0.42 : 0.5,
   };
+  const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
 
   return {
     root: {
@@ -64,7 +66,7 @@ export const styles = theme => {
       alignItems: 'baseline',
       position: 'relative',
       fontFamily: theme.typography.fontFamily,
-      color: theme.palette.input.inputText,
+      color: light ? 'rgba(0, 0, 0, 0.87)' : theme.palette.common.fullWhite,
       fontSize: theme.typography.pxToRem(16),
     },
     formControl: {
@@ -74,7 +76,7 @@ export const styles = theme => {
     },
     inkbar: {
       '&:after': {
-        backgroundColor: theme.palette.primary[theme.palette.type === 'light' ? 'dark' : 'light'],
+        backgroundColor: theme.palette.primary[light ? 'dark' : 'light'],
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -105,7 +107,7 @@ export const styles = theme => {
     },
     underline: {
       '&:before': {
-        backgroundColor: theme.palette.input.bottomLine,
+        backgroundColor: bottomLineColor,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -125,9 +127,7 @@ export const styles = theme => {
       },
       '&$disabled:before': {
         background: 'transparent',
-        backgroundImage: `linear-gradient(to right, ${
-          theme.palette.input.bottomLine
-        } 33%, transparent 0%)`,
+        backgroundImage: `linear-gradient(to right, ${bottomLineColor} 33%, transparent 0%)`,
         backgroundPosition: 'left top',
         backgroundRepeat: 'repeat-x',
         backgroundSize: '5px 1px',

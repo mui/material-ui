@@ -8,70 +8,65 @@ import common from '../colors/common';
 import { getContrastRatio, darken, lighten } from './colorManipulator';
 
 export const light = {
+  // The colors used to style the text.
   text: {
+    // The most important text.
     primary: 'rgba(0, 0, 0, 0.87)',
+    // Secondary text.
     secondary: 'rgba(0, 0, 0, 0.54)',
+    // Disabled text have even lower visual prominence.
     disabled: 'rgba(0, 0, 0, 0.38)',
+    // Text hints.
     hint: 'rgba(0, 0, 0, 0.38)',
-    icon: 'rgba(0, 0, 0, 0.38)',
-    divider: 'rgba(0, 0, 0, 0.12)',
-    lightDivider: 'rgba(0, 0, 0, 0.075)',
   },
-  input: {
-    bottomLine: 'rgba(0, 0, 0, 0.42)',
-    helperText: 'rgba(0, 0, 0, 0.54)',
-    labelText: 'rgba(0, 0, 0, 0.54)',
-    inputText: 'rgba(0, 0, 0, 0.87)',
-    disabled: 'rgba(0, 0, 0, 0.42)',
-  },
-  action: {
-    active: 'rgba(0, 0, 0, 0.54)',
-    disabled: 'rgba(0, 0, 0, 0.26)',
-  },
+  // The color used to divide different elements.
+  divider: 'rgba(0, 0, 0, 0.12)',
+  // The background colors used to style the surfaces.
+  // Consistency between these values is important.
   background: {
     paper: common.white,
     default: grey[50],
     appBar: grey[100],
-    contentFrame: grey[200],
     chip: grey[300],
     avatar: grey[400],
   },
-  line: {
-    stepper: grey[400],
+  // The colors used to style the action elements.
+  action: {
+    // The color of an active action like an icon button.
+    active: 'rgba(0, 0, 0, 0.54)',
+    // The color of an hovered action.
+    hover: 'rgba(0, 0, 0, 0.14)',
+    // The color of a selected action.
+    selected: 'rgba(0, 0, 0, 0.08)',
+    // The color of a disabled action.
+    disabled: 'rgba(0, 0, 0, 0.26)',
+    // The background color of a disabled action.
+    disabledBackground: 'rgba(0, 0, 0, 0.12)',
   },
 };
 
 export const dark = {
   text: {
-    primary: 'rgba(255, 255, 255, 1)',
+    primary: common.fullWhite,
     secondary: 'rgba(255, 255, 255, 0.7)',
     disabled: 'rgba(255, 255, 255, 0.5)',
     hint: 'rgba(255, 255, 255, 0.5)',
     icon: 'rgba(255, 255, 255, 0.5)',
-    divider: 'rgba(255, 255, 255, 0.12)',
-    lightDivider: 'rgba(255, 255, 255, 0.075)',
   },
-  input: {
-    bottomLine: 'rgba(255, 255, 255, 0.7)',
-    helperText: 'rgba(255, 255, 255, 0.7)',
-    labelText: 'rgba(255, 255, 255, 0.7)',
-    inputText: 'rgba(255, 255, 255, 1)',
-    disabled: 'rgba(255, 255, 255, 0.5)',
-  },
-  action: {
-    active: 'rgba(255, 255, 255, 1)',
-    disabled: 'rgba(255, 255, 255, 0.3)',
-  },
+  divider: 'rgba(255, 255, 255, 0.12)',
   background: {
     paper: grey[800],
     default: '#303030',
     appBar: grey[900],
-    contentFrame: grey[900],
     chip: grey[700],
     avatar: grey[600],
   },
-  line: {
-    stepper: grey[600],
+  action: {
+    active: common.fullWhite,
+    hover: 'rgba(255, 255, 255, 0.14)',
+    selected: 'rgba(255, 255, 255, 0.8)',
+    disabled: 'rgba(255, 255, 255, 0.3)',
+    disabledBackground: 'rgba(255, 255, 255, 0.12)',
   },
 };
 
@@ -103,12 +98,7 @@ export default function createPalette(palette: Object) {
       main: red[500],
     },
     type = 'light',
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
     contrastThreshold = 3,
-    // Used by the functions below to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset = 0.2,
     ...other
   } = palette;
@@ -162,24 +152,35 @@ export default function createPalette(palette: Object) {
   }
 
   const types = { dark, light };
-  warning(Boolean(types[type]), `Material-UI: the palette type \`${type}\` is not supported.`);
+
+  warning(types[type], `Material-UI: the palette type \`${type}\` is not supported.`);
 
   const paletteOutput = deepmerge(
     {
+      // A collection of common colors.
       common,
+      // The palette type, can be light or dark.
       type,
+      // The colors used to represent primary interface elements for a user.
       primary,
+      // The colors used to represent secondary interface elements for a user.
       secondary,
+      // The colors used to represent interface elements that the user should be made aware of.
       error,
+      // The grey color.
       grey,
-      types,
-      text: types[type].text,
-      input: types[type].input,
-      action: types[type].action,
-      background: types[type].background,
-      line: types[type].line,
+      // Used by `getContrastText()` to maximize the contrast between the background and
+      // the text.
       contrastThreshold,
+      // Take a background color and return the color of the text to maximize the contrast.
       getContrastText,
+      // Used by the functions below to shift a color's luminance by approximately
+      // two indexes within its tonal palette.
+      // E.g., shift from Red 500 to Red 300 or Red 700.
+      tonalOffset,
+      // The light and dark type object.
+      types,
+      ...types[type],
     },
     other,
     {

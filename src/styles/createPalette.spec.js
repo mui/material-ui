@@ -285,9 +285,7 @@ describe('createPalette()', () => {
   });
 
   it('should throw an exception when an invalid type is specified', () => {
-    assert.throw(() => {
-      createPalette({ type: 'foo' });
-    });
+    createPalette({ type: 'foo' });
     assert.strictEqual(consoleErrorMock.callCount(), 1);
     assert.match(
       consoleErrorMock.args()[0][0],

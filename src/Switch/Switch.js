@@ -26,7 +26,8 @@ export const styles = theme => ({
     transition: theme.transitions.create(['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
-    backgroundColor: theme.palette.type === 'light' ? '#000' : '#fff',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
     opacity: theme.palette.type === 'light' ? 0.38 : 0.3,
   },
   icon: {

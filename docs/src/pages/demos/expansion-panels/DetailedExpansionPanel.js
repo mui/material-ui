@@ -36,7 +36,7 @@ const styles = theme => ({
     flexBasis: '33.3%',
   },
   helper: {
-    borderLeft: `2px solid ${theme.palette.text.lightDivider}`,
+    borderLeft: `2px solid ${theme.palette.divider}`,
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
   },
   link: {

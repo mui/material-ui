@@ -9,7 +9,7 @@ export const styles = theme => ({
   },
   line: {
     display: 'block',
-    borderColor: theme.palette.line.stepper,
+    borderColor: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
   },
   rootVertical: {
     marginLeft: 12, // half icon
