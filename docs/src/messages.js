@@ -8,12 +8,12 @@ const messages = [
   {
     id: 2,
     text:
-      'Check out the <a style="color: white;" href="https://medium.com/@haicea/material-ui-sustainability-progress-report-9246d8b2149d">Material-UI Sustainability Progress Report! </a>',
+      'Check out the Material-UI <a style="color: white;" target="_blank" href="https://medium.com/@haicea/material-ui-sustainability-progress-report-9246d8b2149d">Sustainability Progress Report! </a>',
   },
   {
     id: 3,
     text:
-      'We\'ve released v1.0.0-beta.30. Please check the <a style="color: white;" href="https://github.com/mui-org/material-ui/releases/tag/v1.0.0-beta.30"> release notes</a> for breaking changes.',
+      'We\'ve released v1.0.0-beta.30. Please check the <a style="color: white;" target="_blank" href="https://github.com/mui-org/material-ui/releases/tag/v1.0.0-beta.30"> release notes</a> for breaking changes.',
   },
 ];
 

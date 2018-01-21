@@ -6,45 +6,54 @@ import messages from 'docs/src/messages';
 class Notifications extends React.Component {
   state = {
     open: false,
-    message: {},
+    message: { text: 'foo', id: 0 },
+    seen: 0,
   };
 
   componentDidMount = () => {
     this.handleMessage();
   };
 
-  handleMessage = () => {
-    let lastMessage = document.cookie.replace(
-      /(?:(?:^|.*;\s*)lastMessage\s*=\s*([^;]*).*$)|^.*$/,
+  getClosedNotifications = () => {
+    const closed = document.cookie.replace(
+      /(?:(?:^|.*;\s*)closedNotifications\s*=\s*([^;]*).*$)|^.*$/,
       '$1',
     );
+    const closedArray = closed ? closed.split(',') : [];
+    return closedArray.map(a => parseInt(a, 10));
+  };
 
-    if (lastMessage === '') {
-      lastMessage = 0;
-    }
+  handleMessage = () => {
+    const closed = this.getClosedNotifications();
 
-    const message = messages.find(m => {
-      return m.id > lastMessage;
-    });
+    const unseenMessages = messages.filter(
+      message => message.id > this.state.seen && !closed.includes(message.id),
+    );
+    const maxMessage = unseenMessages.reduce((a, m) => Math.max(a, m.id), 0);
 
-    if (message) {
-      this.setState({
-        message,
-        open: true,
-      });
+    if (!(this.state.seen >= maxMessage)) {
+      this.setState({ message: unseenMessages.shift(), open: true });
     }
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
-    document.cookie = `lastMessage=${this.state.message.id};path=/;max-age=31536000`;
+  handleClose = (event, reason) => {
+    this.setState({ open: false, seen: this.state.message.id });
+
+    // Close button clicked
+    if (reason === undefined) {
+      const closed = this.getClosedNotifications();
+
+      if (closed.indexOf(this.state.message.id) === -1) {
+        closed.push(this.state.message.id);
+      }
+      document.cookie = `closedNotifications=${closed.join()};path=/;max-age=31536000`;
+    }
   };
 
   render() {
     return (
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={this.state.open}
         SnackbarContentProps={{
           'aria-describedby': 'message',
         }}
@@ -58,6 +67,9 @@ class Notifications extends React.Component {
             Close
           </Button>
         }
+        open={this.state.open}
+        autoHideDuration={6000}
+        onClose={this.handleClose}
         onExited={this.handleMessage}
       />
     );
