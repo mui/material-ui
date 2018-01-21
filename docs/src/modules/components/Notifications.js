@@ -3,6 +3,7 @@
 import React from 'react';
 import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
+import 'isomorphic-fetch';
 
 function getLastSeenNotification() {
   const seen = document.cookie.replace(
@@ -12,37 +13,52 @@ function getLastSeenNotification() {
   return seen === '' ? 0 : parseInt(seen, 10);
 }
 
+function pause(timeout) {
+  return new Promise(accept => {
+    setTimeout(accept, timeout);
+  });
+}
+
+let messages = null;
+
+async function getMessages() {
+  try {
+    if (!messages) {
+      await pause(1e3); // Soften the pressure on the main thread.
+      const result = await fetch(
+        'https://raw.githubusercontent.com/mui-org/material-ui/v1-beta/docs/notifications.json',
+      );
+      messages = await result.json();
+    }
+  } catch (err) {
+    // Swallow the exceptions.
+  }
+
+  messages = messages || [];
+}
+
 class Notifications extends React.Component {
   state = {
     open: false,
-    messages: [],
     message: {},
   };
 
-  componentDidMount = () => {
-    this.getMessages();
+  componentDidMount = async () => {
+    this.mounted = true;
+    await getMessages();
+    this.handleMessage();
   };
 
-  getMessages = () => {
-    const url =
-      'https://raw.githubusercontent.com/mui-org/material-ui/v1-beta/docs/notifications.json';
-    const request = new XMLHttpRequest();
+  componentWillUnmout() {
+    this.mounted = false;
+  }
 
-    request.onreadystatechange = () => {
-      if (request.readyState === 4 && request.status === 200) {
-        this.setState({ messages: JSON.parse(request.responseText) });
-        this.handleMessage();
-      }
-    };
-
-    request.open('GET', url, true);
-    request.send();
-  };
+  mounted = false;
 
   handleMessage = () => {
     const lastSeen = getLastSeenNotification();
-    const unseenMessages = this.state.messages.filter(message => message.id > lastSeen);
-    if (unseenMessages.length > 0) {
+    const unseenMessages = messages.filter(message => message.id > lastSeen);
+    if (unseenMessages.length > 0 && this.mounted) {
       this.setState({ message: unseenMessages[0], open: true });
     }
   };
@@ -69,7 +85,7 @@ class Notifications extends React.Component {
           </Button>
         }
         open={open}
-        autoHideDuration={10000}
+        autoHideDuration={20e3}
         onClose={this.handleClose}
         onExited={this.handleMessage}
       />

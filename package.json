@@ -144,6 +144,7 @@
     "fs-extra": "^5.0.0",
     "glob": "^7.1.2",
     "gm": "^1.23.0",
+    "isomorphic-fetch": "^2.2.1",
     "jsdom": "^11.3.0",
     "json-loader": "^0.5.7",
     "jss-rtl": "^0.2.1",
