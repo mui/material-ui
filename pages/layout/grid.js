@@ -43,6 +43,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/layout/AutoGrid'), 'utf8')
 `,
         },
+        'pages/layout/AutoGridNoWrap.js': {
+          js: require('docs/src/pages/layout/AutoGridNoWrap').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/layout/AutoGridNoWrap'), 'utf8')
+`,
+        },
       }}
     />
   );

@@ -29,6 +29,7 @@ filename: /src/Grid/Grid.js
 | wrap | enum:&nbsp;'nowrap'&nbsp;&#124;<br>&nbsp;'wrap'&nbsp;&#124;<br>&nbsp;'wrap-reverse'<br> | 'wrap' | Defines the `flex-wrap` style property. It's applied for all screen sizes. |
 | xl | enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `xl` breakpoint and wider screens. |
 | xs | enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority. |
+| zeroMinWidth | bool | false | If `true`, it sets `min-width: 0` on the item. Refer to the limitations section of the documentation to better understand the use case. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -38,6 +39,7 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `typeContainer`
 - `typeItem`
+- `zeroMinWidth`
 - `direction-xs-column`
 - `direction-xs-column-reverse`
 - `direction-xs-row-reverse`

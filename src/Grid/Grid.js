@@ -96,6 +96,9 @@ export const styles = theme => ({
     flex: '0 0 auto',
     margin: '0', // For instance, it's useful when used with a `figure` element.
   },
+  zeroMinWidth: {
+    minWidth: 0,
+  },
   'direction-xs-column': {
     flexDirection: 'column',
   },
@@ -172,6 +175,7 @@ function Grid(props) {
     justify,
     lg,
     md,
+    zeroMinWidth,
     sm,
     spacing,
     wrap,
@@ -184,6 +188,7 @@ function Grid(props) {
     {
       [classes.typeContainer]: container,
       [classes.typeItem]: item,
+      [classes.zeroMinWidth]: zeroMinWidth,
       [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
       [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
       [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
@@ -312,6 +317,11 @@ Grid.propTypes = {
    * It's applied for all the screen sizes with the lowest priority.
    */
   xs: PropTypes.oneOf([true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  /**
+   * If `true`, it sets `min-width: 0` on the item.
+   * Refer to the limitations section of the documentation to better understand the use case.
+   */
+  zeroMinWidth: PropTypes.bool,
 };
 
 Grid.defaultProps = {
@@ -322,6 +332,7 @@ Grid.defaultProps = {
   direction: 'row',
   item: false,
   justify: 'flex-start',
+  zeroMinWidth: false,
   spacing: 16,
   wrap: 'wrap',
 };
@@ -347,6 +358,7 @@ if (process.env.NODE_ENV !== 'production') {
     spacing: requireProp('container'),
     wrap: requireProp('container'),
     xs: requireProp('item'),
+    zeroMinWidth: requireProp('zeroMinWidth'),
   };
 }
 

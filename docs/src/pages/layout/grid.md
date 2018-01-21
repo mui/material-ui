@@ -49,6 +49,8 @@ That also means you can set the width of one *item* and the others will automati
 
 ## Limitations
 
+### Negative margin
+
 There is one limitation with the negative margin we use to implement the spacing between items.
 A horizontal scroll will appear if a negative margin goes beyond the `<body />`.
 There are 3 available workarounds:
@@ -64,3 +66,22 @@ There are 3 available workarounds:
   </body>
 ```
 3. Adding `overflow-x: hidden;` on the parent.
+
+### white-space: nowrap;
+
+The initial setting on flex items is `min-width: auto`.
+It's causing a positioning conflict when the children is using `white-space: nowrap;`.
+You can experience the issue with:
+```jsx
+<Grid item xs>
+  <Typography noWrap>
+```
+
+In order for the item to stay within the container you need to set `min-width: 0`.
+In practice, you can set the `zeroMinWidth` property:
+```jsx
+<Grid item xs zeroMinWidth>
+  <Typography noWrap>
+```
+
+{{"demo": "pages/layout/AutoGridNoWrap.js"}}
