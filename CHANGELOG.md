@@ -5,13 +5,14 @@ Changes. Changes everywhere!
 ## 1.0.0-beta.30
 ###### *Jan 21, 2018*
 
-Big thanks to the 11 contributors who made this release possible.
+Big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 - A revamp of the palette usage. We want it to be as simple as possible (#9876, #9918, #9970).
 We are pretty happy with the outcome. +80% of the story has been completed.
-- A better w3c compliance, we will keep working on it in for the next release @sambhav-gore.
+- A better [w3c compliance](https://validator.w3.org), we will keep working on it in for the next release @sambhav-gore.
 - An improved breakpoints documentation section (#9949).
+- A new notification system for the documentation (#9974) @mbrookes.
 - And many more bug fixes and documentation improvements.
 
 ### Breaking change
@@ -84,6 +85,7 @@ It's unclear if this change is making the implementation follow the specificatio
 - [docs] Improve the documentation on the breakpoints (#9949) @oliviertassinari
 - [docs] Apply Matt's requested changes (#9963) @oliviertassinari
 - [docs] Using TypeScript & withStyles for class component w/union props (#9975) @nmchaves
+- [docs] Add notifications (#9974) @mbrookes
 
 #### Core
 
