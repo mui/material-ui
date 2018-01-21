@@ -47,15 +47,9 @@ That also means you can set the width of one *item* and the others will automati
 
 {{"demo": "pages/layout/AutoGrid.js"}}
 
-## Auto-layout without wrapping
-
-Following example shows Auto-Layout without wrapping of items to next row.
-The prop `noAutoMinWidth` can be used for an *item* which takes all the remaining space in the *container*. 
-Similar to previous example of Auto-Layout, other columns resize around it.
-
-{{"demo": "pages/layout/AutoGridNoWrap.js"}}
-
 ## Limitations
+
+### Negative margin
 
 There is one limitation with the negative margin we use to implement the spacing between items.
 A horizontal scroll will appear if a negative margin goes beyond the `<body />`.
@@ -72,3 +66,22 @@ There are 3 available workarounds:
   </body>
 ```
 3. Adding `overflow-x: hidden;` on the parent.
+
+### white-space: nowrap;
+
+The initial setting on flex items is `min-width: auto`.
+It's causing a positioning conflict when the children is using `white-space: nowrap;`.
+You can experience the issue with:
+```jsx
+<Grid item xs>
+  <Typography noWrap>
+```
+
+In order for the item to stay within the container you need to set `min-width: 0`.
+In practice, you can set the `zeroMinWidth` property:
+```jsx
+<Grid item xs zeroMinWidth>
+  <Typography noWrap>
+```
+
+{{"demo": "pages/layout/AutoGridNoWrap.js"}}

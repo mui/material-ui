@@ -1,45 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
+import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
+import Avatar from 'material-ui/Avatar';
+import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    marginTop: 30,
+    width: 400,
   },
   paper: {
-    padding: 16,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
+    margin: theme.spacing.unit,
+    padding: theme.spacing.unit * 2,
   },
 });
 
 function AutoGridNoWrap(props) {
   const { classes } = props;
+  const message = `Truncation should be conditionally applicable on this long line of text
+                    as this is a much longer line than what the container can support. `;
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={24} wrap="nowrap">
-        <Grid item>
-          <Paper className={classes.paper}>Fixed Column</Paper>
+      <Paper className={classes.paper}>
+        <Grid container wrap="nowrap">
+          <Grid item>
+            <Avatar>W</Avatar>
+          </Grid>
+          <Grid item xs zeroMinWidth>
+            <Typography noWrap>{message}</Typography>
+          </Grid>
         </Grid>
-        <Grid item xs noAutoMinWidth>
-          <Paper className={classes.paper}>xs</Paper>
+      </Paper>
+      <Paper className={classes.paper}>
+        <Grid container wrap="nowrap">
+          <Grid item>
+            <Avatar>W</Avatar>
+          </Grid>
+          <Grid item xs>
+            <Typography noWrap>{message}</Typography>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container spacing={24} wrap="nowrap">
-        <Grid item>
-          <Paper className={classes.paper}>left</Paper>
+      </Paper>
+      <Paper className={classes.paper}>
+        <Grid container wrap="nowrap">
+          <Grid item>
+            <Avatar>W</Avatar>
+          </Grid>
+          <Grid item xs>
+            <Typography>{message}</Typography>
+          </Grid>
         </Grid>
-        <Grid item xs noAutoMinWidth>
-          <Paper className={classes.paper}>xs</Paper>
-        </Grid>
-        <Grid item>
-          <Paper className={classes.paper}>right</Paper>
-        </Grid>
-      </Grid>
+      </Paper>
     </div>
   );
 }
