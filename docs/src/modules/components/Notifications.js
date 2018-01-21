@@ -3,11 +3,6 @@
 import React from 'react';
 import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
-import messages from 'docs/src/messages';
-
-if (messages.length > 3) {
-  throw new Error('We cannot display more than 3 notifications in a row');
-}
 
 function getLastSeenNotification() {
   const seen = document.cookie.replace(
@@ -20,16 +15,33 @@ function getLastSeenNotification() {
 class Notifications extends React.Component {
   state = {
     open: false,
+    messages: [],
     message: {},
   };
 
   componentDidMount = () => {
-    this.handleMessage();
+    this.getMessages();
+  };
+
+  getMessages = () => {
+    const url =
+      'https://raw.githubusercontent.com/mui-org/material-ui/v1-beta/docs/notifications.json';
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = () => {
+      if (request.readyState === 4 && request.status === 200) {
+        this.setState({ messages: JSON.parse(request.responseText) });
+        this.handleMessage();
+      }
+    };
+
+    request.open('GET', url, true);
+    request.send();
   };
 
   handleMessage = () => {
     const lastSeen = getLastSeenNotification();
-    const unseenMessages = messages.filter(message => message.id > lastSeen);
+    const unseenMessages = this.state.messages.filter(message => message.id > lastSeen);
     if (unseenMessages.length > 0) {
       this.setState({ message: unseenMessages[0], open: true });
     }
