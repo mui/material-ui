@@ -18,45 +18,41 @@ We are pretty happy with the outcome. +80% of the story has been completed.
 ### Breaking change
 
 - [palette] Keep simplifying the solution (#9876) @oliviertassinari
-
-- Remove the contrast color from our API. This color variation hasn't proven itseft to be useful enough.
-```diff
--<Button color="contrast" />
-+<Button />
-```
-Instead, you can use the `color="inherit"` property or use the `theme.palette.XXX.contrastText` value.
-- Rename `accent` to `secondary`. We have removed the accent indirection to be closer to the object people are providing to customize the palette.
-```diff
--<Button color="accent" />
-+<Button color="secondary" />
-```
-```diff
-<Tabs
-- indicatorColor="accent"
-- textColor="accent"
-+ indicatorColor="secondary"
-+ textColor="secondary"
->
-```
-
-- Rename old `secondary` to `textSecondary`. `secondary` and `textSecondary` are two valid color value.
-```diff
--<Typography color="secondary" />
-+<Typography color="textSecondary" />
-```
-
+  - Remove the contrast color from our API. This color variation hasn't proven itseft to be useful enough.
+  ```diff
+  -<Button color="contrast" />
+  +<Button />
+  ```
+  Instead, you can use the `color="inherit"` property or use the `theme.palette.XXX.contrastText` value.
+  - Rename `accent` to `secondary`. We have removed the accent indirection to be closer to the object people are providing to customize the palette.
+  ```diff
+  -<Button color="accent" />
+  +<Button color="secondary" />
+  ```
+  ```diff
+  <Tabs
+  - indicatorColor="accent"
+  - textColor="accent"
+  + indicatorColor="secondary"
+  + textColor="secondary"
+  >
+  ```
+  - Rename old `secondary` to `textSecondary`. `secondary` and `textSecondary` are two valid color value.
+  ```diff
+  -<Typography color="secondary" />
+  +<Typography color="textSecondary" />
+  ```
 - [palette] Standardize the secondary color (#9918) @oliviertassinari
 
 The secondary color now behaves the same way than the other colors (primary, error). We always use the `main` tone by default instead of the `light` tone.
 It's unclear if this change is making the implementation follow the specification more closely. The direct win is **simplicity and predictability**.
 
 - [palette] Normalize the usage of the palette (#9970) @oliviertassinari
-
-- Remove `theme.palette.input` object.
-- Remove `theme.palette.text.icon` color.
-- Remove `theme.palette.background.contentFrame`, it was only used in the documentation.
-- Move `theme.palette.text.divider` to `theme.palette.divider`, it's not a text color.
-- Remove `theme.palette.text.lightDivider`, there is no reference to is in the specification, better keep things simple.
+  - Remove `theme.palette.input` object.
+  - Remove `theme.palette.text.icon` color.
+  - Remove `theme.palette.background.contentFrame`, it was only used in the documentation.
+  - Move `theme.palette.text.divider` to `theme.palette.divider`, it's not a text color.
+  - Remove `theme.palette.text.lightDivider`, there is no reference to is in the specification, better keep things simple.
 
 #### Component Fixes / Enhancements
 
