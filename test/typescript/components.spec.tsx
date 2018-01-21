@@ -598,7 +598,7 @@ const TableTest = () => {
         backgroundColor,
         overflowX: 'auto',
       },
-    }
+    };
   };
 
   let id = 0;

@@ -64,6 +64,7 @@ function Select(props) {
     classes,
     displayEmpty,
     input,
+    inputProps,
     MenuProps,
     multiple,
     native,
@@ -80,6 +81,7 @@ function Select(props) {
     inputComponent: SelectInput,
     ...other,
     inputProps: {
+      ...inputProps,
       ...(input ? input.props.inputProps : {}),
       autoWidth,
       children,
@@ -120,6 +122,11 @@ Select.propTypes = {
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
   input: PropTypes.element,
+  /**
+   * Properties applied to the `input` element.
+   * When `native` is `true`, the properties are applied on the `select` element.
+   */
+  inputProps: PropTypes.object,
   /**
    * Properties applied to the `Menu` element.
    */

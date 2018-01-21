@@ -40,7 +40,10 @@ class SimpleSelect extends React.Component {
           <Select
             value={this.state.age}
             onChange={this.handleChange}
-            input={<Input name="age" id="age-simple" />}
+            inputProps={{
+              name: 'age',
+              id: 'age-simple',
+            }}
           >
             <MenuItem value="">
               <em>None</em>

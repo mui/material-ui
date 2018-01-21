@@ -17,6 +17,7 @@ filename: /src/Select/Select.js
 | classes | object |  | Useful to extend the style applied to components. |
 | displayEmpty | bool | false | If `true`, the selected item is displayed even if its value is empty. You can only use it when the `native` property is `false` (default). |
 | input | element | &lt;Input /> | An `Input` element; does not have to be a material-ui specific `Input`. |
+| inputProps | object |  | Properties applied to the `input` element. When `native` is `true`, the properties are applied on the `select` element. |
 | MenuProps | object |  | Properties applied to the `Menu` element. |
 | multiple | bool | false | If true, `value` must be an array and the menu will support multiple selections. You can only use it when the `native` property is `false` (default). |
 | native | bool | false | If `true`, the component will be using a native `select` element. |
