@@ -17,6 +17,7 @@ import FormatTextdirectionRToL from 'material-ui-icons/FormatTextdirectionRToL';
 import Github from 'docs/src/modules/components/GitHub';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
+import Notifications from 'docs/src/modules/components/Notifications';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import actionTypes from 'docs/src/modules/redux/actionTypes';
 
@@ -233,6 +234,7 @@ class AppFrame extends React.Component {
             </Tooltip>
           </Toolbar>
         </AppBar>
+        <Notifications />
         <AppDrawer
           className={classes.drawer}
           disablePermanent={disablePermanent}
