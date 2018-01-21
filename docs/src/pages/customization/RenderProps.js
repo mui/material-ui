@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
 // A function you can extract and put into its own module.
-// Yes, 11 lines of code, it's all you need.
+// Yes, 11 lines of code is all you need.
 function createStyled(styles, options) {
   function Styled(props) {
     const { children, ...other } = props;

@@ -234,7 +234,7 @@ Of course, you are free to add a new plugin. We have one example for the [`jss-r
 ### `withStyles(styles, [options]) => higher-order component`
 
 Link a style sheet with a component.
-It does not modify the component passed to it; instead, it returns a new component, with a `classes` property.
+It does not modify the component passed to it; instead, it returns a new component with a `classes` property.
 This `classes` object contains the name of the class names injected in the DOM.
 
 Some implementation details that might be interesting to being aware of:
@@ -338,8 +338,8 @@ export default App;
 
 ## Alternative APIs
 
-Do you think that [higher-order components are the new mixins](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)? We don't but rest assured.
-Because `withStyles()` is an higher-order component, it can be extended with **few lines of code** to match different patterns. They are all idiomatic React.
+Do you think that [higher-order components are the new mixins](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)? We don't, but rest assured, because `withStyles()` is a higher-order component.
+It can be extended with **few lines of code** to match different patterns, they are all idiomatic React.
 
 ### Render props API (+11 lines)
 
