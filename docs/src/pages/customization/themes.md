@@ -199,7 +199,7 @@ Alternatively, you can always have a look at the [implementation](https://github
 ## Accessing the theme in a component
 
 You might need to access the theme variables inside your React components.
-Let's say you want to display the value of the primary color, you can use the `withTheme()` Higher-order Component to do so. Here is an example:
+Let's say you want to display the value of the primary color, you can use the `withTheme()` higher-order component to do so. Here is an example:
 
 {{"demo": "pages/customization/WithTheme.js"}}
 
