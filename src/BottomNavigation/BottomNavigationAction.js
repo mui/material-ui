@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import Icon from '../Icon';
+import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
 export const styles = theme => ({
   root: {
@@ -91,17 +91,7 @@ class BottomNavigationAction extends React.Component {
       classNameProp,
     );
 
-    let icon = null;
-
-    if (iconProp) {
-      if (React.isValidElement(iconProp) && typeof iconProp !== 'string') {
-        icon = React.cloneElement(iconProp, {
-          className: classNames(classes.icon, iconProp.props.className),
-        });
-      } else {
-        icon = <Icon>{iconProp}</Icon>;
-      }
-    }
+    const icon = iconProp ? cloneChildrenWithClassName(iconProp, classes.icon) : null;
 
     const labelClassName = classNames(classes.label, {
       [classes.selectedLabel]: selected,
@@ -129,7 +119,7 @@ BottomNavigationAction.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The icon element. If a string is provided, it will be used as a font ligature.
+   * The icon element.
    */
   icon: PropTypes.node,
   /**

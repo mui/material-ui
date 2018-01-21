@@ -35,7 +35,6 @@ Checkbox.propTypes = {
   checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   /**
    * The icon to display when the component is checked.
-   * If a string is provided, it will be used as a font ligature.
    */
   checkedIcon: PropTypes.node,
   /**
@@ -60,7 +59,6 @@ Checkbox.propTypes = {
   disableRipple: PropTypes.bool,
   /**
    * The icon to display when the component is unchecked.
-   * If a string is provided, it will be used as a font ligature.
    */
   icon: PropTypes.node,
   /**
@@ -69,7 +67,6 @@ Checkbox.propTypes = {
   indeterminate: PropTypes.bool,
   /**
    * The icon to display when the component is indeterminate.
-   * If a string is provided, it will be used as a font ligature.
    */
   indeterminateIcon: PropTypes.node,
   /**

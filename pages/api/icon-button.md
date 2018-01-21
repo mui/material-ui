@@ -14,7 +14,7 @@ regarding the available icon options.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | buttonRef | func |  | Use that property to pass a ref callback to the native button component. |
-| children | node |  | The icon element. If a string is provided, it will be used as an icon font ligature. |
+| children | node |  | The icon element. |
 | classes | object |  | Useful to extend the style applied to components. |
 | color | enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
 | disabled | bool | false | If `true`, the button will be disabled. |

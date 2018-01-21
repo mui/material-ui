@@ -14,7 +14,7 @@ filename: /src/Tabs/Tab.js
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
 | disabled | bool | false | If `true`, the tab will be disabled. |
-| icon | node |  | The icon element. If a string is provided, it will be used as a font ligature. |
+| icon | node |  | The icon element. |
 | label | node |  | The label element. |
 | value | any |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 

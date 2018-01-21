@@ -83,12 +83,6 @@ describe('<BottomNavigationAction />', () => {
     assert.strictEqual(labelWrapper.hasClass(classes.label), true, 'should have the label class');
   });
 
-  it('should render a font icon if a icon string is provided', () => {
-    const wrapper = shallow(<BottomNavigationAction icon="book" />);
-    const iconWrapper = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(iconWrapper.is(Icon), true, 'should be an Icon');
-  });
-
   it('should not render an Icon if icon is not provided', () => {
     const wrapper = shallow(<BottomNavigationAction />);
     assert.strictEqual(wrapper.find(Icon).exists(), false);

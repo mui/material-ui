@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
-import Icon from '../Icon';
 
 export const styles = theme => ({
   root: {
@@ -136,7 +135,7 @@ class Tab extends React.Component {
       className: classNameProp,
       disabled,
       fullWidth,
-      icon: iconProp,
+      icon,
       indicator,
       label: labelProp,
       onChange,
@@ -146,12 +145,6 @@ class Tab extends React.Component {
       value,
       ...other
     } = this.props;
-
-    let icon;
-
-    if (iconProp !== undefined) {
-      icon = React.isValidElement(iconProp) ? iconProp : <Icon>{iconProp}</Icon>;
-    }
 
     let label;
 
@@ -237,7 +230,7 @@ Tab.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * The icon element. If a string is provided, it will be used as a font ligature.
+   * The icon element.
    */
   icon: PropTypes.node,
   /**

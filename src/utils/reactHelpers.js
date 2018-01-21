@@ -4,7 +4,7 @@
 import { cloneElement, Children, isValidElement } from 'react';
 import type { Node } from 'react';
 
-export function cloneChildrenWithClassName(children: Node, className: string) {
+export function cloneChildrenWithClassName(children: Node, className: string, props: Object) {
   return Children.map(children, child => {
     return (
       isValidElement(child) &&
@@ -12,6 +12,7 @@ export function cloneChildrenWithClassName(children: Node, className: string) {
         className: child.props.hasOwnProperty('className')
           ? `${child.props.className} ${className}`
           : className,
+        ...props,
       })
     );
   });

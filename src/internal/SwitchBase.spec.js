@@ -230,8 +230,8 @@ describe('<SwitchBase />', () => {
   });
 
   describe('prop: icon', () => {
-    it('should accept a string and use Icon', () => {
-      const wrapper = shallow(<SwitchBase icon="heart" />);
+    it('should render an Icon', () => {
+      const wrapper = shallow(<SwitchBase icon={<Icon>heart</Icon>} />);
       assert.strictEqual(wrapper.childAt(0).is(Icon), true);
     });
   });
