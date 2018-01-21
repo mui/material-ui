@@ -3,7 +3,7 @@ const messages = [
     id: 1,
     text:
       "We've introduced notifications. " +
-      "They use a cookie to keep track of what you've already seen.",
+      "They use cookies to keep track of what you've already seen.",
   },
   {
     id: 2,

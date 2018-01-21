@@ -6,12 +6,19 @@ import messages from 'docs/src/messages';
 class Notifications extends React.Component {
   state = {
     open: false,
-    message: { text: 'foo', id: 0 },
-    seen: 0,
+    message: {},
   };
 
   componentDidMount = () => {
     this.handleMessage();
+  };
+
+  getSeenNotifications = () => {
+    const seen = document.cookie.replace(
+      /(?:(?:^|.*;\s*)seenNotifications\s*=\s*([^;]*).*$)|^.*$/,
+      '$1',
+    );
+    return seen === '' ? 0 : parseInt(seen, 10);
   };
 
   getClosedNotifications = () => {
@@ -24,20 +31,22 @@ class Notifications extends React.Component {
   };
 
   handleMessage = () => {
+    const seen = this.getSeenNotifications();
     const closed = this.getClosedNotifications();
 
     const unseenMessages = messages.filter(
-      message => message.id > this.state.seen && !closed.includes(message.id),
+      message => message.id > seen && !closed.includes(message.id),
     );
     const maxMessage = unseenMessages.reduce((a, m) => Math.max(a, m.id), 0);
 
-    if (!(this.state.seen >= maxMessage)) {
+    if (!(seen >= maxMessage)) {
       this.setState({ message: unseenMessages.shift(), open: true });
     }
   };
 
   handleClose = (event, reason) => {
-    this.setState({ open: false, seen: this.state.message.id });
+    this.setState({ open: false });
+    document.cookie = `seenNotifications=${this.state.message.id};path=/`;
 
     // Close button clicked
     if (reason === undefined) {
