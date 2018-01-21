@@ -24,15 +24,21 @@ interface TypeBackground {
   avatar: string;
 }
 
-type PaletteColor = Partial<
-  | {
-      light?: string;
-      main: string;
-      dark?: string;
-      contrastText?: string;
-    }
-  | Color
->;
+export type PaletteColorOptions = SimplePaletteColorOptions | Partial<Color>;
+
+export interface SimplePaletteColorOptions {
+  light?: string;
+  main: string;
+  dark?: string;
+  contrastText?: string;
+}
+
+export interface PaletteColor {
+  light: string;
+  main: string;
+  dark: string;
+  contrastText: string;
+}
 
 export interface TypeObject {
   text: TypeText;
@@ -68,9 +74,9 @@ type ColorPartial = Partial<Color>;
 export interface PaletteOptions {
   common?: Partial<CommonColors>;
   type?: PaletteType;
-  primary?: PaletteColor;
-  secondary?: PaletteColor;
-  error?: PaletteColor;
+  primary?: PaletteColorOptions;
+  secondary?: PaletteColorOptions;
+  error?: PaletteColorOptions;
   grey?: ColorPartial;
   types?: {
     dark?: PartialTypeObject;

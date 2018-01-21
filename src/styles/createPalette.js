@@ -103,22 +103,6 @@ export default function createPalette(palette: Object) {
     ...other
   } = palette;
 
-  if (!primary.main && primary[500]) {
-    primary.main = primary[500];
-  }
-  addLightOrDark(primary, 'light', '300', tonalOffset);
-  addLightOrDark(primary, 'dark', '700', tonalOffset);
-
-  if (!secondary.main && secondary.A400) {
-    secondary.main = secondary.A400;
-  }
-  addLightOrDark(secondary, 'light', 'A200', tonalOffset);
-  addLightOrDark(secondary, 'dark', 'A700', tonalOffset);
-
-  if (!error.main && error[500]) {
-    error.main = error[500];
-  }
-
   function getContrastText(background) {
     // Use the same logic as
     // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
@@ -143,13 +127,20 @@ export default function createPalette(palette: Object) {
     return contrastText;
   }
 
-  if (!primary.contrastText) {
-    primary.contrastText = getContrastText(primary.main);
+  function augmentColor(color, mainShade, lightShade, darkShade) {
+    if (!color.main && color[mainShade]) {
+      color.main = color[mainShade];
+    }
+    addLightOrDark(color, 'light', lightShade, tonalOffset);
+    addLightOrDark(color, 'dark', darkShade, tonalOffset);
+    if (!color.contrastText) {
+      color.contrastText = getContrastText(color.main);
+    }
   }
 
-  if (!secondary.contrastText) {
-    secondary.contrastText = getContrastText(secondary.main);
-  }
+  augmentColor(primary, 500, 300, 700);
+  augmentColor(secondary, 'A400', 'A200', 'A700');
+  augmentColor(error, 500, 300, 700);
 
   const types = { dark, light };
 

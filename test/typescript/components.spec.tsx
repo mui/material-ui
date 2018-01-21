@@ -589,13 +589,17 @@ const StepperTest = () =>
   };
 
 const TableTest = () => {
-  const styles: StyleRulesCallback<'paper'> = theme => ({
-    paper: {
-      width: '100%',
-      marginTop: theme.spacing.unit * 3,
-      overflowX: 'auto',
-    },
-  });
+  const styles: StyleRulesCallback<'paper'> = theme => {
+    const backgroundColor: string = theme.palette.secondary.light;
+    return {
+      paper: {
+        width: '100%',
+        marginTop: theme.spacing.unit * 3,
+        backgroundColor,
+        overflowX: 'auto',
+      },
+    }
+  };
 
   let id = 0;
   function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
