@@ -2,6 +2,91 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.30
+###### *Jan 21, 2018*
+
+Big thanks to the 11 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A revamp of the palette usage. We want it to be as simple as possible (#9876, #9918, #9970).
+We are pretty happy with the outcome. +80% of the story has been completed.
+- A better w3c compliance, we will keep working on it in for the next release @sambhav-gore.
+- An improved breakpoints documentation section (#9949).
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [palette] Keep simplifying the solution (#9876) @oliviertassinari
+
+- Remove the contrast color from our API. This color variation hasn't proven itseft to be useful enough.
+```diff
+-<Button color="contrast" />
++<Button />
+```
+Instead, you can use the `color="inherit"` property or use the `theme.palette.XXX.contrastText` value.
+- Rename `accent` to `secondary`. We have removed the accent indirection to be closer to the object people are providing to customize the palette.
+```diff
+-<Button color="accent" />
++<Button color="secondary" />
+```
+```diff
+<Tabs
+- indicatorColor="accent"
+- textColor="accent"
++ indicatorColor="secondary"
++ textColor="secondary"
+>
+```
+
+- Rename old `secondary` to `textSecondary`. `secondary` and `textSecondary` are two valid color value.
+```diff
+-<Typography color="secondary" />
++<Typography color="textSecondary" />
+```
+
+- [palette] Standardize the secondary color (#9918) @oliviertassinari
+
+The secondary color now behaves the same way than the other colors (primary, error). We always use the `main` tone by default instead of the `light` tone.
+It's unclear if this change is making the implementation follow the specification more closely. The direct win is **simplicity and predictability**.
+
+- [palette] Normalize the usage of the palette (#9970) @oliviertassinari
+
+- Remove `theme.palette.input` object.
+- Remove `theme.palette.text.icon` color.
+- Remove `theme.palette.background.contentFrame`, it was only used in the documentation.
+- Move `theme.palette.text.divider` to `theme.palette.divider`, it's not a text color.
+- Remove `theme.palette.text.lightDivider`, there is no reference to is in the specification, better keep things simple.
+
+#### Component Fixes / Enhancements
+
+- [Button] Fix secondary contrastText color (#9913) @ValentinH
+- [FormTextHelper] Add component prop (#9917) @sambhav-gore
+- [core] Fix some w3c validation errors (#9906) @oliviertassinari
+- [TableCell] Fix TypeScript definition (#9926) @ljvanschie
+- [Divider] Add component property (#9927) @oliviertassinari
+- [FormControl] Fix alternating focus change bug (#9909) @dapetcu21
+- [CircularProgress] Fix animation on Edge 16 and below (#9938) @oliviertassinari
+- [ListItemText] Update Typings for primary and secondary text class keys (#9946) @spallister
+- [palette] ShadeBackground interface updated (#9955) @daniel-rabe
+- [TableCell] Fix TypeScript definition (#9959) @ljvanschie
+- [Select] Fix a small vertical alignement issue (#9964) @oliviertassinari
+- [IconButton] Better follow the spec (#9967) @oliviertassinari
+- [Select] Add inputProps property (#9979) @oliviertassinari
+- [typescript] Palette typing fixes and error augmentation (#9973) @pelotom
+- [Grid] minWidth for type item (#9972) @sambhav-gore
+
+#### Docs
+
+- [docs] Add a section about how to test changes locally (#9935) @nicolasiensen
+- [docs] Style Library Interoperability v2 (#9939) @oliviertassinari
+- [docs] Fix markdown list (#9948) @yuchi
+- [docs] Remove one DOM element in the Card actions (#9952) @maprihoda
+- [docs] Improve the documentation on the breakpoints (#9949) @oliviertassinari
+- [docs] Apply Matt's requested changes (#9963) @oliviertassinari
+- [docs] Using TypeScript & withStyles for class component w/union props (#9975) @nmchaves
+
+#### Core
+
 ## 1.0.0-beta.29
 ###### *Jan 16, 2018*
 
@@ -171,8 +256,8 @@ Big thanks to the 19 contributors who made this release possible.
 
 Here are some highlights ✨:
 - A strong focus on the documentation.
-- Add a new Zoom component (#9693) @mbrookes
-- Better vertical alignment of our components (#9709) @oliviertassinari
+- Add a new Zoom component (#9693) @mbrookes.
+- Better vertical alignment of our components (#9709) @oliviertassinari.
 - And many more bug fixes and documentation improvements.
 
 ### Breaking change
