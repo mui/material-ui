@@ -9,9 +9,9 @@ if (messages.length > 3) {
   throw new Error('We cannot display more than 3 notifications in a row');
 }
 
-function getLastSeenNotifications() {
+function getLastSeenNotification() {
   const seen = document.cookie.replace(
-    /(?:(?:^|.*;\s*)lastSeenNotifications\s*=\s*([^;]*).*$)|^.*$/,
+    /(?:(?:^|.*;\s*)lastSeenNotification\s*=\s*([^;]*).*$)|^.*$/,
     '$1',
   );
   return seen === '' ? 0 : parseInt(seen, 10);
@@ -28,7 +28,7 @@ class Notifications extends React.Component {
   };
 
   handleMessage = () => {
-    const lastSeen = getLastSeenNotifications();
+    const lastSeen = getLastSeenNotification();
     const unseenMessages = messages.filter(message => message.id > lastSeen);
     if (unseenMessages.length > 0) {
       this.setState({ message: unseenMessages[0], open: true });
@@ -37,7 +37,7 @@ class Notifications extends React.Component {
 
   handleClose = () => {
     this.setState({ open: false });
-    document.cookie = `lastSeenNotifications=${this.state.message.id};path=/`;
+    document.cookie = `lastSeenNotification=${this.state.message.id};path=/;max-age=31536000`;
   };
 
   render() {
@@ -47,9 +47,7 @@ class Notifications extends React.Component {
       <Snackbar
         key={message.id}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        SnackbarContentProps={{
-          'aria-describedby': 'notification-message',
-        }}
+        SnackbarContentProps={{ 'aria-describedby': 'notification-message' }}
         message={
           <span id="notification-message" dangerouslySetInnerHTML={{ __html: message.text }} />
         }
@@ -59,7 +57,7 @@ class Notifications extends React.Component {
           </Button>
         }
         open={open}
-        autoHideDuration={6000}
+        autoHideDuration={10000}
         onClose={this.handleClose}
         onExited={this.handleMessage}
       />
