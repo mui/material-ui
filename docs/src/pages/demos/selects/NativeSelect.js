@@ -40,7 +40,9 @@ class NativeSelect extends React.Component {
             native
             value={this.state.age}
             onChange={this.handleChange('age')}
-            input={<Input id="age-native-simple" />}
+            inputProps={{
+              id: 'age-native-simple',
+            }}
           >
             <option value="" />
             <option value={10}>Ten</option>
