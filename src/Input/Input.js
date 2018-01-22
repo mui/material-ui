@@ -205,7 +205,7 @@ function formControlState(props, context) {
   let error = props.error;
   let margin = props.margin;
 
-  if (context.muiFormControl) {
+  if (context && context.muiFormControl) {
     if (typeof disabled === 'undefined') {
       disabled = context.muiFormControl.disabled;
     }
