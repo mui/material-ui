@@ -35,7 +35,7 @@ ToolbarButton.defaultProps = {
 const styles = theme => ({
   toolbarBtn: {
     cursor: 'pointer',
-    color: theme.palette.common.lightWhite,
+    color: 'rgba(255, 255, 255, 0.54)',
   },
   toolbarBtnSelected: {
     color: theme.palette.common.white,
