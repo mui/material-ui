@@ -123,6 +123,7 @@ class FormControl extends React.Component {
       error,
       fullWidth,
       margin,
+      required,
       ...other
     } = this.props;
 
