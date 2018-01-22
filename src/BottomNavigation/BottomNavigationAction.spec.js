@@ -48,21 +48,9 @@ describe('<BottomNavigationAction />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
-  it('should render icon with the icon class', () => {
+  it('should render icon', () => {
     const wrapper = shallow(<BottomNavigationAction icon={icon} />);
-    const iconWrapper = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(iconWrapper.hasClass(classes.icon), true, 'should have the icon class');
-  });
-
-  it('should render icon with the user and icon classes', () => {
-    const wrapper = shallow(<BottomNavigationAction icon={icon} />);
-
-    const iconWrapper = wrapper.childAt(0).childAt(0);
-    assert.strictEqual(iconWrapper.is(Icon), true, 'should be an Icon');
-    assert.strictEqual(iconWrapper.hasClass(classes.icon), true, 'should have the icon class');
-
-    const labelWrapper = wrapper.childAt(0).childAt(1);
-    assert.strictEqual(labelWrapper.hasClass(classes.label), true, 'should have the label class');
+    assert.strictEqual(wrapper.contains(icon), true, 'should have the icon');
   });
 
   it('should render label with the selectedLabel class', () => {
