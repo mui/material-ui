@@ -5,14 +5,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
 export const styles = theme => ({
   root: {
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
     }),
-    paddingTop: 8,
+    paddingTop: theme.spacing.unit,
     paddingBottom: 10,
     paddingLeft: 12,
     paddingRight: 12,
@@ -49,10 +48,6 @@ export const styles = theme => ({
     opacity: 0,
     transitionDelay: '0s',
   },
-  icon: {
-    display: 'block',
-    margin: 'auto',
-  },
 });
 
 class BottomNavigationAction extends React.Component {
@@ -72,7 +67,7 @@ class BottomNavigationAction extends React.Component {
     const {
       classes,
       className: classNameProp,
-      icon: iconProp,
+      icon,
       label,
       onChange,
       onClick,
@@ -90,8 +85,6 @@ class BottomNavigationAction extends React.Component {
       },
       classNameProp,
     );
-
-    const icon = iconProp ? cloneChildrenWithClassName(iconProp, classes.icon) : null;
 
     const labelClassName = classNames(classes.label, {
       [classes.selectedLabel]: selected,

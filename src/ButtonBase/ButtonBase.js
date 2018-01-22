@@ -19,8 +19,9 @@ export const styles = theme => ({
     backgroundColor: 'transparent', // Reset default value
     outline: 'none',
     border: 0,
+    margin: 0, // Remove the margin in Safari
     borderRadius: 0,
-    padding: 0, // Reset default style
+    padding: 0, // Remove the padding in Firefox
     cursor: 'pointer',
     userSelect: 'none',
     verticalAlign: 'middle',

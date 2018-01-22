@@ -20,8 +20,7 @@ export type BottomNavigationActionClassKey =
   | 'wrapper'
   | 'label'
   | 'selectedLabel'
-  | 'hiddenLabel'
-  | 'icon';
+  | 'hiddenLabel';
 
 declare const BottomNavigationAction: React.ComponentType<BottomNavigationActionProps>;
 
