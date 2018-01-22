@@ -124,10 +124,12 @@ function App() {
 export default App;
 ```
 
-### HTML noscript
+### Other HTML element
 
 [Create React App](https://github.com/facebookincubator/create-react-app) strips HTML comments when creating the production build.
-To get around the issue, you can use a `<noscript>` element:
+To get around the issue, you can provide an DOM element (other than a comment) as the JSS insertion point.
+
+For example, a `<noscript>` element:
 
 ```jsx
 <head>
@@ -144,7 +146,7 @@ import { createGenerateClassName, jssPreset } from 'material-ui/styles';
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
 // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = 'jss-insertion-point';
+jss.options.insertionPoint = document.getElementById('jss-insertion-point');
 
 function App() {
   return (
