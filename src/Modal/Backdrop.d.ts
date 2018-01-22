@@ -5,6 +5,7 @@ import { TransitionDuration } from '../internal/transition';
 export interface BackdropProps extends StandardProps<{}, BackdropClassKey> {
   invisible?: boolean;
   onClick?: React.ReactEventHandler<{}>;
+  onTouchMove?: React.ReactEventHandler<{}>;
   open: boolean;
   transitionDuration?: TransitionDuration;
 }
