@@ -6,7 +6,6 @@ import { TimePicker, DatePicker } from 'material-ui-pickers';
 export default class BasicUsage extends Component {
   state = {
     selectedDate: moment(),
-    today: new Date(),
   }
 
   handleDateChange = (date) => {
@@ -14,7 +13,7 @@ export default class BasicUsage extends Component {
   }
 
   render() {
-    const { selectedDate, today } = this.state;
+    const { selectedDate } = this.state;
 
     return (
       <Fragment>
@@ -26,7 +25,7 @@ export default class BasicUsage extends Component {
           <DatePicker
             keyboard
             clearable
-            maxDate={today}
+            disableFuture
             maxDateMessage="Date must be less than today"
             value={selectedDate}
             onChange={this.handleDateChange}
