@@ -84,6 +84,8 @@ export default class DatePickerWrapper extends PickerBase {
       labelFunc,
       utils,
       shouldDisableDate,
+      minDateMessage,
+      maxDateMessage,
       ...other
     } = this.props;
 
@@ -98,6 +100,8 @@ export default class DatePickerWrapper extends PickerBase {
         onDismiss={this.handleDismiss}
         invalidLabel={invalidLabel}
         labelFunc={labelFunc}
+        minDateMessage={minDateMessage}
+        maxDateMessage={maxDateMessage}
         {...other}
       >
         <DatePicker
