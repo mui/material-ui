@@ -346,6 +346,7 @@ It can be extended with **few lines of code** to match different patterns, they 
 The term [“render prop”](https://reactjs.org/docs/render-props.html) refers to a simple technique for sharing code between React components using a prop whose value is a function.
 
 ```jsx
+// You will find the `createStyled` implementation in the source of the demo.
 const Styled = createStyled({
   root: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -378,6 +379,7 @@ function RenderProps() {
 styled-components's API removes the mapping between components and styles. Using components as a low-level styling construct can be simpler.
 
 ```jsx
+// You will find the `styled` implementation in the source of the demo.
 // You can even write CSS with https://github.com/cssinjs/jss-template.
 const MyButton = styled(Button)({
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
