@@ -142,11 +142,11 @@ const styles = theme => ({
     boxShadow: 'unset',
   },
   appToolbar: {
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    color: 'white',
+    color: theme.palette.common.white,
     padding: '40px 20px',
     '@media (max-width: 600px)': {
       paddingTop: '100px',
@@ -159,7 +159,6 @@ const styles = theme => ({
   main: {
     backgroundColor: theme.palette.background.default,
     marginBottom: -50,
-    color: theme.palette.common.white,
   },
   content: {
     paddingTop: '80px',
