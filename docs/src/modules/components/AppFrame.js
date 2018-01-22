@@ -12,6 +12,7 @@ import IconButton from 'material-ui/IconButton';
 import Tooltip from 'material-ui/Tooltip';
 import MenuIcon from 'material-ui-icons/Menu';
 import LightbulbOutline from 'material-ui-icons/LightbulbOutline';
+import LightbublFull from 'docs/src/modules/components/LightbublFull';
 import FormatTextdirectionLToR from 'material-ui-icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from 'material-ui-icons/FormatTextdirectionRToL';
 import Github from 'docs/src/modules/components/GitHub';
@@ -202,7 +203,7 @@ class AppFrame extends React.Component {
                 onClick={this.handleTogglePaletteType}
                 aria-labelledby="appbar-theme"
               >
-                <LightbulbOutline />
+                {uiTheme.paletteType === 'light' ? <LightbulbOutline /> : <LightbublFull />}
               </IconButton>
             </Tooltip>
             <Tooltip
