@@ -127,7 +127,7 @@ export default App;
 ### Other HTML element
 
 [Create React App](https://github.com/facebookincubator/create-react-app) strips HTML comments when creating the production build.
-To get around the issue, you can provide an DOM element (other than a comment) as the JSS insertion point.
+To get around the issue, you can provide a DOM element (other than a comment) as the JSS insertion point.
 
 For example, a `<noscript>` element:
 
