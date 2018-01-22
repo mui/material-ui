@@ -29,6 +29,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | onExited | func |  | Callback fired when the dialog has exited. |
 | onExiting | func |  | Callback fired when the dialog is exiting. |
 | <span style="color: #31a148">open *</span> | bool |  | If `true`, the Dialog is open. |
+| PaperProps | object |  | Properties applied to the `Paper` element. |
 | transition | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | Fade | Transition component. |
 | transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | { enter: duration.enteringScreen, exit: duration.leavingScreen } | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
