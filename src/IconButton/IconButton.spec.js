@@ -33,6 +33,14 @@ describe('<IconButton />', () => {
     assert.strictEqual(label.is('span'), true, 'should be a span');
   });
 
+  it('should render the child normally inside the label span', () => {
+    const child = <p>H</p>;
+    const wrapper = shallow(<IconButton>{child}</IconButton>);
+    const label = wrapper.childAt(0);
+    const icon = label.childAt(0);
+    assert.strictEqual(icon.equals(child), true, 'should be the child');
+  });
+
   it('should render Icon children with right classes', () => {
     const childClassName = 'child-woof';
     const iconChild = <Icon className={childClassName} />;
