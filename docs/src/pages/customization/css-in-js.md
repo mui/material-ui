@@ -233,10 +233,10 @@ Of course, you are free to add a new plugin. We have one example for the [`jss-r
 
 ## API
 
-### `withStyles(styles, [options]) => Higher-order Component`
+### `withStyles(styles, [options]) => higher-order component`
 
 Link a style sheet with a component.
-It does not modify the component passed to it; instead, it returns a new component, with a `classes` property.
+It does not modify the component passed to it; instead, it returns a new component with a `classes` property.
 This `classes` object contains the name of the class names injected in the DOM.
 
 Some implementation details that might be interesting to being aware of:
@@ -259,7 +259,7 @@ Use the function signature if you need to have access to the theme. It's provide
 
 #### Returns
 
-`Higher-order Component`: Should be used to wrap a component.
+`higher-order component`: Should be used to wrap a component.
 
 #### Examples
 
@@ -337,3 +337,65 @@ function App() {
 
 export default App;
 ```
+
+## Alternative APIs
+
+Do you think that [higher-order components are the new mixins](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)? We don't, but rest assured, because `withStyles()` is a higher-order component.
+It can be extended with **few lines of code** to match different patterns, they are all idiomatic React.
+
+### Render props API (+11 lines)
+
+The term [“render prop”](https://reactjs.org/docs/render-props.html) refers to a simple technique for sharing code between React components using a prop whose value is a function.
+
+```jsx
+// You will find the `createStyled` implementation in the source of the demo.
+const Styled = createStyled({
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+  },
+});
+
+function RenderProps() {
+  return (
+    <Styled>
+      {({ classes }) => (
+        <Button className={classes.root}>
+          {'Render props'}
+        </Button>
+      )}
+    </Styled>
+  );
+}
+```
+
+{{"demo": "pages/customization/RenderProps.js"}}
+
+### styled-components API (+13 lines)
+
+styled-components's API removes the mapping between components and styles. Using components as a low-level styling construct can be simpler.
+
+```jsx
+// You will find the `styled` implementation in the source of the demo.
+// You can even write CSS with https://github.com/cssinjs/jss-template.
+const MyButton = styled(Button)({
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  borderRadius: 3,
+  border: 0,
+  color: 'white',
+  height: 48,
+  padding: '0 30px',
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+});
+
+function StyledComponents() {
+  return <MyButton>{'Styled Components'}</MyButton>;
+}
+```
+
+{{"demo": "pages/customization/StyledComponents.js"}}
