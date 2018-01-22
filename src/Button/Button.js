@@ -6,13 +6,15 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
+import { capitalize } from '../utils/helpers';
+import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = theme => ({
   root: {
     ...theme.typography.button,
     lineHeight: '1.4em', // Improve readability for multiline button.
     boxSizing: 'border-box',
-    minWidth: 88,
+    minWidth: theme.spacing.unit * 11,
     minHeight: 36,
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
     borderRadius: 2,
@@ -31,12 +33,6 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
-  },
-  dense: {
-    padding: `${theme.spacing.unit - 1}px ${theme.spacing.unit}px`,
-    minWidth: 64,
-    minHeight: 32,
-    fontSize: theme.typography.pxToRem(theme.typography.fontSize - 1),
   },
   label: {
     width: '100%',
@@ -123,6 +119,7 @@ export const styles = theme => ({
     padding: 0,
     minWidth: 0,
     width: 56,
+    fontSize: 24,
     height: 56,
     boxShadow: theme.shadows[6],
     '&:active': {
@@ -133,6 +130,18 @@ export const styles = theme => ({
     width: 40,
     height: 40,
   },
+  sizeSmall: {
+    padding: `${theme.spacing.unit - 1}px ${theme.spacing.unit}px`,
+    minWidth: theme.spacing.unit * 8,
+    minHeight: 32,
+    fontSize: theme.typography.pxToRem(theme.typography.fontSize - 1),
+  },
+  sizeLarge: {
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
+    minWidth: theme.spacing.unit * 14,
+    minHeight: 40,
+    fontSize: theme.typography.pxToRem(theme.typography.fontSize + 1),
+  },
   fullWidth: {
     width: '100%',
   },
@@ -140,17 +149,17 @@ export const styles = theme => ({
 
 function Button(props) {
   const {
-    children,
+    children: childrenProp,
     classes,
     className: classNameProp,
     color,
-    dense,
     disabled,
     disableFocusRipple,
     fab,
     fullWidth,
     mini,
     raised,
+    size,
     ...other
   } = props;
 
@@ -166,12 +175,23 @@ function Button(props) {
       [classes.flatSecondary]: flat && color === 'secondary',
       [classes.raisedPrimary]: !flat && color === 'primary',
       [classes.raisedSecondary]: !flat && color === 'secondary',
-      [classes.dense]: dense,
+      [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
     },
     classNameProp,
   );
+
+  let children = childrenProp;
+
+  if (fab) {
+    children = React.Children.map(children, child => {
+      if (isMuiElement(child, ['Icon', 'SvgIcon'])) {
+        return React.cloneElement(child, { fontSize: true });
+      }
+      return child;
+    });
+  }
 
   return (
     <ButtonBase
@@ -210,10 +230,6 @@ Button.propTypes = {
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
-   * Uses a smaller minWidth, ideal for things like card actions.
-   */
-  dense: PropTypes.bool,
-  /**
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
@@ -248,6 +264,11 @@ Button.propTypes = {
    */
   raised: PropTypes.bool,
   /**
+   * The size of the button.
+   * `small` is equivalent to the dense button styling.
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
    * @ignore
    */
   type: PropTypes.string,
@@ -255,7 +276,6 @@ Button.propTypes = {
 
 Button.defaultProps = {
   color: 'default',
-  dense: false,
   disabled: false,
   disableFocusRipple: false,
   disableRipple: false,
@@ -263,6 +283,7 @@ Button.defaultProps = {
   fullWidth: false,
   mini: false,
   raised: false,
+  size: 'medium',
   type: 'button',
 };
 

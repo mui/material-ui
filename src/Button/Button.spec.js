@@ -3,6 +3,7 @@ import { assert } from 'chai';
 import { createShallow, createRender, getClasses } from '../test-utils';
 import Button from './Button';
 import ButtonBase from '../ButtonBase';
+import Icon from '../Icon';
 
 describe('<Button />', () => {
   let shallow;
@@ -208,6 +209,17 @@ describe('<Button />', () => {
   it('should pass disableFocusRipple to ButtonBase', () => {
     const wrapper = shallow(<Button disableFocusRipple>Hello World</Button>);
     assert.strictEqual(wrapper.props().focusRipple, false, 'should set focusRipple to false');
+  });
+
+  it('should render Icon children with right classes', () => {
+    const childClassName = 'child-woof';
+    const iconChild = <Icon className={childClassName} />;
+    const wrapper = shallow(<Button fab>{iconChild}</Button>);
+    const label = wrapper.childAt(0);
+    const renderedIconChild = label.childAt(0);
+    assert.strictEqual(renderedIconChild.type(), Icon);
+    assert.strictEqual(renderedIconChild.hasClass(childClassName), true, 'child should be icon');
+    assert.strictEqual(renderedIconChild.props().fontSize, true);
   });
 
   describe('server side', () => {

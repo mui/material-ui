@@ -12,7 +12,8 @@ export type IconClassKey =
   | 'colorAction'
   | 'colorDisabled'
   | 'colorError'
-  | 'colorPrimary';
+  | 'colorPrimary'
+  | 'fontSize';
 
 declare const Icon: React.ComponentType<IconProps>;
 

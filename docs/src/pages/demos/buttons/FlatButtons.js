@@ -34,9 +34,6 @@ function FlatButtons(props) {
       <Button disabled href="/" className={classes.button}>
         Link disabled
       </Button>
-      <Button dense className={classes.button}>
-        Dense
-      </Button>
       <Button className={classes.button} onClick={doSomething} data-something="here I am">
         Does something
       </Button>
