@@ -278,7 +278,7 @@ class Input extends React.Component {
   // Holds the input reference
   input = null;
 
-  handleFocus = (event: SyntheticFocusEvent<>) => {
+  handleFocus = event => {
     // Fix an bug with IE11 where the focus/blur events are triggered
     // while the input is disabled.
     if (formControlState(this.props, this.context).disabled) {
@@ -292,14 +292,14 @@ class Input extends React.Component {
     }
   };
 
-  handleBlur = (event: SyntheticFocusEvent<>) => {
+  handleBlur = event => {
     this.setState({ focused: false });
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
   };
 
-  handleChange = (event: SyntheticInputEvent<HTMLElement>) => {
+  handleChange = event => {
     if (!this.isControlled) {
       this.checkDirty(this.input);
     }
