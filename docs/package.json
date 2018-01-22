@@ -8,7 +8,7 @@
     "jss": "^9.4.0",
     "jss-preset-default": "^4.0.1",
     "jss-rtl": "^0.2.1",
-    "material-ui": "^1.0.0-beta.26",
+    "material-ui": "^1.0.0-beta.30",
     "material-ui-pickers-jalali-utils": "^0.2.0",
     "moment": "^2.20.1",
     "moment-jalaali": "^0.7.2",
