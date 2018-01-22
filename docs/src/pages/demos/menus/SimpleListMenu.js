@@ -45,7 +45,7 @@ class SimpleListMenu extends React.Component {
 
     return (
       <div className={classes.root}>
-        <List>
+        <List component="nav">
           <ListItem
             button
             aria-haspopup="true"

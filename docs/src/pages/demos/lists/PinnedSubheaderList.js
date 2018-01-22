@@ -16,22 +16,28 @@ const styles = theme => ({
   listSection: {
     backgroundColor: 'inherit',
   },
+  ul: {
+    backgroundColor: 'inherit',
+    padding: 0,
+  },
 });
 
 function PinnedSubheaderList(props) {
   const { classes } = props;
 
   return (
-    <List className={classes.root} subheader={<div />}>
+    <List className={classes.root} subheader={<li />}>
       {[0, 1, 2, 3, 4].map(sectionId => (
-        <div key={`section-${sectionId}`} className={classes.listSection}>
-          <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
-          {[0, 1, 2].map(item => (
-            <ListItem button key={`item-${sectionId}-${item}`}>
-              <ListItemText primary={`Item ${item}`} />
-            </ListItem>
-          ))}
-        </div>
+        <li key={`section-${sectionId}`} className={classes.listSection}>
+          <ul className={classes.ul}>
+            <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
+            {[0, 1, 2].map(item => (
+              <ListItem key={`item-${sectionId}-${item}`}>
+                <ListItemText primary={`Item ${item}`} />
+              </ListItem>
+            ))}
+          </ul>
+        </li>
       ))}
     </List>
   );

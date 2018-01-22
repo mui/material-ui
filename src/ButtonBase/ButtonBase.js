@@ -39,6 +39,10 @@ export const styles = {
   },
 };
 
+// Don't automatically add the role="button" property on these components.
+// It's invalid HTML syntax.
+const INVALID_COMPONENT_ROLE = ['a'];
+
 /**
  * `ButtonBase` contains as few styles as possible.
  * It aims to be a building block for people who want to create a simple button.
@@ -241,9 +245,7 @@ class ButtonBase extends React.Component {
     if (ComponentProp === 'button') {
       buttonProps.type = type || 'button';
       buttonProps.disabled = disabled;
-    }
-
-    if (ComponentProp !== 'a' && buttonProps.type !== 'button') {
+    } else if (INVALID_COMPONENT_ROLE.indexOf(ComponentProp) === -1) {
       buttonProps.role = 'button';
     }
 

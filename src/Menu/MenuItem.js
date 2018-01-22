@@ -11,6 +11,7 @@ export const styles = theme => ({
     ...theme.typography.subheading,
     height: theme.spacing.unit * 3,
     boxSizing: 'content-box',
+    width: 'auto',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
@@ -76,6 +77,7 @@ MenuItem.propTypes = {
 };
 
 MenuItem.defaultProps = {
+  component: 'li',
   role: 'menuitem',
   selected: false,
 };

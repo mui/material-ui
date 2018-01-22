@@ -14,7 +14,7 @@ filename: /src/Menu/MenuItem.js
 |:-----|:-----|:--------|:------------|
 | children | node |  | Menu item contents. |
 | classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'li' | The component used for the root node. Either a string to use a DOM element or a component. |
 | selected | bool | false | Use to apply selected styling. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

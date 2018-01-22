@@ -15,23 +15,24 @@ const styles = theme => ({
 function ListDividers(props) {
   const { classes } = props;
   return (
-    <List className={classes.root}>
-      <ListItem button>
-        <ListItemText primary="Inbox" />
-      </ListItem>
-      <Divider />
-      <ListItem button>
-        <ListItemText primary="Drafts" />
-      </ListItem>
-      <Divider />
-      <ListItem button>
-        <ListItemText primary="Trash" />
-      </ListItem>
-      <Divider light />
-      <ListItem button>
-        <ListItemText primary="Spam" />
-      </ListItem>
-    </List>
+    <div className={classes.root}>
+      <List component="nav">
+        <ListItem button>
+          <ListItemText primary="Inbox" />
+        </ListItem>
+        <Divider />
+        <ListItem button divider>
+          <ListItemText primary="Drafts" />
+        </ListItem>
+        <ListItem button>
+          <ListItemText primary="Trash" />
+        </ListItem>
+        <Divider light />
+        <ListItem button>
+          <ListItemText primary="Spam" />
+        </ListItem>
+      </List>
+    </div>
   );
 }
 

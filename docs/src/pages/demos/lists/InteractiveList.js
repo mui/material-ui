@@ -80,7 +80,7 @@ class InteractiveList extends React.Component {
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate(
-                  <ListItem button>
+                  <ListItem>
                     <ListItemText
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
@@ -97,7 +97,7 @@ class InteractiveList extends React.Component {
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate(
-                  <ListItem button>
+                  <ListItem>
                     <ListItemIcon>
                       <FolderIcon />
                     </ListItemIcon>
@@ -119,7 +119,7 @@ class InteractiveList extends React.Component {
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate(
-                  <ListItem button>
+                  <ListItem>
                     <ListItemAvatar>
                       <Avatar>
                         <FolderIcon />
@@ -141,7 +141,7 @@ class InteractiveList extends React.Component {
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate(
-                  <ListItem button>
+                  <ListItem>
                     <ListItemAvatar>
                       <Avatar>
                         <FolderIcon />
