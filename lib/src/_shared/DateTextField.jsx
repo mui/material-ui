@@ -22,6 +22,8 @@ export default class DateTextField extends PureComponent {
     minDateMessage: PropTypes.string,
     maxDate: DomainPropTypes.date,
     maxDateMessage: PropTypes.string,
+    disablePast: PropTypes.bool,
+    disableFuture: PropTypes.bool,
     disabled: PropTypes.bool,
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
@@ -51,10 +53,12 @@ export default class DateTextField extends PureComponent {
     invalidDateMessage: 'Invalid Date Format',
     clearable: false,
     onClear: undefined,
-    minDate: undefined,
-    maxDate: undefined,
-    minDateMessage: undefined,
-    maxDateMessage: undefined,
+    disablePast: false,
+    disableFuture: false,
+    minDate: '1900-01-01',
+    maxDate: '2100-01-01',
+    minDateMessage: 'Invalid Date',
+    maxDateMessage: 'Invalid Date',
   }
 
   getDisplayDate = (props) => {
@@ -100,6 +104,8 @@ export default class DateTextField extends PureComponent {
     const {
       maxDate,
       minDate,
+      disablePast,
+      disableFuture,
       maxDateMessage,
       minDateMessage,
       invalidDateMessage,
@@ -111,12 +117,18 @@ export default class DateTextField extends PureComponent {
       return invalidDateMessage;
     }
 
-    if (maxDate && value.isAfter(getDate(maxDate))) {
-      return maxDateMessage || 'Invalid Date';
+    if (
+      (maxDate && value.isAfter(getDate(maxDate))) ||
+      (disableFuture && value.isAfter(moment(), 'day'))
+    ) {
+      return maxDateMessage;
     }
 
-    if (minDate && value.isBefore(getDate(minDate))) {
-      return minDateMessage || 'Invalid Date';
+    if (
+      (minDate && value.isBefore(getDate(minDate))) ||
+      (disablePast && value.isBefore(moment(), 'day'))
+    ) {
+      return minDateMessage;
     }
 
     return '';
@@ -205,6 +217,8 @@ export default class DateTextField extends PureComponent {
       keyboardIcon,
       maxDate,
       minDate,
+      disablePast,
+      disableFuture,
       maxDateMessage,
       minDateMessage,
       ...other

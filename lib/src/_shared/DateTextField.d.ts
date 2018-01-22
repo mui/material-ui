@@ -6,6 +6,8 @@ import { TextFieldProps } from 'material-ui/TextField';
 export interface DateTextFieldProps extends TextFieldProps {
     minDate?: DateType;
     minDateMessage?: string;
+    disablePast?: boolean;
+    disableFuture?: boolean;
     maxDate?: DateType;
     maxDateMessage?: string;
     value: any;

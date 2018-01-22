@@ -73,11 +73,7 @@ export default class DatePickerWrapper extends PickerBase {
       value,
       format,
       autoOk,
-      minDate,
-      maxDate,
       onChange,
-      disablePast,
-      disableFuture,
       animateYearScrolling,
       openToYearSelection,
       returnMoment,
@@ -96,8 +92,6 @@ export default class DatePickerWrapper extends PickerBase {
         ref={this.getRef}
         value={value}
         format={format}
-        minDate={minDate}
-        maxDate={maxDate}
         onClear={this.handleClear}
         onAccept={this.handleAccept}
         onChange={this.handleTextFieldChange}
@@ -109,12 +103,8 @@ export default class DatePickerWrapper extends PickerBase {
         <DatePicker
           date={date}
           onChange={this.handleChange}
-          disablePast={disablePast}
-          disableFuture={disableFuture}
           animateYearScrolling={animateYearScrolling}
           openToYearSelection={openToYearSelection}
-          minDate={minDate}
-          maxDate={maxDate}
           leftArrowIcon={leftArrowIcon}
           rightArrowIcon={rightArrowIcon}
           renderDay={renderDay}
