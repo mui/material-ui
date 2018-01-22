@@ -58,7 +58,7 @@ const styles = theme => ({
     cursor: 'pointer',
     outline: 'none',
     '&:focus': {
-      color: theme.palette.primary[500],
+      color: theme.palette.primary.main,
       fontWeight: theme.typography.fontWeightMedium,
     },
   },

@@ -34,7 +34,7 @@ const styles = theme => ({
     justifyContent: 'center',
     height: 100,
     backgroundColor: theme.palette.type === 'light'
-      ? theme.palette.primary[500]
+      ? theme.palette.primary.main
       : theme.palette.background.default,
   },
 });
