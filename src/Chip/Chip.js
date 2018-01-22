@@ -209,7 +209,7 @@ Chip.propTypes = {
   /**
    * Override the default delete icon element. Shown only if `onDelete` is set.
    */
-  deleteIcon: PropTypes.node,
+  deleteIcon: PropTypes.element,
   /**
    * The content of the label.
    */

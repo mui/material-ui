@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
-import { cloneChildrenWithClassName } from '../utils/reactHelpers';
+import { isMuiElement } from '../utils/reactHelpers';
 import '../SvgIcon'; // Ensure CSS specificity
 
 export const styles = theme => ({
@@ -71,7 +71,16 @@ function IconButton(props) {
       ref={rootRef}
       {...other}
     >
-      <span className={classes.label}>{cloneChildrenWithClassName(children, classes.icon)}</span>
+      <span className={classes.label}>
+        {React.Children.map(children, child => {
+          if (isMuiElement(child, ['Icon', 'SvgIcon'])) {
+            return React.cloneElement(child, {
+              className: classNames(classes.icon, child.props.className),
+            });
+          }
+          return child;
+        })}
+      </span>
     </ButtonBase>
   );
 }
