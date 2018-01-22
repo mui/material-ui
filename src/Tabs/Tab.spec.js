@@ -115,11 +115,6 @@ describe('<Tab />', () => {
       const iconWrapper = wrapper.childAt(0).childAt(0);
       assert.strictEqual(iconWrapper.is(Icon), true);
     });
-
-    it('should render a font icon if a icon string is provided', () => {
-      const wrapper = shallow(<Tab textColor="inherit" icon="book" />);
-      assert.strictEqual(wrapper.find(Icon).length, 1, 'should have an Icon');
-    });
   });
 
   describe('prop: textColor', () => {

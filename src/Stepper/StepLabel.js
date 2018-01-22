@@ -122,7 +122,7 @@ StepLabel.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * The icon displayed by the step label - if not set will be set by Step component.
+   * Override the default icon.
    */
   icon: PropTypes.node,
   /**

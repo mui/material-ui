@@ -33,13 +33,6 @@ describe('<IconButton />', () => {
     assert.strictEqual(label.is('span'), true, 'should be a span');
   });
 
-  it('should render a font icon if a string is provided', () => {
-    const wrapper = shallow(<IconButton>book</IconButton>);
-    const label = wrapper.childAt(0);
-    const icon = label.childAt(0);
-    assert.strictEqual(icon.is(Icon), true, 'should be an Icon');
-  });
-
   it('should render the child normally inside the label span', () => {
     const child = <p>H</p>;
     const wrapper = shallow(<IconButton>{child}</IconButton>);

@@ -13,7 +13,7 @@ filename: /src/BottomNavigation/BottomNavigationAction.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
-| icon | node |  | The icon element. If a string is provided, it will be used as a font ligature. |
+| icon | node |  | The icon element. |
 | label | node |  | The label element. |
 | showLabel | bool |  | If `true`, the BottomNavigationAction will show its label. |
 | value | any |  | You can provide your own value. Otherwise, we fallback to the child position index. |
@@ -31,7 +31,6 @@ This property accepts the following keys:
 - `label`
 - `selectedLabel`
 - `hiddenLabel`
-- `icon`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/BottomNavigation/BottomNavigationAction.js)

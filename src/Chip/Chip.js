@@ -6,6 +6,7 @@ import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
 import grey from '../colors/grey';
 import { emphasize, fade } from '../styles/colorManipulator';
+import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {
@@ -143,13 +144,12 @@ class Chip extends React.Component {
     );
 
     let deleteIcon = null;
-    if (onDelete && deleteIconProp && React.isValidElement(deleteIconProp)) {
-      deleteIcon = React.cloneElement(deleteIconProp, {
-        onClick: this.handleDeleteIconClick,
-        className: classNames(classes.deleteIcon, deleteIconProp.props.className),
-      });
-    } else if (onDelete) {
-      deleteIcon = (
+    if (onDelete) {
+      deleteIcon = deleteIconProp ? (
+        cloneChildrenWithClassName(deleteIconProp, classes.deleteIcon, {
+          onClick: this.handleDeleteIconClick,
+        })
+      ) : (
         <CancelIcon className={classes.deleteIcon} onClick={this.handleDeleteIconClick} />
       );
     }
@@ -207,7 +207,7 @@ Chip.propTypes = {
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
-   * Custom delete icon element. Will be shown only if `onDelete` is set.
+   * Override the default delete icon element. Shown only if `onDelete` is set.
    */
   deleteIcon: PropTypes.element,
   /**

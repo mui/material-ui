@@ -5,14 +5,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import Icon from '../Icon';
 
 export const styles = theme => ({
   root: {
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
     }),
-    paddingTop: 8,
+    paddingTop: theme.spacing.unit,
     paddingBottom: 10,
     paddingLeft: 12,
     paddingRight: 12,
@@ -49,10 +48,6 @@ export const styles = theme => ({
     opacity: 0,
     transitionDelay: '0s',
   },
-  icon: {
-    display: 'block',
-    margin: 'auto',
-  },
 });
 
 class BottomNavigationAction extends React.Component {
@@ -72,7 +67,7 @@ class BottomNavigationAction extends React.Component {
     const {
       classes,
       className: classNameProp,
-      icon: iconProp,
+      icon,
       label,
       onChange,
       onClick,
@@ -90,18 +85,6 @@ class BottomNavigationAction extends React.Component {
       },
       classNameProp,
     );
-
-    let icon = null;
-
-    if (iconProp) {
-      if (React.isValidElement(iconProp) && typeof iconProp !== 'string') {
-        icon = React.cloneElement(iconProp, {
-          className: classNames(classes.icon, iconProp.props.className),
-        });
-      } else {
-        icon = <Icon>{iconProp}</Icon>;
-      }
-    }
 
     const labelClassName = classNames(classes.label, {
       [classes.selectedLabel]: selected,
@@ -129,7 +112,7 @@ BottomNavigationAction.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The icon element. If a string is provided, it will be used as a font ligature.
+   * The icon element.
    */
   icon: PropTypes.node,
   /**

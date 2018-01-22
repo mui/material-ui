@@ -5,7 +5,6 @@ import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
-import Icon from '../Icon';
 
 export const styles = {
   root: {
@@ -96,11 +95,7 @@ class SwitchBase extends React.Component {
       [classes.disabled]: disabled,
     });
 
-    let icon = checked ? checkedIcon : iconProp;
-
-    if (typeof icon === 'string') {
-      icon = <Icon>{icon}</Icon>;
-    }
+    const icon = checked ? checkedIcon : iconProp;
 
     return (
       <IconButton
@@ -139,7 +134,6 @@ SwitchBase.propTypes = {
   checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   /**
    * The icon to display when the component is checked.
-   * If a string is provided, it will be used as a font ligature.
    */
   checkedIcon: PropTypes.node,
   /**
@@ -164,7 +158,6 @@ SwitchBase.propTypes = {
   disableRipple: PropTypes.bool,
   /**
    * The icon to display when the component is unchecked.
-   * If a string is provided, it will be used as a font ligature.
    */
   icon: PropTypes.node,
   /**
@@ -173,7 +166,6 @@ SwitchBase.propTypes = {
   indeterminate: PropTypes.bool,
   /**
    * The icon to display when the component is indeterminate.
-   * If a string is provided, it will be used as a font ligature.
    */
   indeterminateIcon: PropTypes.node,
   /**
