@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { TextField, InputAdornment, IconButton, Icon } from 'material-ui';
 
+import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
 
 
@@ -17,6 +18,10 @@ export default class DateTextField extends PureComponent {
       PropTypes.instanceOf(Date),
     ]),
     mask: PropTypes.any,
+    minDate: DomainPropTypes.date,
+    minDateMessage: PropTypes.string,
+    maxDate: DomainPropTypes.date,
+    maxDateMessage: PropTypes.string,
     disabled: PropTypes.bool,
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
@@ -46,6 +51,10 @@ export default class DateTextField extends PureComponent {
     invalidDateMessage: 'Invalid Date Format',
     clearable: false,
     onClear: undefined,
+    minDate: undefined,
+    maxDate: undefined,
+    minDateMessage: undefined,
+    maxDateMessage: undefined,
   }
 
   getDisplayDate = (props) => {
@@ -87,6 +96,32 @@ export default class DateTextField extends PureComponent {
     }
   }
 
+  getError = (value) => {
+    const {
+      maxDate,
+      minDate,
+      maxDateMessage,
+      minDateMessage,
+      invalidDateMessage,
+    } = this.props;
+
+    const getDate = date => moment(date).toDate();
+
+    if (!value.isValid()) {
+      return invalidDateMessage;
+    }
+
+    if (maxDate && value.isAfter(getDate(maxDate))) {
+      return maxDateMessage || 'Invalid Date';
+    }
+
+    if (minDate && value.isBefore(getDate(minDate))) {
+      return minDateMessage || 'Invalid Date';
+    }
+
+    return '';
+  }
+
   handleBlur = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -95,7 +130,6 @@ export default class DateTextField extends PureComponent {
   handleChange = (e) => {
     const {
       format,
-      invalidDateMessage,
       clearable,
       onClear,
     } = this.props;
@@ -112,7 +146,7 @@ export default class DateTextField extends PureComponent {
 
     const oldValue = moment(this.state.value);
     const newValue = moment(e.target.value, format, true);
-    const error = newValue.isValid() ? '' : invalidDateMessage;
+    const error = this.getError(newValue);
 
     this.setState({
       displayValue: e.target.value,
@@ -169,6 +203,10 @@ export default class DateTextField extends PureComponent {
       mask,
       InputProps,
       keyboardIcon,
+      maxDate,
+      minDate,
+      maxDateMessage,
+      minDateMessage,
       ...other
     } = this.props;
     const { displayValue, error } = this.state;

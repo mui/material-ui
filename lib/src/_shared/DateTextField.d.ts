@@ -4,6 +4,10 @@ import { Utils } from '../utils/utils';
 import { TextFieldProps } from 'material-ui/TextField';
 
 export interface DateTextFieldProps extends TextFieldProps {
+    minDate?: DateType;
+    minDateMessage?: string;
+    maxDate?: DateType;
+    maxDateMessage?: string;
     value: any;
     mask?: any;
     onChange: (date: object) => void;

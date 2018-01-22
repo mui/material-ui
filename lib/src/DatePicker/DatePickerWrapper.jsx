@@ -96,6 +96,8 @@ export default class DatePickerWrapper extends PickerBase {
         ref={this.getRef}
         value={value}
         format={format}
+        minDate={minDate}
+        maxDate={maxDate}
         onClear={this.handleClear}
         onAccept={this.handleAccept}
         onChange={this.handleTextFieldChange}

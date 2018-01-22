@@ -93,8 +93,11 @@ disablePast | boolean | false | Disable past dates
 disableFuture | boolean | false | Disable future dates
 animateYearScrolling | boolean | false | Will animate year selection (note that will work for browser supports scrollIntoView api)
 openToYearSelection | boolean | false | Open datepicker from year selection
+keyboard | boolean | false | Allow keyboard input
 minDate | date | '1900-01-01' | Minimum selectable date
+minDateMessage | string | 'Invalid Date' | Minimum date error message for keyboard input
 maxDate | date | '2100-01-01' | Maximum selectable date
+maxDateMessage | string | 'Invalid Date' | Maximum date error message for keyboard input
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
@@ -144,8 +147,11 @@ disableFuture | boolean | false | Disable future dates
 showTabs | boolean | false | Show date/time tabs
 openTo | one of 'year', 'date', 'hour', 'minutes' | 'date' | Open to particular view
 animateYearScrolling | boolean | false | Will animate year selection
+keyboard | boolean | false | Allow keyboard input
 minDate | date | '1900-01-01' | Minimum selectable date
+minDateMessage | string | 'Invalid Date' | Minimum date error message for keyboard input
 maxDate | date | '2100-01-01' | Maximum selectable date
+maxDateMessage | string | 'Invalid Date' | Maximum date error message for keyboard input
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChangeg
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
