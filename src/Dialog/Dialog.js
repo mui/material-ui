@@ -72,6 +72,7 @@ function Dialog(props) {
     onExited,
     onExiting,
     open,
+    PaperProps,
     transition: TransitionProp,
     transitionDuration,
     ...other
@@ -111,6 +112,7 @@ function Dialog(props) {
             [classes.fullScreen]: fullScreen,
             [classes.fullWidth]: fullWidth,
           })}
+          {...PaperProps}
         >
           {children}
         </Paper>
@@ -198,6 +200,10 @@ Dialog.propTypes = {
    * If `true`, the Dialog is open.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * Properties applied to the `Paper` element.
+   */
+  PaperProps: PropTypes.object,
   /**
    * Transition component.
    */
