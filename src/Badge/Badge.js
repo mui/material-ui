@@ -41,6 +41,10 @@ export const styles = theme => ({
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.secondary.contrastText,
   },
+  colorError: {
+    backgroundColor: theme.palette.error.main,
+    color: theme.palette.error.contrastText,
+  },
 });
 
 function Badge(props) {
@@ -86,7 +90,7 @@ Badge.propTypes = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['default', 'primary', 'secondary', 'error']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

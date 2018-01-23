@@ -92,6 +92,22 @@ describe('<Badge />', () => {
     );
   });
 
+  it('have error class', () => {
+    const wrapper = shallow(
+      <Badge badgeContent={10} color="error">
+        <span />
+      </Badge>,
+    );
+
+    assert.strictEqual(
+      wrapper
+        .find('span')
+        .at(2)
+        .hasClass(classes.colorError),
+      true,
+    );
+  });
+
   it('renders children and overwrite root styles', () => {
     const style = { backgroundColor: 'red' };
     const wrapper = shallow(
