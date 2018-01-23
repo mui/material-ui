@@ -71,7 +71,6 @@ export class DatePicker extends PureComponent {
     this.setState({ showYearSelection: false });
   }
 
-
   render() {
     const {
       disablePast,

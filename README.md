@@ -113,6 +113,7 @@ minDateMessage | string | 'Invalid Date' | Minimum date error message for keyboa
 maxDateMessage | string | 'Invalid Date' | Maximum date error message for keyboard input
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 clearable | boolean | false | If `true`, clear button will be displayed
+TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 
 #### Timepicker
 Prop | Type | Default | Definition
@@ -133,6 +134,7 @@ keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node, string | 'event' | Keyboard adornment icon
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 clearable | boolean | false | If `true`, clear button will be displayed
+TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 
 #### DateTimepicker
 Prop | Type | Default | Definition
@@ -170,6 +172,7 @@ minDateMessage | string | 'Invalid Date' | Minimum date error message for keyboa
 invalidDateMessage | string | 'Invalid Date Format' | Message, appearing when date cannot be parsed
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 clearable | boolean | false | If `true`, clear button will be displayed
+TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 
 ### l10n
 For l10n texts we're currently relying on moment which is stateful. To change the locale you have to import your langauge specific files an change the locale manually via `moment.locale(language)`.
