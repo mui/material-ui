@@ -237,11 +237,11 @@ class ButtonBase extends React.Component {
 
     if (ComponentProp === 'button') {
       buttonProps.type = type || 'button';
+      buttonProps.disabled = disabled;
     }
 
-    if (ComponentProp !== 'a') {
-      buttonProps.role = buttonProps.type === 'button' ? undefined : 'button';
-      buttonProps.disabled = disabled;
+    if (ComponentProp !== 'a' && buttonProps.type !== 'button') {
+      buttonProps.role = 'button';
     }
 
     return (

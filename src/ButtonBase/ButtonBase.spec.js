@@ -377,6 +377,15 @@ describe('<ButtonBase />', () => {
       });
       assert.strictEqual(wrapper.state().keyboardFocused, false);
     });
+
+    it('should not apply disabled on a span', () => {
+      const wrapper = shallow(
+        <ButtonBase component="span" disabled>
+          Hello
+        </ButtonBase>,
+      );
+      assert.strictEqual(wrapper.props().disabled, undefined);
+    });
   });
 
   describe('prop: component', () => {

@@ -71,6 +71,13 @@ describe('<FormControl />', () => {
     });
   });
 
+  describe('prop: required', () => {
+    it('should not apply it to the DOM', () => {
+      const wrapper = shallow(<FormControl required />);
+      assert.strictEqual(wrapper.props().required, undefined);
+    });
+  });
+
   describe('input', () => {
     it('should be dirty with a value', () => {
       const wrapper = shallow(
