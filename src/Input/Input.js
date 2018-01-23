@@ -66,7 +66,7 @@ export const styles = theme => {
       alignItems: 'baseline',
       position: 'relative',
       fontFamily: theme.typography.fontFamily,
-      color: light ? 'rgba(0, 0, 0, 0.87)' : theme.palette.common.fullWhite,
+      color: light ? 'rgba(0, 0, 0, 0.87)' : theme.palette.common.white,
       fontSize: theme.typography.pxToRem(16),
     },
     formControl: {
@@ -149,7 +149,7 @@ export const styles = theme => {
       background: 'none',
       margin: 0, // Reset for Safari
       // Remove grey highlight
-      WebkitTapHighlightColor: theme.palette.common.transparent,
+      WebkitTapHighlightColor: 'transparent',
       display: 'block',
       // Make the flex item shrink with Firefox
       minWidth: 0,

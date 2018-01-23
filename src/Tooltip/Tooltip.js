@@ -27,7 +27,7 @@ export const styles = theme => ({
   tooltip: {
     backgroundColor: theme.palette.grey[700],
     borderRadius: 2,
-    color: common.fullWhite,
+    color: common.white,
     fontFamily: theme.typography.fontFamily,
     opacity: 0,
     transform: 'scale(0)',

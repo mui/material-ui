@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Fade from '../transitions/Fade';
 
-export const styles = theme => ({
+export const styles = {
   root: {
     zIndex: -1,
     width: '100%',
@@ -13,14 +13,14 @@ export const styles = theme => ({
     top: 0,
     left: 0,
     // Remove grey highlight
-    WebkitTapHighlightColor: theme.palette.common.transparent,
+    WebkitTapHighlightColor: 'transparent',
     willChange: 'opacity',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   invisible: {
-    backgroundColor: theme.palette.common.transparent,
+    backgroundColor: 'transparent',
   },
-});
+};
 
 function Backdrop(props) {
   const { classes, invisible, open, transitionDuration, ...other } = props;

@@ -44,7 +44,7 @@ export const light = {
 
 export const dark = {
   text: {
-    primary: common.fullWhite,
+    primary: common.white,
     secondary: 'rgba(255, 255, 255, 0.7)',
     disabled: 'rgba(255, 255, 255, 0.5)',
     hint: 'rgba(255, 255, 255, 0.5)',
@@ -56,7 +56,7 @@ export const dark = {
     default: '#303030',
   },
   action: {
-    active: common.fullWhite,
+    active: common.white,
     hover: 'rgba(255, 255, 255, 0.14)',
     selected: 'rgba(255, 255, 255, 0.8)',
     disabled: 'rgba(255, 255, 255, 0.3)',

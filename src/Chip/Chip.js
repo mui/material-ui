@@ -35,7 +35,7 @@ export const styles = theme => {
     },
     clickable: {
       // Remove grey highlight
-      WebkitTapHighlightColor: theme.palette.common.transparent,
+      WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
       '&:hover, &:focus': {
         backgroundColor: emphasize(backgroundColor, 0.08),
@@ -72,7 +72,7 @@ export const styles = theme => {
     },
     deleteIcon: {
       // Remove grey highlight
-      WebkitTapHighlightColor: theme.palette.common.transparent,
+      WebkitTapHighlightColor: 'transparent',
       color: deleteIconColor,
       cursor: 'pointer',
       height: 'auto',

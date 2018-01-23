@@ -8,14 +8,14 @@ import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../uti
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
-export const styles = theme => ({
+export const styles = {
   root: {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
     // Remove grey highlight
-    WebkitTapHighlightColor: theme.palette.common.transparent,
+    WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'transparent', // Reset default value
     outline: 'none',
     border: 0,
@@ -37,7 +37,7 @@ export const styles = theme => ({
     pointerEvents: 'none', // Disable link interactions
     cursor: 'default',
   },
-});
+};
 
 /**
  * `ButtonBase` contains as few styles as possible.

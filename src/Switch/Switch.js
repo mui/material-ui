@@ -56,7 +56,8 @@ export const styles = theme => ({
   disabled: {
     color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
     '& + $bar': {
-      backgroundColor: theme.palette.type === 'light' ? '#000' : '#fff',
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
       opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
     },
   },
