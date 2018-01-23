@@ -56,7 +56,7 @@ export const dark = {
   divider: 'rgba(255, 255, 255, 0.12)',
   background: {
     paper: grey[800],
-    default: '#303030',
+    default: grey.A400,
     appBar: grey[900],
     chip: grey[700],
     avatar: grey[600],
@@ -158,8 +158,6 @@ export default function createPalette(palette: Object) {
       secondary,
       // The colors used to represent interface elements that the user should be made aware of.
       error,
-      // The grey color.
-      grey,
       // Used by `getContrastText()` to maximize the contrast between the background and
       // the text.
       contrastThreshold,

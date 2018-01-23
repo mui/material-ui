@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -9,7 +10,7 @@ export const styles = theme => ({
   },
   line: {
     display: 'block',
-    borderColor: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+    borderColor: theme.palette.type === 'light' ? grey[400] : grey[600],
   },
   rootVertical: {
     marginLeft: 12, // half icon

@@ -8,6 +8,7 @@ import debounce from 'lodash/debounce';
 import warning from 'warning';
 import classNames from 'classnames';
 import { Manager, Target, Popper } from 'react-popper';
+import grey from '../colors/grey';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import RefHolder from '../internal/RefHolder';
 import common from '../colors/common';
@@ -25,7 +26,7 @@ export const styles = theme => ({
     pointerEvents: 'none',
   },
   tooltip: {
-    backgroundColor: theme.palette.grey[700],
+    backgroundColor: grey[700],
     borderRadius: 2,
     color: common.fullWhite,
     fontFamily: theme.typography.fontFamily,
