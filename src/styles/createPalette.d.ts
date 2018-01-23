@@ -63,6 +63,7 @@ export interface Palette {
     light: TypeObject;
   };
   text: TypeText;
+  divider: string;
   action: TypeAction;
   background: TypeBackground;
   getContrastText: (color: string) => string;
@@ -83,6 +84,7 @@ export interface PaletteOptions {
     light?: PartialTypeObject;
   };
   text?: Partial<TypeText>;
+  divider?: string;
   action?: Partial<TypeAction>;
   background?: Partial<TypeBackground>;
   getContrastText?: (color: string) => string;
