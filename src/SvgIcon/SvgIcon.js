@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
   root: {
@@ -48,7 +48,7 @@ function SvgIcon(props) {
   const className = classNames(
     classes.root,
     {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+      [classes[`color${capitalize(color)}`]]: color !== 'inherit',
     },
     classNameProp,
   );

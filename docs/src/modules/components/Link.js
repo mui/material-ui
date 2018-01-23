@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import NextLink from 'next/link';
 import { withStyles } from 'material-ui/styles';
-import { capitalizeFirstLetter } from 'material-ui/utils/helpers';
+import { capitalize } from 'material-ui/utils/helpers';
 
 const styles = theme => ({
   root: {
@@ -68,7 +68,7 @@ function Link(props, context) {
   let ComponentRoot;
   const className = classNames(
     classes.root,
-    classes[`variant${capitalizeFirstLetter(variant)}`],
+    classes[`variant${capitalize(variant)}`],
     classNameProp,
   );
   let RootProps;

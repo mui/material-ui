@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
   root: {
@@ -167,10 +167,10 @@ class Tab extends React.Component {
 
     const className = classNames(
       classes.root,
+      classes[`root${capitalize(textColor)}`],
       {
-        [classes[`root${capitalizeFirstLetter(textColor)}`]]: true,
-        [classes[`root${capitalizeFirstLetter(textColor)}Disabled`]]: disabled,
-        [classes[`root${capitalizeFirstLetter(textColor)}Selected`]]: selected,
+        [classes[`root${capitalize(textColor)}Disabled`]]: disabled,
+        [classes[`root${capitalize(textColor)}Selected`]]: selected,
         [classes.rootLabelIcon]: icon && label,
         [classes.fullWidth]: fullWidth,
       },

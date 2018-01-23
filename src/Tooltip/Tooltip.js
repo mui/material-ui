@@ -8,7 +8,7 @@ import debounce from 'lodash/debounce';
 import warning from 'warning';
 import classNames from 'classnames';
 import { Manager, Target, Popper } from 'react-popper';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 import RefHolder from '../internal/RefHolder';
 import common from '../colors/common';
 import withStyles from '../styles/withStyles';
@@ -348,7 +348,7 @@ class Tooltip extends React.Component {
                     className={classNames(
                       classes.tooltip,
                       { [classes.tooltipOpen]: open },
-                      classes[`tooltip${capitalizeFirstLetter(actualPlacement.split('-')[0])}`],
+                      classes[`tooltip${capitalize(actualPlacement.split('-')[0])}`],
                     )}
                   >
                     {title}

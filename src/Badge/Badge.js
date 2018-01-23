@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 
 const RADIUS = 12;
 
@@ -59,7 +59,7 @@ function Badge(props) {
   } = props;
 
   const badgeClassName = classNames(classes.badge, {
-    [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+    [classes[`color${capitalize(color)}`]]: color !== 'default',
   });
 
   return (

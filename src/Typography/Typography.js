@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
   root: {
@@ -79,11 +79,11 @@ function Typography(props) {
     classes.root,
     classes[type],
     {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+      [classes[`color${capitalize(color)}`]]: color !== 'default',
       [classes.noWrap]: noWrap,
       [classes.gutterBottom]: gutterBottom,
       [classes.paragraph]: paragraph,
-      [classes[`align${capitalizeFirstLetter(align)}`]]: align !== 'inherit',
+      [classes[`align${capitalize(align)}`]]: align !== 'inherit',
     },
     classNameProp,
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 import { darken, fade, lighten } from '../styles/colorManipulator';
 
 export const styles = theme => ({
@@ -75,8 +75,7 @@ function TableCell(props, context) {
     classes.root,
     {
       [classes.numeric]: numeric,
-      [classes[`padding${capitalizeFirstLetter(padding)}`]]:
-        padding !== 'none' && padding !== 'default',
+      [classes[`padding${capitalize(padding)}`]]: padding !== 'none' && padding !== 'default',
       [classes.paddingDefault]: padding !== 'none',
       [classes.typeHead]: type ? type === 'head' : table && table.head,
       [classes.typeBody]: type ? type === 'body' : table && table.body,

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 import { isMuiElement } from '../utils/reactHelpers';
 import '../SvgIcon'; // Ensure CSS specificity
 
@@ -59,7 +59,7 @@ function IconButton(props) {
       className={classNames(
         classes.root,
         {
-          [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+          [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.disabled]: disabled,
         },
         className,

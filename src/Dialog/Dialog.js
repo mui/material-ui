@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 import Modal from '../Modal';
 import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
@@ -108,7 +108,7 @@ function Dialog(props) {
           data-mui-test="Dialog"
           elevation={24}
           className={classNames(classes.paper, {
-            [classes[`paperWidth${maxWidth ? capitalizeFirstLetter(maxWidth) : ''}`]]: maxWidth,
+            [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
             [classes.fullScreen]: fullScreen,
             [classes.fullWidth]: fullWidth,
           })}
