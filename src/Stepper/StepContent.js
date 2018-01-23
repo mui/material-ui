@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import classNames from 'classnames';
+import grey from '../colors/grey';
 import Collapse from '../transitions/Collapse';
 import withStyles from '../styles/withStyles';
 
@@ -11,9 +12,7 @@ export const styles = theme => ({
     marginLeft: 12, // half icon
     paddingLeft: theme.spacing.unit + 12, // margin + half icon
     paddingRight: theme.spacing.unit,
-    borderLeft: `1px solid ${
-      theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
-    }`,
+    borderLeft: `1px solid ${theme.palette.type === 'light' ? grey[400] : grey[600]}`,
   },
   last: {
     borderLeft: 'none',

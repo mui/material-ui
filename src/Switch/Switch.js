@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 import SwitchBase from '../internal/SwitchBase';
 
@@ -40,7 +41,7 @@ export const styles = theme => ({
   // For SwitchBase
   default: {
     zIndex: 1,
-    color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
+    color: theme.palette.type === 'light' ? grey[50] : grey[400],
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -54,7 +55,7 @@ export const styles = theme => ({
     },
   },
   disabled: {
-    color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+    color: theme.palette.type === 'light' ? grey[400] : grey[800],
     '& + $bar': {
       backgroundColor: theme.palette.type === 'light' ? '#000' : '#fff',
       opacity: theme.palette.type === 'light' ? 0.12 : 0.1,

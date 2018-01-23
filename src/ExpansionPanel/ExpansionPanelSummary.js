@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import grey from '../colors/grey';
 import ButtonBase from '../ButtonBase';
 import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
@@ -29,7 +30,7 @@ export const styles = theme => {
       minHeight: 64,
     },
     focused: {
-      backgroundColor: theme.palette.grey[300],
+      backgroundColor: grey[300],
     },
     disabled: {
       opacity: 0.38,

@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
@@ -68,8 +69,8 @@ export const styles = theme => ({
     color: 'inherit',
   },
   raised: {
-    color: theme.palette.getContrastText(theme.palette.grey[300]),
-    backgroundColor: theme.palette.grey[300],
+    color: theme.palette.getContrastText(grey[300]),
+    backgroundColor: grey[300],
     boxShadow: theme.shadows[2],
     '&$keyboardFocused': {
       boxShadow: theme.shadows[6],
@@ -82,10 +83,10 @@ export const styles = theme => ({
       backgroundColor: theme.palette.action.disabledBackground,
     },
     '&:hover': {
-      backgroundColor: theme.palette.grey.A100,
+      backgroundColor: grey.A100,
       // Reset on mouse devices
       '@media (hover: none)': {
-        backgroundColor: theme.palette.grey[300],
+        backgroundColor: grey[300],
       },
       '&$disabled': {
         backgroundColor: theme.palette.action.disabledBackground,

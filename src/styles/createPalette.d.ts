@@ -57,7 +57,6 @@ export interface Palette {
   primary: PaletteColor;
   secondary: PaletteColor;
   error: PaletteColor;
-  grey: Color;
   types: {
     dark: TypeObject;
     light: TypeObject;
