@@ -274,6 +274,7 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
   disabled: false,
+  textColor: 'inherit',
 };
 
 export default withStyles(styles, { name: 'MuiTab' })(Tab);
