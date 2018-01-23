@@ -5,7 +5,7 @@ export interface BadgeProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, BadgeClassKey> {
   badgeContent: React.ReactNode;
   children: React.ReactNode;
-  color?: PropTypes.Color;
+  color?: PropTypes.Color | 'error';
   component?: React.ReactType<BadgeProps>;
 }
 
