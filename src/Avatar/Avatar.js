@@ -20,7 +20,8 @@ export const styles = theme => ({
   },
   colorDefault: {
     color: theme.palette.background.default,
-    backgroundColor: theme.palette.background.avatar,
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
   },
   img: {
     width: '100%',

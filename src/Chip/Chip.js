@@ -11,7 +11,7 @@ import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {
   const height = 32;
-  const backgroundColor = theme.palette.background.chip;
+  const backgroundColor = theme.palette.type === 'light' ? grey[300] : grey[700];
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
 
   return {
