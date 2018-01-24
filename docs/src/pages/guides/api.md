@@ -69,9 +69,10 @@ however, the `open`/`onClose`/`onOpen` combination is used for display related s
 ### boolean vs enum
 
 You can potentially expose the variations of a component with a *boolean* or an *enum*.
-For instance, let's say you have a button of different types. You can use one of the two following options. Each has pros and cons:
+For instance, let's say you have a button of different types.
+You can use one of the two following options, each with its pros and cons:
 - Option 1 *boolean*: `<Button>`, `<Button raised />`, `<Button fab />`.
-  With this API, people can use the shorthand notation.
+  With this API, you can use the shorthand notation.
 
 ```tsx
 type Props = {
@@ -81,7 +82,7 @@ type Props = {
 ```
 
 - Option 2 *enum*: `<Button>`, `<Button type="raised">`, `<Button type="fab">`.
-  With this API, you prevent invalid combination from being used, you bound the number of properties you exposes and you can easily support new values in the future.
+  With this API, you prevent invalid combination from being used, you bound the number of properties you exposes, and you can easily support new values in the future.
 
 ```tsx
 type Props = {
@@ -94,5 +95,4 @@ We enforce the following rule:
 - We use a *boolean* when the degrees of freedom required is **2**.
 - We use an *enum* when the degrees of freedom required is **> 2**.
 
-Going back to the previous button example, it requires 3 degrees of freedom.
-We use an *enum*.
+Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.
