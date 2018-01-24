@@ -25,9 +25,9 @@ const styles = theme => ({
   },
 });
 
-class BasicTabs extends React.Component {
+class TabsWrappedLabel extends React.Component {
   state = {
-    value: 0,
+    value: 'one',
   };
 
   handleChange = (event, value) => {
@@ -42,21 +42,21 @@ class BasicTabs extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Tabs value={value} onChange={this.handleChange}>
-            <Tab label="Item One" />
-            <Tab label="Item Two" />
-            <Tab label="Item Three" href="#basic-tabs" />
+            <Tab value="one" label="New Arrivals in the Longest Text of Nonfiction" />
+            <Tab value="two" label="Item Two" />
+            <Tab value="three" label="Item Three" />
           </Tabs>
         </AppBar>
-        {value === 0 && <TabContainer>Item One</TabContainer>}
-        {value === 1 && <TabContainer>Item Two</TabContainer>}
-        {value === 2 && <TabContainer>Item Three</TabContainer>}
+        {value === 'one' && <TabContainer>Item One</TabContainer>}
+        {value === 'two' && <TabContainer>Item Two</TabContainer>}
+        {value === 'three' && <TabContainer>Item Three</TabContainer>}
       </div>
     );
   }
 }
 
-BasicTabs.propTypes = {
+TabsWrappedLabel.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BasicTabs);
+export default withStyles(styles)(TabsWrappedLabel);

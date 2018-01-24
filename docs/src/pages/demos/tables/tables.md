@@ -13,11 +13,11 @@ A data table contains a header row at the top that lists column names, followed 
 
 Checkboxes should accompany each row if the user needs to select or manipulate data.
 
-## Basic Table
+## Simple Table
 
 A simple example with no frills.
 
-{{"demo": "pages/demos/tables/BasicTable.js"}}
+{{"demo": "pages/demos/tables/SimpleTable.js"}}
 
 ## Sorting & Selecting
 

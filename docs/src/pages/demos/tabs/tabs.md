@@ -6,17 +6,17 @@ components: Tabs, Tab
 
 [Tabs](https://material.io/guidelines/components/tabs.html) make it easy to explore and switch between different views.
 
-## Basic Tabs
+## Simple Tabs
 
 A simple example with no frills.
 
-{{"demo": "pages/demos/tabs/BasicTabs.js"}}
+{{"demo": "pages/demos/tabs/SimpleTabs.js"}}
 
 ### Wrapped Labels
 
 Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
 
-{{"demo": "pages/demos/tabs/BasicTabsWrappedLabel.js"}}
+{{"demo": "pages/demos/tabs/TabsWrappedLabel.js"}}
 
 ## Fixed Tabs
 
