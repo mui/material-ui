@@ -48,7 +48,7 @@ All the components accept a [`classes`](/customization/overrides#overriding-with
 
 Internal components have:
 - their own flattened properties when these are key to the abstraction.
-- their own `xxxProps` property when users might need to tweak the internal render method's sub-components, 
+- their own `xxxProps` property when users might need to tweak the internal render method's sub-components,
 for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
   For instance, exposing a `value` property.
 - their own `xxxRef` property when user might need to perform imperative actions.
@@ -65,3 +65,34 @@ For instance, the `disabled` attribute on an input element. This choice allows t
 
 Most of the controllable component are controlled via the `value` and the `onChange` properties,
 however, the `open`/`onClose`/`onOpen` combination is used for display related state.
+
+### boolean vs enum
+
+You can potentially expose the variations of a component with a *boolean* or an *enum*.
+For instance, let's say you have a button of different types.
+You can use one of the two following options, each with its pros and cons:
+- Option 1 *boolean*: `<Button>`, `<Button raised />`, `<Button fab />`.
+  With this API, you can use the shorthand notation.
+
+```tsx
+type Props = {
+  raised: boolean;
+  fab: boolean;
+};
+```
+
+- Option 2 *enum*: `<Button>`, `<Button type="raised">`, `<Button type="fab">`.
+  With this API, you prevent invalid combination from being used, you bound the number of properties you expose, and you can easily support new values in the future.
+
+```tsx
+type Props = {
+  type: 'flat' | 'raised' | 'fab';
+}
+```
+
+The Material-UI components use a combination of the two approaches.
+We enforce the following rule:
+- We use a *boolean* when the degrees of freedom required is **2**.
+- We use an *enum* when the degrees of freedom required is **> 2**.
+
+Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.
