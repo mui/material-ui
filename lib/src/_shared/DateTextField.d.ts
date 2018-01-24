@@ -6,6 +6,12 @@ import { Moment } from 'moment'
 
 export interface DateTextFieldProps extends Omit<TextFieldProps, 'onChange' | 'value'> {
     value: DateType;
+    minDate?: DateType;
+    minDateMessage?: string;
+    disablePast?: boolean;
+    disableFuture?: boolean;
+    maxDate?: DateType;
+    maxDateMessage?: string;
     mask?: any;
     onChange: (date: Moment, foo: boolean) => void;
     onClear?: () => void;

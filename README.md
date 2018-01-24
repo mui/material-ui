@@ -109,6 +109,8 @@ rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
 keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node, string | 'event' | Keyboard adornment icon
+minDateMessage | string | 'Invalid Date' | Minimum date error message for keyboard input
+maxDateMessage | string | 'Invalid Date' | Maximum date error message for keyboard input
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
@@ -165,6 +167,8 @@ ampm | boolean | true | 12h/24h view for hour selection clock
 shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
 keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node, string | 'event' | Keyboard adornment icon
+maxDateMessage | string | 'Invalid Date' | Maximum date error message for keyboard input
+minDateMessage | string | 'Invalid Date' | Minimum date error message for keyboard input
 invalidDateMessage | string | 'Invalid Date Format' | Message, appearing when date cannot be parsed
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 clearable | boolean | false | If `true`, clear button will be displayed

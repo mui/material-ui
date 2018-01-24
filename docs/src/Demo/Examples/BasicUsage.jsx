@@ -25,6 +25,8 @@ export default class BasicUsage extends Component {
           <DatePicker
             keyboard
             clearable
+            disableFuture
+            maxDateMessage="Date must be less than today"
             value={selectedDate}
             onChange={this.handleDateChange}
             animateYearScrolling={false}
