@@ -357,6 +357,7 @@ class Input extends React.Component {
       inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
       inputRef,
       margin: marginProp,
+      maxLength,
       multiline,
       name,
       onBlur,
@@ -452,6 +453,7 @@ class Input extends React.Component {
           required={required ? true : undefined}
           value={value}
           id={id}
+          maxLength={maxLength}
           name={name}
           defaultValue={defaultValue}
           placeholder={placeholder}
@@ -535,6 +537,10 @@ Input.propTypes = {
    * FormControl.
    */
   margin: PropTypes.oneOf(['dense', 'none']),
+  /**
+   * The maxLength property of the `input` element.
+   */
+  maxLength: PropTypes.number,
   /**
    * If `true`, a textarea element will be rendered.
    */

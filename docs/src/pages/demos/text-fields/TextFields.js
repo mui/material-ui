@@ -42,6 +42,7 @@ class TextFields extends React.Component {
   state = {
     name: 'Cat in the Hat',
     age: '',
+    maxlength: '',
     multiline: 'Controlled',
     currency: 'EUR',
   };
@@ -200,6 +201,16 @@ class TextFields extends React.Component {
             </option>
           ))}
         </TextField>
+        <TextField
+          id="maxlength"
+          label="Maximum length"
+          value={this.state.maxlength}
+          className={classes.textField}
+          onChange={this.handleChange('maxlength')}
+          maxLength={10}
+          helperText="Don‘t exceed the limit"
+          margin="normal"
+        />
         <TextField
           id="full-width"
           label="Label"

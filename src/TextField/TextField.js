@@ -56,6 +56,7 @@ function TextField(props) {
     inputRef,
     label,
     labelClassName,
+    maxLength,
     multiline,
     name,
     onChange,
@@ -85,6 +86,7 @@ function TextField(props) {
       disabled={disabled}
       fullWidth={fullWidth}
       multiline={multiline}
+      maxLength={maxLength}
       name={name}
       rows={rows}
       rowsMax={rowsMax}
@@ -121,9 +123,15 @@ function TextField(props) {
       ) : (
         InputComponent
       )}
-      {helperText && (
+      {(helperText || (maxLength != null && value != null)) && (
         <FormHelperText className={helperTextClassName} id={helperTextId} {...FormHelperTextProps}>
           {helperText}
+          {maxLength &&
+            value != null && (
+              <span style={{ float: 'right' }}>
+                {value.length} / {maxLength}
+              </span>
+            )}
         </FormHelperText>
       )}
     </FormControl>
@@ -211,6 +219,11 @@ TextField.propTypes = {
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
   margin: PropTypes.oneOf(['none', 'dense', 'normal']),
+  /**
+   * If specified, this is passed, a length indicator is displayed on the bottom right of the
+   * element. It is also passed to the input element.
+   */
+  maxLength: PropTypes.number,
   /**
    * If `true`, a textarea element will be rendered instead of an input.
    */
