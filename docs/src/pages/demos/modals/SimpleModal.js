@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Modal from 'material-ui/Modal';
 import Button from 'material-ui/Button';
 
 function rand() {
-  return Math.floor(Math.random() * 20) - 10;
+  return Math.round(Math.random() * 20) - 10;
 }
 
 function getModalStyle() {
@@ -12,17 +14,21 @@ function getModalStyle() {
   const left = 50 + rand();
 
   return {
-    position: 'absolute',
-    width: 8 * 50,
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
-    border: '1px solid #e5e5e5',
-    backgroundColor: '#fff',
-    boxShadow: '0 5px 15px rgba(0, 0, 0, .5)',
-    padding: 8 * 4,
   };
 }
+
+const styles = theme => ({
+  paper: {
+    position: 'absolute',
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+  },
+});
 
 class SimpleModal extends React.Component {
   state = {
@@ -38,6 +44,8 @@ class SimpleModal extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
         <Typography gutterBottom>Click to get the full Modal experience!</Typography>
@@ -48,14 +56,14 @@ class SimpleModal extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <div style={getModalStyle()}>
+          <div style={getModalStyle()} className={classes.paper}>
             <Typography type="title" id="modal-title">
               Text in a modal
             </Typography>
             <Typography type="subheading" id="simple-modal-description">
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Typography>
-            <SimpleModal />
+            <SimpleModalWrapped />
           </div>
         </Modal>
       </div>
@@ -63,4 +71,11 @@ class SimpleModal extends React.Component {
   }
 }
 
-export default SimpleModal;
+SimpleModal.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+// We need an intermediary variable for handling the recursive nesting.
+const SimpleModalWrapped = withStyles(styles)(SimpleModal);
+
+export default SimpleModalWrapped;
