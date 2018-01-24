@@ -4,14 +4,14 @@ import classNames from 'classnames';
 import keycode from 'keycode';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
-import grey from '../colors/grey';
 import { emphasize, fade } from '../styles/colorManipulator';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {
   const height = 32;
-  const backgroundColor = theme.palette.background.chip;
+  const backgroundColor =
+    theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
 
   return {
@@ -35,7 +35,7 @@ export const styles = theme => {
     },
     clickable: {
       // Remove grey highlight
-      WebkitTapHighlightColor: theme.palette.common.transparent,
+      WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
       '&:hover, &:focus': {
         backgroundColor: emphasize(backgroundColor, 0.08),
@@ -54,7 +54,7 @@ export const styles = theme => {
       marginRight: -4,
       width: height,
       height,
-      color: theme.palette.type === 'light' ? grey[700] : grey[300],
+      color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
       fontSize: theme.typography.pxToRem(16),
     },
     avatarChildren: {
@@ -72,7 +72,7 @@ export const styles = theme => {
     },
     deleteIcon: {
       // Remove grey highlight
-      WebkitTapHighlightColor: theme.palette.common.transparent,
+      WebkitTapHighlightColor: 'transparent',
       color: deleteIconColor,
       cursor: 'pointer',
       height: 'auto',

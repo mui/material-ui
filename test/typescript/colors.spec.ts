@@ -36,11 +36,11 @@ import {
 });
 
 const {
-    black, white, transparent, fullBlack, fullWhite
+    black, white,
 } = common;
 
 [
-    black, white, transparent, fullBlack, fullWhite
+    black, white,
 ].forEach(color => {
     color as string;
 });

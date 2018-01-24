@@ -6,7 +6,7 @@ import withWidth, { WithWidthProps } from '../utils/withWidth';
 
 const styles = (theme: Theme) => ({
   root: {
-    backgroundColor: theme.palette.common.fullBlack,
+    backgroundColor: theme.palette.common.black,
   },
 });
 

@@ -19,9 +19,6 @@ interface TypeAction {
 interface TypeBackground {
   default: string;
   paper: string;
-  appBar: string;
-  status: string;
-  avatar: string;
 }
 
 export type PaletteColorOptions = SimplePaletteColorOptions | Partial<Color>;

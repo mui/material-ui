@@ -26,9 +26,6 @@ export const light = {
   background: {
     paper: common.white,
     default: grey[50],
-    appBar: grey[100],
-    chip: grey[300],
-    avatar: grey[400],
   },
   // The colors used to style the action elements.
   action: {
@@ -47,7 +44,7 @@ export const light = {
 
 export const dark = {
   text: {
-    primary: common.fullWhite,
+    primary: common.white,
     secondary: 'rgba(255, 255, 255, 0.7)',
     disabled: 'rgba(255, 255, 255, 0.5)',
     hint: 'rgba(255, 255, 255, 0.5)',
@@ -57,12 +54,9 @@ export const dark = {
   background: {
     paper: grey[800],
     default: '#303030',
-    appBar: grey[900],
-    chip: grey[700],
-    avatar: grey[600],
   },
   action: {
-    active: common.fullWhite,
+    active: common.white,
     hover: 'rgba(255, 255, 255, 0.14)',
     selected: 'rgba(255, 255, 255, 0.8)',
     disabled: 'rgba(255, 255, 255, 0.3)',
