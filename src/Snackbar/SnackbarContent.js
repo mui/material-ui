@@ -9,7 +9,7 @@ import Typography from '../Typography';
 import { emphasize } from '../styles/colorManipulator';
 
 export const styles = theme => {
-  const emphasis = theme.palette.type === 'light' ? 0.88 : 0.98;
+  const emphasis = theme.palette.type === 'light' ? 0.8 : 0.98;
   const backgroundColor = emphasize(theme.palette.background.default, emphasis);
 
   return {
