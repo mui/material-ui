@@ -83,7 +83,8 @@ const styles = theme => ({
     width: '100%',
     margin: '0 auto 50px',
     position: 'relative',
-    backgroundColor: theme.palette.background.contentFrame,
+    backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
   },
   sourceBtn: {
     position: 'absolute',

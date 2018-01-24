@@ -35,35 +35,38 @@ class Demo extends Component {
       <main className={classes.main}>
         <AppBar position="fixed" className={classes.noShadow}>
           <Toolbar>
-            <IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               menu
             </IconButton>
 
             <div className={classes.flex} />
 
             <Tooltip title="Toggle English/French moment locale" enterDelay={300}>
-              <IconButton color="contrast" onClick={toggleFrench}>
+              <IconButton color="inherit" onClick={toggleFrench}>
                 language
               </IconButton>
             </Tooltip>
 
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
-              <IconButton color="contrast" onClick={toggleThemeType}>
+              <IconButton color="inherit" onClick={toggleThemeType}>
                 lightbulb_outline
               </IconButton>
             </Tooltip>
 
             <Tooltip title="Toggle direction" enterDelay={300}>
-              <IconButton color="contrast" onClick={toggleDirection}>
+              <IconButton color="inherit" onClick={toggleDirection}>
                 format_textdirection_l_to_r
               </IconButton>
             </Tooltip>
-
-            <a href="https://github.com/dmtrKovalenko/material-ui-pickers">
-              <IconButton>
-                <Github color="contrast" />
+            <Tooltip title="Github" enterDelay={300}>
+              <IconButton
+                  color="inherit"
+                  component="a"
+                  href="https://github.com/dmtrKovalenko/material-ui-pickers"
+              >
+                <Github color="inherit" />
               </IconButton>
-            </a>
+            </Tooltip>
           </Toolbar>
         </AppBar>
 
@@ -139,11 +142,11 @@ const styles = theme => ({
     boxShadow: 'unset',
   },
   appToolbar: {
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    color: 'white',
+    color: theme.palette.common.white,
     padding: '40px 20px',
     '@media (max-width: 600px)': {
       paddingTop: '100px',

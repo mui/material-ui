@@ -6,14 +6,16 @@ import Icon from 'material-ui/Icon';
 import InputAdornment from 'material-ui/Input/InputAdornment';
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
+import withStyles from 'material-ui/styles/withStyles';
 
 import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
 
 
 /* eslint-disable react/sort-comp */
-export default class DateTextField extends PureComponent {
+class DateTextField extends PureComponent {
   static propTypes = {
+    classes: PropTypes.shape({}).isRequired,
     value: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string,
@@ -207,6 +209,7 @@ export default class DateTextField extends PureComponent {
   render() {
     const {
       format,
+      classes,
       disabled,
       onClick,
       invalidLabel,
@@ -237,6 +240,7 @@ export default class DateTextField extends PureComponent {
         mask: value === null ? null : mask,
         readOnly: !keyboard,
       },
+      className: classes.input,
     };
 
     if (keyboard) {
@@ -263,3 +267,11 @@ export default class DateTextField extends PureComponent {
     );
   }
 }
+
+const styles = {
+  input: {
+    alignItems: 'flex-end',
+  },
+};
+
+export default withStyles(styles)(DateTextField);

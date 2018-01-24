@@ -33,7 +33,7 @@ export const DateTimePickerTabs = (props) => {
     timeIcon,
   } = props;
 
-  const indicatorColor = theme.palette.type === 'light' ? 'accent' : 'primary';
+  const indicatorColor = theme.palette.type === 'light' ? 'secondary' : 'primary';
   const handleChange = (e, value) => {
     if (value !== viewToTabIndex(view)) {
       onChange(tabIndexToView(value));
@@ -74,7 +74,7 @@ const styles = theme => ({
   tabs: {
     color: theme.palette.common.white,
     backgroundColor: theme.palette.type === 'light'
-      ? theme.palette.primary[500]
+      ? theme.palette.primary.main
       : theme.palette.background.default,
   },
 });
