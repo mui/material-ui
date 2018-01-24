@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 import { LinearProgress } from '../Progress';
 
 export const styles = theme => ({
@@ -66,7 +66,7 @@ function MobileStepper(props) {
 
   const className = classNames(
     classes.root,
-    classes[`position${capitalizeFirstLetter(position)}`],
+    classes[`position${capitalize(position)}`],
     classNameProp,
   );
 

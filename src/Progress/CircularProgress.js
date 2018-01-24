@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 
 const SIZE = 50;
 
@@ -94,7 +94,7 @@ function CircularProgress(props) {
       className={classNames(
         classes.root,
         {
-          [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+          [classes[`color${capitalize(color)}`]]: color !== 'inherit',
         },
         className,
       )}

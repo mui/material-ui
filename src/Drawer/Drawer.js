@@ -7,7 +7,7 @@ import Modal from '../Modal';
 import withStyles from '../styles/withStyles';
 import Slide from '../transitions/Slide';
 import Paper from '../Paper';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 import { duration } from '../styles/transitions';
 
 function getSlideDirection(anchor) {
@@ -124,13 +124,9 @@ class Drawer extends React.Component {
       <Paper
         elevation={type === 'temporary' ? elevation : 0}
         square
-        className={classNames(
-          classes.paper,
-          classes[`paperAnchor${capitalizeFirstLetter(anchor)}`],
-          {
-            [classes[`paperAnchorDocked${capitalizeFirstLetter(anchor)}`]]: type !== 'temporary',
-          },
-        )}
+        className={classNames(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
+          [classes[`paperAnchorDocked${capitalize(anchor)}`]]: type !== 'temporary',
+        })}
       >
         {children}
       </Paper>

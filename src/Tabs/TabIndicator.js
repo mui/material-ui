@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
   root: {
@@ -30,7 +30,7 @@ function TabIndicator(props) {
   const className = classNames(
     classes.root,
     {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: colorPredefined,
+      [classes[`color${capitalize(color)}`]]: colorPredefined,
     },
     classNameProp,
   );

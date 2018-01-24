@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 import Paper from '../Paper';
 
 export const styles = theme => ({
@@ -51,9 +51,9 @@ function AppBar(props) {
 
   const className = classNames(
     classes.root,
-    classes[`position${capitalizeFirstLetter(position)}`],
+    classes[`position${capitalize(position)}`],
     {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+      [classes[`color${capitalize(color)}`]]: color !== 'inherit',
       'mui-fixed': position === 'fixed', // Useful for the Dialog
     },
     classNameProp,

@@ -1,4 +1,4 @@
-export function capitalizeFirstLetter(str: string): string;
+export function capitalize(str: string): string;
 export function contains<O1 extends O2, O2>(obj: O1, pred: O2): boolean;
 export function findIndex(arr: any[], pred: any): number;
 export function find<T>(arr: T[], pred: any): T;

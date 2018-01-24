@@ -89,13 +89,13 @@ class ListItem extends React.Component {
 
     const className = classNames(
       classes.root,
+      isDense || hasAvatar ? classes.dense : classes.default,
       {
         [classes.gutters]: !disableGutters,
         [classes.divider]: divider,
         [classes.disabled]: disabled,
         [classes.button]: button,
         [classes.secondaryAction]: hasSecondaryAction,
-        [isDense || hasAvatar ? classes.dense : classes.default]: true,
       },
       classNameProp,
     );

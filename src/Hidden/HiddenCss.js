@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
 const styles = theme => {
@@ -11,7 +11,7 @@ const styles = theme => {
   };
 
   return breakpointKeys.reduce((acc, key) => {
-    acc[`only${capitalizeFirstLetter(key)}`] = {
+    acc[`only${capitalize(key)}`] = {
       [theme.breakpoints.only(key)]: hidden,
     };
     acc[`${key}Up`] = {
@@ -72,7 +72,7 @@ function HiddenCss(props: Props) {
   if (only) {
     const onlyBreakpoints = Array.isArray(only) ? only : [only];
     onlyBreakpoints.forEach(breakpoint => {
-      className.push(classes[`only${capitalizeFirstLetter(breakpoint)}`]);
+      className.push(classes[`only${capitalize(breakpoint)}`]);
     });
   }
 

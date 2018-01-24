@@ -1,12 +1,18 @@
 // @flow
 
 import { assert } from 'chai';
-import { capitalizeFirstLetter, contains, find } from './helpers';
+import { capitalize, contains, find } from './helpers';
 
 describe('utils/helpers.js', () => {
-  describe('capitalizeFirstLetter', () => {
+  describe('capitalize', () => {
     it('should work', () => {
-      assert.strictEqual(capitalizeFirstLetter('foo'), 'Foo');
+      assert.strictEqual(capitalize('foo'), 'Foo');
+    });
+
+    it('should throw when not used correctly', () => {
+      assert.throw(() => {
+        capitalize();
+      }, /expects a string argument/);
     });
   });
 
