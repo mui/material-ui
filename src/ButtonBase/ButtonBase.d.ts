@@ -12,7 +12,6 @@ export interface ButtonBaseProps
   focusRipple?: boolean;
   keyboardFocusedClassName?: string;
   onKeyboardFocus?: React.FocusEventHandler<any>;
-  rootRef?: React.Ref<any>;
 }
 
 export type ButtonBaseClassKey = 'root' | 'disabled';

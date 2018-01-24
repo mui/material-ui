@@ -23,7 +23,6 @@ It contains a load of style reset and some focus/ripple logic.
 | focusRipple | bool | false | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
 | keyboardFocusedClassName | string |  | The CSS class applied while the component is keyboard focused. |
 | onKeyboardFocus | func |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
-| rootRef | func |  | Use that property to pass a ref callback to the root component. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

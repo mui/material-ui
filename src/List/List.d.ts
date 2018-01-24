@@ -6,7 +6,6 @@ export interface ListProps
   component?: React.ReactType<ListProps>;
   dense?: boolean;
   disablePadding?: boolean;
-  rootRef?: React.Ref<any>;
   subheader?: React.ReactElement<any>;
 }
 

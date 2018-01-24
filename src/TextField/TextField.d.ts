@@ -30,7 +30,6 @@ export interface TextFieldProps
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   required?: boolean;
-  rootRef?: React.Ref<any>;
   rows?: string | number;
   rowsMax?: string | number;
   select?: boolean;

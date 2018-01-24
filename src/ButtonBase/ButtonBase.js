@@ -208,7 +208,6 @@ class ButtonBase extends React.Component {
       onTouchEnd,
       onTouchMove,
       onTouchStart,
-      rootRef,
       tabIndex,
       type,
       ...other
@@ -259,7 +258,6 @@ class ButtonBase extends React.Component {
         tabIndex={disabled ? -1 : tabIndex}
         className={className}
         {...buttonProps}
-        ref={rootRef}
         {...other}
       >
         {children}
@@ -370,10 +368,6 @@ ButtonBase.propTypes = {
    * @ignore
    */
   role: PropTypes.string,
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef: PropTypes.func,
   /**
    * @ignore
    */
