@@ -671,7 +671,8 @@ class Slider extends Component {
     const {isRtl} = this.context.muiTheme;
 
     const calculatedAxis = calculateAxis(axis, isRtl);
-
+    
+    if (!this.track) return 0;
     return this.track.getBoundingClientRect()[mainAxisOffsetProperty[calculatedAxis]];
   }
 
