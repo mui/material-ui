@@ -34,10 +34,10 @@ function SimpleMediaCard(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button dense color="primary">
+          <Button size="small" color="primary">
             Share
           </Button>
-          <Button dense color="primary">
+          <Button size="small" color="primary">
             Learn More
           </Button>
         </CardActions>

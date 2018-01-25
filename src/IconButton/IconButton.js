@@ -41,10 +41,6 @@ export const styles = theme => ({
     alignItems: 'inherit',
     justifyContent: 'inherit',
   },
-  icon: {
-    width: '1em',
-    height: '1em',
-  },
 });
 
 /**
@@ -72,9 +68,7 @@ function IconButton(props) {
       <span className={classes.label}>
         {React.Children.map(children, child => {
           if (isMuiElement(child, ['Icon', 'SvgIcon'])) {
-            return React.cloneElement(child, {
-              className: classNames(classes.icon, child.props.className),
-            });
+            return React.cloneElement(child, { fontSize: true });
           }
           return child;
         })}

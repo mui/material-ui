@@ -15,6 +15,7 @@ filename: /src/Icon/Icon.js
 | children | node |  | The name of the icon font ligature. |
 | classes | object |  | Useful to extend the style applied to components. |
 | color | enum:&nbsp;'inherit', 'secondary', 'action', 'disabled', 'error', 'primary'<br> | 'inherit' | The color of the component. It's using the theme palette when that makes sense. |
+| fontSize | bool | false | If `true`, the icon size will be determined by the font-size. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -28,6 +29,7 @@ This property accepts the following keys:
 - `colorAction`
 - `colorDisabled`
 - `colorError`
+- `fontSize`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Icon/Icon.js)

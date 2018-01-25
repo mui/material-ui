@@ -31,6 +31,10 @@ export const styles = theme => ({
   colorError: {
     color: theme.palette.error.main,
   },
+  fontSize: {
+    width: '1em',
+    height: '1em',
+  },
 });
 
 function SvgIcon(props) {
@@ -39,6 +43,7 @@ function SvgIcon(props) {
     classes,
     className: classNameProp,
     color,
+    fontSize,
     nativeColor,
     titleAccess,
     viewBox,
@@ -49,6 +54,7 @@ function SvgIcon(props) {
     classes.root,
     {
       [classes[`color${capitalize(color)}`]]: color !== 'inherit',
+      [classes.fontSize]: fontSize,
     },
     classNameProp,
   );
@@ -87,6 +93,10 @@ SvgIcon.propTypes = {
    */
   color: PropTypes.oneOf(['action', 'disabled', 'error', 'inherit', 'primary', 'secondary']),
   /**
+   * If `true`, the icon size will be determined by the font-size.
+   */
+  fontSize: PropTypes.bool,
+  /**
    * Applies a color attribute to the SVG element.
    */
   nativeColor: PropTypes.string,
@@ -107,6 +117,7 @@ SvgIcon.propTypes = {
 
 SvgIcon.defaultProps = {
   color: 'inherit',
+  fontSize: false,
   viewBox: '0 0 24 24',
 };
 

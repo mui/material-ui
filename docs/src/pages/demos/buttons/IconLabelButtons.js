@@ -40,7 +40,7 @@ function IconLabelButtons(props) {
         <KeyboardVoice className={classes.leftIcon} />
         Talk
       </Button>
-      <Button className={classes.button} raised dense>
+      <Button className={classes.button} raised size="small">
         <Save className={classes.leftIcon} />
         Save
       </Button>

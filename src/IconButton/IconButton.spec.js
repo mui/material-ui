@@ -46,16 +46,12 @@ describe('<IconButton />', () => {
   it('should render Icon children with right classes', () => {
     const childClassName = 'child-woof';
     const iconChild = <Icon className={childClassName} />;
-    const buttonClassName = 'button-woof';
-    const wrapper = shallow(
-      <IconButton classes={{ icon: buttonClassName }}>{iconChild}</IconButton>,
-    );
+    const wrapper = shallow(<IconButton>{iconChild}</IconButton>);
     const label = wrapper.childAt(0);
     const renderedIconChild = label.childAt(0);
-    assert.strictEqual(renderedIconChild.is(Icon), true, 'child should be icon');
+    assert.strictEqual(renderedIconChild.type(), Icon);
     assert.strictEqual(renderedIconChild.hasClass(childClassName), true, 'child should be icon');
-    assert.strictEqual(renderedIconChild.hasClass(buttonClassName), true, 'child should be icon');
-    assert.strictEqual(renderedIconChild.hasClass(classes.icon), true, 'child should be icon');
+    assert.strictEqual(renderedIconChild.props().fontSize, true);
   });
 
   it('should have a ripple by default', () => {

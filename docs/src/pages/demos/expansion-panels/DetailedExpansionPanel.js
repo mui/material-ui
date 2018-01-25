@@ -77,8 +77,8 @@ function DetailedExpansionPanel(props) {
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>
-          <Button dense>Cancel</Button>
-          <Button dense color="primary">
+          <Button size="small">Cancel</Button>
+          <Button size="small" color="primary">
             Save
           </Button>
         </ExpansionPanelActions>
