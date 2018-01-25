@@ -1,6 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import { assert } from 'chai';
+import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import { focusKeyPressed } from '../utils/keyboardFocus';
@@ -533,17 +535,19 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('prop: rootRef', () => {
+  describe('prop: ref', () => {
     it('should be able to get a ref of the root element', () => {
-      const refCallback = spy();
-      const wrapper = mount(<ButtonBase rootRef={refCallback}>Hello</ButtonBase>);
-      assert.strictEqual(refCallback.callCount, 1, 'should call the ref function');
-      refCallback.args[0][0].focus();
-      assert.strictEqual(
-        document.activeElement,
-        wrapper.getDOMNode(),
-        'should be able to use the ref to focus the button',
-      );
+      function ButtonBaseRef(props) {
+        return <ButtonBase ref={props.rootRef} />;
+      }
+      ButtonBaseRef.propTypes = {
+        rootRef: PropTypes.func.isRequired,
+      };
+
+      const ref = spy();
+      mount(<ButtonBaseRef rootRef={ref}>Hello</ButtonBaseRef>);
+      assert.strictEqual(ref.callCount, 1, 'should call the ref function');
+      assert.strictEqual(ReactDOM.findDOMNode(ref.args[0][0]).type, 'button');
     });
   });
 });

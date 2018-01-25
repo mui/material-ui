@@ -1,6 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { spy } from 'sinon';
 import { assert } from 'chai';
+import PropTypes from 'prop-types';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
@@ -95,12 +97,19 @@ describe('<IconButton />', () => {
     });
   });
 
-  describe('prop: buttonRef', () => {
+  describe('prop: ref', () => {
     it('should give a reference on the native button', () => {
+      function IconButtonRef(props) {
+        return <IconButton ref={props.rootRef} />;
+      }
+      IconButtonRef.propTypes = {
+        rootRef: PropTypes.func.isRequired,
+      };
+
       const ref = spy();
-      mount(<IconButton buttonRef={ref} />);
+      mount(<IconButtonRef rootRef={ref} />);
       assert.strictEqual(ref.callCount, 1);
-      assert.strictEqual(ref.args[0][0].type, 'button');
+      assert.strictEqual(ReactDOM.findDOMNode(ref.args[0][0]).type, 'button');
     });
   });
 });

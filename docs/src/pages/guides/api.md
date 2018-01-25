@@ -53,7 +53,7 @@ for instance, exposing the `inputProps` and `InputProps` properties on component
   For instance, exposing a `value` property.
 - their own `xxxRef` property when user might need to perform imperative actions.
   For instance, exposing a `inputRef` property to access the native `input` on the `Input` component.
-  You fill often find a `rootRef` property, this property is applied as a `ref` to the root element of the component
+  It help answering the following question. [How can I access the DOM element?](/getting-started/frequently-asked-questions/#how-can-i-access-the-dom-element-)
 - their own `xxxClassName` property when `classes` isn't enough.
 
 ### Property naming

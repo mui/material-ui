@@ -61,7 +61,6 @@ function TextField(props) {
     onChange,
     placeholder,
     required,
-    rootRef,
     rows,
     rowsMax,
     select,
@@ -105,7 +104,6 @@ function TextField(props) {
       className={className}
       error={error}
       fullWidth={fullWidth}
-      ref={rootRef}
       required={required}
       {...other}
     >
@@ -233,10 +231,6 @@ TextField.propTypes = {
    * If `true`, the label is displayed as required.
    */
   required: PropTypes.bool,
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef: PropTypes.func,
   /**
    * Number of rows to display when multiline option is set to true.
    */

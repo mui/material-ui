@@ -52,7 +52,7 @@ export const styles = theme => ({
  * regarding the available icon options.
  */
 function IconButton(props) {
-  const { buttonRef, children, classes, className, color, disabled, rootRef, ...other } = props;
+  const { children, classes, className, color, disabled, ...other } = props;
 
   return (
     <ButtonBase
@@ -67,8 +67,6 @@ function IconButton(props) {
       centerRipple
       focusRipple
       disabled={disabled}
-      rootRef={buttonRef}
-      ref={rootRef}
       {...other}
     >
       <span className={classes.label}>
@@ -86,10 +84,6 @@ function IconButton(props) {
 }
 
 IconButton.propTypes = {
-  /**
-   * Use that property to pass a ref callback to the native button component.
-   */
-  buttonRef: PropTypes.func,
   /**
    * The icon element.
    */
@@ -114,10 +108,6 @@ IconButton.propTypes = {
    * If `true`, the ripple will be disabled.
    */
   disableRipple: PropTypes.bool,
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef: PropTypes.func,
 };
 
 IconButton.defaultProps = {
