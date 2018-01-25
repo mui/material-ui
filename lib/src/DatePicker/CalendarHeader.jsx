@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, IconButton, Typography } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
+import Typography from 'material-ui/Typography';
+import IconButton from 'material-ui/IconButton';
 import * as defaultUtils from '../utils/utils';
 
 export const CalendarHeader = (props) => {
@@ -36,9 +38,10 @@ export const CalendarHeader = (props) => {
       </div>
 
       <div className={classes.daysHeader}>
-        {utils.getWeekdays().map(day => (
+        {utils.getWeekdays().map((day, index) => (
           <Typography
-            key={day}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
             type="caption"
             className={classes.dayLabel}
           >

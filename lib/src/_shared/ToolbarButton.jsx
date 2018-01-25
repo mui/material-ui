@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { withStyles, Typography } from 'material-ui';
+import Typography from 'material-ui/Typography';
+import withStyles from 'material-ui/styles/withStyles';
 
 const ToolbarButton = (props) => {
   const {
@@ -34,7 +35,7 @@ ToolbarButton.defaultProps = {
 const styles = theme => ({
   toolbarBtn: {
     cursor: 'pointer',
-    color: theme.palette.common.lightWhite,
+    color: 'rgba(255, 255, 255, 0.54)',
   },
   toolbarBtnSelected: {
     color: theme.palette.common.white,

@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
-import { IconButton, withStyles } from 'material-ui';
 import classnames from 'classnames';
+import withStyles from 'material-ui/styles/withStyles';
+import IconButton from 'material-ui/IconButton';
 
 class Day extends PureComponent {
   static propTypes = {
@@ -59,12 +59,12 @@ const styles = theme => ({
     pointerEvents: 'none',
   },
   current: {
-    color: theme.palette.primary[500],
+    color: theme.palette.primary.main,
     fontWeight: 600,
   },
   selected: {
     color: theme.palette.common.white,
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary.main,
     fontWeight: theme.typography.fontWeightMedium,
   },
   disabled: {

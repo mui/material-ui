@@ -6,7 +6,7 @@ There is a little instruction of how to run the demo locally using `npm link`
 Just run this command from root and you will be able to run demo.
 
 ```sh
-cd lib && npm link && cd docs && npm link material-ui-pickers
+cd lib && npm link && cd ../docs && npm link material-ui-pickers
 ```
 
 Thats it, your local build is linked to demo project!

@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
-import { withStyles, Typography } from 'material-ui';
 import classnames from 'classnames';
+import withStyles from 'material-ui/styles/withStyles';
+import Typography from 'material-ui/Typography';
 
 class Year extends PureComponent {
   static propTypes = {
@@ -58,7 +58,7 @@ const styles = theme => ({
     cursor: 'pointer',
     outline: 'none',
     '&:focus': {
-      color: theme.palette.primary[500],
+      color: theme.palette.primary.main,
       fontWeight: theme.typography.fontWeightMedium,
     },
   },

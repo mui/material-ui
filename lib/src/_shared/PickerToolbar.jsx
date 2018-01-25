@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Toolbar, withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
+import Toolbar from 'material-ui/Toolbar';
 
 const PickerToolbar = (props) => {
   const {
@@ -33,7 +34,7 @@ const styles = theme => ({
     justifyContent: 'center',
     height: 100,
     backgroundColor: theme.palette.type === 'light'
-      ? theme.palette.primary[500]
+      ? theme.palette.primary.main
       : theme.palette.background.default,
   },
 });

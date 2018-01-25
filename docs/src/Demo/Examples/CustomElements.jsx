@@ -76,7 +76,7 @@ class CustomElements extends Component {
     return (
       <div className={wrapperClassName}>
         <IconButton className={dayClassName}>
-          <span> { date.format('DD')} </span>
+          <span> { date.format('D')} </span>
         </IconButton>
       </div>
     );
@@ -144,7 +144,7 @@ const styles = theme => ({
     color: '#676767',
   },
   highlight: {
-    background: theme.palette.primary[500],
+    background: theme.palette.primary.main,
     color: theme.palette.common.white,
   },
   firstHighlight: {

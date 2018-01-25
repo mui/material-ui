@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-beta.12",
+  "version": "1.0.0-beta.13",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "build/dist/material-ui-pickers.cjs.js",
@@ -32,19 +32,20 @@
     "email": "dmtr.kovalenko@outlook.com"
   },
   "peerDependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "prop-types": "^15.6.0",
-    "material-ui": "^1.0.0-beta.24",
     "classnames": "^2.2.5",
-    "moment": "^2.19.2"
+    "material-ui": "^1.0.0-beta.30",
+    "moment": "^2.19.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "dependencies": {
     "moment-range": "^3.0.3",
     "react-text-mask": "^5.0.2"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest && npm run typescript",
+    "typescript": "tsc -p tsconfig.json",
     "start": "cross-env NODE_ENV=development rollup --config --watch",
     "prebuild": "rimraf build",
     "build:copy": "node copy.js",
@@ -59,6 +60,11 @@
     "lint-fix": "npm run lint -- --fix"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.3",
+    "@types/jss": "^9.3.0",
+    "@types/moment": "^2.13.0",
+    "@types/prop-types": "^15.5.2",
+    "@types/react": "^16.0.34",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^8.0.1",
@@ -83,7 +89,7 @@
     "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
     "jest": "^21.2.1",
-    "material-ui": "^1.0.0-beta.26",
+    "material-ui": "^1.0.0-beta.30",
     "moment": "^2.19.2",
     "np": "^2.18.3",
     "prop-types": "^15.6.0",
@@ -93,7 +99,8 @@
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.4",
     "rollup-plugin-filesize": "^1.5.0",
-    "rollup-plugin-node-resolve": "^3.0.0"
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "typescript": "^2.6.2"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",

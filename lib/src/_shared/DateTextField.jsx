@@ -2,14 +2,20 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { TextField, InputAdornment, IconButton, Icon } from 'material-ui';
+import Icon from 'material-ui/Icon';
+import InputAdornment from 'material-ui/Input/InputAdornment';
+import TextField from 'material-ui/TextField';
+import IconButton from 'material-ui/IconButton';
+import withStyles from 'material-ui/styles/withStyles';
 
+import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
 
 
 /* eslint-disable react/sort-comp */
-export default class DateTextField extends PureComponent {
+class DateTextField extends PureComponent {
   static propTypes = {
+    classes: PropTypes.shape({}).isRequired,
     value: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string,
@@ -17,6 +23,12 @@ export default class DateTextField extends PureComponent {
       PropTypes.instanceOf(Date),
     ]),
     mask: PropTypes.any,
+    minDate: DomainPropTypes.date,
+    minDateMessage: PropTypes.string,
+    maxDate: DomainPropTypes.date,
+    maxDateMessage: PropTypes.string,
+    disablePast: PropTypes.bool,
+    disableFuture: PropTypes.bool,
     disabled: PropTypes.bool,
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
@@ -30,6 +42,7 @@ export default class DateTextField extends PureComponent {
     keyboardIcon: PropTypes.node,
     invalidDateMessage: PropTypes.string,
     clearable: PropTypes.bool,
+    TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }
 
   static defaultProps = {
@@ -46,6 +59,13 @@ export default class DateTextField extends PureComponent {
     invalidDateMessage: 'Invalid Date Format',
     clearable: false,
     onClear: undefined,
+    disablePast: false,
+    disableFuture: false,
+    minDate: '1900-01-01',
+    maxDate: '2100-01-01',
+    minDateMessage: 'Invalid Date',
+    maxDateMessage: 'Invalid Date',
+    TextFieldComponent: TextField,
   }
 
   getDisplayDate = (props) => {
@@ -87,6 +107,40 @@ export default class DateTextField extends PureComponent {
     }
   }
 
+  getError = (value) => {
+    const {
+      maxDate,
+      minDate,
+      disablePast,
+      disableFuture,
+      maxDateMessage,
+      minDateMessage,
+      invalidDateMessage,
+    } = this.props;
+
+    const getDate = date => moment(date).toDate();
+
+    if (!value.isValid()) {
+      return invalidDateMessage;
+    }
+
+    if (
+      (maxDate && value.isAfter(getDate(maxDate))) ||
+      (disableFuture && value.isAfter(moment(), 'day'))
+    ) {
+      return maxDateMessage;
+    }
+
+    if (
+      (minDate && value.isBefore(getDate(minDate))) ||
+      (disablePast && value.isBefore(moment(), 'day'))
+    ) {
+      return minDateMessage;
+    }
+
+    return '';
+  }
+
   handleBlur = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -95,7 +149,6 @@ export default class DateTextField extends PureComponent {
   handleChange = (e) => {
     const {
       format,
-      invalidDateMessage,
       clearable,
       onClear,
     } = this.props;
@@ -112,7 +165,7 @@ export default class DateTextField extends PureComponent {
 
     const oldValue = moment(this.state.value);
     const newValue = moment(e.target.value, format, true);
-    const error = newValue.isValid() ? '' : invalidDateMessage;
+    const error = this.getError(newValue);
 
     this.setState({
       displayValue: e.target.value,
@@ -156,6 +209,7 @@ export default class DateTextField extends PureComponent {
   render() {
     const {
       format,
+      classes,
       disabled,
       onClick,
       invalidLabel,
@@ -169,6 +223,13 @@ export default class DateTextField extends PureComponent {
       mask,
       InputProps,
       keyboardIcon,
+      maxDate,
+      minDate,
+      disablePast,
+      disableFuture,
+      maxDateMessage,
+      minDateMessage,
+      TextFieldComponent,
       ...other
     } = this.props;
     const { displayValue, error } = this.state;
@@ -179,6 +240,7 @@ export default class DateTextField extends PureComponent {
         mask: value === null ? null : mask,
         readOnly: !keyboard,
       },
+      className: classes.input,
     };
 
     if (keyboard) {
@@ -190,7 +252,7 @@ export default class DateTextField extends PureComponent {
     }
 
     return (
-      <TextField
+      <TextFieldComponent
         onClick={this.handleFocus}
         error={!!error}
         helperText={error}
@@ -205,3 +267,11 @@ export default class DateTextField extends PureComponent {
     );
   }
 }
+
+const styles = {
+  input: {
+    alignItems: 'flex-end',
+  },
+};
+
+export default withStyles(styles)(DateTextField);
