@@ -164,7 +164,6 @@ export default function createPalette(palette: Object) {
       // E.g., shift from Red 500 to Red 300 or Red 700.
       tonalOffset,
       // The light and dark type object.
-      types,
       ...types[type],
     },
     other,
