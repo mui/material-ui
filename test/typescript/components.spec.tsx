@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   AppBar,
   Avatar,
+  Backdrop,
   Badge,
   BottomNavigation,
   BottomNavigationAction,
@@ -15,17 +16,23 @@ import {
   Chip,
   CircularProgress,
   ClickAwayListener,
+  Collapse,
   Dialog,
   DialogTitle,
   Divider,
   Drawer,
   ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
   ExpansionPanelActions,
+  ExpansionPanelDetails,
+  ExpansionPanelSummary,
+  Fade,
   FormControlLabel,
   FormGroup,
+  Grid,
+  GridList,
+  GridListTile,
   IconButton,
+  Input,
   LinearProgress,
   List,
   ListItem,
@@ -34,28 +41,27 @@ import {
   ListItemText,
   Menu,
   MenuItem,
+  MobileStepper,
   Paper,
+  Select,
   Snackbar,
   SnackbarContent,
   Switch,
   Tab,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
   Tabs,
   TextField,
   Toolbar,
   Tooltip,
   Typography,
-  Grid,
-  Select,
-  Input,
 } from '../../src';
-import Collapse from '../../src/transitions/Collapse';
-import GridList from '../../src/GridList';
-import MobileStepper from '../../src/MobileStepper/MobileStepper';
-import Table, { TableBody, TableCell, TableHead, TableRow } from '../../src/Table';
 import { withStyles, StyleRulesCallback } from '../../src/styles';
 import { withMobileDialog, DialogProps } from '../../src/Dialog';
 import { WithStyles } from '../../src/styles/withStyles';
-import GridListTile from '../../src/GridList/GridListTile';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -752,3 +758,11 @@ const ClickAwayListenerComponentTest = () => (
     <div />
   </ClickAwayListener>
 );
+
+const FadeTest = () => (
+  <Fade in={false}>
+    <div />
+  </Fade>
+);
+
+const BackdropTest = () => <Backdrop open onTouchMove={() => {}} />;

@@ -43,6 +43,7 @@ export {
   ListSubheader,
 } from './List';
 export { default as Menu, MenuItem, MenuList } from './Menu';
+export { default as MobileStepper } from './MobileStepper';
 export { default as Modal, Backdrop, ModalManager } from './Modal';
 export { default as Paper } from './Paper';
 export { default as Popover } from './Popover';
