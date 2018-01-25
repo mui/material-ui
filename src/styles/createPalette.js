@@ -57,8 +57,8 @@ export const dark = {
   },
   action: {
     active: common.white,
-    hover: 'rgba(255, 255, 255, 0.14)',
-    selected: 'rgba(255, 255, 255, 0.8)',
+    hover: 'rgba(255, 255, 255, 0.2)',
+    selected: 'rgba(255, 255, 255, 0.1)',
     disabled: 'rgba(255, 255, 255, 0.3)',
     disabledBackground: 'rgba(255, 255, 255, 0.12)',
   },
@@ -152,7 +152,7 @@ export default function createPalette(palette: Object) {
       secondary,
       // The colors used to represent interface elements that the user should be made aware of.
       error,
-      // The grey color.
+      // The grey colors.
       grey,
       // Used by `getContrastText()` to maximize the contrast between the background and
       // the text.
