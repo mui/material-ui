@@ -60,9 +60,9 @@ class Demo extends Component {
             </Tooltip>
             <Tooltip title="Github" enterDelay={300}>
               <IconButton
-                  color="inherit"
-                  component="a"
-                  href="https://github.com/dmtrKovalenko/material-ui-pickers"
+                color="inherit"
+                component="a"
+                href="https://github.com/dmtrKovalenko/material-ui-pickers"
               >
                 <Github color="inherit" />
               </IconButton>
