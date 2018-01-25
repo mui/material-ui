@@ -17,4 +17,9 @@ If you encounter this issue, you need to:
 
 Let's see an example:
 
+```jsx
+const WrappedIcon = props => <Icon {...props} />;
+WrappedIcon.muiName = 'Icon';
+```
+
 {{"demo": "pages/guides/Composition.js"}}
