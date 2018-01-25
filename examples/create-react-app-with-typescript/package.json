@@ -6,7 +6,9 @@
     "material-ui": "next",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts-ts": "latest"
+    "react-scripts-ts": "latest",
+    "typescript": "latest"
+
   },
   "devDependencies": {
     "@types/jest": "latest",
