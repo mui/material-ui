@@ -95,7 +95,7 @@ describe('<Input />', () => {
     });
 
     // IE11 bug
-    it('should not respond the the focus event when disabled', () => {
+    it('should not respond the focus event when disabled', () => {
       const wrapper = shallow(<Input disabled />);
       const instance = wrapper.instance();
       const event = {

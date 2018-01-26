@@ -79,7 +79,7 @@ palette: {
 },
 ```
 
-This example illustrates how you could recreate the the default palette values:
+This example illustrates how you could recreate the default palette values:
 
 ```jsx
 import { createMuiTheme } from 'material-ui/styles';

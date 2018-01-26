@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
+import ownerDocument from 'dom-helpers/ownerDocument';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
@@ -247,6 +248,7 @@ class Popover extends React.Component {
       anchorReference,
       children,
       classes,
+      container: containerProp,
       elevation,
       getContentAnchorEl,
       marginThreshold,
@@ -266,15 +268,19 @@ class Popover extends React.Component {
       ...other
     } = this.props;
 
-    const transitionProps = {};
+    // If the container prop is provided, use that
+    // If the anchorEl prop is provided, use its parent body element as the container
+    // If neither are provided let the Modal take care of choosing the container
+    const container = containerProp || (anchorEl ? ownerDocument(anchorEl).body : undefined);
 
+    const transitionProps = {};
     // The provided transition might not support the auto timeout value.
     if (TransitionProp === Grow) {
       transitionProps.timeout = transitionDuration;
     }
 
     return (
-      <Modal open={open} BackdropProps={{ invisible: true }} {...other}>
+      <Modal container={container} open={open} BackdropProps={{ invisible: true }} {...other}>
         <TransitionProp
           appear
           in={open}
@@ -359,6 +365,13 @@ Popover.propTypes = {
    * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * A node, component instance, or function that returns either.
+   * The `container` will passed to the Modal component.
+   * By default, it's using the body of the anchorEl's top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  container: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**
    * The elevation of the popover.
    */
