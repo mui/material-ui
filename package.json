@@ -92,7 +92,6 @@
     "warning": "^3.0.0"
   },
   "devDependencies": {
-    "@rosskevin/react-docgen": "^3.0.0-beta9",
     "@types/enzyme": "^3.1.4",
     "@types/react": "16.0.34",
     "app-module-path": "^2.2.0",
@@ -168,6 +167,7 @@
     "raw-loader": "^0.5.1",
     "react": "^16.1.1",
     "react-autosuggest": "^9.3.2",
+    "react-docgen": "^3.0.0-beta10",
     "react-dom": "^16.1.1",
     "react-inspector": "^2.2.2",
     "react-number-format": "^3.0.2",
