@@ -4,12 +4,18 @@ import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
 import { createMuiTheme, createGenerateClassName, jssPreset } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
+import pink from 'material-ui/colors/pink';
+import { darken } from 'material-ui/styles/colorManipulator';
 
 export function getTheme(theme) {
   return createMuiTheme({
     direction: theme.direction,
     palette: {
       primary: blue,
+      secondary: {
+        // Darken so we reach the AA contrast ratio level.
+        main: darken(pink.A400, 0.08),
+      },
       type: theme.paletteType,
     },
   });
