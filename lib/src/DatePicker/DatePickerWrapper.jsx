@@ -86,6 +86,10 @@ export default class DatePickerWrapper extends PickerBase {
       shouldDisableDate,
       minDateMessage,
       maxDateMessage,
+      minDate,
+      maxDate,
+      disablePast,
+      disableFuture,
       ...other
     } = this.props;
 
@@ -113,6 +117,10 @@ export default class DatePickerWrapper extends PickerBase {
           rightArrowIcon={rightArrowIcon}
           renderDay={renderDay}
           utils={utils}
+          minDate={minDate}
+          maxDate={maxDate}
+          disablePast={disablePast}
+          disableFuture={disableFuture}
           shouldDisableDate={shouldDisableDate}
         />
       </ModalWrapper>

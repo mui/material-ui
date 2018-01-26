@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-no-duplicate-props */
+/* eslint-disable react/sort-comp */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -11,8 +11,6 @@ import withStyles from 'material-ui/styles/withStyles';
 import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
 
-
-/* eslint-disable react/sort-comp */
 class DateTextField extends PureComponent {
   static propTypes = {
     classes: PropTypes.shape({}).isRequired,
@@ -63,18 +61,14 @@ class DateTextField extends PureComponent {
     disableFuture: false,
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
-    minDateMessage: 'Invalid Date',
-    maxDateMessage: 'Invalid Date',
+    minDateMessage: 'Date should not be before minimal date',
+    maxDateMessage: 'Date should not be after maximal date',
     TextFieldComponent: TextField,
   }
 
   getDisplayDate = (props) => {
     const {
-      value,
-      format,
-      invalidLabel,
-      emptyLabel,
-      labelFunc,
+      value, format, invalidLabel, emptyLabel, labelFunc,
     } = props;
 
     const isEmpty = value === null;
@@ -93,20 +87,6 @@ class DateTextField extends PureComponent {
       : invalidLabel;
   }
 
-  updateState = (props = this.props) => ({
-    value: props.value,
-    displayValue: this.getDisplayDate(props),
-    error: '',
-  })
-
-  state = this.updateState()
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.value) {
-      this.setState(this.updateState(nextProps));
-    }
-  }
-
   getError = (value) => {
     const {
       maxDate,
@@ -118,27 +98,39 @@ class DateTextField extends PureComponent {
       invalidDateMessage,
     } = this.props;
 
-    const getDate = date => moment(date).toDate();
-
     if (!value.isValid()) {
       return invalidDateMessage;
     }
 
     if (
-      (maxDate && value.isAfter(getDate(maxDate))) ||
-      (disableFuture && value.isAfter(moment(), 'day'))
+      (maxDate && value.isAfter(maxDate)) ||
+      (disableFuture && value.isAfter(moment().endOf('day')))
     ) {
       return maxDateMessage;
     }
 
     if (
-      (minDate && value.isBefore(getDate(minDate))) ||
-      (disablePast && value.isBefore(moment(), 'day'))
+      (minDate && value.isBefore(minDate)) ||
+      (disablePast && value.isBefore(moment().startOf('day')))
     ) {
       return minDateMessage;
     }
 
     return '';
+  }
+
+  updateState = (props = this.props) => ({
+    value: props.value,
+    displayValue: this.getDisplayDate(props),
+    error: this.getError(moment(props.value)),
+  })
+
+  state = this.updateState()
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.state.value) {
+      this.setState(this.updateState(nextProps));
+    }
   }
 
   handleBlur = (e) => {
