@@ -274,7 +274,6 @@ class Popover extends React.Component {
     const container = containerProp || (anchorEl ? ownerDocument(anchorEl).body : undefined);
 
     const transitionProps = {};
-
     // The provided transition might not support the auto timeout value.
     if (TransitionProp === Grow) {
       transitionProps.timeout = transitionDuration;
@@ -369,6 +368,8 @@ Popover.propTypes = {
   /**
    * A node, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
+   * By default, it's using the body of the anchorEl's top-level document object,
+   * so it's simply `document.body` most of the time.
    */
   container: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**

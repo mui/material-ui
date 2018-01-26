@@ -443,11 +443,12 @@ describe('<Popover />', () => {
 
     it('should not pass container to Modal if container or anchorEl props are notprovided', () => {
       const shallowWrapper = shallow(<Popover open />);
-      assert.isUndefined(
+      assert.strictEqual(
         shallowWrapper
           .dive()
           .find('Modal')
           .props().container,
+        undefined,
         'should not pass a container prop if neither container or anchorEl are provided',
       );
     });

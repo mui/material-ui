@@ -19,6 +19,7 @@ filename: /src/Popover/Popover.js
 | anchorReference | enum:&nbsp;'anchorEl'&nbsp;&#124;<br>&nbsp;'anchorPosition'<br> | 'anchorEl' |  |
 | children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
+| container | union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br> |  | A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it's using the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time. |
 | elevation | number | 8 | The elevation of the popover. |
 | getContentAnchorEl | func |  | This function is called in order to retrieve the content anchor element. It's the opposite of the `anchorEl` property. The content anchor element should be an element inside the popover. It's used to correctly scroll and set the position of the popover. The positioning strategy tries to make the content anchor element just above the anchor element. |
 | marginThreshold | number | 16 | Specifies how close to the edge of the window the popover can appear. |
