@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { DateTimePicker } from 'material-ui-pickers';
 import { IconButton, Typography, Icon, InputAdornment } from 'material-ui';
+import moment from 'moment';
 
 export default class BasicUsage extends Component {
   state = {
@@ -23,6 +24,7 @@ export default class BasicUsage extends Component {
 
           <DateTimePicker
             value={selectedDate}
+            disablePast
             onChange={this.handleDateChange}
             leftArrowIcon={<Icon> keyboard_arrow_left </Icon>}
             rightArrowIcon={<Icon> keyboard_arrow_right </Icon>}

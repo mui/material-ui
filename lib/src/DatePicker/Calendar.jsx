@@ -15,7 +15,7 @@ import Day from './Day';
 
 const moment = extendMoment(Moment);
 
-
+/* eslint-disable no-unused-expressions */
 export class Calendar extends Component {
   static propTypes = {
     date: PropTypes.object.isRequired,
@@ -70,39 +70,6 @@ export class Calendar extends Component {
     this.setState({ currentMonth: newMonth });
   };
 
-  handleKeyDown = (event) => {
-    const { onChange, theme, date } = this.props;
-
-    switch (keycode(event)) {
-      case 'up':
-        onChange(date.clone().subtract(7, 'days'));
-        break;
-      case 'down':
-        onChange(date.clone().add(7, 'days'));
-        break;
-      case 'left':
-        if (theme.direction === 'ltr') {
-          onChange(date.clone().subtract(1, 'day'));
-        } else {
-          onChange(date.clone().add(1, 'day'));
-        }
-        break;
-      case 'right':
-        if (theme.direction === 'ltr') {
-          onChange(date.clone().add(1, 'day'));
-        } else {
-          onChange(date.clone().subtract(1, 'day'));
-        }
-        break;
-      default:
-        // if keycode is not handled, stop execution
-        return;
-    }
-
-    // if event was handled prevent other side effects (e.g. page scroll)
-    event.preventDefault();
-  };
-
   validateMinMaxDate = (day) => {
     const { minDate, maxDate } = this.props;
     const startOfDay = date => moment(date).startOf('day');
@@ -121,6 +88,41 @@ export class Calendar extends Component {
       this.validateMinMaxDate(day) ||
       shouldDisableDate(day)
     );
+  };
+
+  moveToDay = (day) => {
+    if (day && !this.shouldDisableDate(day)) {
+      this.props.onChange(day);
+    }
+  }
+
+  handleKeyDown = (event) => {
+    const { theme, date } = this.props;
+
+    switch (keycode(event)) {
+      case 'up':
+        this.moveToDay(date.clone().subtract(7, 'days'));
+        break;
+      case 'down':
+        this.moveToDay(date.clone().add(7, 'days'));
+        break;
+      case 'left':
+        theme.direction === 'ltr'
+          ? this.moveToDay(date.clone().subtract(1, 'day'))
+          : this.moveToDay(date.clone().add(1, 'day'));
+        break;
+      case 'right':
+        theme.direction === 'ltr'
+          ? this.moveToDay(date.clone().add(1, 'day'))
+          : this.moveToDay(date.clone().subtract(1, 'day'));
+        break;
+      default:
+        // if keycode is not handled, stop execution
+        return;
+    }
+
+    // if event was handled prevent other side effects (e.g. page scroll)
+    event.preventDefault();
   };
 
   renderWeeks = () => {
