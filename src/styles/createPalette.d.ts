@@ -55,10 +55,6 @@ export interface Palette {
   secondary: PaletteColor;
   error: PaletteColor;
   grey: Color;
-  types: {
-    dark: TypeObject;
-    light: TypeObject;
-  };
   text: TypeText;
   divider: string;
   action: TypeAction;
@@ -76,10 +72,6 @@ export interface PaletteOptions {
   secondary?: PaletteColorOptions;
   error?: PaletteColorOptions;
   grey?: ColorPartial;
-  types?: {
-    dark?: PartialTypeObject;
-    light?: PartialTypeObject;
-  };
   text?: Partial<TypeText>;
   divider?: string;
   action?: Partial<TypeAction>;

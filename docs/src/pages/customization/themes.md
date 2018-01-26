@@ -136,6 +136,19 @@ Lacking imagination? The Material Design team has built an awesome [palette conf
 ### Dark/light theme
 
 You can make the theme dark by setting `type` to `dark`.
+While it's only a single property value change, internally it modifies the value of the following keys:
+- `palette.text`
+- `palette.divider`
+- `palette.background`
+- `palette.action`
+
+```jsx
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+});
+```
 
 {{"demo": "pages/customization/DarkTheme.js", "hideEditButton": true}}
 
