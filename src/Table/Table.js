@@ -214,12 +214,14 @@ class Table extends Component {
     if (this.props.onRowHoverExit) this.props.onRowHoverExit(rowNumber);
   };
 
-  onRowSelection = (selectedRows) => {
+  onRowSelection = (selectedRows, allRowsSelected = false) => {
     if (this.state.allRowsSelected) {
       this.setState({allRowsSelected: false});
     }
 
-    if (this.props.onRowSelection) {
+    if (allRowsSelected) {
+      this.onSelectAll();
+    } else if (this.props.onRowSelection) {
       this.props.onRowSelection(selectedRows);
     }
   };

@@ -345,7 +345,10 @@ class TableBody extends Component {
     }
 
     if (this.props.onRowSelection) {
-      this.props.onRowSelection(this.flattenRanges(selectedRows));
+      this.props.onRowSelection(
+        this.flattenRanges(selectedRows),
+        this.flattenRanges(selectedRows).length === this.props.children.length
+      );
     }
   }
 
