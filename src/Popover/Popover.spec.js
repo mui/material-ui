@@ -300,7 +300,7 @@ describe('<Popover />', () => {
     let expectPopover;
 
     before(() => {
-      openPopover = anchorOrigin => {
+      openPopover = (anchorOrigin, renderShallow) => {
         return new Promise(resolve => {
           if (!anchorEl) {
             anchorEl = window.document.createElement('div');
@@ -314,7 +314,8 @@ describe('<Popover />', () => {
             left: '100px',
           });
           window.document.body.appendChild(anchorEl);
-          wrapper = mount(
+
+          const component = (
             <Popover
               {...defaultProps}
               anchorEl={anchorEl}
@@ -326,9 +327,14 @@ describe('<Popover />', () => {
               }}
             >
               <div />
-            </Popover>,
+            </Popover>
           );
+          wrapper = renderShallow ? shallow(component) : mount(component);
           wrapper.setProps({ open: true });
+
+          if (renderShallow) {
+            resolve();
+          }
         });
       };
 
@@ -407,6 +413,43 @@ describe('<Popover />', () => {
         const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
         expectPopover(expectedTop, expectedLeft);
       });
+    });
+
+    it('should pass through container prop to Modal if both container and anchorEl props are provided', () => {
+      const container = {};
+      const wrapper = shallow(<Popover container={container} open />);
+      assert.strictEqual(
+        wrapper
+          .dive()
+          .find('Modal')
+          .props().container,
+        container,
+        'should pass through container prop if both container and anchorEl props are provided',
+      );
+    });
+
+    it("should use anchorEl's parent body as Modal container if container prop not provided", () => {
+      return openPopover(undefined, true).then(() => {
+        assert.strictEqual(
+          wrapper
+            .dive()
+            .find('Modal')
+            .props().container,
+          window.document.body,
+          "should use anchorEl's parent body as Modal container",
+        );
+      });
+    });
+
+    it('should not pass a container prop to Modal if neither of container or anchorEl props are provided', () => {
+      const wrapper = shallow(<Popover open />); 
+      assert.isUndefined(
+        wrapper
+          .dive()
+          .find('Modal')
+          .props().container,
+        'should pass through container prop if both container and anchorEl props are provided',
+      );
     });
   });
 
