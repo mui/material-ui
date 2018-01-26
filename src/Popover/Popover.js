@@ -367,6 +367,11 @@ Popover.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
+   * A node, component instance, or function that returns either.
+   * The `container` will passed to the Modal component.
+   */
+  container: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  /**
    * The elevation of the popover.
    */
   elevation: PropTypes.number,
