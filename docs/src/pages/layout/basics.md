@@ -17,7 +17,12 @@ Each breakpoint matches with a *fixed* screen width:
 - **xl**, xlarge: 1920px or larger
 
 These values can always be customized.
-You will find them in the theme under the [`breakpoints.values`](/customization/theme-default?expend-path=$.breakpoints.values) path.
+You will find them in the theme, in the [`breakpoints.values`](/customization/theme-default?expend-path=$.breakpoints.values) object.
+
+The breakpoints are used internally in various components to make them responsive,
+but you can also take advantage of them
+for controlling the layout of your application through the [Grid](/layout/grid) and
+[Hidden](/layout/hidden) components.
 
 ## z-index
 

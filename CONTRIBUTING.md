@@ -69,7 +69,7 @@ For example, let say you want to add new demos for buttons component, then you h
 
 #### 1. Add a new React component file under the related directory.
 
-In this case, I'm gonna add the new file to the following directory:
+In this case, I'm going to add the new file to the following directory:
 ```
 docs/src/pages/demos/buttons/
 ```
@@ -78,7 +78,7 @@ And let's give it a name: `SuperButtons.js`.
 #### 2. Edit the page Markdown file.
 
 The Markdown file is the source for the website documentation. So, whatever you wrote there will be reflected on the website.
-In this case, the file you need to edit is `docs/src/pages/demos/buttons/buttons.md`, and I'm gonna add some description about SuperButtons.
+In this case, the file you need to edit is `docs/src/pages/demos/buttons/buttons.md`, and I'm going to add a description about SuperButtons.
 
 ```diff
 + ### Super buttons

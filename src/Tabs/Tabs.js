@@ -366,11 +366,11 @@ class Tabs extends React.Component {
 
 Tabs.propTypes = {
   /**
-   * This is callback property. It's called by the component on mount.
+   * Callback fired when the component mounts.
    * This is useful when you want to trigger an action programmatically.
-   * It currently only supports updateIndicator() action.
+   * It currently only supports `updateIndicator()` action.
    *
-   * @param {object} actions This object contains all posible actions
+   * @param {object} actions This object contains all possible actions
    * that can be triggered programmatically.
    */
   action: PropTypes.func,

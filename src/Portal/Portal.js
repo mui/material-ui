@@ -16,7 +16,7 @@ function getOwnerDocument(element) {
 /**
  * This component shares many concepts with
  * [react-overlays](https://react-bootstrap.github.io/react-overlays/#portals)
- * But has been fork in order to fix some bugs, reduce the number of dependencies
+ * But has been forked in order to fix some bugs, reduce the number of dependencies
  * and take the control of our destiny.
  */
 class Portal extends React.Component {

@@ -100,15 +100,15 @@ describe('utils/colorManipulator', () => {
   });
 
   describe('getContrastRatio', () => {
-    it('returns a ratio black : white', () => {
+    it('returns a ratio for black : white', () => {
       assert.strictEqual(getContrastRatio('#000', '#FFF'), 21);
     });
 
-    it('returns a ratio black : black', () => {
+    it('returns a ratio for black : black', () => {
       assert.strictEqual(getContrastRatio('#000', '#000'), 1);
     });
 
-    it('returns a ratio white : white', () => {
+    it('returns a ratio for white : white', () => {
       assert.strictEqual(getContrastRatio('#FFF', '#FFF'), 1);
     });
 
