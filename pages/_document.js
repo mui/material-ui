@@ -1,10 +1,18 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import CleanCSS from 'clean-css';
+import postcss from 'postcss';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
 import getPageContext from 'docs/src/modules/styles/getPageContext';
 import config from 'docs/src/config';
 
-const cleanCSS = new CleanCSS();
+// You can find a benchmark of the available CSS minifiers under
+// https://github.com/GoalSmashers/css-minification-benchmark
+// We have found that clean-css is faster than cssnano but the output is larger.
+// Waiting for https://github.com/cssinjs/jss/issues/279
+// 4% slower but 12% smaller output than doing it in a single step.
+const prefixer = postcss([autoprefixer]);
+const minifier = postcss([cssnano]);
 
 class MyDocument extends Document {
   render() {
@@ -79,7 +87,7 @@ gtag('js', new Date());
   }
 }
 
-MyDocument.getInitialProps = ctx => {
+MyDocument.getInitialProps = async ctx => {
   // Resolution order
   //
   // On the server:
@@ -105,7 +113,10 @@ MyDocument.getInitialProps = ctx => {
 
   let css = pageContext.sheetsRegistry.toString();
   if (process.env.NODE_ENV === 'production') {
-    css = cleanCSS.minify(css).styles;
+    const result1 = await prefixer.process(css);
+    css = result1.css;
+    const result2 = await minifier.process(css);
+    css = result2.css;
   }
 
   return {
