@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react": "*",
+    "@types/react-dom": "*",
     "material-ui": "next",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts-ts": "latest"
   },
   "devDependencies": {
-    "@types/jest": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest"
+    "@types/jest": "*",
+    "@types/node": "*",
+    "typescript": "latest"
   },
   "scripts": {
     "start": "react-scripts-ts start",
