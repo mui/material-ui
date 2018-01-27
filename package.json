@@ -93,7 +93,7 @@
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.4",
-    "@types/react": "16.0.34",
+    "@types/react": "16.0.35",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "autosuggest-highlight": "^3.1.1",
@@ -137,7 +137,7 @@
     "eventsource-polyfill": "^0.9.6",
     "fg-loadcss": "^2.0.1",
     "file-loader": "^1.1.5",
-    "flow-bin": "^0.62.0",
+    "flow-bin": "0.62.0",
     "flow-copy-source": "^1.2.1",
     "flow-typed": "^2.2.3",
     "fs-extra": "^5.0.0",
@@ -156,7 +156,7 @@
     "karma-webpack": "^2.0.6",
     "lz-string": "^1.4.4",
     "marked": "^0.3.12",
-    "mocha": "^4.0.1",
+    "mocha": "^5.0.0",
     "next": "^4.1.4",
     "nprogress": "^0.2.0",
     "nyc": "^11.3.0",
@@ -190,7 +190,7 @@
     "webpack-bundle-analyzer": "^2.9.1"
   },
   "resolutions": {
-    "@types/react": "16.0.34"
+    "@types/react": "16.0.35"
   },
   "side-effects": false,
   "nyc": {
