@@ -12,9 +12,8 @@ export const styles = theme => ({
     width: '100%',
   },
   select: {
-    '-moz-appearance': 'none', // Remove Firefox custom style
-    '-webkit-appearance': 'none', // Fix SSR issue
-    appearance: 'none', // Reset
+    '-moz-appearance': 'none', // Reset
+    '-webkit-appearance': 'none', // Reset
     // When interacting quickly, the text can end up selected.
     // Native select can't be selected either.
     userSelect: 'none',

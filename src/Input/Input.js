@@ -167,7 +167,7 @@ export const styles = theme => {
       },
       '&::-webkit-search-decoration': {
         // Remove the padding when type=search.
-        appearance: 'none',
+        '-webkit-appearance': 'none',
       },
       // Show and hide the placeholder logic
       'label[data-shrink=false] + $formControl &': {
@@ -195,7 +195,9 @@ export const styles = theme => {
       padding: 0,
     },
     inputSearch: {
-      appearance: 'textfield', // Improve type search style.
+      // Improve type search style.
+      '-moz-appearance': 'textfield',
+      '-webkit-appearance': 'textfield',
     },
   };
 };

@@ -25,7 +25,8 @@ export const styles = {
     cursor: 'pointer',
     userSelect: 'none',
     verticalAlign: 'middle',
-    appearance: 'none',
+    '-moz-appearance': 'none', // Reset
+    '-webkit-appearance': 'none', // Reset
     textDecoration: 'none',
     // So we take precedent over the style of a native <a /> element.
     color: 'inherit',
