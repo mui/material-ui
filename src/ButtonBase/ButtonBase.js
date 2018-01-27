@@ -45,7 +45,7 @@ const INVALID_COMPONENT_ROLE = ['a'];
 
 /**
  * `ButtonBase` contains as few styles as possible.
- * It aims to be a building block for people who want to create a simple button.
+ * It aims to be a simple building block for creating a button.
  * It contains a load of style reset and some focus/ripple logic.
  */
 class ButtonBase extends React.Component {
