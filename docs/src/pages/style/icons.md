@@ -45,10 +45,6 @@ Optionally, you can set the icon color using one of the theme color properties: 
 
 {{"demo": "pages/style/SvgIcons.js"}}
 
-Looking for SVG icons? There are a lot of projects out there.
-We have found one that provides 2,000+ unofficial Material Design Icons: [https://materialdesignicons.com](https://materialdesignicons.com/).
-You can use the [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) integration project between this raw list of icons and Material-UI.
-
 ### SVG Material icons
 
 It's interesting to have the building blocks needed to implement custom icons, but what about presets?
@@ -65,3 +61,8 @@ Keep in mind that we `PascalCase` the names of the icons, for instance:
 - [`alarm off`](https://material.io/icons/#ic_alarm_off) is exposed as `material-ui-icons/AlarmOff`
 
 {{"demo": "pages/style/SvgMaterialIcons.js"}}
+
+Looking for even more SVG icons? There are a lot of projects out there,
+but we have found one that provides 2,000+ unofficial Material Design Icons: [https://materialdesignicons.com](https://materialdesignicons.com/).
+You can use the [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) integration project between this raw list of icons and Material-UI.
+

@@ -5,7 +5,7 @@ As components can be used in different contexts, Material-UI supports four diffe
 1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
 2. [Specific variation of a component](#2-specific-variation-of-a-component) re-used in different contexts
 4. [Material Design variations](#3-material-design-variations) such as with the button component
-3. [User global theme variation](#4-user-global-theme-variation)
+3. [Global theme variation](#4-global-theme-variation)
 
 ## 1. Specific variation for a one-time situation
 
