@@ -89,7 +89,9 @@ export default function createPalette(palette: Object) {
       dark: pink.A700,
     },
     error = {
+      light: red[300],
       main: red[500],
+      dark: red[700],
     },
     type = 'light',
     contrastThreshold = 3,

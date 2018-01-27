@@ -63,6 +63,16 @@ describe('createPalette()', () => {
       'should use red[500] as the default error main color',
     );
     assert.strictEqual(
+      palette.error.light,
+      red[300],
+      'should use red[300] as the default error light color',
+    );
+    assert.strictEqual(
+      palette.error.dark,
+      red[700],
+      'should use red[700] as the default error dark color',
+    );
+    assert.strictEqual(
       palette.text,
       light.text,
       'should use light theme text for a light theme by default',
@@ -110,6 +120,16 @@ describe('createPalette()', () => {
       pink[500],
       'should use pink[500] as the error main color',
     );
+    assert.strictEqual(
+      palette.error.light,
+      pink[300],
+      'should use pink[300] as the error light color',
+    );
+    assert.strictEqual(
+      palette.error.dark,
+      pink[700],
+      'should use pink[700] as the error dark color',
+    );
     assert.strictEqual(palette.text, light.text, 'should use light theme text');
   });
 
@@ -129,6 +149,9 @@ describe('createPalette()', () => {
       },
       error: {
         main: pink[500],
+        light: pink[300],
+        dark: pink[700],
+        contrastText: '#00ff00',
       },
     });
     assert.strictEqual(
@@ -176,6 +199,21 @@ describe('createPalette()', () => {
       pink[500],
       'should use pink[500] as the error main color',
     );
+    assert.strictEqual(
+      palette.error.light,
+      pink[300],
+      'should use pink[300] as the error light color',
+    );
+    assert.strictEqual(
+      palette.error.dark,
+      pink[700],
+      'should use pink[700] as the error dark color',
+    );
+    assert.strictEqual(
+      palette.error.contrastText,
+      '#00ff00',
+      'should use #00ff00 as the error contrastText color',
+    );
     assert.strictEqual(palette.text, light.text, 'should use light theme text');
   });
 
@@ -183,6 +221,7 @@ describe('createPalette()', () => {
     const palette = createPalette({
       primary: { main: deepOrange[500] },
       secondary: { main: green.A400 },
+      error: { main: pink[500] },
     });
     assert.strictEqual(
       palette.primary.main,
@@ -213,6 +252,21 @@ describe('createPalette()', () => {
       palette.secondary.dark,
       darken(green.A400, 0.3),
       'should use darken(green.A400, 0.3) as the secondary dark color',
+    );
+    assert.strictEqual(
+      palette.error.main,
+      pink[500],
+      'should use pink[500] as the error main color',
+    );
+    assert.strictEqual(
+      palette.error.light,
+      lighten(pink[500], 0.2),
+      'should use lighten(pink[500], 0.2) as the error light color',
+    );
+    assert.strictEqual(
+      palette.error.dark,
+      darken(pink[500], 0.3),
+      'should use darken(pink[500], 0.3) as the error dark color',
     );
   });
 
