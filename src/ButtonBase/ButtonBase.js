@@ -89,6 +89,10 @@ class ButtonBase extends React.Component {
     }
   };
 
+  onRippleRef = node => {
+    this.ripple = node;
+  };
+
   ripple = null;
   keyDown = false; // Used to help track keyboard activation keyDown
   button = null;
@@ -262,12 +266,7 @@ class ButtonBase extends React.Component {
       >
         {children}
         {!disableRipple && !disabled ? (
-          <TouchRipple
-            innerRef={node => {
-              this.ripple = node;
-            }}
-            center={centerRipple}
-          />
+          <TouchRipple innerRef={this.onRippleRef} center={centerRipple} />
         ) : null}
       </ComponentProp>
     );
