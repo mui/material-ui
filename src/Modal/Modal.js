@@ -94,11 +94,10 @@ class Modal extends React.Component {
   }
 
   getDialogElement() {
-    return ReactDOM.findDOMNode(this.dialogNode);
+    return ReactDOM.findDOMNode(this.dialog);
   }
 
-  dialogNode = null;
-  modalNode = null;
+  dialog = null;
   mounted = false;
   mountNode = null;
 
@@ -274,9 +273,6 @@ class Modal extends React.Component {
       >
         <div
           data-mui-test="Modal"
-          ref={node => {
-            this.modalNode = node;
-          }}
           className={classNames(classes.root, className, {
             [classes.hidden]: exited,
           })}
@@ -287,7 +283,7 @@ class Modal extends React.Component {
           )}
           <RefHolder
             ref={node => {
-              this.dialogNode = node;
+              this.dialog = node;
             }}
           >
             {React.cloneElement(children, childProps)}
