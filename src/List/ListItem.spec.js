@@ -6,6 +6,7 @@ import ListItemSecondaryAction from './ListItemSecondaryAction';
 import ListItem from './ListItem';
 import ListItemAvatar from './ListItemAvatar';
 import Avatar from '../Avatar';
+import ButtonBase from '../ButtonBase';
 
 describe('<ListItem />', () => {
   let shallow;
@@ -61,9 +62,9 @@ describe('<ListItem />', () => {
   });
 
   describe('prop: button', () => {
-    it('should render a li', () => {
+    it('should render a div', () => {
       const wrapper = shallow(<ListItem button />);
-      assert.strictEqual(wrapper.props().component, 'li');
+      assert.strictEqual(wrapper.props().component, 'div');
     });
   });
 
@@ -71,6 +72,11 @@ describe('<ListItem />', () => {
     it('should change the component', () => {
       const wrapper = shallow(<ListItem button component="a" />);
       assert.strictEqual(wrapper.props().component, 'a');
+    });
+
+    it('should change the component', () => {
+      const wrapper = shallow(<ListItem button component="li" />);
+      assert.strictEqual(wrapper.props().component, 'li');
     });
   });
 
@@ -101,6 +107,44 @@ describe('<ListItem />', () => {
         </ListItem>,
       );
       assert.strictEqual(wrapper.hasClass(classes.container), true);
+      assert.strictEqual(wrapper.type(), 'li');
+      assert.strictEqual(wrapper.childAt(0).type(), 'div');
+    });
+
+    it('should accept a ContainerComponent property', () => {
+      const wrapper = shallow(
+        <ListItem ContainerComponent="div">
+          <ListItemText primary="primary" />
+          <ListItemSecondaryAction />
+        </ListItem>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.container), true);
+      assert.strictEqual(wrapper.type(), 'div');
+      assert.strictEqual(wrapper.childAt(0).type(), 'div');
+    });
+
+    it('should accept a component property', () => {
+      const wrapper = shallow(
+        <ListItem component="span">
+          <ListItemText primary="primary" />
+          <ListItemSecondaryAction />
+        </ListItem>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.container), true);
+      assert.strictEqual(wrapper.type(), 'li');
+      assert.strictEqual(wrapper.childAt(0).type(), 'span');
+    });
+
+    it('should accet a button property', () => {
+      const wrapper = shallow(
+        <ListItem button>
+          <ListItemText primary="primary" />
+          <ListItemSecondaryAction />
+        </ListItem>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.container), true);
+      assert.strictEqual(wrapper.type(), 'li');
+      assert.strictEqual(wrapper.childAt(0).type(), ButtonBase);
     });
   });
 });

@@ -15,17 +15,19 @@ const styles = theme => ({
 function InsetList(props) {
   const { classes } = props;
   return (
-    <List className={classes.root}>
-      <ListItem button>
-        <ListItemIcon>
-          <StarIcon />
-        </ListItemIcon>
-        <ListItemText inset primary="Chelsea Otakan" />
-      </ListItem>
-      <ListItem button>
-        <ListItemText inset primary="Eric Hoffman" />
-      </ListItem>
-    </List>
+    <div className={classes.root}>
+      <List component="nav">
+        <ListItem button>
+          <ListItemIcon>
+            <StarIcon />
+          </ListItemIcon>
+          <ListItemText inset primary="Chelsea Otakan" />
+        </ListItem>
+        <ListItem button>
+          <ListItemText inset primary="Eric Hoffman" />
+        </ListItem>
+      </List>
+    </div>
   );
 }
 

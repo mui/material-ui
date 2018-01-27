@@ -18,7 +18,7 @@ function SimpleList(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <List>
+      <List component="nav">
         <ListItem button>
           <ListItemIcon>
             <InboxIcon />
@@ -33,7 +33,7 @@ function SimpleList(props) {
         </ListItem>
       </List>
       <Divider />
-      <List>
+      <List component="nav">
         <ListItem button>
           <ListItemText primary="Trash" />
         </ListItem>

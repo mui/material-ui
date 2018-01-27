@@ -12,6 +12,9 @@ export const styles = theme => ({
     alignItems: 'center',
     position: 'relative',
     textDecoration: 'none',
+    width: '100%',
+    boxSizing: 'border-box',
+    textAlign: 'left',
   },
   container: {
     position: 'relative',
@@ -32,6 +35,7 @@ export const styles = theme => ({
   },
   divider: {
     borderBottom: `1px solid ${theme.palette.divider}`,
+    backgroundClip: 'padding-box',
   },
   gutters: {
     paddingLeft: theme.spacing.unit * 2,
@@ -74,15 +78,17 @@ class ListItem extends React.Component {
       classes,
       className: classNameProp,
       component: componentProp,
+      ContainerComponent,
+      ContainerProps,
       dense,
       disabled,
       disableGutters,
       divider,
       ...other
     } = this.props;
+
     const isDense = dense || this.context.dense || false;
     const children = React.Children.toArray(childrenProp);
-
     const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
     const hasSecondaryAction =
       children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
@@ -100,31 +106,33 @@ class ListItem extends React.Component {
       classNameProp,
     );
 
-    const listItemProps = { className, disabled, ...other };
-    let ComponentMain = componentProp;
+    const componentProps = { className, disabled, ...other };
+    let Component = componentProp || 'li';
 
     if (button) {
-      ComponentMain = ButtonBase;
-      listItemProps.component = componentProp;
-      listItemProps.keyboardFocusedClassName = classes.keyboardFocused;
+      componentProps.component = componentProp || 'div';
+      componentProps.keyboardFocusedClassName = classes.keyboardFocused;
+      Component = ButtonBase;
     }
 
     if (hasSecondaryAction) {
+      Component = Component !== ButtonBase && !componentProp ? 'div' : Component;
+
       return (
-        <div className={classes.container}>
-          <ComponentMain {...listItemProps}>{children}</ComponentMain>
+        <ContainerComponent className={classes.container} {...ContainerProps}>
+          <Component {...componentProps}>{children}</Component>
           {children.pop()}
-        </div>
+        </ContainerComponent>
       );
     }
 
-    return <ComponentMain {...listItemProps}>{children}</ComponentMain>;
+    return <Component {...componentProps}>{children}</Component>;
   }
 }
 
 ListItem.propTypes = {
   /**
-   * If `true`, the ListItem will be a button.
+   * If `true`, the list item will be a button (using `ButtonBase`).
    */
   button: PropTypes.bool,
   /**
@@ -142,8 +150,18 @@ ListItem.propTypes = {
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
+   * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * The container component. Useful when a `ListItemSecondaryAction` is rendered.
+   */
+  ContainerComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * Properties applied to the container element when the component
+   * is used to display a `ListItemSecondaryAction`.
+   */
+  ContainerProps: PropTypes.object,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
    */
@@ -164,7 +182,7 @@ ListItem.propTypes = {
 
 ListItem.defaultProps = {
   button: false,
-  component: 'li',
+  ContainerComponent: 'li',
   dense: false,
   disabled: false,
   disableGutters: false,

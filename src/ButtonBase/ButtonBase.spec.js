@@ -65,21 +65,28 @@ describe('<ButtonBase />', () => {
     it('should not apply role="button" if type="button"', () => {
       const wrapper = shallow(<ButtonBase>Hello</ButtonBase>);
       assert.strictEqual(wrapper.name(), 'button');
-      assert.strictEqual(wrapper.props().type, 'button', 'should not set a type');
-      assert.strictEqual(wrapper.props().role, undefined, 'should role to button');
+      assert.strictEqual(wrapper.props().type, 'button');
+      assert.strictEqual(wrapper.props().role, undefined);
     });
 
     it('should change the button type to span and set role="button"', () => {
       const wrapper = shallow(<ButtonBase component="span">Hello</ButtonBase>);
       assert.strictEqual(wrapper.name(), 'span');
-      assert.strictEqual(wrapper.props().type, undefined, 'should not set a type');
-      assert.strictEqual(wrapper.props().role, 'button', 'should role to button');
+      assert.strictEqual(wrapper.props().type, undefined);
+      assert.strictEqual(wrapper.props().role, 'button');
     });
 
     it('should automatically change the button to an a element when href is provided', () => {
       const wrapper = shallow(<ButtonBase href="http://google.com">Hello</ButtonBase>);
       assert.strictEqual(wrapper.name(), 'a');
       assert.strictEqual(wrapper.props().href, 'http://google.com');
+    });
+
+    it('should not set role="button" on an invalid component', () => {
+      const wrapper = shallow(<ButtonBase component="a">Hello</ButtonBase>);
+      assert.strictEqual(wrapper.name(), 'a');
+      assert.strictEqual(wrapper.props().type, undefined);
+      assert.strictEqual(wrapper.props().role, undefined);
     });
 
     it('should not change the button to an a element', () => {
