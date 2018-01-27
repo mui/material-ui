@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
 import ownerDocument from 'dom-helpers/ownerDocument';
+import ownerWindow from 'dom-helpers/ownerWindow';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
@@ -101,7 +102,7 @@ class Popover extends React.Component {
   };
 
   getPositioningStyle = element => {
-    const { marginThreshold } = this.props;
+    const { anchorEl, marginThreshold } = this.props;
 
     // Check if the parent has requested anchoring on an inner content node
     const contentAnchorOffset = this.getContentAnchorOffset(element);
@@ -121,9 +122,12 @@ class Popover extends React.Component {
     const bottom = top + elemRect.height;
     const right = left + elemRect.width;
 
+    // Use the parent window of the anchorEl if provided
+    const containerWindow = ownerWindow(anchorEl);
+
     // Window thresholds taking required margin into account
-    const heightThreshold = window.innerHeight - marginThreshold;
-    const widthThreshold = window.innerWidth - marginThreshold;
+    const heightThreshold = containerWindow.innerHeight - marginThreshold;
+    const widthThreshold = containerWindow.innerWidth - marginThreshold;
 
     // Check if the vertical axis needs shifting
     if (top < marginThreshold) {
