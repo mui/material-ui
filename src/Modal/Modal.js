@@ -367,7 +367,7 @@ Modal.propTypes = {
    * A modal manager used to track and manage the state of open
    * Modals. Useful when customizing how modals interact within a container.
    */
-  manager: PropTypes.object.isRequired,
+  manager: PropTypes.object,
   /**
    * Callback fired when the backdrop is clicked.
    */
