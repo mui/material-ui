@@ -74,7 +74,10 @@ palette: {
     contrastText: getContrastText(secondaryColor.A400),
   },
   error: {
+    light: errorColor[300],
     main: errorColor[500],
+    dark: errorColor[700],
+    contrastText: getContrastText(errorColor[500]),
   },
 },
 ```
@@ -93,13 +96,11 @@ const theme = createMuiTheme({
   palette: {
     primary: indigo,
     secondary: pink,
-    error: {
-      main: red[500],
-    },
+    error: red,
     // Used by `getContrastText()` to maximize the contrast between the background and
     // the text.
     contrastThreshold: 3,
-    // Used by the functions below to shift a color's luminance by approximately
+    // Used to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
