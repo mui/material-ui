@@ -74,7 +74,10 @@ palette: {
     contrastText: getContrastText(secondaryColor.A400),
   },
   error: {
+    light: errorColor[300],
     main: errorColor[500],
+    dark: errorColor[700],
+    contrastText: getContrastText(errorColor[500]),
   },
 },
 ```
