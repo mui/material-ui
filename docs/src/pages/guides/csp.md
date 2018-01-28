@@ -16,7 +16,7 @@ You can read more about CSP [here](https://developer.mozilla.org/en-US/docs/Web/
 
 ## How does one implement CSP?
 
-In order to use CSP with Material UI (and JSS), you need to set a `style-src` nonce in the meta tag like so:
+In order to use CSP with Material-UI (and JSS), you need to set a `style-src` nonce in the meta tag like so:
 
 ```
 <meta property="csp-nonce" content="longAndRandomStringGeneratedByServerUponEachRequest">
