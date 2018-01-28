@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { isMuiComponent } from '../utils/reactHelpers';
 import Textarea from './Textarea';
 
 // Supports determination of isControlled().
@@ -187,8 +186,9 @@ export const styles = theme => {
     inputDisabled: {
       opacity: 1, // Reset iOS opacity
     },
-    inputSingleline: {
-      height: '1.1875em', // Reset (19px)
+    inputType: {
+      // type="date" or type="time", etc. have specific styles we need to reset.
+      height: '1.1875em', // Reset (19px), match the native input line-height
     },
     inputMultiline: {
       resize: 'none',
@@ -314,6 +314,7 @@ class Input extends React.Component {
 
   handleRefInput = node => {
     this.input = node;
+
     if (this.props.inputRef) {
       this.props.inputRef(node);
     } else if (this.props.inputProps && this.props.inputProps.ref) {
@@ -400,7 +401,7 @@ class Input extends React.Component {
       classes.input,
       {
         [classes.inputDisabled]: disabled,
-        [classes.inputSingleline]: !multiline,
+        [classes.inputType]: type !== 'text',
         [classes.inputMultiline]: multiline,
         [classes.inputSearch]: type === 'search',
         [classes.inputDense]: margin === 'dense',
@@ -418,14 +419,13 @@ class Input extends React.Component {
 
     if (inputComponent) {
       InputComponent = inputComponent;
-
-      if (isMuiComponent(InputComponent, ['SelectInput'])) {
-        inputProps = {
-          selectRef: this.handleRefInput,
-          ...inputProps,
-          ref: null,
-        };
-      }
+      inputProps = {
+        // Rename ref to inputRef as we don't know the
+        // provided `inputComponent` structure.
+        inputRef: this.handleRefInput,
+        ...inputProps,
+        ref: null,
+      };
     } else if (multiline) {
       if (rows && !rowsMax) {
         InputComponent = 'textarea';

@@ -17,39 +17,46 @@ const styles = theme => ({
   },
 });
 
-class TextMaskCustom extends React.Component {
-  render() {
-    return (
-      <MaskedInput
-        {...this.props}
-        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-        placeholderChar={'\u2000'}
-        showMask
-      />
-    );
-  }
+function TextMaskCustom(props) {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={inputRef}
+      mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+      placeholderChar={'\u2000'}
+      showMask
+    />
+  );
 }
 
-class NumberFormatCustom extends React.Component {
-  render() {
-    return (
-      <NumberFormat
-        {...this.props}
-        onValueChange={values => {
-          this.props.onChange({
-            target: {
-              value: values.value,
-            },
-          });
-        }}
-        thousandSeparator
-        prefix="$"
-      />
-    );
-  }
+TextMaskCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+};
+
+function NumberFormatCustom(props) {
+  const { inputRef, onChange, ...other } = props;
+
+  return (
+    <NumberFormat
+      {...other}
+      ref={inputRef}
+      onValueChange={values => {
+        onChange({
+          target: {
+            value: values.value,
+          },
+        });
+      }}
+      thousandSeparator
+      prefix="$"
+    />
+  );
 }
 
 NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

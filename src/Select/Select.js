@@ -42,16 +42,19 @@ export const styles = theme => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
+    minHeight: '1.1875em', // Reset (19px), match the native input line-height
     lineHeight: '1.1875em', // Reset (19px), match the native input line-height
   },
   disabled: {
     cursor: 'default',
   },
   icon: {
+    // We use a position absolute over a flexbox in order to forward the pointer events
+    // to the input.
     position: 'absolute',
     right: 0,
-    top: 4,
-    color: theme.palette.text.secondary,
+    top: 'calc(50% - 12px)', // Center vertically
+    color: theme.palette.action.active,
     'pointer-events': 'none', // Don't block pointer events on the select under the icon.
   },
 });
