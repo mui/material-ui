@@ -146,6 +146,10 @@ const pages = [
         pathname: '/guides/flow',
       },
       {
+        pathname: '/guides/csp',
+        title: 'CSP',
+      },
+      {
         pathname: '/guides/right-to-left',
         title: 'Right-to-left',
       },
