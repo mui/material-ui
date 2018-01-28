@@ -1,6 +1,6 @@
 # Content Security Policy
 
-Starting in JSS version 9.6.0, Material UI supports Content Security Policy headers.
+Starting in JSS version 9.6.0, Material-UI supports Content Security Policy headers.
 
 ## What is CSP and why is it useful?
 
