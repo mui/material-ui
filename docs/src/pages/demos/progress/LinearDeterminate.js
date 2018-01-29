@@ -27,11 +27,11 @@ class LinearDeterminate extends React.Component {
 
   progress = () => {
     const { completed } = this.state;
-    if (completed > 100) {
+    if (completed === 100) {
       this.setState({ completed: 0 });
     } else {
       const diff = Math.random() * 10;
-      this.setState({ completed: completed + diff });
+      this.setState({ completed: Math.min(completed + diff, 100) });
     }
   };
 

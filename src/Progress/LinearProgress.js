@@ -137,6 +137,12 @@ export const styles = theme => ({
   },
 });
 
+/**
+ * ## ARIA
+ * If the progress bar is describing the loading progress of a particular region of a page,
+ * the author SHOULD use `aria-describedby` to point to the progress bar, and set the `aria-busy`
+ * attribute to `true` on that region until it has finished loading.
+ */
 function LinearProgress(props) {
   const { classes, className, color, mode, value, valueBuffer, ...other } = props;
 
@@ -173,7 +179,7 @@ function LinearProgress(props) {
   const inlineStyles = { primary: {}, secondary: {} };
   const rootProps = {};
 
-  if (mode === 'determinate') {
+  if (mode === 'determinate' || mode === 'buffer') {
     if (value !== undefined) {
       inlineStyles.primary.transform = `scaleX(${value / 100})`;
       rootProps['aria-valuenow'] = Math.round(value);
@@ -181,24 +187,24 @@ function LinearProgress(props) {
       warning(
         false,
         'Material-UI: you need to provide a value property ' +
-          'when LinearProgress is in determinate mode.',
+          'when LinearProgress is in determinate or buffer mode.',
       );
     }
-  } else if (mode === 'buffer') {
-    if (value !== undefined) {
-      inlineStyles.primary.transform = `scaleX(${value / 100})`;
+  }
+  if (mode === 'buffer') {
+    if (valueBuffer !== undefined) {
       inlineStyles.secondary.transform = `scaleX(${(valueBuffer || 0) / 100})`;
     } else {
       warning(
         false,
-        'Material-UI: you need to provide a value property when LinearProgress is ' +
-          'in buffer mode.',
+        'Material-UI: you need to provide a valueBuffer property ' +
+          'when LinearProgress is in buffer mode.',
       );
     }
   }
 
   return (
-    <div className={rootClassName} {...rootProps} {...other}>
+    <div className={rootClassName} role="progressbar" {...rootProps} {...other}>
       {mode === 'buffer' ? <div className={dashedClass} /> : null}
       <div className={primaryClassName} style={inlineStyles.primary} />
       {mode === 'determinate' ? null : (

@@ -139,7 +139,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with buffer classes for the primary color by default', () => {
-    const wrapper = shallow(<LinearProgress value={1} mode="buffer" />);
+    const wrapper = shallow(<LinearProgress value={1} valueBuffer={1} mode="buffer" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.primaryDashed),
@@ -169,7 +169,9 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with buffer classes for the primary color', () => {
-    const wrapper = shallow(<LinearProgress value={1} color="primary" mode="buffer" />);
+    const wrapper = shallow(
+      <LinearProgress value={1} valueBuffer={1} color="primary" mode="buffer" />,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.primaryDashed),
@@ -199,7 +201,9 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with buffer classes for the secondary color', () => {
-    const wrapper = shallow(<LinearProgress value={1} color="secondary" mode="buffer" />);
+    const wrapper = shallow(
+      <LinearProgress value={1} valueBuffer={1} color="secondary" mode="buffer" />,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.secondaryDashed),
@@ -290,10 +294,14 @@ describe('<LinearProgress />', () => {
         /Warning: Material-UI: you need to provide a value property/,
       );
       shallow(<LinearProgress mode="buffer" value={undefined} />);
-      assert.strictEqual(consoleErrorMock.callCount(), 2);
+      assert.strictEqual(consoleErrorMock.callCount(), 3);
       assert.match(
         consoleErrorMock.args()[1][0],
         /Warning: Material-UI: you need to provide a value property/,
+      );
+      assert.match(
+        consoleErrorMock.args()[2][0],
+        /Warning: Material-UI: you need to provide a valueBuffer property/,
       );
     });
   });
