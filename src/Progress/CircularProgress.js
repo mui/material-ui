@@ -89,7 +89,7 @@ function CircularProgress(props) {
   } = props;
 
   const circleStyle = {};
-  const rootStyle = {};
+  const rootStyle = { width: size, height: size };
   const rootProps = {};
 
   if (mode === 'determinate') {
@@ -111,7 +111,7 @@ function CircularProgress(props) {
         },
         className,
       )}
-      style={{ width: size, height: size, ...rootStyle, ...style }}
+      style={{ ...rootStyle, ...style }}
       role="progressbar"
       {...rootProps}
       {...other}
