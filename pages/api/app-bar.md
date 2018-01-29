@@ -15,7 +15,7 @@ filename: /src/AppBar/AppBar.js
 | <span style="color: #31a148">children *</span> | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
 | color | enum:&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'default'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
-| position | enum:&nbsp;'static'&nbsp;&#124;<br>&nbsp;'fixed'&nbsp;&#124;<br>&nbsp;'absolute'<br> | 'fixed' | The positioning type. |
+| position | enum:&nbsp;'fixed'&nbsp;&#124;<br>&nbsp;'absolute'&nbsp;&#124;<br>&nbsp;'sticky'&#124;<br>&nbsp;'static'&nbsp; | 'fixed' | The positioning type. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -26,6 +26,7 @@ This property accepts the following keys:
 - `root`
 - `positionFixed`
 - `positionAbsolute`
+- `positionSticky`
 - `positionStatic`
 - `colorDefault`
 - `colorPrimary`

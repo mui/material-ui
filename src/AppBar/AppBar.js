@@ -32,6 +32,13 @@ export const styles = theme => {
       left: 'auto',
       right: 0,
     },
+    positionSticky: {
+      position: 'sticky',
+      flexShrink: 0,
+      top: 0,
+      left: 'auto',
+      right: 0,
+    },
     positionStatic: {
       position: 'static',
       flexShrink: 0,
@@ -91,7 +98,7 @@ AppBar.propTypes = {
   /**
    * The positioning type.
    */
-  position: PropTypes.oneOf(['static', 'fixed', 'absolute']),
+  position: PropTypes.oneOf(['fixed', 'absolute', 'sticky', 'static']),
 };
 
 AppBar.defaultProps = {
