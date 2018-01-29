@@ -6,7 +6,7 @@ export interface CircularProgressProps
   color?: 'primary' | 'secondary' | 'inherit';
   max?: number;
   min?: number;
-  mode?: 'determinate' | 'indeterminate';
+  variant?: 'determinate' | 'indeterminate';
   size?: number | string;
   thickness?: number;
   value?: number;

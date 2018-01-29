@@ -27,7 +27,7 @@ describe('<LinearProgress />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
-  it('should render intermediate mode by default', () => {
+  it('should render intermediate variant by default', () => {
     const wrapper = shallow(<LinearProgress />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
@@ -83,7 +83,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with determinate classes for the primary color by default', () => {
-    const wrapper = shallow(<LinearProgress value={1} mode="determinate" />);
+    const wrapper = shallow(<LinearProgress value={1} variant="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.primaryColorBar),
@@ -98,7 +98,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with determinate classes for the primary color', () => {
-    const wrapper = shallow(<LinearProgress color="primary" value={1} mode="determinate" />);
+    const wrapper = shallow(<LinearProgress color="primary" value={1} variant="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.primaryColorBar),
@@ -113,7 +113,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with determinate classes for the secondary color', () => {
-    const wrapper = shallow(<LinearProgress color="secondary" value={1} mode="determinate" />);
+    const wrapper = shallow(<LinearProgress color="secondary" value={1} variant="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.secondaryColorBar),
@@ -127,8 +127,8 @@ describe('<LinearProgress />', () => {
     );
   });
 
-  it('should set width of bar1 on determinate mode', () => {
-    const wrapper = shallow(<LinearProgress mode="determinate" value={77} />);
+  it('should set width of bar1 on determinate variant', () => {
+    const wrapper = shallow(<LinearProgress variant="determinate" value={77} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.childAt(0).props().style.transform,
@@ -139,7 +139,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with buffer classes for the primary color by default', () => {
-    const wrapper = shallow(<LinearProgress value={1} valueBuffer={1} mode="buffer" />);
+    const wrapper = shallow(<LinearProgress value={1} valueBuffer={1} variant="buffer" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.primaryDashed),
@@ -170,7 +170,7 @@ describe('<LinearProgress />', () => {
 
   it('should render with buffer classes for the primary color', () => {
     const wrapper = shallow(
-      <LinearProgress value={1} valueBuffer={1} color="primary" mode="buffer" />,
+      <LinearProgress value={1} valueBuffer={1} color="primary" variant="buffer" />,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
@@ -202,7 +202,7 @@ describe('<LinearProgress />', () => {
 
   it('should render with buffer classes for the secondary color', () => {
     const wrapper = shallow(
-      <LinearProgress value={1} valueBuffer={1} color="secondary" mode="buffer" />,
+      <LinearProgress value={1} valueBuffer={1} color="secondary" variant="buffer" />,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
@@ -232,8 +232,8 @@ describe('<LinearProgress />', () => {
     );
   });
 
-  it('should set width of bar1 and bar2 on buffer mode', () => {
-    const wrapper = shallow(<LinearProgress mode="buffer" value={77} valueBuffer={85} />);
+  it('should set width of bar1 and bar2 on buffer variant', () => {
+    const wrapper = shallow(<LinearProgress variant="buffer" value={77} valueBuffer={85} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.childAt(1).props().style.transform,
@@ -248,7 +248,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with query classes', () => {
-    const wrapper = shallow(<LinearProgress mode="query" />);
+    const wrapper = shallow(<LinearProgress variant="query" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.hasClass(classes.rootQuery),
@@ -287,13 +287,13 @@ describe('<LinearProgress />', () => {
     });
 
     it('should warn when not used as expected', () => {
-      shallow(<LinearProgress mode="determinate" value={undefined} />);
+      shallow(<LinearProgress variant="determinate" value={undefined} />);
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.match(
         consoleErrorMock.args()[0][0],
         /Warning: Material-UI: you need to provide a value property/,
       );
-      shallow(<LinearProgress mode="buffer" value={undefined} />);
+      shallow(<LinearProgress variant="buffer" value={undefined} />);
       assert.strictEqual(consoleErrorMock.callCount(), 3);
       assert.match(
         consoleErrorMock.args()[1][0],

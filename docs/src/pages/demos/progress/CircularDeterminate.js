@@ -35,25 +35,25 @@ class CircularDeterminate extends React.Component {
       <div>
         <CircularProgress
           className={classes.progress}
-          mode="determinate"
+          variant="determinate"
           value={this.state.completed}
         />
         <CircularProgress
           className={classes.progress}
-          mode="determinate"
+          variant="determinate"
           size={50}
           value={this.state.completed}
         />
         <CircularProgress
           className={classes.progress}
           color="secondary"
-          mode="determinate"
+          variant="determinate"
           value={this.state.completed}
         />
         <CircularProgress
           className={classes.progress}
           color="secondary"
-          mode="determinate"
+          variant="determinate"
           size={50}
           value={this.state.completed}
         />

@@ -52,7 +52,7 @@ describe('<CircularProgress />', () => {
     );
   });
 
-  it('should render intermediate mode by default', () => {
+  it('should render intermediate variant by default', () => {
     const wrapper = shallow(<CircularProgress />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     const svg = wrapper.childAt(0);
@@ -76,7 +76,7 @@ describe('<CircularProgress />', () => {
   });
 
   it('should render with determinate classes', () => {
-    const wrapper = shallow(<CircularProgress mode="determinate" />);
+    const wrapper = shallow(<CircularProgress variant="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     const svg = wrapper.childAt(0);
     assert.strictEqual(svg.name(), 'svg');
@@ -92,8 +92,8 @@ describe('<CircularProgress />', () => {
     );
   });
 
-  it('should set strokeDasharray of circle on determinate mode', () => {
-    const wrapper = shallow(<CircularProgress mode="determinate" value={70} />);
+  it('should set strokeDasharray of circle on determinate variant', () => {
+    const wrapper = shallow(<CircularProgress variant="determinate" value={70} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     const svg = wrapper.childAt(0);
     const style = svg.childAt(0).props().style;
@@ -102,8 +102,8 @@ describe('<CircularProgress />', () => {
     assert.strictEqual(wrapper.props()['aria-valuenow'], 70);
   });
 
-  it('should set strokeDasharray of circle on determinate mode based on min max', () => {
-    const wrapper = shallow(<CircularProgress mode="determinate" value={5} min={0} max={10} />);
+  it('should set strokeDasharray of circle on determinate variant based on min max', () => {
+    const wrapper = shallow(<CircularProgress variant="determinate" value={5} min={0} max={10} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     const svg = wrapper.childAt(0);
     const style = svg.childAt(0).props().style;

@@ -17,12 +17,12 @@ attribute to `true` on that region until it has finished loading.
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
 | color | enum:&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'inherit'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
-| max | number | 100 | The max value of progress in determinate mode. |
-| min | number | 0 | The min value of progress in determinate mode. |
-| mode | enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'<br> | 'indeterminate' | The mode of show your progress. Indeterminate for when there is no value for progress. Determinate for controlled progress value. |
+| max | number | 100 | The max value of progress in determinate variant. |
+| min | number | 0 | The min value of progress in determinate variant. |
 | size | union:&nbsp;number&nbsp;&#124;<br>&nbsp;string<br> | 40 | The size of the circle. |
 | thickness | number | 3.6 | The thickness of the circle. |
-| value | number | 0 | The value of progress in determinate mode. |
+| value | number | 0 | The value of the progress indicator for the determinate variant. Value between 0 and 100. |
+| variant | enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'<br> | 'indeterminate' | The variant of progress indicator. Use indeterminate when there is no progress value. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

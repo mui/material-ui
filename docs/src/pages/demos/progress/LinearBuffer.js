@@ -42,9 +42,9 @@ class LinearBuffer extends React.Component {
     const { completed, buffer } = this.state;
     return (
       <div className={classes.root}>
-        <LinearProgress mode="buffer" value={completed} valueBuffer={buffer} />
+        <LinearProgress variant="buffer" value={completed} valueBuffer={buffer} />
         <br />
-        <LinearProgress color="secondary" mode="buffer" value={completed} valueBuffer={buffer} />
+        <LinearProgress color="secondary" variant="buffer" value={completed} valueBuffer={buffer} />
       </div>
     );
   }

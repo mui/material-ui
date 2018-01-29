@@ -144,7 +144,7 @@ export const styles = theme => ({
  * attribute to `true` on that region until it has finished loading.
  */
 function LinearProgress(props) {
-  const { classes, className, color, mode, value, valueBuffer, ...other } = props;
+  const { classes, className, color, variant, value, valueBuffer, ...other } = props;
 
   const dashedClass = classNames(classes.dashed, {
     [classes.primaryDashed]: color === 'primary',
@@ -156,30 +156,30 @@ function LinearProgress(props) {
     {
       [classes.primaryColor]: color === 'primary',
       [classes.secondaryColor]: color === 'secondary',
-      [classes.rootBuffer]: mode === 'buffer',
-      [classes.rootQuery]: mode === 'query',
+      [classes.rootBuffer]: variant === 'buffer',
+      [classes.rootQuery]: variant === 'query',
     },
     className,
   );
   const primaryClassName = classNames(classes.bar, {
     [classes.primaryColorBar]: color === 'primary',
     [classes.secondaryColorBar]: color === 'secondary',
-    [classes.indeterminateBar1]: mode === 'indeterminate' || mode === 'query',
-    [classes.determinateBar1]: mode === 'determinate',
-    [classes.bufferBar1]: mode === 'buffer',
+    [classes.indeterminateBar1]: variant === 'indeterminate' || variant === 'query',
+    [classes.determinateBar1]: variant === 'determinate',
+    [classes.bufferBar1]: variant === 'buffer',
   });
   const secondaryClassName = classNames(classes.bar, {
-    [classes.bufferBar2]: mode === 'buffer',
-    [classes.primaryColorBar]: color === 'primary' && mode !== 'buffer',
-    [classes.primaryColor]: color === 'primary' && mode === 'buffer',
-    [classes.secondaryColorBar]: color === 'secondary' && mode !== 'buffer',
-    [classes.secondaryColor]: color === 'secondary' && mode === 'buffer',
-    [classes.indeterminateBar2]: mode === 'indeterminate' || mode === 'query',
+    [classes.bufferBar2]: variant === 'buffer',
+    [classes.primaryColorBar]: color === 'primary' && variant !== 'buffer',
+    [classes.primaryColor]: color === 'primary' && variant === 'buffer',
+    [classes.secondaryColorBar]: color === 'secondary' && variant !== 'buffer',
+    [classes.secondaryColor]: color === 'secondary' && variant === 'buffer',
+    [classes.indeterminateBar2]: variant === 'indeterminate' || variant === 'query',
   });
   const inlineStyles = { primary: {}, secondary: {} };
   const rootProps = {};
 
-  if (mode === 'determinate' || mode === 'buffer') {
+  if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       inlineStyles.primary.transform = `scaleX(${value / 100})`;
       rootProps['aria-valuenow'] = Math.round(value);
@@ -187,27 +187,27 @@ function LinearProgress(props) {
       warning(
         false,
         'Material-UI: you need to provide a value property ' +
-          'when LinearProgress is in determinate or buffer mode.',
+          'when using the determinate or buffer variant of LinearProgress .',
       );
     }
   }
-  if (mode === 'buffer') {
+  if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
       inlineStyles.secondary.transform = `scaleX(${(valueBuffer || 0) / 100})`;
     } else {
       warning(
         false,
         'Material-UI: you need to provide a valueBuffer property ' +
-          'when LinearProgress is in buffer mode.',
+          'when using the buffer variant of LinearProgress.',
       );
     }
   }
 
   return (
     <div className={rootClassName} role="progressbar" {...rootProps} {...other}>
-      {mode === 'buffer' ? <div className={dashedClass} /> : null}
+      {variant === 'buffer' ? <div className={dashedClass} /> : null}
       <div className={primaryClassName} style={inlineStyles.primary} />
-      {mode === 'determinate' ? null : (
+      {variant === 'determinate' ? null : (
         <div className={secondaryClassName} style={inlineStyles.secondary} />
       )}
     </div>
@@ -228,25 +228,25 @@ LinearProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
-   * The mode of show your progress, indeterminate
-   * for when there is no value for progress.
-   */
-  mode: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
-  /**
-   * The value of progress, only works in determinate and buffer mode.
+   * The value of the progress indicator for the determinate and buffer variants.
    * Value between 0 and 100.
    */
   value: PropTypes.number,
   /**
-   * The value of buffer, only works in buffer mode.
+   * The value for the buffer for the buffer variant.
    * Value between 0 and 100.
    */
   valueBuffer: PropTypes.number,
+  /**
+   * The variant of progress indicator. Use indeterminate or query
+   * when there is no progress value.
+   */
+  variant: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
 };
 
 LinearProgress.defaultProps = {
   color: 'primary',
-  mode: 'indeterminate',
+  variant: 'indeterminate',
 };
 
 export default withStyles(styles, { name: 'MuiLinearProgress' })(LinearProgress);

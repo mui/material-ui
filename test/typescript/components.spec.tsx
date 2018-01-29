@@ -432,8 +432,8 @@ const CircularProgessTest = () => (
 
 const LinearProgressTest = () => (
   <div>
-    <LinearProgress mode="determinate" value={12} />
-    <LinearProgress color="secondary" mode="determinate" value={76} />
+    <LinearProgress variant="determinate" value={12} />
+    <LinearProgress color="secondary" variant="determinate" value={76} />
   </div>
 );
 
