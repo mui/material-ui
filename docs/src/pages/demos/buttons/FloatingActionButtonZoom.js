@@ -117,7 +117,7 @@ class FloatingActionButtonZoom extends React.Component {
             enterDelay={transitionDuration.exit}
             unmountOnExit
           >
-            <Button fab className={fab.className} color={fab.color}>
+            <Button variant="fab" className={fab.className} color={fab.color}>
               {fab.icon}
             </Button>
           </Zoom>

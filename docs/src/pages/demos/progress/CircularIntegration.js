@@ -81,14 +81,19 @@ class CircularIntegration extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.wrapper}>
-          <Button fab color="primary" className={buttonClassname} onClick={this.handleButtonClick}>
+          <Button
+            variant="fab"
+            color="primary"
+            className={buttonClassname}
+            onClick={this.handleButtonClick}
+          >
             {success ? <CheckIcon /> : <SaveIcon />}
           </Button>
           {loading && <CircularProgress size={68} className={classes.fabProgress} />}
         </div>
         <div className={classes.wrapper}>
           <Button
-            raised
+            variant="raised"
             color="primary"
             className={buttonClassname}
             disabled={loading}

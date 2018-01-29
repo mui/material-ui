@@ -145,7 +145,12 @@ class HorizontalNonLinearStepper extends React.Component {
                 >
                   Back
                 </Button>
-                <Button raised color="primary" onClick={this.handleNext} className={classes.button}>
+                <Button
+                  variant="raised"
+                  color="primary"
+                  onClick={this.handleNext}
+                  className={classes.button}
+                >
                   Next
                 </Button>
                 {activeStep !== steps.length &&
@@ -154,7 +159,7 @@ class HorizontalNonLinearStepper extends React.Component {
                       Step {activeStep + 1} already completed
                     </Typography>
                   ) : (
-                    <Button raised color="primary" onClick={this.handleComplete}>
+                    <Button variant="raised" color="primary" onClick={this.handleComplete}>
                       {this.completedSteps() === this.totalSteps() - 1 ? 'Finish' : 'Complete Step'}
                     </Button>
                   ))}

@@ -141,7 +141,7 @@ class HorizontalLinearStepper extends React.Component {
                 </Button>
                 {this.isStepOptional(activeStep) && (
                   <Button
-                    raised
+                    variant="raised"
                     color="primary"
                     onClick={this.handleSkip}
                     className={classes.button}
@@ -149,7 +149,12 @@ class HorizontalLinearStepper extends React.Component {
                     Skip
                   </Button>
                 )}
-                <Button raised color="primary" onClick={this.handleNext} className={classes.button}>
+                <Button
+                  variant="raised"
+                  color="primary"
+                  onClick={this.handleNext}
+                  className={classes.button}
+                >
                   {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                 </Button>
               </div>

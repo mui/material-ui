@@ -96,7 +96,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
                 >
                   Back
                 </Button>
-                <Button raised color="primary" onClick={this.handleNext}>
+                <Button variant="raised" color="primary" onClick={this.handleNext}>
                   {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                 </Button>
               </div>

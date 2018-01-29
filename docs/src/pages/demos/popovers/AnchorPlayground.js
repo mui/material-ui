@@ -79,7 +79,7 @@ class AnchorPlayground extends React.Component {
           ref={node => {
             this.button = node;
           }}
-          raised
+          variant="raised"
           className={classes.button}
           onClick={this.handleClickButton}
         >

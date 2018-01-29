@@ -16,16 +16,16 @@ function RaisedButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button raised className={classes.button}>
+      <Button variant="raised" className={classes.button}>
         Default
       </Button>
-      <Button raised color="primary" className={classes.button}>
+      <Button variant="raised" color="primary" className={classes.button}>
         Primary
       </Button>
-      <Button raised color="secondary" className={classes.button}>
+      <Button variant="raised" color="secondary" className={classes.button}>
         Secondary
       </Button>
-      <Button raised color="secondary" disabled className={classes.button}>
+      <Button variant="raised" color="secondary" disabled className={classes.button}>
         Disabled
       </Button>
       <input
@@ -36,7 +36,7 @@ function RaisedButtons(props) {
         type="file"
       />
       <label htmlFor="raised-button-file">
-        <Button raised component="span" className={classes.button}>
+        <Button variant="raised" component="span" className={classes.button}>
           Upload
         </Button>
       </label>

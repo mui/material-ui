@@ -72,7 +72,7 @@ describe('<Button />', () => {
   });
 
   it('should render a raised button', () => {
-    const wrapper = shallow(<Button raised>Hello World</Button>);
+    const wrapper = shallow(<Button variant="raised">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
@@ -86,7 +86,7 @@ describe('<Button />', () => {
 
   it('should render a raised primary button', () => {
     const wrapper = shallow(
-      <Button raised color="primary">
+      <Button variant="raised" color="primary">
         Hello World
       </Button>,
     );
@@ -103,7 +103,7 @@ describe('<Button />', () => {
 
   it('should render a raised secondary button', () => {
     const wrapper = shallow(
-      <Button raised color="secondary">
+      <Button variant="raised" color="secondary">
         Hello World
       </Button>,
     );
@@ -123,7 +123,7 @@ describe('<Button />', () => {
   });
 
   it('should render a floating action button', () => {
-    const wrapper = shallow(<Button fab>Hello World</Button>);
+    const wrapper = shallow(<Button variant="fab">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');
@@ -137,7 +137,7 @@ describe('<Button />', () => {
 
   it('should render a mini floating action button', () => {
     const wrapper = shallow(
-      <Button fab mini>
+      <Button variant="fab" mini>
         Hello World
       </Button>,
     );
@@ -155,7 +155,7 @@ describe('<Button />', () => {
 
   it('should render a primary floating action button', () => {
     const wrapper = shallow(
-      <Button fab color="primary">
+      <Button variant="fab" color="primary">
         Hello World
       </Button>,
     );
@@ -172,7 +172,7 @@ describe('<Button />', () => {
 
   it('should render an secondary floating action button', () => {
     const wrapper = shallow(
-      <Button fab color="secondary">
+      <Button variant="fab" color="secondary">
         Hello World
       </Button>,
     );
@@ -214,7 +214,7 @@ describe('<Button />', () => {
   it('should render Icon children with right classes', () => {
     const childClassName = 'child-woof';
     const iconChild = <Icon className={childClassName} />;
-    const wrapper = shallow(<Button fab>{iconChild}</Button>);
+    const wrapper = shallow(<Button variant="fab">{iconChild}</Button>);
     const label = wrapper.childAt(0);
     const renderedIconChild = label.childAt(0);
     assert.strictEqual(renderedIconChild.type(), Icon);
