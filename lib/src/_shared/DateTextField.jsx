@@ -128,7 +128,10 @@ class DateTextField extends PureComponent {
   state = this.updateState()
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.value) {
+    if (
+      nextProps.value !== this.state.value ||
+      nextProps.format !== this.props.format
+    ) {
       this.setState(this.updateState(nextProps));
     }
   }
