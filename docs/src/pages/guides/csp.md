@@ -23,29 +23,32 @@ In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce
 
 A CSP nonce is a Base 64 encoded string. You can generate one like this:
 
-```es6
-import uuidv4 from "uuid/v4";
+```js
+import uuidv4 from 'uuid/v4';
 
-const nonce = new Buffer(uuidv4()).toString("base64");
+const nonce = new Buffer(uuidv4()).toString('base64');
 ```
 
-It is very important you use UUID version 4, as it generates an **unpredictable** string. You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
+It is very important you use UUID version 4, as it generates an **unpredictable** string.
+You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
 
-```es6
-header('Content-Security-Policy').set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
+```js
+header('Content-Security-Policy')
+  .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
 If you are using Server Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
 
 ```jsx
-<style 
+<style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }} 
+  dangerouslySetInnerHTML={{ __html: sheetsRegistry.toString() } }
 />
 ```
 
-Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags. The client side gets the nonce from a header. You must include this header regardless of whether or not SSR is used.
+Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
+The client side gets the nonce from a header. You must include this header regardless of whether or not SSR is used.
 
 ```jsx
 <meta property="csp-nonce" content={nonce} />
