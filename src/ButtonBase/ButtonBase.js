@@ -197,6 +197,7 @@ class ButtonBase extends React.Component {
 
   render() {
     const {
+      buttonRef,
       centerRipple,
       children,
       classes,
@@ -264,6 +265,7 @@ class ButtonBase extends React.Component {
         onTouchStart={this.handleTouchStart}
         tabIndex={disabled ? -1 : tabIndex}
         className={className}
+        ref={buttonRef}
         {...buttonProps}
         {...other}
       >
@@ -277,6 +279,10 @@ class ButtonBase extends React.Component {
 }
 
 ButtonBase.propTypes = {
+  /**
+   * Use that property to pass a ref callback to the native button component.
+   */
+  buttonRef: PropTypes.func,
   /**
    * If `true`, the ripples will be centered.
    * They won't start at the cursor interaction position.
