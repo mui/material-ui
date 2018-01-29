@@ -8,10 +8,10 @@ Changes. Changes everywhere!
 Big thanks to the 14 contributors who made this release possible.
 
 Here are some highlights ✨:
-- Further simplification & standardization with the palette (#10015) @mbrookes
-- A Content Security Policy Guide (#10074) @dav-is
-- A fully [w3c compliance](https://validator.w3.org)
-- A react-select integration example (#10070) @oliviertassinari
+- Further simplification & standardization with the palette (#10015) @mbrookes.
+- A Content Security Policy Guide (#10074) @dav-is.
+- Document the withStyles alternative APIs (#9981) @oliviertassinari.
+- A react-select integration example (#10070) @oliviertassinari.
 - And many more bug fixes and documentation improvements.
 
 Fun facts:
