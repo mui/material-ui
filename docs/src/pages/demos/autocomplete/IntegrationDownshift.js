@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Downshift from 'downshift';
+import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import { MenuItem } from 'material-ui/Menu';
-import { withStyles } from 'material-ui/styles';
+import Downshift from 'downshift';
 
 const suggestions = [
   { label: 'Afghanistan' },
@@ -44,26 +44,24 @@ const suggestions = [
 ];
 
 function renderInput(inputProps) {
-  const { classes, autoFocus, value, ref, ...other } = inputProps;
+  const { InputProps, classes, ref, ...other } = inputProps;
 
   return (
     <TextField
-      autoFocus={autoFocus}
-      className={classes.textField}
-      value={value}
+      {...other}
       inputRef={ref}
       InputProps={{
         classes: {
           input: classes.input,
         },
-        ...other,
+        ...InputProps,
       }}
     />
   );
 }
 
 function renderSuggestion(params) {
-  const { suggestion, index, itemProps, theme, highlightedIndex, selectedItem } = params;
+  const { suggestion, index, itemProps, highlightedIndex, selectedItem } = params;
   const isHighlighted = highlightedIndex === index;
   const isSelected = selectedItem === suggestion.label;
 
@@ -74,23 +72,11 @@ function renderSuggestion(params) {
       selected={isHighlighted}
       component="div"
       style={{
-        fontWeight: isSelected
-          ? theme.typography.fontWeightMedium
-          : theme.typography.fontWeightRegular,
+        fontWeight: isSelected ? 500 : 400,
       }}
     >
       {suggestion.label}
     </MenuItem>
-  );
-}
-
-function renderSuggestionsContainer(options) {
-  const { containerProps, children } = options;
-
-  return (
-    <Paper {...containerProps} square>
-      {children}
-    </Paper>
   );
 }
 
@@ -114,56 +100,46 @@ const styles = {
   container: {
     flexGrow: 1,
     height: 200,
-  },
-  textField: {
-    width: '100%',
+    width: 200,
   },
 };
 
 function IntegrationAutosuggest(props) {
-  const { classes, theme } = props;
+  const { classes } = props;
 
   return (
-    <Downshift
-      render={({
-        getInputProps,
-        getItemProps,
-        isOpen,
-        inputValue,
-        selectedItem,
-        highlightedIndex,
-      }) => (
+    <Downshift>
+      {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
         <div className={classes.container}>
-          {renderInput(
-            getInputProps({
-              classes,
+          {renderInput({
+            fullWidth: true,
+            classes,
+            InputProps: getInputProps({
               placeholder: 'Search a country (start with a)',
               id: 'integration-downshift',
             }),
-          )}
-          {isOpen
-            ? renderSuggestionsContainer({
-                children: getSuggestions(inputValue).map((suggestion, index) =>
-                  renderSuggestion({
-                    suggestion,
-                    index,
-                    theme,
-                    itemProps: getItemProps({ item: suggestion.label }),
-                    highlightedIndex,
-                    selectedItem,
-                  }),
-                ),
-              })
-            : null}
+          })}
+          {isOpen ? (
+            <Paper square>
+              {getSuggestions(inputValue).map((suggestion, index) =>
+                renderSuggestion({
+                  suggestion,
+                  index,
+                  itemProps: getItemProps({ item: suggestion.label }),
+                  highlightedIndex,
+                  selectedItem,
+                }),
+              )}
+            </Paper>
+          ) : null}
         </div>
       )}
-    />
+    </Downshift>
   );
 }
 
 IntegrationAutosuggest.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(IntegrationAutosuggest);
+export default withStyles(styles)(IntegrationAutosuggest);

@@ -115,11 +115,11 @@ class SelectInput extends React.Component {
   };
 
   handleSelectRef = node => {
-    if (!this.props.selectRef) {
+    if (!this.props.inputRef) {
       return;
     }
 
-    this.props.selectRef({
+    this.props.inputRef({
       node,
       // By pass the native input as we expose a rich object (array).
       value: this.props.value,
@@ -134,6 +134,7 @@ class SelectInput extends React.Component {
       className: classNameProp,
       disabled,
       displayEmpty,
+      inputRef,
       MenuProps = {},
       multiple,
       name,
@@ -146,7 +147,6 @@ class SelectInput extends React.Component {
       open,
       readOnly,
       renderValue,
-      selectRef,
       value,
       ...other
     } = this.props;
@@ -183,7 +183,7 @@ class SelectInput extends React.Component {
             onFocus={onFocus}
             value={value}
             readOnly={readOnly}
-            ref={selectRef}
+            ref={inputRef}
             {...other}
           >
             {children}
@@ -340,6 +340,10 @@ SelectInput.propTypes = {
    */
   displayEmpty: PropTypes.bool,
   /**
+   * Use that property to pass a ref callback to the native select element.
+   */
+  inputRef: PropTypes.func,
+  /**
    * Properties applied to the `Menu` element.
    */
   MenuProps: PropTypes.object,
@@ -400,10 +404,6 @@ SelectInput.propTypes = {
    */
   renderValue: PropTypes.func,
   /**
-   * Use that property to pass a ref callback to the native select element.
-   */
-  selectRef: PropTypes.func,
-  /**
    * The value of the component, required for a controlled component.
    */
   value: PropTypes.oneOfType([
@@ -412,7 +412,5 @@ SelectInput.propTypes = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   ]),
 };
-
-SelectInput.muiName = 'SelectInput';
 
 export default SelectInput;

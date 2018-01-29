@@ -8,11 +8,11 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/demos/autocomplete/IntegrationAutosuggest.js': {
-          js: require('docs/src/pages/demos/autocomplete/IntegrationAutosuggest').default,
+        'pages/demos/autocomplete/IntegrationReactSelect.js': {
+          js: require('docs/src/pages/demos/autocomplete/IntegrationReactSelect').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/autocomplete/IntegrationAutosuggest'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/autocomplete/IntegrationReactSelect'), 'utf8')
 `,
         },
         'pages/demos/autocomplete/IntegrationDownshift.js': {
@@ -20,6 +20,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/autocomplete/IntegrationDownshift'), 'utf8')
+`,
+        },
+        'pages/demos/autocomplete/IntegrationAutosuggest.js': {
+          js: require('docs/src/pages/demos/autocomplete/IntegrationAutosuggest').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/autocomplete/IntegrationAutosuggest'), 'utf8')
 `,
         },
       }}

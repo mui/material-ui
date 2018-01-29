@@ -57,7 +57,7 @@ This property accepts the following keys:
 - `input`
 - `inputDense`
 - `inputDisabled`
-- `inputSingleline`
+- `inputType`
 - `inputMultiline`
 - `inputSearch`
 

@@ -5,6 +5,9 @@ import { MenuProps } from '../Menu';
 export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey> {
   autoWidth: boolean;
   disabled?: boolean;
+  inputRef?: (
+    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps['value'] },
+  ) => void;
   MenuProps?: Partial<MenuProps>;
   multiple: boolean;
   name?: string;
@@ -17,9 +20,6 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
   open?: boolean;
   readOnly?: boolean;
   renderValue?: (value: SelectInputProps['value']) => React.ReactNode;
-  selectRef?: (
-    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps['value'] },
-  ) => void;
   value?: string | number | Array<string | number>;
 }
 

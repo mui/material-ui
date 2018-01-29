@@ -46,13 +46,11 @@ const suggestions = [
 ];
 
 function renderInput(inputProps) {
-  const { classes, autoFocus, value, ref, ...other } = inputProps;
+  const { classes, ref, ...other } = inputProps;
 
   return (
     <TextField
-      autoFocus={autoFocus}
-      className={classes.textField}
-      value={value}
+      fullWidth
       inputRef={ref}
       InputProps={{
         classes: {
@@ -125,6 +123,7 @@ const styles = theme => ({
     flexGrow: 1,
     position: 'relative',
     height: 200,
+    width: 200,
   },
   suggestionsContainerOpen: {
     position: 'absolute',
@@ -140,9 +139,6 @@ const styles = theme => ({
     margin: 0,
     padding: 0,
     listStyleType: 'none',
-  },
-  textField: {
-    width: '100%',
   },
 });
 
@@ -189,7 +185,6 @@ class IntegrationAutosuggest extends React.Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={{
-          autoFocus: true,
           classes,
           placeholder: 'Search a country (start with a)',
           value: this.state.value,
