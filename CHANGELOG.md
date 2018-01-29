@@ -16,7 +16,7 @@ Here are some highlights ✨:
 
 Fun facts:
 - Our first alpha release was 1 year ago: *Jan 28, 2017* 🎂!
-- We have done 53 releases of the v1.x, one every week for a year 🛥.
+- We have done 53 pre-releases of the v1.x, one every week for a year 🛥.
 
 ### Breaking change
 
