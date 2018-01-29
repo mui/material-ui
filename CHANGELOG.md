@@ -2,6 +2,161 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.31
+###### *Jan 21, 2018*
+
+Big thanks to the 14 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Further simplification & standardization with the palette (#10015) @mbrookes
+- A Content Security Policy Guide (#10074) @dav-is
+- A fully [w3c compliance](https://validator.w3.org)
+- A react-select integration example (#10070) @oliviertassinari
+- And many more bug fixes and documentation improvements.
+
+Fun facts:
+- Our first alpha release was 1 year ago: *Jan 28, 2017* 🎂!
+- We have done 53 releases of the v1.x, one every week for a year 🛥.
+
+### Breaking change
+
+- [Icon] Remove icon ligature "magic" support (#9983) @mbrookes
+
+We have removed the "magic" `<Icon>` wrapping logic. It should be done explicitly now.
+It's making our components less biased around the svg icon vs font icon choice.
+
+```diff
++import Icon from 'material-ui/Icon';
+
+-      <IconButton>comment</IconButton>
++      <IconButton>
++        <Icon>comment</Icon>
++      </IconButton>
+```
+
+- [theme] Further simplification & standardization (#10015) @mbrookes
+
+  - Most component specific `theme.palette.background` colors have been removed. The affected components use `theme.palette.grey` instead. Shift the values of `theme.palette.grey` if you wish to lighten or darken these as a whole; this will maintain the contrast relationship between them. (Paper remains in the theme, as it is used across multiple components.)
+  - `theme.palette.common.fullBlack` and `fullWhite` have been removed. Components that used these values now use `theme.palette.common.black` and `white` instead.
+  - `theme.palette.common.transparent`  has been removed. Components that used this value now use `'transparent'` directly.
+  - Chip has been corrected to use `theme.palette.grey`. If you customize the values of `grey`, the appearance of Chip in your app may change.
+
+- [core] Remove the rootRef properties as unneeded (#10025)
+
+```diff
+-import ReactDOM from 'react-dom';
+
+<IconButton
+- rootRef={node => {
+-   this.button = ReactDOM.findDOMNode(node);
++ buttonRef={node => {
++   this.button = node;
+  }}
+>
+```
+
+- [Button] Add size property (#10009) @oliviertassinari
+
+```diff
+-<Button dense>
++<Button size="small">
+```
+
+- [palette] Remove the palette.types from the theme (#10040) @oliviertassinari
+
+In order to keep the palette simple to understand. I have removed the `types` from the palette object.
+The motivation is the following. The theme & palette should only store
+the information needed to display one UI context.
+Having the `types` object in the palette encourage people to rely on it.
+No, we want people to do it the other way around.
+
+For instance, instead of doing:
+```jsx
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    types: {
+      dark: {
+        background: {
+          default: '#000',
+        },
+      },
+      light: {
+        background: {
+          default: '#fff',
+        },
+      },
+    },
+  },
+});
+```
+
+We would rather see people doing:
+```jsx
+const types = {
+  dark: {
+    background: {
+      default: '#000',
+    },
+  },
+  light: {
+    background: {
+      default: '#fff',
+    },
+  },
+};
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    ...types.dark,
+  },
+});
+```
+
+#### Component Fixes / Enhancements
+
+- [Input] Make sure our previous or updated context is available (#9986) @yoiang
+- [Dialog] Add PaperProps property (#9985) @nbdaaron
+- [FormControl] Fix w3c issue (#9996) @oliviertassinari
+- [typescript] Add divider to palette type defs (#10008) @xaviergonz
+- [Badge] Add error as a palette option (#10004) @t49tran
+- [Tab] Add textColor inherit default props to Tab (#10005) @x0fma
+- [Menu] Fix dark selected color (#10026) @oliviertassinari
+- [SnackbarContent] Change backgroundColor approach (#10027) @mbrookes
+- [Backdrop] Allow setting of onTouchMove (#10001) @daniel-rabe
+- [Popover] Should default to use anchorEl's parent body (#10049) @ianschmitz
+- [Popover] Respect anchorEl's parent window when calculating position (#10048) @ianschmitz
+- [TableCell] Add sortDirection TypeScript definition (#10057) @cvanem
+- [palette] Fix error color defaults (#10058) @pelotom
+- [ButtonBase] Avoid race condition with react-router (#10061) @oliviertassinari
+- [Modal] Remove dead logic (#10062) @oliviertassinari
+- [List] Fix w3c issues (#10050) @oliviertassinari
+- [jss] Fix the last w3c issue I'm aware of (#10063) @oliviertassinari
+- [LinearProgress] Add ARIA role & fix bugs (#10069) @mbrookes
+- [ButtonBase] Add buttonRef property (#10082) @oliviertassinari
+
+#### Docs
+
+- [docs] Edit css injection order docs for create-react-app users (#9990) @PTaylour
+- [docs] withStyles alternative APIs (#9981) @oliviertassinari
+- [docs] Switch the Lightbulb UI (#9995) @oliviertassinari
+- [docs] Use Simple over Basic (#10024) @oliviertassinari
+- [docs] boolean vs enum API (#10023) @oliviertassinari
+- [docs] Improve the typeface-roboto npm instructions (#10039) @oliviertassinari
+- [docs] Add zero click example of Wrapping components (#10041) @oliviertassinari
+- [docs] Reach the AA contrast ratio level (#10053) @oliviertassinari
+- [docs] Misc fixes (#10055) @mbrookes
+- [examples] Add missing typescript dependency (#10031) @QuantumInformation
+- [docs] Add Content Security Policy Guide (#10074) @dav-is
+- [docs] Add react-select example (#10070) @oliviertassinari
+
+#### Core
+
+- [core] Two small fixes looking at #10005 (#10014) @oliviertassinari
+- [core] Use the official react-docgen package (#10054) @oliviertassinari
+- [core] Upgrade the dependencies (#10060) @oliviertassinari
+
 ## 1.0.0-beta.30
 ###### *Jan 21, 2018*
 
@@ -85,6 +240,8 @@ It's unclear if this change is making the implementation follow the specificatio
 
 #### Core
 
+N.A
+
 ## 1.0.0-beta.29
 ###### *Jan 16, 2018*
 
@@ -97,7 +254,7 @@ We are making a release earlier than expected. The release schedule norm has bee
 
 ### Breaking change
 
-N/A
+N.A
 
 #### Component Fixes / Enhancements
 
