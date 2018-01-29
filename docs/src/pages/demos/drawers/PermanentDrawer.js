@@ -74,7 +74,7 @@ class PermanentDrawer extends React.Component {
 
     const drawer = (
       <Drawer
-        type="permanent"
+        variant="permanent"
         classes={{
           paper: classes.drawerPaper,
         }}
@@ -113,7 +113,7 @@ class PermanentDrawer extends React.Component {
         <div className={classes.appFrame}>
           <AppBar className={classNames(classes.appBar, classes[`appBar-${anchor}`])}>
             <Toolbar>
-              <Typography type="title" color="inherit" noWrap>
+              <Typography variant="title" color="inherit" noWrap>
                 Permanent drawer
               </Typography>
             </Toolbar>

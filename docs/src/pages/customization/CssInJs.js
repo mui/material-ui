@@ -49,7 +49,7 @@ const MyLinkStyled = withStyles(styles)(MyLink);
 
 export default function CssInJs() {
   return (
-    <Typography type="subheading">
+    <Typography variant="subheading">
       <MyLinkStyled href="#">MyLink</MyLinkStyled>
       {' - '}
       <MyLinkStyled href="#" variant="primary">

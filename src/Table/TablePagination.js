@@ -94,7 +94,7 @@ class TablePagination extends React.Component {
         <Toolbar className={classes.toolbar}>
           <div className={classes.spacer} />
           {rowsPerPageOptions.length > 1 && (
-            <Typography type="caption" className={classes.caption}>
+            <Typography variant="caption" className={classes.caption}>
               {labelRowsPerPage}
             </Typography>
           )}
@@ -123,7 +123,7 @@ class TablePagination extends React.Component {
               ))}
             </Select>
           )}
-          <Typography type="caption" className={classes.caption}>
+          <Typography variant="caption" className={classes.caption}>
             {labelDisplayedRows({
               from: count === 0 ? 0 : page * rowsPerPage + 1,
               to: Math.min(count, (page + 1) * rowsPerPage),

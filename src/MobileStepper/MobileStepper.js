@@ -60,7 +60,7 @@ function MobileStepper(props) {
     nextButton,
     position,
     steps,
-    type,
+    variant,
     ...other
   } = props;
 
@@ -73,7 +73,7 @@ function MobileStepper(props) {
   return (
     <Paper square elevation={0} className={className} {...other}>
       {backButton}
-      {type === 'dots' && (
+      {variant === 'dots' && (
         <div className={classes.dots}>
           {[...new Array(steps)].map((_, step) => {
             const dotClassName = classNames(
@@ -87,7 +87,7 @@ function MobileStepper(props) {
           })}
         </div>
       )}
-      {type === 'progress' && (
+      {variant === 'progress' && (
         <div className={classes.progress}>
           <LinearProgress mode="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
         </div>
@@ -100,7 +100,7 @@ function MobileStepper(props) {
 MobileStepper.propTypes = {
   /**
    * Set the active step (zero based index).
-   * Defines which dot is highlighted when the type is 'dots'.
+   * Defines which dot is highlighted when the variant is 'dots'.
    */
   activeStep: PropTypes.number,
   /**
@@ -130,13 +130,13 @@ MobileStepper.propTypes = {
   /**
    * The type of mobile stepper to use.
    */
-  type: PropTypes.oneOf(['text', 'dots', 'progress']),
+  variant: PropTypes.oneOf(['text', 'dots', 'progress']),
 };
 
 MobileStepper.defaultProps = {
   activeStep: 0,
   position: 'bottom',
-  type: 'dots',
+  variant: 'dots',
 };
 
 export default withStyles(styles, { name: 'MuiMobileStepper' })(MobileStepper);

@@ -12,12 +12,12 @@ const decorate = withStyles(({ palette, spacing }) => ({
 
 interface Props {
   text: string;
-  type: TypographyProps['type'];
+  variant: TypographyProps['variant'];
   color: TypographyProps['color'];
 }
 
-const DecoratedSFC = decorate<Props>(({ text, type, color, classes }) => (
-  <Typography type={type} color={color} classes={classes}>
+const DecoratedSFC = decorate<Props>(({ text, variant, color, classes }) => (
+  <Typography  variant={variant} color={color} classes={classes}>
     {text}
   </Typography>
 ));
@@ -25,9 +25,9 @@ const DecoratedSFC = decorate<Props>(({ text, type, color, classes }) => (
 const DecoratedClass = decorate(
   class extends React.Component<Props & WithStyles<'root'>> {
     render() {
-      const { text, type, color, classes } = this.props;
+      const { text, variant, color, classes } = this.props;
       return (
-        <Typography type={type} color={color} classes={classes}>
+        <Typography  variant={variant} color={color} classes={classes}>
           {text}
         </Typography>
       );
@@ -43,6 +43,6 @@ const DecoratedNoProps = decorate<{}>(
   },
 );
 
-const sfcElem = <DecoratedSFC text="Hello, World!" type="title" color="secondary" />;
-const classElem = <DecoratedClass text="Hello, World!" type="title" color="secondary" />;
+const sfcElem = <DecoratedSFC text="Hello, World!" variant="title" color="secondary" />;
+const classElem = <DecoratedClass text="Hello, World!" variant="title" color="secondary" />;
 const noPropsElem = <DecoratedNoProps />;

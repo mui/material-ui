@@ -106,7 +106,7 @@ class HorizontalLinearStepper extends React.Component {
             const props = {};
             const labelProps = {};
             if (this.isStepOptional(index)) {
-              labelProps.optional = <Typography type="caption">Optional</Typography>;
+              labelProps.optional = <Typography variant="caption">Optional</Typography>;
             }
             if (this.isStepSkipped(index)) {
               props.completed = false;

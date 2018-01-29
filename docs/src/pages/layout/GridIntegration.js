@@ -32,7 +32,7 @@ function GridIntegration(props) {
 
   return (
     <div className={classes.root}>
-      <Typography type="subheading" className={classes.typography}>
+      <Typography variant="subheading" className={classes.typography}>
         Current width: {props.width}
       </Typography>
       <Grid container spacing={24}>

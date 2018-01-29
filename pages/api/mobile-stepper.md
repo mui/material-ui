@@ -12,13 +12,13 @@ filename: /src/MobileStepper/MobileStepper.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| activeStep | number | 0 | Set the active step (zero based index). Defines which dot is highlighted when the type is 'dots'. |
+| activeStep | number | 0 | Set the active step (zero based index). Defines which dot is highlighted when the variant is 'dots'. |
 | backButton | node |  | A back button element. For instance, it can be be a `Button` or a `IconButton`. |
 | classes | object |  | Useful to extend the style applied to components. |
 | nextButton | node |  | A next button element. For instance, it can be be a `Button` or a `IconButton`. |
 | position | enum:&nbsp;'bottom'&nbsp;&#124;<br>&nbsp;'top'&nbsp;&#124;<br>&nbsp;'static'<br> | 'bottom' | Set the positioning type. |
 | <span style="color: #31a148">steps *</span> | number |  | The total steps. |
-| type | enum:&nbsp;'text'&nbsp;&#124;<br>&nbsp;'dots'&nbsp;&#124;<br>&nbsp;'progress'<br> | 'dots' | The type of mobile stepper to use. |
+| variant | enum:&nbsp;'text'&nbsp;&#124;<br>&nbsp;'dots'&nbsp;&#124;<br>&nbsp;'progress'<br> | 'dots' | The type of mobile stepper to use. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

@@ -35,7 +35,7 @@ class ProgressMobileStepper extends React.Component {
 
     return (
       <MobileStepper
-        type="progress"
+        variant="progress"
         steps={6}
         position="static"
         activeStep={this.state.activeStep}

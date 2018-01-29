@@ -89,7 +89,7 @@ function AppDrawer(props, context) {
       <div className={classes.toolbarIe11}>
         <Toolbar className={classes.toolbar}>
           <Link className={classes.title} href="/" onClick={onClose}>
-            <Typography type="title" gutterBottom color="inherit">
+            <Typography variant="title" gutterBottom color="inherit">
               Material-UI
             </Typography>
           </Link>
@@ -98,7 +98,7 @@ function AppDrawer(props, context) {
               className={classes.anchor}
               href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
             >
-              <Typography type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
+              <Typography variant="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
             </Link>
           ) : null}
           <Divider absolute />
@@ -115,7 +115,7 @@ function AppDrawer(props, context) {
           classes={{
             paper: classNames(classes.paper, 'algolia-drawer'),
           }}
-          type="temporary"
+          variant="temporary"
           open={mobileOpen}
           onClose={onClose}
           ModalProps={{
@@ -131,7 +131,7 @@ function AppDrawer(props, context) {
             classes={{
               paper: classes.paper,
             }}
-            type="permanent"
+            variant="permanent"
             open
           >
             {drawer}

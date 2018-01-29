@@ -67,7 +67,7 @@ function DetailedExpansionPanel(props) {
             <Chip label="Barbados" className={classes.chip} onDelete={() => {}} />
           </div>
           <div className={classNames(classes.column, classes.helper)}>
-            <Typography type="caption">
+            <Typography variant="caption">
               Select your destination of choice<br />
               <a href="#sub-labels-and-columns" className={classes.link}>
                 Learn more

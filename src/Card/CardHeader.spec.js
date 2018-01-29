@@ -59,13 +59,13 @@ describe('<CardHeader />', () => {
     it('should render the title as headline text', () => {
       const title = wrapper.childAt(0);
       assert.strictEqual(title.type(), Typography);
-      assert.strictEqual(title.props().type, 'headline');
+      assert.strictEqual(title.props().variant, 'headline');
     });
 
     it('should render the subheader as body1 secondary text', () => {
       const subheader = wrapper.childAt(1);
       assert.strictEqual(subheader.type(), Typography);
-      assert.strictEqual(subheader.props().type, 'body1');
+      assert.strictEqual(subheader.props().variant, 'body1');
       assert.strictEqual(subheader.props().color, 'textSecondary');
     });
 
@@ -102,7 +102,7 @@ describe('<CardHeader />', () => {
       );
       const title = container.childAt(0);
       assert.strictEqual(title.type(), Typography);
-      assert.strictEqual(title.props().type, 'body2');
+      assert.strictEqual(title.props().variant, 'body2');
     });
 
     it('should render the subeader as body2 secondary text inside the second child', () => {
@@ -114,7 +114,7 @@ describe('<CardHeader />', () => {
       );
       const subheader = container.childAt(1);
       assert.strictEqual(subheader.type(), Typography);
-      assert.strictEqual(subheader.props().type, 'body2');
+      assert.strictEqual(subheader.props().variant, 'body2');
       assert.strictEqual(subheader.props().color, 'textSecondary');
     });
   });

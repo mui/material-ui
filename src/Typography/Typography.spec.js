@@ -56,11 +56,11 @@ describe('<Typography />', () => {
     'body1',
     'caption',
     'button',
-  ].forEach(type => {
-    it(`should render ${type} text`, () => {
-      const wrapper = shallow(<Typography type={type}>Hello</Typography>);
-      assert.ok(classes[type] !== undefined);
-      assert.strictEqual(wrapper.hasClass(classes[type]), true, `should be ${type} text`);
+  ].forEach(variant => {
+    it(`should render ${variant} text`, () => {
+      const wrapper = shallow(<Typography variant={variant}>Hello</Typography>);
+      assert.ok(classes[variant] !== undefined);
+      assert.strictEqual(wrapper.hasClass(classes[variant]), true, `should be ${variant} text`);
     });
   });
 
@@ -87,7 +87,7 @@ describe('<Typography />', () => {
 
   describe('headline', () => {
     it('should render a span by default', () => {
-      const wrapper = shallow(<Typography type="button">Hello</Typography>);
+      const wrapper = shallow(<Typography variant="button">Hello</Typography>);
       assert.strictEqual(wrapper.name(), 'span');
     });
 
@@ -97,7 +97,7 @@ describe('<Typography />', () => {
     });
 
     it('should render the mapped headline', () => {
-      const wrapper = shallow(<Typography type="title">Hello</Typography>);
+      const wrapper = shallow(<Typography variant="title">Hello</Typography>);
       assert.strictEqual(wrapper.name(), 'h2');
     });
 

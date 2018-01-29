@@ -25,7 +25,7 @@ function SimpleMediaCard(props) {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography type="headline" component="h2">
+          <Typography variant="headline" component="h2">
             Lizard
           </Typography>
           <Typography component="p">

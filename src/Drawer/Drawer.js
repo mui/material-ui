@@ -111,7 +111,7 @@ class Drawer extends React.Component {
       SlideProps,
       theme,
       transitionDuration,
-      type,
+      variant,
       ...other
     } = this.props;
 
@@ -122,17 +122,17 @@ class Drawer extends React.Component {
 
     const drawer = (
       <Paper
-        elevation={type === 'temporary' ? elevation : 0}
+        elevation={variant === 'temporary' ? elevation : 0}
         square
         className={classNames(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
-          [classes[`paperAnchorDocked${capitalize(anchor)}`]]: type !== 'temporary',
+          [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
         })}
       >
         {children}
       </Paper>
     );
 
-    if (type === 'permanent') {
+    if (variant === 'permanent') {
       return (
         <div className={classNames(classes.docked, className)} {...other}>
           {drawer}
@@ -152,7 +152,7 @@ class Drawer extends React.Component {
       </Slide>
     );
 
-    if (type === 'persistent') {
+    if (variant === 'persistent') {
       return (
         <div className={classNames(classes.docked, className)} {...other}>
           {slidingDrawer}
@@ -160,7 +160,7 @@ class Drawer extends React.Component {
       );
     }
 
-    // type === temporary
+    // variant === temporary
     return (
       <Modal
         BackdropProps={{
@@ -232,7 +232,7 @@ Drawer.propTypes = {
   /**
    * The type of drawer.
    */
-  type: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
+  variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 };
 
 Drawer.defaultProps = {
@@ -240,7 +240,7 @@ Drawer.defaultProps = {
   elevation: 16,
   open: false,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
-  type: 'temporary', // Mobile first.
+  variant: 'temporary', // Mobile first.
 };
 
 export default withStyles(styles, { name: 'MuiDrawer', flip: false, withTheme: true })(Drawer);

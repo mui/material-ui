@@ -74,7 +74,7 @@ class InteractiveList extends React.Component {
         </FormGroup>
         <Grid container>
           <Grid item xs={12} md={6}>
-            <Typography type="title" className={classes.title}>
+            <Typography variant="title" className={classes.title}>
               Text only
             </Typography>
             <div className={classes.demo}>
@@ -91,7 +91,7 @@ class InteractiveList extends React.Component {
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography type="title" className={classes.title}>
+            <Typography variant="title" className={classes.title}>
               Icon with text
             </Typography>
             <div className={classes.demo}>
@@ -113,7 +113,7 @@ class InteractiveList extends React.Component {
         </Grid>
         <Grid container>
           <Grid item xs={12} md={6}>
-            <Typography type="title" className={classes.title}>
+            <Typography variant="title" className={classes.title}>
               Avatar with text
             </Typography>
             <div className={classes.demo}>
@@ -135,7 +135,7 @@ class InteractiveList extends React.Component {
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography type="title" className={classes.title}>
+            <Typography variant="title" className={classes.title}>
               Avatar with text and icon
             </Typography>
             <div className={classes.demo}>

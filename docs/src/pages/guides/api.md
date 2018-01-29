@@ -81,7 +81,7 @@ type Props = {
 };
 ```
 
-- Option 2 *enum*: `<Button>`, `<Button type="raised">`, `<Button type="fab">`.
+- Option 2 *enum*: `<Button>`, `<Button variant="raised">`, `<Button variant="fab">`.
   With this API, you prevent invalid combination from being used, you bound the number of properties you expose, and you can easily support new values in the future.
 
 ```tsx

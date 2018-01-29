@@ -79,7 +79,7 @@ function StepLabel(props) {
         </span>
       )}
       <span>
-        <Typography type="body1" component="span" className={labelClassName}>
+        <Typography variant="body1" component="span" className={labelClassName}>
           {children}
         </Typography>
         {optional}

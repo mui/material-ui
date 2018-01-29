@@ -31,7 +31,7 @@ Functional components are straightforward:
 
 ```jsx
 const DecoratedSFC = decorate<Props>(({ text, type, color, classes }) => (
-  <Typography type={type} color={color} classes={classes}>
+  <Typography variant={type} color={color} classes={classes}>
     {text}
   </Typography>
 ));
@@ -47,7 +47,7 @@ const DecoratedClass = decorate(
     render() {
       const { text, type, color, classes } = this.props
       return (
-        <Typography type={type} color={color} classes={classes}>
+        <Typography variant={type} color={color} classes={classes}>
           {text}
         </Typography>
       );

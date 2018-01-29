@@ -71,13 +71,13 @@ function Typography(props) {
     headlineMapping,
     noWrap,
     paragraph,
-    type,
+    variant,
     ...other
   } = props;
 
   const className = classNames(
     classes.root,
-    classes[type],
+    classes[variant],
     {
       [classes[`color${capitalize(color)}`]]: color !== 'default',
       [classes.noWrap]: noWrap,
@@ -88,7 +88,7 @@ function Typography(props) {
     classNameProp,
   );
 
-  const Component = componentProp || (paragraph ? 'p' : headlineMapping[type]) || 'span';
+  const Component = componentProp || (paragraph ? 'p' : headlineMapping[variant]) || 'span';
 
   return <Component className={className} {...other} />;
 }
@@ -117,7 +117,7 @@ Typography.propTypes = {
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
-   * By default, it maps the type to a good default headline component.
+   * By default, it maps the variant to a good default headline component.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
@@ -125,7 +125,7 @@ Typography.propTypes = {
    */
   gutterBottom: PropTypes.bool,
   /**
-   * We are empirically mapping the type property to a range of different DOM element type.
+   * We are empirically mapping the variant property to a range of different DOM element types.
    * For instance, h1 to h6. If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` property.
    */
@@ -141,7 +141,7 @@ Typography.propTypes = {
   /**
    * Applies the theme typography styles.
    */
-  type: PropTypes.oneOf([
+  variant: PropTypes.oneOf([
     'display4',
     'display3',
     'display2',
@@ -173,7 +173,7 @@ Typography.defaultProps = {
   },
   noWrap: false,
   paragraph: false,
-  type: 'body1',
+  variant: 'body1',
 };
 
 export default withStyles(styles, { name: 'MuiTypography' })(Typography);

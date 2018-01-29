@@ -152,13 +152,13 @@ describe('<MobileStepper />', () => {
     assert.strictEqual(nextButton.props().disabled, true, 'should disable the next button');
   });
 
-  it('should render just two buttons when supplied with type text', () => {
-    const wrapper = shallow(<MobileStepper type="text" {...defaultProps} />);
+  it('should render just two buttons when supplied with variant text', () => {
+    const wrapper = shallow(<MobileStepper variant="text" {...defaultProps} />);
     assert.lengthOf(wrapper.children(), 2, 'should render exactly two children');
   });
 
-  it('should render dots when supplied with type dots', () => {
-    const wrapper = shallow(<MobileStepper type="dots" {...defaultProps} />);
+  it('should render dots when supplied with variant dots', () => {
+    const wrapper = shallow(<MobileStepper variant="dots" {...defaultProps} />);
     assert.lengthOf(wrapper.children(), 3, 'should render exactly three children');
     assert.strictEqual(
       wrapper.childAt(1).hasClass(classes.dots),
@@ -167,13 +167,13 @@ describe('<MobileStepper />', () => {
     );
   });
 
-  it('should render a dot for each step when using dots type', () => {
-    const wrapper = shallow(<MobileStepper type="dots" {...defaultProps} />);
+  it('should render a dot for each step when using dots variant', () => {
+    const wrapper = shallow(<MobileStepper variant="dots" {...defaultProps} />);
     assert.lengthOf(wrapper.find(`.${classes.dot}`), 2, 'should render exactly two dots');
   });
 
   it('should render the first dot as active if activeStep is not set', () => {
-    const wrapper = shallow(<MobileStepper type="dots" {...defaultProps} />);
+    const wrapper = shallow(<MobileStepper variant="dots" {...defaultProps} />);
     assert.strictEqual(
       wrapper
         .childAt(1)
@@ -185,7 +185,7 @@ describe('<MobileStepper />', () => {
   });
 
   it('should honor the activeStep prop', () => {
-    const wrapper = shallow(<MobileStepper type="dots" activeStep={1} {...defaultProps} />);
+    const wrapper = shallow(<MobileStepper variant="dots" activeStep={1} {...defaultProps} />);
     assert.strictEqual(
       wrapper
         .childAt(1)
@@ -196,22 +196,22 @@ describe('<MobileStepper />', () => {
     );
   });
 
-  it('should render a <LinearProgress /> when supplied with type progress', () => {
-    const wrapper = shallow(<MobileStepper type="progress" {...defaultProps} />);
+  it('should render a <LinearProgress /> when supplied with variant progress', () => {
+    const wrapper = shallow(<MobileStepper variant="progress" {...defaultProps} />);
     assert.lengthOf(wrapper.find(LinearProgress), 1, 'should render a <LinearProgress />');
   });
 
   it('should calculate the <LinearProgress /> value correctly', () => {
     const props = { backButton: defaultProps.backButton, nextButton: defaultProps.nextButton };
-    let wrapper = shallow(<MobileStepper type="progress" steps={3} {...props} />);
+    let wrapper = shallow(<MobileStepper variant="progress" steps={3} {...props} />);
     let linearProgressProps = wrapper.find(LinearProgress).props();
     assert.strictEqual(linearProgressProps.value, 0, 'should set <LinearProgress /> value to 0');
 
-    wrapper = shallow(<MobileStepper type="progress" steps={3} activeStep={1} {...props} />);
+    wrapper = shallow(<MobileStepper variant="progress" steps={3} activeStep={1} {...props} />);
     linearProgressProps = wrapper.find(LinearProgress).props();
     assert.strictEqual(linearProgressProps.value, 50, 'should set <LinearProgress /> value to 50');
 
-    wrapper = shallow(<MobileStepper type="progress" steps={3} activeStep={2} {...props} />);
+    wrapper = shallow(<MobileStepper variant="progress" steps={3} activeStep={2} {...props} />);
     linearProgressProps = wrapper.find(LinearProgress).props();
     assert.strictEqual(
       linearProgressProps.value,
