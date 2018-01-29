@@ -4,7 +4,7 @@ Starting with JSS version 9.6.0, Material-UI supports Content Security Policy he
 
 ## What is CSP and why is it useful?
 
-Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://website.example` the CSP header `default-src: 'self';` will allow all assets that are located at `https://website.example/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input something like:
+Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://example.com` the CSP header `default-src: 'self';` will allow all assets that are located at `https://example.com/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input something like:
 
 ```
 <script>
@@ -12,7 +12,7 @@ Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring develop
 </script>
 ```
 
-This vulnrivbility would allow the attacker to execute anything. Although, with a secure CSP header, the browser will not load this script.
+This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
 
 You can read more about CSP [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
@@ -35,13 +35,7 @@ It is very important you use UUID version 4, as it generates an **unpredictable*
 header('Content-Security-Policy').set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
-Then you must pass this nonce to JSS so it can set it accordingly. The client side gets the nonce from a header.
-
-```jsx
-<meta property="csp-nonce" content={nonce} />
-```
-
-If you are using Server Side Rendering, you should additionally pass the nonce in the `<style>` tag on the server.
+If you are using Server Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
 
 ```jsx
 <style 
@@ -49,4 +43,10 @@ If you are using Server Side Rendering, you should additionally pass the nonce i
   nonce={nonce}
   dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }} 
 />
+```
+
+Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags. The client side gets the nonce from a header. You must include this header regardless of whether or not SSR is used.
+
+```jsx
+<meta property="csp-nonce" content={nonce} />
 ```
