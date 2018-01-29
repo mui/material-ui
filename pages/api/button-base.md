@@ -14,6 +14,7 @@ It contains a load of style reset and some focus/ripple logic.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| buttonRef | func |  | Use that property to pass a ref callback to the native button component. |
 | centerRipple | bool | false | If `true`, the ripples will be centered. They won't start at the cursor interaction position. |
 | children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |

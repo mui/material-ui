@@ -6,6 +6,7 @@ export interface ButtonBaseProps
       React.AnchorHTMLAttributes<HTMLElement> & React.ButtonHTMLAttributes<HTMLElement>,
       ButtonBaseClassKey
     > {
+  buttonRef?: React.Ref<any>;
   centerRipple?: boolean;
   component?: React.ReactType<ButtonBaseProps>;
   disableRipple?: boolean;
