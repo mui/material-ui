@@ -5,9 +5,9 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
 // A function you can extract and put into its own module.
-// Yes, 13 lines of code, it's all you need.
+// Yes, 15 lines of code, it's all you need.
 function styled(Component) {
-  return (styles, options) => {
+  return (style, options) => {
     function StyledComponent(props) {
       const { classes, className, ...other } = props;
       return <Component className={classNames(classes.root, className)} {...other} />;
@@ -16,7 +16,9 @@ function styled(Component) {
       classes: PropTypes.object.isRequired,
       className: PropTypes.string,
     };
-    return withStyles({ root: styles }, options)(StyledComponent);
+    const styles =
+      typeof style === 'function' ? theme => ({ root: style(theme) }) : { root: style };
+    return withStyles(styles, options)(StyledComponent);
   };
 }
 
