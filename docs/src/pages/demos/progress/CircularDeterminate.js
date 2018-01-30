@@ -22,7 +22,7 @@ class CircularDeterminate extends React.Component {
     clearInterval(this.timer);
   }
 
-  timer: number;
+  timer;
 
   progress = () => {
     const { completed } = this.state;
