@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Collapse from 'material-ui/transitions/Collapse';
-import { Typography, IconButton, withStyles } from 'material-ui';
+import { Typography, IconButton, Icon, withStyles } from 'material-ui';
 import Code from '../components/Code';
 
 class SourcablePanel extends PureComponent {
@@ -58,7 +58,7 @@ class SourcablePanel extends PureComponent {
           className={classes.sourceBtn}
           onClick={this.toggleSource}
         >
-          code
+          <Icon>code</Icon>
         </IconButton>
         { this.props.children }
       </div>,
