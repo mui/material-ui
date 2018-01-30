@@ -32,6 +32,12 @@ export const styles = theme => {
       left: 'auto',
       right: 0,
     },
+    positionSticky: {
+      position: 'sticky',
+      top: 0,
+      left: 'auto',
+      right: 0,
+    },
     positionStatic: {
       position: 'static',
     },
@@ -88,9 +94,11 @@ AppBar.propTypes = {
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'default']),
   /**
-   * The positioning type.
+   * The positioning type. The behavior of the different options is described
+   * [here](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
+   * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
    */
-  position: PropTypes.oneOf(['static', 'fixed', 'absolute']),
+  position: PropTypes.oneOf(['fixed', 'absolute', 'sticky', 'static']),
 };
 
 AppBar.defaultProps = {
