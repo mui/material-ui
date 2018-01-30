@@ -34,7 +34,7 @@ export const CalendarHeader = (props) => {
         </Typography>
 
         <IconButton onClick={selectNextMonth}>
-            <Icon>{rtl ? leftArrowIcon : rightArrowIcon}</Icon>
+          <Icon>{rtl ? leftArrowIcon : rightArrowIcon}</Icon>
         </IconButton>
       </div>
 
