@@ -376,7 +376,16 @@ function RenderProps() {
 
 {{"demo": "pages/customization/RenderProps.js"}}
 
-### styled-components API (+13 lines)
+You can access the theme the same way you would do it with `withStyles`:
+```
+const Styled = createStyled(theme => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+```
+
+### styled-components API (+15 lines)
 
 styled-components's API removes the mapping between components and styles. Using components as a low-level styling construct can be simpler.
 
@@ -399,3 +408,10 @@ function StyledComponents() {
 ```
 
 {{"demo": "pages/customization/StyledComponents.js"}}
+
+You can access the theme the same way you would do it with `withStyles`:
+```
+const MyButton = styled(Button)(theme => ({
+  backgroundColor: theme.palette.background.paper,
+}));
+```
