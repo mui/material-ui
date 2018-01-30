@@ -14,9 +14,9 @@ function LinearQuery(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <LinearProgress mode="query" />
+      <LinearProgress variant="query" />
       <br />
-      <LinearProgress color="secondary" mode="query" />
+      <LinearProgress color="secondary" variant="query" />
     </div>
   );
 }

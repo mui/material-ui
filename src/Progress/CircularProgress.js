@@ -80,7 +80,7 @@ function CircularProgress(props) {
     color,
     max,
     min,
-    mode,
+    variant,
     size,
     style,
     thickness,
@@ -92,7 +92,7 @@ function CircularProgress(props) {
   const rootStyle = { width: size, height: size };
   const rootProps = {};
 
-  if (mode === 'determinate') {
+  if (variant === 'determinate') {
     const relVal = getRelativeValue(value, min, max) * 100;
     const circumference = 2 * Math.PI * (SIZE / 2 - 5);
 
@@ -118,14 +118,14 @@ function CircularProgress(props) {
     >
       <svg
         className={classNames({
-          [classes.svgIndeterminate]: mode === 'indeterminate',
-          [classes.svgDeterminate]: mode === 'determinate',
+          [classes.svgIndeterminate]: variant === 'indeterminate',
+          [classes.svgDeterminate]: variant === 'determinate',
         })}
         viewBox={`0 0 ${SIZE} ${SIZE}`}
       >
         <circle
           className={classNames(classes.circle, {
-            [classes.circleIndeterminate]: mode === 'indeterminate',
+            [classes.circleIndeterminate]: variant === 'indeterminate',
           })}
           style={circleStyle}
           cx={SIZE / 2}
@@ -153,19 +153,13 @@ CircularProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
-   * The max value of progress in determinate mode.
+   * The max value of progress in determinate variant.
    */
   max: PropTypes.number,
   /**
-   * The min value of progress in determinate mode.
+   * The min value of progress in determinate variant.
    */
   min: PropTypes.number,
-  /**
-   * The mode of show your progress. Indeterminate
-   * for when there is no value for progress.
-   * Determinate for controlled progress value.
-   */
-  mode: PropTypes.oneOf(['determinate', 'indeterminate']),
   /**
    * The size of the circle.
    */
@@ -179,16 +173,22 @@ CircularProgress.propTypes = {
    */
   thickness: PropTypes.number,
   /**
-   * The value of progress in determinate mode.
+   * The value of the progress indicator for the determinate variant.
+   * Value between 0 and 100.
    */
   value: PropTypes.number,
+  /**
+   * The variant of progress indicator. Use indeterminate
+   * when there is no progress value.
+   */
+  variant: PropTypes.oneOf(['determinate', 'indeterminate']),
 };
 
 CircularProgress.defaultProps = {
   color: 'primary',
   max: 100,
   min: 0,
-  mode: 'indeterminate',
+  variant: 'indeterminate',
   size: 40,
   thickness: 3.6,
   value: 0,

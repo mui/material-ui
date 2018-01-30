@@ -17,9 +17,9 @@ attribute to `true` on that region until it has finished loading.
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
 | color | enum:&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
-| mode | enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'&nbsp;&#124;<br>&nbsp;'buffer'&nbsp;&#124;<br>&nbsp;'query'<br> | 'indeterminate' | The mode of show your progress, indeterminate for when there is no value for progress. |
-| value | number |  | The value of progress, only works in determinate and buffer mode. Value between 0 and 100. |
-| valueBuffer | number |  | The value of buffer, only works in buffer mode. Value between 0 and 100. |
+| value | number |  | The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100. |
+| valueBuffer | number |  | The value for the buffer for the buffer variant. Value between 0 and 100. |
+| variant | enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'&nbsp;&#124;<br>&nbsp;'buffer'&nbsp;&#124;<br>&nbsp;'query'<br> | 'indeterminate' | The variant of progress indicator. Use indeterminate or query when there is no progress value. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
