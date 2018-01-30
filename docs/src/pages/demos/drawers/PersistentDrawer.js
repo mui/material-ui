@@ -133,7 +133,7 @@ class PersistentDrawer extends React.Component {
 
     const drawer = (
       <Drawer
-        type="persistent"
+        variant="persistent"
         classes={{
           paper: classes.drawerPaper,
         }}
@@ -192,7 +192,7 @@ class PersistentDrawer extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography type="title" color="inherit" noWrap>
+              <Typography variant="title" color="inherit" noWrap>
                 Persistent drawer
               </Typography>
             </Toolbar>

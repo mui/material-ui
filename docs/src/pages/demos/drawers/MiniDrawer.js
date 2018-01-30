@@ -124,13 +124,13 @@ class MiniDrawer extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography type="title" color="inherit" noWrap>
+              <Typography variant="title" color="inherit" noWrap>
                 Mini variant drawer
               </Typography>
             </Toolbar>
           </AppBar>
           <Drawer
-            type="permanent"
+            variant="permanent"
             classes={{
               paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
             }}

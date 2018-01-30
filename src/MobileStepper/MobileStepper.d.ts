@@ -9,7 +9,7 @@ export interface MobileStepperProps extends StandardProps<PaperProps, MobileStep
   nextButton: React.ReactElement<any>;
   position?: 'bottom' | 'top' | 'static';
   steps: number;
-  type?: 'text' | 'dots' | 'progress';
+  variant?: 'text' | 'dots' | 'progress';
 }
 
 export type MobileStepperClassKey =

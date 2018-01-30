@@ -11,34 +11,34 @@ const style = {
 export default function Types() {
   return (
     <div style={style}>
-      <Typography type="display4" gutterBottom>
+      <Typography variant="display4" gutterBottom>
         Display 4
       </Typography>
-      <Typography type="display3" gutterBottom>
+      <Typography variant="display3" gutterBottom>
         Display 3
       </Typography>
-      <Typography type="display2" gutterBottom>
+      <Typography variant="display2" gutterBottom>
         Display 2
       </Typography>
-      <Typography type="display1" gutterBottom>
+      <Typography variant="display1" gutterBottom>
         Display 1
       </Typography>
-      <Typography type="headline" gutterBottom>
+      <Typography variant="headline" gutterBottom>
         Headline
       </Typography>
-      <Typography type="title" gutterBottom>
+      <Typography variant="title" gutterBottom>
         Title
       </Typography>
-      <Typography type="subheading" gutterBottom>
+      <Typography variant="subheading" gutterBottom>
         Subheading
       </Typography>
-      <Typography type="body2" gutterBottom>
+      <Typography variant="body2" gutterBottom>
         Body 2
       </Typography>
-      <Typography type="body1" gutterBottom align="right">
+      <Typography variant="body1" gutterBottom align="right">
         Body 1
       </Typography>
-      <Typography type="caption" gutterBottom align="center">
+      <Typography variant="caption" gutterBottom align="center">
         Caption
       </Typography>
       <Typography gutterBottom noWrap>
@@ -47,7 +47,7 @@ export default function Types() {
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         `}
       </Typography>
-      <Typography type="button" gutterBottom>
+      <Typography variant="button" gutterBottom>
         Button
       </Typography>
     </div>

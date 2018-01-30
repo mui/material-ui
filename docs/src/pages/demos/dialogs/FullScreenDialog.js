@@ -54,7 +54,7 @@ class FullScreenDialog extends React.Component {
               <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
                 <CloseIcon />
               </IconButton>
-              <Typography type="title" color="inherit" className={classes.flex}>
+              <Typography variant="title" color="inherit" className={classes.flex}>
                 Sound
               </Typography>
               <Button color="inherit" onClick={this.handleClose}>

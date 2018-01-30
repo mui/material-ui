@@ -29,10 +29,10 @@ function AppFooter(props) {
   return (
     <footer className={classes.root}>
       <div className={classes.layout}>
-        <Typography type="title" gutterBottom>
+        <Typography variant="title" gutterBottom>
           Quick Links
         </Typography>
-        <Typography type="subheading" component="div">
+        <Typography variant="subheading" component="div">
           <Grid container spacing={0}>
             <Grid item xs={12} sm={6}>
               <ul className={classes.list}>

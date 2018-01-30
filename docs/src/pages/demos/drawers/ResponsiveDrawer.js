@@ -97,14 +97,14 @@ class ResponsiveDrawer extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography type="title" color="inherit" noWrap>
+              <Typography variant="title" color="inherit" noWrap>
                 Responsive drawer
               </Typography>
             </Toolbar>
           </AppBar>
           <Hidden mdUp>
             <Drawer
-              type="temporary"
+              variant="temporary"
               anchor={theme.direction === 'rtl' ? 'right' : 'left'}
               open={this.state.mobileOpen}
               classes={{
@@ -120,7 +120,7 @@ class ResponsiveDrawer extends React.Component {
           </Hidden>
           <Hidden smDown implementation="css">
             <Drawer
-              type="permanent"
+              variant="permanent"
               open
               classes={{
                 paper: classes.drawerPaper,

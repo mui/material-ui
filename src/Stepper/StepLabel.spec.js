@@ -129,7 +129,7 @@ describe('<StepLabel />', () => {
   describe('prop: optional = Optional Text', () => {
     it('creates a <Typography> component with text "Optional Text"', () => {
       const wrapper = shallow(
-        <StepLabel icon={1} optional={<Typography type="caption">Optional Text</Typography>}>
+        <StepLabel icon={1} optional={<Typography variant="caption">Optional Text</Typography>}>
           Step One
         </StepLabel>,
       );

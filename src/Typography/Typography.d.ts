@@ -11,7 +11,7 @@ export interface TypographyProps
   headlineMapping?: { [type in TextStyle]: string };
   noWrap?: boolean;
   paragraph?: boolean;
-  type?: Style | 'caption' | 'button';
+  variant?: Style | 'caption' | 'button';
 }
 
 export type TypographyClassKey =

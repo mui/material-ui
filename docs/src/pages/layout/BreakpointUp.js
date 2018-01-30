@@ -38,7 +38,7 @@ function BreakpointUp(props) {
 
   return (
     <div className={classes.container}>
-      <Typography type="subheading" className={classes.typography}>
+      <Typography variant="subheading" className={classes.typography}>
         Current width: {props.width}
       </Typography>
       <Hidden xsUp>

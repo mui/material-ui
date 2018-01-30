@@ -19,7 +19,7 @@ export interface DrawerProps
   SlideProps?: Partial<SlideProps>;
   theme?: Theme;
   transitionDuration?: TransitionDuration;
-  type?: 'permanent' | 'persistent' | 'temporary';
+  variant?: 'permanent' | 'persistent' | 'temporary';
 }
 
 export type DrawerClassKey =

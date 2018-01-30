@@ -61,7 +61,7 @@ function ListItemText(props, context) {
           primary
         ) : (
           <Typography
-            type="subheading"
+            variant="subheading"
             className={classNames(classes.primary, { [classes.textDense]: dense })}
           >
             {primary}
@@ -72,7 +72,7 @@ function ListItemText(props, context) {
           secondary
         ) : (
           <Typography
-            type="body1"
+            variant="body1"
             className={classNames(classes.secondary, {
               [classes.textDense]: dense,
             })}

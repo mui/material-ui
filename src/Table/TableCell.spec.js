@@ -99,31 +99,31 @@ describe('<TableCell />', () => {
     assert.strictEqual(wrapper.hasClass(classes.typeFooter), true, 'should have the footer class');
   });
 
-  it('should render with the head class when type is head, overriding context', () => {
+  it('should render with the head class when variant is head, overriding context', () => {
     const wrapper = shallow(<TableCell />);
     wrapper.setContext({ table: { footer: true } });
-    wrapper.setProps({ type: 'head' });
+    wrapper.setProps({ variant: 'head' });
     assert.strictEqual(wrapper.hasClass(classes.typeHead), true);
   });
 
-  it('should render without head class when type is body, overriding context', () => {
+  it('should render without head class when variant is body, overriding context', () => {
     const wrapper = shallow(<TableCell />);
     wrapper.setContext({ table: { head: true } });
-    wrapper.setProps({ type: 'body' });
+    wrapper.setProps({ variant: 'body' });
     assert.strictEqual(wrapper.hasClass(classes.typeHead), false);
   });
 
-  it('should render without footer class when type is body, overriding context', () => {
+  it('should render without footer class when variant is body, overriding context', () => {
     const wrapper = shallow(<TableCell />);
     wrapper.setContext({ table: { footer: true } });
-    wrapper.setProps({ type: 'body' });
+    wrapper.setProps({ variant: 'body' });
     assert.strictEqual(wrapper.hasClass(classes.typeFooter), false);
   });
 
-  it('should render with the footer class when type is footer, overriding context', () => {
+  it('should render with the footer class when variant is footer, overriding context', () => {
     const wrapper = shallow(<TableCell />);
     wrapper.setContext({ table: { head: true } });
-    wrapper.setProps({ type: 'footer' });
+    wrapper.setProps({ variant: 'footer' });
     assert.strictEqual(wrapper.hasClass(classes.typeFooter), true);
   });
 

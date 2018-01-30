@@ -20,7 +20,7 @@ describe('<Drawer />', () => {
     );
   });
 
-  describe('prop: type=temporary', () => {
+  describe('prop:  variant=temporary', () => {
     it('should render a Modal', () => {
       const wrapper = shallow(
         <Drawer>
@@ -88,9 +88,9 @@ describe('<Drawer />', () => {
       assert.strictEqual(wrapper.find(Modal).props().BackdropTransitionDuration, testDuration);
     });
 
-    it('should set the custom className for Modal when type is temporary', () => {
+    it('should set the custom className for Modal when variant is temporary', () => {
       const wrapper = shallow(
-        <Drawer className="woofDrawer" type="temporary">
+        <Drawer className="woofDrawer" variant="temporary">
           <h1>Hello</h1>
         </Drawer>,
       );
@@ -155,12 +155,12 @@ describe('<Drawer />', () => {
     });
   });
 
-  describe('prop: type=persistent', () => {
+  describe('prop:  variant=persistent', () => {
     let wrapper;
 
     before(() => {
       wrapper = shallow(
-        <Drawer type="persistent">
+        <Drawer variant="persistent">
           <h1>Hello</h1>
         </Drawer>,
       );
@@ -181,12 +181,12 @@ describe('<Drawer />', () => {
     });
   });
 
-  describe('prop: type=permanent', () => {
+  describe('prop:  variant=permanent', () => {
     let wrapper;
 
     before(() => {
       wrapper = shallow(
-        <Drawer type="permanent">
+        <Drawer variant="permanent">
           <h1>Hello</h1>
         </Drawer>,
       );

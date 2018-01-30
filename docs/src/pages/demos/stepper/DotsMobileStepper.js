@@ -35,7 +35,7 @@ class DotsMobileStepper extends React.Component {
 
     return (
       <MobileStepper
-        type="dots"
+        variant="dots"
         steps={6}
         position="static"
         activeStep={this.state.activeStep}

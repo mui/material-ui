@@ -40,6 +40,7 @@
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:copy-files && yarn build:umd:dev && yarn build:umd:prod",
     "prettier": "find . -name \"*.js\" -o -name \"*.d.ts\" -o -name \"*.tsx\" | grep -v -f .eslintignore | xargs prettier --write",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
+    "lint:fix": "eslint . --cache --fix && echo \"eslint: no lint errors\"",
     "size": "size-limit",
     "size:why": "size-limit --why build/index.js",
     "size:overhead:why": "size-limit --why ./test/size/overhead.js",

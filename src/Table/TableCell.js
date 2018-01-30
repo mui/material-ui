@@ -60,7 +60,7 @@ function TableCell(props, context) {
     sortDirection,
     numeric,
     padding,
-    type,
+    variant,
     ...other
   } = props;
   const { table } = context;
@@ -77,9 +77,9 @@ function TableCell(props, context) {
       [classes.numeric]: numeric,
       [classes[`padding${capitalize(padding)}`]]: padding !== 'none' && padding !== 'default',
       [classes.paddingDefault]: padding !== 'none',
-      [classes.typeHead]: type ? type === 'head' : table && table.head,
-      [classes.typeBody]: type ? type === 'body' : table && table.body,
-      [classes.typeFooter]: type ? type === 'footer' : table && table.footer,
+      [classes.typeHead]: variant ? variant === 'head' : table && table.head,
+      [classes.typeBody]: variant ? variant === 'body' : table && table.body,
+      [classes.typeFooter]: variant ? variant === 'footer' : table && table.footer,
     },
     classNameProp,
   );
@@ -130,7 +130,7 @@ TableCell.propTypes = {
    * Specify the cell type.
    * By default, the TableHead, TableBody or TableFooter parent component set the value.
    */
-  type: PropTypes.oneOf(['head', 'body', 'footer']),
+  variant: PropTypes.oneOf(['head', 'body', 'footer']),
 };
 
 TableCell.defaultProps = {

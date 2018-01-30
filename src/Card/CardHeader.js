@@ -43,12 +43,16 @@ function CardHeader(props) {
     <Component className={classNames(classes.root, classNameProp)} {...other}>
       {avatar && <div className={classes.avatar}>{avatar}</div>}
       <div className={classes.content}>
-        <Typography type={avatar ? 'body2' : 'headline'} component="span" className={classes.title}>
+        <Typography
+          variant={avatar ? 'body2' : 'headline'}
+          component="span"
+          className={classes.title}
+        >
           {title}
         </Typography>
         {subheader && (
           <Typography
-            type={avatar ? 'body2' : 'body1'}
+            variant={avatar ? 'body2' : 'body1'}
             component="span"
             color="textSecondary"
             className={classes.subheader}

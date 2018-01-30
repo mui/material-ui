@@ -150,7 +150,7 @@ class HorizontalNonLinearStepper extends React.Component {
                 </Button>
                 {activeStep !== steps.length &&
                   (this.state.completed[this.state.activeStep] ? (
-                    <Typography type="caption" className={classes.completed}>
+                    <Typography variant="caption" className={classes.completed}>
                       Step {activeStep + 1} already completed
                     </Typography>
                   ) : (

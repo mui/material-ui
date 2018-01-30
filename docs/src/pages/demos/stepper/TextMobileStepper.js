@@ -49,7 +49,7 @@ class TextMobileStepper extends React.Component {
           <Typography>Step {this.state.activeStep + 1} of 6</Typography>
         </Paper>
         <MobileStepper
-          type="text"
+          variant="text"
           steps={6}
           position="static"
           activeStep={this.state.activeStep}
