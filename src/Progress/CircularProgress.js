@@ -11,6 +11,17 @@ function getRelativeValue(value, min, max) {
   return (clampedValue - min) / (max - min);
 }
 
+function easeOut(t) {
+  t = getRelativeValue(t, 0, 1);
+  // https://gist.github.com/gre/1650294
+  t = (t -= 1) * t * t + 1;
+  return t;
+}
+
+function easeIn(t) {
+  return t * t;
+}
+
 export const styles = theme => ({
   root: {
     display: 'inline-block',
@@ -24,9 +35,7 @@ export const styles = theme => ({
   svgIndeterminate: {
     animation: 'mui-progress-circular-rotate 1.4s linear infinite',
   },
-  svgDeterminate: {
-    transform: 'rotate(-90deg)',
-  },
+  svgDeterminate: {},
   circle: {
     stroke: 'currentColor',
     strokeLinecap: 'round',
@@ -58,6 +67,12 @@ export const styles = theme => ({
   },
 });
 
+/**
+ * ## ARIA
+ * If the progress bar is describing the loading progress of a particular region of a page,
+ * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
+ * attribute to `true` on that region until it has finished loading.
+ */
 function CircularProgress(props) {
   const {
     classes,
@@ -73,20 +88,18 @@ function CircularProgress(props) {
     ...other
   } = props;
 
+  const circleStyle = {};
+  const rootStyle = { width: size, height: size };
   const rootProps = {};
 
-  const circleStyle = {};
   if (mode === 'determinate') {
     const relVal = getRelativeValue(value, min, max) * 100;
     const circumference = 2 * Math.PI * (SIZE / 2 - 5);
 
-    circleStyle.strokeDashoffset = `${Math.round((100 - relVal) / 100 * circumference * 1000) /
-      1000}px`;
-    circleStyle.strokeDasharray = Math.round(circumference * 1000) / 1000;
-
-    rootProps['aria-valuenow'] = value;
-    rootProps['aria-valuemin'] = min;
-    rootProps['aria-valuemax'] = max;
+    circleStyle.strokeDashoffset = `${(easeIn((100 - relVal) / 100) * circumference).toFixed(3)}px`;
+    circleStyle.strokeDasharray = circumference.toFixed(3);
+    rootStyle.transform = `rotate(${(easeOut(relVal / 70) * 270).toFixed(3)}deg)`;
+    rootProps['aria-valuenow'] = Math.round(relVal);
   }
 
   return (
@@ -98,7 +111,7 @@ function CircularProgress(props) {
         },
         className,
       )}
-      style={{ width: size, height: size, ...style }}
+      style={{ ...rootStyle, ...style }}
       role="progressbar"
       {...rootProps}
       {...other}

@@ -9,36 +9,57 @@ const styles = theme => ({
   },
 });
 
-function CircularDeterminate(props) {
-  const { classes } = props;
-  return (
-    <div>
-      <CircularProgress className={classes.progress} mode="determinate" value={75} />
-      <CircularProgress
-        className={classes.progress}
-        size={50}
-        mode="determinate"
-        value={25}
-        min={0}
-        max={50}
-      />
-      <CircularProgress
-        className={classes.progress}
-        color="secondary"
-        mode="determinate"
-        value={75}
-      />
-      <CircularProgress
-        className={classes.progress}
-        color="secondary"
-        size={50}
-        mode="determinate"
-        value={25}
-        min={0}
-        max={50}
-      />
-    </div>
-  );
+class CircularDeterminate extends React.Component {
+  state = {
+    completed: 0,
+  };
+
+  componentDidMount() {
+    this.timer = setInterval(this.progress, 20);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  timer;
+
+  progress = () => {
+    const { completed } = this.state;
+    this.setState({ completed: completed === 100 ? 0 : completed + 1 });
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div>
+        <CircularProgress
+          className={classes.progress}
+          mode="determinate"
+          value={this.state.completed}
+        />
+        <CircularProgress
+          className={classes.progress}
+          mode="determinate"
+          size={50}
+          value={this.state.completed}
+        />
+        <CircularProgress
+          className={classes.progress}
+          color="secondary"
+          mode="determinate"
+          value={this.state.completed}
+        />
+        <CircularProgress
+          className={classes.progress}
+          color="secondary"
+          mode="determinate"
+          size={50}
+          value={this.state.completed}
+        />
+      </div>
+    );
+  }
 }
 
 CircularDeterminate.propTypes = {
