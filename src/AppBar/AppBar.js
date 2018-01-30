@@ -34,7 +34,6 @@ export const styles = theme => {
     },
     positionStatic: {
       position: 'static',
-      flexShrink: 0,
     },
     colorDefault: {
       backgroundColor: backgroundColorDefault,
