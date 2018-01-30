@@ -11,13 +11,13 @@ const decorate = withStyles(({ palette, spacing }) => ({
 }));
 
 interface Props {
+  color: TypographyProps['color'];
   text: string;
   variant: TypographyProps['variant'];
-  color: TypographyProps['color'];
 }
 
 const DecoratedSFC = decorate<Props>(({ text, variant, color, classes }) => (
-  <Typography  variant={variant} color={color} classes={classes}>
+  <Typography variant={variant} color={color} classes={classes}>
     {text}
   </Typography>
 ));
@@ -27,7 +27,7 @@ const DecoratedClass = decorate(
     render() {
       const { text, variant, color, classes } = this.props;
       return (
-        <Typography  variant={variant} color={color} classes={classes}>
+        <Typography variant={variant} color={color} classes={classes}>
           {text}
         </Typography>
       );

@@ -244,10 +244,6 @@ Button.propTypes = {
    */
   disableRipple: PropTypes.bool,
   /**
-   * If `true`, will use floating action button styling.
-   */
-  fab: PropTypes.bool,
-  /**
    * If `true`, the button will take up the full width of its container.
    */
   fullWidth: PropTypes.bool,
@@ -260,10 +256,6 @@ Button.propTypes = {
    * If `true`, and `fab` is `true`, will use mini floating action button styling.
    */
   mini: PropTypes.bool,
-  /**
-   * If `true`, the button will use raised styling.
-   */
-  raised: PropTypes.bool,
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.

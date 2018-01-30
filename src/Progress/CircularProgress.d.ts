@@ -6,10 +6,10 @@ export interface CircularProgressProps
   color?: 'primary' | 'secondary' | 'inherit';
   max?: number;
   min?: number;
-  variant?: 'determinate' | 'indeterminate';
   size?: number | string;
   thickness?: number;
   value?: number;
+  variant?: 'determinate' | 'indeterminate';
 }
 
 export type CircularProgressClassKey =

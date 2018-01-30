@@ -4,9 +4,9 @@ import { StandardProps } from '..';
 export interface LinearProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, LinearProgressClassKey> {
   color?: 'primary' | 'secondary';
-  variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
   value?: number;
   valueBuffer?: number;
+  variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
 }
 
 export type LinearProgressClassKey =
