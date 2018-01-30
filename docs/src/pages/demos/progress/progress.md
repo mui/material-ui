@@ -16,7 +16,7 @@ For example, a refresh operation should display either a refresh bar or an activ
 
 ## Circular
 
-### Indeterminate
+### Circular Indeterminate
 
 {{"demo": "pages/demos/progress/CircularIndeterminate.js"}}
 
@@ -24,17 +24,17 @@ For example, a refresh operation should display either a refresh bar or an activ
 
 {{"demo": "pages/demos/progress/CircularIntegration.js"}}
 
-###  Determinate
+### Circular Determinate
 
 {{"demo": "pages/demos/progress/CircularDeterminate.js"}}
 
 ## Linear
 
-### Indeterminate
+### Linear Indeterminate
 
 {{"demo": "pages/demos/progress/LinearIndeterminate.js"}}
 
-### Determinate
+### Linear Determinate
 
 {{"demo": "pages/demos/progress/LinearDeterminate.js"}}
 
