@@ -49,12 +49,12 @@ export default class BasicUsage extends Component {
             leftArrowIcon={<Icon> add_alarm </Icon>}
             rightArrowIcon={<Icon> snooze </Icon>}
             InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton>
-                  <Icon>add_alarm</Icon>
-                </IconButton>
-              </InputAdornment>
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton>
+                    <Icon>add_alarm</Icon>
+                  </IconButton>
+                </InputAdornment>
             ),
           }}
           />
