@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from 'material-ui/styles/withStyles';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
+import Icon from 'material-ui/Icon';
 import * as defaultUtils from '../utils/utils';
 
 export const CalendarHeader = (props) => {
@@ -25,7 +26,7 @@ export const CalendarHeader = (props) => {
     <div>
       <div className={classes.switchHeader}>
         <IconButton onClick={selectPreviousMonth}>
-          {rtl ? rightArrowIcon : leftArrowIcon}
+          <Icon>{rtl ? rightArrowIcon : leftArrowIcon}</Icon>
         </IconButton>
 
         <Typography type="body1">
@@ -33,7 +34,7 @@ export const CalendarHeader = (props) => {
         </Typography>
 
         <IconButton onClick={selectNextMonth}>
-          {rtl ? leftArrowIcon : rightArrowIcon}
+            <Icon>{rtl ? leftArrowIcon : rightArrowIcon}</Icon>
         </IconButton>
       </div>
 
