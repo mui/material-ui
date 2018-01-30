@@ -45,7 +45,7 @@ they will replace the defaults.
 
 The intent objects accept either a color object, or an object with one or more of the following keys:
 
-```jsx
+```js
 interface PaletteColor {
   light?: string;
   main: string;
@@ -58,8 +58,7 @@ interface PaletteColor {
 
 If the intent provides a color object, the following mapping is used to populate the required keys:
 
-
-```jsx
+```js
 palette: {
   primary: {
     light: primaryColor[300],
@@ -84,7 +83,7 @@ palette: {
 
 This example illustrates how you could recreate the default palette values:
 
-```jsx
+```js
 import { createMuiTheme } from 'material-ui/styles';
 import indigo from 'material-ui/colors/indigo';
 import pink from 'material-ui/colors/pink';
@@ -143,7 +142,7 @@ While it's only a single property value change, internally it modifies the value
 - `palette.background`
 - `palette.action`
 
-```jsx
+```js
 const theme = createMuiTheme({
   palette: {
     type: 'dark',

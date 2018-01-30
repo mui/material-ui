@@ -24,7 +24,7 @@ class LinearBuffer extends React.Component {
     clearInterval(this.timer);
   }
 
-  timer: number;
+  timer = null;
 
   progress = () => {
     const { completed } = this.state;
