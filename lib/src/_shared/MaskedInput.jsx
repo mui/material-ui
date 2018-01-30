@@ -12,10 +12,11 @@ export default class Input extends PureComponent {
   }
 
   render() {
+    const { inputRef, ...props } = this.props;
     return (
       this.props.mask
-        ? <MaskedInput {...this.props} />
-        : <input {...this.props} />
+        ? <MaskedInput {...props} ref={inputRef} />
+        : <input {...props} ref={inputRef} />
     );
   }
 }
