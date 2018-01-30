@@ -34,7 +34,6 @@ export const styles = theme => {
     },
     positionSticky: {
       position: 'sticky',
-      flexShrink: 0,
       top: 0,
       left: 'auto',
       right: 0,
