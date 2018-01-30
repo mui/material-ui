@@ -102,9 +102,8 @@ class DateTextField extends PureComponent {
       // if null - do not show error
       if (value.parsingFlags().nullInput) {
         return '';
-      } else {
-        return invalidDateMessage;
       }
+      return invalidDateMessage;
     }
 
     if (
