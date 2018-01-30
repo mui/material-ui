@@ -104,7 +104,7 @@ cancelLabel | string | 'Cancel' | The label for the cancel button
 clearLabel | string | 'Clear' | The label for the clear button
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
-leftArrowIcon | react node | `<Icon>keyboard_arrow_left</Icoln>` Left arrow icon
+leftArrowIcon | react node | `<Icon>keyboard_arrow_left</Icon>`| Left arrow icon
 rightArrowIcon | react node | `<Icon>keyboard_arrow_right</Icon>`| Right arrow icon
 shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
 keyboard | boolean | false | Allow to manual input date to the text field
@@ -159,7 +159,7 @@ cancelLabel | string | 'Cancel' | The label for the cancel button
 clearLabel | string | 'Clear' | The label for the clear button
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
-leftArrowIcon | react node | `<Icon>keyboard_arrow_left</Icoln>` Left arrow icon
+leftArrowIcon | react node | `<Icon>keyboard_arrow_left</Icon>`| Left arrow icon
 rightArrowIcon | react node | `<Icon>keyboard_arrow_right</Icon>`| Right arrow icon
 dateRangeIcon | react node | `<Icon>date_range</Icon>`| Date tab icon 
 timeIcon | react node | `<Icon>access_time</Icon>`| Time tab icon
