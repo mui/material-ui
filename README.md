@@ -104,11 +104,11 @@ cancelLabel | string | 'Cancel' | The label for the cancel button
 clearLabel | string | 'Clear' | The label for the clear button
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
-leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
-rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
+leftArrowIcon | react node | `<Icon>keyboard_arrow_left</Icoln>` Left arrow icon
+rightArrowIcon | react node | `<Icon>keyboard_arrow_right</Icon>`| Right arrow icon
 shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
 keyboard | boolean | false | Allow to manual input date to the text field
-keyboardIcon | react node, string | 'event' | Keyboard adornment icon
+keyboardIcon | react node | `<Icon>event</Icon>` | Keyboard adornment icon
 maxDateMessage | string | 'Date should not be after maximal date' | Maximum date error message for keyboard input
 minDateMessage | string | 'Date should not be before minimal date' | Minimum date error message for keyboard input
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
@@ -131,7 +131,7 @@ clearLabel | string | 'Clear' | The label for the clear button
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 ampm | boolean | true | 12h/24h view for hour selection clock
 keyboard | boolean | false | Allow to manual input date to the text field
-keyboardIcon | react node, string | 'event' | Keyboard adornment icon
+keyboardIcon | react node | `<Icon>event</Icon>` | Keyboard adornment icon
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
 clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
@@ -159,14 +159,14 @@ cancelLabel | string | 'Cancel' | The label for the cancel button
 clearLabel | string | 'Clear' | The label for the clear button
 labelFunc | func | null | Allow to specify dynamic label for text field `labelFunc(date, invalidLabel)`. Note, that `date` equals `null` after picker is cleared.
 renderDay | func | null | Allow to specify custom renderer for day `renderDay(date, selectedDate, dayInCurrentMonth)`
-leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
-rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
-dateRangeIcon | react node, string | 'date_range'| Date tab icon 
-timeIcon | react node, string | 'access_time'| Time tab icon
+leftArrowIcon | react node | `<Icon>keyboard_arrow_left</Icoln>` Left arrow icon
+rightArrowIcon | react node | `<Icon>keyboard_arrow_right</Icon>`| Right arrow icon
+dateRangeIcon | react node | `<Icon>date_range</Icon>`| Date tab icon 
+timeIcon | react node | `<Icon>access_time</Icon>`| Time tab icon
 ampm | boolean | true | 12h/24h view for hour selection clock
 shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
 keyboard | boolean | false | Allow to manual input date to the text field
-keyboardIcon | react node, string | 'event' | Keyboard adornment icon
+keyboardIcon | react node | `<Icon>event</Icon>` | Keyboard adornment icon
 maxDateMessage | string | 'Date should not be after maximal date' | Maximum date error message for keyboard input
 minDateMessage | string | 'Date should not be before minimal date' | Minimum date error message for keyboard input
 invalidDateMessage | string | 'Invalid Date Format' | Message, appearing when date cannot be parsed
