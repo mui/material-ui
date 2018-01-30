@@ -20,7 +20,7 @@ describe('<Drawer />', () => {
     );
   });
 
-  describe('prop:  variant=temporary', () => {
+  describe('prop: variant=temporary', () => {
     it('should render a Modal', () => {
       const wrapper = shallow(
         <Drawer>
@@ -155,7 +155,7 @@ describe('<Drawer />', () => {
     });
   });
 
-  describe('prop:  variant=persistent', () => {
+  describe('prop: variant=persistent', () => {
     let wrapper;
 
     before(() => {
@@ -181,7 +181,7 @@ describe('<Drawer />', () => {
     });
   });
 
-  describe('prop:  variant=permanent', () => {
+  describe('prop: variant=permanent', () => {
     let wrapper;
 
     before(() => {

@@ -144,7 +144,7 @@ export const styles = theme => ({
  * attribute to `true` on that region until it has finished loading.
  */
 function LinearProgress(props) {
-  const { classes, className, color, variant, value, valueBuffer, ...other } = props;
+  const { classes, className, color, value, valueBuffer, variant, ...other } = props;
 
   const dashedClass = classNames(classes.dashed, {
     [classes.primaryDashed]: color === 'primary',

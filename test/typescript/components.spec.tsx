@@ -72,7 +72,7 @@ const AppBarTest = () => (
       <IconButton color="inherit" aria-label="Menu">
         <FakeIcon />
       </IconButton>
-      <Typography  variant="title" color="inherit">
+      <Typography variant="title" color="inherit">
         Title
       </Typography>
       <Button color="inherit">Login</Button>
@@ -144,11 +144,11 @@ const IconButtonTest = () => (
 const CardTest = () => (
   <Card>
     <CardContent>
-      <Typography  variant="body1">Word of the Day</Typography>
-      <Typography  variant="headline" component="h2">
+      <Typography variant="body1">Word of the Day</Typography>
+      <Typography variant="headline" component="h2">
         be-nev-o-lent
       </Typography>
-      <Typography  variant="body1">adjective</Typography>
+      <Typography variant="body1">adjective</Typography>
       <Typography component="p">
         well meaning and kindly.<br />
         {'"a benevolent smile"'}
@@ -189,7 +189,7 @@ const CardMediaTest = () => (
     </CardActions>
     <Collapse in={true} timeout="auto" unmountOnExit>
       <CardContent>
-        <Typography paragraph  variant="body2">
+        <Typography paragraph variant="body2">
           Method:
         </Typography>
         <Typography paragraph>
@@ -289,7 +289,7 @@ const DrawerTest = () => {
   return (
     <div>
       <Drawer
-         variant="persistent"
+        variant="persistent"
         open={open.left}
         onClose={event => log(event)}
         onClick={event => log(event)}
@@ -297,7 +297,7 @@ const DrawerTest = () => {
         List
       </Drawer>
       <Drawer
-         variant="temporary"
+        variant="temporary"
         anchor="top"
         open={open.top}
         onClose={event => log(event)}
@@ -310,7 +310,7 @@ const DrawerTest = () => {
       </Drawer>
       <Drawer
         anchor="bottom"
-         variant="temporary"
+        variant="temporary"
         open={open.bottom}
         onClose={event => log(event)}
         onClick={event => log(event)}
@@ -318,7 +318,7 @@ const DrawerTest = () => {
         List
       </Drawer>
       <Drawer
-         variant="persistent"
+        variant="persistent"
         anchor="right"
         open={open.right}
         onClose={event => log(event)}
@@ -412,10 +412,10 @@ const MenuTest = () => {
 
 const PaperTest = () => (
   <Paper elevation={4}>
-    <Typography  variant="headline" component="h3">
+    <Typography variant="headline" component="h3">
       This is a sheet of paper.
     </Typography>
-    <Typography  variant="body1" component="p">
+    <Typography variant="body1" component="p">
       Paper can be used to build surface or other elements for your application.
     </Typography>
   </Paper>
@@ -583,7 +583,7 @@ const StepperTest = () =>
       };
       return (
         <MobileStepper
-           variant="dots"
+          variant="dots"
           steps={6}
           position="static"
           activeStep={this.state.activeStep}

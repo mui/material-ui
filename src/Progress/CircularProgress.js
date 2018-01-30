@@ -80,11 +80,11 @@ function CircularProgress(props) {
     color,
     max,
     min,
-    variant,
     size,
     style,
     thickness,
     value,
+    variant,
     ...other
   } = props;
 
@@ -188,10 +188,10 @@ CircularProgress.defaultProps = {
   color: 'primary',
   max: 100,
   min: 0,
-  variant: 'indeterminate',
   size: 40,
   thickness: 3.6,
   value: 0,
+  variant: 'indeterminate',
 };
 
 export default withStyles(styles, { name: 'MuiCircularProgress', flip: false })(CircularProgress);
