@@ -8,13 +8,12 @@ export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassK
   disabled?: boolean;
   disableFocusRipple?: boolean;
   disableRipple?: boolean;
-  fab?: boolean;
   fullWidth?: boolean;
   href?: string;
   mini?: boolean;
-  raised?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large'
   type?: string;
+  variant?: 'flat' | 'raised' | 'fab'
 }
 
 export type ButtonClassKey =

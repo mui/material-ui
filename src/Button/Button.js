@@ -155,14 +155,15 @@ function Button(props) {
     color,
     disabled,
     disableFocusRipple,
-    fab,
     fullWidth,
     mini,
-    raised,
     size,
+    variant,
     ...other
   } = props;
 
+  const fab = variant === 'fab';
+  const raised = variant === 'raised';
   const flat = !raised && !fab;
   const className = classNames(
     classes.root,
@@ -272,6 +273,10 @@ Button.propTypes = {
    * @ignore
    */
   type: PropTypes.string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  variant: PropTypes.oneOf(['flat', 'raised', 'fab']),
 };
 
 Button.defaultProps = {
@@ -279,12 +284,11 @@ Button.defaultProps = {
   disabled: false,
   disableFocusRipple: false,
   disableRipple: false,
-  fab: false,
   fullWidth: false,
   mini: false,
-  raised: false,
   size: 'medium',
   type: 'button',
+  variant: 'flat',
 };
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);

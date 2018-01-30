@@ -111,7 +111,7 @@ global.__MUI_SvgIcon__ = SvgIcon;
 +import Button from 'material-ui-next/Button';
 
 -<RaisedButton />
-+<Button raised />
++<Button variant="raised" />
 ```
 
 ### To be continued…

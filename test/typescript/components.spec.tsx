@@ -109,8 +109,8 @@ const ButtonTest = () => (
     <Button disabled>Disabled</Button>
     <Button href="#flat-buttons">Link</Button>
     <Button size="small">Small</Button>
-    <Button raised>Raised</Button>
-    <Button fab color="primary" aria-label="add">
+    <Button variant="raised">Raised</Button>
+    <Button variant="fab" color="primary" aria-label="add">
       <FakeIcon />
     </Button>
     <Button tabIndex={1} title="some button">
