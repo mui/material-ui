@@ -99,6 +99,10 @@ class DateTextField extends PureComponent {
     } = this.props;
 
     if (!value.isValid()) {
+      // if null - do not show error
+      if (value.parsingFlags().nullInput) {
+        return '';
+      }
       return invalidDateMessage;
     }
 
