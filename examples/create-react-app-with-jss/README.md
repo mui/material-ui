@@ -5,8 +5,8 @@
 Download the example [or clone the repo](https://github.com/mui-org/material-ui):
 
 ```bash
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/v1-beta | tar -xz --strip=2 material-ui-1-beta/examples/create-react-app
-cd create-react-app
+curl https://codeload.github.com/mui-org/material-ui/tar.gz/v1-beta | tar -xz --strip=2 material-ui-1-beta/examples/create-react-app-with-jss
+cd create-react-app-with-jss
 ```
 
 Install it and run:
