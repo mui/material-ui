@@ -5,6 +5,7 @@ import MaskedInput from 'react-text-mask';
 export default class Input extends PureComponent {
   static propTypes = {
     mask: PropTypes.any,
+    inputRef: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -12,10 +13,11 @@ export default class Input extends PureComponent {
   }
 
   render() {
+    const { inputRef, ...props } = this.props;
     return (
       this.props.mask
-        ? <MaskedInput {...this.props} />
-        : <input {...this.props} />
+        ? <MaskedInput {...props} ref={inputRef} />
+        : <input {...props} ref={inputRef} />
     );
   }
 }
