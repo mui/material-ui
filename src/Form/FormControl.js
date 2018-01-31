@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { isDirty, isAdornedStart } from '../Input/Input';
+import { capitalize } from '../utils/helpers';
 import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = theme => ({
@@ -132,8 +133,7 @@ class FormControl extends React.Component {
         className={classNames(
           classes.root,
           {
-            [classes.marginNormal]: margin === 'normal',
-            [classes.marginDense]: margin === 'dense',
+            [classes[`margin${capitalize(margin)}`]]: margin !== 'none',
             [classes.fullWidth]: fullWidth,
           },
           className,
@@ -173,8 +173,7 @@ FormControl.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the component, as well as its children,
-   * will take up the full width of its container.
+   * If `true`, the component will take up the full width of its container.
    */
   fullWidth: PropTypes.bool,
   /**
