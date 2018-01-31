@@ -19,6 +19,7 @@ filename: /src/Drawer/Drawer.js
 | ModalProps | object |  | Properties applied to the `Modal` element. |
 | onClose | func |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | bool | false | If `true`, the drawer is open. |
+| PaperProps | object |  | Properties applied to the `Paper` element. |
 | SlideProps | object |  | Properties applied to the `Slide` element. |
 | transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | { enter: duration.enteringScreen, exit: duration.leavingScreen } | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | variant | enum:&nbsp;'permanent'&nbsp;&#124;<br>&nbsp;'persistent'&nbsp;&#124;<br>&nbsp;'temporary'<br> | 'temporary' | The type of drawer. |

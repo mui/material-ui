@@ -3,6 +3,7 @@ import { StandardProps } from '..';
 import { ModalProps, ModalClassKey } from '../Modal';
 import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 import { SlideProps } from '../transitions/Slide';
+import { PaperProps } from '../Paper';
 import { Theme } from '../styles/createMuiTheme';
 
 export interface DrawerProps
@@ -16,6 +17,7 @@ export interface DrawerProps
   elevation?: number;
   ModalProps?: Partial<ModalProps>;
   open?: boolean;
+  PaperProps?: Partial<PaperProps>;
   SlideProps?: Partial<SlideProps>;
   theme?: Theme;
   transitionDuration?: TransitionDuration;

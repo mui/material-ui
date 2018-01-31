@@ -108,6 +108,7 @@ class Drawer extends React.Component {
       ModalProps,
       onClose,
       open,
+      PaperProps,
       SlideProps,
       theme,
       transitionDuration,
@@ -127,6 +128,7 @@ class Drawer extends React.Component {
         className={classNames(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
           [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
         })}
+        {...PaperProps}
       >
         {children}
       </Paper>
@@ -213,6 +215,10 @@ Drawer.propTypes = {
    * If `true`, the drawer is open.
    */
   open: PropTypes.bool,
+  /**
+   * Properties applied to the `Paper` element.
+   */
+  PaperProps: PropTypes.object,
   /**
    * Properties applied to the `Slide` element.
    */
