@@ -48,7 +48,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton>  add_alarm  </IconButton>
+                <IconButton><Icon>add_alarm</Icon></IconButton>
               </InputAdornment>
             ),
           }}

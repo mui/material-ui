@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip } from 'material-ui';
+import { AppBar, Toolbar, IconButton, Icon, Typography, withStyles, Button, Tooltip } from 'material-ui';
 
 import Github from './components/GithubIcon';
 import SourcablePanel from './components/SourcablePanel';
@@ -36,26 +36,26 @@ class Demo extends Component {
         <AppBar position="fixed" className={classes.noShadow}>
           <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              menu
+              <Icon>menu</Icon>
             </IconButton>
 
             <div className={classes.flex} />
 
             <Tooltip title="Toggle English/French moment locale" enterDelay={300}>
               <IconButton color="inherit" onClick={toggleFrench}>
-                language
+                <Icon>language</Icon>
               </IconButton>
             </Tooltip>
 
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton color="inherit" onClick={toggleThemeType}>
-                lightbulb_outline
+                <Icon>lightbulb_outline</Icon>
               </IconButton>
             </Tooltip>
 
             <Tooltip title="Toggle direction" enterDelay={300}>
               <IconButton color="inherit" onClick={toggleDirection}>
-                format_textdirection_l_to_r
+                <Icon>format_textdirection_l_to_r</Icon>
               </IconButton>
             </Tooltip>
             <Tooltip title="Github" enterDelay={300}>

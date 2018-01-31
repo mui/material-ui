@@ -5,6 +5,7 @@ import withTheme from 'material-ui/styles/withTheme';
 import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
+import Icon from 'material-ui/Icon';
 import * as viewType from '../constants/date-picker-view';
 
 const viewToTabIndex = (openView) => {
@@ -49,8 +50,8 @@ export const DateTimePickerTabs = (props) => {
         className={classes.tabs}
         indicatorColor={indicatorColor}
       >
-        <Tab value="date" icon={dateRangeIcon} />
-        <Tab value="time" icon={timeIcon} />
+        <Tab value="date" icon={<Icon>{dateRangeIcon}</Icon>} />
+        <Tab value="time" icon={<Icon>{timeIcon}</Icon>} />
       </Tabs>
     </Paper>
   );
