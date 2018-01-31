@@ -104,7 +104,7 @@ const styles = {
   },
 };
 
-function IntegrationAutosuggest(props) {
+function IntegrationDownshift(props) {
   const { classes } = props;
 
   return (
@@ -138,8 +138,8 @@ function IntegrationAutosuggest(props) {
   );
 }
 
-IntegrationAutosuggest.propTypes = {
+IntegrationDownshift.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(IntegrationAutosuggest);
+export default withStyles(styles)(IntegrationDownshift);
