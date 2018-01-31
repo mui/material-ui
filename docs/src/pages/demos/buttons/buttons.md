@@ -77,7 +77,7 @@ You can take advantage of this lower level component to build custom interaction
 
 One common use case is to use the button to trigger a navigation to a new page.
 The `ButtonBase` component provides a property to handle this use case: `component`.
-Given that a lot of our interactive elements rely on `ButtonBase`, you should be
+Given that a lot of our interactive components rely on `ButtonBase`, you should be
 able to take advantage of it everywhere:
 
 ```jsx

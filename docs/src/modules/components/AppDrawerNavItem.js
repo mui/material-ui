@@ -68,10 +68,14 @@ class AppDrawerNavItem extends React.Component {
       return (
         <ListItem className={classes.navLink} disableGutters>
           <Button
-            component={Link}
-            variant="button"
-            href={href}
-            activeClassName={classes.activeButton}
+            component={props => (
+              <Link
+                variant="button"
+                activeClassName={classes.activeButton}
+                href={href}
+                {...props}
+              />
+            )}
             className={classNames(classes.button, classes.navLinkButton)}
             disableRipple
             onClick={this.props.onClick}

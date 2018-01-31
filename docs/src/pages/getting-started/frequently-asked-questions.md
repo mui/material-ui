@@ -26,6 +26,13 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 - media queries
 - keyframes
 
+## How do I use react-router?
+
+We have documented how to use a [third-party routing library](/demos/buttons#third-party-routing-library) with the `ButtonBase` component.
+A lot of our interactive components use it internally:
+`Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc.
+You can use the same solution with them.
+
 ## How do I combine the `withStyles()` and `withTheme()` HOCs?
 
 There are a number of different options:

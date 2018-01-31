@@ -80,19 +80,28 @@ function PageHome(props) {
             className={classes.logo}
           />
           <div className={classes.text}>
-            <Typography type="display2" component="h1" color="inherit" gutterBottom>
+            <Typography variant="display2" component="h1" color="inherit" gutterBottom>
               {'Material-UI'}
             </Typography>
-            <Typography type="headline" component="h2" color="inherit" className={classes.headline}>
+            <Typography
+              variant="headline"
+              component="h2"
+              color="inherit"
+              className={classes.headline}
+            >
               {"React components that implement Google's Material Design."}
             </Typography>
             <Button
-              component={Link}
+              component={buttonProps => (
+                <Link
+                  variant="button"
+                  prefetch
+                  href="/getting-started/installation"
+                  {...buttonProps}
+                />
+              )}
               className={classes.button}
-              raised
-              prefetch
-              href="/getting-started/installation"
-              variant="button"
+              variant="raised"
             >
               {'Get Started'}
             </Button>
