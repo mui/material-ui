@@ -23,7 +23,7 @@ describe('<AppBar />', () => {
     assert.strictEqual(
       wrapper.hasClass(classes.colorPrimary),
       true,
-      'should not have the primary class',
+      'should have the primary class',
     );
     assert.strictEqual(wrapper.hasClass(classes.colorSecondary), false);
   });
@@ -35,7 +35,7 @@ describe('<AppBar />', () => {
     assert.strictEqual(
       wrapper.hasClass(classes.colorPrimary),
       true,
-      'should not have the primary class',
+      'should have the primary class',
     );
   });
 
@@ -45,7 +45,7 @@ describe('<AppBar />', () => {
     assert.strictEqual(
       wrapper.hasClass(classes.colorPrimary),
       true,
-      'should not have the primary class',
+      'should have the primary class',
     );
     assert.strictEqual(wrapper.hasClass(classes.colorSecondary), false);
   });
