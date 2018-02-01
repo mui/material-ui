@@ -110,7 +110,13 @@ class ButtonBase extends React.Component {
     const key = keycode(event);
 
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (focusRipple && !this.keyDown && this.state.keyboardFocused && key === 'space') {
+    if (
+      focusRipple &&
+      !this.keyDown &&
+      this.state.keyboardFocused &&
+      this.ripple &&
+      key === 'space'
+    ) {
       this.keyDown = true;
       event.persist();
       this.ripple.stop(event, () => {
@@ -137,7 +143,12 @@ class ButtonBase extends React.Component {
   };
 
   handleKeyUp = event => {
-    if (this.props.focusRipple && keycode(event) === 'space' && this.state.keyboardFocused) {
+    if (
+      this.props.focusRipple &&
+      keycode(event) === 'space' &&
+      this.ripple &&
+      this.state.keyboardFocused
+    ) {
       this.keyDown = false;
       event.persist();
       this.ripple.stop(event, () => this.ripple.pulsate(event));
