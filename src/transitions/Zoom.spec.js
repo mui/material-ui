@@ -1,7 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import Transition from 'react-transition-group/Transition';
 import { createShallow, createMount } from '../test-utils';
 import Zoom from './Zoom';
 
@@ -56,38 +55,24 @@ describe('<Zoom />', () => {
       instance = wrapper.instance();
     });
 
-    describe('handleEnter()', () => {
-      it('should set element transform to scale(0) initially', () => {
-        const element = { style: { transform: 'scale(1)' } };
-        instance.handleEnter(element);
-        assert.strictEqual(
-          element.style.transform,
-          'scale(0)',
-          'should set the transform to scale(0)',
-        );
-      });
-    });
-
     describe('handleEntering()', () => {
-      it('should set transform to scale(1)', () => {
-        const element = { style: { transform: 'scale(0)' } };
+      it('should set the style properties', () => {
+        const element = { style: {} };
         instance.handleEntering(element);
         assert.strictEqual(
-          element.style.transform,
-          'scale(1)',
-          'should set the transform to scale(1)',
+          element.style.transition,
+          'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         );
       });
     });
 
     describe('handleExit()', () => {
-      it('should set transform to the scale(0)', () => {
-        const element = { style: { transform: 'scale(1)' } };
+      it('should set the style properties', () => {
+        const element = { style: {} };
         instance.handleExit(element);
         assert.strictEqual(
-          element.style.transform,
-          'scale(0)',
-          'should set the transform to scale(0)',
+          element.style.transition,
+          'transform 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         );
       });
     });
@@ -100,7 +85,20 @@ describe('<Zoom />', () => {
           <div>Foo</div>
         </Zoom>,
       );
-      assert.deepEqual(wrapper.find(Transition).props().style, {});
+      assert.deepEqual(wrapper.find('div').props().style, {
+        transform: 'scale(0)',
+      });
+    });
+
+    it('should work when initially hidden', () => {
+      const wrapper = mount(
+        <Zoom in={false} appear={false}>
+          <div>Foo</div>
+        </Zoom>,
+      );
+      assert.deepEqual(wrapper.find('div').props().style, {
+        transform: 'scale(0)',
+      });
     });
   });
 });

@@ -6,30 +6,20 @@ import Transition from 'react-transition-group/Transition';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 
-const reflow = node => node.scrollTop;
+const transitionStyles = {
+  entering: {
+    opacity: 1,
+  },
+  entered: {
+    opacity: 1,
+  },
+};
 
 /**
  * The Fade transition is used by the Modal component.
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Fade extends React.Component {
-  state = {
-    mounted: false,
-  };
-
-  componentDidMount() {
-    this.setState({ mounted: true }); // eslint-disable-line react/no-did-mount-set-state
-  }
-
-  handleEnter = node => {
-    node.style.opacity = '0';
-    reflow(node);
-
-    if (this.props.onEnter) {
-      this.props.onEnter(node);
-    }
-  };
-
   handleEntering = node => {
     const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('opacity', {
@@ -38,7 +28,6 @@ class Fade extends React.Component {
     node.style.webkitTransition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
-    node.style.opacity = '1';
 
     if (this.props.onEntering) {
       this.props.onEntering(node);
@@ -53,7 +42,6 @@ class Fade extends React.Component {
     node.style.webkitTransition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
-    node.style.opacity = '0';
 
     if (this.props.onExit) {
       this.props.onExit(node);
@@ -61,26 +49,9 @@ class Fade extends React.Component {
   };
 
   render() {
-    const {
-      appear,
-      children,
-      onEnter,
-      onEntering,
-      onExit,
-      style: styleProp,
-      theme,
-      ...other
-    } = this.props;
+    const { appear, children, onEntering, onExit, style: styleProp, theme, ...other } = this.props;
 
-    let style = {};
-
-    // For server side rendering.
-    if (!this.props.in && !this.state.mounted && appear) {
-      style.opacity = '0';
-    }
-
-    style = {
-      ...style,
+    const style = {
       ...styleProp,
       ...(React.isValidElement(children) ? children.props.style : {}),
     };
@@ -88,13 +59,20 @@ class Fade extends React.Component {
     return (
       <Transition
         appear={appear}
-        style={style}
-        onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
         {...other}
       >
-        {children}
+        {(state, childProps) => {
+          return React.cloneElement(children, {
+            style: {
+              opacity: 0,
+              ...transitionStyles[state],
+              ...style,
+            },
+            ...childProps,
+          });
+        }}
       </Transition>
     );
   }

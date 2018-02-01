@@ -1,7 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import Transition from 'react-transition-group/Transition';
 import { createShallow, createMount } from '../test-utils';
 import Fade from './Fade';
 
@@ -56,27 +55,25 @@ describe('<Fade />', () => {
       instance = wrapper.instance();
     });
 
-    describe('handleEnter()', () => {
-      it('should set element opacity to 0 initially', () => {
-        const element = { style: { opacity: 1 } };
-        instance.handleEnter(element);
-        assert.strictEqual(element.style.opacity, '0', 'should set the opacity to 0');
-      });
-    });
-
     describe('handleEntering()', () => {
-      it('should set opacity to 1', () => {
-        const element = { style: { opacity: 0 } };
+      it('should set style properties', () => {
+        const element = { style: {} };
         instance.handleEntering(element);
-        assert.strictEqual(element.style.opacity, '1', 'should set the opacity to 1');
+        assert.strictEqual(
+          element.style.transition,
+          'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        );
       });
     });
 
     describe('handleExit()', () => {
-      it('should set opacity to the 0', () => {
-        const element = { style: { opacity: 1 } };
+      it('should set style properties', () => {
+        const element = { style: {} };
         instance.handleExit(element);
-        assert.strictEqual(element.style.opacity, '0', 'should set the opacity to 0');
+        assert.strictEqual(
+          element.style.transition,
+          'opacity 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        );
       });
     });
   });
@@ -88,7 +85,20 @@ describe('<Fade />', () => {
           <div>Foo</div>
         </Fade>,
       );
-      assert.deepEqual(wrapper.find(Transition).props().style, {});
+      assert.deepEqual(wrapper.find('div').props().style, {
+        opacity: 0,
+      });
+    });
+
+    it('should work when initially hidden', () => {
+      const wrapper = mount(
+        <Fade in={false} appear={false}>
+          <div>Foo</div>
+        </Fade>,
+      );
+      assert.deepEqual(wrapper.find('div').props().style, {
+        opacity: 0,
+      });
     });
   });
 });
