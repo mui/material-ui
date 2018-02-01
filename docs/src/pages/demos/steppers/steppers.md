@@ -1,8 +1,8 @@
 ---
-components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, StepPositionIcon, Stepper
+components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 
-# Stepper
+# Steppers
 
 [Steppers](https://material.io/guidelines/components/steppers.html) convey progress through numbered steps.
 
@@ -30,7 +30,7 @@ The `Stepper` can be controlled by passing the current step index (zero-based) a
 
 This example also shows the use of an optional step by placing the `optional` property on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
 
-{{"demo": "pages/demos/stepper/HorizontalLinearStepper.js"}}
+{{"demo": "pages/demos/steppers/HorizontalLinearStepper.js"}}
 
 ## Horizontal Non-linear
 
@@ -42,21 +42,21 @@ We've used the `StepButton` here to demonstrate clickable step labels as well as
 flag however because steps can be accessed in a non-linear fashion it's up to your own implementation to
 determine when all steps are completed (or even if they need to be completed).
 
-{{"demo": "pages/demos/stepper/HorizontalNonLinearStepper.js"}}
+{{"demo": "pages/demos/steppers/HorizontalNonLinearStepper.js"}}
 
 ## Horizontal Linear - Alternative Label
 
 Labels can be placed below the step icon by setting the `alternativeLabel` property on the `Stepper` component.
 
-{{"demo": "pages/demos/stepper/HorizontalLinearAlternativeLabelStepper.js"}}
+{{"demo": "pages/demos/steppers/HorizontalLinearAlternativeLabelStepper.js"}}
 
 ## Horizontal Non Linear - Alternative Label
 
-{{"demo": "pages/demos/stepper/HorizontalNonLinearAlternativeLabelStepper.js"}}
+{{"demo": "pages/demos/steppers/HorizontalNonLinearAlternativeLabelStepper.js"}}
 
 ## Vertical Stepper
 
-{{"demo": "pages/demos/stepper/VerticalLinearStepper.js"}}
+{{"demo": "pages/demos/steppers/VerticalLinearStepper.js"}}
 
 ## Mobile Stepper
 
@@ -67,16 +67,16 @@ This component implements a compact stepper suitable for a mobile device. See [m
 This is essentially a back/next button positioned correctly.
 You must implement the textual description yourself, however, an example is provided below for reference.
 
-{{"demo": "pages/demos/stepper/TextMobileStepper.js"}}
+{{"demo": "pages/demos/steppers/TextMobileStepper.js"}}
 
 ### Mobile Stepper - Dots
 
 Use dots when the number of steps isn’t large.
 
-{{"demo": "pages/demos/stepper/DotsMobileStepper.js"}}
+{{"demo": "pages/demos/steppers/DotsMobileStepper.js"}}
 
 ### Mobile Stepper - Progress
 
 Use a progress bar when there are many steps, or if there are steps that need to be inserted during the process (based on responses to earlier steps).
 
-{{"demo": "pages/demos/stepper/ProgressMobileStepper.js"}}
+{{"demo": "pages/demos/steppers/ProgressMobileStepper.js"}}

@@ -1,10 +1,10 @@
 ---
-filename: /src/Stepper/StepButton.js
+filename: /src/Stepper/StepIcon.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# StepButton
+# StepIcon
 
 
 
@@ -12,9 +12,10 @@ filename: /src/Stepper/StepButton.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
-| icon | node |  | The icon displayed by the step label. |
-| optional | node |  | The optional node to display. |
+| active | bool | false | Whether this step is active. |
+| classes | object |  | Classses for component style customizations. |
+| completed | bool | false | Mark the step as completed. Is passed to child components. |
+| <span style="color: #31a148">icon *</span> | node |  | The icon displayed by the step label. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -23,19 +24,15 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `alternativeLabel`
+- `completed`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Stepper/StepButton.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Stepper/StepIcon.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
-you need to use the following style sheet name: `MuiStepButton`.
-
-## Inheritance
-
-The properties of the [&lt;ButtonBase /&gt;](/api/button-base) component are also available.
+you need to use the following style sheet name: `MuiStepIcon`.
 
 ## Demos
 

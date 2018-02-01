@@ -6,5 +6,7 @@ export { default as StepButton } from './StepButton';
 export * from './StepButton';
 export { default as StepContent } from './StepContent';
 export * from './StepContent';
+export { default as StepIcon } from './StepIcon';
+export * from './StepIcon';
 export { default as StepLabel } from './StepLabel';
 export * from './StepLabel';
