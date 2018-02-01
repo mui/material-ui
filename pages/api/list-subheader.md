@@ -14,7 +14,7 @@ filename: /src/List/ListSubheader.js
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'inherit'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
+| color | enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'inherit'<br> | 'default' | The color of the component. It supports those theme colors that make sense for this component. |
 | component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'li' | The component used for the root node. Either a string to use a DOM element or a component. |
 | disableSticky | bool | false | If `true`, the List Subheader will not stick to the top during scroll. |
 | inset | bool | false | If `true`, the List Subheader will be indented. |

@@ -91,7 +91,7 @@ IconButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It's using the theme palette when that makes sense.
+   * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**

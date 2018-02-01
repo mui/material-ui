@@ -16,7 +16,7 @@ attribute to `true` on that region until it has finished loading.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'inherit'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
+| color | enum:&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'inherit'<br> | 'primary' | The color of the component. It supports those theme colors that make sense for this component. |
 | max | number | 100 | The max value of progress in determinate variant. |
 | min | number | 0 | The min value of progress in determinate variant. |
 | size | union:&nbsp;number&nbsp;&#124;<br>&nbsp;string<br> | 40 | The size of the circle. |
