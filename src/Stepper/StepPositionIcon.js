@@ -6,10 +6,10 @@ import SvgIcon from '../SvgIcon';
 
 export const styles = theme => ({
   root: {
-    fill: theme.palette.action.disabled,
+    color: theme.palette.action.disabled,
   },
   active: {
-    fill: theme.palette.primary.main,
+    color: theme.palette.primary.main,
   },
   text: {
     fill: theme.palette.primary.contrastText,

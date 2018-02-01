@@ -53,7 +53,7 @@ export { default as Radio, RadioGroup } from './Radio';
 export { default as Reboot } from './Reboot';
 export { default as Select } from './Select';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
-export { default as Stepper, Step, StepButton, StepContent, StepLabel } from './Stepper';
+export { default as Stepper, Step, StepButton, StepIcon, StepContent, StepLabel } from './Stepper';
 export { MuiThemeProvider, withStyles, withTheme, createMuiTheme, jssPreset } from './styles';
 
 // eslint-disable-next-line import/first

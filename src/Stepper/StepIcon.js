@@ -10,13 +10,10 @@ export const styles = theme => ({
     display: 'block',
   },
   completed: {
-    fill: theme.palette.primary.main,
+    color: theme.palette.primary.main,
   },
 });
 
-/**
- * @ignore - internal component.
- */
 function StepIcon(props) {
   const { completed, icon, active, classes } = props;
 
@@ -46,7 +43,12 @@ StepIcon.propTypes = {
   /**
    * The icon displayed by the step label.
    */
-  icon: PropTypes.node,
+  icon: PropTypes.node.isRequired,
+};
+
+StepIcon.defaultProps = {
+  active: false,
+  completed: false,
 };
 
 export default withStyles(styles, { name: 'MuiStepIcon' })(StepIcon);

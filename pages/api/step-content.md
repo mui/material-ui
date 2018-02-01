@@ -36,5 +36,5 @@ you need to use the following style sheet name: `MuiStepContent`.
 
 ## Demos
 
-- [Stepper](/demos/stepper)
+- [Steppers](/demos/steppers)
 
