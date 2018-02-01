@@ -540,6 +540,33 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(onClickSpy.calledWith(event), true, 'should call onClick with event');
       });
     });
+
+    describe('prop: disableRipple', () => {
+      it('should work', () => {
+        wrapper = mount(<ButtonBaseNaked classes={{}}>Hello</ButtonBaseNaked>);
+        const onKeyDownSpy = spy();
+        wrapper.setProps({ onKeyDown: onKeyDownSpy });
+        wrapper.setProps({ disableRipple: true });
+        wrapper.setProps({ focusRipple: true });
+        wrapper.setState({ keyboardFocused: true });
+
+        const eventPersistSpy = spy();
+        event = { persist: eventPersistSpy, keyCode: keycode('space') };
+
+        instance = wrapper.instance();
+        instance.keyDown = false;
+        instance.handleKeyDown(event);
+
+        assert.strictEqual(instance.keyDown, false, 'should not change keydown');
+        assert.strictEqual(event.persist.callCount, 0, 'should not call event.persist');
+        assert.strictEqual(onKeyDownSpy.callCount, 1, 'should call onKeyDown');
+        assert.strictEqual(
+          onKeyDownSpy.calledWith(event),
+          true,
+          'should call onKeyDown with event',
+        );
+      });
+    });
   });
 
   describe('prop: ref', () => {
