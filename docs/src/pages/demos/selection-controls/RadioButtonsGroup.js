@@ -54,9 +54,9 @@ class RadioButtonsGroup extends React.Component {
             value={this.state.value}
             onChange={this.handleChange}
           >
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel value="female" control={<Radio />} label="Female" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
+            <FormControlLabel value="male" control={<Radio color="primary" />} label="Male" />
+            <FormControlLabel value="female" control={<Radio color="primary" />} label="Female" />
+            <FormControlLabel value="other" control={<Radio color="primary" />} label="Other" />
             <FormControlLabel value="disabled" disabled control={<Radio />} label="Disabled" />
           </RadioGroup>
           <FormHelperText>You can display an error</FormHelperText>

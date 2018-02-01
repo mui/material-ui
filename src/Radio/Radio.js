@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
@@ -9,8 +10,12 @@ export const styles = theme => ({
   default: {
     color: theme.palette.text.secondary,
   },
-  checked: {
+  checked: {},
+  checkedPrimary: {
     color: theme.palette.primary.main,
+  },
+  checkedSecondary: {
+    color: theme.palette.secondary.main,
   },
   disabled: {
     color: theme.palette.action.disabled,
@@ -18,12 +23,23 @@ export const styles = theme => ({
 });
 
 function Radio(props) {
+  const { classes, color, ...other } = props;
+  const checkedClass = classNames(classes.checked, {
+    [classes.checkedPrimary]: color === 'primary',
+    [classes.checkedSecondary]: color === 'secondary',
+  });
+
   return (
     <SwitchBase
       type="radio"
       icon={<RadioButtonUncheckedIcon />}
       checkedIcon={<RadioButtonCheckedIcon />}
-      {...props}
+      classes={{
+        default: classes.default,
+        checked: checkedClass,
+        disabled: classes.disabled,
+      }}
+      {...other}
     />
   );
 }
@@ -45,6 +61,10 @@ Radio.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * @ignore
    */
@@ -96,6 +116,10 @@ Radio.propTypes = {
    * The value of the component.
    */
   value: PropTypes.string,
+};
+
+Radio.defaultProps = {
+  color: 'secondary',
 };
 
 export default withStyles(styles, { name: 'MuiRadio' })(Radio);

@@ -39,6 +39,7 @@ class Switches extends React.Component {
           checked={this.state.checkedB}
           onChange={this.handleChange('checkedB')}
           aria-label="checkedB"
+          color="primary"
         />
         <Switch checked={false} aria-label="checkedC" disabled />
         <Switch checked aria-label="checkedD" disabled />
