@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { TransitionProps } from 'react-transition-group/Transition';
 import { PopoverProps, PopoverClassKey } from '../Popover';
 import { MenuListProps } from './MenuList';
 import { StandardProps } from '..';
-import { TransitionHandlers } from '../transitions/transition';
+import { TransitionHandlers, TransitionDuration } from '../transitions/transition';
 
 export interface MenuProps
   extends StandardProps<PopoverProps & Partial<TransitionHandlers>, MenuClassKey> {

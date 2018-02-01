@@ -10,6 +10,7 @@ export interface TransitionProps extends Omit<TransitionProps, 'timeout'> {
 }
 
 export type TransitionTimeout = TransitionProps['timeout'];
+export type TransitionDuration = TransitionTimeout | 'auto';
 
 export type TransitionHandlers = Pick<
   TransitionProps,

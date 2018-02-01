@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { TransitionProps } from 'react-transition-group/Transition';
 import { StandardProps } from '..';
 import { FadeProps } from '../transitions/Fade';
+import { TransitionTimeout } from '../transitions/transition';
 
 export interface BackdropProps
   extends StandardProps<
@@ -11,7 +11,7 @@ export interface BackdropProps
   invisible?: boolean;
   onClick?: React.ReactEventHandler<{}>;
   open: boolean;
-  transitionDuration?: TransitionProps['timeout'];
+  transitionDuration?: TransitionTimeout;
 }
 
 export type BackdropClassKey = 'root' | 'invisible';
