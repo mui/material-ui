@@ -8,6 +8,12 @@ import prism from 'docs/src/modules/utils/prism';
 const renderer = new marked.Renderer();
 
 renderer.heading = (text, level) => {
+  // Small title. No need for an anchor.
+  // It's reducing the risk of duplicated id and it's less elements in the DOM.
+  if (level >= 4) {
+    return `<h${level}>${text}</h${level}>`;
+  }
+
   const escapedText = text
     .toLowerCase()
     .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
