@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { TransitionProps } from 'react-transition-group/Transition';
 import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps, ModalClassKey } from '../Modal';
-import { TransitionDuration, TransitionHandlers } from '../internal/transition';
+import { TransitionHandlers } from '../transitions/transition';
 
 export interface DialogProps
   extends StandardProps<ModalProps & Partial<TransitionHandlers>, DialogClassKey, 'children'> {
@@ -12,7 +13,7 @@ export interface DialogProps
   maxWidth?: 'xs' | 'sm' | 'md' | false;
   PaperProps?: Partial<PaperProps>;
   transition?: React.ReactType;
-  transitionDuration?: TransitionDuration;
+  transitionDuration?: TransitionProps['timeout'] | 'auto';
 }
 
 export type DialogClassKey =

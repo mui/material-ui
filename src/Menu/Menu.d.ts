@@ -1,14 +1,15 @@
 import * as React from 'react';
+import { TransitionProps } from 'react-transition-group/Transition';
 import { PopoverProps, PopoverClassKey } from '../Popover';
-import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 import { MenuListProps } from './MenuList';
 import { StandardProps } from '..';
+import { TransitionHandlers } from '../transitions/transition';
 
 export interface MenuProps
   extends StandardProps<PopoverProps & Partial<TransitionHandlers>, MenuClassKey> {
   anchorEl?: HTMLElement;
   MenuListProps?: Partial<MenuListProps>;
-  transitionDuration?: TransitionDuration;
+  transitionDuration?: TransitionProps['timeout'];
 }
 
 export type MenuClassKey = PopoverClassKey | 'root';

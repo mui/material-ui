@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Theme } from '../styles/createMuiTheme';
-import { TransitionDuration, TransitionProps } from '../internal/transition';
+import { TransitionProps, TransitionTimeout } from './transition';
 
 export interface GrowProps extends TransitionProps {
   theme?: Theme;
-  timeout?: TransitionDuration | 'auto';
+  timeout?: TransitionTimeout | 'auto';
 }
 
 declare const Grow: React.ComponentType<GrowProps>;

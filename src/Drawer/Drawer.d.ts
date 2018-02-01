@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { TransitionProps } from 'react-transition-group/Transition';
 import { StandardProps } from '..';
 import { ModalProps, ModalClassKey } from '../Modal';
-import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 import { SlideProps } from '../transitions/Slide';
 import { PaperProps } from '../Paper';
 import { Theme } from '../styles/createMuiTheme';
+import { TransitionHandlers } from '../transitions/transition';
 
 export interface DrawerProps
   extends StandardProps<
@@ -20,7 +21,7 @@ export interface DrawerProps
   PaperProps?: Partial<PaperProps>;
   SlideProps?: Partial<SlideProps>;
   theme?: Theme;
-  transitionDuration?: TransitionDuration;
+  transitionDuration?: TransitionProps['timeout'];
   variant?: 'permanent' | 'persistent' | 'temporary';
 }
 

@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { TransitionProps } from 'react-transition-group/Transition';
 import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
-import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 import { ModalProps, ModalClassKey } from '../Modal';
+import { TransitionHandlers } from '../transitions/transition';
 
 export interface PopoverOrigin {
   horizontal: 'left' | 'center' | 'right' | number;
@@ -32,7 +33,7 @@ export interface PopoverProps
   role?: string;
   transformOrigin?: PopoverOrigin;
   transition?: React.ReactType;
-  transitionDuration?: TransitionDuration;
+  transitionDuration?: TransitionProps['timeout'];
 }
 
 export type PopoverClassKey = ModalClassKey | 'paper';
