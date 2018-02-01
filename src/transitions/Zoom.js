@@ -6,30 +6,20 @@ import Transition from 'react-transition-group/Transition';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 
-const reflow = node => node.scrollTop;
+const transitionStyles = {
+  entering: {
+    transform: 'scale(1)',
+  },
+  entered: {
+    transform: 'scale(1)',
+  },
+};
 
 /**
  * The Zoom transition is used by the SpeedDial component.
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Zoom extends React.Component {
-  state = {
-    mounted: false,
-  };
-
-  componentDidMount() {
-    this.setState({ mounted: true }); // eslint-disable-line react/no-did-mount-set-state
-  }
-
-  handleEnter = node => {
-    node.style.transform = 'scale(0)';
-    reflow(node);
-
-    if (this.props.onEnter) {
-      this.props.onEnter(node);
-    }
-  };
-
   handleEntering = node => {
     const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('transform', {
@@ -38,7 +28,6 @@ class Zoom extends React.Component {
     node.style.webkitTransition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
-    node.style.transform = 'scale(1)';
     node.style.transitionDelay = `${this.props.enterDelay}ms`;
 
     if (this.props.onEntering) {
@@ -54,7 +43,6 @@ class Zoom extends React.Component {
     node.style.webkitTransition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
-    node.style.transform = 'scale(0)';
 
     if (this.props.onExit) {
       this.props.onExit(node);
@@ -66,7 +54,6 @@ class Zoom extends React.Component {
       appear,
       children,
       enterDelay,
-      onEnter,
       onEntering,
       onExit,
       style: styleProp,
@@ -74,15 +61,7 @@ class Zoom extends React.Component {
       ...other
     } = this.props;
 
-    let style = {};
-
-    // For server side rendering.
-    if (!this.props.in && !this.state.mounted && appear) {
-      style.transform = 'scale(0)';
-    }
-
-    style = {
-      ...style,
+    const style = {
       ...styleProp,
       ...(React.isValidElement(children) ? children.props.style : {}),
     };
@@ -90,13 +69,20 @@ class Zoom extends React.Component {
     return (
       <Transition
         appear={appear}
-        style={style}
-        onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
         {...other}
       >
-        {children}
+        {(state, childProps) => {
+          return React.cloneElement(children, {
+            style: {
+              transform: 'scale(0)',
+              ...transitionStyles[state],
+              ...style,
+            },
+            ...childProps,
+          });
+        }}
       </Transition>
     );
   }
