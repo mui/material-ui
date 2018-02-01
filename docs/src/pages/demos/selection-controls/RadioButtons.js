@@ -1,5 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import green from 'material-ui/colors/green';
 import Radio from 'material-ui/Radio';
+
+const styles = {
+  checked: {
+    color: green[500],
+  },
+};
 
 class RadioButtons extends React.Component {
   state = {
@@ -11,32 +20,41 @@ class RadioButtons extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
         <Radio
           checked={this.state.selectedValue === 'a'}
           onChange={this.handleChange}
           value="a"
-          name="radio button demo"
+          name="radio-button-demo"
           aria-label="A"
         />
         <Radio
           checked={this.state.selectedValue === 'b'}
           onChange={this.handleChange}
           value="b"
-          name="radio button demo"
+          name="radio-button-demo"
           aria-label="B"
         />
         <Radio
           checked={this.state.selectedValue === 'c'}
           onChange={this.handleChange}
           value="c"
-          name="radio button demo"
+          name="radio-button-demo"
           aria-label="C"
+          classes={{
+            checked: classes.checked,
+          }}
         />
       </div>
     );
   }
 }
 
-export default RadioButtons;
+RadioButtons.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(RadioButtons);

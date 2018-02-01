@@ -6,9 +6,9 @@ import {
   FormControlLabel,
   FormHelperText,
 } from 'material-ui/Form';
-import Checkbox from 'material-ui/Checkbox';
+import Switch from 'material-ui/Switch';
 
-class CheckboxesGroup extends React.Component {
+class SwitchesGroup extends React.Component {
   state = {
     gilad: true,
     jason: false,
@@ -26,7 +26,7 @@ class CheckboxesGroup extends React.Component {
         <FormGroup>
           <FormControlLabel
             control={
-              <Checkbox
+              <Switch
                 checked={this.state.gilad}
                 onChange={this.handleChange('gilad')}
                 value="gilad"
@@ -36,7 +36,7 @@ class CheckboxesGroup extends React.Component {
           />
           <FormControlLabel
             control={
-              <Checkbox
+              <Switch
                 checked={this.state.jason}
                 onChange={this.handleChange('jason')}
                 value="jason"
@@ -46,7 +46,7 @@ class CheckboxesGroup extends React.Component {
           />
           <FormControlLabel
             control={
-              <Checkbox
+              <Switch
                 checked={this.state.antoine}
                 onChange={this.handleChange('antoine')}
                 value="antoine"
@@ -61,4 +61,4 @@ class CheckboxesGroup extends React.Component {
   }
 }
 
-export default CheckboxesGroup;
+export default SwitchesGroup;
