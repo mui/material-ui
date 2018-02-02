@@ -13,6 +13,7 @@ filename: /src/Menu/Menu.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | anchorEl | object |  | The DOM element used to set the position of the menu. |
+| anchorOrigin | shape |  | This is the point on the anchor where the menu's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.<br>Options: vertical: [top (default), center, bottom]; horizontal: [left (default if LTR), center, right (default if RTL)]. |
 | children | node |  | Menu contents, normally `MenuItem`s. |
 | classes | object |  | Useful to extend the style applied to components. |
 | MenuListProps | object |  | Properties applied to the `MenuList` element. |
@@ -25,6 +26,7 @@ filename: /src/Menu/Menu.js
 | onExiting | func |  | Callback fired when the Menu is exiting. |
 | <span style="color: #31a148">open *</span> | bool |  | If `true`, the menu is visible. |
 | PopoverClasses | object |  | `classes` property applied to the `Popover` element. |
+| transformOrigin | shape |  | This is the point on the menu which will attach to the anchor's origin.<br>Options: vertical: [top (default), center, bottom, x(px)]; horizontal: [left  (default if LTR), center, right (default if RTL), x(px)]. |
 | transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;{0?: undefined}<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

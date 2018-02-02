@@ -97,6 +97,8 @@ class Menu extends React.Component {
       PaperProps = {},
       PopoverClasses,
       theme,
+      anchorOrigin = theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN,
+      transformOrigin = theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN,
       ...other
     } = this.props;
 
@@ -105,8 +107,8 @@ class Menu extends React.Component {
         getContentAnchorEl={this.getContentAnchorEl}
         classes={PopoverClasses}
         onEnter={this.handleEnter}
-        anchorOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
-        transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
+        anchorOrigin={anchorOrigin}
+        transformOrigin={transformOrigin}
         PaperProps={{
           ...PaperProps,
           classes: {
@@ -137,6 +139,22 @@ Menu.propTypes = {
    * The DOM element used to set the position of the menu.
    */
   anchorEl: PropTypes.object,
+  /**
+   * This is the point on the anchor where the menu's
+   * `anchorEl` will attach to. This is not used when the
+   * anchorReference is 'anchorPosition'.
+   *
+   * Options:
+   * vertical: [top (default), center, bottom];
+   * horizontal: [left (default if LTR), center, right (default if RTL)].
+   */
+  anchorOrigin: PropTypes.shape({
+    horizontal: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.oneOf(['left', 'center', 'right']),
+    ]),
+    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
+  }),
   /**
    * Menu contents, normally `MenuItem`s.
    */
@@ -195,6 +213,22 @@ Menu.propTypes = {
    * @ignore
    */
   theme: PropTypes.object.isRequired,
+  /**
+   * This is the point on the menu which
+   * will attach to the anchor's origin.
+   *
+   * Options:
+   * vertical: [top (default), center, bottom, x(px)];
+   * horizontal: [left  (default if LTR), center, right (default if RTL), x(px)].
+   *
+   */
+  transformOrigin: PropTypes.shape({
+    horizontal: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.oneOf(['left', 'center', 'right']),
+    ]),
+    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
+  }),
   /**
    * The length of the transition in `ms`, or 'auto'
    */
