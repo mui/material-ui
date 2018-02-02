@@ -41,7 +41,7 @@ For example, by default a `<List>` will render an `<ul>` element. This can be ch
 </List>
 ```
 
-This pattern is very powerful and allows for great flexibility as well as a way to interop with other libaries, like `react-router` or your favorite forms library. But it also comes with a small caveat!
+This pattern is very powerful and allows for great flexibility as well as a way to interoperate with other libaries, like `react-router` or your favorite forms library. But it also comes with a small caveat!
 
 Using inline functions as argument for the `component` prop may result in unnecessary rerendering, since you pass a new function to the component everytime react checks if it has to update its DOM.
 
@@ -60,7 +60,9 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 
 But since we are using an inline function to change the rendered component, React will rerender the `<ListItem>` every time it checks our `<ListItemLink>` for changes. Not only will React update the DOM unnecessarily, the ripple effects of the `<ListItem>` will also not work correctly. A rerender will be triggered in the middle of the animation.
 
-Here is an example what this effect looks like: https://codesandbox.io/s/pk971py22x
+Here is an example of what this effect looks like:
+
+{{"demo": "pages/guides/Composition-Render-Inline.js"}}
 
 The solution is very simple: Avoid inline functions and pass a bound function to the `component` prop instead. Let's change our `<ListItemLink>` to the following:
 
@@ -82,4 +84,6 @@ class ListItemLink extends React.Component {
 }
 ```
 
-`renderLink` will now always reference the same function and React will rerender our component only if other props are changed. Here is a demo of the updated version: https://codesandbox.io/s/6l40v1nvqr
+`renderLink` will now always reference the same function and React will rerender our component only if other props are changed. Here is a demo of the updated version: 
+
+{{"demo": "pages/guides/Composition-Render-Class.js"}}
