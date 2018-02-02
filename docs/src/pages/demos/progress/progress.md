@@ -52,22 +52,4 @@ There is a [school of thought](http://www.nngroup.com/articles/response-times-3-
 To implement this, you can take advantage of [theme overrides](/customization/themes/#customizing-all-instances-of-a-component-type)
 to delay the appearance of the progress indicators.
 
-```js
-const progressStyle = {
-  root: {
-    animationName: keyframes({ // `keyframes` comes from the `typestyle` library
-      '0%': { opacity: 0 },
-      '50%': { opacity: 0 },
-      '100%': { opacity: 1 },
-    }),
-    animationDuration: '1s',
-  },
-};
-
-export const theme = createMuiTheme({
-  overrides: {
-    MuiLinearProgress: progressStyle,
-    MuiCircularProgress: progressStyle,
-  },
-});
-```
+{{"demo": "pages/demos/progress/DelayingAppearance.js"}}

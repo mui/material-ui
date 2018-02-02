@@ -71,6 +71,8 @@
     "classnames": "^2.2.5",
     "deepmerge": "^2.0.1",
     "dom-helpers": "^3.2.1",
+    "git-pull-request": "^0.3.2",
+    "global": "^4.3.2",
     "hoist-non-react-statics": "^2.3.1",
     "jss": "^9.3.3",
     "jss-camel-case": "^6.0.0",
