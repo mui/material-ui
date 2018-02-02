@@ -70,6 +70,12 @@ module.exports = require('fs')
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/buttons/CustomizedButtons'), 'utf8')
 `,
+        'pages/demos/buttons/ToggleButtons.js': {
+          js: require('docs/src/pages/demos/buttons/ToggleButtons').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/ToggleButtons'), 'utf8')
+`,
         },
         'pages/demos/buttons/ButtonBases.js': {
           js: require('docs/src/pages/demos/buttons/ButtonBases').default,
