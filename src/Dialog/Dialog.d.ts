@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
+import { PaperProps } from '../Paper';
 import { ModalProps, ModalClassKey } from '../Modal';
 import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 
@@ -9,6 +10,7 @@ export interface DialogProps
   fullScreen?: boolean;
   fullWidth?: boolean;
   maxWidth?: 'xs' | 'sm' | 'md' | false;
+  PaperProps?: Partial<PaperProps>;
   transition?: React.ReactType;
   transitionDuration?: TransitionDuration;
 }
