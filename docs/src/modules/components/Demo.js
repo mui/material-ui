@@ -92,9 +92,14 @@ class Demo extends React.Component {
               'react-dom': 'latest',
               'material-ui': 'next',
               'material-ui-icons': 'latest',
-              'react-autosuggest': 'latest',
-              'autosuggest-highlight': 'latest',
-              downshift: 'latest',
+              'react-autosuggest': this.props.raw.includes(`from 'react-autosuggest`)
+                ? 'latest'
+                : undefined,
+              'autosuggest-highlight': this.props.raw.includes(`from 'autosuggest-highlight`)
+                ? 'latest'
+                : undefined,
+              downshift: this.props.raw.includes(`from 'downshift`) ? 'latest' : undefined,
+              'react-router': this.props.raw.includes(`from 'react-router`) ? 'latest' : undefined,
             },
           },
         },
