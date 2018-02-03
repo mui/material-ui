@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import withRoot from 'docs/src/modules/components/withRoot';
 import AppFooter from 'docs/src/modules/components/AppFooter';
+import NoSSR from 'docs/src/modules/components/NoSSR';
 import Link from 'docs/src/modules/components/Link';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
@@ -58,6 +59,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     display: 'flex',
     justifyContent: 'center',
+    minHeight: 600,
   },
   backersBody: {
     maxWidth: theme.spacing.unit * 90,
@@ -109,9 +111,10 @@ function PageHome(props) {
         </div>
       </div>
       <div className={classes.backers}>
-        <MarkdownElement
-          className={classes.backersBody}
-          text={`
+        <NoSSR>
+          <MarkdownElement
+            className={classes.backersBody}
+            text={`
 <h2 style="text-align: center;">Supporting Material-UI</h2>
 
 Material-UI is an MIT-licensed open source project.
@@ -148,8 +151,9 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 <a href="https://opencollective.com/material-ui/tiers/gold-sponsors/7/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/7/avatar.svg" alt="7" /></a>
 <a href="https://opencollective.com/material-ui/tiers/gold-sponsors/8/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/8/avatar.svg" alt="8" /></a>
 <a href="https://opencollective.com/material-ui/tiers/gold-sponsors/9/website" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/9/avatar.svg" alt="9" /></a>
-        `}
-        />
+          `}
+          />
+        </NoSSR>
       </div>
       <AppFooter />
     </div>
