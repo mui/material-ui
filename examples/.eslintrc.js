@@ -8,5 +8,6 @@ module.exports = {
     'import/no-named-as-default': 'off',
     'import/default': 'off',
     'import/no-named-as-default-member': 'off',
+    'import/order': 'off',
   },
 };

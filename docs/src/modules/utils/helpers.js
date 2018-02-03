@@ -31,3 +31,19 @@ export function pageToTitle(page) {
 
   return titleize(name);
 }
+
+export function getDependencies(raw) {
+  const deps = {
+    react: 'latest',
+    'react-dom': 'latest',
+    'material-ui': 'next',
+  };
+  const re = /^import\s.*\sfrom\s+'([^']+)'/gm;
+  let m;
+  // eslint-disable-next-line no-cond-assign
+  while ((m = re.exec(raw))) {
+    const name = m[1].split('/', 1)[0];
+    deps[name] = deps[name] || 'latest';
+  }
+  return deps;
+}
