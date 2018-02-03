@@ -55,10 +55,10 @@ describe('<Zoom />', () => {
       instance = wrapper.instance();
     });
 
-    describe('handleEntering()', () => {
+    describe('handleEnter()', () => {
       it('should set the style properties', () => {
         const element = { style: {} };
-        instance.handleEntering(element);
+        instance.handleEnter(element);
         assert.strictEqual(
           element.style.transition,
           'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',

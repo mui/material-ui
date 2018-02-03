@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
+import { reflow, getTransitionProps } from './utils';
 
-const transitionStyles = {
+const styles = {
   entering: {
     opacity: 1,
   },
@@ -20,31 +21,39 @@ const transitionStyles = {
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Fade extends React.Component {
-  handleEntering = node => {
-    const { theme, timeout, style = {} } = this.props;
+  handleEnter = node => {
+    const { theme } = this.props;
+    reflow(node); // So the animation always start from the start.
+
+    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+      mode: 'enter',
+    });
     node.style.transition = theme.transitions.create('opacity', {
-      duration: typeof timeout === 'number' ? timeout : timeout.enter,
-      delay: style.transitionDelay,
+      duration: transitionDuration,
+      delay,
     });
     node.style.webkitTransition = theme.transitions.create('opacity', {
-      duration: typeof timeout === 'number' ? timeout : timeout.enter,
-      delay: style.transitionDelay,
+      duration: transitionDuration,
+      delay,
     });
 
-    if (this.props.onEntering) {
-      this.props.onEntering(node);
+    if (this.props.onEnter) {
+      this.props.onEnter(node);
     }
   };
 
   handleExit = node => {
-    const { theme, timeout, style = {} } = this.props;
+    const { theme } = this.props;
+    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+      mode: 'exit',
+    });
     node.style.transition = theme.transitions.create('opacity', {
-      duration: typeof timeout === 'number' ? timeout : timeout.exit,
-      delay: style.transitionDelay,
+      duration: transitionDuration,
+      delay,
     });
     node.style.webkitTransition = theme.transitions.create('opacity', {
-      duration: typeof timeout === 'number' ? timeout : timeout.exit,
-      delay: style.transitionDelay,
+      duration: transitionDuration,
+      delay,
     });
 
     if (this.props.onExit) {
@@ -53,7 +62,7 @@ class Fade extends React.Component {
   };
 
   render() {
-    const { children, onEntering, onExit, style: styleProp, theme, ...other } = this.props;
+    const { children, onEnter, onExit, style: styleProp, theme, ...other } = this.props;
 
     const style = {
       ...styleProp,
@@ -61,12 +70,12 @@ class Fade extends React.Component {
     };
 
     return (
-      <Transition appear onEntering={this.handleEntering} onExit={this.handleExit} {...other}>
+      <Transition appear onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
         {(state, childProps) => {
           return React.cloneElement(children, {
             style: {
               opacity: 0,
-              ...transitionStyles[state],
+              ...styles[state],
               ...style,
             },
             ...childProps,

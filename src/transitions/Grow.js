@@ -4,11 +4,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import withTheme from '../styles/withTheme';
+import { reflow, getTransitionProps } from './utils';
 
-// Only exported for tests.
-export function getScale(value: number) {
+function getScale(value) {
   return `scale(${value}, ${value ** 2})`;
 }
+
+const styles = {
+  entering: {
+    opacity: 1,
+    transform: getScale(1),
+  },
+  entered: {
+    opacity: 1,
+    transform: getScale(1),
+  },
+};
 
 /**
  * The Grow transition is used by the Popover component.
@@ -18,43 +29,33 @@ class Grow extends React.Component {
   autoTimeout = undefined;
 
   handleEnter = node => {
-    node.style.opacity = '0';
-    node.style.transform = getScale(0.75);
-
-    if (this.props.onEnter) {
-      this.props.onEnter(node);
-    }
-  };
-
-  handleEntering = node => {
     const { theme, timeout } = this.props;
-    let duration = 0;
+    reflow(node); // So the animation always start from the start.
 
+    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+      mode: 'enter',
+    });
+    let duration = 0;
     if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
       this.autoTimeout = duration;
-    } else if (typeof timeout === 'number') {
-      duration = timeout;
-    } else if (timeout && typeof timeout.enter === 'number') {
-      duration = timeout.enter;
     } else {
-      // The propType will warn in this case.
+      duration = transitionDuration;
     }
 
     node.style.transition = [
       theme.transitions.create('opacity', {
         duration,
+        delay,
       }),
       theme.transitions.create('transform', {
         duration: duration * 0.666,
+        delay,
       }),
     ].join(',');
 
-    node.style.opacity = '1';
-    node.style.transform = getScale(1);
-
-    if (this.props.onEntering) {
-      this.props.onEntering(node);
+    if (this.props.onEnter) {
+      this.props.onEnter(node);
     }
   };
 
@@ -62,24 +63,24 @@ class Grow extends React.Component {
     const { theme, timeout } = this.props;
     let duration = 0;
 
+    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+      mode: 'exit',
+    });
     if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
       this.autoTimeout = duration;
-    } else if (typeof timeout === 'number') {
-      duration = timeout;
-    } else if (timeout && typeof timeout.exit === 'number') {
-      duration = timeout.exit;
     } else {
-      // The propType will warn in this case.
+      duration = transitionDuration;
     }
 
     node.style.transition = [
       theme.transitions.create('opacity', {
         duration,
+        delay,
       }),
       theme.transitions.create('transform', {
         duration: duration * 0.666,
-        delay: duration * 0.333,
+        delay: delay || duration * 0.333,
       }),
     ].join(',');
 
@@ -98,53 +99,39 @@ class Grow extends React.Component {
   };
 
   render() {
-    const {
-      appear,
-      children,
-      onEnter,
-      onEntering,
-      onExit,
-      style: styleProp,
-      theme,
-      timeout,
-      ...other
-    } = this.props;
+    const { children, onEnter, onExit, style: styleProp, theme, timeout, ...other } = this.props;
 
-    let style = {};
-
-    // For server side rendering.
-    if (!this.props.in || appear) {
-      style.opacity = '0';
-    }
-
-    style = {
-      ...style,
+    const style = {
       ...styleProp,
       ...(React.isValidElement(children) ? children.props.style : {}),
     };
 
     return (
       <Transition
+        appear
         onEnter={this.handleEnter}
-        onEntering={this.handleEntering}
         onExit={this.handleExit}
         addEndListener={this.addEndListener}
-        appear={appear}
-        style={style}
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
-        {children}
+        {(state, childProps) => {
+          return React.cloneElement(children, {
+            style: {
+              opacity: 0,
+              transform: getScale(0.75),
+              ...styles[state],
+              ...style,
+            },
+            ...childProps,
+          });
+        }}
       </Transition>
     );
   }
 }
 
 Grow.propTypes = {
-  /**
-   * @ignore
-   */
-  appear: PropTypes.bool,
   /**
    * A single child content element.
    */
@@ -172,14 +159,6 @@ Grow.propTypes = {
   /**
    * @ignore
    */
-  onExited: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onExiting: PropTypes.func,
-  /**
-   * @ignore
-   */
   style: PropTypes.object,
   /**
    * @ignore
@@ -199,7 +178,6 @@ Grow.propTypes = {
 };
 
 Grow.defaultProps = {
-  appear: true,
   timeout: 'auto',
 };
 

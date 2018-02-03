@@ -55,10 +55,10 @@ describe('<Fade />', () => {
       instance = wrapper.instance();
     });
 
-    describe('handleEntering()', () => {
+    describe('handleEnter()', () => {
       it('should set style properties', () => {
         const element = { style: {} };
-        instance.handleEntering(element);
+        instance.handleEnter(element);
         assert.strictEqual(
           element.style.transition,
           'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
