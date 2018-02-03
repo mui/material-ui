@@ -120,7 +120,7 @@ class Carbon extends React.Component {
       return;
     }
 
-    if (attempt < 4) {
+    if (attempt < 6) {
       this.timerAdblock = setTimeout(() => {
         this.checkAdblock(attempt + 1);
       }, 500);
