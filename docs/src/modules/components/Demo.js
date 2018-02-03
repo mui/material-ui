@@ -69,6 +69,24 @@ function compress(object) {
     .replace(/=+$/, ''); // Remove ending '='
 }
 
+function conditionalDependencies(raw) {
+  const dependencies = [
+    'react-autosuggest',
+    'autosuggest-highlight',
+    'downshift',
+    'react-select',
+    'react-text-mask',
+    'react-number-format',
+  ];
+
+  return dependencies.reduce((acc, dependency) => {
+    if (raw.indexOf(`from '${dependency}`) !== -1) {
+      acc[dependency] = 'latest';
+    }
+    return acc;
+  }, {});
+}
+
 class Demo extends React.Component {
   state = {
     codeOpen: false,
@@ -92,9 +110,7 @@ class Demo extends React.Component {
               'react-dom': 'latest',
               'material-ui': 'next',
               'material-ui-icons': 'latest',
-              'react-autosuggest': 'latest',
-              'autosuggest-highlight': 'latest',
-              downshift: 'latest',
+              ...conditionalDependencies(this.props.raw),
             },
           },
         },
