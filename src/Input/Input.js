@@ -62,7 +62,6 @@ export const styles = theme => {
     root: {
       // Mimics the default input display property used by browsers for an input.
       display: 'inline-flex',
-      alignItems: 'baseline',
       position: 'relative',
       fontFamily: theme.typography.fontFamily,
       color: light ? 'rgba(0, 0, 0, 0.87)' : theme.palette.common.white,

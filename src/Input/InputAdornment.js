@@ -6,11 +6,9 @@ import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   root: {
-    'label + div > &': {
-      marginTop: -theme.spacing.unit * 2,
-      height: 26,
-      display: 'flex',
-    },
+    display: 'flex',
+    maxHeight: '2em',
+    alignItems: 'center',
   },
   positionStart: {
     marginRight: theme.spacing.unit,
