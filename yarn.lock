@@ -4323,10 +4323,6 @@ git-head@^1.2.1:
   dependencies:
     git-refs "^1.1.3"
 
-git-pull-request@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/git-pull-request/-/git-pull-request-0.3.2.tgz#97f1ba2f96783239aba84359b3c0b63d471dfc82"
-
 git-raw-commits@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/git-raw-commits/-/git-raw-commits-1.3.0.tgz#0bc8596e90d5ffe736f7f5546bd2d12f73abaac6"
@@ -4440,7 +4436,7 @@ global-dirs@^0.1.0:
   dependencies:
     ini "^1.3.4"
 
-global@^4.3.0, global@^4.3.2, global@~4.3.0:
+global@^4.3.0, global@~4.3.0:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/global/-/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
   dependencies:
