@@ -10,11 +10,7 @@ export function titleize(string) {
 
   return string
     .split('-')
-    .map(word => word.split(''))
-    .map(letters => {
-      const first = letters.shift();
-      return [first.toUpperCase(), ...letters].join('');
-    })
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 }
 
