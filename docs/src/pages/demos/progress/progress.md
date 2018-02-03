@@ -45,3 +45,11 @@ For example, a refresh operation should display either a refresh bar or an activ
 ### Query
 
 {{"demo": "pages/demos/progress/LinearQuery.js"}}
+
+## Delaying appearance
+
+There is a [school of thought](http://www.nngroup.com/articles/response-times-3-important-limits/) that feedback after user operations isn't necessary for about a second.
+To implement this, you can take advantage of [theme overrides](/customization/themes/#customizing-all-instances-of-a-component-type)
+to delay the appearance of the progress indicators.
+
+{{"demo": "pages/demos/progress/DelayingAppearance.js"}}

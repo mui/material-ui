@@ -57,6 +57,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/progress/LinearQuery'), 'utf8')
 `,
         },
+        'pages/demos/progress/DelayingAppearance.js': {
+          js: require('docs/src/pages/demos/progress/DelayingAppearance').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/progress/DelayingAppearance'), 'utf8')
+`,
+        },
       }}
     />
   );
