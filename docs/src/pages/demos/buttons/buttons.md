@@ -102,4 +102,4 @@ const MyLink = props => <Link to="/open-collective" {...props} />
 </Button>
 ```
 
-*Note: Creating `MyLink` is necessary to prevent unwanted rerendering. You ran read more about it [here](/guides/composition).*
+*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You ran read more about it [here](/guides/composition#component-property).*

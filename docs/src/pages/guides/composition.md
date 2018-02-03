@@ -24,11 +24,12 @@ WrappedIcon.muiName = 'Icon';
 
 {{"demo": "pages/guides/Composition.js"}}
 
-## Prevent unnecessary rerendering
+## Component property
 
-Material-UI allows you to change the root node that will be used for a component via a prop called `component`.
+Material-UI allows you to change the root node that will be used for a component via a property called `component`.
 
-For example, by default a `<List>` will render an `<ul>` element. This can be changed by passing a `string` or a `React.Component` to the `component` prop. The following example will render the `<List>` component with a `<nav>` element as root node instead:
+For example, by default a `List` will render an `<ul>` element. This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#functional-and-class-components) to the `component` property.
+The following example will render the `List` component with a `<nav>` element as root node instead:
 
 ```jsx
 <List component="nav">
@@ -41,11 +42,12 @@ For example, by default a `<List>` will render an `<ul>` element. This can be ch
 </List>
 ```
 
-This pattern is very powerful and allows for great flexibility as well as a way to interoperate with other libaries, like `react-router` or your favorite forms library. But it also comes with a small caveat!
+This pattern is very powerful and allows for great flexibility as well as a way to interoperate with other libaries, like `react-router` or your favorite forms library. But it also **comes with a small caveat!**
 
-Using inline functions as argument for the `component` prop may result in unnecessary rerendering, since you pass a new function to the component everytime react checks if it has to update its DOM.
+### Caveat with inlining
 
-For instance, if you want to create a custom `<ListItem>` that acts as a link, you could do the following:
+Using inline functions as argument for the `component` property may result in **unexpected unmounting**, since you pass a new component to the `component` property everytime React render.
+For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
 
 ```jsx
 const ListItemLink = ({ icon, primary, secondary, to }) => (
@@ -58,13 +60,10 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 );
 ```
 
-But since we are using an inline function to change the rendered component, React will rerender the `<ListItem>` every time it checks our `<ListItemLink>` for changes. Not only will React update the DOM unnecessarily, the ripple effects of the `<ListItem>` will also not work correctly. A rerender will be triggered in the middle of the animation.
+But since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effects of the `ListItem` will also not work correctly.
 
-Here is an example of what this effect looks like:
-
-{{"demo": "pages/guides/Composition-Render-Inline.js"}}
-
-The solution is very simple: Avoid inline functions and pass a bound function to the `component` prop instead. Let's change our `<ListItemLink>` to the following:
+The solution is simple: **avoid inline functions and pass a static component to the `component` property** instead.
+Let's change our `ListItemLink` to the following:
 
 ```jsx
 class ListItemLink extends React.Component {
@@ -84,6 +83,6 @@ class ListItemLink extends React.Component {
 }
 ```
 
-`renderLink` will now always reference the same function and React will rerender our component only if other props are changed. Here is a demo of the updated version: 
+`renderLink` will now always reference the same component. Here is a demo:
 
-{{"demo": "pages/guides/Composition-Render-Class.js"}}
+{{"demo": "pages/guides/ComponentProperty.js"}}
