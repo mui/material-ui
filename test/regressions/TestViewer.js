@@ -1,66 +1,55 @@
-// @flow weak
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-
-const globalStyleSheet = createStyleSheet('global', (theme) => {
-  const { palette } = theme;
-  return {
-    '@global': {
-      html: {
-        boxSizing: 'border-box',
-      },
-      '*, *:before, *:after': {
-        boxSizing: 'inherit',
-        transition: 'none !important',
-        animation: 'none !important',
-      },
-      body: {
-        margin: 0,
-        background: palette.background.default,
-        overflowX: 'hidden',
-        WebkitFontSmoothing: 'antialiased',
-      },
-      a: {
-        color: palette.accent.A400,
-        textDecoration: 'none',
-      },
-      'a:hover': {
-        textDecoration: 'underline',
-      },
+const styles = theme => ({
+  '@global': {
+    html: {
+      WebkitFontSmoothing: 'antialiased', // Antialiasing.
+      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
+      // Do the opposite of the docs in order to help catching issues.
+      boxSizing: 'content-box',
     },
-  };
+    '*, *::before, *::after': {
+      boxSizing: 'inherit',
+      // Disable transitions to avoid flaky screenshots
+      transition: 'none !important',
+      animation: 'none !important',
+    },
+    body: {
+      margin: 0,
+      overflowX: 'hidden',
+    },
+  },
+  root: {
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit,
+  },
 });
 
-const styleSheet = createStyleSheet('TestViewer', (theme) => {
-  return {
-    root: {
-      padding: theme.spacing.unit,
-    },
-  };
-});
-
-export default class TestViewer extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  componentWillMount() {
-    this.context.styleManager.render(globalStyleSheet);
+class TestViewer extends React.Component {
+  getChildContext() {
+    return {
+      url: {
+        pathname: '/',
+      },
+    };
   }
 
   render() {
-    const { children } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
-    return (
-      <div className={classes.root}>
-        {children}
-      </div>
-    );
+    const { children, classes } = this.props;
+
+    return <div className={classes.root}>{children}</div>;
   }
 }
+
+TestViewer.propTypes = {
+  children: PropTypes.node.isRequired,
+  classes: PropTypes.object.isRequired,
+};
+
+TestViewer.childContextTypes = {
+  url: PropTypes.object,
+};
+
+export default withStyles(styles)(TestViewer);

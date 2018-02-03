@@ -1,113 +1,77 @@
-// @flow weak
+// @inheritedComponent ButtonBase
 
-import React, { Children, cloneElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
-import ButtonBase from '../internal/ButtonBase';
-import Icon from '../Icon';
+import withStyles from '../styles/withStyles';
+import ButtonBase from '../ButtonBase';
+import { capitalize } from '../utils/helpers';
+import { isMuiElement } from '../utils/reactHelpers';
+import '../SvgIcon'; // Ensure CSS specificity
 
-export const styleSheet = createStyleSheet('MuiIconButton', (theme) => {
-  const { palette, transitions } = theme;
-
-  return {
-    iconButton: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlign: 'center',
-      flex: '0 0 auto',
-      fontSize: 24,
-      width: 48,
-      height: 48,
-      padding: 0,
-      borderRadius: '50%',
-      backgroundColor: 'transparent',
-      color: palette.action.active,
-      zIndex: 1,
-      transition: transitions.create('background-color', {
-        duration: transitions.duration.shortest,
-      }),
-    },
-    disabled: {
-      color: palette.action.disabled,
-    },
-    accent: {
-      color: palette.accent.A200,
-    },
-    contrast: {
-      color: palette.getContrastText(palette.primary[500]),
-    },
-    label: {
-      width: '100%',
-      display: 'flex',
-      alignItems: 'inherit',
-      justifyContent: 'inherit',
-    },
-    icon: {
-      width: '1em',
-      height: '1em',
-    },
-    keyboardFocused: {
-      backgroundColor: palette.text.divider,
-    },
-  };
+export const styles = theme => ({
+  root: {
+    textAlign: 'center',
+    flex: '0 0 auto',
+    fontSize: theme.typography.pxToRem(24),
+    width: theme.spacing.unit * 6,
+    height: theme.spacing.unit * 6,
+    padding: 0,
+    borderRadius: '50%',
+    color: theme.palette.action.active,
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  colorInherit: {
+    color: 'inherit',
+  },
+  colorPrimary: {
+    color: theme.palette.primary.main,
+  },
+  colorSecondary: {
+    color: theme.palette.secondary.main,
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
+  },
+  label: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'inherit',
+    justifyContent: 'inherit',
+  },
 });
 
 /**
- * ```
- * <IconButton>account_circle</IconButton>
- * ```
- *
- * ```
- * <IconButton><AccountCircle></IconButton>
- * ```
- *
  * Refer to the [Icons](/style/icons) section of the documentation
  * regarding the available icon options.
  */
-export default function IconButton(props, context) {
-  const {
-    accent,
-    buttonRef,
-    children,
-    className,
-    contrast,
-    disabled,
-    disableRipple,
-    iconClassName: iconClassNameProp,
-    ...other
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const iconClassName = classNames(classes.icon, iconClassNameProp);
+function IconButton(props) {
+  const { children, classes, className, color, disabled, ...other } = props;
+
   return (
     <ButtonBase
-      className={classNames(classes.iconButton, {
-        [classes.accent]: accent,
-        [classes.contrast]: contrast,
-        [classes.disabled]: disabled,
-      }, className)}
+      className={classNames(
+        classes.root,
+        {
+          [classes[`color${capitalize(color)}`]]: color !== 'default',
+          [classes.disabled]: disabled,
+        },
+        className,
+      )}
       centerRipple
-      keyboardFocusedClassName={classes.keyboardFocused}
+      focusRipple
       disabled={disabled}
-      ripple={!disableRipple}
-      ref={buttonRef}
       {...other}
     >
       <span className={classes.label}>
-        {typeof children === 'string' ?
-          <Icon className={iconClassName}>{children}</Icon> :
-          Children.map(children, (child) => {
-            if (child.type && child.type.muiName === 'Icon') {
-              return cloneElement(child, {
-                className: classNames(iconClassName, child.props.className),
-              });
-            }
-
-            return child;
-          })
-        }
+        {React.Children.map(children, child => {
+          if (isMuiElement(child, ['Icon', 'SvgIcon'])) {
+            return React.cloneElement(child, { fontSize: true });
+          }
+          return child;
+        })}
       </span>
     </ButtonBase>
   );
@@ -115,26 +79,21 @@ export default function IconButton(props, context) {
 
 IconButton.propTypes = {
   /**
-   * If `true`, will use the theme's accent color.
-   */
-  accent: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  buttonRef: PropTypes.func,
-  /**
    * The icon element.
-   * If a string is provided, it will be used as an icon font ligature.
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
-   * If `true`, the icon button will use the theme's contrast color.
+   * The color of the component. It supports those theme colors that make sense for this component.
    */
-  contrast: PropTypes.bool,
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   /**
    * If `true`, the button will be disabled.
    */
@@ -143,19 +102,12 @@ IconButton.propTypes = {
    * If `true`, the ripple will be disabled.
    */
   disableRipple: PropTypes.bool,
-  /**
-   * The CSS class name of the icon element if child is a string.
-   */
-  iconClassName: PropTypes.string,
 };
 
 IconButton.defaultProps = {
-  accent: false,
-  contrast: false,
+  color: 'default',
   disabled: false,
   disableRipple: false,
 };
 
-IconButton.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);

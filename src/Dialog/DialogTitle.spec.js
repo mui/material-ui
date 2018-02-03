@@ -1,35 +1,37 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
-import DialogTitle, { styleSheet } from './DialogTitle';
+import { createShallow, getClasses } from '../test-utils';
+import DialogTitle from './DialogTitle';
 
 describe('<DialogTitle />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<DialogTitle>foo</DialogTitle>);
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(
-      <DialogTitle />,
-    );
+    const wrapper = shallow(<DialogTitle>foo</DialogTitle>);
     assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<DialogTitle data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    const wrapper = shallow(<DialogTitle data-my-prop="woofDialogTitle">foo</DialogTitle>);
+    assert.strictEqual(
+      wrapper.prop('data-my-prop'),
+      'woofDialogTitle',
+      'custom prop should be woofDialogTitle',
+    );
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<DialogTitle className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    const wrapper = shallow(<DialogTitle className="woofDialogTitle">foo</DialogTitle>);
+    assert.strictEqual(wrapper.hasClass('woofDialogTitle'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render JSX children', () => {

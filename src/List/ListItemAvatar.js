@@ -1,58 +1,46 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiListItemAvatar', () => {
-  return {
-    denseAvatar: {
-      width: 36,
-      height: 36,
-      fontSize: 18,
-      marginRight: 4,
-    },
-    denseAvatarIcon: {
-      width: 20,
-      height: 20,
-    },
-  };
+export const styles = theme => ({
+  root: {
+    width: 36,
+    height: 36,
+    fontSize: theme.typography.pxToRem(18),
+    marginRight: 4,
+  },
+  icon: {
+    width: 20,
+    height: 20,
+    fontSize: theme.typography.pxToRem(20),
+  },
 });
 
 /**
- * `<ListItemAvatar>` is a simple wrapper to apply the `dense` mode styles to `Avatar`.
- *
- * ```
- * <ListItemAvatar>
- *   <Avatar>
- * </ListItemAvatar>
- * ```
+ * It's a simple wrapper to apply the `dense` mode styles to `Avatar`.
  */
-export default function ListItemAvatar(props, context) {
+function ListItemAvatar(props, context) {
+  const { children, classes, className: classNameProp, ...other } = props;
+
   if (context.dense === undefined) {
-    warning(false, `Material-UI: <ListItemAvatar> is a simple wrapper to apply the dense styles
-      to <Avatar>. You do not need it unless you are controlling the <List> dense property.`);
+    warning(
+      false,
+      `Material-UI: <ListItemAvatar> is a simple wrapper to apply the dense styles
+      to <Avatar>. You do not need it unless you are controlling the <List> dense property.`,
+    );
     return props.children;
   }
 
-  const {
-    children,
-    className: classNameProp,
-    ...other
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
-
   return React.cloneElement(children, {
     className: classNames(
-      { [classes.denseAvatar]: context.dense },
+      { [classes.root]: context.dense },
       classNameProp,
       children.props.className,
     ),
     childrenClassName: classNames(
-      { [classes.denseAvatarIcon]: context.dense },
+      { [classes.icon]: context.dense },
       children.props.childrenClassName,
     ),
     ...other,
@@ -65,12 +53,19 @@ ListItemAvatar.propTypes = {
    */
   children: PropTypes.element.isRequired,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
 };
 
 ListItemAvatar.contextTypes = {
   dense: PropTypes.bool,
-  styleManager: customPropTypes.muiRequired,
 };
+
+ListItemAvatar.muiName = 'ListItemAvatar';
+
+export default withStyles(styles, { name: 'MuiListItemAvatar' })(ListItemAvatar);

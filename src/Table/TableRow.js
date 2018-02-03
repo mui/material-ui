@@ -1,72 +1,67 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTableRow', (theme) => {
-  return {
-    root: {
-      height: 48,
-      '&:focus': {
-        outline: 'none',
-        background: theme.palette.background.contentFrame,
-      },
+export const styles = theme => ({
+  root: {
+    color: 'inherit',
+    display: 'table-row',
+    height: 48,
+    '&:focus': {
+      outline: 'none',
     },
-    head: {
-      height: 64,
+    verticalAlign: 'middle',
+  },
+  typeHead: {
+    height: 56,
+  },
+  typeFooter: {
+    height: 56,
+  },
+  selected: {
+    backgroundColor:
+      theme.palette.type === 'light'
+        ? 'rgba(0, 0, 0, 0.04)' // grey[100]
+        : 'rgba(255, 255, 255, 0.08)',
+  },
+  hover: {
+    '&:hover': {
+      backgroundColor:
+        theme.palette.type === 'light'
+          ? 'rgba(0, 0, 0, 0.07)' // grey[200]
+          : 'rgba(255, 255, 255, 0.14)',
     },
-    footer: {
-      height: 56,
-    },
-    hover: {
-      '&:hover': {
-        background: theme.palette.background.contentFrame,
-      },
-    },
-    selected: {
-      background: theme.palette.background.appBar,
-    },
-  };
+  },
 });
 
 /**
- * A material table row.
- *
  * Will automatically set dynamic row height
- * based on the material table element parent (head, body, etc)
- *
- * ```jsx
- * <TableRow>
- *   <TableCell>...</TableCell>
- * </TableRow>
- * ```
+ * based on the material table element parent (head, body, etc).
  */
-export default function TableRow(props, context) {
+function TableRow(props, context) {
   const {
+    classes,
     className: classNameProp,
-    children,
+    component: Component,
     hover,
     selected,
     ...other
   } = props;
-  const { table, styleManager } = context;
-  const classes = styleManager.render(styleSheet);
+  const { table } = context;
 
-  const className = classNames(classes.root, {
-    [classes.head]: table && table.head,
-    [classes.footer]: table && table.footer,
-    [classes.hover]: table && hover,
-    [classes.selected]: table && selected,
-  }, classNameProp);
-
-  return (
-    <tr className={className} {...other}>
-      {children}
-    </tr>
+  const className = classNames(
+    classes.root,
+    {
+      [classes.typeHead]: table && table.head,
+      [classes.typeFooter]: table && table.footer,
+      [classes.hover]: table && hover,
+      [classes.selected]: table && selected,
+    },
+    classNameProp,
   );
+
+  return <Component className={className} {...other} />;
 }
 
 TableRow.propTypes = {
@@ -75,9 +70,18 @@ TableRow.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * If `true`, the table row will shade on hover.
    */
@@ -89,11 +93,13 @@ TableRow.propTypes = {
 };
 
 TableRow.defaultProps = {
+  component: 'tr',
   hover: false,
   selected: false,
 };
 
 TableRow.contextTypes = {
   table: PropTypes.object,
-  styleManager: customPropTypes.muiRequired,
 };
+
+export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);

@@ -1,75 +1,104 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiListItemText', () => {
-  return {
-    root: {
-      flex: '1 1 auto',
-      padding: '0 16px',
-      '&:first-child': {
-        paddingLeft: 0,
-      },
+export const styles = theme => ({
+  root: {
+    flex: '1 1 auto',
+    minWidth: 0,
+    padding: '0 16px',
+    '&:first-child': {
+      paddingLeft: 0,
     },
-    inset: {
-      '&:first-child': {
-        paddingLeft: 56,
-      },
+  },
+  inset: {
+    '&:first-child': {
+      paddingLeft: theme.spacing.unit * 7,
     },
-    dense: {
-      fontSize: 13,
-    },
-    text: {
+  },
+  dense: {
+    fontSize: theme.typography.pxToRem(13),
+  },
+  primary: {
+    '&$textDense': {
       fontSize: 'inherit',
     },
-  };
+  },
+  secondary: {
+    '&$textDense': {
+      fontSize: 'inherit',
+    },
+  },
+  textDense: {},
 });
 
-export default function ListItemText(props, context) {
+function ListItemText(props, context) {
   const {
+    classes,
     className: classNameProp,
+    disableTypography,
+    inset,
     primary,
     secondary,
-    inset,
     ...other
   } = props;
   const { dense } = context;
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, {
-    [classes.dense]: dense,
-    [classes.inset]: inset,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.dense]: dense,
+      [classes.inset]: inset,
+    },
+    classNameProp,
+  );
 
   return (
     <div className={className} {...other}>
-      {primary && (
-        typeof primary === 'string' ? (
-          <Typography type="subheading" className={classNames({ [classes.text]: dense })}>
+      {primary &&
+        (disableTypography ? (
+          primary
+        ) : (
+          <Typography
+            variant="subheading"
+            className={classNames(classes.primary, { [classes.textDense]: dense })}
+          >
             {primary}
           </Typography>
-        ) : primary
-      )}
-      {secondary && (
-        typeof secondary === 'string' ? (
-          <Typography secondary type="body1" className={classNames({ [classes.text]: dense })}>
+        ))}
+      {secondary &&
+        (disableTypography ? (
+          secondary
+        ) : (
+          <Typography
+            variant="body1"
+            className={classNames(classes.secondary, {
+              [classes.textDense]: dense,
+            })}
+            color="textSecondary"
+          >
             {secondary}
           </Typography>
-        ) : secondary
-      )}
+        ))}
     </div>
   );
 }
 
 ListItemText.propTypes = {
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the children won't be wrapped by a typography component.
+   * For instance, that can be useful to can render an h4 instead of a
+   */
+  disableTypography: PropTypes.bool,
   /**
    * If `true`, the children will be indented.
    * This should be used if there is no left avatar or left icon.
@@ -80,12 +109,14 @@ ListItemText.propTypes = {
 };
 
 ListItemText.defaultProps = {
+  disableTypography: false,
+  inset: false,
   primary: false,
   secondary: false,
-  inset: false,
 };
 
 ListItemText.contextTypes = {
   dense: PropTypes.bool,
-  styleManager: customPropTypes.muiRequired,
 };
+
+export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);

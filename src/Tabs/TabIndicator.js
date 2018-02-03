@@ -1,72 +1,69 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
+import { capitalize } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiTabIndicator', (theme) => {
-  return {
-    root: {
-      position: 'relative',
-      height: 2,
-      marginTop: -2,
-      transition: theme.transitions.create(),
-      willChange: 'left, width',
-    },
-    rootAccent: {
-      backgroundColor: theme.palette.accent[500],
-    },
-  };
+export const styles = theme => ({
+  root: {
+    position: 'absolute',
+    height: 2,
+    bottom: 0,
+    width: '100%',
+    transition: theme.transitions.create(),
+    willChange: 'left, width',
+  },
+  colorPrimary: {
+    backgroundColor: theme.palette.primary.main,
+  },
+  colorSecondary: {
+    backgroundColor: theme.palette.secondary.main,
+  },
 });
-
-export default function TabIndicator(props, context) {
-  const {
-    className: classNameProp,
-    indicatorColor,
-    style: styleProp,
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, {
-    [classes.rootAccent]: indicatorColor === 'accent',
-  }, classNameProp);
-
-  const style = indicatorColor !== 'accent' ? {
-    ...styleProp,
-    backgroundColor: indicatorColor,
-  } : styleProp;
-
-  return <div className={className} style={style} />;
-}
 
 /**
  * @ignore - internal component.
  */
+function TabIndicator(props) {
+  const { classes, className: classNameProp, color, style: styleProp } = props;
+  const colorPredefined = ['primary', 'secondary'].indexOf(color) !== -1;
+  const className = classNames(
+    classes.root,
+    {
+      [classes[`color${capitalize(color)}`]]: colorPredefined,
+    },
+    classNameProp,
+  );
+
+  const style = colorPredefined
+    ? styleProp
+    : {
+        ...styleProp,
+        backgroundColor: color,
+      };
+
+  return <span className={className} style={style} />;
+}
+
 TabIndicator.propTypes = {
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
-   * The CSS class name of the root element.
    */
   className: PropTypes.string,
   /**
    * @ignore
    * The color of the tab indicator.
    */
-  indicatorColor: PropTypes.oneOfType([
-    PropTypes.oneOf(['accent']),
-    PropTypes.string,
-  ]).isRequired,
+  color: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf(['primary', 'secondary'])]),
   /**
    * @ignore
    * The style of the root element.
    */
-  style: PropTypes.shape({
-    left: PropTypes.number,
-    width: PropTypes.number,
-  }).isRequired,
+  style: PropTypes.object,
 };
 
-TabIndicator.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styles, { name: 'MuiTabIndicator' })(TabIndicator);

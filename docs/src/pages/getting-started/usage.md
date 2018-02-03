@@ -1,61 +1,40 @@
 # Usage
 
-Beginning with v0.15.0, Material-UI components require a theme to be provided. The quickest way to get up and running is by using the `MuiThemeProvider` to inject the theme into your application context. Following that, you can use any of the components as demonstrated in our documentation.
+Material-UI components work in isolation.
+**They are self-supporting**, they will inject, and only inject, the styles they need to display.
+They don't rely on any global styles like [normalize.css](https://github.com/necolas/normalize.css/),
+although Material-UI does provide an optional [Reboot](/style/reboot) component.
 
-Here is a quick example to get you started:
+You can use any of the components as demonstrated in the documentation.
+Please refer to each component's [demo page](/demos/app-bar/) to see how they should be imported.
 
-**./App.js**
+## Quick start
+
+Here is a quick example to get you started, **it's all you need**:
+
 ```jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import MyAwesomeReactComponent from './MyAwesomeReactComponent';
+import { render } from 'react-dom';
+import Button from 'material-ui/Button';
 
-const App = () => (
-  <MuiThemeProvider>
-    <MyAwesomeReactComponent />
-  </MuiThemeProvider>
-);
+function App() {
+  return (
+    <Button variant="raised" color="primary">
+      Hello World
+    </Button>
+  );
+}
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-);
+render(<App />, document.querySelector('#app'));
 ```
 
-**./MyAwesomeReactComponent.js**
-```jsx
-import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+Yes, it's really all you need to get started as you can see in this live and interactive demo:
 
-const MyAwesomeReactComponent = () => (
-  <RaisedButton label="Default" />
-);
+{{"demo": "pages/getting-started/Usage.js"}}
 
-export default MyAwesomeReactComponent;
-```
+## Next steps
 
-Please refer to each component's documentation page to see how they should be imported.
-
-Notice that in the above example, we used:
-```js
-import RaisedButton from 'material-ui/RaisedButton';
-```
-
-instead of
-```js
-import {RaisedButton} from 'material-ui';
-```
-
-This will make your build process faster and your build output smaller.
-For a complete mapping of Material-UI components to `import`,
-see `/index.js` inside the Material-UI npm package root directory.
-
-## Customization
-
-We have implemented a default theme to render all Material-UI components.
-Styling components to your liking is simple and hassle-free.
-This can be achieved in the following two ways:
-- [With the theme](#/customization/themes), you can use a custom theme to style components.
-- [With the inline style](#/customization/inline-styles), you can override individual
-component styles via the style property.
+Now that you have an idea about the basic setup, it's time to learn more about:
+- How to provide [the Material Design font and typography](/style/typography).
+- How to take advantage of the [theming solution](/customization/themes).
+- How to [override](/customization/overrides) the look and feel of the components.

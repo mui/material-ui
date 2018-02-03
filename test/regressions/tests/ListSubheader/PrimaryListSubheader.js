@@ -1,10 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { ListSubheader } from 'material-ui/List';
 
 export default function PrimaryListSubheader() {
-  return (
-    <ListSubheader primary>Title</ListSubheader>
-  );
+  return <ListSubheader color="primary">Title</ListSubheader>;
 }

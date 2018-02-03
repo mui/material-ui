@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import { assert } from 'chai';
 import { stub } from 'sinon';
-import transitions, { easing, duration } from './transitions';
+import transitions, { easing, duration, formatMs, isString, isNumber } from './transitions';
 
 describe('transitions', () => {
   let consoleErrorStub;
@@ -15,8 +15,63 @@ describe('transitions', () => {
     consoleErrorStub.restore();
   });
 
+  describe('formatMs() function', () => {
+    it('should round decimal digits and return formatted value', () => {
+      const formattedValue = formatMs(12.125);
+      assert.strictEqual(formattedValue, '12ms');
+    });
+  });
+
+  describe('isString() function', () => {
+    it('should return false when passed undefined', () => {
+      const value = isString();
+      assert.strictEqual(value, false);
+    });
+
+    it('should return false when not passed a string', () => {
+      let value = isString(1);
+      assert.strictEqual(value, false);
+      value = isString({});
+      assert.strictEqual(value, false);
+      value = isString([]);
+      assert.strictEqual(value, false);
+    });
+
+    it('should return true when passed a string', () => {
+      let value = isString('');
+      assert.strictEqual(value, true);
+      value = isString('test');
+      assert.strictEqual(value, true);
+    });
+  });
+
+  describe('isNumber() function', () => {
+    it('should return false when passed undefined', () => {
+      const value = isNumber();
+      assert.strictEqual(value, false);
+    });
+
+    it('should return false when not passed a number', () => {
+      let value = isNumber('');
+      assert.strictEqual(value, false);
+      value = isNumber('test');
+      assert.strictEqual(value, false);
+      value = isNumber({});
+      assert.strictEqual(value, false);
+      value = isNumber([]);
+      assert.strictEqual(value, false);
+    });
+
+    it('should return true when passed a number', () => {
+      let value = isNumber(1);
+      assert.strictEqual(value, true);
+      value = isNumber(1.5);
+      assert.strictEqual(value, true);
+    });
+  });
+
   describe('create() function', () => {
-    it('should create default transition withnout arguments', () => {
+    it('should create default transition without arguments', () => {
       const transition = transitions.create();
       assert.strictEqual(transition, `all ${duration.standard}ms ${easing.easeInOut} 0ms`);
       assert.strictEqual(consoleErrorStub.callCount, 0, 'Wrong number of calls of warning()');
@@ -39,7 +94,9 @@ describe('transitions', () => {
     });
 
     it('should warn when first argument is of bad type', () => {
+      // $FlowIgnore
       transitions.create(5554);
+      // $FlowIgnore
       transitions.create({});
       assert.strictEqual(consoleErrorStub.callCount, 2, 'Wrong number of calls of warning()');
     });
@@ -57,7 +114,9 @@ describe('transitions', () => {
     });
 
     it('should warn when bad "duration" option type', () => {
+      // $FlowIgnore
       transitions.create('font', { duration: '' });
+      // $FlowIgnore
       transitions.create('font', { duration: {} });
       assert.strictEqual(consoleErrorStub.callCount, 2, 'Wrong number of calls of warning()');
     });
@@ -69,7 +128,9 @@ describe('transitions', () => {
     });
 
     it('should warn when bad "easing" option type', () => {
+      // $FlowIgnore
       transitions.create('transform', { easing: 123 });
+      // $FlowIgnore
       transitions.create('transform', { easing: {} });
       assert.strictEqual(consoleErrorStub.callCount, 2, 'Wrong number of calls of warning()');
     });
@@ -87,7 +148,9 @@ describe('transitions', () => {
     });
 
     it('should warn when bad "delay" option type', () => {
+      // $FlowIgnore
       transitions.create('size', { delay: '' });
+      // $FlowIgnore
       transitions.create('size', { delay: {} });
       assert.strictEqual(consoleErrorStub.callCount, 2, 'Wrong number of calls of warning()');
     });
@@ -114,11 +177,11 @@ describe('transitions', () => {
 
     it('should return NaN when passed a negative number', () => {
       const zeroHeightDurationNegativeOne = transitions.getAutoHeightDuration(-1);
-      assert.strictEqual(isNaN(zeroHeightDurationNegativeOne), true);
+      assert.strictEqual(Number.isNaN(zeroHeightDurationNegativeOne), true);
       const zeroHeightDurationSmallNegative = transitions.getAutoHeightDuration(-0.000001);
-      assert.strictEqual(isNaN(zeroHeightDurationSmallNegative), true);
+      assert.strictEqual(Number.isNaN(zeroHeightDurationSmallNegative), true);
       const zeroHeightDurationBigNegative = transitions.getAutoHeightDuration(-100000);
-      assert.strictEqual(isNaN(zeroHeightDurationBigNegative), true);
+      assert.strictEqual(Number.isNaN(zeroHeightDurationBigNegative), true);
     });
 
     it('should return values for pre-calculated positive examples', () => {

@@ -1,74 +1,146 @@
-// @flow weak
-
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
+import Input, { InputLabel } from '../Input';
+import FormHelperText from '../Form/FormHelperText';
+import FormControl from '../Form/FormControl';
 import TextField from './TextField';
+import Select from '../Select/Select';
 
 describe('<TextField />', () => {
   let shallow;
-  let wrapper;
+  let mount;
 
   before(() => {
     shallow = createShallow();
+    mount = createMount();
   });
 
-  beforeEach(() => {
-    wrapper = shallow(<TextField />);
+  after(() => {
+    mount.cleanUp();
   });
 
-  describe('structure', () => {
-    it('should be a FormControl', () => {
-      assert.strictEqual(wrapper.name(), 'FormControl');
-    });
+  describe('shallow', () => {
+    let wrapper;
 
-    it('should pass className to the FormControl', () => {
-      wrapper.setProps({ className: 'foo' });
-      assert.strictEqual(wrapper.hasClass('foo'), true);
-    });
-
-    it('should have an Input as the only child', () => {
-      assert.strictEqual(wrapper.children().length, 1);
-      assert.strictEqual(wrapper.childAt(0).is('Input'), true);
-    });
-
-    it('should pass inputClassName to the Input as className', () => {
-      wrapper.setProps({ inputClassName: 'foo' });
-      assert.strictEqual(wrapper.find('Input').hasClass('foo'), true);
-    });
-  });
-
-  describe('with a label', () => {
     beforeEach(() => {
-      wrapper.setProps({ label: 'Foo bar' });
+      wrapper = shallow(<TextField />);
     });
 
-    it('should have 2 children', () => {
-      assert.strictEqual(wrapper.children().length, 2);
+    describe('structure', () => {
+      it('should be a FormControl', () => {
+        assert.strictEqual(wrapper.type(), FormControl);
+      });
+
+      it('should pass className to the FormControl', () => {
+        wrapper.setProps({ className: 'foo' });
+        assert.strictEqual(wrapper.dive().hasClass('foo'), true);
+      });
+
+      it('should pass margin to the FormControl', () => {
+        wrapper.setProps({ margin: 'normal' });
+        assert.strictEqual(wrapper.dive().props().margin, 'normal');
+      });
+
+      it('should have an Input as the only child', () => {
+        assert.strictEqual(wrapper.children().length, 1);
+        assert.strictEqual(wrapper.childAt(0).type(), Input);
+      });
+
+      it('should forward the multiline prop to Input', () => {
+        wrapper = shallow(<TextField multiline />);
+        assert.strictEqual(wrapper.childAt(0).props().multiline, true);
+      });
+
+      it('should forward the fullWidth prop to Input', () => {
+        wrapper = shallow(<TextField fullWidth />);
+        assert.strictEqual(wrapper.childAt(0).props().fullWidth, true);
+      });
     });
 
-    it('should have an InputLabel as the first child', () => {
-      assert.strictEqual(wrapper.childAt(0).is('InputLabel'), true);
+    describe('with a label', () => {
+      beforeEach(() => {
+        wrapper.setProps({ label: 'Foo bar' });
+      });
+
+      it('should have 2 children', () => {
+        assert.strictEqual(wrapper.children().length, 2);
+      });
+
+      it('should have an InputLabel as the first child', () => {
+        assert.strictEqual(wrapper.childAt(0).type(), InputLabel);
+      });
+
+      it('should pass labelClassName to the InputLabel as className', () => {
+        wrapper.setProps({ labelClassName: 'foo' });
+        assert.strictEqual(wrapper.find(InputLabel).hasClass('foo'), true);
+      });
+
+      it('should have an Input as the second child', () => {
+        assert.strictEqual(wrapper.childAt(1).type(), Input);
+      });
     });
 
-    it('should pass labelClassName to the InputLabel as className', () => {
-      wrapper.setProps({ labelClassName: 'foo' });
-      assert.strictEqual(wrapper.find('InputLabel').hasClass('foo'), true);
+    describe('with a helper text', () => {
+      beforeEach(() => {
+        wrapper.setProps({ helperText: 'Foo bar' });
+      });
+
+      it('should have 2 children', () => {
+        assert.strictEqual(wrapper.children().length, 2);
+      });
+
+      it('should have an FormHelperText as the second child', () => {
+        assert.strictEqual(wrapper.childAt(1).type(), FormHelperText);
+      });
+
+      it('should pass helperTextClassName to the FormHelperText as className', () => {
+        wrapper.setProps({ helperTextClassName: 'foo' });
+        assert.strictEqual(wrapper.find(FormHelperText).hasClass('foo'), true);
+      });
+
+      it('should have an Input as the first child', () => {
+        assert.strictEqual(wrapper.childAt(0).type(), Input);
+      });
     });
 
-    it('should have an Input as the second child', () => {
-      assert.strictEqual(wrapper.childAt(1).is('Input'), true);
+    describe('prop: InputProps', () => {
+      it('should apply additional properties to the Input component', () => {
+        wrapper.setProps({ InputProps: { inputClassName: 'fullWidth' } });
+        assert.strictEqual(wrapper.find(Input).props().inputClassName, 'fullWidth');
+      });
     });
   });
 
-  describe('prop: inputProps', () => {
+  describe('prop: InputProps', () => {
     it('should apply additional properties to the Input component', () => {
-      wrapper.setProps({
-        inputProps: {
-          inputClassName: 'fullWidth',
-        },
-      });
-      assert.strictEqual(wrapper.find('Input').props().inputClassName, 'fullWidth');
+      const wrapper = mount(<TextField InputProps={{ readOnly: true }} />);
+      assert.strictEqual(wrapper.find('input').props().readOnly, true);
+    });
+  });
+
+  describe('prop: select', () => {
+    it('should be able to render a select as expected', () => {
+      const currencies = [{ value: 'USD', label: '$' }, { value: 'BTC', label: '฿' }];
+
+      const wrapper = shallow(
+        <TextField select SelectProps={{ native: true }}>
+          {currencies.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>,
+      );
+      assert.strictEqual(wrapper.childAt(0).type(), Select);
+      assert.strictEqual(wrapper.childAt(0).props().input.type, Input);
+      assert.strictEqual(
+        wrapper
+          .childAt(0)
+          .children()
+          .every('option'),
+        true,
+      );
     });
   });
 });

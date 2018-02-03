@@ -1,71 +1,49 @@
-// @flow weak
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
+import { capitalize } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiIcon', (theme) => {
-  const { palette } = theme;
-  return {
-    root: {
-      userSelect: 'none',
-    },
-    accent: {
-      color: palette.accent.A200,
-    },
-    action: {
-      color: palette.action.active,
-    },
-    contrast: {
-      color: palette.getContrastText(palette.primary[500]),
-    },
-    disabled: {
-      color: palette.action.disabled,
-    },
-    error: {
-      color: palette.error[500],
-    },
-    primary: {
-      color: palette.primary[500],
-    },
-  };
+export const styles = theme => ({
+  root: {
+    userSelect: 'none',
+  },
+  colorPrimary: {
+    color: theme.palette.primary.main,
+  },
+  colorSecondary: {
+    color: theme.palette.secondary.main,
+  },
+  colorAction: {
+    color: theme.palette.action.active,
+  },
+  colorDisabled: {
+    color: theme.palette.action.disabled,
+  },
+  colorError: {
+    color: theme.palette.error.main,
+  },
+  fontSize: {
+    width: '1em',
+    height: '1em',
+  },
 });
 
-/**
- * ```jsx
- * <Icon>account_circle</Icon>
- * ```
- */
-function Icon(props, context) {
-  const {
-    accent,
-    action,
-    children,
-    className: classNameProp,
-    contrast,
-    disabled,
-    error,
-    primary,
-    ...other
-  } = props;
+function Icon(props) {
+  const { children, classes, className: classNameProp, color, fontSize, ...other } = props;
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(
     'material-icons',
     classes.root,
     {
-      [classes.accent]: accent,
-      [classes.action]: action,
-      [classes.contrast]: contrast,
-      [classes.disabled]: disabled,
-      [classes.error]: error,
-      [classes.primary]: primary,
+      [classes[`color${capitalize(color)}`]]: color !== 'inherit',
+      [classes.fontSize]: fontSize,
     },
-    classNameProp);
+    classNameProp,
+  );
 
   return (
-    <span className={className} {...other}>
+    <span className={className} aria-hidden="true" {...other}>
       {children}
     </span>
   );
@@ -73,52 +51,32 @@ function Icon(props, context) {
 
 Icon.propTypes = {
   /**
-   * If `true`, the button will use the theme's accent color.
-   */
-  accent: PropTypes.bool,
-  /**
-   * If `true`, the button will use the theme's action.active color.
-   */
-  action: PropTypes.bool,
-  /**
    * The name of the icon font ligature.
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
-   * If `true`, the button will contrast the theme's primary color.
+   * The color of the component. It supports those theme colors that make sense for this component.
    */
-  contrast: PropTypes.bool,
+  color: PropTypes.oneOf(['inherit', 'secondary', 'action', 'disabled', 'error', 'primary']),
   /**
-   * If `true`, the button will use the theme's action.disabled color.
+   * If `true`, the icon size will be determined by the font-size.
    */
-  disabled: PropTypes.bool,
-  /**
-   * If `true`, the text will use the theme's error color.
-   */
-  error: PropTypes.bool,
-  /**
-   * If `true`, the button will use the theme's primary color.
-   */
-  primary: PropTypes.bool,
-};
-
-Icon.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+  fontSize: PropTypes.bool,
 };
 
 Icon.defaultProps = {
-  accent: false,
-  action: false,
-  contrast: false,
-  disabled: false,
-  error: false,
-  primary: false,
+  color: 'inherit',
+  fontSize: false,
 };
 
 Icon.muiName = 'Icon';
 
-export default Icon;
+export default withStyles(styles, { name: 'MuiIcon' })(Icon);

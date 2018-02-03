@@ -1,35 +1,33 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormGroup', () => {
-  return {
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      flexWrap: 'wrap',
-    },
-    row: {
-      flexDirection: 'row',
-    },
-  };
-});
+export const styles = {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+  },
+  row: {
+    flexDirection: 'row',
+  },
+};
 
 /**
- * FormGroup wraps controls such as Checkbox and Switch.
- * It provides compact row layout and FormLabel awareness.
- * Upon focusing on one of the child controls, it will propagate `focused` to the label.
+ * `FormGroup` wraps controls such as `Checkbox` and `Switch`.
+ * It provides compact row layout.
+ * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
-export default function FormGroup(props, context) {
-  const { className, children, row, ...other } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const rootClassName = classNames(classes.root, {
-    [classes.row]: row,
-  }, className);
+function FormGroup(props) {
+  const { classes, className, children, row, ...other } = props;
+  const rootClassName = classNames(
+    classes.root,
+    {
+      [classes.row]: row,
+    },
+    className,
+  );
 
   return (
     <div className={rootClassName} {...other}>
@@ -44,7 +42,11 @@ FormGroup.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -57,6 +59,4 @@ FormGroup.defaultProps = {
   row: false,
 };
 
-FormGroup.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styles, { name: 'MuiFormGroup' })(FormGroup);

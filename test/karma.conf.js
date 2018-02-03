@@ -1,27 +1,25 @@
 // @flow weak
+
 const path = require('path');
+const webpack = require('webpack');
 
 const browserStack = {
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
-  build: `material-ui-${(new Date()).toISOString()}`,
+  build: `material-ui-${new Date().toISOString()}`,
 };
 
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
-    browsers: [
-      'PhantomJS_Sized',
-    ],
+    browsers: ['PhantomJS_Sized'],
     // to avoid DISCONNECTED messages on travis
-    browserDisconnectTimeout: 60000, // default 2000
+    browserDisconnectTimeout: 120000, // default 2000
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 300000, // default 10000
     colors: true,
-    frameworks: [
-      'mocha',
-    ],
+    frameworks: ['mocha'],
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
       {
@@ -54,6 +52,13 @@ module.exports = function setKarmaConfig(config) {
     reporters: ['dots'],
     webpack: {
       devtool: 'inline-source-map',
+      plugins: [
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('test'),
+          },
+        }),
+      ],
       module: {
         rules: [
           {
@@ -64,28 +69,23 @@ module.exports = function setKarmaConfig(config) {
               cacheDirectory: true,
             },
           },
+          {
+            test: /\.json$/,
+            loader: 'json-loader',
+          },
         ],
-        noParse: [
-          /node_modules\/sinon\//,
-        ],
+        noParse: [/node_modules\/sinon\//],
       },
       resolve: {
         alias: {
           'material-ui': path.resolve(__dirname, '../src'),
           sinon: 'sinon/pkg/sinon.js',
         },
-        extensions: ['.js'],
-        modules: [
-          path.join(__dirname, '../'),
-          'node_modules',
-        ],
+        extensions: ['.js', '.json'],
+        modules: [path.join(__dirname, '../'), 'node_modules'],
       },
       externals: {
         jsdom: 'window',
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': 'window',
-        'text-encoding': 'window',
-        'react/addons': true, // For enzyme
       },
       node: {
         fs: 'empty',
@@ -98,7 +98,8 @@ module.exports = function setKarmaConfig(config) {
       PhantomJS_Sized: {
         base: 'PhantomJS',
         options: {
-          viewportSize: { // Matches JSDom size.
+          viewportSize: {
+            // Matches JSDom size.
             width: 1024,
             height: 768,
           },
@@ -116,7 +117,7 @@ module.exports = function setKarmaConfig(config) {
         'BrowserStack_Chrome',
         'BrowserStack_Firefox',
         'BrowserStack_Safari',
-        // 'BrowserStack_IE',
+        'BrowserStack_Edge',
       ]),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: Object.assign({}, baseConfig.customLaunchers, {
@@ -124,30 +125,30 @@ module.exports = function setKarmaConfig(config) {
           base: 'BrowserStack',
           os: 'OS X',
           os_version: 'Sierra',
-          browser: 'chrome',
-          browser_version: 'latest',
+          browser: 'Chrome',
+          browser_version: '49.0',
         },
         BrowserStack_Firefox: {
           base: 'BrowserStack',
           os: 'Windows',
           os_version: '10',
-          browser: 'firefox',
-          browser_version: 'latest',
+          browser: 'Firefox',
+          browser_version: '45.0',
         },
         BrowserStack_Safari: {
           base: 'BrowserStack',
           os: 'OS X',
-          os_version: 'Yosemite',
-          browser: 'safari',
-          browser_version: 'latest',
+          os_version: 'Sierra',
+          browser: 'Safari',
+          browser_version: '10.1',
         },
-        // BrowserStack_IE: {
-        //   base: 'BrowserStack',
-        //   os: 'Windows',
-        //   os_version: '10',
-        //   browser: 'edge',
-        //   browser_version: 'latest',
-        // },
+        BrowserStack_Edge: {
+          base: 'BrowserStack',
+          os: 'Windows',
+          os_version: '10',
+          browser: 'Edge',
+          browser_version: '14.0',
+        },
       }),
     });
   }

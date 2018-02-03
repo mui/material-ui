@@ -1,71 +1,93 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
-import CardContent from './CardContent';
 
-export const styleSheet = createStyleSheet('MuiCardHeader', () => ({
-  cardHeader: {
+export const styles = theme => ({
+  root: {
     display: 'flex',
     alignItems: 'center',
+    padding: theme.spacing.unit * 2,
   },
   avatar: {
     flex: '0 0 auto',
-    marginRight: 16,
+    marginRight: theme.spacing.unit * 2,
+  },
+  action: {
+    flex: '0 0 auto',
+    alignSelf: 'flex-start',
+    marginTop: theme.spacing.unit * -1,
+    marginRight: theme.spacing.unit * -2,
   },
   content: {
     flex: '1 1 auto',
   },
-}));
+  title: {},
+  subheader: {},
+});
 
-export default function CardHeader(props, context) {
+function CardHeader(props) {
   const {
+    action,
     avatar,
+    classes,
     className: classNameProp,
+    component: Component,
     subheader,
     title,
     ...other
   } = props;
 
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.cardHeader, classNameProp);
-
-  // Adjustments that depend on the presence of an avatar
-  const titleType = avatar ? 'body2' : 'headline';
-  const subheaderType = avatar ? 'body2' : 'body1';
-
   return (
-    <CardContent className={className} {...other}>
-      {avatar &&
-        <div className={classes.avatar}>
-          {avatar}
-        </div>
-      }
+    <Component className={classNames(classes.root, classNameProp)} {...other}>
+      {avatar && <div className={classes.avatar}>{avatar}</div>}
       <div className={classes.content}>
-        <Typography type={titleType} component="span">
+        <Typography
+          variant={avatar ? 'body2' : 'headline'}
+          component="span"
+          className={classes.title}
+        >
           {title}
         </Typography>
-        <Typography type={subheaderType} component="span" secondary>
-          {subheader}
-        </Typography>
+        {subheader && (
+          <Typography
+            variant={avatar ? 'body2' : 'body1'}
+            component="span"
+            color="textSecondary"
+            className={classes.subheader}
+          >
+            {subheader}
+          </Typography>
+        )}
       </div>
-    </CardContent>
+      {action && <div className={classes.action}>{action}</div>}
+    </Component>
   );
 }
 
 CardHeader.propTypes = {
   /**
-   * The Avatar  for the Card Header.
+   * The action to display in the card header.
+   */
+  action: PropTypes.node,
+  /**
+   * The Avatar for the Card Header.
    */
   avatar: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * The content of the component.
    */
@@ -76,6 +98,8 @@ CardHeader.propTypes = {
   title: PropTypes.node,
 };
 
-CardHeader.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+CardHeader.defaultProps = {
+  component: 'div',
 };
+
+export default withStyles(styles, { name: 'MuiCardHeader' })(CardHeader);

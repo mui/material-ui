@@ -1,63 +1,48 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import { createSwitch } from '../internal/SwitchBase';
-import withSwitchLabel from '../internal/withSwitchLabel';
-import RadioButtonCheckedIcon from '../svg-icons/radio-button-checked';
-import RadioButtonUncheckedIcon from '../svg-icons/radio-button-unchecked';
+import SwitchBase from '../internal/SwitchBase';
+import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
+import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiRadio', (theme) => {
-  return {
-    default: {
-      color: theme.palette.text.secondary,
-    },
-    checked: {
-      color: theme.palette.primary[500],
-    },
-    disabled: {
-      color: theme.palette.action.disabled,
-    },
-  };
+export const styles = theme => ({
+  default: {
+    color: theme.palette.text.secondary,
+  },
+  checked: {
+    color: theme.palette.primary.main,
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
+  },
 });
 
-const Radio = createSwitch({
-  styleSheet,
-  inputType: 'radio',
-  defaultIcon: <RadioButtonUncheckedIcon />,
-  defaultCheckedIcon: <RadioButtonCheckedIcon />,
-});
+function Radio(props) {
+  return (
+    <SwitchBase
+      inputType="radio"
+      icon={<RadioButtonUncheckedIcon />}
+      checkedIcon={<RadioButtonCheckedIcon />}
+      {...props}
+    />
+  );
+}
 
-Radio.displayName = 'Radio';
-
-export default Radio;
-
-const LabelRadio = withSwitchLabel(Radio);
-
-export { LabelRadio };
-
-/**
- * [Radio buttons](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-radio-button)
- * are switches used for selection from multiple options.
- */
-export const RadioDocs = () => <span />;
-
-RadioDocs.propTypes = {
+Radio.propTypes = {
   /**
-   * If `true`, the component appears selected.
+   * If `true`, the component is checked.
    */
   checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   /**
-   * The CSS class name of the root element when selected.
-   */
-  checkedClassName: PropTypes.string,
-  /**
-   * The icon to display when selected.
+   * The icon to display when the component is checked.
    */
   checkedIcon: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -65,17 +50,29 @@ RadioDocs.propTypes = {
    */
   defaultChecked: PropTypes.bool,
   /**
-   * If `true`, the component disabled.
+   * If `true`, the switch will be disabled.
    */
   disabled: PropTypes.bool,
   /**
-   * The CSS class name of the root element when disabled.
+   * If `true`, the ripple effect will be disabled.
    */
-  disabledClassName: PropTypes.string,
+  disableRipple: PropTypes.bool,
   /**
-   * The icon to display when the component is unselected.
+   * The icon to display when the component is unchecked.
    */
   icon: PropTypes.node,
+  /**
+   * Properties applied to the `input` element.
+   */
+  inputProps: PropTypes.object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef: PropTypes.func,
+  /**
+   * The input component property `type`.
+   */
+  inputType: PropTypes.string,
   /*
    * @ignore
    */
@@ -83,20 +80,18 @@ RadioDocs.propTypes = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event `change` event
+   * @param {object} event The event source of the callback
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,
   /**
-   * If `false`, the ripple effect will be disabled.
-   */
-  ripple: PropTypes.bool,
-  /**
    * @ignore
    */
-  tabIndex: PropTypes.string,
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The value of the component.
    */
   value: PropTypes.string,
 };
+
+export default withStyles(styles, { name: 'MuiRadio' })(Radio);

@@ -1,14 +1,11 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import {
-  ListItem,
-  ListItemText,
-} from 'material-ui/List';
+import { ListItem, ListItemText } from 'material-ui/List';
 
 export default function SimpleListItem() {
   return (
-    <div style={{ background: '#fff', width: 300 }}>
+    <div style={{ backgroundColor: '#fff', width: 300 }}>
       <ListItem>
         <ListItemText primary="Primary" />
       </ListItem>

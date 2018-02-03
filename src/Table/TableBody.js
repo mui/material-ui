@@ -1,49 +1,9 @@
-// @flow weak
-
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiTableBody', (theme) => {
-  return {
-    root: {
-      fontSize: 13,
-      color: theme.palette.text.primary,
-    },
-  };
-});
-
-/**
- * A material table body.
- *
- * ```jsx
- * <TableBody>
- *   <TableRow>...</TableRow>
- * </TableBody>
- * ```
- */
-export default class TableBody extends Component {
-  static propTypes = {
-    /**
-     * The content of the component, normally `TableRow`.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-  };
-
-  static contextTypes = {
-    table: PropTypes.object,
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  static childContextTypes = { table: PropTypes.object };
-
-  getChildContext() { // eslint-disable-line class-methods-use-this
+class TableBody extends React.Component {
+  getChildContext() {
+    // eslint-disable-line class-methods-use-this
     return {
       table: {
         body: true,
@@ -52,18 +12,30 @@ export default class TableBody extends Component {
   }
 
   render() {
-    const {
-      className: classNameProp,
-      children,
-      ...other
-    } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
-    const className = classNames(classes.root, classNameProp);
+    const { component: Component, ...other } = this.props;
 
-    return (
-      <tbody className={className} {...other}>
-        {children}
-      </tbody>
-    );
+    return <Component {...other} />;
   }
 }
+
+TableBody.propTypes = {
+  /**
+   * The content of the component, normally `TableRow`.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+};
+
+TableBody.defaultProps = {
+  component: 'tbody',
+};
+
+TableBody.childContextTypes = {
+  table: PropTypes.object,
+};
+
+export default TableBody;

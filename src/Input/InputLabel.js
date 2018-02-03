@@ -1,63 +1,78 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import { FormLabel } from '../Form';
 
-export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => {
-  const { transitions } = theme;
-  return {
-    root: {
-      transformOrigin: 'top left',
-    },
-    formControl: {
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      transform: 'translate(0, 18px) scale(1)',
-    },
-    shrink: {
-      transform: 'translate(0, 0px) scale(0.75)',
-      transformOrigin: 'top left',
-    },
-    animated: {
-      transition: transitions.create('transform', {
-        duration: transitions.duration.shorter,
-        easing: transitions.easing.easeOut,
-      }),
-    },
-  };
+export const styles = theme => ({
+  root: {
+    transformOrigin: 'top left',
+  },
+  formControl: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    // slight alteration to spec spacing to match visual spec result
+    transform: `translate(0, ${theme.spacing.unit * 3}px) scale(1)`,
+  },
+  labelDense: {
+    // Compensation for the `Input.inputDense` style.
+    transform: `translate(0, ${theme.spacing.unit * 2.5 + 1}px) scale(1)`,
+  },
+  shrink: {
+    transform: 'translate(0, 1.5px) scale(0.75)',
+    transformOrigin: 'top left',
+  },
+  animated: {
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shorter,
+      easing: theme.transitions.easing.easeOut,
+    }),
+  },
+  disabled: {
+    color: theme.palette.text.disabled,
+  },
 });
 
-export default function InputLabel(props, context) {
+function InputLabel(props, context) {
   const {
-    disableAnimation,
     children,
+    classes,
     className: classNameProp,
+    disableAnimation,
+    disabled,
+    FormControlClasses,
+    margin: marginProp,
     shrink: shrinkProp,
     ...other
   } = props;
 
-  const { muiFormControl, styleManager } = context;
-  const classes = styleManager.render(styleSheet);
-
+  const { muiFormControl } = context;
   let shrink = shrinkProp;
 
   if (typeof shrink === 'undefined' && muiFormControl) {
-    shrink = muiFormControl.dirty || muiFormControl.focused;
+    shrink = muiFormControl.dirty || muiFormControl.focused || muiFormControl.adornedStart;
   }
 
-  const className = classNames(classes.root, {
-    [classes.formControl]: muiFormControl,
-    [classes.animated]: !disableAnimation,
-    [classes.shrink]: shrink,
-  }, classNameProp);
+  let margin = marginProp;
+  if (typeof margin === 'undefined' && muiFormControl) {
+    margin = muiFormControl.margin;
+  }
+
+  const className = classNames(
+    classes.root,
+    {
+      [classes.formControl]: muiFormControl,
+      [classes.animated]: !disableAnimation,
+      [classes.shrink]: shrink,
+      [classes.disabled]: disabled,
+      [classes.labelDense]: margin === 'dense',
+    },
+    classNameProp,
+  );
 
   return (
-    <FormLabel className={className} {...other}>
+    <FormLabel data-shrink={shrink} className={className} classes={FormControlClasses} {...other}>
       {children}
     </FormLabel>
   );
@@ -69,13 +84,21 @@ InputLabel.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
    * If `true`, the transition animation is disabled.
    */
   disableAnimation: PropTypes.bool,
+  /**
+   * If `true`, apply disabled class.
+   */
+  disabled: PropTypes.bool,
   /**
    * If `true`, the label will be displayed in an error state.
    */
@@ -84,6 +107,15 @@ InputLabel.propTypes = {
    * If `true`, the input of this label is focused.
    */
   focused: PropTypes.bool,
+  /**
+   * `classes` property applied to the `FormControl` element.
+   */
+  FormControlClasses: PropTypes.object,
+  /**
+   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+   * FormControl.
+   */
+  margin: PropTypes.oneOf(['dense']),
   /**
    * if `true`, the label will indicate that the input is required.
    */
@@ -95,10 +127,12 @@ InputLabel.propTypes = {
 };
 
 InputLabel.defaultProps = {
+  disabled: false,
   disableAnimation: false,
 };
 
 InputLabel.contextTypes = {
   muiFormControl: PropTypes.object,
-  styleManager: customPropTypes.muiRequired,
 };
+
+export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);

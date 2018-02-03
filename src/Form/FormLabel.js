@@ -1,44 +1,45 @@
-// @flow weak
-/* eslint-disable jsx-a11y/label-has-for */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormLabel', (theme) => {
-  const focusColor = theme.palette.primary.A200;
-  return {
-    root: {
-      fontFamily: theme.typography.fontFamily,
-      color: theme.palette.text.secondary,
-      lineHeight: 1,
-    },
-    focused: {
-      color: focusColor,
-    },
-    error: {
-      color: theme.palette.error[500],
-    },
-  };
+export const styles = theme => ({
+  root: {
+    fontFamily: theme.typography.fontFamily,
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(16),
+    lineHeight: 1,
+    padding: 0,
+  },
+  focused: {
+    color: theme.palette.primary[theme.palette.type === 'light' ? 'dark' : 'light'],
+  },
+  error: {
+    color: theme.palette.error.main,
+  },
+  disabled: {
+    color: theme.palette.text.disabled,
+  },
 });
 
-export default function FormLabel(props, context) {
+function FormLabel(props, context) {
   const {
     children,
+    classes,
     className: classNameProp,
+    component: Component,
+    disabled: disabledProp,
     error: errorProp,
     focused: focusedProp,
     required: requiredProp,
     ...other
   } = props;
 
-  const { muiFormControl, styleManager } = context;
-  const classes = styleManager.render(styleSheet);
+  const { muiFormControl } = context;
 
   let required = requiredProp;
   let focused = focusedProp;
+  let disabled = disabledProp;
   let error = errorProp;
 
   if (muiFormControl) {
@@ -48,29 +49,37 @@ export default function FormLabel(props, context) {
     if (typeof focused === 'undefined') {
       focused = muiFormControl.focused;
     }
+    if (typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
+    }
     if (typeof error === 'undefined') {
       error = muiFormControl.error;
     }
   }
 
-  const className = classNames(classes.root, {
-    [classes.focused]: focused,
-    [classes.error]: error,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.focused]: focused,
+      [classes.disabled]: disabled,
+      [classes.error]: error,
+    },
+    classNameProp,
+  );
 
   const asteriskClassName = classNames({
     [classes.error]: error,
   });
 
   return (
-    <label className={className} {...other}>
+    <Component className={className} {...other}>
       {children}
       {required && (
         <span className={asteriskClassName} data-mui-test="FormLabelAsterisk">
           {'\u2009*'}
         </span>
       )}
-    </label>
+    </Component>
   );
 }
 
@@ -80,11 +89,24 @@ FormLabel.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
-   * Whether the label should be displayed in an error state.
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * If `true`, the label should be displayed in a disabled state.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the label should be displayed in an error state.
    */
   error: PropTypes.bool,
   /**
@@ -97,7 +119,12 @@ FormLabel.propTypes = {
   required: PropTypes.bool,
 };
 
+FormLabel.defaultProps = {
+  component: 'label',
+};
+
 FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,
-  styleManager: customPropTypes.muiRequired,
 };
+
+export default withStyles(styles, { name: 'MuiFormLabel' })(FormLabel);

@@ -1,39 +1,39 @@
-// @flow weak
-
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 
-const styleSheet = createStyleSheet('AdvancedTabs', (theme) => ({
+const noop = () => {};
+
+const styles = theme => ({
   root: {
     width: 600,
   },
   appBar: {
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
   },
-}));
+});
 
-export default function AdvancedTabs(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function AdvancedTabs(props) {
+  const { classes } = props;
 
   return (
     <div className={classes.root}>
       <Paper className={classes.appBar}>
-        <Tabs index={0}>
+        <Tabs onChange={noop} value={0}>
           <Tab label="New Arrivals in the Longest Text of Nonfiction" />
           <Tab label="Item Two" />
           <Tab label="Item Three" />
         </Tabs>
       </Paper>
       <Paper className={classes.appBar}>
-        <Tabs index={1} scrollable scrollButtons="auto">
+        <Tabs onChange={noop} value="two" scrollable scrollButtons="auto">
           <Tab label="Item One" />
-          <Tab label="Item Two" />
+          <Tab value="two" label="Item Two" />
           <Tab label="Item Three" />
           <Tab label="Item Four" />
           <Tab label="Item Five" />
@@ -42,12 +42,7 @@ export default function AdvancedTabs(props, context) {
         </Tabs>
       </Paper>
       <Paper className={classes.root}>
-        <Tabs
-          index={0}
-          scrollable
-          scrollButtons="on"
-          textColor="accent"
-        >
+        <Tabs onChange={noop} value={0} scrollable scrollButtons="on" textColor="secondary">
           <Tab label="Item One" icon={<Icon>phone</Icon>} />
           <Tab label="Item Two" icon={<Icon>favorite</Icon>} />
           <Tab label="Item Three" icon={<Icon>person_pin</Icon>} />
@@ -58,7 +53,7 @@ export default function AdvancedTabs(props, context) {
         </Tabs>
       </Paper>
       <Paper className={classes.appBar}>
-        <Tabs index={0} scrollable scrollButtons="off">
+        <Tabs onChange={noop} value={0} scrollable scrollButtons="off">
           <Tab icon={<Icon>phone</Icon>} />
           <Tab icon={<Icon>favorite</Icon>} />
           <Tab icon={<Icon>person_pin</Icon>} />
@@ -72,6 +67,8 @@ export default function AdvancedTabs(props, context) {
   );
 }
 
-AdvancedTabs.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+AdvancedTabs.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styles)(AdvancedTabs);

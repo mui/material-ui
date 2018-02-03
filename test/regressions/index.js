@@ -1,8 +1,5 @@
-// @flow weak
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import vrtest from 'vrtest/client';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
@@ -10,7 +7,10 @@ import TestViewer from './TestViewer';
 // Get all the tests specifically written for preventing regressions.
 const requireRegression = require.context('./tests', true, /js$/);
 const regressions = requireRegression.keys().reduce((res, path) => {
-  const [suite, name] = path.replace('./', '').replace('.js', '').split('/');
+  const [suite, name] = path
+    .replace('./', '')
+    .replace('.js', '')
+    .split('/');
   res.push({
     path,
     suite: `regression-${suite}`,
@@ -20,22 +20,42 @@ const regressions = requireRegression.keys().reduce((res, path) => {
   return res;
 }, []);
 
-const blacklist = [
-  'progress', // Flaky
-  'dialogs', // Needs interaction
-  'drawers', // Needs interaction
-  'menus', // Needs interaction
+const blacklistSuite = [
+  // Flaky
+  'docs-demos-progress',
+  'docs-discover-more', // GitHub images
+
+  // Needs interaction
+  'docs-demos-dialogs',
+  'docs-demos-menus',
+  'docs-demos-tooltips',
+
+  // Useless
+  'docs-', // Home
+  'docs-guides',
+];
+
+const blacklistName = [
+  'docs-getting-started/Usage', // codesandbox inside
+  'docs-style/Color', // too large
+  'docs-demos-drawers/tileData', // raw data
+  'docs-demos-grid-list/tileData', // raw data
 ];
 
 // Also use some of the demos to avoid code duplication.
-const requireDemos = require.context('docs/src/pages/component-demos', true, /js$/);
+const requireDemos = require.context('docs/src/pages', true, /js$/);
 const demos = requireDemos.keys().reduce((res, path) => {
-  const [suite, name] = path.replace('./', '').replace('.js', '').split('/');
+  const [name, ...suiteArray] = path
+    .replace('./', '')
+    .replace('.js', '')
+    .split('/')
+    .reverse();
+  const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (!blacklist.includes(suite)) {
+  if (!blacklistSuite.includes(suite) && !blacklistName.includes(`${suite}/${name}`)) {
     res.push({
       path,
-      suite: `demo-${suite}`,
+      suite,
       name,
       case: requireDemos(path).default,
     });
@@ -52,13 +72,10 @@ vrtest.before(() => {
     document.body.appendChild(rootEl);
   }
 
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     webfontloader.load({
       google: {
-        families: [
-          'Roboto:300,400,500',
-          'Material+Icons',
-        ],
+        families: ['Roboto:300,400,500', 'Material+Icons'],
       },
       timeout: 20000,
       active: () => {
@@ -74,7 +91,7 @@ vrtest.before(() => {
 let suite;
 
 const tests = regressions.concat(demos);
-tests.forEach(((test) => {
+tests.forEach(test => {
   if (!suite || suite.name !== test.suite) {
     suite = vrtest.createSuite(test.suite);
   }
@@ -82,12 +99,10 @@ tests.forEach(((test) => {
   suite.createTest(test.name, () => {
     const TestCase = test.case;
     ReactDOM.render(
-      <MuiThemeProvider>
-        <TestViewer>
-          <TestCase />
-        </TestViewer>
-      </MuiThemeProvider>,
+      <TestViewer>
+        <TestCase />
+      </TestViewer>,
       rootEl,
     );
   });
-}));
+});

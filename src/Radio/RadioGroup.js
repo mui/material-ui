@@ -1,76 +1,25 @@
-// @flow weak
+// @inheritedComponent FormGroup
 
-import React, { Component, Children, cloneElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
 import FormGroup from '../Form/FormGroup';
 import { find } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiRadioGroup', () => {
-  return {
-    root: {
-      flex: '1 1 auto',
-      margin: 0,
-      padding: 0,
-    },
-  };
-});
-
-class RadioGroup extends Component {
-  static propTypes = {
-    /**
-     * The content of the component.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * The name used to reference the value of the control.
-     */
-    name: PropTypes.string,
-    /**
-     * @ignore
-     */
-    onBlur: PropTypes.func,
-    /**
-     * Callback fired when a radio button is selected.
-     *
-     * @param {object} event `change` event
-     * @param {boolean} checked The `checked` value of the switch
-     */
-    onChange: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onKeyDown: PropTypes.func,
-    /**
-     * Value of the selected radio button
-     */
-    selectedValue: PropTypes.string,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  radios = undefined;
+class RadioGroup extends React.Component {
+  radios = [];
 
   focus = () => {
     if (!this.radios || !this.radios.length) {
       return;
     }
 
-    const focusRadios = this.radios.filter((n) => !n.props.disabled);
+    const focusRadios = this.radios.filter(n => !n.disabled);
 
     if (!focusRadios.length) {
       return;
     }
 
-    const selectedRadio = find(focusRadios, (n) => n.props.checked);
+    const selectedRadio = find(focusRadios, n => n.checked);
 
     if (selectedRadio) {
       selectedRadio.focus();
@@ -87,33 +36,26 @@ class RadioGroup extends Component {
   };
 
   render() {
-    const {
-      children,
-      className: classNameProp,
-      name,
-      selectedValue,
-      onChange, // eslint-disable-line no-unused-vars
-      ...other
-    } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
+    const { children, name, value, onChange, ...other } = this.props;
 
     this.radios = [];
 
     return (
-      <FormGroup
-        className={classNames(classes.root, classNameProp)}
-        data-mui-test="RadioGroup"
-        role="radiogroup"
-        {...other}
-      >
-        {Children.map(children, (child, index) => {
-          const selected = selectedValue === child.props.value;
-          return cloneElement(child, {
+      <FormGroup data-mui-test="RadioGroup" role="radiogroup" {...other}>
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) {
+            return null;
+          }
+
+          return React.cloneElement(child, {
             key: index,
             name,
-            ref: (c) => { this.radios.push(c); },
-            checked: selected,
+            inputRef: node => {
+              if (node) {
+                this.radios.push(node);
+              }
+            },
+            checked: value === child.props.value,
             onChange: this.handleRadioChange,
           });
         })}
@@ -121,5 +63,35 @@ class RadioGroup extends Component {
     );
   }
 }
+
+RadioGroup.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * The name used to reference the value of the control.
+   */
+  name: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback fired when a radio button is selected.
+   *
+   * @param {object} event The event source of the callback
+   * @param {string} value The `value` of the selected radio button
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * Value of the selected radio button.
+   */
+  value: PropTypes.string,
+};
 
 export default RadioGroup;

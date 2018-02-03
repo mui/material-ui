@@ -1,44 +1,28 @@
-// @flow weak
-
-import { cloneElement, Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiListItemIcon', (theme) => {
-  return {
-    root: {
-      height: 24,
-      marginRight: 16,
-      width: 24,
-      color: theme.palette.action.active,
-    },
-  };
+export const styles = theme => ({
+  root: {
+    height: 24,
+    marginRight: theme.spacing.unit * 2,
+    width: 24,
+    color: theme.palette.action.active,
+    flexShrink: 0,
+  },
 });
 
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
- * ```
- * <ListIcon>
- *   <Icon>
- * </ListIcon>
- * ```
  */
-export default class ListItemIcon extends Component {
-  render() {
-    const {
-      children,
-      className: classNameProp,
-      ...other
-    } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
+function ListItemIcon(props) {
+  const { children, classes, className: classNameProp, ...other } = props;
 
-    return cloneElement(children, {
-      className: classNames(classes.root, classNameProp, children.props.className),
-      ...other,
-    });
-  }
+  return React.cloneElement(children, {
+    className: classNames(classes.root, classNameProp, children.props.className),
+    ...other,
+  });
 }
 
 ListItemIcon.propTypes = {
@@ -48,11 +32,13 @@ ListItemIcon.propTypes = {
    */
   children: PropTypes.element.isRequired,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
 };
 
-ListItemIcon.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styles, { name: 'MuiListItemIcon' })(ListItemIcon);

@@ -1,29 +1,27 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
-import Divider, { styleSheet } from './Divider';
+import { createShallow, getClasses } from '../test-utils';
+import Divider from './Divider';
 
 describe('<Divider />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<Divider />);
   });
 
   it('should render a hr', () => {
-    const wrapper = shallow(
-      <Divider />,
-    );
+    const wrapper = shallow(<Divider />);
     assert.strictEqual(wrapper.name(), 'hr');
   });
 
   it('should render with the root and default class', () => {
     const wrapper = shallow(<Divider />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.default), true, 'should have the default class');
   });
 
@@ -34,7 +32,7 @@ describe('<Divider />', () => {
 
   it('should set the inset class', () => {
     const wrapper = shallow(<Divider inset />);
-    assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have inset cass');
+    assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have inset class');
   });
 
   it('should set the light class', () => {

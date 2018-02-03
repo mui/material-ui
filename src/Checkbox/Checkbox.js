@@ -1,56 +1,48 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import { createSwitch } from '../internal/SwitchBase';
-import withSwitchLabel from '../internal/withSwitchLabel';
+import SwitchBase from '../internal/SwitchBase';
+import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiCheckbox', (theme) => {
-  return {
-    default: {
-      color: theme.palette.text.secondary,
-    },
-    checked: {
-      color: theme.palette.primary[500],
-    },
-    disabled: {
-      color: theme.palette.action.disabled,
-    },
-  };
+export const styles = theme => ({
+  default: {
+    color: theme.palette.text.secondary,
+  },
+  checked: {
+    color: theme.palette.primary.main,
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
+  },
 });
 
-const Checkbox = createSwitch({ styleSheet });
+function Checkbox(props) {
+  const { checkedIcon, icon, indeterminate, indeterminateIcon, ...other } = props;
 
-Checkbox.displayName = 'Checkbox';
+  return (
+    <SwitchBase
+      checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
+      icon={indeterminate ? indeterminateIcon : icon}
+      {...other}
+    />
+  );
+}
 
-export default Checkbox;
-
-const LabelCheckbox = withSwitchLabel(Checkbox);
-
-export { LabelCheckbox };
-
-/**
- * [Checkboxes](https://material.io/guidelines/components/selection-controls.html#selection-controls-checkbox)
- * allow the user to select multiple options from a set.
- */
-export const CheckboxDocs = () => <span />;
-
-CheckboxDocs.propTypes = {
+Checkbox.propTypes = {
   /**
    * If `true`, the component is checked.
    */
   checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   /**
-   * The CSS class name of the root element when checked.
-   */
-  checkedClassName: PropTypes.string,
-  /**
    * The icon to display when the component is checked.
    */
   checkedIcon: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -62,14 +54,33 @@ CheckboxDocs.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * The CSS class name of the root element when disabled.
+   * If `true`, the ripple effect will be disabled.
    */
-  disabledClassName: PropTypes.string,
+  disableRipple: PropTypes.bool,
   /**
    * The icon to display when the component is unchecked.
-   * If a string is provided, it will be used as a font ligature.
    */
   icon: PropTypes.node,
+  /**
+   * If `true`, the component appears indeterminate.
+   */
+  indeterminate: PropTypes.bool,
+  /**
+   * The icon to display when the component is indeterminate.
+   */
+  indeterminateIcon: PropTypes.node,
+  /**
+   * Properties applied to the `input` element.
+   */
+  inputProps: PropTypes.object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef: PropTypes.func,
+  /**
+   * The input component property `type`.
+   */
+  inputType: PropTypes.string,
   /*
    * @ignore
    */
@@ -77,20 +88,23 @@ CheckboxDocs.propTypes = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event `change` event
+   * @param {object} event The event source of the callback
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,
   /**
-   * If `false`, the ripple effect will be disabled.
-   */
-  ripple: PropTypes.bool,
-  /**
    * @ignore
    */
-  tabIndex: PropTypes.string,
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The value of the component.
    */
   value: PropTypes.string,
 };
+
+Checkbox.defaultProps = {
+  indeterminate: false,
+  indeterminateIcon: <IndeterminateCheckBoxIcon />,
+};
+
+export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);

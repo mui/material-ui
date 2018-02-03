@@ -1,9 +1,8 @@
-// @flow weak
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
+import FormGroup from '../Form/FormGroup';
 import RadioGroup from './RadioGroup';
 import Radio from './Radio';
 
@@ -15,21 +14,14 @@ describe('<RadioGroup />', () => {
   });
 
   it('should render a FormGroup with the radiogroup role', () => {
-    const wrapper = shallow(
-      <RadioGroup />,
-    );
-    assert.strictEqual(
-      wrapper.is('FormGroup[role="radiogroup"]'),
-      true,
-      'should be a FormGroup with the correct role',
-    );
+    const wrapper = shallow(<RadioGroup value="" />);
+    assert.strictEqual(wrapper.type(), FormGroup);
+    assert.strictEqual(wrapper.props().role, 'radiogroup');
   });
 
   it('should fire the onBlur callback', () => {
     const handleBlur = spy();
-    const wrapper = shallow(
-      <RadioGroup onBlur={handleBlur} />,
-    );
+    const wrapper = shallow(<RadioGroup value="" onBlur={handleBlur} />);
     const event = {};
     wrapper.simulate('blur', event);
     assert.strictEqual(handleBlur.callCount, 1);
@@ -38,9 +30,7 @@ describe('<RadioGroup />', () => {
 
   it('should fire the onKeyDown callback', () => {
     const handleKeyDown = spy();
-    const wrapper = shallow(
-      <RadioGroup onKeyDown={handleKeyDown} />,
-    );
+    const wrapper = shallow(<RadioGroup value="" onKeyDown={handleKeyDown} />);
     const event = {};
     wrapper.simulate('keyDown', event);
     assert.strictEqual(handleKeyDown.callCount, 1);
@@ -51,16 +41,14 @@ describe('<RadioGroup />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(
-        <RadioGroup />,
-      );
+      wrapper = shallow(<RadioGroup value="" />);
     });
 
     it('should focus the first non-disabled radio', () => {
       const radios = [
-        { props: { disabled: true }, focus: spy() },
-        { props: { disabled: false }, focus: spy() },
-        { props: { disabled: false }, focus: spy() },
+        { disabled: true, focus: spy() },
+        { disabled: false, focus: spy() },
+        { disabled: false, focus: spy() },
       ];
       wrapper.instance().radios = radios;
       wrapper.instance().focus();
@@ -70,9 +58,9 @@ describe('<RadioGroup />', () => {
 
     it('should not focus any radios if all are disabled', () => {
       const radios = [
-        { props: { disabled: true }, focus: spy() },
-        { props: { disabled: true }, focus: spy() },
-        { props: { disabled: true }, focus: spy() },
+        { disabled: true, focus: spy() },
+        { disabled: true, focus: spy() },
+        { disabled: true, focus: spy() },
       ];
       wrapper.instance().radios = radios;
       wrapper.instance().focus();
@@ -84,10 +72,10 @@ describe('<RadioGroup />', () => {
 
     it('should focus the selected radio', () => {
       const radios = [
-        { props: { disabled: true }, focus: spy() },
-        { props: { disabled: false }, focus: spy() },
-        { props: { disabled: false, checked: true }, focus: spy() },
-        { props: { disabled: false }, focus: spy() },
+        { disabled: true, focus: spy() },
+        { disabled: false, focus: spy() },
+        { disabled: false, checked: true, focus: spy() },
+        { disabled: false, focus: spy() },
       ];
       wrapper.instance().radios = radios;
       wrapper.instance().focus();
@@ -100,10 +88,10 @@ describe('<RadioGroup />', () => {
 
     it('should focus the non-disabled radio rather than the disabled selected radio', () => {
       const radios = [
-        { props: { disabled: true }, focus: spy() },
-        { props: { disabled: true }, focus: spy() },
-        { props: { disabled: true, checked: true }, focus: spy() },
-        { props: { disabled: false }, focus: spy() },
+        { disabled: true, focus: spy() },
+        { disabled: true, focus: spy() },
+        { disabled: true, checked: true, focus: spy() },
+        { disabled: false, focus: spy() },
       ];
       wrapper.instance().radios = radios;
       wrapper.instance().focus();
@@ -120,12 +108,22 @@ describe('<RadioGroup />', () => {
     });
   });
 
+  it('should accept invalid child', () => {
+    shallow(
+      <RadioGroup value="">
+        <Radio />
+        {null}
+      </RadioGroup>,
+    );
+  });
+
   describe('children radios fire change event', () => {
     let wrapper;
 
     beforeEach(() => {
       wrapper = shallow(
-        <RadioGroup>
+        <RadioGroup value="">
+          <Radio />
           <Radio />
         </RadioGroup>,
       );
@@ -133,7 +131,7 @@ describe('<RadioGroup />', () => {
 
     it('should fire onChange', () => {
       const internalRadio = wrapper.children().first();
-      const event = { target: { value: 'woof' } };
+      const event = { target: { value: 'woofRadioGroup' } };
       const onChangeSpy = spy();
       wrapper.setProps({ onChange: onChangeSpy });
 
@@ -146,7 +144,7 @@ describe('<RadioGroup />', () => {
       const internalRadio = wrapper.children().first();
       const onChangeSpy = spy();
       wrapper.setProps({ onChange: onChangeSpy });
-      internalRadio.simulate('change', { target: { value: 'woof' } }, false);
+      internalRadio.simulate('change', { target: { value: 'woofRadioGroup' } }, false);
       assert.strictEqual(onChangeSpy.callCount, 0);
     });
   });
@@ -164,7 +162,7 @@ describe('<RadioGroup />', () => {
 
     it('should add a child', () => {
       const wrapper = mount(
-        <RadioGroup>
+        <RadioGroup value="">
           <Radio />
         </RadioGroup>,
       );
@@ -172,9 +170,7 @@ describe('<RadioGroup />', () => {
     });
 
     it('should keep radios empty', () => {
-      const wrapper = mount(
-        <RadioGroup />,
-      );
+      const wrapper = mount(<RadioGroup value="" />);
       assert.strictEqual(wrapper.instance().radios.length, 0);
     });
   });

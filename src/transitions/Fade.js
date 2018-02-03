@@ -1,111 +1,147 @@
-// @flow weak
+// @inheritedComponent Transition
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Transition from '../internal/Transition';
+import Transition from 'react-transition-group/Transition';
 import { duration } from '../styles/transitions';
-import customPropTypes from '../utils/customPropTypes';
+import withTheme from '../styles/withTheme';
 
-export default class Fade extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    /**
-     * If `true`, the component will transition in.
-     */
-    in: PropTypes.bool,
-    /**
-     * Duration of the animation when the element is entering.
-     */
-    enterTransitionDuration: PropTypes.number, // eslint-disable-line react/sort-prop-types
-    /**
-     * Duration of the animation when the element is exiting.
-     */
-    leaveTransitionDuration: PropTypes.number,
-    /**
-     * Callback fired before the component enters.
-     */
-    onEnter: PropTypes.func,
-    /**
-     * Callback fired when the component is entering.
-     */
-    onEntering: PropTypes.func,
-    /**
-     * Callback fired when the component has entered.
-     */
-    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired before the component exits.
-     */
-    onExit: PropTypes.func,
-    /**
-     * Callback fired when the component is exiting.
-     */
-    onExiting: PropTypes.func,
-    /**
-     * Callback fired when the component has exited.
-     */
-    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-  };
+const transitionStyles = {
+  entering: {
+    opacity: 1,
+  },
+  entered: {
+    opacity: 1,
+  },
+};
 
-  static defaultProps = {
-    in: false,
-    enterTransitionDuration: duration.enteringScreen,
-    leaveTransitionDuration: duration.leavingScreen,
-  };
-
-  static contextTypes = {
-    theme: customPropTypes.muiRequired,
-  };
-
-  handleEnter = (element) => {
-    element.style.opacity = 0;
-    const { transitions } = this.context.theme;
-    element.style.transition = transitions.create('opacity', {
-      duration: this.props.enterTransitionDuration,
+/**
+ * The Fade transition is used by the Modal component.
+ * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ */
+class Fade extends React.Component {
+  handleEntering = node => {
+    const { theme, timeout } = this.props;
+    node.style.transition = theme.transitions.create('opacity', {
+      duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
-    if (this.props.onEnter) {
-      this.props.onEnter(element);
-    }
-  };
+    node.style.webkitTransition = theme.transitions.create('opacity', {
+      duration: typeof timeout === 'number' ? timeout : timeout.enter,
+    });
+    node.style.transitionDelay = `${this.props.enterDelay}ms`;
 
-  handleEntering = (element) => {
-    element.style.opacity = 1;
     if (this.props.onEntering) {
-      this.props.onEntering(element);
+      this.props.onEntering(node);
     }
   };
 
-  handleExit = (element) => {
-    const { transitions } = this.context.theme;
-    element.style.transition = transitions.create('opacity', {
-      duration: this.props.leaveTransitionDuration,
+  handleExit = node => {
+    const { theme, timeout } = this.props;
+    node.style.transition = theme.transitions.create('opacity', {
+      duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
-    element.style.opacity = 0;
+    node.style.webkitTransition = theme.transitions.create('opacity', {
+      duration: typeof timeout === 'number' ? timeout : timeout.exit,
+    });
+
     if (this.props.onExit) {
-      this.props.onExit(element);
+      this.props.onExit(node);
     }
   };
 
   render() {
     const {
+      appear,
       children,
-      enterTransitionDuration, // eslint-disable-line no-unused-vars
-      leaveTransitionDuration, // eslint-disable-line no-unused-vars
-      onEnter, // eslint-disable-line no-unused-vars
-      onEntering, // eslint-disable-line no-unused-vars
-      onExit, // eslint-disable-line no-unused-vars
+      enterDelay,
+      onEntering,
+      onExit,
+      style: styleProp,
+      theme,
       ...other
     } = this.props;
 
+    const style = {
+      ...styleProp,
+      ...(React.isValidElement(children) ? children.props.style : {}),
+    };
+
     return (
       <Transition
-        onEnter={this.handleEnter}
+        appear={appear}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
         {...other}
       >
-        {children}
+        {(state, childProps) => {
+          return React.cloneElement(children, {
+            style: {
+              opacity: 0,
+              ...transitionStyles[state],
+              ...style,
+            },
+            ...childProps,
+          });
+        }}
       </Transition>
     );
   }
 }
+
+Fade.propTypes = {
+  /**
+   * @ignore
+   */
+  appear: PropTypes.bool,
+  /**
+   * A single child content element.
+   */
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  /**
+   * The duration in milliseconds before the enter animation starts.
+   */
+  enterDelay: PropTypes.number,
+  /**
+   * If `true`, the component will transition in.
+   */
+  in: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onEnter: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onEntering: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onExit: PropTypes.func,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  timeout: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+  ]),
+};
+
+Fade.defaultProps = {
+  appear: true,
+  enterDelay: 0,
+  timeout: {
+    enter: duration.enteringScreen,
+    exit: duration.leavingScreen,
+  },
+};
+
+export default withTheme()(Fade);

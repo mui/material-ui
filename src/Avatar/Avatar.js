@@ -1,86 +1,89 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
-import { emphasize } from '../styles/colorManipulator';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiAvatar', (theme) => {
-  const { palette } = theme;
-  return {
-    root: {
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: 40,
-      height: 40,
-      fontFamily: theme.typography.fontFamily,
-      fontSize: 20,
-      borderRadius: '50%',
-      overflow: 'hidden',
-      userSelect: 'none',
-    },
-    defaultColor: {
-      color: palette.background.default,
-      backgroundColor: emphasize(palette.background.default, 0.26),
-    },
-    img: {
-      maxWidth: '100%',
-      width: '100%',
-      height: 'auto',
-    },
-  };
+export const styles = theme => ({
+  root: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    width: 40,
+    height: 40,
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.pxToRem(20),
+    borderRadius: '50%',
+    overflow: 'hidden',
+    userSelect: 'none',
+  },
+  colorDefault: {
+    color: theme.palette.background.default,
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+  },
+  img: {
+    width: '100%',
+    height: '100%',
+    textAlign: 'center',
+    // Handle non-square image. The property isn't supported by IE11.
+    objectFit: 'cover',
+  },
 });
 
-export default function Avatar(props, context) {
+function Avatar(props) {
   const {
     alt,
-    className: classNameProp,
     children: childrenProp,
     childrenClassName: childrenClassNameProp,
-    component: ComponentProp,
+    classes,
+    className: classNameProp,
+    component: Component,
+    imgProps,
     sizes,
     src,
     srcSet,
     ...other
   } = props;
 
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, {
-    [classes.defaultColor]: childrenProp && !src && !srcSet,
-  }, classNameProp);
-  const containerProps = {
-    className,
-    ...other,
-  };
-
+  const className = classNames(
+    classes.root,
+    {
+      [classes.colorDefault]: childrenProp && !src && !srcSet,
+    },
+    classNameProp,
+  );
   let children = null;
 
   if (childrenProp) {
-    if (childrenClassNameProp && React.isValidElement(childrenProp)) {
+    if (
+      childrenClassNameProp &&
+      typeof childrenProp !== 'string' &&
+      React.isValidElement(childrenProp)
+    ) {
       const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
       children = React.cloneElement(childrenProp, { className: childrenClassName });
     } else {
       children = childrenProp;
     }
   } else if (src || srcSet) {
-    const imgProps = {
-      alt,
-      src,
-      srcSet,
-      sizes,
-      className: classes.img,
-    };
-    children = React.createElement('img', imgProps);
+    children = (
+      <img
+        alt={alt}
+        src={src}
+        srcSet={srcSet}
+        sizes={sizes}
+        className={classes.img}
+        {...imgProps}
+      />
+    );
   }
 
   return (
-    <ComponentProp {...containerProps}>
+    <Component className={className} {...other}>
       {children}
-    </ComponentProp>
+    </Component>
   );
 }
 
@@ -105,17 +108,23 @@ Avatar.propTypes = {
    */
   childrenClassName: PropTypes.string,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * Properties applied to the `img` element when the component
+   * is used to display an image.
+   */
+  imgProps: PropTypes.object,
   /**
    * The `sizes` attribute for the `img` element.
    */
@@ -131,10 +140,7 @@ Avatar.propTypes = {
 };
 
 Avatar.defaultProps = {
-  alt: '',
   component: 'div',
 };
 
-Avatar.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);

@@ -1,11 +1,10 @@
-'use strict';
+// @flow
 
 const rule = require('../../../lib/rules/docgen-ignore-before-comment');
 const RuleTester = require('eslint').RuleTester;
 
 const ruleTester = new RuleTester();
 ruleTester.run('ignore-before-comment', rule, {
-
   valid: [
     '\n/**\n * @ignore\n */\n',
     '\n/**\n * @ignore\n * Comment.\n */\n',
@@ -16,19 +15,27 @@ ruleTester.run('ignore-before-comment', rule, {
   invalid: [
     {
       code: '\n/**\n * Comment.\n * @ignore\n */\n',
-      errors: [{message: '@ignore should be at the beginning of a block comment.', type: 'Block'}],
+      errors: [
+        { message: '@ignore should be at the beginning of a block comment.', type: 'Block' },
+      ],
     },
     {
       code: '\n  /**\n   * Multi-line\n   * comment.\n   * @ignore\n   */\n',
-      errors: [{message: '@ignore should be at the beginning of a block comment.', type: 'Block'}],
+      errors: [
+        { message: '@ignore should be at the beginning of a block comment.', type: 'Block' },
+      ],
     },
     {
       code: '\n  /**\n   * Multi-line\n   * @ignore\n   * comment.\n   */\n',
-      errors: [{message: '@ignore should be at the beginning of a block comment.', type: 'Block'}],
+      errors: [
+        { message: '@ignore should be at the beginning of a block comment.', type: 'Block' },
+      ],
     },
     {
       code: '\n  /**\n   * Indented\n   * multi-line\n   * comment.\n   * @ignore\n   */\n',
-      errors: [{message: '@ignore should be at the beginning of a block comment.', type: 'Block'}],
+      errors: [
+        { message: '@ignore should be at the beginning of a block comment.', type: 'Block' },
+      ],
     },
   ],
 });

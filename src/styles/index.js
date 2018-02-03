@@ -1,5 +1,6 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
-export MuiThemeProvider from './MuiThemeProvider';
-export { createStyleSheet } from 'jss-theme-reactor';
-export withStyles from './withStyles';
+export { default as createGenerateClassName } from './createGenerateClassName';
+export { default as createMuiTheme } from './createMuiTheme';
+export { default as jssPreset } from './jssPreset';
+export { default as MuiThemeProvider } from './MuiThemeProvider';
+export { default as withStyles } from './withStyles';
+export { default as withTheme } from './withTheme';

@@ -1,13 +1,13 @@
-// @flow weak
+// @inheritedComponent Modal
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import Modal from '../internal/Modal';
-import customPropTypes from '../utils/customPropTypes';
+import Modal from '../Modal';
+import withStyles from '../styles/withStyles';
 import Slide from '../transitions/Slide';
 import Paper from '../Paper';
+import { capitalize } from '../utils/helpers';
 import { duration } from '../styles/transitions';
 
 function getSlideDirection(anchor) {
@@ -18,186 +18,235 @@ function getSlideDirection(anchor) {
   } else if (anchor === 'top') {
     return 'down';
   }
+
   // (anchor === 'bottom')
   return 'up';
 }
 
-export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
-  return {
-    paper: {
-      overflowY: 'auto',
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100vh',
-      flex: '1 0 auto',
-      position: 'fixed',
-      top: 0,
-      zIndex: theme.zIndex.navDrawer,
-      willChange: 'transform',
-      '&:focus': {
-        outline: 'none',
-      },
-      WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+export const styles = theme => ({
+  docked: {
+    flex: '0 0 auto',
+  },
+  paper: {
+    overflowY: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100vh',
+    flex: '1 0 auto',
+    zIndex: theme.zIndex.drawer,
+    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    // temporary style
+    position: 'fixed',
+    top: 0,
+    // We disable the focus ring for mouse, touch and keyboard users.
+    // At some point, it would be better to keep it for keyboard users.
+    // :focus-ring CSS pseudo-class will help.
+    '&:focus': {
+      outline: 'none',
     },
-    left: {
-      left: 0,
-      right: 'auto',
-    },
-    right: {
-      left: 'auto',
-      right: 0,
-    },
-    top: {
-      top: 0,
-      left: 0,
-      bottom: 'auto',
-      right: 0,
-      height: 'auto',
-      maxHeight: '100vh',
-    },
-    bottom: {
-      top: 'auto',
-      left: 0,
-      bottom: 0,
-      right: 0,
-      height: 'auto',
-      maxHeight: '100vh',
-    },
-    docked: {
-      flex: '0 0 auto',
-      '& $paper': {
-        borderRight: `1px solid ${theme.palette.text.divider}`,
-      },
-    },
-    modal: {
-    },
-  };
+  },
+  paperAnchorLeft: {
+    left: 0,
+    right: 'auto',
+  },
+  paperAnchorRight: {
+    left: 'auto',
+    right: 0,
+  },
+  paperAnchorTop: {
+    top: 0,
+    left: 0,
+    bottom: 'auto',
+    right: 0,
+    height: 'auto',
+    maxHeight: '100vh',
+  },
+  paperAnchorBottom: {
+    top: 'auto',
+    left: 0,
+    bottom: 0,
+    right: 0,
+    height: 'auto',
+    maxHeight: '100vh',
+  },
+  paperAnchorDockedLeft: {
+    borderRight: `1px solid ${theme.palette.divider}`,
+  },
+  paperAnchorDockedTop: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+  paperAnchorDockedRight: {
+    borderLeft: `1px solid ${theme.palette.divider}`,
+  },
+  paperAnchorDockedBottom: {
+    borderTop: `1px solid ${theme.palette.divider}`,
+  },
+  modal: {}, // Just here so people can override the style.
 });
 
-/**
- * This is a drawer.
- */
-export default class Drawer extends Component {
-  static propTypes = {
-    /**
-     * Side which will the drawer will appear from.
-     */
-    anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
-    /**
-     * The contents of the drawer.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * If `true`, the drawer will dock itself
-     * and will no longer slide in with an overlay.
-     */
-    docked: PropTypes.bool,
-    /**
-     * The elevation of the drawer.
-     */
-    elevation: PropTypes.number,
-    /**
-     * Customizes duration of enter animation (ms)
-     */
-    enterTransitionDuration: PropTypes.number,
-    /**
-     * Customizes duration of leave animation (ms)
-     */
-    leaveTransitionDuration: PropTypes.number,
-    /**
-     * Callback fired when the internal modal requests to be closed.
-     */
-    onRequestClose: PropTypes.func,
-    /**
-     * If `true`, the drawer is open.
-     */
-    open: PropTypes.bool,
-    /**
-     * The CSS class name of the paper element.
-     */
-    paperClassName: PropTypes.string,
+class Drawer extends React.Component {
+  state = {
+    // Let's assume that the Drawer will always be rendered on user space.
+    // We use that state is order to skip the appear transition during the
+    // initial mount of the component.
+    firstMount: true,
   };
 
-  static defaultProps = {
-    anchor: 'left',
-    docked: false,
-    enterTransitionDuration: duration.enteringScreen,
-    leaveTransitionDuration: duration.leavingScreen,
-    open: false,
-    elevation: 16,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
+  componentWillReceiveProps() {
+    this.setState({
+      firstMount: false,
+    });
+  }
 
   render() {
     const {
       anchor: anchorProp,
       children,
+      classes,
       className,
-      docked,
-      enterTransitionDuration,
-      leaveTransitionDuration,
-      open,
-      paperClassName,
       elevation,
+      ModalProps,
+      onClose,
+      open,
+      PaperProps,
+      SlideProps,
+      theme,
+      transitionDuration,
+      variant,
       ...other
     } = this.props;
 
-    const { theme: { dir }, render } = this.context.styleManager;
-    const classes = render(styleSheet);
-    const rtl = dir === 'rtl';
     let anchor = anchorProp;
-    if (rtl && ['left', 'right'].includes(anchor)) {
-      anchor = (anchor === 'left') ? 'right' : 'left';
+    if (theme.direction === 'rtl' && ['left', 'right'].includes(anchor)) {
+      anchor = anchor === 'left' ? 'right' : 'left';
     }
 
-    const slideDirection = getSlideDirection(anchor);
-
     const drawer = (
-      <Slide
-        in={open}
-        direction={slideDirection}
-        enterTransitionDuration={enterTransitionDuration}
-        leaveTransitionDuration={leaveTransitionDuration}
-        transitionAppear
+      <Paper
+        elevation={variant === 'temporary' ? elevation : 0}
+        square
+        className={classNames(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
+          [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
+        })}
+        {...PaperProps}
       >
-        <Paper
-          elevation={docked ? 0 : elevation}
-          square
-          className={classNames(classes.paper, classes[anchor], paperClassName)}
-        >
-          {children}
-        </Paper>
-      </Slide>
+        {children}
+      </Paper>
     );
 
-    const containerProps = {
-      className: classNames(classes.modal, className),
-      ...other,
-    };
-
-    if (docked) {
+    if (variant === 'permanent') {
       return (
-        <div className={classNames(classes.docked, className)}>
+        <div className={classNames(classes.docked, className)} {...other}>
           {drawer}
         </div>
       );
     }
 
-    return (
-      <Modal
-        backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
-        {...containerProps}
-        show={open}
+    const slidingDrawer = (
+      <Slide
+        in={open}
+        direction={getSlideDirection(anchor)}
+        timeout={transitionDuration}
+        appear={!this.state.firstMount}
+        {...SlideProps}
       >
         {drawer}
+      </Slide>
+    );
+
+    if (variant === 'persistent') {
+      return (
+        <div className={classNames(classes.docked, className)} {...other}>
+          {slidingDrawer}
+        </div>
+      );
+    }
+
+    // variant === temporary
+    return (
+      <Modal
+        BackdropProps={{
+          transitionDuration,
+        }}
+        className={classNames(classes.modal, className)}
+        open={open}
+        onClose={onClose}
+        {...other}
+        {...ModalProps}
+      >
+        {slidingDrawer}
       </Modal>
     );
   }
 }
+
+Drawer.propTypes = {
+  /**
+   * Side from which the drawer will appear.
+   */
+  anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
+  /**
+   * The contents of the drawer.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The elevation of the drawer.
+   */
+  elevation: PropTypes.number,
+  /**
+   * Properties applied to the `Modal` element.
+   */
+  ModalProps: PropTypes.object,
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onClose: PropTypes.func,
+  /**
+   * If `true`, the drawer is open.
+   */
+  open: PropTypes.bool,
+  /**
+   * Properties applied to the `Paper` element.
+   */
+  PaperProps: PropTypes.object,
+  /**
+   * Properties applied to the `Slide` element.
+   */
+  SlideProps: PropTypes.object,
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  transitionDuration: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+  ]),
+  /**
+   * The type of drawer.
+   */
+  variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
+};
+
+Drawer.defaultProps = {
+  anchor: 'left',
+  elevation: 16,
+  open: false,
+  transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
+  variant: 'temporary', // Mobile first.
+};
+
+export default withStyles(styles, { name: 'MuiDrawer', flip: false, withTheme: true })(Drawer);

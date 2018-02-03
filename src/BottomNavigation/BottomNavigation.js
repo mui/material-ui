@@ -1,39 +1,40 @@
-// @flow weak
-
-import React, { Children, cloneElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiBottomNavigation', (theme) => {
-  return {
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      height: 56,
-      backgroundColor: theme.palette.background.paper,
-    },
-  };
+export const styles = theme => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: 56,
+    backgroundColor: theme.palette.background.paper,
+  },
 });
 
-export default function BottomNavigation(props, context) {
+function BottomNavigation(props) {
   const {
     children: childrenProp,
+    classes,
     className: classNameProp,
-    index,
     onChange,
     showLabels,
+    value,
     ...other
   } = props;
-  const classes = context.styleManager.render(styleSheet);
+
   const className = classNames(classes.root, classNameProp);
 
-  const children = Children.map(childrenProp, (child, childIndex) => {
-    return cloneElement(child, {
-      selected: childIndex === index,
+  const children = React.Children.map(childrenProp, (child, childIndex) => {
+    if (!React.isValidElement(child)) {
+      return null;
+    }
+
+    const childValue = child.props.value || childIndex;
+    return React.cloneElement(child, {
+      selected: childValue === value,
       showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
-      index: childIndex,
+      value: childValue,
       onChange,
     });
   });
@@ -51,28 +52,33 @@ BottomNavigation.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
-   * The index of the currently selected `BottomNavigationButton`.
-   */
-  index: PropTypes.number,
-  /**
-   * Function called when the index changes.
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback
+   * @param {any} value We default to the index of the child
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, all `BottomNavigationButton`s will show their labels.
-   * By default only the selected `BottomNavigationButton` will show its label.
+   * If `true`, all `BottomNavigationAction`s will show their labels.
+   * By default, only the selected `BottomNavigationAction` will show its label.
    */
   showLabels: PropTypes.bool,
+  /**
+   * The value of the currently selected `BottomNavigationAction`.
+   */
+  value: PropTypes.any,
 };
 
 BottomNavigation.defaultProps = {
   showLabels: false,
 };
 
-BottomNavigation.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styles, { name: 'MuiBottomNavigation' })(BottomNavigation);

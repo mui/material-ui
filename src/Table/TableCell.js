@@ -1,79 +1,96 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
+import { capitalize } from '../utils/helpers';
+import { darken, fade, lighten } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('MuiTableCell', (theme) => {
-  return {
-    root: {
-      borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      textAlign: 'left',
+export const styles = theme => ({
+  root: {
+    // Workaround for a rendering bug with spanned columns in Chrome 62.0.
+    // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
+    borderBottom: `1px solid
+    ${
+      theme.palette.type === 'light'
+        ? lighten(fade(theme.palette.divider, 1), 0.88)
+        : darken(fade(theme.palette.divider, 1), 0.8)
+    }`,
+    textAlign: 'left',
+  },
+  numeric: {
+    textAlign: 'right',
+    flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
+  },
+  typeHead: {
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(12),
+    fontWeight: theme.typography.fontWeightMedium,
+    position: 'relative', // Workaround for Tooltip positioning issue.
+  },
+  typeBody: {
+    fontSize: theme.typography.pxToRem(13),
+    color: theme.palette.text.primary,
+  },
+  typeFooter: {
+    borderBottom: 0,
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(12),
+  },
+  paddingDefault: {
+    padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 7}px ${theme.spacing.unit /
+      2}px ${theme.spacing.unit * 3}px`,
+    '&:last-child': {
+      paddingRight: theme.spacing.unit * 3,
     },
-    numeric: {
-      textAlign: 'right',
-      flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
-    },
-    head: {
-      whiteSpace: 'pre',
-    },
-    padding: {
-      padding: '0 56px 0 24px',
-      '&:last-child': {
-        paddingRight: 24,
-      },
-    },
-    compact: {
-      paddingRight: 24,
-    },
-    checkbox: {
-      paddingLeft: 12,
-      paddingRight: 12,
-    },
-    footer: {},
-  };
+  },
+  paddingDense: {
+    paddingRight: theme.spacing.unit * 3,
+  },
+  paddingCheckbox: {
+    padding: '0 12px',
+  },
 });
 
-/**
- * A material table cell.
- *
- * When placed in a `TableHead`, this will automatically render a `th` element.
- *
- * ```jsx
- * <TableCell>...</TableCell>
- * ```
- */
-export default function TableCell(props, context) {
+function TableCell(props, context) {
   const {
-    className: classNameProp,
     children,
-    compact,
-    checkbox,
+    classes,
+    className: classNameProp,
+    component,
+    sortDirection,
     numeric,
-    disablePadding,
+    padding,
+    variant,
     ...other
   } = props;
-  const { table, styleManager } = context;
-  const classes = styleManager.render(styleSheet);
+  const { table } = context;
+  let Component;
+  if (component) {
+    Component = component;
+  } else {
+    Component = table && table.head ? 'th' : 'td';
+  }
 
-  const Component = table && table.head ? 'th' : 'td';
+  const className = classNames(
+    classes.root,
+    {
+      [classes.numeric]: numeric,
+      [classes[`padding${capitalize(padding)}`]]: padding !== 'none' && padding !== 'default',
+      [classes.paddingDefault]: padding !== 'none',
+      [classes.typeHead]: variant ? variant === 'head' : table && table.head,
+      [classes.typeBody]: variant ? variant === 'body' : table && table.body,
+      [classes.typeFooter]: variant ? variant === 'footer' : table && table.footer,
+    },
+    classNameProp,
+  );
 
-  const className = classNames(classes.root, {
-    [classes.numeric]: numeric,
-    [classes.compact]: compact,
-    [classes.checkbox]: checkbox,
-    [classes.padding]: !disablePadding,
-    [classes.head]: table && table.head,
-    [classes.footer]: table && table.footer,
-  }, classNameProp);
+  let ariaSort = null;
+  if (sortDirection) {
+    ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending';
+  }
 
   return (
-    <Component className={className} {...other}>
+    <Component className={className} aria-sort={ariaSort} {...other}>
       {children}
     </Component>
   );
@@ -81,39 +98,48 @@ export default function TableCell(props, context) {
 
 TableCell.propTypes = {
   /**
-   * If `true`, the cell padding will be adjusted to accommodate a checkbox.
-   */
-  checkbox: PropTypes.bool,
-  /**
    * The table cell contents.
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
-   * If `true`, compact cell padding will be used to accommodate more content.
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
    */
-  compact: PropTypes.bool,
-  /**
-   * If `true`, left/right cell padding will be disabled.
-   */
-  disablePadding: PropTypes.bool,
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * If `true`, content will align to the right.
    */
   numeric: PropTypes.bool,
+  /**
+   * Sets the padding applied to the cell.
+   */
+  padding: PropTypes.oneOf(['default', 'checkbox', 'dense', 'none']),
+  /**
+   * Set aria-sort direction.
+   */
+  sortDirection: PropTypes.oneOf(['asc', 'desc', false]),
+  /**
+   * Specify the cell type.
+   * By default, the TableHead, TableBody or TableFooter parent component set the value.
+   */
+  variant: PropTypes.oneOf(['head', 'body', 'footer']),
 };
 
 TableCell.defaultProps = {
-  checkbox: false,
-  compact: false,
   numeric: false,
-  disablePadding: false,
+  padding: 'default',
 };
 
 TableCell.contextTypes = {
-  table: PropTypes.object,
-  styleManager: customPropTypes.muiRequired,
+  table: PropTypes.object.isRequired,
 };
+
+export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);

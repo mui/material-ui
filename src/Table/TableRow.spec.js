@@ -1,17 +1,17 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
-import TableRow, { styleSheet } from './TableRow';
+import { createShallow, getClasses } from '../test-utils';
+import TableRow from './TableRow';
 
 describe('<TableRow />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<TableRow />);
   });
 
   it('should render a tr', () => {
@@ -19,15 +19,24 @@ describe('<TableRow />', () => {
     assert.strictEqual(wrapper.name(), 'tr');
   });
 
+  it('should render a div', () => {
+    const wrapper = shallow(<TableRow component="div" />);
+    assert.strictEqual(wrapper.name(), 'div');
+  });
+
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<TableRow data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    const wrapper = shallow(<TableRow data-my-prop="woofTableRow" />);
+    assert.strictEqual(
+      wrapper.prop('data-my-prop'),
+      'woofTableRow',
+      'custom prop should be woofTableRow',
+    );
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<TableRow className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    const wrapper = shallow(<TableRow className="woofTableRow" />);
+    assert.strictEqual(wrapper.hasClass('woofTableRow'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render children', () => {
@@ -37,20 +46,16 @@ describe('<TableRow />', () => {
   });
 
   it('should render with the head class when in the context of a table head', () => {
-    const wrapper = shallow(
-      <TableRow />,
-    );
-    wrapper.setContext({ ...wrapper.options.context, table: { head: true } });
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
+    const wrapper = shallow(<TableRow />);
+    wrapper.setContext({ table: { head: true } });
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.typeHead), true, 'should have the head class');
   });
 
   it('should render with the footer class when in the context of a table footer', () => {
-    const wrapper = shallow(
-      <TableRow />,
-    );
-    wrapper.setContext({ ...wrapper.options.context, table: { footer: true } });
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
+    const wrapper = shallow(<TableRow />);
+    wrapper.setContext({ table: { footer: true } });
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.typeFooter), true, 'should have the footer class');
   });
 });

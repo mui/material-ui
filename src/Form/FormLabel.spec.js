@@ -1,24 +1,22 @@
-// @flow weak
-
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
-import FormLabel, { styleSheet } from './FormLabel';
+import { createShallow, getClasses } from '../test-utils';
+import FormLabel from './FormLabel';
 
 describe('<FormLabel />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<FormLabel />);
   });
 
   it('should render a <label />', () => {
-    const wrapper = shallow(<FormLabel className="woof" />);
+    const wrapper = shallow(<FormLabel className="woofFormLabel" />);
     assert.strictEqual(wrapper.name(), 'label');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the user class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass('woofFormLabel'), true, 'should have the user class');
   });
 
   describe('prop: required', () => {
@@ -37,7 +35,7 @@ describe('<FormLabel />', () => {
   });
 
   describe('prop: error', () => {
-    it('should show an error class', () => {
+    it('should have an error class', () => {
       const wrapper = shallow(<FormLabel required error />);
       const asteriskWrapper = wrapper.find('[data-mui-test="FormLabelAsterisk"]');
       assert.strictEqual(asteriskWrapper.length, 1);
@@ -46,11 +44,7 @@ describe('<FormLabel />', () => {
         true,
         'asterisk should have the error class',
       );
-      assert.strictEqual(
-        wrapper.hasClass(classes.error),
-        true,
-        'should have the error class',
-      );
+      assert.strictEqual(wrapper.hasClass(classes.error), true, 'should have the error class');
     });
   });
 
@@ -60,14 +54,13 @@ describe('<FormLabel />', () => {
 
     function setFormControlContext(muiFormControlContext) {
       muiFormControl = muiFormControlContext;
-      wrapper.setContext({ ...wrapper.context(), muiFormControl });
+      wrapper.setContext({ muiFormControl });
     }
 
     beforeEach(() => {
       wrapper = shallow(<FormLabel>Foo</FormLabel>);
     });
-
-    ['error', 'focused'].forEach((visualState) => {
+    ['error', 'focused'].forEach(visualState => {
       describe(visualState, () => {
         beforeEach(() => {
           setFormControlContext({ [visualState]: true });

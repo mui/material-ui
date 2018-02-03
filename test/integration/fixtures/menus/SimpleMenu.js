@@ -1,38 +1,32 @@
-// @flow weak
-import React, { Component } from 'react';
-import { Menu, MenuItem } from 'src/Menu';
+import React from 'react';
+import Menu, { MenuItem } from 'src/Menu';
 
-const options = [
-  'Menu Item 1',
-  'Menu Item 2',
-  'Menu Item 3',
-];
+const options = ['Menu Item 1', 'Menu Item 2', 'Menu Item 3'];
 
-export default class SimpleMenu extends Component {
+class SimpleMenu extends React.Component {
   state = {
-    anchorEl: undefined,
     open: false,
     selectedIndex: undefined,
   };
 
-  handleMenuItemClick = (event, index) => this.setState({ selectedIndex: index, open: false });
-  handleRequestClose = () => this.setState({ open: false });
+  handleMenuItemClick = (event, index) => {
+    this.setState({ selectedIndex: index, open: false });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
   render() {
     return (
       <div data-mui-test="SimpleMenu">
-        <Menu
-          id="simple-menu"
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
-          {...this.props}
-        >
+        <Menu id="simple-menu" open={this.state.open} onClose={this.handleClose} {...this.props}>
           {options.map((label, index) => {
             return (
               <MenuItem
                 key={label}
                 selected={index === this.state.selectedIndex}
-                onClick={(event) => this.handleMenuItemClick(event, index)}
+                onClick={event => this.handleMenuItemClick(event, index)}
               >
                 {label}
               </MenuItem>
@@ -44,3 +38,4 @@ export default class SimpleMenu extends Component {
   }
 }
 
+export default SimpleMenu;

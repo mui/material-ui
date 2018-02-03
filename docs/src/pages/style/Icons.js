@@ -1,34 +1,41 @@
-// @flow weak
-
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 
-const styleSheet = createStyleSheet('Icons', () => ({
-  icons: {
+const styles = {
+  root: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     justifyContent: 'space-around',
     width: '70%',
   },
-}));
+};
 
-export default function Icons(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+type ProvidedProps = {
+  classes: Object,
+  theme?: Object,
+};
+
+function Icons(props: ProvidedProps) {
   return (
-    <div className={classes.icons}>
+    <div className={props.classes.root}>
       <Icon>add_circle</Icon>
-      <Icon accent>add_circle</Icon>
-      <Icon action>add_circle</Icon>
-      <Icon contrast>add_circle</Icon>
-      <Icon disabled>add_circle</Icon>
-      <Icon error>add_circle</Icon>
-      <Icon primary>add_circle</Icon>
+      <Icon color="secondary">add_circle</Icon>
+      <Icon color="action">add_circle</Icon>
+      <Icon color="disabled">add_circle</Icon>
+      <Icon color="primary" style={{ fontSize: 30 }}>
+        add_circle
+      </Icon>
+      <Icon color="error" style={{ fontSize: 36 }}>
+        add_circle
+      </Icon>
     </div>
   );
 }
 
-Icons.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+Icons.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styles)(Icons);

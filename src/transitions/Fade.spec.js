@@ -1,42 +1,43 @@
-// @flow weak
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
 import Fade from './Fade';
 
 describe('<Fade />', () => {
   let shallow;
+  let mount;
+  const defaultProps = {
+    in: true,
+    children: <div />,
+  };
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a Transition', () => {
-    const wrapper = shallow(<Fade />);
+    const wrapper = shallow(<Fade {...defaultProps} />);
     assert.strictEqual(wrapper.name(), 'Transition');
   });
 
   describe('event callbacks', () => {
     it('should fire event callbacks', () => {
-      const events = [
-        'onEnter',
-        'onEntering',
-        'onEntered',
-        'onExit',
-        'onExiting',
-        'onExited',
-      ];
+      const events = ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'];
 
       const handlers = events.reduce((result, n) => {
         result[n] = spy();
         return result;
       }, {});
 
-      const wrapper = shallow(<Fade {...handlers} />);
+      const wrapper = shallow(<Fade {...defaultProps} {...handlers} />);
 
-      events.forEach((n) => {
+      events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
         wrapper.simulate(event, { style: {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
@@ -50,46 +51,53 @@ describe('<Fade />', () => {
     let instance;
 
     before(() => {
-      wrapper = shallow(<Fade />);
+      wrapper = shallow(<Fade {...defaultProps} />);
       instance = wrapper.instance();
     });
 
-    describe('handleEnter()', () => {
-      let element;
-
-      before(() => {
-        element = { style: { opacity: 1 } };
-        instance.handleEnter(element);
-      });
-
-      it('should set element opacity to 0 initially', () => {
-        assert.strictEqual(element.style.opacity, 0, 'should set the opacity to 0');
-      });
-    });
-
     describe('handleEntering()', () => {
-      let element;
-
-      before(() => {
-        element = { style: { opacity: 0 } };
+      it('should set style properties', () => {
+        const element = { style: {} };
         instance.handleEntering(element);
-      });
-
-      it('should set opacity to 1', () => {
-        assert.strictEqual(element.style.opacity, 1, 'should set the opacity to 1');
+        assert.strictEqual(
+          element.style.transition,
+          'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        );
       });
     });
 
     describe('handleExit()', () => {
-      let element;
-
-      before(() => {
-        element = { style: { opacity: 1 } };
+      it('should set style properties', () => {
+        const element = { style: {} };
         instance.handleExit(element);
+        assert.strictEqual(
+          element.style.transition,
+          'opacity 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        );
       });
+    });
+  });
 
-      it('should set opacity to the 0', () => {
-        assert.strictEqual(element.style.opacity, 0, 'should set the opacity to 0');
+  describe('prop: appear', () => {
+    it('should work when initially hidden', () => {
+      const wrapper = mount(
+        <Fade in={false} appear>
+          <div>Foo</div>
+        </Fade>,
+      );
+      assert.deepEqual(wrapper.find('div').props().style, {
+        opacity: 0,
+      });
+    });
+
+    it('should work when initially hidden', () => {
+      const wrapper = mount(
+        <Fade in={false} appear={false}>
+          <div>Foo</div>
+        </Fade>,
+      );
+      assert.deepEqual(wrapper.find('div').props().style, {
+        opacity: 0,
       });
     });
   });

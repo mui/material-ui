@@ -1,50 +1,9 @@
-// @flow weak
-
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiTableHead', (theme) => {
-  return {
-    root: {
-      fontSize: 12,
-      fontWeight: theme.typography.fontWeightMedium,
-      color: theme.palette.text.secondary,
-    },
-  };
-});
-
-/**
- * A material table head.
- *
- * ```jsx
- * <TableHead>
- *   <TableRow>...</TableRow>
- * </TableHead>
- * ```
- */
-export default class TableHead extends Component {
-  static propTypes = {
-    /**
-     * Should be valid `<thead>` children such as `TableRow`.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-  };
-
-  static contextTypes = {
-    table: PropTypes.object,
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  static childContextTypes = { table: PropTypes.object };
-
-  getChildContext() { // eslint-disable-line class-methods-use-this
+class TableHead extends React.Component {
+  getChildContext() {
+    // eslint-disable-line class-methods-use-this
     return {
       table: {
         head: true,
@@ -53,18 +12,30 @@ export default class TableHead extends Component {
   }
 
   render() {
-    const {
-      className: classNameProp,
-      children,
-      ...other
-    } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
-    const className = classNames(classes.root, classNameProp);
+    const { component: Component, ...other } = this.props;
 
-    return (
-      <thead className={className} {...other}>
-        {children}
-      </thead>
-    );
+    return <Component {...other} />;
   }
 }
+
+TableHead.propTypes = {
+  /**
+   * The content of the component, normally `TableRow`.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+};
+
+TableHead.defaultProps = {
+  component: 'thead',
+};
+
+TableHead.childContextTypes = {
+  table: PropTypes.object,
+};
+
+export default TableHead;

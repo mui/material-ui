@@ -1,25 +1,20 @@
-// @flow weak
-
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
-import CardContent, { styleSheet } from './CardContent';
+import { createShallow, getClasses } from '../test-utils';
+import CardContent from './CardContent';
 
 describe('<CardContent />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ untilSelector: 'CardContent' });
+    classes = getClasses(<CardContent />);
   });
 
-  it('should render a div with the cardContent class', () => {
-    const wrapper = shallow(
-      <CardContent />,
-    );
+  it('should render a div with the root class', () => {
+    const wrapper = shallow(<CardContent />);
     assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.cardContent), true,
-      'should have the cardContent class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 });

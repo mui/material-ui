@@ -2,32 +2,2598 @@
 
 Changes. Changes everywhere!
 
-##### General
-- [docs] New documentation site!
-- [docs] Markdown API doc generation from components
-- [docs] Docs literature markdown files re-organized
-- [core] Theming revamped
-- [core] Internal components refactored
-- [core] Replaced inline styling with [`jss`](https://github.com/cssinjs/jss)
-  - CSS-in-JS
-  - `className` based approach
-  - around 30% performance improvement
-- [test] Add a visual regression test suite
-- [test] Greatly increase the test coverage
+## 1.0.0-beta.31
+###### *Jan 21, 2018*
 
-##### Components
+Big thanks to the 14 contributors who made this release possible.
 
-All components have had API changes ranging from a couple of properties to complete makeovers, please review the documentation for more information.
-Below is a summary of major changes.
+Here are some highlights ✨:
+- Further simplification & standardization with the palette (#10015) @mbrookes.
+- A Content Security Policy Guide (#10074) @dav-is.
+- Document the withStyles alternative APIs (#9981) @oliviertassinari.
+- A react-select integration example (#10070) @oliviertassinari.
+- And many more bug fixes and documentation improvements.
 
-- [Dialog] Rewritten from the ground up. Multiple major issues addressed such as accessibility and proper tab scoping. More composable.
-- [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
-- [Button] Raised/flat/fab are now combined into a single component.
+Fun facts:
+- Our first alpha release was 1 year ago: *Jan 28, 2017* 🎂!
+- We have done 53 pre-releases of the v1.x, one every week for a year 🛥.
+
+### Breaking change
+
+- [Icon] Remove icon ligature "magic" support (#9983) @mbrookes
+
+We have removed the "magic" `<Icon>` wrapping logic. It should be done explicitly now.
+It's making our components less biased around the svg icon vs font icon choice.
+
+```diff
++import Icon from 'material-ui/Icon';
+
+-      <IconButton>comment</IconButton>
++      <IconButton>
++        <Icon>comment</Icon>
++      </IconButton>
+```
+
+- [theme] Further simplification & standardization (#10015) @mbrookes
+
+  - Most component specific `theme.palette.background` colors have been removed. The affected components use `theme.palette.grey` instead. Shift the values of `theme.palette.grey` if you wish to lighten or darken these as a whole; this will maintain the contrast relationship between them. (Paper remains in the theme, as it is used across multiple components.)
+  - `theme.palette.common.fullBlack` and `fullWhite` have been removed. Components that used these values now use `theme.palette.common.black` and `white` instead.
+  - `theme.palette.common.transparent`  has been removed. Components that used this value now use `'transparent'` directly.
+  - Chip has been corrected to use `theme.palette.grey`. If you customize the values of `grey`, the appearance of Chip in your app may change.
+
+- [core] Remove the rootRef properties as unneeded (#10025)
+
+```diff
+-import ReactDOM from 'react-dom';
+
+<IconButton
+- rootRef={node => {
+-   this.button = ReactDOM.findDOMNode(node);
++ buttonRef={node => {
++   this.button = node;
+  }}
+>
+```
+
+- [Button] Add size property (#10009) @oliviertassinari
+
+```diff
+-<Button dense>
++<Button size="small">
+```
+
+- [palette] Remove the palette.types from the theme (#10040) @oliviertassinari
+
+In order to keep the palette simple to understand. I have removed the `types` from the palette object.
+The motivation is the following. The theme & palette should only store
+the information needed to display one UI context.
+Having the `types` object in the palette encourage people to rely on it.
+No, we want people to do it the other way around.
+
+For instance, instead of doing:
+```jsx
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    types: {
+      dark: {
+        background: {
+          default: '#000',
+        },
+      },
+      light: {
+        background: {
+          default: '#fff',
+        },
+      },
+    },
+  },
+});
+```
+
+We would rather see people doing:
+```jsx
+const types = {
+  dark: {
+    background: {
+      default: '#000',
+    },
+  },
+  light: {
+    background: {
+      default: '#fff',
+    },
+  },
+};
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    ...types.dark,
+  },
+});
+```
+
+#### Component Fixes / Enhancements
+
+- [Input] Make sure our previous or updated context is available (#9986) @yoiang
+- [Dialog] Add PaperProps property (#9985) @nbdaaron
+- [FormControl] Fix w3c issue (#9996) @oliviertassinari
+- [typescript] Add divider to palette type defs (#10008) @xaviergonz
+- [Badge] Add error as a palette option (#10004) @t49tran
+- [Tab] Add textColor inherit default props to Tab (#10005) @x0fma
+- [Menu] Fix dark selected color (#10026) @oliviertassinari
+- [SnackbarContent] Change backgroundColor approach (#10027) @mbrookes
+- [Backdrop] Allow setting of onTouchMove (#10001) @daniel-rabe
+- [Popover] Should default to use anchorEl's parent body (#10049) @ianschmitz
+- [Popover] Respect anchorEl's parent window when calculating position (#10048) @ianschmitz
+- [TableCell] Add sortDirection TypeScript definition (#10057) @cvanem
+- [palette] Fix error color defaults (#10058) @pelotom
+- [ButtonBase] Avoid race condition with react-router (#10061) @oliviertassinari
+- [Modal] Remove dead logic (#10062) @oliviertassinari
+- [List] Fix w3c issues (#10050) @oliviertassinari
+- [jss] Fix the last w3c issue I'm aware of (#10063) @oliviertassinari
+- [LinearProgress] Add ARIA role & fix bugs (#10069) @mbrookes
+- [ButtonBase] Add buttonRef property (#10082) @oliviertassinari
+
+#### Docs
+
+- [docs] Edit css injection order docs for create-react-app users (#9990) @PTaylour
+- [docs] withStyles alternative APIs (#9981) @oliviertassinari
+- [docs] Switch the Lightbulb UI (#9995) @oliviertassinari
+- [docs] Use Simple over Basic (#10024) @oliviertassinari
+- [docs] boolean vs enum API (#10023) @oliviertassinari
+- [docs] Improve the typeface-roboto npm instructions (#10039) @oliviertassinari
+- [docs] Add zero click example of Wrapping components (#10041) @oliviertassinari
+- [docs] Reach the AA contrast ratio level (#10053) @oliviertassinari
+- [docs] Misc fixes (#10055) @mbrookes
+- [examples] Add missing typescript dependency (#10031) @QuantumInformation
+- [docs] Add Content Security Policy Guide (#10074) @dav-is
+- [docs] Add react-select example (#10070) @oliviertassinari
+
+#### Core
+
+- [core] Two small fixes looking at #10005 (#10014) @oliviertassinari
+- [core] Use the official react-docgen package (#10054) @oliviertassinari
+- [core] Upgrade the dependencies (#10060) @oliviertassinari
+
+## 1.0.0-beta.30
+###### *Jan 21, 2018*
+
+Big thanks to the 12 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A revamp of the palette usage. We want it to be as simple as possible (#9876, #9918, #9970).
+We are pretty happy with the outcome. +80% of the story has been completed.
+- A better [w3c compliance](https://validator.w3.org), we will keep working on it in for the next release @sambhav-gore.
+- An improved breakpoints documentation section (#9949).
+- A new notification system for the documentation (#9974) @mbrookes.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [palette] Keep simplifying the solution (#9876) @oliviertassinari
+  - Remove the contrast color from our API. This color variation hasn't proven itseft to be useful enough.
+  ```diff
+  -<Button color="contrast" />
+  +<Button />
+  ```
+  Instead, you can use the `color="inherit"` property or use the `theme.palette.XXX.contrastText` value.
+  - Rename `accent` to `secondary`. We have removed the accent indirection to be closer to the object people are providing to customize the palette.
+  ```diff
+  -<Button color="accent" />
+  +<Button color="secondary" />
+  ```
+  ```diff
+  <Tabs
+  - indicatorColor="accent"
+  - textColor="accent"
+  + indicatorColor="secondary"
+  + textColor="secondary"
+  >
+  ```
+  - Rename old `secondary` to `textSecondary`. `secondary` and `textSecondary` are two valid color value.
+  ```diff
+  -<Typography color="secondary" />
+  +<Typography color="textSecondary" />
+  ```
+- [palette] Standardize the secondary color (#9918) @oliviertassinari
+
+The secondary color now behaves the same way than the other colors (primary, error). We always use the `main` tone by default instead of the `light` tone.
+It's unclear if this change is making the implementation follow the specification more closely. The direct win is **simplicity and predictability**.
+
+- [palette] Normalize the usage of the palette (#9970) @oliviertassinari
+  - Remove `theme.palette.input` object.
+  - Remove `theme.palette.text.icon` color.
+  - Remove `theme.palette.background.contentFrame`, it was only used in the documentation.
+  - Move `theme.palette.text.divider` to `theme.palette.divider`, it's not a text color.
+  - Remove `theme.palette.text.lightDivider`, there is no reference to is in the specification, better keep things simple.
+
+#### Component Fixes / Enhancements
+
+- [Button] Fix secondary contrastText color (#9913) @ValentinH
+- [FormTextHelper] Add component prop (#9917) @sambhav-gore
+- [core] Fix some w3c validation errors (#9906) @oliviertassinari
+- [TableCell] Fix TypeScript definition (#9926) @ljvanschie
+- [Divider] Add component property (#9927) @oliviertassinari
+- [FormControl] Fix alternating focus change bug (#9909) @dapetcu21
+- [CircularProgress] Fix animation on Edge 16 and below (#9938) @oliviertassinari
+- [ListItemText] Update Typings for primary and secondary text class keys (#9946) @spallister
+- [palette] ShadeBackground interface updated (#9955) @daniel-rabe
+- [TableCell] Fix TypeScript definition (#9959) @ljvanschie
+- [Select] Fix a small vertical alignement issue (#9964) @oliviertassinari
+- [IconButton] Better follow the spec (#9967) @oliviertassinari
+- [Select] Add inputProps property (#9979) @oliviertassinari
+- [typescript] Palette typing fixes and error augmentation (#9973) @pelotom
+- [Grid] minWidth for type item (#9972) @sambhav-gore
+
+#### Docs
+
+- [docs] Add a section about how to test changes locally (#9935) @nicolasiensen
+- [docs] Style Library Interoperability v2 (#9939) @oliviertassinari
+- [docs] Fix markdown list (#9948) @yuchi
+- [docs] Remove one DOM element in the Card actions (#9952) @maprihoda
+- [docs] Improve the documentation on the breakpoints (#9949) @oliviertassinari
+- [docs] Apply Matt's requested changes (#9963) @oliviertassinari
+- [docs] Using TypeScript & withStyles for class component w/union props (#9975) @nmchaves
+- [docs] Add notifications (#9974) @mbrookes
+
+#### Core
+
+N.A
+
+## 1.0.0-beta.29
+###### *Jan 16, 2018*
+
+Big thanks to the 9 contributors who made this release possible.
+
+We are making a release earlier than expected. The release schedule norm has been so far: one every weekend. `1.0.0-beta.28` has introduced important pain points we want to address quickly:
+- The 1.0.0-beta.28 palette change was made non-breaking (#9889) @mbrookes
+- The JSS issues have been fixed
+- The TypeScript definitions have been updated
+
+### Breaking change
+
+N.A
+
+#### Component Fixes / Enhancements
+
+- [TextField] Add fullWidth propagation to Input (#9888) @enbyted
+- [Chip] Add component property (#9890) @caub
+- [palette] Update the TypeScript definitions (#9896) @oliviertassinari
+
+#### Docs
+
+- [examples] Update for revised theme approach (#9878) @mbrookes
+- [examples] Update Gatsby example to work (#9877) @magicmark
+- [docs] Additional corrections to palette code sample (#9883) @mbrookes
+- [docs] Update showcase.md (#9894) @gerges-beshay
+
+#### Core
+
+- [core] Fix w3c validation errors (#9899) @sambhav-gore
+- [core] Make palette change non-breaking (#9889) @mbrookes
+- [core] Fix some w3c issues (#9872) @oliviertassinari
+- [core] Upgrade jss to 9.5.0 (#9885) @cesardeazevedo
+- [core] Fix some w3c validation errors (#9895) @sambhav-gore
+- [typescript] Remove JSS stub module declaration (#9898) @pelotom
+- [typescript] Move @types/react-transition-group from devDependencies to dependencies (#9897) @pelotom
+- [typescript] Remove generic object and function types (#9822) @pelotom
+- [core] Go back to jss-vendor-prefixer@7 (#9904) @oliviertassinari
+
+## 1.0.0-beta.28
+###### *Jan 14, 2018*
+
+Big thanks to the 22 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A new theme palette system (#9794) @mbrookes. It's an important simplification.
+- More flexibile and customization friendly table components (#9852) @kgregory.
+- A new gold sponsor: [Creative Tim](https://www.creative-tim.com/), thank you!
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [core] Revise the theme.palette.primary & secondary approach (#9794) @mbrookes
+
+It's an important simplification of the palette system. You can now directly use the [“official” Color Tool](https://material.io/color/).
+- Instead of using a rich color object of 14 different keys, we rely on an object of 4 different keys: `light`, `main`, `dark` and `contrastText`.
+- Providing the full-color object used to be required. Now, we will provide a nice default to the different values using the `main` value.
+
+```diff
+import { createMuiTheme } from 'material-ui/styles';
+import blue from 'material-ui/colors/blue';
+import pink from 'material-ui/colors/pink';
+
+const theme = createMuiTheme({
+  palette: {
+-   primary: blue,
+-   secondary: pink,
++   primary: {
++     light: blue[300],
++     main: blue[500],
++     dark: blue[700],
++   },
++   secondary: {
++     light: pink[300],
++     main: pink[500],
++     dark: pink[700],
++   }
+    type: theme.paletteType,
+  },
+});
+```
+
+- [ListItemText] Add extra class to style secondary text (#9759) @t49tran
+
+```diff
+<ListItem
+  classes={{
+-   text: 'my-class',
++   textPrimary: 'my-class',
+  }}
+/>
+```
+
+- [CardHeader] Remove CardContent inheritance (#9764) @oliviertassinari
+
+Rename ListItemText classes for consitancy with the CardHeader component:
+```diff
+-- `textPrimary`
+-- `textSecondary`
++- `primary`
++- `secondary`
+```
+
+- [TableCell] Add type property (#9852) @kgregory
+
+`TableHead`, `TableBody` and `TableFooter` no longer offer a CSS API, which means their `root` classes are no longer available.
+To style the root element in these components, a `className` prop can be passed, as all non-API props will be spread to the root element.
+
+#### Component Fixes / Enhancements
+
+- [Tooltip] Zero-length titles string are never displayed (#9766) @oliviertassinari
+- [Chip] Replace instrinic CSS 'fit-content' with 'inline-flex' (#9767) @gregnb
+- [Slide] Fix an animation regression (#9773) @oliviertassinari
+- [Select] Remove the input warning (#9774) @oliviertassinari
+- [Tabs] Add action property (#9780) @gregnb
+- [StepButton] Fix TypeScript definition (#9796) @hapood
+- [CardContent] Add component property (#9789) @caub
+- [TablePagination] Add an Actions property (#9785) @axlider
+- [SwitchBase] Enable React input warning (#9814) @oliviertassinari
+- [SwitchBase] Remove duplicate typescript definitions inherited (#9816) @rosskevin
+- [Hidden] Update initialWidth propTypes (#9815) @djeeg
+- [Transition] Extend children propTypes (#9819) @oliviertassinari
+- [TablePagination] Remove dead code (#9831) @leMaik
+- [theme] Polish background scale (#9829) @oliviertassinari
+- [ExpansionPanel] Fix typescript definitions of onChange event (#9832) @Jocaetano
+- [GridList] Remove named export (#9836) @remcohaszing
+- [GridList] Export through main index.js (#9833) @remcohaszing
+- [Portal] Document default value (#9841) @oliviertassinari
+- [Button] Add fullWidth boolean property (#9842) @oliviertassinari
+- [Select] Improve vertical alignment (#9827) @jedwards1211
+- [GridListTile] Fix error when overriding classes (#9862) @KevinAsher
+- [transitions] Improve the style override logic (#9858) @caub
+- [Select] Add open, onClose and onOpen properties (#9844) @caub
+
+#### Docs
+
+- [docs] Add Expand All switch to default theme tree (#9762) @mbrookes
+- [docs] Remove unneeded dependencies from examples (#9746) @cherniavskii
+- [docs] Clarify the usage of innerRef property of withStyles (#9765) @nareshbhatia
+- [docs] Improve color / theme docs (#9771) @mbrookes
+- [docs] Add How can I access the DOM element? in the FAQ (#9768) @oliviertassinari
+- [examples] Add a Gatsby example (#9779) @oliviertassinari
+- [docs] Alternatives to CRA (#9810) @oliviertassinari
+- [docs] Add missing code from example (#9830) @RyanTaite
+- [docs] Add Global CSS override section (#9843) @oliviertassinari
+- [docs] Add example for Select with Checkbox in MenuItems (#9835) @caub
+- [docs] Add SlidesUp to the Showcase (#9854) @bhatiak
+- [docs] Track the bundle size (#9853) @oliviertassinari
+- [docs] Display the default theme (#9859) @oliviertassinari
+- [docs] Add paragraph on withStyles with multiple classes (#9851) @clentfort
+- [docs] Add new backers (#9863) @oliviertassinari
+
+#### Core
+
+- [core] Remove contastDefaultColor (#9772) @mbrookes
+- [core] Revise theme contrastText approach, remove contrastDefaultColor (#9063) @mbrookes
+- [color] Add a warning when an invalid value is provided (#9783) @oliviertassinari
+- [typescript] Add TouchRipple typings (#9812) @msiadak
+- [test] Enforce 100% test coverage in Codecov (#9813) @leMaik
+- [typescript] Move @types/jss from devDependencies to dependencies (#9817) @pelotom
+- [core] Upgrade the dependencies 😢 (#9828)
+
+## 1.0.0-beta.27
+###### *Jan 6, 2018*
+
+Big thanks to the 19 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A strong focus on the documentation.
+- Add a new Zoom component (#9693) @mbrookes.
+- Better vertical alignment of our components (#9709) @oliviertassinari.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [core] Remove some rootRef properties (#9676) @cherniavskii
+
+Remove the rootRef property from the Grow and List component.
+Instead, you can use the `ref` property in combination with `findDOMNode()` or a [RootRef](https://gist.github.com/oliviertassinari/fa1cd34a3fff67553631606109bed124) helper.
+
+- [Popover] New `transition` property (#9682) @oliviertassinari
+
+Remove the `transitionClasses` property of the Popover component. Instead, you can provide a transition component.
+
+- [BottomNavigation] Rename BottomNavigationButton to BottomNavigationAction (#9692) @mbrookes
+
+```diff
+-import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
++import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
+```
+
+- [core] Update jss plugins dependencies (#9732) @cherniavskii
+
+You might be relying on the transitive dependency of Material-UI: `jss-preset-default`.
+If you do, you need to declare the dependency in your package.json. Material-UI will no longer install it for you.
+Alternatively, you can use our preset to save bundle size.
+```diff
+-import preset from 'jss-preset-default';
++import { jssPreset } from 'material-ui/styles';
+```
+
+#### Component Fixes / Enhancements
+
+- [Menu] Better select, hover, focus logic (#9570) @Skaronator
+- [CircularProgress] Accept as string size property (#9700) @jedwards1211
+- [Zoom] New transition component (#9693) @mbrookes
+- [Modal] Add TransitionHandlers to Modal props TypeScript definitions (#9723) @pvdstel
+- [style] Add vertical-align: middle (#9709) @oliviertassinari
+- [Dialog] Allow fullWidth option of false (#9724) @gregnb
+- [SvgIcon] Add a nativeColor property (#9740) @oliviertassinari
+- [typescript] Make Modal-/SlideProps on Drawer Partial (#9743) @DaIgeb
+- [typescript] Use React.ReactType instead of string | ComponentType (#9686) @pelotom
+- [typescript] Style/replace object and function in typedef (#9678) @t49tran
+- [typescript] Update zIndex props to latest changes (#9720) @radicand
+- [FormControlLabel] Allow highlighted options to be selectable (#9713) @Chopinsky
+
+#### Docs
+
+- [flow] Update the documentation and the example (#9679) @oliviertassinari
+- [docs] Fix missing sandbox files (#9685) @lukePeavey
+- [Portal] Fix typo (#9688) @ifndefdeadmau5
+- [examples] Use Reboot (#9691) @oliviertassinari
+- [docs] Add a fallback ad (#9694) @oliviertassinari
+- [examples] Keep working on the Next.js example (#9695) @oliviertassinari
+- [docs] Hide sandbox button on more demos (#9696) @lukePeavey
+- [docs] Minor Markdown Fix: Update SUPPORT.md (#9702) @TorzuoliH
+- [docs] Move 'Default Theme' to it's own section (#9697) @mbrookes
+- [docs] Reorder Drawer items (#9704) @mbrookes
+- [docs] Bite the bullet and go for v1-beta (#9706) @oliviertassinari
+- [docs] Add project in showcase.md (#9725) @shady831213
+- [docs] Fix error in overriding with classes (#9726) @rubencosta
+- [docs] Tweak Dialog maxWidth prop description (#9729) @mbrookes
+- [docs] Add a reference to create-react-app-with-flow (#9735) @oliviertassinari
+- [docs] Fix link of "How to override the look and feel of the components." (#9739) @enavarrocu
+- [docs] Fix Chip onDelete property (#9741) @vkentta
+- [docs] Reduce the api docs table cell padding (#9752) @mbrookes
+- [docs] Misc docs fixes (#9747) @mbrookes
+- [docs] Fix two small regressions (#9753) @oliviertassinari
+- [docs] Tidy up Tooltips demos (#9755) @mbrookes
+
+#### Core
+
+- [core] Fix typo in size:overhead:why script (#9728) @cherniavskii
+- [core] Follow the React HOC convention (#9733) @oliviertassinari
+- [github] Add Support Requests bot config file (#9751) @mbrookes
+
+## 1.0.0-beta.26
+###### *Dec 30, 2017*
+
+Big thanks to the 12 contributors who made this release possible.
+
+Here are some highlights ✨:
+- @kgregory has made the breakpoint down behavior more intuitive. As of now, it's inclusive (#9632).
+- We have introduced a new component to kickstart an elegant, consistent, and simple baseline to build upon: `Reboot` (#9661).
+- The `Portal` and `Modal` components have been revamped to solve the core issues raised by the community (#9613). Those components are now documented.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [Portal] Second iteration on the component (#9613)
+
+Some properties have been renamed:
+
+```diff
+<Dialog
+- ignoreBackdropClick
+- ignoreEscapeKeyUp
++ disableBackdropClick
++ disableEscapeKeyDown
+```
+
+```diff
+<Modal
+- show
+- disableBackdrop
+- ignoreBackdropClick
+- ignoreEscapeKeyUp
+- modalManager
++ open
++ hideBackdrop
++ disableBackdropClick
++ disableEscapeKeyDown
++ manager
+```
+
+The zIndex object has been updated to match the usage.
+
+```diff
+  const zIndex = {
+-  mobileStepper: 900,
+-  menu: 1000,
++  mobileStepper: 1000,
+   appBar: 1100,
+-  drawerOverlay: 1200,
+-  navDrawer: 1300,
+-  dialogOverlay: 1400,
+-  dialog: 1500,
+-  layer: 2000,
+-  popover: 2100,
+-  snackbar: 2900,
+-  tooltip: 3000,
++  drawer: 1200,
++  modal: 1300,
++  snackbar: 1400,
++  tooltip: 1500,
+  };
+```
+
+- [breakpoint] Down properties are now inclusive (#9632) @kgregory
+  - `createBreakpoints.down()` is now inclusive of the specified breakpoint
+  - `isWidthDown()` is now inclusive of the specified breakpoint by default
+  - `<Hidden />` will include the breakpoints associated with its *Down* properties regardless of whether CSS or JS is used.
+
+#### Component Fixes / Enhancements
+
+- [TextField] Add inputProps back (#9604) @oliviertassinari
+- [TextField] Accessibility improvements (#9617) @cherniavskii
+- [ListItemText] Fix noWrap primary text ellipsis (#9631) @dr-js
+- [Typography] Remove children required constraint (#9633) @hendratommy
+- [CardHeader] Add component property (#9634) @oliviertassinari
+- [Snackbar] Clarify that autoHideDuration calls onClose (#9628) @evantrimboli
+- [Table] Add aria-label's to pagination left/right arrows (#9622) @gregnb
+- [Input] More predictible value behavior (#9647) @oliviertassinari
+- [styles] Make sure to escape whitespace (#9644) @jedwards1211
+- [Reboot] New component (#9661) @oliviertassinari
+- [Snackbar] Allow consecutive messages to display (#9670) @tkvw
+- [styles] Reduce the likeliness of conflict (#9671) @oliviertassinari
+- [typescript] Make Tabs onChange prop optional (#9668) @pelotom
+- [Avatar] Handle non-square images (#9672) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix AppBar and Demo button labels (#9607) @mbrookes
+- [docs] Fix 414 HTTP issue (#9635) @oliviertassinari
+- [docs] Update backers.md (#9636) @oliviertassinari
+- [docs] Add a missing codesandbox demo (#9657) @oliviertassinari
+- [docs] Interoperability guide: Fix grammar and rework structure (#9658) @mbrookes
+- [docs] Remove dead code in generateMarkdown (#9662) @oliviertassinari
+- [docs] Interop guide: change Global CSS link from API to description (#9664) @oliviertassinari
+- [docs] Add mui-datatables (#9667) @gregnb
+- [docs] Small tweaks (#9669) @oliviertassinari
+
+#### Core
+
+- [test] Document the ImageMagick / GraphicsMagick dependancy (#9608) @mbrookes
+- [typescript] re-declare `isMuiElement` and `isMuiComponent` as typeguard (#9630) @SSW-SCIENTIFIC
+- [core] Upgrade the dependencies (#9642) @oliviertassinari
+
+## 1.0.0-beta.25
+###### *Dec 22, 2017*
+
+Big thanks to the 16 contributors who made this release possible.
+
+Here are some highlights ✨:
+- 100% test coverage. Thanks @leMaik for the last mile (#9596)!
+- The first introduction of Global CSS 😱.
+We have introduced a `dangerouslyUseGlobalCSS` option to the class name generator (#9558).
+We discourage people from using this option in production.
+However, it can be a quick escape hatch when prototyping.
+It's making the class names predictable, for instance:
+```diff
+-c291
++MuiButton-raised
+```
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+None, merry christmas 🎄.
+
+#### Component Fixes / Enhancements
+
+- [typescript] Add Typography pxToRem (#9547) @jaredpetker
+- [Select] Typo fix (#9567) @bordagabor
+- [CardHeader] Add conditional rendering of the subheader (#9572) @jwwisgerhof
+- [Tooltip] children should be an element (#9568) @oliviertassinari
+- [BottomNavigationAction] onClick and onChange handler overwritten (#9564) @kgregory
+- [typescript] Add typings to reactHelpers (#9565) @SSW-SCIENTIFIC
+- [TablePagination] Make onChangeRowsPerPage optional (#9563) @evantrimboli
+- [Toolbar] Make the children optional (#9581) @oliviertassinari
+- [withWidth] Add withTheme option (#9586) @oliviertassinari
+- [docs] Add more interoperability examples (#9558) @oliviertassinari
+- [TextField] Make TextField's "value" prop type match Input (#9594) @jaminthorns
+- [Popover] Add action property (#9588) @gregnb
+- [Modal] Increase test coverage (#9596) @leMaik
+
+#### Docs
+
+- [docs] Second iteration on the ad placement (#9524) @oliviertassinari
+- [docs] Remove unused styes object from ChipsArray demo (#9540) @mbrookes
+- [docs] Hide sandbox button on drawer and grid-list demos (#9537) @lukePeavey
+- [docs] Fix typo `masterial-ui` to `material-ui` (#9544) @Ginkoid
+- [docs] Add two new members (#9543) @oliviertassinari
+- [docs] Fix dark theme toggle of website home page content (#9560) @Tuaniwan
+- [docs] Improve migration guide (#9566) @fonzy2013
+- [examples] Fix after the latest breaking changes (#9553) @Tuaniwan
+- [docs] Fix basic typos in copy text (#9591) @hathix
+
+#### Core
+
+- [test] Report the potential svg-icon test error (#9559) @oliviertassinari
+- [.editorconfig] Add max_line_length (#9580) @mbrookes
+- [core] Move svg-icons to the internal folder (#9601) @oliviertassinari
+- [core] Upgrade the dependencies (#9606) @oliviertassinari
+
+## 1.0.0-beta.24
+###### *Dec 17, 2017*
+
+Big thanks to the 16 contributors who made this release possible.
+
+Here are some highlights ✨:
+- We have removed Flow from the core components in (#9453).
+You can learn more about the motivations in the pull-request.
+This changes two important things:
+  - We have reduced the size of the bundle by ~8 kB gzipped.
+  - The propTypes runtime checks are back. You might experience new warnings.
+- We have introduced 4 breaking changes.
+- You can support me on [Patreon](https://www.patreon.com/oliviertassinari) and the community on [OpenCollective](https://opencollective.com/material-ui) (#9460).
+Blog posts are coming.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [Hidden] Fix js/css implementation inconsistency (#9450) @oliviertassinari
+
+This change is making the js and css breakpoint utils behaving the same way.
+The default parameter of `withWidth.isWidthDown(breakpoint, width, inclusive)` changed:
+```diff
+-inclusive = true
++inclusive = false
+```
+You might want to update the usage of the API by increasing the breakpoing used on the Hidden component:
+```diff
+-<Hidden implementation="js" mdDown>
++<Hidden implementation="js" lgDown>
+```
+Or by going back to the previous behavior:
+```diff
+-isWidthDown(breakpoint, width)
++isWidthDown(breakpoint, width, true)
+```
+
+- [API] Use onClose over onRequestClose (#9451) @oliviertassinari
+
+Most of our components are stateless by default. It wasn't the case with v0.x. Let's translate this default behavior in the property names of v1.
+```diff
+-onRequestClose
+-onRequestOpen
+-onRequestDelete
++onClose
++onOpen
++onDelete
+```
+
+- [TextField] Remove inputClassName property (#9509) @kgregory
+
+The existing `InputProps` property can be used to set the className on the input element, making `inputClassName` redundant.  Issue #9508 exposed some conflicting behavior between the two properties and it was decided that removing `inputClassName` would result in a cleaner API.
+```diff
+-  /**
+-   * The CSS class name of the `input` element.
+-   */
+-  inputClassName: PropTypes.string,
+```
+The configuration of the wrapped Input component and its input element should be done through `InputProps`.  To specify a className on the input element:
+```jsx
+<TextField InputProps={{ inputProps: { className: 'foo' } }} />
+```
+
+- [Stepper] "Optional" label in StepLabel should be localizable (#9489) @karaggeorge
+
+There is no logic attached to the `optional` boolean property. So, we can reduce the abstraction cost. The property is provided closer to where it's needed, and people have full control over how it should be displayed. By chance, it matches the specification.
+```diff
+-<Step optional>
+-  <StepLabel>
++<Step>
++  <StepLabel optional={<Typography type="caption">Optional Text</Typography>}>
+     Label
+   </StepLabel>
+ </Step>
+```
+
+#### Component Fixes / Enhancements
+
+- [Popover] Fix warning formatting (27bab8022545c0cda8cbc80bf9b6df1566b14226) @oliviertassinari
+- [Hidden] Add `only` array support in the CSS implementation (#9457) @Chopinsky
+- [TextField] Fix disabled logic handling (#9472) @oliviertassinari
+- [Dialog] Improve accessibility (#9461) @ianschmitz
+- [TableFooter] Fix text overlapping pagination drop-down (#9497) @mbrookes
+- [ButtonBase] Avoid unnecessary rerender (#9502) @ojab
+- [Chip] Fix color contrast against default dark background (#9501) @mbrookes
+- [Button] Document how to use a third-party routing library (#9506) @nikoladev
+- [MuiThemeProvider] Add a new warning (#9518) @oliviertassinari
+- [TextField] Improve the API documentation (#9514) @oliviertassinari
+- [TableCell] Add missing aria-sort (#9504) @gregnb
+- [ExpansionPanelSummary] Eliminate extra invocation of onClick (#9523) @kgregory
+
+#### Docs
+
+- [docs] Update sentence which might be misinterpreted (#9459) @senthuran16
+- [docs] Correct list API default value (#9462) @t49tran
+- [docs] Fix doc layout when an ad is present (#9473) @zachwolf
+- [docs] Update breakpoint info to be in line with code (#9486) @nikoladev
+- [docs] Fix broken sandbox in docs (#9491) @ajay2507
+- [docs] Add new showcase (#9490) @liganok
+- [docs] Add see source button (#9499) @oliviertassinari
+- [docs] Add a BACKERS.md (#9460) @oliviertassinari
+- [docs] Add Governance page (#9512) @oliviertassinari
+- [docs] Demo options as JSON (#9521) @oliviertassinari
+
+#### Core
+
+- Add Governance Document (#9423) @hai-cea
+- [core] Upgrade to flow 61 (#9471) @rsolomon
+- [core] Remove FlowType from the components implementation (#9453) @oliviertassinari
+- [core] Upgrade the dependencies (#9515) @oliviertassinari
+- [core] Fix wrong usage of the API (#9519) @oliviertassinari
+- [core] Use the same react pattern everywhere (#9520) @oliviertassinari
+
+## 1.0.0-beta.23
+###### *Dec 9, 2017*
+
+Big thanks to the 26 contributors who made this release possible.
+
+Here are some highlights ✨:
+- The TypeScript definitions keep getting better thanks to @pelotom, @rosskevin, @PavelPZ, @alitaheri, @ianschmitz, @smacpherson64, @brandonlee781
+- We keep investing in improving the documentation.
+For instance, you can find a [CodeSandbox](https://codesandbox.io/) edit button on all our demos.
+
+### Breaking change
+
+- [TextField] API disamiguation/consistency (#9382) @rosskevin
+Some of the convenience properties exposed were confusing and have been removed (`inputProps | InputClassName`).  For advanced configuration any `Input` through `TextField`, use `TextField.InputProps` to pass any property accepted by the `Input`.
+- [SvgIcon] Add color property (#9367) @kale5in
+By consistency with the other components, the color property is no longer apply to the `<svg>`. Instead, it's used to apply normalized color.
+
+#### Component Fixes / Enhancements
+
+- [Switch] Update missed div to span for valid HTML (#9334) @mikeriley131
+- [Modal] Resolve cordova issues (#9315) @sakulstra
+- [Drawer] Missing ModalProps typescript (#9352) @rosskevin
+- [theme] Fix TypographyOptions type (#9364) @keenondrums
+- [styles] createMuiTheme should accept a deep partial (#9368) @keenondrums
+- [Table] Add missing component props (#9378) @pelotom
+- [typescript] Use correct types for TextFieldProps (#9321) @pelotom
+- [typescript] Provide accurate typings for theme overrides (#9314) @pelotom
+- [typescript] Add missing direction to theme (#9327) @alitaheri
+- [typescript] Update onChange types for selection controls (#9339) @rosskevin
+- [typescript] Allow function to be passed as MuiThemeProvider theme prop (#9354) @ianschmitz
+- [typescript] Extract WithTheme for external use (#9363) @rosskevin
+- [Input] Fix input shrink issue in Firefox (#9384) @t-cst
+- [typescript] Wrong default export in shadows.d.ts and transitions.d.ts (#9395) @PavelPZ
+- [typescript] Add "component" to FormLabelProps (#9398) @smacpherson64
+- [typescript] Rename overloaded type "Icon" in StepButton and StepConnector (#9397) @PavelPZ
+- [typescript] Fix definition mismatching on ColorObject (#9409) @kinisn
+- [Tabs] Fix SSR regression (#9413) @oliviertassinari
+- [theme] Fix mixins.gutter override (#9417) @oliviertassinari
+- [ButtonBase] Remove some code (#9419) @oliviertassinari
+- [ExpansionPanel] Prevent call onChange event from the root element (#9402) @andrzejbk
+- [Hidden] Improve the docs (#9420) @oliviertassinari
+- [typescript] Add anchorPosition and anchorReference to PopoverProps (#9428) @brandonlee781
+- [Input] Specify target FlowType for SyntheticInputEvents (#9394) @dhui
+- [Collapse] Fix minHeight behavior (#9438) @Chopinsky
+- [Stepper] Add missing style names (#9441) @oliviertassinari
+- [Button] Add a mini FAB variant (#9383) @mbrookes
+
+#### Docs
+
+- [docs] Replace type with interface, document typescript theme customization (#9350) @rosskevin
+- [docs] Fix typo in comparison guide (#9357) @ugomeda
+- [docs] Simplify TypeScript custom theme example (#9376) @pelotom
+- [docs] Add project to showcase (#9346) @samdenty99
+- [Dialog] Fix typo and finish incomplete comment (#9379) @willgriffiths
+- [docs] Better definition of what withStyles is (#9235) @ajay2507
+- [docs] Save 11% on the images (#9400) @oliviertassinari
+- [docs] Add a downshift example (#9401) @oliviertassinari
+- [docs] Fix Tabs examples typography & standardise code (#9366) @mbrookes
+- [docs] Add a Plugins paragraph (#9399) @oliviertassinari
+- [docs] Fix code formatting (#9414) @oliviertassinari
+- [docs] Add codesandbox edit button (#9416) @oliviertassinari
+- [docs] Various documentation improvements (#9403) @oliviertassinari
+- [docs] Remove extra spacing (#9418) @oliviertassinari
+- [docs] Remove flow from the docs (#9434) @oliviertassinari
+- [examples] remove flow from the examples (#9446) @stormasm
+
+#### Core
+
+- [test] Set codecov threshold to avoid spurious build failures (#9323) @pelotom
+- [test] Fix parse error in .codecov.yml (#9355) @pelotom
+- [typescript] Update `tslint.json` "member-ordering" definition (#9359) @seivan
+- [typescript] withTheme parameter on wrong function (#9372) @rosskevin
+- [typescript] Fix and standardize remaining ThemeOptions typings (#9370) @pelotom
+- [test] Add missing platforms (#9412) @oliviertassinari
+- [core] Upgrade dependencies (#9415) @oliviertassinari
+- [typescript] Remove DeepPartial (#9445) @PavelPZ
+
+## 1.0.0-beta.22
+###### *Nov 28, 2017*
+
+Big thanks to the 26 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Wait, what? A new component is coming, again 🎉.
+@andrzejbk has been implementing the `ExpansionPanel` component with the help of the community. Big thanks to him!
+- Support TypeScript@2.6 (#9124) @pelotom
+- Support Flow@0.57.x (#8983) @rsolomon, @rosskevin
+- A new organization: `mui-org` @hai-cea
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [Select] Remove InputClasses (#9159) @oliviertassinari
+It's a revert. I have made the unwise call of adding the InputClasses property in an unrelated refactorization pull-request #8942. It was not taking the input classes property into account. It was a breaking change and not needed.
+- [core] Reduce bundle size by 2kB gzipped (#9129) @oliviertassinari
+We have removed some jss plugins from the default bundle:
+  - [jss-expand](https://github.com/cssinjs/jss-expand) (1.3 kB)
+  - [jss-compose](https://github.com/cssinjs/jss-compose) (426 B)
+  - [jss-extend](https://github.com/cssinjs/jss-extend) (702 B)
+  - [jss-template](https://github.com/cssinjs/jss-template) (330 B)
+
+It's a revert.
+I have made the unwise call of adding the InputClasses property in an unrelated refactorization pull-request #8942.
+It was not taking the input classes property into account.
+It was a breaking change and not needed.
+
+#### Component Fixes / Enhancements
+
+- [Tooltip] Fix typo in API page (#9128) @mizx
+- [Transition] Fix wrong addEndListener logic (#9142) @oliviertassinari
+- [TablePagination] export LabelDisplayedRowArgs interface and improve label (#8930) @t49tran
+- [Drawer] Hide focus ring (#9147) @rodrigofepy
+- [Drawer] Fix classes in typescript definition (#9145) @johnnynia
+- [CircularProgress] Fix behavior when dir=rtl (#9151) @alitaheri
+- [StepContent] Fix typings (#9150) @alitaheri
+- [Dialog] Fix maxWidth=xs (#9162) @oliviertassinari
+- [Select] Fix typescript typings (#9153) @alitaheri
+- [Slide] No default direction (#9165) @oliviertassinari
+- [TablePagination] Improve the API docs page (#9181) @oliviertassinari
+- [typescript] Strip keys from GridProps which won't get passed to override component (#9183) @pelotom
+- [Input] Fix input height on Firefox (#9184) @oliviertassinari
+- [Switch] Fixes non-valid HTML when div used inside of label element (#9188) @mikeriley131
+- [FormControlLabel] Fixes non-valid HTML when p used in label element (#9187) @mikeriley131
+- [Avatar] Fix alt align (#9193) @mctep
+- [Drawer] Fix typo @ignore for theme prop (#9195) @christophehurpeau
+- [style] Fix between media-query for xl (#9201) @michaelgruber
+- [transitions] Expose the transition components (#9210) @ajay2507
+- [Card] Add action prop to CardHeader (#9202) @lukePeavey
+- [Select] Add name to the target (#9216) @oliviertassinari
+- [TablePagination] Hide the rows per page selector if there are less than two options (#9213) @leMaik
+- [ButtonBase] Bookkeep the disable state (#9220) @oliviertassinari
+- [TextField] Better select support (#9224) @oliviertassinari
+- [TableCell] Use solid version of theme divider (#9229) @mbrookes
+- [ExpansionPanel] New component (#7651) @andrzejbk
+
+#### Docs
+
+- [docs] Additional tweaks (#9122) @mbrookes
+- [docs] Improved documentation for Menu style overrides (#9126) @lsemerini
+- [docs] Fix display on IE11 (#9166) @oliviertassinari
+- [docs] Fix broken link in README.md (#9177) @Primajin
+- [docs] Clean up code in IconLabelButton example (#9211) @xfumihiro
+- [docs] Fill enhanced table to always have the same height on all pages (#9214) @leMaik
+- [docs] Fix broken link to the API#spread (#9219) @oliviertassinari
+- [Guide] Add Interoperability guide (#9217) @FjVillar
+- [docs] Add a styled-components section (#9225) @oliviertassinari
+- [examples] rename organization to mui-org (#9273) @stormasm
+- [docs] Fix typo (#9288) @paulzmuda
+
+#### Core
+
+- [test] Fix flaky popper.js test (#9168) @oliviertassinari
+- [typescript] Support TypeScript 2.6 and --strictFunctionTypes (#9124) @pelotom
+- [typescript] Fix typing of withWidth (#9125) @pelotom
+- [typescript] Eliminate the need for type annotations on callback parameters (#9127) @pelotom
+- [core] Reduce bundle size by 2kB gzipped (#9129) @oliviertassinari
+- [core] Upgrade enzyme (#9167) @oliviertassinari
+- Add support for Flow@0.57.x (#8983) @rsolomon
+- [test] Avoid unspotted API docs changes (#9212) @oliviertassinari
+- [core] Increase the size-limit (#9215) @oliviertassinari
+- [flow] Continuation of Flow updates 0.57+ (#9203) @rosskevin
+- [flow] Bump react-flow-types version and fix errors (#9232) @rsolomon
+
+## 1.0.0-beta.21
+###### *Nov 13, 2017*
+
+Big thanks to the 18 contributors who made this release possible.
+
+Here are some highlights ✨:
+- @alexhayes and @vladimirpekez have done an awesome job migrating the Stepper component
+to the `v1-beta` branch (#8291). Thank you!
+- @kof Has been working hard and tightly with us to improve JSS, we have upgraded the dependency to v9 (#9111).
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [SwitchBase] Remove legacy properties (#9021) @oliviertassinari
+
+In the following diff `SwitchBase` can be a `Checkbox` a `Radio` or a `Switch`.
+
+```diff
+-<SwitchBase disabled disabledClassName={disabledClassName} />;
++<SwitchBase disabled classes={{ disabled: disabledClassName }} />;
+```
+
+#### Component Fixes / Enhancements
+
+- [InputLabel] Fix transformOrigin when direction=rtl (#9007) @alitaheri
+- [BottomNavigation] Allow null bottom navigation items (#9011) @ciroja
+- [Button] Include lineHeight in default theme button style (#9018) @mkornblum
+- [Select] Fix native width display (#8998) @oliviertassinari
+- [Modal] Expose the component to the public API (#9038) @oliviertassinari
+- [Drawer] Better support different anchor values (#9000) @oliviertassinari
+- [IconButton] Add missing TypeScript definition (#9016) @oliviertassinari
+- [List] Fix accessibility (#9017) @oliviertassinari
+- [ButtonBase] Restore the original keyboardFocusCheckTime value (#9019) @oliviertassinari
+- [Popover] Implement ability to pass coordinates as anchor (#9004) @jackyho112
+- [TextField] Fix undefined blur event (#9042) @nareshbhatia
+- [Slide] Support dynamic anchor (#9055) @oliviertassinari
+- [Input] Remove grey highlight on iOS (#9057) @oliviertassinari
+- [Grid] Add missing wrap-reverse classname (#9076) @dehli
+- [breakpoint] Fix xs value (#9078) @oliviertassinari
+- [TablePagination] Fix IE11 colSpan issue (#9086) @sakulstra
+- [Menu] Fix MenuList integration demo (#9088)
+- [Snackbar] Treat null properly and add a test for it (#9094) @leMaik
+- [Input] Fix inputProps.ref support (#9095) @oliviertassinari
+- [Slide] Refactor lifecycle logics (#9096) @alitaheri
+- [Stepper] First port of the component (#8291) @alexhayes @vladimirpekez
+- [InputLabel] Add missing FormControlClasses (#9110) @svachmic
+
+#### Docs
+
+- [docs] Fix escape in the API section (#9015) @oliviertassinari
+- [examples] Fix flow example (bdf5b6600fd82d2c5b64896994457001dac72104) @oliviertassinari
+- [examples] Fix missing props for BaseComponent (#9077) @aislanmaia
+- [docs] Add a AppBar/Menu integration example (#9067) @Tevinthuku
+- [docs] Add composed withStyles & withTheme HOCs to the FAQ (#9079) @mbrookes
+- [docs] Add file upload examples with the icon buttons (#9087) @Tevinthuku
+- [docs] Fix word (#9091) @Hissvard
+- [docs] Fix AppSearch horizontal rythm (#9107) @mbrookes
+- [docs] Fix misc typos, grammar and add minor clarifications (#9112) @mbrookes
+
+#### Core
+
+- [typescript] Conform Typography definition with React CSSProperties (#9023) @dewey92
+- [Modal] 100% coverage for modalManager.js (#9022) @oliviertassinari
+- [core] Upgrade dependencies (#9010) @oliviertassinari
+- [core] Upgrade flow-react-proptypes (#9029) @oliviertassinari
+- [typescript] Specify props type for overriding components (#9035) @pelotom
+- [core] Document the overhead of importing a single component (#9099) @oliviertassinari
+- [typescript] Fix screenWidth type and added is WidthDown (#9114) @stunaz
+- [core] Upgrade jss (#9111) @oliviertassinari
+- [core] Upgrade some dependencies (#9121) @oliviertassinari
+
+## 1.0.0-beta.20
+###### *Nov 5, 2017*
+
+Big thanks to the 12 contributors who made this release possible.
+
+Here are some highlights ✨:
+- We have been addressing a lot of bug and documentation issues during the last month.
+We should soon be able to start porting new components.
+- The test coverage increased by 0.5% thanks to @leMaik effort (#8910, #8911).
+We are very close to 100%.
+- The internal `ClickAwayListener` component was made public (#8967).
+
+### Breaking change
+
+- [style] Improve the font-size situation (#8942) @oliviertassinari
+The `Input` and `FormLabel` component do no longer inherit the font-size. You might have to override them explicitly.
+- [Popover] Add a max-height (#8943) @oliviertassinari
+```diff
+-Menu.classes.root
++Menu.classes.paper
+```
+- [Dialog] Rename withResponsiveFullScreen (#8951) @oliviertassinari
+```diff
+-import { withResponsiveFullScreen } from 'material-ui/Dialog';
++import { withMobileDialog } from 'material-ui/Dialog';
+```
+
+#### Component Fixes / Enhancements
+
+- [MenuList] Increase test coverage and fix an exception in an edge case (#8911) @leMaik
+- [Input] Fix textarea width (#8921) @istarkov
+- [SwitchBase] Inherit `disabled` from FormControl (#8917) @nllarson
+- [Popover] Improve the warning message (#8948) @oliviertassinari
+- [Popover] Add max-width (#8992) @oliviertassinari
+- [InputAdornment] Correct typescript export (#8959) @minajevs
+- [utils] Make ClickAwayListener public (#8967) @oliviertassinari
+- [Slider] Add the logic back (#8972) @oliviertassinari
+- [Select] Remove IE11 arrow (#8976) @oliviertassinari
+- [Select] Menu Items centered in IE 11 (#8982) @lukePeavey
+- [Select] Fix width on Safari (#8985) @oliviertassinari
+- [IconButton] Add buttonRef property (#8986) @oliviertassinari
+- [Grid] Document a limitation (#8987) @oliviertassinari
+- [Tooltip] New warning message (#8988) @oliviertassinari
+
+#### Docs
+
+- [docs] Split support content of CONTRIBUTING.md into SUPPORT.md (#8918) @mbrookes
+- [docs] Add demo for buttons with label and icon (#8922) @wongjiahau
+- [docs] Fix broken link (#8934) @cantsdmr
+- [docs] Fork JssProvider to release the docs (#8929) @oliviertassinari
+- [docs] Add more information around the MenuList component (#8947) @oliviertassinari
+- [docs] Add --save parameter (#8961) @Phoqe
+- [docs] Add guideline for docs/demo contribution (#8953) @wongjiahau
+- [docs] Use onChange instead of onClick for switch-like examples (#8971) @pelotom
+- [docs] Fix flow example (#8968) @oliviertassinari
+- [docs] Use next tag for the npm version badge (#8989) @leMaik
+- [docs] Add a JssProvider and CSS injection order section (#8993) @oliviertassinari
+
+#### Core
+
+- [core] Upgrade some dependencies (#8977) @oliviertassinari
+- [typescript] Add missing base props (#8931) @pelotom
+- [typescript] Add missing base props, continued (#8955) @pelotom
+- [typescript] Upgrade and resolve @types/react to 16.0.19 (#8956) @pelotom
+
+## 1.0.0-beta.19
+###### *Oct 30, 2017*
+
+Big thanks to the 17 contributors who made this release possible.
+
+Here are some highlights ✨:
+- We managed to do it! We have upgraded all the dependencies to react@16 🚀 (#8889).
+  We will keep react@15 support for some time in order to help the migration from v0.x to v1.x.
+- We have fixed an important bug of `withStyles()` with react-hot-loader.
+  Thanks a lot @rrousselGit for the support (#8897).
+- We have introduced 3 soft breaking changes (#8830, #8858, #8916).
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [transition] Improve interoperability with react-transition-group (#8830) @oliviertassinari
+```diff
+         <Grow
+-          transitionDuration={{
++          timeout={{
+             enter: enterDuration,
+             exit: leaveDuration,
+           }}
+         />
+```
+
+- [transition] Allow more accurate PropTypes (#8858) @apieceofbart
+```diff
+-    <Dialog transition={<Slide direction="left" />} />;
++    const Transition = props => <Slide direction="left" {...props} />
++    <Dialog transition={Transition} />;
+
+-    <Snackbar transition={<Slide direction="left" />} />;
++    const Transition = props => <Slide direction="left" {...props} />
++    <Snackbar transition={Transition} />;
+```
+
+- [RTL] Make Right-to-left optional (#8916) @oliviertassinari
+`jss-rtl` needs to be installed and added to jss by the users.  We do no longer do it by default.
+
+#### Component Fixes / Enhancements
+
+- [Popover] Add a marginThreshold property (#8815) @eyn
+- [Tabs] Fix consecutive updates (#8831) @oliviertassinari
+- [TextField] Support adornment full width (#8835) @oliviertassinari
+- [TextField] Fix dirty state update (#8879) @oliviertassinari
+- [breakpoints] Increase step to 5, fix media query matching on Safari (#8846) @dangh
+- [Input] Fix disabled state (#8848) @oliviertassinari
+- [Input] Fix inputProps overwriting className (#8867) @johnnynia
+- [Input] Ignore underline pointer events (#8885) @johnnynia
+- [Input] Made the labels for adorned elements not shrink on end adornment (#8882) @kf6kjg
+- [Popover] Warn when the height of the Popover is too tall (#8839) @amilagm
+- [Tooltip] Fix resize issue (#8862) @oliviertassinari
+- [CircularProgress] Add "inherit" color option (#8871) @dapetcu21
+- [Select] Fix array mutability flow annotation (#8870) @dapetcu21
+- [Dialog] Fix IE11 overflow bug (#8877) @sakulstra
+- [Menu] Add a PopoverClasses property (#8884) @johnnynia
+- [CircularProgress] Add thickness property to .t.ds file (#8888) @jportela
+- [Slider] Shouldn't be visible when in=false (#8894) @oliviertassinari
+- [Collapse] Fix height computation (#8895) @oliviertassinari
+- [withStyles] Better handle react-hot-loader (#8897) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix wrong SSR path location (#8822) @lukePeavey
+- [docs] Fix some issues I have noticed (#8826) @oliviertassinari
+- [docs] Fix typos in input adornments example (#8836) @leMaik
+- [docs] Better onboarding experience (#8851) @oliviertassinari
+- [docs] Show disabled MenuItem (#8853) @ojathelonius
+- [docs] Fix Typos (#8860) @shtam
+- [docs] Update Popover component readme (#8865) @gregnb
+- [docs] Move the font link of CRA for codesandbox (f068f50187b2cc520d3af1276578d9ed951811b7) @oliviertassinari
+- [docs] Show how to change the color of the TextField (#8880) @oliviertassinari
+- [docs] Simpler IconMenu example (#8892) @oliviertassinari
+- [docs] Temporary fix for SSR issue with Portal (#8907) @oliviertassinari
+
+#### Core
+
+- [flow] Add config lint (#8834) @rosskevin
+- [core] Upgrade the dependencies (#8852) @oliviertassinari
+- [core] Fix missing typings in /es folder (#8887) @NeoLegends
+- [core] Upgrade to react@16 (#8889) @oliviertassinari
+- [core] Upgrade size-limit (#8899) @oliviertassinari
+- [Table] Increase test coverage (#8910) @leMaik
+- [test] Increase test coverage (#8908) @oliviertassinari
+
+## 1.0.0-beta.18
+###### *Oct 24, 2017*
+
+Big thanks to the 14 contributors who made this release possible.
+
+Here are some highlights ✨:
+- New InputAdornment component (#8504).
+- New [Frequently asked questions](https://github.com/mui-org/material-ui/blob/4df547d56448cedf70977d6e2463b38eaf64d1c7/docs/src/pages/getting-started/frequently-asked-questions.md) documentation section
+- We have saved 1 KB gzip by removing our internal react-transition-group fork (#8785).
+- We have made one step further in order to upgrade all our development dependencies to react@16 (#8804).
+
+### Breaking change
+
+- [Popover] Fix incorrect className API and add mouseover demo (#8774) @oliviertassinari
+
+I have noticed one inconsistency with the `className` property.
+The value should have been applied on the root of the component.
+We enforce this behavior now.
+
+#### Component Fixes / Enhancements
+
+- [createTypography] Add htmlFontSize option (#8699) @kristenmills
+- [Modal] Improve scroll handling (#8715) @oliviertassinari
+- [RadioGroup] Better keyboard focus logic (#8720) @oliviertassinari
+- [ButtonBase] Fix missing keyboard ripple (#8723) @sakulstra
+- [ButtonBase] Remove Firefox dotted outline #8721) @oliviertassinari
+- [Tooltip] Redefine title from base typescript (#8727) @DaIgeb
+- [TypeScript] Fix GridListTitle `rows` property (#8740) @fathyb
+- [InputAdornment] New Component (#8504) @eyn
+- [TableRow] Adjust CSS for components other than <tr> (#8750) @chaitan94
+- [Select] Add missing definition for displayEmpty (#8754) @cauld
+- [Select] Fix autoWidth regression (#8796) @oliviertassinari
+- [ListItem] Disable hover effect on touch devices (#8803) @8enmann
+- [styles] Add performance optimization option (#8757) @oliviertassinari
+- [theme] Support overriding the shadows key (#8795) @oliviertassinari
+
+#### Docs
+
+- [docs] Correct some typos in name 'TypographyTheme' (#8707) @douglasmamilor
+- [docs] Better warning description (#8783) @agatac
+- [docs] Fix the docs support on windows (#8792) @SeasideLee
+- [docs] Correct a typo (occurence -> occurrence) (#8798) @chaitan94
+- [docs] Add more information on the migration path (#8709) @oliviertassinari
+- [docs] Responsive team page (#8714) @oliviertassinari
+- [docs] Better display for print (#8729) @oliviertassinari
+- [docs] Interoperability with react-jss (#8735) @oliviertassinari
+- [docs] Add CII Best Practices (#8736) @oliviertassinari
+- [docs] FAQ disable ripple (#8747) @oliviertassinari
+- [docs] Add FAQ inline-style vs withStyles() (#8758) @oliviertassinari
+- [docs] Add promising pickers lib (#8814) @oliviertassinari
+
+#### Core
+
+- [core] Output ES code in /es (#8772) @NeoLegends
+- [core] Remove erroneous exports from styles/index.d.ts (#8805) @pelotom
+- [typescript] Standard Props (#8781) @pelotom
+- [core] Use react-transition-group (#8785) @oliviertassinari
+- [core] Keep fixing failing tests for react@16 (#8804) @oliviertassinari
+- [core] react-popper allows react 16 (#8800) @oliviertassinari
+- [core] Upgdate some dependencies (#8722) @oliviertassinari
+- [core] Upgrade some dependencies (#8737) @oliviertassinari
+- [core] Upgrade some dependencies (#8777) @oliviertassinari
+- [core] Upgrade some dependencies (#8816) @oliviertassinari
+
+## 1.0.0-beta.17
+###### *Oct 16, 2017*
+
+Big thanks to the 14 contributors who made this release possible.
+
+This release is mostly about stability.
+We have merged many bug fixes PRs and documentation improvement PRs.
+We are garbage collecting all the features we have been adding lately.
+As this garbage collection stabilize, we will be able to add new features, like a stepper, extension panel or date/time pickers. But we are not here yet.
+For instance, we need to upgrade all our dev dependencies to *react@16* first.
+
+### Breaking change
+
+- [Grid] Add alignItems & alignContent properties (#8647) @sakulstra
+
+```diff
+-        <Grid container xs={6} align="flex-end">
++        <Grid container xs={6} alignItems="flex-end">
+           <Grid item>
+```
+
+#### Component Fixes / Enhancements
+
+- [ButtonBase] Fix ripple on mobile (#8605) @oliviertassinari
+- [icons] Bump recompose version (#8615) @sakulstra
+- [icons] Change homepage (#8621) @oliviertassinari
+- [withWidth] Export the module in index.js (#8616) @sakulstra
+- [typescript] Fix typings for withTheme (#8627) @DaIgeb
+- [typescript] Change the TextField.label type to the InputLabel.children type (#8630) @DaIgeb
+- [typescript] Fix conflicting types for onChange prop (#8618) @pelotom
+- [typescript] Collapse: Redefine children from Transition (#8655) @DaIgeb
+- [typescript] Add "baseline" to GridItemsAlignment type (#8678) @brentatkins
+- [Badge] Fix vertical alignment inside IconButton (#8677) @AndreiBelokopytov
+- [ListItemAvatar] Fix dense font icon display (#8682) @lawlessnut
+- [TableCell] Better handle long text (#8685) @lunzhang
+- [typing] Chip definition was missing deleteIcon & more (#8696) @cauld
+- [Tabs] Add a TabScrollButton property (#8695) @lawlessnut
+- [CircularProgress] Fix non Chrome rendering (#8687) @oliviertassinari
+- [Badge] Add an example with a IconButton (#8683) @oliviertassinari
+- [Button] Better render multilines button (#8684) @oliviertassinari
+- [Input] Fix hover style on mobile (#8644) @oliviertassinari
+- [Slide] Fix resize issue (#8672) @oliviertassinari
+- [RadioGroup] Remove the injected styles (#8692) @oliviertassinari
+- [Tooltip] Improve typescript definition (#8698) @oliviertassinari
+- [MuiThemeProvider] Add more constraints for everybody sanity (#8701) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix typo in icons.md (#8612) @MazeChaZer
+- [docs] Add link for autosuggest-highlight installation (#8625) @senthuran16
+- [docs] Fix typo in item description (#8632) @bennyn
+- [docs] Add Venuemob to showcase (#8674) @DJAndries
+- [docs] TypeScript example project and guide to withStyles (#8694) @pelotom
+- [Input] Fix grammar in documentation (#8700) @ludwigbacklund
+- [docs] Fix markdown formatting (#8640) @oliviertassinari
+- [examples] Everything is back to normal with next.js (#8611) @oliviertassinari
+- [docs] Improve fullWidth wording (#8610) @oliviertassinari
+- [docs] Make code follow the header font (#8623) @oliviertassinari
+- [docs] Improve SVG icons wordings (#8642) @oliviertassinari
+- [docs] Fix test page (#8650) @oliviertassinari
+
+#### Core
+
+- [core] Fix more warnings with enzyme@3 and react@16 (#8641) @oliviertassinari
+- [core] Prepare upgrade toward enzyme v3 (#8670) @oliviertassinari
+- [core] Safer CI on circle-ci with yarn (#8656) @oliviertassinari
+- [core] Upgrade deepmerge dependency (#8608) @oliviertassinari
+- [core] Fix CSP issue (6172bd0af0c7a0ad66626a9c3d9f5aaa34e1a6f7) @oliviertassinari
+- [core] Add global prettier config (#8624) @oliviertassinari
+
+## 1.0.0-beta.16
+###### *Oct 8, 2017*
+
+Big thanks to the 18 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Add Right-To-Left support (#8479) @alitaheri
+- Safe TypeScript checking of the `withStyles()` Higher-order Component (#8561) @pelotom and @sebald
+
+### Breaking change
+
+- [TablePagination] Allow using it anywhere (#8525) @leMaik
+
+```diff
+             <TableFooter>
+-              <TablePagination
+-                count={data.length}
+-                rowsPerPage={rowsPerPage}
+-                page={page}
+-                onChangePage={this.handleChangePage}
+-                onChangeRowsPerPage={this.handleChangeRowsPerPage}
+-              />
++              <TableRow>
++                <TablePagination
++                  count={data.length}
++                  rowsPerPage={rowsPerPage}
++                  page={page}
++                  onChangePage={this.handleChangePage}
++                  onChangeRowsPerPage={this.handleChangeRowsPerPage}
++                />
++              </TableRow>
+             </TableFooter>
+```
+
+- [typescript] Fix withStyles typing for class components; remove usage as TS decorator (#8561) @pelotom
+  We drop the TypeScript decorator support.
+
+#### Component Fixes / Enhancements
+
+- [Collapse] Fix handleEntered method (#8499) @tcoughlin3
+- [ButtonBase] Fix borderRadius for Chrome 63 (#8507) @gokulchandra
+- [Collapse] Implement the ability to set the collapsed height through props (#8368) @jackyho112
+- [GridList] Add momentum scrolling (#8538) @JeromeFitz
+- [Tabs] Add momentum scrolling (#8536) @RichardLindhout
+- [SwitchBase] Simplify the implementation (#8540) @oliviertassinari
+- [Typography] Add Vertical Rhythm (#8560) @oliviertassinari
+- [Input] Fix Textarea regression handling (#8557) @oliviertassinari
+- [Snackbar] Fix position regression (#8573) @oliviertassinari
+- [IconButton] Take advantage of the CSS inheritance (#8575) @oliviertassinari
+- [Select] Add a displayEmpty property (#8587) @oliviertassinari
+- [Select] Update description for displayEmpty propepty (#8589) @gmlnchv
+- [style] Add RTL support (#8479) @alitaheri
+- [TableCell] Fix padding TypeScript definition (#8591) @dakisxx
+- [TableCell] Wrong label: 'compact' should be 'dense' (#8596) @dakisxx
+- [Table] Standardize class names (#8593) @oliviertassinari
+- [Hidden] Make the children property required (#8502) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix color palette demo (#8513) @JeromeFitz
+- [docs] Fix copy and paste error in migration guide (#8514) @uwap
+- [docs] Change the Edit this page link in the API (#8511) @oliviertassinari
+- [Example] Pin nextjs example to react 15 (#8521) @eyn
+- [docs] Change tooltip placement for table (baa37dee87c4211b598102d8f54500d4dde28a1e) @oliviertassinari
+- [docs] Add an app to the v1 showcase (#8548) @Xalio08
+- [docs] Add a tests section in the Comparison page (#8555) @oliviertassinari
+- [docs] Remove leftover code from Tooltip example (#8551) @the-noob
+- [Circular] Add interactive integration in the docs (#8586) @oliviertassinari
+- [Hidden] Add docs for initialWidth prop (#8585) @pcardune
+- [docs] Avoid SEO indexes duplication (#8592) @oliviertassinari
+
+#### Core
+
+- [core] Upgrade to mocha@v4 (#8517) @oliviertassinari
+- [core] Upgrade dependencies (#8577) @oliviertassinari
+- [core] Upgrade eslint (#8583) @oliviertassinari
+- [core] Prepare upgrade enzyme v3 (#8595) @oliviertassinari
+- [misc] Fix small issues reported by users (#8524) @oliviertassinari
+
+## 1.0.0-beta.15
+###### *Oct 4, 2017*
+
+## material-ui-icons
+
+#### Component Fixes / Enhancements
+
+- [typscript] Adjust icon typings to change introduces in #8366 (#8529) @sebald
+
+## 1.0.0-beta.13
+###### *Oct 1, 2017*
+
+Big thanks to the 18 contributors who made this release possible.
+
+### Breaking change
+
+- [Table] Introduce padding property (#8362) @eyn
+
+```diff
+-  <TableCell checkbox>
++  <TableCell padding="checkbox">
+```
+
+- [flow] Fix Higher-order Component typing (#8419) @rosskevin
+
+```diff
+-  withTheme,
++  withTheme(),
+```
+
+- [Transition] Rich transitionDuration property (#8448) @oliviertassinari
+
+```diff
+      <Dialog
+-       enterTransitionDuration={100}
+-       leaveTransitionDuration={100}
++       transitionDuration={100}
+      </Dialog>
+```
+
+```diff
+      <Dialog
+-       enterTransitionDuration={100}
+-       leaveTransitionDuration={200}
++       transitionDuration={{
++         enter: 100,
++         exit: 200,
++       }}
+      </Dialog>
+```
+
+#### Component Fixes / Enhancements
+
+- [Tabs] Fix indicator update issue (#8388) @oliviertassinari
+- [Tabs] Support empty children (#8492) @oliviertassinari
+- [Select] Fix popover width and add autoWidth prop (#8307) @leMaik
+- [SelectInput] Fix event forwarding (#8386) @cherniavskii
+- [breakpoints] add back deleted `getWidth` as `width` with a spec (#8387) @rosskevin
+- [styles] More permissive class name generator warning (#8390) @oliviertassinari
+- [Table] Add missing components export (#8425) @klauszhang
+- [TablePagination] Fix negative pagination numbers (#8435) @leMaik
+- [Typography] Add primary option to color property (#8440) @eyn
+- [Typography] Add error option to color property (#8446) @samsch
+- [CardMedia] Add `component` property (#8376) @AndriusBil
+- [Input] Fix wrong CSS property (#8469) @oliviertassinari
+- [Input] Better placeholder display logic (#8485) @oliviertassinari
+- [icons] Better interoperability with v0.x (#8473) @oliviertassinari
+- [icons] Update peer dependency to react 16 (#8476) @eyn
+- [Slider] Fix IE11 issue (#8486) @patrickml
+- [Chip] Adds option to provide custom delete icon to Chip (#8482) @LinkedList
+- [Tooltip] Fix usage with table head (#8488) @oliviertassinari
+
+#### Docs
+
+- [docs] Misspelling on Select demo page (#8384) @kgregory
+- [docs] Select API default value for input prop (#8385) @kgregory
+- [docs] Add FormDialog Example (#8411) @chaseWillden
+- [docs] Typo in next.config.js (#8418) @marcoturi
+- [docs] Fix redirections in Supported Components (#8389) @oliviertassinari
+- [docs] Improve selection controls section (#8405) @oliviertassinari
+- [docs] Fix Drawer and Popover api docs (#8442) @cherniavskii
+- [core] Update issue template with language about providing a reproduction case (#8466) @rosskevin
+- [flow] add examples/create-react-app-with-flow (#8449) @rosskevin
+- [docs] Add a Responsive Drawer example (#8494) @oliviertassinari
+- [docs] Move docs to https://material-ui-next.com (#8495) @oliviertassinari
+- [docs] Take insertionPoint option into account (#8497) @oliviertassinari
+
+#### Core
+
+- [test] Prepare enzyme v3 upgrade (#8429) @oliviertassinari
+- [core] Update react-transition-group for react@16 (#8468) @oliviertassinari
+- [core] Update recompose to 0.25.1 (#8408) @oliviertassinari
+- [core] Update sinon to the latest version 🚀 (#8396) @greenkeeper
+- [core] Upgrade prettier (#8428) @oliviertassinari
+- [typescript] Document withStyles overloads (#8364) @pelotom
+- [typescript] Make StyledComponent only a type, not a class (#8366) @pelotom
+- [typescript] Update `BreakpointsOptions` in `createBreakpoints` (#8374) @peterprice
+- [typescript] Correct typings of TextField's onChange (#8378) @sebald
+- [typescript] Add missing toolbar property on Mixins interface (#8392) @MSNexploder
+- [typescript] Correct type definition for Theme creation (#8395) @TorstenStueber
+- [typescript] Improve `createShallow` typings (#8415) @sebald
+- [typescript] Re-add tests for `withStyle` use cases (#8399) @sebald
+- [typescript] Remove key prop from Snackbar (#8427) @TorstenStueber
+- [typescript] Fix common colors typings (#8433) @alitaheri
+- [typescript] Per-component class keys (#8375) @pelotom
+- [flow] Post-HOC change bug fixes (#8441) @rosskevin
+- [flow] 0.56.0 (#8450) @rosskevin
+- [flow] Collapse theme is not an external prop (#8470) @rosskevin
+- [flow] Fix HOC RequiredProps vs ProvidedProps (#8477) @oliviertassinari
+- [core] Update jsdom to v11.3.0 (#8491) @oliviertassinari
+
+## 1.0.0-beta.12
+###### *Sep 24, 2017*
+
+Big thanks to the 25 contributors who made this release possible.
+
+Wait, what?! We have been merging 52 pull requests from 25 different people in just 6 days (and closed 60 issues).
+This is a new record for the project.
+The `v1-beta` version is definitely getting traction.
+Thanks for the support!
+
+Here are some highlights ✨:
+- Introduction of the first codemods for the `v0.x -> v1.x` migration as well as a documentation page. @vividh (#8311, #8333, #8314)
+- The TypeScript definitions made an important step forward with more than 10 PRs merged. @pelotom @sebald @xaviergonz and more
+- Wondering how Material-UI compares to the other solutions out there?
+We have created a documentation page to stress the tradeoffs taken. (#8319)
+- `material-ui@next` has just [crossed **react-toolbox**](https://npm-stat.com/charts.html?package=react-scrollbar-size&package=react-toolbox&from=2017-01-24&to=2017-09-24) in terms of downloads on npm.
+
+### Breaking change
+
+- [styles] Refactorisation of the breakpoints (#8308) @oliviertassinari
+
+```diff
+const muiTheme = createMuiTheme({
+  breakpoints: {
+-    breakpointsMap: {
++    values: {
+      xs: 360,
+      sm: 768,
+      md: 992,
+      lg: 1200,
+      xl: 1440,
+    },
+  },
+});
+```
+
+ ```diff
+   paperWidthXs: {
+-    maxWidth: theme.breakpoints.getWidth('xs'),
++    maxWidth: theme.breakpoints.values.xs,
+   },
+```
+
+- [typescript] Improve type definition for withStyles (#8320) @pelotom
+
+@pelotom did a great job improving the `withStyles` typings, such that less generics are required to be written! Most notably, you no longer have to pass a map of class names to `withStyles`:
+
+```diff
+- withStyles<{ root: string; }>(...)
++ withStyles(...)
+```
+
+Also, `props` can now be set when applying the HOC:
+
+```diff
+- const StyledComponent = withStyles<
+-   StyledComponentProps,
+-   StyledComponentClassNames
+- >(styles)(Component);
++ const StyledComponent = withStyles(styles)<StyledComponentProps>(
++   ({ classes, text }) => (
++     <div className={classes.root}>
++       {text}
++     </div>
++   )
++ );
+```
+
+When `withStyles()` is used as a decorator and `strictNullChecks` is enabled, one has to use the `!` operator to access classes from within the class.
+
+#### Component Fixes / Enhancements
+
+- [Tabs] Move updateIndicatorState after render lifecycle (#8260) @markselby9
+- [Tabs] Handle sever side rendering (#8358) @oliviertassinari
+- [Tooltip] Fix overlaps and prevents clicking on element belows (#8257) @quanglam2807
+- [Tooltip] Fix forced reflows #8293 (#8325) @mctep
+- [Chip] Remove highlight on Android and iOS (#8280)@oliviertassinari
+- [Snackbar] Add `resumeHideDuration` property (#8272) @AndriusBil
+- [ListSubheader] Use sticky list by default (#8194) @slavab89
+- [TextField] Add a select mode (#8274) @ctavan
+- [TextField] Add Formatted input section in the docs (#8347)
+- [MenuItem] Fix dense mode (#8330) @dapetcu21
+- [Table] Add a TableFooter for pagination (#8254) @leMaik
+- [Table] Update flow types for remaining table components (#8345) @eyn
+- [Table] Enhance PropType checks for TableCell (#8350) @eyn
+- [Input] Add underline padding at all times (#8348) @dapetcu21
+- [Drawer] Add border anchor right (#8361)
+- [Dialog] Add `fullWidth` property (#8329) @AndriusBil
+
+#### Docs
+
+- [codemod] Update import paths for colors v1 (#8311) @vividh
+- [codemod] Update import paths for svg-icons v1 (#8333) @vividh
+- [docs] Add a comparison section (#8319) @oliviertassinari
+- [docs] Add small migration guide, to be continued (#8314) @oliviertassinari
+- [docs] Add some details about TextField vision (0c9936c40a359a3b7d81d44ca63061a0116b9d6d) @oliviertassinari
+- [docs] Right colors (#8268) @oliviertassinari
+- [docs] Minor grammatical fixes (#8283) @vpicone
+- [docs] Tooltips are supported (#8282) @skirunman
+- [docs] Autosuggest example typo fix (#8315) @the-noob
+- [docs] Changing type 'Alignement' to Alignment (#8335) @apearson
+- [CHANGELOG] Add info for withStyles BC (#8342) @sebald
+
+#### Core
+
+- [flow] Remove class property props to reduce bundle size (#7884) @rosskevin
+- [flow] Update to flow 55 (#8305) @oliviertassinari
+- [types] Better component typing (#8304) @oliviertassinari
+- [styles] Add a new defensive warning (#8341) @oliviertassinari
+- [core] Upgrade the dependencies (#8284) @oliviertassinari
+- [core] Help Webpack doing dead code elimination (#8340) @oliviertassinari
+- [core] Add TypeScript in the CI (#8328) @oliviertassinari
+- [typescript] Fix typo in Tooltip (#8271) @Rid
+- [typescript] Fix definitions for BreakpointsOptions (#8285) @peterprice
+- [typescript] Fix for Avatar.d.ts not having a style property definition (#8277) @xaviergonz
+- [typescript] Fix missing attribute in FormControl (#8297) @maresja1
+- [typescript] Fix Tooltip typings (#8292) @lagunoff
+- [typescript] Add className to StyledComponentProps (#8295) @pelotom
+- [typescript] Allow `Grid` to accept `HTMLAttributes` props (#8317) @michaelgruber
+- [typescript] Add style to StyledComponentProps (#8322) @pelotom
+- [typescript] Restore withStyles class decorator (#8354) @pelotom
+- [typescript] Enable strictNullChecks (#8356) @pelotom
+- [typescript] Allow overriding a subset of classes (#8355) @pelotom
+- [typescript] Allow overriding a subset of classes (#8355) @pelotom
+
+## 1.0.0-beta.11
+###### *Sep 18, 2017*
+
+Big thanks to the 12 contributors who made this release possible.
+
+### Breaking change
+
+- [Tooltip] Rename label to title property to match the native HTML feature wording (#8234) @oliviertassinari
+
+```diff
+-  <Tooltip label="Add">
++  <Tooltip title="Add">
+```
+
+#### Component Fixes / Enhancements
+
+- [AppBar] Height shall not shrink (#8192) @hongyuan1306
+- [Select] Allow invalid children (#8201) @sakulstra
+- [typescript] Correct TypeScript types of typography definitions (#8199) @TorstenStueber
+- [Drawer] Height should be set to 100% to allow scrolling (#8203) @Skaronator
+- [ButtonBase] Wrong layout with Safari (#8211) @oliviertassinari
+- [typescript] Fix `withResponsiveFullScreen`, `Input` + `Select` (#8214) @sebald
+- [typescript] Correct definition of StyledComponentProps (#8221) @TorstenStueber
+- [Tooltip] Add fontFamily to component (#8226) @nel-co
+- [Tooltip] Add accessibility support (#8234) @oliviertassinari
+- [Menu] Second iteration on focus issue (#8234) @oliviertassinari
+- [ListItem] Add some spacing for ListItemSecondaryAction (#8239) @oliviertassinari
+- [ButtonBase] Better support of the component property (#8218) @dobryanskyy
+- [TableRow] Adjust head row height according to the specs (#8249) @leMaik
+- [Tooltip] Fix core issues with the component (#8250) @oliviertassinari
+- [typescript] Fix prop name typo (#8261) @Portgass
+
+#### Docs
+
+- [Tooltip] Add a warning when using the title native feature at the same time (#8234) @oliviertassinari
+- [Popover] Remove unsupported modal property from the Popover component that doesn't match his purpose. (#8234) @oliviertassinari
+- [Form] Extend the description of the component (#8234) @oliviertassinari
+- [docs] Some fixes (#8210) @oliviertassinari
+- [docs] Fix typo in markdown generation (#8222) @albinekb
+- [Toolbar] Fix documentation of children property (#8230) @eyn
+- [Drawer] Improve the Temporary demo (#8241) @oliviertassinari
+- [docs] Simplify the carbon integration (#8244) @oliviertassinari
+- [docs] Add google analytics (#8247) @oliviertassinari
+
+#### Core
+
+- [Tooltip] Add a visual regression test (#8228) @oliviertassinari
+
+## 1.0.0-beta.10
+###### *Sep 14, 2017*
+
+This is an early release as we have been breaking the typescript typings with 1.0.0-beta.9.
+Hopefully, we are in a better state now.
+Here are some highlights:
+- Keeping pushing typing fixes @xaviergonz and @sebald
+- A new Tooltip component thanks to @quanglam2807 (#7909)
+- Our internal styling solution should be faster with (#8142).
+With the last release we fix a memory leak (#8036), so thanks for reporting those issues!
+
+Big thanks to the 13 contributors who made this release possible.
+
+### Breaking changes
+
+- [MobileStepper] Add nextButton and backButton property (#8001) @wieseljonas
+
+```diff
++import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
++import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
+
+     <MobileStepper
+-        onBack={this.handleBack}
+-        onNext={this.handleNext}
+-        disableBack={this.state.activeStep === 0}
+-        disableNext={this.state.activeStep === 5}
++        nextButton={
++          <Button dense onClick={this.handleNext} disabled={this.state.activeStep === 5}>
++            Next
++            <KeyboardArrowRight />
++          </Button>
++        }
++        backButton={
++          <Button dense onClick={this.handleBack} disabled={this.state.activeStep === 0}>
++            <KeyboardArrowLeft />
++            Back
++          </Button>
++        }
+      />
+```
+
+#### Component Fixes / Enhancements
+
+- [Tooltip] New component (#7909) @quanglam2807
+- [typescript] Fix ts tabindex to use number (#8125) @xaviergonz
+- [Drawer] Fix delegation of the className (#8126) @daveish
+- [ButtonBase] Make the `button` and `a` behavior the same (#8130) @oliviertassinari
+- [withStyle] Memoize the classes object between renders (#8142) @oliviertassinari
+- [typescript] Fix for Popover -> PaperProps typing (#8129) @xaviergonz
+- [typescript] Fix for createPalette TS types (#8123) @xaviergonz
+- [LinearProgress] Fix loop (#8146) @oliviertassinari
+- [Card] Add `backgroundPosition: 'center'` to CardMedia (#8148) @kripod
+- [ImgBot] Optimize images (#8154) @dabutvin
+- [Input] Better handle type=number (#8164) @oliviertassinari
+- [typescript] Improve typings for `ButtonBase` (#8175) @sebald
+- [typescript] Make `withStyles` usable as decorator (#8178) @sebald
+- [FormControls] Fix styling for component (#8186) @slavab89
+- [Toolbar] Add a toolbar mixins 💄 (#8157) @wcandillon
+- [Switch] Styling bug fix on long labels (#8181) @willfarrell
+- [Radio] Accept invalid children (#8187) @oliviertassinari
+- [theme] Extend createMuiTheme behavior (#8188) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix popover component name (#8161) @cherniavskii
+- [Snackbar] 6e3 -> 6000; better to be less clever and more clear (#8151) @davidcalhoun
+- [docs] Inverse expand icons on the NestedList demo (51f40016e29f5159a87cafae1092eb85416eb0d5) @oliviertassinari
+
+#### Core
+
+- [core] Bump some dependencies (#8149) @oliviertassinari
+
+## 1.0.0-beta.9
+###### *Sep 10, 2017*
+
+Again, this release is particularly dense! Here are some highlights:
+- Many typing fixes (typescript and flow) by @sebald, @rosskevin and @xaviergonz
+- A new Select component thanks to @kybarg (#8023)
+- A new Pickers documentation page (#8117)
+
+Big thanks to the 13 contributors who made this release possible.
+
+### Breaking changes
+
+N.A
+
+#### Component Fixes / Enhancements
+
+- [Select] First implementation (#8023) @kybarg
+- [style] Fix memory leak (#8036) @oliviertassinari
+- [RadioGroup] Fix TypeScript definition for value property (#8026) @jaredklewis
+- [Popover] Pass transitionDuration to Grow (#8049) @nvma
+- [typescript] Add `image` to CardMediaProps (#8033) @sebald
+- [typescript] Fix typings of withTheme (#8052) @sebald
+- [typescript] Fix `BottomNavigation`s onChange type (#8067) @sebald
+- [typescript] Allow to pass stylings props via component props (#8066) @sebald
+- [typescript] Update index and format (#8076) @sebald
+- [CardMedia] Allow styling without breaking image (#8079) @pex
+- [List] Remove overflow (#8086) @oliviertassinari
+- [SvgIcon] Fix react@16 issue with `focusable` (#8102) @NLincoln
+- [Hidden] Change children type to allow many and add children tests (#8082) @rosskevin
+- [IconButton] Correct CSS precedence (#8106) @oliviertassinari
+- [Tabs] Accept null children (#8107) @oliviertassinari
+- [Snackbar] Fix click-through issue in IE11 (#8096) @stbenz88
+- [InputLabel] Add a FormControlClasses property (#8108) @oliviertassinari
+- [typings] Switch tabIndex from string type to number | string (#8115) @xaviergonz
+- [Input] Dodge the BFcache issue (#8110) @rosskevin
+
+#### Docs
+
+- [Picker] Add page section in the documentation (#8117) @oliviertassinari
+- [docs] Update basics.md (#8014) @kgaregin
+- [docs] 🚑 Fix broken link (#8029) @wcandillon
+- [examples] Fix typo in extraction path (#8031) @freiit
+- [Drawer] Fix for mini variant drawer can be scrolled horizontally when collapsed (#8112) @xaviergonz
+- [docs] Update react-docgen and fix api docs (#8056) @rosskevin
+- [docs] Remove defensive checks (#8057) @rosskevin
+- [examples] Fix create react app explicit dependencies (#8087) @rosskevin
+- [docs] Add a spread section to the API page (#8097) @oliviertassinari
+- [docs] Reduce the bundle size 📦 (#8121) @oliviertassinari
+- [docs] Add carbon (#8118) @oliviertassinari
+- [docs] Makes the sections bolder (#8116) @oliviertassinari
+
+#### Core
+
+- [core] Flow 0.54.0 updates (#8042) @rosskevin
+- [typescript] Add example for using withStyle/Theme together (#8078) @sebald
+- [core] Small improvements (#8084) @oliviertassinari
+
+## 1.0.0-beta.8
+###### *Sep 2, 2017*
+
+Big thanks to the 8 contributors who made this release possible.
+
+### Breaking changes
+
+N.A
+
+#### Component Fixes / Enhancements
+
+- [typescript] Adjust typings to refactoring in `styles` (#7975) @sebald
+- [Drawer] Add `type` property, remove `docked` property in TypeScript definition (#7998) @jaredklewis
+- [typescript] Make createMuiTheme's ThemeOptions recursively partial (#7993) @fathyb
+- [npm] Move "next" to the dev dependencies (#7980) @oliviertassinari
+
+#### Docs
+
+- [docs] Add a NestedList example (#7995) @apalanki
+- [SSR] Remove the singleton hack ✨ (#7965)
+- [docs] Fix SSR palette creation section (#7987) @Shastel
+- [docs] Remove typo on the Paper demo page (#7979) @jzakotnik
+- [docs] Add missing inheritance pragma to MenuItem (#7983) @yuchi
+- [example] Fix next.js CSS blink (cd0f883325b2b74515972d58f12868897fc34bf6) @oliviertassinari
+- [docs] Fix ROADMAP page issues (#8008) @oliviertassinari
+
+#### Core
+
+- [typescript] Add test for Grid (#7991) @sebald
+
+## 1.0.0-beta.7
+###### *Aug 30, 2017*
+
+This release is particularly dense! Here are some highlights:
+- We release 4 breaking changes at the same time.
+This is a first for the project.
+We wanted to release them as soon as possible, while the v1-beta market share is still at 10% of the v0.x version.
+Hopefully, the frequency of the breaking changes will slow down.
+- @rosskevin has upgraded the Flow dependency. v0.53 is providing a much better typing integration with React.
+- The Drawer component has some new features.
+One of them is allowing the documentation to fully take advantage of the server side rendering.
+We expect the documentation to render even faster with this beta.
+
+Big thanks to the 12 contributors who made this release possible.
+
+### Breaking changes
+
+- [theme] Use secondary wording over accent (#7906) @oliviertassinari
+
+```diff
+     const theme = createMuiTheme({
+-      palette: createPalette({ primary: deepOrange, accent: green }),
++      palette: createPalette({ primary: deepOrange, secondary: green }),
+     });
+```
+
+```diff
+   flatAccent: {
+-    color: theme.palette.accent.A200,
++    color: theme.palette.secondary.A200,
+```
+
+- [Drawer] New improvements (#7925) @oliviertassinari
+
+
+```diff
+-<Drawer docked />
++<Drawer type="persistent" />
+```
+
+- [theme] Simplification of the API (#7934) @oliviertassinari
+  - If you are using a direct import of `material-ui/styles/theme`, the path changed:
+  ```diff
+  -import createMuiTheme from 'material-ui/styles/theme';
+  +import createMuiTheme from 'material-ui/styles/createMuiTheme';
+  ```
+
+  - We have removed the intermediary functions, now you can provide a nested structure to override the generated theme structure inside the first argument of `createMuiTheme()`. Notice that you can still change the output object before providing it to the `<MuiThemeProvider />`.
+
+  ```diff
+   const theme = createMuiTheme({
+  -  palette: createPalette({
+  +  palette: {
+       primary: blue,
+       secondary: pink,
+     }),
+  -  typography: createTypography(palette, {
+  +  typography: {
+       // System font
+       fontFamily:
+         '-apple-system,system-ui,BlinkMacSystemFont,' +
+         '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+  -  }),
+  +  },
+  -},
+  +});
+  ```
+
+- [Input] Better support required field (#7955) @oliviertassinari
+
+Following Bootstrap, we are now forwarding the required property down to the input component. We used to only apply `aria-required`. This move makes us less opinionated and should help with native form handling.
+
+If you want to avoid the default browser required property handling, you can add a `noValidate` property to the parent `form`.
+
+#### Component Fixes / Enhancements
+
+- [TextField] Fix label position with dense margins (#7946) @phallguy
+- [FormControlLabel] Allow for node in the label prop (#7903) @Taldrain
+- [ListItemIcon] Icon should not shrink fixes (#7917) @gulderov
+- [withResponsiveFullScreen] missed type import (#7926) @rosskevin
+- [typescript] Fixes/improvements for withWith/withStyle/BottomNavigationAction (#7897) @sebald
+- [typescript] Update typings to popover changes (#7937) @sebald
+- [Popover] Expose the component (#7927) @oliviertassinari
+- [ButtonBase] Better warning message (#7904) @oliviertassinari
+- [Menu] Allow invalid children (#7907) @oliviertassinari
+- [Menu] Add a new warning (#7962) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix missing props in css-in-js examples (#7867) @Izhaki
+- [docs] Fix docs build on Windows (#7938) @kybarg
+- [docs] remove flow from demos (#7883) @rosskevin
+- [docs] Use emoji directly instead of :shortcodes: (#7912) @markspolakovs
+- [docs] Show an example with the data- pattern (#7924) @Sigfried
+- [docs] Small fixes after the next.js refactorization (#7851) @oliviertassinari
+- [docs] Fix typo in floating-action button property of Button (#7951) @kgregory
+- [docs] Add the title for SEO (#7885) @oliviertassinari
+- [docs] Better support IE11 (#7939) @oliviertassinari
+- [docs] The style is injected at the bottom of the head (#7954) @oliviertassinari
+
+#### Core
+
+- [typescript] Refactor typings to modules (#7874) @sebald
+- [flow] Upgrade to flow 0.53.1 (#7869) @rosskevin
+- [core] Misc flow fixes (#7890) @rosskevin
+- [core] Upgrade prettier (#7941) @oliviertassinari
+
+## 1.0.0-beta.6
+###### *Aug 20, 2017*
+
+A big shout-out to @sebald for our first TypeScript coverage.
+Another notable change is [the migration of the documentation](#7759) to [Next.js](https://github.com/zeit/next.js), it's twice as fast as before 🚀.
+
+Big thanks to the 9 contributors who made this release possible.
+
+### Breaking changes
+
+- [RadioGroup] Rename selectedValue to value (#7832) @oliviertassinari
+
+Push #7741 initiative forward (use `value` and `onChange` as controlling properties)
+
+```diff
+-<RadioGroup selectedValue="foo">
++<RadioGroup value="foo">
+// ...
+```
+
+#### Component Fixes / Enhancements
+
+- [Table] Add the possibility of custom element type (#7765) @wieseljonas
+- [Input] remove extraneous props when using custom component (#7784) @rosskevin
+- [Input] should accommodate number and string values (#7791) @rosskevin
+- [Slide] Remove Slide offset property from src and docs (#7808) @gfpacheco
+- [typescript] Create typings for material-ui-icons (#7820) @sebald
+- [typescript] Add tests for typings + fixes (#7686) @sebald
+- [typescript] Update typings for beta.4 and beta.5 (#7793) @sebald
+- [typescript] Update <Slide> typings (#7817) @sebald
+- [TextField] Fix placeholder issue (#7838) @oliviertassinari
+
+#### Docs
+
+- [docs] Use Next.js: x2 performance (#7759) @oliviertassinari
+- [docs] Add the 'data grid for Material-UI' reference (#7786) @dxbykov
+- [docs] Renamed the styleSheet argument in withStyles to styles (#7819) @phiilu
+- [docs] Advanced table (#7824) @oliviertassinari
+- [docs] Fix typo (#7777) @Merkyl999x
+- [docs] Fix run-on sentences (#7792) @gitname
+- [docs] Show inherited components (#7846) @oliviertassinari
+- [docs] Add a team page (#7842) @oliviertassinari
+- [docs] Add a ROADMAP page (#7840) @oliviertassinari
+- [docs] Some last improvement before the release (#7847) @oliviertassinari
+
+#### Core
+
+- [core] Better usage of the CI 🚀 (#7833) @oliviertassinari
+- [core] Fix size-limit warning (#7822) @oliviertassinari
+- [icons] Automate release process (#7823) @oliviertassinari
+- [core] Update some dependencies (#7831) @oliviertassinari
+
+## 1.0.0-beta.5
+###### *Aug 15, 2017*
+
+Big thanks to the 11 contributors who made this release possible.
+
+### Breaking changes
+
+- [Tabs][BottomNavigation] Use value over index property (#7741) @oliviertassinari
+
+This is an effort in the prolongation of #2957 where `value`/`onChange` is the idiomatic interface to control a component.
+```diff
+-<Tabs index={0}>
++<Tabs value={0}>
+// ...
+```
+- [core] Remove createStyleSheet (#7740)(#7730) @oliviertassinari
+
+The primary motivation for this change is simplicity, it's also making our interface closer to
+`react-jss`.
+```diff
+-import { withStyles, createStyleSheet } from 'material-ui/styles';
++import { withStyles } from 'material-ui/styles';
+
+-const styleSheet = createStyleSheet('Button', {
++const styles = {
+  root: {
+    background: 'red',
+  },
+-});
++};
+
+// ...
+
+-export default withStyles(styleSheet)(AppContent);
++export default withStyles(styles, { name: 'Button' })(Button);
+```
+
+#### Component Fixes / Enhancements
+
+- [Modal] Fix with react@next (#7673) @oliviertassinari
+- [Card] allow overflow - important for content such as autosuggest (#7687) @rosskevin
+- [CardHeader] Allow classes in title and subheader (#7701) @bmuenzenmeyer
+- [Tabs] Fix full width issue (#7691) @oliviertassinari
+- [Button] Disable the hover effect on touch devices (#7692) @oliviertassinari
+- [Popover] Refactor popover transition - separation of concerns (#7720) @rosskevin
+- [ButtonBase] Expose internal component (#7727) @oliviertassinari
+- [LinearProgress] Use transform instead width (#7732) @kevindantas
+
+#### Docs
+
+- [docs] Update Minimizing Bundle Size Documentation (#7707) @umidbekkarimov
+- [docs] Fix broken menu on the autocomplete page (#7702) @oliviertassinari
+- [examples] Take ownership on the next.js example (#7703) @oliviertassinari
+- [docs] Create CODE_OF_CONDUCT.md (1f3e67326d76f5d2053b128d5ca2cdefa0d6d90f) @oliviertassinari
+- [docs] Update supported-components.md (#7722) @BLipscomb
+- [docs] Fix the installation instructions of the examples (#7733) @dawogfather
+- [docs] Fix Typo (#7736) @Merkyl999x
+
+#### Core
+
+- [core] Flow type transitions Slide, Fade, Collapse (#7719) @rosskevin
+- [core] General maintenance (#7690) @oliviertassinari
+
+## 1.0.0-beta.4
+###### *Aug 5, 2017*
+
+Big thanks to the 7 contributors who made this release possible.
+
+#### Component Fixes / Enhancements
+
+- [Grid] Add baseline to container's align property (#7623) @kgregory
+- [GridList] Migrate to v1 branch (#7626) @mbrookes
+- [ListItemText] Repurpose text class (#7645) @kgregory
+- [Drawer] Fix docker warning (#7598) @oliviertassinari
+- [Drawer] Fix Chrome regression (#7599) @oliviertassinari
+- [style] Fix HMR issue with react-hot-loader (#7601) @oliviertassinari
+- [ButtonBase] Explicit the need for a class component (#7656) @oliviertassinari
+- [Modal] Take into account the body margin (#7666) @oliviertassinari
+- Fixes in the subway (#7661) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix language issues for clarity (#7610) @skirunman
+- [docs] Update docs for <RadioGroup> (#7640) @sebald
+- [docs] Fixed "initial" word in vars and typo (#7639) @kybarg
+- [docs] Spell check eslint script (#7643) @kybarg
+- [docs] Fix audit issues (#7595) @oliviertassinari
+- [docs] Show how to use the insertionPoint (#7611) @oliviertassinari
+
+#### Core
+
+- [flow] Export type Props for composability (#7609) @rosskevin
+- [typescript] Add TS typings (#7553) @sebald
+- [typescript] Improve the coverage (#7606) @sebald
+- [core] Add isMuiComponent helper (#7635) @katzoo
+
+## 1.0.0-beta.3
+###### *Jul 29, 2017*
+
+Big thanks to the 8 contributors who made this release possible.
+
+This release is full of bug fixes and documentation improvements following the major
+styling update of the previous release.
+
+#### Component Fixes / Enhancements
+
+- [Drawer] Fix docked not inheriting props (#7590) @foreggs
+- [Dialog] Better fullscreen fix (4deee4b5e3465682996d4dce35e5c60fd040502b) @oliviertassinari
+- [List] Fix padding issue (#7529) @markselby9
+- [test] Remove dead code (4e2cf38ae3181cf38a5796179bfb2887c402b4ac) @oliviertassinari
+- [flow] Fix wrong import (5a88d950bb3e9c7105cfa6b45c796d167827f1d7) @oliviertassinari
+- [Tabs] Fix Scroll button visibility state when child tab items are modified (#7576) @shawnmcknight
+- [TextField] Forward the id to the label & more (#7584) @oliviertassinari
+- [ios] Fix some style issue with Safari iOS (#7588) @oliviertassinari
+
+#### Docs
+
+- [docs] Add example with Create React App (#7485) @akshaynaik404
+- [docs] Minor tweaks to grammar of CSS in JS page (#7530) @mbrookes
+- [docs] Server side fix docs (91a30ee2276d8d06776f6fba831930568974dacc) @oliviertassinari
+- [docs] Fix 'colors' path in imports (#7519) @burnoo
+- [docs] Some fixes after the latest upgrade (#7528) @oliviertassinari
+- [docs] Update for supported components (#7586) @skirunman
+- [docs] Fix small issues I have noticed (#7591) @oliviertassinari
+- [docs] Optional style sheet name (#7594) @oliviertassinari
+- [docs] Use flow weak on the demos as we can't expect users to have flow (cd25e63a214c37ed7945e31aa9b08f02baa17351) @oliviertassinari
+
+#### Core
+
+- [core] Support react@16.0.0-beta.1 (#7561) @oliviertassinari
+- [core] Small fixes of the styling solution (#7572) @oliviertassinari
+- [core] Better themingEnabled logic (#7533) @oliviertassinari
+- [core] Upgrade dependencies and build for the supported targets (#7575) @oliviertassinari
+- [core] Upgrade dependencies (#7539) @oliviertassinari
+- [flow] Increase coverage (6f4b2b3b3773ace568de54aaefbca963ab408b40) @oliviertassinari
+
+## 1.0.0-beta.2
+###### *Jul 23, 2017*
+
+Publish a new version as `v1.0.0-beta.1` was already used.
+
+## 1.0.0-beta.1
+###### *Jul 23, 2017*
+
+Big thanks to the 12 contributors who made this release possible.
+
+This is the first beta release.
+We are proud to move to the next step after 7 months of dogfooding with the alpha releases.
+We have been fixing many bugs and implemented new features.
+The styling solution has also been greatly improved:
+- Better performance
+- Shorter class names in production, e.g. `c1y`
+- Better readable class names in development
+- No longer required `MuiThemeProvider`
+- Simpler `createStyleSheet` API with an optional name
+- Theme nesting
+- Reliable theme update bypassing pure component logic
+- Interoperability with `react-jss`
+
+Please keep in mind that [semver](https://docs.npmjs.com/getting-started/semantic-versioning) won't be respected between pre-releases.
+In other words, the API will change if we need to.
+
+### Breaking changes
+
+- [core] Improve styling solution (#7461)
+
+The `styleManager` is gone. The server side rendering configuration changed, use the `sheetManager` instead. The documentation was updated, you can refer to it if needed.
+
+#### Component Fixes / Enhancements
+
+- [List] Make List & ListItem semantic (#7444) @akshaynaik404
+- [Portal] Fix Portal not removing layer correctly on React 16 (#7463) @cusxio
+- [Popover] Doesn't reposition with anchorEl (#7479) @quiaro
+- [IconButton] Remove z-index (#7467) @oliviertassinari
+- [IconButton] Add the missing primary color (#7470) @MichaelMure
+- [Toolbar] Follow the spec more closely (#7475) @oliviertassinari
+- [Dialog] Fix Dialog margin (#7474) @hanalaydrus
+- [DialogActions] Fix allow have Children with null values (#7504) @stvkoch
+- [Autocomplete] Show an integration example (#7477) @oliviertassinari
+- [TextField] Fix multiline issue (#7498) @oliviertassinari
+- [Progress] Add color property (#7500) @kgregory
+
+#### Docs
+
+- [docs] Fix minor typo (#7476) @jeffbirkholz
+- [docs] Mark items on the supported components page as done (#7492) @Airblader
+- [docs] Update help for 'overriding' to specify injection point (#7505) @cdharris
+- [docs] Add next.js example (#7510) @oliviertassnari
+- [docs] Selection control custom colors (#7516) @oliviertassnari
+
+#### Core
+
+- [core] Ignore the package-lock.json file generated by npm (#7502) @Airblader
+
+## 1.0.0-alpha.22
+###### *Jul 18, 2017*
+
+### Breaking changes
+
+- [Switch] New FormControlLabel component (#7388) @oliviertassinari
+```diff
+<RadioGroup>
+-  <LabelRadio label="Male" value="male" />
++  <FormControlLabel value="male" control={<Radio />} label="Male" />
+</RadioGroup>
+```
+
+This change provides more flexibility.
+
+- [BottomNavigation] Use value over index (#7421) @oliviertassinari
+```diff
+-  <BottomNavigation index={index} onChange={this.handleChange}>
++  <BottomNavigation value={value} onChange={this.handleChange}>
+```
+
+Also plan to do the same for the `Tabs` in order to have a consistant API
+where we always use `value`/`onChange` for controlled components.
+
+#### Component Fixes / Enhancements
+
+- [Avatar] Avoid shrink (#7344) @oliviertassinari
+- [withWidth] Add a initalWidth property (#7343) @oliviertassinari
+- [TextField] vertical spacing to match visual spec (#7359) @rosskevin
+- [TextField/FormControl] dense implementation (#7364) @rosskevin
+- [Input/FormHelperText] Dense margin fixes (#7374) @rosskevin
+- [LinearProgress] Improve perf and clean (#7356) @oliviertassinari
+- [TextField] Address autoComplete issue (#7377) @oliviertassinari
+- [Menu] maxHeight spec compliance (#7378) @rosskevin
+- [Menu] Add ripple (#7381) @oliviertassinari
+- [Menu] Fix wrong scroll positioning (#7391) @oliviertassinari
+- [Modal] Fix concurrency issue (#7383) @oliviertassinari
+- [Checkbox] Add indeterminate property (#7390) @oliviertassinari
+- [Snackbar] Handle inactive tabs (#7420) @oliviertassinari
+
+#### Docs
+
+- [docs] Color import correction (#7398) @wieseljonas
+- [docs] Fix typo (#7338) @adamborowski
+- [docs] Fix the path of imported colors (#7348) @shug0
+- [docs] Update documentation to reflect component name (#7406) @the-noob
+- [docs] Better warning message for missing MuiThemeProvider (#7429) @oliviertassinari
+- [docs] Add @param everywhere (#7432) @oliviertassinari
+
+#### Core
+
+- [flow] global dom element workaround (#7401) @rosskevin
+- [core] Add size-limit (#7422)
+- [core] Upgrade some dependencies (#7361) @oliviertassinari
+- [core] Upgrade dependencies (#7433) @oliviertassinari
+- [icons] Upgrade the dependencies (#7385) @oliviertassinari
+
+## 1.0.0-alpha.21
+###### *Jul 4, 2017*
+
+### Breaking changes
+
+- [core] Reduce the bundle size (#7306) @oliviertassinari
+Change the colors location as you most likely only need 20% of them in your bundle
+```diff
+-import { blue, fullWhite } from 'material-ui/styles/colors'
++import blue from 'material-ui/colors/blue'
++import common from 'material-ui/colors/common'
++const { fullWhite } = common
+```
+
+#### Component Fixes / Enhancements
+
+- [TextField] Fix textarea disabled support (#7255) @Calcyfer
+- [withStyles] Provide context for withStyles classes error (#7274) @rosskevin
+- [misc] Improve various points (#7275) @oliviertassinari
+- [Snackbar] Documentation - key property (#7307) @rosskevin
+- [Snackbar] Expose transition onExited to allow for consecutive messages with completed transitions (#7308) @rosskevin
+- [Chip] Fix Firefox issue with the svg icon (#7327) @oliviertassinari
+- [ButtonBase] Use color inherit by default (#7331 @oliviertassinari
+- [Input] Add a fullWidth property (#7329) @oliviertassinari
+
+#### Docs
+
+- [docs] Improve the documentation regarding material.io/icons (#7323) @oliviertassinari
+- [docs] Fix MobileStepper API (#7299) @ng-hai
+
+#### Core
+
+- [core] Reduce the bundle size (#7306) @oliviertassinari
+- [test] Should get coverage (#7272) @oliviertassinari
+- [core] Expand use of flow (#7268) @rosskevin
+
+## 1.0.0-alpha.20
+###### *Jun 25, 2017*
+
+Do you like playing with bleeding-edge tech?
+We do, we have extended the support of React to the 16.0.0-alpha.13 release (aka Fiber).
+
+### Breaking changes
+
+- [Paper] Use normalized root over paper className (#7198) @oliviertassinari
+- [core] Follow the same convention as React for the umd build (#7217) @oliviertassinari
+
+#### Component Fixes / Enhancements
+
+- [material-ui-icons] v1.0.0-alpha.19 (21b67cec3b200517c9dfdf4d28c0bfc2d1dceeaa) @oliviertassinari
+- [Input] Fix incorrect type of autoFocus prop (#7189) @gnapse
+- [Icons] Modernize icons package (#7203) @kvet
+- [Input] Fix various styling issue #7209 @oliviertassinari
+- [Tabs] Add a primary color and update the docs (#7242) @oliviertassinari
+- [ListItem] Use the .shortest duration (#7246) @oliviertassinari
+- [Dialog] Also take fixed element into account (#7239) @oliviertassinari
+- [Drawer] Fix first mount transition issue (#7236) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix typo in class name (#7192) @ossan-engineer
+- [docs] Add supported server section (#7231) @oliviertassinari
+- [docs] Detail the browser support (#7188) @oliviertassinari
+- [docs] Upgrade to webpack v3 (#7210) @oliviertassinari
+- [docs] More documentation on the typography (#7248) @oliviertassinari
+
+#### Core
+
+- [test] Even faster CI build (#7230) @oliviertassinari
+- [styles] Export more functions (#7241) @oliviertassinari
+- [react] Support 16.0.0-alpha.13 (#7218) @oliviertassinari
+- [core] x2 speed up on the build (#7220) @oliviertassinari
+- [babel] Use transform-object-assign over a custom one (#7219) @oliviertassinari
+- [core] Some fixes (#7216) @oliviertassinari
+
+## 1.0.0-alpha.19
+###### *Jun 19, 2017*
+
+The previous v1.0.0-alpha.18 release is corrupted.
+
+#### Component Fixes / Enhancements
+
+- [Typography] Expose a headlineMapping property (#7183) @oliviertassinari
+- [Typography] Add a accent color variation (#7183) @oliviertassinari
+- [FormControl] Fix wording (#7183) @oliviertassinari
+- [Toolbar] Simplify breakpoint logic (#7183) @oliviertassinari
+- [Button] Fix upload button demo (#7183) @oliviertassinari
+- [TextField] Forward the placeholder (#7183) @oliviertassinari
+- [MobileStepper] Improvements (#7179) @alexhayes
+- [MobileStepper] Fix the wordings (#7183) @oliviertassinari
+- [AppBar] Use a header instead of a div DOM element (#7183) @oliviertassinari
+
+#### Docs
+
+- [docs] Update minimizing-bundle-size.md (#7169) @kazazor
+- [docs] Info on how to use the breakpoints attribute in the theme (#7172) @alexhayes
+- [docs] Add a supported browsers section (#7174) @oliviertassinari
+- [docs] We don't require any polyfill (#7183) @oliviertassinari
+- [docs] Exposes the 3 Babel plugins available for minimising the bundle size (#) @oliviertassinari
+- [docs] Fix MATERIAL_UI_PORT not fully supported
+
+#### Core
+
+- [core] Add missing flow import (#7180) @oliviertassinari
+
+## 1.0.0-alpha.18
+###### *Jun 19, 2017*
+
+### Breaking changes
+
+- [TextField] Add a marginForm property (#7113) @oliviertassinari
+This change makes the extra margin of the component optional.
+It's making us following less closely the specification but provides more flexibility out of the box.
+- [core] Remove some no longer needed properties (#7132) @oliviertassinari
+Use the `classes` property over the removed `xxxClassName`.
+- [Button] Implement the dense option over the compact one (#7147) @oliviertassinari
+
+#### Component Fixes / Enhancements
+
+- [SvgIcon] set focusable=false to fix IE tab navigation (#7106) @petermikitsh
+- [Dialog] Remove css width as it is too prescriptive for simple dialogs (#7115) @oliviertassinari
+- [BottomNavigation] Fix type error when onChange is not defined (#7139) @seasick
+- [TextField] Better support number value type (#7162) @oliviertassinari
+- [ButtonBase] Normalize ripple to disableRipple (#7159) @oliviertassinari
+
+#### Docs
+
+- [docs] Document the Label wrappers (#7161) @oliviertassinari
+
+#### Core
+
+- [MuiThemeProvider] Small eslint fix (#7128) @Airblader
+- [core] Simplify the array logic (#7112) @oliviertassinari
+- [core] Fix type use of Element (#7111) @rosskevin
+- [core] Use the beta of circleci (#7133) @oliviertassinari
+- [core] Update dependencies (#7137) @oliviertassinari
+- [core] Update dependencies, able to remove react-addons-test-utils (#7146) @rosskevin
+- [core] As usual after using the lib in a real project I find issues (#7147) @oliviertassinari
+- [core] Disable linebreak-style rule (#7163) @oliviertassinari
+- [test] Four nines (#7173) @oliviertassinari
+
+## 1.0.0-alpha.17
+###### *Jun 12, 2017*
+
+Big thanks to the 8 contributors who made this release possible.
+
+### Breaking changes
+
+- [core] Normalize the API (#7099) @oliviertassinari
+Reduce degree of freedom of the API with the color property. That's a tradeoff between correctness and verbosity.
+People should be able to recover from that breaking change quite easily as react is going to throw warnings. For instance:
+```diff
+-<Button contrast primary>Login</Button>
++<Button color="contrast">Login</Button>
+```
+
+#### Component Fixes / Enhancements
+
+- [Switch] Correctly change the cursor value (#7042) @oliviertassinari
+- [FormControl] Cannot read property 'target' of undefined (#7046 @Fi1osof
+- [AppBar] Add a position property (#7049) @oliviertassinari
+- [Stepper] Mobile version (#7043) @alexhayes
+- [Snackbar] Implement the component on the next branch (#7059) @oliviertassinari
+- [ListItemText] Add disableTypography property (#7073 @zachwolf
+- [Modal] Add a keepMounted property (#7072) @oliviertassinari
+- [Button] Fix the behavior when a href is provided (#7083) @oliviertassinari
+- [Avatar] Add a imgProps property (#7084) @oliviertassinari
+- [FormHelperText] Add a min-height (#7085) @oliviertassinari
+- [Button] Add an upload example (#7086) @oliviertassinari
+
+#### Docs
+
+- [docs] Add testing section (#7101) @oliviertassinari
+- [docs] Show the vision in the docs (#7078) @oliviertassinari
+- [docs] Improve the documentation on the classes property (#7062) @oliviertassinari
+- [docs] Improve accessibility in the component examples (#7047) @tuukkao
+- [docs] Update usage.md "Hello World" :| (#7027) @dphrag
+- [docs] Add link to the temporary alpha docs (#7037) @peteratticusberg
+
+#### Core
+
+- [eslint] Loosen no-unused-vars eslint rule (#7064) @yuchi
+- [core] Various fixes (#7028) @oliviertassinari
+
+## 1.0.0-alpha.16
+###### *Jun 1, 2017*
+
+This release is mainly about bug fixes and improving the documentation.
+Shout out to @kybarg for the update of the `TextField` in order to better follow the spec (#6566).
+
+#### Component Fixes / Enhancements
+
+- [TextField] Make it meet guidelines (#6566) @kybarg
+- [TextField] Fix Labels flicker in Chrome (#7010) @kybarg
+- [TextField] Fix broken isDirty logic (#7008) @oliviertassinari
+- [CircularProgress] make it start and finish from top (#6966) @slavab89
+- [Switch] Add inputProps property link in the TextField (#6959) @oliviertassinari
+- [BaseButton] Better handle the disabled property (#6958) @oliviertassinari
+- [FormControl] Fix onFocus and onBlur events override (#6952) @oliviertassinari
+- [Tabs] Add `false` as a valid index value (#6945) @oliviertassinari
+- [Input] Improve support of the date/time fields (#6947) @oliviertassinari
+- [MuiThemeProvider] Add a muiThemeProviderFactory (#7000) @viotti
+
+#### Docs
+
+- [docs] Add a VISION.md file (#6982) @oliviertassinari
+- [docs] Grid docs should refer to Hidden component/demo (#6963) @kgregory
+- [docs] Fix grammar/verbiage on customization/themes page (#6943) @drusepth
+- [docs] Change text for link (#6977) @sghall
+- [docs] Some grammar/text edits (#6976) @sghall
+- [docs] Suggested text changes (#6978) @sghall
+- [docs] Fix MuiThemeProvider documentation (#6989) @viotti
+- [docs] Fix TableRow persistent background when clicked (#7001) @sajal50
+- [docs] Add an example with a decorator (#7011) @uufish
+
+#### Core
+
+- [npm] Fix react-scrollbar-size issue (#7009) @oliviertassinari
+- [transitions] Add test coverage for the transition validation functions (#6936) @Alex4S
+- [eslint] enable flow's built-in types (#6946) @rosskevin
+- [test] Upgrade the docker versions (#6979) @oliviertassinari
+
+## 1.0.0-alpha.15
+###### *May 23, 2017*
+
+This release introduces an important change in the API and the implementation.
+Each exposed component is wrapped with a `withStyles` Higher-order component.
+This HOC has different responsibilities, the one you gonna be interested in is
+regarding the `classes` property. Now, we consider the CSS as a public API.
+You now have two way to customize absolutely all the CSS injected by Material-UI.
+Either the instance level with the `classes` property or the class level with the
+`overrides` theme property.
+
+To learn more about it, have a look at the documentation.
+
+### Breaking changes
+
+- [core] Various fixes after using it on a real project (#6882) @oliviertassinari
+Apply the other properties (undocumented) on the root of the Menu.
+- [core] Add a new classes property to all the components #6911 @oliviertassinari
+If you where using the ref to access the internal of the component or native elements,
+you gonna have to change your strategy, either use `innerRef` or `inputRef`.
+
+#### Component Fixes / Enhancements
+
+- [Typography] Add missing style (#6873) @oliviertassinari
+- [Dialog] create responsive HOC `withResponsiveFullScreen` (#6898) @rosskevin
+- [core] Remove usage of 'not-allowed' (#6932) @oliviertassinari
+- [Switch] Remove the blue flash of death (#6933) @oliviertassinari
+- [TextField] Fix the inputClassName property (#6934) @oliviertassinari
+
+#### Docs
+
+- [docs] Enable flow on much more demos (#6881) @oliviertassinari
+- [docs] Better support IE11 (#6880) @oliviertassinari
+- [Tabs] Document that the index is required (#6935) @oliviertassinari
+
+#### Core
+
+- [eslint] enforce import plugin rules (#6923) @rosskevin
+- [core] Change style API (#6892) @oliviertassinari
+- [eslint] Fit closer to airbnb (#6894) @oliviertassinari
+- [core] Upgrade the dependencies (#6872) @oliviertassinari
+- [core] Add prettier (#6931) @oliviertassinari
+
+## 1.0.0-alpha.14
+###### *May 14, 2017*
+
+### Breaking changes
+
+- [Hidden] Remove one degree of freedom (#6820) @oliviertassnari
+- [Hidden] Logical fixes for up/down (#6839) @rosskevin
+
+#### Component Fixes / Enhancements
+
+- [Icon] Add aria-hidden (#6829) @oliviertassinari
+- [Paper] Add elevation boundaries (#6817) @oliviertassinari
+- [Paper] Add a component property (#6830) @oliviertassinari
+- [Transition] Add flow proptypes (#6846) @rosskevin
+- [npm] Upgrade the recompose dependency (#6855) @oliviertassinari
+- [TextField] Add in support for multiline text fields (#6553) @peteratticusberg
+- [TextField] Second iteration on multilines (#6859) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix link to material-ui-icons (#6825) @NiloCK
+- [docs] Add a direct link to GitHub (#6861) @oliviertassinari
+
+#### Core
+
+- [coverage] Remove the flow plugins as they were not needed (#6816) @rosskevin
+- [ButtonBase] Add test coverage for instance.focus (#6827) @agamrafaeli
+- [ButtonBase] Add test coverage for handleFocus (#6828) @agamrafaeli
+- [flow] Fix small issues (#6860) @oliviertassinari
+
+## 1.0.0-alpha.13
+###### *May 8, 2017*
+
+### Breaking changes
+
+- [lint/flow] validate imports/exports with eslint and flow (#6757) @rosskevin
+Change some import:
+```diff
+-import { List, ListItem, ListItemText } from 'material-ui/List';
++import List, { ListItem, ListItemText } from 'material-ui/List';
+```
+
+- [Grid] Rename Layout to Grid (#6789) @rosskevin
+```diff
+-import Layout from 'material-ui/Layout';
++import Grid from 'material-ui/Grid';
+```
+
+#### Component Fixes / Enhancements
+
+- [Slide] Fix getTranslateValue for left & up cases (#6454) @josulliv101
+- [Hidden] Responsively hide content (js implementation) (#6748) @rosskevin
+- [Hidden] Fixes, demos, regression tests, and `only` functionality (#6782) @rosskevin
+- [Layout] Add a hidden property (#6754) @rosskevin
+- [Typography] Flow type (#6787) @rosskevin
+
+#### Docs
+
+- [palette] Require color shape that matches defaults (#6756) @kgregory
+- [docs] Document the Theme section (#6810) @oliviertassinari
+- [docs] Add a search bar (#6745) @oliviertassinari
+- [docs] Generate a summary of each section (#6772) @oliviertassinari
+- [docs] Start addressing documentation issues (#6758) @oliviertassinari
+- [docs] Hide the context implementation details (#6798) @oliviertassinari
+
+#### Core
+
+- Expanding use of flow for propType, include flow types in package, add flow-typed (#6724) @rosskevin
+- [core] Fix flow propTypes generation issue (#6749) @oliviertassinari
+- [createShallow] Remove cleanup (#6797) @agamrafaeli
+
+## 1.0.0-alpha.12
+###### *Apr 30, 2017*
+
+Big thanks to the 11 contributors who are pushing the `next` branch forward.
+
+### Breaking changes
+
+- [Typography] Rename Text to Typography (#6667) @oliviertassinari
+- [Radio] Change checked color to primary (#6683) @khayong
+
+#### Component Fixes / Enhancements
+
+- [Collapse] Add test coverage for wrapper ref (#6617) @agamrafaeli
+- [Collapse] Add test coverage for `handleEntered()` (#6616) @agamrafaeli
+- [Collapse] Add test coverage for `handleEntering()` (#6615) @agamrafaeli
+- [CardHeader] Subheader doesn't go to a new line if there's no avatar (#6668) @kgregory
+- [SwitchBase] Add test coverage for `handleInputChange()` (#6613) @agamrafaeli
+- [Input] Reset for Safari (21751b293578f25675d415de766f77bd0178fc9c) @oliviertassinari
+- [Theme] Reintroduce `muiThemeable` as `withTheme` (#6610) @sxn
+- [Modal] Fixes cannot revert back to original overflow when have multiple modals (#6661) @khayong
+- [style] Reset the font family where needed (#6673) @oliviertassinari
+- [consoleErrorMock] Add test coverage (#6681) @agamrafaeli
+- [Transition] Add test coverage for `shouldComponentUpdate()` (#6680) @agamrafaeli
+- [ModalManager] Add test coverage for removal of non-exiting modal (#6678) @agamrafaeli
+- [Tabs] Label text wrapping / font scaling (#6677) @shawnmcknight
+- [Tabs] Cancel throttled event callbacks (#6715) @shawnmcknight
+- [Tabs] Improve component lifecycle (#6730) @shawnmcknight
+- [material-ui-icons] add making index.js (#6676) @taichi
+- [breakpoints] up(‘xs’) should have a min-width of 0px (#6735) @rosskevin
+
+#### Docs
+
+- [docs] Fix the example "Usage" to match new Button component (#6692) @artarmstrong
+- [docs] Fix theme toggling (#6652) @nathanmarks
+- [TextField] Add password example to docs (#6637) @peteratticusberg
+- [docs] Fix layout edit button (4b5fedf902704b5e3dd2dba63fc2263f11e975d0) @oliviertassinari
+- [docs] Fix IE11 issue (6ad3354ec1a844d0f03bf890a5e73a7987179be7) @oliviertassinari
+
+#### Core
+
+- [material-ui-icons] Modernize the package (#6688) @oliviertassinari
+- [core] Also take the demo into account for the regressions tests (#6669) @oliviertassinari
 
 ## 1.0.0-alpha.11
-###### _Apr 14, 2017_
+###### *Apr 14, 2017*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [Drawer] Proper placement for anchor other than left (#6516) @kgregory
 - [ListItemAvatar] Fix & refactor (#6540) @mbrookes
@@ -41,12 +2607,12 @@ Below is a summary of major changes.
 - [Modal] Add test coverage for `handleDocumentKeyUp()` (#6588) @agamrafaeli
 - [Popover] Add test coverage for `handleRequestTimeout()` (#6599) @agamrafaeli
 
-##### Docs
+#### Docs
 
 - [package.json] Add test:unit:grep (#6586) @agamrafaeli
 - [docs] Fix build:docs command (#6606) @oliviertassinari
 
-##### Core
+#### Core
 
 - [utils] Remove throttle (#6545) @agamrafaeli
 - [react] Upgrade to React@15.5.3 (#6543) @oliviertassinari
@@ -56,15 +2622,15 @@ Below is a summary of major changes.
 - [test] Makes sure argos run even if diff fails (#6512) @oliviertassinari
 
 ## 1.0.0-alpha.10
-###### _Apr 6, 2017_
+###### *Apr 6, 2017*
 
 We are continuing investing in the documentation and the test suite.
 
-Visual regression tests are now sent to [argos-ci](https://www.argos-ci.com/callemall/material-ui).
+Visual regression tests are now sent to [argos-ci](https://www.argos-ci.com/mui-org/material-ui).
 Thanks @agamrafaeli for increasing the test coverage of 1% since the last release (95.23%).
 Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
 
-##### Breaking changes
+### Breaking changes
 
 - [core][docs] Invert negative bool props (#6487) @mbrookes
 
@@ -123,7 +2689,7 @@ Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
 +subheader
 ```
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [TextField] Forward name props to the input (#6469) @nvma
 - [MuiThemeProvider] Add test for for componentWillUpdate (#6474) @agamrafaeli
@@ -133,7 +2699,7 @@ Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
 - [Popover] Add test for getoffset (#6510) @agamrafaeli
 - [breakpoints] Fix down function, eliminate overlap (#6504) @kgregory
 
-##### Docs
+#### Docs
 
 - [docs] Add missing prop descriptions to all components (#6483) @mbrookes
 - [docs] Link version number to release notes (#6486) @mbrookes
@@ -142,7 +2708,7 @@ Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
 - [docs] Display the current version (#6481) @oliviertassinari
 - [docs] Upgrade the dependencies (567a35ea3d2aa634a3072fb8b0151c9890551447) @oliviertassinari
 
-##### Core
+#### Core
 
 - [test] Fix import paths for theme and MuiThemeProvider (#6493) @joefitzgerald
 - [test] Add argos-ci (#6391) @oliviertassinari
@@ -151,9 +2717,9 @@ Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
 - [core] Do not output any .map file (#6478) @oliviertassinari
 
 ## 1.0.0-alpha.9
-###### _Apr 1, 2017_
+###### *Apr 1, 2017*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [Tab] Add labelClassName property (#6436) @rogeliog
 - [test] Fix absolute path in createShallow (444c60392550fe73bb3492ba0ebb63473c73162a) @oliviertassinari
@@ -164,13 +2730,13 @@ Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
 - [RadioGroup] Add missing teardown in test (8005d9d9b98ed58a041a9e49931fd88cb48687e2) @oliviertassinari
 - [Ripple] Add a new test for the unmount logic (#6434) @oliviertassinari
 
-##### Docs
+#### Docs
 
 - [docs] Add API menu and demo button (#6455) @mbrookes
 - [docs] Link to the Collapse documentation (#6464) @JeremyIglehart
 - [docs] Fix api.md indentation (#6468) @solkaz
 
-##### Core
+#### Core
 
 - [core] Upgrade the dev dependencies (#6435) @oliviertassinari
 - [test] Takes the Menu as an example in the test documentation (d13607581dc2bf6c86e88721c2d177b8b8b2d004) @oliviertassinari
@@ -178,12 +2744,12 @@ Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
 
 
 ## 1.0.0-alpha.8
-###### _Mar 25, 2017_
+###### *Mar 25, 2017*
 
 A big thanks to @agamrafaeli for increasing the test coverage by 4%.
 We are now at 93.53%. That's pretty great.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [Chip] Add tests for handleKeyDown for Chip module (#6379) @agamrafaeli
 - [Chip] Add tests for onRequestDelete (#6377) @agamrafaeli
@@ -203,18 +2769,18 @@ We are now at 93.53%. That's pretty great.
 - [test] Expose the test helpers (#6383) @oliviertassinari
 - [TouchRipple] Add tests for edge cases (#6411) @agamrafaeli
 
-##### Docs
+#### Docs
 
 - [docs] Use material-ui-icons package (#6390) @mbrookes
 
-##### Core
+#### Core
 
 - [SvgIcons] Update build (#6375) @mbrookes
 
 ## 1.0.0-alpha.7
-###### _Mar 12, 2017_
+###### *Mar 12, 2017*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [Slide] Fix displaying when in=false at first (#6223) @ArcanisCz
 - [Ripple] Improve the animation (#6248) @oliviertassinari
@@ -224,12 +2790,12 @@ We are now at 93.53%. That's pretty great.
 - [Table] Add visual regression tests (#6325) @oliviertassinari
 - [Button] Use faded text color for hover state (#6320) @mbrookes
 
-##### Docs
+#### Docs
 
 - [docs] Add a Color section (#6254) @Shahrukh-Zindani
 - [docs] Add information to typography (#6266) @Shahrukh-Zindani
 
-##### Core
+#### Core
 
 - [test] Server side render some element to be sure (#6328) @oliviertassinari
 - [npm] Add correct extension (#6241) @okvic77
@@ -238,23 +2804,23 @@ We are now at 93.53%. That's pretty great.
 - [core] Upgrade the npm dependencies (#6327) @oliviertassinari
 
 ## 1.0.0-alpha.6
-###### _Feb 26, 2017_
+###### *Feb 26, 2017*
 
-##### Core
+#### Core
 
 - [core] Fix component wrong propType (03f0fdc627951b5ddd3b28bd1a4cbdcee96f2a1c) @oliviertassinari
 
 ## 1.0.0-alpha.5
-###### _Feb 26, 2017_
+###### *Feb 26, 2017*
 
-##### Core
+#### Core
 
 - [core] Fix propTypes usage (9a220173a59e51108f7ee9d059a312f174113ac2) @oliviertassinari
 
 ## 1.0.0-alpha.4
-###### _Feb 26, 2017_
+###### *Feb 26, 2017*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [Button] Fix boxSizing when not rending a native button (#6224) @oliviertassinari
 - [Divider] Fix negative margin causes overflow/scrollbars (#6139) @giuseppeg
@@ -266,7 +2832,7 @@ We are now at 93.53%. That's pretty great.
 - [transitions] Fix an unknown property warning (#6157) @oliviertassinari
 - [transitions] Fix allowing fraction numbers as delay/duration (#6221) @ArcanisCz
 
-##### Docs
+#### Docs
 
 - [docs] Use webpack 2 & dll bundle (#6160) @nathanmarks
 - [docs] Improve the user experience on mobile (#6154) @oliviertassinari
@@ -274,7 +2840,7 @@ We are now at 93.53%. That's pretty great.
 - [docs] Add an API section (#6239) @oliviertassinari
 - [docs] Normalize the container property (#6238) @oliviertassinari
 
-##### Core
+#### Core
 
 - [core] Fix typos in styles/transitions pointed out in issue (#6175) @Shahrukh-Zindani
 - [core] Lightweight the build (#6152) @oliviertassinari
@@ -283,9 +2849,9 @@ We are now at 93.53%. That's pretty great.
 - [test] Bump vrtest version for exit code fix (1831aa76fe72e9b22a0b82f2a360f860ca89fdce) @nathanmarks
 
 ## 1.0.0-alpha.3
-###### _Feb 12, 2017_
+###### *Feb 12, 2017*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [Button] Make the node isRequired (#6095) @oliviertassinari
 - [TextField] value propType (#6091) @mntbkr
@@ -295,40 +2861,40 @@ We are now at 93.53%. That's pretty great.
 - [Tabs] Add a disabled property (#6112) @irfanhudda
 - [Paper] Rename zDepth -> elevation everywhere (#6116) @ArcanisCz
 
-##### Docs
+#### Docs
 
 - [docs] Add simple example in the Badge API (#6117) @stunaz
 - [docs] Add a Drawer section (#6113) @ArcanisCz
 
-##### Core
+#### Core
 
 - [core] Simplify test suite and use vrtest for regressions (#6122) @nathanmarks
 - [core] Prefix stylesheet names to prevent collisions (#6110) @oliviertassinari
 - [core] Remove stringOrNumber propTypes (#6109) @oliviertassinari
 
 ## 1.0.0-alpha.2
-###### _Feb 7, 2017_
+###### *Feb 7, 2017*
 
 One year from now, we were struggling with removing all the mixins from the project.
 Now, it's about rewriting all our components.
 We gonna try doing frequent alpha releases to keep some intertie. At least once per week would be good.
-As always, we are keeping the [documentation](https://material-ui-1dab0.firebaseapp.com) up to date.
+As always, we are keeping the [documentation](https://material-ui-next.com) up to date.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [Badge] Port the Badge Component (#6043) @stunaz
 - [Layout] Warn about wrong usage of the item & container combination (#6040) @oliviertassinari
 - [Layout] Explicit the box-sizing dependency (#6036) @oliviertassinari
 - [Drawer] Open/close animation easing and timing (#6066) @ArcanisCz
 
-##### Docs
+#### Docs
 
 - [docs] Add a composition section (#6049) @oliviertassinari
 - [docs] Explain how to use the visual regression tests (#6050) @oliviertassinari
 - [docs] Improve the Server Rendering section (#6070) @oliviertassinari
 
 ## 1.0.0-alpha.1
-###### _Jan 28, 2017_
+###### *Jan 28, 2017*
 
 This is the first public alpha release. It's still work in progress.
 People will be able to start giving us feedback with this release.
@@ -336,11 +2902,11 @@ Please keep in mind that [semver](https://docs.npmjs.com/getting-started/semanti
 In other words, the API will change if we need to.
 
 ## 0.16.7
-###### _Jan 15, 2017_
+###### *Jan 15, 2017*
 
 A big thanks to the 20 contributors who are making this release possible.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [DropDownMenu] Add keyboard accessibility (#5921) @caesay
 - [EnhancedButton] Remove unnecessary hack, improving overall performance (#5868) @jampy
@@ -360,7 +2926,7 @@ A big thanks to the 20 contributors who are making this release possible.
 - [TableBody] Fix row selection re-render (#5905) @dchambers
 - [test] Fix typo in the iOSHelpers.spec.js (#5837) @frooeyzanny
 
-##### Docs
+#### Docs
 
 - [docs] Add payment components to Related projects (#5849) @lorensr
 - [docs] Add showcase for "humorista.org" (#5859) @minas1
@@ -371,27 +2937,27 @@ A big thanks to the 20 contributors who are making this release possible.
 - [Tabs] Fix typo in initialSelectedIndex prop description (#5923) @neonray
 - [withWidth] Fix typo in the withWidth.spec.js (#5836) @frooeyzanny
 
-##### Core
+#### Core
 
 - [test] Use simpler assert API (e017d365f45b07933e8b896f95d6d1455b666516) @oliviertassinari
 
 ## 0.16.6
-###### _Dec 25, 2016_
+###### *Dec 25, 2016*
 
 We are releasing sooner than we use to for this **special day** :christmas_tree::gift:.
 17 contributors are making that last release of the year possible.
 
 2016 has been an exceptional year for Material-UI.
 - We went from 40k to 180k [downloads](https://npm-stat.com/charts.html?package=material-ui&from=2014-12-24&to=2016-12-25) a month. :package:
-- We went from 12k to 22k [stars](http://www.timqian.com/star-history/#callemall/material-ui). :star:
+- We went from 12k to 22k [stars](http://www.timqian.com/star-history/#mui-org/material-ui). :star:
 
 That wouldn't have been possible without this awesome community.
 **Thank you!**
 
-But this's just the beginning, some [exciting stuff](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) is coming in 2017 :sparkles:.
-You can preview a **very early** version of the `next` branch following [that link](https://material-ui-1dab0.firebaseapp.com).
+But this's just the beginning, some [exciting stuff](https://github.com/mui-org/material-ui/blob/master/ROADMAP.md) is coming in 2017 :sparkles:.
+You can preview a **very early** version of the `next` branch following [that link](https://material-ui-next.com).
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [IconButton] Add a hoveredStyle property (#5755)
 - [Menu] Add a dividerStyle property (#5734)
@@ -404,7 +2970,7 @@ You can preview a **very early** version of the `next` branch following [that li
 - [TimeDisplay] Inherit text color from theme (#5816)
 - [TouchRipple] Fix issue #5626 (#5763)
 
-##### Docs
+#### Docs
 
 - [AutoComplete] Add a controlled example (#5795)
 - [Slider] Add onChange callback signatures to docs (#5760)
@@ -414,16 +2980,16 @@ You can preview a **very early** version of the `next` branch following [that li
 - [docs] Remove redundant words (#5778)
 - [docs] Add showcase item - Realty Advisors Elite (#5806)
 
-##### Core
+#### Core
 
 - [core] Add support for Webpack 2/Rollup tree shaking in `svg-icons` sub module (#5774)
 
 ## 0.16.5
-###### _Dec 9, 2016_
+###### *Dec 9, 2016*
 
 This is another release improving the stability of `v0.16.x`.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [AutoComplete] Add an onClose callback property (#5655)
 - [AutoComplete] Fix the controlled behavior (#5685)
@@ -445,7 +3011,7 @@ This is another release improving the stability of `v0.16.x`.
 - [autoprefixer] Fix a style issue with user agent all and display flex (#5668)
 - [makeSelectable] Fix missing check for existence of onChange (#5589)
 
-##### Docs
+#### Docs
 
 - [docs] Add a Q&A section around the next branch (#5718)
 - [docs] Fix typo with sentence for AutoComplete (#5596)
@@ -453,38 +3019,38 @@ This is another release improving the stability of `v0.16.x`.
 - [docs] Fix Linear Progress Prop Documentation (#5680)
 - [docs] Fix a scroll issue on (iOS) (a12dca847af6833dbf671e48c736047d6909ec53)
 
-##### Core
+#### Core
 
 - [core] Apply 3 different fixes (#5695)
 
 ## 0.16.4
-###### _Nov 17, 2016_
+###### *Nov 17, 2016*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [npm] Rollback the react dependency path to `v15.0.0` (417913e41fbc3366c6997258263270c6d7465c1a)
 
 ## 0.16.3
-###### _Nov 17, 2016_
+###### *Nov 17, 2016*
 
-This release is intended to solve an [issue](https://github.com/callemall/material-ui/issues/5573) with `react-tap-event-plugin` following the release of React `v15.4.0`.
+This release is intended to solve an [issue](https://github.com/mui-org/material-ui/issues/5573) with `react-tap-event-plugin` following the release of React `v15.4.0`.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [ListItem] Fix hover on touch devices (#5566)
 - [core] include `react-tap-event-plugin@^2.0.0` for `react@^15.4.0` (#5572)
 - [core] Add support for Webpack 2/Rollup tree shaking (#5545)
 
-##### Docs
+#### Docs
 
 - [docs] Upgrade React to v15.4.0 (#5575)
 
 ## 0.16.2
-###### _Nov 13, 2016_
+###### *Nov 13, 2016*
 
 This is another release improving the stability of `v0.16.x` while we are working on get `next` out of the door.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [AutoComplete] Fire onUpdateInput when an item from the dropdown is selected (#5518)
 - [AutoComplete] Fix Popover's style overriding popoverProps (#5516)
@@ -512,11 +3078,11 @@ This is another release improving the stability of `v0.16.x` while we are workin
 - [ToolbarTitle] Take font family from base theme (#5434)
 - [Toggle] Fix label propTypes from `string` to `node` (#5474)
 
-##### Core
+#### Core
 
 - [npm] Upgrade the dependencies (#5466, #5537)
 
-##### Docs
+#### Docs
 
 - [docs] Add one more resource around the style migration (0d375d6271a2c65e6e608dde28ee4ca55defd81b)
 - [docs] Add a note regarding other properties (#5491)
@@ -525,11 +3091,11 @@ This is another release improving the stability of `v0.16.x` while we are workin
 
 
 ## 0.16.1
-###### _Oct 18, 2016_
+###### *Oct 18, 2016*
 
 This is a small release improving the stability of `v0.16.x`.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [ClickAwayListener] Improve the propTypes definition (2d99b2d66f0a895389f61e866c8840abebcf2b72)
 - [DropDownMenu] Fix usage of null child (#5402)
@@ -551,12 +3117,12 @@ This is a small release improving the stability of `v0.16.x`.
 - [TextField] Fix leaking appearance property on a div (#5412)
 - [withWidth] Fix the SSR reconciliation (#5405)
 
-##### Core
+#### Core
 
 - [GitHub] Improve ISSUE_TEMPLATE to ask for a running snippet (#5388)
 - [npm] Upgrade the dependencies (#5404)
 
-##### Docs
+#### Docs
 
 - [docs] Add LireLactu to the showcase (#5336)
 - [docs] Document the muiThemeable HOC (#5363)
@@ -564,7 +3130,7 @@ This is a small release improving the stability of `v0.16.x`.
 
 
 ## 0.16.0
-###### _Oct 3, 2016_
+###### *Oct 3, 2016*
 
 This release contains a ton of bug fixes and small improvements :boom:.
 
@@ -576,32 +3142,32 @@ We are switching in goal so we can release changes more **often**.
 Regarding going forward, this is likely to be the last `minor` release using the **inline-style** approach.
 We are migrating all the components to a **CSS-in-JS** approach on the `next` branch.
 
-For more details, you can have a look a the [next milestone](https://github.com/callemall/material-ui/milestone/14) as well as the [next project](https://github.com/callemall/material-ui/projects/1)
+For more details, you can have a look a the [next milestone](https://github.com/mui-org/material-ui/milestone/14) as well as the [next project](https://github.com/mui-org/material-ui/projects/1)
 
 :warning: New features based on the `master` branch (inline-style) have low priority and will most likely not be reviewed nor merged.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [Card] Fix unused property subtitleColor (#5314)
 
-##### Core
+#### Core
 
 - [Core] Use lodash.merge/throttle for faster require() (#5308)
 
-##### Docs
+#### Docs
 
 - [docs] Add a single line example for GridLists (#5313)
 - [docs] Add react-dnd (7e1d9d3d1d61a3ee8e6dbf57cd2261754a3285f3)
 - [docs] Add Casalova to the showcase (7c0df3be32813ddb003cd47b6529431f3cd41679)
 
 ## 0.16.0-rc2
-###### _Sep 24, 2016_
+###### *Sep 24, 2016*
 
 ##### Breaking Changes
 
 - [TimePicker] Remove the call to onDismiss when already calling onAccept (#5213)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [AppBar] Fix onTouchTap handler (#5245)
 - [AutoComplete] Add popoverProps to pass to Popover (#5064)
@@ -618,7 +3184,7 @@ For more details, you can have a look a the [next milestone](https://github.com/
 - [TimePicker] Fix a conflict with box-sizing reset (5529138)
 - [withWidth] Compute the width as soon as possible (#5154)
 
-##### Docs
+#### Docs
 
 - [AppBar] Add a composition example (#5248)
 - [RaisedButton] Update file upload example (#5159)
@@ -627,14 +3193,14 @@ For more details, you can have a look a the [next milestone](https://github.com/
 - [docs] Explicit the prerequisites section to required knowledge (#5203)
 - [docs] Update the server-rendering section (#5206)
 
-##### Core
+#### Core
 
 - [core] Add babel-runtime to the release (#5221)
 - [core] Use the ^15.0.0 as a dependency for React (#5207)
 - [npm] Upgrade the dependencies (#5161)
 
 ## 0.16.0-rc1
-###### _Sep 8, 2016_
+###### *Sep 8, 2016*
 
 ##### Breaking Changes
 - [Badge] Swapped primary and accent colors (#4449)
@@ -661,7 +3227,7 @@ Examples:
 - [core] Remove the deprecated code (#4987)
 - [List] Rename MakeSelectable to makeSelectable (#5025)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 
 - [BottomNavigation] Fix SVG icon positioning (#4982)
 - [Buttons] Reset hover state when disabled prop is changed (#4951)
@@ -681,21 +3247,21 @@ Examples:
 - [TableRowColumn] Tooltip visible with TableRowColumn (#5014)
 - [TextField] Better support for type=search (#4973)
 
-##### Docs
+#### Docs
 
 - [docs] Fix 404 links (#4998)
 - [examples] Move to own repositories (#4475)
 - [showcase] Add some new projects (#4978, #5119)
 
-##### Core
+#### Core
 
 - [Slider] Clean up the implementation (#5036)
 - [test] Reduce the noise when running the test suite (ea2538e)
 
 ## 0.15.4
-###### _Aug 11, 2016_
+###### *Aug 11, 2016*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [BottomNavigation] Initial implementation (#4846)
 - [DropDownMenu] Revert the commit causing a regression in 0.15.3 (#f76302e)
 - [Snackbar] Add the material fontFamily (#4892)
@@ -703,11 +3269,11 @@ Examples:
 - [Slider] Fix an issue where not updating when max prop changes (#4895)
 - [Slider] Fix more warnings introduced by React v15.3.0 (#4869)
 
-##### Docs
+#### Docs
 - [js] Explain the ECMAScript `stage-1` dependencies of the examples (#4877)
 
 ## 0.15.3
-###### _Jul 31, 2016_
+###### *Jul 31, 2016*
 
 This release is mostly about bug fixes. All the new warnings introduced by React
 v15.2.1 and v15.3.0 should be addressed in this version.
@@ -717,7 +3283,7 @@ v15.2.1 and v15.3.0 should be addressed in this version.
 - Remove a workaround regarding the context propagation as it was fixed in the React Core.
 Upgrade to React v15.2.1 if you are affected. (#4729)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [AutoComplete] Add a textFieldStyle property (#4853)
 - [AutoComplete] Call onNewRequest once the animation is done (#4817)
 - [Card] Fix bottom padding (#4820)
@@ -737,19 +3303,19 @@ Upgrade to React v15.2.1 if you are affected. (#4729)
 - [Snackbar] Change the action's PropType to node (#4716)
 - [TextField] False should be a valid value (#4728)
 
-##### Core
+#### Core
 - [dependencies] Update to the latest release version (#4669)
 - [eslint] Find new rules with ease (#4521)
 - [react] Fix the warnings of the latest release v15.3.0 (#4856)
 
-##### Docs
+#### Docs
 - [ROADMAP] Remove old addressed issues (#4745)
 - [ROADMAP] Update to what the core team is working on (#4829)
 - [docs] Replaces images on Card page with hosted images (#4748)
 - [showcase] Add https://www.spouti.com (#4806)
 
 ## 0.15.2
-###### _Jul 7, 2016_
+###### *Jul 7, 2016*
 
 During the release of 0.15.1 something went teribly wrong :sweat_smile: and some
 commits were left out even though they were mentioned in the changelog. This release
@@ -770,7 +3336,7 @@ includes the missing commits and some extra.
 Our support for IE and Safari improved in this release.
 Thanks @vizath, @hhaida, @nathanmarks and @aahan96 for their effort.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [AppBar] Improve props checking to be more resilient (#4557)
 - [AutoComplete] Use the right dataSource key (#4642)
 - [Badge] Fixed incorrect color usage (primary/accent were swapped) (#4449)
@@ -802,7 +3368,7 @@ Thanks @vizath, @hhaida, @nathanmarks and @aahan96 for their effort.
 - [TextField] Fix multi-line overflow (#4634)
 
 ## 0.15.1
-###### _Jun 16, 2016_
+###### *Jun 16, 2016*
 
 ##### Breaking Changes
 - [Avatar] Now uses `img` instead of `div` (#4365)
@@ -826,7 +3392,7 @@ Thanks @vizath, @hhaida, @nathanmarks and @aahan96 for their effort.
 - [withWidth] Accept width optional parameter (#4416)
 - [eslint] Add a mocha plugin to enforce good practices (#4424)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [AppBar] Add `iconStyleLeft` prop (#4266)
 - [AppBar] Fix a styling regression (#4471)
 - [AutoComplete] Add text and value field keys for objects list dataSource (#4111)
@@ -875,7 +3441,7 @@ Thanks @vizath, @hhaida, @nathanmarks and @aahan96 for their effort.
 - [SelectField] Deprecate selectFieldRoot prop and replace with menuStyle (#4394)
 
 ## 0.15.0
-###### _May 5, 2016_
+###### *May 5, 2016*
 
 Please read through the alpha and beta releases of 0.15.0 too as their changes are not listed here.
 
@@ -893,7 +3459,7 @@ Please read through the alpha and beta releases of 0.15.0 too as their changes a
   1. Enforce `jsx-first-prop-new-line` (#4112)
   1. Enforce `react/prefer-es6-class` (#4126)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [Avatar] Fix icon size issue for non-default Avatar size (#4148)
 - [Buttons] Address various browser compatibility issues (#4108)
 - [Buttons] Fixed alignment related regressions (#4130)
@@ -910,7 +3476,7 @@ Please read through the alpha and beta releases of 0.15.0 too as their changes a
 - [styleResizable] This mixin has been deprecated in favor of `withWidth` HOC (#4126)
 
 ## 0.15.0-beta.2
-###### _Apr 21, 2016_
+###### *Apr 21, 2016*
 
 ##### General
 - [.gitignore] Ignore `jsconfig.json` - VSCode config file (#4011)
@@ -918,7 +3484,7 @@ Please read through the alpha and beta releases of 0.15.0 too as their changes a
 - [Docs] Add beta installation details to the README (#4048)
 - [Examples] Update import statements (#3992)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [AutoComplete] Change `error`, `hint`, `floatingLabel` property validators to `PropTypes.node` (#4019)
 - [Dialog] Add border to title and actions when content is scrollable (#4001)
 - [Dialog] Add support for the Alert (#4022)
@@ -934,7 +3500,7 @@ Please read through the alpha and beta releases of 0.15.0 too as their changes a
 - [List] Deprecate the `valueLink` property (#3936)
 
 ## 0.15.0-beta.1
-###### _Apr 13, 2016_
+###### *Apr 13, 2016*
 
 #### React 15 compatibility :tada: :tada:
 
@@ -964,7 +3530,7 @@ documentation page.
 
 Have a ton of imports? almost had a heart attack? worry not, we also made a tool
 to ease your pain. checkout the
-[readme](https://github.com/callemall/material-ui/tree/master/packages/material-ui-codemod/README.md).
+[readme](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md).
 
 ##### Breaking Changes
 - [Core] Improve import path for published lib (#3921)
@@ -1021,7 +3587,7 @@ Although we discourage you to use this library like that.
   1. Enforce `jsx-handler-names` (#3408)
   1. Enforce `spaced-comment` (#3910)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [AutoComplete] Add `onKeyDown` property (#3853)
 - [AutoComplete] Fix the regressions (#3858)
 - [Avatar] Use semi-transparent border (#3859)
@@ -1051,7 +3617,7 @@ Although we discourage you to use this library like that.
 - [TimePicker] ok/cancel labels in time pickers should be of PropTypes.node (#3869)
 
 ## 0.15.0-alpha.2
-###### _Mar 18, 2016_
+###### *Mar 18, 2016*
 
 ##### Breaking Changes
 - [Core] if you used Material-UI from npm in CommonJS environment,
@@ -1105,7 +3671,7 @@ import MUI from 'material-ui'; // no changes here :D
   1. Enforce `no-multiple-empty-lines` (#3516)
   1. Enforce `@ignore` before comment (#3611)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [AppBar] Fix the title height variation (#3509)
 - [AutoComplete] Add key support for `dataSource` (#3662)
 - [AutoComplete] Fix browser compatibility (#3581)
@@ -1149,12 +3715,12 @@ import MUI from 'material-ui'; // no changes here :D
 - [DatePicker] Deprecate `wordings` with `cancelLabel` and `okLabel` (#3412)
 
 ## 0.15.0-alpha.1
-###### _Feb 27, 2016_
+###### *Feb 27, 2016*
 
 This release includes huge improvements to the implementation
 of components and utility modules. The most important improvement
 is the removal of mixins from the library, thanks to the
-[great efforts](https://github.com/callemall/material-ui/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aclosed+author%3Anewoga+style-propable)
+[great efforts](https://github.com/mui-org/material-ui/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aclosed+author%3Anewoga+style-propable)
 of @newoga :+1:
 
 There are also improvements to the unit testing infrastructure. We own this
@@ -1217,7 +3783,7 @@ from the code with the 0.16.0 release.
   1. Enforce `id-blacklist` and blacklist `e` (#3398)
   1. Enforce `padded-blocks: never` (#3493)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [AutoComplete] Added `maxSearchResults` property (#3262)
 - [AutoComplete] Apply the style property only on the root component (#3243)
 - [AutoComplete] Apply various improvement (#3214) (Thanks to @oliviertassinari)
@@ -1275,7 +3841,7 @@ from the code with the 0.16.0 release.
 - [Core] Deprecated `theme-manager` and `raw-themes` (#3267)
 
 ## 0.14.4
-###### _Feb 02, 2016_
+###### *Feb 02, 2016*
 
 ##### General
 - [CRITICAL] Fixed a regression that completely disabled the auto-prefixer (#3142)
@@ -1284,7 +3850,7 @@ from the code with the 0.16.0 release.
 - [Docs] Added a `Related Projects` section (#3102)
 - [Examples] General updates (#3078)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [Tabs] Removed the calc style property (#3058)
 - [Tabs] Added icon and text (#3042)
 - [Tabs] Use `FlatButtons` for tabs (#3051)
@@ -1296,7 +3862,7 @@ from the code with the 0.16.0 release.
 - [FlatButton] Fix the default value of `labelPosition` (#3115)
 
 ## 0.14.3
-###### _Jan 26, 2016_
+###### *Jan 26, 2016*
 
 ##### Breaking Changes
 
@@ -1333,7 +3899,7 @@ Unless you have used these implementation details in your code.
 - [Performance] Fix V8 deopt, leakage of `arguments` (#2876)
 - [ServerSideRendering] Make userAgent contexual (#3009)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [Slider] Avoid selection when dragging (#2827)
 - [Snackbar] Execute onDimiss callback after snackbar has closed (#2881)
 - [Table] Don't use `for...of` on table children (#2904)
@@ -1351,7 +3917,7 @@ Unless you have used these implementation details in your code.
 - [DropDownIcon] Will be removed with `0.15.0` (#2994)
 
 ## 0.14.2
-###### _Jan 08, 2016_
+###### *Jan 08, 2016*
 
 ##### General
 - [CRITICAL] Fix imports using require() style syntax (#2804) thanks @newoga
@@ -1367,13 +3933,13 @@ Unless you have used these implementation details in your code.
 - Added the following eslint rules:
   1. `react/jsx-indent` (#2808)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [DatePicker] Update slide direction (#2791)
 - [AutoComplete] Add 2 extra filters for text matching (#2755)
 - [TableRow] Fix row height in IE (#2812)
 
 ## 0.14.1
-###### _Jan 05, 2016_
+###### *Jan 05, 2016*
 
 ##### General
 - Upgrade to babel v6 (#2620, #2709)
@@ -1388,7 +3954,7 @@ Unless you have used these implementation details in your code.
 - Added the following eslint rules:
   1. react/sort-comp (#2774, #2776)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [MenuItem] Fix icon position (#2661)
 - [SelectableList] Recursively extend children (#2320)
 - [SelectField] Add hintStyle (#2710)
@@ -1401,7 +3967,7 @@ Unless you have used these implementation details in your code.
 - [Dialog] Deprecate width (#2753)
 
 ## 0.14.0
-###### _Dec 25, 2015_
+###### *Dec 25, 2015*
 
 The chagnes in `0.14.0-rc1` and `o.14.0-rc2` are also included as part of this release.
 Have a look at them as well.
@@ -1419,7 +3985,7 @@ Have a look at them as well.
 - Added a temporary bootstrap project for ReactNative to pave the way for ReactNative support (#2611)
 - Clean up CSS classes (#2630)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [SelectField] [TextField] Fixed error styling issue (#2539)
 - [TextField] Implemented optional underline (#2476)
 - [AutoComplete] Migrated to use popover (#2634)
@@ -1428,7 +3994,7 @@ Have a look at them as well.
 - [DropDownMenu] [SelectField] Deprecated `menuItems`, these components are now composable. (#2565)
 
 ## 0.14.0-rc2
-###### _Dec 15, 2015_
+###### *Dec 15, 2015*
 
 ##### Breaking Changes
 
@@ -1452,7 +4018,7 @@ Have a look at them as well.
   1. max-len (#2381)
   1. wrap-multilines (#2419)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [Card] Use `preventDefault()` when handling expansion (#2495)
 - [CardHeader] Made `avatar` property optional (#2397)
 - [Checkbox] Now updates it's state when `checked` property changes (#2464)
@@ -1479,7 +4045,7 @@ Have a look at them as well.
 
 
 ## 0.14.0-rc1
-###### _Dec 4, 2015_
+###### *Dec 4, 2015*
 
 ##### Breaking Changes
 - [IconMenu] removed openDirection prop in favor of anchorOrigin and targetOrigin (#2149)
@@ -1499,7 +4065,7 @@ Have a look at them as well.
 - [TimePicker] update as per spec (#2358)
 - [Popover] add useLayerForClickAway prop (#2359)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - Fix wrong proptype for value in RadioButton (#2276)
 - Make LeftNav swipeable only from far left / right (#2263)
 - [TextField] allow rowsMax prop to equal rows prop (#2312)
@@ -1510,7 +4076,7 @@ Have a look at them as well.
 - [CardActions] prevent children styles from being overridden (#2361)
 
 ## 0.13.4
-###### _Nov 24, 2015_
+###### *Nov 24, 2015*
 
 ##### General
 - Introduced SelectableEnhance HOC to wrap List with valueLink (#1976)
@@ -1520,14 +4086,14 @@ Have a look at them as well.
 - Updated SVG icons (#2240)
 - [Table] added props for headerStyle, bodyStyle and footerStyle (#2246)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - Fixed double ripple due to compat mouse down (#2216)
 - [RenderToLayer] iframe support for clickaway (#2210)
 - [TextField] Fixed floating label element not allowing focus (#2228)
 - [SelectField] onFocus and onBlur handlers passed to underlying TextField component (#2102)
 
 ## 0.13.3
-###### _Nov 17, 2015_
+###### *Nov 17, 2015*
 
 ##### General
 - [Snackbar] add bodyStyle prop to style child div (#2104)
@@ -1537,14 +4103,14 @@ Have a look at them as well.
 - [Popover] new component! (#2043) (thanks @chrismcv)
 - Split [SelectField] and [TextField] doc pages (#2161)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [SelectField] onChange triggered consistently when using value prop (#1610)
 - [Dialog] fix page scrolling behind dialog after resizing (#1946)
 - [DatePicker] fix calendar height (#2141)
 - [TimePicker] allow to set time to null (#2108)
 
 ## 0.13.2
-###### _Nov 9, 2015_
+###### *Nov 9, 2015*
 
 ##### General
 - Add tabs with slide effect (#1907)
@@ -1557,7 +4123,7 @@ Have a look at them as well.
 - New Badge component (#2045) (thanks @rhythnic)
 - Add import statements to components' docs pages (#2113)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - Fix server side rendering (#2021)
 - Add key to TableHeaderColumn for selectAll (#2030)
 - Fix Circular Progress transition (#2047)
@@ -1567,7 +4133,7 @@ Have a look at them as well.
 - Theme color fixes for Slider and Toggle (#2016)
 
 ## 0.13.1
-###### _Oct 29, 2015_
+###### *Oct 29, 2015*
 
 ##### General
 - [SVGIcons] added index.js and index-generator script (#1959)
@@ -1577,7 +4143,7 @@ Have a look at them as well.
 - [Snackbar] updated for new specification (#1668)
 - [Tabs] added tabTemplate prop (#1691)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - [TextArea] height issue fixed (#1875)
 - [GridList] doc added (#1948) with code examples (#1988)
 - [TextField] fixed custom theme color hiding backgroundColor (#1989)
@@ -1585,52 +4151,52 @@ Have a look at them as well.
 - [Card] text color is now pulled from theme (#1995)
 
 ## 0.13.0
-###### _Oct 21, 2015_
+###### *Oct 21, 2015*
 
 ##### Breaking Changes
 - Material-UI for React 0.14.x
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - FloatingActionButton now has iconStyle prop (#1575)
 - Card title and subtitle props can be any node (#1950)
 
 ## 0.12.5
-###### _Oct 21, 2015_
+###### *Oct 21, 2015*
 
 v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.13.3. This version fixes that. We reverted some commits (related to React 0.14.0 support) from v0.12.4 to bring to you v0.12.5 that works as expected.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - DatePicker performance has been improved (#1905)
 - Docs code now follows ESLint rules more strictly (#1778)
 - Removed duplicate keys in component definitions (#1933)
 
 ## 0.12.4
-###### _Oct 19, 2015_
+###### *Oct 19, 2015*
 
 **This version is not compatible with React 0.13.x.** If you're on React 0.13.x, use Material-UI v0.12.5 instead.
 
 ##### General
 - React 0.14 compatible
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - ThemeDecorator supports props (#1841)
 - Full RTL support included (#1674)
 - react-draggable dependency removed for Slider (#1825)
 
 ## 0.12.3
-###### _Oct 7, 2015_
+###### *Oct 7, 2015*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - Quick-fix version until react 0.14 support is somewhat stable
   - Changed react dependency to ~0.13 in package.json (#1836)
 
 ## 0.12.2
-###### _Oct 6, 2015_
+###### *Oct 6, 2015*
 
 ##### General
 - NEW GridList component and documentation! Thanks to @igorbt (#1320)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - Added back canvasColor to theme palette (#1762)
 - Added hintStyle prop to TextField (#1510)
 - Add isScrollbarVisible function to table (#1539)
@@ -1641,9 +4207,9 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - Fixed DropdownMenu buggy value prop check (#1768)
 
 ## 0.12.1
-###### _Sep 28, 2015_
+###### *Sep 28, 2015*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - Fix broken documentation site
   - Fix theme display switch problem in doc (#1696)
   - Fix typo in src/card-expandable.jsx (#1724)
@@ -1655,7 +4221,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
   - Use consistent values from raw theme (#1746)
 
 ## 0.12.0
-###### _Sep 25, 2015_
+###### *Sep 25, 2015*
 
 ##### Breaking Changes
 - Theming has been re-done so that material-ui components can be used without having to worry about passing a theme (all components implement a default theme) (#1662)
@@ -1670,22 +4236,22 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 ##### General
 - Updated dependency of `react-tap-event-plugin` (#1714)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - Dialog component (#1717)
   - `actions` now has `id` property
   - Fixed a bug in dialog where a faulty check caused an error in console
   - Text field ipad scrolling in dialog
 
 ## 0.11.1
-###### _Sep 15, 2015_
+###### *Sep 15, 2015*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - DatePicker - Updated to new design specs (#1266)
 - LeftNav - Fix sidebar position for browsers that don't support transform3d (#1269)
 - TextField - Added props to override underlineStyle when disabled (#1493)
 
 ## 0.11.0
-###### _Aug 24, 2015_
+###### *Aug 24, 2015*
 
 ##### Breaking Changes
 - The Table component is now composable. (#1199)
@@ -1709,7 +4275,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
     dependency. If you were using this mixin in your own projects, you'll need to pull the source and manually
     include it.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - Buttons - Fixed a bug that caused buttons to not gain keyboard focus in some cases (#1485, #1453, #1458)
 - Card
   - Properly merge `CardAction` and `CardExpandable` styles. (#1376)
@@ -1739,13 +4305,13 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - Theme - Added `setContentFontFamily` (#1405)
 
 ## 0.10.4
-###### _Aug 8, 2015_
+###### *Aug 8, 2015*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - TouchRipple - Fixed a bug that caused onClick to not fire on the first click (#1370)
 
 ## 0.10.3
-###### _Aug 8, 2015_
+###### *Aug 8, 2015*
 
 ##### General
 - We've set up the project to perform automated tests - now we just need to increase our test coverage. :) (#1331)
@@ -1754,7 +4320,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 ##### New Components
 - RefreshIndicator (#1312)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - AppBar - showMenuIconButton now only affects the icon next to the title (#1295, #1182)
 - CardMedia - CardMedia children styles are now being properly merged (#1306)
 - Dialog - fixed a bug that caused the dialog height to be incorrect on window resize (#1305)
@@ -1775,7 +4341,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - TimePicker - Added pedantic prop (#1275, #1173)
 
 ## 0.10.2
-###### _Jul 29, 2015_
+###### *Jul 29, 2015*
 
 ##### Breaking Changes (Missed in the original release notes.)
 - Changed `date-picker/index.js` to expose DatePicker and DatePickerDialog.
@@ -1790,7 +4356,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 ##### Icon Builder
 - Added tests, build process, file template, and file suffix (#1130, #1127, #1126, #1125, #1139)
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - AppBar - Fixed a styling bug in Safari (#1226)
 - Cards can now expand and collapse (#1060)
 - DatePicker
@@ -1822,9 +4388,9 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - Toolbar - Fixed display glitch on Firefox (#839, #1248)
 
 ## 0.10.1
-###### _Jul 13, 2015_
+###### *Jul 13, 2015*
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - CircularProgress - Fixed animation bug in Safari (#1093, #863)
 - Dialog
   - `contentClassName` is now being passed down to the appropriate child (#1122)
@@ -1840,7 +4406,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - TextField - `errorStyle` prop is now being properly merged (#1116)
 
 ## 0.10.0
-###### _Jul 9, 2015_
+###### *Jul 9, 2015*
 
 ##### Breaking Changes
 - Removed `input.jsx` file. This component was deprecated long ago, but was never removed from the project.
@@ -1873,7 +4439,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - IconMenu
   - This component replaces `DropDownIcon` and has all of the new menu features mentioned above.
 
-##### Component Fixes / Enhancements
+#### Component Fixes / Enhancements
 - AppBar
   - IconButton styles are now being properly merged (#967)
   - FlatButtons are now being properly styled (#967)
@@ -1948,7 +4514,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
   - Styles are now being properly merged for `DropDownMenu`, `DropDownIcon`, `RaisedButton`, `FontIcon` (#965)
 
 ## 0.9.2
-###### _Jun 20, 2015_
+###### *Jun 20, 2015*
 
 ##### New Components
 - SelectField (#846)
@@ -1982,7 +4548,7 @@ v0.12.4 should have really been v0.13.0 as it breaks compatibility with React 0.
 - Theme spacing can now be overriden (#879)
 
 ## 0.9.1
-###### _Jun 14, 2015_
+###### *Jun 14, 2015*
 
 ##### General
 The following components have been modified to allow for style overrides:
@@ -2004,7 +4570,7 @@ Radio Button Group, Radio Button, Enhanced Switch Label, Text Field, Toggle, Che
   - Fixed clock handles on Firefox (#825)
 
 ## 0.9.0
-###### _Jun 9, 2015_
+###### *Jun 9, 2015*
 
 ##### Breaking
 We've cleaned up some of our click/tap events. (#771) Upgrade should be straight forward, please see below:
@@ -2038,7 +4604,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - This is a high order component that can be used to set your theme overrides (#797)
 
 ## 0.8.0
-###### _May 24, 2015_
+###### *May 24, 2015*
 
 ##### Breaking Changes
 - Refactored all CSS into Javascript (#30, #316)
@@ -2048,7 +4614,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
     component specific. In addition to the benefits mentioned in the
     presentation, inline styles allow Material-UI to become CSS preprocessor
     agnostic and make Themeing much more dynamic and simple.
-    [Read our CSS in JS discussion](https://github.com/callemall/material-ui/issues/30)
+    [Read our CSS in JS discussion](https://github.com/mui-org/material-ui/issues/30)
   - Upgrade path:
     - *If you are overriding component CSS classes:* Redefine your overrides as
       an object following [React's inline styles format](https://facebook.github.io/react/tips/inline-styles.html),
@@ -2057,10 +4623,10 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
       overriding a nested element of the component, check the component's
       documentation and see if there is a style prop available for that nested
       element. If a style prop does not exist for the component's nested element
-      that you are trying to override, [submit an issue](https://github.com/callemall/material-ui/issues/new)
+      that you are trying to override, [submit an issue](https://github.com/mui-org/material-ui/issues/new)
       requesting to have it added.
     - *If you are using any of Material-UI's Less files:* These files have been
-      refactored into their [own javascript files](https://github.com/callemall/material-ui/tree/css-in-js/src/styles)
+      refactored into their [own javascript files](https://github.com/mui-org/material-ui/tree/css-in-js/src/styles)
       and can be accessed like so `var FILENAME = require('material-ui').Styles.FILENAME;`.
       Material-UI has moved away from being a CSS Framework to being simply a
       set of React components.
@@ -2084,7 +4650,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - TimePicker - NEW (#589)
 
 ## 0.7.5
-###### _Apr 27, 2015_
+###### *Apr 27, 2015*
 
 ###### General
 - Removed deprecation warnings by replacing `this.getDOMNode()` with `React.findDOMNode()` (#558)
@@ -2097,7 +4663,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed alignment bug on Chrome when using FAB as a link (#574)
 
 ## 0.7.4
-###### _Apr 21, 2015_
+###### *Apr 21, 2015*
 
 ##### General
 - Updated to react v0.13
@@ -2124,7 +4690,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed errors on disabled switches on mobile (#476)
 
 ## 0.7.3
-###### _Apr 1, 2015_
+###### *Apr 1, 2015*
 
 ##### General
 - Updated mui to use peer dependency changes (#471)
@@ -2139,7 +4705,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Nested menus expand when hovered (#475)
 
 ## 0.7.2
-###### _Mar 25, 2015_
+###### *Mar 25, 2015*
 
 ##### General
 - Updated react-draggable2 dependency (#391)
@@ -2173,7 +4739,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Added `initialSelectedIndex` prop (#389)
 
 ## 0.7.1
-###### _Mar 4, 2015_
+###### *Mar 4, 2015*
 
 ##### General
 - Allow removal of debug code in production builds (#349)
@@ -2204,7 +4770,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed a bug with setting multiLine values (#356, #357)
 
 ## 0.7.0
-###### _Feb. 13, 2015_
+###### *Feb. 13, 2015*
 
 ##### Breaking Changes
 - Removed Icon component - Replaced with FontIcon and SvgIcon (#318, #125, #148)
@@ -2217,7 +4783,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
       For FontIcon, create a custom font file and include it in your project and just pass the Icon
       className into the FontIcon component. For SvgIcon, create a new React component that represents
       that particular icon. This will allow you to package your icons inside your js files. Examples
-      can be found [here](https://github.com/callemall/material-ui/tree/master/src/js/svg-icons).
+      can be found [here](https://github.com/mui-org/material-ui/tree/master/src/js/svg-icons).
     - Additionally, all components that had an icon prop now take an iconClassName prop instead. These
       include FloatingActionButton, IconButton, Menu, MenuItem, and DropDownIcon.
 
@@ -2246,14 +4812,14 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed a bug with multiline defaultValues in a multiline Text Field (#296)
 
 ## 0.6.1
-###### _Jan. 26, 2015_
+###### *Jan. 26, 2015*
 
 ##### Fixes
 - Checkbox & Toggle
   - Fixed a bug that caused checkboxes and toggles to not uncheck.
 
 ## 0.6.0
-###### _Jan. 26, 2015_
+###### *Jan. 26, 2015*
 
 ##### General
 - Fixed dependencies to prevent multiple versions of React getting loaded on the docs site (#194)
@@ -2301,7 +4867,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed FlatButton positioning inside toolbar (#224)
 
 ## 0.5.0
-###### _Jan. 3, 2015_
+###### *Jan. 3, 2015*
 
 ##### Breaking Changes
 - Removed lesshat dependency. Be sure to change your build process to include an
@@ -2318,7 +4884,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Added a snackbar component.
 
 ## 0.4.1
-###### _Dec. 25, 2014_
+###### *Dec. 25, 2014*
 
 ##### General
 - Updated to react 0.12.2; browserify 7.0.3
@@ -2350,7 +4916,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Trigger onChange when clicking on slider (#153)
 
 ## 0.4.0
-###### _Dec. 15, 2014_
+###### *Dec. 15, 2014*
 
 ##### Breaking Changes
 - Removed PaperButton - Use FlatButton, RaisedButton, or FloatingActionButton
@@ -2376,7 +4942,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Updated styles to match material design specs
 
 ## 0.3.3
-###### _Dec. 7, 2014_
+###### *Dec. 7, 2014*
 
 ##### General
 - Added a basic example project in /example
@@ -2396,7 +4962,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - The inital state of the toggle can now be set with the toggled prop.
 
 ## 0.3.2
-###### _Nov. 30, 2014_
+###### *Nov. 30, 2014*
 
 ##### General
 - Upgraded dependencies: react 0.12.1, browserify 6.3.3, reactify: 0.17.1
@@ -2421,7 +4987,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Account for page scrolling on ripple animation. (#93)
 
 ## 0.3.1
-###### _Nov. 28, 2014_
+###### *Nov. 28, 2014*
 
 ##### General
 - Removed browserify react addons alias. (#68)
@@ -2453,7 +5019,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Added KeyCodes constants
 
 ## 0.3.0
-###### _Nov. 17, 2014_
+###### *Nov. 17, 2014*
 
 ##### General
 - Updated Browserify & Reactify versions
@@ -2500,7 +5066,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Removed tab highlight color on all elements
 
 ## 0.2.2
-###### _Nov. 11, 2014_
+###### *Nov. 11, 2014*
 - Changed project structure to be less confusing. Material-UI components/styles live in the src directory.
   Docs site code lives in the docs directory. This still allows us to easily test components in the docs site
   as we are working on them
@@ -2511,12 +5077,12 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - Improved ripple animation on buttons
 
 ## 0.2.1
-###### _Nov. 8, 2014_
+###### *Nov. 8, 2014*
 - Fixed icon font reference. We're now including it as part of the project
   instead of an npm dependency.
 
 ## 0.2.0
-###### _Nov. 7, 2014_
+###### *Nov. 7, 2014*
 - Icon
   - Added all font icons from the unoffical material design icon font:
     https://github.com/designjockey/material-design-fonticons
@@ -2534,7 +5100,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - onLineBreak event now passes back event (e) on callback
 
 ## 0.1.29
-###### _Nov. 5, 2014_
+###### *Nov. 5, 2014*
 - css fix on paper component
 - hover transition fix on buttons
 - removed selected state on drop down icon component

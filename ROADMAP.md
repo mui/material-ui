@@ -1,66 +1,96 @@
-## Roadmap
+# Roadmap
 
 The roadmap is a living document, and it is likely that priorities will change, but the list below should give some indication of our plans for the next major release, and for the future.
 
-### 0.15.0
+## Version 1 (published on NPM under the `next` tag)
 
-#### Breaking Changes
+Releasing stable v1 is our top priority. It's going to be huge ✨.
+We are just at the beginning, we hope to make it:
+- the **simplest** React UI library available for new Front-End developers to start with.
+- **very customizable** so highly UI demanding production applications can save time building on top of it.
 
-- Remove deprecated usage of JSON to generate children across the components.
-- [[#3108](https://github.com/callemall/material-ui/pull/3108)] Remove deprecated components, methods & props.
-- [[#2957](https://github.com/callemall/material-ui/issues/2957)] Standardize callback signatures.
-- [[#2980](https://github.com/callemall/material-ui/issues/2980)] [[#1839](https://github.com/callemall/material-ui/issues/1839)] Standardise Datepicker for ISO 8601.
+Material-UI was started [3 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
+The ecosystem has evolved a lot since then, we have also learned a lot.
+[@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up**
+taking advantage of this knowledge to address long-standing issues.
+Expect various **breaking changes**.
 
-#### Deprecations
+The core team has been dedicated to the rewrite effort for one and a half years.
+If you are interested in following our progress or if you want to help us reach that goal faster, you can have a look at the following milestones:
+- ~~[v1.0.0-beta](https://github.com/mui-org/material-ui/milestone/22?closed=1)~~ - reached!
+- [v1.0.0-prerelease](https://github.com/mui-org/material-ui/milestone/14)
+- [v1.0.0](https://github.com/mui-org/material-ui/milestone/23)
 
-- [[#2880](https://github.com/callemall/material-ui/issues/2880)] Deprecate valueLink.
-- [[#1793](https://github.com/callemall/material-ui/issues/1793)][[#2679](https://github.com/callemall/material-ui/issues/2679)] PascalCase component names and reorganise directory structure. Deprecate old names.
-- [[#2697](https://github.com/callemall/material-ui/issues/2697)] Rename LeftNav and deprecate old name.
+## Q&A with the v1 version
 
-#### Core
+The v1-beta version has matured, so we think that it's time to communicate more on this effort. The following Q&A is an attempt at answering some of your questions.
 
-- [[#2903](https://github.com/callemall/material-ui/issues/2903)] Enforce eslint rules.
-- [[#2493](https://github.com/callemall/material-ui/pull/2493)] Use higher order components across the library to abstract themes passed down from context.
-- [[#2627](https://github.com/callemall/material-ui/issues/2627)] Improve overall theme handling.
-- [[#2573](https://github.com/callemall/material-ui/issues/2573)] Remove the usage of isMounted().
-- [[#2437](https://github.com/callemall/material-ui/issues/2437)] Remove mixins.
+### Summarizing, what are our main problems with CSS?
 
-#### Major features
+The CSS (cascading style sheets) specification emerged in 1994.
+At that time, a bunch of others specifications were competing.
+It was the cascading concept that made CSS succeed over its competitors, by allowing users to provide their own style-sheet, that will be later combined with browsers and authors style-sheets.
+That feature was removed 2 years ago from the most popular browser.
+My point is, our needs have evolved quite a bit since then.
 
-- [[#1321](https://github.com/callemall/material-ui/pull/1321#issuecomment-174108805)] Composable AppBar component.
-- [[#3132](https://github.com/callemall/material-ui/pull/3132)] New Stepper component.
-- [[#2861](https://github.com/callemall/material-ui/pull/2861)] Scrollable Tabs.
-- [[#2979](https://github.com/callemall/material-ui/pull/2979)] New Subheader component.
+Back in the beginning of Material-UI, we had many issues with the first **LESS approach**.
+Aside from [the problem with CSS at scale](https://speakerdeck.com/vjeux/react-css-in-js) raised by @vjeux, we had the following ones:
+- We had a **dependency** on the LESS build chain with no way to abstract it away.
+Users needed to change their theme variables. @gpbl was maintaining a [SASS version]( https://github.com/gpbl/material-ui-sass). (Today, we could be using *[cssnext](http://cssnext.io/)*).
+- The theme was computed at **build time** but a Material component must be able to render quite differently depending on his context that can only be known at runtime.
+(Tomorrow, CSS variables will help a lot)
+- We were shipping a **big monolithic** CSS file.
+That's not great for performance (for example it goes against the [PRPL pattern](https://www.polymer-project.org/1.0/toolbox/server) suggested by the Polymer team).
+That was also an issue for users wanting to use a single component without paying for all the CSS upfront.
+- We used multi-level selectors, making the **override** of styles challenging.
 
-#### Documentation
+We later came up with an **inline-style approach** solving the majority of our issues.
+But:
+- We had lost around 25% of the performance 🐢.
+Computing the inline-style at each render with no caching isn't really efficient.
+- Some more advanced CSS feature weren't available, e.g. keyframes, pseudo-elements, pseudo-classes 💅.
+- Media queries weren't available on the server. At least [not yet](http://caniuse.com/#feat=client-hints-dpr-width-viewport).
+- Debugging was really challenging. Browser dev tools aren't tuned for inline-styles.
+- React v15 has changed the method of injecting styles into the DOM meaning, for example, that prefixing all browsers for `display:flex` is no longer possible 💥.
 
-- [[#1986](https://github.com/callemall/material-ui/issues/1986)]Documentation versioning.
-- Add example on how to use [react-list](https://github.com/orgsync/react-list) for lists, menu items and table.
-- [[#2635](https://github.com/callemall/material-ui/pull/2635)] Document the new theme calculation, and it's usage.
-- [[#3191](https://github.com/callemall/material-ui/issues/3191)] Improve component property documentation.
+### Does JSS solve them?
 
-### Future
+Yes, it does. You can have a look at [this presentation](https://github.com/oliviertassinari/a-journey-toward-better-style) for more details.
 
-#### Deprecations
+### When do we intend to release stable v1?
 
-- Deprecate & eventually remove all imperative methods.
+We don't have an ETA for the release of the `v1`, however, we are going to try to follow this plan and hope for a Q1-Q2 2018 release:
 
-#### Core
+1. ~~We completely address the styling issue before moving from *alpha* to [*beta*](https://github.com/mui-org/material-ui/milestone/22).~~
+2. ~~We publish our first beta releases.~~
+3. We merge the v1-beta branch into master
+5. We publish our first pre-releases, if all goes well, we move to the next step.
+6. We publish v1 🎉
 
-- Make extensive use of `popover` and `render-to-layer`.
-- [[#458](https://github.com/callemall/material-ui/issues/458)] Migrate components to [ES6 Classes](https://github.com/callemall/material-ui/tree/es6-classes).
-- [[#2784](https://github.com/callemall/material-ui/issues/2784)] Stateless components.
-- Improve performance with `shouldComponentUpdate` and removed inefficient computations.
-- Standardize API naming and available `prop` convention across the library.
-- Better accessibility support.
-- Better keyboard navigation support.
+At that point, some features and components from Material-UI v0.x will be missing in the v1.
+So, what about them?
+- First, both versions can be used at the same time, people can progressively migrate, one component at the time.
+- Then, **with the help of the community** and over time, we will support more and more components.
+- We would rather **support few use-cases very well** and allow people to build on top of it **than many poorly**.
 
-#### Features
+### Have we ever considered using the best libraries for each piece of functionality and provide only a wrapper for the UI?
 
-- [[#2416](https://github.com/callemall/material-ui/issues/2416)] TextField as a composable component for various field types.
-- Responsive components to better support MD spec for mobile component sizes, and in preparation for react-native support.
-- [[#2863](https://github.com/callemall/material-ui/issues/2863)] Add missing components, and missing features from current ones.
-- [[#2251](https://github.com/callemall/material-ui/issues/2251)] Full featured Table.
-- Full Featured Tabs (close, [disable](https://github.com/callemall/material-ui/issues/1613), move, sizing, [scrolling](https://github.com/callemall/material-ui/pull/2861)).
-- Full support for react-native
-- [[#1673](https://github.com/callemall/material-ui/issues/1673)] I18n for the doc-site.
+We have, it really depends on the problem we are trying to solve.
+For UI related things, providing a wrapper for the functionality is often the wrong approach.
+We think that it should be done the other way around, i.e. providing a low-level API that can be combined with third-party libraries, e.g.:
+ - [react-virtualized](https://github.com/bvaughn/react-virtualized)
+ - [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views)
+ - [react-autosuggest](https://github.com/moroshko/react-autosuggest)
+ - [react-popper](https://github.com/souporserious/react-popper)
+ - [downshift](https://github.com/paypal/downshift)
+ - [react-dnd](https://github.com/gaearon/react-dnd)
+
+On the other hand, using a smart date library for the DatePicker / TimePicker would probably be much better as date management is tricky and not a core business.
+
+## After stable v1
+
+- **Theming**. We will invest in the theming solution. We would love to see **non Material Design UI** built with Material-UI. [@oliviertassinari](https://github.com/oliviertassinari/) is working on a proof of concept.
+- **Type checking**. We need to improve TypeScript and Flow coverage of the library.
+- **Bundle size**. We need the library to be as small as possible. We already monitor the bundle size with size-limit. We need to think of the solutions. For instance, supporting preact can help.
+- **Performance**. We can't optimize something we can't measure. We don't have any CI performance benchmark. We will need to build one and start investigating bottlenecks.
+- **Learning materials**. The documentation is equally as important as the quality of the implementation. We could be authoring a [learning tutorial](https://learnnextjs.com/) like Next.js is doing, or some [egghead.io](https://egghead.io/) courses.

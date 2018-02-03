@@ -1,16 +1,71 @@
 {
-  "presets": ["./scripts/material-ui-babel-preset-es2015", "stage-1", "react"],
+  "presets": ["./scripts/material-ui-babel-preset-env", "stage-1", "react"],
   "plugins": [
-    "./scripts/babel-transform-object-assign-require"
+    "transform-object-assign"
   ],
   "env": {
     "coverage": {
       "plugins": [
-        ["istanbul"]
+        [
+          "istanbul"
+        ]
+      ]
+    },
+    "development": {
+      "sourceMaps": "both",
+      "plugins": [
+        "transform-flow-strip-types"
+      ]
+    },
+    "docs-development": {
+      "presets": [
+        "next/babel"
+      ],
+      "plugins": [
+        "preval",
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "pages": "./pages",
+              "material-ui": "./src",
+              "material-ui-icons": './packages/material-ui-icons/src',
+              "docs": "./docs"
+            }
+          }
+        ],
+        "transform-flow-strip-types"
+      ]
+    },
+    "docs-production": {
+      "presets": [
+        "next/babel"
+      ],
+      "plugins": [
+        "preval",
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "pages": "./pages",
+              "material-ui": "./src",
+              "material-ui-icons": './packages/material-ui-icons/src',
+              "docs": "./docs"
+            }
+          }
+        ],
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {"mode": "remove"}]
       ]
     },
     "test": {
-      "sourceMaps": "both"
+      "sourceMaps": "both",
+      "plugins": [
+        "transform-flow-strip-types"
+      ]
     },
     "production": {
       "plugins": [
@@ -18,7 +73,12 @@
         "transform-dev-warning",
         "transform-runtime",
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
-        ["transform-react-remove-prop-types", {"mode": "wrap"}]
+        ["transform-react-remove-prop-types", {
+          "mode": "wrap",
+          "plugins": [
+            "babel-plugin-transform-flow-strip-types"
+          ]
+        }]
       ]
     }
   }

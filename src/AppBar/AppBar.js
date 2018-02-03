@@ -1,83 +1,109 @@
-// @flow weak
+// @inheritedComponent Paper
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
+import { capitalize } from '../utils/helpers';
 import Paper from '../Paper';
 
-export const styleSheet = createStyleSheet('MuiAppBar', (theme) => {
+export const styles = theme => {
+  const backgroundColorDefault =
+    theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
+
   return {
-    appBar: {
+    root: {
       display: 'flex',
       flexDirection: 'column',
       width: '100%',
+      boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
+      zIndex: theme.zIndex.appBar,
+      flexShrink: 0,
+    },
+    positionFixed: {
       position: 'fixed',
       top: 0,
-      left: 0,
-      zIndex: theme.zIndex.appBar,
+      left: 'auto',
+      right: 0,
     },
-    primary: {
-      backgroundColor: theme.palette.primary[500],
-      color: theme.palette.getContrastText(theme.palette.primary[500]),
+    positionAbsolute: {
+      position: 'absolute',
+      top: 0,
+      left: 'auto',
+      right: 0,
     },
-    accent: {
-      backgroundColor: theme.palette.accent.A200,
-      color: theme.palette.getContrastText(theme.palette.accent.A200),
+    positionSticky: {
+      position: 'sticky',
+      top: 0,
+      left: 'auto',
+      right: 0,
+    },
+    positionStatic: {
+      position: 'static',
+    },
+    colorDefault: {
+      backgroundColor: backgroundColorDefault,
+      color: theme.palette.getContrastText(backgroundColorDefault),
+    },
+    colorPrimary: {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+    },
+    colorSecondary: {
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.secondary.contrastText,
     },
   };
-});
+};
 
-export default class AppBar extends Component {
-  static propTypes = {
-    /**
-     * If `true`, the AppBar will use the theme's accent color.
-     */
-    accent: PropTypes.bool,
-    /**
-     * The content of the component.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-  };
+function AppBar(props) {
+  const { children, classes, className: classNameProp, color, position, ...other } = props;
 
-  static defaultProps = {
-    accent: false,
-  };
+  const className = classNames(
+    classes.root,
+    classes[`position${capitalize(position)}`],
+    {
+      [classes[`color${capitalize(color)}`]]: color !== 'inherit',
+      'mui-fixed': position === 'fixed', // Useful for the Dialog
+    },
+    classNameProp,
+  );
 
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  render() {
-    const {
-      accent,
-      children,
-      className: classNameProp,
-      ...other
-    } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
-
-    const className = classNames({
-      [classes.appBar]: true,
-      [classes.primary]: !accent,
-      [classes.accent]: accent,
-    }, classNameProp);
-
-    return (
-      <Paper
-        square
-        elevation={4}
-        className={className}
-        {...other}
-      >
-        {children}
-      </Paper>
-    );
-  }
+  return (
+    <Paper square component="header" elevation={4} className={className} {...other}>
+      {children}
+    </Paper>
+  );
 }
+
+AppBar.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'default']),
+  /**
+   * The positioning type. The behavior of the different options is described
+   * [here](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
+   * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
+   */
+  position: PropTypes.oneOf(['fixed', 'absolute', 'sticky', 'static']),
+};
+
+AppBar.defaultProps = {
+  color: 'primary',
+  position: 'fixed',
+};
+
+export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);

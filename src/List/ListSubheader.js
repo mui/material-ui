@@ -1,52 +1,59 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
+import { capitalize } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiListSubheader', (theme) => {
-  const { palette, typography } = theme;
-
-  return {
-    root: {
-      boxSizing: 'border-box',
-      lineHeight: '48px',
-      paddingLeft: 16,
-      color: palette.text.secondary,
-      fontFamily: typography.fontFamily,
-      fontWeight: typography.fontWeightMedium,
-      fontSize: typography.fontSize,
-    },
-    primary: {
-      color: palette.primary[500],
-    },
-    inset: {
-      paddingLeft: 72,
-    },
-  };
+export const styles = theme => ({
+  root: {
+    boxSizing: 'border-box',
+    lineHeight: '48px',
+    listStyle: 'none',
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+    color: theme.palette.text.secondary,
+    fontFamily: theme.typography.fontFamily,
+    fontWeight: theme.typography.fontWeightMedium,
+    fontSize: theme.typography.pxToRem(theme.typography.fontSize),
+  },
+  colorPrimary: {
+    color: theme.palette.primary.main,
+  },
+  colorInherit: {
+    color: 'inherit',
+  },
+  inset: {
+    paddingLeft: theme.spacing.unit * 9,
+  },
+  sticky: {
+    position: 'sticky',
+    top: 0,
+    zIndex: 1,
+    backgroundColor: 'inherit',
+  },
 });
 
-export default function ListSubheader(props, context) {
+function ListSubheader(props) {
   const {
+    classes,
     className: classNameProp,
-    primary,
+    color,
+    component: Component,
+    disableSticky,
     inset,
-    children,
     ...other
   } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, {
-    [classes.primary]: primary,
-    [classes.inset]: inset,
-  }, classNameProp);
-
-  return (
-    <div className={className} {...other}>
-      {children}
-    </div>
+  const className = classNames(
+    classes.root,
+    {
+      [classes[`color${capitalize(color)}`]]: color !== 'default',
+      [classes.inset]: inset,
+      [classes.sticky]: !disableSticky,
+    },
+    classNameProp,
   );
+
+  return <Component className={className} {...other} />;
 }
 
 ListSubheader.propTypes = {
@@ -55,24 +62,39 @@ ListSubheader.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['default', 'primary', 'inherit']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * If `true`, the List Subheader will not stick to the top during scroll.
+   */
+  disableSticky: PropTypes.bool,
   /**
    * If `true`, the List Subheader will be indented.
    */
   inset: PropTypes.bool,
-  /**
-   * If `true`, the List Subheader will have the theme primary color.
-   */
-  primary: PropTypes.bool,
 };
 
 ListSubheader.defaultProps = {
+  color: 'default',
+  component: 'li',
+  disableSticky: false,
   inset: false,
-  primary: false,
 };
 
-ListSubheader.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+ListSubheader.muiName = 'ListSubheader';
+
+export default withStyles(styles, { name: 'MuiListSubheader' })(ListSubheader);

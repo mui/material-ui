@@ -1,0 +1,120 @@
+defaults: &defaults
+  working_directory: /tmp/material-ui
+  docker:
+    - image: circleci/node:6.11
+restore_repo: &restore_repo
+  restore_cache:
+    keys:
+      - v1-repo-{{ .Branch }}-{{ .Revision }}
+version: 2
+jobs:
+  checkout:
+    <<: *defaults
+    steps:
+      - *restore_repo
+      - checkout
+      - run:
+          name: Check versions and env
+          command: |
+            yarn --version
+            node --version
+            docker --version
+            docker-compose --version
+            env
+            yarn cache dir
+      - restore_cache:
+          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install js dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn/v1
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - /tmp/material-ui
+  test_unit:
+    <<: *defaults
+    steps:
+      - *restore_repo
+      - run:
+          name: Lint
+          command: yarn lint
+      - run:
+          name: Flow
+          command: yarn flow
+      - run:
+          name: TypeScript
+          command: yarn typescript
+      - run:
+          name: Tests fake browser
+          command: yarn test:coverage
+      - run:
+          name: Check coverage generated
+          command: |
+            if ! [[ -s coverage/lcov.info ]]
+            then
+              exit 1
+            fi
+      - run:
+          name: Coverage
+          command: bash <(curl -s https://codecov.io/bash)
+  test_build:
+    <<: *defaults
+    steps:
+      - *restore_repo
+      - run:
+          name: Can we generate the build?
+          command: yarn build
+      - run:
+          name: Can we build the docs?
+          command: yarn docs:build
+      - run:
+          name: Is the size acceptable?
+          command: yarn size
+  test_browser:
+    <<: *defaults
+    steps:
+      - *restore_repo
+      - run:
+          name: Can we generate the api of the docs?
+          command: yarn docs:api
+      - run:
+          name: Should not have any git not staged
+          command: git diff --exit-code
+      - run:
+          name: Tests real browsers
+          command: yarn test:karma
+  test_regressions:
+    <<: *defaults
+    docker:
+      - image: circleci/node:6.11
+      - image: selenium/standalone-chrome:3.4.0
+    steps:
+      - *restore_repo
+      - run:
+          name: Visual regression tests
+          command: |
+            DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
+            yarn argos
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - checkout
+      - test_unit:
+          requires:
+            - checkout
+      - test_browser:
+          requires:
+            - checkout
+      - test_build:
+          requires:
+            - checkout
+      - test_regressions:
+          requires:
+            - test_unit
+            - test_browser
+            - test_build

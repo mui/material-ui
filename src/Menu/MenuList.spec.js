@@ -1,15 +1,13 @@
-// @flow weak
-
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import MenuList from './MenuList';
 
 describe('<MenuList />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true, disableLifecycleMethods: true });
   });
 
   describe('list node', () => {
@@ -21,14 +19,21 @@ describe('<MenuList />', () => {
 
     it('should render a List', () => {
       assert.strictEqual(wrapper.name(), 'List');
+      assert.strictEqual(wrapper.props()['data-test'], 'hi');
+      assert.strictEqual(wrapper.hasClass('test-class'), true);
     });
+  });
 
-    it('should spread other props on the list', () => {
-      assert.strictEqual(wrapper.prop('data-test'), 'hi', 'should have the custom prop');
-    });
-
-    it('should have the user classes', () => {
-      assert.strictEqual(wrapper.hasClass('test-class'), true, 'should have the user class');
+  describe('prop: children', () => {
+    it('should support invalid children', () => {
+      const wrapper = shallow(
+        <MenuList>
+          <div />
+          <div />
+          {null}
+        </MenuList>,
+      );
+      assert.strictEqual(wrapper.find('div').length, 2);
     });
   });
 });

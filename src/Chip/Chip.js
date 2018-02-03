@@ -1,33 +1,32 @@
-// @flow weak
-
-import React, { cloneElement, isValidElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
 import keycode from 'keycode';
-import customPropTypes from '../utils/customPropTypes';
-import DeleteIcon from '../svg-icons/cancel';
+import CancelIcon from '../internal/svg-icons/Cancel';
+import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
+import { cloneChildrenWithClassName } from '../utils/reactHelpers';
+import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
-export const styleSheet = createStyleSheet('MuiChip', (theme) => {
-  const { palette, shadows, transitions } = theme;
+export const styles = theme => {
   const height = 32;
-  const backgroundColor = emphasize(palette.background.default, 0.12);
-  const deleteIconColor = fade(palette.text.primary, 0.26);
+  const backgroundColor =
+    theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
+  const deleteIconColor = fade(theme.palette.text.primary, 0.26);
+
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
-      fontSize: 13,
-      display: 'flex',
+      fontSize: theme.typography.pxToRem(13),
+      display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
       height,
-      color: palette.getContrastText(backgroundColor),
+      color: theme.palette.getContrastText(backgroundColor),
       backgroundColor,
       borderRadius: height / 2,
       whiteSpace: 'nowrap',
-      width: 'fit-content',
-      transition: transitions.create(),
+      transition: theme.transitions.create(),
       // label will inherit this from root, then `clickable` class overrides this for both
       cursor: 'default',
       outline: 'none', // No outline on focused element in Chrome (as triggered by tabIndex prop)
@@ -35,14 +34,16 @@ export const styleSheet = createStyleSheet('MuiChip', (theme) => {
       padding: 0, // Remove `button` padding
     },
     clickable: {
+      // Remove grey highlight
+      WebkitTapHighlightColor: 'transparent',
+      cursor: 'pointer',
       '&:hover, &:focus': {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
       '&:active': {
-        boxShadow: shadows[1],
+        boxShadow: theme.shadows[1],
         backgroundColor: emphasize(backgroundColor, 0.12),
       },
-      cursor: 'pointer',
     },
     deletable: {
       '&:focus': {
@@ -51,9 +52,10 @@ export const styleSheet = createStyleSheet('MuiChip', (theme) => {
     },
     avatar: {
       marginRight: -4,
-      width: 32,
-      height: 32,
-      fontSize: 16,
+      width: height,
+      height,
+      color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
+      fontSize: theme.typography.pxToRem(16),
     },
     avatarChildren: {
       width: 19,
@@ -69,58 +71,49 @@ export const styleSheet = createStyleSheet('MuiChip', (theme) => {
       cursor: 'inherit',
     },
     deleteIcon: {
+      // Remove grey highlight
+      WebkitTapHighlightColor: 'transparent',
       color: deleteIconColor,
-      '&:hover': {
-        color: fade(deleteIconColor, 0.4),
-      },
       cursor: 'pointer',
       height: 'auto',
       margin: '0 4px 0 -8px',
+      '&:hover': {
+        color: fade(deleteIconColor, 0.4),
+      },
     },
   };
-});
+};
 
 /**
  * Chips represent complex entities in small blocks, such as a contact.
- *
- * ```jsx
- * <Chip avatar={<Avatar />} label="Label text" />
- * ```
  */
-export default function Chip(props, context) {
-  const {
-    avatar: avatarProp,
-    className: classNameProp,
-    deleteIconClassName: deleteIconClassNameProp,
-    label,
-    labelClassName: labelClassNameProp,
-    onClick,
-    onKeyDown,
-    onRequestDelete,
-    tabIndex: tabIndexProp,
-    ...other
-  } = props;
+class Chip extends React.Component {
+  chipRef = null;
 
-  let chipRef;
-
-  const handleDeleteIconClick = (event) => {
+  handleDeleteIconClick = event => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
-    onRequestDelete(event);
+    const { onDelete } = this.props;
+    if (onDelete) {
+      onDelete(event);
+    }
   };
 
-  const handleKeyDown = (event) => {
+  handleKeyDown = event => {
+    const { onClick, onDelete, onKeyDown } = this.props;
     const key = keycode(event);
 
     if (onClick && (key === 'space' || key === 'enter')) {
       event.preventDefault();
       onClick(event);
-    } else if (onRequestDelete && key === 'backspace') {
+    } else if (onDelete && key === 'backspace') {
       event.preventDefault();
-      onRequestDelete(event);
+      onDelete(event);
     } else if (key === 'esc') {
       event.preventDefault();
-      chipRef.blur();
+      if (this.chipRef) {
+        this.chipRef.blur();
+      }
     }
 
     if (onKeyDown) {
@@ -128,88 +121,120 @@ export default function Chip(props, context) {
     }
   };
 
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(
-    classes.root,
-    { [classes.clickable]: onClick },
-    { [classes.deletable]: onRequestDelete },
-    classNameProp,
-  );
-  const labelClassName = classNames(classes.label, labelClassNameProp);
+  render() {
+    const {
+      avatar: avatarProp,
+      classes,
+      className: classNameProp,
+      component: Component,
+      deleteIcon: deleteIconProp,
+      label,
+      onClick,
+      onDelete,
+      onKeyDown,
+      tabIndex: tabIndexProp,
+      ...other
+    } = this.props;
 
-  let deleteIcon = null;
-  if (onRequestDelete) {
-    const deleteIconClassName = classNames(classes.deleteIcon, deleteIconClassNameProp);
-    deleteIcon = <DeleteIcon className={deleteIconClassName} onClick={handleDeleteIconClick} />;
+    const className = classNames(
+      classes.root,
+      { [classes.clickable]: onClick },
+      { [classes.deletable]: onDelete },
+      classNameProp,
+    );
+
+    let deleteIcon = null;
+    if (onDelete) {
+      deleteIcon = deleteIconProp ? (
+        cloneChildrenWithClassName(deleteIconProp, classes.deleteIcon, {
+          onClick: this.handleDeleteIconClick,
+        })
+      ) : (
+        <CancelIcon className={classes.deleteIcon} onClick={this.handleDeleteIconClick} />
+      );
+    }
+
+    let avatar = null;
+    if (avatarProp && React.isValidElement(avatarProp)) {
+      avatar = React.cloneElement(avatarProp, {
+        className: classNames(classes.avatar, avatarProp.props.className),
+        childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),
+      });
+    }
+
+    let tabIndex = tabIndexProp;
+
+    if (!tabIndex) {
+      tabIndex = onClick || onDelete ? 0 : -1;
+    }
+
+    return (
+      <Component
+        role="button"
+        className={className}
+        tabIndex={tabIndex}
+        onClick={onClick}
+        onKeyDown={this.handleKeyDown}
+        ref={node => {
+          this.chipRef = node;
+        }}
+        {...other}
+      >
+        {avatar}
+        <span className={classes.label}>{label}</span>
+        {deleteIcon}
+      </Component>
+    );
   }
-
-  let avatar = null;
-  if (avatarProp && isValidElement(avatarProp)) {
-    avatar = cloneElement(avatarProp, {
-      className: classNames(classes.avatar, avatarProp.props.className),
-      childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),
-    });
-  }
-
-  const tabIndex = (onClick || onRequestDelete) ? tabIndexProp : -1;
-
-  return (
-    <button
-      className={className}
-      onClick={onClick}
-      tabIndex={tabIndex}
-      onKeyDown={handleKeyDown}
-      ref={(c) => { chipRef = c; }}
-      {...other}
-    >
-      {avatar}
-      <span className={labelClassName}>{label}</span>
-      {deleteIcon}
-    </button>
-  );
 }
 
 Chip.propTypes = {
   /**
    * Avatar element.
    */
-  avatar: PropTypes.node,
+  avatar: PropTypes.element,
   /**
-   * The CSS `className` of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
-   * The CSS class name of the delete icon element.
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
    */
-  deleteIconClassName: PropTypes.string,
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * Override the default delete icon element. Shown only if `onDelete` is set.
+   */
+  deleteIcon: PropTypes.element,
   /**
    * The content of the label.
    */
   label: PropTypes.node,
   /**
-   * The CSS `className` of the label.
-   */
-  labelClassName: PropTypes.string,
-  /**
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * Callback function fired when the delete icon is clicked.
+   * If set, the delete icon will be shown.
+   */
+  onDelete: PropTypes.func,
   /**
    * @ignore
    */
   onKeyDown: PropTypes.func,
   /**
-   * Callback function fired when the delete icon is clicked.
-   * If set, the delete icon will be shown.
-   * @param {object} event `onClick` event targeting the delete icon element.
-   */
-  onRequestDelete: PropTypes.func,
-  /**
    * @ignore
    */
-  tabIndex: PropTypes.number,
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
-Chip.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+Chip.defaultProps = {
+  component: 'div',
 };
+
+export default withStyles(styles, { name: 'MuiChip' })(Chip);

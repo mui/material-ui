@@ -1,40 +1,38 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
-import Toolbar, { styleSheet } from './Toolbar';
+import { createShallow, getClasses } from '../test-utils';
+import Toolbar from './Toolbar';
 
-/**
- * An item that goes in lists.
- */
 describe('<Toolbar />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<Toolbar>foo</Toolbar>);
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(
-      <Toolbar />,
-    );
+    const wrapper = shallow(<Toolbar>foo</Toolbar>);
     assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render with the user, root and gutters classes', () => {
-    const wrapper = shallow(<Toolbar className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.gutters), true, 'should have the gutters class');
+    const wrapper = shallow(<Toolbar className="woofToolbar">foo</Toolbar>);
+    assert.strictEqual(wrapper.hasClass('woofToolbar'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.gutters), true);
   });
 
   it('should disable the gutters', () => {
-    const wrapper = shallow(<Toolbar disableGutters />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.gutters), false,
-      'should not have the gutters class');
+    const wrapper = shallow(<Toolbar disableGutters>foo</Toolbar>);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(
+      wrapper.hasClass(classes.gutters),
+      false,
+      'should not have the gutters class',
+    );
   });
 });

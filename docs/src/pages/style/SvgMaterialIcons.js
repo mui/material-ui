@@ -1,19 +1,17 @@
-// @flow weak
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
 import ThreeDRotation from 'material-ui-icons/ThreeDRotation';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('SvgMaterialIcons', (theme) => ({
+const styles = theme => ({
   icon: {
     margin: theme.spacing.unit,
   },
-}));
+});
 
-export default function SvgMaterialIcons(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function SvgMaterialIcons(props) {
+  const { classes } = props;
   return (
     <div>
       <AccessAlarmIcon className={classes.icon} />
@@ -22,6 +20,8 @@ export default function SvgMaterialIcons(props, context) {
   );
 }
 
-SvgMaterialIcons.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+SvgMaterialIcons.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styles)(SvgMaterialIcons);

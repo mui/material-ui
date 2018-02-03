@@ -1,163 +1,117 @@
-// @flow weak
+// @inheritedComponent ButtonBase
 
-import React, { Component, isValidElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import ButtonBase from '../internal/ButtonBase';
-import customPropTypes from '../utils/customPropTypes';
-import Icon from '../Icon';
+import withStyles from '../styles/withStyles';
+import ButtonBase from '../ButtonBase';
+import { capitalize } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiTab', (theme) => {
-  return {
-    root: {
-      ...theme.typography.button,
-      maxWidth: 264,
-      minWidth: 72,
-      [theme.breakpoints.up('md')]: {
-        minWidth: 160,
-      },
-      background: 'none',
-      padding: 0,
-      height: 48,
-      flex: 'none',
-      overflow: 'hidden',
+export const styles = theme => ({
+  root: {
+    ...theme.typography.button,
+    maxWidth: 264,
+    position: 'relative',
+    minWidth: 72,
+    padding: 0,
+    height: 48,
+    flex: 'none',
+    overflow: 'hidden',
+    [theme.breakpoints.up('md')]: {
+      minWidth: 160,
     },
-    rootLabelIcon: {
-      height: 72,
+  },
+  rootLabelIcon: {
+    height: 72,
+  },
+  rootInherit: {
+    color: 'inherit',
+    opacity: 0.7,
+  },
+  rootPrimary: {
+    color: theme.palette.text.secondary,
+  },
+  rootPrimarySelected: {
+    color: theme.palette.primary.main,
+  },
+  rootPrimaryDisabled: {
+    color: theme.palette.text.disabled,
+  },
+  rootSecondary: {
+    color: theme.palette.text.secondary,
+  },
+  rootSecondarySelected: {
+    color: theme.palette.secondary.main,
+  },
+  rootSecondaryDisabled: {
+    color: theme.palette.text.disabled,
+  },
+  rootInheritSelected: {
+    opacity: 1,
+  },
+  rootInheritDisabled: {
+    opacity: 0.4,
+  },
+  fullWidth: {
+    flexGrow: 1,
+  },
+  wrapper: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    flexDirection: 'column',
+  },
+  labelContainer: {
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingLeft: 12,
+    paddingRight: 12,
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: theme.spacing.unit * 3,
+      paddingRight: theme.spacing.unit * 3,
     },
-    rootAccent: {
-      color: theme.palette.text.secondary,
+  },
+  label: {
+    fontSize: theme.typography.pxToRem(theme.typography.fontSize),
+    whiteSpace: 'normal',
+    [theme.breakpoints.up('md')]: {
+      fontSize: theme.typography.pxToRem(theme.typography.fontSize - 1),
     },
-    rootAccentSelected: {
-      color: theme.palette.accent[500],
+  },
+  labelWrapped: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: theme.typography.pxToRem(theme.typography.fontSize - 2),
     },
-    rootAccentDisabled: {
-      color: theme.palette.text.disabled,
-    },
-    rootInherit: {
-      color: 'inherit',
-      opacity: 0.7,
-    },
-    rootInheritSelected: {
-      opacity: 1,
-    },
-    rootInheritDisabled: {
-      opacity: 0.4,
-    },
-    fullWidth: {
-      flex: '1 0 0',
-    },
-    labelContainer: {
-      paddingTop: 6,
-      paddingBottom: 6,
-      paddingLeft: 12,
-      paddingRight: 12,
-      [theme.breakpoints.up('md')]: {
-        paddingLeft: theme.spacing.unit * 3,
-        paddingRight: theme.spacing.unit * 3,
-      },
-    },
-    label: {
-      fontSize: theme.typography.fontSize,
-      fontWeight: theme.typography.fontWeightMedium,
-      fontFamily: theme.typography.fontFamily,
-      textTransform: 'uppercase',
-      whiteSpace: 'normal',
-      [theme.breakpoints.up('md')]: {
-        fontSize: theme.typography.fontSize - 1,
-      },
-    },
-    labelWrapped: {
-      [theme.breakpoints.down('md')]: {
-        fontSize: theme.typography.fontSize - 2,
-      },
-    },
-  };
+  },
 });
 
-export default class Tab extends Component {
-  static propTypes = {
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * If `true`, the tab will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    fullWidth: PropTypes.bool,
-    /**
-     * The icon element. If a string is provided, it will be used as a font ligature.
-     */
-    icon: PropTypes.node,
-    /**
-     * @ignore
-     */
-    index: PropTypes.number,
-    /**
-     * The label element.
-     */
-    label: PropTypes.node,
-    /**
-     * The CSS class name of the label element.
-     */
-    labelClassName: PropTypes.string,
-    /**
-     * @ignore
-     */
-    onChange: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onClick: PropTypes.func,
-    /**
-     * @ignore
-     */
-    selected: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    style: PropTypes.object,
-    /**
-     * @ignore
-     */
-    textColor: PropTypes.oneOfType([
-      PropTypes.oneOf([
-        'accent',
-        'inherit',
-      ]),
-      PropTypes.string,
-    ]),
-  };
-
-  static defaultProps = {
-    disabled: false,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class Tab extends React.Component {
   state = {
     wrappedText: false,
-  }
+  };
 
   componentDidMount() {
     this.checkTextWrap();
   }
 
-  componentDidUpdate() {
-    this.checkTextWrap();
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.wrappedText === prevState.wrappedText) {
+      /**
+       * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
+       * font size still only requires one line.  This check will prevent an infinite render loop
+       * fron occurring in that scenario.
+       */
+      this.checkTextWrap();
+    }
   }
 
-  handleChange = (event) => {
-    const { onChange, index, onClick } = this.props;
+  handleChange = (event: SyntheticEvent<>) => {
+    const { onChange, value, onClick } = this.props;
 
-    onChange(event, index);
+    if (onChange) {
+      onChange(event, value);
+    }
 
     if (onClick) {
       onClick(event);
@@ -173,74 +127,69 @@ export default class Tab extends Component {
         this.setState({ wrappedText });
       }
     }
-  }
+  };
 
   render() {
     const {
+      classes,
       className: classNameProp,
+      disabled,
       fullWidth,
-      icon: iconProp,
-      index, // eslint-disable-line no-unused-vars
+      icon,
+      indicator,
       label: labelProp,
-      labelClassName,
-      onChange, // eslint-disable-line no-unused-vars
+      onChange,
       selected,
       style: styleProp,
       textColor,
-      disabled,
+      value,
       ...other
     } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
-
-    let icon;
-
-    if (iconProp !== undefined) {
-      icon = isValidElement(iconProp) ?
-        iconProp :
-        <Icon>{iconProp}</Icon>;
-    }
 
     let label;
 
     if (labelProp !== undefined) {
       label = (
-        <div className={classes.labelContainer}>
+        <span className={classes.labelContainer}>
           <span
-            className={classNames(
-              classes.label,
-              { [classes.labelWrapped]: this.state.wrappedText },
-              labelClassName,
-            )}
-            ref={(node) => { this.label = node; }}
+            className={classNames(classes.label, {
+              [classes.labelWrapped]: this.state.wrappedText,
+            })}
+            ref={node => {
+              this.label = node;
+            }}
           >
             {labelProp}
           </span>
-        </div>
+        </span>
       );
     }
 
-    const className = classNames(classes.root, {
-      [classes.rootAccent]: textColor === 'accent',
-      [classes.rootAccentDisabled]: disabled && textColor === 'accent',
-      [classes.rootAccentSelected]: selected && textColor === 'accent',
-      [classes.rootInherit]: textColor === 'inherit',
-      [classes.rootInheritDisabled]: disabled && textColor === 'inherit',
-      [classes.rootInheritSelected]: selected && textColor === 'inherit',
-      [classes.rootLabelIcon]: icon && label,
-      [classes.fullWidth]: fullWidth,
-    }, classNameProp);
+    const className = classNames(
+      classes.root,
+      classes[`root${capitalize(textColor)}`],
+      {
+        [classes[`root${capitalize(textColor)}Disabled`]]: disabled,
+        [classes[`root${capitalize(textColor)}Selected`]]: selected,
+        [classes.rootLabelIcon]: icon && label,
+        [classes.fullWidth]: fullWidth,
+      },
+      classNameProp,
+    );
 
     let style = {};
 
-    if (textColor !== 'accent' && textColor !== 'inherit') {
+    if (textColor !== 'secondary' && textColor !== 'inherit') {
       style.color = textColor;
     }
 
-    style = Object.keys(style).length > 0 ? {
-      ...style,
-      ...styleProp,
-    } : styleProp;
+    style =
+      Object.keys(style).length > 0
+        ? {
+            ...style,
+            ...styleProp,
+          }
+        : styleProp;
 
     return (
       <ButtonBase
@@ -253,9 +202,79 @@ export default class Tab extends Component {
         {...other}
         onClick={this.handleChange}
       >
-        {icon}
-        {label}
+        <span className={classes.wrapper}>
+          {icon}
+          {label}
+        </span>
+        {indicator}
       </ButtonBase>
     );
   }
 }
+
+Tab.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the tab will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * The icon element.
+   */
+  icon: PropTypes.node,
+  /**
+   * @ignore
+   * For server side rendering consideration, we let the selected tab
+   * render the indicator.
+   */
+  indicator: PropTypes.node,
+  /**
+   * The label element.
+   */
+  label: PropTypes.node,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  selected: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  textColor: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.oneOf(['secondary', 'primary', 'inherit']),
+  ]),
+  /**
+   * You can provide your own value. Otherwise, we fallback to the child position index.
+   */
+  value: PropTypes.any,
+};
+
+Tab.defaultProps = {
+  disabled: false,
+  textColor: 'inherit',
+};
+
+export default withStyles(styles, { name: 'MuiTab' })(Tab);

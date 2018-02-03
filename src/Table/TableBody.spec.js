@@ -1,35 +1,40 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
-import TableBody, { styleSheet } from './TableBody';
+import { createShallow } from '../test-utils';
+import TableBody from './TableBody';
 
 describe('<TableBody />', () => {
   let shallow;
-  let classes;
 
   before(() => {
     shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a tbody', () => {
-    const wrapper = shallow(
-      <TableBody />,
-    );
+    const wrapper = shallow(<TableBody>foo</TableBody>);
     assert.strictEqual(wrapper.name(), 'tbody');
   });
 
-  it('should render with the user and root classes', () => {
-    const wrapper = shallow(<TableBody className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+  it('should render a div', () => {
+    const wrapper = shallow(<TableBody component="div">foo</TableBody>);
+    assert.strictEqual(wrapper.name(), 'div');
+  });
+
+  it('should render with the user and class', () => {
+    const wrapper = shallow(<TableBody className="woofTableBody">foo</TableBody>);
+    assert.strictEqual(wrapper.hasClass('woofTableBody'), true);
   });
 
   it('should render children', () => {
     const children = <tr className="test" />;
     const wrapper = shallow(<TableBody>{children}</TableBody>);
     assert.strictEqual(wrapper.childAt(0).equals(children), true);
+  });
+
+  it('should define table.body in the child context', () => {
+    const wrapper = shallow(<TableBody>foo</TableBody>);
+    assert.strictEqual(wrapper.instance().getChildContext().table.body, true);
   });
 });

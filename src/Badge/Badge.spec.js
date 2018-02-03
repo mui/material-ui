@@ -1,24 +1,21 @@
-// @flow weak
 import React from 'react';
-import { createShallow } from 'src/test-utils';
 import { assert } from 'chai';
-import Badge, { styleSheet } from './Badge';
+import { createShallow, getClasses } from '../test-utils';
+import Badge from './Badge';
 
 describe('<Badge />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<Badge badgeContent={1}>Hello World</Badge>);
   });
 
   const testChildren = <div className="unique">Hello World</div>;
 
   it('renders children and badgeContent', () => {
-    const wrapper = shallow(
-      <Badge badgeContent={10}>{testChildren}</Badge>,
-    );
+    const wrapper = shallow(<Badge badgeContent={10}>{testChildren}</Badge>);
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
     assert.ok(wrapper.find('span').length, 'should contain the badgeContent');
@@ -28,25 +25,32 @@ describe('<Badge />', () => {
     const badgeClassName = 'testBadgeClassName';
 
     const wrapper = shallow(
-      <Badge badgeContent={10} badgeClassName={badgeClassName}>{testChildren}</Badge>,
+      <Badge badgeContent={10} classes={{ badge: badgeClassName }}>
+        {testChildren}
+      </Badge>,
     );
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
-    assert.strictEqual(wrapper.find('span').hasClass('testBadgeClassName'), true,
-      'should contain the badgeClassName');
+    assert.strictEqual(
+      wrapper
+        .find('span')
+        .at(1)
+        .hasClass('testBadgeClassName'),
+      true,
+    );
   });
 
   it('renders children by default', () => {
-    const wrapper = shallow(
-      <Badge badgeContent={10}>{testChildren}</Badge>,
-    );
+    const wrapper = shallow(<Badge badgeContent={10}>{testChildren}</Badge>);
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
   });
 
   it('renders children and className', () => {
     const wrapper = shallow(
-      <Badge badgeContent={10} className="testClassName">{testChildren}</Badge>,
+      <Badge badgeContent={10} className="testClassName">
+        {testChildren}
+      </Badge>,
     );
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
@@ -55,34 +59,68 @@ describe('<Badge />', () => {
 
   it('renders children and have primary styles', () => {
     const wrapper = shallow(
-      <Badge badgeContent={10} primary>{testChildren}</Badge>,
+      <Badge badgeContent={10} color="primary">
+        {testChildren}
+      </Badge>,
     );
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
-    assert.strictEqual(wrapper.find('span').hasClass(classes.primary), true,
-      'should have primary class');
+    assert.strictEqual(
+      wrapper
+        .find('span')
+        .at(1)
+        .hasClass(classes.colorPrimary),
+      true,
+      'should have primary class',
+    );
   });
 
-  it('renders children and have accent styles', () => {
+  it('renders children and have secondary styles', () => {
     const wrapper = shallow(
-      <Badge badgeContent={10} accent>{testChildren}</Badge>,
+      <Badge badgeContent={10} color="secondary">
+        {testChildren}
+      </Badge>,
     );
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
-    assert.strictEqual(wrapper.find('span').hasClass(classes.accent), true,
-      'should have accent class');
+    assert.strictEqual(
+      wrapper
+        .find('span')
+        .at(1)
+        .hasClass(classes.colorSecondary),
+      true,
+    );
+  });
+
+  it('have error class', () => {
+    const wrapper = shallow(
+      <Badge badgeContent={10} color="error">
+        <span />
+      </Badge>,
+    );
+
+    assert.strictEqual(
+      wrapper
+        .find('span')
+        .at(2)
+        .hasClass(classes.colorError),
+      true,
+    );
   });
 
   it('renders children and overwrite root styles', () => {
-    const style = {
-      backgroundColor: 'red',
-    };
+    const style = { backgroundColor: 'red' };
     const wrapper = shallow(
-      <Badge badgeContent={10} style={style}>{testChildren}</Badge>,
+      <Badge badgeContent={10} style={style}>
+        {testChildren}
+      </Badge>,
     );
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
-    assert.strictEqual(wrapper.node.props.style.backgroundColor, style.backgroundColor,
-      'should overwrite badge backgroundColor');
+    assert.strictEqual(
+      wrapper.props().style.backgroundColor,
+      style.backgroundColor,
+      'should overwrite badge backgroundColor',
+    );
   });
 });

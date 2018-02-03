@@ -1,3 +1,8 @@
 codecov:
   branch: next
-comment: false 
+coverage:
+  status:
+    patch:
+      default:
+        threshold: 0.0%
+comment: false

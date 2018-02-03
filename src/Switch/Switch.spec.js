@@ -1,18 +1,18 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
-import Switch, { LabelSwitch } from '../Switch';
-import { styleSheet } from './Switch';
+import { createShallow, getClasses } from '../test-utils';
+import SwitchBase from '../internal/SwitchBase';
+import Switch from './Switch';
 
 describe('<Switch />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ untilSelector: 'span' });
+    classes = getClasses(<Switch />);
   });
 
   describe('styleSheet', () => {
@@ -30,32 +30,23 @@ describe('<Switch />', () => {
       wrapper = shallow(<Switch className="foo" />);
     });
 
-    it('should render a div with the root and user classes', () => {
-      assert.strictEqual(wrapper.name(), 'div');
+    it('should render a span with the root and user classes', () => {
+      assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('foo'), true);
     });
 
-    it('should render SwitchBase with a custom div icon with the icon class', () => {
+    it('should render SwitchBase with a custom span icon with the icon class', () => {
       const switchBase = wrapper.childAt(0);
-
-      assert.strictEqual(switchBase.is('SwitchBase'), true);
-      assert.strictEqual(switchBase.prop('icon').type, 'div');
-      assert.strictEqual(switchBase.prop('icon').props.className, classes.icon);
+      assert.strictEqual(switchBase.type(), SwitchBase);
+      assert.strictEqual(switchBase.props().icon.type, 'span');
+      assert.strictEqual(switchBase.props().icon.props.className, classes.icon);
     });
 
     it('should render the bar as the 2nd child', () => {
       const bar = wrapper.childAt(1);
-
-      assert.strictEqual(bar.is('div'), true);
+      assert.strictEqual(bar.is('span'), true);
       assert.strictEqual(bar.hasClass(classes.bar), true);
-    });
-  });
-
-  describe('named LabelSwitch export', () => {
-    it('should be Switch wrapped with SwitchLabel', () => {
-      assert.strictEqual(LabelSwitch.name, 'SwitchLabel');
-      assert.strictEqual(LabelSwitch.displayName, 'withSwitchLabel(Switch)');
     });
   });
 });

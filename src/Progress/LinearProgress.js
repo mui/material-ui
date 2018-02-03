@@ -1,197 +1,252 @@
-// @flow weak
-
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import warning from 'warning';
+import withStyles from '../styles/withStyles';
+import { lighten } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('MuiLinearProgress', (theme) => {
-  const { palette } = theme;
-  const transitionDuration = 4; // 400ms
+const TRANSITION_DURATION = 4; // 400ms
 
-  return {
-    root: {
-      position: 'relative',
-      overflow: 'hidden',
-      height: 5,
-      backgroundColor: palette.primary[100],
+export const styles = theme => ({
+  root: {
+    position: 'relative',
+    overflow: 'hidden',
+    height: 5,
+  },
+  primaryColor: {
+    backgroundColor: lighten(theme.palette.primary.light, 0.6),
+  },
+  primaryColorBar: {
+    backgroundColor: theme.palette.primary.main,
+  },
+  primaryDashed: {
+    background: `radial-gradient(${lighten(theme.palette.primary.light, 0.6)} 0%, ${lighten(
+      theme.palette.primary.light,
+      0.6,
+    )} 16%, transparent 42%)`,
+    backgroundSize: '10px 10px',
+    backgroundPosition: '0px -23px',
+  },
+  secondaryColor: {
+    backgroundColor: lighten(theme.palette.secondary.light, 0.4),
+  },
+  secondaryColorBar: {
+    backgroundColor: theme.palette.secondary.main,
+  },
+  secondaryDashed: {
+    background: `radial-gradient(${lighten(theme.palette.secondary.light, 0.4)} 0%, ${lighten(
+      theme.palette.secondary.light,
+      0.6,
+    )} 16%, transparent 42%)`,
+    backgroundSize: '10px 10px',
+    backgroundPosition: '0px -23px',
+  },
+  bar: {
+    width: '100%',
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    top: 0,
+    transition: 'transform 0.2s linear',
+    transformOrigin: 'left',
+  },
+  dashed: {
+    position: 'absolute',
+    marginTop: 0,
+    height: '100%',
+    width: '100%',
+    animation: 'buffer 3s infinite linear',
+  },
+  bufferBar2: {
+    transition: `transform .${TRANSITION_DURATION}s linear`,
+  },
+  rootBuffer: {
+    backgroundColor: 'transparent',
+  },
+  rootQuery: {
+    transform: 'rotate(180deg)',
+  },
+  indeterminateBar1: {
+    width: 'auto',
+    willChange: 'left, right',
+    animation: 'mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
+  },
+  indeterminateBar2: {
+    width: 'auto',
+    willChange: 'left, right',
+    animation: 'mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
+    animationDelay: '1.15s',
+  },
+  determinateBar1: {
+    willChange: 'transform',
+    transition: `transform .${TRANSITION_DURATION}s linear`,
+  },
+  bufferBar1: {
+    zIndex: 1,
+    transition: `transform .${TRANSITION_DURATION}s linear`,
+  },
+  // Legends:
+  // || represents the viewport
+  // -  represents a light background
+  // x  represents a dark background
+  '@keyframes mui-indeterminate1': {
+    //  |-----|---x-||-----||-----|
+    '0%': {
+      left: '-35%',
+      right: '100%',
     },
-    rootBuffer: {
-      backgroundColor: 'transparent',
+    //  |-----|-----||-----||xxxx-|
+    '60%': {
+      left: '100%',
+      right: '-90%',
     },
-    rootQuery: {
-      transform: 'rotate(180deg)',
+    '100%': {
+      left: '100%',
+      right: '-90%',
     },
-    bar: {
-      position: 'absolute',
-      left: 0,
-      bottom: 0,
-      top: 0,
-      transition: 'transform 0.2s linear',
-      backgroundColor: palette.primary[500],
+  },
+  '@keyframes mui-indeterminate2': {
+    //  |xxxxx|xxxxx||-----||-----|
+    '0%': {
+      left: '-200%',
+      right: '100%',
     },
-    dashed: {
-      position: 'absolute',
-      marginTop: 0,
-      height: '100%',
-      width: '100%',
-      background:
-        `radial-gradient(${palette.primary[100]} 0%, ${palette.primary[100]} 16%, transparent 42%)`,
-      backgroundSize: '10px 10px',
+    //  |-----|-----||-----||-x----|
+    '60%': {
+      left: '107%',
+      right: '-8%',
+    },
+    '100%': {
+      left: '107%',
+      right: '-8%',
+    },
+  },
+  '@keyframes buffer': {
+    '0%': {
+      opacity: 1,
       backgroundPosition: '0px -23px',
-      animation: 'buffer 3s infinite linear',
     },
-    indeterminateBar1: {
-      willChange: 'left, right',
-      animation: 'indeterminate-1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
+    '50%': {
+      opacity: 0,
+      backgroundPosition: '0px -23px',
     },
-    indeterminateBar2: {
-      willChange: 'left, right',
-      animation: 'indeterminate-2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
-      animationDelay: '1.15s',
+    '100%': {
+      opacity: 1,
+      backgroundPosition: '-200px -23px',
     },
-    determinateBar1: {
-      willChange: 'width',
-      transition: `width .${transitionDuration}s linear`,
-    },
-    determinateBar2: {
-      display: 'none',
-    },
-    bufferBar1: {
-      transition: `width .${transitionDuration}s linear`,
-      backgroundColor: palette.primary[100],
-    },
-    bufferBar2: {
-      transition: `width .${transitionDuration}s linear`,
-    },
-    '@keyframes indeterminate-1': {
-      '0%': {
-        left: '-35%',
-        right: '100%',
-      },
-      '60%': {
-        left: '100%',
-        right: '-90%',
-      },
-      '100%': {
-        left: '100%',
-        right: '-90%',
-      },
-    },
-    '@keyframes indeterminate-2': {
-      '0%': {
-        left: '-200%',
-        right: '100%',
-      },
-      '60%': {
-        left: '107%',
-        right: '-8%',
-      },
-      '100%': {
-        left: '107%',
-        right: '-8%',
-      },
-    },
-    '@keyframes buffer': {
-      '0%': {
-        opacity: 1,
-        backgroundPosition: '0px -23px',
-      },
-      '50%': {
-        opacity: 0,
-        backgroundPosition: '0px -23px',
-      },
-      '100%': {
-        opacity: 1,
-        backgroundPosition: '-200px -23px',
-      },
-    },
-    '@keyframes query': {
-      '0%': {
-        opacity: 1,
-        transform: 'translateX(35%) scale(.3, 1)',
-      },
-      '100%': {
-        opacity: 0,
-        transform: 'translateX(-50%) scale(0, 1)',
-      },
-    },
-  };
+  },
 });
 
-export default class LinearProgress extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-    /**
-     * The mode of show your progress, indeterminate
-     * for when there is no value for progress.
-     */
-    mode: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
-    /**
-     * The value of progress, only works in determinate and buffer mode.
-     * Value between 0 and 100.
-     */
-    value: PropTypes.number,
-    /**
-     * The value of buffer, only works in buffer mode.
-     * Value between 0 and 100.
-     */
-    valueBuffer: PropTypes.number,
-  };
+/**
+ * ## ARIA
+ * If the progress bar is describing the loading progress of a particular region of a page,
+ * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
+ * attribute to `true` on that region until it has finished loading.
+ */
+function LinearProgress(props) {
+  const { classes, className, color, value, valueBuffer, variant, ...other } = props;
 
-  static defaultProps = {
-    mode: 'indeterminate',
-    value: 0,
-  };
+  const dashedClass = classNames(classes.dashed, {
+    [classes.primaryDashed]: color === 'primary',
+    [classes.secondaryDashed]: color === 'secondary',
+  });
 
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
+  const rootClassName = classNames(
+    classes.root,
+    {
+      [classes.primaryColor]: color === 'primary',
+      [classes.secondaryColor]: color === 'secondary',
+      [classes.rootBuffer]: variant === 'buffer',
+      [classes.rootQuery]: variant === 'query',
+    },
+    className,
+  );
+  const primaryClassName = classNames(classes.bar, {
+    [classes.primaryColorBar]: color === 'primary',
+    [classes.secondaryColorBar]: color === 'secondary',
+    [classes.indeterminateBar1]: variant === 'indeterminate' || variant === 'query',
+    [classes.determinateBar1]: variant === 'determinate',
+    [classes.bufferBar1]: variant === 'buffer',
+  });
+  const secondaryClassName = classNames(classes.bar, {
+    [classes.bufferBar2]: variant === 'buffer',
+    [classes.primaryColorBar]: color === 'primary' && variant !== 'buffer',
+    [classes.primaryColor]: color === 'primary' && variant === 'buffer',
+    [classes.secondaryColorBar]: color === 'secondary' && variant !== 'buffer',
+    [classes.secondaryColor]: color === 'secondary' && variant === 'buffer',
+    [classes.indeterminateBar2]: variant === 'indeterminate' || variant === 'query',
+  });
+  const inlineStyles = { primary: {}, secondary: {} };
+  const rootProps = {};
 
-  render() {
-    const {
-      className,
-      mode,
-      value,
-      valueBuffer,
-      ...other
-    } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
-    const rootClasses = classNames(classes.root, {
-      [classes.rootBuffer]: mode === 'buffer',
-      [classes.rootQuery]: mode === 'query',
-    }, className);
-    const dashedClasses = classNames({
-      [classes.dashed]: mode === 'buffer',
-    });
-    const bar1Classes = classNames(classes.bar, {
-      [classes.indeterminateBar1]: mode === 'indeterminate' || mode === 'query',
-      [classes.determinateBar1]: mode === 'determinate',
-      [classes.bufferBar1]: mode === 'buffer',
-    });
-    const bar2Classes = classNames(classes.bar, {
-      [classes.indeterminateBar2]: mode === 'indeterminate' || mode === 'query',
-      [classes.determinateBar2]: mode === 'determinate',
-      [classes.bufferBar2]: mode === 'buffer',
-    });
-    const styles = { bar1: {}, bar2: {} };
-    const rootProps = {};
-
-    if (mode === 'determinate') {
-      styles.bar1.width = `${value}%`;
+  if (variant === 'determinate' || variant === 'buffer') {
+    if (value !== undefined) {
+      inlineStyles.primary.transform = `scaleX(${value / 100})`;
       rootProps['aria-valuenow'] = Math.round(value);
-    } else if (mode === 'buffer') {
-      styles.bar1.width = `${valueBuffer}%`;
-      styles.bar2.width = `${value}%`;
+    } else {
+      warning(
+        false,
+        'Material-UI: you need to provide a value property ' +
+          'when using the determinate or buffer variant of LinearProgress .',
+      );
     }
-
-    return (
-      <div className={rootClasses} {...rootProps} {...other}>
-        <div className={dashedClasses} />
-        <div className={bar1Classes} style={styles.bar1} />
-        <div className={bar2Classes} style={styles.bar2} />
-      </div>
-    );
   }
+  if (variant === 'buffer') {
+    if (valueBuffer !== undefined) {
+      inlineStyles.secondary.transform = `scaleX(${(valueBuffer || 0) / 100})`;
+    } else {
+      warning(
+        false,
+        'Material-UI: you need to provide a valueBuffer property ' +
+          'when using the buffer variant of LinearProgress.',
+      );
+    }
+  }
+
+  return (
+    <div className={rootClassName} role="progressbar" {...rootProps} {...other}>
+      {variant === 'buffer' ? <div className={dashedClass} /> : null}
+      <div className={primaryClassName} style={inlineStyles.primary} />
+      {variant === 'determinate' ? null : (
+        <div className={secondaryClassName} style={inlineStyles.secondary} />
+      )}
+    </div>
+  );
 }
+
+LinearProgress.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
+  /**
+   * The value of the progress indicator for the determinate and buffer variants.
+   * Value between 0 and 100.
+   */
+  value: PropTypes.number,
+  /**
+   * The value for the buffer for the buffer variant.
+   * Value between 0 and 100.
+   */
+  valueBuffer: PropTypes.number,
+  /**
+   * The variant of progress indicator. Use indeterminate or query
+   * when there is no progress value.
+   */
+  variant: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
+};
+
+LinearProgress.defaultProps = {
+  color: 'primary',
+  variant: 'indeterminate',
+};
+
+export default withStyles(styles, { name: 'MuiLinearProgress' })(LinearProgress);

@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import path from 'path';
 
@@ -17,7 +17,7 @@ import path from 'path';
  * @param {object} options
  * @return {string} output file dest relative to outputDir
  */
-function defaultDestRewriter(pathObj, innerPath, options) {
+function defaultDestRewriter(pathObj: Object, innerPath: string, options: Object) {
   let fileName = pathObj.base;
   if (options.fileSuffix) {
     fileName.replace(options.fileSuffix, '.svg');
@@ -27,6 +27,5 @@ function defaultDestRewriter(pathObj, innerPath, options) {
   fileName = fileName.replace(/(^.)|(_)(.)/g, (match, p1, p2, p3) => (p1 || p3).toUpperCase());
   return path.join(innerPath, fileName);
 }
-
 
 module.exports = defaultDestRewriter;

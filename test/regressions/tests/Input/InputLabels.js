@@ -1,35 +1,41 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import InputLabel from 'material-ui/Input/InputLabel';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import { InputLabel } from 'material-ui/Input';
 
-const styleSheet = createStyleSheet('InputLabels', () => ({
+const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     padding: 20, // so transform doesn't let things get cut off
   },
-}));
+};
 
-export default function InputLabels(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function InputLabels(props) {
+  const { classes } = props;
 
   return (
     <div className={classes.container}>
       <InputLabel shrink>First Name Shrunk</InputLabel>
       <InputLabel>First Name</InputLabel>
       <InputLabel focused>Required</InputLabel>
-      <InputLabel focused required>Focused Required</InputLabel>
+      <InputLabel focused required>
+        Focused Required
+      </InputLabel>
       <InputLabel required>Required</InputLabel>
       <InputLabel error>Error</InputLabel>
-      <InputLabel required error>Required Error</InputLabel>
+      <InputLabel required error>
+        Required Error
+      </InputLabel>
     </div>
   );
 }
 
-InputLabels.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+InputLabels.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styles)(InputLabels);
