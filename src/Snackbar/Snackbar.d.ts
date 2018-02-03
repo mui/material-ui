@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { SnackbarContentProps } from '.';
-import { TransitionHandlers, TransitionTimeout } from '../transitions/transition';
+import { TransitionHandlers, TransitionProps } from '../transitions/transition';
 
 export type SnackBarOrigin = {
   horizontal?: 'left' | 'center' | 'right' | number;
@@ -24,7 +24,7 @@ export interface SnackbarProps
   resumeHideDuration?: number;
   SnackbarContentProps?: Partial<SnackbarContentProps>;
   transition?: React.ReactType;
-  transitionDuration?: TransitionTimeout;
+  transitionDuration?: TransitionProps['timeout'];
 }
 
 export type SnackbarClassKey =

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Theme } from '../styles/createMuiTheme';
-import { TransitionProps, TransitionTimeout } from './transition';
+import { TransitionProps } from './transition';
 
 export interface ZoomProps extends TransitionProps {
-  timeout?: TransitionTimeout;
   theme?: Theme;
 }
 

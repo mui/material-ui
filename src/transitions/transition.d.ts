@@ -1,18 +1,15 @@
 import { Omit } from '..';
-import { TransitionProps } from 'react-transition-group/Transition';
+import { TransitionProps as _TransitionProps } from 'react-transition-group/Transition';
 
-
-export interface TransitionProps extends Omit<TransitionProps, 'timeout'> {
-  in?: TransitionProps['in'];
+export type TransitionProps = Omit<_TransitionProps, 'timeout'> & {
+  // timeout is required in `react-transition-group`, Material-UI comes with defaults.
+  timeout?: _TransitionProps['timeout'];
   // FIXME: Missing from @types/react-transition-group/Transition
   mountOnEnter?: boolean;
   unmountOnExit?: boolean;
 }
 
-export type TransitionTimeout = TransitionProps['timeout'];
-export type TransitionDuration = TransitionTimeout | 'auto';
-
 export type TransitionHandlers = Pick<
-  TransitionProps,
+  _TransitionProps,
   'onEnter' | 'onEntering' | 'onEntered' | 'onExit' | 'onExiting' | 'onExited'
 >;

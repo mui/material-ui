@@ -4,7 +4,7 @@ import { ModalProps, ModalClassKey } from '../Modal';
 import { SlideProps } from '../transitions/Slide';
 import { PaperProps } from '../Paper';
 import { Theme } from '../styles/createMuiTheme';
-import { TransitionHandlers, TransitionTimeout } from '../transitions/transition';
+import { TransitionHandlers, TransitionProps } from '../transitions/transition';
 
 export interface DrawerProps
   extends StandardProps<
@@ -20,7 +20,7 @@ export interface DrawerProps
   PaperProps?: Partial<PaperProps>;
   SlideProps?: Partial<SlideProps>;
   theme?: Theme;
-  transitionDuration?: TransitionTimeout;
+  transitionDuration?: TransitionProps['timeout'];
   variant?: 'permanent' | 'persistent' | 'temporary';
 }
 
