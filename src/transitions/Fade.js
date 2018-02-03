@@ -28,6 +28,7 @@ class Fade extends React.Component {
     node.style.webkitTransition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
+    node.style.transitionDelay = `${this.props.enterDelay}ms`;
 
     if (this.props.onEntering) {
       this.props.onEntering(node);
@@ -49,7 +50,16 @@ class Fade extends React.Component {
   };
 
   render() {
-    const { appear, children, onEntering, onExit, style: styleProp, theme, ...other } = this.props;
+    const {
+      appear,
+      children,
+      enterDelay,
+      onEntering,
+      onExit,
+      style: styleProp,
+      theme,
+      ...other
+    } = this.props;
 
     const style = {
       ...styleProp,
@@ -88,6 +98,10 @@ Fade.propTypes = {
    */
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   /**
+   * The duration in milliseconds before the enter animation starts.
+   */
+  enterDelay: PropTypes.number,
+  /**
    * If `true`, the component will transition in.
    */
   in: PropTypes.bool,
@@ -123,6 +137,7 @@ Fade.propTypes = {
 
 Fade.defaultProps = {
   appear: true,
+  enterDelay: 0,
   timeout: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,
