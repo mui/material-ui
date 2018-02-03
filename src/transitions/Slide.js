@@ -129,14 +129,16 @@ class Slide extends React.Component {
   };
 
   handleEntering = node => {
-    const { theme, timeout } = this.props;
+    const { theme, timeout, style = {} } = this.props;
     node.style.transition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
       easing: theme.transitions.easing.easeOut,
+      delay: style.transitionDelay,
     });
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
       easing: theme.transitions.easing.easeOut,
+      delay: style.transitionDelay,
     });
     node.style.transform = 'translate3d(0, 0, 0)';
     node.style.webkitTransform = 'translate3d(0, 0, 0)';
@@ -146,14 +148,16 @@ class Slide extends React.Component {
   };
 
   handleExit = node => {
-    const { theme, timeout } = this.props;
+    const { theme, timeout, style = {} } = this.props;
     node.style.transition = theme.transitions.create('transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
       easing: theme.transitions.easing.sharp,
+      delay: style.transitionDelay,
     });
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
       easing: theme.transitions.easing.sharp,
+      delay: style.transitionDelay,
     });
     setTranslateValue(this.props, node);
 

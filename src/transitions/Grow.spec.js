@@ -17,9 +17,9 @@ describe('<Grow />', () => {
     shallow = createShallow({ dive: true });
   });
 
-  it('should render a CSSTransition', () => {
+  it('should render a Transition', () => {
     const wrapper = shallow(<Grow {...props} />);
-    assert.strictEqual(wrapper.name(), 'CSSTransition');
+    assert.strictEqual(wrapper.name(), 'Transition');
   });
 
   describe('event callbacks', () => {

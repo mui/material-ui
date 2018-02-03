@@ -230,10 +230,6 @@ function generateInheritance(reactAPI) {
   let pathname;
 
   switch (component) {
-    case 'CSSTransition':
-      pathname = 'https://reactcommunity.org/react-transition-group/#CSSTransition';
-      break;
-
     case 'Transition':
       pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
       break;

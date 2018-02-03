@@ -108,7 +108,6 @@ class Collapse extends React.Component {
 
   render() {
     const {
-      appear,
       children,
       classes,
       className,
@@ -127,7 +126,6 @@ class Collapse extends React.Component {
 
     return (
       <Transition
-        appear={appear}
         onEntering={this.handleEntering}
         onEnter={this.handleEnter}
         onEntered={this.handleEntered}
@@ -137,7 +135,7 @@ class Collapse extends React.Component {
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
-        {(state, otherInner) => {
+        {(state, childProps) => {
           return (
             <Component
               className={classNames(
@@ -151,7 +149,7 @@ class Collapse extends React.Component {
                 ...style,
                 minHeight: collapsedHeight,
               }}
-              {...otherInner}
+              {...childProps}
             >
               <div
                 className={classes.wrapper}
@@ -170,10 +168,6 @@ class Collapse extends React.Component {
 }
 
 Collapse.propTypes = {
-  /**
-   * @ignore
-   */
-  appear: PropTypes.bool,
   /**
    * The content node to be collapsed.
    */
@@ -241,7 +235,6 @@ Collapse.propTypes = {
 };
 
 Collapse.defaultProps = {
-  appear: false,
   collapsedHeight: '0px',
   component: 'div',
   timeout: duration.standard,

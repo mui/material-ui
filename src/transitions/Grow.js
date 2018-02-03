@@ -1,8 +1,8 @@
-// @inheritedComponent CSSTransition
+// @inheritedComponent Transition
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSTransition from 'react-transition-group/CSSTransition';
+import Transition from 'react-transition-group/Transition';
 import withTheme from '../styles/withTheme';
 
 // Only exported for tests.
@@ -17,7 +17,7 @@ export function getScale(value: number) {
 class Grow extends React.Component {
   autoTimeout = undefined;
 
-  handleEnter = (node: HTMLElement) => {
+  handleEnter = node => {
     node.style.opacity = '0';
     node.style.transform = getScale(0.75);
 
@@ -26,7 +26,7 @@ class Grow extends React.Component {
     }
   };
 
-  handleEntering = (node: HTMLElement) => {
+  handleEntering = node => {
     const { theme, timeout } = this.props;
     let duration = 0;
 
@@ -58,7 +58,7 @@ class Grow extends React.Component {
     }
   };
 
-  handleExit = (node: HTMLElement) => {
+  handleExit = node => {
     const { theme, timeout } = this.props;
     let duration = 0;
 
@@ -107,7 +107,6 @@ class Grow extends React.Component {
       style: styleProp,
       theme,
       timeout,
-      transitionClasses = {},
       ...other
     } = this.props;
 
@@ -125,8 +124,7 @@ class Grow extends React.Component {
     };
 
     return (
-      <CSSTransition
-        classNames={transitionClasses}
+      <Transition
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
@@ -137,7 +135,7 @@ class Grow extends React.Component {
         {...other}
       >
         {children}
-      </CSSTransition>
+      </Transition>
     );
   }
 }
@@ -198,18 +196,6 @@ Grow.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
   ]),
-  /**
-   * The animation classNames applied to the component as it enters or exits.
-   * This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames).
-   */
-  transitionClasses: PropTypes.shape({
-    appear: PropTypes.string,
-    appearActive: PropTypes.string,
-    enter: PropTypes.string,
-    enterActive: PropTypes.string,
-    exit: PropTypes.string,
-    exitActive: PropTypes.string,
-  }),
 };
 
 Grow.defaultProps = {

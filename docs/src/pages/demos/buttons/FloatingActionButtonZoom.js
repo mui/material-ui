@@ -110,11 +110,13 @@ class FloatingActionButtonZoom extends React.Component {
         </SwipeableViews>
         {fabs.map((fab, index) => (
           <Zoom
-            appear={false}
+            appear
             key={fab.color}
             in={this.state.value === index}
             timeout={transitionDuration}
-            enterDelay={transitionDuration.exit}
+            style={{
+              transitionDelay: transitionDuration.exit,
+            }}
             unmountOnExit
           >
             <Button variant="fab" className={fab.className} color={fab.color}>

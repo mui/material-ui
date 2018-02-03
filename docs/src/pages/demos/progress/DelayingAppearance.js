@@ -64,7 +64,12 @@ class DelayingAppearance extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Fade in={loading} enterDelay={800}>
+        <Fade
+          in={loading}
+          style={{
+            transitionDelay: loading ? '800ms' : '0ms',
+          }}
+        >
           <CircularProgress />
         </Fade>
         <Button onClick={this.handleClickLoading} className={classes.button}>
@@ -73,7 +78,12 @@ class DelayingAppearance extends React.Component {
         {query === 'success' ? (
           <Typography className={classes.success}>Success!</Typography>
         ) : (
-          <Fade in={query === 'progress'} enterDelay={800}>
+          <Fade
+            in={query === 'progress'}
+            style={{
+              transitionDelay: query === 'progress' ? '800ms' : '0ms',
+            }}
+          >
             <CircularProgress />
           </Fade>
         )}

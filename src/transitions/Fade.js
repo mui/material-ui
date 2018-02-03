@@ -21,14 +21,15 @@ const transitionStyles = {
  */
 class Fade extends React.Component {
   handleEntering = node => {
-    const { theme, timeout } = this.props;
+    const { theme, timeout, style = {} } = this.props;
     node.style.transition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
+      delay: style.transitionDelay,
     });
     node.style.webkitTransition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.enter,
+      delay: style.transitionDelay,
     });
-    node.style.transitionDelay = `${this.props.enterDelay}ms`;
 
     if (this.props.onEntering) {
       this.props.onEntering(node);
@@ -36,12 +37,14 @@ class Fade extends React.Component {
   };
 
   handleExit = node => {
-    const { theme, timeout } = this.props;
+    const { theme, timeout, style = {} } = this.props;
     node.style.transition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
+      delay: style.transitionDelay,
     });
     node.style.webkitTransition = theme.transitions.create('opacity', {
       duration: typeof timeout === 'number' ? timeout : timeout.exit,
+      delay: style.transitionDelay,
     });
 
     if (this.props.onExit) {
@@ -50,16 +53,7 @@ class Fade extends React.Component {
   };
 
   render() {
-    const {
-      appear,
-      children,
-      enterDelay,
-      onEntering,
-      onExit,
-      style: styleProp,
-      theme,
-      ...other
-    } = this.props;
+    const { children, onEntering, onExit, style: styleProp, theme, ...other } = this.props;
 
     const style = {
       ...styleProp,
@@ -67,12 +61,7 @@ class Fade extends React.Component {
     };
 
     return (
-      <Transition
-        appear={appear}
-        onEntering={this.handleEntering}
-        onExit={this.handleExit}
-        {...other}
-      >
+      <Transition appear onEntering={this.handleEntering} onExit={this.handleExit} {...other}>
         {(state, childProps) => {
           return React.cloneElement(children, {
             style: {
@@ -90,17 +79,9 @@ class Fade extends React.Component {
 
 Fade.propTypes = {
   /**
-   * @ignore
-   */
-  appear: PropTypes.bool,
-  /**
    * A single child content element.
    */
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  /**
-   * The duration in milliseconds before the enter animation starts.
-   */
-  enterDelay: PropTypes.number,
   /**
    * If `true`, the component will transition in.
    */
@@ -136,8 +117,6 @@ Fade.propTypes = {
 };
 
 Fade.defaultProps = {
-  appear: true,
-  enterDelay: 0,
   timeout: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,
