@@ -38,7 +38,9 @@ function createPageContext() {
     sheetsManager: new Map(),
     // This is needed in order to inject the critical CSS.
     sheetsRegistry: new SheetsRegistry(),
-    generateClassName: createGenerateClassName(),
+    generateClassName: createGenerateClassName({
+      productionPrefix: 'j', // Reduce the bandwidth usage.
+    }),
   };
 }
 
