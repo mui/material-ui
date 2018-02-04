@@ -160,6 +160,7 @@
     "marked": "^0.3.12",
     "mocha": "^5.0.0",
     "next": "^4.1.4",
+    "np": "^2.19.0",
     "nprogress": "^0.2.0",
     "nyc": "^11.3.0",
     "phantomjs-prebuilt": "^2.1.16",
