@@ -2,6 +2,115 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.32
+###### *Feb 4, 2018*
+
+Big thanks to the 12 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Rename the `type` property to `variant` (#10088, #10086, #10084, #10101) @mbrookes.
+- Simplify the implementation of the transitions (#10137, #10151) @oliviertassinari.
+- Add support for `position="sticky"` with the AppBar (#10090) @scottastrophic.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [API] Complete type to variant migration (#10101) @mbrookes
+
+These breaking changes aim at providing a systematic solution to the boolean vs enum naming problem.
+
+We have documented our approach to solving the problem in #10023. Basically, we enforce the following rule:
+- We use a *boolean* when the degrees of freedom required is **2**.
+- We use an *enum* when the degrees of freedom required is **> 2**.
+
+This is what motivated the button breaking change. Unfortunately `type` has its own meaning in the HTML specification. You can use it on the following elements: `<button>, <input>, <command>, <embed>, <object>, <script>, <source>, <style>, <menu>`.
+We are using a more generic name to **avoid the confusion**: `variant`.
+
+Umbrella pull-request for: #10084, #10086, #10088.
+
+```diff
+<Button
+- raised
++ variant="raised"
+
+<Button
+- fab
++ variant="fab"
+
+<Typography
+- type="title"
++ variant="title"
+
+<MobileStepper
+- type="dots"
++ variant="dots"
+
+<Drawer
+- type="persistent"
++ variant="persistent"
+
+<LinearProgress
+- mode="determinate"
++ variant="determinate"
+
+<CircularProgress
+- mode="determinate"
++ variant="determinate"
+```
+
+- [transition] Standardize the components (#10151)
+
+```diff
+           <Zoom
+             in={in}
+-            enterDelay={transitionDuration.exit}
++            style={{
++              transitionDelay: in ? transitionDuration.exit : 0,
++            }}
+```
+
+#### Component Fixes / Enhancements
+
+- [AppBar] Remove one dead CSS property (#10096) @oliviertassinari
+- [AppBar] Add support for `position="sticky"` (#10090) @scottastrophic
+- [CircularProgress] Improve animation & update example (#10079) @mbrookes
+- [API] Rename type prop to variant (#10088) @mbrookes
+- [Button] Move bool props to variant (#10086) @mbrookes
+- [Progress] Rename mode prop to variant (#10084) @mbrookes
+- [Drawer] Add PaperProps property (#10118) @oliviertassinari
+- [TextField] Small refinement (#10117) @oliviertassinari
+- [Stepper] Add StepIcon to Stepper exports (#10119) @melissanoelle
+- [ButtonBase] Fix keyDown handled (#10136) @strayiker
+- [Fade] Simplify implementation (#10137) @oliviertassinari
+- [typescript] Add missing ExpansionPanel style overrides (#10142) @simonvizzini
+- [Dialog] PaperProps TypeScript definition (#10143) @daniel-rabe
+- [InputAdornment] Remove hack (#10157) @oliviertassinari
+- [Hidden] css implementation handle custom className (#10165) @Vincz
+
+#### Docs
+
+- [docs] Minor CSP edit (#10089) @oliviertassinari
+- [docs] Avoid anchor id conflict in Progress (#10095) @oliviertassinari
+- [docs] Remove last flow annotations (#10099) @oliviertassinari
+- [docs] Alternative APIs theme (#10100) @oliviertassinari
+- [docs] Add How do I use react-router? in FAQ (#10103) @oliviertassinari
+- [examples] Update README for CRA with JSS (#10105) @kgregory
+- [docs] Add more examples for the Badge (#10114) @oliviertassinari
+- [docs] Rename IntegrationAutosuggest to IntegrationDownshift (#10116) @kentcdodds
+- [docs] Better color prop description (#10133) @mbrookes
+- [docs] Fix duplicated id issue (#10135) @oliviertassinari
+- [docs] Document approach for progress indicator delay (#10145) @mbrookes
+- [docs] Simplify delayed progress indicator example (#10147) @mbrookes
+- [docs] Improve the performance of the homepage (#10152) @oliviertassinari
+- [docs] Allow Demo to specify only required deps (#10150) @caub
+- [docs] Add mui-downshift (#10156) @oliviertassinari
+- [docs] Demo codesandbox deps (#10158) @caub
+
+#### Core
+
+- [core] Add the license in the release (#10102) @oliviertassinari
+- [test] Fix AppBar test assert messages (#10109) @cherniavskii
+
 ## 1.0.0-beta.31
 ###### *Jan 21, 2018*
 
