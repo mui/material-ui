@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
+import { getTransitionProps } from './utils';
 
 export const styles = theme => ({
   container: {
@@ -41,16 +42,17 @@ class Collapse extends React.Component {
     const { timeout, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
+    const { duration: transitionDuration } = getTransitionProps(this.props, {
+      mode: 'enter',
+    });
+
     if (timeout === 'auto') {
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
       this.autoTransitionDuration = duration2;
-    } else if (typeof timeout === 'number') {
-      node.style.transitionDuration = `${timeout}ms`;
-    } else if (timeout && typeof timeout.enter === 'number') {
-      node.style.transitionDuration = `${timeout.enter}ms`;
     } else {
-      // The propType will warn in this case.
+      node.style.transitionDuration =
+        typeof transitionDuration === 'string' ? transitionDuration : `${transitionDuration}ms`;
     }
 
     node.style.height = `${wrapperHeight}px`;
@@ -81,16 +83,17 @@ class Collapse extends React.Component {
     const { timeout, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
+    const { duration: transitionDuration } = getTransitionProps(this.props, {
+      mode: 'exit',
+    });
+
     if (timeout === 'auto') {
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
       this.autoTransitionDuration = duration2;
-    } else if (typeof timeout === 'number') {
-      node.style.transitionDuration = `${timeout}ms`;
-    } else if (timeout && typeof timeout.exit === 'number') {
-      node.style.transitionDuration = `${timeout.exit}ms`;
     } else {
-      // The propType will warn in this case.
+      node.style.transitionDuration =
+        typeof transitionDuration === 'string' ? transitionDuration : `${transitionDuration}ms`;
     }
 
     node.style.height = this.props.collapsedHeight;
@@ -108,7 +111,6 @@ class Collapse extends React.Component {
 
   render() {
     const {
-      appear,
       children,
       classes,
       className,
@@ -127,7 +129,6 @@ class Collapse extends React.Component {
 
     return (
       <Transition
-        appear={appear}
         onEntering={this.handleEntering}
         onEnter={this.handleEnter}
         onEntered={this.handleEntered}
@@ -137,7 +138,7 @@ class Collapse extends React.Component {
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
-        {(state, otherInner) => {
+        {(state, childProps) => {
           return (
             <Component
               className={classNames(
@@ -151,7 +152,7 @@ class Collapse extends React.Component {
                 ...style,
                 minHeight: collapsedHeight,
               }}
-              {...otherInner}
+              {...childProps}
             >
               <div
                 className={classes.wrapper}
@@ -170,10 +171,6 @@ class Collapse extends React.Component {
 }
 
 Collapse.propTypes = {
-  /**
-   * @ignore
-   */
-  appear: PropTypes.bool,
   /**
    * The content node to be collapsed.
    */
@@ -241,7 +238,6 @@ Collapse.propTypes = {
 };
 
 Collapse.defaultProps = {
-  appear: false,
   collapsedHeight: '0px',
   component: 'div',
   timeout: duration.standard,

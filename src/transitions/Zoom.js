@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
+import { reflow, getTransitionProps } from './utils';
 
-const transitionStyles = {
+const styles = {
   entering: {
     transform: 'scale(1)',
   },
@@ -20,28 +21,39 @@ const transitionStyles = {
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Zoom extends React.Component {
-  handleEntering = node => {
-    const { theme, timeout } = this.props;
+  handleEnter = node => {
+    const { theme } = this.props;
+    reflow(node); // So the animation always start from the start.
+
+    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+      mode: 'enter',
+    });
     node.style.transition = theme.transitions.create('transform', {
-      duration: typeof timeout === 'number' ? timeout : timeout.enter,
+      duration: transitionDuration,
+      delay,
     });
     node.style.webkitTransition = theme.transitions.create('transform', {
-      duration: typeof timeout === 'number' ? timeout : timeout.enter,
+      duration: transitionDuration,
+      delay,
     });
-    node.style.transitionDelay = `${this.props.enterDelay}ms`;
 
-    if (this.props.onEntering) {
-      this.props.onEntering(node);
+    if (this.props.onEnter) {
+      this.props.onEnter(node);
     }
   };
 
   handleExit = node => {
-    const { theme, timeout } = this.props;
+    const { theme } = this.props;
+    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+      mode: 'exit',
+    });
     node.style.transition = theme.transitions.create('transform', {
-      duration: typeof timeout === 'number' ? timeout : timeout.exit,
+      duration: transitionDuration,
+      delay,
     });
     node.style.webkitTransition = theme.transitions.create('transform', {
-      duration: typeof timeout === 'number' ? timeout : timeout.exit,
+      duration: transitionDuration,
+      delay,
     });
 
     if (this.props.onExit) {
@@ -50,16 +62,7 @@ class Zoom extends React.Component {
   };
 
   render() {
-    const {
-      appear,
-      children,
-      enterDelay,
-      onEntering,
-      onExit,
-      style: styleProp,
-      theme,
-      ...other
-    } = this.props;
+    const { children, onEnter, onExit, style: styleProp, theme, ...other } = this.props;
 
     const style = {
       ...styleProp,
@@ -67,17 +70,12 @@ class Zoom extends React.Component {
     };
 
     return (
-      <Transition
-        appear={appear}
-        onEntering={this.handleEntering}
-        onExit={this.handleExit}
-        {...other}
-      >
+      <Transition appear onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
         {(state, childProps) => {
           return React.cloneElement(children, {
             style: {
               transform: 'scale(0)',
-              ...transitionStyles[state],
+              ...styles[state],
               ...style,
             },
             ...childProps,
@@ -90,17 +88,9 @@ class Zoom extends React.Component {
 
 Zoom.propTypes = {
   /**
-   * @ignore
-   */
-  appear: PropTypes.bool,
-  /**
    * A single child content element.
    */
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  /**
-   * The duration in milliseconds before the enter animation starts.
-   */
-  enterDelay: PropTypes.number,
   /**
    * If `true`, the component will transition in.
    */
@@ -109,10 +99,6 @@ Zoom.propTypes = {
    * @ignore
    */
   onEnter: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onEntering: PropTypes.func,
   /**
    * @ignore
    */
@@ -136,8 +122,6 @@ Zoom.propTypes = {
 };
 
 Zoom.defaultProps = {
-  appear: true,
-  enterDelay: 0,
   timeout: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,

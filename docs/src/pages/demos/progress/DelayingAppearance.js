@@ -15,7 +15,7 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit * 2,
   },
-  success: {
+  placeholder: {
     height: 40,
   },
 });
@@ -64,19 +64,35 @@ class DelayingAppearance extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Fade in={loading} enterDelay={800}>
-          <CircularProgress />
-        </Fade>
+        <div className={classes.placeholder}>
+          <Fade
+            in={loading}
+            style={{
+              transitionDelay: loading ? '800ms' : '0ms',
+            }}
+            unmountOnExit
+          >
+            <CircularProgress />
+          </Fade>
+        </div>
         <Button onClick={this.handleClickLoading} className={classes.button}>
           {loading ? 'Stop loading' : 'Loading'}
         </Button>
-        {query === 'success' ? (
-          <Typography className={classes.success}>Success!</Typography>
-        ) : (
-          <Fade in={query === 'progress'} enterDelay={800}>
-            <CircularProgress />
-          </Fade>
-        )}
+        <div className={classes.placeholder}>
+          {query === 'success' ? (
+            <Typography>Success!</Typography>
+          ) : (
+            <Fade
+              in={query === 'progress'}
+              style={{
+                transitionDelay: query === 'progress' ? '800ms' : '0ms',
+              }}
+              unmountOnExit
+            >
+              <CircularProgress />
+            </Fade>
+          )}
+        </div>
         <Button onClick={this.handleClickQuery} className={classes.button}>
           {query !== 'idle' ? 'Reset' : 'Simulate a load'}
         </Button>

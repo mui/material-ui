@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow } from '../test-utils';
-import Grow, { getScale } from './Grow';
+import Grow from './Grow';
 
 describe('<Grow />', () => {
   let shallow;
@@ -17,9 +17,9 @@ describe('<Grow />', () => {
     shallow = createShallow({ dive: true });
   });
 
-  it('should render a CSSTransition', () => {
+  it('should render a Transition', () => {
     const wrapper = shallow(<Grow {...props} />);
-    assert.strictEqual(wrapper.name(), 'CSSTransition');
+    assert.strictEqual(wrapper.name(), 'Transition');
   });
 
   describe('event callbacks', () => {
@@ -64,7 +64,7 @@ describe('<Grow />', () => {
     });
 
     it('should create proper easeOut animation onEnter', () => {
-      instance.handleEntering(element);
+      instance.handleEnter(element);
       assert.match(element.style.transition, new RegExp(`${enterDuration}ms`));
     });
 
@@ -86,38 +86,12 @@ describe('<Grow />', () => {
       },
     };
 
-    describe('handleEnter(element)', () => {
+    describe('handleEnter()', () => {
       let wrapper;
-      let handleEnter;
 
       before(() => {
-        handleEnter = spy();
-        wrapper = shallow(<Grow {...props} onEnter={handleEnter} />);
+        wrapper = shallow(<Grow {...props} />);
         wrapper.instance().handleEnter(element);
-      });
-
-      it('should set the inline styles for the enter phase', () => {
-        assert.strictEqual(element.style.opacity, '0', 'should be transparent');
-        assert.strictEqual(
-          element.style.transform,
-          getScale(0.75),
-          'should have the starting scale',
-        );
-      });
-
-      it('should invoke the callback', () => {
-        assert.strictEqual(handleEnter.callCount, 1, 'should have been called once');
-      });
-    });
-
-    describe('handleEntering(element)', () => {
-      let wrapper;
-      let handleEntering;
-
-      before(() => {
-        handleEntering = spy();
-        wrapper = shallow(<Grow {...props} onEntering={handleEntering} />);
-        wrapper.instance().handleEntering(element);
       });
 
       it('should set the inline styles for the entering phase', () => {
@@ -125,34 +99,25 @@ describe('<Grow />', () => {
           element.style.transition,
           'opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,' +
             'transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-          'should apply a transition for transform and opacity',
         );
-        assert.strictEqual(element.style.opacity, '1', 'should be visible');
-        assert.strictEqual(element.style.transform, getScale(1), 'should have the full scale');
-      });
-
-      it('should invoke the callback', () => {
-        assert.strictEqual(handleEntering.callCount, 1, 'should have been called once');
       });
     });
 
-    describe('handleExit(element)', () => {
+    describe('handleExit()', () => {
       let wrapper;
-      let handleExit;
 
       before(() => {
-        handleExit = spy();
-        wrapper = shallow(<Grow {...props} onExit={handleExit} />);
+        wrapper = shallow(<Grow {...props} />);
         wrapper.instance().handleExit(element);
       });
 
       it('should set the inline styles for the exit phase', () => {
         assert.strictEqual(element.style.opacity, '0', 'should be transparent');
-        assert.strictEqual(element.style.transform, getScale(0.75), 'should have the exit scale');
-      });
-
-      it('should invoke the callback', () => {
-        assert.strictEqual(handleExit.callCount, 1, 'should have been called once');
+        assert.strictEqual(
+          element.style.transform,
+          'scale(0.75, 0.5625)',
+          'should have the exit scale',
+        );
       });
     });
   });

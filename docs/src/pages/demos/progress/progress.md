@@ -48,9 +48,9 @@ For example, a refresh operation should display either a refresh bar or an activ
 
 ## Delaying appearance
 
-There is a [school of thought](http://www.nngroup.com/articles/response-times-3-important-limits/)
-that feedback after user operations isn't necessary for about a second.
-To implement this, you can take advantage of the [Fade](/api/fade)
-transition `enterDelay` prop to delay the appearance of the progress indicators.
+There are [3 important limits](http://www.nngroup.com/articles/response-times-3-important-limits/) to know around reponse time.
+The ripple effect of the `ButtonBase` component ensures that the user feels that the system is reacting instantaneously.
+Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second.
+After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
 
 {{"demo": "pages/demos/progress/DelayingAppearance.js"}}

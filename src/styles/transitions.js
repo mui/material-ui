@@ -50,7 +50,12 @@ export default {
   duration,
   create(
     props: string | Array<string> = ['all'],
-    options: { prop?: string, duration?: number, easing?: string, delay?: number } = {},
+    options: {
+      prop?: string,
+      duration?: number | string,
+      easing?: string,
+      delay?: number | string,
+    } = {},
   ) {
     const {
       duration: durationOption = duration.standard,
@@ -61,14 +66,17 @@ export default {
 
     warning(
       isString(props) || Array.isArray(props),
-      'Material-UI: argument "props" must be a string or Array',
+      'Material-UI: argument "props" must be a string or Array.',
     );
     warning(
-      isNumber(durationOption),
-      `Material-UI: argument "duration" must be a number but found ${durationOption}`,
+      isNumber(durationOption) || isString(durationOption),
+      `Material-UI: argument "duration" must be a number or a string but found ${durationOption}.`,
     );
-    warning(isString(easingOption), 'Material-UI: argument "easing" must be a string');
-    warning(isNumber(delay), 'Material-UI: argument "delay" must be a string');
+    warning(isString(easingOption), 'Material-UI: argument "easing" must be a string.');
+    warning(
+      isNumber(delay) || isString(delay),
+      'Material-UI: argument "delay" must be a string or a string.',
+    );
     warning(
       Object.keys(other).length === 0,
       `Material-UI: unrecognized argument(s) [${Object.keys(other).join(',')}]`,
@@ -77,7 +85,9 @@ export default {
     return (Array.isArray(props) ? props : [props])
       .map(
         animatedProp =>
-          `${animatedProp} ${formatMs(durationOption)} ${easingOption} ${formatMs(delay)}`,
+          `${animatedProp} ${
+            typeof durationOption === 'string' ? durationOption : formatMs(durationOption)
+          } ${easingOption} ${typeof delay === 'string' ? delay : formatMs(delay)}`,
       )
       .join(',');
   },

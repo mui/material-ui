@@ -8,6 +8,7 @@ import debounce from 'lodash/debounce';
 import Transition from 'react-transition-group/Transition';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
+import { reflow, getTransitionProps } from './utils';
 
 const GUTTER = 24;
 
@@ -61,8 +62,6 @@ export function setTranslateValue(props, node) {
     node.style.webkitTransform = transform;
   }
 }
-
-const reflow = node => node.scrollTop;
 
 class Slide extends React.Component {
   state = {
@@ -129,14 +128,20 @@ class Slide extends React.Component {
   };
 
   handleEntering = node => {
-    const { theme, timeout } = this.props;
+    const { theme } = this.props;
+
+    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+      mode: 'enter',
+    });
     node.style.transition = theme.transitions.create('transform', {
-      duration: typeof timeout === 'number' ? timeout : timeout.enter,
+      duration: transitionDuration,
       easing: theme.transitions.easing.easeOut,
+      delay,
     });
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
-      duration: typeof timeout === 'number' ? timeout : timeout.enter,
+      duration: transitionDuration,
       easing: theme.transitions.easing.easeOut,
+      delay,
     });
     node.style.transform = 'translate3d(0, 0, 0)';
     node.style.webkitTransform = 'translate3d(0, 0, 0)';
@@ -146,14 +151,20 @@ class Slide extends React.Component {
   };
 
   handleExit = node => {
-    const { theme, timeout } = this.props;
+    const { theme } = this.props;
+
+    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+      mode: 'exit',
+    });
     node.style.transition = theme.transitions.create('transform', {
-      duration: typeof timeout === 'number' ? timeout : timeout.exit,
+      duration: transitionDuration,
       easing: theme.transitions.easing.sharp,
+      delay,
     });
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
-      duration: typeof timeout === 'number' ? timeout : timeout.exit,
+      duration: transitionDuration,
       easing: theme.transitions.easing.sharp,
+      delay,
     });
     setTranslateValue(this.props, node);
 
