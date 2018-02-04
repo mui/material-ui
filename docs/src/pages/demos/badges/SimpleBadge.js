@@ -10,7 +10,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 
 const styles = theme => ({
-  badge: {
+  margin: {
     margin: theme.spacing.unit * 2,
   },
   padding: {
@@ -23,19 +23,19 @@ function SimpleBadge(props) {
   return (
     <div>
       <div>
-        <Badge className={classes.badge} badgeContent={4} color="primary">
+        <Badge className={classes.margin} badgeContent={4} color="primary">
           <MailIcon />
         </Badge>
-        <Badge className={classes.badge} badgeContent={10} color="secondary">
+        <Badge className={classes.margin} badgeContent={10} color="secondary">
           <MailIcon />
         </Badge>
-        <IconButton>
-          <Badge className={classes.badge} badgeContent={4} color="primary">
+        <IconButton className={classes.margin}>
+          <Badge badgeContent={4} color="primary">
             <MailIcon />
           </Badge>
         </IconButton>
       </div>
-      <AppBar position="static" className={classes.badge}>
+      <AppBar position="static" className={classes.margin}>
         <Tabs value={0}>
           <Tab
             label={
@@ -48,10 +48,10 @@ function SimpleBadge(props) {
           <Tab label="Item Three" />
         </Tabs>
       </AppBar>
-      <Badge color="primary" badgeContent={4} className={classes.badge}>
+      <Badge color="primary" badgeContent={4} className={classes.margin}>
         <Typography className={classes.padding}>Typography</Typography>
       </Badge>
-      <Badge color="primary" badgeContent={4} className={classes.badge}>
+      <Badge color="primary" badgeContent={4} className={classes.margin}>
         <Button variant="raised">Button</Button>
       </Badge>
     </div>

@@ -1,33 +1,13 @@
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
+import exactProp from '../utils/exactProp';
 
 /**
  * @ignore - internal component.
  */
 function HiddenJs(props) {
-  const {
-    children,
-    lgDown,
-    lgUp,
-    mdDown,
-    mdUp,
-    only,
-    smDown,
-    smUp,
-    width,
-    xlDown,
-    xlUp,
-    xsDown,
-    xsUp,
-    ...other
-  } = props;
-
-  warning(
-    Object.keys(other).length === 0,
-    `Material-UI: unsupported properties received ${JSON.stringify(other)} by \`<Hidden />\`.`,
-  );
+  const { children, only, width } = props;
 
   let visible = true;
 
@@ -149,5 +129,7 @@ HiddenJs.propTypes = {
    */
   xsUp: PropTypes.bool,
 };
+
+HiddenJs.propTypes = exactProp(HiddenJs.propTypes, 'HiddenJs');
 
 export default withWidth()(HiddenJs);
