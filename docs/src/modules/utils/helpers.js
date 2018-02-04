@@ -10,11 +10,7 @@ export function titleize(string) {
 
   return string
     .split('-')
-    .map(word => word.split(''))
-    .map(letters => {
-      const first = letters.shift();
-      return [first.toUpperCase(), ...letters].join('');
-    })
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 }
 
@@ -30,4 +26,21 @@ export function pageToTitle(page) {
   }
 
   return titleize(name);
+}
+
+export function getDependencies(raw) {
+  const deps = {
+    react: 'latest',
+    'react-dom': 'latest',
+    'material-ui': 'next',
+  };
+  const re = /^import\s.*\sfrom\s+'([^']+)'/gm;
+  let m;
+  // eslint-disable-next-line no-cond-assign
+  while ((m = re.exec(raw))) {
+    // handle scope names
+    const name = m[1].charAt(0) === '@' ? m[1].split('/', 2).join('/') : m[1].split('/', 1)[0];
+    deps[name] = deps[name] || 'latest';
+  }
+  return deps;
 }

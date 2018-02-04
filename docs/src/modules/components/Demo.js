@@ -9,6 +9,7 @@ import CodeIcon from 'material-ui-icons/Code';
 import Tooltip from 'material-ui/Tooltip';
 import Github from 'docs/src/modules/components/GitHub';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { getDependencies } from 'docs/src/modules/utils/helpers';
 
 const styles = theme => ({
   root: {
@@ -69,24 +70,6 @@ function compress(object) {
     .replace(/=+$/, ''); // Remove ending '='
 }
 
-function conditionalDependencies(raw) {
-  const dependencies = [
-    'react-autosuggest',
-    'autosuggest-highlight',
-    'downshift',
-    'react-select',
-    'react-text-mask',
-    'react-number-format',
-  ];
-
-  return dependencies.reduce((acc, dependency) => {
-    if (raw.indexOf(`from '${dependency}`) !== -1) {
-      acc[dependency] = 'latest';
-    }
-    return acc;
-  }, {});
-}
-
 class Demo extends React.Component {
   state = {
     codeOpen: false,
@@ -105,13 +88,7 @@ class Demo extends React.Component {
       files: {
         'package.json': {
           content: {
-            dependencies: {
-              react: 'latest',
-              'react-dom': 'latest',
-              'material-ui': 'next',
-              'material-ui-icons': 'latest',
-              ...conditionalDependencies(this.props.raw),
-            },
+            dependencies: getDependencies(this.props.raw),
           },
         },
         'demo.js': {

@@ -46,7 +46,7 @@
     "size:overhead:why": "size-limit --why ./test/size/overhead.js",
     "spellcheck": "eslint . --config .eslintrc.spellcheck.js && echo \"eslint: no lint errors\"",
     "test": "yarn lint && yarn flow && yarn typescript && yarn test:unit",
-    "test:unit": "cross-env NODE_ENV=test mocha test/**/*.spec.js src/{,**/}*.spec.js",
+    "test:unit": "cross-env NODE_ENV=test mocha test/**/*.spec.js src/{,**/}*.spec.js docs/src/**/*.spec.js",
     "test:watch": "yarn test:unit -w",
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.spec.js src/{,**/}*.spec.js && nyc report -r lcovonly",
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.spec.js src/{,**/}*.spec.js && nyc report --reporter=html",
