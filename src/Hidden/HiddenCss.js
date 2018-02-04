@@ -32,6 +32,7 @@ function HiddenCss(props: Props) {
   const {
     children,
     classes,
+    className,
     lgDown,
     lgUp,
     mdDown,
@@ -54,7 +55,11 @@ function HiddenCss(props: Props) {
     )} by \`<Hidden />\`.`,
   );
 
-  const className = [];
+  const classNames = [];
+
+  if (className) {
+    classNames.push(className);
+  }
 
   for (let i = 0; i < breakpointKeys.length; i += 1) {
     const breakpoint = breakpointKeys[i];
@@ -62,21 +67,21 @@ function HiddenCss(props: Props) {
     const breakpointDown = props[`${breakpoint}Down`];
 
     if (breakpointUp) {
-      className.push(classes[`${breakpoint}Up`]);
+      classNames.push(classes[`${breakpoint}Up`]);
     }
     if (breakpointDown) {
-      className.push(classes[`${breakpoint}Down`]);
+      classNames.push(classes[`${breakpoint}Down`]);
     }
   }
 
   if (only) {
     const onlyBreakpoints = Array.isArray(only) ? only : [only];
     onlyBreakpoints.forEach(breakpoint => {
-      className.push(classes[`only${capitalize(breakpoint)}`]);
+      classNames.push(classes[`only${capitalize(breakpoint)}`]);
     });
   }
 
-  return <div className={className}>{children}</div>;
+  return <div className={classNames.join(' ')}>{children}</div>;
 }
 
 HiddenCss.propTypes = {

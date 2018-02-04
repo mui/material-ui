@@ -44,8 +44,8 @@ describe('<HiddenCss />', () => {
       );
 
       assert.strictEqual(wrapper.type(), 'div');
-      assert.strictEqual(wrapper.props().className[0], classes.onlyXs);
-      assert.strictEqual(wrapper.props().className[1], classes.onlySm);
+      assert.strictEqual(wrapper.props().className.split(' ')[0], classes.onlyXs);
+      assert.strictEqual(wrapper.props().className.split(' ')[1], classes.onlySm);
     });
 
     it('should be ok with only as an empty array', () => {
@@ -56,8 +56,7 @@ describe('<HiddenCss />', () => {
       );
 
       assert.strictEqual(wrapper.type(), 'div');
-      assert.strictEqual(Array.isArray(wrapper.props().className), true);
-      assert.strictEqual(wrapper.props().className.length, 0);
+      assert.strictEqual(wrapper.props().className, '');
     });
 
     it('should be ok with mdDown', () => {
@@ -76,6 +75,14 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
       assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
+    });
+    it('should handle provided className prop', () => {
+      const wrapper = shallow(
+        <HiddenCss mdUp className="custom">
+          <div className="foo" />
+        </HiddenCss>,
+      );
+      assert.strictEqual(wrapper.hasClass('custom'), true);
     });
   });
 
