@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { getDependencies } from 'docs/src/modules/utils/helpers';
+import { getDependencies } from './helpers';
 
 const s1 = `import React from 'react';
 import PropTypes from 'prop-types';
