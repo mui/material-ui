@@ -38,7 +38,8 @@ export function getDependencies(raw) {
   let m;
   // eslint-disable-next-line no-cond-assign
   while ((m = re.exec(raw))) {
-    const name = m[1].split('/', 1)[0];
+    // handle scope names
+    const name = m[1].charAt(0) === '@' ? m[1].split('/', 2).join('/') : m[1].split('/', 1)[0];
     deps[name] = deps[name] || 'latest';
   }
   return deps;
