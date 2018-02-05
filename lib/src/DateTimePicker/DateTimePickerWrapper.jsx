@@ -104,6 +104,10 @@ export class DateTimePickerWrapper extends PickerBase {
         dialogContentClassName={classes.dialogContent}
         invalidLabel={invalidLabel}
         labelFunc={labelFunc}
+        minDate={minDate}
+        maxDate={maxDate}
+        disablePast={disablePast}
+        disableFuture={disableFuture}
         {...other}
       >
         <DateTimePicker

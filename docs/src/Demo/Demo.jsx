@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip } from 'material-ui';
+import { AppBar, Toolbar, IconButton, Icon, Typography, withStyles, Button, Tooltip } from 'material-ui';
 
 import Github from './components/GithubIcon';
 import SourcablePanel from './components/SourcablePanel';
@@ -35,35 +35,38 @@ class Demo extends Component {
       <main className={classes.main}>
         <AppBar position="fixed" className={classes.noShadow}>
           <Toolbar>
-            <IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
-              menu
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+              <Icon>menu</Icon>
             </IconButton>
 
             <div className={classes.flex} />
 
             <Tooltip title="Toggle English/French moment locale" enterDelay={300}>
-              <IconButton color="contrast" onClick={toggleFrench}>
-                language
+              <IconButton color="inherit" onClick={toggleFrench}>
+                <Icon>language</Icon>
               </IconButton>
             </Tooltip>
 
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
-              <IconButton color="contrast" onClick={toggleThemeType}>
-                lightbulb_outline
+              <IconButton color="inherit" onClick={toggleThemeType}>
+                <Icon>lightbulb_outline</Icon>
               </IconButton>
             </Tooltip>
 
             <Tooltip title="Toggle direction" enterDelay={300}>
-              <IconButton color="contrast" onClick={toggleDirection}>
-                format_textdirection_l_to_r
+              <IconButton color="inherit" onClick={toggleDirection}>
+                <Icon>format_textdirection_l_to_r</Icon>
               </IconButton>
             </Tooltip>
-
-            <a href="https://github.com/dmtrKovalenko/material-ui-pickers">
-              <IconButton>
-                <Github color="contrast" />
+            <Tooltip title="Github" enterDelay={300}>
+              <IconButton
+                color="inherit"
+                component="a"
+                href="https://github.com/dmtrKovalenko/material-ui-pickers"
+              >
+                <Github color="inherit" />
               </IconButton>
-            </a>
+            </Tooltip>
           </Toolbar>
         </AppBar>
 
@@ -139,11 +142,11 @@ const styles = theme => ({
     boxShadow: 'unset',
   },
   appToolbar: {
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    color: 'white',
+    color: theme.palette.common.white,
     padding: '40px 20px',
     '@media (max-width: 600px)': {
       paddingTop: '100px',

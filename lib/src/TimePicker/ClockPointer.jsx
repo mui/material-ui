@@ -42,7 +42,7 @@ export class ClockPointer extends Component {
 const styles = theme => ({
   pointer: {
     width: 2,
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary.main,
     position: 'absolute',
     left: 'calc(50% - 1px)',
     bottom: '50%',
@@ -56,11 +56,11 @@ const styles = theme => ({
     position: 'absolute',
     top: -21,
     left: -15,
-    border: `14px solid ${theme.palette.primary[500]}`,
+    border: `14px solid ${theme.palette.primary.main}`,
     boxSizing: 'content-box',
   },
   noPoint: {
-    backgroundColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary.main,
   },
 });
 

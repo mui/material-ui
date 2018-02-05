@@ -73,11 +73,7 @@ export default class DatePickerWrapper extends PickerBase {
       value,
       format,
       autoOk,
-      minDate,
-      maxDate,
       onChange,
-      disablePast,
-      disableFuture,
       animateYearScrolling,
       openToYearSelection,
       returnMoment,
@@ -88,6 +84,12 @@ export default class DatePickerWrapper extends PickerBase {
       labelFunc,
       utils,
       shouldDisableDate,
+      minDateMessage,
+      maxDateMessage,
+      minDate,
+      maxDate,
+      disablePast,
+      disableFuture,
       ...other
     } = this.props;
 
@@ -102,21 +104,23 @@ export default class DatePickerWrapper extends PickerBase {
         onDismiss={this.handleDismiss}
         invalidLabel={invalidLabel}
         labelFunc={labelFunc}
+        minDateMessage={minDateMessage}
+        maxDateMessage={maxDateMessage}
         {...other}
       >
         <DatePicker
           date={date}
           onChange={this.handleChange}
-          disablePast={disablePast}
-          disableFuture={disableFuture}
           animateYearScrolling={animateYearScrolling}
           openToYearSelection={openToYearSelection}
-          minDate={minDate}
-          maxDate={maxDate}
           leftArrowIcon={leftArrowIcon}
           rightArrowIcon={rightArrowIcon}
           renderDay={renderDay}
           utils={utils}
+          minDate={minDate}
+          maxDate={maxDate}
+          disablePast={disablePast}
+          disableFuture={disableFuture}
           shouldDisableDate={shouldDisableDate}
         />
       </ModalWrapper>
