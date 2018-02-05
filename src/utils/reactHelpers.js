@@ -1,25 +1,23 @@
 // @flow
 /* eslint-disable import/prefer-default-export */
 
-import { cloneElement, Children, isValidElement } from 'react';
+import React from 'react';
 import type { Node } from 'react';
+import classNames from 'classnames';
 
-export function cloneChildrenWithClassName(children: Node, className: string, props: Object) {
-  return Children.map(children, child => {
+export function cloneChildrenWithClassName(children: Node, className: string) {
+  return React.Children.map(children, child => {
     return (
-      isValidElement(child) &&
-      cloneElement(child, {
-        className: child.props.hasOwnProperty('className')
-          ? `${child.props.className} ${className}`
-          : className,
-        ...props,
+      React.isValidElement(child) &&
+      React.cloneElement(child, {
+        className: classNames(child.props.className, className),
       })
     );
   });
 }
 
 export function isMuiElement(element: any, muiNames: Array<string>) {
-  return isValidElement(element) && muiNames.indexOf(element.type.muiName) !== -1;
+  return React.isValidElement(element) && muiNames.indexOf(element.type.muiName) !== -1;
 }
 
 export function isMuiComponent(element: any, muiNames: Array<string>) {
