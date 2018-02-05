@@ -37,7 +37,7 @@ function generateGrid(globalStyles, theme, breakpoint) {
     }
 
     // Only keep 6 significant numbers.
-    const width = `${Math.round(size / 12 * Math.pow(10, 6)) / Math.pow(10, 4)}%`;
+    const width = `${Math.round(size / 12 * 10e6) / 10e4}%`;
 
     /* eslint-disable max-len */
     // Close to the bootstrap implementation:
