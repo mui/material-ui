@@ -85,8 +85,7 @@ Global CSS is fragile by design.
 
 ## CSS injection order
 
-The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link />` is injected at the bottom of the `<head />`.
-This way, we ensure the components always render correctly.
+The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link>` is injected at the bottom of the `<head>` to ensure the components always render correctly.
 
 You might, however, also want to override these styles, for example with styled-components.
 If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point) to handle this situation.

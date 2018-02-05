@@ -16,8 +16,8 @@ You may have noticed some inconsistency in our API regarding composing component
 To provide some transparency, we have been using the following rules when designing the API:
 
 1. Using the `children` property is the idiomatic way to do composition with React.
-2. Sometimes we only need a limited child composition, for instance when we don't need to allow child order permutations.
-Under this condition, providing explicit properties makes the implementation simpler and more performant; for example, the `<Tab />` takes an `icon` and a `label` property.
+2. Sometimes we only need limited child composition, for instance when we don't need to allow child order permutations.
+In this case, providing explicit properties makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` property.
 3. API consistency matters.
 
 ## Rules

@@ -15,6 +15,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/guides/Composition'), 'utf8')
 `,
         },
+        'pages/guides/ComponentProperty.js': {
+          js: require('docs/src/pages/guides/ComponentProperty').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/guides/ComponentProperty'), 'utf8')
+`,
+        },
       }}
     />
   );

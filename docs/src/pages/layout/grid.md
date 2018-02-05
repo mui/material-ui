@@ -52,7 +52,7 @@ That also means you can set the width of one *item* and the others will automati
 ### Negative margin
 
 There is one limitation with the negative margin we use to implement the spacing between items.
-A horizontal scroll will appear if a negative margin goes beyond the `<body />`.
+A horizontal scroll will appear if a negative margin goes beyond the `<body>`.
 There are 3 available workarounds:
 1. Not using the spacing feature and implementing it in user space `spacing={0}`.
 2. Adding a padding on the parent with, at least, the spacing value:

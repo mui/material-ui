@@ -95,7 +95,11 @@ or if you want to avoid properties collisions:
 import { Link } from 'react-router-dom'
 import Button from 'material-ui/Button';
 
-<Button component={props => <Link to="/open-collective" {...props} />}>
+const MyLink = props => <Link to="/open-collective" {...props} />
+
+<Button component={MyLink}>
   Link
 </Button>
 ```
+
+*Note: Creating `MyLink` is necessary to prevent unexpected unmounting. You ran read more about it [here](/guides/composition#component-property).*
