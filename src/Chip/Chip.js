@@ -5,7 +5,6 @@ import keycode from 'keycode';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
-import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {
@@ -145,13 +144,15 @@ class Chip extends React.Component {
 
     let deleteIcon = null;
     if (onDelete) {
-      deleteIcon = deleteIconProp ? (
-        cloneChildrenWithClassName(deleteIconProp, classes.deleteIcon, {
-          onClick: this.handleDeleteIconClick,
-        })
-      ) : (
-        <CancelIcon className={classes.deleteIcon} onClick={this.handleDeleteIconClick} />
-      );
+      deleteIcon =
+        deleteIconProp && React.isValidElement(deleteIconProp) ? (
+          React.cloneElement(deleteIconProp, {
+            className: classNames(deleteIconProp.props.className, classes.deleteIcon),
+            onClick: this.handleDeleteIconClick,
+          })
+        ) : (
+          <CancelIcon className={classes.deleteIcon} onClick={this.handleDeleteIconClick} />
+        );
     }
 
     let avatar = null;

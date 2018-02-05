@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 import Input from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import ArrowDropDownIcon from 'material-ui-icons/ArrowDropDown';
+import CancelIcon from 'material-ui-icons/Cancel';
 import ArrowDropUpIcon from 'material-ui-icons/ArrowDropUp';
 import ClearIcon from 'material-ui-icons/Clear';
 import Chip from 'material-ui/Chip';
@@ -91,17 +92,20 @@ function SelectWrapped(props) {
       valueComponent={valueProps => {
         const { value, children, onRemove } = valueProps;
 
+        const onDelete = event => {
+          event.preventDefault();
+          event.stopPropagation();
+          onRemove(value);
+        };
+
         if (onRemove) {
           return (
             <Chip
               tabIndex={-1}
               label={children}
               className={classes.chip}
-              onDelete={event => {
-                event.preventDefault();
-                event.stopPropagation();
-                onRemove(value);
-              }}
+              deleteIcon={<CancelIcon onTouchEnd={onDelete} />}
+              onDelete={onDelete}
             />
           );
         }
