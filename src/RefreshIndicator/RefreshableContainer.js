@@ -5,6 +5,7 @@ import withStyles from '../styles/withStyles';
 import RefreshIndicator from './RefreshIndicator';
 
 const INDICATOR_SIZE = 40
+const INDICATOR_ACTIVE_POSITION = 114
 
 const styles = {
   root: {
@@ -13,8 +14,12 @@ const styles = {
   },
   indicator: {
     position: 'relative',
-    margin: `0 auto -${INDICATOR_SIZE}px`
-  }
+    margin: `0 auto -${INDICATOR_SIZE}px`,
+    '&$window': {
+      position: 'fixed'
+    }
+  },
+  window: {}
 }
 
 
@@ -48,7 +53,7 @@ class RefreshableContainer extends React.Component {
   handleTouchEnd = (e) => {
     if (this.rootNode.scrollTop === 0) {
       const delta = this.state.touchNow - this.state.touchStart
-      if (delta >= 100 && this.props.onRefresh) { // TODO
+      if (delta - INDICATOR_SIZE - 5 >= INDICATOR_ACTIVE_POSITION && this.props.onRefresh) { // TODO
         this.props.onRefresh()
       }
       this.setState({ swiping: false, touchStart: 0, touchNow: 0 })
@@ -60,18 +65,32 @@ class RefreshableContainer extends React.Component {
   setRootNode = (node) => {
     this.rootNode = node;
     if (node != null) {
-      // manually attach this event listener to disable passive option
-      // see https://github.com/facebook/react/issues/8968
+      if (this.props.attachToWindow) {
+        node = document.documentElement
+        this.rootNode = node
+      }
+      node.addEventListener('touchstart', this.handleTouchStart)
       node.addEventListener('touchmove', this.handleTouchMove, { passive: false })
+      node.addEventListener('touchend', this.handleTouchEnd)
     }
+  }
+
+  componentWillUnmount () {
+    this.rootNode.removeEventListener('touchstart', this.handleTouchStart)
+    this.rootNode.removeEventListener('touchmove', this.handleTouchMove)
+    this.rootNode.removeEventListener('touchend', this.handleTouchEnd)
   }
 
   getTopOffset () {
     if (this.props.loading) {
-      return 0;
+      return INDICATOR_ACTIVE_POSITION;
     } else if (this.state.swiping) {
       const touchDelta = this.state.touchNow - this.state.touchStart;
-      return Math.max(-INDICATOR_SIZE - 5, touchDelta - INDICATOR_SIZE - 5) - Math.max(0, (touchDelta - 95) * 0.6);
+      if (touchDelta - INDICATOR_SIZE - 5 >= INDICATOR_ACTIVE_POSITION) {
+        console.log(INDICATOR_ACTIVE_POSITION + Math.log(1 + touchDelta - INDICATOR_SIZE - 5 - INDICATOR_ACTIVE_POSITION) * 20)
+        return INDICATOR_ACTIVE_POSITION - INDICATOR_SIZE - 5 + Math.log(1 + touchDelta - INDICATOR_SIZE - 5 - INDICATOR_ACTIVE_POSITION) * 50
+      }
+      return Math.max(-INDICATOR_SIZE - 5, touchDelta - INDICATOR_SIZE - 5);
     } else {
       return -INDICATOR_SIZE - 5;
     }
@@ -79,6 +98,7 @@ class RefreshableContainer extends React.Component {
 
   render () {
     const {
+      attachToWindow,
       classes,
       className: classNameProp,
       children,
@@ -94,14 +114,12 @@ class RefreshableContainer extends React.Component {
       <div
         ref={this.setRootNode}
         className={classNames(classes.root, classNameProp)}
-        onTouchStart={this.handleTouchStart}
-        onTouchEnd={this.handleTouchEnd}
         {...other}
       >
         <RefreshIndicator
-          percentage={Math.max(0, touchDelta - Math.max(0, touchDelta - 95) * 0.6)}
+          percentage={Math.max(0, touchDelta - Math.max(0, touchDelta - INDICATOR_ACTIVE_POSITION) * 0.6)}
           status={loading ? 'loading' : 'ready'}
-          className={classes.indicator}
+          className={classNames(classes.indicator, { [classes.window]: attachToWindow })}
           style={{
             top: this.getTopOffset(),
             transition: loading || !swiping ? 'all 150ms ease-in-out' : 'transform 150ms ease-in-out',
@@ -112,6 +130,34 @@ class RefreshableContainer extends React.Component {
       </div>
     )
   }
+}
+
+RefreshableContainer.propTypes = {
+  /**
+   * If `true`, the swipe down gesture uses the document instead of this container.
+   */
+  attachToWindow: PropTypes.bool,
+  /**
+   * The contents of the refreshable container.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, a loading indicator is displayed.
+   */
+  loading: PropTypes.bool,
+}
+
+RefreshableContainer.defaultTypes = {
+  attachToWindow: false,
+  loading: false
 }
 
 export default withStyles(styles)(RefreshableContainer)
