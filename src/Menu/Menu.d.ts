@@ -7,7 +7,7 @@ import { StandardProps } from '..';
 export interface MenuProps
   extends StandardProps<PopoverProps & Partial<TransitionHandlers>, MenuClassKey> {
   anchorEl?: HTMLElement;
-  MenuListProps?: MenuListProps;
+  MenuListProps?: Partial<MenuListProps>;
   transitionDuration?: TransitionDuration;
 }
 

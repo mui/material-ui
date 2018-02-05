@@ -13,12 +13,12 @@ export interface LabelDisplayedRowsArgs {
 export interface TablePaginationProps
   extends StandardProps<TablePaginationBaseProps, TablePaginationClassKey> {
   Actions?: React.ReactType<TablePaginationBaseProps>;
-  backIconButtonProps?: IconButtonProps;
+  backIconButtonProps?: Partial<IconButtonProps>;
   component?: React.ReactType<TablePaginationBaseProps>;
   count: number;
   labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
   labelRowsPerPage?: React.ReactNode;
-  nextIconButtonProps?: IconButtonProps;
+  nextIconButtonProps?: Partial<IconButtonProps>;
   onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   page: number;
