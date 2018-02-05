@@ -63,6 +63,9 @@ export const styles = theme => ({
         theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
       opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
     },
+    '& $icon': {
+      boxShadow: theme.shadows[1],
+    },
   },
 });
 
