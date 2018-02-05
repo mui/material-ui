@@ -104,6 +104,10 @@ export default class DatePickerWrapper extends PickerBase {
         onDismiss={this.handleDismiss}
         invalidLabel={invalidLabel}
         labelFunc={labelFunc}
+        minDate={minDate}
+        maxDate={maxDate}
+        disablePast={disablePast}
+        disableFuture={disableFuture}
         minDateMessage={minDateMessage}
         maxDateMessage={maxDateMessage}
         {...other}
