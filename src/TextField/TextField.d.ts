@@ -40,6 +40,6 @@ export interface TextFieldProps
 
 export type TextFieldClassKey = FormControlClassKey;
 
-declare const Input: React.ComponentType<TextFieldProps>;
+declare const TextField: React.ComponentType<TextFieldProps>;
 
-export default Input;
+export default TextField;
