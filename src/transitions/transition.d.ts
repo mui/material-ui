@@ -1,17 +1,17 @@
 import { Omit } from '..';
-import { TransitionProps as OriginalTransitionProps } from 'react-transition-group/Transition';
+import { TransitionProps as _TransitionProps } from 'react-transition-group/Transition';
 
-/**
- * TS can not correctly infer props if there is an index signature.
- * By picking only specified props we can work around this issue.
- */
-type KeyesTransitionProps = Pick<OriginalTransitionProps, keyof OriginalTransitionProps>
-
-export type TransitionProps = Omit<KeyesTransitionProps, 'timeout'> & {
-  timeout?: OriginalTransitionProps['timeout'];
+export type TransitionProps = Omit<_TransitionProps, 'timeout'> & {
+  // timeout is required in `react-transition-group`, Material-UI comes with defaults.
+  timeout?: _TransitionProps['timeout'];
+  // FIXME: @types/react-transition-group/Transition includes the object index, this breaks the `in` prop.
+  in?: _TransitionProps['in'];
+  // FIXME: Missing from @types/react-transition-group/Transition
+  mountOnEnter?: boolean;
+  unmountOnExit?: boolean;
 }
 
 export type TransitionHandlers = Pick<
-  OriginalTransitionProps,
+  _TransitionProps,
   'onEnter' | 'onEntering' | 'onEntered' | 'onExit' | 'onExiting' | 'onExited'
 >;
