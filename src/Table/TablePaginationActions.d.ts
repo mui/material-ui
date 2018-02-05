@@ -5,9 +5,9 @@ import { IconButtonProps } from '../IconButton/IconButton';
 
 export interface TablePaginationActionsProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TablePaginationActionsClassKey> {
-  backIconButtonProps?: IconButtonProps;
+  backIconButtonProps?: Partial<IconButtonProps>;
   count: number;
-  nextIconButtonProps?: IconButtonProps;
+  nextIconButtonProps?: Partial<IconButtonProps>;
   onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   page: number;
   rowsPerPage: number;

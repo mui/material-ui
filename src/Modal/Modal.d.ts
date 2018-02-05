@@ -9,7 +9,7 @@ export interface ModalProps
       ModalClassKey
     > {
   BackdropComponent?: React.ReactType<BackdropProps>;
-  BackdropProps?: BackdropProps;
+  BackdropProps?: Partial<BackdropProps>;
   disableAutoFocus?: boolean;
   disableBackdropClick?: boolean;
   disableEnforceFocus?: boolean;

@@ -13,13 +13,13 @@ export interface TextFieldProps
   defaultValue?: string | number;
   disabled?: boolean;
   error?: boolean;
-  FormHelperTextProps?: FormHelperTextProps;
+  FormHelperTextProps?: Partial<FormHelperTextProps>;
   fullWidth?: boolean;
   helperText?: React.ReactNode;
   helperTextClassName?: string;
   id?: string;
-  InputLabelProps?: InputLabelProps;
-  InputProps?: InputProps;
+  InputLabelProps?: Partial<InputLabelProps>;
+  InputProps?: Partial<InputProps>;
   inputProps?: InputProps['inputProps'];
   inputRef?: React.Ref<any>;
   label?: React.ReactNode;
@@ -33,7 +33,7 @@ export interface TextFieldProps
   rows?: string | number;
   rowsMax?: string | number;
   select?: boolean;
-  SelectProps?: SelectProps;
+  SelectProps?: Partial<SelectProps>;
   type?: string;
   value?: Array<string | number> | string | number;
 }
