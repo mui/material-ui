@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
+import classNames from 'classnames';
 import { createShallow, getClasses } from '../test-utils';
 import SwitchBase from '../internal/SwitchBase';
 import Switch from './Switch';
@@ -41,6 +42,11 @@ describe('<Switch />', () => {
       assert.strictEqual(switchBase.type(), SwitchBase);
       assert.strictEqual(switchBase.props().icon.type, 'span');
       assert.strictEqual(switchBase.props().icon.props.className, classes.icon);
+      assert.strictEqual(switchBase.props().checkedIcon.type, 'span');
+      assert.strictEqual(
+        switchBase.props().checkedIcon.props.className,
+        classNames(classes.icon, classes.iconChecked),
+      );
     });
 
     it('should render the bar as the 2nd child', () => {

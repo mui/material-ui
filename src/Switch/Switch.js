@@ -37,6 +37,9 @@ export const styles = theme => ({
     height: 20,
     borderRadius: '50%',
   },
+  iconChecked: {
+    boxShadow: theme.shadows[2],
+  },
   // For SwitchBase
   default: {
     zIndex: 1,
@@ -66,6 +69,7 @@ export const styles = theme => ({
 function Switch(props) {
   const { classes, className, ...other } = props;
   const icon = <span className={classes.icon} />;
+  const checkedIcon = <span className={classNames(classes.icon, classes.iconChecked)} />;
 
   return (
     <span className={classNames(classes.root, className)}>
@@ -76,7 +80,7 @@ function Switch(props) {
           checked: classes.checked,
           disabled: classes.disabled,
         }}
-        checkedIcon={icon}
+        checkedIcon={checkedIcon}
         {...other}
       />
       <span className={classes.bar} />

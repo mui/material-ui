@@ -34,6 +34,7 @@ This property accepts the following keys:
 - `root`
 - `bar`
 - `icon`
+- `iconChecked`
 - `default`
 - `checked`
 - `disabled`
