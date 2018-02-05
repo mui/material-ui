@@ -69,6 +69,7 @@ class MouseOverPopover extends React.Component {
             horizontal: 'left',
           }}
           onClose={this.handlePopoverClose}
+          disableRestoreFocus
         >
           <Typography>I use Popover.</Typography>
         </Popover>
