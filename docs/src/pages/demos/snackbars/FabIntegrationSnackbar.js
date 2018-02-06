@@ -18,7 +18,7 @@ const styles = theme => ({
   },
   appFrame: {
     width: 360,
-    minHeight: 300,
+    height: 360,
     backgroundColor: theme.palette.background.paper,
   },
   menuButton: {
@@ -44,18 +44,18 @@ const styles = theme => ({
     transform: 'translate3d(0, 0, 0)',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.leavingScreen,
-      easing: theme.transitions.easing.easeIn,
+      easing: theme.transitions.easing.sharp,
     }),
   },
-  snackBar: {
+  snackbar: {
     position: 'absolute',
   },
-  snackBarContent: {
+  snackbarContent: {
     width: 360,
   },
 });
 
-class FloatingActionButtonZoom extends React.Component {
+class FabIntegrationSnackbar extends React.Component {
   state = {
     open: false,
   };
@@ -71,10 +71,7 @@ class FloatingActionButtonZoom extends React.Component {
   render() {
     const { classes } = this.props;
     const { open } = this.state;
-    const fabClassName = classNames(classes.fab, {
-      [classes.fabMoveUp]: open,
-      [classes.fabMoveDown]: !open,
-    });
+    const fabClassName = classNames(classes.fab, open ? classes.fabMoveUp : classes.fabMoveDown);
 
     return (
       <div className={classes.root}>
@@ -96,21 +93,20 @@ class FloatingActionButtonZoom extends React.Component {
             <AddIcon />
           </Button>
           <Snackbar
-            open={this.state.open}
+            open={open}
             autoHideDuration={4000}
             onClose={this.handleClose}
             SnackbarContentProps={{
-              'aria-describedby': 'message-id',
-              className: classes.snackBarContent,
+              'aria-describedby': 'snackbar-fab-message-id',
+              className: classes.snackbarContent,
             }}
-            message={<span id="message-id">Archived</span>}
-            action={[
-              <Button key="undo" color="inherit" size="small" onClick={this.handleClose}>
-                UNDO
-              </Button>,
-            ]}
-            className={classes.snackBar}
-            transitionProps={{ style: { transform: 'translateY(0px) !important' } }}
+            message={<span id="snackbar-fab-message-id">Archived</span>}
+            action={
+              <Button color="secondary" size="small" onClick={this.handleClose}>
+                Undo
+              </Button>
+            }
+            className={classes.snackbar}
           />
         </div>
       </div>
@@ -118,9 +114,8 @@ class FloatingActionButtonZoom extends React.Component {
   }
 }
 
-FloatingActionButtonZoom.propTypes = {
+FabIntegrationSnackbar.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(FloatingActionButtonZoom);
+export default withStyles(styles)(FabIntegrationSnackbar);
