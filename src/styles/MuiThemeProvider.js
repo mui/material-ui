@@ -21,17 +21,20 @@ class MuiThemeProvider extends React.Component {
   }
 
   getChildContext() {
-    const contextDisableStylesGeneration =
-      (this.context.muiThemeProviderOptions &&
-        this.context.muiThemeProviderOptions.disableStylesGeneration) ||
-      false;
+    const { sheetsManager, disableStylesGeneration } = this.props;
+    const muiThemeProviderOptions = this.context.muiThemeProviderOptions || {};
+
+    if (sheetsManager !== undefined) {
+      muiThemeProviderOptions.sheetsManager = sheetsManager;
+    }
+
+    if (disableStylesGeneration !== undefined) {
+      muiThemeProviderOptions.disableStylesGeneration = disableStylesGeneration;
+    }
+
     return {
       [CHANNEL]: this.broadcast,
-      muiThemeProviderOptions: {
-        sheetsManager: this.props.sheetsManager,
-        disableStylesGeneration:
-          this.props.disableStylesGeneration || contextDisableStylesGeneration,
-      },
+      muiThemeProviderOptions,
     };
   }
 
@@ -120,11 +123,6 @@ MuiThemeProvider.propTypes = {
 };
 
 MuiThemeProvider.propTypes = exactProp(MuiThemeProvider.propTypes, 'MuiThemeProvider');
-
-MuiThemeProvider.defaultProps = {
-  disableStylesGeneration: false,
-  sheetsManager: null,
-};
 
 MuiThemeProvider.childContextTypes = {
   ...themeListener.contextTypes,

@@ -22,7 +22,7 @@ function getThemeSpy() {
   };
 
   ThemeSpy.propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.node.isRequired,
     theme: PropTypes.object,
   };
 
@@ -112,18 +112,16 @@ describe('<MuiThemeProvider />', () => {
       const wrapper = mount(
         <MuiThemeProvider theme={theme1}>
           <ThemeSpy1>
-            <div>
-              <MuiThemeProvider theme={theme2}>
-                <ThemeSpy2>
-                  <span>Foo</span>
-                </ThemeSpy2>
-              </MuiThemeProvider>
-              <MuiThemeProvider theme={theme3}>
-                <ThemeSpy3>
-                  <span>Bar</span>
-                </ThemeSpy3>
-              </MuiThemeProvider>
-            </div>
+            <MuiThemeProvider theme={theme2}>
+              <ThemeSpy2>
+                <span>Foo</span>
+              </ThemeSpy2>
+            </MuiThemeProvider>
+            <MuiThemeProvider theme={theme3}>
+              <ThemeSpy3>
+                <span>Bar</span>
+              </ThemeSpy3>
+            </MuiThemeProvider>
           </ThemeSpy1>
         </MuiThemeProvider>,
       );
@@ -143,6 +141,33 @@ describe('<MuiThemeProvider />', () => {
       assert.strictEqual(themeSpy2.args[1][0].status.color, 'green');
       assert.strictEqual(themeSpy3.callCount, 2);
       assert.strictEqual(themeSpy3.args[1][0].status.color, 'yellow');
+    });
+
+    it('should forward the parent options', () => {
+      const theme = createMuiTheme({ status: { color: 'orange' } });
+
+      const optionsSpy = spy();
+
+      function OptionsSpy(props, context) {
+        optionsSpy(context.muiThemeProviderOptions);
+        return <div />;
+      }
+
+      OptionsSpy.contextTypes = {
+        muiThemeProviderOptions: PropTypes.object.isRequired,
+      };
+
+      mount(
+        <MuiThemeProvider theme={theme} disableStylesGeneration>
+          <MuiThemeProvider theme={theme}>
+            <OptionsSpy />
+          </MuiThemeProvider>
+        </MuiThemeProvider>,
+      );
+      assert.strictEqual(optionsSpy.callCount, 1);
+      assert.deepEqual(optionsSpy.args[0][0], {
+        disableStylesGeneration: true,
+      });
     });
   });
 
