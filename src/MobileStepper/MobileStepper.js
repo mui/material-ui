@@ -89,7 +89,7 @@ function MobileStepper(props) {
       )}
       {variant === 'progress' && (
         <div className={classes.progress}>
-          <LinearProgress mode="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
+          <LinearProgress variant="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
         </div>
       )}
       {nextButton}
