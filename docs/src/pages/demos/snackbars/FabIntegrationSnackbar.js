@@ -102,7 +102,7 @@ class FabIntegrationSnackbar extends React.Component {
             }}
             message={<span id="snackbar-fab-message-id">Archived</span>}
             action={
-              <Button color="secondary" size="small" onClick={this.handleClose}>
+              <Button color="inherit" size="small" onClick={this.handleClose}>
                 Undo
               </Button>
             }
