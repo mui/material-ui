@@ -102,6 +102,7 @@ class SwitchBase extends React.Component {
 
     return (
       <IconButton
+        id={hasLabelFor ? '' : id}
         data-mui-test="SwitchBase"
         component="span"
         className={className}
