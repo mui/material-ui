@@ -73,10 +73,10 @@ class SwitchBase extends React.Component {
       id,
       inputProps,
       inputRef,
-      inputType,
       name,
       onChange,
       tabIndex,
+      type,
       value,
       ...other
     } = this.props;
@@ -98,11 +98,10 @@ class SwitchBase extends React.Component {
 
     const icon = checked ? checkedIcon : iconProp;
 
-    const hasLabelFor = inputType === 'checkbox' || inputType === 'radio';
+    const hasLabelFor = type === 'checkbox' || type === 'radio';
 
     return (
       <IconButton
-        id={hasLabelFor ? '' : id}
         data-mui-test="SwitchBase"
         component="span"
         className={className}
@@ -114,7 +113,7 @@ class SwitchBase extends React.Component {
         {icon}
         <input
           id={hasLabelFor && id}
-          type={inputType}
+          type={type}
           name={name}
           checked={checkedProp}
           onChange={this.handleInputChange}
@@ -185,10 +184,6 @@ SwitchBase.propTypes = {
    * Use that property to pass a ref callback to the native input component.
    */
   inputRef: PropTypes.func,
-  /**
-   * The input component property `type`.
-   */
-  inputType: PropTypes.string,
   /*
    * @ignore
    */
@@ -205,6 +200,10 @@ SwitchBase.propTypes = {
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
+   * The input component property `type`.
+   */
+  type: PropTypes.string,
+  /**
    * The value of the component.
    */
   value: PropTypes.string,
@@ -214,7 +213,7 @@ SwitchBase.defaultProps = {
   checkedIcon: <CheckBoxIcon />,
   disableRipple: false,
   icon: <CheckBoxOutlineBlankIcon />,
-  inputType: 'checkbox',
+  type: 'checkbox',
 };
 
 SwitchBase.contextTypes = {

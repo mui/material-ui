@@ -20,7 +20,7 @@ export const styles = theme => ({
 function Radio(props) {
   return (
     <SwitchBase
-      inputType="radio"
+      type="radio"
       icon={<RadioButtonUncheckedIcon />}
       checkedIcon={<RadioButtonCheckedIcon />}
       {...props}
@@ -69,10 +69,6 @@ Radio.propTypes = {
    * Use that property to pass a ref callback to the native input component.
    */
   inputRef: PropTypes.func,
-  /**
-   * The input component property `type`.
-   */
-  inputType: PropTypes.string,
   /*
    * @ignore
    */
@@ -88,6 +84,10 @@ Radio.propTypes = {
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The input component property `type`.
+   */
+  type: PropTypes.string,
   /**
    * The value of the component.
    */

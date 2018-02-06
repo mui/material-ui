@@ -132,10 +132,6 @@ Switch.propTypes = {
    * Use that property to pass a ref callback to the native input component.
    */
   inputRef: PropTypes.func,
-  /**
-   * The input component property `type`.
-   */
-  inputType: PropTypes.string,
   /*
    * @ignore
    */
@@ -151,6 +147,10 @@ Switch.propTypes = {
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The input component property `type`.
+   */
+  type: PropTypes.string,
   /**
    * The value of the component.
    */

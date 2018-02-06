@@ -22,9 +22,9 @@ filename: /src/Checkbox/Checkbox.js
 | indeterminateIcon | node | &lt;IndeterminateCheckBoxIcon /> | The icon to display when the component is indeterminate. |
 | inputProps | object |  | Properties applied to the `input` element. |
 | inputRef | func |  | Use that property to pass a ref callback to the native input component. |
-| inputType | string |  | The input component property `type`. |
 | name | string |  |  |
 | onChange | func |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
+| type | string |  | The input component property `type`. |
 | value | string |  | The value of the component. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

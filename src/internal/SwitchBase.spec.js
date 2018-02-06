@@ -310,12 +310,12 @@ describe('<SwitchBase />', () => {
 
     describe('prop: id', () => {
       it('should be able to add id to a checkbox input', () => {
-        const wrapper2 = shallow(<SwitchBase inputType="checkbox" id="foo" />);
+        const wrapper2 = shallow(<SwitchBase type="checkbox" id="foo" />);
         assert.strictEqual(wrapper2.find('input').props().id, 'foo');
       });
 
       it('should be able to add id to a radio input', () => {
-        const wrapper2 = shallow(<SwitchBase inputType="radio" id="foo" />);
+        const wrapper2 = shallow(<SwitchBase type="radio" id="foo" />);
         assert.strictEqual(wrapper2.find('input').props().id, 'foo');
       });
     });
