@@ -32,9 +32,9 @@ export const light = {
     // The color of an active action like an icon button.
     active: 'rgba(0, 0, 0, 0.54)',
     // The color of an hovered action.
-    hover: 'rgba(0, 0, 0, 0.14)',
+    hover: 'rgba(0, 0, 0, 0.08)',
     // The color of a selected action.
-    selected: 'rgba(0, 0, 0, 0.08)',
+    selected: 'rgba(0, 0, 0, 0.14)',
     // The color of a disabled action.
     disabled: 'rgba(0, 0, 0, 0.26)',
     // The background color of a disabled action.
@@ -57,8 +57,8 @@ export const dark = {
   },
   action: {
     active: common.white,
-    hover: 'rgba(255, 255, 255, 0.2)',
-    selected: 'rgba(255, 255, 255, 0.1)',
+    hover: 'rgba(255, 255, 255, 0.1)',
+    selected: 'rgba(255, 255, 255, 0.2)',
     disabled: 'rgba(255, 255, 255, 0.3)',
     disabledBackground: 'rgba(255, 255, 255, 0.12)',
   },
