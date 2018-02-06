@@ -42,3 +42,9 @@ Change the direction of the transition. Slide is the default transition.
 Use a different transition all together.
 
 {{"demo": "pages/demos/snackbars/FadeSnackbar.js"}}
+
+### Don't block the floating action button
+
+Move the floating action button vertically to accommodate the snackbar height.
+
+{{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
