@@ -43,6 +43,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/snackbars/FadeSnackbar'), 'utf8')
 `,
         },
+        'pages/demos/snackbars/FabIntegrationSnackbar.js': {
+          js: require('docs/src/pages/demos/snackbars/FabIntegrationSnackbar').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/snackbars/FabIntegrationSnackbar'), 'utf8')
+`,
+        },
       }}
     />
   );
