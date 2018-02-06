@@ -70,6 +70,7 @@ class SwitchBase extends React.Component {
       className: classNameProp,
       disabled: disabledProp,
       icon: iconProp,
+      id,
       inputProps,
       inputRef,
       inputType,
@@ -97,6 +98,8 @@ class SwitchBase extends React.Component {
 
     const icon = checked ? checkedIcon : iconProp;
 
+    const hasLabelFor = inputType === 'checkbox' || inputType === 'radio';
+
     return (
       <IconButton
         data-mui-test="SwitchBase"
@@ -109,6 +112,7 @@ class SwitchBase extends React.Component {
       >
         {icon}
         <input
+          id={hasLabelFor && id}
           type={inputType}
           name={name}
           checked={checkedProp}
@@ -160,6 +164,10 @@ SwitchBase.propTypes = {
    * The icon to display when the component is unchecked.
    */
   icon: PropTypes.node,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
   /**
    * If `true`, the component appears indeterminate.
    */
