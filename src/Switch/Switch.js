@@ -125,6 +125,10 @@ Switch.propTypes = {
    */
   icon: PropTypes.node,
   /**
+   * The id of the `input` element.
+   */
+  id: PropTypes.string,
+  /**
    * Properties applied to the `input` element.
    */
   inputProps: PropTypes.object,

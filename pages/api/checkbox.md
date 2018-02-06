@@ -18,6 +18,7 @@ filename: /src/Checkbox/Checkbox.js
 | disabled | bool |  | If `true`, the switch will be disabled. |
 | disableRipple | bool |  | If `true`, the ripple effect will be disabled. |
 | icon | node |  | The icon to display when the component is unchecked. |
+| id | string |  | The id of the `input` element. |
 | indeterminate | bool | false | If `true`, the component appears indeterminate. |
 | indeterminateIcon | node | &lt;IndeterminateCheckBoxIcon /> | The icon to display when the component is indeterminate. |
 | inputProps | object |  | Properties applied to the `input` element. |

@@ -18,6 +18,7 @@ filename: /src/Switch/Switch.js
 | disabled | bool |  | If `true`, the switch will be disabled. |
 | disableRipple | bool |  | If `true`, the ripple effect will be disabled. |
 | icon | node |  | The icon to display when the component is unchecked. |
+| id | string |  | The id of the `input` element. |
 | inputProps | object |  | Properties applied to the `input` element. |
 | inputRef | func |  | Use that property to pass a ref callback to the native input component. |
 | name | string |  |  |

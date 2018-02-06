@@ -62,6 +62,10 @@ Checkbox.propTypes = {
    */
   icon: PropTypes.node,
   /**
+   * The id of the `input` element.
+   */
+  id: PropTypes.string,
+  /**
    * If `true`, the component appears indeterminate.
    */
   indeterminate: PropTypes.bool,

@@ -165,7 +165,7 @@ SwitchBase.propTypes = {
    */
   icon: PropTypes.node,
   /**
-   * @ignore
+   * The id of the `input` element.
    */
   id: PropTypes.string,
   /**
