@@ -12,7 +12,7 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   https://localmonero.co/?rc=ogps
   
 ### 2. ONEHOPE Wine
-  An wine e-commerce site built on React, Relay Modern, GraphQL, CassandraDB, NodeJS, and material-ui.
+  A wine e-commerce site built on React, Relay Modern, GraphQL, CassandraDB, NodeJS, and material-ui.
   
   All of our Napa Valley quality varietals support a cause and funds a non-profit.
  
