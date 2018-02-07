@@ -103,7 +103,7 @@ class MultipleSelect extends React.Component {
           >
             {names.map(name => (
               <MenuItem key={name} value={name}>
-                <Checkbox checked={this.state.name === name} />
+                <Checkbox checked={this.state.name.indexOf(name) > -1} />
                 <ListItemText primary={name} />
               </MenuItem>
             ))}

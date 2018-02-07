@@ -52,9 +52,6 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-      '&$disabled': {
-        backgroundColor: 'transparent',
-      },
     },
   },
   secondaryAction: {
