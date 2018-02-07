@@ -8,7 +8,6 @@ import TestUtils from 'react-dom/test-utils';
 import { createMount } from 'src/test-utils';
 import Popover from 'src/Popover';
 import SimpleMenu from './fixtures/menus/SimpleMenu';
-import mockPortal from '../../test/utils/mockPortal';
 
 function simulateEvent(node, event, mock) {
   const eventFn = TestUtils.Simulate[event];
@@ -23,12 +22,10 @@ describe('<Menu> integration', () => {
 
   before(() => {
     mount = createMount();
-    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
-    mockPortal.reset();
   });
 
   describe('mounted open', () => {

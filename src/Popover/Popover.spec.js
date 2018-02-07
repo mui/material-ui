@@ -5,7 +5,6 @@ import css from 'dom-helpers/style';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Grow from '../transitions/Grow';
 import Paper from '../Paper';
-import mockPortal from '../../test/utils/mockPortal';
 import Popover from './Popover';
 
 describe('<Popover />', () => {
@@ -24,12 +23,10 @@ describe('<Popover />', () => {
         <div />
       </Popover>,
     );
-    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
-    mockPortal.reset();
   });
 
   describe('root node', () => {

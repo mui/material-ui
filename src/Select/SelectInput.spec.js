@@ -6,7 +6,6 @@ import { createShallow, createMount } from '../test-utils';
 import Menu, { MenuItem } from '../Menu';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import SelectInput from './SelectInput';
-import mockPortal from '../../test/utils/mockPortal';
 
 describe('<SelectInput />', () => {
   let shallow;
@@ -34,12 +33,10 @@ describe('<SelectInput />', () => {
   before(() => {
     shallow = createShallow();
     mount = createMount();
-    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
-    mockPortal.reset();
   });
 
   it('should render a correct top element', () => {

@@ -4,19 +4,16 @@ import React from 'react';
 import { assert } from 'chai';
 import { createMount } from 'src/test-utils';
 import SelectAndDialog from './fixtures/select/SelectAndDialog';
-import mockPortal from '../../test/utils/mockPortal';
 
 describe('<Select> integration', () => {
   let mount;
 
   before(() => {
     mount = createMount();
-    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
-    mockPortal.reset();
   });
 
   describe('with Dialog', () => {
