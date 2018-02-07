@@ -70,7 +70,7 @@ to discuss the approach before submitting a PR.
   - **[Button menu](https://material.io/guidelines/components/menus.html#menus-usage) (Can be constructed) ✓**
   - **[Scrollable](https://material.io/guidelines/components/menus.html#menus-usage) ✓**
   - [Cascade](https://material.io/guidelines/components/menus.html#menus-usage)
-  - **[Textfield dropdown](https://material.io/guidelines/components/menus.html#menus-behavior) (Selet) ✓**
+  - **[Textfield dropdown](https://material.io/guidelines/components/menus.html#menus-behavior) (Select) ✓**
   - **[Contextual / App bar dropdown](https://material.io/guidelines/components/menus.html#menus-usage) (IconButton + Menu) ✓**
   - **[Simple menus](https://material.io/guidelines/components/menus.html#menus-simple-menus) (Menu) ✓**
 - [Pickers](https://material.io/guidelines/components/pickers.html)
