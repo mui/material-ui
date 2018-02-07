@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 import { SnackbarContentProps } from '.';
+import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export type SnackBarOrigin = {
   horizontal?: 'left' | 'center' | 'right' | number;
@@ -10,9 +10,9 @@ export type SnackBarOrigin = {
 
 export interface SnackbarProps
   extends StandardProps<
-      React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlers>,
-      SnackbarClassKey
-    > {
+  React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
+  SnackbarClassKey
+  > {
   action?: React.ReactElement<any> | React.ReactElement<any>[];
   anchorOrigin?: SnackBarOrigin;
   autoHideDuration?: number;
@@ -24,7 +24,7 @@ export interface SnackbarProps
   resumeHideDuration?: number;
   SnackbarContentProps?: Partial<SnackbarContentProps>;
   transition?: React.ReactType;
-  transitionDuration?: TransitionDuration;
+  transitionDuration?: TransitionProps['timeout'];
 }
 
 export type SnackbarClassKey =
