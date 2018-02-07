@@ -4,14 +4,14 @@ import { ModalProps, ModalClassKey } from '../Modal';
 import { SlideProps } from '../transitions/Slide';
 import { PaperProps } from '../Paper';
 import { Theme } from '../styles/createMuiTheme';
-import { TransitionHandlers, TransitionProps } from '../transitions/transition';
+import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface DrawerProps
   extends StandardProps<
-      ModalProps & Partial<TransitionHandlers>,
-      DrawerClassKey,
-      'open' | 'children'
-    > {
+  ModalProps & Partial<TransitionHandlerProps>,
+  DrawerClassKey,
+  'open' | 'children'
+  > {
   anchor?: 'left' | 'top' | 'right' | 'bottom';
   children?: React.ReactNode;
   elevation?: number;

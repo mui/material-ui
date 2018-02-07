@@ -1,16 +1,25 @@
-import { Omit } from '..';
-import { TransitionProps as _TransitionProps } from 'react-transition-group/Transition';
+import {
+  TransitionProps as _TransitionProps,
+  TransitionActions,
+} from 'react-transition-group/Transition';
+import { TransitionEventHandler } from 'react';
 
-export type TransitionProps = Omit<_TransitionProps, 'timeout'> & {
-  // timeout is required in `react-transition-group`, Material-UI comes with defaults.
-  timeout?: _TransitionProps['timeout'];
-  // FIXME: @types/react-transition-group/Transition includes the object index.
-  in?: _TransitionProps['in'];
-  mountOnEnter?: _TransitionProps['mountOnEnter'];
-  unmountOnExit?: _TransitionProps['unmountOnExit'];
-}
+export type TransitionHandlerKeys =
+  | 'onEnter'
+  | 'onEntering'
+  | 'onEntered'
+  | 'onExit'
+  | 'onExiting'
+  | 'onExited';
+export type TransitionHandlerProps = Pick<_TransitionProps, TransitionHandlerKeys>;
 
-export type TransitionHandlers = Pick<
-  _TransitionProps,
-  'onEnter' | 'onEntering' | 'onEntered' | 'onExit' | 'onExiting' | 'onExited'
->;
+export type TransitionKeys =
+  | 'in'
+  | 'mountOnEnter'
+  | 'unmountOnExit'
+  | 'timeout'
+  | 'addEndListener'
+  | TransitionHandlerKeys;
+export interface TransitionProps
+  extends TransitionActions,
+  Partial<Pick<_TransitionProps, TransitionKeys>> { }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps, ModalClassKey } from '../Modal';
-import { TransitionHandlers, TransitionProps } from '../transitions/transition';
+import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface PopoverOrigin {
   horizontal: 'left' | 'center' | 'right' | number;
@@ -17,7 +17,7 @@ export interface PopoverPosition {
 export type PopoverReference = 'anchorEl' | 'anchorPosition';
 
 export interface PopoverProps
-  extends StandardProps<ModalProps & Partial<TransitionHandlers>, PopoverClassKey, 'children'> {
+  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, PopoverClassKey, 'children'> {
   action?: (actions: PopoverActions) => void;
   anchorEl?: HTMLElement;
   anchorOrigin?: PopoverOrigin;
