@@ -7,7 +7,6 @@ import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
-import mockPortal from '../../test/utils/mockPortal';
 import Fade from '../transitions/Fade';
 import Backdrop from './Backdrop';
 import Modal from './Modal';
@@ -23,12 +22,10 @@ describe('<Modal />', () => {
     shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     classes = getClasses(<Modal open={false} />);
     mount = createMount();
-    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
-    mockPortal.reset();
   });
 
   it('should render null by default', () => {
