@@ -233,7 +233,7 @@ LinearProgress.propTypes = {
    */
   value: PropTypes.number,
   /**
-   * The value for the buffer for the buffer variant.
+   * The value for the buffer variant.
    * Value between 0 and 100.
    */
   valueBuffer: PropTypes.number,
