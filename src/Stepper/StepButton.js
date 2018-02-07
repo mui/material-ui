@@ -8,18 +8,20 @@ import ButtonBase from '../ButtonBase';
 import StepLabel from './StepLabel';
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = {
+export const styles = theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    paddingLeft: 0,
-    paddingRight: 0,
+    padding: theme.spacing.unit * 3,
+    margin: -theme.spacing.unit * 3,
+    boxSizing: 'content-box',
     background: 'none',
   },
   alternativeLabel: {
-    margin: '0 auto',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
-};
+});
 
 function StepButton(props) {
   const {
