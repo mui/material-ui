@@ -6,7 +6,7 @@ import { FormControl, FormHelperText } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 
 const styles = theme => ({
-  container: {
+  root: {
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -33,7 +33,7 @@ class NativeSelect extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.container}>
+      <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-native-simple">Age</InputLabel>
           <Select

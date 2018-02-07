@@ -12,31 +12,38 @@ import { isDirty } from '../Input/Input';
  */
 class SelectInput extends React.Component {
   state = {
-    anchorEl: null,
     open: false,
   };
 
-  ignoreNextBlur = false;
+  componentDidMount() {
+    if (this.isControlled && this.props.open) {
+      // Focus the display node so the focus is restored on this element once
+      // the menu is closed.
+      this.displayNode.focus();
+      // Rerender with the resolve `displayNode` reference.
+      this.forceUpdate();
+    }
+  }
 
+  ignoreNextBlur = false;
+  displayNode = null;
   isControlled = this.props.open !== undefined;
 
   update = this.isControlled
-    ? ({ event, open, anchorEl }) => {
+    ? ({ event, open }) => {
         if (open) {
           this.props.onOpen(event);
         } else {
           this.props.onClose(event);
         }
-        this.setState({ anchorEl });
       }
-    : ({ open, anchorEl }) => this.setState({ open, anchorEl });
+    : ({ open }) => this.setState({ open });
 
   handleClick = event => {
     // Opening the menu is going to blur the. It will be focused back when closed.
     this.ignoreNextBlur = true;
     this.update({
       open: true,
-      anchorEl: event.currentTarget,
       event,
     });
   };
@@ -56,8 +63,9 @@ class SelectInput extends React.Component {
       });
     }
 
-    if (this.props.onChange) {
-      const { onChange, name } = this.props;
+    const { onChange, name } = this.props;
+
+    if (onChange) {
       let value;
       let target;
 
@@ -108,7 +116,6 @@ class SelectInput extends React.Component {
       this.ignoreNextBlur = true;
       this.update({
         open: true,
-        anchorEl: event.currentTarget,
         event,
       });
     }
@@ -144,12 +151,13 @@ class SelectInput extends React.Component {
       onClose,
       onFocus,
       onOpen,
-      open,
+      open: openProp,
       readOnly,
       renderValue,
       value,
       ...other
     } = this.props;
+    const open = this.isControlled && this.displayNode ? openProp : this.state.open;
 
     if (native) {
       warning(
@@ -250,8 +258,7 @@ class SelectInput extends React.Component {
       display = multiple ? displayMultiple.join(', ') : displaySingle;
     }
 
-    const minimumMenuWidth =
-      this.state.anchorEl != null && !autoWidth ? this.state.anchorEl.clientWidth : undefined;
+    const MenuMinWidth = this.displayNode && !autoWidth ? this.displayNode.clientWidth : undefined;
 
     return (
       <div className={classes.root}>
@@ -264,11 +271,14 @@ class SelectInput extends React.Component {
             },
             classNameProp,
           )}
+          ref={node => {
+            this.displayNode = node;
+          }}
           data-mui-test="SelectDisplay"
-          aria-pressed={this.state.open ? 'true' : 'false'}
+          aria-pressed={open ? 'true' : 'false'}
           tabIndex={disabled ? null : 0}
           role="button"
-          aria-owns={this.state.open ? `menu-${name || ''}` : null}
+          aria-owns={open ? `menu-${name || ''}` : null}
           aria-haspopup="true"
           onKeyDown={this.handleKeyDown}
           onBlur={this.handleBlur}
@@ -288,18 +298,18 @@ class SelectInput extends React.Component {
         <ArrowDropDownIcon className={classes.icon} />
         <Menu
           id={`menu-${name || ''}`}
-          anchorEl={this.state.anchorEl}
-          open={this.isControlled ? open : this.state.open}
+          anchorEl={this.displayNode}
+          open={open}
           onClose={this.handleClose}
           {...MenuProps}
           MenuListProps={{
-            ...MenuProps.MenuListProps,
             role: 'listbox',
+            ...MenuProps.MenuListProps,
           }}
           PaperProps={{
             ...MenuProps.PaperProps,
             style: {
-              minWidth: minimumMenuWidth,
+              minWidth: MenuMinWidth,
               ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
             },
           }}

@@ -36,6 +36,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/selects/DialogSelect'), 'utf8')
 `,
         },
+        'pages/demos/selects/ControlledOpenSelect.js': {
+          js: require('docs/src/pages/demos/selects/ControlledOpenSelect').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/selects/ControlledOpenSelect'), 'utf8')
+`,
+        },
       }}
     />
   );
