@@ -202,8 +202,21 @@ describe('<SelectInput />', () => {
         const wrapper = mount(<ControlledWrapper />);
         wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
-        wrapper.find('MenuItem').simulate('click');
+        wrapper.find(MenuItem).simulate('click');
         assert.strictEqual(wrapper.state().open, false);
+      });
+
+      it('should work when open is initially true', () => {
+        const element = (
+          <SelectInput {...defaultProps} open>
+            <MenuItem>Hello</MenuItem>
+          </SelectInput>
+        );
+
+        const wrapper1 = shallow(element, { disableLifecycleMethods: true });
+        assert.strictEqual(wrapper1.find(Menu).props().open, false);
+        const wrapper2 = mount(element);
+        assert.strictEqual(wrapper2.find(Menu).props().open, true);
       });
     });
   });
@@ -239,13 +252,15 @@ describe('<SelectInput />', () => {
   describe('prop: autoWidth', () => {
     it('should take the anchor width into account', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} />);
-      wrapper.setState({ anchorEl: { clientWidth: 14 } });
+      wrapper.instance().displayNode = { clientWidth: 14 };
+      wrapper.setProps({});
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 14);
     });
 
     it('should not take the anchor width into account', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} autoWidth />);
-      wrapper.setState({ anchorEl: { clientWidth: 14 } });
+      wrapper.instance().displayNode = { clientWidth: 14 };
+      wrapper.setProps({});
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, undefined);
     });
   });

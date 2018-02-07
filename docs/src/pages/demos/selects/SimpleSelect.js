@@ -7,7 +7,7 @@ import { FormControl, FormHelperText } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 
 const styles = theme => ({
-  container: {
+  root: {
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -34,7 +34,7 @@ class SimpleSelect extends React.Component {
     const { classes } = this.props;
 
     return (
-      <form className={classes.container} autoComplete="off">
+      <form className={classes.root} autoComplete="off">
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-simple">Age</InputLabel>
           <Select

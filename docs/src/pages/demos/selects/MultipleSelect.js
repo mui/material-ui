@@ -10,7 +10,7 @@ import Checkbox from 'material-ui/Checkbox';
 import Chip from 'material-ui/Chip';
 
 const styles = theme => ({
-  container: {
+  root: {
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -65,7 +65,7 @@ class MultipleSelect extends React.Component {
     const { classes, theme } = this.props;
 
     return (
-      <div className={classes.container}>
+      <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="select-multiple">Name</InputLabel>
           <Select
