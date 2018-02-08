@@ -30,7 +30,6 @@ function getStepContent(stepIndex) {
       return 'What is an ad group anyways?';
     case 2:
       return 'This is the bit I really care about!';
-
     default:
       return 'Uknown stepIndex';
   }

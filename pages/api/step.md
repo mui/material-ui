@@ -25,6 +25,7 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `root`
 - `horizontal`
+- `vertical`
 - `alternativeLabel`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

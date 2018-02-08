@@ -6,7 +6,7 @@ import SvgIcon from '../SvgIcon';
 
 export const styles = theme => ({
   root: {
-    color: theme.palette.action.disabled,
+    color: theme.palette.text.disabled,
   },
   active: {
     color: theme.palette.primary.main,
@@ -33,7 +33,7 @@ function StepPositionIcon(props) {
 
   return (
     <SvgIcon className={className}>
-      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="12" />
       <text className={classes.text} x="12" y="16" textAnchor="middle">
         {position}
       </text>

@@ -8,18 +8,14 @@ import ButtonBase from '../ButtonBase';
 import StepLabel from './StepLabel';
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = {
+export const styles = theme => ({
   root: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: 0,
-    paddingRight: 0,
-    background: 'none',
+    width: '100%',
+    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
+    margin: `${-theme.spacing.unit * 3}px ${-theme.spacing.unit * 2}px`,
+    boxSizing: 'content-box',
   },
-  alternativeLabel: {
-    margin: '0 auto',
-  },
-};
+});
 
 function StepButton(props) {
   const {
@@ -37,13 +33,6 @@ function StepButton(props) {
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.alternativeLabel]: alternativeLabel,
-    },
-    classNameProp,
-  );
   const childProps = {
     active,
     alternativeLabel,
@@ -60,7 +49,7 @@ function StepButton(props) {
   );
 
   return (
-    <ButtonBase disabled={disabled} className={className} {...other}>
+    <ButtonBase disabled={disabled} className={classNames(classes.root, classNameProp)} {...other}>
       {child}
     </ButtonBase>
   );

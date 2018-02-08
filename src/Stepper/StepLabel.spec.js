@@ -1,16 +1,18 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import Typography from '../Typography';
 import StepLabel from './StepLabel';
 import StepIcon from './StepIcon';
 
 describe('<StepLabel />', () => {
   let shallow;
+  let classes;
   let mount;
 
   before(() => {
     shallow = createShallow({ dive: true });
+    classes = getClasses(<StepLabel />);
     mount = createMount();
   });
 
@@ -58,7 +60,7 @@ describe('<StepLabel />', () => {
     it('renders <Typography> without the className active', () => {
       const wrapper = shallow(<StepLabel active={false}>Step One</StepLabel>);
       const text = wrapper.find(Typography);
-      assert.notInclude(text.props().className, 'active');
+      assert.strictEqual(text.hasClass(classes.labelActive), false);
     });
   });
 
@@ -66,7 +68,7 @@ describe('<StepLabel />', () => {
     it('renders <Typography> with the className active', () => {
       const wrapper = shallow(<StepLabel active>Step One</StepLabel>);
       const text = wrapper.find(Typography);
-      assert.include(text.props().className, 'active');
+      assert.strictEqual(text.hasClass(classes.labelActive), true);
     });
 
     it('renders <StepIcon> with the prop active set to true', () => {
@@ -84,7 +86,7 @@ describe('<StepLabel />', () => {
     it('renders <Typography> with the className completed', () => {
       const wrapper = shallow(<StepLabel completed>Step One</StepLabel>);
       const text = wrapper.find(Typography);
-      assert.include(text.props().className, 'completed');
+      assert.strictEqual(text.hasClass(classes.labelCompleted), true);
     });
 
     it('renders <StepIcon> with the prop completed set to true', () => {
@@ -105,7 +107,7 @@ describe('<StepLabel />', () => {
           Step One
         </StepLabel>,
       );
-      assert.include(wrapper.props().className, 'disabled');
+      assert.strictEqual(wrapper.hasClass(classes.disabled), true);
     });
   });
 
