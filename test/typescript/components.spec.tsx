@@ -59,10 +59,10 @@ import {
   Toolbar,
   Tooltip,
   Typography,
+  WithStyles,
 } from '../../src';
 import { withStyles, StyleRulesCallback } from '../../src/styles';
 import { withMobileDialog, DialogProps } from '../../src/Dialog';
-import { WithStyles } from '../../src/styles/withStyles';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
