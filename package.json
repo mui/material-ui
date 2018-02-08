@@ -1,44 +1,48 @@
 {
-  "name": "material-ui-build",
-  "private": true,
-  "author": "Material-UI Team",
-  "version": "0.20.0",
+  "name": "matui",
+  "private": false,
+  "author": "Nicolas Bellamy",
+  "version": "0.20.3",
   "description": "React Components that Implement Google's Material Design.",
   "main": "./src/index.js",
-  "keywords": [
-    "react",
-    "react-component",
-    "material design",
-    "material-ui"
-  ],
+  "keywords": ["react", "react-component", "material design", "material-ui"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/callemall/material-ui.git"
+    "url": "https://github.com/titeya/material-ui.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/callemall/material-ui/issues"
+    "url": "https://github.com/titeya/material-ui.git/issues"
   },
   "homepage": "http://material-ui.com/",
   "scripts": {
     "watch": "npm run build:copy-files && npm run build:babel:watch",
-    "build": "npm run build:icon-index && npm run build:babel && npm run build:copy-files && npm run build:es",
+    "build":
+      "npm run build:icon-index && npm run build:babel && npm run build:copy-files && npm run build:es",
     "build:icon-index": "babel-node ./scripts/icon-index-generator.js",
     "build:es": "npm run build:es-index && npm run build:es-icon-index",
-    "build:es-index": " cross-env BABEL_ENV=es babel ./src/index.js --out-file ./build/index.es.js",
-    "build:es-icon-index": "cross-env BABEL_ENV=es babel ./src/svg-icons/index.js --out-file ./build/svg-icons/index.es.js",
-    "build:babel": "cross-env NODE_ENV=release babel ./src --out-dir ./build --ignore spec.js",
-    "build:babel:watch": "cross-env NODE_ENV=release babel --watch ./src --out-dir ./build --ignore spec.js",
+    "build:es-index":
+      " cross-env BABEL_ENV=es babel ./src/index.js --out-file ./build/index.es.js",
+    "build:es-icon-index":
+      "cross-env BABEL_ENV=es babel ./src/svg-icons/index.js --out-file ./build/svg-icons/index.es.js",
+    "build:babel":
+      "cross-env NODE_ENV=release babel ./src --out-dir ./build --ignore spec.js",
+    "build:babel:watch":
+      "cross-env NODE_ENV=release babel --watch ./src --out-dir ./build --ignore spec.js",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "clean:build": "rimraf build",
-    "lint": "eslint src docs/src test --quiet --cache && echo \"eslint: no lint errors\"",
+    "lint":
+      "eslint src docs/src test --quiet --cache && echo \"eslint: no lint errors\"",
     "lint:find-rules": "eslint-find-rules -u .eslintrc.js",
     "prebuild": "npm run clean:build",
     "test": "cross-env NODE_ENV=test babel-node test/index.js",
-    "test:coverage": "cross-env NODE_ENV=test babel-node ./node_modules/istanbul/lib/cli.js cover test/index.js",
+    "test:coverage":
+      "cross-env NODE_ENV=test babel-node ./node_modules/istanbul/lib/cli.js cover test/index.js",
     "test:karma": "karma start test/karma.conf.js --single-run",
-    "test:integration": "cross-env NODE_ENV=test babel-node test/index.js integration",
-    "test:integration:watch": "cross-env NODE_ENV=test babel-node test/watch.js integration",
+    "test:integration":
+      "cross-env NODE_ENV=test babel-node test/index.js integration",
+    "test:integration:watch":
+      "cross-env NODE_ENV=test babel-node test/watch.js integration",
     "test:unit": "cross-env NODE_ENV=test babel-node test/index.js unit",
     "test:unit:watch": "cross-env NODE_ENV=test babel-node test/watch.js unit",
     "postpublish": "npm run build && cd build && npm publish"
