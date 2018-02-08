@@ -131,7 +131,7 @@ Note that `contrastThreshold` follows a non-linear curve.
 
 #### Color tool
 
-Lacking imagination? The Material Design team has built an awesome [palette configuration tool](/style/color#color-tool) to help you.
+Need inspiration? The Material Design team has built an awesome [palette configuration tool](/style/color#color-tool) to help you.
 
 ### Dark/light theme
 
