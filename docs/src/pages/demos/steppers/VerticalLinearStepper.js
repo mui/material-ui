@@ -11,15 +11,14 @@ const styles = theme => ({
     width: '90%',
   },
   button: {
+    marginTop: theme.spacing.unit,
     marginRight: theme.spacing.unit,
   },
   actionsContainer: {
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
+    marginBottom: theme.spacing.unit * 2,
   },
   resetContainer: {
-    marginTop: 0,
-    padding: theme.spacing.unit * 3, // TODO: See TODO note on Stepper
+    padding: theme.spacing.unit * 3,
   },
 });
 

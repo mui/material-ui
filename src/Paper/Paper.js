@@ -40,7 +40,7 @@ function Paper(props) {
 
   const className = classNames(
     classes.root,
-    classes[`shadow${elevation >= 0 ? elevation : 0}`],
+    classes[`shadow${elevation}`],
     {
       [classes.rounded]: !square,
     },

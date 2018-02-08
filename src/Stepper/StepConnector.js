@@ -7,13 +7,20 @@ export const styles = theme => ({
   root: {
     flex: '1 1 auto',
   },
+  horizontal: {},
+  vertical: {
+    marginLeft: 12, // half icon
+    padding: `0 0 ${theme.spacing.unit}px`,
+  },
+  alternativeLabel: {
+    position: 'absolute',
+    top: theme.spacing.unit + 4,
+    left: 'calc(50% + 20px)',
+    right: 'calc(-50% + 20px)',
+  },
   line: {
     display: 'block',
     borderColor: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-  },
-  rootVertical: {
-    marginLeft: 12, // half icon
-    padding: `0 0 ${theme.spacing.unit}px`,
   },
   lineHorizontal: {
     borderTopStyle: 'solid',
@@ -22,16 +29,7 @@ export const styles = theme => ({
   lineVertical: {
     borderLeftStyle: 'solid',
     borderLeftWidth: 1,
-    minHeight: 24,
-  },
-  alternativeLabelRoot: {
-    position: 'absolute',
-    top: theme.spacing.unit + 4,
-    left: 'calc(50% + 20px)',
-    right: 'calc(-50% + 20px)',
-  },
-  alternativeLabelLine: {
-    marginLeft: 0,
+    minHeight: theme.spacing.unit * 3,
   },
 });
 
@@ -42,17 +40,16 @@ function StepConnector(props) {
   const { alternativeLabel, className: classNameProp, classes, orientation, ...other } = props;
 
   const className = classNames(
+    classes.root,
+    classes[orientation],
     {
-      [classes.root]: !alternativeLabel,
-      [classes.rootVertical]: orientation === 'vertical',
-      [classes.alternativeLabelRoot]: alternativeLabel,
+      [classes.alternativeLabel]: alternativeLabel,
     },
     classNameProp,
   );
   const lineClassName = classNames(classes.line, {
     [classes.lineHorizontal]: orientation === 'horizontal',
     [classes.lineVertical]: orientation === 'vertical',
-    [classes.alternativeLabelLine]: alternativeLabel,
   });
 
   return (

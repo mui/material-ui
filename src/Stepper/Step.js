@@ -15,10 +15,10 @@ export const styles = theme => ({
       paddingRight: 0,
     },
   },
+  vertical: {},
   alternativeLabel: {
     flex: 1,
     position: 'relative',
-    marginLeft: 0,
   },
 });
 

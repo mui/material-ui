@@ -7,7 +7,7 @@ import SvgIcon from '../../SvgIcon';
  */
 let CheckCircle = props => (
   <SvgIcon {...props}>
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+    <path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z" />
   </SvgIcon>
 );
 CheckCircle = pure(CheckCircle);

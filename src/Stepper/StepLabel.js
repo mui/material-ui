@@ -12,25 +12,30 @@ export const styles = theme => ({
   },
   horizontal: {},
   vertical: {},
-  active: {
-    fontWeight: 500,
-  },
-  completed: {
-    fontWeight: 500,
+  alternativeLabel: {
+    flexDirection: 'column',
   },
   disabled: {
     cursor: 'default',
   },
+  label: {
+    color: theme.palette.text.secondary,
+  },
+  labelActive: {
+    color: theme.palette.text.primary,
+    fontWeight: 500,
+  },
+  labelCompleted: {
+    color: theme.palette.text.primary,
+    fontWeight: 500,
+  },
+  labelAlternativeLabel: {
+    textAlign: 'center',
+    marginTop: theme.spacing.unit * 2,
+  },
   iconContainer: {},
   iconContainerNoAlternative: {
     paddingRight: theme.spacing.unit,
-  },
-  alternativeLabelRoot: {
-    flexDirection: 'column',
-  },
-  alternativeLabel: {
-    textAlign: 'center',
-    marginTop: theme.spacing.unit * 2,
   },
 });
 
@@ -50,20 +55,15 @@ function StepLabel(props) {
     ...other
   } = props;
 
-  const className = classNames(classes.root, classes[orientation], {
-    [classes.disabled]: disabled,
-    [classes.completed]: completed,
-    [classes.alternativeLabelRoot]: alternativeLabel,
-    classNameProp,
-  });
-  const labelClassName = classNames({
-    [classes.alternativeLabel]: alternativeLabel,
-    [classes.completed]: completed,
-    [classes.active]: active,
-  });
-
   return (
-    <span className={className} {...other}>
+    <span
+      className={classNames(classes.root, classes[orientation], {
+        [classes.disabled]: disabled,
+        [classes.alternativeLabel]: alternativeLabel,
+        classNameProp,
+      })}
+      {...other}
+    >
       {icon && (
         <span
           className={classNames(classes.iconContainer, {
@@ -79,7 +79,15 @@ function StepLabel(props) {
         </span>
       )}
       <span>
-        <Typography variant="body1" component="span" className={labelClassName}>
+        <Typography
+          variant="body1"
+          component="span"
+          className={classNames(classes.label, {
+            [classes.labelAlternativeLabel]: alternativeLabel,
+            [classes.labelCompleted]: completed,
+            [classes.labelActive]: active,
+          })}
+        >
           {children}
         </Typography>
         {optional}

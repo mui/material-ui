@@ -11,7 +11,6 @@ temp.track();
 const DISABLE_LOG = true;
 
 // To cut down on test time, use fixtures instead of node_modules
-// TODO: Make a flag to toggle this.
 const MUI_ICONS_ROOT = path.join(__dirname, './fixtures/material-design-icons/');
 // const MUI_ICONS_ROOT = path.join(__dirname, '../node_modules/material-design-icons/');
 const MUI_ICONS_SVG_DIR = path.join(MUI_ICONS_ROOT, 'svg');

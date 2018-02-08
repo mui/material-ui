@@ -19,15 +19,18 @@ export const styles = theme => ({
   vertical: {
     flexDirection: 'column',
   },
+  alternativeLabel: {
+    alignItems: 'flex-start',
+  },
 });
 
 function Stepper(props) {
   const {
     activeStep,
     alternativeLabel,
+    children,
     classes,
     className: classNameProp,
-    children,
     connector: connectorProp,
     nonLinear,
     orientation,
@@ -36,11 +39,16 @@ function Stepper(props) {
 
   const className = classNames(
     classes.root,
+    classes[orientation],
+    {
+      [classes.alternativeLabel]: alternativeLabel,
+    },
     classNameProp,
-    alternativeLabel ? null : classes[orientation],
   );
 
-  const connector = connectorProp ? React.cloneElement(connectorProp, { orientation }) : null;
+  const connector = React.isValidElement(connectorProp)
+    ? React.cloneElement(connectorProp, { orientation })
+    : null;
   const childrenArray = React.Children.toArray(children);
   const steps = childrenArray.map((step, index) => {
     const controlProps = {
@@ -67,7 +75,7 @@ function Stepper(props) {
         connector &&
         index > 0 &&
         React.cloneElement(connector, {
-          key: `connect-${index - 1}-to-${index}`, // eslint-disable-line react/no-array-index-key
+          key: index, // eslint-disable-line react/no-array-index-key
         }),
       React.cloneElement(step, { ...controlProps, ...step.props }),
     ];
