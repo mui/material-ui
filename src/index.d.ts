@@ -111,6 +111,7 @@ export {
   withStyles,
   WithStyles,
   withTheme,
+  WithTheme,
   createMuiTheme,
   jssPreset,
 } from './styles';
