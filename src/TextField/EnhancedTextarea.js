@@ -116,7 +116,7 @@ class EnhancedTextarea extends Component {
 
     if (this.state.height !== newHeight) {
       const input = this.refs.input;
-      const cursorPosition = input.selectionStart;
+      const cursorPosition = input.selectionEnd;
       this.setState({
         height: newHeight,
       }, () => {
