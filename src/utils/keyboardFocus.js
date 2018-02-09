@@ -45,7 +45,7 @@ function isFocusKey(event) {
   return FOCUS_KEYS.indexOf(keycode(event)) !== -1;
 }
 
-const handleFocusEvent = event => {
+const handleKeyUpEvent = event => {
   if (isFocusKey(event)) {
     internal.focusKeyPressed = true;
   }
@@ -55,5 +55,5 @@ export function listenForFocusKeys(win) {
   // The event listener will only be added once per window.
   // Duplicate event listeners will be ignored by addEventListener.
   // Also, this logic is client side only, we don't need a teardown.
-  addEventListener(win, 'keyup', handleFocusEvent);
+  addEventListener(win, 'keyup', handleKeyUpEvent);
 }
