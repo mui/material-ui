@@ -3,10 +3,10 @@
 import keycode from 'keycode';
 import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
+import ownerDocument from 'dom-helpers/ownerDocument';
 import addEventListener from '../utils/addEventListener';
 
 const internal = {
-  listening: false,
   focusKeyPressed: false,
 };
 
@@ -26,9 +26,11 @@ export function detectKeyboardFocus(instance, element, callback, attempt = 1) {
   );
 
   instance.keyboardFocusTimeout = setTimeout(() => {
+    const doc = ownerDocument(element);
+
     if (
       focusKeyPressed() &&
-      (document.activeElement === element || contains(element, document.activeElement))
+      (doc.activeElement === element || contains(element, doc.activeElement))
     ) {
       callback();
     } else if (attempt < instance.keyboardFocusMaxCheckTimes) {
@@ -43,15 +45,15 @@ function isFocusKey(event) {
   return FOCUS_KEYS.indexOf(keycode(event)) !== -1;
 }
 
-export function listenForFocusKeys() {
-  // It's a singleton, we only need to listen once.
-  // Also, this logic is client side only, we don't need a teardown.
-  if (!internal.listening) {
-    addEventListener(window, 'keyup', event => {
-      if (isFocusKey(event)) {
-        internal.focusKeyPressed = true;
-      }
-    });
-    internal.listening = true;
+const handleKeyUpEvent = event => {
+  if (isFocusKey(event)) {
+    internal.focusKeyPressed = true;
   }
+};
+
+export function listenForFocusKeys(win) {
+  // The event listener will only be added once per window.
+  // Duplicate event listeners will be ignored by addEventListener.
+  // Also, this logic is client side only, we don't need a teardown.
+  addEventListener(win, 'keyup', handleKeyUpEvent);
 }

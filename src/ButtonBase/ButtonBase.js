@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import keycode from 'keycode';
+import ownerWindow from 'dom-helpers/ownerWindow';
 import withStyles from '../styles/withStyles';
 import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
 import TouchRipple from './TouchRipple';
@@ -56,7 +57,7 @@ class ButtonBase extends React.Component {
 
   componentDidMount() {
     this.button = findDOMNode(this);
-    listenForFocusKeys();
+    listenForFocusKeys(ownerWindow(this.button));
   }
 
   componentWillReceiveProps(nextProps) {
