@@ -20,13 +20,14 @@ export type StepLabelClasskey =
   | 'root'
   | 'horizontal'
   | 'vertical'
-  | 'active'
-  | 'completed'
+  | 'alternativeLabel'
   | 'disabled'
+  | 'label'
+  | 'labelActive'
+  | 'labelCompleted'
+  | 'labelAlternativeLabel'
   | 'iconContainer'
   | 'iconContainerNoAlternative'
-  | 'alternativeLabelRoot'
-  | 'alternativeLabel'
   | 'labelContainer';
 
 declare const StepLabel: React.ComponentType<StepLabelProps>;

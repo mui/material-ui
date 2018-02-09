@@ -16,7 +16,7 @@ export interface StepButtonProps extends StandardProps<ButtonBaseProps, StepButt
   orientation?: Orientation;
 }
 
-export type StepButtonClasskey = ButtonBaseClassKey | 'root' | 'alternativeLabel';
+export type StepButtonClasskey = ButtonBaseClassKey | 'root';
 
 declare const StepButton: React.ComponentType<StepButtonProps>;
 

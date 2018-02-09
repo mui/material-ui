@@ -60,10 +60,15 @@ function StepLabel(props) {
 
   return (
     <span
-      className={classNames(classes.root, classes[orientation], classNameProp, {
-        [classes.disabled]: disabled,
-        [classes.alternativeLabel]: alternativeLabel,
-      })}
+      className={classNames(
+        classes.root,
+        classes[orientation],
+        {
+          [classes.disabled]: disabled,
+          [classes.alternativeLabel]: alternativeLabel,
+        },
+        classNameProp,
+      )}
       {...other}
     >
       {icon && (

@@ -14,7 +14,7 @@ export interface StepperProps extends StandardProps<PaperProps, StepperClasskey>
   orientation?: Orientation;
 }
 
-export type StepperClasskey = PaperClassKey | 'root' | 'horizontal' | 'vertical';
+export type StepperClasskey = PaperClassKey | 'root' | 'horizontal' | 'vertical' | 'alternativeLabel';
 
 declare const Stepper: React.ComponentType<StepperProps>;
 
