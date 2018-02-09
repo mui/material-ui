@@ -8,5 +8,5 @@ export function detectKeyboardFocus(
   element: Element,
   cb: () => void,
   attempt: number,
-): never;
-export function listenForFocusKeys(): never;
+): void;
+export function listenForFocusKeys(window: Window): void;
