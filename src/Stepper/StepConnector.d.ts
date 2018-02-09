@@ -10,7 +10,14 @@ export interface StepConnectorProps
   orientation?: Orientation;
 }
 
-export type StepConnectorClasskey = 'root' | 'alternativeLabel';
+export type StepConnectorClasskey =
+  | 'root'
+  | 'horizontal'
+  | 'vertical'
+  | 'alternativeLabel'
+  | 'line'
+  | 'lineHorizontal'
+  | 'lineVertical';
 
 declare const StepConnector: React.ComponentType<StepConnectorProps>;
 
