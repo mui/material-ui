@@ -37,6 +37,9 @@ export const styles = theme => ({
   iconContainerNoAlternative: {
     paddingRight: theme.spacing.unit,
   },
+  labelContainer: {
+    width: '100%',
+  },
 });
 
 function StepLabel(props) {
@@ -57,10 +60,9 @@ function StepLabel(props) {
 
   return (
     <span
-      className={classNames(classes.root, classes[orientation], {
+      className={classNames(classes.root, classes[orientation], classNameProp, {
         [classes.disabled]: disabled,
         [classes.alternativeLabel]: alternativeLabel,
-        classNameProp,
       })}
       {...other}
     >
@@ -78,7 +80,7 @@ function StepLabel(props) {
           />
         </span>
       )}
-      <span>
+      <span className={classes.labelContainer}>
         <Typography
           variant="body1"
           component="span"
