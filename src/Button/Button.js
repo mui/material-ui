@@ -112,6 +112,7 @@ export const styles = theme => ({
     },
   },
   disabled: {
+    cursor: 'not-allowed',
     color: theme.palette.action.disabled,
   },
   fab: {
