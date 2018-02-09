@@ -54,3 +54,9 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   example: https://myblog831213.herokuapp.com/
  
   project: https://github.com/shady831213/myBlog
+
+### 10. Builder Book
+  Open source web app to write and host documentation or sell books.
+  Built with React, Material-UI, Next, Express, Mongoose, MongoDB.
+  
+  https://github.com/builderbook/builderbook
