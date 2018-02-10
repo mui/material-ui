@@ -42,11 +42,11 @@ you need to use the following style sheet name: `MuiCollapse`.
 
 ## Inheritance
 
-The properties of the [&lt;Transition /&gt;](https://reactcommunity.org/react-transition-group/#Transition) component are also available.
+The properties of the react-transition-group [Transition](https://reactcommunity.org/react-transition-group/#Transition) component are also available.
 
 ## Demos
 
 - [Cards](/demos/cards)
 - [Lists](/demos/lists)
-- [Transitions](/utils/transitions)
+- [Transitions](/utils/transitions/transitions)
 

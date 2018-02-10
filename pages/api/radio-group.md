@@ -21,7 +21,7 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 
 ## Inheritance
 
-The properties of the [&lt;FormGroup /&gt;](/api/form-group) component are also available.
+The properties of the [FormGroup](/api/form-group) component are also available.
 
 ## Demos
 

@@ -70,7 +70,7 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 
 ## Inheritance
 
-The properties of the [&lt;FormControl /&gt;](/api/form-control) component are also available.
+The properties of the [FormControl](/api/form-control) component are also available.
 
 ## Demos
 

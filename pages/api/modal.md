@@ -50,9 +50,9 @@ you need to use the following style sheet name: `MuiModal`.
 
 ## Inheritance
 
-The properties of the [&lt;Portal /&gt;](/api/portal) component are also available.
+The properties of the [Portal](/api/portal) component are also available.
 
 ## Demos
 
-- [Modals](/demos/modals)
+- [Modals](/utils/modals/modals)
 

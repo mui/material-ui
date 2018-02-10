@@ -18,7 +18,7 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 
 ## Inheritance
 
-The properties of the [&lt;List /&gt;](/api/list) component are also available.
+The properties of the [List](/api/list) component are also available.
 
 ## Demos
 
