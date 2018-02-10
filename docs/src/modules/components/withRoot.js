@@ -85,10 +85,16 @@ const pages = [
     pathname: '/utils',
     children: [
       {
-        pathname: '/utils/transitions',
+        pathname: '/utils/modals',
+      },
+      {
+        pathname: '/utils/popovers',
       },
       {
         pathname: '/utils/portal',
+      },
+      {
+        pathname: '/utils/transitions',
       },
     ],
   },

@@ -1,37 +1,37 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/utils/transitions.md';
+import markdown from 'docs/src/pages/utils/transitions/transitions.md';
 
 function Page() {
   return (
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/utils/SimpleCollapse.js': {
-          js: require('docs/src/pages/utils/SimpleCollapse').default,
+        'pages/utils/transitions/SimpleCollapse.js': {
+          js: require('docs/src/pages/utils/transitions/SimpleCollapse').default,
           raw: preval`module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/SimpleCollapse'), 'utf8')`,
+  .readFileSync(require.resolve('docs/src/pages/utils/transitions/SimpleCollapse'), 'utf8')`,
         },
-        'pages/utils/SimpleFade.js': {
-          js: require('docs/src/pages/utils/SimpleFade').default,
+        'pages/utils/transitions/SimpleFade.js': {
+          js: require('docs/src/pages/utils/transitions/SimpleFade').default,
           raw: preval`module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/SimpleFade'), 'utf8')`,
+  .readFileSync(require.resolve('docs/src/pages/utils/transitions/SimpleFade'), 'utf8')`,
         },
-        'pages/utils/SimpleGrow.js': {
-          js: require('docs/src/pages/utils/SimpleGrow').default,
+        'pages/utils/transitions/SimpleGrow.js': {
+          js: require('docs/src/pages/utils/transitions/SimpleGrow').default,
           raw: preval`module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/SimpleGrow'), 'utf8')`,
+  .readFileSync(require.resolve('docs/src/pages/utils/transitions/SimpleGrow'), 'utf8')`,
         },
-        'pages/utils/SimpleSlide.js': {
-          js: require('docs/src/pages/utils/SimpleSlide').default,
+        'pages/utils/transitions/SimpleSlide.js': {
+          js: require('docs/src/pages/utils/transitions/SimpleSlide').default,
           raw: preval`module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/SimpleSlide'), 'utf8')`,
+  .readFileSync(require.resolve('docs/src/pages/utils/transitions/SimpleSlide'), 'utf8')`,
         },
-        'pages/utils/SimpleZoom.js': {
-          js: require('docs/src/pages/utils/SimpleZoom').default,
+        'pages/utils/transitions/SimpleZoom.js': {
+          js: require('docs/src/pages/utils/transitions/SimpleZoom').default,
           raw: preval`module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/SimpleZoom'), 'utf8')`,
+  .readFileSync(require.resolve('docs/src/pages/utils/transitions/SimpleZoom'), 'utf8')`,
         },
       }}
     />

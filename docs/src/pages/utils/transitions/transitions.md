@@ -13,20 +13,20 @@ to your applications components.
 Expand vertically from the top of the child element.
 The `collapsedHeight` property can be used to set the minimum height when not expanded.
 
-{{"demo": "pages/utils/SimpleCollapse.js"}}
+{{"demo": "pages/utils/transitions/SimpleCollapse.js"}}
 
 ## Fade
 
 Fade in from transparent to opaque.
 
-{{"demo": "pages/utils/SimpleFade.js"}}
+{{"demo": "pages/utils/transitions/SimpleFade.js"}}
 
 ## Grow
 
 Expand outwards from the center of the child element, while also fading in
 from transparent to opaque.
 
-{{"demo": "pages/utils/SimpleGrow.js"}}
+{{"demo": "pages/utils/transitions/SimpleGrow.js"}}
 
 ## Slide
 
@@ -38,7 +38,7 @@ until `in` is `true`. This prevents the relatively positioned component from scr
 from it's off-screen position. Similarly the `unmountOnExit` property removes the component
 from the DOM after it has been transition off screen.
 
-{{"demo": "pages/utils/SimpleSlide.js"}}
+{{"demo": "pages/utils/transitions/SimpleSlide.js"}}
 
 ## Zoom
 
@@ -46,4 +46,4 @@ Expand outwards from the center of the child element.
 
 This example demonstrates how to delay the enter transition.
 
-{{"demo": "pages/utils/SimpleZoom.js"}}
+{{"demo": "pages/utils/transitions/SimpleZoom.js"}}
