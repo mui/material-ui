@@ -143,9 +143,9 @@ class MiniDrawer extends React.Component {
                 </IconButton>
               </div>
               <Divider />
-              <List className={classes.list}>{mailFolderListItems}</List>
+              <List>{mailFolderListItems}</List>
               <Divider />
-              <List className={classes.list}>{otherMailFolderListItems}</List>
+              <List>{otherMailFolderListItems}</List>
             </div>
           </Drawer>
           <main className={classes.content}>
