@@ -232,6 +232,14 @@ class Input extends React.Component {
     focused: false,
   };
 
+  getChildContext() {
+    // We are consuming the parent muiFormControl context.
+    // We don't want a child to consume it a second time.
+    return {
+      muiFormControl: null,
+    };
+  }
+
   componentWillMount() {
     this.isControlled = this.props.value != null;
 
@@ -618,6 +626,10 @@ Input.defaultProps = {
 };
 
 Input.contextTypes = {
+  muiFormControl: PropTypes.object,
+};
+
+Input.childContextTypes = {
   muiFormControl: PropTypes.object,
 };
 

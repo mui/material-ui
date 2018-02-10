@@ -204,7 +204,7 @@ FormControl.defaultProps = {
 };
 
 FormControl.childContextTypes = {
-  muiFormControl: PropTypes.object.isRequired,
+  muiFormControl: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);
