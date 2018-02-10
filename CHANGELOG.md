@@ -2,6 +2,57 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.33
+###### *Feb 10, 2018*
+
+Big thanks to the 16 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A documentation section on the `component` property (#10128) @sebald.
+- A Snackbar / FAB animation integration example (#10188) @mbrookes.
+- The Select open state can be controlled (#10205) @oliviertassiari.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+N.A
+
+#### Component Fixes / Enhancements
+
+- [typescript] Use Partial props in TypeScript definitions (#10170) @ianschmitz
+- [GridList] Allow null children in GridListTile (#10179) @caub
+- [Grid] Small performance improvement (#10180) @oliviertassiari
+- [TextField] Correct typo in TypeScript export declaration (#10186) @caghand
+- [Switch] Increase the box shadow when checked (#10187) @leMaik
+- [Stepper] Mobile Stepper variant determinate (#10190) @KeKs0r
+- [MenuItem] Better :hover and .selected logic (#10199) @oliviertassiari
+- [LinearProgress] Property definition grammar fix (#10201) @madison-kerndt
+- [MuiThemeProvider] Forward the options when nested (#10176) @Aetherall
+- [Select] Simpler controlled open property (#10205) @oliviertassiari
+- [typescript] Use types from react-transition-group/Transition (#10129) @sebald
+- [typescript] Export WithTheme from index (#10209) @clekili
+- [Stepper] Increase StepButton space for click (#10204) @AlbertLucianto
+- [ButtonBase] Use parent Window of ButtonBase when listening for keyboard events (#10224) @ianschmitz
+- [StepLabel] Give more flexibility to the style of span surrounding label (#10218) @seanchambo
+- [ButtonBase] Save one line of code (#10225) @oliviertassiari
+
+#### Docs
+
+- [examples] Rename type to variant (#10167) @oliviertassiari
+- [docs] Using "component" prop to customize rendering (#10128) @sebald
+- [docs] Fix the restore focus logic of the Popover demo (#10184) @oliviertassiari
+- [docs] Fix react-select chip on mobile (#10185) @oliviertassiari
+- [docs] Add Snackbar / FAB animation integration example (#10188) @mbrookes
+- [docs] Add LocalMonero to showcase (#10195) @mbrookes
+- [docs] Fix typo `Selet` to `Select` (#10207) @Justkant
+- [docs] Change negative to positive (#10211) @harvitronix
+- [docs] Add project to showcase (#10217) @klyburke
+
+#### Core
+
+- [core] Upgrade Next.js (#10181) @oliviertassiari
+- [test] Remove the mockPortal workaround (#10208) @leMaik
+
 ## 1.0.0-beta.32
 ###### *Feb 4, 2018*
 
