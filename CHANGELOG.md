@@ -10,7 +10,7 @@ Big thanks to the 16 contributors who made this release possible.
 Here are some highlights ✨:
 - A documentation section on the `component` property (#10128) @sebald.
 - A Snackbar / FAB animation integration example (#10188) @mbrookes.
-- The Select open state can be controlled (#10205) @oliviertassiari.
+- The Select open state can be controlled (#10205) @oliviertassinari.
 - And many more bug fixes and documentation improvements.
 
 ### Breaking change
@@ -21,27 +21,27 @@ N.A
 
 - [typescript] Use Partial props in TypeScript definitions (#10170) @ianschmitz
 - [GridList] Allow null children in GridListTile (#10179) @caub
-- [Grid] Small performance improvement (#10180) @oliviertassiari
+- [Grid] Small performance improvement (#10180) @oliviertassinari
 - [TextField] Correct typo in TypeScript export declaration (#10186) @caghand
 - [Switch] Increase the box shadow when checked (#10187) @leMaik
 - [Stepper] Mobile Stepper variant determinate (#10190) @KeKs0r
-- [MenuItem] Better :hover and .selected logic (#10199) @oliviertassiari
+- [MenuItem] Better :hover and .selected logic (#10199) @oliviertassinari
 - [LinearProgress] Property definition grammar fix (#10201) @madison-kerndt
 - [MuiThemeProvider] Forward the options when nested (#10176) @Aetherall
-- [Select] Simpler controlled open property (#10205) @oliviertassiari
+- [Select] Simpler controlled open property (#10205) @oliviertassinari
 - [typescript] Use types from react-transition-group/Transition (#10129) @sebald
 - [typescript] Export WithTheme from index (#10209) @clekili
 - [Stepper] Increase StepButton space for click (#10204) @AlbertLucianto
 - [ButtonBase] Use parent Window of ButtonBase when listening for keyboard events (#10224) @ianschmitz
 - [StepLabel] Give more flexibility to the style of span surrounding label (#10218) @seanchambo
-- [ButtonBase] Save one line of code (#10225) @oliviertassiari
+- [ButtonBase] Save one line of code (#10225) @oliviertassinari
 
 #### Docs
 
-- [examples] Rename type to variant (#10167) @oliviertassiari
+- [examples] Rename type to variant (#10167) @oliviertassinari
 - [docs] Using "component" prop to customize rendering (#10128) @sebald
-- [docs] Fix the restore focus logic of the Popover demo (#10184) @oliviertassiari
-- [docs] Fix react-select chip on mobile (#10185) @oliviertassiari
+- [docs] Fix the restore focus logic of the Popover demo (#10184) @oliviertassinari
+- [docs] Fix react-select chip on mobile (#10185) @oliviertassinari
 - [docs] Add Snackbar / FAB animation integration example (#10188) @mbrookes
 - [docs] Add LocalMonero to showcase (#10195) @mbrookes
 - [docs] Fix typo `Selet` to `Select` (#10207) @Justkant
@@ -50,7 +50,7 @@ N.A
 
 #### Core
 
-- [core] Upgrade Next.js (#10181) @oliviertassiari
+- [core] Upgrade Next.js (#10181) @oliviertassinari
 - [test] Remove the mockPortal workaround (#10208) @leMaik
 
 ## 1.0.0-beta.32
