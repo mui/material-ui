@@ -27,8 +27,13 @@ export const styles = theme => ({
 });
 
 class Collapse extends React.Component {
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
   wrapper = null;
   autoTransitionDuration = undefined;
+  timer = null;
 
   handleEnter = node => {
     node.style.height = this.props.collapsedHeight;
@@ -103,9 +108,9 @@ class Collapse extends React.Component {
     }
   };
 
-  addEndListener = (node, next: Function) => {
+  addEndListener = (_, next) => {
     if (this.props.timeout === 'auto') {
-      setTimeout(next, this.autoTransitionDuration || 0);
+      this.timer = setTimeout(next, this.autoTransitionDuration || 0);
     }
   };
 
