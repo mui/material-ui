@@ -15,7 +15,7 @@ Here are some highlights ✨:
 
 ### Breaking change
 
-N.A
+N/A
 
 #### Component Fixes / Enhancements
 
