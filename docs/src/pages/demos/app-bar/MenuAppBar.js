@@ -13,7 +13,7 @@ import Menu, { MenuItem } from 'material-ui/Menu';
 
 const styles = {
   root: {
-    width: '100%',
+    flexGrow: 1,
   },
   flex: {
     flex: 1,

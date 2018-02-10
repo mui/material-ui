@@ -11,6 +11,8 @@ import config from 'docs/src/config';
 // We have found that clean-css is faster than cssnano but the output is larger.
 // Waiting for https://github.com/cssinjs/jss/issues/279
 // 4% slower but 12% smaller output than doing it in a single step.
+//
+// It's using .browserslistrc
 const prefixer = postcss([autoprefixer]);
 const minifier = postcss([cssnano]);
 
@@ -113,9 +115,9 @@ MyDocument.getInitialProps = async ctx => {
 
   let css = pageContext.sheetsRegistry.toString();
   if (process.env.NODE_ENV === 'production') {
-    const result1 = await prefixer.process(css);
+    const result1 = await prefixer.process(css, { from: undefined });
     css = result1.css;
-    const result2 = await minifier.process(css);
+    const result2 = await minifier.process(css, { from: undefined });
     css = result2.css;
   }
 

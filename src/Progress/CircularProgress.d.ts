@@ -9,7 +9,7 @@ export interface CircularProgressProps
   size?: number | string;
   thickness?: number;
   value?: number;
-  variant?: 'determinate' | 'indeterminate';
+  variant?: 'determinate' | 'indeterminate' | 'static';
 }
 
 export type CircularProgressClassKey =
@@ -17,10 +17,9 @@ export type CircularProgressClassKey =
   | 'colorPrimary'
   | 'colorSecondary'
   | 'svg'
-  | 'indeterminateSvg'
+  | 'svgIndeterminate'
   | 'circle'
-  | 'indeterminateCircle'
-  | 'determinateCircle';
+  | 'circleIndeterminate';
 
 declare const CircularProgress: React.ComponentType<CircularProgressProps>;
 

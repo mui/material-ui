@@ -10,20 +10,11 @@ import Typography from 'material-ui/Typography';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    paddingTop: 42,
-    position: 'relative',
   },
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    minHeight: 54,
-  },
-  typography: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    padding: 5,
   },
 });
 
@@ -32,7 +23,7 @@ function GridIntegration(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subheading" className={classes.typography}>
+      <Typography variant="subheading" gutterBottom>
         Current width: {props.width}
       </Typography>
       <Grid container spacing={24}>

@@ -32,10 +32,10 @@ export const styles = theme => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
   },
+  svg: {},
   svgIndeterminate: {
     animation: 'mui-progress-circular-rotate 1.4s linear infinite',
   },
-  svgDeterminate: {},
   circle: {
     stroke: 'currentColor',
     strokeLinecap: 'round',
@@ -69,6 +69,7 @@ export const styles = theme => ({
 
 /**
  * ## ARIA
+ *
  * If the progress bar is describing the loading progress of a particular region of a page,
  * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
  * attribute to `true` on that region until it has finished loading.
@@ -89,17 +90,24 @@ function CircularProgress(props) {
   } = props;
 
   const circleStyle = {};
-  const rootStyle = { width: size, height: size };
+  const rootStyle = {};
   const rootProps = {};
 
-  if (variant === 'determinate') {
+  if (variant === 'determinate' || variant === 'static') {
     const relVal = getRelativeValue(value, min, max) * 100;
     const circumference = 2 * Math.PI * (SIZE / 2 - 5);
-
-    circleStyle.strokeDashoffset = `${(easeIn((100 - relVal) / 100) * circumference).toFixed(3)}px`;
     circleStyle.strokeDasharray = circumference.toFixed(3);
-    rootStyle.transform = `rotate(${(easeOut(relVal / 70) * 270).toFixed(3)}deg)`;
     rootProps['aria-valuenow'] = Math.round(relVal);
+
+    if (variant === 'static') {
+      circleStyle.strokeDashoffset = `${((100 - relVal) / 100 * circumference).toFixed(3)}px`;
+      rootStyle.transform = 'rotate(-90deg)';
+    } else {
+      circleStyle.strokeDashoffset = `${(easeIn((100 - relVal) / 100) * circumference).toFixed(
+        3,
+      )}px`;
+      rootStyle.transform = `rotate(${(easeOut(relVal / 70) * 270).toFixed(3)}deg)`;
+    }
   }
 
   return (
@@ -111,15 +119,15 @@ function CircularProgress(props) {
         },
         className,
       )}
-      style={{ ...rootStyle, ...style }}
+      style={{ width: size, height: size, ...rootStyle, ...style }}
       role="progressbar"
       {...rootProps}
       {...other}
     >
       <svg
-        className={classNames({
+        className={classNames(classes.svg, {
           [classes.svgIndeterminate]: variant === 'indeterminate',
-          [classes.svgDeterminate]: variant === 'determinate',
+          [classes.svgStatic]: variant === 'static',
         })}
         viewBox={`0 0 ${SIZE} ${SIZE}`}
       >
@@ -173,7 +181,7 @@ CircularProgress.propTypes = {
    */
   thickness: PropTypes.number,
   /**
-   * The value of the progress indicator for the determinate variant.
+   * The value of the progress indicator for the determinate and static variants.
    * Value between 0 and 100.
    */
   value: PropTypes.number,
@@ -181,7 +189,7 @@ CircularProgress.propTypes = {
    * The variant of progress indicator. Use indeterminate
    * when there is no progress value.
    */
-  variant: PropTypes.oneOf(['determinate', 'indeterminate']),
+  variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
 };
 
 CircularProgress.defaultProps = {

@@ -8,28 +8,18 @@ import withWidth from 'material-ui/utils/withWidth';
 import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
-  container: {
+  root: {
     flexGrow: 1,
-    paddingTop: 30,
+  },
+  container: {
     display: 'flex',
-    flexWrap: 'wrap',
-    position: 'relative',
   },
   paper: {
-    padding: 16,
+    padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    minHeight: 54,
-    flexBasis: 0,
-    flexGrow: 1,
-    maxWidth: '100%',
-    margin: 12,
-  },
-  typography: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    padding: 5,
+    flex: '1 0 auto',
+    margin: theme.spacing.unit,
   },
 });
 
@@ -37,32 +27,32 @@ function BreakpointDown(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.container}>
-      <Typography variant="subheading" className={classes.typography}>
-        Current width: {props.width}
-      </Typography>
-      <Hidden xsDown>
-        <Paper className={classes.paper}>xsDown</Paper>
-      </Hidden>
-      <Hidden smDown>
-        <Paper className={classes.paper}>smDown</Paper>
-      </Hidden>
-      <Hidden mdDown>
-        <Paper className={classes.paper}>mdDown</Paper>
-      </Hidden>
-      <Hidden lgDown>
-        <Paper className={classes.paper}>lgDown</Paper>
-      </Hidden>
-      <Hidden xlDown>
-        <Paper className={classes.paper}>xlDown</Paper>
-      </Hidden>
+    <div className={classes.root}>
+      <Typography variant="subheading">Current width: {props.width}</Typography>
+      <div className={classes.container}>
+        <Hidden xsDown>
+          <Paper className={classes.paper}>xsDown</Paper>
+        </Hidden>
+        <Hidden smDown>
+          <Paper className={classes.paper}>smDown</Paper>
+        </Hidden>
+        <Hidden mdDown>
+          <Paper className={classes.paper}>mdDown</Paper>
+        </Hidden>
+        <Hidden lgDown>
+          <Paper className={classes.paper}>lgDown</Paper>
+        </Hidden>
+        <Hidden xlDown>
+          <Paper className={classes.paper}>xlDown</Paper>
+        </Hidden>
+      </div>
     </div>
   );
 }
 
 BreakpointDown.propTypes = {
   classes: PropTypes.object.isRequired,
-  width: PropTypes.string,
+  width: PropTypes.string.isRequired,
 };
 
 export default compose(withStyles(styles), withWidth())(BreakpointDown);

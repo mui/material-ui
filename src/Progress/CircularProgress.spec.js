@@ -75,40 +75,51 @@ describe('<CircularProgress />', () => {
     assert.strictEqual(svg.childAt(0).props().cy, 25, 'should have cx correctly set');
   });
 
-  it('should render with determinate classes', () => {
-    const wrapper = shallow(<CircularProgress variant="determinate" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    const svg = wrapper.childAt(0);
-    assert.strictEqual(svg.name(), 'svg');
-    assert.strictEqual(
-      svg.hasClass(classes.svgIndeterminate),
-      false,
-      'should not have the svgIndeterminate class',
-    );
-    assert.strictEqual(
-      svg.hasClass(classes.svgDeterminate),
-      true,
-      'should have the svgDeterminate class',
-    );
+  describe('prop: variant="static', () => {
+    it('should set strokeDasharray of circle', () => {
+      const wrapper = shallow(<CircularProgress variant="static" value={70} />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const svg = wrapper.childAt(0);
+      const style = svg.childAt(0).props().style;
+      assert.strictEqual(style.strokeDasharray, '125.664', 'should have strokeDasharray set');
+      assert.strictEqual(style.strokeDashoffset, '37.699px', 'should have strokeDashoffset set');
+      assert.strictEqual(wrapper.props()['aria-valuenow'], 70);
+    });
   });
 
-  it('should set strokeDasharray of circle on determinate variant', () => {
-    const wrapper = shallow(<CircularProgress variant="determinate" value={70} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    const svg = wrapper.childAt(0);
-    const style = svg.childAt(0).props().style;
-    assert.strictEqual(style.strokeDasharray, '125.664', 'should have strokeDasharray set');
-    assert.strictEqual(style.strokeDashoffset, '11.310px', 'should have strokeDashoffset set');
-    assert.strictEqual(wrapper.props()['aria-valuenow'], 70);
-  });
+  describe('prop: variant="determinate"', () => {
+    it('should render with determinate classes', () => {
+      const wrapper = shallow(<CircularProgress variant="determinate" />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const svg = wrapper.childAt(0);
+      assert.strictEqual(svg.name(), 'svg');
+      assert.strictEqual(
+        svg.hasClass(classes.svgIndeterminate),
+        false,
+        'should not have the svgIndeterminate class',
+      );
+    });
 
-  it('should set strokeDasharray of circle on determinate variant based on min max', () => {
-    const wrapper = shallow(<CircularProgress variant="determinate" value={5} min={0} max={10} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    const svg = wrapper.childAt(0);
-    const style = svg.childAt(0).props().style;
-    assert.strictEqual(style.strokeDasharray, '125.664', 'should have strokeDasharray set');
-    assert.strictEqual(style.strokeDashoffset, '31.416px', 'should have strokeDashoffset set');
-    assert.strictEqual(wrapper.props()['aria-valuenow'], 50);
+    it('should set strokeDasharray of circle', () => {
+      const wrapper = shallow(<CircularProgress variant="determinate" value={70} />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const svg = wrapper.childAt(0);
+      const style = svg.childAt(0).props().style;
+      assert.strictEqual(style.strokeDasharray, '125.664', 'should have strokeDasharray set');
+      assert.strictEqual(style.strokeDashoffset, '11.310px', 'should have strokeDashoffset set');
+      assert.strictEqual(wrapper.props()['aria-valuenow'], 70);
+    });
+
+    it('should set strokeDasharray of circle based on min max', () => {
+      const wrapper = shallow(
+        <CircularProgress variant="determinate" value={5} min={0} max={10} />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      const svg = wrapper.childAt(0);
+      const style = svg.childAt(0).props().style;
+      assert.strictEqual(style.strokeDasharray, '125.664', 'should have strokeDasharray set');
+      assert.strictEqual(style.strokeDashoffset, '31.416px', 'should have strokeDashoffset set');
+      assert.strictEqual(wrapper.props()['aria-valuenow'], 50);
+    });
   });
 });
