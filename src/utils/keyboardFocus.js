@@ -4,7 +4,6 @@ import keycode from 'keycode';
 import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
 import ownerDocument from 'dom-helpers/ownerDocument';
-import addEventListener from '../utils/addEventListener';
 
 const internal = {
   focusKeyPressed: false,
@@ -55,5 +54,5 @@ export function listenForFocusKeys(win) {
   // The event listener will only be added once per window.
   // Duplicate event listeners will be ignored by addEventListener.
   // Also, this logic is client side only, we don't need a teardown.
-  addEventListener(win, 'keyup', handleKeyUpEvent);
+  win.addEventListener('keyup', handleKeyUpEvent);
 }
