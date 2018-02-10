@@ -16,4 +16,5 @@ flow-typed
 /packages/material-ui-codemod/src/*/*.spec*
 /examples/create-react-app/build
 /examples/create-react-app-with-jss/build
+/examples/gatsby/public
 /.git
