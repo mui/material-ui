@@ -17,8 +17,9 @@ const styles = {
 };
 
 /**
- * The Zoom transition is used by the SpeedDial component.
- * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ * The Zoom transition can be used for the floating variant of the
+ * [Button](https://material-ui-next.com/demos/buttons/#floating-action-buttons) component.
+ * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Zoom extends React.Component {
   handleEnter = node => {

@@ -50,7 +50,7 @@ function getTranslateValue(props, node) {
     return `translateY(100vh) translateY(-${rect.top - offsetY}px)`;
   }
 
-  // direction === 'down
+  // direction === 'down'
   return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
 }
 
@@ -63,6 +63,10 @@ export function setTranslateValue(props, node) {
   }
 }
 
+/**
+ * The Slide transition is used by the [Snackbar](/demos/snackbars) component.
+ * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ */
 class Slide extends React.Component {
   state = {
     mounted: false,
@@ -287,6 +291,7 @@ Slide.propTypes = {
 };
 
 Slide.defaultProps = {
+  direction: 'down',
   timeout: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,

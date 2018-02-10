@@ -79,8 +79,16 @@ const pages = [
         pathname: '/layout/css-in-js',
         title: 'CSS in JS',
       },
+    ],
+  },
+  {
+    pathname: '/utils',
+    children: [
       {
-        pathname: '/layout/portal',
+        pathname: '/utils/transitions',
+      },
+      {
+        pathname: '/utils/portal',
       },
     ],
   },

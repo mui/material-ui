@@ -6,8 +6,8 @@ filename: /src/transitions/Fade.js
 
 # Fade
 
-The Fade transition is used by the Modal component.
-It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+The Fade transition is used by the [Modal](/demos/modals) component.
+It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
 
@@ -22,4 +22,8 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 ## Inheritance
 
 The properties of the [&lt;Transition /&gt;](https://reactcommunity.org/react-transition-group/#Transition) component are also available.
+
+## Demos
+
+- [Transitions](/utils/transitions)
 

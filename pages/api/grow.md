@@ -6,8 +6,8 @@ filename: /src/transitions/Grow.js
 
 # Grow
 
-The Grow transition is used by the Popover component.
-It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+The Grow transition is used by the [Popover](/demos/popovers) component.
+It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
 
@@ -26,4 +26,5 @@ The properties of the [&lt;Transition /&gt;](https://reactcommunity.org/react-tr
 ## Demos
 
 - [Popovers](/demos/popovers)
+- [Transitions](/utils/transitions)
 

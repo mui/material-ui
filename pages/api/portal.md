@@ -23,5 +23,5 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 
 ## Demos
 
-- [Portal](/layout/portal)
+- [Portal](/utils/portal)
 

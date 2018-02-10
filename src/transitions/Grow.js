@@ -22,8 +22,8 @@ const styles = {
 };
 
 /**
- * The Grow transition is used by the Popover component.
- * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ * The Grow transition is used by the [Popover](/demos/popovers) component.
+ * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Grow extends React.Component {
   autoTimeout = undefined;
