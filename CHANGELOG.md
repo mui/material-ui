@@ -400,7 +400,7 @@ It's unclear if this change is making the implementation follow the specificatio
 
 #### Core
 
-N.A
+N/A
 
 ## 1.0.0-beta.29
 ###### *Jan 16, 2018*
@@ -414,7 +414,7 @@ We are making a release earlier than expected. The release schedule norm has bee
 
 ### Breaking change
 
-N.A
+N/A
 
 #### Component Fixes / Enhancements
 
@@ -1886,7 +1886,7 @@ Big thanks to the 13 contributors who made this release possible.
 
 ### Breaking changes
 
-N.A
+N/A
 
 #### Component Fixes / Enhancements
 
@@ -1938,7 +1938,7 @@ Big thanks to the 8 contributors who made this release possible.
 
 ### Breaking changes
 
-N.A
+N/A
 
 #### Component Fixes / Enhancements
 
