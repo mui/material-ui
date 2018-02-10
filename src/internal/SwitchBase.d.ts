@@ -29,7 +29,7 @@ export type SwitchBase = React.Component<SwitchBaseProps>;
 export interface CreateSwitchBaseOptions {
   defaultIcon?: React.ReactNode;
   defaultCheckedIcon?: React.ReactNode;
-  inputType?: string;
+  type?: string;
 }
 
 export default function createSwitch(options: CreateSwitchBaseOptions): SwitchBase;

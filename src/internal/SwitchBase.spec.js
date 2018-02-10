@@ -307,6 +307,18 @@ describe('<SwitchBase />', () => {
         assert.strictEqual(wrapper2.find('input').props()['aria-label'], 'foo');
       });
     });
+
+    describe('prop: id', () => {
+      it('should be able to add id to a checkbox input', () => {
+        const wrapper2 = shallow(<SwitchBase type="checkbox" id="foo" />);
+        assert.strictEqual(wrapper2.find('input').props().id, 'foo');
+      });
+
+      it('should be able to add id to a radio input', () => {
+        const wrapper2 = shallow(<SwitchBase type="radio" id="foo" />);
+        assert.strictEqual(wrapper2.find('input').props().id, 'foo');
+      });
+    });
   });
 
   describe('with muiFormControl context', () => {

@@ -62,6 +62,10 @@ Checkbox.propTypes = {
    */
   icon: PropTypes.node,
   /**
+   * The id of the `input` element.
+   */
+  id: PropTypes.string,
+  /**
    * If `true`, the component appears indeterminate.
    */
   indeterminate: PropTypes.bool,
@@ -77,10 +81,6 @@ Checkbox.propTypes = {
    * Use that property to pass a ref callback to the native input component.
    */
   inputRef: PropTypes.func,
-  /**
-   * The input component property `type`.
-   */
-  inputType: PropTypes.string,
   /*
    * @ignore
    */
@@ -96,6 +96,10 @@ Checkbox.propTypes = {
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The input component property `type`.
+   */
+  type: PropTypes.string,
   /**
    * The value of the component.
    */

@@ -18,11 +18,12 @@ filename: /src/Switch/Switch.js
 | disabled | bool |  | If `true`, the switch will be disabled. |
 | disableRipple | bool |  | If `true`, the ripple effect will be disabled. |
 | icon | node |  | The icon to display when the component is unchecked. |
+| id | string |  | The id of the `input` element. |
 | inputProps | object |  | Properties applied to the `input` element. |
 | inputRef | func |  | Use that property to pass a ref callback to the native input component. |
-| inputType | string |  | The input component property `type`. |
 | name | string |  |  |
 | onChange | func |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
+| type | string |  | The input component property `type`. |
 | value | string |  | The value of the component. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
