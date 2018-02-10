@@ -7,6 +7,7 @@ filename: /src/Progress/CircularProgress.js
 # CircularProgress
 
 ## ARIA
+
 If the progress bar is describing the loading progress of a particular region of a page,
 you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
 attribute to `true` on that region until it has finished loading.
@@ -21,8 +22,8 @@ attribute to `true` on that region until it has finished loading.
 | min | number | 0 | The min value of progress in determinate variant. |
 | size | union:&nbsp;number&nbsp;&#124;<br>&nbsp;string<br> | 40 | The size of the circle. |
 | thickness | number | 3.6 | The thickness of the circle. |
-| value | number | 0 | The value of the progress indicator for the determinate variant. Value between 0 and 100. |
-| variant | enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'<br> | 'indeterminate' | The variant of progress indicator. Use indeterminate when there is no progress value. |
+| value | number | 0 | The value of the progress indicator for the determinate and static variants. Value between 0 and 100. |
+| variant | enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'&nbsp;&#124;<br>&nbsp;'static'<br> | 'indeterminate' | The variant of progress indicator. Use indeterminate when there is no progress value. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -33,8 +34,8 @@ This property accepts the following keys:
 - `root`
 - `colorPrimary`
 - `colorSecondary`
+- `svg`
 - `svgIndeterminate`
-- `svgDeterminate`
 - `circle`
 - `circleIndeterminate`
 

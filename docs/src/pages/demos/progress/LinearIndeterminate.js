@@ -5,8 +5,7 @@ import { LinearProgress } from 'material-ui/Progress';
 
 const styles = {
   root: {
-    width: '100%',
-    marginTop: 30,
+    flexGrow: 1,
   },
 };
 

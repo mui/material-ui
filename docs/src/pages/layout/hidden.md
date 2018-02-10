@@ -16,12 +16,12 @@ Ranges and individual breakpoints can be used simultaneously to achieve very cus
 The ranges are inclusive of the specified breakpoints.
 
 ```js
-innerWidth  |xs      sm      md      lg      xl
-            |--------|-------|-------|-------|------->
-width       |  xs    |  sm   |  md   |  lg   |  xl
+innerWidth  |xs      sm       md       lg       xl
+            |--------|--------|--------|--------|-------->
+width       |   xs   |   sm   |   md   |   lg   |   xl
 
-smUp        |  show  | hide
-mdDown      |  hide                  |  show
+smUp        |   show | hide
+mdDown      |                     hide | show
 
 ```
 

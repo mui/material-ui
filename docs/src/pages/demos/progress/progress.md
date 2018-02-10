@@ -28,6 +28,10 @@ For example, a refresh operation should display either a refresh bar or an activ
 
 {{"demo": "pages/demos/progress/CircularDeterminate.js"}}
 
+### Circular Static
+
+{{"demo": "pages/demos/progress/CircularStatic.js"}}
+
 ## Linear
 
 ### Linear Indeterminate
@@ -38,11 +42,11 @@ For example, a refresh operation should display either a refresh bar or an activ
 
 {{"demo": "pages/demos/progress/LinearDeterminate.js"}}
 
-### Buffer
+### Linear Buffer
 
 {{"demo": "pages/demos/progress/LinearBuffer.js"}}
 
-### Query
+### Linear Query
 
 {{"demo": "pages/demos/progress/LinearQuery.js"}}
 

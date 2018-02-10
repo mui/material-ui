@@ -8,28 +8,18 @@ import withWidth from 'material-ui/utils/withWidth';
 import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
-  container: {
+  root: {
     flexGrow: 1,
-    paddingTop: 30,
+  },
+  container: {
     display: 'flex',
-    flexWrap: 'wrap',
-    position: 'relative',
   },
   paper: {
-    padding: 16,
+    padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    minHeight: 54,
-    flexBasis: 0,
-    flexGrow: 1,
-    maxWidth: '100%',
-    margin: 12,
-  },
-  typography: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    padding: 5,
+    flex: '1 0 auto',
+    margin: theme.spacing.unit,
   },
 });
 
@@ -37,26 +27,26 @@ function BreakpointOnly(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.container}>
-      <Typography variant="subheading" className={classes.typography}>
-        Current width: {props.width}
-      </Typography>
-      <Hidden only="lg">
-        <Paper className={classes.paper}>Hidden on lg</Paper>
-      </Hidden>
-      <Hidden only="sm">
-        <Paper className={classes.paper}>Hidden on sm</Paper>
-      </Hidden>
-      <Hidden only={['sm', 'lg']}>
-        <Paper className={classes.paper}>Hidden on sm and lg</Paper>
-      </Hidden>
+    <div className={classes.root}>
+      <Typography variant="subheading">Current width: {props.width}</Typography>
+      <div className={classes.container}>
+        <Hidden only="lg">
+          <Paper className={classes.paper}>Hidden on lg</Paper>
+        </Hidden>
+        <Hidden only="sm">
+          <Paper className={classes.paper}>Hidden on sm</Paper>
+        </Hidden>
+        <Hidden only={['sm', 'lg']}>
+          <Paper className={classes.paper}>Hidden on sm and lg</Paper>
+        </Hidden>
+      </div>
     </div>
   );
 }
 
 BreakpointOnly.propTypes = {
   classes: PropTypes.object.isRequired,
-  width: PropTypes.string,
+  width: PropTypes.string.isRequired,
 };
 
 export default compose(withStyles(styles), withWidth())(BreakpointOnly);

@@ -15,7 +15,7 @@ import Divider from 'material-ui/Divider';
 
 const styles = theme => ({
   root: {
-    width: '100%',
+    flexGrow: 1,
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -33,7 +33,7 @@ const styles = theme => ({
     alignItems: 'center',
   },
   column: {
-    flexBasis: '33.3%',
+    flexBasis: '33.33%',
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
