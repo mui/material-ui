@@ -19,7 +19,7 @@ Responsively hides children based on the selected implementation.
 | lgUp | bool | false | If true, screens this size and up will be hidden. |
 | mdDown | bool | false | If true, screens this size and down will be hidden. |
 | mdUp | bool | false | If true, screens this size and up will be hidden. |
-| only | union:&nbsp;{0?: undefined, 1?: undefined, 2?: undefined, 3?: undefined, 4?: undefined}&nbsp;&#124;<br>&nbsp;{name?: undefined, value?: undefined}<br> |  | Hide the given breakpoint(s). |
+| only | union:&nbsp;enum:&nbsp;'xs', 'sm', 'md', 'lg', 'xl'<br>&nbsp;&#124;<br>&nbsp;arrayOf<br> |  | Hide the given breakpoint(s). |
 | smDown | bool | false | If true, screens this size and down will be hidden. |
 | smUp | bool | false | If true, screens this size and up will be hidden. |
 | xlDown | bool | false | If true, screens this size and down will be hidden. |

@@ -13,7 +13,7 @@ filename: /src/Snackbar/Snackbar.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | action | node |  | The action to display. |
-| anchorOrigin | shape | {  vertical: 'bottom',  horizontal: 'center',} | The anchor of the `Snackbar`. |
+| anchorOrigin | {horizontal?: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'right'<br><br>, vertical?: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'bottom'<br><br>} | {  vertical: 'bottom',  horizontal: 'center',} | The anchor of the `Snackbar`. |
 | autoHideDuration | number |  | The number of milliseconds to wait before automatically calling the `onClose` function. `onClose` should then set the state of the `open` prop to hide the Snackbar. This behavior is disabled by default with the `null` value. |
 | children | element |  | If you wish the take control over the children of the component you can use this property. When used, you replace the `SnackbarContent` component with the children. |
 | classes | object |  | Useful to extend the style applied to components. |
