@@ -12,7 +12,8 @@ cd create-react-app-with-typescript
 Install it and run:
 
 ```bash
-yarn start
+npm install
+npm run start
 ```
 
 ## The idea behind the example
