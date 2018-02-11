@@ -29,7 +29,7 @@ filename: /src/Modal/Modal.js
 | onClose | func |  | Callback fired when the component requests to be closed. The `reason` parameter can optionally be used to control the response to `onClose`.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"escapeKeyDown"`, `"backdropClick"` |
 | onEscapeKeyDown | func |  | Callback fired when the escape key is pressed, `disableEscapeKeyDown` is false and the modal is in focus. |
 | onRendered | func |  | Callback fired once the children has been mounted into the `container`. It signals that the `open={true}` property took effect. |
-| <span style="color: #31a148">open *</span> | bool |  | If `true`, the modal is open. |
+| <span style="color: #31a148">open *</span> | bool |  | If `true`, the modal is open. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

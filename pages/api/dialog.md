@@ -12,7 +12,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | node |  | Dialog children, usually the included sub-components. |
+| <span style="color: #31a148">children *</span> | node |  | Dialog children, usually the included sub-components. |
 | classes | object |  | Useful to extend the style applied to components. |
 | disableBackdropClick | bool | false | If `true`, clicking the backdrop will not fire the `onClose` callback. |
 | disableEscapeKeyDown | bool | false | If `true`, hitting escape will not fire the `onClose` callback. |
@@ -28,7 +28,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | onExit | func |  | Callback fired before the dialog exits. |
 | onExited | func |  | Callback fired when the dialog has exited. |
 | onExiting | func |  | Callback fired when the dialog is exiting. |
-| <span style="color: #31a148">open *</span> | bool |  | If `true`, the Dialog is open. |
+| <span style="color: #31a148">open *</span> | bool |  | If `true`, the Dialog is open. |
 | PaperProps | object |  | Properties applied to the `Paper` element. |
 | transition | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | Fade | Transition component. |
 | transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | { enter: duration.enteringScreen, exit: duration.leavingScreen } | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |

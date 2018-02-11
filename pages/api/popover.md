@@ -30,7 +30,7 @@ filename: /src/Popover/Popover.js
 | onExit | func |  | Callback fired before the component is exiting. |
 | onExited | func |  | Callback fired when the component has exited. |
 | onExiting | func |  | Callback fired when the component is exiting. |
-| <span style="color: #31a148">open *</span> | bool |  | If `true`, the popover is visible. |
+| <span style="color: #31a148">open *</span> | bool |  | If `true`, the popover is visible. |
 | PaperProps | object |  | Properties applied to the `Paper` element. |
 | transformOrigin | {horizontal?: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'right'<br><br>, vertical?: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'bottom'<br><br>} | {  vertical: 'top',  horizontal: 'left',} | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
 | transition | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | Grow | Transition component. |

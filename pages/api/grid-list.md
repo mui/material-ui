@@ -13,7 +13,7 @@ filename: /src/GridList/GridList.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | cellHeight | union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | 180 | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
-| <span style="color: #31a148">children *</span> | node |  | Grid Tiles that will be in Grid List. |
+| <span style="color: #31a148">children *</span> | node |  | Grid Tiles that will be in Grid List. |
 | classes | object |  | Useful to extend the style applied to components. |
 | cols | number | 2 | Number of columns. |
 | component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'ul' | The component used for the root node. Either a string to use a DOM element or a component. |

@@ -14,7 +14,7 @@ filename: /src/Stepper/Stepper.js
 |:-----|:-----|:--------|:------------|
 | activeStep | number | 0 | Set the active step (zero based index). |
 | alternativeLabel | bool | false | If set to 'true' and orientation is horizontal, then the step label will be positioned under the icon. |
-| <span style="color: #31a148">children *</span> | node |  | Two or more `&lt;Step />` components. |
+| <span style="color: #31a148">children *</span> | node |  | Two or more `&lt;Step />` components. |
 | classes | object |  | Useful to extend the style applied to components. |
 | connector | element | &lt;StepConnector /> | A component to be placed between each step. |
 | nonLinear | bool | false | If set the `Stepper` will not assist in controlling steps for linear flow. |

@@ -174,7 +174,7 @@ function generateProps(reactAPI) {
     }
 
     if (prop.required) {
-      propRaw = `<span style="color: #31a148">${propRaw}\u2009*</span>`;
+      propRaw = `<span style="color: #31a148">${propRaw}\u00a0*</span>`;
     }
 
     if (prop.type.name === 'custom') {
