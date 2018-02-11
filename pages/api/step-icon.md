@@ -15,7 +15,7 @@ filename: /src/Stepper/StepIcon.js
 | active | bool | false | Whether this step is active. |
 | classes | object |  | Classses for component style customizations. |
 | completed | bool | false | Mark the step as completed. Is passed to child components. |
-| <span style="color: #31a148">icon *</span> | node |  | The icon displayed by the step label. |
+| <span style="color: #31a148">icon *</span> | node |  | The icon displayed by the step label. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

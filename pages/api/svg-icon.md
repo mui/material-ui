@@ -12,7 +12,7 @@ filename: /src/SvgIcon/SvgIcon.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | node |  | Node passed into the SVG element. |
+| <span style="color: #31a148">children *</span> | node |  | Node passed into the SVG element. |
 | classes | object |  | Useful to extend the style applied to components. |
 | color | enum:&nbsp;'action', 'disabled', 'error', 'inherit', 'primary', 'secondary'<br> | 'inherit' | The color of the component. It supports those theme colors that make sense for this component. You can use the `nativeColor` property to apply a color attribute to the SVG element. |
 | fontSize | bool | false | If `true`, the icon size will be determined by the font-size. |

@@ -14,7 +14,7 @@ filename: /src/Modal/Backdrop.js
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
 | invisible | bool | false | If `true`, the backdrop is invisible. It can be used when rendering a popover or a custom select component. |
-| <span style="color: #31a148">open *</span> | bool |  | If `true`, the backdrop is open. |
+| <span style="color: #31a148">open *</span> | bool |  | If `true`, the backdrop is open. |
 | transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> |  | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

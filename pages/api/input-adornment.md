@@ -12,7 +12,7 @@ filename: /src/Input/InputAdornment.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | node |  | The content of the component, normally an `IconButton` or string. |
+| <span style="color: #31a148">children *</span> | node |  | The content of the component, normally an `IconButton` or string. |
 | classes | object |  | Useful to extend the style applied to components. |
 | component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
 | disableTypography | bool | false | If children is a string then disable wrapping in a Typography component. |

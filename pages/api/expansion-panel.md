@@ -12,7 +12,7 @@ filename: /src/ExpansionPanel/ExpansionPanel.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | node |  | The content of the expansion panel. |
+| <span style="color: #31a148">children *</span> | node |  | The content of the expansion panel. |
 | classes | object |  | Useful to extend the style applied to components. |
 | CollapseProps | object |  | Properties applied to the `Collapse` element. |
 | defaultExpanded | bool | false | If `true`, expands the panel by default. |

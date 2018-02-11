@@ -12,7 +12,7 @@ filename: /src/Dialog/DialogTitle.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | node |  | The content of the component. |
+| <span style="color: #31a148">children *</span> | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
 | disableTypography | bool | false | If `true`, the children won't be wrapped by a typography component. For instance, this can be useful to render an h4 instead of the default h2. |
 

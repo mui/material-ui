@@ -13,7 +13,7 @@
     "name": "The main bundle of the documentation",
     "webpack": false,
     "path": ".next/app.js",
-    "limit": "175.4 KB"
+    "limit": "175.5 KB"
   },
   {
     "name": "The home page of the documentation",

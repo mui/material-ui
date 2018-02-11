@@ -12,7 +12,7 @@ filename: /src/Tooltip/Tooltip.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | element |  | Tooltip reference element. |
+| <span style="color: #31a148">children *</span> | element |  | Tooltip reference element. |
 | classes | object |  | Useful to extend the style applied to components. |
 | disableTriggerFocus | bool | false | Do not respond to focus events. |
 | disableTriggerHover | bool | false | Do not respond to hover events. |
@@ -25,7 +25,7 @@ filename: /src/Tooltip/Tooltip.js
 | open | bool |  | If `true`, the tooltip is shown. |
 | placement | enum:&nbsp;'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'<br> | 'bottom' | Tooltip placement |
 | PopperProps | object |  | Properties applied to the `Popper` element. |
-| <span style="color: #31a148">title *</span> | node |  | Tooltip title. Zero-length titles string are never displayed. |
+| <span style="color: #31a148">title *</span> | node |  | Tooltip title. Zero-length titles string are never displayed. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
