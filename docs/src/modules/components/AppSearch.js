@@ -10,6 +10,11 @@ import { withStyles } from 'material-ui/styles';
 let searchTimer;
 
 function initDocsearch() {
+  if (!process.browser) {
+    return;
+  }
+
+  clearInterval(searchTimer);
   searchTimer = setInterval(() => {
     if (window.docsearch && document.querySelector('#docsearch-input')) {
       clearInterval(searchTimer);
@@ -17,7 +22,8 @@ function initDocsearch() {
         apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
         indexName: 'material-ui',
         inputSelector: '#docsearch-input',
-        debug: false, // Set debug to true if you want to inspect the dropdown
+        // Set debug to true if you want to inspect the dropdown.
+        // debug: true,
       });
     }
   }, 100);
@@ -63,7 +69,7 @@ const styles = theme => ({
       },
     },
   },
-  wrapper: {
+  root: {
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
     marginRight: theme.spacing.unit * 2,
@@ -119,7 +125,7 @@ function AppSearch(props) {
   initDocsearch();
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.root}>
       <div className={classes.search}>
         <SearchIcon />
       </div>
@@ -133,10 +139,4 @@ AppSearch.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-export default compose(
-  withStyles(styles, {
-    name: 'AppSearch',
-  }),
-  withWidth(),
-  pure,
-)(AppSearch);
+export default compose(withStyles(styles), withWidth(), pure)(AppSearch);
