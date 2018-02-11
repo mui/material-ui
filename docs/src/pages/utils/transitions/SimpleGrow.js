@@ -9,6 +9,9 @@ const styles = theme => ({
   root: {
     height: 180,
   },
+  container: {
+    display: 'flex',
+  },
   paper: {
     margin: theme.spacing.unit,
   },
@@ -39,13 +42,26 @@ class SimpleGrow extends React.Component {
     return (
       <div className={classes.root}>
         <Switch checked={checked} onChange={this.handleChange} aria-label="collapse" />
-        <Grow in={checked}>
-          <Paper elevation={4} className={classes.paper}>
-            <svg className={classes.svg}>
-              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
-            </svg>
-          </Paper>
-        </Grow>
+        <div className={classes.container}>
+          <Grow in={checked}>
+            <Paper elevation={4} className={classes.paper}>
+              <svg className={classes.svg}>
+                <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+              </svg>
+            </Paper>
+          </Grow>
+          <Grow
+            in={checked}
+            style={{ transformOrigin: '0 0 0' }}
+            {...(checked ? { timeout: 1000 } : {})}
+          >
+            <Paper elevation={4} className={classes.paper}>
+              <svg className={classes.svg}>
+                <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+              </svg>
+            </Paper>
+          </Grow>
+        </div>
       </div>
     );
   }
