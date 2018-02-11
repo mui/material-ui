@@ -14,4 +14,4 @@ You have to wait for the client side reconciliation to see the children.
 
 ## Simple Portal
 
-{{"demo": "pages/layout/SimplePortal.js"}}
+{{"demo": "pages/utils/SimplePortal.js"}}

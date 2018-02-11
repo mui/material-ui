@@ -45,7 +45,7 @@ you need to use the following style sheet name: `MuiMenu`.
 
 ## Inheritance
 
-The properties of the [&lt;Popover /&gt;](/api/popover) component are also available.
+The properties of the [Popover](/api/popover) component are also available.
 
 ## Demos
 

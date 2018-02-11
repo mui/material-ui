@@ -36,7 +36,7 @@ you need to use the following style sheet name: `MuiMenuItem`.
 
 ## Inheritance
 
-The properties of the [&lt;ListItem /&gt;](/api/list-item) component are also available.
+The properties of the [ListItem](/api/list-item) component are also available.
 
 ## Demos
 

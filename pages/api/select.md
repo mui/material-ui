@@ -50,7 +50,7 @@ you need to use the following style sheet name: `MuiSelect`.
 
 ## Inheritance
 
-The properties of the [&lt;Input /&gt;](/api/input) component are also available.
+The properties of the [Input](/api/input) component are also available.
 
 ## Demos
 

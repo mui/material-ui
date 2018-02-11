@@ -6,7 +6,9 @@ filename: /src/transitions/Collapse.js
 
 # Collapse
 
-
+The Collapes transition is used by the
+[Vetical Stepper](/demos/steppers#vertical-stepper) StepContent component.
+It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
 
@@ -40,10 +42,11 @@ you need to use the following style sheet name: `MuiCollapse`.
 
 ## Inheritance
 
-The properties of the [&lt;Transition /&gt;](https://reactcommunity.org/react-transition-group/#Transition) component are also available.
+The properties of the react-transition-group [Transition](https://reactcommunity.org/react-transition-group/#Transition) component are also available.
 
 ## Demos
 
 - [Cards](/demos/cards)
 - [Lists](/demos/lists)
+- [Transitions](/utils/transitions/transitions)
 

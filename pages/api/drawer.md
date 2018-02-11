@@ -52,7 +52,7 @@ you need to use the following style sheet name: `MuiDrawer`.
 
 ## Inheritance
 
-The properties of the [&lt;Modal /&gt;](/api/modal) component are also available.
+The properties of the [Modal](/api/modal) component are also available.
 
 ## Demos
 

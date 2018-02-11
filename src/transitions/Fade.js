@@ -17,8 +17,8 @@ const styles = {
 };
 
 /**
- * The Fade transition is used by the Modal component.
- * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ * The Fade transition is used by the [Modal](/demos/modals) component.
+ * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Fade extends React.Component {
   handleEnter = node => {

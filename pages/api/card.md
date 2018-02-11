@@ -18,7 +18,7 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 
 ## Inheritance
 
-The properties of the [&lt;Paper /&gt;](/api/paper) component are also available.
+The properties of the [Paper](/api/paper) component are also available.
 
 ## Demos
 

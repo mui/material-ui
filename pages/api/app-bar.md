@@ -42,7 +42,7 @@ you need to use the following style sheet name: `MuiAppBar`.
 
 ## Inheritance
 
-The properties of the [&lt;Paper /&gt;](/api/paper) component are also available.
+The properties of the [Paper](/api/paper) component are also available.
 
 ## Demos
 

@@ -228,9 +228,11 @@ function generateInheritance(reactAPI) {
 
   const component = inheritedComponent[1];
   let pathname;
+  let prefix = '';
 
   switch (component) {
     case 'Transition':
+      prefix = 'react-transition-group ';
       pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
       break;
 
@@ -241,7 +243,7 @@ function generateInheritance(reactAPI) {
 
   return `## Inheritance
 
-The properties of the [&lt;${component} /&gt;](${pathname}) component are also available.
+The properties of the ${prefix}[${component}](${pathname}) component are also available.
 
 `;
 }

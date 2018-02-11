@@ -52,7 +52,7 @@ you need to use the following style sheet name: `MuiTablePagination`.
 
 ## Inheritance
 
-The properties of the [&lt;TableCell /&gt;](/api/table-cell) component are also available.
+The properties of the [TableCell](/api/table-cell) component are also available.
 
 ## Demos
 

@@ -6,8 +6,9 @@ filename: /src/transitions/Zoom.js
 
 # Zoom
 
-The Zoom transition is used by the SpeedDial component.
-It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+The Zoom transition can be used for the floating variant of the
+[Button](https://material-ui-next.com/demos/buttons/#floating-action-buttons) component.
+It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
 
@@ -21,9 +22,10 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 
 ## Inheritance
 
-The properties of the [&lt;Transition /&gt;](https://reactcommunity.org/react-transition-group/#Transition) component are also available.
+The properties of the react-transition-group [Transition](https://reactcommunity.org/react-transition-group/#Transition) component are also available.
 
 ## Demos
 
 - [Buttons](/demos/buttons)
+- [Transitions](/utils/transitions/transitions)
 

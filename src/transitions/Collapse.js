@@ -26,6 +26,11 @@ export const styles = theme => ({
   },
 });
 
+/**
+ * The Collapes transition is used by the
+ * [Vetical Stepper](/demos/steppers#vertical-stepper) StepContent component.
+ * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ */
 class Collapse extends React.Component {
   wrapper = null;
   autoTransitionDuration = undefined;
