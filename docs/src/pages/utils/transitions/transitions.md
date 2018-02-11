@@ -26,6 +26,9 @@ Fade in from transparent to opaque.
 Expand outwards from the center of the child element, while also fading in
 from transparent to opaque.
 
+The second example demonstrates how to change the `transform-origin`, and conditionally applies
+the `timeout` property to change the entry speed.
+
 {{"demo": "pages/utils/transitions/SimpleGrow.js"}}
 
 ## Slide
