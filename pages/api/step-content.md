@@ -14,7 +14,7 @@ filename: /src/Stepper/StepContent.js
 |:-----|:-----|:--------|:------------|
 | children | node |  | Step content. |
 | transition | func | Collapse | Collapse component. |
-| transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;{0?: undefined}<br> | 'auto' | Adjust the duration of the content expand transition. Passed as a property to the transition component.<br>Set to 'auto' to automatically calculate transition time based on height. |
+| transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | 'auto' | Adjust the duration of the content expand transition. Passed as a property to the transition component.<br>Set to 'auto' to automatically calculate transition time based on height. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

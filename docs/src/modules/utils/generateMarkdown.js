@@ -109,18 +109,21 @@ function generatePropType(type) {
       return type.raw;
     }
 
+    case 'shape':
+      return `{${Object.keys(type.value)
+        .map(subValue => {
+          return `${subValue}?: ${generatePropType(type.value[subValue])}`;
+        })
+        .join(', ')}}`;
+
     case 'union':
     case 'enum': {
-      let values = type.value.map(v => v.value || v.name).map(value => {
-        if (typeof value === 'string') {
-          return escapeCell(value);
+      let values = type.value.map(type2 => {
+        if (type.name === 'enum') {
+          return escapeCell(type2.value);
         }
 
-        return `{${Object.keys(value)
-          .map(subValue => {
-            return `${subValue}?: ${generatePropType(value[subValue])}`;
-          })
-          .join(', ')}}`;
+        return generatePropType(type2);
       });
 
       // Display one value per line as it's better for visibility.
@@ -174,14 +177,15 @@ function generateProps(reactAPI) {
       propRaw = `<span style="color: #31a148">${propRaw}\u2009*</span>`;
     }
 
-    const type = prop.flowType || prop.type;
-    if (type && type.name === 'custom') {
+    if (prop.type.name === 'custom') {
       if (getDeprecatedInfo(prop.type)) {
         propRaw = `~~${propRaw}~~`;
       }
     }
 
-    textProps += `| ${propRaw} | ${generatePropType(type)} | ${defaultValue} | ${description} |\n`;
+    textProps += `| ${propRaw} | ${generatePropType(
+      prop.type,
+    )} | ${defaultValue} | ${description} |\n`;
 
     return textProps;
   }, text);

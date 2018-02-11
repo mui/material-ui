@@ -26,7 +26,7 @@ filename: /src/Select/Select.js
 | onOpen | func |  | Callback fired when the component requests to be opened. Useful in controlled mode (see open).<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | bool |  | Control `select` open state. You can only use it when the `native` property is `false` (default). |
 | renderValue | func |  | Render the selected value. You can only use it when the `native` property is `false` (default). |
-| value | union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;{name?: undefined, value?: undefined}<br> |  | The input value, required for a controlled component. |
+| value | union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;arrayOf<br> |  | The input value, required for a controlled component. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

@@ -25,7 +25,7 @@ filename: /src/Menu/Menu.js
 | onExiting | func |  | Callback fired when the Menu is exiting. |
 | <span style="color: #31a148">open *</span> | bool |  | If `true`, the menu is visible. |
 | PopoverClasses | object |  | `classes` property applied to the `Popover` element. |
-| transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;{0?: undefined}<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
+| transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | 'auto' | The length of the transition in `ms`, or 'auto' |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

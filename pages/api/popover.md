@@ -14,8 +14,8 @@ filename: /src/Popover/Popover.js
 |:-----|:-----|:--------|:------------|
 | action | func |  | This is callback property. It's called by the component on mount. This is useful when you want to trigger an action programmatically. It currently only supports updatePosition() action.<br><br>**Signature:**<br>`function(actions: object) => void`<br>*actions:* This object contains all posible actions that can be triggered programmatically. |
 | anchorEl | object |  | This is the DOM element that may be used to set the position of the popover. |
-| anchorOrigin | shape | {  vertical: 'top',  horizontal: 'left',} | This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.<br>Options: vertical: [top, center, bottom]; horizontal: [left, center, right]. |
-| anchorPosition | shape |  | This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area. |
+| anchorOrigin | {horizontal?: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'right'<br><br>, vertical?: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'bottom'<br><br>} | {  vertical: 'top',  horizontal: 'left',} | This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.<br>Options: vertical: [top, center, bottom]; horizontal: [left, center, right]. |
+| anchorPosition | {top?: number, left?: number} |  | This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area. |
 | anchorReference | enum:&nbsp;'anchorEl'&nbsp;&#124;<br>&nbsp;'anchorPosition'<br> | 'anchorEl' |  |
 | children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
@@ -32,9 +32,9 @@ filename: /src/Popover/Popover.js
 | onExiting | func |  | Callback fired when the component is exiting. |
 | <span style="color: #31a148">open *</span> | bool |  | If `true`, the popover is visible. |
 | PaperProps | object |  | Properties applied to the `Paper` element. |
-| transformOrigin | shape | {  vertical: 'top',  horizontal: 'left',} | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
+| transformOrigin | {horizontal?: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'right'<br><br>, vertical?: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'bottom'<br><br>} | {  vertical: 'top',  horizontal: 'left',} | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
 | transition | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | Grow | Transition component. |
-| transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;{0?: undefined}<br> | 'auto' | Set to 'auto' to automatically calculate transition time based on height. |
+| transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | 'auto' | Set to 'auto' to automatically calculate transition time based on height. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
