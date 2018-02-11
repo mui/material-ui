@@ -26,7 +26,12 @@ const styles = {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Grow extends React.Component {
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
   autoTimeout = undefined;
+  timer = null;
 
   handleEnter = node => {
     const { theme, timeout } = this.props;
@@ -92,9 +97,9 @@ class Grow extends React.Component {
     }
   };
 
-  addEndListener = (node, next: Function) => {
+  addEndListener = (_, next) => {
     if (this.props.timeout === 'auto') {
-      setTimeout(next, this.autoTimeout || 0);
+      this.timer = setTimeout(next, this.autoTimeout || 0);
     }
   };
 
