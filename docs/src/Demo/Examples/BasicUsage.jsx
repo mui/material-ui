@@ -18,13 +18,15 @@ export default class BasicUsage extends Component {
     return (
       <Fragment>
         <div className="picker">
-          <Typography type="headline" align="center" gutterBottom>
+          <Typography variant="headline" align="center" gutterBottom>
             Date picker
           </Typography>
 
           <DatePicker
             keyboard
             clearable
+            label="Choose a date"
+            helperText="Possible manual entry via keyboard"
             maxDateMessage="Date must be less than today"
             value={selectedDate}
             onChange={this.handleDateChange}
@@ -33,7 +35,7 @@ export default class BasicUsage extends Component {
         </div>
 
         <div className="picker">
-          <Typography type="headline" align="center" gutterBottom>
+          <Typography variant="headline" align="center" gutterBottom>
             Time picker
           </Typography>
 

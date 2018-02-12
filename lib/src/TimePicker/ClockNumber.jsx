@@ -63,7 +63,7 @@ export class ClockNumber extends Component {
 
     return (
       <Typography
-        type={isInner ? 'body1' : 'subheading'}
+        variant={isInner ? 'body1' : 'subheading'}
         component="span"
         className={className}
         style={this.getTransformStyle(index, isInner)}

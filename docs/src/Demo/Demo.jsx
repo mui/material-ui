@@ -73,20 +73,20 @@ class Demo extends Component {
         <Toolbar color="primary" className={classes.appToolbar}>
           <img alt="Material-UI logo" className="material-ui-logo" src="https://material-ui-1dab0.firebaseapp.com/static/images/material-ui-logo.svg" />
 
-          <Typography type="display1" color="inherit" className="title text-light" gutterBottom>
+          <Typography variant="display1" color="inherit" className="title text-light" gutterBottom>
             Material-UI Pickers
           </Typography>
-          <Typography type="headline" align="center" color="inherit" gutterBottom className="text-light">
+          <Typography variant="headline" align="center" color="inherit" gutterBottom className="text-light">
             Date and Time pickers for material-ui v1
           </Typography>
 
-          <Button raised className={classes.getStarted} onClick={this.scrollToContent}>
+          <Button variant="raised" className={classes.getStarted} onClick={this.scrollToContent}>
             Get Started
           </Button>
         </Toolbar>
 
         <div id="content" className={classes.content}>
-          <Typography type="display2" align="center" gutterBottom>
+          <Typography variant="display2" align="center" gutterBottom>
             Here you are!
           </Typography>
 

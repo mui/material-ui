@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-beta.14",
+  "version": "1.0.0-beta.15",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "build/dist/material-ui-pickers.cjs.js",
@@ -64,7 +64,7 @@
     "@types/jss": "^9.3.0",
     "@types/moment": "^2.13.0",
     "@types/prop-types": "^15.5.2",
-    "@types/react": "^16.0.34",
+    "@types/react": "^16.0.36",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^8.0.1",
@@ -81,7 +81,7 @@
     "cross-env": "^5.1.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.0",
-    "eslint": "^4.8.0",
+    "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
@@ -89,9 +89,9 @@
     "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
     "jest": "^21.2.1",
-    "material-ui": "^1.0.0-beta.31",
+    "material-ui": "^1.0.0-beta.33",
     "moment": "^2.19.2",
-    "np": "^2.18.3",
+    "np": "^2.19.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -100,7 +100,7 @@
     "rollup-plugin-commonjs": "^8.2.4",
     "rollup-plugin-filesize": "^1.5.0",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "typescript": "^2.6.2"
+    "typescript": "^2.7.1"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",

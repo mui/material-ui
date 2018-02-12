@@ -88,7 +88,7 @@ class CustomElements extends Component {
     return (
       <Fragment>
         <div className="picker">
-          <Typography type="headline" align="center" gutterBottom>
+          <Typography variant="headline" align="center" gutterBottom>
             Week picker
           </Typography>
 
@@ -101,7 +101,7 @@ class CustomElements extends Component {
         </div>
 
         <div className="picker">
-          <Typography type="headline" align="center" gutterBottom>
+          <Typography variant="headline" align="center" gutterBottom>
             DateTime picker
           </Typography>
 

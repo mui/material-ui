@@ -40,7 +40,7 @@ class Year extends PureComponent {
         onClick={this.handleClick}
         onKeyPress={this.handleClick}
         color={selected ? 'primary' : 'default'}
-        type={selected ? 'headline' : 'subheading'}
+        variant={selected ? 'headline' : 'subheading'}
         {...other}
       >
         {children}
