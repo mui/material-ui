@@ -26,51 +26,63 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
 ### Where should I start in a migration?
 
 1. Start by installing the v1.x version of Material-UI along side the v0.x version.
-[**Yarn**](https://github.com/yarnpkg/yarn) provides an alias feature to do so:
-```sh
-yarn add material-ui@latest
-yarn add material-ui-next@npm:material-ui@next
-```
-then
-```js
-import FlatButton from 'material-ui/FlatButton'; // v0.x
-import Button from 'material-ui-next/Button'; // v1.x
-```
-If you can't use Yarn, we also provide a separate package for **NPM**.
-However, the package might not be always up to date.
-**It's why we encourage people to use a Yarn alias**.
-```sh
-npm install material-ui@latest
-npm install material-ui-next@latest
-```
-then
-```js
-import FlatButton from 'material-ui/FlatButton'; // v0.x
-import Button from 'material-ui-next/Button'; // v1.x
-```
+   [**Yarn**](https://github.com/yarnpkg/yarn) provides an alias feature to do so:
+
+  ```sh
+  yarn add material-ui@latest
+  yarn add material-ui-next@npm:material-ui@next
+  ```
+
+  then
+
+  ```js
+  import FlatButton from 'material-ui/FlatButton'; // v0.x
+  import Button from 'material-ui-next/Button'; // v1.x
+  ```
+
+  If you can't use Yarn, we also provide a separate package for **NPM**.
+  However, the package might not be always up to date.
+  **It's why we encourage people to use a Yarn alias**.
+
+  ```sh
+  npm install material-ui@latest
+  npm install material-ui-next@latest
+  ```
+
+  then
+
+  ```js
+  import FlatButton from 'material-ui/FlatButton'; // v0.x
+  import Button from 'material-ui-next/Button'; // v1.x
+  ```
+
 2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
 3. `MuiThemeProvider` is optional for v1.x. Still, you are free to use v0.x and v1.x versions of the component at the same time like so:
-```jsx
-import React from 'react';
-import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'material-ui-next/styles';
-import { MuiThemeProvider } from 'material-ui';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-const themeV1 = createMuiTheme({/* theme for v1 */});
-const themeV0 = getMuiTheme({/* theme v0.x */});
+  ```jsx
+  import React from 'react';
+  import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'material-ui-next/styles';
+  import { MuiThemeProvider } from 'material-ui';
+  import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-function App() {
-  return (
-    <NewMuiThemeProvider theme={themeV1}>
-       <MuiThemeProvider muiTheme={themeV0}>
-          {/*Components*/}
-       </MuiThemeProvider>
-    </NewMuiThemeProvider>
-  );
-}
+  const themeV1 = createMuiTheme({
+    /* theme for v1 */
+  });
+  const themeV0 = getMuiTheme({
+    /* theme v0.x */
+  });
 
-export default App;
-```
+  function App() {
+    return (
+      <NewMuiThemeProvider theme={themeV1}>
+        <MuiThemeProvider muiTheme={themeV0}>{/*Components*/}</MuiThemeProvider>
+      </NewMuiThemeProvider>
+    );
+  }
+
+  export default App;
+  ```
+
 4. After that, you are free to migrate one component instance at the time.
 
 ## Components
@@ -86,6 +98,7 @@ You might see some missing context errors and wrong colors.
 
 You can fix those issues with the following code.
 Apply it before all the other imports:
+
 ```js
 import SvgIcon from 'material-ui-next/SvgIcon';
 
