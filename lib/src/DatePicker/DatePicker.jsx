@@ -89,14 +89,14 @@ export class DatePicker extends PureComponent {
       <Fragment>
         <PickerToolbar>
           <ToolbarButton
-            type="subheading"
+            variant="subheading"
             onClick={this.openYearSelection}
             selected={showYearSelection}
             label={utils.getYearText(this.date)}
           />
 
           <ToolbarButton
-            type="display1"
+            variant="display1"
             onClick={this.openCalendar}
             selected={!showYearSelection}
             label={utils.getDatePickerHeaderText(this.date)}

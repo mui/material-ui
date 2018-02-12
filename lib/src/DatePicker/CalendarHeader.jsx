@@ -29,7 +29,7 @@ export const CalendarHeader = (props) => {
           <Icon>{rtl ? rightArrowIcon : leftArrowIcon}</Icon>
         </IconButton>
 
-        <Typography type="body1">
+        <Typography variant="body1">
           {utils.getCalendarHeaderText(currentMonth)}
         </Typography>
 
@@ -43,7 +43,7 @@ export const CalendarHeader = (props) => {
           <Typography
             // eslint-disable-next-line react/no-array-index-key
             key={index}
-            type="caption"
+            variant="caption"
             className={classes.dayLabel}
           >
             {day}

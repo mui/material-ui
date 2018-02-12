@@ -41,7 +41,7 @@ class SourcablePanel extends PureComponent {
     return [
       <Typography
         key="title"
-        type="display1"
+        variant="display1"
         className={classes.exampleTitle}
       >
         { title }
