@@ -25,6 +25,8 @@ export default class BasicUsage extends Component {
           <DatePicker
             keyboard
             clearable
+            label="Choose a date"
+            helperText="Possible manual entry via keyboard"
             maxDateMessage="Date must be less than today"
             value={selectedDate}
             onChange={this.handleDateChange}
