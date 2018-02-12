@@ -1,18 +1,16 @@
-const env = require('babel-preset-env');
-
 const ENV = process.env.BABEL_ENV;
-let babelPresetEnv;
+let config;
 
 // We release a ES version of Material-UI.
 // It's something that matches the latest official supported features of JavaScript.
 // Nothing more (stage-1, etc), nothing less (require, etc).
 if (ENV === 'es') {
-  babelPresetEnv = {};
+  config = {};
 } else {
-  babelPresetEnv = {
+  config = {
     presets: [
       [
-        env,
+        'babel-preset-env',
         {
           targets: {
             ie: 11,
@@ -29,4 +27,4 @@ if (ENV === 'es') {
   };
 }
 
-module.exports = babelPresetEnv;
+module.exports = config;

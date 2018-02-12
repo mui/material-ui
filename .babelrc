@@ -1,5 +1,5 @@
 {
-  "presets": ["./scripts/material-ui-babel-preset-env", "stage-1", "react"],
+  "presets": ["./scripts/material-ui-babel-preset", "stage-1", "react"],
   "plugins": [
     "transform-object-assign"
   ],
@@ -29,7 +29,7 @@
             "alias": {
               "pages": "./pages",
               "material-ui": "./src",
-              "material-ui-icons": './packages/material-ui-icons/src',
+              "material-ui-icons": "./packages/material-ui-icons/src",
               "docs": "./docs"
             }
           }
@@ -49,7 +49,7 @@
             "alias": {
               "pages": "./pages",
               "material-ui": "./src",
-              "material-ui-icons": './packages/material-ui-icons/src',
+              "material-ui-icons": "./packages/material-ui-icons/src",
               "docs": "./docs"
             }
           }
@@ -61,12 +61,20 @@
         ["transform-react-remove-prop-types", {"mode": "remove"}]
       ]
     },
-    "test": {
-      "sourceMaps": "both",
+    "es": {
       "plugins": [
-        "transform-flow-strip-types"
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {
+          "mode": "wrap",
+          "plugins": [
+            "babel-plugin-transform-flow-strip-types"
+          ]
+        }]
       ]
-    },
+   },
     "production": {
       "plugins": [
         "transform-react-constant-elements",
@@ -79,6 +87,12 @@
             "babel-plugin-transform-flow-strip-types"
           ]
         }]
+      ]
+   },
+    "test": {
+      "sourceMaps": "both",
+      "plugins": [
+        "transform-flow-strip-types"
       ]
     }
   }

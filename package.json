@@ -25,7 +25,7 @@
     "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev",
     "docs:api": "rimraf pages/api/* && babel-node ./docs/scripts/buildApi.js",
     "docs:icons": "rimraf static/icons/* && babel-node ./docs/scripts/buildIcons.js",
-    "docs:build": "cross-env BABEL_ENV=docs-production next build",
+    "docs:build": "cross-env NODE_ENV=production BABEL_ENV=docs-production next build",
     "docs:start": "next start",
     "docs:export": "next export -o docs/export",
     "docs:deploy": "yarn docs:build && yarn docs:export && firebase deploy",
