@@ -1,5 +1,12 @@
 {
   "hosting": {
-    "public": "docs/export"
+    "public": "docs/export",
+    "headers": [{
+      "source": "/service-worker.js",
+      "headers": [{
+        "key": "Cache-Control",
+        "value": "no-cache"
+      }]
+    }]
   }
 }
