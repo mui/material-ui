@@ -61,6 +61,34 @@
         ["transform-react-remove-prop-types", {"mode": "remove"}]
       ]
     },
+    "es": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {
+          "mode": "wrap",
+          "plugins": [
+            "babel-plugin-transform-flow-strip-types"
+          ]
+        }]
+      ]
+   },
+    "production": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {
+          "mode": "wrap",
+          "plugins": [
+            "babel-plugin-transform-flow-strip-types"
+          ]
+        }]
+      ]
+   },
     "test": {
       "sourceMaps": "both",
       "plugins": [
