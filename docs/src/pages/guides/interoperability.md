@@ -192,7 +192,86 @@ export default StyledComponentsButton;
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mzwqkk1p7j)
 
-**Note:** Both styled-components and JSS inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order), as in the demo.
+### Controlling Priority
+
+Both styled-components and JSS inject their styles at the bottom of the `<head>`. One approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/customization/css-in-js#css-injection-order), as in the demo.
+
+Another approach is to use the `&` character in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name. Use this to ensure styled-components styles are applied before JSS styles. An example of this:
+
+```jsx
+import React from 'react';
+import styled from 'styled-components';
+import Button from 'material-ui/Button';
+
+const StyledButton = styled(Button)`
+  && {
+    background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+    border-radius: 3px;
+    border: 0;
+    color: white;
+    height: 48px;
+    padding: 0 30px;
+    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
+  }
+`;
+
+function StyledComponentsButton() {
+  return (
+    <div>
+      <Button>
+        Material-UI
+      </Button>
+      <StyledButton>
+        Styled Components
+      </StyledButton>
+    </div>
+  );
+}
+
+export default StyledComponentsButton;
+```
+
+TODO edit button here
+
+In some cases, the approaches above will not work. For example, if one attempts to style a [Drawer](/demos/drawers/) with variant `permanent`, one will likely need to affect the Drawer's underlying `paper` style. However, this is not the root style of `Drawer` and therefore styled-components customization as above will not work. One can workaround this by using [stable JSS class names](/customization/css-in-js/#class-names), but less dangerous approach is to use the `classes` property to introduce an override style, and then style it with higher specificity via `&`.
+
+The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself. It also works around [this styled-components issue](https://github.com/styled-components/styled-components/issues/439) by "consuming" properties that should not be passed on to the underlying component.
+
+```jsx
+import React from "react";
+import styled from "styled-components";
+import Button from "material-ui/Button";
+
+const StyledButton = styled(({ cornerRadius, ...rest }) => (
+  <Button {...rest} classes={{ label: "label-override" }} />
+))`
+  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  border-radius: 3px;
+  color: white;
+  padding: 0 30px;
+
+  & .label-override {
+    border: 5px dotted black;
+    border-radius: ${props => props.cornerRadius}px;
+    padding: 0 30px;
+  }
+`;
+
+function StyledComponentsButton() {
+  return (
+    <div>
+      <Button>Material-UI</Button>
+      <StyledButton cornerRadius={10}>Styled Components</StyledButton>
+    </div>
+  );
+}
+
+export default StyledComponentsButton;
+```
+
+TODO edit button here
+
+Lastly, wrap the styled-component with `withStyles` in order to use the material-ui `theme` prop.
 
 ## Glamorous
 
