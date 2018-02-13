@@ -14,7 +14,7 @@ const styles = {
 class Checkboxes extends React.Component {
   state = {
     checkedA: true,
-    checkedB: false,
+    checkedB: true,
     checkedF: true,
     checkedG: true,
   };
