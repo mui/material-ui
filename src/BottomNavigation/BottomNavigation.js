@@ -7,7 +7,7 @@ export const styles = theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
-    height: 56,
+    height: theme.spacing.unit * 7,
     backgroundColor: theme.palette.background.paper,
   },
 });
