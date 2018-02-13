@@ -17,7 +17,7 @@ const styles = {
 class Switches extends React.Component {
   state = {
     checkedA: true,
-    checkedB: false,
+    checkedB: true,
     checkedE: true,
   };
 
@@ -39,6 +39,7 @@ class Switches extends React.Component {
           checked={this.state.checkedB}
           onChange={this.handleChange('checkedB')}
           aria-label="checkedB"
+          color="primary"
         />
         <Switch checked={false} aria-label="checkedC" disabled />
         <Switch checked aria-label="checkedD" disabled />
@@ -49,7 +50,7 @@ class Switches extends React.Component {
           }}
           checked={this.state.checkedE}
           onChange={this.handleChange('checkedE')}
-          aria-label="checkedD"
+          aria-label="checkedE"
         />
       </div>
     );

@@ -49,11 +49,21 @@ export const styles = theme => ({
     }),
   },
   checked: {
-    color: theme.palette.primary.main,
     transform: 'translateX(14px)',
     '& + $bar': {
-      backgroundColor: theme.palette.primary.main,
       opacity: 0.5,
+    },
+  },
+  checkedPrimary: {
+    color: theme.palette.primary.main,
+    '& + $bar': {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
+  checkedSecondary: {
+    color: theme.palette.secondary.main,
+    '& + $bar': {
+      backgroundColor: theme.palette.secondary.main,
     },
   },
   disabled: {
@@ -70,9 +80,13 @@ export const styles = theme => ({
 });
 
 function Switch(props) {
-  const { classes, className, ...other } = props;
+  const { classes, className, color, ...other } = props;
   const icon = <span className={classes.icon} />;
   const checkedIcon = <span className={classNames(classes.icon, classes.iconChecked)} />;
+  const checkedClass = classNames(classes.checked, {
+    [classes.checkedPrimary]: color === 'primary',
+    [classes.checkedSecondary]: color === 'secondary',
+  });
 
   return (
     <span className={classNames(classes.root, className)}>
@@ -80,7 +94,7 @@ function Switch(props) {
         icon={icon}
         classes={{
           default: classes.default,
-          checked: classes.checked,
+          checked: checkedClass,
           disabled: classes.disabled,
         }}
         checkedIcon={checkedIcon}
@@ -108,6 +122,10 @@ Switch.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * @ignore
    */
@@ -159,6 +177,10 @@ Switch.propTypes = {
    * The value of the component.
    */
   value: PropTypes.string,
+};
+
+Switch.defaultProps = {
+  color: 'secondary',
 };
 
 export default withStyles(styles, { name: 'MuiSwitch' })(Switch);

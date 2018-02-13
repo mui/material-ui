@@ -14,7 +14,7 @@ const styles = {
 class Checkboxes extends React.Component {
   state = {
     checkedA: true,
-    checkedB: false,
+    checkedB: true,
     checkedF: true,
     checkedG: true,
   };
@@ -44,6 +44,7 @@ class Checkboxes extends React.Component {
               checked={this.state.checkedB}
               onChange={this.handleChange('checkedB')}
               value="checkedB"
+              color="primary"
             />
           }
           label="Option B"

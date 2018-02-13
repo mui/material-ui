@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import withStyles from '../styles/withStyles';
@@ -8,8 +9,12 @@ export const styles = theme => ({
   default: {
     color: theme.palette.text.secondary,
   },
-  checked: {
+  checked: {},
+  checkedPrimary: {
     color: theme.palette.primary.main,
+  },
+  checkedSecondary: {
+    color: theme.palette.secondary.main,
   },
   disabled: {
     color: theme.palette.action.disabled,
@@ -17,11 +22,20 @@ export const styles = theme => ({
 });
 
 function Checkbox(props) {
-  const { checkedIcon, icon, indeterminate, indeterminateIcon, ...other } = props;
+  const { checkedIcon, classes, color, icon, indeterminate, indeterminateIcon, ...other } = props;
+  const checkedClass = classNames(classes.checked, {
+    [classes.checkedPrimary]: color === 'primary',
+    [classes.checkedSecondary]: color === 'secondary',
+  });
 
   return (
     <SwitchBase
       checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
+      classes={{
+        default: classes.default,
+        checked: checkedClass,
+        disabled: classes.disabled,
+      }}
       icon={indeterminate ? indeterminateIcon : icon}
       {...other}
     />
@@ -45,6 +59,10 @@ Checkbox.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * @ignore
    */
@@ -107,6 +125,7 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
+  color: 'secondary',
   indeterminate: false,
   indeterminateIcon: <IndeterminateCheckBoxIcon />,
 };

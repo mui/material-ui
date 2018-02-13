@@ -28,9 +28,10 @@ If you have a single option, avoid using a checkbox and use an on/off switch ins
 
 ## Radio Buttons
 
-Radio buttons allow the user to select one option from a set. Use radio buttons for exclusive selection if you think that the user needs to see all available options side-by-side.
+Radio buttons allow the user to select one option from a set. Use radio buttons for exclusive selection if you think that the user needs to see all available options side-by-side;
+otherwise, consider a dropdown, which uses less space than displaying all options.
 
-Otherwise, consider a dropdown, which uses less space than displaying all options.
+Radio buttons should have the most commonly used option selected by default.
 
 `RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
 

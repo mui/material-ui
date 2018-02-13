@@ -3,7 +3,7 @@ import Radio from 'material-ui/Radio';
 
 class RadioButtons extends React.Component {
   state = {
-    selectedValue: undefined,
+    selectedValue: 'a',
   };
 
   handleChange = event => {
