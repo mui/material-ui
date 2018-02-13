@@ -60,6 +60,7 @@ function TableCell(props, context) {
     sortDirection,
     numeric,
     padding,
+    scope,
     variant,
     ...other
   } = props;
@@ -71,13 +72,14 @@ function TableCell(props, context) {
     Component = table && table.head ? 'th' : 'td';
   }
 
+  const isTypeHead = variant ? variant === 'head' : table && table.head;
   const className = classNames(
     classes.root,
     {
       [classes.numeric]: numeric,
       [classes[`padding${capitalize(padding)}`]]: padding !== 'none' && padding !== 'default',
       [classes.paddingDefault]: padding !== 'none',
-      [classes.typeHead]: variant ? variant === 'head' : table && table.head,
+      [classes.typeHead]: isTypeHead,
       [classes.typeBody]: variant ? variant === 'body' : table && table.body,
       [classes.typeFooter]: variant ? variant === 'footer' : table && table.footer,
     },
@@ -89,8 +91,13 @@ function TableCell(props, context) {
     ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending';
   }
 
+  let cellScope = scope;
+  if (!scope && isTypeHead) {
+    cellScope = 'col';
+  }
+
   return (
-    <Component className={className} aria-sort={ariaSort} {...other}>
+    <Component className={className} aria-sort={ariaSort} scope={cellScope} {...other}>
       {children}
     </Component>
   );
@@ -122,6 +129,10 @@ TableCell.propTypes = {
    * Sets the padding applied to the cell.
    */
   padding: PropTypes.oneOf(['default', 'checkbox', 'dense', 'none']),
+  /**
+   * Set scope attribute.
+   */
+  scope: PropTypes.oneOf(['col', 'row', false]),
   /**
    * Set aria-sort direction.
    */
