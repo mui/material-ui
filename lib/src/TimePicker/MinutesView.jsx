@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import Clock from './Clock';
 import { MINUTES } from '../constants/clock-types';
 import ClockNumber from './ClockNumber';
-import * as defaultUtils from '../utils/utils';
+import defaultUtils from '../utils/utils';
 
 export default class MinutesView extends Component {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    utils: PropTypes.object,
+    utils: PropTypes.func,
   }
 
   static defaultProps = {
@@ -17,7 +17,8 @@ export default class MinutesView extends Component {
   }
 
   handleChange = (minutes, isFinish) => {
-    const updatedDate = this.props.date.clone().minutes(minutes);
+    const { date, utils } = this.props;
+    const updatedDate = utils.setMinutes(date, minutes);
     this.props.onChange(updatedDate, isFinish);
   }
 
@@ -25,7 +26,7 @@ export default class MinutesView extends Component {
     const { date, utils } = this.props;
 
     const f = utils.formatNumber;
-    const value = date.get('minutes');
+    const value = utils.getMinutes(date);
 
     return (
       <Clock

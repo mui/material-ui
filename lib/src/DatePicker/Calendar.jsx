@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'material-ui/styles/withStyles';
 
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import CalendarHeader from './CalendarHeader';
@@ -12,8 +10,6 @@ import * as defaultUtils from '../utils/utils';
 import DayWrapper from './DayWrapper';
 import Day from './Day';
 
-
-const moment = extendMoment(Moment);
 
 /* eslint-disable no-unused-expressions */
 export class Calendar extends Component {
@@ -30,7 +26,7 @@ export class Calendar extends Component {
     renderDay: PropTypes.func,
     /** @ignore */
     theme: PropTypes.object.isRequired,
-    utils: PropTypes.object,
+    utils: PropTypes.func,
     shouldDisableDate: PropTypes.func,
   };
 
@@ -71,20 +67,23 @@ export class Calendar extends Component {
   };
 
   validateMinMaxDate = (day) => {
-    const { minDate, maxDate } = this.props;
-    const startOfDay = date => moment(date).startOf('day');
+    const { minDate, maxDate, utils } = this.props;
+    const startOfDay = date => utils.startOfDay(utils.date(date));
 
     return (
-      (minDate && day.isBefore(startOfDay(minDate))) ||
-      (maxDate && day.isAfter(startOfDay(maxDate)))
+      (minDate && utils.isBefore(day, startOfDay(minDate))) ||
+      (maxDate && utils.isAfter(day, startOfDay(maxDate)))
     );
   };
 
   shouldDisableDate = (day) => {
-    const { disablePast, disableFuture, shouldDisableDate } = this.props;
+    const {
+      disablePast, disableFuture, shouldDisableDate, utils,
+    } = this.props;
+
     return (
-      (disableFuture && day.isAfter(moment(), 'day')) ||
-      (disablePast && day.isBefore(moment(), 'day')) ||
+      (disableFuture && utils.isAfterDay(day, utils.date())) ||
+      (disablePast && utils.isBeforeDay(day, utils.date())) ||
       this.validateMinMaxDate(day) ||
       shouldDisableDate(day)
     );
@@ -145,22 +144,21 @@ export class Calendar extends Component {
     const { date, renderDay, utils } = this.props;
 
     const selectedDate = date.clone().startOf('day');
-    const currentMonthNumber = utils.getMonthNumber(this.state.currentMonth);
-    const now = moment();
+    const currentMonthNumber = utils.getMonth(this.state.currentMonth);
+    const now = utils.date();
 
     return week.map((day) => {
       const disabled = this.shouldDisableDate(day);
-      const dayInCurrentMonth =
-        utils.getMonthNumber(day) === currentMonthNumber;
+      const dayInCurrentMonth = utils.getMonth(day) === currentMonthNumber;
 
       let dayComponent = (
         <Day
-          current={day.isSame(now, 'day')}
+          current={utils.isSameDay(day, now)}
           hidden={!dayInCurrentMonth}
           disabled={disabled}
-          selected={selectedDate.isSame(day, 'day')}
+          selected={utils.isSameDay(selectedDate, day)}
         >
-          {utils.getDayText(day)}
+          {utils.format(day, 'D')}
         </Day>
       );
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
 import TimePicker from './TimePicker';
 import PickerBase from '../_shared/PickerBase';
-import * as defaultUtils from '../utils/utils';
+import defaultUtils from '../utils/utils';
 
 export default class TimePickerWrapper extends PickerBase {
   static propTypes = {
@@ -19,7 +19,7 @@ export default class TimePickerWrapper extends PickerBase {
     autoOk: PropTypes.bool,
     returnMoment: PropTypes.bool,
     invalidLabel: PropTypes.string,
-    utils: PropTypes.object,
+    utils: PropTypes.func,
     ampm: PropTypes.bool,
   }
 

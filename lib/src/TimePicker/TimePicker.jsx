@@ -6,7 +6,7 @@ import ToolbarButton from '../_shared/ToolbarButton';
 import HourView from './HourView';
 import MinutesView from './MinutesView';
 import { convertToMeridiem } from '../utils/time-utils';
-import * as defaultUtils from '../utils/utils';
+import defaultUtils from '../utils/utils';
 
 export class TimePicker extends Component {
   static propTypes = {
@@ -15,7 +15,7 @@ export class TimePicker extends Component {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
     children: PropTypes.node,
-    utils: PropTypes.object,
+    utils: PropTypes.func,
     ampm: PropTypes.bool,
   }
 
@@ -89,7 +89,7 @@ export class TimePicker extends Component {
               variant="display3"
               onClick={this.openHourView}
               selected={isHourViewShown}
-              label={utils.getHourText(date, ampm)}
+              label={utils.format(date, ampm ? 'hh' : 'HH')}
             />
 
             <ToolbarButton
@@ -103,7 +103,7 @@ export class TimePicker extends Component {
               variant="display3"
               onClick={this.openMinutesView}
               selected={!isHourViewShown}
-              label={utils.getMinuteText(date)}
+              label={utils.format(date, 'mm')}
             />
           </div>
 

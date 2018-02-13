@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import DomainPropTypes from '../constants/prop-types';
+import defaultUtils from '../utils/utils';
 
 /* eslint-disable react/sort-comp */
 export default class PickerBase extends PureComponent {
@@ -13,6 +13,7 @@ export default class PickerBase extends PureComponent {
     format: PropTypes.string,
     labelFunc: PropTypes.func,
     ampm: PropTypes.bool,
+    utils: PropTypes.func,
   }
 
   static defaultProps = {
@@ -22,12 +23,15 @@ export default class PickerBase extends PureComponent {
     labelFunc: undefined,
     format: undefined,
     ampm: true,
+    utils: defaultUtils,
   }
 
-  getValidDateOrCurrent = (props = this.props) => {
-    const date = moment(props.value);
+  getValidDateOrCurrent = () => {
+    const { utils, value } = this.props;
+    console.log(this.props.utils);
+    const date = utils.date(value);
 
-    return date.isValid() ? date : moment();
+    return utils.isValid(date) ? date : utils.date();
   }
 
   state = {
@@ -59,7 +63,7 @@ export default class PickerBase extends PureComponent {
   handleAccept = () => {
     const dateToReturn = this.props.returnMoment
       ? this.state.date
-      : this.state.date.toDate();
+      : this.props.utils.toNativeDate(this.state.date);
 
     this.props.onChange(dateToReturn);
   }

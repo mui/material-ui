@@ -1,6 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
 import Calendar from './Calendar';
 import YearSelection from './YearSelection';
@@ -23,7 +22,7 @@ export class DatePicker extends PureComponent {
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
-    utils: PropTypes.object,
+    utils: PropTypes.func,
     shouldDisableDate: PropTypes.func,
   }
 
@@ -47,15 +46,15 @@ export class DatePicker extends PureComponent {
   }
 
   get date() {
-    return this.props.date.startOf('day');
+    return this.props.utils.startOfDay(this.props.date);
   }
 
   get minDate() {
-    return moment(this.props.minDate);
+    return this.props.utils.date(this.props.minDate);
   }
 
   get maxDate() {
-    return moment(this.props.maxDate);
+    return this.props.utils.date(this.props.maxDate);
   }
 
   handleYearSelect = (date) => {
@@ -92,14 +91,14 @@ export class DatePicker extends PureComponent {
             variant="subheading"
             onClick={this.openYearSelection}
             selected={showYearSelection}
-            label={utils.getYearText(this.date)}
+            label={utils.format(this.date, 'YYYY')}
           />
 
           <ToolbarButton
             variant="display1"
             onClick={this.openCalendar}
             selected={!showYearSelection}
-            label={utils.getDatePickerHeaderText(this.date)}
+            label={utils.format(this.date, 'ddd, MMM D')}
           />
         </PickerToolbar>
 

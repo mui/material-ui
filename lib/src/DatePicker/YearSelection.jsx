@@ -1,14 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
 import withStyles from 'material-ui/styles/withStyles';
 import DomainPropTypes from '../constants/prop-types';
-import * as defaultUtils from '../utils/utils';
+import defaultUtils from '../utils/utils';
 import Year from './Year';
-
-const moment = extendMoment(Moment);
 
 export class YearSelection extends PureComponent {
   static propTypes = {
@@ -20,7 +16,7 @@ export class YearSelection extends PureComponent {
     disablePast: PropTypes.bool.isRequired,
     disableFuture: PropTypes.bool.isRequired,
     animateYearScrolling: PropTypes.bool,
-    utils: PropTypes.object,
+    utils: PropTypes.func,
   }
 
   static defaultProps = {
@@ -65,7 +61,7 @@ export class YearSelection extends PureComponent {
     return (
       <div className={classes.container}>
         {
-          Array.from(moment.range(minDate, maxDate).by('year'))
+          utils.getYearRange(minDate, maxDate)
             .map((year) => {
               const yearNumber = utils.getYear(year);
               const selected = yearNumber === currentYear;
@@ -74,18 +70,18 @@ export class YearSelection extends PureComponent {
                 <Year
                   selected={selected}
                   disabled={(
-                    (disablePast && year.isBefore(moment(), 'year')) ||
-                    (disableFuture && year.isAfter(moment(), 'year'))
+                    (disablePast && utils.isBeforeYear(year, utils.date())) ||
+                    (disableFuture && utils.isAfterYear(year, utils.date()))
                   )}
                   value={yearNumber}
-                  key={utils.getYearText(year)}
+                  key={utils.format(year, 'YYYY')}
                   onSelect={this.onYearSelect}
                   ref={selected
                     ? this.getSelectedYearRef
                     : undefined
                   }
                 >
-                  {utils.getYearText(year)}
+                  {utils.format(year, 'YYYY')}
                 </Year>
               );
             })

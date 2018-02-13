@@ -5,7 +5,7 @@ import ModalWrapper from '../wrappers/ModalWrapper';
 import DatePicker from './DatePicker';
 import DomainPropTypes from '../constants/prop-types';
 import PickerBase from '../_shared/PickerBase';
-import * as defaultUtils from '../utils/utils';
+import defaultUtils from '../utils/utils';
 
 export default class DatePickerWrapper extends PickerBase {
   static propTypes = {
@@ -42,7 +42,7 @@ export default class DatePickerWrapper extends PickerBase {
     /* Custom renderer for day renderDay(date, selectedDate, dayInCurrentMonth) */
     renderDay: PropTypes.func,
     /* Date displaying utils */
-    utils: PropTypes.object,
+    utils: PropTypes.func,
     /* Disable specific date hook */
     shouldDisableDate: PropTypes.func,
   }

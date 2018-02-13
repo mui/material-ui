@@ -30,7 +30,7 @@ export const CalendarHeader = (props) => {
         </IconButton>
 
         <Typography variant="body1">
-          {utils.getCalendarHeaderText(currentMonth)}
+          {utils.format(currentMonth, 'MMMM YYYY')}
         </Typography>
 
         <IconButton onClick={selectNextMonth}>
@@ -61,7 +61,7 @@ CalendarHeader.propTypes = {
   theme: PropTypes.object.isRequired,
   leftArrowIcon: PropTypes.node,
   rightArrowIcon: PropTypes.node,
-  utils: PropTypes.object,
+  utils: PropTypes.func,
 };
 
 CalendarHeader.defaultProps = {

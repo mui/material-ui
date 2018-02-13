@@ -1,7 +1,6 @@
 /* eslint-disable react/sort-comp */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import Icon from 'material-ui/Icon';
 import InputAdornment from 'material-ui/Input/InputAdornment';
 import TextField from 'material-ui/TextField';
@@ -10,6 +9,7 @@ import withStyles from 'material-ui/styles/withStyles';
 
 import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
+import defaultUtils from '../utils/utils';
 
 class DateTextField extends PureComponent {
   static propTypes = {
@@ -41,6 +41,7 @@ class DateTextField extends PureComponent {
     invalidDateMessage: PropTypes.string,
     clearable: PropTypes.bool,
     TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    utils: PropTypes.func,
   }
 
   static defaultProps = {
@@ -64,15 +65,16 @@ class DateTextField extends PureComponent {
     minDateMessage: 'Date should not be before minimal date',
     maxDateMessage: 'Date should not be after maximal date',
     TextFieldComponent: TextField,
+    utils: defaultUtils,
   }
 
   getDisplayDate = (props) => {
     const {
-      value, format, invalidLabel, emptyLabel, labelFunc,
+      utils, value, format, invalidLabel, emptyLabel, labelFunc,
     } = props;
 
     const isEmpty = value === null;
-    const date = moment(value);
+    const date = utils.date(value);
 
     if (labelFunc) {
       return labelFunc(isEmpty ? null : date, invalidLabel);
@@ -82,13 +84,14 @@ class DateTextField extends PureComponent {
       return emptyLabel;
     }
 
-    return date.isValid()
-      ? date.format(format)
+    return utils.isValid(date)
+      ? utils.format(date, format)
       : invalidLabel;
   }
 
   getError = (value) => {
     const {
+      utils,
       maxDate,
       minDate,
       disablePast,
@@ -98,24 +101,24 @@ class DateTextField extends PureComponent {
       invalidDateMessage,
     } = this.props;
 
-    if (!value.isValid()) {
+    if (!utils.isValid(value)) {
       // if null - do not show error
-      if (value.parsingFlags().nullInput) {
+      if (utils.isNull(value)) {
         return '';
       }
       return invalidDateMessage;
     }
 
     if (
-      (maxDate && value.isAfter(maxDate)) ||
-      (disableFuture && value.isAfter(moment().endOf('day')))
+      (maxDate && utils.isAfter(value, maxDate)) ||
+      (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
     ) {
       return maxDateMessage;
     }
 
     if (
-      (minDate && value.isBefore(minDate)) ||
-      (disablePast && value.isBefore(moment().startOf('day')))
+      (minDate && utils.isBefore(value, minDate)) ||
+      (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
     ) {
       return minDateMessage;
     }
@@ -126,7 +129,7 @@ class DateTextField extends PureComponent {
   updateState = (props = this.props) => ({
     value: props.value,
     displayValue: this.getDisplayDate(props),
-    error: this.getError(moment(props.value)),
+    error: this.getError(props.utils.date(props.value)),
   })
 
   state = this.updateState()
@@ -150,6 +153,7 @@ class DateTextField extends PureComponent {
       format,
       clearable,
       onClear,
+      utils,
     } = this.props;
 
     if (clearable && e.target.value === '') {
@@ -162,8 +166,8 @@ class DateTextField extends PureComponent {
       return;
     }
 
-    const oldValue = moment(this.state.value);
-    const newValue = moment(e.target.value, format, true);
+    const oldValue = utils.date(this.state.value);
+    const newValue = utils.date(e.target.value, format, true);
     const error = this.getError(newValue);
 
     this.setState({
@@ -171,7 +175,7 @@ class DateTextField extends PureComponent {
       value: error ? newValue : oldValue,
       error,
     }, () => {
-      if (!error && newValue.format('LLLL') !== oldValue.format('LLLL')) {
+      if (!error && utils.format(newValue, 'LLLL') !== utils.format(oldValue, 'LLLL')) {
         this.props.onChange(newValue, true);
       }
     });

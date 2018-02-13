@@ -7,7 +7,7 @@ import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
 import DateTimePicker from './DateTimePicker';
 import PickerBase from '../_shared/PickerBase';
-import * as defaultUtils from '../utils/utils';
+import defaultUtils from '../utils/utils';
 
 export class DateTimePickerWrapper extends PickerBase {
   static propTypes = {
@@ -30,7 +30,7 @@ export class DateTimePickerWrapper extends PickerBase {
     timeIcon: PropTypes.node,
     renderDay: PropTypes.func,
     labelFunc: PropTypes.func,
-    utils: PropTypes.object,
+    utils: PropTypes.func,
     ampm: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     animateYearScrolling: PropTypes.bool,

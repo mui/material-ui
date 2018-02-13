@@ -12,7 +12,7 @@ import { convertToMeridiem } from '../utils/time-utils';
 
 import DomainPropTypes from '../constants/prop-types';
 import * as viewType from '../constants/date-picker-view';
-import * as defaultUtils from '../utils/utils';
+import defaultUtils from '../utils/utils';
 
 export class DateTimePicker extends Component {
   static propTypes = {
@@ -30,7 +30,7 @@ export class DateTimePicker extends Component {
     dateRangeIcon: PropTypes.node,
     timeIcon: PropTypes.node,
     renderDay: PropTypes.func,
-    utils: PropTypes.object,
+    utils: PropTypes.func,
     ampm: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     animateYearScrolling: PropTypes.bool,
@@ -57,7 +57,7 @@ export class DateTimePicker extends Component {
 
   state = {
     openView: this.props.openTo,
-    meridiemMode: this.props.date.hours() >= 12 ? 'pm' : 'am',
+    meridiemMode: this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
   }
 
   onChange = (time, isFinish = true, nextView) => {
