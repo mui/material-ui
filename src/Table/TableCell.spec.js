@@ -80,9 +80,8 @@ describe('<TableCell />', () => {
   });
 
   it('should render specified scope attribute even when in the context of a table head', () => {
-    const wrapper = shallow(<TableCell />);
+    const wrapper = shallow(<TableCell scope="row" />);
     wrapper.setContext({ table: { head: true } });
-    wrapper.setProps({ scope: 'row' });
     assert.strictEqual(wrapper.props().scope, 'row', 'should have the specified scope attribute');
   });
 
@@ -112,7 +111,7 @@ describe('<TableCell />', () => {
     wrapper.setContext({ table: { footer: true } });
     wrapper.setProps({ variant: 'head' });
     assert.strictEqual(wrapper.hasClass(classes.typeHead), true);
-    assert.strictEqual(wrapper.props().scope, 'col', 'should have the correct scope attribute');
+    assert.strictEqual(wrapper.props().scope, undefined, 'should have the correct scope attribute');
   });
 
   it('should render without head class when variant is body, overriding context', () => {
