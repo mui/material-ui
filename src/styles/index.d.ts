@@ -9,7 +9,4 @@ export {
   StyleRulesCallback,
   StyledComponentProps,
 } from './withStyles';
-export {
-  default as withTheme,
-  WithTheme
-} from './withTheme';
+export { default as withTheme, WithTheme } from './withTheme';

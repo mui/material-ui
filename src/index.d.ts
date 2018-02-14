@@ -82,7 +82,7 @@ export { FormControl, FormGroup, FormLabel, FormHelperText, FormControlLabel } f
 export { default as Hidden } from './Hidden';
 export { default as Icon } from './Icon';
 export { default as IconButton } from './IconButton';
-export { default as Input, InputLabel } from './Input';
+export { default as Input, InputLabel, InputAdornment } from './Input';
 export { default as Grid } from './Grid';
 export { default as GridList, GridListTile, GridListTileBar } from './GridList';
 export {
@@ -107,13 +107,15 @@ export { default as Select } from './Select';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
 export { default as Stepper, Step, StepButton, StepContent, StepIcon, StepLabel } from './Stepper';
 export {
+  createMuiTheme,
+  jssPreset,
   MuiThemeProvider,
+  StyleRulesCallback,
+  Theme,
   withStyles,
   WithStyles,
   withTheme,
   WithTheme,
-  createMuiTheme,
-  jssPreset,
 } from './styles';
 
 import * as colors from './colors';
@@ -126,7 +128,9 @@ export {
   default as Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
+  TablePagination,
   TableRow,
   TableSortLabel,
 } from './Table';

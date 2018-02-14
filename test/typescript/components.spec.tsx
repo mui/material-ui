@@ -755,23 +755,23 @@ const TooltipComponentTest = () => (
 );
 
 const ClickAwayListenerComponentTest = () => (
-  <ClickAwayListener onClickAway={() => { }}>
+  <ClickAwayListener onClickAway={() => {}}>
     <div />
   </ClickAwayListener>
 );
 
 const TransitionTest = () => (
   <>
-  <Fade in={false}>
-    <div />
-  </Fade>
-  <Collapse in={false} mountOnEnter unmountOnExit timeout={200}>
-    <div />
-  </Collapse>
-  <Grow in={false} timeout="auto" onEnter={() => { }}>
-    <div />
-  </Grow>
+    <Fade in={false}>
+      <div />
+    </Fade>
+    <Collapse in={false} mountOnEnter unmountOnExit timeout={200}>
+      <div />
+    </Collapse>
+    <Grow in={false} timeout="auto" onEnter={() => {}}>
+      <div />
+    </Grow>
   </>
 );
 
-const BackdropTest = () => <Backdrop open onTouchMove={() => { }} />;
+const BackdropTest = () => <Backdrop open onTouchMove={() => {}} />;
