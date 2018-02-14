@@ -107,15 +107,15 @@ export { default as Select } from './Select';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
 export { default as Stepper, Step, StepButton, StepContent, StepIcon, StepLabel } from './Stepper';
 export {
+  createMuiTheme,
+  jssPreset,
   MuiThemeProvider,
+  StyleRulesCallback,
+  Theme,
   withStyles,
   WithStyles,
   withTheme,
   WithTheme,
-  createMuiTheme,
-  jssPreset,
-  Theme,
-  StyleRulesCallback
 } from './styles';
 
 import * as colors from './colors';
@@ -128,11 +128,11 @@ export {
   default as Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
+  TablePagination,
   TableRow,
   TableSortLabel,
-  TableFooter,
-  TablePagination,
 } from './Table';
 export { default as Tabs, Tab } from './Tabs';
 export { default as Typography } from './Typography';

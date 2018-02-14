@@ -55,10 +55,13 @@ module.exports = {
     'import/unambiguous': 'off', // scripts
     'import/namespace': ['error', { allowComputed: true }],
     'import/no-extraneous-dependencies': 'off',
-    'import/order': ['error', {
-      'groups': [['index', 'sibling', 'parent', 'internal', 'external', 'builtin']],
-      'newlines-between': 'never'
-    }],
+    'import/order': [
+      'error',
+      {
+        groups: [['index', 'sibling', 'parent', 'internal', 'external', 'builtin']],
+        'newlines-between': 'never',
+      },
+    ],
 
     'react/jsx-indent': 'off', // Incompatible with prettier
     'react/jsx-closing-bracket-location': 'off', // Incompatible with prettier

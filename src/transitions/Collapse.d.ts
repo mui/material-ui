@@ -3,8 +3,7 @@ import { StandardProps } from '..';
 import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from './transition';
 
-export interface CollapseProps
-  extends StandardProps<TransitionProps, CollapseClassKey, 'timeout'> {
+export interface CollapseProps extends StandardProps<TransitionProps, CollapseClassKey, 'timeout'> {
   children?: React.ReactNode;
   collapsedHeight?: string;
   component?: React.ReactType<CollapseProps>;

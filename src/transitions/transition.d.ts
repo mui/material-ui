@@ -22,4 +22,4 @@ export type TransitionKeys =
   | TransitionHandlerKeys;
 export interface TransitionProps
   extends TransitionActions,
-  Partial<Pick<_TransitionProps, TransitionKeys>> { }
+    Partial<Pick<_TransitionProps, TransitionKeys>> {}
