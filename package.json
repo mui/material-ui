@@ -85,7 +85,7 @@
     "prop-types": "^15.6.0",
     "react-event-listener": "^0.5.1",
     "react-jss": "^8.1.0",
-    "react-popper": "^0.7.4",
+    "react-popper": "^0.8.0",
     "react-scrollbar-size": "^2.0.2",
     "react-transition-group": "^2.2.1",
     "recompose": "^0.26.0",
