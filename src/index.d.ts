@@ -82,7 +82,7 @@ export { FormControl, FormGroup, FormLabel, FormHelperText, FormControlLabel } f
 export { default as Hidden } from './Hidden';
 export { default as Icon } from './Icon';
 export { default as IconButton } from './IconButton';
-export { default as Input, InputLabel } from './Input';
+export { default as Input, InputLabel, InputAdornment } from './Input';
 export { default as Grid } from './Grid';
 export { default as GridList, GridListTile, GridListTileBar } from './GridList';
 export {
@@ -114,6 +114,8 @@ export {
   WithTheme,
   createMuiTheme,
   jssPreset,
+  Theme,
+  StyleRulesCallback
 } from './styles';
 
 import * as colors from './colors';
@@ -129,6 +131,8 @@ export {
   TableHead,
   TableRow,
   TableSortLabel,
+  TableFooter,
+  TablePagination,
 } from './Table';
 export { default as Tabs, Tab } from './Tabs';
 export { default as Typography } from './Typography';
