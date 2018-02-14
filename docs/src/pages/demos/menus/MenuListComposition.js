@@ -24,11 +24,17 @@ class MenuListComposition extends React.Component {
   };
 
   handleClick = () => {
-    this.setState({ open: true });
+    this.setState({ open: !this.state.open }); // toggle dropdown
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    if (!this.state.open) {
+      return;
+    }
+    // setTimeout to ensure a close event comes after a target click event
+    setTimeout(() => {
+      this.setState({ open: false });
+    });
   };
 
   render() {
