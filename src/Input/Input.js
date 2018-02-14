@@ -47,7 +47,6 @@ export const styles = theme => {
     opacity: light ? 0.42 : 0.5,
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shorter,
-      easing: theme.transitions.easing.ease,
     }),
   };
   const placeholderHidden = {
@@ -115,7 +114,6 @@ export const styles = theme => {
         right: 0,
         transition: theme.transitions.create('background-color', {
           duration: theme.transitions.duration.shorter,
-          easing: theme.transitions.easing.ease,
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
