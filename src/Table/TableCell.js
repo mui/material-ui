@@ -60,6 +60,7 @@ function TableCell(props, context) {
     sortDirection,
     numeric,
     padding,
+    scope: scopeProp,
     variant,
     ...other
   } = props;
@@ -69,6 +70,11 @@ function TableCell(props, context) {
     Component = component;
   } else {
     Component = table && table.head ? 'th' : 'td';
+  }
+
+  let scope = scopeProp;
+  if (!scope && table && table.head) {
+    scope = 'col';
   }
 
   const className = classNames(
@@ -90,7 +96,7 @@ function TableCell(props, context) {
   }
 
   return (
-    <Component className={className} aria-sort={ariaSort} {...other}>
+    <Component className={className} aria-sort={ariaSort} scope={scope} {...other}>
       {children}
     </Component>
   );
@@ -122,6 +128,10 @@ TableCell.propTypes = {
    * Sets the padding applied to the cell.
    */
   padding: PropTypes.oneOf(['default', 'checkbox', 'dense', 'none']),
+  /**
+   * Set scope attribute.
+   */
+  scope: PropTypes.string,
   /**
    * Set aria-sort direction.
    */
