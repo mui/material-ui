@@ -11,7 +11,6 @@ import { isMuiElement } from '../utils/reactHelpers';
 export const styles = theme => {
   const transition = {
     duration: theme.transitions.duration.shortest,
-    easing: theme.transitions.easing.ease,
   };
 
   return {

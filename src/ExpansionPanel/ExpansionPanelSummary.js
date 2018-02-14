@@ -10,7 +10,6 @@ import withStyles from '../styles/withStyles';
 export const styles = theme => {
   const transition = {
     duration: theme.transitions.duration.shortest,
-    easing: theme.transitions.easing.ease,
   };
   return {
     root: {
