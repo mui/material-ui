@@ -242,12 +242,6 @@ function withRoot(Component) {
       };
     }
 
-    componentDidMount() {
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js');
-      }
-    }
-
     redux = null;
 
     render() {

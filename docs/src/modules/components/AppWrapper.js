@@ -43,6 +43,13 @@ class AppWrapper extends React.Component {
     if (document.body) {
       document.body.dir = this.props.uiTheme.direction;
     }
+
+    if (
+      'serviceWorker' in navigator &&
+      (window.location.protocol === 'https:' || window.location.hostname === 'localhost')
+    ) {
+      navigator.serviceWorker.register('/sw.js');
+    }
   }
 
   componentWillReceiveProps(nextProps) {

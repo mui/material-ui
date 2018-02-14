@@ -1,15 +1,18 @@
-/* eslint no-console: off */
+/* eslint-disable no-console */
 
-const { join } = require('path');
-const { injectManifest } = require('workbox-build');
+import path from 'path';
+import workboxBuild from 'workbox-build';
 
-const exportDir = join(__dirname, '../export');
+const exportDir = path.join(__dirname, '../export');
 
-injectManifest({
-  swSrc: join(__dirname, '/service-worker.js'),
-  swDest: join(exportDir, '/service-worker.js'),
-  globDirectory: exportDir,
-  globPatterns: ['**/*.{js,css,html}'],
-}).then(({ count }) => {
-  console.log(`Successfully built service worker\n${count} files were marked for precaching`);
-});
+workboxBuild
+  .injectManifest({
+    swSrc: path.join(__dirname, '../src/sw.js'),
+    swDest: path.join(exportDir, '/sw.js'),
+    globDirectory: exportDir,
+    globPatterns: ['**/*.{js,html}'],
+  })
+  .then(({ count }) => {
+    console.log('Successfully built service worker');
+    console.log(`${count} files were marked for precaching`);
+  });
