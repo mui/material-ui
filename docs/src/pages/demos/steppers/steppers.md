@@ -1,5 +1,5 @@
 ---
-components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
+components: MobileStepper, Step, StepButton, StepContent, StepIcon, StepLabel, Stepper
 ---
 
 # Steppers
