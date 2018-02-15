@@ -92,7 +92,7 @@ class TextFields extends React.Component {
           id="password"
           label="Password"
           className={classes.textField}
-          variant="password"
+          type="password"
           autoComplete="current-password"
           margin="normal"
         />
