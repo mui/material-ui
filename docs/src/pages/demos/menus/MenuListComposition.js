@@ -9,17 +9,17 @@ import { withStyles } from 'material-ui/styles';
 import { Manager, Target, Popper } from 'react-popper';
 import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 
-const styles = {
+const styles = theme => ({
   root: {
     display: 'flex',
-    '&> *': {
-      margin: '0 1em',
-    },
+  },
+  paper: {
+    marginRight: theme.spacing.unit * 2,
   },
   popperClose: {
     pointerEvents: 'none',
   },
-};
+});
 
 class MenuListComposition extends React.Component {
   state = {
@@ -31,13 +31,14 @@ class MenuListComposition extends React.Component {
   }
 
   handleClick = () => {
-    this.setState({ open: !this.state.open }); // toggle dropdown
+    this.setState({ open: !this.state.open });
   };
 
   handleClose = () => {
     if (!this.state.open) {
       return;
     }
+
     // setTimeout to ensure a close event comes after a target click event
     this.timeout = setTimeout(() => {
       this.setState({ open: false });
@@ -50,7 +51,7 @@ class MenuListComposition extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Paper>
+        <Paper className={classes.paper}>
           <MenuList>
             <MenuItem>Profile</MenuItem>
             <MenuItem>My account</MenuItem>
