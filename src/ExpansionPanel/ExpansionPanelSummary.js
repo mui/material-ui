@@ -14,12 +14,9 @@ export const styles = theme => {
   return {
     root: {
       display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
       minHeight: theme.spacing.unit * 6,
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
       padding: `0 ${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 3}px`,
-      position: 'relative',
       '&:hover:not($disabled)': {
         cursor: 'pointer',
       },

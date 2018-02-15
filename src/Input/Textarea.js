@@ -5,7 +5,7 @@ import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 
-const ROWS_HEIGHT = 24;
+const ROWS_HEIGHT = 19;
 
 export const styles = {
   root: {
