@@ -27,7 +27,8 @@ export type ButtonClassKey =
   | 'keyboardFocused'
   | 'raisedPrimary'
   | 'raisedSecondary'
-  | 'fab';
+  | 'fab'
+  | 'fullWidth';
 
 declare const Button: React.ComponentType<ButtonProps>;
 
