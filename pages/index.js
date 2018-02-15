@@ -141,10 +141,12 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 
 #### via [OpenCollective](https://opencollective.com/material-ui)
 
-${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(
-              num =>
-                `<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/website" rel=noopener target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/avatar.svg" alt="${num}" /></a>`,
-            ).join('')}
+${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+              .map(
+                num =>
+                  `<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/website" rel=noopener target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/avatar.svg" alt="${num}" /></a>`,
+              )
+              .join('')}
 `}
           />
         </NoSSR>
