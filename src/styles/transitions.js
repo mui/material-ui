@@ -75,7 +75,7 @@ export default {
     warning(isString(easingOption), 'Material-UI: argument "easing" must be a string.');
     warning(
       isNumber(delay) || isString(delay),
-      'Material-UI: argument "delay" must be a string or a string.',
+      'Material-UI: argument "delay" must be a number or a string.',
     );
     warning(
       Object.keys(other).length === 0,
