@@ -12,6 +12,9 @@ import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 const styles = {
   root: {
     display: 'flex',
+    '&> *': {
+      margin: '0 1em',
+    },
   },
   popperClose: {
     pointerEvents: 'none',
@@ -23,6 +26,10 @@ class MenuListComposition extends React.Component {
     open: false,
   };
 
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
+
   handleClick = () => {
     this.setState({ open: !this.state.open }); // toggle dropdown
   };
@@ -32,7 +39,7 @@ class MenuListComposition extends React.Component {
       return;
     }
     // setTimeout to ensure a close event comes after a target click event
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.setState({ open: false });
     });
   };
@@ -57,7 +64,7 @@ class MenuListComposition extends React.Component {
               aria-haspopup="true"
               onClick={this.handleClick}
             >
-              Open Menu
+              Toggle Menu
             </Button>
           </Target>
           <Popper
