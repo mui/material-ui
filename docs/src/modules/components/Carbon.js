@@ -70,6 +70,10 @@ const styles = theme => ({
       bottom: theme.spacing.unit * 2,
     },
   },
+  carbonads: {
+    padding: theme.spacing.unit,
+    backgroundColor: theme.palette.background.paper,
+  },
   info: {
     ...theme.typography.caption,
     position: 'absolute',
@@ -141,7 +145,7 @@ class Carbon extends React.Component {
       return (
         <div className={classes.root}>
           <div className={classes.ad}>
-            <div id="carbonads">
+            <div className={classes.carbonads}>
               <Typography gutterBottom>Like Material-UI?</Typography>
               <Typography gutterBottom>
                 {`If you don't mind tech-related ads, and want to support Open Source,
