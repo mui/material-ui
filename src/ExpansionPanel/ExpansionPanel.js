@@ -16,7 +16,6 @@ export const styles = theme => {
   return {
     root: {
       position: 'relative',
-      margin: 0,
       transition: theme.transitions.create(['margin'], transition),
       '&:before': {
         position: 'absolute',

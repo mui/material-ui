@@ -43,7 +43,7 @@ describe('<Textarea />', () => {
 
   it('should change its height when the height of its shadows changes', () => {
     const wrapper = shallow(<Textarea />);
-    assert.strictEqual(wrapper.state().height, 24);
+    assert.strictEqual(wrapper.state().height, 19);
 
     const refs = assignRefs(wrapper);
 
@@ -55,10 +55,10 @@ describe('<Textarea />', () => {
     refs.input.simulate('change', { target: { value: 'x' } });
     assert.strictEqual(wrapper.state().height, 43);
 
-    refs.textareaShadow.scrollHeight = 24;
-    refs.singlelineShadow.scrollHeight = 24;
+    refs.textareaShadow.scrollHeight = 19;
+    refs.singlelineShadow.scrollHeight = 19;
     refs.input.simulate('change', { target: { value: '' } });
-    assert.strictEqual(wrapper.state().height, 24);
+    assert.strictEqual(wrapper.state().height, 19);
   });
 
   describe('height behavior', () => {
@@ -75,10 +75,10 @@ describe('<Textarea />', () => {
 
     it('should update the height when the value change', () => {
       const instance = wrapper.instance();
-      instance.singlelineShadow = { scrollHeight: 24 };
-      instance.shadow = { scrollHeight: 24 };
+      instance.singlelineShadow = { scrollHeight: 19 };
+      instance.shadow = { scrollHeight: 19 };
       wrapper.setProps({ value: 'fo' });
-      assert.strictEqual(wrapper.state().height, 24);
+      assert.strictEqual(wrapper.state().height, 19);
       instance.shadow = { scrollHeight: 48 };
       wrapper.setProps({ value: 'foooooo' });
       assert.strictEqual(wrapper.state().height, 48);
@@ -87,7 +87,7 @@ describe('<Textarea />', () => {
     it('should respect the rowsMax property', () => {
       const instance = wrapper.instance();
       const rowsMax = 2;
-      const lineHeight = 24;
+      const lineHeight = 19;
       instance.singlelineShadow = { scrollHeight: lineHeight };
       instance.shadow = { scrollHeight: lineHeight * 3 };
       wrapper.setProps({ rowsMax });
@@ -151,7 +151,7 @@ describe('<Textarea />', () => {
         .find('EventListener')
         .at(0)
         .simulate('resize');
-      assert.strictEqual(wrapper.state().height, 24);
+      assert.strictEqual(wrapper.state().height, 19);
       clock.tick(166);
       assert.strictEqual(wrapper.state().height, 43);
     });
