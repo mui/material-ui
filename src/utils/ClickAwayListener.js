@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
+import ownerDocument from 'dom-helpers/ownerDocument';
 
 const isDescendant = (el, target) => {
   if (target !== null && target.parentNode) {
@@ -33,10 +34,11 @@ class ClickAwayListener extends React.Component {
     // IE11 support, which trigger the handleClickAway even after the unbind
     if (this.mounted) {
       const el = findDOMNode(this);
+      const doc = ownerDocument(el);
 
       if (
-        document.documentElement &&
-        document.documentElement.contains(event.target) &&
+        doc.documentElement &&
+        doc.documentElement.contains(event.target) &&
         !isDescendant(el, event.target)
       ) {
         this.props.onClickAway(event);

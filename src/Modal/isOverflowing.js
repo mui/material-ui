@@ -1,5 +1,6 @@
 import isWindow from 'dom-helpers/query/isWindow';
 import ownerDocument from 'dom-helpers/ownerDocument';
+import ownerWindow from 'dom-helpers/ownerWindow';
 
 export function isBody(node) {
   return node && node.tagName.toLowerCase() === 'body';
@@ -8,15 +9,15 @@ export function isBody(node) {
 // Do we have a scroll bar?
 export default function isOverflowing(container) {
   const doc = ownerDocument(container);
-  const win = isWindow(doc);
+  const win = ownerWindow(doc);
 
   /* istanbul ignore next */
-  if (!win && !isBody(container)) {
+  if (!isWindow(doc) && !isBody(container)) {
     return container.scrollHeight > container.clientHeight;
   }
 
   // Takes in account potential non zero margin on the body.
-  const style = window.getComputedStyle(doc.body);
+  const style = win.getComputedStyle(doc.body);
   const marginLeft = parseInt(style.getPropertyValue('margin-left'), 10);
   const marginRight = parseInt(style.getPropertyValue('margin-right'), 10);
 
