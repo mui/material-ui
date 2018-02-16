@@ -35,7 +35,7 @@ class ClickAwayListener extends React.Component {
       const el = findDOMNode(this);
 
       if (
-        (event.target instanceof HTMLElement || event.target instanceof SVGSVGElement) &&
+        (event.target instanceof HTMLElement || event.target instanceof SVGElement) &&
         document.documentElement &&
         document.documentElement.contains(event.target) &&
         !isDescendant(el, event.target)
