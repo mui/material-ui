@@ -7,18 +7,25 @@ import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
 import { darken } from 'material-ui/styles/colorManipulator';
 
-export function getTheme(theme) {
-  return createMuiTheme({
-    direction: theme.direction,
+export function getTheme(uiTheme) {
+  const theme = createMuiTheme({
+    direction: uiTheme.direction,
     palette: {
       primary: blue,
       secondary: {
         // Darken so we reach the AA contrast ratio level.
         main: darken(pink.A400, 0.08),
       },
-      type: theme.paletteType,
+      type: uiTheme.paletteType,
     },
   });
+
+  // Expose the theme as a global variable so people can play with it.
+  if (process.browser) {
+    window.theme = theme;
+  }
+
+  return theme;
 }
 
 const theme = getTheme({
