@@ -1,17 +1,13 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 
-interface SvgIconPropsInternal
-  extends StandardProps<React.SVGProps<SVGSVGElement>, SvgIconClassKey> {
+export interface SvgIconProps
+  extends StandardProps<React.SVGProps<SVGSVGElement>, SvgIconClassKey, 'fontSize'> {
   color?: PropTypes.Color | 'action' | 'disabled' | 'error';
-  fontSize?: any;
+  fontSize?: boolean;
   nativeColor?: string;
   titleAccess?: string;
   viewBox?: string;
-}
-
-export interface SvgIconProps extends SvgIconPropsInternal {
-  fontSize?: boolean;
 }
 
 export type SvgIconClassKey =
