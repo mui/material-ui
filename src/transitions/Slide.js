@@ -103,10 +103,10 @@ class Slide extends React.Component {
   transition = null;
 
   updatePosition() {
-    const element = findDOMNode(this.transition);
-    if (element instanceof HTMLElement) {
-      element.style.visibility = 'inherit';
-      setTranslateValue(this.props, element);
+    const node = findDOMNode(this.transition);
+    if (node) {
+      node.style.visibility = 'inherit';
+      setTranslateValue(this.props, node);
     }
   }
 
@@ -117,7 +117,7 @@ class Slide extends React.Component {
     }
 
     const node = findDOMNode(this.transition);
-    if (node instanceof HTMLElement) {
+    if (node) {
       setTranslateValue(this.props, node);
     }
   }, 166);
