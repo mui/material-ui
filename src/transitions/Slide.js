@@ -6,6 +6,7 @@ import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import Transition from 'react-transition-group/Transition';
+import ownerWindow from 'dom-helpers/ownerWindow';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from './utils';
@@ -24,7 +25,7 @@ function getTranslateValue(props, node) {
   if (node.fakeTransform) {
     transform = node.fakeTransform;
   } else {
-    const computedStyle = window.getComputedStyle(node);
+    const computedStyle = ownerWindow(node).getComputedStyle(node);
     transform =
       computedStyle.getPropertyValue('-webkit-transform') ||
       computedStyle.getPropertyValue('transform');

@@ -23,10 +23,6 @@ function getContainer(container, defaultContainer) {
   return ReactDOM.findDOMNode(container) || defaultContainer;
 }
 
-function getOwnerDocument(element) {
-  return ownerDocument(ReactDOM.findDOMNode(element));
-}
-
 function getHasTransition(props) {
   return props.children ? props.children.props.hasOwnProperty('in') : false;
 }
@@ -110,12 +106,12 @@ class Modal extends React.Component {
   };
 
   handleOpen = () => {
-    const doc = getOwnerDocument(this);
+    const doc = ownerDocument(this.mountNode);
     const container = getContainer(this.props.container, doc.body);
 
     this.props.manager.add(this, container);
     this.onDocumentKeydownListener = addEventListener(doc, 'keydown', this.handleDocumentKeyDown);
-    this.onFocusinListener = addEventListener(document, 'focus', this.enforceFocus, true);
+    this.onFocusinListener = addEventListener(doc, 'focus', this.enforceFocus, true);
   };
 
   handleClose = () => {
@@ -170,7 +166,7 @@ class Modal extends React.Component {
     }
 
     const dialogElement = this.getDialogElement();
-    const currentActiveElement = activeElement(getOwnerDocument(this));
+    const currentActiveElement = activeElement(ownerDocument(this.mountNode));
 
     if (dialogElement && !contains(dialogElement, currentActiveElement)) {
       this.lastFocus = currentActiveElement;
@@ -208,7 +204,7 @@ class Modal extends React.Component {
     }
 
     const dialogElement = this.getDialogElement();
-    const currentActiveElement = activeElement(getOwnerDocument(this));
+    const currentActiveElement = activeElement(ownerDocument(this.mountNode));
 
     if (dialogElement && !contains(dialogElement, currentActiveElement)) {
       dialogElement.focus();

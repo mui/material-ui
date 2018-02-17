@@ -1,4 +1,5 @@
 import css from 'dom-helpers/style';
+import ownerDocument from 'dom-helpers/ownerDocument';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import isOverflowing from './isOverflowing';
 import { ariaHidden, hideSiblings, showSiblings } from './manageAriaHidden';
@@ -39,7 +40,7 @@ function setContainerStyle(data, container) {
     style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
 
     // .mui-fixed is a global helper.
-    const fixedNodes = document.querySelectorAll('.mui-fixed');
+    const fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
     for (let i = 0; i < fixedNodes.length; i += 1) {
       const paddingRight = getPaddingRight(fixedNodes[i]);
       data.prevPaddings.push(paddingRight);
@@ -57,7 +58,7 @@ function removeContainerStyle(data, container) {
     container.style[key] = data.style[key];
   });
 
-  const fixedNodes = document.querySelectorAll('.mui-fixed');
+  const fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
   for (let i = 0; i < fixedNodes.length; i += 1) {
     fixedNodes[i].style.paddingRight = `${data.prevPaddings[i]}px`;
   }

@@ -176,7 +176,8 @@ class Popover extends React.Component {
       return anchorPosition;
     }
 
-    const anchorElement = anchorEl || document.body;
+    // If an anchor element wasn't provided, just use the parent body element of this Popover
+    const anchorElement = anchorEl || ownerDocument(ReactDOM.findDOMNode(this.transitionEl)).body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
