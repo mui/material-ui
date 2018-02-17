@@ -53,7 +53,7 @@ const styles = theme => ({
   drawerInner: {
     // Make the items inside not wrap when transitioning:
     width: drawerWidth,
-    marginTop: theme.mixins.toolbar.minHeight
+    marginTop: theme.mixins.toolbar.minHeight,
   },
   content: {
     width: '100%',
@@ -74,7 +74,7 @@ class ClippedDrawer extends React.Component {
     open: true,
   };
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
