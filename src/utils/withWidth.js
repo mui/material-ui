@@ -1,4 +1,5 @@
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import ownerWindow from 'dom-helpers/ownerWindow';
@@ -36,7 +37,7 @@ const withWidth = (options = {}) => Component => {
     };
 
     componentDidMount() {
-      const win = ownerWindow(this.mountNode);
+      const win = ownerWindow(findDOMNode(this.mountNode));
       this.updateWidth(win.innerWidth);
     }
 
@@ -47,7 +48,7 @@ const withWidth = (options = {}) => Component => {
     mountNode = null;
 
     handleResize = debounce(() => {
-      const win = ownerWindow(this.mountNode);
+      const win = ownerWindow(findDOMNode(this.mountNode));
       this.updateWidth(win.innerWidth);
     }, resizeInterval);
 
