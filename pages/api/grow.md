@@ -25,6 +25,6 @@ The properties of the react-transition-group [Transition](https://reactcommunity
 
 ## Demos
 
-- [Popovers](/utils/popovers/popovers)
-- [Transitions](/utils/transitions/transitions)
+- [Popovers](/utils/popovers)
+- [Transitions](/utils/transitions)
 

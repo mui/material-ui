@@ -58,5 +58,5 @@ The properties of the [Modal](/api/modal) component are also available.
 
 ## Demos
 
-- [Popovers](/utils/popovers/popovers)
+- [Popovers](/utils/popovers)
 
