@@ -16,20 +16,17 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    width: '100%',
-    height: 430,
-    marginTop: theme.spacing.unit * 3,
-    zIndex: 1,
-    overflow: 'hidden',
+    flexGrow: 1,
   },
   appFrame: {
+    height: 430,
+    zIndex: 1,
+    overflow: 'hidden',
     position: 'relative',
     display: 'flex',
     width: '100%',
-    height: '100%',
   },
   appBar: {
-    position: 'absolute',
     width: `calc(100% - ${drawerWidth}px)`,
   },
   'appBar-left': {
@@ -40,20 +37,13 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: 'relative',
-    height: '100%',
     width: drawerWidth,
   },
-  drawerHeader: theme.mixins.toolbar,
+  toolbar: theme.mixins.toolbar,
   content: {
+    flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    width: '100%',
     padding: theme.spacing.unit * 3,
-    height: 'calc(100% - 56px)',
-    marginTop: 56,
-    [theme.breakpoints.up('sm')]: {
-      height: 'calc(100% - 64px)',
-      marginTop: 64,
-    },
   },
 });
 
@@ -80,7 +70,7 @@ class PermanentDrawer extends React.Component {
         }}
         anchor={anchor}
       >
-        <div className={classes.drawerHeader} />
+        <div className={classes.toolbar} />
         <Divider />
         <List>{mailFolderListItems}</List>
         <Divider />
@@ -111,7 +101,10 @@ class PermanentDrawer extends React.Component {
           <MenuItem value="right">right</MenuItem>
         </TextField>
         <div className={classes.appFrame}>
-          <AppBar className={classNames(classes.appBar, classes[`appBar-${anchor}`])}>
+          <AppBar
+            position="absolute"
+            className={classNames(classes.appBar, classes[`appBar-${anchor}`])}
+          >
             <Toolbar>
               <Typography variant="title" color="inherit" noWrap>
                 Permanent drawer
@@ -120,6 +113,7 @@ class PermanentDrawer extends React.Component {
           </AppBar>
           {before}
           <main className={classes.content}>
+            <div className={classes.toolbar} />
             <Typography>{'You think water moves fast? You should see ice.'}</Typography>
           </main>
           {after}

@@ -20,9 +20,19 @@ It closes when an item is selected, handled by controlling the `open` prop.
 
 Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
 
-Permanent navigation drawers are the recommended default for desktop.
+Permanent navigation drawers are the **recommended default for desktop**.
+
+### Full-height navigation
+
+Apps focused on information consumption that use a left-to-right hierarchy.
 
 {{"demo": "pages/demos/drawers/PermanentDrawer.js", "hideEditButton": true}}
+
+### Clipped under the app bar
+
+Apps focused on productivity that require balance across the screen.
+
+{{"demo": "pages/demos/drawers/ClippedDrawer.js", "hideEditButton": true}}
 
 ## Persistent drawer
 
@@ -54,10 +64,3 @@ The `Hidden` responsive helper component allows showing different types of drawe
 A `temporary` drawer is shown for small screens while a `permanent` drawer is shown for wider screens.
 
 {{"demo": "pages/demos/drawers/ResponsiveDrawer.js", "hideEditButton": true}}
-
-## Clipped drawer
-
-Navigation drawer clipped under the app bar.
-For apps focused on productivity that require balance across the screen.
-
-{{"demo": "pages/demos/drawers/ClippedDrawer.js", "hideEditButton": true}}
