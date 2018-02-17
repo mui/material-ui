@@ -58,6 +58,6 @@ A `temporary` drawer is shown for small screens while a `permanent` drawer is sh
 ## Clipped drawer
 
 Navigation drawer clipped under the app bar.
-For apps focused on productivity that require balance across the screen
+For apps focused on productivity that require balance across the screen.
 
 {{"demo": "pages/demos/drawers/ClippedDrawer.js", "hideEditButton": true}}
