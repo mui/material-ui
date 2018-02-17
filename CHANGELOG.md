@@ -8,7 +8,7 @@ Changes. Changes everywhere!
 Big thanks to the 21 contributors who made this release possible.
 
 Here are some highlights ✨:
-- Checkbox, Radio, Switch update to follow the spec and be consistant with the Input (#10196, #10138) @phsantiago, @mbrookes.
+- Checkbox, Radio, Switch update to follow the spec and be consistent with the Input (#10196, #10138) @phsantiago, @mbrookes.
 - The documentation works offline (#10267) @msiadak.
 - Better styled-components documentation (#10266) @rocketraman.
 - And many more bug fixes and documentation improvements.
