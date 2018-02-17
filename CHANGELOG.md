@@ -16,20 +16,23 @@ Here are some highlights ✨:
 ### Breaking change
 
 - [Checkbox, Radio, Switch] Fix id in internal input (#10196) @phsantiago
-  For consistency between the `Input` and the `Checkbox`, `Switch`, `Radio` the following small breaking changes have been done:
-  - The usage of the `inputProps` property is no longer needed to apply an id to the input. The `id` is applied to the input instead of the root.
+
+For consistency between the `Input` and the `Checkbox`, `Switch`, `Radio` the following small breaking changes have been done:
+
+The usage of the `inputProps` property is no longer needed to apply an id to the input. The `id` is applied to the input instead of the root.
 ```diff
 -<Checkbox inputProps={{ id: 'id' }} />
 +<Checkbox id="id" />
 ```
-  - The `inputType` property was renamed `type`.
+The `inputType` property was renamed `type`.
 ```diff
 -<Checkbox inputType="text" />
 +<Checkbox type="text" />
 ```
+
 - [Checkbox, Radio, Switch] Change default color, add color prop (#10138) @mbrookes
-  The Material Design specification says that selection controls elements should [use the application's secondary color](https://material.io/guidelines/components/selection-controls.html).
-  <img width="289" alt="capture d ecran 2018-02-13 a 19 46 09" src="https://user-images.githubusercontent.com/3165635/36167538-91a2ac88-10f6-11e8-95be-263ad08e6319.png">
+
+The Material Design specification says that selection controls elements should [use the application's secondary color](https://material.io/guidelines/components/selection-controls.html).
 ```diff
 -<Checkbox />
 -<Switch />
