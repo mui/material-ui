@@ -8,6 +8,30 @@ Material-UI provides a number of transitions that can be used to introduce some 
 [motion](https://material.io/guidelines/motion/material-motion.html)
 to your applications components.
 
+To better support server rendering Material-UI provides a `style` property
+to the children of some transition components (Fade, Grow, Zoom, Slide).
+The `style` property must be applied to the DOM for the animation to work as expected.
+
+```jsx
+// The `props` object contains a `style` property.
+// You need to provide it to the `div` element as shown here.
+function MyComponent(props) {
+  return (
+    <div {...props}>
+      Fade
+    </div>
+  );
+}
+
+export default Main() {
+  return (
+    <Fade>
+      <MyComponent />
+    </Fade>
+  );
+}
+```
+
 ## Collapse
 
 Expand vertically from the top of the child element.
