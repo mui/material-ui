@@ -11,7 +11,7 @@ const styles = {
   list: {
     width: 250,
   },
-  listFull: {
+  fullList: {
     width: 'auto',
   },
 };
@@ -42,7 +42,7 @@ class TemporaryDrawer extends React.Component {
     );
 
     const fullList = (
-      <div className={classes.listFull}>
+      <div className={classes.fullList}>
         <List>{mailFolderListItems}</List>
         <Divider />
         <List>{otherMailFolderListItems}</List>

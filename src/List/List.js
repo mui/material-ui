@@ -5,7 +5,6 @@ import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   root: {
-    flex: '1 1 auto',
     listStyle: 'none',
     margin: 0,
     padding: 0,

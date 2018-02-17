@@ -18,20 +18,14 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    width: '100%',
+    flexGrow: 1,
     height: 430,
-    marginTop: theme.spacing.unit * 3,
     zIndex: 1,
     overflow: 'hidden',
-  },
-  appFrame: {
     position: 'relative',
     display: 'flex',
-    width: '100%',
-    height: '100%',
   },
   appBar: {
-    position: 'absolute',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -55,7 +49,6 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: 'relative',
-    height: '100%',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -70,11 +63,7 @@ const styles = theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
-  drawerInner: {
-    // Make the items inside not wrap when transitioning:
-    width: drawerWidth,
-  },
-  drawerHeader: {
+  toolbar: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -82,16 +71,9 @@ const styles = theme => ({
     ...theme.mixins.toolbar,
   },
   content: {
-    width: '100%',
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: 24,
-    height: 'calc(100% - 56px)',
-    marginTop: 56,
-    [theme.breakpoints.up('sm')]: {
-      height: 'calc(100% - 64px)',
-      marginTop: 64,
-    },
+    padding: theme.spacing.unit * 3,
   },
 });
 
@@ -113,45 +95,45 @@ class MiniDrawer extends React.Component {
 
     return (
       <div className={classes.root}>
-        <div className={classes.appFrame}>
-          <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
-            <Toolbar disableGutters={!this.state.open}>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames(classes.menuButton, this.state.open && classes.hide)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="title" color="inherit" noWrap>
-                Mini variant drawer
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <Drawer
-            variant="permanent"
-            classes={{
-              paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-            }}
-            open={this.state.open}
-          >
-            <div className={classes.drawerInner}>
-              <div className={classes.drawerHeader}>
-                <IconButton onClick={this.handleDrawerClose}>
-                  {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                </IconButton>
-              </div>
-              <Divider />
-              <List>{mailFolderListItems}</List>
-              <Divider />
-              <List>{otherMailFolderListItems}</List>
-            </div>
-          </Drawer>
-          <main className={classes.content}>
-            <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
-          </main>
-        </div>
+        <AppBar
+          position="absolute"
+          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+        >
+          <Toolbar disableGutters={!this.state.open}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={this.handleDrawerOpen}
+              className={classNames(classes.menuButton, this.state.open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="title" color="inherit" noWrap>
+              Mini variant drawer
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+          }}
+          open={this.state.open}
+        >
+          <div className={classes.toolbar}>
+            <IconButton onClick={this.handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>{mailFolderListItems}</List>
+          <Divider />
+          <List>{otherMailFolderListItems}</List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
+        </main>
       </div>
     );
   }
