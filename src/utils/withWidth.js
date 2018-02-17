@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
-import ownerWindow from 'dom-helpers/ownerWindow';
 import debounce from 'lodash/debounce';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import hoistNonReactStatics from 'hoist-non-react-statics';
@@ -37,19 +35,15 @@ const withWidth = (options = {}) => Component => {
     };
 
     componentDidMount() {
-      const win = ownerWindow(ReactDOM.findDOMNode(this.mountNode));
-      this.updateWidth(win.innerWidth);
+      this.updateWidth(window.innerWidth);
     }
 
     componentWillUnmount() {
       this.handleResize.cancel();
     }
 
-    mountNode = null;
-
     handleResize = debounce(() => {
-      const win = ownerWindow(ReactDOM.findDOMNode(this.mountNode));
-      this.updateWidth(win.innerWidth);
+      this.updateWidth(window.innerWidth);
     }, resizeInterval);
 
     updateWidth(innerWidth) {
@@ -108,13 +102,7 @@ const withWidth = (options = {}) => Component => {
       }
 
       return (
-        <EventListener
-          target="window"
-          onResize={this.handleResize}
-          ref={node => {
-            this.mountNode = node;
-          }}
-        >
+        <EventListener target="window" onResize={this.handleResize}>
           <Component {...more} {...props} />
         </EventListener>
       );
