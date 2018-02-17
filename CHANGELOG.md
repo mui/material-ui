@@ -2,6 +2,91 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.34
+###### *Feb 17, 2018*
+
+Big thanks to the 21 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Checkbox, Radio, Switch update to follow the spec and be consistant with the Input (#10196, #10138) @phsantiago, @mbrookes.
+- The documentation works offline (#10267) @msiadak.
+- Better styled-components documentation (#10266) @rocketraman.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [Checkbox, Radio, Switch] Fix id in internal input (#10196) @phsantiago
+  For consistency between the `Input` and the `Checkbox`, `Switch`, `Radio` the following small breaking changes have been done:
+  - The usage of the `inputProps` property is no longer needed to apply an id to the input. The `id` is applied to the input instead of the root.
+```diff
+-<Checkbox inputProps={{ id: 'id' }} />
++<Checkbox id="id" />
+```
+  - The `inputType` property was renamed `type`.
+```diff
+-<Checkbox inputType="text" />
++<Checkbox type="text" />
+```
+- [Checkbox, Radio, Switch] Change default color, add color prop (#10138) @mbrookes
+  The Material Design specification says that selection controls elements should [use the application's secondary color](https://material.io/guidelines/components/selection-controls.html).
+  <img width="289" alt="capture d ecran 2018-02-13 a 19 46 09" src="https://user-images.githubusercontent.com/3165635/36167538-91a2ac88-10f6-11e8-95be-263ad08e6319.png">
+```diff
+-<Checkbox />
+-<Switch />
+-<Radio />
++<Checkbox color="primary" />
++<Switch color="primary" />
++<Radio color="primary" />
+```
+
+#### Component Fixes / Enhancements
+
+- [Input] Fix infinite loop (#10229) @oliviertassinari
+- [CircularProgress] Add static variant (#10228) @oliviertassinari
+- [Transition] Add the missing teardown logic (#10244) @oliviertassinari
+- [Avatar] Use theme.spacing.unit (#10268) @cherniavskii
+- [InputLabel] Add inheritance docs (#10282) @oliviertassinari
+- [Input][ExpansionPane] Remove the use of legacy easing-curve (#10290) @strayiker
+- [TableCell] Add "scope" attribute for th (#10277) @z-ax
+- [styles] Fix typo (#10303) @strayiker
+- [Button] Add fullWidth to ButtonClassKey (#10310) @stefanorie
+- [TextField] Fix wrong SSR height of the textarea (#10315) @oliviertassinari
+- [ClickAwayListener] Fix interaction with SVGElement (#10318) @KEMBL
+- [Icon] Add fontSize to typings (#10317) @clentfort
+- [Slide] Work with SVG too (#10325) @oliviertassinari
+
+#### Docs
+
+- [docs] Update links on showcase.md (#10227) @klyburke
+- [docs] Remove dead code in Drawers (#10230) @oliviertassinari
+- [docs] Add utils section, document transitions (#10239) @mbrookes
+- [docs] Fix small issues (#10245) @oliviertassinari
+- [docs] Add transform-origin and timeout to Grow demo #10246 @mbrookes
+- [docs] Add modole.io to showcase (#10247) @mweiss
+- [docs] Better API generator (#10249) @oliviertassinari
+- [docs] Use non-breaking space (#10252) @oliviertassinari
+- [example] TypeScript instructions (a81e5f9e54fdcc4648ffe6bdc08eaa596fb0a9bc) @oliviertassinari
+- [docs] Fix the migration guide doc page (#10257) @nicolasiensen
+- [docs] Update example in README.md (#10259) @nikoladev
+- [docs] Fix typo in button component demo (#10260) @bmuenzenmeyer
+- [docs] styled components non-root components (#10266) @rocketraman
+- [Selection Control] Symmetry between the demos (#10279) @oliviertassinari
+- [docs] Remove StepConnector from Steppers demo (#10301) @jdupont
+- [docs] Add precaching Service Worker to exported docs builds (#10267) @msiadak
+- [docs] Add missing rel=noopener (#10307) @oliviertassinari
+- [docs] Add the average response time (#10308) @oliviertassinari
+- [docs] Update TextFields.js (#10313) @Primajin
+- [docs] Add toggling with react-popper (#10302) @caub
+- [docs] Add the latest backers ♥ (#10323) @oliviertassinari
+- [docs] Expose the theme as a global object (#10326) @oliviertassinari
+- [docs] Add an example with Google Web Fonts (#10332) @oliviertassinari
+
+#### Core
+
+- [core] Fix the es distribution (#10254) @NMinhNguyen
+- [typescript] Add missing exports in index.d.ts (#10295) @Andy4ward
+- [core] Upgrade react-popper (#10299) @oliviertassinari
+
 ## 1.0.0-beta.33
 ###### *Feb 10, 2018*
 
