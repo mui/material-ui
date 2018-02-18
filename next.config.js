@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const pkg = require('./package.json');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { findPages } = require('./docs/src/modules/utils/find');
+const { findPages } = require('./docs/src/modules/utils/find');
 
 process.env.MATERIAL_UI_VERSION = pkg.version;
 
@@ -23,7 +23,7 @@ module.exports = {
           generateStatsFile: true,
           // Will be available at `.next/stats.json`
           statsFilename: 'stats.json',
-        })
+        }),
       );
     }
 
@@ -51,19 +51,19 @@ module.exports = {
     const pages = findPages();
     const map = {
       '/': { page: '/' },
-    }
+    };
 
     pages.forEach(lvl0Page => {
       if (!lvl0Page.children) {
-        return
+        return;
       }
 
       lvl0Page.children.forEach(lvl1Page => {
         map[lvl1Page.pathname] = {
           page: lvl1Page.pathname,
-        }
-      })
-    })
+        };
+      });
+    });
 
     return map;
   },

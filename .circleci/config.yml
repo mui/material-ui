@@ -63,6 +63,10 @@ jobs:
           command: bash <(curl -s https://codecov.io/bash)
   test_build:
     <<: *defaults
+    # This isn't user facing code.
+    # Let's take advantage of the most up to date node version.
+    docker:
+      - image: circleci/node:9.4
     steps:
       - *restore_repo
       - run:

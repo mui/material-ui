@@ -4,9 +4,13 @@ const path = require('path');
 const markdownRegex = /\.md$/;
 
 // Returns the markdowns of the documentation in a flat array.
+// {
+//   pathname: String,
+//   filename: String,
+// }
 function findPagesMarkdown(
   directory = path.resolve(__dirname, '../../../src/pages'),
-  pagesMarkdown = []
+  pagesMarkdown = [],
 ) {
   const items = fs.readdirSync(directory);
 
@@ -21,11 +25,17 @@ function findPagesMarkdown(
     if (!markdownRegex.test(item)) {
       return;
     }
-    let pathname = itemPath.replace(new RegExp(`\\${path.sep}`, 'g'), '/').replace(/^.*\/pages/, '').replace('.md', '');
 
-    if (pathname.indexOf('/demos') === 0) {
-      pathname = pathname.split('/').slice(0, 3).join('/');
-    }
+    let pathname = itemPath
+      .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
+      .replace(/^.*\/pages/, '')
+      .replace('.md', '');
+
+    // Remove the last pathname segment.
+    pathname = pathname
+      .split('/')
+      .slice(0, 3)
+      .join('/');
 
     pagesMarkdown.push({
       // Relative location in the path (URL) system.
@@ -71,11 +81,14 @@ const blackList = ['/.eslintrc', '/_document'];
 function findPages(
   options = {},
   directory = path.resolve(__dirname, '../../../../pages'),
-  pages = []
+  pages = [],
 ) {
   fs.readdirSync(directory).forEach(item => {
     const itemPath = path.resolve(directory, item);
-    const pathname = itemPath.replace(new RegExp(`\\${path.sep}`, 'g'), '/').replace(/^.*\/pages/, '').replace('.js', '');
+    const pathname = itemPath
+      .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
+      .replace(/^.*\/pages/, '')
+      .replace('.js', '');
 
     if (options.front && pathname.indexOf('/demos') === -1 && pathname.indexOf('/api') === -1) {
       return;

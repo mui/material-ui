@@ -1,53 +1,53 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/layout/grid.md';
+import markdown from 'docs/src/pages/layout/grid/grid.md';
 
 function Page() {
   return (
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/layout/SpacingGrid.js': {
-          js: require('docs/src/pages/layout/SpacingGrid').default,
+        'pages/layout/grid/SpacingGrid.js': {
+          js: require('docs/src/pages/layout/grid/SpacingGrid').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/SpacingGrid'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/layout/grid/SpacingGrid'), 'utf8')
 `,
         },
-        'pages/layout/FullWidthGrid.js': {
-          js: require('docs/src/pages/layout/FullWidthGrid').default,
+        'pages/layout/grid/FullWidthGrid.js': {
+          js: require('docs/src/pages/layout/grid/FullWidthGrid').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/FullWidthGrid'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/layout/grid/FullWidthGrid'), 'utf8')
 `,
         },
-        'pages/layout/CenteredGrid.js': {
-          js: require('docs/src/pages/layout/CenteredGrid').default,
+        'pages/layout/grid/CenteredGrid.js': {
+          js: require('docs/src/pages/layout/grid/CenteredGrid').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/CenteredGrid'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/layout/grid/CenteredGrid'), 'utf8')
 `,
         },
-        'pages/layout/InteractiveGrid.js': {
-          js: require('docs/src/pages/layout/InteractiveGrid').default,
+        'pages/layout/grid/InteractiveGrid.js': {
+          js: require('docs/src/pages/layout/grid/InteractiveGrid').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/InteractiveGrid'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/layout/grid/InteractiveGrid'), 'utf8')
 `,
         },
-        'pages/layout/AutoGrid.js': {
-          js: require('docs/src/pages/layout/AutoGrid').default,
+        'pages/layout/grid/AutoGrid.js': {
+          js: require('docs/src/pages/layout/grid/AutoGrid').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/AutoGrid'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/layout/grid/AutoGrid'), 'utf8')
 `,
         },
-        'pages/layout/AutoGridNoWrap.js': {
-          js: require('docs/src/pages/layout/AutoGridNoWrap').default,
+        'pages/layout/grid/AutoGridNoWrap.js': {
+          js: require('docs/src/pages/layout/grid/AutoGridNoWrap').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/AutoGridNoWrap'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/layout/grid/AutoGridNoWrap'), 'utf8')
 `,
         },
       }}

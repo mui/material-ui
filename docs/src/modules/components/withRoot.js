@@ -38,7 +38,8 @@ const pages = [
         pathname: '/getting-started/example-projects',
       },
       {
-        pathname: '/getting-started/frequently-asked-questions',
+        pathname: '/getting-started/faq',
+        title: 'Frequently Asked Questions',
       },
       {
         pathname: '/getting-started/comparison',

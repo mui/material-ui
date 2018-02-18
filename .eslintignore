@@ -3,8 +3,6 @@ node_modules
 /tmp
 coverage
 /.next
-/next.config.js
-/docs/src/modules/utils/find.js
 /docs/export
 flow
 flow-typed

@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/guides/typescript.md';
+import markdown from 'docs/src/pages/guides/typescript/typescript.md';
 
 function Page() {
   return <MarkdownDocs markdown={markdown} />;

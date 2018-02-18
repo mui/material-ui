@@ -272,7 +272,7 @@ ${pagesMarkdown.map(page => `- [${pageToTitle(page)}](${page.pathname})`).join('
 `;
 }
 
-export default function generateMarkdown(reactAPI: Object) {
+export default function generateMarkdown(reactAPI) {
   return [
     generateHeader(reactAPI),
     '',
