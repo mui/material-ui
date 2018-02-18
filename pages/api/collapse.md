@@ -48,5 +48,5 @@ The properties of the react-transition-group [Transition](https://reactcommunity
 
 - [Cards](/demos/cards)
 - [Lists](/demos/lists)
-- [Transitions](/utils/transitions/transitions)
+- [Transitions](/utils/transitions)
 

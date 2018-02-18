@@ -29,15 +29,15 @@ const docsApiDirectory = path.resolve(rootDirectory, 'pages/api');
 const theme = createMuiTheme();
 
 function buildDocs(options) {
-  const { componentPath, pagesMarkdown } = options;
-  const src = readFileSync(componentPath, 'utf8');
+  const { component: componentObject, pagesMarkdown } = options;
+  const src = readFileSync(componentObject.filename, 'utf8');
 
   if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {
     return;
   }
 
   // eslint-disable-next-line global-require, import/no-dynamic-require
-  const component = require(componentPath);
+  const component = require(componentObject.filename);
   const styles = {
     classes: [],
     name: null,
@@ -55,26 +55,26 @@ function buildDocs(options) {
   try {
     reactAPI = reactDocgen.parse(src);
   } catch (err) {
-    console.log('Error parsing src for', componentPath);
+    console.log('Error parsing src for', componentObject.filename);
     throw err;
   }
 
-  reactAPI.name = path.parse(componentPath).name;
+  reactAPI.name = path.parse(componentObject.filename).name;
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
 
-  // if (reactAPI.name !== 'Backdrop') {
+  // if (reactAPI.name !== 'Zoom') {
   //   return;
   // }
 
   // Relative location in the file system.
-  reactAPI.filename = componentPath.replace(rootDirectory, '');
+  reactAPI.filename = componentObject.filename.replace(rootDirectory, '');
   let markdown;
   try {
     markdown = generateMarkdown(reactAPI);
   } catch (err) {
-    console.log('Error generating markdown for', componentPath);
+    console.log('Error generating markdown for', componentObject.filename);
     throw err;
   }
 
@@ -100,14 +100,13 @@ export default withRoot(Page);
 `,
     );
 
-    console.log('Built markdown docs for', componentPath);
+    console.log('Built markdown docs for', componentObject.filename);
   });
 }
 
 const pagesMarkdown = findPagesMarkdown()
   .map(markdown => {
     const markdownSource = readFileSync(markdown.filename, 'utf8');
-
     return {
       ...markdown,
       components: getHeaders(markdownSource).components,
@@ -115,11 +114,6 @@ const pagesMarkdown = findPagesMarkdown()
   })
   .filter(markdown => markdown.components.length > 0);
 
-const components = findComponents();
-
-components.forEach(component => {
-  buildDocs({
-    componentPath: component.filename,
-    pagesMarkdown,
-  });
+findComponents().forEach(component => {
+  buildDocs({ component, pagesMarkdown });
 });

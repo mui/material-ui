@@ -27,5 +27,5 @@ The properties of the react-transition-group [Transition](https://reactcommunity
 ## Demos
 
 - [Dialogs](/demos/dialogs)
-- [Transitions](/utils/transitions/transitions)
+- [Transitions](/utils/transitions)
 

@@ -1,39 +1,39 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/layout/hidden.md';
+import markdown from 'docs/src/pages/layout/hidden/hidden.md';
 
 function Page() {
   return (
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/layout/BreakpointUp.js': {
-          js: require('docs/src/pages/layout/BreakpointUp').default,
+        'pages/layout/hidden/BreakpointUp.js': {
+          js: require('docs/src/pages/layout/hidden/BreakpointUp').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/BreakpointUp'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/layout/hidden/BreakpointUp'), 'utf8')
 `,
         },
-        'pages/layout/BreakpointDown.js': {
-          js: require('docs/src/pages/layout/BreakpointDown').default,
+        'pages/layout/hidden/BreakpointDown.js': {
+          js: require('docs/src/pages/layout/hidden/BreakpointDown').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/BreakpointDown'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/layout/hidden/BreakpointDown'), 'utf8')
 `,
         },
-        'pages/layout/BreakpointOnly.js': {
-          js: require('docs/src/pages/layout/BreakpointOnly').default,
+        'pages/layout/hidden/BreakpointOnly.js': {
+          js: require('docs/src/pages/layout/hidden/BreakpointOnly').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/BreakpointOnly'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/layout/hidden/BreakpointOnly'), 'utf8')
 `,
         },
-        'pages/layout/GridIntegration.js': {
-          js: require('docs/src/pages/layout/GridIntegration').default,
+        'pages/layout/hidden/GridIntegration.js': {
+          js: require('docs/src/pages/layout/hidden/GridIntegration').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/GridIntegration'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/layout/hidden/GridIntegration'), 'utf8')
 `,
         },
       }}

@@ -1,25 +1,25 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/guides/composition.md';
+import markdown from 'docs/src/pages/guides/composition/composition.md';
 
 function Page() {
   return (
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/guides/Composition.js': {
-          js: require('docs/src/pages/guides/Composition').default,
+        'pages/guides/composition/Composition.js': {
+          js: require('docs/src/pages/guides/composition/Composition').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/guides/Composition'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/guides/composition/Composition'), 'utf8')
 `,
         },
-        'pages/guides/ComponentProperty.js': {
-          js: require('docs/src/pages/guides/ComponentProperty').default,
+        'pages/guides/composition/ComponentProperty.js': {
+          js: require('docs/src/pages/guides/composition/ComponentProperty').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/guides/ComponentProperty'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/guides/composition/ComponentProperty'), 'utf8')
 `,
         },
       }}

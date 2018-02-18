@@ -1,32 +1,32 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/style/icons.md';
+import markdown from 'docs/src/pages/style/icons/icons.md';
 
 function Page() {
   return (
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/style/Icons.js': {
-          js: require('docs/src/pages/style/Icons').default,
+        'pages/style/icons/Icons.js': {
+          js: require('docs/src/pages/style/icons/Icons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/Icons'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/style/icons/Icons'), 'utf8')
 `,
         },
-        'pages/style/SvgIcons.js': {
-          js: require('docs/src/pages/style/SvgIcons').default,
+        'pages/style/icons/SvgIcons.js': {
+          js: require('docs/src/pages/style/icons/SvgIcons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/SvgIcons'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/style/icons/SvgIcons'), 'utf8')
 `,
         },
-        'pages/style/SvgMaterialIcons.js': {
-          js: require('docs/src/pages/style/SvgMaterialIcons').default,
+        'pages/style/icons/SvgMaterialIcons.js': {
+          js: require('docs/src/pages/style/icons/SvgMaterialIcons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/SvgMaterialIcons'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/style/icons/SvgMaterialIcons'), 'utf8')
 `,
         },
       }}
