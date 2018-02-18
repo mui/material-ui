@@ -14,7 +14,7 @@ module.exports = {
   resolve: {
     alias: {
       'material-ui': path.resolve(__dirname, '../src'),
-      '@material-ui/lab': path.resolve(__dirname, '../packages/lab/src'),
+      '@material-ui/lab': path.resolve(__dirname, '../packages/material-ui-lab/src'),
       'material-ui-icons': path.resolve(__dirname, '../packages/material-ui-icons/src'),
       docs: path.resolve(__dirname, '../docs'),
     },

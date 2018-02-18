@@ -8,7 +8,7 @@
 import { assert } from 'chai';
 import * as MaterialUI from './index';
 
-describe('material-ui', () => {
+describe('@material-ui/lab', () => {
   it('should have exports', () => {
     assert.strictEqual(typeof MaterialUI, 'object');
   });

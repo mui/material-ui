@@ -180,9 +180,7 @@ const pages = [
       {
         pathname: '/lab/speed-dial',
       },
-      {
-        ...findPages[2].children[1],
-      },
+      findPages[2].children[1],
     ],
   },
   {

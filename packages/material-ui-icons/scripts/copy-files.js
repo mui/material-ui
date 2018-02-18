@@ -2,8 +2,6 @@
 
 import path from 'path';
 import fse from 'fs-extra';
-import flowCopySource from 'flow-copy-source';
-import glob from 'glob';
 
 async function copyFile(file) {
   const buildPath = path.resolve(__dirname, '../build/', path.basename(file));
@@ -11,19 +9,14 @@ async function copyFile(file) {
   console.log(`Copied ${file} to ${buildPath}`);
 }
 
-function typescriptCopy(from, to) {
-  const files = glob.sync('**/*.d.ts', { cwd: from });
-  const cmds = files.map(file => fse.copy(path.resolve(from, file), path.resolve(to, file)));
-  return Promise.all(cmds);
-}
-
 async function createPackageFile() {
   const packageData = await fse.readFile(path.resolve(__dirname, '../package.json'), 'utf8');
-  const { nyc, scripts, devDependencies, ...packageDataOther } = JSON.parse(packageData);
+  const { scripts, devDependencies, ...packageDataOther } = JSON.parse(packageData);
   const newPackageData = {
     ...packageDataOther,
     main: './index.js',
     module: './index.es.js',
+    typings: './index.d.ts',
     private: false,
   };
   const buildPath = path.resolve(__dirname, '../build/package.json');
@@ -47,29 +40,16 @@ async function addLicense(packageData) {
  */
 `;
   await Promise.all(
-    [
-      '../build/index.js',
-      '../build/index.es.js',
-      '../build/umd/material-ui.development.js',
-      '../build/umd/material-ui.production.min.js',
-    ].map(file => prepend(path.resolve(__dirname, file), license)),
+    ['../build/index.js', '../build/index.es.js'].map(file =>
+      prepend(path.resolve(__dirname, file), license),
+    ),
   );
 }
 
 async function run() {
-  await ['README.md', 'CHANGELOG.md', 'LICENSE'].map(file => copyFile(file));
+  await ['README.md', '../../LICENSE'].map(file => copyFile(file));
   const packageData = await createPackageFile();
   await addLicense(packageData);
-
-  // TypeScript
-  const from = path.resolve(__dirname, '../src');
-  await Promise.all([
-    typescriptCopy(from, path.resolve(__dirname, '../build')),
-    typescriptCopy(from, path.resolve(__dirname, '../build/es')),
-  ]);
-
-  // Flow
-  flowCopySource(['src'], 'build', { verbose: true, ignore: '**/*.spec.js' });
 }
 
 run();

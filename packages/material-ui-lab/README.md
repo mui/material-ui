@@ -1,4 +1,4 @@
-# About The Lab
+# @material-ui/lab
 
 This package hosts the incubator components that are not yet ready to move to `core`.
 

@@ -28,4 +28,4 @@ function kebabDestRewriter(pathObj: Object, innerPath: string, options: Object) 
   return path.join(innerPath, fileName);
 }
 
-module.exports = kebabDestRewriter;
+export default kebabDestRewriter;

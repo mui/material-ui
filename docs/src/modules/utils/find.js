@@ -90,7 +90,12 @@ function findPages(
       .replace(/^.*\/pages/, '')
       .replace('.js', '');
 
-    if (options.front && pathname.indexOf('/demos') === -1 && pathname.indexOf('/api') === -1 && pathname.indexOf('/lab') === -1) {
+    if (
+      options.front &&
+      pathname.indexOf('/demos') === -1 &&
+      pathname.indexOf('/api') === -1 &&
+      pathname.indexOf('/lab') === -1
+    ) {
       return;
     }
 

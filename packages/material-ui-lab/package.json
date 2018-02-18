@@ -1,0 +1,51 @@
+{
+  "name": "@material-ui/lab",
+  "private": true,
+  "author": "Material-UI Team",
+  "version": "1.0.0-alpha.1",
+  "description": "Material-UI Lab - Incubator for Material-UI React components.",
+  "main": "./src/index.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "material-ui",
+    "lab"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "homepage": "https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-lab",
+  "scripts": {
+    "prebuild": "../../node_modules/.bin/rimraf build",
+    "build:es2015": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./build",
+    "build:es2015modules": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=modules ../../node_modules/.bin/babel ./src/index.js --out-file ./build/index.es.js",
+    "build:copy-files": "../../node_modules/.bin/babel-node ./scripts/copy-files.js",
+    "build": "yarn build:es2015 && npm run build:es2015modules && npm run build:copy-files",
+    "test": "yarn test:unit",
+    "test:unit": "cd ../../ && ./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/mocha packages/material-ui-lab/src/{,**/}*.spec.js",
+    "test:watch": "yarn test:unit --watch",
+    "version": "yarn build",
+    "release": "np --no-publish --any-branch",
+    "postrelease": "npm publish build"
+  },
+  "peerDependencies": {
+    "material-ui": "^1.0.0-beta.33",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "react": "^15.3.0 || ^16.0.0",
+    "react-dom": "^15.3.0 || ^16.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "material-ui": "^1.0.0-beta.33",
+    "material-ui-icons": "^1.0.0-beta.17"
+  },
+  "engines": {
+    "node": ">=6.11.0"
+  }
+}

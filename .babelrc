@@ -14,7 +14,7 @@
     "development": {
       "sourceMaps": "both",
       "plugins": [
-        "transform-flow-strip-types",
+        "transform-flow-strip-types"
       ]
     },
     "docs-development": {
@@ -27,11 +27,11 @@
           "module-resolver",
           {
             "alias": {
-              "pages": "./pages",
-              "@material-ui/lab": "./packages/lab/src",
+              "@material-ui/lab": "./packages/material-ui-lab/src",
+              "docs": "./docs",
               "material-ui": "./src",
               "material-ui-icons": "./packages/material-ui-icons/src",
-              "docs": "./docs"
+              "pages": "./pages"
             }
           }
         ],
@@ -48,11 +48,11 @@
           "module-resolver",
           {
             "alias": {
-              "pages": "./pages",
+              "@material-ui/lab": "./packages/material-ui-lab/src",
+              "docs": "./docs",
               "material-ui": "./src",
-              "@material-ui/lab": "./packages/lab/src",
               "material-ui-icons": "./packages/material-ui-icons/src",
-              "docs": "./docs"
+              "pages": "./pages"
             }
           }
         ],
@@ -100,7 +100,7 @@
           {
             "alias": {
               "material-ui": "./src",
-              "material-ui-icons": "./packages/material-ui-icons/src",
+              "material-ui-icons": "./packages/material-ui-icons/src"
             }
           }
         ],
