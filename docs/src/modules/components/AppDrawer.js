@@ -89,7 +89,7 @@ function AppDrawer(props, context) {
       <div className={classes.toolbarIe11}>
         <Toolbar className={classes.toolbar}>
           <Link className={classes.title} href="/" onClick={onClose}>
-            <Typography variant="title" gutterBottom color="inherit">
+            <Typography variant="title" color="inherit">
               Material-UI
             </Typography>
           </Link>
