@@ -1,5 +1,5 @@
 ---
-filename: /packages/lab/src/SpeedDial/SpeedDial.js
+filename: /packages/material-ui-lab/src/SpeedDial/SpeedDial.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -19,7 +19,7 @@ filename: /packages/lab/src/SpeedDial/SpeedDial.js
 | hidden | bool | false | If `true`, the SpeedDial will be hidden. |
 | <span style="color: #31a148">icon *</span> | element |  | The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component provides a default Icon with animation. |
 | onClose | func |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, key: string) => void`<br>*event:* The event source of the callback<br>*key:* The key pressed |
-| <span style="color: #31a148">open *</span> | bool | false | If `true`, the SpeedDial is open. |
+| <span style="color: #31a148">open *</span> | bool |  | If `true`, the SpeedDial is open. |
 | openIcon | node |  | The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open. |
 | transition | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | Zoom | Transition component. |
 | transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |

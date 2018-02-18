@@ -117,18 +117,21 @@ export default withRoot(Page);
   });
 }
 
-const pagesMarkdown = findPagesMarkdown()
-  .map(markdown => {
-    const markdownSource = readFileSync(markdown.filename, 'utf8');
-    return {
-      ...markdown,
-      components: getHeaders(markdownSource).components,
-    };
-  })
-  .filter(markdown => markdown.components.length > 0);
+function run() {
+  const pagesMarkdown = findPagesMarkdown()
+    .map(markdown => {
+      const markdownSource = readFileSync(markdown.filename, 'utf8');
+      return {
+        ...markdown,
+        components: getHeaders(markdownSource).components,
+      };
+    })
+    .filter(markdown => markdown.components.length > 0);
+  const components = findComponents(path.resolve(rootDirectory, args[2]));
 
-const components = findComponents(path.resolve(rootDirectory, args[2]));
+  components.forEach(component => {
+    buildDocs({ component, pagesMarkdown });
+  });
+}
 
-components.forEach(component => {
-  buildDocs({ component, pagesMarkdown });
-});
+run();

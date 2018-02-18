@@ -6,7 +6,7 @@ components: SpeedDial, SpeedDialAction, SpeedDialIcon
 
 The floating action button can display related actions.
 
-{{"demo": "pages/lab/speed-dial/SpeedDial.js"}}
+{{"demo": "pages/lab/speed-dial/SpeedDials.js"}}
 
 You can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props
 of the `SpeedDialIcon` component.

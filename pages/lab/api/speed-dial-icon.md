@@ -1,5 +1,5 @@
 ---
-filename: /packages/lab/src/SpeedDialIcon/SpeedDialIcon.js
+filename: /packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

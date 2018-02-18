@@ -1,5 +1,5 @@
 {
-  "name": "material-ui-build-next",
+  "name": "material-ui",
   "private": true,
   "author": "Material-UI Team",
   "version": "1.0.0-beta.34",
@@ -24,8 +24,8 @@
     "start": "yarn docs:dev",
     "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev",
     "docs:api": "yarn docs:api:core && yarn docs:api:lab",
-    "docs:api:core": "rimraf ./pages/api/* && babel-node ./docs/scripts/buildApi.js ./src ./pages/api",
-    "docs:api:lab": "rimraf ./pages/lab/api/* && cross-env BABEL_ENV=docs-development babel-node ./docs/scripts/buildApi.js ./packages/lab/src ./pages/lab/api",
+    "docs:api:core": "rimraf ./pages/api && cross-env BABEL_ENV=docs-production && babel-node ./docs/scripts/buildApi.js ./src ./pages/api",
+    "docs:api:lab": "rimraf ./pages/lab/api && cross-env BABEL_ENV=docs-production babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./pages/lab/api",
     "docs:icons": "rimraf static/icons/* && babel-node ./docs/scripts/buildIcons.js",
     "docs:build": "cross-env NODE_ENV=production BABEL_ENV=docs-production next build",
     "docs:start": "next start",
@@ -50,7 +50,7 @@
     "spellcheck": "eslint . --config .eslintrc.spellcheck.js && echo \"eslint: no lint errors\"",
     "test": "yarn lint && yarn flow && yarn typescript && yarn test:unit",
     "test:unit": "cross-env NODE_ENV=test mocha test/**/*.spec.js src/{,**/}*.spec.js docs/src/**/*.spec.js",
-    "test:watch": "yarn test:unit -w",
+    "test:watch": "yarn test:unit --watch",
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.spec.js src/{,**/}*.spec.js && nyc report -r lcovonly",
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.spec.js src/{,**/}*.spec.js && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
@@ -92,7 +92,7 @@
     "react-scrollbar-size": "^2.0.2",
     "react-transition-group": "^2.2.1",
     "recompose": "^0.26.0",
-    "scroll": "^2.0.1",
+    "scroll": "^2.0.3",
     "warning": "^3.0.0"
   },
   "devDependencies": {
@@ -100,7 +100,7 @@
     "@types/react": "16.0.35",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
-    "autoprefixer": "^7.2.5",
+    "autoprefixer": "^8.0.0",
     "autosuggest-highlight": "^3.1.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -170,7 +170,6 @@
     "postcss": "^6.0.16",
     "prettier": "^1.8.2",
     "prismjs": "^1.8.4",
-    "random-words": "0.0.1",
     "raw-loader": "^0.5.1",
     "react": "^16.1.1",
     "react-autosuggest": "^9.3.2",
@@ -213,5 +212,11 @@
     ],
     "sourceMap": false,
     "instrument": false
-  }
+  },
+  "engines": {
+    "node": ">=6.11.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

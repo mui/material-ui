@@ -36,10 +36,7 @@ const blacklistSuite = [
 ];
 
 const blacklistName = [
-  'docs-getting-started/Usage', // codesandbox inside
-  'docs-style/Color', // too large
-  'docs-demos-drawers/tileData', // raw data
-  'docs-demos-grid-list/tileData', // raw data
+  'docs-getting-started-usage/Usage', // codesandbox inside
 ];
 
 // Also use some of the demos to avoid code duplication.

@@ -1,4 +1,4 @@
-# Material-UI codemod
+# material-ui-codemod
 
 > Codemod scripts for Material-UI
 

@@ -10,7 +10,6 @@ import SaveIcon from 'material-ui-icons/Save';
 import PrintIcon from 'material-ui-icons/Print';
 import ShareIcon from 'material-ui-icons/Share';
 import DeleteIcon from 'material-ui-icons/Delete';
-import EditIcon from 'material-ui-icons/ModeEdit';
 
 const styles = theme => ({
   root: {
@@ -31,7 +30,7 @@ const actions = [
   { icon: <DeleteIcon />, name: 'Delete' },
 ];
 
-class OpenIconSpeedDial extends React.Component {
+class SpeedDials extends React.Component {
   state = {
     open: false,
     hidden: false,
@@ -70,12 +69,12 @@ class OpenIconSpeedDial extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Button onClick={this.handleVisibility}>Speed Dial with openIcon</Button>
+        <Button onClick={this.handleVisibility}>Speed Dial</Button>
         <SpeedDial
-          ariaLabel="SpeedDial openIcon example"
+          ariaLabel="SpeedDial example"
           className={classes.speedDial}
           hidden={hidden}
-          icon={<SpeedDialIcon openIcon={<EditIcon />} />}
+          icon={<SpeedDialIcon />}
           onBlur={this.handleClose}
           onClick={this.handleClick}
           onClose={this.handleClose}
@@ -98,8 +97,8 @@ class OpenIconSpeedDial extends React.Component {
   }
 }
 
-OpenIconSpeedDial.propTypes = {
+SpeedDials.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(OpenIconSpeedDial);
+export default withStyles(styles)(SpeedDials);
