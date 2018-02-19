@@ -43,7 +43,6 @@ export const styles = theme => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     minHeight: '1.1875em', // Reset (19px), match the native input line-height
-    lineHeight: '1.1875em', // Reset (19px), match the native input line-height
   },
   disabled: {
     cursor: 'default',
