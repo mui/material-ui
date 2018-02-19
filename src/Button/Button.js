@@ -253,7 +253,7 @@ Button.propTypes = {
    */
   href: PropTypes.string,
   /**
-   * If `true`, and `fab` is `true`, will use mini floating action button styling.
+   * If `true`, and `variant` is `'fab'`, will use mini floating action button styling.
    */
   mini: PropTypes.bool,
   /**
