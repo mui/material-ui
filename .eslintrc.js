@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   // So parent files don't get applied
   root: true,
@@ -20,7 +22,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: './docs/webpackBaseConfig.js',
+        config: path.join(__dirname, './docs/webpackBaseConfig.js'),
       },
     },
   },

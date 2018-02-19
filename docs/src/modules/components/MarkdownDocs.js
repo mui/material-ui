@@ -33,12 +33,9 @@ function MarkdownDocs(props, context) {
   let markdownLocation = markdownLocationProp || context.activePage.pathname;
 
   if (!markdownLocationProp) {
-    // Hack for handling the nested demos
-    if (markdownLocation.indexOf('/demos') === 0) {
-      const token = markdownLocation.split('/');
-      token.push(token[token.length - 1]);
-      markdownLocation = token.join('/');
-    }
+    const token = markdownLocation.split('/');
+    token.push(token[token.length - 1]);
+    markdownLocation = token.join('/');
 
     if (headers.filename) {
       markdownLocation = headers.filename;
@@ -46,6 +43,8 @@ function MarkdownDocs(props, context) {
       markdownLocation = `/docs/src/pages${markdownLocation}.md`;
     }
   }
+
+  const section = markdownLocation.split('/')[4];
 
   return (
     <AppContent className={classes.root}>
@@ -86,7 +85,12 @@ function MarkdownDocs(props, context) {
 ## API
 
 ${headers.components
-            .map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`)
+            .map(
+              component =>
+                `- [&lt;${component} /&gt;](${section === 'lab' ? '/lab/api' : '/api'}/${kebabCase(
+                  component,
+                )})`,
+            )
             .join('\n')}
           `}
         />
