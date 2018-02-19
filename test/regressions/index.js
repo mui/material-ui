@@ -37,6 +37,8 @@ const blacklistSuite = [
 
 const blacklistName = [
   'docs-getting-started-usage/Usage', // codesandbox inside
+  'docs-demos-drawers/tileData', // raw data
+  'docs-demos-grid-list/tileData', // raw data
 ];
 
 // Also use some of the demos to avoid code duplication.
