@@ -22,3 +22,4 @@ Feel free to submit a pull-request to add more projects; we will accept them if 
 - [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) A React component for swipeable views. Plays well with the `Tabs` component.
 - [react-text-mask](https://github.com/text-mask/text-mask) Input mask for React, Angular, Ember, Vue, & plain JavaScript.
 - [redux-form](http://redux-form.com/6.1.1/examples/material-ui/) Manage your form state in Redux.
+- [react-final-form](https://github.com/final-form/react-final-form#material-ui-10) Subscription-based form state management for React.
