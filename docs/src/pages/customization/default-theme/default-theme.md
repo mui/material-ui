@@ -2,7 +2,7 @@
 
 Here's what the theme object looks like with the default values:
 
-{{"demo": "pages/customization/ThemeDefault.js", "hideEditButton": true}}
+{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideEditButton": true}}
 
 The theme normalizes implementation by providing default values for palette, dark and light types, typography, breakpoints, shadows, transitions, etc.
 

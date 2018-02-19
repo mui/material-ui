@@ -40,7 +40,7 @@ If you want to learn more about color, you can check out [the color section](/st
 
 You may override the default palette values by including a `palette` object as part of your theme.
 
-If any of the [`palette.primary`](/customization/theme-default?expend-path=$.palette.primary), [`palette.secondary`](/customization/theme-default?expend-path=$.palette.secondary) or [`palette.error`](/customization/theme-default?expend-path=$.palette.error) 'intent' objects are provided,
+If any of the [`palette.primary`](/customization/default-theme?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme?expend-path=$.palette.secondary) or [`palette.error`](/customization/default-theme?expend-path=$.palette.error) 'intent' objects are provided,
 they will replace the defaults.
 
 The intent objects accept either a color object, or an object with one or more of the following keys:
@@ -186,7 +186,7 @@ html {
 ### Other variables
 
 In addition to the palette, dark and light types, and typography, the theme normalizes implementation by providing many more default values, such as breakpoints, shadows, transitions, etc.
-You can check out the [default theme section](/customization/theme-default) to view the default theme in full.
+You can check out the [default theme section](/customization/default-theme) to view the default theme in full.
 
 ### Adding custom style
 

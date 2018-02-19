@@ -17,7 +17,7 @@ Each breakpoint matches with a *fixed* screen width:
 - **xl**, xlarge: 1920px or larger
 
 These values can always be customized.
-You will find them in the theme, in the [`breakpoints.values`](/customization/theme-default?expend-path=$.breakpoints.values) object.
+You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme?expend-path=$.breakpoints.values) object.
 
 The breakpoints are used internally in various components to make them responsive,
 but you can also take advantage of them
@@ -40,5 +40,5 @@ modals, snackbars, tooltips, and more.
 - tooltip: 1500
 
 These values can always be customized.
-You will find them in the theme under the [`zIndex`](/customization/theme-default?expend-path=$.zIndex) key.
+You will find them in the theme under the [`zIndex`](/customization/default-theme?expend-path=$.zIndex) key.
 We don’t encourage customization of individual values; should you change one, you likely need to change them all.
