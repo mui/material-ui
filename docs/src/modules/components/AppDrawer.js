@@ -19,7 +19,6 @@ const styles = theme => ({
   },
   title: {
     color: theme.palette.text.secondary,
-    marginBottom: theme.spacing.unit / 2,
     '&:hover': {
       color: theme.palette.primary.main,
     },
@@ -39,39 +38,39 @@ const styles = theme => ({
   },
 });
 
-// eslint-disable-next-line react/prop-types
-function renderNavItems({ pages, ...params }) {
-  return (
-    <List>
-      {pages.reduce(
-        // eslint-disable-next-line no-use-before-define
-        (items, page) => reduceChildRoutes({ items, page, ...params }),
-        [],
-      )}
-    </List>
-  );
+function renderNavItems(props, pages, activePage) {
+  let navItems = null;
+
+  if (pages && pages.length) {
+    // eslint-disable-next-line no-use-before-define
+    navItems = pages.reduce(reduceChildRoutes.bind(null, props, activePage), []);
+  }
+
+  return <List>{navItems}</List>;
 }
 
-function reduceChildRoutes({ props, activePage, items, page, depth }) {
-  if (page.children && page.children.length > 1) {
-    const title = pageToTitle(page);
-    const openImmediately = activePage.pathname.indexOf(page.pathname) === 0;
-
-    items.push(
-      <AppDrawerNavItem depth={depth} key={title} openImmediately={openImmediately} title={title}>
-        {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1 })}
-      </AppDrawerNavItem>,
-    );
-  } else if (page.title !== false) {
-    const title = pageToTitle(page);
-    page = page.children && page.children.length === 1 ? page.children[0] : page;
+function reduceChildRoutes(props, activePage, items, childPage, index) {
+  if (childPage.children && childPage.children.length > 1) {
+    const openImmediately = activePage.pathname.indexOf(childPage.pathname) !== -1 || false;
 
     items.push(
       <AppDrawerNavItem
-        depth={depth}
-        key={title}
-        title={title}
-        href={page.pathname}
+        key={index}
+        openImmediately={openImmediately}
+        title={pageToTitle(childPage)}
+      >
+        {renderNavItems(props, childPage.children, activePage)}
+      </AppDrawerNavItem>,
+    );
+  } else if (childPage.title !== false) {
+    childPage =
+      childPage.children && childPage.children.length === 1 ? childPage.children[0] : childPage;
+
+    items.push(
+      <AppDrawerNavItem
+        key={index}
+        title={pageToTitle(childPage)}
+        href={childPage.pathname}
         onClick={props.onClose}
       />,
     );
@@ -105,7 +104,7 @@ function AppDrawer(props, context) {
           <Divider absolute />
         </Toolbar>
       </div>
-      {renderNavItems({ props, pages: context.pages, activePage: context.activePage, depth: 0 })}
+      {renderNavItems(props, context.pages, context.activePage)}
     </div>
   );
 

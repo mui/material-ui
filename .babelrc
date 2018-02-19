@@ -27,11 +27,10 @@
           "module-resolver",
           {
             "alias": {
-              "@material-ui/lab": "./packages/material-ui-lab/src",
-              "docs": "./docs",
+              "pages": "./pages",
               "material-ui": "./src",
               "material-ui-icons": "./packages/material-ui-icons/src",
-              "pages": "./pages"
+              "docs": "./docs"
             }
           }
         ],
@@ -48,11 +47,10 @@
           "module-resolver",
           {
             "alias": {
-              "@material-ui/lab": "./packages/material-ui-lab/src",
-              "docs": "./docs",
+              "pages": "./pages",
               "material-ui": "./src",
               "material-ui-icons": "./packages/material-ui-icons/src",
-              "pages": "./pages"
+              "docs": "./docs"
             }
           }
         ],
@@ -94,16 +92,7 @@
     "test": {
       "sourceMaps": "both",
       "plugins": [
-        "transform-flow-strip-types",
-        [
-          "module-resolver",
-          {
-            "alias": {
-              "material-ui": "./src",
-              "material-ui-icons": "./packages/material-ui-icons/src"
-            }
-          }
-        ],
+        "transform-flow-strip-types"
       ]
     }
   }

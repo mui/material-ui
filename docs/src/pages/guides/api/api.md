@@ -1,4 +1,4 @@
-# API Design Approach
+# API
 
 We have learned a lot regarding how people use Material-UI.
 The 1.x.x rewrite allowed us to completely rethink our component API.

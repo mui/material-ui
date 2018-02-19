@@ -5,29 +5,32 @@
   "description": "Codemod scripts for Material-UI",
   "keywords": [
     "react",
-    "react-component",
-    "material design",
     "material-ui",
     "codemod",
     "jscodeshift"
   ],
   "scripts": {
     "test": "yarn test:unit",
-    "test:unit": "cd ../../ && ./node_modules/.bin/mocha packages/material-ui-codemod/src/**/*.spec.js",
-    "test:watch": "yarn test:unit --watch",
-    "build": "../../node_modules/.bin/rimraf lib && ../../node_modules/.bin/babel ./src --out-dir ./lib",
+    "test:unit": "mocha src/**/*.spec.js",
+    "test:watch": "yarn test:unit -- -w",
+    "build": "rimraf lib && babel ./src --out-dir ./lib",
     "prepublish": "yarn build"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui.git"
   },
+  "files": [
+    "src",
+    "lib"
+  ],
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod",
   "license": "MIT",
-  "homepage": "https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod",
   "devDependencies": {
-    "jscodeshift": "^0.4.0"
-  },
-  "engines": {
-    "node": ">=6.11.0"
+    "babel-cli": "^6.26.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "cross-env": "^5.0.5",
+    "jscodeshift": "^0.3.18",
+    "mocha": "^3.5.3"
   }
 }

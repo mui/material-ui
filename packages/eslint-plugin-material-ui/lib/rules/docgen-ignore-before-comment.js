@@ -1,10 +1,7 @@
-module.exports = {
-  create: context => {
-    context.getAllComments().forEach(comment => {
-      if (comment.type !== 'Block') {
-        return;
-      }
-
+module.exports = function(context) {
+  return {
+    BlockComment: function(node) {
+      const source = context.getSource(node);
       /**
        * The regex has 5 groups (mostly for readability) that match:
        *   1. '/**',
@@ -15,11 +12,9 @@ module.exports = {
        *
        *   All lines can begin with any number of spaces.
        */
-      if (comment.value.match(/( *\*\n)( *\*.*\n)+( *\* @ignore\n)( *\*.*\n)*( )/)) {
-        context.report(comment, '@ignore should be at the beginning of a block comment.');
+      if (source.match(/( *\/\*\*\n)( *\*.*\n)+( *\* @ignore\n)( *\*.*\n)*( *\*\/)/)) {
+        context.report(node, '@ignore should be at the beginning of a block comment.');
       }
-    });
-
-    return {};
-  },
+    },
+  };
 };

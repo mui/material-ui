@@ -1,7 +1,9 @@
-const eslint = require('eslint');
-const rule = require('./docgen-ignore-before-comment');
+// @flow
 
-const ruleTester = new eslint.RuleTester();
+const rule = require('../../../lib/rules/docgen-ignore-before-comment');
+const RuleTester = require('eslint').RuleTester;
+
+const ruleTester = new RuleTester();
 ruleTester.run('ignore-before-comment', rule, {
   valid: [
     '\n/**\n * @ignore\n */\n',
@@ -9,6 +11,7 @@ ruleTester.run('ignore-before-comment', rule, {
     '\n/**\n * @ignore\n * Multi-line\n * comment.\n */\n',
     '\n  /**\n   * @ignore\n   * Indented\n   * multi-line\n   * comment.\n   */\n',
   ],
+
   invalid: [
     {
       code: '\n/**\n * Comment.\n * @ignore\n */\n',

@@ -131,7 +131,7 @@ const pages = [
     children: [
       {
         pathname: '/guides/api',
-        title: 'API Design Approach',
+        title: 'API',
       },
       {
         pathname: '/guides/minimizing-bundle-size',
@@ -168,19 +168,6 @@ const pages = [
         pathname: '/guides/right-to-left',
         title: 'Right-to-left',
       },
-    ],
-  },
-  {
-    pathname: '/lab',
-    children: [
-      {
-        pathname: '/lab/about',
-        title: 'About The Lab',
-      },
-      {
-        pathname: '/lab/speed-dial',
-      },
-      findPages[2].children[1],
     ],
   },
   {

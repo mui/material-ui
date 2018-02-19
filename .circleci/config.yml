@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
-    - image: circleci/node:9.5
+    - image: circleci/node:6.11
 restore_repo: &restore_repo
   restore_cache:
     keys:
@@ -26,10 +26,7 @@ jobs:
           key: v1-yarn-sha-{{ checksum "yarn.lock" }}
       - run:
           name: Install js dependencies
-          command: yarn
-      - run:
-          name: Should not have any git not staged
-          command: git diff --exit-code
+          command: yarn install --frozen-lockfile
       - save_cache:
           key: v1-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
@@ -69,7 +66,7 @@ jobs:
     # This isn't user facing code.
     # Let's take advantage of the most up to date node version.
     docker:
-      - image: circleci/node:9.5
+      - image: circleci/node:9.4
     steps:
       - *restore_repo
       - run:
@@ -97,8 +94,8 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:9.5
-      - image: selenium/standalone-chrome:3.9.0
+      - image: circleci/node:6.11
+      - image: selenium/standalone-chrome:3.4.0
     steps:
       - *restore_repo
       - run:

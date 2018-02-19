@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "description": "Custom eslint rules for Material-UI",
-  "main": "src/index.js",
+  "repository": "https://github.com/mui-org/material-ui/packages/eslint-plugin-material-ui",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "../../node_modules/.bin/mocha src/**/*.spec.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
+    "test": "../../node_modules/mocha/bin/_mocha -- tests/lib/**/*.js",
+    "lint": "../../node_modules/eslint/bin/eslint.js --rulesdir ../.. --ext .js lib tests && echo \"eslint: no lint errors\""
   },
   "license": "MIT"
 }

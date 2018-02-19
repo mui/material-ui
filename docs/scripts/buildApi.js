@@ -24,21 +24,8 @@ function ensureExists(pat, mask, cb) {
   });
 }
 
-// Read the command-line args
-const args = process.argv;
-
-// Exit with a message
-function exit(error) {
-  console.log(error, '\n');
-  process.exit();
-}
-
-if (args.length < 4) {
-  exit('\nERROR: syntax: buildApi source target');
-}
-
 const rootDirectory = path.resolve(__dirname, '../../');
-const docsApiDirectory = path.resolve(rootDirectory, args[3]);
+const docsApiDirectory = path.resolve(rootDirectory, 'pages/api');
 const theme = createMuiTheme();
 
 function buildDocs(options) {
@@ -117,21 +104,16 @@ export default withRoot(Page);
   });
 }
 
-function run() {
-  const pagesMarkdown = findPagesMarkdown()
-    .map(markdown => {
-      const markdownSource = readFileSync(markdown.filename, 'utf8');
-      return {
-        ...markdown,
-        components: getHeaders(markdownSource).components,
-      };
-    })
-    .filter(markdown => markdown.components.length > 0);
-  const components = findComponents(path.resolve(rootDirectory, args[2]));
+const pagesMarkdown = findPagesMarkdown()
+  .map(markdown => {
+    const markdownSource = readFileSync(markdown.filename, 'utf8');
+    return {
+      ...markdown,
+      components: getHeaders(markdownSource).components,
+    };
+  })
+  .filter(markdown => markdown.components.length > 0);
 
-  components.forEach(component => {
-    buildDocs({ component, pagesMarkdown });
-  });
-}
-
-run();
+findComponents().forEach(component => {
+  buildDocs({ component, pagesMarkdown });
+});

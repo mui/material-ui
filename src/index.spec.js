@@ -8,14 +8,10 @@
 import { assert } from 'chai';
 import * as MaterialUI from './index';
 
-describe('material-ui', () => {
-  it('should have exports', () => {
-    assert.strictEqual(typeof MaterialUI, 'object');
-  });
+describe('Material-UI', () => {
+  it('should have exports', () => assert.ok(MaterialUI));
 
   it('should not do undefined exports', () => {
-    Object.keys(MaterialUI).forEach(exportKey =>
-      assert.strictEqual(Boolean(MaterialUI[exportKey]), true),
-    );
+    Object.keys(MaterialUI).forEach(exportKey => assert.ok(MaterialUI[exportKey]));
   });
 });

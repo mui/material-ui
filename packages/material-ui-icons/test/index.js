@@ -2,6 +2,7 @@ import { assert } from 'chai';
 import fs from 'fs';
 import path from 'path';
 import temp from 'temp';
+import _ from 'lodash';
 import builder from '../builder';
 
 // Automatically track and cleanup files at exit
@@ -190,7 +191,7 @@ describe('--mui-require', () => {
     });
 
     it('should load SvgIcon as absolute', done => {
-      const absoluteOptions = { ...options, muiRequire: 'absolute' };
+      const absoluteOptions = _.extend({}, options, { muiRequire: 'absolute' });
       builder.main(absoluteOptions, () => {
         assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
         assert.strictEqual(fs.existsSync(actualFilePath), true);
@@ -204,7 +205,7 @@ describe('--mui-require', () => {
 
   describe('relative', () => {
     it('should load SvgIcon as relative', done => {
-      const relativeOptions = { ...options, muiRequire: 'relative' };
+      const relativeOptions = _.extend({}, options, { muiRequire: 'relative' });
       builder.main(relativeOptions, () => {
         assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
         assert.strictEqual(fs.existsSync(actualFilePath), true);

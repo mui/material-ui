@@ -56,14 +56,13 @@ Fancy larger or smaller buttons? Use the `size` or the `mini` property.
 
 Icon buttons are commonly found in app bars and toolbars.
 
-Icons are also appropriate for toggle buttons that allow a single choice to be selected or
-deselected, such as adding or removing a star to an item.
+Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
 
 ### Buttons with icons and label
 
-Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+Sometimes you might want to have icons for certain button to enhance the UX of the application as humans recognize logos more than plain text. For example, if you have a delete button you can label it with a dustbin icon.
 
 {{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
 

@@ -20,28 +20,33 @@ const styles = theme => ({
       textDecoration: 'none',
     },
   }),
-  item: {
+  navItem: {
     ...theme.typography.body2,
     display: 'block',
     paddingTop: 0,
     paddingBottom: 0,
   },
-  leaf: {
+  navLink: {
     fontWeight: theme.typography.fontWeightRegular,
     display: 'flex',
     paddingTop: 0,
     paddingBottom: 0,
   },
-  leafButton: {
+  navLinkButton: {
     color: theme.palette.text.secondary,
+    paddingLeft: theme.spacing.unit * 5,
     fontSize: theme.typography.pxToRem(13),
   },
-  active: {
+  activeButton: {
     color: theme.palette.text.primary,
   },
 });
 
 class AppDrawerNavItem extends React.Component {
+  static defaultProps = {
+    openImmediately: false,
+  };
+
   state = {
     open: false,
   };
@@ -57,32 +62,23 @@ class AppDrawerNavItem extends React.Component {
   };
 
   render() {
-    const {
-      children,
-      classes,
-      depth,
-      href,
-      onClick,
-      openImmediately,
-      title,
-      ...other
-    } = this.props;
-
-    const style = {
-      paddingLeft: 8 * (3 + 2 * depth),
-    };
+    const { children, classes, href, openImmediately, title } = this.props;
 
     if (href) {
       return (
-        <ListItem className={classes.leaf} disableGutters {...other}>
+        <ListItem className={classes.navLink} disableGutters>
           <Button
             component={props => (
-              <Link variant="button" activeClassName={classes.active} href={href} {...props} />
+              <Link
+                variant="button"
+                activeClassName={classes.activeButton}
+                href={href}
+                {...props}
+              />
             )}
-            className={classNames(classes.button, classes.leafButton)}
+            className={classNames(classes.button, classes.navLinkButton)}
             disableRipple
-            onClick={onClick}
-            style={style}
+            onClick={this.props.onClick}
           >
             {title}
           </Button>
@@ -91,14 +87,13 @@ class AppDrawerNavItem extends React.Component {
     }
 
     return (
-      <ListItem className={classes.item} disableGutters {...other}>
+      <ListItem className={classes.navItem} disableGutters>
         <Button
           classes={{
             root: classes.button,
             label: openImmediately ? 'algolia-lvl0' : '',
           }}
           onClick={this.handleClick}
-          style={style}
         >
           {title}
         </Button>
@@ -113,15 +108,10 @@ class AppDrawerNavItem extends React.Component {
 AppDrawerNavItem.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.object.isRequired,
-  depth: PropTypes.number.isRequired,
   href: PropTypes.string,
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,
   title: PropTypes.string.isRequired,
-};
-
-AppDrawerNavItem.defaultProps = {
-  openImmediately: false,
 };
 
 export default withStyles(styles)(AppDrawerNavItem);

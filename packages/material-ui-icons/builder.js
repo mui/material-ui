@@ -5,6 +5,7 @@ import yargs from 'yargs';
 import path from 'path';
 import rimraf from 'rimraf';
 import Mustache from 'mustache';
+import _ from 'lodash';
 import glob from 'glob';
 import mkdirp from 'mkdirp';
 
@@ -12,6 +13,13 @@ const SVG_ICON_RELATIVE_REQUIRE = '../../SvgIcon';
 const SVG_ICON_ABSOLUTE_REQUIRE = 'material-ui/SvgIcon';
 const RENAME_FILTER_DEFAULT = './filters/rename/default';
 const RENAME_FILTER_MUI = './filters/rename/material-design-icons';
+
+const DEFAULT_OPTIONS = {
+  muiRequire: 'absolute',
+  glob: '/**/*.svg',
+  innerPath: '',
+  renameFilter: RENAME_FILTER_DEFAULT,
+};
 
 /**
  * Return Pascal-Cased classname.
@@ -23,7 +31,7 @@ function pascalCase(destPath) {
   const splitregex = new RegExp(`[${path.sep}-]+`);
 
   let parts = destPath.replace('.js', '').split(splitregex);
-  parts = parts.map(part => {
+  parts = _.map(parts, part => {
     return part.charAt(0).toUpperCase() + part.substring(1);
   });
 
@@ -137,11 +145,7 @@ function parseArgs() {
 function main(options, callback) {
   let originalWrite; // todo, add winston / other logging tool
 
-  options.muiRequire = options.muiRequire || 'absolute';
-  options.glob = options.glob || '/**/*.svg';
-  options.innerPath = options.innerPath || '';
-  options.renameFilter = options.renameFilter || RENAME_FILTER_DEFAULT;
-
+  options = _.defaults(options, DEFAULT_OPTIONS);
   if (options.disableLog) {
     // disable console.log opt, used for tests.
     originalWrite = process.stdout.write;
@@ -152,12 +156,12 @@ function main(options, callback) {
   console.log('** Starting Build');
 
   let renameFilter = options.renameFilter;
-  if (typeof renameFilter === 'string') {
+  if (_.isString(renameFilter)) {
     /* eslint-disable global-require, import/no-dynamic-require */
-    renameFilter = require(renameFilter).default;
+    renameFilter = require(renameFilter);
     /* eslint-enable */
   }
-  if (typeof renameFilter !== 'function') {
+  if (!_.isFunction(renameFilter)) {
     throw Error('renameFilter must be a function');
   }
   if (!fs.existsSync(options.outputDir)) {
