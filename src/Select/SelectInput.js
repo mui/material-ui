@@ -262,9 +262,9 @@ class SelectInput extends React.Component {
 
     const MenuMinWidth = this.displayNode && !autoWidth ? this.displayNode.clientWidth : undefined;
 
-    let tabIndexFinal = tabIndex || 0
+    let tabIndexFinal = tabIndex || 0;
     if (disabled) {
-      tabIndexFinal = null
+      tabIndexFinal = null;
     }
 
     return (
