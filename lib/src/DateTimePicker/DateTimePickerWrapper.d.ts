@@ -1,7 +1,7 @@
 import { ComponentClass, ReactNode } from 'react';
 import { DateTimePickerView } from '../constants/date-picker-view';
 import { DateType } from '../constants/prop-types';
-import { Utils } from '../utils/utils';
+import { Utils } from '../../typings/utils';
 import { RenderDay } from '../DatePicker/Calendar';
 import { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import { Moment } from 'moment';

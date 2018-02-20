@@ -6,7 +6,7 @@ import TimePicker from './TimePicker';
 import PickerBase from '../_shared/PickerBase';
 import withUtils from '../_shared/WithUtils';
 
-class TimePickerWrapper extends PickerBase {
+export class TimePickerWrapper extends PickerBase {
   static propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.object,

@@ -5,7 +5,7 @@ import { MINUTES } from '../constants/clock-types';
 import ClockNumber from './ClockNumber';
 import withUtils from '../_shared/WithUtils';
 
-class MinutesView extends Component {
+export class MinutesView extends Component {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,

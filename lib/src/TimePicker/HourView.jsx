@@ -5,7 +5,7 @@ import { HOURS } from '../constants/clock-types';
 import ClockNumber from './ClockNumber';
 import withUtils from '../_shared/WithUtils';
 
-class HourView extends PureComponent {
+export class HourView extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,

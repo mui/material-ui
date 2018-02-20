@@ -1,6 +1,6 @@
 import { ComponentClass, ReactNode } from 'react';
 import { DateType } from '../constants/prop-types';
-import { Utils } from '../utils/utils';
+import { Utils } from '../../typings/utils';
 import { RenderDay } from './Calendar';
 import { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import { Moment } from 'moment';

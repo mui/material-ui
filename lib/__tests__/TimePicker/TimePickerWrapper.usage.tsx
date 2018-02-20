@@ -2,6 +2,8 @@ import * as React from 'react'
 import { Fragment, Component } from 'react';
 import TimePickerWrapper  from '../../src/TimePicker/TimePickerWrapper';
 import { Moment } from 'moment'
+import { utilsToUse } from '../test-utils';
+import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 
 // initially from the docs site
 export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
@@ -17,7 +19,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
+      <MuiUtilsProvider utils={utilsToUse}>
         <TimePickerWrapper
           keyboard
           mask={[/\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
@@ -25,7 +27,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
           value={selectedDate}
           onChange={this.handleChange}
         />
-      </Fragment>
+      </MuiUtilsProvider>
     );
   }
 }

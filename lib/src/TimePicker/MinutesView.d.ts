@@ -1,5 +1,5 @@
 import { ComponentClass } from 'react';
-import { Utils } from '../utils/utils';
+import { Utils } from '../../typings/utils';
 import { Moment } from 'moment';
 
 export interface MinutesViewProps {

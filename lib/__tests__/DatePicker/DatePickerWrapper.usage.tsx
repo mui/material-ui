@@ -6,6 +6,8 @@ import { IconButton } from 'material-ui'
 import * as classNames from 'classnames';
 import { Moment } from 'moment'
 import { DayComponent } from '../../src/DatePicker/Calendar'
+import { utilsToUse } from '../test-utils';
+import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 
 // initially from the docs site
 export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
@@ -21,7 +23,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
+      <MuiUtilsProvider utils={utilsToUse}>
         <DatePickerWrapper
           keyboard
           clearable
@@ -29,7 +31,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
           onChange={this.handleChange}
           animateYearScrolling={false}
         />
-      </Fragment>
+      </MuiUtilsProvider>
     );
   }
 }

@@ -1,6 +1,6 @@
 import { ComponentClass } from 'react';
 import { DateTimePickerView } from '../constants/date-picker-view';
-import { Utils } from '../utils/utils';
+import { Utils } from '../../typings/utils';
 import { Moment } from 'moment';
 
 type MeridiemMode = 'am' | 'pm';

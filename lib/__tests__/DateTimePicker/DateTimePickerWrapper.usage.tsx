@@ -6,7 +6,9 @@ import DateTimePickerWrapper  from '../../src/DateTimePicker/DateTimePickerWrapp
 import * as classNames from 'classnames'
 import { Moment } from 'moment'
 import * as PropTypes from 'prop-types'
-import {DayComponent} from '../../src/DatePicker/Calendar'
+import { DayComponent } from '../../src/DatePicker/Calendar'
+import { utilsToUse } from '../test-utils';
+import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 
 // FIXME: src vs exported component names a source of confusion
 // FIXME https://github.com/dmtrKovalenko/material-ui-pickers/issues/169
@@ -25,7 +27,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
+      <MuiUtilsProvider utils={utilsToUse}>
         <DateTimePickerWrapper
           value={selectedDate}
           onChange={this.handleChange}
@@ -53,7 +55,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
             ),
           }}
         />
-      </Fragment>
+      </MuiUtilsProvider>
     );
   }
 }
@@ -90,7 +92,7 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
+      <MuiUtilsProvider utils={utilsToUse}>
         <DateTimePickerWrapper
           autoSubmit={false}
           value={selectedDate}
@@ -98,7 +100,7 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
           renderDay={this.renderCustomDayForDateTime}
           returnMoment
         />
-      </Fragment>
+      </MuiUtilsProvider>
     );
   }
 }

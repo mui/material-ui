@@ -1,6 +1,6 @@
 import { ComponentClass, ReactNode } from 'react';
 import { DateType } from '../constants/prop-types';
-import { Utils } from '../utils/utils';
+import { Utils } from '../../typings/utils';
 import { Moment } from 'moment';
 
 export interface YearSelectionProps {
