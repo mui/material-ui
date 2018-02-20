@@ -298,22 +298,22 @@ describe('<Chip />', () => {
 
       it('should not call onDelete for child event', () => {
         wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('backspace') });
-        assert(onDeleteSpy.notCalled);
+        assert.strictEqual(onDeleteSpy.notCalled, true);
       });
 
       it('should not call onClick for child event when `space` is pressed', () => {
         wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('space') });
-        assert(onClickSpy.notCalled);
+        assert.strictEqual(onClickSpy.notCalled, true);
       });
 
       it('should not call onClick for child event when `enter` is pressed', () => {
         wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('enter') });
-        assert(onClickSpy.notCalled);
+        assert.strictEqual(onClickSpy.notCalled, true);
       });
 
       it('should not call onKeyDown for child event', () => {
         wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('p') });
-        assert(onKeyDownSpy.notCalled);
+        assert.strictEqual(onKeyDownSpy.notCalled, true);
       });
     });
   });
