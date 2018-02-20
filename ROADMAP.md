@@ -145,6 +145,11 @@ It's already the default behavior of the `Icon` component. You will still be abl
   +import CircularProgress from 'material-ui/CircularProgress';
   ```
 
+  ```diff
+  -import { ListItem } from 'material-ui/List';
+  +import ListItem from 'material-ui/ListItem';
+  ```
+
 - [ ] Change the CSS specificity rule to solve [#10010](https://github.com/mui-org/material-ui/issues/10010) and [#9742](https://github.com/mui-org/material-ui/issues/9742) at scale.
   It's inspired by the Bootstrap approach to writing CSS. Basically, it follows two rules:
   1. A variant has one level of specificity. User overrides can be considered a variant, so we can keep things as simple as possible, e.g. `color` or `variant`.
@@ -174,13 +179,20 @@ It's already the default behavior of the `Icon` component. You will still be abl
      />
   ```
 
+- [ ] Use `@material-ui npm scope name` #9673. The pros have been raised in the linked issue.
+
+```diff
+-import Button from 'material-ui/Button';
++import Button from '@material-ui/core/Button';
+```
+
 - [ ] Look into the Render Props API over the Component Injection API. This one is an area of investigation. For instance, there is potential for simplifying the customization of the transitions.
 
 These breaking changes will be spread into different releases over the next few months to make the upgrade path as smooth as possible.
 Not only does the Material-UI project have to be upgraded for each breaking change,
 but we also have to upgrade our own projects.
 **We don't take making breaking changes lightly**, it's very costly with UI components.
-The test coverage on userland is hard to raise without tools like [visual regression tests](https://www.argos-ci.com/mui-org/material-ui).
+For users, test coverage is hard to raise without tools like [visual regression tests](https://www.argos-ci.com/mui-org/material-ui).
 
 **Let us know** what you think we should or shouldn't do, what's important, and what's missing!
 
