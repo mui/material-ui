@@ -143,11 +143,11 @@ Dialog.propTypes = {
    */
   disableEscapeKeyDown: PropTypes.bool,
   /**
-   * If `true`, it will be full-screen
+   * If `true`, the dialog will be full-screen
    */
   fullScreen: PropTypes.bool,
   /**
-   * If specified, stretches dialog to max width.
+   * If `true`, the dialog stretches to `maxWidth`.
    */
   fullWidth: PropTypes.bool,
   /**
