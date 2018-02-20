@@ -235,7 +235,6 @@ export class DateTextField extends PureComponent {
       TextFieldComponent,
       ...other
     } = this.props;
-    console.log(classes)
 
     const { displayValue, error } = this.state;
     const localInputProps = {
