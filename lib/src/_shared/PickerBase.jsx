@@ -28,7 +28,6 @@ export default class PickerBase extends PureComponent {
 
   getValidDateOrCurrent = () => {
     const { utils, value } = this.props;
-    console.log(this.props.utils);
     const date = utils.date(value);
 
     return utils.isValid(date) ? date : utils.date();

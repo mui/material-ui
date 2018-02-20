@@ -4,7 +4,7 @@ import withStyles from 'material-ui/styles/withStyles';
 
 import ClockPointer from './ClockPointer';
 import * as clockType from '../constants/clock-types';
-import { getMinutes, getHours } from '../utils/time-utils';
+import { getMinutes, getHours } from '../_helpers/time-utils';
 
 export class Clock extends Component {
   static propTypes = {

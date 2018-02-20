@@ -8,7 +8,7 @@ import HourView from '../TimePicker/HourView';
 import MinutesView from '../TimePicker/MinutesView';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import DatetimePickerHeader from './DateTimePickerHeader';
-import { convertToMeridiem } from '../utils/time-utils';
+import { convertToMeridiem } from '../_helpers/time-utils';
 
 import DomainPropTypes from '../constants/prop-types';
 import * as viewType from '../constants/date-picker-view';
@@ -80,7 +80,7 @@ export class DateTimePicker extends Component {
   }
 
   handleChange = (time, isFinish = false) => {
-    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm);
+    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm, this.props.utils);
     this.props.onChange(withMeridiem, isFinish);
   }
 

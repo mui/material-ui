@@ -40,6 +40,7 @@
     "react-dom": "^16.2.0"
   },
   "dependencies": {
+    "date-fns": "^1.29.0",
     "moment-range": "^3.0.3",
     "react-text-mask": "^5.0.2"
   },

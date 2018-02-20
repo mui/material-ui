@@ -54,7 +54,8 @@ export class Calendar extends Component {
 
   onDateSelect = (day) => {
     const { date, utils } = this.props;
-    const withHours = utils.setHours(day, utils.setMinutes(date));
+
+    const withHours = utils.setHours(day, utils.getHours(date));
     const withMinutes = utils.setMinutes(withHours, utils.getMinutes(date));
 
     this.props.onChange(withMinutes);

@@ -5,7 +5,7 @@ import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import HourView from './HourView';
 import MinutesView from './MinutesView';
-import { convertToMeridiem } from '../utils/time-utils';
+import { convertToMeridiem } from '../_helpers/time-utils';
 import defaultUtils from '../utils/utils';
 
 export class TimePicker extends Component {
@@ -38,7 +38,7 @@ export class TimePicker extends Component {
   }
 
   handleChange(time, isFinish, openMinutes) {
-    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm);
+    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm, this.props.utils);
 
     if (isFinish) {
       if (!openMinutes) {
