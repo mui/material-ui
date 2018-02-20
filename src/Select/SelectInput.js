@@ -305,8 +305,8 @@ class SelectInput extends React.Component {
           name={name}
           readOnly={readOnly}
           ref={this.handleSelectRef}
-          {...other}
           type="hidden"
+          {...other}
         />
         <ArrowDropDownIcon className={classes.icon} />
         <Menu
