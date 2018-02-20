@@ -11,7 +11,7 @@ export interface CardHeaderProps
   title?: React.ReactNode;
 }
 
-export type CardHeaderClassKey = 'root' | 'avatar' | 'content' | 'title' | 'subheader';
+export type CardHeaderClassKey = 'root' | 'avatar' | 'action' | 'content' | 'title' | 'subheader';
 
 declare const CardHeader: React.ComponentType<CardHeaderProps>;
 
