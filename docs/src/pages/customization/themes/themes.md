@@ -18,6 +18,13 @@ You can learn more about this in [the API section](#muithemeprovider).
 ## Theme configuration variables
 
 Changing the theme configuration variables is the most effective way to match Material-UI to your needs.
+The following sections cover the most important theme variables:
+
+- [Palette](#palette)
+- [Type (light / dark theme)](#type-light-dark-theme-)
+- [Typography](#typography)
+- [Other variables](#other-variables)
+- [Custom variables](#custom-variables)
 
 ### Palette
 
@@ -40,13 +47,15 @@ If you want to learn more about color, you can check out [the color section](/st
 
 You may override the default palette values by including a `palette` object as part of your theme.
 
-If any of the [`palette.primary`](/customization/theme-default?expend-path=$.palette.primary), [`palette.secondary`](/customization/theme-default?expend-path=$.palette.secondary) or [`palette.error`](/customization/theme-default?expend-path=$.palette.error) 'intent' objects are provided,
-they will replace the defaults.
+If any of the [`palette.primary`](/customization/default-theme?expend-path=$.palette.primary),
+[`palette.secondary`](/customization/default-theme?expend-path=$.palette.secondary) or
+[`palette.error`](/customization/default-theme?expend-path=$.palette.error)
+'intention' objects are provided, they will replace the defaults.
 
-The intent objects accept either a color object, or an object with one or more of the following keys:
+The intention value can either be a [color](/style/color) object, or an object with one or more of the following keys:
 
 ```js
-interface PaletteColor {
+interface PaletteIntention {
   light?: string;
   main: string;
   dark?: string;
@@ -56,27 +65,42 @@ interface PaletteColor {
 
 **Using a color object**
 
-If the intent provides a color object, the following mapping is used to populate the required keys:
+The simplest way to customize an intention is to import one or more of the provided colors
+and apply them to a palette intention:
+
+```js
+import { createMuiTheme } from 'material-ui/styles';
+import blue from 'material-ui/colors/blue';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+  },
+});
+```
+
+If the intention key receives a color object as in the example above,
+the following mapping is used to populate the required keys:
 
 ```js
 palette: {
   primary: {
-    light: primaryColor[300],
-    main: primaryColor[500],
-    dark: primaryColor[700],
-    contrastText: getContrastText(primaryColor[500]),
+    light: palette.primary[300],
+    main: palette.primary[500],
+    dark: palette.primary[700],
+    contrastText: getContrastText(palette.primary[500]),
   },
   secondary: {
-    light: secondaryColor.A200,
-    main: secondaryColor.A400,
-    dark: secondaryColor.A700,
-    contrastText: getContrastText(secondaryColor.A400),
+    light: palette.secondary.A200,
+    main: palette.secondary.A400,
+    dark: palette.secondary.A700,
+    contrastText: getContrastText(palette.secondary.A400),
   },
   error: {
-    light: errorColor[300],
-    main: errorColor[500],
-    dark: errorColor[700],
-    contrastText: getContrastText(errorColor[500]),
+    light: palette.error[300],
+    main: palette.errorr[500],
+    dark: palette.error[700],
+    contrastText: getContrastText(palette.error[500]),
   },
 },
 ```
@@ -109,7 +133,32 @@ const theme = createMuiTheme({
 
 **Providing the colors directly**
 
-If the intent object contains custom colors using any of the
+If you wish to provide more customized colors, you can either create your own color object,
+or directly supply colors to some or all of the intention's keys:
+
+```js
+import { createMuiTheme } from 'material-ui/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      // light: will be calculated from palette.primary.main,
+      main: '#ff4400',
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contast with palette.primary.main
+    },
+    secondary: {
+      light: '#0066ff',
+      main: '#0044ff',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#ffcc00',
+    },
+    // error: will us the default color
+  },
+});
+```
+
+As in the example above, if the intention object contains custom colors using any of the
 `main`, `light`, `dark` or `contrastText` keys, these map as follows:
 
 - If the `dark` and / or `light` keys are omitted, their value(s) will be calculated from `main`,
@@ -133,7 +182,7 @@ Note that `contrastThreshold` follows a non-linear curve.
 
 Need inspiration? The Material Design team has built an awesome [palette configuration tool](/style/color#color-tool) to help you.
 
-### Dark/light theme
+### Type (light /dark theme)
 
 You can make the theme dark by setting `type` to `dark`.
 While it's only a single property value change, internally it modifies the value of the following keys:
@@ -186,9 +235,9 @@ html {
 ### Other variables
 
 In addition to the palette, dark and light types, and typography, the theme normalizes implementation by providing many more default values, such as breakpoints, shadows, transitions, etc.
-You can check out the [default theme section](/customization/theme-default) to view the default theme in full.
+You can check out the [default theme section](/customization/default-theme) to view the default theme in full.
 
-### Adding custom style
+### Custom variables
 
 When using Material-UI's [styling solution](/customization/css-in-js) with your own components,
 you can also take advantage of the theme.

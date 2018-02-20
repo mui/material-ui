@@ -117,7 +117,7 @@ const pages = [
         pathname: '/customization/themes',
       },
       {
-        pathname: '/customization/theme-default',
+        pathname: '/customization/default-theme',
         title: 'Default Theme',
       },
       {
