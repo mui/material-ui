@@ -88,7 +88,7 @@ describe('<SelectInput />', () => {
           <MenuItem value={30}>Thirty</MenuItem>
         </SelectInput>,
       );
-      assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).props().children, 'Ten');
+      assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).text(), 'Ten');
     });
   });
 
@@ -96,7 +96,7 @@ describe('<SelectInput />', () => {
     it('should use the property to render the value', () => {
       const renderValue = x => String(-x);
       const wrapper = shallow(<SelectInput {...defaultProps} renderValue={renderValue} />);
-      assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).props().children, '-10');
+      assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).text(), '-10');
     });
   });
 
