@@ -7,7 +7,7 @@ import DomainPropTypes from '../constants/prop-types';
 import PickerBase from '../_shared/PickerBase';
 import withUtils from '../_shared/WithUtils';
 
-class DatePickerWrapper extends PickerBase {
+export class DatePickerWrapper extends PickerBase {
   static propTypes = {
     /* Datepicker value */
     value: DomainPropTypes.date,

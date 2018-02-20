@@ -11,7 +11,7 @@ import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
 import withUtils from '../_shared/WithUtils';
 
-class DateTextField extends PureComponent {
+export class DateTextField extends PureComponent {
   static propTypes = {
     classes: PropTypes.shape({}).isRequired,
     value: PropTypes.oneOfType([
@@ -235,6 +235,7 @@ class DateTextField extends PureComponent {
       TextFieldComponent,
       ...other
     } = this.props;
+    console.log(classes)
 
     const { displayValue, error } = this.state;
     const localInputProps = {
