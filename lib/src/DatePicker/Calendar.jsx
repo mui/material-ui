@@ -53,13 +53,11 @@ export class Calendar extends Component {
   }
 
   onDateSelect = (day) => {
-    const { date } = this.props;
-    const updatedDate = day
-      .clone()
-      .hours(date.hours())
-      .minutes(date.minutes());
+    const { date, utils } = this.props;
+    const withHours = utils.setHours(day, utils.setMinutes(date));
+    const withMinutes = utils.setMinutes(withHours, utils.getMinutes(date));
 
-    this.props.onChange(updatedDate);
+    this.props.onChange(withMinutes);
   };
 
   handleChangeMonth = (newMonth) => {
@@ -96,24 +94,24 @@ export class Calendar extends Component {
   }
 
   handleKeyDown = (event) => {
-    const { theme, date } = this.props;
+    const { theme, date, utils } = this.props;
 
     switch (keycode(event)) {
       case 'up':
-        this.moveToDay(date.clone().subtract(7, 'days'));
+        this.moveToDay(utils.addDays(date, -7));
         break;
       case 'down':
-        this.moveToDay(date.clone().add(7, 'days'));
+        this.moveToDay(utils.addDays(date, 7));
         break;
       case 'left':
         theme.direction === 'ltr'
-          ? this.moveToDay(date.clone().subtract(1, 'day'))
-          : this.moveToDay(date.clone().add(1, 'day'));
+          ? this.moveToDay(utils.addDays(date, -1))
+          : this.moveToDay(utils.addDays(date, 1));
         break;
       case 'right':
         theme.direction === 'ltr'
-          ? this.moveToDay(date.clone().add(1, 'day'))
-          : this.moveToDay(date.clone().subtract(1, 'day'));
+          ? this.moveToDay(utils.addDays(date, 1))
+          : this.moveToDay(utils.addDays(date, -1));
         break;
       default:
         // if keycode is not handled, stop execution
@@ -137,13 +135,12 @@ export class Calendar extends Component {
         {this.renderDays(week)}
       </div>
     ));
-  };
-
+  }
 
   renderDays = (week) => {
     const { date, renderDay, utils } = this.props;
 
-    const selectedDate = date.clone().startOf('day');
+    const selectedDate = utils.startOfDay(date);
     const currentMonthNumber = utils.getMonth(this.state.currentMonth);
     const now = utils.date();
 
