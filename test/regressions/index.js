@@ -23,7 +23,7 @@ const regressions = requireRegression.keys().reduce((res, path) => {
 const blacklistSuite = [
   // Flaky
   'docs-demos-progress',
-  'docs-discover-more', // GitHub images
+  'docs-discover-more-team', // GitHub images
 
   // Needs interaction
   'docs-demos-dialogs',
