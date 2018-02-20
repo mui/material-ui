@@ -93,6 +93,7 @@ class SpeedDial extends React.Component {
       className: classNameProp,
       hidden,
       icon: iconProp,
+      onClick,
       onClose,
       onKeyDown,
       open,
@@ -127,7 +128,6 @@ class SpeedDial extends React.Component {
       if (!React.isValidElement(iconProp)) {
         return iconProp;
       }
-
       if (isMuiElement(iconProp, ['SpeedDialIcon'])) {
         return React.cloneElement(iconProp, { open });
       }
@@ -140,6 +140,7 @@ class SpeedDial extends React.Component {
           <Button
             variant="fab"
             color="primary"
+            onClick={onClick}
             onKeyDown={this.handleKeyDown}
             aria-label={ariaLabel}
             aria-haspopup="true"
@@ -148,7 +149,7 @@ class SpeedDial extends React.Component {
             ref={fab => {
               this.fab = fab;
             }}
-            data-mui-test="SpeedDialAction"
+            data-mui-test="SpeedDial"
             {...ButtonProps}
           >
             {icon()}
@@ -199,6 +200,10 @@ SpeedDial.propTypes = {
    * provides a default Icon with animation.
    */
   icon: PropTypes.element.isRequired,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
    *
