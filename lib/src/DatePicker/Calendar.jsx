@@ -65,11 +65,10 @@ export class Calendar extends Component {
 
   validateMinMaxDate = (day) => {
     const { minDate, maxDate, utils } = this.props;
-    const startOfDay = date => utils.startOfDay(utils.date(date));
 
     return (
-      (minDate && utils.isBefore(day, startOfDay(minDate))) ||
-      (maxDate && utils.isAfter(day, startOfDay(maxDate)))
+      (minDate && utils.isBeforeDay(day, utils.date(minDate))) ||
+      (maxDate && utils.isAfterDay(day, utils.date(maxDate)))
     );
   };
 

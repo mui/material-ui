@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui';
-import { MuiPickerUtilsProvider, dateFnsUtils } from 'material-ui-pickers';
+import { MuiPickerUtilsProvider, dateFnsUtils, momentUtils } from 'material-ui-pickers';
 
 import { create } from 'jss';
 import preset from 'jss-preset-default';
