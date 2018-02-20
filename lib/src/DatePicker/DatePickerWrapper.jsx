@@ -5,9 +5,9 @@ import ModalWrapper from '../wrappers/ModalWrapper';
 import DatePicker from './DatePicker';
 import DomainPropTypes from '../constants/prop-types';
 import PickerBase from '../_shared/PickerBase';
-import defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 
-export default class DatePickerWrapper extends PickerBase {
+class DatePickerWrapper extends PickerBase {
   static propTypes = {
     /* Datepicker value */
     value: DomainPropTypes.date,
@@ -42,7 +42,7 @@ export default class DatePickerWrapper extends PickerBase {
     /* Custom renderer for day renderDay(date, selectedDate, dayInCurrentMonth) */
     renderDay: PropTypes.func,
     /* Date displaying utils */
-    utils: PropTypes.func,
+    utils: PropTypes.func.isRequired,
     /* Disable specific date hook */
     shouldDisableDate: PropTypes.func,
   }
@@ -63,7 +63,6 @@ export default class DatePickerWrapper extends PickerBase {
     rightArrowIcon: undefined,
     renderDay: undefined,
     labelFunc: undefined,
-    utils: defaultUtils,
     shouldDisableDate: undefined,
   }
 
@@ -131,3 +130,6 @@ export default class DatePickerWrapper extends PickerBase {
     );
   }
 }
+
+export default withUtils()(DatePickerWrapper);
+

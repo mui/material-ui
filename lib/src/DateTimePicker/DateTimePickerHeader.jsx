@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from 'material-ui/styles/withStyles';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
-import defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 import * as viewType from '../constants/date-picker-view';
 
 export const DateTimePickerHeader = (props) => {
@@ -93,12 +93,11 @@ DateTimePickerHeader.propTypes = {
   openView: PropTypes.string.isRequired,
   onOpenViewChange: PropTypes.func.isRequired,
   setMeridiemMode: PropTypes.func.isRequired,
-  utils: PropTypes.func,
+  utils: PropTypes.func.isRequired,
   ampm: PropTypes.bool,
 };
 
 DateTimePickerHeader.defaultProps = {
-  utils: defaultUtils,
   ampm: true,
 };
 
@@ -143,4 +142,4 @@ const styles = () => ({
   },
 });
 
-export default withStyles(styles, { withTheme: true })(DateTimePickerHeader);
+export default withStyles(styles, { withTheme: true })(withUtils()(DateTimePickerHeader));

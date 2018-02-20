@@ -3,19 +3,17 @@ import PropTypes from 'prop-types';
 import Clock from './Clock';
 import { HOURS } from '../constants/clock-types';
 import ClockNumber from './ClockNumber';
-import defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 
-
-export default class HourView extends PureComponent {
+class HourView extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    utils: PropTypes.func,
+    utils: PropTypes.func.isRequired,
     ampm: PropTypes.bool,
   }
 
   static defaultProps = {
-    utils: defaultUtils,
     ampm: true,
   }
 
@@ -84,3 +82,6 @@ export default class HourView extends PureComponent {
     );
   }
 }
+
+export default withUtils()(HourView);
+

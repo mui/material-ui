@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import withStyles from 'material-ui/styles/withStyles';
 import DomainPropTypes from '../constants/prop-types';
-import defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 import Year from './Year';
 
 export class YearSelection extends PureComponent {
@@ -16,12 +16,11 @@ export class YearSelection extends PureComponent {
     disablePast: PropTypes.bool.isRequired,
     disableFuture: PropTypes.bool.isRequired,
     animateYearScrolling: PropTypes.bool,
-    utils: PropTypes.func,
+    utils: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
     animateYearScrolling: false,
-    utils: defaultUtils,
   }
 
   componentDidMount = () => {
@@ -99,4 +98,4 @@ const styles = {
   },
 };
 
-export default withStyles(styles, { name: 'MuiPickersYearSelection' })(YearSelection);
+export default withStyles(styles, { name: 'MuiPickersYearSelection' })(withUtils()(YearSelection));

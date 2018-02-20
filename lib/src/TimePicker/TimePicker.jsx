@@ -6,7 +6,7 @@ import ToolbarButton from '../_shared/ToolbarButton';
 import HourView from './HourView';
 import MinutesView from './MinutesView';
 import { convertToMeridiem } from '../_helpers/time-utils';
-import defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 
 export class TimePicker extends Component {
   static propTypes = {
@@ -15,13 +15,12 @@ export class TimePicker extends Component {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
     children: PropTypes.node,
-    utils: PropTypes.func,
+    utils: PropTypes.func.isRequired,
     ampm: PropTypes.bool,
   }
 
   static defaultProps = {
     children: null,
-    utils: defaultUtils,
     ampm: true,
   }
 
@@ -38,7 +37,12 @@ export class TimePicker extends Component {
   }
 
   handleChange(time, isFinish, openMinutes) {
-    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm, this.props.utils);
+    const withMeridiem = convertToMeridiem(
+      time,
+      this.state.meridiemMode,
+      this.props.ampm,
+      this.props.utils,
+    );
 
     if (isFinish) {
       if (!openMinutes) {
@@ -186,4 +190,4 @@ const styles = () => ({
 export default withStyles(
   styles,
   { withTheme: true, name: 'MuiPickersTimePicker' },
-)(TimePicker);
+)(withUtils()(TimePicker));

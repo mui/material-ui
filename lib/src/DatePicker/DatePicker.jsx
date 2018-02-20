@@ -5,8 +5,8 @@ import Calendar from './Calendar';
 import YearSelection from './YearSelection';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
-import * as defaultUtils from '../utils/utils';
 import DomainPropTypes from '../constants/prop-types';
+import withUtils from '../_shared/WithUtils';
 
 export class DatePicker extends PureComponent {
   static propTypes = {
@@ -22,7 +22,7 @@ export class DatePicker extends PureComponent {
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
-    utils: PropTypes.func,
+    utils: PropTypes.func.isRequired,
     shouldDisableDate: PropTypes.func,
   }
 
@@ -37,7 +37,6 @@ export class DatePicker extends PureComponent {
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
     renderDay: undefined,
-    utils: defaultUtils,
     shouldDisableDate: undefined,
   }
 
@@ -137,5 +136,5 @@ export class DatePicker extends PureComponent {
   }
 }
 
-export default DatePicker;
+export default withUtils()(DatePicker);
 

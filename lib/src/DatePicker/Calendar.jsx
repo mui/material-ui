@@ -6,10 +6,9 @@ import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import CalendarHeader from './CalendarHeader';
 import DomainPropTypes from '../constants/prop-types';
-import * as defaultUtils from '../utils/utils';
 import DayWrapper from './DayWrapper';
 import Day from './Day';
-
+import withUtils from '../_shared/WithUtils';
 
 /* eslint-disable no-unused-expressions */
 export class Calendar extends Component {
@@ -26,8 +25,8 @@ export class Calendar extends Component {
     renderDay: PropTypes.func,
     /** @ignore */
     theme: PropTypes.object.isRequired,
-    utils: PropTypes.func,
     shouldDisableDate: PropTypes.func,
+    utils: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -38,7 +37,6 @@ export class Calendar extends Component {
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
     renderDay: undefined,
-    utils: defaultUtils,
     shouldDisableDate: () => false,
   };
 
@@ -219,4 +217,4 @@ const styles = theme => ({
 export default withStyles(styles, {
   name: 'MuiPickersCalendar',
   withTheme: true,
-})(Calendar);
+})(withUtils()(Calendar));

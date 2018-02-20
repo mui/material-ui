@@ -4,7 +4,7 @@ import withStyles from 'material-ui/styles/withStyles';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/Icon';
-import * as defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 
 export const CalendarHeader = (props) => {
   const {
@@ -61,13 +61,12 @@ CalendarHeader.propTypes = {
   theme: PropTypes.object.isRequired,
   leftArrowIcon: PropTypes.node,
   rightArrowIcon: PropTypes.node,
-  utils: PropTypes.func,
+  utils: PropTypes.func.isRequired,
 };
 
 CalendarHeader.defaultProps = {
   leftArrowIcon: 'keyboard_arrow_left',
   rightArrowIcon: 'keyboard_arrow_right',
-  utils: defaultUtils,
 };
 
 const styles = theme => ({
@@ -93,4 +92,4 @@ const styles = theme => ({
 export default withStyles(
   styles,
   { withTheme: true, name: 'MuiPickersCalendarHeader' },
-)(CalendarHeader);
+)(withUtils()(CalendarHeader));

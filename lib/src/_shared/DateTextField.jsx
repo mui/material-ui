@@ -9,7 +9,7 @@ import withStyles from 'material-ui/styles/withStyles';
 
 import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
-import defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 
 class DateTextField extends PureComponent {
   static propTypes = {
@@ -41,7 +41,7 @@ class DateTextField extends PureComponent {
     invalidDateMessage: PropTypes.string,
     clearable: PropTypes.bool,
     TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    utils: PropTypes.func,
+    utils: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -65,7 +65,6 @@ class DateTextField extends PureComponent {
     minDateMessage: 'Date should not be before minimal date',
     maxDateMessage: 'Date should not be after maximal date',
     TextFieldComponent: TextField,
-    utils: defaultUtils,
   }
 
   getDisplayDate = (props) => {
@@ -211,6 +210,7 @@ class DateTextField extends PureComponent {
 
   render() {
     const {
+      utils,
       format,
       classes,
       disabled,
@@ -235,8 +235,8 @@ class DateTextField extends PureComponent {
       TextFieldComponent,
       ...other
     } = this.props;
-    const { displayValue, error } = this.state;
 
+    const { displayValue, error } = this.state;
     const localInputProps = {
       inputComponent: MaskedInput,
       inputProps: {
@@ -277,4 +277,4 @@ const styles = {
   },
 };
 
-export default withStyles(styles)(DateTextField);
+export default withStyles(styles)(withUtils()(DateTextField));

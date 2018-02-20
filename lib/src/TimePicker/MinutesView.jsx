@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import Clock from './Clock';
 import { MINUTES } from '../constants/clock-types';
 import ClockNumber from './ClockNumber';
-import defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 
-export default class MinutesView extends Component {
+class MinutesView extends Component {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    utils: PropTypes.func,
+    utils: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
-    utils: defaultUtils,
   }
 
   handleChange = (minutes, isFinish) => {
@@ -50,3 +49,6 @@ export default class MinutesView extends Component {
     );
   }
 }
+
+export default withUtils()(MinutesView);
+
