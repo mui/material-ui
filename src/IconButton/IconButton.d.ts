@@ -13,8 +13,7 @@ export type IconButtonClassKey =
   | 'colorPrimary'
   | 'colorSecondary'
   | 'colorInherit'
-  | 'label'
-  | 'icon';
+  | 'label';
 
 declare const IconButton: React.ComponentType<IconButtonProps>;
 
