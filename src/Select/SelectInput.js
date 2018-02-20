@@ -285,6 +285,9 @@ class SelectInput extends React.Component {
           onClick={disabled || readOnly ? null : this.handleClick}
           onFocus={onFocus}
         >
+          {/* So the vertical align positioning algorithm quicks in. */}
+          {/* eslint-disable-next-line react/no-danger */}
+          <span dangerouslySetInnerHTML={{ __html: '&#8203' }} />
           {display}
         </div>
         <input
