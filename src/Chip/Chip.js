@@ -99,6 +99,11 @@ class Chip extends React.Component {
   };
 
   handleKeyDown = event => {
+    if (event.currentTarget !== event.target || this.chipRef !== event.target) {
+      // Ignore events from children of `Chip`
+      return;
+    }
+
     const { onClick, onDelete, onKeyDown } = this.props;
     const key = keycode(event);
 
