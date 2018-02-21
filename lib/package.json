@@ -5,7 +5,7 @@
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "build/dist/material-ui-pickers.cjs.js",
   "module": "build/dist/material-ui-pickers.es.js",
-  "types": "./src/index.d.ts",
+  "types": "src/index.d.ts",
   "keywords": [
     "material-ui",
     "pickers",
@@ -40,7 +40,7 @@
     "react-dom": "^16.2.0"
   },
   "dependencies": {
-    "date-fns": "^1.29.0",
+    "date-fns": "^2.0.0-alpha.7",
     "moment-range": "^3.0.3",
     "react-text-mask": "^5.0.2"
   },

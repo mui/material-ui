@@ -99,7 +99,6 @@ export class DateTextField extends PureComponent {
       minDateMessage,
       invalidDateMessage,
     } = this.props;
-
     if (!utils.isValid(value)) {
       // if null - do not show error
       if (utils.isNull(value)) {
@@ -149,10 +148,10 @@ export class DateTextField extends PureComponent {
 
   handleChange = (e) => {
     const {
-      format,
       clearable,
       onClear,
       utils,
+      format,
     } = this.props;
 
     if (clearable && e.target.value === '') {
@@ -166,7 +165,8 @@ export class DateTextField extends PureComponent {
     }
 
     const oldValue = utils.date(this.state.value);
-    const newValue = utils.date(e.target.value, format, true);
+    const newValue = utils.parse(e.target.value, format);
+
     const error = this.getError(newValue);
 
     this.setState({
@@ -175,7 +175,7 @@ export class DateTextField extends PureComponent {
       error,
     }, () => {
       if (!error && utils.format(newValue, 'LLLL') !== utils.format(oldValue, 'LLLL')) {
-        this.props.onChange(newValue, true);
+        this.props.onChange(newValue);
       }
     });
   }
@@ -190,7 +190,6 @@ export class DateTextField extends PureComponent {
     }
 
     e.target.blur();
-
     this.openPicker(e);
   }
 
