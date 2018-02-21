@@ -280,6 +280,69 @@ describe('<Snackbar />', () => {
     });
   });
 
+  describe('prop: disableWindowBlurListener', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('should pause auto hide when not disabled and window lost focus', () => {
+      const handleClose = spy();
+      const autoHideDuration = 2e3;
+      mount(
+        <Snackbar
+          open
+          onClose={handleClose}
+          message="message"
+          autoHideDuration={autoHideDuration}
+          disableWindowBlurListener={false}
+        />,
+      );
+
+      const bEvent = new window.Event('blur', { view: window, bubbles: false, cancelable: false });
+      window.dispatchEvent(bEvent);
+
+      assert.strictEqual(handleClose.callCount, 0);
+      clock.tick(autoHideDuration);
+      assert.strictEqual(handleClose.callCount, 0);
+
+      const fEvent = new window.Event('focus', { view: window, bubbles: false, cancelable: false });
+      window.dispatchEvent(fEvent);
+
+      assert.strictEqual(handleClose.callCount, 0);
+      clock.tick(autoHideDuration);
+      assert.strictEqual(handleClose.callCount, 1);
+      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+    });
+
+    it('should not pause auto hide when disabled and window lost focus', () => {
+      const handleClose = spy();
+      const autoHideDuration = 2e3;
+      mount(
+        <Snackbar
+          open
+          onClose={handleClose}
+          message="message"
+          autoHideDuration={autoHideDuration}
+          disableWindowBlurListener
+        />,
+      );
+
+      const event = new window.Event('blur', { view: window, bubbles: false, cancelable: false });
+      window.dispatchEvent(event);
+
+      assert.strictEqual(handleClose.callCount, 0);
+      clock.tick(autoHideDuration);
+      assert.strictEqual(handleClose.callCount, 1);
+      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+    });
+  });
+
   describe('prop: open', () => {
     it('should not render anything when closed', () => {
       const wrapper = shallow(<Snackbar open={false} message="" />);

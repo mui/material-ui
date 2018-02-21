@@ -16,6 +16,7 @@ export interface SnackbarProps
   action?: React.ReactElement<any> | React.ReactElement<any>[];
   anchorOrigin?: SnackBarOrigin;
   autoHideDuration?: number;
+  disableWindowBlurListener?: boolean;
   message?: React.ReactElement<any>;
   onClose?: (event: React.SyntheticEvent<any>, reason: string) => void;
   onMouseEnter?: React.MouseEventHandler<any>;
