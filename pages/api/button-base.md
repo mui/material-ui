@@ -14,16 +14,16 @@ It contains a load of style reset and some focus/ripple logic.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| buttonRef | func |  | Use that property to pass a ref callback to the native button component. |
-| centerRipple | bool | false | If `true`, the ripples will be centered. They won't start at the cursor interaction position. |
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
-| disabled | bool |  | If `true`, the base button will be disabled. |
-| disableRipple | bool | false | If `true`, the ripple effect will be disabled. |
-| focusRipple | bool | false | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
-| keyboardFocusedClassName | string |  | The CSS class applied while the component is keyboard focused. |
-| onKeyboardFocus | func |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
+| <span class="prop-name">buttonRef</span> | <span class="prop-type">func |  | Use that property to pass a ref callback to the native button component. |
+| <span class="prop-name">centerRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the ripples will be centered. They won't start at the cursor interaction position. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool |  | If `true`, the base button will be disabled. |
+| <span class="prop-name">disableRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the ripple effect will be disabled. |
+| <span class="prop-name">focusRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
+| <span class="prop-name">keyboardFocusedClassName</span> | <span class="prop-type">string |  | The CSS class applied while the component is keyboard focused. |
+| <span class="prop-name">onKeyboardFocus</span> | <span class="prop-type">func |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

@@ -12,24 +12,24 @@ filename: /src/Modal/Modal.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| BackdropComponent | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | Backdrop | A backdrop component. Useful for custom backdrop rendering. |
-| BackdropProps | object |  | Properties applied to the `Backdrop` element. |
-| children | element |  | A single child content element. |
-| classes | object |  | Useful to extend the style applied to components. |
-| container | union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br> |  | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. |
-| disableAutoFocus | bool | false | If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.<br>Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers. |
-| disableBackdropClick | bool | false | If `true`, clicking the backdrop will not fire any callback. |
-| disableEnforceFocus | bool | false | If `true`, the modal will not prevent focus from leaving the modal while open.<br>Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers. |
-| disableEscapeKeyDown | bool | false | If `true`, hitting escape will not fire any callback. |
-| disableRestoreFocus | bool | false | If `true`, the modal will not restore focus to previously focused element once modal is hidden. |
-| hideBackdrop | bool | false | If `true`, the backdrop is not rendered. |
-| keepMounted | bool | false | Always keep the children in the DOM. This property can be useful in SEO situation or when you want to maximize the responsiveness of the Modal. |
-| manager | object | new ModalManager() | A modal manager used to track and manage the state of open Modals. Useful when customizing how modals interact within a container. |
-| onBackdropClick | func |  | Callback fired when the backdrop is clicked. |
-| onClose | func |  | Callback fired when the component requests to be closed. The `reason` parameter can optionally be used to control the response to `onClose`.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"escapeKeyDown"`, `"backdropClick"` |
-| onEscapeKeyDown | func |  | Callback fired when the escape key is pressed, `disableEscapeKeyDown` is false and the modal is in focus. |
-| onRendered | func |  | Callback fired once the children has been mounted into the `container`. It signals that the `open={true}` property took effect. |
-| <span style="color: #31a148">open *</span> | bool |  | If `true`, the modal is open. |
+| <span class="prop-name">BackdropComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">Backdrop</span> | A backdrop component. Useful for custom backdrop rendering. |
+| <span class="prop-name">BackdropProps</span> | <span class="prop-type">object |  | Properties applied to the `Backdrop` element. |
+| <span class="prop-name">children</span> | <span class="prop-type">element |  | A single child content element. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">container</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br> |  | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. |
+| <span class="prop-name">disableAutoFocus</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.<br>Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers. |
+| <span class="prop-name">disableBackdropClick</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, clicking the backdrop will not fire any callback. |
+| <span class="prop-name">disableEnforceFocus</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the modal will not prevent focus from leaving the modal while open.<br>Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers. |
+| <span class="prop-name">disableEscapeKeyDown</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, hitting escape will not fire any callback. |
+| <span class="prop-name">disableRestoreFocus</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the modal will not restore focus to previously focused element once modal is hidden. |
+| <span class="prop-name">hideBackdrop</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the backdrop is not rendered. |
+| <span class="prop-name">keepMounted</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Always keep the children in the DOM. This property can be useful in SEO situation or when you want to maximize the responsiveness of the Modal. |
+| <span class="prop-name">manager</span> | <span class="prop-type">object | <span class="prop-default">new ModalManager()</span> | A modal manager used to track and manage the state of open Modals. Useful when customizing how modals interact within a container. |
+| <span class="prop-name">onBackdropClick</span> | <span class="prop-type">func |  | Callback fired when the backdrop is clicked. |
+| <span class="prop-name">onClose</span> | <span class="prop-type">func |  | Callback fired when the component requests to be closed. The `reason` parameter can optionally be used to control the response to `onClose`.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"escapeKeyDown"`, `"backdropClick"` |
+| <span class="prop-name">onEscapeKeyDown</span> | <span class="prop-type">func |  | Callback fired when the escape key is pressed, `disableEscapeKeyDown` is false and the modal is in focus. |
+| <span class="prop-name">onRendered</span> | <span class="prop-type">func |  | Callback fired once the children has been mounted into the `container`. It signals that the `open={true}` property took effect. |
+| <span class="prop-name required">open *</span> | <span class="prop-type">bool |  | If `true`, the modal is open. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

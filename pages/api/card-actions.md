@@ -12,9 +12,9 @@ filename: /src/Card/CardActions.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| disableActionSpacing | bool | false | If `true`, the card actions do not have additional margin. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">disableActionSpacing</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the card actions do not have additional margin. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

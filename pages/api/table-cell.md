@@ -12,14 +12,14 @@ filename: /src/Table/TableCell.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The table cell contents. |
-| classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. |
-| numeric | bool | false | If `true`, content will align to the right. |
-| padding | enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> | 'default' | Sets the padding applied to the cell. |
-| scope | string |  | Set scope attribute. |
-| sortDirection | enum:&nbsp;'asc'&nbsp;&#124;<br>&nbsp;'desc'&nbsp;&#124;<br>&nbsp;false<br> |  | Set aria-sort direction. |
-| variant | enum:&nbsp;'head'&nbsp;&#124;<br>&nbsp;'body'&nbsp;&#124;<br>&nbsp;'footer'<br> |  | Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The table cell contents. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">numeric</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, content will align to the right. |
+| <span class="prop-name">padding</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> | <span class="prop-default">'default'</span> | Sets the padding applied to the cell. |
+| <span class="prop-name">scope</span> | <span class="prop-type">string |  | Set scope attribute. |
+| <span class="prop-name">sortDirection</span> | <span class="prop-type">enum:&nbsp;'asc'&nbsp;&#124;<br>&nbsp;'desc'&nbsp;&#124;<br>&nbsp;false<br> |  | Set aria-sort direction. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'head'&nbsp;&#124;<br>&nbsp;'body'&nbsp;&#124;<br>&nbsp;'footer'<br> |  | Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

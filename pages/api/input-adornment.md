@@ -12,11 +12,11 @@ filename: /src/Input/InputAdornment.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | node |  | The content of the component, normally an `IconButton` or string. |
-| classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
-| disableTypography | bool | false | If children is a string then disable wrapping in a Typography component. |
-| position | enum:&nbsp;'start'&nbsp;&#124;<br>&nbsp;'end'<br> |  | The position this adornment should appear relative to the `Input`. |
+| <span class="prop-name required">children *</span> | <span class="prop-type">node |  | The content of the component, normally an `IconButton` or string. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">disableTypography</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If children is a string then disable wrapping in a Typography component. |
+| <span class="prop-name">position</span> | <span class="prop-type">enum:&nbsp;'start'&nbsp;&#124;<br>&nbsp;'end'<br> |  | The position this adornment should appear relative to the `Input`. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
