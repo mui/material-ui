@@ -1,10 +1,10 @@
 import { ComponentClass } from 'react';
 import { Utils } from '../../typings/utils';
-import { Moment } from 'moment';
+import { MaterialUiPickersDate } from '../../typings/date'
 
 export interface TimePickerProps {
-    date: Moment;
-    onChange: (date: Moment, isFinished?: boolean) => void;
+    date: MaterialUiPickersDate;
+    onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
     ampm?: boolean;
     utils?: Utils;
 }

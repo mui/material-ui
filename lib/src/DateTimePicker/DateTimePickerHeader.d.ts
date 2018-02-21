@@ -1,12 +1,12 @@
 import { ComponentClass } from 'react';
 import { DateTimePickerView } from '../constants/date-picker-view';
 import { Utils } from '../../typings/utils';
-import { Moment } from 'moment';
+import { MaterialUiPickersDate } from '../../typings/date'
 
 type MeridiemMode = 'am' | 'pm';
 
 export interface DateTimePickerHeaderProps {
-  date: Moment;
+  date: MaterialUiPickersDate;
   meridiemMode: MeridiemMode;
   openView: DateTimePickerView;
   onOpenViewChange: (view: DateTimePickerView) => void;
