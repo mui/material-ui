@@ -14,13 +14,21 @@ npm install --save material-ui@next
 
 Material-UI was designed with the [Roboto](http://www.google.com/fonts/specimen/Roboto)
 font in mind. So be sure to follow [these instructions](/style/typography#general).
+For instance, via Google Web Fonts:
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+```
 
-## Icon Font
+## Font Icons
 
 In order to use the font `Icon` component, or to use icon names (ligatures) directly in components
 that support them, you must first add the [Material icons](https://material.io/icons/) font.
-Here are [some instructions](http://google.github.io/material-design-icons/#icon-font-for-the-web)
+Here are [some instructions](/style/icons#font-icons)
 on how to do so.
+For instance, via Google Web Fonts:
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+```
 
 ## SVG Icons
 

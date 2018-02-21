@@ -19,6 +19,7 @@ Shown below is a sample link markup used to load the Roboto font from a CDN.
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
+
 ## Install with [npm](https://www.npmjs.com/package/typeface-roboto)
 
 You can install it by typing the below command in your terminal:
