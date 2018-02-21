@@ -192,6 +192,7 @@ class Snackbar extends React.Component {
       children,
       classes,
       className,
+      disableWindowBlurListener,
       message,
       onClose,
       onEnter,
@@ -222,7 +223,11 @@ class Snackbar extends React.Component {
     }
 
     return (
-      <EventListener target="window" onFocus={this.handleResume} onBlur={this.handlePause}>
+      <EventListener
+        target="window"
+        onFocus={disableWindowBlurListener ? undefined : this.handleResume}
+        onBlur={disableWindowBlurListener ? undefined : this.handlePause}
+      >
         <ClickAwayListener onClickAway={this.handleClickAway}>
           <div
             className={classNames(
@@ -292,6 +297,10 @@ Snackbar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
+   */
+  disableWindowBlurListener: PropTypes.bool,
   /**
    * When displaying multiple consecutive Snackbars from a parent rendering a single
    * <Snackbar/>, add the key property to ensure independent treatment of each message.
@@ -380,6 +389,7 @@ Snackbar.defaultProps = {
     vertical: 'bottom',
     horizontal: 'center',
   },
+  disableWindowBlurListener: false,
   transition: Slide,
   transitionDuration: {
     enter: duration.enteringScreen,
