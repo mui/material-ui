@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types';
 import { Fragment, Component } from 'react';
-import DatePickerWrapper  from '../../src/DatePicker/DatePickerWrapper';
+import DatePickerWrapper  from '../../src/DatePicker';
 import { IconButton } from 'material-ui'
 import * as classNames from 'classnames';
 import { Moment } from 'moment'
