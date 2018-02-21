@@ -22,7 +22,7 @@ Material-UI provides two components to render system icons: `Icon` for rendering
 The `Icon` component will display an icon from any icon font that supports ligatures.
 As a prerequisite, you must include one, such as the
 [Material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web) in your project.
-For instance using via Google Web Fonts:
+For instance, via Google Web Fonts:
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 ```
