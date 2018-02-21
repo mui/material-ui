@@ -87,6 +87,13 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
 
 ## Components
 
+### Autocomplete
+
+Material-UI doesn't provide any high-level API for solving this problem.
+We encourage people relying on [the solutions the React community has built](https://material-ui-next.com/demos/autocomplete/).
+
+In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui-org/material-ui/issues/9997).
+
 ### Svg Icon
 
 First, run [the migration helper](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
