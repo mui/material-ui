@@ -85,7 +85,7 @@ describe('<SelectInput />', () => {
         <SelectInput {...defaultProps} SelectDisplayProps={{ 'data-test': 'SelectDisplay' }} />,
       );
 
-      const selectDisplay = wrapper.find('[data-mui-test="SelectDisplay"]')
+      const selectDisplay = wrapper.find('[data-mui-test="SelectDisplay"]');
       assert.strictEqual(selectDisplay.props()['data-test'], 'SelectDisplay');
     });
   });
