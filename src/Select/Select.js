@@ -73,6 +73,7 @@ function Select(props) {
     onOpen,
     open,
     renderValue,
+    SelectDisplayProps,
     ...other
   } = props;
 
@@ -95,6 +96,7 @@ function Select(props) {
       onOpen,
       open,
       renderValue,
+      SelectDisplayProps,
     },
   });
 }
@@ -172,6 +174,10 @@ Select.propTypes = {
    * You can only use it when the `native` property is `false` (default).
    */
   renderValue: PropTypes.func,
+  /**
+   * Properties applied to the clickable div element.
+   */
+  SelectDisplayProps: PropTypes.object,
   /**
    * The input value, required for a controlled component.
    */
