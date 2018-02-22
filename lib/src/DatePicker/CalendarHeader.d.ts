@@ -1,10 +1,10 @@
 import { ComponentClass, ReactNode } from 'react';
 import { Utils } from '../../typings/utils';
-import { Moment } from 'moment';
+import { MaterialUiPickersDate } from '../../typings/date'
 
 export interface CalendarHeaderProps {
     currentMonth: object;
-    onMonthChange: (date: Moment) => void;
+    onMonthChange: (date: MaterialUiPickersDate) => void;
     leftArrowIcon?: ReactNode;
     rightArrowIcon?: ReactNode;
     utils?: Utils;

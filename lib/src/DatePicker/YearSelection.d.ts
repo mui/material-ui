@@ -1,13 +1,13 @@
 import { ComponentClass, ReactNode } from 'react';
 import { DateType } from '../constants/prop-types';
 import { Utils } from '../../typings/utils';
-import { Moment } from 'moment';
+import { MaterialUiPickersDate } from '../../typings/date'
 
 export interface YearSelectionProps {
-    date: Moment;
+    date: MaterialUiPickersDate;
     minDate?: DateType;
     maxDate?: DateType;
-    onChange: (date: Moment) => void;
+    onChange: (date: MaterialUiPickersDate) => void;
     disablePast?: boolean;
     disableFuture?: boolean;
     animateYearScrolling?: boolean;

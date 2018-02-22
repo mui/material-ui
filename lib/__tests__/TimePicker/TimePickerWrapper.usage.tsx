@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Fragment, Component } from 'react';
-import TimePickerWrapper  from '../../src/TimePicker/TimePickerWrapper';
+import TimePickerWrapper  from '../../src/TimePicker';
 import { Moment } from 'moment'
 import { utilsToUse } from '../test-utils';
 import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'

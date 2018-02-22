@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Fragment, Component } from 'react';
 import { IconButton, Typography, Icon } from 'material-ui';
 import InputAdornment  from 'material-ui/Input/InputAdornment';
-import DateTimePickerWrapper  from '../../src/DateTimePicker/DateTimePickerWrapper';
+import DateTimePickerWrapper  from '../../src/DateTimePicker';
 import * as classNames from 'classnames'
 import { Moment } from 'moment'
 import * as PropTypes from 'prop-types'
@@ -10,10 +10,6 @@ import { DayComponent } from '../../src/DatePicker/Calendar'
 import { utilsToUse } from '../test-utils';
 import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 
-// FIXME: src vs exported component names a source of confusion
-// FIXME https://github.com/dmtrKovalenko/material-ui-pickers/issues/169
-
-// initially from the docs site
 export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
   state = {
     selectedDate: new Date(),
