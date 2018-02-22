@@ -14,9 +14,9 @@ For the `Radio`, you should be using the `RadioGroup` component instead of this 
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| row | bool | false | Display group of elements in a compact row. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">row</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Display group of elements in a compact row. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

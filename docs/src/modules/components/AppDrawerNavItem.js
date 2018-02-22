@@ -1,40 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'docs/src/modules/components/Link';
-import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import { ListItem } from 'material-ui/List';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/transitions/Collapse';
 
 const styles = theme => ({
-  button: theme.mixins.gutters({
-    borderRadius: 0,
-    justifyContent: 'flex-start',
-    textTransform: 'none',
-    width: '100%',
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
-      textDecoration: 'none',
-    },
-  }),
   item: {
-    ...theme.typography.body2,
     display: 'block',
     paddingTop: 0,
     paddingBottom: 0,
   },
-  leaf: {
-    fontWeight: theme.typography.fontWeightRegular,
+  itemLeaf: {
     display: 'flex',
     paddingTop: 0,
     paddingBottom: 0,
   },
-  leafButton: {
+  button: {
+    justifyContent: 'flex-start',
+    textTransform: 'none',
+    width: '100%',
+  },
+  buttonLeaf: {
+    justifyContent: 'flex-start',
+    textTransform: 'none',
+    width: '100%',
     color: theme.palette.text.secondary,
-    fontSize: theme.typography.pxToRem(13),
   },
   active: {
     color: theme.palette.text.primary,
@@ -74,12 +66,12 @@ class AppDrawerNavItem extends React.Component {
 
     if (href) {
       return (
-        <ListItem className={classes.leaf} disableGutters {...other}>
+        <ListItem className={classes.itemLeaf} disableGutters {...other}>
           <Button
             component={props => (
               <Link variant="button" activeClassName={classes.active} href={href} {...props} />
             )}
-            className={classNames(classes.button, classes.leafButton)}
+            className={classes.buttonLeaf}
             disableRipple
             onClick={onClick}
             style={style}

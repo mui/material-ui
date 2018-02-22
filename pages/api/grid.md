@@ -12,24 +12,24 @@ filename: /src/Grid/Grid.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| alignContent | enum:&nbsp;'stretch', 'center', 'flex-start', 'flex-end', 'space-between', 'space-around'<br> | 'stretch' | Defines the `align-content` style property. It's applied for all screen sizes. |
-| alignItems | enum:&nbsp;'flex-start', 'center', 'flex-end', 'stretch', 'baseline'<br> | 'stretch' | Defines the `align-items` style property. It's applied for all screen sizes. |
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
-| container | bool | false | If `true`, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*. |
-| direction | enum:&nbsp;'row'&nbsp;&#124;<br>&nbsp;'row-reverse'&nbsp;&#124;<br>&nbsp;'column'&nbsp;&#124;<br>&nbsp;'column-reverse'<br> | 'row' | Defines the `flex-direction` style property. It is applied for all screen sizes. |
-| hidden | object |  | If provided, will wrap with [Hidden](/api/hidden) component and given properties. |
-| item | bool | false | If `true`, the component will have the flex *item* behavior. You should be wrapping *items* with a *container*. |
-| justify | enum:&nbsp;'flex-start', 'center', 'flex-end', 'space-between', 'space-around'<br> | 'flex-start' | Defines the `justify-content` style property. It is applied for all screen sizes. |
-| lg | enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden. |
-| md | enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `md` breakpoint and wider screens if not overridden. |
-| sm | enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `sm` breakpoint and wider screens if not overridden. |
-| spacing | enum:&nbsp;0, 8, 16, 24, 40<br> | 16 | Defines the space between the type `item` component. It can only be used on a type `container` component. |
-| wrap | enum:&nbsp;'nowrap'&nbsp;&#124;<br>&nbsp;'wrap'&nbsp;&#124;<br>&nbsp;'wrap-reverse'<br> | 'wrap' | Defines the `flex-wrap` style property. It's applied for all screen sizes. |
-| xl | enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `xl` breakpoint and wider screens. |
-| xs | enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority. |
-| zeroMinWidth | bool | false | If `true`, it sets `min-width: 0` on the item. Refer to the limitations section of the documentation to better understand the use case. |
+| <span class="prop-name">alignContent</span> | <span class="prop-type">enum:&nbsp;'stretch', 'center', 'flex-start', 'flex-end', 'space-between', 'space-around'<br> | <span class="prop-default">'stretch'</span> | Defines the `align-content` style property. It's applied for all screen sizes. |
+| <span class="prop-name">alignItems</span> | <span class="prop-type">enum:&nbsp;'flex-start', 'center', 'flex-end', 'stretch', 'baseline'<br> | <span class="prop-default">'stretch'</span> | Defines the `align-items` style property. It's applied for all screen sizes. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">container</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*. |
+| <span class="prop-name">direction</span> | <span class="prop-type">enum:&nbsp;'row'&nbsp;&#124;<br>&nbsp;'row-reverse'&nbsp;&#124;<br>&nbsp;'column'&nbsp;&#124;<br>&nbsp;'column-reverse'<br> | <span class="prop-default">'row'</span> | Defines the `flex-direction` style property. It is applied for all screen sizes. |
+| <span class="prop-name">hidden</span> | <span class="prop-type">object |  | If provided, will wrap with [Hidden](/api/hidden) component and given properties. |
+| <span class="prop-name">item</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the component will have the flex *item* behavior. You should be wrapping *items* with a *container*. |
+| <span class="prop-name">justify</span> | <span class="prop-type">enum:&nbsp;'flex-start', 'center', 'flex-end', 'space-between', 'space-around'<br> | <span class="prop-default">'flex-start'</span> | Defines the `justify-content` style property. It is applied for all screen sizes. |
+| <span class="prop-name">lg</span> | <span class="prop-type">enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden. |
+| <span class="prop-name">md</span> | <span class="prop-type">enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `md` breakpoint and wider screens if not overridden. |
+| <span class="prop-name">sm</span> | <span class="prop-type">enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `sm` breakpoint and wider screens if not overridden. |
+| <span class="prop-name">spacing</span> | <span class="prop-type">enum:&nbsp;0, 8, 16, 24, 40<br> | <span class="prop-default">16</span> | Defines the space between the type `item` component. It can only be used on a type `container` component. |
+| <span class="prop-name">wrap</span> | <span class="prop-type">enum:&nbsp;'nowrap'&nbsp;&#124;<br>&nbsp;'wrap'&nbsp;&#124;<br>&nbsp;'wrap-reverse'<br> | <span class="prop-default">'wrap'</span> | Defines the `flex-wrap` style property. It's applied for all screen sizes. |
+| <span class="prop-name">xl</span> | <span class="prop-type">enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `xl` breakpoint and wider screens. |
+| <span class="prop-name">xs</span> | <span class="prop-type">enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority. |
+| <span class="prop-name">zeroMinWidth</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, it sets `min-width: 0` on the item. Refer to the limitations section of the documentation to better understand the use case. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

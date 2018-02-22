@@ -12,12 +12,12 @@ filename: /src/List/List.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'ul' | The component used for the root node. Either a string to use a DOM element or a component. |
-| dense | bool | false | If `true`, compact vertical padding designed for keyboard and mouse input will be used for the list and list items. The property is available to descendant components as the `dense` context. |
-| disablePadding | bool | false | If `true`, vertical padding will be removed from the list. |
-| subheader | node |  | The content of the subheader, normally `ListSubheader`. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'ul'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">dense</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, compact vertical padding designed for keyboard and mouse input will be used for the list and list items. The property is available to descendant components as the `dense` context. |
+| <span class="prop-name">disablePadding</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, vertical padding will be removed from the list. |
+| <span class="prop-name">subheader</span> | <span class="prop-type">node |  | The content of the subheader, normally `ListSubheader`. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

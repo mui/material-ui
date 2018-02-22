@@ -41,7 +41,7 @@ function generateGrid(globalStyles, theme, breakpoint) {
 
     /* eslint-disable max-len */
     // Close to the bootstrap implementation:
-    // https://github.com/twbs/bootstrap/blob/b0508a975d711d6b24c01f57dd5445c22699fac4/scss/mixins/_grid.scss#L69
+    // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
     /* eslint-enable max-len */
     styles[`grid-${breakpoint}-${size}`] = {
       flexBasis: width,
