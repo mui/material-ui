@@ -85,6 +85,7 @@
     "babel-preset-latest": "^6.24.1",
     "classnames": "^2.2.5",
     "cross-env": "^5.1.0",
+    "date-fns": "^2.0.0-alpha.7",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.17.0",

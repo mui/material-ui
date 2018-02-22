@@ -1,9 +1,8 @@
 import { MaterialUiPickersDate } from './date'
-import { isEqual, isAfter, endOfDay, setHours } from 'date-fns';
 
 export interface Utils {
   date(value: any): MaterialUiPickersDate;
-  addDays(value: MaterialUiPickersDate, count: Number): MaterialUiPickersDate;
+  addDays(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate;
   isValid(value: MaterialUiPickersDate): boolean;
   isEqual(value: MaterialUiPickersDate, comparing: MaterialUiPickersDate): boolean;
   isNull(value: MaterialUiPickersDate): boolean;
@@ -14,8 +13,8 @@ export interface Utils {
   isAfterYear(value: MaterialUiPickersDate, comparing: MaterialUiPickersDate): boolean;
   startOfDay(value: MaterialUiPickersDate): MaterialUiPickersDate;
   endOfDay(value: MaterialUiPickersDate): MaterialUiPickersDate;
-  format(value: MaterialUiPickersDate): string;
-  formatNumber(number: number): MaterialUiPickersDate
+  format(value: MaterialUiPickersDate, formatString: string): string;
+  formatNumber(number: number): string;
   getHours(value: MaterialUiPickersDate): number;
   setHours(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate;
   getMinutes(value: MaterialUiPickersDate): number;

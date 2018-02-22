@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui';
-import { MuiPickerUtilsProvider, dateFnsUtils, momentUtils } from 'material-ui-pickers';
+import { MuiPickersUtilsProvider, dateFnsUtils, momentUtils } from 'material-ui-pickers';
 
 import { create } from 'jss';
 import preset from 'jss-preset-default';
@@ -56,13 +56,13 @@ export default class App extends Component {
       <div className="root">
         <JssProvider jss={jss}>
           <MuiThemeProvider theme={this.getMuiTheme()}>
-            <MuiPickerUtilsProvider utils={momentUtils}>
+            <MuiPickersUtilsProvider utils={momentUtils}>
               <Demo
                 toggleDirection={this.toggleDirection}
                 toggleThemeType={this.toggleThemeType}
                 toggleFrench={this.props.toggleFrench}
               />
-            </MuiPickerUtilsProvider>
+            </MuiPickersUtilsProvider>
           </MuiThemeProvider>
         </JssProvider>
       </div>
