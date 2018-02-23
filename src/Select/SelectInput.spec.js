@@ -79,6 +79,17 @@ describe('<SelectInput />', () => {
     });
   });
 
+  describe('prop: SelectDisplayProps', () => {
+    it('should apply additional properties to the clickable div element', () => {
+      const wrapper = shallow(
+        <SelectInput {...defaultProps} SelectDisplayProps={{ 'data-test': 'SelectDisplay' }} />,
+      );
+
+      const selectDisplay = wrapper.find('[data-mui-test="SelectDisplay"]');
+      assert.strictEqual(selectDisplay.props()['data-test'], 'SelectDisplay');
+    });
+  });
+
   describe('prop: displayEmpty', () => {
     it('should display the selected item even if its value is empty', () => {
       const wrapper = shallow(

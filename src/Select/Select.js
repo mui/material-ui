@@ -73,6 +73,7 @@ function Select(props) {
     onOpen,
     open,
     renderValue,
+    SelectDisplayProps,
     ...other
   } = props;
 
@@ -80,10 +81,7 @@ function Select(props) {
     // Most of the logic is implemented in `SelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
     inputComponent: SelectInput,
-    ...other,
     inputProps: {
-      ...inputProps,
-      ...(input ? input.props.inputProps : {}),
       autoWidth,
       children,
       classes,
@@ -95,7 +93,11 @@ function Select(props) {
       onOpen,
       open,
       renderValue,
+      SelectDisplayProps,
+      ...inputProps,
+      ...(input ? input.props.inputProps : {}),
     },
+    ...other,
   });
 }
 
@@ -172,6 +174,10 @@ Select.propTypes = {
    * You can only use it when the `native` property is `false` (default).
    */
   renderValue: PropTypes.func,
+  /**
+   * Properties applied to the clickable div element.
+   */
+  SelectDisplayProps: PropTypes.object,
   /**
    * The input value, required for a controlled component.
    */

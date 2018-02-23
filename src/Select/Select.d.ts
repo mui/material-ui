@@ -14,6 +14,7 @@ export interface SelectProps extends StandardProps<InputProps, SelectClassKey, '
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
   renderValue?: (value: SelectProps['value']) => React.ReactNode;
+  SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
   value?: Array<string | number> | string | number;
 }
 

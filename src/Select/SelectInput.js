@@ -154,6 +154,7 @@ class SelectInput extends React.Component {
       open: openProp,
       readOnly,
       renderValue,
+      SelectDisplayProps,
       value,
       ...other
     } = this.props;
@@ -284,6 +285,7 @@ class SelectInput extends React.Component {
           onBlur={this.handleBlur}
           onClick={disabled || readOnly ? null : this.handleClick}
           onFocus={onFocus}
+          {...SelectDisplayProps}
         >
           {/* So the vertical align positioning algorithm quicks in. */}
           {/* eslint-disable-next-line react/no-danger */}
@@ -416,6 +418,10 @@ SelectInput.propTypes = {
    * You can only use it when the `native` property is `false` (default).
    */
   renderValue: PropTypes.func,
+  /**
+   * Properties applied to the clickable div element.
+   */
+  SelectDisplayProps: PropTypes.object,
   /**
    * The value of the component, required for a controlled component.
    */
