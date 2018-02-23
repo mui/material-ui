@@ -339,8 +339,8 @@ Popover.propTypes = {
    */
   action: PropTypes.func,
   /**
-   * This is the DOM element that may be used
-   * to set the position of the popover.
+   * This is the DOM element, or a function that returns the DOM element,
+   * that may be used to set the position of the popover.
    */
   anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**
