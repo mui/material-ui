@@ -31,20 +31,20 @@ describe('<ButtonBase />', () => {
       const wrapper = shallow(<ButtonBase>Hello</ButtonBase>);
       assert.strictEqual(wrapper.name(), 'button');
       assert.strictEqual(wrapper.childAt(0).equals('Hello'), true, 'should say Hello');
-      assert.strictEqual(wrapper.props().type, 'button', 'should be type button');
+      assert.strictEqual(wrapper.props().type, 'button');
     });
 
     it('should change the button type', () => {
       const wrapper = shallow(<ButtonBase type="submit">Hello</ButtonBase>);
       assert.strictEqual(wrapper.name(), 'button');
-      assert.strictEqual(wrapper.props().type, 'submit', 'should be type submit');
+      assert.strictEqual(wrapper.props().type, 'submit');
     });
 
     it('should change the button component and add accessibility requirements', () => {
       const wrapper = shallow(<ButtonBase component="span" role="checkbox" aria-checked={false} />);
       assert.strictEqual(wrapper.name(), 'span');
-      assert.strictEqual(wrapper.props().role, 'checkbox', 'should be role checkbox');
-      assert.strictEqual(wrapper.props().tabIndex, 0, 'should be 0');
+      assert.strictEqual(wrapper.props().role, 'checkbox');
+      assert.strictEqual(wrapper.props().tabIndex, '0');
     });
 
     it('should spread props on button', () => {
@@ -363,7 +363,7 @@ describe('<ButtonBase />', () => {
   describe('prop: disabled', () => {
     it('should apply the right tabIndex', () => {
       const wrapper = shallow(<ButtonBase disabled>Hello</ButtonBase>);
-      assert.strictEqual(wrapper.props().tabIndex, -1, 'should not receive the focus');
+      assert.strictEqual(wrapper.props().tabIndex, '-1', 'should not receive the focus');
     });
 
     it('should also apply it when using component', () => {

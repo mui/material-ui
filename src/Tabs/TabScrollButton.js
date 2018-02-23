@@ -26,7 +26,7 @@ function TabScrollButton(props) {
   }
 
   return (
-    <ButtonBase className={className} onClick={onClick} tabIndex={-1} {...other}>
+    <ButtonBase className={className} onClick={onClick} tabIndex="-1" {...other}>
       {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
     </ButtonBase>
   );

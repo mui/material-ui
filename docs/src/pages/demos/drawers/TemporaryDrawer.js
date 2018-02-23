@@ -57,7 +57,7 @@ class TemporaryDrawer extends React.Component {
         <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button>
         <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
           <div
-            tabIndex={0}
+            tabIndex="0"
             role="button"
             onClick={this.toggleDrawer('left', false)}
             onKeyDown={this.toggleDrawer('left', false)}
@@ -67,7 +67,7 @@ class TemporaryDrawer extends React.Component {
         </Drawer>
         <Drawer anchor="top" open={this.state.top} onClose={this.toggleDrawer('top', false)}>
           <div
-            tabIndex={0}
+            tabIndex="0"
             role="button"
             onClick={this.toggleDrawer('top', false)}
             onKeyDown={this.toggleDrawer('top', false)}
@@ -81,7 +81,7 @@ class TemporaryDrawer extends React.Component {
           onClose={this.toggleDrawer('bottom', false)}
         >
           <div
-            tabIndex={0}
+            tabIndex="0"
             role="button"
             onClick={this.toggleDrawer('bottom', false)}
             onKeyDown={this.toggleDrawer('bottom', false)}
@@ -91,7 +91,7 @@ class TemporaryDrawer extends React.Component {
         </Drawer>
         <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
           <div
-            tabIndex={0}
+            tabIndex="0"
             role="button"
             onClick={this.toggleDrawer('right', false)}
             onKeyDown={this.toggleDrawer('right', false)}

@@ -266,7 +266,7 @@ class SelectInput extends React.Component {
     if (typeof tabIndexProp !== 'undefined') {
       tabIndex = tabIndexProp;
     } else {
-      tabIndex = disabled ? null : 0;
+      tabIndex = disabled ? null : '0';
     }
 
     return (

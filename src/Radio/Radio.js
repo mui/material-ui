@@ -58,17 +58,9 @@ Radio.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
-  /**
-   * @ignore
-   */
-  defaultChecked: PropTypes.bool,
   /**
    * If `true`, the switch will be disabled.
    */
@@ -93,10 +85,6 @@ Radio.propTypes = {
    * Use that property to pass a ref callback to the native input component.
    */
   inputRef: PropTypes.func,
-  /*
-   * @ignore
-   */
-  name: PropTypes.string,
   /**
    * Callback fired when the state is changed.
    *
@@ -104,10 +92,6 @@ Radio.propTypes = {
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The input component property `type`.
    */
