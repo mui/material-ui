@@ -81,10 +81,7 @@ function Select(props) {
     // Most of the logic is implemented in `SelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
     inputComponent: SelectInput,
-    ...other,
     inputProps: {
-      ...inputProps,
-      ...(input ? input.props.inputProps : {}),
       autoWidth,
       children,
       classes,
@@ -97,7 +94,10 @@ function Select(props) {
       open,
       renderValue,
       SelectDisplayProps,
+      ...inputProps,
+      ...(input ? input.props.inputProps : {}),
     },
+    ...other,
   });
 }
 
