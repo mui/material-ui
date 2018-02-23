@@ -62,6 +62,10 @@ function getScrollParent(parent, child) {
   return scrollTop;
 }
 
+function getAnchorEl(anchorEl) {
+  return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+}
+
 export const styles = {
   paper: {
     position: 'absolute',
@@ -92,11 +96,6 @@ class Popover extends React.Component {
     this.handleResize.cancel();
   };
 
-  getAnchorEl() {
-    const { anchorEl } = this.props;
-    return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
-  }
-
   setPositioningStyles = element => {
     if (element && element.style) {
       const positioning = this.getPositioningStyle(element);
@@ -107,7 +106,7 @@ class Popover extends React.Component {
   };
 
   getPositioningStyle = element => {
-    const { marginThreshold } = this.props;
+    const { anchorEl, marginThreshold } = this.props;
 
     // Check if the parent has requested anchoring on an inner content node
     const contentAnchorOffset = this.getContentAnchorOffset(element);
@@ -128,7 +127,7 @@ class Popover extends React.Component {
     const right = left + elemRect.width;
 
     // Use the parent window of the anchorEl if provided
-    const containerWindow = ownerWindow(this.getAnchorEl());
+    const containerWindow = ownerWindow(getAnchorEl(anchorEl));
 
     // Window thresholds taking required margin into account
     const heightThreshold = containerWindow.innerHeight - marginThreshold;
@@ -175,7 +174,7 @@ class Popover extends React.Component {
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
   getAnchorOffset(contentAnchorOffset) {
-    const { anchorOrigin, anchorReference, anchorPosition } = this.props;
+    const { anchorEl, anchorOrigin, anchorReference, anchorPosition } = this.props;
 
     if (anchorReference === 'anchorPosition') {
       return anchorPosition;
@@ -183,7 +182,7 @@ class Popover extends React.Component {
 
     // If an anchor element wasn't provided, just use the parent body element of this Popover
     const anchorElement =
-      this.getAnchorEl() || ownerDocument(ReactDOM.findDOMNode(this.transitionEl)).body;
+      getAnchorEl(anchorEl) || ownerDocument(ReactDOM.findDOMNode(this.transitionEl)).body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
@@ -253,6 +252,8 @@ class Popover extends React.Component {
 
   render() {
     const {
+      action,
+      anchorEl,
       anchorOrigin,
       anchorPosition,
       anchorReference,
@@ -274,21 +275,14 @@ class Popover extends React.Component {
       transformOrigin,
       transition: TransitionProp,
       transitionDuration,
-      action,
       ...other
     } = this.props;
-    delete other.anchorEl;
 
     // If the container prop is provided, use that
     // If the anchorEl prop is provided, use its parent body element as the container
     // If neither are provided let the Modal take care of choosing the container
-    let container;
-    if (containerProp) {
-      container = containerProp;
-    } else {
-      const anchorEl = this.getAnchorEl();
-      container = anchorEl ? ownerDocument(anchorEl).body : undefined;
-    }
+    const container =
+      containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
     const transitionProps = {};
     // The provided transition might not support the auto timeout value.
