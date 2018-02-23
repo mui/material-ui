@@ -155,7 +155,7 @@ class SelectInput extends React.Component {
       readOnly,
       renderValue,
       SelectDisplayProps,
-      tabIndex,
+      tabIndex: tabIndexProp,
       value,
       ...other
     } = this.props;
@@ -262,9 +262,11 @@ class SelectInput extends React.Component {
 
     const MenuMinWidth = this.displayNode && !autoWidth ? this.displayNode.clientWidth : undefined;
 
-    let tabIndexFinal = tabIndex || 0;
-    if (disabled) {
-      tabIndexFinal = null;
+    let tabIndex;
+    if (typeof tabIndexProp !== 'undefined') {
+      tabIndex = tabIndexProp;
+    } else {
+      tabIndex = disabled ? null : 0;
     }
 
     return (
@@ -283,7 +285,7 @@ class SelectInput extends React.Component {
           }}
           data-mui-test="SelectDisplay"
           aria-pressed={open ? 'true' : 'false'}
-          tabIndex={tabIndexFinal}
+          tabIndex={tabIndex}
           role="button"
           aria-owns={open ? `menu-${name || ''}` : null}
           aria-haspopup="true"
@@ -429,9 +431,9 @@ SelectInput.propTypes = {
    */
   SelectDisplayProps: PropTypes.object,
   /**
-   * Tab index of the component
+   * @ignore
    */
-  tabIndex: PropTypes.number,
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The value of the component, required for a controlled component.
    */
