@@ -51,7 +51,7 @@ class CheckboxList extends React.Component {
             >
               <Checkbox
                 checked={this.state.checked.indexOf(value) !== -1}
-                tabIndex={-1}
+                tabIndex="-1"
                 disableRipple
               />
               <ListItemText primary={`Line item ${value + 1}`} />

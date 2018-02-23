@@ -21,6 +21,7 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
   readOnly?: boolean;
   renderValue?: (value: SelectInputProps['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
+  tabIndex?: number;
   value?: string | number | Array<string | number>;
 }
 

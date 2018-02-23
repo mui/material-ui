@@ -283,7 +283,7 @@ class EnhancedTable extends React.Component {
                     onClick={event => this.handleClick(event, n.id)}
                     role="checkbox"
                     aria-checked={isSelected}
-                    tabIndex={-1}
+                    tabIndex="-1"
                     key={n.id}
                     selected={isSelected}
                   >

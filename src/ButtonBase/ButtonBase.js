@@ -275,7 +275,7 @@ class ButtonBase extends React.Component {
         onTouchEnd={this.handleTouchEnd}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
-        tabIndex={disabled ? -1 : tabIndex}
+        tabIndex={disabled ? '-1' : tabIndex}
         className={className}
         ref={buttonRef}
         {...buttonProps}
@@ -402,7 +402,7 @@ ButtonBase.defaultProps = {
   centerRipple: false,
   disableRipple: false,
   focusRipple: false,
-  tabIndex: 0,
+  tabIndex: '0',
   type: 'button',
 };
 
