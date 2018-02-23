@@ -154,7 +154,7 @@ class SelectInput extends React.Component {
       open: openProp,
       readOnly,
       renderValue,
-      SelectDisplayProps = {},
+      SelectDisplayProps,
       value,
       ...other
     } = this.props;
