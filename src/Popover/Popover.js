@@ -277,6 +277,7 @@ class Popover extends React.Component {
       action,
       ...other
     } = this.props;
+    delete other.anchorEl;
 
     // If the container prop is provided, use that
     // If the anchorEl prop is provided, use its parent body element as the container
