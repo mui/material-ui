@@ -163,14 +163,31 @@ const styles = theme => ({
       borderCollapse: 'collapse',
       borderSpacing: 0,
       overflow: 'hidden',
+      '& .prop-name': {
+        fontSize: 13,
+        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
+      },
+      '& .required': {
+        color: theme.palette.type === 'light' ? '#008900' : '#65a665',
+      },
+      '& .prop-type': {
+        fontSize: 13,
+        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
+        color: theme.palette.type === 'light' ? '#a65e97' : '#bd86b0',
+      },
+      '& .prop-default': {
+        fontSize: 13,
+        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
+        borderBottom: `1px dotted ${theme.palette.text.hint}`,
+      },
     },
     '& thead': {
-      fontSize: 13,
+      fontSize: 14,
       fontWeight: theme.typography.fontWeightMedium,
       color: theme.palette.text.secondary,
     },
     '& tbody': {
-      fontSize: 13,
+      fontSize: 14,
       lineHeight: 1.5,
       color: theme.palette.text.primary,
     },

@@ -194,7 +194,7 @@ but we also have to upgrade our own projects.
 **We don't take making breaking changes lightly**, it's very costly with UI components.
 For users, test coverage is hard to raise without tools like [visual regression tests](https://www.argos-ci.com/mui-org/material-ui).
 
-**Let us know** what you think we should or shouldn't do, what's important, and what's missing!
+**Let us know** by [commenting on this PR](https://github.com/mui-org/material-ui/pull/10348) what you think we should or shouldn't do, what's important, and what's missing!
 
 ## After stable v1
 

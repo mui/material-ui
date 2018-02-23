@@ -12,8 +12,8 @@ filename: /src/List/ListItemSecondaryAction.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the component, normally an `IconButton` or selection control. |
-| classes | object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the component, normally an `IconButton` or selection control. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

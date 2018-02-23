@@ -12,16 +12,16 @@ filename: /src/Input/InputLabel.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The contents of the `InputLabel`. |
-| classes | object |  | Useful to extend the style applied to components. |
-| disableAnimation | bool | false | If `true`, the transition animation is disabled. |
-| disabled | bool | false | If `true`, apply disabled class. |
-| error | bool |  | If `true`, the label will be displayed in an error state. |
-| focused | bool |  | If `true`, the input of this label is focused. |
-| FormControlClasses | object |  | `classes` property applied to the `FormControl` element. |
-| margin | enum:&nbsp;'dense'<br> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
-| required | bool |  | if `true`, the label will indicate that the input is required. |
-| shrink | bool |  | If `true`, the label is shrunk. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The contents of the `InputLabel`. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">disableAnimation</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the transition animation is disabled. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, apply disabled class. |
+| <span class="prop-name">error</span> | <span class="prop-type">bool |  | If `true`, the label will be displayed in an error state. |
+| <span class="prop-name">focused</span> | <span class="prop-type">bool |  | If `true`, the input of this label is focused. |
+| <span class="prop-name">FormControlClasses</span> | <span class="prop-type">object |  | `classes` property applied to the `FormControl` element. |
+| <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'dense'<br> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
+| <span class="prop-name">required</span> | <span class="prop-type">bool |  | if `true`, the label will indicate that the input is required. |
+| <span class="prop-name">shrink</span> | <span class="prop-type">bool |  | If `true`, the label is shrunk. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

@@ -12,11 +12,11 @@ filename: /src/Stepper/StepLabel.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | In most cases will simply be a string containing a title for the label. |
-| classes | object |  | Custom styles for component. |
-| disabled | bool | false | Mark the step as disabled, will also disable the button if `StepLabelButton` is a child of `StepLabel`. Is passed to child components. |
-| icon | node |  | Override the default icon. |
-| optional | node |  | The optional node to display. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | In most cases will simply be a string containing a title for the label. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Custom styles for component. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Mark the step as disabled, will also disable the button if `StepLabelButton` is a child of `StepLabel`. Is passed to child components. |
+| <span class="prop-name">icon</span> | <span class="prop-type">node |  | Override the default icon. |
+| <span class="prop-name">optional</span> | <span class="prop-type">node |  | The optional node to display. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

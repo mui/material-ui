@@ -67,3 +67,8 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   Web app that allows users to write in the language they're learning and have it corrected by native speakers.
 
   https://en.modole.io
+
+### 12. AudioNodes
+  Modular audio production suite with multi-track audio mixing, audio effects, parameter automation, MIDI editing, synthesis, cloud production, and more.
+  
+  https://audionodes.com

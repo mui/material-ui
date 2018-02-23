@@ -12,7 +12,7 @@ filename: /src/Menu/MenuList.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | MenuList contents, normally `MenuItem`s. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | MenuList contents, normally `MenuItem`s. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

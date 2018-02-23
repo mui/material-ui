@@ -170,11 +170,15 @@ function generateProps(reactAPI) {
     let defaultValue = '';
 
     if (prop.defaultValue) {
-      defaultValue = escapeCell(prop.defaultValue.value.replace(/\n/g, ''));
+      defaultValue = `<span class="prop-default">${escapeCell(
+        prop.defaultValue.value.replace(/\n/g, ''),
+      )}</span>`;
     }
 
     if (prop.required) {
-      propRaw = `<span style="color: #31a148">${propRaw}\u00a0*</span>`;
+      propRaw = `<span class="prop-name required">${propRaw}\u00a0*</span>`;
+    } else {
+      propRaw = `<span class="prop-name">${propRaw}</span>`;
     }
 
     if (prop.type.name === 'custom') {
@@ -183,7 +187,7 @@ function generateProps(reactAPI) {
       }
     }
 
-    textProps += `| ${propRaw} | ${generatePropType(
+    textProps += `| ${propRaw} | <span class="prop-type">${generatePropType(
       prop.type,
     )} | ${defaultValue} | ${description} |\n`;
 
