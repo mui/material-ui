@@ -62,6 +62,10 @@ function getScrollParent(parent, child) {
   return scrollTop;
 }
 
+function getAnchorEl(anchorEl) {
+  return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+}
+
 export const styles = {
   paper: {
     position: 'absolute',
@@ -123,7 +127,7 @@ class Popover extends React.Component {
     const right = left + elemRect.width;
 
     // Use the parent window of the anchorEl if provided
-    const containerWindow = ownerWindow(anchorEl);
+    const containerWindow = ownerWindow(getAnchorEl(anchorEl));
 
     // Window thresholds taking required margin into account
     const heightThreshold = containerWindow.innerHeight - marginThreshold;
@@ -177,7 +181,8 @@ class Popover extends React.Component {
     }
 
     // If an anchor element wasn't provided, just use the parent body element of this Popover
-    const anchorElement = anchorEl || ownerDocument(ReactDOM.findDOMNode(this.transitionEl)).body;
+    const anchorElement =
+      getAnchorEl(anchorEl) || ownerDocument(ReactDOM.findDOMNode(this.transitionEl)).body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
@@ -247,6 +252,7 @@ class Popover extends React.Component {
 
   render() {
     const {
+      action,
       anchorEl,
       anchorOrigin,
       anchorPosition,
@@ -269,14 +275,14 @@ class Popover extends React.Component {
       transformOrigin,
       transition: TransitionProp,
       transitionDuration,
-      action,
       ...other
     } = this.props;
 
     // If the container prop is provided, use that
     // If the anchorEl prop is provided, use its parent body element as the container
     // If neither are provided let the Modal take care of choosing the container
-    const container = containerProp || (anchorEl ? ownerDocument(anchorEl).body : undefined);
+    const container =
+      containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
     const transitionProps = {};
     // The provided transition might not support the auto timeout value.
@@ -327,10 +333,10 @@ Popover.propTypes = {
    */
   action: PropTypes.func,
   /**
-   * This is the DOM element that may be used
-   * to set the position of the popover.
+   * This is the DOM element, or a function that returns the DOM element,
+   * that may be used to set the position of the popover.
    */
-  anchorEl: PropTypes.object,
+  anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**
    * This is the point on the anchor where the popover's
    * `anchorEl` will attach to. This is not used when the

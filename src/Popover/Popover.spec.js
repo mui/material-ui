@@ -289,6 +289,18 @@ describe('<Popover />', () => {
     });
   });
 
+  describe('prop: anchorEl', () => {
+    it('should accept a function', () => {
+      const anchorElSpy = spy();
+      shallow(
+        <Popover {...defaultProps} anchorEl={anchorElSpy}>
+          <div />
+        </Popover>,
+      );
+      assert.strictEqual(anchorElSpy.callCount, 1);
+    });
+  });
+
   describe('positioning on an anchor', () => {
     let anchorEl;
     let wrapper;
@@ -298,20 +310,20 @@ describe('<Popover />', () => {
 
     before(() => {
       openPopover = (anchorOrigin, renderShallow) => {
+        if (!anchorEl) {
+          anchorEl = window.document.createElement('div');
+        }
+
+        css(anchorEl, {
+          width: '50px',
+          height: '50px',
+          position: 'absolute',
+          top: '100px',
+          left: '100px',
+        });
+        window.document.body.appendChild(anchorEl);
+
         return new Promise(resolve => {
-          if (!anchorEl) {
-            anchorEl = window.document.createElement('div');
-          }
-
-          css(anchorEl, {
-            width: '50px',
-            height: '50px',
-            position: 'absolute',
-            top: '100px',
-            left: '100px',
-          });
-          window.document.body.appendChild(anchorEl);
-
           const component = (
             <Popover
               {...defaultProps}
