@@ -90,6 +90,18 @@ describe('<SelectInput />', () => {
     });
   });
 
+  describe('prop: type', () => {
+    it('should be hidden by default', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} />);
+      assert.strictEqual(wrapper.find('input').props().type, 'hidden');
+    });
+
+    it('should be able to override it', () => {
+      const wrapper = shallow(<SelectInput {...defaultProps} type="text" />);
+      assert.strictEqual(wrapper.find('input').props().type, 'text');
+    });
+  });
+
   describe('prop: displayEmpty', () => {
     it('should display the selected item even if its value is empty', () => {
       const wrapper = shallow(

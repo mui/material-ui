@@ -156,6 +156,7 @@ class SelectInput extends React.Component {
       renderValue,
       SelectDisplayProps,
       tabIndex: tabIndexProp,
+      type,
       value,
       ...other
     } = this.props;
@@ -305,7 +306,7 @@ class SelectInput extends React.Component {
           name={name}
           readOnly={readOnly}
           ref={this.handleSelectRef}
-          type="hidden"
+          type={type || 'hidden'}
           {...other}
         />
         <ArrowDropDownIcon className={classes.icon} />
@@ -434,6 +435,10 @@ SelectInput.propTypes = {
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * @ignore
+   */
+  type: PropTypes.string,
   /**
    * The value of the component, required for a controlled component.
    */
