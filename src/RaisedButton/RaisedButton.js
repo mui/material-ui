@@ -402,6 +402,12 @@ class RaisedButton extends Component {
       key: 'iconCloned',
     });
 
+    const overlayBackgroundProxy = {
+      backgroundColor:
+        overlayStyle && styles.overlay.backgroundColor && overlayStyle.backgroundColor ||
+        styles.overlay.backgroundColor,
+    };
+
     // Place label before or after children.
     const enhancedButtonChildren = labelPosition === 'before' ?
     [
@@ -433,7 +439,7 @@ class RaisedButton extends Component {
         >
           <div
             ref="overlay"
-            style={prepareStyles(Object.assign(styles.overlay, overlayStyle))}
+            style={prepareStyles(Object.assign(styles.overlay, overlayStyle, overlayBackgroundProxy))}
           >
             {enhancedButtonChildren}
           </div>
