@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List from 'material-ui/List';
-import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
@@ -29,6 +28,9 @@ const styles = theme => ({
     display: 'flex',
   },
   toolbar: {
+    ...theme.mixins.toolbar,
+    paddingLeft: theme.spacing.unit * 3,
+    display: 'flex',
     flexGrow: 1,
     flexDirection: 'column',
     alignItems: 'flex-start',
@@ -88,7 +90,7 @@ function AppDrawer(props, context) {
   const drawer = (
     <div className={classes.nav}>
       <div className={classes.toolbarIe11}>
-        <Toolbar className={classes.toolbar}>
+        <div className={classes.toolbar}>
           <Link className={classes.title} href="/" onClick={onClose}>
             <Typography variant="title" color="inherit">
               Material-UI
@@ -102,9 +104,9 @@ function AppDrawer(props, context) {
               <Typography variant="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
             </Link>
           ) : null}
-          <Divider absolute />
-        </Toolbar>
+        </div>
       </div>
+      <Divider />
       {renderNavItems({ props, pages: context.pages, activePage: context.activePage, depth: 0 })}
     </div>
   );

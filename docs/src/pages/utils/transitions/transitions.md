@@ -71,6 +71,6 @@ from the DOM after it has been transition off screen.
 
 Expand outwards from the center of the child element.
 
-This example demonstrates how to delay the enter transition.
+This example also demonstrates how to delay the enter transition.
 
 {{"demo": "pages/utils/transitions/SimpleZoom.js"}}

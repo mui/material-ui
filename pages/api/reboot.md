@@ -12,7 +12,7 @@ Kickstart an elegant, consistent, and simple baseline to build upon.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node | null | You can only provide a single element with react@15, a node with react@16. |
+| <span class="prop-name">children</span> | <span class="prop-type">node | <span class="prop-default">null</span> | You can only provide a single element with react@15, a node with react@16. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

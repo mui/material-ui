@@ -12,11 +12,11 @@ filename: /src/Paper/Paper.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
-| elevation | number | 2 | Shadow depth, corresponds to `dp` in the spec. It's accepting values between 0 and 24 inclusive. |
-| square | bool | false | If `true`, rounded corners are disabled. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">elevation</span> | <span class="prop-type">number | <span class="prop-default">2</span> | Shadow depth, corresponds to `dp` in the spec. It's accepting values between 0 and 24 inclusive. |
+| <span class="prop-name">square</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, rounded corners are disabled. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

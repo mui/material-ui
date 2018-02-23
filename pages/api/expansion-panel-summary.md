@@ -12,9 +12,9 @@ filename: /src/ExpansionPanel/ExpansionPanelSummary.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the expansion panel summary. |
-| classes | object |  | Useful to extend the style applied to components. |
-| expandIcon | node |  | The icon to display as the expand indicator. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the expansion panel summary. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">expandIcon</span> | <span class="prop-type">node |  | The icon to display as the expand indicator. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

@@ -12,12 +12,12 @@ Chips represent complex entities in small blocks, such as a contact.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| avatar | element |  | Avatar element. |
-| classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
-| deleteIcon | element |  | Override the default delete icon element. Shown only if `onDelete` is set. |
-| label | node |  | The content of the label. |
-| onDelete | func |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
+| <span class="prop-name">avatar</span> | <span class="prop-type">element |  | Avatar element. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">deleteIcon</span> | <span class="prop-type">element |  | Override the default delete icon element. Shown only if `onDelete` is set. |
+| <span class="prop-name">label</span> | <span class="prop-type">node |  | The content of the label. |
+| <span class="prop-name">onDelete</span> | <span class="prop-type">func |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

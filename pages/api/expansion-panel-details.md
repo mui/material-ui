@@ -12,8 +12,8 @@ filename: /src/ExpansionPanel/ExpansionPanelDetails.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | node |  | The content of the expansion panel details. |
-| classes | object |  | Useful to extend the style applied to components. |
+| <span class="prop-name required">children *</span> | <span class="prop-type">node |  | The content of the expansion panel details. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

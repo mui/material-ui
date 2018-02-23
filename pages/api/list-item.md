@@ -12,15 +12,15 @@ filename: /src/List/ListItem.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| button | bool | false | If `true`, the list item will be a button (using `ButtonBase`). |
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`. |
-| ContainerComponent | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'li' | The container component. Useful when a `ListItemSecondaryAction` is rendered. |
-| ContainerProps | object |  | Properties applied to the container element when the component is used to display a `ListItemSecondaryAction`. |
-| dense | bool | false | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
-| disableGutters | bool | false | If `true`, the left and right padding is removed. |
-| divider | bool | false | If `true`, a 1px light border is added to the bottom of the list item. |
+| <span class="prop-name">button</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the list item will be a button (using `ButtonBase`). |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`. |
+| <span class="prop-name">ContainerComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'li'</span> | The container component. Useful when a `ListItemSecondaryAction` is rendered. |
+| <span class="prop-name">ContainerProps</span> | <span class="prop-type">object |  | Properties applied to the container element when the component is used to display a `ListItemSecondaryAction`. |
+| <span class="prop-name">dense</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
+| <span class="prop-name">disableGutters</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
+| <span class="prop-name">divider</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, a 1px light border is added to the bottom of the list item. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

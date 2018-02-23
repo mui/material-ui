@@ -12,14 +12,14 @@ filename: /src/Avatar/Avatar.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| alt | string |  | Used in combination with `src` or `srcSet` to provide an alt attribute for the rendered `img` element. |
-| children | node |  | Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.<br>This can be an element, or just a string. |
-| classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
-| imgProps | object |  | Properties applied to the `img` element when the component is used to display an image. |
-| sizes | string |  | The `sizes` attribute for the `img` element. |
-| src | string |  | The `src` attribute for the `img` element. |
-| srcSet | string |  | The `srcSet` attribute for the `img` element. |
+| <span class="prop-name">alt</span> | <span class="prop-type">string |  | Used in combination with `src` or `srcSet` to provide an alt attribute for the rendered `img` element. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.<br>This can be an element, or just a string. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">imgProps</span> | <span class="prop-type">object |  | Properties applied to the `img` element when the component is used to display an image. |
+| <span class="prop-name">sizes</span> | <span class="prop-type">string |  | The `sizes` attribute for the `img` element. |
+| <span class="prop-name">src</span> | <span class="prop-type">string |  | The `src` attribute for the `img` element. |
+| <span class="prop-name">srcSet</span> | <span class="prop-type">string |  | The `srcSet` attribute for the `img` element. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
