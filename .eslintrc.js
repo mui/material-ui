@@ -27,6 +27,10 @@ module.exports = {
     },
   },
   rules: {
+    quotes: ['error', 'single', {
+      avoidEscape: true,
+      allowTemplateLiterals: true
+    }],
     'linebreak-style': 'off', // Don't play nicely with Windows.
     'arrow-body-style': 'off', // Not our taste?
     'arrow-parens': 'off', // Incompatible with prettier
@@ -87,6 +91,7 @@ module.exports = {
     'react/sort-prop-types': 'error', // airbnb do nothing here.
     'react/default-props-match-prop-types': 'off', // Buggy
     'react/jsx-curly-brace-presence': 'off', // Buggy
+    'react/no-danger': 'warn',
 
     'material-ui/docgen-ignore-before-comment': 'error',
 
