@@ -27,6 +27,12 @@ WrappedIcon.muiName = 'Icon';
 ## Component property
 
 Material-UI allows you to change the root node that will be rendered via a property called `component`.
+The component will render like this:
+
+```js
+return React.createElement(this.props.component, props)
+```
+
 
 For example, by default a `List` will render a `<ul>` element. This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#functional-and-class-components) to the `component` property.
 The following example will render the `List` component with a `<nav>` element as root node instead:
