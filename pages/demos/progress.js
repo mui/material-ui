@@ -29,11 +29,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularDeterminate'), 'utf8')
 `,
         },
-        'pages/demos/progress/CircularStatic.js': {
-          js: require('docs/src/pages/demos/progress/CircularStatic').default,
+        'pages/demos/progress/CircularDeterminateSpin.js': {
+          js: require('docs/src/pages/demos/progress/CircularDeterminateSpin').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularStatic'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularDeterminateSpin'), 'utf8')
 `,
         },
         'pages/demos/progress/LinearIndeterminate.js': {

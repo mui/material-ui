@@ -20,17 +20,17 @@ For example, a refresh operation should display either a refresh bar or an activ
 
 {{"demo": "pages/demos/progress/CircularIndeterminate.js"}}
 
-### Interactive Integration
-
-{{"demo": "pages/demos/progress/CircularIntegration.js"}}
-
 ### Circular Determinate
 
 {{"demo": "pages/demos/progress/CircularDeterminate.js"}}
 
-### Circular Static
+### Circular Determinate Spin
 
-{{"demo": "pages/demos/progress/CircularStatic.js"}}
+{{"demo": "pages/demos/progress/CircularDeterminateSpin.js"}}
+
+### Interactive Integration
+
+{{"demo": "pages/demos/progress/CircularIntegration.js"}}
 
 ## Linear
 

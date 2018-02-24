@@ -75,9 +75,9 @@ describe('<CircularProgress />', () => {
     assert.strictEqual(svg.childAt(0).props().cy, 25, 'should have cx correctly set');
   });
 
-  describe('prop: variant="static', () => {
+  describe('prop: variant="determinate', () => {
     it('should set strokeDasharray of circle', () => {
-      const wrapper = shallow(<CircularProgress variant="static" value={70} />);
+      const wrapper = shallow(<CircularProgress variant="determinate" value={70} />);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       const svg = wrapper.childAt(0);
       const style = svg.childAt(0).props().style;
@@ -87,9 +87,9 @@ describe('<CircularProgress />', () => {
     });
   });
 
-  describe('prop: variant="determinate"', () => {
-    it('should render with determinate classes', () => {
-      const wrapper = shallow(<CircularProgress variant="determinate" />);
+  describe('prop: variant="determinate-spin"', () => {
+    it('should render with determinate-spin classes', () => {
+      const wrapper = shallow(<CircularProgress variant="determinate-spin" />);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       const svg = wrapper.childAt(0);
       assert.strictEqual(svg.name(), 'svg');
@@ -101,7 +101,7 @@ describe('<CircularProgress />', () => {
     });
 
     it('should set strokeDasharray of circle', () => {
-      const wrapper = shallow(<CircularProgress variant="determinate" value={70} />);
+      const wrapper = shallow(<CircularProgress variant="determinate-spin" value={70} />);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       const svg = wrapper.childAt(0);
       const style = svg.childAt(0).props().style;
@@ -112,7 +112,7 @@ describe('<CircularProgress />', () => {
 
     it('should set strokeDasharray of circle based on min max', () => {
       const wrapper = shallow(
-        <CircularProgress variant="determinate" value={5} min={0} max={10} />,
+        <CircularProgress variant="determinate-spin" value={5} min={0} max={10} />,
       );
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       const svg = wrapper.childAt(0);
