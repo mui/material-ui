@@ -1,0 +1,11 @@
+{
+  "lerna": "2.9.0",
+  "packages": [
+    "packages/*"
+  ],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "allowBranch": ["v1-beta"],
+  "concurrency": 2
+}
