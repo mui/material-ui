@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Theme } from './createMuiTheme';
+import { Omit } from "..";
 
 /**
  * This is basically the API of JSS. It defines a Map<string, CSS>,
@@ -36,6 +37,7 @@ export interface WithStyles<ClassKey extends string = string> {
 export interface StyledComponentProps<ClassKey extends string = string> {
   classes?: Partial<ClassNameMap<ClassKey>>;
   innerRef?: React.Ref<any>;
+  theme?: Theme;
 }
 
 export default function withStyles<ClassKey extends string>(
@@ -43,4 +45,4 @@ export default function withStyles<ClassKey extends string>(
   options?: WithStylesOptions,
 ): <P>(
   component: React.ComponentType<P & WithStyles<ClassKey>>,
-) => React.ComponentType<P & StyledComponentProps<ClassKey>>;
+) => React.ComponentType<Omit<P, keyof WithStyles<ClassKey> & keyof P> & StyledComponentProps<ClassKey>>;
