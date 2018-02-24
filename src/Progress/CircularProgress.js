@@ -93,13 +93,13 @@ function CircularProgress(props) {
   const rootStyle = {};
   const rootProps = {};
 
-  if (variant === 'determinate' || variant === 'static') {
+  if (variant === 'determinate' || variant === 'determinate-spin') {
     const relVal = getRelativeValue(value, min, max) * 100;
     const circumference = 2 * Math.PI * (SIZE / 2 - 5);
     circleStyle.strokeDasharray = circumference.toFixed(3);
     rootProps['aria-valuenow'] = Math.round(relVal);
 
-    if (variant === 'static') {
+    if (variant === 'determinate') {
       circleStyle.strokeDashoffset = `${((100 - relVal) / 100 * circumference).toFixed(3)}px`;
       rootStyle.transform = 'rotate(-90deg)';
     } else {
@@ -127,7 +127,7 @@ function CircularProgress(props) {
       <svg
         className={classNames(classes.svg, {
           [classes.svgIndeterminate]: variant === 'indeterminate',
-          [classes.svgStatic]: variant === 'static',
+          [classes.svgDeterminateSpin]: variant === 'determinate-spin',
         })}
         viewBox={`0 0 ${SIZE} ${SIZE}`}
       >
@@ -181,7 +181,7 @@ CircularProgress.propTypes = {
    */
   thickness: PropTypes.number,
   /**
-   * The value of the progress indicator for the determinate and static variants.
+   * The value of the progress indicator for the determinate and determinate-spin variants.
    * Value between 0 and 100.
    */
   value: PropTypes.number,
@@ -189,7 +189,7 @@ CircularProgress.propTypes = {
    * The variant of progress indicator. Use indeterminate
    * when there is no progress value.
    */
-  variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
+  variant: PropTypes.oneOf(['indeterminate', 'determinate', 'determinate-spin']),
 };
 
 CircularProgress.defaultProps = {

@@ -9,7 +9,7 @@ export interface CircularProgressProps
   size?: number | string;
   thickness?: number;
   value?: number;
-  variant?: 'determinate' | 'indeterminate' | 'static';
+  variant?: 'determinate' | 'indeterminate' | 'determinate-spin';
 }
 
 export type CircularProgressClassKey =
