@@ -156,7 +156,7 @@ class SelectInput extends React.Component {
       renderValue,
       SelectDisplayProps,
       tabIndex: tabIndexProp,
-      type,
+      type = 'hidden',
       value,
       ...other
     } = this.props;
@@ -306,7 +306,7 @@ class SelectInput extends React.Component {
           name={name}
           readOnly={readOnly}
           ref={this.handleSelectRef}
-          type={type || 'hidden'}
+          type={type}
           {...other}
         />
         <ArrowDropDownIcon className={classes.icon} />

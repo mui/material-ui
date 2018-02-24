@@ -94,7 +94,7 @@ function Select(props) {
       open,
       renderValue,
       SelectDisplayProps,
-      type: null, // We render a select. We can ignore the type provided by the `Input`.
+      type: undefined, // We render a select. We can ignore the type provided by the `Input`.
       ...inputProps,
       ...(input ? input.props.inputProps : {}),
     },
