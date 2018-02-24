@@ -213,31 +213,39 @@ class EnhancedButton extends Component {
     this.props.onBlur(event);
   };
 
+  handleFocus = (event) => {
+    if (event) event.persist();
+    if (!this.props.disabled && !this.props.disableKeyboardFocus) {
+      // setTimeout is needed because the focus event fires first
+      // Wait so that we can capture if this was a keyboard focus
+      // or touch focus
+      this.focusTimeout = setTimeout(() => {
+        if (tabPressed) {
+          this.setKeyboardFocus(event);
+          tabPressed = false;
+        }
+      }, 150);
+
+      this.props.onFocus(event);
+    }
+  };
+
   handleClick = (event) => {
     // when firing the handleClick from the handleKeyUp, 2 events are generated, both with the same timeStamp
     // the chances of someone managing to fire two events in the same millisecond are ... well slim to none.
     const bumpTime = this.state.lastHandledEventTime + 1;
     // this is for the chance that no event is provided
     const eventTime = event ? event.hasOwnProperty('timeStamp') ? event.timeStamp : bumpTime : bumpTime;
-    
-    // don't bother running the handler code if the event being processed happened in the same millisecond as the last one processed
+    // don't bother running the handler code if the event being processed happened
+    // in the same millisecond as the last one processed
     if (eventTime !== this.state.lastHandledEventTime) {
-      this.setState({lastHandledEventTime: eventTime}); // record this for the next time so we can test if we should process the event
+      this.setState({lastHandledEventTime: eventTime});
       this.cancelFocusTimeout();
       if (!this.props.disabled) {
         tabPressed = false;
         this.removeKeyboardFocus(event);
         this.props.onClick(event);
       }
-     }
-  };
-
-  handleClick = (event) => {
-    this.cancelFocusTimeout();
-    if (!this.props.disabled) {
-      tabPressed = false;
-      this.removeKeyboardFocus(event);
-      this.props.onClick(event);
     }
   };
 
