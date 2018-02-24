@@ -82,11 +82,11 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.props().href, 'http://google.com');
     });
 
-    it('should not set role="button" on an invalid component', () => {
+    it('should change the button type to a and set role="button"', () => {
       const wrapper = shallow(<ButtonBase component="a">Hello</ButtonBase>);
       assert.strictEqual(wrapper.name(), 'a');
       assert.strictEqual(wrapper.props().type, undefined);
-      assert.strictEqual(wrapper.props().role, undefined);
+      assert.strictEqual(wrapper.props().role, 'button');
     });
 
     it('should not change the button to an a element', () => {
@@ -526,11 +526,11 @@ describe('<ButtonBase />', () => {
           preventDefault: spy(),
           keyCode: keycode('space'),
           target: eventTargetMock,
+          currentTarget: eventTargetMock,
         };
 
         instance = wrapper.instance();
         instance.keyDown = false;
-        instance.button = eventTargetMock;
         instance.handleKeyDown(event);
 
         assert.strictEqual(instance.keyDown, false, 'should not change keydown');

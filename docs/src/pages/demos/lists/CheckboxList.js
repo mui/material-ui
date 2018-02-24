@@ -44,6 +44,7 @@ class CheckboxList extends React.Component {
           {[0, 1, 2, 3].map(value => (
             <ListItem
               key={value}
+              role={undefined}
               dense
               button
               onClick={this.handleToggle(value)}
