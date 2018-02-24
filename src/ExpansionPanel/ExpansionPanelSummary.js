@@ -126,7 +126,7 @@ class ExpansionPanelSummary extends React.Component {
               [classes.expandIconExpanded]: expanded,
             })}
             component="div"
-            tabIndex="-1"
+            tabIndex={-1}
             aria-hidden="true"
           >
             {expandIcon}

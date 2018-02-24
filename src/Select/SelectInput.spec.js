@@ -287,8 +287,8 @@ describe('<SelectInput />', () => {
 
   describe('prop: multiple', () => {
     it('should take precedence', () => {
-      const wrapper = shallow(<SelectInput {...defaultProps} disabled tabIndex="0" />);
-      assert.strictEqual(wrapper.find('[data-mui-test="SelectDisplay"]').props().tabIndex, '0');
+      const wrapper = shallow(<SelectInput {...defaultProps} disabled tabIndex={0} />);
+      assert.strictEqual(wrapper.find('[data-mui-test="SelectDisplay"]').props().tabIndex, 0);
     });
   });
 

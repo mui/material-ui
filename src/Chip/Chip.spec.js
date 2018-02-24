@@ -46,7 +46,7 @@ describe('<Chip />', () => {
     });
 
     it('should have a tabIndex prop with value -1', () => {
-      assert.strictEqual(wrapper.props().tabIndex, '-1');
+      assert.strictEqual(wrapper.props().tabIndex, -1);
     });
   });
 
@@ -76,17 +76,17 @@ describe('<Chip />', () => {
     });
 
     it('should have a tabIndex prop', () => {
-      assert.strictEqual(wrapper.props().tabIndex, '0');
+      assert.strictEqual(wrapper.props().tabIndex, 0);
     });
 
     it('should apply user value of tabIndex', () => {
       wrapper = shallow(
         // eslint-disable-next-line jsx-a11y/tabindex-no-positive
-        <Chip onClick={() => {}} tabIndex="5">
+        <Chip onClick={() => {}} tabIndex={5}>
           {'Text Chip'}
         </Chip>,
       );
-      assert.strictEqual(wrapper.props().tabIndex, '5');
+      assert.strictEqual(wrapper.props().tabIndex, 5);
     });
   });
 
@@ -129,7 +129,7 @@ describe('<Chip />', () => {
     });
 
     it('should have a tabIndex prop', () => {
-      assert.strictEqual(wrapper.props().tabIndex, '0');
+      assert.strictEqual(wrapper.props().tabIndex, 0);
     });
 
     it('should fire the function given in onDeleteRequest', () => {

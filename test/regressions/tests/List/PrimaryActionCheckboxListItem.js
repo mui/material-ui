@@ -11,7 +11,7 @@ export default function PrimaryActionCheckboxListItem() {
     <div style={{ backgroundColor: '#fff', width: 300 }}>
       <List>
         <ListItem button>
-          <Checkbox tabIndex="-1" disableRipple />
+          <Checkbox tabIndex={-1} disableRipple />
           <ListItemText primary="Primary" />
           <ListItemSecondaryAction>
             <IconButton>
@@ -20,7 +20,7 @@ export default function PrimaryActionCheckboxListItem() {
           </ListItemSecondaryAction>
         </ListItem>
         <ListItem button dense>
-          <Checkbox tabIndex="-1" disableRipple />
+          <Checkbox tabIndex={-1} disableRipple />
           <ListItemText primary="Primary" />
           <ListItemSecondaryAction>
             <IconButton>
