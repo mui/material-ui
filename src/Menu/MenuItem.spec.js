@@ -44,7 +44,7 @@ describe('<MenuItem />', () => {
 
   it('should have a tabIndex of -1 by default', () => {
     const wrapper = shallow(<MenuItem />);
-    assert.strictEqual(wrapper.props().tabIndex, '-1', 'should have a -1 tabIndex');
+    assert.strictEqual(wrapper.props().tabIndex, -1);
   });
 
   describe('event callbacks', () => {

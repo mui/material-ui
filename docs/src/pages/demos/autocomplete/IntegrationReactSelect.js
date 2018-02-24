@@ -101,7 +101,7 @@ function SelectWrapped(props) {
         if (onRemove) {
           return (
             <Chip
-              tabIndex="-1"
+              tabIndex={-1}
               label={children}
               className={classes.chip}
               deleteIcon={<CancelIcon onTouchEnd={onDelete} />}

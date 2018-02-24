@@ -109,9 +109,9 @@ describe('<SwitchBase />', () => {
   });
 
   it('should pass tabIndex to the input so it can be taken out of focus rotation', () => {
-    const wrapper = shallow(<SwitchBase tabIndex="-1" />);
+    const wrapper = shallow(<SwitchBase tabIndex={-1} />);
     const input = wrapper.find('input');
-    assert.strictEqual(input.props().tabIndex, '-1');
+    assert.strictEqual(input.props().tabIndex, -1);
   });
 
   it('should pass value, disabled, checked, and name to the input', () => {
