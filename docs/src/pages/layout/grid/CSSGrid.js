@@ -1,14 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
+import Divider from 'material-ui/Divider';
 import Grid from 'material-ui/Grid';
 
 const styles = theme => ({
   container: {
     display: 'grid',
     gridTemplateColumns: 'repeat(12, 1fr)',
-    gridGap: '24px',
+    gridGap: `${theme.spacing.unit * 3}px`,
   },
   paper: {
     padding: theme.spacing.unit,
@@ -17,70 +19,69 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
     marginBottom: theme.spacing.unit,
   },
+  divider: {
+    margin: `${theme.spacing.unit * 2}px 0`,
+  },
 });
 
-const CSSGrid = withStyles(styles)(({ classes }) => (
-  <div>
-    <Typography variant="subheading" gutterBottom>
-      Material-UI Grid:
-    </Typography>
-    <Grid container spacing={24}>
-      <Grid item xs={1}>
-        <Paper className={classes.paper}>xs 1</Paper>
+function CSSGrid(props) {
+  const { classes } = props;
+
+  return (
+    <div>
+      <Typography variant="subheading" gutterBottom>
+        Material-UI Grid:
+      </Typography>
+      <Grid container spacing={24}>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </Grid>
+        <Grid item xs={8}>
+          <Paper className={classes.paper}>xs=8</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>xs=4</Paper>
+        </Grid>
       </Grid>
-      <Grid item xs={1}>
-        <Paper className={classes.paper}>xs 1</Paper>
-      </Grid>
-      <Grid item xs={1}>
-        <Paper className={classes.paper}>xs 1</Paper>
-      </Grid>
-      <Grid item xs={1}>
-        <Paper className={classes.paper}>xs 1</Paper>
-      </Grid>
-      <Grid item xs={2}>
-        <Paper className={classes.paper}>xs 2</Paper>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper className={classes.paper}>xs 6</Paper>
-      </Grid>
-      <Grid item xs={8}>
-        <Paper className={classes.paper}>xs 8</Paper>
-      </Grid>
-      <Grid item xs={4}>
-        <Paper className={classes.paper}>xs 4</Paper>
-      </Grid>
-    </Grid>
-    <hr />
-    <Typography variant="subheading" gutterBottom>
-      CSS-grid:
-    </Typography>
-    <div className={classes.container}>
-      <div>
-        <Paper className={classes.paper}>xs 1</Paper>
-      </div>
-      <div>
-        <Paper className={classes.paper}>xs 1</Paper>
-      </div>
-      <div>
-        <Paper className={classes.paper}>xs 1</Paper>
-      </div>
-      <div>
-        <Paper className={classes.paper}>xs 1</Paper>
-      </div>
-      <div style={{ gridColumnEnd: 'span 2' }}>
-        <Paper className={classes.paper}>xs 2</Paper>
-      </div>
-      <div style={{ gridColumnEnd: 'span 6' }}>
-        <Paper className={classes.paper}>xs 6</Paper>
-      </div>
-      <div style={{ gridColumnEnd: 'span 8' }}>
-        <Paper className={classes.paper}>xs 8</Paper>
-      </div>
-      <div style={{ gridColumnEnd: 'span 4' }}>
-        <Paper className={classes.paper}>xs 4</Paper>
+      <Divider className={classes.divider} />
+      <Typography variant="subheading" gutterBottom>
+        CSS Grid Layout:
+      </Typography>
+      <div className={classes.container}>
+        <div style={{ gridColumnEnd: 'span 3' }}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </div>
+        <div style={{ gridColumnEnd: 'span 3' }}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </div>
+        <div style={{ gridColumnEnd: 'span 3' }}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </div>
+        <div style={{ gridColumnEnd: 'span 3' }}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </div>
+        <div style={{ gridColumnEnd: 'span 8' }}>
+          <Paper className={classes.paper}>xs=8</Paper>
+        </div>
+        <div style={{ gridColumnEnd: 'span 4' }}>
+          <Paper className={classes.paper}>xs=4</Paper>
+        </div>
       </div>
     </div>
-  </div>
-));
+  );
+}
 
-export default CSSGrid;
+CSSGrid.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(CSSGrid);
