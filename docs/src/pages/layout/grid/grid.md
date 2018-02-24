@@ -47,6 +47,12 @@ That also means you can set the width of one *item* and the others will automati
 
 {{"demo": "pages/layout/grid/AutoGrid.js"}}
 
+## CSS grids
+
+Grids layout is similar to the recent native CSS-grids
+
+{{"demo": "pages/layout/grid/CSSGrid.js"}}
+
 ## Limitations
 
 ### Negative margin
