@@ -53,15 +53,25 @@ module.exports = {
       '/': { page: '/' },
     };
 
+    // Do not use a recursive logic as we don't want to support a depth > 2.
     pages.forEach(lvl0Page => {
       if (!lvl0Page.children) {
         return;
       }
 
       lvl0Page.children.forEach(lvl1Page => {
-        map[lvl1Page.pathname] = {
-          page: lvl1Page.pathname,
-        };
+        if (!lvl1Page.children) {
+          map[lvl1Page.pathname] = {
+            page: lvl1Page.pathname,
+          };
+          return;
+        }
+
+        lvl1Page.children.forEach(lvl2Page => {
+          map[lvl2Page.pathname] = {
+            page: lvl2Page.pathname,
+          };
+        });
       });
     });
 
