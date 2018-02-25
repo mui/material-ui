@@ -9,7 +9,7 @@ describe('<TableBody />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
   });
 
   it('should render a tbody', () => {
