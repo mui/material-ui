@@ -62,8 +62,8 @@ class RefreshIndicator extends React.Component {
         strokeDasharray: `${arcLen}, ${(perimeter - arcLen)}`,
         strokeDashoffset: dashOffset,
         stroke: (isLoading || this.props.percentage >= 100) ?
-          (this.props.loadingColor || this.props.theme.palette.primary[500]) :
-          (this.props.color || this.props.theme.palette.grey[300]),
+          this.props.theme.palette[this.props.color].main :
+          this.props.theme.palette.grey[300],
         strokeLinecap: 'round',
         opacity: p1,
         strokeWidth: circle.strokeWidth * p1,
@@ -92,8 +92,8 @@ class RefreshIndicator extends React.Component {
     return {
       style: {
         fill: this.props.percentage >= 100 ?
-          (this.props.loadingColor || this.props.theme.palette.primary[500]) :
-          (this.props.color || this.props.theme.palette.grey[300]),
+          this.props.theme.palette[this.props.color].main :
+          this.props.theme.palette.grey[300],
         transform: `rotate(${endDeg}deg)`,
         transformOrigin: `${circle.originX}px ${circle.originY}px`,
         opacity: p1,
@@ -112,7 +112,7 @@ class RefreshIndicator extends React.Component {
       const circleStyle = this.getCircleStyle(paperSize);
       childrenCmp=(
         <CircularProgress
-          color="accent"
+          color={this.props.color}
           size={paperSize}
           thickness={3 * SIZE / 32}
         />
@@ -147,11 +147,13 @@ class RefreshIndicator extends React.Component {
     const {
       classes,
       className: classNameProp,
+      color, // eslint-disable-line
       percentage,
       size,
       status,
       style,
-      ...other    
+      theme, // eslint-disable-line
+      ...other,
     } = this.props;
 
     return (
@@ -176,6 +178,10 @@ RefreshIndicator.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
+  /**
    * The confirmation progress to fetch data. Max value is 100.
    */
   percentage: PropTypes.number,
@@ -189,9 +195,14 @@ RefreshIndicator.propTypes = {
    * If the status is "hide", the indicator will be hidden.
    */
   status: PropTypes.oneOf(['ready', 'loading', 'hide']),
+  /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
 }
 
 RefreshIndicator.defaultProps = {
+  color: 'secondary',
   percentage: 0,
   size: 40,
   status: 'hide'

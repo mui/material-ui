@@ -29,7 +29,6 @@ function ReadyIndicator(props) {
         size={60}
         left={120}
         top={0}
-        color="red"
         status="ready"
       />
       <RefreshIndicator
@@ -37,7 +36,6 @@ function ReadyIndicator(props) {
         size={70}
         left={175}
         top={0}
-        color="red" // Overridden by percentage={100}
         status="ready"
       />
     </div>
