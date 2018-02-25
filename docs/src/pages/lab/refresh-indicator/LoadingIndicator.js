@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import RefreshIndicator, { RefreshableContainer } from 'material-ui/RefreshIndicator';
+import RefreshIndicator from '@material-ui/lab/RefreshIndicator';
+import RefreshableContainer from '@material-ui/lab/RefreshableContainer';
 
 const styles = theme => ({
 });

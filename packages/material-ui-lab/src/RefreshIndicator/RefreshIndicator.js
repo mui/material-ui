@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Paper from '../Paper';
-import { CircularProgress } from '../Progress';
-import withStyles from '../styles/withStyles';
+import Paper from 'material-ui/Paper';
+import { CircularProgress } from 'material-ui/Progress';
+import { withStyles } from 'material-ui/styles';
 
 const SIZE = 50; // same as CircularProgress
 
@@ -166,8 +166,35 @@ class RefreshIndicator extends React.Component {
   }
 }
 
+RefreshIndicator.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The confirmation progress to fetch data. Max value is 100.
+   */
+  percentage: PropTypes.number,
+  /**
+   * Size in pixels.
+   */
+  size: PropTypes.number,
+  /**
+   * The display status of the indicator. If the status is "ready", the indicator will display the
+   * ready state arrow. If the status is "loading", it will display the loading progress indicator.
+   * If the status is "hide", the indicator will be hidden.
+   */
+  status: PropTypes.oneOf(['ready', 'loading', 'hide']),
+}
+
 RefreshIndicator.defaultProps = {
-  size: 40
+  percentage: 0,
+  size: 40,
+  status: 'hide'
 }
 
 export default withStyles(styles, { name: 'MuiRefreshIndicator', withTheme: true })(RefreshIndicator);
