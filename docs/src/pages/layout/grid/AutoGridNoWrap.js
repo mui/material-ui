@@ -8,7 +8,11 @@ import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   root: {
-    width: 400,
+    overflow: 'hidden',
+    padding: `0 ${theme.spacing.unit * 3}px`,
+  },
+  wrapper: {
+    maxWidth: 400,
   },
   paper: {
     margin: theme.spacing.unit,
@@ -23,36 +27,38 @@ function AutoGridNoWrap(props) {
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <Grid container wrap="nowrap">
-          <Grid item>
-            <Avatar>W</Avatar>
+      <div className={classes.wrapper}>
+        <Paper className={classes.paper}>
+          <Grid container wrap="nowrap">
+            <Grid item>
+              <Avatar>W</Avatar>
+            </Grid>
+            <Grid item xs zeroMinWidth>
+              <Typography noWrap>{message}</Typography>
+            </Grid>
           </Grid>
-          <Grid item xs zeroMinWidth>
-            <Typography noWrap>{message}</Typography>
+        </Paper>
+        <Paper className={classes.paper}>
+          <Grid container wrap="nowrap">
+            <Grid item>
+              <Avatar>W</Avatar>
+            </Grid>
+            <Grid item xs>
+              <Typography noWrap>{message}</Typography>
+            </Grid>
           </Grid>
-        </Grid>
-      </Paper>
-      <Paper className={classes.paper}>
-        <Grid container wrap="nowrap">
-          <Grid item>
-            <Avatar>W</Avatar>
+        </Paper>
+        <Paper className={classes.paper}>
+          <Grid container wrap="nowrap">
+            <Grid item>
+              <Avatar>W</Avatar>
+            </Grid>
+            <Grid item xs>
+              <Typography>{message}</Typography>
+            </Grid>
           </Grid>
-          <Grid item xs>
-            <Typography noWrap>{message}</Typography>
-          </Grid>
-        </Grid>
-      </Paper>
-      <Paper className={classes.paper}>
-        <Grid container wrap="nowrap">
-          <Grid item>
-            <Avatar>W</Avatar>
-          </Grid>
-          <Grid item xs>
-            <Typography>{message}</Typography>
-          </Grid>
-        </Grid>
-      </Paper>
+        </Paper>
+      </div>
     </div>
   );
 }
