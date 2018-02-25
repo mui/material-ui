@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import RefreshIndicator from '@material-ui/lab/RefreshIndicator';
 import RefreshableContainer from '@material-ui/lab/RefreshableContainer';
 
-const styles = theme => ({});
-
 class LoadingIndicator extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { loading: false };
-  }
+  state = {
+    loading: false,
+  };
 
   handleRefresh = () => {
     this.setState({ loading: true });
@@ -40,4 +36,4 @@ LoadingIndicator.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LoadingIndicator);
+export default LoadingIndicator;

@@ -23,9 +23,45 @@ const styles = {
 };
 
 class RefreshableContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { swiping: false };
+  state = {
+    swiping: false,
+  };
+
+  componentWillUnmount() {
+    this.rootNode.removeEventListener('touchstart', this.handleTouchStart);
+    this.rootNode.removeEventListener('touchmove', this.handleTouchMove);
+    this.rootNode.removeEventListener('touchend', this.handleTouchEnd);
+  }
+
+  setRootNode = node => {
+    this.rootNode = node;
+    if (node != null) {
+      if (this.props.attachToWindow) {
+        node = document.documentElement;
+        this.rootNode = node;
+      }
+      node.addEventListener('touchstart', this.handleTouchStart);
+      node.addEventListener('touchmove', this.handleTouchMove, { passive: false });
+      node.addEventListener('touchend', this.handleTouchEnd);
+    }
+  };
+
+  getTopOffset() {
+    if (this.props.loading) {
+      return INDICATOR_ACTIVE_POSITION;
+    } else if (this.state.swiping) {
+      const touchDelta = this.state.touchNow - this.state.touchStart;
+      if (touchDelta - INDICATOR_SIZE - 5 >= INDICATOR_ACTIVE_POSITION) {
+        return (
+          INDICATOR_ACTIVE_POSITION -
+          INDICATOR_SIZE -
+          5 +
+          Math.log(1 + touchDelta - INDICATOR_SIZE - 5 - INDICATOR_ACTIVE_POSITION) * 50
+        );
+      }
+      return Math.max(-INDICATOR_SIZE - 5, touchDelta - INDICATOR_SIZE - 5);
+    }
+    return -INDICATOR_SIZE - 5;
   }
 
   handleTouchStart = e => {
@@ -49,7 +85,7 @@ class RefreshableContainer extends React.Component {
     }
   };
 
-  handleTouchEnd = e => {
+  handleTouchEnd = () => {
     if (this.rootNode.scrollTop === 0) {
       const delta = this.state.touchNow - this.state.touchStart;
       if (delta - INDICATOR_SIZE - 5 >= INDICATOR_ACTIVE_POSITION && this.props.onRefresh) {
@@ -61,48 +97,6 @@ class RefreshableContainer extends React.Component {
       this.setState({ swiping: false, touchStart: 0, touchNow: 0 });
     }
   };
-
-  setRootNode = node => {
-    this.rootNode = node;
-    if (node != null) {
-      if (this.props.attachToWindow) {
-        node = document.documentElement;
-        this.rootNode = node;
-      }
-      node.addEventListener('touchstart', this.handleTouchStart);
-      node.addEventListener('touchmove', this.handleTouchMove, { passive: false });
-      node.addEventListener('touchend', this.handleTouchEnd);
-    }
-  };
-
-  componentWillUnmount() {
-    this.rootNode.removeEventListener('touchstart', this.handleTouchStart);
-    this.rootNode.removeEventListener('touchmove', this.handleTouchMove);
-    this.rootNode.removeEventListener('touchend', this.handleTouchEnd);
-  }
-
-  getTopOffset() {
-    if (this.props.loading) {
-      return INDICATOR_ACTIVE_POSITION;
-    } else if (this.state.swiping) {
-      const touchDelta = this.state.touchNow - this.state.touchStart;
-      if (touchDelta - INDICATOR_SIZE - 5 >= INDICATOR_ACTIVE_POSITION) {
-        console.log(
-          INDICATOR_ACTIVE_POSITION +
-            Math.log(1 + touchDelta - INDICATOR_SIZE - 5 - INDICATOR_ACTIVE_POSITION) * 20,
-        );
-        return (
-          INDICATOR_ACTIVE_POSITION -
-          INDICATOR_SIZE -
-          5 +
-          Math.log(1 + touchDelta - INDICATOR_SIZE - 5 - INDICATOR_ACTIVE_POSITION) * 50
-        );
-      }
-      return Math.max(-INDICATOR_SIZE - 5, touchDelta - INDICATOR_SIZE - 5);
-    } else {
-      return -INDICATOR_SIZE - 5;
-    }
-  }
 
   render() {
     const {
@@ -131,7 +125,8 @@ class RefreshableContainer extends React.Component {
             top: this.getTopOffset(),
             transition:
               loading || !swiping ? 'all 150ms ease-in-out' : 'transform 150ms ease-in-out',
-            // transform: loading || swiping ? 'scale(1)' : 'scale(0)' // TODO only do this in co-planar mode
+            // TODO only do this in co-planar mode:
+            // transform: loading || swiping ? 'scale(1)' : 'scale(0)'
           }}
         />
         {children}
@@ -161,6 +156,10 @@ RefreshableContainer.propTypes = {
    * If `true`, a loading indicator is displayed.
    */
   loading: PropTypes.bool,
+  /**
+   * Callback function fired when the pull to refresh gesture is performed.
+   */
+  onRefresh: PropTypes.func,
 };
 
 RefreshableContainer.defaultTypes = {

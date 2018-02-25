@@ -6,8 +6,14 @@ import { CircularProgress } from 'material-ui/Progress';
 import { withStyles } from 'material-ui/styles';
 
 const SIZE = 50; // same as CircularProgress
+const circleAttr = {
+  radius: SIZE / 2 - 5,
+  originX: SIZE / 2,
+  originY: SIZE / 2,
+  strokeWidth: 5,
+};
 
-export const styles = theme => ({
+export const styles = () => ({
   root: {
     borderRadius: '50%',
   },
@@ -20,15 +26,6 @@ class RefreshIndicator extends React.Component {
 
   getPaperSize() {
     return this.props.size - this.getPaddingSize() * 2;
-  }
-
-  getCircleAttr() {
-    return {
-      radius: SIZE / 2 - 5,
-      originX: SIZE / 2,
-      originY: SIZE / 2,
-      strokeWidth: 5,
-    };
   }
 
   getArcDeg() {
@@ -50,8 +47,7 @@ class RefreshIndicator extends React.Component {
   getCircleStyle() {
     const isLoading = this.props.status === 'loading';
     const p1 = isLoading ? 1 : this.getFactor();
-    const circle = this.getCircleAttr();
-    const perimeter = Math.PI * 2 * circle.radius;
+    const perimeter = Math.PI * 2 * circleAttr.radius;
 
     const [beginDeg, endDeg] = this.getArcDeg();
     const arcLen = (endDeg - beginDeg) * perimeter / 360;
@@ -67,24 +63,23 @@ class RefreshIndicator extends React.Component {
             : this.props.theme.palette.grey[300],
         strokeLinecap: 'round',
         opacity: p1,
-        strokeWidth: circle.strokeWidth * p1,
+        strokeWidth: circleAttr.strokeWidth * p1,
         fill: 'none',
       },
       attr: {
-        cx: circle.originX,
-        cy: circle.originY,
-        r: circle.radius,
+        cx: circleAttr.originX,
+        cy: circleAttr.originY,
+        r: circleAttr.radius,
       },
     };
   }
 
   getPolygonStyle() {
     const p1 = this.getFactor();
-    const circle = this.getCircleAttr();
 
-    const triangleCx = circle.originX + circle.radius;
-    const triangleCy = circle.originY;
-    const dx = circle.strokeWidth * 7 / 4 * p1;
+    const triangleCx = circleAttr.originX + circleAttr.radius;
+    const triangleCy = circleAttr.originY;
+    const dx = circleAttr.strokeWidth * 7 / 4 * p1;
     const trianglePath = `${triangleCx - dx},${triangleCy} ${triangleCx +
       dx},${triangleCy} ${triangleCx},${triangleCy + dx}`;
 
@@ -97,7 +92,7 @@ class RefreshIndicator extends React.Component {
             ? this.props.theme.palette[this.props.color].main
             : this.props.theme.palette.grey[300],
         transform: `rotate(${endDeg}deg)`,
-        transformOrigin: `${circle.originX}px ${circle.originY}px`,
+        transformOrigin: `${circleAttr.originX}px ${circleAttr.originY}px`,
         opacity: p1,
       },
       attr: {
@@ -111,7 +106,6 @@ class RefreshIndicator extends React.Component {
 
     let childrenCmp = null;
     if (this.props.status !== 'ready') {
-      const circleStyle = this.getCircleStyle(paperSize);
       childrenCmp = (
         <CircularProgress color={this.props.color} size={paperSize} thickness={3 * SIZE / 32} />
       );
@@ -187,6 +181,10 @@ RefreshIndicator.propTypes = {
    * If the status is "hide", the indicator will be hidden.
    */
   status: PropTypes.oneOf(['ready', 'loading', 'hide']),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * @ignore
    */
