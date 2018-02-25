@@ -187,6 +187,18 @@ describe('<SwitchBase />', () => {
     });
   });
 
+  describe('prop: defaultChecked', () => {
+    it('should work uncontrolled', () => {
+      const wrapper = mount(<SwitchBaseNaked classes={{}} defaultChecked />);
+      wrapper
+        .find('input')
+        .instance()
+        .click();
+      wrapper.update();
+      assertIsNotChecked(wrapper);
+    });
+  });
+
   describe('uncontrolled', () => {
     let wrapper;
 
