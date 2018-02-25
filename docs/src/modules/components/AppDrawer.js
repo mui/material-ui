@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { Scrollbars } from 'react-custom-scrollbars';
 import { withStyles } from 'material-ui/styles';
 import List from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
@@ -86,27 +87,29 @@ function AppDrawer(props, context) {
   const { classes, className, disablePermanent, mobileOpen, onClose } = props;
 
   const drawer = (
-    <div className={classes.nav}>
-      <div className={classes.toolbarIe11}>
-        <Toolbar className={classes.toolbar}>
-          <Link className={classes.title} href="/" onClick={onClose}>
-            <Typography variant="title" color="inherit">
-              Material-UI
-            </Typography>
-          </Link>
-          {process.env.MATERIAL_UI_VERSION ? (
-            <Link
-              className={classes.anchor}
-              href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
-            >
-              <Typography variant="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
+    <Scrollbars autoHide autoHideTimeout={1000} autoHideDuration={200}>
+      <div className={classes.nav}>
+        <div className={classes.toolbarIe11}>
+          <Toolbar className={classes.toolbar}>
+            <Link className={classes.title} href="/" onClick={onClose}>
+              <Typography variant="title" color="inherit">
+                Material-UI
+              </Typography>
             </Link>
-          ) : null}
-          <Divider absolute />
-        </Toolbar>
+            {process.env.MATERIAL_UI_VERSION ? (
+              <Link
+                className={classes.anchor}
+                href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
+              >
+                <Typography variant="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
+              </Link>
+            ) : null}
+            <Divider absolute />
+          </Toolbar>
+        </div>
+        {renderNavItems({ props, pages: context.pages, activePage: context.activePage, depth: 0 })}
       </div>
-      {renderNavItems({ props, pages: context.pages, activePage: context.activePage, depth: 0 })}
-    </div>
+    </Scrollbars>
   );
 
   return (

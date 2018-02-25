@@ -86,6 +86,7 @@
     "lodash": "^4.2.0",
     "normalize-scroll-left": "^0.1.2",
     "prop-types": "^15.6.0",
+    "react-custom-scrollbars": "^4.2.1",
     "react-event-listener": "^0.5.1",
     "react-jss": "^8.1.0",
     "react-popper": "^0.8.0",
