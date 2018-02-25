@@ -2,10 +2,11 @@
   "name": "eslint-plugin-material-ui",
   "version": "1.0.0",
   "private": true,
-  "description": "Custom eslint rules for Material-UI",
+  "description": "Custom eslint rules for Material-UI.",
   "main": "src/index.js",
   "scripts": {
-    "test": "../../node_modules/.bin/mocha src/**/*.spec.js"
+    "test": "../../node_modules/.bin/mocha src/**/*.spec.js",
+    "build": "echo done"
   },
   "repository": {
     "type": "git",
