@@ -9,9 +9,9 @@ const SIZE = 50; // same as CircularProgress
 
 export const styles = theme => ({
   root: {
-    borderRadius: '50%'
-  }
-})
+    borderRadius: '50%',
+  },
+});
 
 class RefreshIndicator extends React.Component {
   getPaddingSize() {
@@ -59,11 +59,12 @@ class RefreshIndicator extends React.Component {
 
     return {
       style: {
-        strokeDasharray: `${arcLen}, ${(perimeter - arcLen)}`,
+        strokeDasharray: `${arcLen}, ${perimeter - arcLen}`,
         strokeDashoffset: dashOffset,
-        stroke: (isLoading || this.props.percentage >= 100) ?
-          this.props.theme.palette[this.props.color].main :
-          this.props.theme.palette.grey[300],
+        stroke:
+          isLoading || this.props.percentage >= 100
+            ? this.props.theme.palette[this.props.color].main
+            : this.props.theme.palette.grey[300],
         strokeLinecap: 'round',
         opacity: p1,
         strokeWidth: circle.strokeWidth * p1,
@@ -83,17 +84,18 @@ class RefreshIndicator extends React.Component {
 
     const triangleCx = circle.originX + circle.radius;
     const triangleCy = circle.originY;
-    const dx = (circle.strokeWidth * 7 / 4) * p1;
-    const trianglePath = `${(triangleCx - dx)},${triangleCy} ${(triangleCx + dx)},${
-      triangleCy} ${triangleCx},${(triangleCy + dx)}`;
+    const dx = circle.strokeWidth * 7 / 4 * p1;
+    const trianglePath = `${triangleCx - dx},${triangleCy} ${triangleCx +
+      dx},${triangleCy} ${triangleCx},${triangleCy + dx}`;
 
     const [, endDeg] = this.getArcDeg();
 
     return {
       style: {
-        fill: this.props.percentage >= 100 ?
-          this.props.theme.palette[this.props.color].main :
-          this.props.theme.palette.grey[300],
+        fill:
+          this.props.percentage >= 100
+            ? this.props.theme.palette[this.props.color].main
+            : this.props.theme.palette.grey[300],
         transform: `rotate(${endDeg}deg)`,
         transformOrigin: `${circle.originX}px ${circle.originY}px`,
         opacity: p1,
@@ -104,18 +106,14 @@ class RefreshIndicator extends React.Component {
     };
   }
 
-  renderChildren () {
+  renderChildren() {
     const paperSize = this.getPaperSize();
 
     let childrenCmp = null;
     if (this.props.status !== 'ready') {
       const circleStyle = this.getCircleStyle(paperSize);
-      childrenCmp=(
-        <CircularProgress
-          color={this.props.color}
-          size={paperSize}
-          thickness={3 * SIZE / 32}
-        />
+      childrenCmp = (
+        <CircularProgress color={this.props.color} size={paperSize} thickness={3 * SIZE / 32} />
       );
     } else {
       const circleStyle = this.getCircleStyle(paperSize);
@@ -128,22 +126,16 @@ class RefreshIndicator extends React.Component {
           }}
           viewBox={`0 0 ${SIZE} ${SIZE}`}
         >
-          <circle
-            style={circleStyle.style}
-            {...circleStyle.attr}
-          />
-          <polygon
-            style={polygonStyle.style}
-            {...polygonStyle.attr}
-          />
+          <circle style={circleStyle.style} {...circleStyle.attr} />
+          <polygon style={polygonStyle.style} {...polygonStyle.attr} />
         </svg>
       );
     }
 
     return childrenCmp;
   }
-    
-  render () {
+
+  render() {
     const {
       classes,
       className: classNameProp,
@@ -153,7 +145,7 @@ class RefreshIndicator extends React.Component {
       status,
       style,
       theme, // eslint-disable-line
-      ...other,
+      ...other
     } = this.props;
 
     return (
@@ -164,7 +156,7 @@ class RefreshIndicator extends React.Component {
       >
         {this.renderChildren()}
       </Paper>
-    )
+    );
   }
 }
 
@@ -199,13 +191,15 @@ RefreshIndicator.propTypes = {
    * @ignore
    */
   theme: PropTypes.object.isRequired,
-}
+};
 
 RefreshIndicator.defaultProps = {
   color: 'secondary',
   percentage: 0,
   size: 40,
-  status: 'hide'
-}
+  status: 'hide',
+};
 
-export default withStyles(styles, { name: 'MuiRefreshIndicator', withTheme: true })(RefreshIndicator);
+export default withStyles(styles, { name: 'MuiRefreshIndicator', withTheme: true })(
+  RefreshIndicator,
+);

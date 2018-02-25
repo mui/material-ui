@@ -4,42 +4,32 @@ import { withStyles } from 'material-ui/styles';
 import RefreshIndicator from '@material-ui/lab/RefreshIndicator';
 import RefreshableContainer from '@material-ui/lab/RefreshableContainer';
 
-const styles = theme => ({
-});
+const styles = theme => ({});
 
 class LoadingIndicator extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
-    this.state = { loading: false }
+    this.state = { loading: false };
   }
 
   handleRefresh = () => {
-    this.setState({ loading: true })
-    setTimeout(() => this.setState({ loading: false }), 1000)
-  }
+    this.setState({ loading: true });
+    setTimeout(() => this.setState({ loading: false }), 1000);
+  };
 
-  render () {
+  render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <RefreshIndicator
-          size={40}
-          left={10}
-          top={0}
-          status="loading"
-        />
-        <RefreshIndicator
-          size={50}
-          left={70}
-          top={0}
-          status="loading"
-        />
-
+        <RefreshIndicator size={40} left={10} top={0} status="loading" />
+        <RefreshIndicator size={50} left={70} top={0} status="loading" />
         and
-        <RefreshableContainer style={{ height: 200 }} onRefresh={this.handleRefresh} loading={this.state.loading}>
-          {[...Array(100).keys()].map((i) => (
-            <div key={i}>Item #{i}</div>
-          ))}
+        <RefreshableContainer
+          style={{ height: 200 }}
+          onRefresh={this.handleRefresh}
+          loading={this.state.loading}
+        >
+          {[...Array(100).keys()].map(i => <div key={i}>Item #{i}</div>)}
         </RefreshableContainer>
       </div>
     );
