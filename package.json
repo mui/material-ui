@@ -160,7 +160,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^2.0.6",
+    "karma-webpack": "^2.0.9",
     "lerna": "^2.9.0",
     "lz-string": "^1.4.4",
     "marked": "^0.3.12",

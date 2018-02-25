@@ -7,7 +7,6 @@ import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
-import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = theme => ({
   root: {
@@ -149,7 +148,7 @@ export const styles = theme => ({
 
 function Button(props) {
   const {
-    children: childrenProp,
+    children,
     classes,
     className: classNameProp,
     color,
@@ -182,17 +181,6 @@ function Button(props) {
     },
     classNameProp,
   );
-
-  let children = childrenProp;
-
-  if (fab) {
-    children = React.Children.map(children, child => {
-      if (isMuiElement(child, ['Icon', 'SvgIcon'])) {
-        return React.cloneElement(child, { fontSize: true });
-      }
-      return child;
-    });
-  }
 
   return (
     <ButtonBase

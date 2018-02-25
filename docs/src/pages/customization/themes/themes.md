@@ -212,7 +212,7 @@ If you want to learn more about typography, you can check out [the typography se
 
 {{"demo": "pages/customization/themes/TypographyTheme.js"}}
 
-#### Font size
+### Font size
 
 Material-UI uses `rem` units for the font size.
 The browser html element default font size is `16px`, but browsers have an option to change this value,
