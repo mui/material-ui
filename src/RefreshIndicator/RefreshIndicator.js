@@ -15,8 +15,7 @@ export const styles = theme => ({
 
 class RefreshIndicator extends React.Component {
   getPaddingSize() {
-    const padding = this.props.size * 0.14;
-    return padding;
+    return this.props.size * 0.14;
   }
 
   getPaperSize() {
