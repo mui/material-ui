@@ -61,7 +61,7 @@
     "version": "yarn build",
     "release": "np --no-publish --any-branch",
     "postrelease": "yarn docs:deploy && npm publish build --tag next",
-    "monorepo:release": "yarn lerna exec -- yarn build && ./node_modules/.bin/lerna publish --skip-npm"
+    "monorepo:release": "yarn lerna exec yarn build && ./node_modules/.bin/lerna publish --skip-npm"
   },
   "peerDependencies": {
     "react": "^15.3.0 || ^16.0.0",
