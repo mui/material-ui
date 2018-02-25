@@ -35,6 +35,8 @@ N/A
 - [Select] Make 'type' prop able to be overwritten (#10361) @fabijanski
 - [Select] Set type undefined rather than null (#10430) @caub
 - [ButtonBase] Fix accessibility (#10434) @oliviertassinari
+- [SwitchBase] Fix defaultChecked issue (#10444) @tanmayrajani
+- [SwitchBase] Prevent defaultChecked regression (#10445) @oliviertassinari
 
 #### Docs
 
@@ -55,6 +57,7 @@ N/A
 - [docs] Update transitions.md (#10417) @caub
 - [docs] Fix minor typo in breaking-changes notification (#10418) @phazor
 - [docs] Description of how component will render (#10432) @oliviertassinari
+- [docs] Add CSSGrid comparison example (#10433) @caub
 
 #### Core
 
