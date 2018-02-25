@@ -54,6 +54,7 @@
     "lodash.merge": "^4.6.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.5.7",
+    "react-custom-scrollbars": "^4.2.1",
     "react-event-listener": "^0.5.1",
     "react-transition-group": "^1.2.1",
     "recompose": "^0.26.0",
