@@ -27,7 +27,7 @@ function StepContent(props) {
     alternativeLabel,
     children,
     classes,
-    className: classNameProp,
+    className,
     completed,
     last,
     optional,
@@ -42,16 +42,8 @@ function StepContent(props) {
     'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',
   );
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.last]: last,
-    },
-    classNameProp,
-  );
-
   return (
-    <div className={className} {...other}>
+    <div className={classNames(classes.root, { [classes.last]: last }, className)} {...other}>
       <Transition
         in={active}
         className={classes.transition}

@@ -28,8 +28,10 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `root`
 - `focused`
-- `error`
 - `disabled`
+- `error`
+- `asterisk`
+- `asteriskError`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Form/FormLabel.js)

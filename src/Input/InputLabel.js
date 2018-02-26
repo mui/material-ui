@@ -17,7 +17,7 @@ export const styles = theme => ({
     // slight alteration to spec spacing to match visual spec result
     transform: `translate(0, ${theme.spacing.unit * 3}px) scale(1)`,
   },
-  labelDense: {
+  marginDense: {
     // Compensation for the `Input.inputDense` style.
     transform: `translate(0, ${theme.spacing.unit * 2.5 + 1}px) scale(1)`,
   },
@@ -68,7 +68,7 @@ function InputLabel(props, context) {
       [classes.animated]: !disableAnimation,
       [classes.shrink]: shrink,
       [classes.disabled]: disabled,
-      [classes.labelDense]: margin === 'dense',
+      [classes.marginDense]: margin === 'dense',
     },
     classNameProp,
   );

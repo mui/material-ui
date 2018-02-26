@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
+import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
   root: {
@@ -38,10 +39,10 @@ export const styles = theme => ({
     userSelect: 'none',
     width: 16,
   },
-  desc: {
+  iconDirectionDesc: {
     transform: 'rotate(0deg)',
   },
-  asc: {
+  iconDirectionAsc: {
     transform: 'rotate(180deg)',
   },
 });
@@ -50,23 +51,19 @@ export const styles = theme => ({
  * A button based label for placing inside `TableCell` for column sorting.
  */
 function TableSortLabel(props) {
-  const { active, classes, className: classNameProp, children, direction, ...other } = props;
-  const className = classNames(
-    classes.root,
-    {
-      [classes.active]: active,
-    },
-    classNameProp,
-  );
-
-  const iconClassName = classNames(classes.icon, {
-    [classes[direction]]: !!direction,
-  });
+  const { active, classes, className, children, direction, ...other } = props;
 
   return (
-    <ButtonBase className={className} component="span" disableRipple {...other}>
+    <ButtonBase
+      className={classNames(classes.root, { [classes.active]: active }, className)}
+      component="span"
+      disableRipple
+      {...other}
+    >
       {children}
-      <ArrowDownwardIcon className={iconClassName} />
+      <ArrowDownwardIcon
+        className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
+      />
     </ButtonBase>
   );
 }

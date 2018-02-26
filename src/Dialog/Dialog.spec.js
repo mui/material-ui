@@ -151,12 +151,12 @@ describe('<Dialog />', () => {
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullWidth), true);
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullWidth), true);
     });
 
     it('should not set `fullWidth` class if not specified', () => {
       const wrapper = shallow(<Dialog {...defaultProps}>foo</Dialog>);
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullWidth), false);
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullWidth), false);
     });
   });
 
@@ -167,7 +167,7 @@ describe('<Dialog />', () => {
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), true);
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), true);
     });
 
     it('false should not render fullScreen', () => {
@@ -176,7 +176,7 @@ describe('<Dialog />', () => {
           foo
         </Dialog>,
       );
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), false);
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), false);
     });
   });
 });

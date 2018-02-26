@@ -21,16 +21,18 @@ export const styles = {
  */
 function FormGroup(props) {
   const { classes, className, children, row, ...other } = props;
-  const rootClassName = classNames(
-    classes.root,
-    {
-      [classes.row]: row,
-    },
-    className,
-  );
 
   return (
-    <div className={rootClassName} {...other}>
+    <div
+      className={classNames(
+        classes.root,
+        {
+          [classes.row]: row,
+        },
+        className,
+      )}
+      {...other}
+    >
       {children}
     </div>
   );

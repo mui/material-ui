@@ -35,19 +35,19 @@ export const styles = theme => {
       justifyContent: 'center',
       alignItems: 'center',
     },
-    anchorTopCenter: {
+    anchorOriginTopCenter: {
       ...top,
       [theme.breakpoints.up('md')]: {
         ...center,
       },
     },
-    anchorBottomCenter: {
+    anchorOriginBottomCenter: {
       ...bottom,
       [theme.breakpoints.up('md')]: {
         ...center,
       },
     },
-    anchorTopRight: {
+    anchorOriginTopRight: {
       ...top,
       ...right,
       [theme.breakpoints.up('md')]: {
@@ -56,7 +56,7 @@ export const styles = theme => {
         ...rightSpace,
       },
     },
-    anchorBottomRight: {
+    anchorOriginBottomRight: {
       ...bottom,
       ...right,
       [theme.breakpoints.up('md')]: {
@@ -65,7 +65,7 @@ export const styles = theme => {
         ...rightSpace,
       },
     },
-    anchorTopLeft: {
+    anchorOriginTopLeft: {
       ...top,
       ...left,
       [theme.breakpoints.up('md')]: {
@@ -74,7 +74,7 @@ export const styles = theme => {
         ...leftSpace,
       },
     },
-    anchorBottomLeft: {
+    anchorOriginBottomLeft: {
       ...bottom,
       ...left,
       [theme.breakpoints.up('md')]: {
@@ -232,7 +232,7 @@ class Snackbar extends React.Component {
           <div
             className={classNames(
               classes.root,
-              classes[`anchor${capitalize(vertical)}${capitalize(horizontal)}`],
+              classes[`anchorOrigin${capitalize(vertical)}${capitalize(horizontal)}`],
               className,
             )}
             onMouseEnter={this.handleMouseEnter}

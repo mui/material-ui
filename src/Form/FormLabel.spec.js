@@ -39,11 +39,7 @@ describe('<FormLabel />', () => {
       const wrapper = shallow(<FormLabel required error />);
       const asteriskWrapper = wrapper.find('[data-mui-test="FormLabelAsterisk"]');
       assert.strictEqual(asteriskWrapper.length, 1);
-      assert.strictEqual(
-        asteriskWrapper.hasClass(classes.error),
-        true,
-        'asterisk should have the error class',
-      );
+      assert.strictEqual(asteriskWrapper.hasClass(classes.asteriskError), true);
       assert.strictEqual(wrapper.hasClass(classes.error), true, 'should have the error class');
     });
   });

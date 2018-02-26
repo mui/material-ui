@@ -26,9 +26,9 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `dense`
 - `error`
 - `disabled`
+- `marginDense`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Form/FormHelperText.js)

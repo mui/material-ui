@@ -33,9 +33,11 @@ export const styles = theme => ({
     textAlign: 'center',
     marginTop: theme.spacing.unit * 2,
   },
-  iconContainer: {},
-  iconContainerNoAlternative: {
+  iconContainer: {
     paddingRight: theme.spacing.unit,
+  },
+  iconContainerAlternativeLabel: {
+    paddingRight: 0,
   },
   labelContainer: {
     width: '100%',
@@ -74,7 +76,7 @@ function StepLabel(props) {
       {icon && (
         <span
           className={classNames(classes.iconContainer, {
-            [classes.iconContainerNoAlternative]: !alternativeLabel,
+            [classes.iconContainerAlternativeLabel]: alternativeLabel,
           })}
         >
           <StepIcon

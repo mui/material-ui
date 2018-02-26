@@ -5,10 +5,10 @@ import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   root: {
+    ...theme.mixins.toolbar,
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    ...theme.mixins.toolbar,
   },
   gutters: theme.mixins.gutters(),
 });

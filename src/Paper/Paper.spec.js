@@ -17,24 +17,36 @@ describe('<Paper />', () => {
     assert.strictEqual(wrapper.name(), 'div');
   });
 
-  it('should render with the root class, default depth class, and rounded', () => {
+  it('should render with the root class, default depth class', () => {
     const wrapper = shallow(<Paper>Hello World</Paper>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.rounded), true, 'should be rounded by default');
+    assert.strictEqual(wrapper.hasClass(classes.rounded), true);
   });
 
   it('should disable the rounded class', () => {
     const wrapper = shallow(<Paper square>Hello World</Paper>);
-    assert.strictEqual(wrapper.hasClass(classes.rounded), false, 'should not be rounded');
+    assert.strictEqual(wrapper.hasClass(classes.rounded), false);
   });
 
-  it('should set the elevation shadow class', () => {
+  it('should set the elevation elevation class', () => {
     const wrapper = shallow(<Paper elevation={16}>Hello World</Paper>);
-    assert.strictEqual(wrapper.hasClass(classes.shadow16), true, 'should have the 16 shadow class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.elevation16),
+      true,
+      'should have the 16 elevation class',
+    );
     wrapper.setProps({ elevation: 24 });
-    assert.strictEqual(wrapper.hasClass(classes.shadow24), true, 'should have the 24 shadow class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.elevation24),
+      true,
+      'should have the 24 elevation class',
+    );
     wrapper.setProps({ elevation: 2 });
-    assert.strictEqual(wrapper.hasClass(classes.shadow2), true, 'should have the 2 shadow class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.elevation2),
+      true,
+      'should have the 2 elevation class',
+    );
   });
 
   describe('prop: component', () => {

@@ -18,38 +18,42 @@ export const styles = theme => ({
         : darken(fade(theme.palette.divider, 1), 0.8)
     }`,
     textAlign: 'left',
-  },
-  numeric: {
-    textAlign: 'right',
-    flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
-  },
-  typeHead: {
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.pxToRem(12),
-    fontWeight: theme.typography.fontWeightMedium,
-    position: 'relative', // Workaround for Tooltip positioning issue.
-  },
-  typeBody: {
-    fontSize: theme.typography.pxToRem(13),
-    color: theme.palette.text.primary,
-  },
-  typeFooter: {
-    borderBottom: 0,
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.pxToRem(12),
-  },
-  paddingDefault: {
     padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 7}px ${theme.spacing.unit /
       2}px ${theme.spacing.unit * 3}px`,
     '&:last-child': {
       paddingRight: theme.spacing.unit * 3,
     },
   },
+  head: {
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(12),
+    fontWeight: theme.typography.fontWeightMedium,
+    position: 'relative', // Workaround for Tooltip positioning issue.
+  },
+  body: {
+    fontSize: theme.typography.pxToRem(13),
+    color: theme.palette.text.primary,
+  },
+  footer: {
+    borderBottom: 0,
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.pxToRem(12),
+  },
+  numeric: {
+    textAlign: 'right',
+    flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
+  },
   paddingDense: {
     paddingRight: theme.spacing.unit * 3,
   },
   paddingCheckbox: {
     padding: '0 12px',
+  },
+  paddingNone: {
+    padding: 0,
+    '&:last-child': {
+      padding: 0,
+    },
   },
 });
 
@@ -82,12 +86,11 @@ function TableCell(props, context) {
   const className = classNames(
     classes.root,
     {
+      [classes.head]: variant ? variant === 'head' : table && table.head,
+      [classes.body]: variant ? variant === 'body' : table && table.body,
+      [classes.footer]: variant ? variant === 'footer' : table && table.footer,
       [classes.numeric]: numeric,
-      [classes[`padding${capitalize(padding)}`]]: padding !== 'none' && padding !== 'default',
-      [classes.paddingDefault]: padding !== 'none',
-      [classes.typeHead]: variant ? variant === 'head' : table && table.head,
-      [classes.typeBody]: variant ? variant === 'body' : table && table.body,
-      [classes.typeFooter]: variant ? variant === 'footer' : table && table.footer,
+      [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
     },
     classNameProp,
   );

@@ -31,7 +31,7 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `root`
 - `formControl`
-- `labelDense`
+- `marginDense`
 - `shrink`
 - `animated`
 - `disabled`

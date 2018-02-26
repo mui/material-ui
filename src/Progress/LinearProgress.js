@@ -13,28 +13,35 @@ export const styles = theme => ({
     overflow: 'hidden',
     height: 5,
   },
-  primaryColor: {
+  colorPrimary: {
     backgroundColor: lighten(theme.palette.primary.light, 0.6),
   },
-  primaryColorBar: {
-    backgroundColor: theme.palette.primary.main,
+  colorSecondary: {
+    backgroundColor: lighten(theme.palette.secondary.light, 0.4),
   },
-  primaryDashed: {
-    background: `radial-gradient(${lighten(theme.palette.primary.light, 0.6)} 0%, ${lighten(
+  buffer: {
+    backgroundColor: 'transparent',
+  },
+  query: {
+    transform: 'rotate(180deg)',
+  },
+  dashed: {
+    position: 'absolute',
+    marginTop: 0,
+    height: '100%',
+    width: '100%',
+    animation: 'buffer 3s infinite linear',
+  },
+  dashedColorPrimary: {
+    backgroundImage: `radial-gradient(${lighten(theme.palette.primary.light, 0.6)} 0%, ${lighten(
       theme.palette.primary.light,
       0.6,
     )} 16%, transparent 42%)`,
     backgroundSize: '10px 10px',
     backgroundPosition: '0px -23px',
   },
-  secondaryColor: {
-    backgroundColor: lighten(theme.palette.secondary.light, 0.4),
-  },
-  secondaryColorBar: {
-    backgroundColor: theme.palette.secondary.main,
-  },
-  secondaryDashed: {
-    background: `radial-gradient(${lighten(theme.palette.secondary.light, 0.4)} 0%, ${lighten(
+  dashedColorSecondary: {
+    backgroundImage: `radial-gradient(${lighten(theme.palette.secondary.light, 0.4)} 0%, ${lighten(
       theme.palette.secondary.light,
       0.6,
     )} 16%, transparent 42%)`,
@@ -50,39 +57,32 @@ export const styles = theme => ({
     transition: 'transform 0.2s linear',
     transformOrigin: 'left',
   },
-  dashed: {
-    position: 'absolute',
-    marginTop: 0,
-    height: '100%',
-    width: '100%',
-    animation: 'buffer 3s infinite linear',
+  barColorPrimary: {
+    backgroundColor: theme.palette.primary.main,
   },
-  bufferBar2: {
-    transition: `transform .${TRANSITION_DURATION}s linear`,
+  barColorSecondary: {
+    backgroundColor: theme.palette.secondary.main,
   },
-  rootBuffer: {
-    backgroundColor: 'transparent',
-  },
-  rootQuery: {
-    transform: 'rotate(180deg)',
-  },
-  indeterminateBar1: {
+  bar1Indeterminate: {
     width: 'auto',
     willChange: 'left, right',
     animation: 'mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
   },
-  indeterminateBar2: {
+  bar2Indeterminate: {
     width: 'auto',
     willChange: 'left, right',
     animation: 'mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
     animationDelay: '1.15s',
   },
-  determinateBar1: {
+  bar1Determinate: {
     willChange: 'transform',
     transition: `transform .${TRANSITION_DURATION}s linear`,
   },
-  bufferBar1: {
+  bar1Buffer: {
     zIndex: 1,
+    transition: `transform .${TRANSITION_DURATION}s linear`,
+  },
+  bar2Buffer: {
     transition: `transform .${TRANSITION_DURATION}s linear`,
   },
   // Legends:
@@ -145,45 +145,44 @@ export const styles = theme => ({
  * attribute to `true` on that region until it has finished loading.
  */
 function LinearProgress(props) {
-  const { classes, className, color, value, valueBuffer, variant, ...other } = props;
+  const { classes, className: classNameProp, color, value, valueBuffer, variant, ...other } = props;
 
-  const dashedClass = classNames(classes.dashed, {
-    [classes.primaryDashed]: color === 'primary',
-    [classes.secondaryDashed]: color === 'secondary',
-  });
-
-  const rootClassName = classNames(
+  const className = classNames(
     classes.root,
     {
-      [classes.primaryColor]: color === 'primary',
-      [classes.secondaryColor]: color === 'secondary',
-      [classes.rootBuffer]: variant === 'buffer',
-      [classes.rootQuery]: variant === 'query',
+      [classes.colorPrimary]: color === 'primary',
+      [classes.colorSecondary]: color === 'secondary',
+      [classes.buffer]: variant === 'buffer',
+      [classes.query]: variant === 'query',
     },
-    className,
+    classNameProp,
   );
-  const primaryClassName = classNames(classes.bar, {
-    [classes.primaryColorBar]: color === 'primary',
-    [classes.secondaryColorBar]: color === 'secondary',
-    [classes.indeterminateBar1]: variant === 'indeterminate' || variant === 'query',
-    [classes.determinateBar1]: variant === 'determinate',
-    [classes.bufferBar1]: variant === 'buffer',
+  const dashedClass = classNames(classes.dashed, {
+    [classes.dashedColorPrimary]: color === 'primary',
+    [classes.dashedColorSecondary]: color === 'secondary',
   });
-  const secondaryClassName = classNames(classes.bar, {
-    [classes.bufferBar2]: variant === 'buffer',
-    [classes.primaryColorBar]: color === 'primary' && variant !== 'buffer',
-    [classes.primaryColor]: color === 'primary' && variant === 'buffer',
-    [classes.secondaryColorBar]: color === 'secondary' && variant !== 'buffer',
-    [classes.secondaryColor]: color === 'secondary' && variant === 'buffer',
-    [classes.indeterminateBar2]: variant === 'indeterminate' || variant === 'query',
+  const bar1ClassName = classNames(classes.bar, {
+    [classes.barColorPrimary]: color === 'primary',
+    [classes.barColorSecondary]: color === 'secondary',
+    [classes.bar1Indeterminate]: variant === 'indeterminate' || variant === 'query',
+    [classes.bar1Determinate]: variant === 'determinate',
+    [classes.bar1Buffer]: variant === 'buffer',
   });
-  const inlineStyles = { primary: {}, secondary: {} };
+  const bar2ClassName = classNames(classes.bar, {
+    [classes.barColorPrimary]: color === 'primary' && variant !== 'buffer',
+    [classes.colorPrimary]: color === 'primary' && variant === 'buffer',
+    [classes.barColorSecondary]: color === 'secondary' && variant !== 'buffer',
+    [classes.colorSecondary]: color === 'secondary' && variant === 'buffer',
+    [classes.bar2Indeterminate]: variant === 'indeterminate' || variant === 'query',
+    [classes.bar2Buffer]: variant === 'buffer',
+  });
   const rootProps = {};
+  const inlineStyles = { bar1: {}, bar2: {} };
 
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
-      inlineStyles.primary.transform = `scaleX(${value / 100})`;
       rootProps['aria-valuenow'] = Math.round(value);
+      inlineStyles.bar1.transform = `scaleX(${value / 100})`;
     } else {
       warning(
         false,
@@ -194,7 +193,7 @@ function LinearProgress(props) {
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
-      inlineStyles.secondary.transform = `scaleX(${(valueBuffer || 0) / 100})`;
+      inlineStyles.bar2.transform = `scaleX(${(valueBuffer || 0) / 100})`;
     } else {
       warning(
         false,
@@ -205,11 +204,11 @@ function LinearProgress(props) {
   }
 
   return (
-    <div className={rootClassName} role="progressbar" {...rootProps} {...other}>
+    <div className={className} role="progressbar" {...rootProps} {...other}>
       {variant === 'buffer' ? <div className={dashedClass} /> : null}
-      <div className={primaryClassName} style={inlineStyles.primary} />
+      <div className={bar1ClassName} style={inlineStyles.bar1} />
       {variant === 'determinate' ? null : (
-        <div className={secondaryClassName} style={inlineStyles.secondary} />
+        <div className={bar2ClassName} style={inlineStyles.bar2} />
       )}
     </div>
   );

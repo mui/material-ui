@@ -8,19 +8,19 @@ import Transition from 'react-transition-group/Transition';
  */
 class Ripple extends React.Component {
   state = {
-    rippleVisible: false,
-    rippleLeaving: false,
+    visible: false,
+    leaving: false,
   };
 
   handleEnter = () => {
     this.setState({
-      rippleVisible: true,
+      visible: true,
     });
   };
 
   handleExit = () => {
     this.setState({
-      rippleLeaving: true,
+      leaving: true,
     });
   };
 
@@ -34,20 +34,20 @@ class Ripple extends React.Component {
       rippleSize,
       ...other
     } = this.props;
-    const { rippleVisible, rippleLeaving } = this.state;
+    const { visible, leaving } = this.state;
 
     const className = classNames(
       classes.wrapper,
       {
-        [classes.wrapperLeaving]: rippleLeaving,
-        [classes.wrapperPulsating]: pulsate,
+        [classes.wrapperLeaving]: leaving,
+        [classes.wrapperPulsate]: pulsate,
       },
       classNameProp,
     );
 
     const rippleClassName = classNames(classes.ripple, {
-      [classes.rippleVisible]: rippleVisible,
-      [classes.rippleFast]: pulsate,
+      [classes.rippleVisible]: visible,
+      [classes.ripplePulsate]: pulsate,
     });
 
     const rippleStyles = {

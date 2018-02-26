@@ -1,7 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, getClasses, createMount } from '../test-utils';
+import TouchRipple from './TouchRipple';
 import Ripple from './Ripple';
 
 describe('<Ripple />', () => {
@@ -11,14 +12,7 @@ describe('<Ripple />', () => {
 
   before(() => {
     shallow = createShallow();
-    classes = {
-      wrapperLeaving: 'wrapperLeaving',
-      wrapperPulsating: 'wrapperPulsating',
-      fast: 'fast',
-      ripple: 'ripple',
-      rippleVisible: 'rippleVisible',
-      rippleFast: 'rippleFast',
-    };
+    classes = getClasses(<TouchRipple />);
     mount = createMount();
   });
 
@@ -69,10 +63,10 @@ describe('<Ripple />', () => {
     });
 
     it('should start the ripple', () => {
-      assert.strictEqual(wrapper.state().rippleVisible, false, 'should not be visible');
+      assert.strictEqual(wrapper.state().visible, false, 'should not be visible');
       wrapper.setProps({ in: true });
       wrapper.update();
-      assert.strictEqual(wrapper.state().rippleVisible, true, 'should be visible');
+      assert.strictEqual(wrapper.state().visible, true, 'should be visible');
       const spanWrapper = wrapper.find('span').first();
       assert.strictEqual(
         spanWrapper.childAt(0).hasClass(classes.rippleVisible),
@@ -85,7 +79,7 @@ describe('<Ripple />', () => {
       wrapper.setProps({ in: true });
       wrapper.setProps({ in: false });
       wrapper.update();
-      assert.strictEqual(wrapper.state().rippleLeaving, true, 'should be leaving');
+      assert.strictEqual(wrapper.state().leaving, true, 'should be leaving');
       const spanWrapper = wrapper.find('span').first();
       assert.strictEqual(
         spanWrapper.hasClass(classes.wrapperLeaving),
@@ -116,23 +110,27 @@ describe('<Ripple />', () => {
       assert.strictEqual(wrapper.name(), 'Ripple');
       const spanWrapper = wrapper.find('span').first();
       assert.strictEqual(
-        spanWrapper.hasClass(classes.wrapperPulsating),
+        spanWrapper.hasClass(classes.wrapperPulsate),
         true,
         'should have the pulsating class',
       );
       const ripple = spanWrapper.childAt(0);
       assert.strictEqual(ripple.hasClass(classes.ripple), true, 'should have the ripple class');
-      assert.strictEqual(ripple.hasClass(classes.rippleFast), true, 'should have the fast class');
+      assert.strictEqual(
+        ripple.hasClass(classes.ripplePulsate),
+        true,
+        'should have the fast class',
+      );
     });
 
     it('should start the ripple', () => {
-      assert.strictEqual(wrapper.state().rippleVisible, false, 'should not be visible');
+      assert.strictEqual(wrapper.state().visible, false, 'should not be visible');
       wrapper.setProps({ in: true });
       wrapper.update();
-      assert.strictEqual(wrapper.state().rippleVisible, true, 'should be visible');
+      assert.strictEqual(wrapper.state().visible, true, 'should be visible');
       const spanWrapper = wrapper.find('span').first();
       assert.strictEqual(
-        spanWrapper.hasClass(classes.wrapperPulsating),
+        spanWrapper.hasClass(classes.wrapperPulsate),
         true,
         'should have the pulsating class',
       );
@@ -146,7 +144,7 @@ describe('<Ripple />', () => {
     it('should stop the ripple', () => {
       wrapper.setProps({ in: false });
       wrapper.update();
-      assert.strictEqual(wrapper.state().rippleLeaving, true, 'should be leaving');
+      assert.strictEqual(wrapper.state().leaving, true, 'should be leaving');
       const spanWrapper = wrapper.find('span').first();
       assert.strictEqual(
         spanWrapper.hasClass(classes.wrapperLeaving),

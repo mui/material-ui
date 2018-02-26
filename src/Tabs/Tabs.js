@@ -20,7 +20,7 @@ export const styles = theme => ({
   flexContainer: {
     display: 'flex',
   },
-  scrollingContainer: {
+  scroller: {
     position: 'relative',
     display: 'inline-block',
     flex: '1 1 auto',
@@ -36,7 +36,7 @@ export const styles = theme => ({
   centered: {
     justifyContent: 'center',
   },
-  buttonAuto: {
+  scrollButtonsAuto: {
     [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
@@ -110,7 +110,7 @@ class Tabs extends React.Component {
         visible={this.state.showLeftScroll}
         className={classNames(
           {
-            [classes.buttonAuto]: scrollButtons === 'auto',
+            [classes.scrollButtonsAuto]: scrollButtons === 'auto',
           },
           buttonClassName,
         )}
@@ -124,7 +124,7 @@ class Tabs extends React.Component {
         visible={this.state.showRightScroll}
         className={classNames(
           {
-            [classes.buttonAuto]: scrollButtons === 'auto',
+            [classes.scrollButtonsAuto]: scrollButtons === 'auto',
           },
           buttonClassName,
         )}
@@ -299,11 +299,11 @@ class Tabs extends React.Component {
     } = this.props;
 
     const className = classNames(classes.root, classNameProp);
-    const scrollerClassName = classNames(classes.scrollingContainer, {
+    const scrollerClassName = classNames(classes.scroller, {
       [classes.fixed]: !scrollable,
       [classes.scrollable]: scrollable,
     });
-    const tabItemContainerClassName = classNames(classes.flexContainer, {
+    const flexContainerClassName = classNames(classes.flexContainer, {
       [classes.centered]: centered && !scrollable,
     });
 
@@ -354,7 +354,7 @@ class Tabs extends React.Component {
             role="tablist"
             onScroll={this.handleTabsScroll}
           >
-            <div className={tabItemContainerClassName}>{children}</div>
+            <div className={flexContainerClassName}>{children}</div>
             {this.state.mounted && indicator}
           </div>
           {conditionalElements.scrollButtonRight}

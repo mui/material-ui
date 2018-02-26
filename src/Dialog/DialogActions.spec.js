@@ -40,13 +40,10 @@ describe('<DialogActions />', () => {
         <button className="woofDialogActions">Hello</button>
       </DialogActions>,
     );
-    const container = wrapper.childAt(0);
-    assert.strictEqual(container.hasClass(classes.action), true, 'should have the action wrapper');
-    assert.strictEqual(container.is('div'), true, 'should be a div');
-    const button = container.childAt(0);
+    const button = wrapper.childAt(0);
     assert.strictEqual(button.is('button'), true, 'should be a button');
     assert.strictEqual(button.hasClass('woofDialogActions'), true, 'should have the user class');
-    assert.strictEqual(button.hasClass(classes.button), true, 'should have the button class');
+    assert.strictEqual(button.hasClass(classes.action), true, 'should have the action wrapper');
   });
 
   it('should render children with the conditional buttons', () => {
@@ -58,12 +55,9 @@ describe('<DialogActions />', () => {
       </DialogActions>,
     );
 
-    const container = wrapper.childAt(0);
-    assert.strictEqual(container.hasClass(classes.action), true, 'should have the action wrapper');
-    assert.strictEqual(container.is('div'), true, 'should be a div');
-    const button = container.childAt(0);
-    assert.strictEqual(button.is('button'), true, 'should be a button');
+    const button = wrapper.childAt(0);
     assert.strictEqual(button.hasClass('woofDialogActions'), true, 'should have the user class');
-    assert.strictEqual(button.hasClass(classes.button), true, 'should have the button class');
+    assert.strictEqual(button.hasClass(classes.action), true, 'should have the action wrapper');
+    assert.strictEqual(button.is('button'), true, 'should be a button');
   });
 });

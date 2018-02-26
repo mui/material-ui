@@ -34,7 +34,7 @@ This property accepts the following keys:
 - `labelCompleted`
 - `labelAlternativeLabel`
 - `iconContainer`
-- `iconContainerNoAlternative`
+- `iconContainerAlternativeLabel`
 - `labelContainer`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

@@ -5,9 +5,9 @@ import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => {
-  const shadows = {};
+  const elevations = {};
   theme.shadows.forEach((shadow, index) => {
-    shadows[`shadow${index}`] = {
+    elevations[`elevation${index}`] = {
       boxShadow: shadow,
     };
   });
@@ -19,7 +19,7 @@ export const styles = theme => {
     rounded: {
       borderRadius: 2,
     },
-    ...shadows,
+    ...elevations,
   };
 };
 
@@ -40,7 +40,7 @@ function Paper(props) {
 
   const className = classNames(
     classes.root,
-    classes[`shadow${elevation}`],
+    classes[`elevation${elevation}`],
     {
       [classes.rounded]: !square,
     },

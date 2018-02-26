@@ -25,22 +25,14 @@ export const styles = theme => ({
 });
 
 function MenuItem(props) {
-  const { classes, className: classNameProp, component, selected, role, ...other } = props;
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.selected]: selected,
-    },
-    classNameProp,
-  );
+  const { classes, className, component, selected, role, ...other } = props;
 
   return (
     <ListItem
       button
       role={role}
       tabIndex={-1}
-      className={className}
+      className={classNames(classes.root, { [classes.selected]: selected }, className)}
       component={component}
       {...other}
     />

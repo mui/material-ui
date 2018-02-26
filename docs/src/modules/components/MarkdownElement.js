@@ -168,12 +168,12 @@ const styles = theme => ({
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
       },
       '& .required': {
-        color: theme.palette.type === 'light' ? '#008900' : '#65a665',
+        color: theme.palette.type === 'light' ? '#006500' : '#9bc89b',
       },
       '& .prop-type': {
         fontSize: 13,
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        color: theme.palette.type === 'light' ? '#a65e97' : '#bd86b0',
+        color: theme.palette.type === 'light' ? '#932981' : '#dbb0d0',
       },
       '& .prop-default': {
         fontSize: 13,

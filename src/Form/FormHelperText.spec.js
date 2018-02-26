@@ -72,14 +72,14 @@ describe('<FormHelperText />', () => {
         });
 
         it('should have the dense class', () => {
-          assert.strictEqual(wrapper.hasClass(classes.dense), true);
+          assert.strictEqual(wrapper.hasClass(classes.marginDense), true);
         });
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(wrapper.hasClass(classes.dense), false);
+        assert.strictEqual(wrapper.hasClass(classes.marginDense), false);
         wrapper.setProps({ margin: 'dense' });
-        assert.strictEqual(wrapper.hasClass(classes.dense), true);
+        assert.strictEqual(wrapper.hasClass(classes.marginDense), true);
       });
     });
   });

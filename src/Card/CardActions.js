@@ -15,7 +15,7 @@ export const styles = theme => ({
     },
   },
   action: {
-    margin: '0 4px',
+    margin: `0 ${theme.spacing.unit / 2}px`,
   },
 });
 

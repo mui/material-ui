@@ -36,10 +36,10 @@ export const styles = theme => ({
   paperWidthMd: {
     maxWidth: theme.breakpoints.values.md,
   },
-  fullWidth: {
+  paperFullWidth: {
     width: '100%',
   },
-  fullScreen: {
+  paperFullScreen: {
     margin: 0,
     width: '100%',
     maxWidth: '100%',
@@ -109,8 +109,8 @@ function Dialog(props) {
           elevation={24}
           className={classNames(classes.paper, {
             [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
-            [classes.fullScreen]: fullScreen,
-            [classes.fullWidth]: fullWidth,
+            [classes.paperFullScreen]: fullScreen,
+            [classes.paperFullWidth]: fullWidth,
           })}
           {...PaperProps}
         >

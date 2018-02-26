@@ -42,7 +42,7 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
 
   If you can't use Yarn, we also provide a separate package for **NPM**.
   However, the package might not be always up to date.
-  **It's why we encourage people to use a Yarn alias**.
+  **It's why we encourage you to use a Yarn alias**.
 
   ```sh
   npm install material-ui@latest
@@ -90,7 +90,7 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
 ### Autocomplete
 
 Material-UI doesn't provide any high-level API for solving this problem.
-We encourage people relying on [the solutions the React community has built](https://material-ui-next.com/demos/autocomplete/).
+You're encouraged you to explore [the solutions the React community has built](https://material-ui-next.com/demos/autocomplete/).
 
 In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui-org/material-ui/issues/9997).
 
