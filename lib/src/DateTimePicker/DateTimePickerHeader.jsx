@@ -107,6 +107,7 @@ const styles = () => ({
     alignItems: 'center',
     paddingLeft: 16,
     paddingRight: 16,
+    justifyContent: 'space-around',
   },
   separator: {
     margin: '0 4px 0 2px',
@@ -131,7 +132,6 @@ const styles = () => ({
     flexDirection: 'row-reverse',
   },
   dateHeader: {
-    width: '42%',
     height: 65,
   },
   timeHeader: {

@@ -88,7 +88,7 @@ export class DateTextField extends PureComponent {
       : invalidLabel;
   }
 
-  getError = (value) => {
+  getError = (value, props = this.props) => {
     const {
       utils,
       maxDate,
@@ -98,7 +98,8 @@ export class DateTextField extends PureComponent {
       maxDateMessage,
       minDateMessage,
       invalidDateMessage,
-    } = this.props;
+    } = props;
+
     if (!utils.isValid(value)) {
       // if null - do not show error
       if (utils.isNull(value)) {
@@ -135,7 +136,9 @@ export class DateTextField extends PureComponent {
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.value !== this.state.value ||
-      nextProps.format !== this.props.format
+      nextProps.format !== this.props.format ||
+      nextProps.maxDate !== this.props.maxDate ||
+      nextProps.minDate !== this.props.minDate
     ) {
       this.setState(this.updateState(nextProps));
     }
