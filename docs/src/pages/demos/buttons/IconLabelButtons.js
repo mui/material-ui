@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
+import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Delete from 'material-ui-icons/Delete';
 import FileUpload from 'material-ui-icons/FileUpload';
@@ -17,6 +18,9 @@ const styles = theme => ({
   },
   rightIcon: {
     marginLeft: theme.spacing.unit,
+  },
+  iconSmall: {
+    fontSize: 20,
   },
 });
 
@@ -41,7 +45,7 @@ function IconLabelButtons(props) {
         Talk
       </Button>
       <Button className={classes.button} variant="raised" size="small">
-        <Save className={classes.leftIcon} />
+        <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
         Save
       </Button>
     </div>

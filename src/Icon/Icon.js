@@ -7,6 +7,9 @@ import { capitalize } from '../utils/helpers';
 export const styles = theme => ({
   root: {
     userSelect: 'none',
+    fontSize: 24,
+    width: '1em',
+    height: '1em',
   },
   colorPrimary: {
     color: theme.palette.primary.main,
@@ -23,21 +26,16 @@ export const styles = theme => ({
   colorError: {
     color: theme.palette.error.main,
   },
-  fontSize: {
-    width: '1em',
-    height: '1em',
-  },
 });
 
 function Icon(props) {
-  const { children, classes, className: classNameProp, color, fontSize, ...other } = props;
+  const { children, classes, className: classNameProp, color, ...other } = props;
 
   const className = classNames(
     'material-icons',
     classes.root,
     {
       [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-      [classes.fontSize]: fontSize,
     },
     classNameProp,
   );
@@ -66,15 +64,10 @@ Icon.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf(['inherit', 'secondary', 'action', 'disabled', 'error', 'primary']),
-  /**
-   * If `true`, the icon size will be determined by the font-size.
-   */
-  fontSize: PropTypes.bool,
 };
 
 Icon.defaultProps = {
   color: 'inherit',
-  fontSize: false,
 };
 
 Icon.muiName = 'Icon';

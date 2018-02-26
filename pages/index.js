@@ -131,7 +131,7 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
   <tbody>
     <tr>
       <td>
-        <a href="https://www.creative-tim.com" rel=noopener target="_blank">
+        <a href="https://www.creative-tim.com" rel="noopener" target="_blank">
           <img width="126" src="https://avatars1.githubusercontent.com/u/20172349" alt="0">
         </a>
       </td>
@@ -144,7 +144,7 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 ${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
               .map(
                 num =>
-                  `<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/website" rel=noopener target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/avatar.svg" alt="${num}" /></a>`,
+                  `<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/website" rel="noopener" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/avatar.svg" alt="${num}" /></a>`,
               )
               .join('')}
 `}

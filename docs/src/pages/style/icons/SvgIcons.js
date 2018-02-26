@@ -4,50 +4,41 @@ import { withStyles } from 'material-ui/styles';
 import green from 'material-ui/colors/green';
 import SvgIcon from 'material-ui/SvgIcon';
 
-const styles = {
+const styles = theme => ({
   root: {
     display: 'flex',
+    justifyContent: 'center',
     alignItems: 'flex-end',
-    justifyContent: 'space-around',
-    width: '70%',
+  },
+  icon: {
+    margin: theme.spacing.unit * 2,
   },
   iconHover: {
+    margin: theme.spacing.unit * 2,
     '&:hover': {
-      fill: green[200],
+      color: green[200],
     },
   },
-};
+});
 
-const HomeIcon = props => (
-  <SvgIcon {...props}>
-    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-  </SvgIcon>
-);
+function HomeIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </SvgIcon>
+  );
+}
 
 function SvgIcons(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <HomeIcon />
-      <HomeIcon color="secondary" />
-      <HomeIcon color="action" />
-      <HomeIcon color="disabled" />
-      <HomeIcon
-        className={classes.icon}
-        color="primary"
-        style={{
-          width: 30,
-          height: 30,
-        }}
-      />
-      <HomeIcon
-        color="error"
-        className={classes.iconHover}
-        style={{
-          width: 36,
-          height: 36,
-        }}
-      />
+      <HomeIcon className={classes.icon} />
+      <HomeIcon className={classes.icon} color="secondary" />
+      <HomeIcon className={classes.icon} color="action" />
+      <HomeIcon className={classes.icon} color="disabled" />
+      <HomeIcon className={classes.icon} color="primary" style={{ fontSize: 30 }} />
+      <HomeIcon color="error" className={classes.iconHover} style={{ fontSize: 36 }} />
     </div>
   );
 }

@@ -219,7 +219,6 @@ describe('<Button />', () => {
     const renderedIconChild = label.childAt(0);
     assert.strictEqual(renderedIconChild.type(), Icon);
     assert.strictEqual(renderedIconChild.hasClass(childClassName), true, 'child should be icon');
-    assert.strictEqual(renderedIconChild.props().fontSize, true);
   });
 
   describe('server side', () => {

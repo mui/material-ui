@@ -241,6 +241,9 @@ const styles = theme => ({
         textDecoration: 'underline',
       },
     },
+    '& img': {
+      maxWidth: '100%',
+    },
   },
 });
 
