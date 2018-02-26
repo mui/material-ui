@@ -43,7 +43,6 @@
     "date-fns": "^2.0.0-alpha.7"
   },
   "dependencies": {
-    "moment-range": "^3.0.3",
     "react-text-mask": "^5.0.2"
   },
   "scripts": {
