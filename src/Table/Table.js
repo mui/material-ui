@@ -5,6 +5,7 @@ import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   root: {
+    display: 'table',
     fontFamily: theme.typography.fontFamily,
     width: '100%',
     borderCollapse: 'collapse',
