@@ -32,11 +32,11 @@ export interface Utils {
 
   // displaying methods
   getMeridiemText(ampm: boolean): string;
-  getCalendarHeaderText(date: any): string;
-  getDatePickerHeaderText(date: any): string;
-  getDateTimePickerHeaderText(date: any): string;
-  getDayText(date: any): string;
-  getHourText(date: any, ampm: boolean): string;
-  getMinuteText(date: any): string;
-  getYearText(date: any): string;
+  getCalendarHeaderText(date: MaterialUiPickersDate): string;
+  getDatePickerHeaderText(date: MaterialUiPickersDate): string;
+  getDateTimePickerHeaderText(date: MaterialUiPickersDate): string;
+  getDayText(date: MaterialUiPickersDate): string;
+  getHourText(date: MaterialUiPickersDate, ampm: boolean): string;
+  getMinuteText(date: MaterialUiPickersDate): string;
+  getYearText(date: MaterialUiPickersDate): string;
 }
