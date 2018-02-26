@@ -101,7 +101,7 @@ Here is a list of available props
 Prop | Type | Default | Definition
 ------------ | ------------- | ------------- | -------------
 value | date | new Date() | Datepicker value
-format | string | 'MMMM Do' | Moment format string for input
+format | string | 'MMMM Do' | Format string for input
 autoOk | boolean | false | Auto accept date on selection
 disablePast | boolean | false | Disable past dates
 disableFuture | boolean | false | Disable future dates
@@ -110,7 +110,7 @@ openToYearSelection | boolean | false | Open datepicker from year selection
 minDate | date | '1900-01-01' | Minimum selectable date
 maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
-returnMoment | boolean | true | Will return moment object in onChange
+returnMoment | boolean | true | Will return moment object in onChange (if moment utils using)
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
 emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
 okLabel | string | 'OK' | The label for the ok button
@@ -178,7 +178,7 @@ rightArrowIcon | react node | `<Icon>keyboard_arrow_right</Icon>`| Right arrow i
 dateRangeIcon | react node | `<Icon>date_range</Icon>`| Date tab icon 
 timeIcon | react node | `<Icon>access_time</Icon>`| Time tab icon
 ampm | boolean | true | 12h/24h view for hour selection clock
-shouldDisableDate | (date: Moment) => boolean | () => false | Allow to disable custom date in calendar
+shouldDisableDate | (date: Moment | Date) => boolean | () => false | Allow to disable custom date in calendar
 keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node | `<Icon>event</Icon>` | Keyboard adornment icon
 maxDateMessage | string | 'Date should not be after maximal date' | Maximum date error message for keyboard input
