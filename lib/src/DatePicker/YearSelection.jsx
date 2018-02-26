@@ -73,14 +73,14 @@ export class YearSelection extends PureComponent {
                     (disableFuture && utils.isAfterYear(year, utils.date()))
                   )}
                   value={yearNumber}
-                  key={utils.format(year, 'YYYY')}
+                  key={utils.getYearText(year)}
                   onSelect={this.onYearSelect}
                   ref={selected
                     ? this.getSelectedYearRef
                     : undefined
                   }
                 >
-                  {utils.format(year, 'YYYY')}
+                  {utils.getYearText(year)}
                 </Year>
               );
             })

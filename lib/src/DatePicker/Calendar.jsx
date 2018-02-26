@@ -153,7 +153,7 @@ export class Calendar extends Component {
           disabled={disabled}
           selected={utils.isSameDay(selectedDate, day)}
         >
-          {utils.format(day, 'D')}
+          {utils.getDayText(day)}
         </Day>
       );
 

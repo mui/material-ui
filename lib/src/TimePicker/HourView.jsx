@@ -17,7 +17,6 @@ export class HourView extends PureComponent {
     ampm: true,
   }
 
-
   getHourNumbers = () => {
     const { ampm, utils, date } = this.props;
     const currentHours = utils.getHours(date);
@@ -37,7 +36,6 @@ export class HourView extends PureComponent {
 
       return currentHours === hour;
     };
-
 
     for (let hour = startHour; hour <= endHour; hour += 1) {
       let label = hour.toString();

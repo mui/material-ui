@@ -26,14 +26,14 @@ export const DateTimePickerHeader = (props) => {
           variant="subheading"
           onClick={changeOpenView(viewType.YEAR)}
           selected={openView === viewType.YEAR}
-          label={utils.format(date, 'YYYY')}
+          label={utils.getYearText(date)}
         />
 
         <ToolbarButton
           variant="display1"
           onClick={changeOpenView(viewType.DATE)}
           selected={openView === viewType.DATE}
-          label={utils.format(date, 'MMM D')}
+          label={utils.getDateTimePickerHeaderText(date)}
         />
       </div>
 
@@ -43,7 +43,7 @@ export const DateTimePickerHeader = (props) => {
             variant="display2"
             onClick={changeOpenView(viewType.HOUR)}
             selected={openView === viewType.HOUR}
-            label={utils.format(date, ampm ? 'hh' : 'HH')}
+            label={utils.getHourText(date, ampm)}
           />
 
           <ToolbarButton
@@ -57,7 +57,7 @@ export const DateTimePickerHeader = (props) => {
             variant="display2"
             onClick={changeOpenView(viewType.MINUTES)}
             selected={openView === viewType.MINUTES}
-            label={utils.format(date, 'mm')}
+            label={utils.getMinuteText(date)}
           />
         </div>
 

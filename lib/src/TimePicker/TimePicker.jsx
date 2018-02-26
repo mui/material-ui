@@ -93,7 +93,7 @@ export class TimePicker extends Component {
               variant="display3"
               onClick={this.openHourView}
               selected={isHourViewShown}
-              label={utils.format(date, ampm ? 'hh' : 'HH')}
+              label={utils.getHourText(date, ampm)}
             />
 
             <ToolbarButton
@@ -107,7 +107,7 @@ export class TimePicker extends Component {
               variant="display3"
               onClick={this.openMinutesView}
               selected={!isHourViewShown}
-              label={utils.format(date, 'mm')}
+              label={utils.getMinuteText(date)}
             />
           </div>
 

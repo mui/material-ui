@@ -90,14 +90,14 @@ export class DatePicker extends PureComponent {
             variant="subheading"
             onClick={this.openYearSelection}
             selected={showYearSelection}
-            label={utils.format(this.date, 'YYYY')}
+            label={utils.getYearText(this.date)}
           />
 
           <ToolbarButton
             variant="display1"
             onClick={this.openCalendar}
             selected={!showYearSelection}
-            label={utils.format(this.date, 'ddd, MMM D')}
+            label={utils.getDatePickerHeaderText(this.date)}
           />
         </PickerToolbar>
 

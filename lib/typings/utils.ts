@@ -21,7 +21,6 @@ export interface Utils {
   setMinutes(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate
   getMonth(value: MaterialUiPickersDate): number;
   isSameDay(value: MaterialUiPickersDate, comparing: MaterialUiPickersDate): boolean
-  getMeridiemText(ampm: boolean): string;
   getStartOfMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
   getNextMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
   getPreviousMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
@@ -30,4 +29,14 @@ export interface Utils {
   getWeekDays(): string[];
   getWeekArray(): MaterialUiPickersDate[];
   getYearRange(): MaterialUiPickersDate[];
+
+  // displaying methods
+  getMeridiemText(ampm: boolean): string;
+  getCalendarHeaderText(date: any): string;
+  getDatePickerHeaderText(date: any): string;
+  getDateTimePickerHeaderText(date: any): string;
+  getDayText(date: any): string;
+  getHourText(date: any, ampm: boolean): string;
+  getMinuteText(date: any): string;
+  getYearText(date: any): string;
 }

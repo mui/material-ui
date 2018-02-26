@@ -56,7 +56,7 @@ export default class App extends Component {
       <div className="root">
         <JssProvider jss={jss}>
           <MuiThemeProvider theme={this.getMuiTheme()}>
-            <MuiPickersUtilsProvider utils={momentUtils}>
+            <MuiPickersUtilsProvider utils={dateFnsUtils}>
               <Demo
                 toggleDirection={this.toggleDirection}
                 toggleThemeType={this.toggleThemeType}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import DomainPropTypes from '../constants/prop-types';
 
 /* eslint-disable react/sort-comp */
+/* eslint-disable react/require-default-props */
 export default class PickerBase extends PureComponent {
   static propTypes = {
     value: DomainPropTypes.date,
@@ -13,15 +14,6 @@ export default class PickerBase extends PureComponent {
     labelFunc: PropTypes.func,
     ampm: PropTypes.bool,
     utils: PropTypes.func.isRequired,
-  }
-
-  static defaultProps = {
-    value: new Date(),
-    autoOk: false,
-    returnMoment: false,
-    labelFunc: undefined,
-    format: undefined,
-    ampm: true,
   }
 
   getValidDateOrCurrent = () => {
