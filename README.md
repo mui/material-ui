@@ -112,7 +112,7 @@ keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node | `<Icon>event</Icon>` | Keyboard adornment icon
 maxDateMessage | string | 'Date should not be after maximal date' | Maximum date error message for keyboard input
 minDateMessage | string | 'Date should not be before minimal date' | Minimum date error message for keyboard input
-mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
+mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask for keyboard-mode
 clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 
@@ -133,7 +133,7 @@ labelFunc | func | null | Allow to specify dynamic label for text field `labelFu
 ampm | boolean | true | 12h/24h view for hour selection clock
 keyboard | boolean | false | Allow to manual input date to the text field
 keyboardIcon | react node | `<Icon>event</Icon>` | Keyboard adornment icon
-mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
+mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask for keyboard-mode
 clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 
@@ -171,7 +171,7 @@ keyboardIcon | react node | `<Icon>event</Icon>` | Keyboard adornment icon
 maxDateMessage | string | 'Date should not be after maximal date' | Maximum date error message for keyboard input
 minDateMessage | string | 'Date should not be before minimal date' | Minimum date error message for keyboard input
 invalidDateMessage | string | 'Invalid Date Format' | Message, appearing when date cannot be parsed
-mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask
+mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask for keyboard-mode
 clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 
