@@ -227,6 +227,7 @@ class ButtonBase extends React.Component {
       onTouchMove,
       onTouchStart,
       tabIndex,
+      TouchRippleProps,
       type,
       ...other
     } = this.props;
@@ -279,7 +280,7 @@ class ButtonBase extends React.Component {
       >
         {children}
         {!disableRipple && !disabled ? (
-          <TouchRipple innerRef={this.onRippleRef} center={centerRipple} />
+          <TouchRipple innerRef={this.onRippleRef} center={centerRipple} {...TouchRippleProps} />
         ) : null}
       </ComponentProp>
     );
@@ -389,6 +390,10 @@ ButtonBase.propTypes = {
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
+   * Properties applied to the `TouchRipple` element.
+   */
+  TouchRippleProps: PropTypes.object,
+  /**
    * @ignore
    */
   type: PropTypes.string,
@@ -399,6 +404,7 @@ ButtonBase.defaultProps = {
   disableRipple: false,
   focusRipple: false,
   tabIndex: '0',
+  TouchRippleProps: {},
   type: 'button',
 };
 
