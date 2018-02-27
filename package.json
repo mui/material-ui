@@ -98,7 +98,7 @@
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.4",
-    "@types/react": "16.0.35",
+    "@types/react": "16.0.38",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "autoprefixer": "^8.0.0",
@@ -186,13 +186,13 @@
     "react-swipeable-views": "^0.12.10",
     "react-test-renderer": "^16.1.1",
     "react-text-mask": "^5.0.2",
-    "recast": "^0.13.0",
+    "recast": "^0.14.4",
     "recursive-readdir-sync": "^1.0.6",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "rimraf": "^2.6.2",
     "sinon": "^4.1.2",
-    "size-limit": "^0.14.0",
+    "size-limit": "^0.15.1",
     "typescript": "^2.6.1",
     "url-loader": "^0.6.2",
     "vrtest": "^0.2.0",
@@ -202,7 +202,7 @@
     "workbox-build": "3.0.0-beta.0"
   },
   "resolutions": {
-    "@types/react": "16.0.35"
+    "@types/react": "16.0.38"
   },
   "side-effects": false,
   "nyc": {

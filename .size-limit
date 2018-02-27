@@ -2,7 +2,7 @@
   {
     "name": "The initial cost people pay for using one component",
     "path": "test/size/overhead.js",
-    "limit": "24.8 KB"
+    "limit": "25.0 KB"
   },
   {
     "name": "The size of the whole library.",
