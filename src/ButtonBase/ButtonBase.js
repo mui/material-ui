@@ -404,7 +404,6 @@ ButtonBase.defaultProps = {
   disableRipple: false,
   focusRipple: false,
   tabIndex: '0',
-  TouchRippleProps: {},
   type: 'button',
 };
 

@@ -24,6 +24,7 @@ It contains a load of style reset and some focus/ripple logic.
 | <span class="prop-name">focusRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
 | <span class="prop-name">keyboardFocusedClassName</span> | <span class="prop-type">string |  | The CSS class applied while the component is keyboard focused. |
 | <span class="prop-name">onKeyboardFocus</span> | <span class="prop-type">func |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
+| <span class="prop-name">TouchRippleProps</span> | <span class="prop-type">object |  | Properties applied to the `TouchRipple` element. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import {TouchRippleProps} from './TouchRipple'
+import { TouchRippleProps } from './TouchRipple';
 
 export interface ButtonBaseProps
   extends StandardProps<
