@@ -5,6 +5,8 @@ import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
+import TextField from 'material-ui/TextField';
+import MenuItem from 'material-ui/Menu/MenuItem';
 import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
 
@@ -19,13 +21,33 @@ const styles = theme => ({
   withoutLabel: {
     marginTop: theme.spacing.unit * 3,
   },
+  textField: {
+    flexBasis: 200,
+    margin: theme.spacing.unit,
+  },
 });
+
+const ranges = [
+  {
+    value: '0-20',
+    label: '0 to 20',
+  },
+  {
+    value: '21-50',
+    label: '21 to 50',
+  },
+  {
+    value: '51-100',
+    label: '51 to 100',
+  },
+];
 
 class InputAdornments extends React.Component {
   state = {
     amount: '',
     password: '',
     weight: '',
+    weightRange: '',
     showPassword: false,
   };
 
@@ -46,6 +68,29 @@ class InputAdornments extends React.Component {
 
     return (
       <div className={classes.root}>
+        <TextField
+          label="With normal TextField"
+          className={classes.textField}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+          }}
+        />
+        <TextField
+          select
+          label="With select TextField"
+          className={classes.textField}
+          value={this.state.weightRange}
+          onChange={this.handleChange('weightRange')}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+          }}
+        >
+          {ranges.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
         <FormControl fullWidth className={classes.formControl}>
           <InputLabel htmlFor="amount">Amount</InputLabel>
           <Input
