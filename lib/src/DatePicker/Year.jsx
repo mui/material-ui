@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import withStyles from 'material-ui/styles/withStyles';
 import Typography from 'material-ui/Typography';
 
-class Year extends PureComponent {
+export class Year extends PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     classes: PropTypes.object.isRequired,

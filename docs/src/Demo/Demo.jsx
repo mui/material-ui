@@ -103,7 +103,7 @@ class Demo extends Component {
           >
             <DateTimePickers />
           </SourcablePanel>
-
+          {/*
           <SourcablePanel
             title="Custom Day Element"
             sourceFile="CustomElements.jsx"
@@ -111,7 +111,7 @@ class Demo extends Component {
             <CustomElements />
           </SourcablePanel>
 
-          <SourcablePanel
+           <SourcablePanel
             title="Persian Pickers"
             description={
               <p key="persian-desc">
@@ -123,7 +123,7 @@ class Demo extends Component {
             sourceFile="PersianPickers.jsx"
           >
             <PersianPickers />
-          </SourcablePanel>
+          </SourcablePanel> */}
         </div>
       </main>
     );

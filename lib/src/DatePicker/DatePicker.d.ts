@@ -1,14 +1,14 @@
 import { ComponentClass, ReactNode } from 'react';
 import { DateType } from '../constants/prop-types';
-import { Utils } from '../utils/utils';
+import { Utils } from '../../typings/utils';
 import { RenderDay } from './Calendar';
-import { Moment } from 'moment';
+import { MaterialUiPickersDate } from '../../typings/date'
 
 export interface DatePickerProps {
-    date: Moment;
+    date: MaterialUiPickersDate;
     minDate?: DateType;
     maxDate?: DateType;
-    onChange: (date: Moment, isFinished?: boolean) => void;
+    onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
     disablePast?: boolean;
     disableFuture?: boolean;
     animateYearScrolling?: boolean;
@@ -17,7 +17,7 @@ export interface DatePickerProps {
     rightArrowIcon?: ReactNode;
     renderDay?: RenderDay;
     utils?: Utils;
-    shouldDisableDate?: (day: Moment) => boolean;
+    shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
 }
 
 declare const DatePicker: ComponentClass<DatePickerProps>;

@@ -5,8 +5,8 @@ import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import HourView from './HourView';
 import MinutesView from './MinutesView';
-import { convertToMeridiem } from '../utils/time-utils';
-import * as defaultUtils from '../utils/utils';
+import { convertToMeridiem } from '../_helpers/time-utils';
+import withUtils from '../_shared/WithUtils';
 
 export class TimePicker extends Component {
   static propTypes = {
@@ -15,19 +15,18 @@ export class TimePicker extends Component {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
     children: PropTypes.node,
-    utils: PropTypes.object,
+    utils: PropTypes.func.isRequired,
     ampm: PropTypes.bool,
   }
 
   static defaultProps = {
     children: null,
-    utils: defaultUtils,
     ampm: true,
   }
 
   state = {
     isHourViewShown: true,
-    meridiemMode: this.props.date.hours() >= 12 ? 'pm' : 'am',
+    meridiemMode: this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
   }
 
   setMeridiemMode = mode => () => {
@@ -38,7 +37,12 @@ export class TimePicker extends Component {
   }
 
   handleChange(time, isFinish, openMinutes) {
-    const withMeridiem = convertToMeridiem(time, this.state.meridiemMode, this.props.ampm);
+    const withMeridiem = convertToMeridiem(
+      time,
+      this.state.meridiemMode,
+      this.props.ampm,
+      this.props.utils,
+    );
 
     if (isFinish) {
       if (!openMinutes) {
@@ -186,4 +190,4 @@ const styles = () => ({
 export default withStyles(
   styles,
   { withTheme: true, name: 'MuiPickersTimePicker' },
-)(TimePicker);
+)(withUtils()(TimePicker));

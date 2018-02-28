@@ -5,9 +5,9 @@ import ModalWrapper from '../wrappers/ModalWrapper';
 import DatePicker from './DatePicker';
 import DomainPropTypes from '../constants/prop-types';
 import PickerBase from '../_shared/PickerBase';
-import * as defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 
-export default class DatePickerWrapper extends PickerBase {
+export class DatePickerWrapper extends PickerBase {
   static propTypes = {
     /* Datepicker value */
     value: DomainPropTypes.date,
@@ -29,8 +29,6 @@ export default class DatePickerWrapper extends PickerBase {
     animateYearScrolling: PropTypes.bool,
     /* Open datepicker from year selection */
     openToYearSelection: PropTypes.bool,
-    /* Return moment object in onChange event */
-    returnMoment: PropTypes.bool,
     /* Displayed string if date can`t be parsed (or null) */
     invalidLabel: PropTypes.string,
     /* Allow to specify dynamic label for text field labelFunc(date, invalidLabel) */
@@ -42,7 +40,7 @@ export default class DatePickerWrapper extends PickerBase {
     /* Custom renderer for day renderDay(date, selectedDate, dayInCurrentMonth) */
     renderDay: PropTypes.func,
     /* Date displaying utils */
-    utils: PropTypes.object,
+    utils: PropTypes.func.isRequired,
     /* Disable specific date hook */
     shouldDisableDate: PropTypes.func,
   }
@@ -51,7 +49,6 @@ export default class DatePickerWrapper extends PickerBase {
     value: new Date(),
     format: 'MMMM Do',
     autoOk: false,
-    returnMoment: true,
     minDate: undefined,
     maxDate: undefined,
     disablePast: undefined,
@@ -63,7 +60,6 @@ export default class DatePickerWrapper extends PickerBase {
     rightArrowIcon: undefined,
     renderDay: undefined,
     labelFunc: undefined,
-    utils: defaultUtils,
     shouldDisableDate: undefined,
   }
 
@@ -76,7 +72,6 @@ export default class DatePickerWrapper extends PickerBase {
       onChange,
       animateYearScrolling,
       openToYearSelection,
-      returnMoment,
       invalidLabel,
       leftArrowIcon,
       rightArrowIcon,
@@ -131,3 +126,6 @@ export default class DatePickerWrapper extends PickerBase {
     );
   }
 }
+
+export default withUtils()(DatePickerWrapper);
+

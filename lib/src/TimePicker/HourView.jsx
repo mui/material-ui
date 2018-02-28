@@ -3,26 +3,23 @@ import PropTypes from 'prop-types';
 import Clock from './Clock';
 import { HOURS } from '../constants/clock-types';
 import ClockNumber from './ClockNumber';
-import * as defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 
-
-export default class HourView extends PureComponent {
+export class HourView extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    utils: PropTypes.object,
+    utils: PropTypes.func.isRequired,
     ampm: PropTypes.bool,
   }
 
   static defaultProps = {
-    utils: defaultUtils,
     ampm: true,
   }
 
-
   getHourNumbers = () => {
     const { ampm, utils, date } = this.props;
-    const currentHours = date.get('hours');
+    const currentHours = utils.getHours(date);
 
     const hourNumbers = [];
     const startHour = ampm ? 1 : 0;
@@ -39,7 +36,6 @@ export default class HourView extends PureComponent {
 
       return currentHours === hour;
     };
-
 
     for (let hour = startHour; hour <= endHour; hour += 1) {
       let label = hour.toString();
@@ -62,14 +58,15 @@ export default class HourView extends PureComponent {
   }
 
   handleChange = (hours, isFinish) => {
-    const updatedTime = this.props.date.clone().hour(hours);
+    const { date, utils } = this.props;
+    const updatedTime = utils.setHours(date, hours);
 
     this.props.onChange(updatedTime, isFinish);
   }
 
   render() {
-    const { date, ampm } = this.props;
-    const value = date.get('hours');
+    const { date, ampm, utils } = this.props;
+    const value = utils.getHours(date);
 
     return (
       <Clock
@@ -83,3 +80,6 @@ export default class HourView extends PureComponent {
     );
   }
 }
+
+export default withUtils()(HourView);
+

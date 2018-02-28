@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import withStyles from 'material-ui/styles/withStyles';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
+import withUtils from '../_shared/WithUtils';
 import * as viewType from '../constants/date-picker-view';
-import * as defaultUtils from '../utils/utils';
 
 export const DateTimePickerHeader = (props) => {
   const {
@@ -15,7 +15,7 @@ export const DateTimePickerHeader = (props) => {
   const changeOpenView = view => () => onOpenViewChange(view);
 
   const rtl = theme.direction === 'rtl';
-  const hourMinuteClassname = rtl
+  const hourMinuteClassName = rtl
     ? classes.hourMinuteLabelReverse
     : classes.hourMinuteLabel;
 
@@ -38,7 +38,7 @@ export const DateTimePickerHeader = (props) => {
       </div>
 
       <div className={classes.timeHeader}>
-        <div className={hourMinuteClassname}>
+        <div className={hourMinuteClassName}>
           <ToolbarButton
             variant="display2"
             onClick={changeOpenView(viewType.HOUR)}
@@ -93,12 +93,11 @@ DateTimePickerHeader.propTypes = {
   openView: PropTypes.string.isRequired,
   onOpenViewChange: PropTypes.func.isRequired,
   setMeridiemMode: PropTypes.func.isRequired,
-  utils: PropTypes.object,
+  utils: PropTypes.func.isRequired,
   ampm: PropTypes.bool,
 };
 
 DateTimePickerHeader.defaultProps = {
-  utils: defaultUtils,
   ampm: true,
 };
 
@@ -143,4 +142,4 @@ const styles = () => ({
   },
 });
 
-export default withStyles(styles, { withTheme: true })(DateTimePickerHeader);
+export default withStyles(styles, { withTheme: true })(withUtils()(DateTimePickerHeader));

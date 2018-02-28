@@ -2,16 +2,14 @@ import * as React from 'react'
 import { Fragment, Component } from 'react';
 import { IconButton, Typography, Icon } from 'material-ui';
 import InputAdornment  from 'material-ui/Input/InputAdornment';
-import DateTimePickerWrapper  from '../../src/DateTimePicker/DateTimePickerWrapper';
+import DateTimePickerWrapper  from '../../src/DateTimePicker';
 import * as classNames from 'classnames'
 import { Moment } from 'moment'
 import * as PropTypes from 'prop-types'
-import {DayComponent} from '../../src/DatePicker/Calendar'
+import { DayComponent } from '../../src/DatePicker/Calendar'
+import { utilsToUse } from '../test-utils';
+import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 
-// FIXME: src vs exported component names a source of confusion
-// FIXME https://github.com/dmtrKovalenko/material-ui-pickers/issues/169
-
-// initially from the docs site
 export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
   state = {
     selectedDate: new Date(),
@@ -25,7 +23,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
+      <MuiUtilsProvider utils={utilsToUse}>
         <DateTimePickerWrapper
           value={selectedDate}
           onChange={this.handleChange}
@@ -53,7 +51,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
             ),
           }}
         />
-      </Fragment>
+      </MuiUtilsProvider>
     );
   }
 }
@@ -90,15 +88,15 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
+      <MuiUtilsProvider utils={utilsToUse}>
         <DateTimePickerWrapper
           autoSubmit={false}
           value={selectedDate}
           onChange={this.handleDateChange}
           renderDay={this.renderCustomDayForDateTime}
-          returnMoment
+
         />
-      </Fragment>
+      </MuiUtilsProvider>
     );
   }
 }
