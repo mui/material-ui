@@ -5,17 +5,15 @@ import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
-  root: {
+  root: theme.mixins.gutters({
     boxSizing: 'border-box',
     lineHeight: '48px',
     listStyle: 'none',
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
     color: theme.palette.text.secondary,
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.pxToRem(theme.typography.fontSize),
-  },
+  }),
   colorPrimary: {
     color: theme.palette.primary.main,
   },

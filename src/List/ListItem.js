@@ -37,10 +37,7 @@ export const styles = theme => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   },
-  gutters: {
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
-  },
+  gutters: theme.mixins.gutters(),
   button: {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,

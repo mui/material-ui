@@ -25,8 +25,8 @@ export const styles = theme => ({
   },
   titleWrap: {
     flexGrow: 1,
-    marginLeft: theme.mixins.gutters({}).paddingLeft,
-    marginRight: theme.mixins.gutters({}).paddingRight,
+    marginLeft: theme.mixins.gutters().paddingLeft,
+    marginRight: theme.mixins.gutters().paddingRight,
     color: theme.palette.common.white,
     overflow: 'hidden',
   },
