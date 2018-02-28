@@ -15,6 +15,8 @@ export const styles = theme => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
     '&$selected': {
       backgroundColor: theme.palette.action.selected,
     },

@@ -4,18 +4,20 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
-export const styles = {
+export const styles = theme => ({
   root: {
-    height: 52,
     display: 'flex',
     alignItems: 'center',
-    padding: '2px 4px',
     boxSizing: 'border-box',
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
+    [theme.breakpoints.up('sm')]: {
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 1.5}px`,
+    },
   },
   action: {
     margin: '0 4px',
   },
-};
+});
 
 function CardActions(props) {
   const { disableActionSpacing, children, classes, className, ...other } = props;

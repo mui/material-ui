@@ -10,7 +10,7 @@ export const styles = theme => ({
     alignItems: 'center',
     ...theme.mixins.toolbar,
   },
-  gutters: theme.mixins.gutters({}),
+  gutters: theme.mixins.gutters(),
 });
 
 function Toolbar(props) {
