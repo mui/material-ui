@@ -4,12 +4,13 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
-  root: {
-    padding: theme.spacing.unit * 2,
+  root: theme.mixins.gutters({
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
     '&:last-child': {
       paddingBottom: theme.spacing.unit * 3,
     },
-  },
+  }),
 });
 
 function CardContent(props) {

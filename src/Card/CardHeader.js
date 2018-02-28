@@ -5,11 +5,12 @@ import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
 export const styles = theme => ({
-  root: {
+  root: theme.mixins.gutters({
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing.unit * 2,
-  },
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+  }),
   avatar: {
     flex: '0 0 auto',
     marginRight: theme.spacing.unit * 2,
