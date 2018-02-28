@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
+import { TouchRippleProps } from './TouchRipple';
 
 export interface ButtonBaseProps
   extends StandardProps<
@@ -13,6 +14,7 @@ export interface ButtonBaseProps
   focusRipple?: boolean;
   keyboardFocusedClassName?: string;
   onKeyboardFocus?: React.FocusEventHandler<any>;
+  TouchRippleProps?: Partial<TouchRippleProps>;
 }
 
 export type ButtonBaseClassKey = 'root' | 'disabled';
