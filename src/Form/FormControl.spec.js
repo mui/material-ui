@@ -3,6 +3,7 @@ import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Input from '../Input';
+import Select from '../Select';
 import FormControl from './FormControl';
 
 describe('<FormControl />', () => {
@@ -110,6 +111,26 @@ describe('<FormControl />', () => {
       const wrapper = shallow(
         <FormControl>
           <Input startAdornment={<div />} />
+        </FormControl>,
+      );
+      assert.strictEqual(wrapper.state().adornedStart, true);
+    });
+  });
+
+  describe('select', () => {
+    it('should not be adorned without a startAdornment', () => {
+      const wrapper = shallow(
+        <FormControl>
+          <Select value="" />
+        </FormControl>,
+      );
+      assert.strictEqual(wrapper.state().adornedStart, false);
+    });
+
+    it('should be adorned with a startAdornment', () => {
+      const wrapper = shallow(
+        <FormControl>
+          <Select value="" input={<Input startAdornment={<div />} />} />
         </FormControl>,
       );
       assert.strictEqual(wrapper.state().adornedStart, true);
