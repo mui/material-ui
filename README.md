@@ -20,7 +20,7 @@ Teach pickers how to use one of that library using `MuiPickersUtilsProvider`. Th
 
 ```jsx
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
-import MomentUtils from 'material-ui-picker/utils/moment-utils';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import DateFnsUtils from 'material-ui-picker/utils/date-fns-utils'
 
 function App() {
@@ -188,6 +188,7 @@ mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/m
 clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 
+<!-- Delay support of material-ui-pickers probably to rc-2
 ### Jalali Calendar
 We are fully supporting Jalali calendar system and [right-to-left](https://material-ui-next.com/guides/right-to-left/) material-ui api. Special thanks to @alitaheri.
 Here is a little example of how to use it
@@ -209,7 +210,8 @@ function App() {
     </MuiPickersUtilsProvider>
   );
 }
-```
+``` -->
+
 ### Contributing
 For information about how to contribute, see the [CONTRIBUTING](https://github.com/dmtrKovalenko/material-ui-pickers/blob/master/CONTRIBUTING.md) file.
 
