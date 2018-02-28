@@ -110,7 +110,6 @@ openToYearSelection | boolean | false | Open datepicker from year selection
 minDate | date | '1900-01-01' | Minimum selectable date
 maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
-returnMoment | boolean | true | Will return moment object in onChange (if moment utils using)
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
 emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
 okLabel | string | 'OK' | The label for the ok button
@@ -136,7 +135,6 @@ value | date | new Date() | Timepicker value
 format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept time on selection
 onChange | func | required | Callback firing when date accepted
-returnMoment | boolean | true | Will return moment object in onChange
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
 emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
 okLabel | string | 'OK' | The label for the ok button
@@ -165,7 +163,6 @@ animateYearScrolling | boolean | false | Will animate year selection
 minDate | date | '1900-01-01' | Minimum selectable date
 maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
-returnMoment | boolean | true | Will return moment object in onChangeg
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed
 emptyLabel | string | '' | Displayed string if date is `null` (e.g. after clear)
 okLabel | string | 'OK' | The label for the ok button

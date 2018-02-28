@@ -94,7 +94,7 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
           value={selectedDate}
           onChange={this.handleDateChange}
           renderDay={this.renderCustomDayForDateTime}
-          returnMoment
+
         />
       </MuiUtilsProvider>
     );

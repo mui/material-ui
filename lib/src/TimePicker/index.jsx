@@ -17,7 +17,6 @@ export class TimePickerWrapper extends PickerBase {
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
-    returnMoment: PropTypes.bool,
     invalidLabel: PropTypes.string,
     utils: PropTypes.func.isRequired,
     ampm: PropTypes.bool,
@@ -27,7 +26,6 @@ export class TimePickerWrapper extends PickerBase {
     value: new Date(),
     format: undefined,
     autoOk: false,
-    returnMoment: true,
     invalidLabel: undefined,
     ampm: true,
   }
@@ -38,8 +36,7 @@ export class TimePickerWrapper extends PickerBase {
   render() {
     const { date } = this.state;
     const {
-      value, format, autoOk, onChange, returnMoment, invalidLabel,
-      utils, ampm, ...other
+      value, format, autoOk, onChange, invalidLabel, utils, ampm, ...other
     } = this.props;
 
     return (

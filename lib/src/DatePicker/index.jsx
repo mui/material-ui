@@ -29,8 +29,6 @@ export class DatePickerWrapper extends PickerBase {
     animateYearScrolling: PropTypes.bool,
     /* Open datepicker from year selection */
     openToYearSelection: PropTypes.bool,
-    /* Return moment object in onChange event */
-    returnMoment: PropTypes.bool,
     /* Displayed string if date can`t be parsed (or null) */
     invalidLabel: PropTypes.string,
     /* Allow to specify dynamic label for text field labelFunc(date, invalidLabel) */
@@ -51,7 +49,6 @@ export class DatePickerWrapper extends PickerBase {
     value: new Date(),
     format: 'MMMM Do',
     autoOk: false,
-    returnMoment: true,
     minDate: undefined,
     maxDate: undefined,
     disablePast: undefined,
@@ -75,7 +72,6 @@ export class DatePickerWrapper extends PickerBase {
       onChange,
       animateYearScrolling,
       openToYearSelection,
-      returnMoment,
       invalidLabel,
       leftArrowIcon,
       rightArrowIcon,

@@ -104,7 +104,6 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
           onChange={this.handleDateChange}
           renderDay={this.renderWrappedDefaultDay}
           labelFunc={this.formatWeekSelectLabel}
-          returnMoment
         />
       </Fragment>
     );

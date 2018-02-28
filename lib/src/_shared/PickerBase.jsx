@@ -9,7 +9,6 @@ export default class PickerBase extends PureComponent {
     value: DomainPropTypes.date,
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
-    returnMoment: PropTypes.bool,
     format: PropTypes.string,
     labelFunc: PropTypes.func,
     ampm: PropTypes.bool,
@@ -50,11 +49,7 @@ export default class PickerBase extends PureComponent {
   }
 
   handleAccept = () => {
-    const dateToReturn = this.props.returnMoment
-      ? this.state.date
-      : this.props.utils.toNativeDate(this.state.date);
-
-    this.props.onChange(dateToReturn);
+    this.props.onChange(this.state.date);
   }
 
   handleDismiss = () => {
