@@ -15,7 +15,7 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  formControl: {
+  margin: {
     margin: theme.spacing.unit,
   },
   withoutLabel: {
@@ -23,7 +23,6 @@ const styles = theme => ({
   },
   textField: {
     flexBasis: 200,
-    margin: theme.spacing.unit,
   },
 });
 
@@ -70,15 +69,15 @@ class InputAdornments extends React.Component {
       <div className={classes.root}>
         <TextField
           label="With normal TextField"
-          className={classes.textField}
+          className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
           }}
         />
         <TextField
           select
-          label="With select TextField"
-          className={classes.textField}
+          label="With Select"
+          className={classNames(classes.margin, classes.textField)}
           value={this.state.weightRange}
           onChange={this.handleChange('weightRange')}
           InputProps={{
@@ -91,7 +90,7 @@ class InputAdornments extends React.Component {
             </MenuItem>
           ))}
         </TextField>
-        <FormControl fullWidth className={classes.formControl}>
+        <FormControl fullWidth className={classes.margin}>
           <InputLabel htmlFor="amount">Amount</InputLabel>
           <Input
             id="adornment-amount"
@@ -101,7 +100,7 @@ class InputAdornments extends React.Component {
           />
         </FormControl>
         <FormControl
-          className={classNames(classes.formControl, classes.withoutLabel)}
+          className={classNames(classes.margin, classes.withoutLabel, classes.textField)}
           aria-describedby="weight-helper-text"
         >
           <Input
@@ -112,7 +111,7 @@ class InputAdornments extends React.Component {
           />
           <FormHelperText id="weight-helper-text">Weight</FormHelperText>
         </FormControl>
-        <FormControl className={classes.formControl}>
+        <FormControl className={classNames(classes.margin, classes.textField)}>
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input
             id="adornment-password"
