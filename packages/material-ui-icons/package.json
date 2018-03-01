@@ -50,7 +50,6 @@
     "temp": "^0.8.3",
     "yargs": "^11.0.0"
   },
-  "side-effects": false,
   "sideEffects": false,
   "engines": {
     "node": ">=6.11.0"
