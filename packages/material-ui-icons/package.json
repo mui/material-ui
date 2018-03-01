@@ -51,6 +51,7 @@
     "yargs": "^11.0.0"
   },
   "side-effects": false,
+  "sideEffects": false,
   "engines": {
     "node": ">=6.11.0"
   }
