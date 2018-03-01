@@ -204,7 +204,7 @@
   "resolutions": {
     "@types/react": "16.0.38"
   },
-  "side-effects": false,
+  "sideEffects": false,
   "nyc": {
     "include": [
       "src/**/*.js"
