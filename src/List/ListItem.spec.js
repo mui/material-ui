@@ -111,18 +111,6 @@ describe('<ListItem />', () => {
       assert.strictEqual(wrapper.childAt(0).type(), 'div');
     });
 
-    it('should accept a ContainerComponent property', () => {
-      const wrapper = shallow(
-        <ListItem ContainerComponent="div">
-          <ListItemText primary="primary" />
-          <ListItemSecondaryAction />
-        </ListItem>,
-      );
-      assert.strictEqual(wrapper.hasClass(classes.container), true);
-      assert.strictEqual(wrapper.type(), 'div');
-      assert.strictEqual(wrapper.childAt(0).type(), 'div');
-    });
-
     it('should accept a component property', () => {
       const wrapper = shallow(
         <ListItem component="span">
@@ -145,6 +133,29 @@ describe('<ListItem />', () => {
       assert.strictEqual(wrapper.hasClass(classes.container), true);
       assert.strictEqual(wrapper.type(), 'li');
       assert.strictEqual(wrapper.childAt(0).type(), ButtonBase);
+    });
+
+    it('should accept a ContainerComponent property', () => {
+      const wrapper = shallow(
+        <ListItem ContainerComponent="div">
+          <ListItemText primary="primary" />
+          <ListItemSecondaryAction />
+        </ListItem>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.container), true);
+      assert.strictEqual(wrapper.type(), 'div');
+      assert.strictEqual(wrapper.childAt(0).type(), 'div');
+    });
+
+    it('should allow customization of the wrapper', () => {
+      const wrapper = shallow(
+        <ListItem ContainerProps={{ className: 'bubu' }}>
+          <ListItemText primary="primary" />
+          <ListItemSecondaryAction />
+        </ListItem>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.container), true);
+      assert.strictEqual(wrapper.hasClass('bubu'), true);
     });
   });
 });
