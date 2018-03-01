@@ -42,30 +42,27 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    // <Input> expects the components it renders to respond to 'value'
+    // so that it can check whether they are dirty
+    this.value = props.value || props.defaultValue || '';
+    this.state = {
+      height: Number(props.rows) * ROWS_HEIGHT,
+    };
+  }
+
   state = {
     height: null,
   };
 
-  componentWillMount() {
-    // <Input> expects the components it renders to respond to 'value'
-    // so that it can check whether they are dirty
-    this.value = this.props.value || this.props.defaultValue || '';
-    this.setState({
-      height: Number(this.props.rows) * ROWS_HEIGHT,
-    });
-  }
-
   componentDidMount() {
-    this.syncHeightWithShadow(null);
+    this.syncHeightWithShadow();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.value !== this.props.value ||
-      Number(nextProps.rowsMax) !== Number(this.props.rowsMax)
-    ) {
-      this.syncHeightWithShadow(null, nextProps);
-    }
+  componentDidUpdate() {
+    this.syncHeightWithShadow();
   }
 
   componentWillUnmount() {
@@ -77,37 +74,39 @@ class Textarea extends React.Component {
   input = null;
   value = null;
 
-  handleResize = debounce(event => {
-    this.syncHeightWithShadow(event);
+  handleResize = debounce(() => {
+    this.syncHeightWithShadow();
   }, 166);
 
-  syncHeightWithShadow(event, props = this.props) {
-    if (this.shadow && this.singlelineShadow) {
-      // The component is controlled, we need to update the shallow value.
-      if (typeof this.props.value !== 'undefined') {
-        this.shadow.value = props.value == null ? '' : String(props.value);
-      }
+  syncHeightWithShadow(props = this.props) {
+    if (!this.shadow || !this.singlelineShadow) {
+      return;
+    }
 
-      const lineHeight = this.singlelineShadow.scrollHeight;
-      let newHeight = this.shadow.scrollHeight;
+    // The component is controlled, we need to update the shallow value.
+    if (typeof this.props.value !== 'undefined') {
+      this.shadow.value = props.value == null ? '' : String(props.value);
+    }
 
-      // Guarding for jsdom, where scrollHeight isn't present.
-      // See https://github.com/tmpvar/jsdom/issues/1013
-      if (newHeight === undefined) {
-        return;
-      }
+    const lineHeight = this.singlelineShadow.scrollHeight;
+    let newHeight = this.shadow.scrollHeight;
 
-      if (Number(props.rowsMax) >= Number(props.rows)) {
-        newHeight = Math.min(Number(props.rowsMax) * lineHeight, newHeight);
-      }
+    // Guarding for jsdom, where scrollHeight isn't present.
+    // See https://github.com/tmpvar/jsdom/issues/1013
+    if (newHeight === undefined) {
+      return;
+    }
 
-      newHeight = Math.max(newHeight, lineHeight);
+    if (Number(props.rowsMax) >= Number(props.rows)) {
+      newHeight = Math.min(Number(props.rowsMax) * lineHeight, newHeight);
+    }
 
-      if (this.state.height !== newHeight) {
-        this.setState({
-          height: newHeight,
-        });
-      }
+    newHeight = Math.max(newHeight, lineHeight);
+
+    if (this.state.height !== newHeight) {
+      this.setState({
+        height: newHeight,
+      });
     }
   }
 
@@ -126,13 +125,13 @@ class Textarea extends React.Component {
     this.shadow = node;
   };
 
-  handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+  handleChange = event => {
     this.value = event.target.value;
 
     if (typeof this.props.value === 'undefined' && this.shadow) {
       // The component is not controlled, we need to update the shallow value.
       this.shadow.value = this.value;
-      this.syncHeightWithShadow(event);
+      this.syncHeightWithShadow();
     }
 
     if (this.props.onChange) {
