@@ -73,7 +73,7 @@ class ListItem extends React.Component {
       className: classNameProp,
       component: componentProp,
       ContainerComponent,
-      ContainerProps,
+      ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
       dense,
       disabled,
       disableGutters,
@@ -123,7 +123,10 @@ class ListItem extends React.Component {
       }
 
       return (
-        <ContainerComponent className={classes.container} {...ContainerProps}>
+        <ContainerComponent
+          className={classNames(classes.container, ContainerClassName)}
+          {...ContainerProps}
+        >
           <Component {...componentProps}>{children}</Component>
           {children.pop()}
         </ContainerComponent>

@@ -389,6 +389,9 @@ const ListTest = () => (
         </ListItemSecondaryAction>
       </ListItem>
     ))}
+    <ListItem ContainerComponent="div" ContainerProps={{ className: 'demo' }}>
+      an item
+    </ListItem>
   </List>
 );
 
