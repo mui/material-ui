@@ -110,7 +110,17 @@ class ListItem extends React.Component {
     }
 
     if (hasSecondaryAction) {
-      Component = Component !== ButtonBase && !componentProp ? 'div' : Component;
+      // Use div by default.
+      Component = !componentProps.component && !componentProp ? 'div' : Component;
+
+      // Avoid nesting of li > li.
+      if (ContainerComponent === 'li') {
+        if (Component === 'li') {
+          Component = 'div';
+        } else if (componentProps.component === 'li') {
+          componentProps.component = 'div';
+        }
+      }
 
       return (
         <ContainerComponent className={classes.container} {...ContainerProps}>
