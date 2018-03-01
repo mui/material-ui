@@ -43,7 +43,7 @@ export class DateTextField extends PureComponent {
     TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     utils: PropTypes.func.isRequired,
     InputAdornmentProps: PropTypes.object,
-    adornmentPosition: PropTypes.string,
+    adornmentPosition: PropTypes.oneOf(['start', 'end']),
   }
 
   static defaultProps = {
