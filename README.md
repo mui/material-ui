@@ -127,6 +127,9 @@ minDateMessage | string | 'Date should not be before minimal date' | Minimum dat
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask for keyboard-mode
 clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
+InputAdornmentProps | object | {} | Props to pass to keyboard input adornment
+inputAdornmentPosition | enum 'start', 'end' | 'end' | Specifies position of keyboard adornment
+
 
 #### Timepicker
 Prop | Type | Default | Definition
@@ -147,6 +150,8 @@ keyboardIcon | react node | `<Icon>event</Icon>` | Keyboard adornment icon
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask for keyboard-mode
 clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
+InputAdornmentProps | object | {} | Props to pass to keyboard input adornment
+inputAdornmentPosition | enum 'start', 'end' | 'end' | Specifies position of keyboard adornment
 
 #### DateTimepicker
 Prop | Type | Default | Definition
@@ -184,6 +189,9 @@ invalidDateMessage | string | 'Invalid Date Format' | Message, appearing when da
 mask | text mask (read more [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)) | undefined | Text mask for keyboard-mode
 clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
+InputAdornmentProps | object | {} | Props to pass to keyboard input adornment
+inputAdornmentPosition | enum 'start', 'end' | 'end' | Specifies position of keyboard adornment
+
 
 <!-- Delay support of material-ui-pickers probably to rc-2
 ### Jalali Calendar
