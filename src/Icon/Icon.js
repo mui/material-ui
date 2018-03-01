@@ -29,19 +29,21 @@ export const styles = theme => ({
 });
 
 function Icon(props) {
-  const { children, classes, className: classNameProp, color, ...other } = props;
-
-  const className = classNames(
-    'material-icons',
-    classes.root,
-    {
-      [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-    },
-    classNameProp,
-  );
+  const { children, classes, className, color, ...other } = props;
 
   return (
-    <span className={className} aria-hidden="true" {...other}>
+    <span
+      className={classNames(
+        'material-icons',
+        classes.root,
+        {
+          [classes[`color${capitalize(color)}`]]: color !== 'inherit',
+        },
+        className,
+      )}
+      aria-hidden="true"
+      {...other}
+    >
       {children}
     </span>
   );

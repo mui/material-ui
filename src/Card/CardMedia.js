@@ -10,7 +10,7 @@ export const styles = {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
   },
-  rootMedia: {
+  media: {
     width: '100%',
   },
 };
@@ -28,17 +28,16 @@ function CardMedia(props) {
   const isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;
   const composedStyle =
     !isMediaComponent && image ? { backgroundImage: `url(${image})`, ...style } : style;
-  const composedClassName = classNames(
-    {
-      [classes.root]: !isMediaComponent,
-      [classes.rootMedia]: isMediaComponent,
-    },
-    className,
-  );
 
   return (
     <Component
-      className={composedClassName}
+      className={classNames(
+        classes.root,
+        {
+          [classes.media]: isMediaComponent,
+        },
+        className,
+      )}
       style={composedStyle}
       src={isMediaComponent ? image || src : undefined}
       {...other}

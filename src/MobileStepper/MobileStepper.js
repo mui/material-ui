@@ -76,21 +76,20 @@ function MobileStepper(props) {
       {variant === 'dots' && (
         <div className={classes.dots}>
           {[...new Array(steps)].map((_, step) => {
-            const dotClassName = classNames(
-              {
-                [classes.dotActive]: step === activeStep,
-              },
-              classes.dot,
-            );
+            const dotClassName = classNames(classes.dot, {
+              [classes.dotActive]: step === activeStep,
+            });
             // eslint-disable-next-line react/no-array-index-key
             return <div key={step} className={dotClassName} />;
           })}
         </div>
       )}
       {variant === 'progress' && (
-        <div className={classes.progress}>
-          <LinearProgress variant="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
-        </div>
+        <LinearProgress
+          className={classes.progress}
+          variant="determinate"
+          value={Math.ceil(activeStep / (steps - 1) * 100)}
+        />
       )}
       {nextButton}
     </Paper>

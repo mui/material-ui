@@ -44,28 +44,28 @@ export const styles = theme => ({
       lineHeight: `${theme.typography.round(14 / 10)}em`,
     },
   },
-  tooltipLeft: {
+  tooltipPlacementLeft: {
     transformOrigin: 'right center',
     margin: `0 ${theme.spacing.unit * 3}px`,
     [theme.breakpoints.up('sm')]: {
       margin: '0 14px',
     },
   },
-  tooltipRight: {
+  tooltipPlacementRight: {
     transformOrigin: 'left center',
     margin: `0 ${theme.spacing.unit * 3}px`,
     [theme.breakpoints.up('sm')]: {
       margin: '0 14px',
     },
   },
-  tooltipTop: {
+  tooltipPlacementTop: {
     transformOrigin: 'center bottom',
     margin: `${theme.spacing.unit * 3}px 0`,
     [theme.breakpoints.up('sm')]: {
       margin: '14px 0',
     },
   },
-  tooltipBottom: {
+  tooltipPlacementBottom: {
     transformOrigin: 'center top',
     margin: `${theme.spacing.unit * 3}px 0`,
     [theme.breakpoints.up('sm')]: {
@@ -348,7 +348,7 @@ class Tooltip extends React.Component {
                     className={classNames(
                       classes.tooltip,
                       { [classes.tooltipOpen]: open },
-                      classes[`tooltip${capitalize(actualPlacement.split('-')[0])}`],
+                      classes[`tooltipPlacement${capitalize(actualPlacement.split('-')[0])}`],
                     )}
                   >
                     {title}

@@ -14,11 +14,15 @@ export const styles = theme => ({
   focused: {
     color: theme.palette.primary[theme.palette.type === 'light' ? 'dark' : 'light'],
   },
+  disabled: {
+    color: theme.palette.text.disabled,
+  },
   error: {
     color: theme.palette.error.main,
   },
-  disabled: {
-    color: theme.palette.text.disabled,
+  asterisk: {},
+  asteriskError: {
+    color: theme.palette.error.main,
   },
 });
 
@@ -67,15 +71,16 @@ function FormLabel(props, context) {
     classNameProp,
   );
 
-  const asteriskClassName = classNames({
-    [classes.error]: error,
-  });
-
   return (
     <Component className={className} {...other}>
       {children}
       {required && (
-        <span className={asteriskClassName} data-mui-test="FormLabelAsterisk">
+        <span
+          className={classNames(classes.asterisk, {
+            [classes.asteriskError]: error,
+          })}
+          data-mui-test="FormLabelAsterisk"
+        >
           {'\u2009*'}
         </span>
       )}

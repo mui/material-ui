@@ -10,21 +10,19 @@ export const styles = theme => ({
     margin: 0, // Reset browser default style.
     border: 'none',
     flexShrink: 0,
-  },
-  inset: {
-    marginLeft: 72,
-  },
-  default: {
     backgroundColor: theme.palette.divider,
-  },
-  light: {
-    backgroundColor: fade(theme.palette.divider, 0.08),
   },
   absolute: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     width: '100%',
+  },
+  inset: {
+    marginLeft: theme.spacing.unit * 9,
+  },
+  light: {
+    backgroundColor: fade(theme.palette.divider, 0.08),
   },
 });
 
@@ -44,8 +42,8 @@ function Divider(props) {
     {
       [classes.absolute]: absolute,
       [classes.inset]: inset,
+      [classes.light]: light,
     },
-    light ? classes.light : classes.default,
     classNameProp,
   );
 

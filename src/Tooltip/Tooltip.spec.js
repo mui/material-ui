@@ -100,7 +100,7 @@ describe('<Tooltip />', () => {
       const popperChildren = getPopperChildren(wrapper);
       assert.strictEqual(popperChildren.childAt(0).hasClass(classes.tooltip), true);
       wrapper.childAt(0).simulate('click');
-      assert.strictEqual(popperChildren.childAt(0).hasClass(classes.tooltipTop), true);
+      assert.strictEqual(popperChildren.childAt(0).hasClass(classes.tooltipPlacementTop), true);
     });
 
     const theme = createMuiTheme({

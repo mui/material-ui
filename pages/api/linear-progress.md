@@ -29,21 +29,21 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `primaryColor`
-- `primaryColorBar`
-- `primaryDashed`
-- `secondaryColor`
-- `secondaryColorBar`
-- `secondaryDashed`
-- `bar`
+- `colorPrimary`
+- `colorSecondary`
+- `buffer`
+- `query`
 - `dashed`
-- `bufferBar2`
-- `rootBuffer`
-- `rootQuery`
-- `indeterminateBar1`
-- `indeterminateBar2`
-- `determinateBar1`
-- `bufferBar1`
+- `dashedColorPrimary`
+- `dashedColorSecondary`
+- `bar`
+- `barColorPrimary`
+- `barColorSecondary`
+- `bar1Indeterminate`
+- `bar2Indeterminate`
+- `bar1Determinate`
+- `bar1Buffer`
+- `bar2Buffer`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Progress/LinearProgress.js)

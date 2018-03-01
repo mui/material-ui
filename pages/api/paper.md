@@ -26,31 +26,31 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `root`
 - `rounded`
-- `shadow0`
-- `shadow1`
-- `shadow2`
-- `shadow3`
-- `shadow4`
-- `shadow5`
-- `shadow6`
-- `shadow7`
-- `shadow8`
-- `shadow9`
-- `shadow10`
-- `shadow11`
-- `shadow12`
-- `shadow13`
-- `shadow14`
-- `shadow15`
-- `shadow16`
-- `shadow17`
-- `shadow18`
-- `shadow19`
-- `shadow20`
-- `shadow21`
-- `shadow22`
-- `shadow23`
-- `shadow24`
+- `elevation0`
+- `elevation1`
+- `elevation2`
+- `elevation3`
+- `elevation4`
+- `elevation5`
+- `elevation6`
+- `elevation7`
+- `elevation8`
+- `elevation9`
+- `elevation10`
+- `elevation11`
+- `elevation12`
+- `elevation13`
+- `elevation14`
+- `elevation15`
+- `elevation16`
+- `elevation17`
+- `elevation18`
+- `elevation19`
+- `elevation20`
+- `elevation21`
+- `elevation22`
+- `elevation23`
+- `elevation24`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Paper/Paper.js)

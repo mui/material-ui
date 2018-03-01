@@ -27,7 +27,6 @@ describe('<Input />', () => {
     const wrapper = shallow(<Input />);
     assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.inkbar), true, 'should have the inkbar class');
     assert.strictEqual(
       wrapper.hasClass(classes.underline),
       true,
@@ -306,15 +305,15 @@ describe('<Input />', () => {
           setFormControlContext({ margin: 'dense' });
         });
 
-        it('should have the inputDense class', () => {
-          assert.strictEqual(wrapper.find('input').hasClass(classes.inputDense), true);
+        it('should have the inputMarginDense class', () => {
+          assert.strictEqual(wrapper.find('input').hasClass(classes.inputMarginDense), true);
         });
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(wrapper.find('input').hasClass(classes.inputDense), false);
+        assert.strictEqual(wrapper.find('input').hasClass(classes.inputMarginDense), false);
         wrapper.setProps({ margin: 'dense' });
-        assert.strictEqual(wrapper.find('input').hasClass(classes.inputDense), true);
+        assert.strictEqual(wrapper.find('input').hasClass(classes.inputMarginDense), true);
       });
     });
 

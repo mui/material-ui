@@ -338,7 +338,7 @@ describe('<Tabs />', () => {
     });
 
     it('should render with the scrollable class', () => {
-      const selector = `.${classes.scrollingContainer}.${classes.scrollable}`;
+      const selector = `.${classes.scroller}.${classes.scrollable}`;
       assert.strictEqual(wrapper.find(selector).is('div'), true, 'should be a div');
       assert.strictEqual(wrapper.find(selector).length, 1, 'should only be one');
     });
@@ -347,7 +347,7 @@ describe('<Tabs />', () => {
       const instance = wrapper.instance();
       instance.tabs = { scrollLeft: 100, ...fakeTabs };
       spy(instance, 'updateScrollButtonState');
-      const selector = `.${classes.scrollingContainer}.${classes.scrollable}`;
+      const selector = `.${classes.scroller}.${classes.scrollable}`;
       wrapper.find(selector).simulate('scroll');
       clock.tick(166);
       assert.strictEqual(
@@ -378,8 +378,8 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const baseSelector = `.${classes.scrollingContainer}`;
-      const selector = `.${classes.scrollingContainer}.${classes.scrollable}`;
+      const baseSelector = `.${classes.scroller}`;
+      const selector = `.${classes.scroller}.${classes.scrollable}`;
       assert.strictEqual(wrapper.find(baseSelector).length, 1, 'base selector should exist');
       assert.strictEqual(wrapper.find(selector).length, 0, 'scrolling selector should not exist');
     });
@@ -425,7 +425,7 @@ describe('<Tabs />', () => {
       );
       assert.strictEqual(wrapper.find(TabScrollButton).length, 2, 'should be zero');
       assert.strictEqual(
-        wrapper.find(TabScrollButton).everyWhere(node => node.hasClass(classes.buttonAuto)),
+        wrapper.find(TabScrollButton).everyWhere(node => node.hasClass(classes.scrollButtonsAuto)),
         true,
       );
     });

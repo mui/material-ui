@@ -40,9 +40,32 @@ The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item) > 
 
 We avoid documenting native properties supported by the DOM like [`className`](/customization/overrides#overriding-with-class-names).
 
-### Classes
+### CSS Classes
 
 All the components accept a [`classes`](/customization/overrides#overriding-with-classes) property to customize the styles.
+The classes design answers two constraints.
+We try to make the classes structure as simple as possible while keeping it complex enough for implementing the Material specification.
+- The class applied on the root element is always called `root`.
+- The classes applied on non-root element are prefixed with the name of the element, e.g. `dashedXX`.
+- All the default styles are grouped in a single class.
+- The boolean variants applied **aren't** prefixed e.g. `rounded`.
+- The enum variants applied **are** prefixed e.g. `colorXX`.
+- A variant has **one level of specificity**.
+For instance, the `color` and `variant` properties are considered a variant.
+The lower the style specificity is, the simpler you can override it.
+- We increase the specificity for a variant modifier. We already **have to do** it for the pseudo-classes (`:hover`, `:focus`, etc.). It allows much more control at the cost of extra complexity. Hopefully, it's more intuitive.
+
+```js
+const styles = {
+  root: {
+    color: green[600],
+    '&$checked': {
+      color: green[500],
+    },
+  },
+  checked: {},
+};
+```
 
 ### Internal components
 

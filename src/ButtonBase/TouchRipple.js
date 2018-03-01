@@ -29,7 +29,7 @@ export const styles = theme => ({
     opacity: 0,
     animation: `mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
-  wrapperPulsating: {
+  wrapperPulsate: {
     position: 'absolute',
     left: 0,
     top: 0,
@@ -80,7 +80,7 @@ export const styles = theme => ({
     transform: 'scale(1)',
     animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
-  rippleFast: {
+  ripplePulsate: {
     animationDuration: '200ms',
   },
 });

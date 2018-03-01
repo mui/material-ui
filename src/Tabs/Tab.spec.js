@@ -39,8 +39,8 @@ describe('<Tab />', () => {
   describe('prop: selected', () => {
     it('should render with the selected and root classes', () => {
       const wrapper = shallow(<Tab selected textColor="secondary" />);
-      assert.strictEqual(wrapper.hasClass(classes.rootSecondarySelected), true);
-      assert.strictEqual(wrapper.hasClass(classes.rootSecondary), true);
+      assert.strictEqual(wrapper.hasClass(classes.textColorSecondarySelected), true);
+      assert.strictEqual(wrapper.hasClass(classes.textColorSecondary), true);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.props()['aria-selected'], true);
     });
@@ -49,8 +49,8 @@ describe('<Tab />', () => {
   describe('prop: disabled', () => {
     it('should render with the disabled and root classes', () => {
       const wrapper = shallow(<Tab disabled textColor="secondary" />);
-      assert.strictEqual(wrapper.hasClass(classes.rootSecondaryDisabled), true);
-      assert.strictEqual(wrapper.hasClass(classes.rootSecondary), true);
+      assert.strictEqual(wrapper.hasClass(classes.textColorSecondaryDisabled), true);
+      assert.strictEqual(wrapper.hasClass(classes.textColorSecondary), true);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
   });
@@ -120,8 +120,8 @@ describe('<Tab />', () => {
   describe('prop: textColor', () => {
     it('should support the inherit value', () => {
       const wrapper = shallow(<Tab selected textColor="inherit" />);
-      assert.strictEqual(wrapper.hasClass(classes.rootInheritSelected), true);
-      assert.strictEqual(wrapper.hasClass(classes.rootInherit), true);
+      assert.strictEqual(wrapper.hasClass(classes.textColorInheritSelected), true);
+      assert.strictEqual(wrapper.hasClass(classes.textColorInherit), true);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
 

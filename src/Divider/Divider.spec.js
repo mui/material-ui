@@ -22,7 +22,6 @@ describe('<Divider />', () => {
   it('should render with the root and default class', () => {
     const wrapper = shallow(<Divider />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.default), true, 'should have the default class');
   });
 
   it('should set the absolute class', () => {

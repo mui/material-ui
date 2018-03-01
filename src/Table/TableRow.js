@@ -8,15 +8,15 @@ export const styles = theme => ({
     color: 'inherit',
     display: 'table-row',
     height: 48,
+    verticalAlign: 'middle',
     '&:focus': {
       outline: 'none',
     },
-    verticalAlign: 'middle',
   },
-  typeHead: {
+  head: {
     height: 56,
   },
-  typeFooter: {
+  footer: {
     height: 56,
   },
   selected: {
@@ -53,8 +53,8 @@ function TableRow(props, context) {
   const className = classNames(
     classes.root,
     {
-      [classes.typeHead]: table && table.head,
-      [classes.typeFooter]: table && table.footer,
+      [classes.head]: table && table.head,
+      [classes.footer]: table && table.footer,
       [classes.hover]: table && hover,
       [classes.selected]: table && selected,
     },

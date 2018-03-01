@@ -37,10 +37,10 @@ This property accepts the following keys:
 - `popper`
 - `popperClose`
 - `tooltip`
-- `tooltipLeft`
-- `tooltipRight`
-- `tooltipTop`
-- `tooltipBottom`
+- `tooltipPlacementLeft`
+- `tooltipPlacementRight`
+- `tooltipPlacementTop`
+- `tooltipPlacementBottom`
 - `tooltipOpen`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

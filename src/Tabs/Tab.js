@@ -21,35 +21,35 @@ export const styles = theme => ({
       minWidth: 160,
     },
   },
-  rootLabelIcon: {
+  labelIcon: {
     height: 72,
   },
-  rootInherit: {
+  textColorInherit: {
     color: 'inherit',
     opacity: 0.7,
   },
-  rootPrimary: {
+  textColorPrimary: {
     color: theme.palette.text.secondary,
   },
-  rootPrimarySelected: {
+  textColorPrimarySelected: {
     color: theme.palette.primary.main,
   },
-  rootPrimaryDisabled: {
+  textColorPrimaryDisabled: {
     color: theme.palette.text.disabled,
   },
-  rootSecondary: {
+  textColorSecondary: {
     color: theme.palette.text.secondary,
   },
-  rootSecondarySelected: {
+  textColorSecondarySelected: {
     color: theme.palette.secondary.main,
   },
-  rootSecondaryDisabled: {
+  textColorSecondaryDisabled: {
     color: theme.palette.text.disabled,
   },
-  rootInheritSelected: {
+  textColorInheritSelected: {
     opacity: 1,
   },
-  rootInheritDisabled: {
+  textColorInheritDisabled: {
     opacity: 0.4,
   },
   fullWidth: {
@@ -167,11 +167,11 @@ class Tab extends React.Component {
 
     const className = classNames(
       classes.root,
-      classes[`root${capitalize(textColor)}`],
+      classes[`textColor${capitalize(textColor)}`],
       {
-        [classes[`root${capitalize(textColor)}Disabled`]]: disabled,
-        [classes[`root${capitalize(textColor)}Selected`]]: selected,
-        [classes.rootLabelIcon]: icon && label,
+        [classes[`textColor${capitalize(textColor)}Disabled`]]: disabled,
+        [classes[`textColor${capitalize(textColor)}Selected`]]: selected,
+        [classes.labelIcon]: icon && label,
         [classes.fullWidth]: fullWidth,
       },
       classNameProp,

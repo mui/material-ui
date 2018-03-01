@@ -41,10 +41,10 @@ export const styles = theme => ({
     transition: 'font-size 0.2s, opacity 0.2s',
     transitionDelay: '0.1s',
   },
-  selectedLabel: {
+  labelSelected: {
     fontSize: theme.typography.pxToRem(theme.typography.fontSize),
   },
-  hiddenLabel: {
+  labelHidden: {
     opacity: 0,
     transitionDelay: '0s',
   },
@@ -87,8 +87,8 @@ class BottomNavigationAction extends React.Component {
     );
 
     const labelClassName = classNames(classes.label, {
-      [classes.selectedLabel]: selected,
-      [classes.hiddenLabel]: !showLabelProp && !selected,
+      [classes.labelSelected]: selected,
+      [classes.labelHidden]: !showLabelProp && !selected,
     });
 
     return (

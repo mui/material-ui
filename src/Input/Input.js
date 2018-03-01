@@ -72,7 +72,11 @@ export const styles = theme => {
         marginTop: theme.spacing.unit * 2,
       },
     },
-    inkbar: {
+    focused: {},
+    disabled: {
+      color: theme.palette.text.disabled,
+    },
+    underline: {
       '&:after': {
         backgroundColor: theme.palette.primary[light ? 'dark' : 'light'],
         left: 0,
@@ -92,18 +96,6 @@ export const styles = theme => {
       '&$focused:after': {
         transform: 'scaleX(1)',
       },
-    },
-    error: {
-      '&:after': {
-        backgroundColor: theme.palette.error.main,
-        transform: 'scaleX(1)', // error is always underlined in red
-      },
-    },
-    focused: {},
-    disabled: {
-      color: theme.palette.text.disabled,
-    },
-    underline: {
       '&:before': {
         backgroundColor: bottomLineColor,
         left: 0,
@@ -128,6 +120,12 @@ export const styles = theme => {
         backgroundPosition: 'left top',
         backgroundRepeat: 'repeat-x',
         backgroundSize: '5px 1px',
+      },
+    },
+    error: {
+      '&:after': {
+        backgroundColor: theme.palette.error.main,
+        transform: 'scaleX(1)', // error is always underlined in red
       },
     },
     multiline: {
@@ -178,21 +176,21 @@ export const styles = theme => {
         '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
       },
     },
-    inputDense: {
+    inputMarginDense: {
       paddingTop: theme.spacing.unit / 2 - 1,
     },
     inputDisabled: {
       opacity: 1, // Reset iOS opacity
     },
-    inputType: {
-      // type="date" or type="time", etc. have specific styles we need to reset.
-      height: '1.1875em', // Reset (19px), match the native input line-height
-    },
     inputMultiline: {
       resize: 'none',
       padding: 0,
     },
-    inputSearch: {
+    inputType: {
+      // type="date" or type="time", etc. have specific styles we need to reset.
+      height: '1.1875em', // Reset (19px), match the native input line-height
+    },
+    inputTypeSearch: {
       // Improve type search style.
       '-moz-appearance': 'textfield',
       '-webkit-appearance': 'textfield',
@@ -396,7 +394,6 @@ class Input extends React.Component {
         [classes.fullWidth]: fullWidth,
         [classes.focused]: this.state.focused,
         [classes.formControl]: muiFormControl,
-        [classes.inkbar]: !disableUnderline,
         [classes.multiline]: multiline,
         [classes.underline]: !disableUnderline,
       },
@@ -408,9 +405,9 @@ class Input extends React.Component {
       {
         [classes.inputDisabled]: disabled,
         [classes.inputType]: type !== 'text',
+        [classes.inputTypeSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
-        [classes.inputSearch]: type === 'search',
-        [classes.inputDense]: margin === 'dense',
+        [classes.inputMarginDense]: margin === 'dense',
       },
       inputPropsClassName,
     );

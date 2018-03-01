@@ -103,7 +103,7 @@ that **are needed for the stable version**:
    +<CssBaseline />
    ```
 
-- [ ] Remove the `fontSize` property from the `Icon` and `SvgIcon` components in order to make it the default behavior.
+- [x] Remove the `fontSize` property from the `Icon` and `SvgIcon` components in order to make it the default behavior.
 It's already the default behavior of the `Icon` component. You will still be able to change the size of the icons with the `width` and `height` CSS properties. The difference is that they can use the `font-size` as a shorthand.
 
   ```diff
@@ -111,7 +111,7 @@ It's already the default behavior of the `Icon` component. You will still be abl
   +<SvgIcon style={{ fontSize: 20 }} />
   ```
 
-- [ ] Do not prefix the classes keys when used for a variation. >80% of the components enforce this rule, let's make this figure 100%.
+- [x] Do not prefix the classes keys when used for a variation. >80% of the components enforce this rule, let's make this figure 100%.
 
   ```diff
   -<TableCell variant="head" classes={{ typeHead: 'typeHead' }} />

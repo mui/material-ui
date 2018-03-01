@@ -32,26 +32,22 @@ export const styles = theme => ({
 });
 
 function ListSubheader(props) {
-  const {
-    classes,
-    className: classNameProp,
-    color,
-    component: Component,
-    disableSticky,
-    inset,
-    ...other
-  } = props;
-  const className = classNames(
-    classes.root,
-    {
-      [classes[`color${capitalize(color)}`]]: color !== 'default',
-      [classes.inset]: inset,
-      [classes.sticky]: !disableSticky,
-    },
-    classNameProp,
-  );
+  const { classes, className, color, component: Component, disableSticky, inset, ...other } = props;
 
-  return <Component className={className} {...other} />;
+  return (
+    <Component
+      className={classNames(
+        classes.root,
+        {
+          [classes[`color${capitalize(color)}`]]: color !== 'default',
+          [classes.inset]: inset,
+          [classes.sticky]: !disableSticky,
+        },
+        className,
+      )}
+      {...other}
+    />
+  );
 }
 
 ListSubheader.propTypes = {

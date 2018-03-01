@@ -14,14 +14,14 @@ export const styles = theme => ({
     minHeight: '1em',
     margin: 0,
   },
-  dense: {
-    marginTop: theme.spacing.unit / 2,
-  },
   error: {
     color: theme.palette.error.main,
   },
   disabled: {
     color: theme.palette.text.disabled,
+  },
+  marginDense: {
+    marginTop: theme.spacing.unit / 2,
   },
 });
 
@@ -60,7 +60,7 @@ function FormHelperText(props, context) {
     {
       [classes.disabled]: disabled,
       [classes.error]: error,
-      [classes.dense]: margin === 'dense',
+      [classes.marginDense]: margin === 'dense',
     },
     classNameProp,
   );

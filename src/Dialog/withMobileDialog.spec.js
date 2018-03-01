@@ -29,7 +29,7 @@ describe('withMobileDialog', () => {
             foo
           </ResponsiveDialog>,
         );
-        assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), true);
+        assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), true);
       });
     });
   }
@@ -43,7 +43,7 @@ describe('withMobileDialog', () => {
             foo
           </ResponsiveDialog>,
         );
-        assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), false);
+        assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), false);
       });
     });
   }

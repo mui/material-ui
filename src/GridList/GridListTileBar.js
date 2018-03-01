@@ -14,13 +14,13 @@ export const styles = theme => ({
     alignItems: 'center',
     fontFamily: theme.typography.fontFamily,
   },
-  rootBottom: {
+  titlePositionBottom: {
     bottom: 0,
   },
-  rootTop: {
+  titlePositionTop: {
     top: 0,
   },
-  rootWithSubtitle: {
+  rootSubtitle: {
     height: 68,
   },
   titleWrap: {
@@ -30,10 +30,10 @@ export const styles = theme => ({
     color: theme.palette.common.white,
     overflow: 'hidden',
   },
-  titleWrapActionLeft: {
+  titleWrapActionPosLeft: {
     marginLeft: 0,
   },
-  titleWrapActionRight: {
+  titleWrapActionPosRight: {
     marginRight: 0,
   },
   title: {
@@ -50,14 +50,9 @@ export const styles = theme => ({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
   },
-  actionIconPositionLeft: {
+  actionIcon: {},
+  actionIconActionPosLeft: {
     order: -1,
-  },
-  childImg: {
-    height: '100%',
-    transform: 'translateX(-50%)',
-    position: 'relative',
-    left: '50%',
   },
 });
 
@@ -77,17 +72,17 @@ function GridListTileBar(props) {
   const className = classNames(
     classes.root,
     {
-      [classes.rootBottom]: titlePosition === 'bottom',
-      [classes.rootTop]: titlePosition === 'top',
-      [classes.rootWithSubtitle]: subtitle,
+      [classes.titlePositionBottom]: titlePosition === 'bottom',
+      [classes.titlePositionTop]: titlePosition === 'top',
+      [classes.rootSubtitle]: subtitle,
     },
     classNameProp,
   );
 
   // Remove the margin between the title / subtitle wrapper, and the Action Icon
   const titleWrapClassName = classNames(classes.titleWrap, {
-    [classes.titleWrapActionLeft]: actionPos === 'left',
-    [classes.titleWrapActionRight]: actionPos === 'right',
+    [classes.titleWrapActionPosLeft]: actionPos === 'left',
+    [classes.titleWrapActionPosRight]: actionPos === 'right',
   });
 
   return (
@@ -97,7 +92,11 @@ function GridListTileBar(props) {
         {subtitle ? <div className={classes.subtitle}>{subtitle}</div> : null}
       </div>
       {actionIcon ? (
-        <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
+        <div
+          className={classNames(classes.actionIcon, {
+            [classes.actionIconActionPosLeft]: actionPos === 'left',
+          })}
+        >
           {actionIcon}
         </div>
       ) : null}

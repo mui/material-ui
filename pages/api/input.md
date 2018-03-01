@@ -47,19 +47,18 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `root`
 - `formControl`
-- `inkbar`
-- `error`
 - `focused`
 - `disabled`
 - `underline`
+- `error`
 - `multiline`
 - `fullWidth`
 - `input`
-- `inputDense`
+- `inputMarginDense`
 - `inputDisabled`
-- `inputType`
 - `inputMultiline`
-- `inputSearch`
+- `inputType`
+- `inputTypeSearch`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Input/Input.js)
