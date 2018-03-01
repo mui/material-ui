@@ -99,8 +99,8 @@ const toolbarStyles = theme => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-          color: theme.palette.secondary.dark,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.4),
+          color: theme.palette.secondary.main,
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
         }
       : {
           color: lighten(theme.palette.secondary.light, 0.4),
@@ -114,6 +114,7 @@ const toolbarStyles = theme => ({
   },
   title: {
     flex: '0 0 auto',
+    color: 'inherit',
   },
 });
 
@@ -128,7 +129,9 @@ let EnhancedTableToolbar = props => {
     >
       <div className={classes.title}>
         {numSelected > 0 ? (
-          <Typography variant="subheading">{numSelected} selected</Typography>
+          <Typography color="inherit" variant="subheading">
+            {numSelected} selected
+          </Typography>
         ) : (
           <Typography variant="title">Nutrition</Typography>
         )}
