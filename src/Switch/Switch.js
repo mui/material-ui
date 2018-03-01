@@ -14,13 +14,13 @@ export const styles = theme => ({
     verticalAlign: 'middle',
   },
   bar: {
-    borderRadius: 7,
+    borderRadius: 14 / 2,
     display: 'block',
     position: 'absolute',
     width: 34,
     height: 14,
     top: '50%',
-    marginTop: -7,
+    marginTop: -14 / 2,
     left: '50%',
     marginLeft: -17,
     transition: theme.transitions.create(['opacity', 'background-color'], {

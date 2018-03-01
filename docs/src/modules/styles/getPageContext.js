@@ -18,6 +18,9 @@ export function getTheme(uiTheme) {
       },
       type: uiTheme.paletteType,
     },
+    spacing: {
+      unit: 4,
+    },
   });
 
   // Expose the theme as a global variable so people can play with it.
