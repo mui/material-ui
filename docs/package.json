@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "date-fns": "^2.0.0-alpha.7",
     "eslint-config-react-app": "^2.1.0",
     "jss": "^9.8.0",
     "jss-preset-default": "^4.3.0",
