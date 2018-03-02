@@ -155,9 +155,8 @@ It's already the default behavior of the `Icon` component. You will still be abl
   1. A variant has one level of specificity. User overrides can be considered a variant, so we can keep things as simple as possible, e.g. `color` or `variant`.
   2. We increase the specificity for a variant modifier. We already have to do it for the pseudo-classes (`:hover`, `:focus`, etc.). It allows much more control at the cost of extra complexity. Hopefully it makes it more intuitive.
 
-
   ```diff
-   const styles = {
+  const styles = {
   -  checked: {
   -    color: green[500],
   +  root: {
@@ -167,7 +166,7 @@ It's already the default behavior of the `Icon` component. You will still be abl
   +    },
      },
   +  checked: {},
-   };
+  };
 
   // ...
 
