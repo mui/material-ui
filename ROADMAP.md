@@ -174,7 +174,7 @@ It's already the default behavior of the `Icon` component. You will still be abl
        classes={{
   +      root: classes.root,
          checked: classes.checked,
-       }} 
+       }}
      />
   ```
 
