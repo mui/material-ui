@@ -28,10 +28,11 @@
     "prebuild": "../../node_modules/.bin/rimraf build",
     "build:es2015": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./build",
     "build:es2015modules": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=modules ../../node_modules/.bin/babel ./src/index.js --out-file ./build/index.es.js",
+    "build:es": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=es ../../node_modules/.bin/babel ./src --out-dir ./build/es",
     "build:copy-files": "../../node_modules/.bin/babel-node ./scripts/copy-files.js",
     "build:icons": "../../node_modules/.bin/babel-node ./builder.js --output-dir ./src --svg-dir ../../node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
     "build:typings": "../../node_modules/.bin/babel-node ./scripts/create-typings.js",
-    "build": "yarn build:icons && yarn build:es2015 && yarn build:es2015modules && yarn build:typings && yarn build:copy-files",
+    "build": "yarn build:icons && yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:typings && yarn build:copy-files",
     "version": "yarn build:copy-files && npm publish build"
   },
   "peerDependencies": {
