@@ -7,7 +7,7 @@ import SourcablePanel from './components/SourcablePanel';
 import BasicUsage from './Examples/BasicUsage';
 import CustomElements from './Examples/CustomElements';
 import DateTimePickers from './Examples/DateTimePickers';
-import PersianPickers from './Examples/PersianPickers';
+// import PersianPickers from './Examples/PersianPickers';
 import './Demo.css';
 
 class Demo extends Component {

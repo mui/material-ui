@@ -55,14 +55,15 @@
     "prebuild": "rimraf build",
     "build:copy": "node copy.js",
     "build:bundle": "cross-env NODE_ENV=production rollup --config",
-    "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build/src",
+    "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
     "build": "npm run build:bundle && npm run build:es2015 && npm run build:copy",
     "ci": "npm run test && npm run lint && npm run build",
     "prerelease": "npm run ci",
     "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
     "lint": "eslint ./src/**/*.js*",
-    "lint-fix": "npm run lint -- --fix"
+    "lint-fix": "npm run lint -- --fix",
+    "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1m Did not forget to install date-fns@next or moment?')\""
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
@@ -84,7 +85,6 @@
     "babel-preset-latest": "^6.24.1",
     "classnames": "^2.2.5",
     "cross-env": "^5.1.0",
-    "date-fns": "^2.0.0-alpha.7",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.18.1",
