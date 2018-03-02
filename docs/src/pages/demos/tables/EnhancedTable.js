@@ -103,7 +103,7 @@ const toolbarStyles = theme => ({
           backgroundColor: lighten(theme.palette.secondary.light, 0.85),
         }
       : {
-          color: lighten(theme.palette.secondary.light, 0.4),
+          color: theme.palette.text.primary,
           backgroundColor: theme.palette.secondary.dark,
         },
   spacer: {
@@ -114,7 +114,6 @@ const toolbarStyles = theme => ({
   },
   title: {
     flex: '0 0 auto',
-    color: 'inherit',
   },
 });
 
