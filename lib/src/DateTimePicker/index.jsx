@@ -7,7 +7,7 @@ import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
 import DateTimePicker from './DateTimePicker';
 import PickerBase from '../_shared/PickerBase';
-import * as defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 
 export class DateTimePickerWrapper extends PickerBase {
   static propTypes = {
@@ -22,7 +22,6 @@ export class DateTimePickerWrapper extends PickerBase {
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
     showTabs: PropTypes.bool,
-    returnMoment: PropTypes.bool,
     invalidLabel: PropTypes.string,
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
@@ -30,7 +29,7 @@ export class DateTimePickerWrapper extends PickerBase {
     timeIcon: PropTypes.node,
     renderDay: PropTypes.func,
     labelFunc: PropTypes.func,
-    utils: PropTypes.object,
+    utils: PropTypes.func.isRequired,
     ampm: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     animateYearScrolling: PropTypes.bool,
@@ -46,7 +45,6 @@ export class DateTimePickerWrapper extends PickerBase {
     minDate: undefined,
     maxDate: undefined,
     showTabs: true,
-    returnMoment: true,
     invalidLabel: undefined,
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
@@ -54,7 +52,6 @@ export class DateTimePickerWrapper extends PickerBase {
     timeIcon: undefined,
     renderDay: undefined,
     labelFunc: undefined,
-    utils: defaultUtils,
     ampm: true,
     shouldDisableDate: undefined,
     animateYearScrolling: false,
@@ -77,7 +74,6 @@ export class DateTimePickerWrapper extends PickerBase {
       autoSubmit,
       disablePast,
       disableFuture,
-      returnMoment,
       invalidLabel,
       leftArrowIcon,
       rightArrowIcon,
@@ -141,5 +137,5 @@ const styles = {
   },
 };
 
-export default withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerWrapper);
+export default withStyles(styles, { name: 'MuiPickerDTPickerModal' })(withUtils()(DateTimePickerWrapper));
 

@@ -2,18 +2,13 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'material-ui/styles/withStyles';
 
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import CalendarHeader from './CalendarHeader';
 import DomainPropTypes from '../constants/prop-types';
-import * as defaultUtils from '../utils/utils';
 import DayWrapper from './DayWrapper';
 import Day from './Day';
-
-
-const moment = extendMoment(Moment);
+import withUtils from '../_shared/WithUtils';
 
 /* eslint-disable no-unused-expressions */
 export class Calendar extends Component {
@@ -30,8 +25,8 @@ export class Calendar extends Component {
     renderDay: PropTypes.func,
     /** @ignore */
     theme: PropTypes.object.isRequired,
-    utils: PropTypes.object,
     shouldDisableDate: PropTypes.func,
+    utils: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -42,7 +37,6 @@ export class Calendar extends Component {
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
     renderDay: undefined,
-    utils: defaultUtils,
     shouldDisableDate: () => false,
   };
 
@@ -57,13 +51,12 @@ export class Calendar extends Component {
   }
 
   onDateSelect = (day) => {
-    const { date } = this.props;
-    const updatedDate = day
-      .clone()
-      .hours(date.hours())
-      .minutes(date.minutes());
+    const { date, utils } = this.props;
 
-    this.props.onChange(updatedDate);
+    const withHours = utils.setHours(day, utils.getHours(date));
+    const withMinutes = utils.setMinutes(withHours, utils.getMinutes(date));
+
+    this.props.onChange(withMinutes);
   };
 
   handleChangeMonth = (newMonth) => {
@@ -71,20 +64,22 @@ export class Calendar extends Component {
   };
 
   validateMinMaxDate = (day) => {
-    const { minDate, maxDate } = this.props;
-    const startOfDay = date => moment(date).startOf('day');
+    const { minDate, maxDate, utils } = this.props;
 
     return (
-      (minDate && day.isBefore(startOfDay(minDate))) ||
-      (maxDate && day.isAfter(startOfDay(maxDate)))
+      (minDate && utils.isBeforeDay(day, utils.date(minDate))) ||
+      (maxDate && utils.isAfterDay(day, utils.date(maxDate)))
     );
   };
 
   shouldDisableDate = (day) => {
-    const { disablePast, disableFuture, shouldDisableDate } = this.props;
+    const {
+      disablePast, disableFuture, shouldDisableDate, utils,
+    } = this.props;
+
     return (
-      (disableFuture && day.isAfter(moment(), 'day')) ||
-      (disablePast && day.isBefore(moment(), 'day')) ||
+      (disableFuture && utils.isAfterDay(day, utils.date())) ||
+      (disablePast && utils.isBeforeDay(day, utils.date())) ||
       this.validateMinMaxDate(day) ||
       shouldDisableDate(day)
     );
@@ -97,24 +92,24 @@ export class Calendar extends Component {
   }
 
   handleKeyDown = (event) => {
-    const { theme, date } = this.props;
+    const { theme, date, utils } = this.props;
 
     switch (keycode(event)) {
       case 'up':
-        this.moveToDay(date.clone().subtract(7, 'days'));
+        this.moveToDay(utils.addDays(date, -7));
         break;
       case 'down':
-        this.moveToDay(date.clone().add(7, 'days'));
+        this.moveToDay(utils.addDays(date, 7));
         break;
       case 'left':
         theme.direction === 'ltr'
-          ? this.moveToDay(date.clone().subtract(1, 'day'))
-          : this.moveToDay(date.clone().add(1, 'day'));
+          ? this.moveToDay(utils.addDays(date, -1))
+          : this.moveToDay(utils.addDays(date, 1));
         break;
       case 'right':
         theme.direction === 'ltr'
-          ? this.moveToDay(date.clone().add(1, 'day'))
-          : this.moveToDay(date.clone().subtract(1, 'day'));
+          ? this.moveToDay(utils.addDays(date, 1))
+          : this.moveToDay(utils.addDays(date, -1));
         break;
       default:
         // if keycode is not handled, stop execution
@@ -138,27 +133,25 @@ export class Calendar extends Component {
         {this.renderDays(week)}
       </div>
     ));
-  };
-
+  }
 
   renderDays = (week) => {
     const { date, renderDay, utils } = this.props;
 
-    const selectedDate = date.clone().startOf('day');
-    const currentMonthNumber = utils.getMonthNumber(this.state.currentMonth);
-    const now = moment();
+    const selectedDate = utils.startOfDay(date);
+    const currentMonthNumber = utils.getMonth(this.state.currentMonth);
+    const now = utils.date();
 
     return week.map((day) => {
       const disabled = this.shouldDisableDate(day);
-      const dayInCurrentMonth =
-        utils.getMonthNumber(day) === currentMonthNumber;
+      const dayInCurrentMonth = utils.getMonth(day) === currentMonthNumber;
 
       let dayComponent = (
         <Day
-          current={day.isSame(now, 'day')}
+          current={utils.isSameDay(day, now)}
           hidden={!dayInCurrentMonth}
           disabled={disabled}
-          selected={selectedDate.isSame(day, 'day')}
+          selected={utils.isSameDay(selectedDate, day)}
         >
           {utils.getDayText(day)}
         </Day>
@@ -223,4 +216,4 @@ const styles = theme => ({
 export default withStyles(styles, {
   name: 'MuiPickersCalendar',
   withTheme: true,
-})(Calendar);
+})(withUtils()(Calendar));

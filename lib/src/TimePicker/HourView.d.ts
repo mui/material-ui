@@ -1,10 +1,10 @@
 import { ComponentClass } from 'react';
-import { Utils } from '../utils/utils';
-import { Moment } from 'moment';
+import { Utils } from '../../typings/utils';
+import { MaterialUiPickersDate } from '../../typings/date'
 
 export interface HourViewProps {
-    date: Moment;
-    onChange: (date: Moment, isFinished?: boolean) => void;
+    date: MaterialUiPickersDate;
+    onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
     ampm?: boolean;
     utils?: Utils;
 }

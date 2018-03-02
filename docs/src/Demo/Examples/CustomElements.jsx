@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import { IconButton, Typography, withStyles } from 'material-ui';
 import classNames from 'classnames';
 import { DateTimePicker, DatePicker } from 'material-ui-pickers';
+import moment from 'moment';
+
+import isValid from 'date-fns/isValid';
+import format from 'date-fns/format';
+import isSameDay from 'date-fns/isSameDay';
+import startOfWeek from 'date-fns/startOfWeek';
+import endOfWeek from 'date-fns/endOfWeek';
+import isWithinInterval from 'date-fns/isWithinInterval';
 
 class CustomElements extends Component {
   static propTypes = {
@@ -26,17 +34,20 @@ class CustomElements extends Component {
       return '';
     }
 
-    return date && date.isValid() ?
-      `Week of ${date.clone().startOf('week').format('MMM Do')}`
-      :
-      invalidLabel;
+    if (date instanceof moment) {
+      date = date.toDate();
+    }
+
+    return date && isValid(date)
+      ? `Week of ${format(startOfWeek(date), 'MMM Do')}`
+      : invalidLabel;
   }
 
   renderCustomDayForDateTime = (date, selectedDate, dayInCurrentMonth, dayComponent) => {
     const { classes } = this.props;
 
     const dayClassName = classNames({
-      [classes.customDayHighlight]: date.isSame(selectedDate, 'day'),
+      [classes.customDayHighlight]: isSameDay(date, selectedDate),
     });
 
     return (
@@ -50,22 +61,21 @@ class CustomElements extends Component {
   renderWrappedDefaultDay = (date, selectedDate, dayInCurrentMonth) => {
     const { classes } = this.props;
 
-    const startDate = selectedDate.clone().day(0).startOf('day');
-    const endDate = selectedDate.clone().day(6).endOf('day');
+    if (date instanceof moment) {
+      date = date.toDate();
+    }
 
-    const dayIsBetween = (
-      date.isSame(startDate) ||
-      date.isSame(endDate) ||
-      (date.isAfter(startDate) && date.isBefore(endDate))
-    );
+    const start = startOfWeek(selectedDate);
+    const end = endOfWeek(selectedDate);
 
-    const firstDay = date.isSame(startDate, 'day');
-    const lastDay = date.isSame(endDate, 'day');
+    const dayIsBetween = isWithinInterval(date, { start, end });
+    const isFirstDay = isSameDay(date, start);
+    const isLastDay = isSameDay(date, end);
 
     const wrapperClassName = classNames({
       [classes.highlight]: dayIsBetween,
-      [classes.firstHighlight]: firstDay,
-      [classes.endHighlight]: lastDay,
+      [classes.firstHighlight]: isFirstDay,
+      [classes.endHighlight]: isLastDay,
     });
 
     const dayClassName = classNames(classes.day, {
@@ -76,7 +86,7 @@ class CustomElements extends Component {
     return (
       <div className={wrapperClassName}>
         <IconButton className={dayClassName}>
-          <span> { date.format('D')} </span>
+          <span> { format(date, 'D')} </span>
         </IconButton>
       </div>
     );
@@ -134,7 +144,7 @@ const styles = theme => ({
     bottom: 0,
     left: '2px',
     right: '2px',
-    border: `2px solid ${theme.palette.primary[100]}`,
+    border: `1px solid ${theme.palette.secondary.main}`,
     borderRadius: '50%',
   },
   nonCurrentMonthDay: {

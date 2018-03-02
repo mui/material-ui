@@ -1,32 +1,32 @@
 import { ComponentClass, ReactElement, ReactNode } from 'react';
 import { IconButtonProps } from 'material-ui/IconButton';
 import { DateType } from '../constants/prop-types';
-import { Utils } from '../utils/utils';
-import { Moment } from 'moment';
+import { Utils } from '../../typings/utils';
+import { MaterialUiPickersDate } from '../../typings/date'
 
 export type DayComponent = ReactElement<IconButtonProps>;
 
 export type RenderDay =
     (
-        day: Moment,
-        selectedDate: Moment,
+        day: MaterialUiPickersDate,
+        selectedDate: MaterialUiPickersDate,
         dayInCurrentMonth: boolean,
         dayComponent: DayComponent,
     ) => ReactNode;
 
 
 export interface CalendarProps {
-    date: Moment;
+    date: MaterialUiPickersDate;
     minDate?: DateType;
     maxDate?: DateType;
-    onChange: (date: Moment) => void;
+    onChange: (date: MaterialUiPickersDate) => void;
     disablePast?: boolean;
     disableFuture?: boolean;
     leftArrowIcon?: ReactNode;
     rightArrowIcon?: ReactNode;
     renderDay?: RenderDay;
     utils?: Utils;
-    shouldDisableDate?: (day: Moment) => boolean;
+    shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
 }
 
 declare const Calendar: ComponentClass<CalendarProps>;

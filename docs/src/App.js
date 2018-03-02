@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui';
-
-import Demo from './Demo/Demo';
-import { setPrismTheme } from './utils/prism';
+import { MuiPickersUtilsProvider, dateFnsUtils, momentUtils } from 'material-ui-pickers';
 
 import { create } from 'jss';
 import preset from 'jss-preset-default';
@@ -10,10 +9,17 @@ import rtl from 'jss-rtl';
 import JssProvider from 'react-jss/lib/JssProvider';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 
+import Demo from './Demo/Demo';
+import { setPrismTheme } from './utils/prism';
+
 const jss = create({ plugins: [...preset().plugins, rtl()] });
 jss.options.createGenerateClassName = createGenerateClassName;
 
 export default class App extends Component {
+  static propTypes = {
+    toggleFrench: PropTypes.func.isRequired,
+  }
+
   state = {
     type: 'light',
     direction: 'ltr',
@@ -50,11 +56,13 @@ export default class App extends Component {
       <div className="root">
         <JssProvider jss={jss}>
           <MuiThemeProvider theme={this.getMuiTheme()}>
-            <Demo
-              toggleDirection={this.toggleDirection}
-              toggleThemeType={this.toggleThemeType}
-              toggleFrench={this.props.toggleFrench}
-            />
+            <MuiPickersUtilsProvider utils={dateFnsUtils}>
+              <Demo
+                toggleDirection={this.toggleDirection}
+                toggleThemeType={this.toggleThemeType}
+                toggleFrench={this.props.toggleFrench}
+              />
+            </MuiPickersUtilsProvider>
           </MuiThemeProvider>
         </JssProvider>
       </div>

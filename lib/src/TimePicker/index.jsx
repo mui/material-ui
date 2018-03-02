@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
 import TimePicker from './TimePicker';
 import PickerBase from '../_shared/PickerBase';
-import * as defaultUtils from '../utils/utils';
+import withUtils from '../_shared/WithUtils';
 
-export default class TimePickerWrapper extends PickerBase {
+export class TimePickerWrapper extends PickerBase {
   static propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.object,
@@ -17,9 +17,8 @@ export default class TimePickerWrapper extends PickerBase {
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
-    returnMoment: PropTypes.bool,
     invalidLabel: PropTypes.string,
-    utils: PropTypes.object,
+    utils: PropTypes.func.isRequired,
     ampm: PropTypes.bool,
   }
 
@@ -27,9 +26,7 @@ export default class TimePickerWrapper extends PickerBase {
     value: new Date(),
     format: undefined,
     autoOk: false,
-    returnMoment: true,
     invalidLabel: undefined,
-    utils: defaultUtils,
     ampm: true,
   }
 
@@ -39,8 +36,7 @@ export default class TimePickerWrapper extends PickerBase {
   render() {
     const { date } = this.state;
     const {
-      value, format, autoOk, onChange, returnMoment, invalidLabel,
-      utils, ampm, ...other
+      value, format, autoOk, onChange, invalidLabel, utils, ampm, ...other
     } = this.props;
 
     return (
@@ -65,3 +61,6 @@ export default class TimePickerWrapper extends PickerBase {
     );
   }
 }
+
+export default withUtils()(TimePickerWrapper);
+

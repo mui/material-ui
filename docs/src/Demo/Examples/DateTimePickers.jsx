@@ -1,7 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { DateTimePicker } from 'material-ui-pickers';
 import { IconButton, Typography, Icon, InputAdornment } from 'material-ui';
-import moment from 'moment';
 
 export default class BasicUsage extends Component {
   state = {

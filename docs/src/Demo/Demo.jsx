@@ -7,7 +7,7 @@ import SourcablePanel from './components/SourcablePanel';
 import BasicUsage from './Examples/BasicUsage';
 import CustomElements from './Examples/CustomElements';
 import DateTimePickers from './Examples/DateTimePickers';
-import PersianPickers from './Examples/PersianPickers';
+// import PersianPickers from './Examples/PersianPickers';
 import './Demo.css';
 
 class Demo extends Component {
@@ -111,7 +111,7 @@ class Demo extends Component {
             <CustomElements />
           </SourcablePanel>
 
-          <SourcablePanel
+          {/* <SourcablePanel
             title="Persian Pickers"
             description={
               <p key="persian-desc">
@@ -123,7 +123,7 @@ class Demo extends Component {
             sourceFile="PersianPickers.jsx"
           >
             <PersianPickers />
-          </SourcablePanel>
+          </SourcablePanel> */}
         </div>
       </main>
     );

@@ -1,13 +1,12 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
 import Calendar from './Calendar';
 import YearSelection from './YearSelection';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
-import * as defaultUtils from '../utils/utils';
 import DomainPropTypes from '../constants/prop-types';
+import withUtils from '../_shared/WithUtils';
 
 export class DatePicker extends PureComponent {
   static propTypes = {
@@ -23,7 +22,7 @@ export class DatePicker extends PureComponent {
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
-    utils: PropTypes.object,
+    utils: PropTypes.func.isRequired,
     shouldDisableDate: PropTypes.func,
   }
 
@@ -38,7 +37,6 @@ export class DatePicker extends PureComponent {
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
     renderDay: undefined,
-    utils: defaultUtils,
     shouldDisableDate: undefined,
   }
 
@@ -47,15 +45,15 @@ export class DatePicker extends PureComponent {
   }
 
   get date() {
-    return this.props.date.startOf('day');
+    return this.props.utils.startOfDay(this.props.date);
   }
 
   get minDate() {
-    return moment(this.props.minDate);
+    return this.props.utils.date(this.props.minDate);
   }
 
   get maxDate() {
-    return moment(this.props.maxDate);
+    return this.props.utils.date(this.props.maxDate);
   }
 
   handleYearSelect = (date) => {
@@ -138,5 +136,5 @@ export class DatePicker extends PureComponent {
   }
 }
 
-export default DatePicker;
+export default withUtils()(DatePicker);
 
