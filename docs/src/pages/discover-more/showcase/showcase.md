@@ -72,3 +72,9 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   Modular audio production suite with multi-track audio mixing, audio effects, parameter automation, MIDI editing, synthesis, cloud production, and more.
   
   https://audionodes.com
+
+### 13. CountUp: A Running Total Game
+  A numbers game, currently in development.
+  
+  https://chrisward.co.uk/code/countup/
+  
