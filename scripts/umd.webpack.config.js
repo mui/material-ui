@@ -13,7 +13,6 @@ const baseConfig = {
     umdNamedDefine: true,
   },
   externals: [
-    'react-transition-group/TransitionGroup',
     {
       react: {
         root: 'React',
