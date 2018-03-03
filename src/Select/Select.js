@@ -180,7 +180,8 @@ Select.propTypes = {
    */
   SelectDisplayProps: PropTypes.object,
   /**
-   * The input value, required for a controlled component.
+   * The input value.
+   * This property is required when the `native` property is `false` (default).
    */
   value: PropTypes.oneOfType([
     PropTypes.string,

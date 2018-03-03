@@ -207,7 +207,7 @@ class SelectInput extends React.Component {
     if (value === undefined) {
       throw new Error(
         'Material-UI: the `value` property is required ' +
-          'when using the `Select` component with `native=false`.',
+          'when using the `Select` component with `native=false` (default).',
       );
     }
 
@@ -440,7 +440,8 @@ SelectInput.propTypes = {
    */
   type: PropTypes.string,
   /**
-   * The value of the component, required for a controlled component.
+   * The input value.
+   * This property is required when the `native` property is `false` (default).
    */
   value: PropTypes.oneOfType([
     PropTypes.string,
