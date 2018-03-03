@@ -425,6 +425,9 @@ SelectInput.propTypes = {
   /**
    * Render the selected value.
    * You can only use it when the `native` property is `false` (default).
+   *
+   * @param {*} value The `value` provided to the component.
+   * @returns {ReactElement}
    */
   renderValue: PropTypes.func,
   /**

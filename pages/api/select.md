@@ -25,7 +25,7 @@ filename: /src/Select/Select.js
 | <span class="prop-name">onClose</span> | <span class="prop-type">func |  | Callback fired when the component requests to be closed. Useful in controlled mode (see open).<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span class="prop-name">onOpen</span> | <span class="prop-type">func |  | Callback fired when the component requests to be opened. Useful in controlled mode (see open).<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span class="prop-name">open</span> | <span class="prop-type">bool |  | Control `select` open state. You can only use it when the `native` property is `false` (default). |
-| <span class="prop-name">renderValue</span> | <span class="prop-type">func |  | Render the selected value. You can only use it when the `native` property is `false` (default). |
+| <span class="prop-name">renderValue</span> | <span class="prop-type">func |  | Render the selected value. You can only use it when the `native` property is `false` (default).<br><br>**Signature:**<br>`function(value: any) => ReactElement`<br>*value:* The `value` provided to the component. |
 | <span class="prop-name">SelectDisplayProps</span> | <span class="prop-type">object |  | Properties applied to the clickable div element. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;arrayOf<br> |  | The input value. This property is required when the `native` property is `false` (default). |
 

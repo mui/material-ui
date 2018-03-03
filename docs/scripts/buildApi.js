@@ -77,7 +77,7 @@ function buildDocs(options) {
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
 
-  // if (reactAPI.name !== 'Zoom') {
+  // if (reactAPI.name !== 'Select') {
   //   return;
   // }
 
