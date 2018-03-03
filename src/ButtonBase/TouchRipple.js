@@ -22,28 +22,48 @@ export const styles = theme => ({
     pointerEvents: 'none',
     zIndex: 0,
   },
-  wrapper: {
-    opacity: 1,
-  },
-  wrapperLeaving: {
-    opacity: 0,
-    animation: `mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
-  },
-  wrapperPulsate: {
-    position: 'absolute',
+  ripple: {
+    width: 50,
+    height: 50,
     left: 0,
     top: 0,
+    opacity: 0,
+    position: 'absolute',
+  },
+  rippleVisible: {
+    opacity: 0.3,
+    transform: 'scale(1)',
+    animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
+  },
+  ripplePulsate: {
+    animationDuration: `${theme.transitions.duration.shorter}ms`,
+  },
+  child: {
+    opacity: 1,
     display: 'block',
     width: '100%',
     height: '100%',
+    borderRadius: '50%',
+    background: 'currentColor',
+  },
+  childLeaving: {
+    opacity: 0,
+    animation: `mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
+  },
+  childPulsate: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
     animation: `mui-ripple-pulsate 2500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
   },
   '@keyframes mui-ripple-enter': {
     '0%': {
       transform: 'scale(0)',
+      opacity: 0.1,
     },
     '100%': {
       transform: 'scale(1)',
+      opacity: 0.3,
     },
   },
   '@keyframes mui-ripple-exit': {
@@ -64,24 +84,6 @@ export const styles = theme => ({
     '100%': {
       transform: 'scale(1)',
     },
-  },
-  ripple: {
-    width: 50,
-    height: 50,
-    left: 0,
-    top: 0,
-    opacity: 0,
-    position: 'absolute',
-    borderRadius: '50%',
-    background: 'currentColor',
-  },
-  rippleVisible: {
-    opacity: 0.3,
-    transform: 'scale(1)',
-    animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
-  },
-  ripplePulsate: {
-    animationDuration: '200ms',
   },
 });
 

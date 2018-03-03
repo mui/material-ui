@@ -36,19 +36,14 @@ class Ripple extends React.Component {
     } = this.props;
     const { visible, leaving } = this.state;
 
-    const className = classNames(
-      classes.wrapper,
+    const rippleClassName = classNames(
+      classes.ripple,
       {
-        [classes.wrapperLeaving]: leaving,
-        [classes.wrapperPulsate]: pulsate,
+        [classes.rippleVisible]: visible,
+        [classes.ripplePulsate]: pulsate,
       },
       classNameProp,
     );
-
-    const rippleClassName = classNames(classes.ripple, {
-      [classes.rippleVisible]: visible,
-      [classes.ripplePulsate]: pulsate,
-    });
 
     const rippleStyles = {
       width: rippleSize,
@@ -57,10 +52,15 @@ class Ripple extends React.Component {
       left: -(rippleSize / 2) + rippleX,
     };
 
+    const childClassName = classNames(classes.child, {
+      [classes.childLeaving]: leaving,
+      [classes.childPulsate]: pulsate,
+    });
+
     return (
       <Transition onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
-        <span className={className}>
-          <span className={rippleClassName} style={rippleStyles} />
+        <span className={rippleClassName} style={rippleStyles}>
+          <span className={childClassName} />
         </span>
       </Transition>
     );
