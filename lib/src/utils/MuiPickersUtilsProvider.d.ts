@@ -1,6 +1,6 @@
 import { ComponentClass, ReactNode } from 'react';
 import { DateTimePickerView } from '../constants/date-picker-view';
-import { Utils } from '../../typings/utils';
+import { Utils } from '../typings/utils';
 
 export interface MuiPickersUtilsProviderProps {
   utils: Utils;

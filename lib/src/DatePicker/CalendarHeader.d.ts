@@ -1,6 +1,6 @@
 import { ComponentClass, ReactNode } from 'react';
-import { Utils } from '../../typings/utils';
-import { MaterialUiPickersDate } from '../../typings/date'
+import { Utils } from '../typings/utils';
+import { MaterialUiPickersDate } from '../typings/date'
 
 export interface CalendarHeaderProps {
     currentMonth: object;
