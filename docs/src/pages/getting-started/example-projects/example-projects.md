@@ -6,6 +6,7 @@ We host some example projects which you can find in the [GitHub repository](http
 - [Create React App](https://github.com/mui-org/material-ui/tree/v1-beta/examples/create-react-app)
 - [Next.js](https://github.com/mui-org/material-ui/tree/v1-beta/examples/nextjs)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/v1-beta/examples/gatsby)
+- [CDN](https://github.com/mui-org/material-ui/tree/v1-beta/examples/cdn)
 - And more
 
 Create React App is an awesome project for learning React.
