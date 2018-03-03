@@ -84,7 +84,15 @@ function generatePropDescription(description, type) {
     }
 
     signature += '<br><br>**Signature:**<br>`function(';
-    signature += parsedArgs.map(tag => `${tag.name}: ${tag.type.name}`).join(', ');
+    signature += parsedArgs
+      .map(tag => {
+        if (tag.type.type === 'AllLiteral') {
+          return `${tag.name}: any`;
+        }
+
+        return `${tag.name}: ${tag.type.name}`;
+      })
+      .join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
     signature += parsedArgs.map(tag => `*${tag.name}:* ${tag.description}`).join('<br>');
     if (parsedReturns.description) {
