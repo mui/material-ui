@@ -139,7 +139,7 @@ class SpeedDial extends React.Component {
     return (
       <div className={classNames(classes.root, classNameProp)} {...other}>
         <Transition in={!hidden} timeout={transitionDuration} mountOnEnter unmountOnExit>
-          <Tooltip title={tooltipTitle}>
+          <Tooltip title={tooltipTitle} placement="left">
             <Button
               variant="fab"
               color="primary"
