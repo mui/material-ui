@@ -13,23 +13,23 @@ import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
 
-// New JSS instance.
+// Default JSS instance.
 const jss = create(jssPreset());
 
 // Use a singleton or the provided one by the context.
 const generateClassName = createGenerateClassName();
 
 // Global index counter to preserve source order.
-// As we create the style sheet during componentWillMount lifecycle,
-// children are handled after the parents, so the order of style elements would
-// be parent->child. It is a problem though when a parent passes a className
-// which needs to override any childs styles. StyleSheet of the child has a higher
-// specificity, because of the source order.
+// We create the style sheet during at the creation of the component,
+// children are handled after the parents, so the order of style elements would be parent->child.
+// It is a problem though when a parent passes a className
+// which needs to override any childs styles.
+// StyleSheet of the child has a higher specificity, because of the source order.
 // So our solution is to render sheets them in the reverse order child->sheet, so
 // that parent has a higher specificity.
 let indexCounter = Number.MIN_SAFE_INTEGER;
 
-export const sheetsManager: Map<*, *> = new Map();
+export const sheetsManager = new Map();
 
 // We use the same empty object to ref count the styles that don't need a theme object.
 const noopTheme = {};
@@ -90,13 +90,11 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       };
       // We use || as the function call is lazy evaluated.
       this.theme = listenToTheme ? themeListener.initial(context) || getDefaultTheme() : noopTheme;
+
+      this.attach(this.theme);
     }
 
     state = {};
-
-    componentWillMount() {
-      this.attach(this.theme);
-    }
 
     componentDidMount() {
       if (!listenToTheme) {

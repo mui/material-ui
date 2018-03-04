@@ -225,6 +225,15 @@ function formControlState(props, context) {
 }
 
 class Input extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.isControlled = props.value != null;
+    if (this.isControlled) {
+      this.checkDirty(props);
+    }
+  }
+
   state = {
     focused: false,
   };
@@ -235,14 +244,6 @@ class Input extends React.Component {
     return {
       muiFormControl: null,
     };
-  }
-
-  componentWillMount() {
-    this.isControlled = this.props.value != null;
-
-    if (this.isControlled) {
-      this.checkDirty(this.props);
-    }
   }
 
   componentDidMount() {

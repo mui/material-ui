@@ -17,7 +17,7 @@ const styles = theme => ({
   inputLabelFocused: {
     color: purple[500],
   },
-  inputInkbar: {
+  inputUnderline: {
     '&:after': {
       backgroundColor: purple[500],
     },
@@ -62,7 +62,7 @@ function CustomizedInputs(props) {
         </InputLabel>
         <Input
           classes={{
-            inkbar: classes.inputInkbar,
+            underline: classes.inputUnderline,
           }}
           id="custom-color-input"
         />

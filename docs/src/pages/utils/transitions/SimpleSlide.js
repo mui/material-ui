@@ -13,7 +13,8 @@ const styles = theme => ({
     width: 100 + theme.spacing.unit * 2,
   },
   paper: {
-    // position: 'relative',
+    zIndex: 1,
+    position: 'relative',
     margin: theme.spacing.unit,
   },
   svg: {

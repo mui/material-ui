@@ -66,13 +66,11 @@ class Modal extends React.Component {
     }
   }
 
-  componentWillUpdate(nextProps) {
-    if (!this.props.open && nextProps.open) {
+  componentDidUpdate(prevProps) {
+    if (!prevProps.open && this.props.open) {
       this.checkForFocus();
     }
-  }
 
-  componentDidUpdate(prevProps) {
     if (prevProps.open && !this.props.open && !getHasTransition(this.props)) {
       // Otherwise handleExited will call this.
       this.handleClose();

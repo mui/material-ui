@@ -94,20 +94,17 @@ function flipPlacement(placement) {
 }
 
 class Tooltip extends React.Component {
-  state = {};
-
-  componentWillMount() {
-    const { props } = this;
+  constructor(props, context) {
+    super(props, context);
 
     this.isControlled = props.open != null;
-
     if (!this.isControlled) {
       // not controlled, use internal state
-      this.setState({
-        open: false,
-      });
+      this.state.open = false;
     }
   }
+
+  state = {};
 
   componentDidMount() {
     warning(

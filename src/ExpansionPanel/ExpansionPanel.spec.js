@@ -69,11 +69,12 @@ describe('<ExpansionPanel />', () => {
 
   it('should handle the expanded prop', () => {
     const wrapper = shallow(<ExpansionPanel expanded>foo</ExpansionPanel>);
-    assert.strictEqual(wrapper.state().expanded, true);
+    assert.strictEqual(wrapper.state().expanded, undefined);
+    assert.strictEqual(wrapper.hasClass(classes.expanded), true);
     assert.strictEqual(wrapper.instance().isControlled, true, 'should set isControlled prop');
 
     wrapper.setProps({ expanded: false });
-    assert.strictEqual(wrapper.state().expanded, false, 'should have expanded set to false');
+    assert.strictEqual(wrapper.hasClass(classes.expanded), false);
   });
 
   it('should call onChange when clicking the summary element', () => {

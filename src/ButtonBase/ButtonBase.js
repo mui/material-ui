@@ -66,12 +66,12 @@ class ButtonBase extends React.Component {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentDidUpdate(prevProps, prevState) {
     if (
       this.props.focusRipple &&
-      nextState.keyboardFocused &&
-      !this.state.keyboardFocused &&
-      !this.props.disableRipple
+      !this.props.disableRipple &&
+      !prevState.keyboardFocused &&
+      this.state.keyboardFocused
     ) {
       this.ripple.pulsate();
     }
