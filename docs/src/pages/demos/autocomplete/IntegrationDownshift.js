@@ -96,13 +96,21 @@ function getSuggestions(inputValue) {
   });
 }
 
-const styles = {
+const styles = theme => ({
   container: {
     flexGrow: 1,
-    height: 200,
+    position: 'relative',
+    height: 250,
     width: 200,
   },
-};
+  paper: {
+    position: 'absolute',
+    zIndex: 1,
+    marginTop: theme.spacing.unit,
+    left: 0,
+    right: 0,
+  },
+});
 
 function IntegrationDownshift(props) {
   const { classes } = props;
@@ -120,7 +128,7 @@ function IntegrationDownshift(props) {
             }),
           })}
           {isOpen ? (
-            <Paper square>
+            <Paper className={classes.paper} square>
               {getSuggestions(inputValue).map((suggestion, index) =>
                 renderSuggestion({
                   suggestion,

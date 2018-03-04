@@ -122,7 +122,7 @@ const ITEM_HEIGHT = 48;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 200,
+    height: 250,
     width: 200,
   },
   chip: {
