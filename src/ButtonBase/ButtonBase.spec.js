@@ -234,7 +234,11 @@ describe('<ButtonBase />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = shallow(<ButtonBase focusRipple>Hello</ButtonBase>);
+      wrapper = mount(
+        <ButtonBaseNaked classes={{}} focusRipple>
+          Hello
+        </ButtonBaseNaked>,
+      );
     });
 
     it('should be enabled by default', () => {

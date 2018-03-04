@@ -64,38 +64,29 @@ export const styles = theme => {
 };
 
 class ExpansionPanel extends React.Component {
-  state = {
-    expanded: false,
-  };
+  constructor(props, context) {
+    super(props, context);
 
-  componentWillMount() {
-    const { expanded, defaultExpanded } = this.props;
-    this.isControlled = expanded != null;
-    this.setState({
-      expanded: this.isControlled ? expanded : defaultExpanded,
-    });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.isControlled) {
-      this.setState({
-        expanded: nextProps.expanded,
-      });
+    this.isControlled = props.expanded != null;
+    if (!this.isControlled) {
+      // not controlled, use internal state
+      this.state.expanded = props.defaultExpanded !== undefined ? props.defaultExpanded : false;
     }
   }
+
+  state = {};
 
   isControlled = null;
 
   handleChange = event => {
-    const { onChange } = this.props;
     const expanded = !this.state.expanded;
-
-    if (onChange) {
-      onChange(event, expanded);
-    }
 
     if (!this.isControlled) {
       this.setState({ expanded });
+    }
+
+    if (this.props.onChange) {
+      this.props.onChange(event, expanded);
     }
   };
 
@@ -111,7 +102,7 @@ class ExpansionPanel extends React.Component {
       onChange,
       ...other
     } = this.props;
-    const { expanded } = this.state;
+    const expanded = this.isControlled ? expandedProp : this.state.expanded;
 
     const className = classNames(
       classes.root,

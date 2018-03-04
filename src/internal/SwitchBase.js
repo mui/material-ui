@@ -32,25 +32,22 @@ export const styles = {
  * @ignore - internal component.
  */
 class SwitchBase extends React.Component {
-  state = {};
-
-  componentWillMount() {
-    const { props } = this;
+  constructor(props, context) {
+    super(props, context);
 
     this.isControlled = props.checked != null;
-
     if (!this.isControlled) {
       // not controlled, use internal state
-      this.setState({
-        checked: props.defaultChecked !== undefined ? props.defaultChecked : false,
-      });
+      this.state.checked = props.defaultChecked !== undefined ? props.defaultChecked : false;
     }
   }
+
+  state = {};
 
   input = null;
   isControlled = null;
 
-  handleInputChange = (event: SyntheticInputEvent<*>) => {
+  handleInputChange = event => {
     const checked = event.target.checked;
 
     if (!this.isControlled) {

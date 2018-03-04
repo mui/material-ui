@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
+import polyfill from 'react-lifecycles-compat';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../utils/ClickAwayListener';
@@ -87,26 +88,27 @@ export const styles = theme => {
 };
 
 class Snackbar extends React.Component {
-  state = {
-    // Used to only render active snackbars.
-    exited: false,
-  };
-
-  componentWillMount() {
-    if (!this.props.open) {
-      this.setState({ exited: true });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof prevState.exited === 'undefined') {
+      return {
+        exited: !nextProps.open,
+      };
     }
+
+    if (nextProps.open) {
+      return {
+        exited: false,
+      };
+    }
+
+    return null;
   }
+
+  state = {};
 
   componentDidMount() {
     if (this.props.open) {
       this.setAutoHideTimer();
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.open) {
-      this.setState({ exited: false });
     }
   }
 
@@ -211,6 +213,7 @@ class Snackbar extends React.Component {
       ...other
     } = this.props;
 
+    // So we only render active snackbars.
     if (!open && this.state.exited) {
       return null;
     }
@@ -397,4 +400,4 @@ Snackbar.defaultProps = {
   },
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(Snackbar);
+export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(polyfill(Snackbar));

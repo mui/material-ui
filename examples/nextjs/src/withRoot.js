@@ -6,7 +6,9 @@ import getPageContext from './getPageContext';
 
 function withRoot(Component) {
   class WithRoot extends React.Component {
-    componentWillMount() {
+    constructor(props, context) {
+      super(props, context);
+
       this.pageContext = this.props.pageContext || getPageContext();
     }
 

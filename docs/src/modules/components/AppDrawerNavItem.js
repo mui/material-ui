@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'docs/src/modules/components/Link';
 import { withStyles } from 'material-ui/styles';
 import { ListItem } from 'material-ui/List';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/transitions/Collapse';
+import polyfill from 'react-lifecycles-compat';
+import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
   item: {
@@ -34,15 +35,17 @@ const styles = theme => ({
 });
 
 class AppDrawerNavItem extends React.Component {
-  state = {
-    open: false,
-  };
-
-  componentWillMount() {
-    if (this.props.openImmediately) {
-      this.setState({ open: true });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof prevState.open === 'undefined') {
+      return {
+        open: nextProps.openImmediately,
+      };
     }
+
+    return null;
   }
+
+  state = {};
 
   handleClick = () => {
     this.setState({ open: !this.state.open });
@@ -116,4 +119,4 @@ AppDrawerNavItem.defaultProps = {
   openImmediately: false,
 };
 
-export default withStyles(styles)(AppDrawerNavItem);
+export default withStyles(styles)(polyfill(AppDrawerNavItem));

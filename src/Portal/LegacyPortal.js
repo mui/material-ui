@@ -16,7 +16,7 @@ function getOwnerDocument(element) {
 /**
  * @ignore - internal component.
  *
- * This module will soon be gone. We should drop it as soon as React@15.x support stop.
+ * This module will soon be gone. We should drop it as soon as react@15.x support stop.
  */
 class LegacyPortal extends React.Component {
   componentDidMount() {

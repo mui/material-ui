@@ -27,17 +27,16 @@ const options = [
 ];
 
 class ConfirmationDialog extends React.Component {
-  state = {
-    value: undefined,
-  };
+  constructor(props, context) {
+    super(props, context);
 
-  componentWillMount() {
-    this.setState({ value: this.props.value });
+    this.state.value = this.props.value;
   }
 
-  componentWillUpdate(nextProps) {
+  state = {};
+
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
-      // eslint-disable-next-line react/no-will-update-set-state
       this.setState({ value: nextProps.value });
     }
   }
