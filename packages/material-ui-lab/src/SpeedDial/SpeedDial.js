@@ -7,6 +7,7 @@ import { withStyles } from 'material-ui/styles';
 import Zoom from 'material-ui/transitions/Zoom';
 import { duration } from 'material-ui/styles/transitions';
 import Button from 'material-ui/Button';
+import Tooltip from 'material-ui/Tooltip';
 import { isMuiElement } from 'material-ui/utils/reactHelpers';
 
 const styles = theme => ({
@@ -98,6 +99,7 @@ class SpeedDial extends React.Component {
       onKeyDown,
       open,
       openIcon,
+      tooltipTitle,
       transition: Transition,
       transitionDuration,
       ...other
@@ -137,23 +139,25 @@ class SpeedDial extends React.Component {
     return (
       <div className={classNames(classes.root, classNameProp)} {...other}>
         <Transition in={!hidden} timeout={transitionDuration} mountOnEnter unmountOnExit>
-          <Button
-            variant="fab"
-            color="primary"
-            onClick={onClick}
-            onKeyDown={this.handleKeyDown}
-            aria-label={ariaLabel}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : 'false'}
-            aria-controls={`${id}-actions`}
-            ref={fab => {
-              this.fab = fab;
-            }}
-            data-mui-test="SpeedDial"
-            {...ButtonProps}
-          >
-            {icon()}
-          </Button>
+          <Tooltip title={tooltipTitle}>
+            <Button
+              variant="fab"
+              color="primary"
+              onClick={onClick}
+              onKeyDown={this.handleKeyDown}
+              aria-label={ariaLabel}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : 'false'}
+              aria-controls={`${id}-actions`}
+              ref={fab => {
+                this.fab = fab;
+              }}
+              data-mui-test="SpeedDial"
+              {...ButtonProps}
+            >
+              {icon()}
+            </Button>
+          </Tooltip>
         </Transition>
         <div
           id={`${id}-actions`}
@@ -224,6 +228,10 @@ SpeedDial.propTypes = {
    */
   openIcon: PropTypes.node,
   /**
+   * Label to display in the tooltip.
+   */
+  tooltipTitle: PropTypes.node,
+  /**
    * Transition component.
    */
   transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
@@ -244,6 +252,7 @@ SpeedDial.defaultProps = {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,
   },
+  tooltipTitle: '',
 };
 
 export default withStyles(styles)(SpeedDial);

@@ -5,6 +5,7 @@ import { spy } from 'sinon';
 import { createMount, createShallow, getClasses } from 'material-ui/test-utils';
 import Icon from 'material-ui/Icon';
 import Button from 'material-ui/Button';
+import Tooltip from 'material-ui/Tooltip';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
@@ -41,13 +42,26 @@ describe('<SpeedDial />', () => {
     assert.strictEqual(wrapper.type(), 'div');
   });
 
+  it('should render a tooltip', () => {
+    const wrapper = shallow(
+      <SpeedDial {...defaultProps} icon={icon}>
+        <div />
+      </SpeedDial>,
+    );
+    const toolTipWrapper = wrapper.childAt(0).childAt(0);
+    assert.strictEqual(toolTipWrapper.type(), Tooltip);
+  });
+
   it('should render a Button', () => {
     const wrapper = shallow(
       <SpeedDial {...defaultProps} icon={icon}>
         <div />
       </SpeedDial>,
     );
-    const buttonWrapper = wrapper.childAt(0).childAt(0);
+    const buttonWrapper = wrapper
+      .childAt(0)
+      .childAt(0)
+      .childAt(0);
     assert.strictEqual(buttonWrapper.type(), Button);
   });
 
@@ -133,7 +147,10 @@ describe('<SpeedDial />', () => {
           <div />
         </SpeedDial>,
       );
-      const buttonWrapper = wrapper.childAt(0).childAt(0);
+      const buttonWrapper = wrapper
+        .childAt(0)
+        .childAt(0)
+        .childAt(0);
       const event = {};
       buttonWrapper.simulate('keyDown', event);
       assert.strictEqual(handleKeyDown.callCount, 1);
