@@ -28,6 +28,8 @@ export type ButtonClassKey =
   | 'raisedPrimary'
   | 'raisedSecondary'
   | 'fab'
+  | 'sizeSmall'
+  | 'sizeLarge'
   | 'fullWidth';
 
 declare const Button: React.ComponentType<ButtonProps>;
