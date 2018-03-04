@@ -84,7 +84,7 @@ class ModalManager {
     this.data = [];
   }
 
-  add = (modal, container) => {
+  add(modal, container) {
     let modalIdx = this.modals.indexOf(modal);
     const containerIdx = this.containers.indexOf(container);
 
@@ -118,9 +118,9 @@ class ModalManager {
     this.data.push(data);
 
     return modalIdx;
-  };
+  }
 
-  remove = modal => {
+  remove(modal) {
     const modalIdx = this.modals.indexOf(modal);
 
     if (modalIdx === -1) {
@@ -151,11 +151,11 @@ class ModalManager {
     }
 
     return modalIdx;
-  };
+  }
 
-  isTopModal = modal => {
+  isTopModal(modal) {
     return !!this.modals.length && this.modals[this.modals.length - 1] === modal;
-  };
+  }
 }
 
 export default ModalManager;
