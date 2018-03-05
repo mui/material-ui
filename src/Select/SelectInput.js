@@ -251,9 +251,11 @@ class SelectInput extends React.Component {
       }
 
       return React.cloneElement(child, {
+        onClick: this.handleItemClick(child),
         role: 'option',
         selected,
-        onClick: this.handleItemClick(child),
+        value: undefined, // The value is most likely not a valid HTML attribute.
+        'data-value': value, // Instead, we provide it as a data attribute.
       });
     });
 
