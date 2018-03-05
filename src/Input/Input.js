@@ -445,27 +445,29 @@ class Input extends React.Component {
     }
 
     return (
-      <div onBlur={this.handleBlur} onFocus={this.handleFocus} className={className} {...other}>
+      <div className={className} {...other}>
         {startAdornment}
         <InputComponent
+          aria-invalid={error}
+          aria-required={required}
           autoComplete={autoComplete}
           autoFocus={autoFocus}
           className={inputClassName}
-          onChange={this.handleChange}
-          onKeyUp={onKeyUp}
-          onKeyDown={onKeyDown}
+          defaultValue={defaultValue}
           disabled={disabled}
-          required={required ? true : undefined}
-          value={value}
           id={id}
           name={name}
-          defaultValue={defaultValue}
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+          onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
           placeholder={placeholder}
-          type={type}
           readOnly={readOnly}
+          required={required ? true : undefined}
           rows={rows}
-          aria-required={required}
-          aria-invalid={error}
+          type={type}
+          value={value}
           {...inputProps}
         />
         {endAdornment}

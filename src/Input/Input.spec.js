@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
@@ -188,6 +189,23 @@ describe('<Input />', () => {
     it('should accept any html component', () => {
       const wrapper = shallow(<Input inputComponent="span" />);
       assert.strictEqual(wrapper.find('span').length, 1);
+    });
+
+    it('should inject onBlur and onFocus', () => {
+      let injectedProps;
+      function MyInput(props) {
+        injectedProps = props;
+        const { inputRef, ...other } = props;
+        return <input ref={inputRef} {...other} />;
+      }
+
+      MyInput.propTypes = {
+        inputRef: PropTypes.func.isRequired,
+      };
+
+      mount(<Input inputComponent={MyInput} />);
+      assert.strictEqual(typeof injectedProps.onBlur, 'function');
+      assert.strictEqual(typeof injectedProps.onFocus, 'function');
     });
   });
 
