@@ -1,5 +1,5 @@
 import { ComponentClass } from 'react';
-import { Utils } from '../../typings/utils';
+import { Utils } from '../typings/utils';
 import { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import { PickerBaseProps } from '../_shared/PickerBase'
 import { Omit } from 'material-ui'

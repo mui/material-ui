@@ -1,6 +1,6 @@
 import { ComponentClass } from 'react';
-import { Utils } from '../../typings/utils';
-import { MaterialUiPickersDate } from '../../typings/date'
+import { Utils } from '../typings/utils';
+import { MaterialUiPickersDate } from '../typings/date'
 
 export interface TimePickerProps {
     date: MaterialUiPickersDate;

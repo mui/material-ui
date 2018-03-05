@@ -1,8 +1,8 @@
 import { ComponentClass, ReactElement, ReactNode } from 'react';
 import { IconButtonProps } from 'material-ui/IconButton';
 import { DateType } from '../constants/prop-types';
-import { Utils } from '../../typings/utils';
-import { MaterialUiPickersDate } from '../../typings/date'
+import { Utils } from '../typings/utils';
+import { MaterialUiPickersDate } from '../typings/date'
 
 export type DayComponent = ReactElement<IconButtonProps>;
 

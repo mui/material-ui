@@ -1,3 +1,3 @@
-import { Utils } from '../typings/utils'
+import { Utils } from '../src/typings/utils'
 
 export const utilsToUse: Utils;
