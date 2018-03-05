@@ -2,6 +2,68 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.36
+###### *Mar 5, 2018*
+
+Big thanks to the 14 contributors who made this release possible.
+
+Here are some highlights ✨:
+- We have started the effort toward supporting the async API of react@16.3.0 (#10489, #10523) @oliviertassinari.
+- Document how to use Material-UI with a CDN (#10514) @zelinf.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [SvgIcon] Allow changing the width with the font-size (#10446) @oliviertassinari
+
+Remove the `fontSize` property. The `SvgIcon` behavior is closer to the `Icon` behavior.
+```diff
+-<Icon fontSize />
+-<SvgIcon fontSize />
++<Icon />
++<SvgIcon />
+```
+Now, you can use the `font-size` style property to changr the size of the icon.
+
+- [classes] Normalize the classes names (#10457) @oliviertassinari
+
+This is an effort in order to harmonize the classes API.
+The best way to recover from this breaking change is to check the warnings in the console and to check the added documentation around the design rules around this API.
+
+#### Component Fixes / Enhancements
+
+- [Table] Default display style for all table components (#10447) @caub
+- [Collapse] Fix description (#10454) @onurkose
+- [ButtonBase] Add a TouchRippleProps property (#10470) @christophediprima
+- [Select] Ensure label is shrinked when using startAdornment (#10474) @carab
+- [Card][List] Implement responsive gutters (#10477) @lukePeavey
+- [icon] Add "side-effects": false to material-ui-icons (#10482) @b1f6c1c4
+- [IconButton] Fix theme.spacing.unit size dependency (#10486) @oliviertassinari
+- [ListItem] Avoid li > li issue (#10484) @oliviertassinari
+- [ListItem] Fix ContainerProps.className propagation (#10488) @oliviertassinari
+- [Textarea] Prepare React 16.3.0 (#10489) @oliviertassinari
+- [icon] Add build:es for material-ui-icons (#10497) @b1f6c1c4
+- [ButtonBase] Fix the ripple on Edge (#10512) @oliviertassinari
+- [Autocomplete] Update the demos so people can stack the components (#10524) @oliviertassinari
+- [Button] Add override support for sizeLarge and sizeSmall (#10526) @wenduzer
+- [Modal] Use prototype functions in ModalManager (#10528) @ianschmitz
+
+#### Docs
+
+- [docs] Fix Roadmap docs formatting (#10501) @cherniavskii
+- [docs] EnhancedTable Demo (#10491) @kgregory
+- [docs] Add new Showcase project (#10509) @chriswardo
+- [Select] Document when the value is required (#10505) @MichaelArnoldOwens
+- [Select] Document the renderValue signature (#10513) @oliviertassinari
+- [docs] Add a CDN example (#10514) @oliviertassinari
+- [docs] Fix SSR rendering in Gatsby example (#10536) @LegNeato
+
+#### Core
+
+- [core] Prepare the async API (#10523) @oliviertassinari
+- [core] Upgrade the dev dependencies (#10456) @oliviertassinari
+- [core] Upgrade the dev dependencies (#10515) @oliviertassinari
+
 ## 1.0.0-beta.35
 ###### *Feb 24, 2018*
 
