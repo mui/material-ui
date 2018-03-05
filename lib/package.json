@@ -43,6 +43,7 @@
     "date-fns": "^2.0.0-alpha.7"
   },
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "react-text-mask": "^5.1.0"
   },
   "scripts": {
@@ -54,9 +55,10 @@
     "start": "cross-env NODE_ENV=development rollup --config --watch",
     "prebuild": "rimraf build",
     "build:copy": "node copy.js",
-    "build:bundle": "cross-env NODE_ENV=production rollup --config",
+    "build:bundle": "cross-env NODE_ENV=production BABEL_ENV=modules rollup --config",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
-    "build": "npm run build:bundle && npm run build:es2015 && npm run build:copy",
+    "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
+    "build": "npm run build:bundle && npm run build:es2015modules &&  npm run build:es2015 && npm run build:copy",
     "ci": "npm run test && npm run lint && npm run build",
     "prerelease": "npm run ci",
     "release": "np --no-publish --any-branch",
@@ -78,8 +80,10 @@
     "babel-jest": "^21.2.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-latest": "^6.24.1",
