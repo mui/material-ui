@@ -78,7 +78,7 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   
   https://chrisward.co.uk/code/countup/
   
-### 14. Componofy: Spotify Playlist combination
+### 14. Componofy: Spotify Playlist Combination
   A web app that allows a Spotify user to combine private and public playlists and either create a new one or merge with existing playlist. You can also reorder your playlist tracks and upload new playlist cover images.
 
   https://componofy.herokuapp.com
