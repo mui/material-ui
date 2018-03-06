@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Manager, Target, Popper } from 'react-popper';
 import Button from 'material-ui/Button';
-import { MenuItem, MenuList } from 'material-ui/Menu';
+import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
+import Collapse from 'material-ui/transitions/Collapse';
 import Grow from 'material-ui/transitions/Grow';
 import Paper from 'material-ui/Paper';
+import Portal from 'material-ui/Portal';
+import { MenuItem, MenuList } from 'material-ui/Menu';
 import { withStyles } from 'material-ui/styles';
-import { Manager, Target, Popper } from 'react-popper';
-import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 
 const styles = theme => ({
   root: {
@@ -26,23 +28,16 @@ class MenuListComposition extends React.Component {
     open: false,
   };
 
-  componentWillUnmount() {
-    clearTimeout(this.timeout);
-  }
-
-  handleClick = () => {
+  handleToggle = () => {
     this.setState({ open: !this.state.open });
   };
 
-  handleClose = () => {
-    if (!this.state.open) {
+  handleClose = event => {
+    if (this.target1.contains(event.target) || this.target2.contains(event.target)) {
       return;
     }
 
-    // setTimeout to ensure a close event comes after a target click event
-    this.timeout = setTimeout(() => {
-      this.setState({ open: false });
-    });
+    this.setState({ open: false });
   };
 
   render() {
@@ -60,13 +55,19 @@ class MenuListComposition extends React.Component {
         </Paper>
         <Manager>
           <Target>
-            <Button
-              aria-owns={open ? 'menu-list' : null}
-              aria-haspopup="true"
-              onClick={this.handleClick}
+            <div
+              ref={node => {
+                this.target1 = node;
+              }}
             >
-              Toggle Menu
-            </Button>
+              <Button
+                aria-owns={open ? 'menu-list-grow' : null}
+                aria-haspopup="true"
+                onClick={this.handleToggle}
+              >
+                Toggle Menu Grow
+              </Button>
+            </div>
           </Target>
           <Popper
             placement="bottom-start"
@@ -74,7 +75,7 @@ class MenuListComposition extends React.Component {
             className={classNames({ [classes.popperClose]: !open })}
           >
             <ClickAwayListener onClickAway={this.handleClose}>
-              <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
+              <Grow in={open} id="menu-list-grow" style={{ transformOrigin: '0 0 0' }}>
                 <Paper>
                   <MenuList role="menu">
                     <MenuItem onClick={this.handleClose}>Profile</MenuItem>
@@ -85,6 +86,42 @@ class MenuListComposition extends React.Component {
               </Grow>
             </ClickAwayListener>
           </Popper>
+        </Manager>
+        <Manager>
+          <Target>
+            <div
+              ref={node => {
+                this.target2 = node;
+              }}
+            >
+              <Button
+                aria-owns={open ? 'menu-list-collapse' : null}
+                aria-haspopup="true"
+                onClick={this.handleToggle}
+              >
+                Toggle Menu Collapse
+              </Button>
+            </div>
+          </Target>
+          <Portal>
+            <Popper
+              placement="bottom"
+              eventsEnabled={open}
+              className={classNames({ [classes.popperClose]: !open })}
+            >
+              <ClickAwayListener onClickAway={this.handleClose}>
+                <Collapse in={open} id="menu-list-collapse" style={{ transformOrigin: '0 0 0' }}>
+                  <Paper style={{ margin: 3 }}>
+                    <MenuList role="menu">
+                      <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                      <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                      <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                    </MenuList>
+                  </Paper>
+                </Collapse>
+              </ClickAwayListener>
+            </Popper>
+          </Portal>
         </Manager>
       </div>
     );
