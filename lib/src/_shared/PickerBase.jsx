@@ -19,17 +19,11 @@ export default class PickerBase extends PureComponent {
     const { utils, value } = this.props;
     const date = utils.date(value);
 
-    return utils.isValid(date) ? date : utils.date();
+    return utils.isValid(date) && value !== null ? date : utils.date();
   }
 
   state = {
     date: this.getValidDateOrCurrent(),
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.utils.isEqual(this.state.date, nextProps.value)) {
-      this.setState({ date: this.getValidDateOrCurrent(nextProps) });
-    }
   }
 
   getFormat = () => {

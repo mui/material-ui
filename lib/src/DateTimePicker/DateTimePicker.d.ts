@@ -1,9 +1,9 @@
 import { ComponentClass, ReactNode } from 'react';
 import { DateTimePickerView } from '../constants/date-picker-view';
 import { DateType } from '../constants/prop-types';
-import { Utils } from '../../typings/utils';
+import { Utils } from '../typings/utils';
 import { RenderDay } from '../DatePicker/Calendar';
-import { MaterialUiPickersDate } from '../../typings/date'
+import { MaterialUiPickersDate } from '../typings/date'
 
 export interface DateTimePickerProps {
   date: MaterialUiPickersDate;

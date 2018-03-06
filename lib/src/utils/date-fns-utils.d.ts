@@ -1,4 +1,4 @@
-import { Utils } from '../../typings/utils'
+import { Utils } from '../typings/utils'
 
 declare const DateFnsUtils: Utils;
 export default DateFnsUtils
