@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AppBar, Toolbar, IconButton, Icon, Typography, withStyles, Button, Tooltip } from 'material-ui';
 
-import Github from './components/GithubIcon';
-import SourcablePanel from './components/SourcablePanel';
-import BasicUsage from './Examples/BasicUsage';
-import CustomElements from './Examples/CustomElements';
-import DateTimePickers from './Examples/DateTimePickers';
+import Github from '_shared/GithubIcon';
+import SourcablePanel from '_shared/SourcablePanel';
+import BasicUsage from 'Examples/BasicUsage';
+import CustomElements from 'Examples/CustomElements';
+import DateTimePickers from 'Examples/DateTimePickers';
 // import PersianPickers from './Examples/PersianPickers';
-import './Demo.css';
 
 class Demo extends Component {
   static propTypes = {
@@ -27,49 +26,10 @@ class Demo extends Component {
   }
 
   render() {
-    const {
-      classes, toggleThemeType, toggleDirection, toggleFrench,
-    } = this.props;
+    const { classes } = this.props;
 
     return (
-      <main className={classes.main}>
-        <AppBar position="fixed" className={classes.noShadow}>
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <Icon>menu</Icon>
-            </IconButton>
-
-            <div className={classes.flex} />
-
-            <Tooltip title="Toggle English/French moment locale" enterDelay={300}>
-              <IconButton color="inherit" onClick={toggleFrench}>
-                <Icon>language</Icon>
-              </IconButton>
-            </Tooltip>
-
-            <Tooltip title="Toggle light/dark theme" enterDelay={300}>
-              <IconButton color="inherit" onClick={toggleThemeType}>
-                <Icon>lightbulb_outline</Icon>
-              </IconButton>
-            </Tooltip>
-
-            <Tooltip title="Toggle direction" enterDelay={300}>
-              <IconButton color="inherit" onClick={toggleDirection}>
-                <Icon>format_textdirection_l_to_r</Icon>
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Github" enterDelay={300}>
-              <IconButton
-                color="inherit"
-                component="a"
-                href="https://github.com/dmtrKovalenko/material-ui-pickers"
-              >
-                <Github color="inherit" />
-              </IconButton>
-            </Tooltip>
-          </Toolbar>
-        </AppBar>
-
+      <div>
         <Toolbar color="primary" className={classes.appToolbar}>
           <img alt="Material-UI logo" className="material-ui-logo" src="https://material-ui-1dab0.firebaseapp.com/static/images/material-ui-logo.svg" />
 
@@ -125,7 +85,7 @@ class Demo extends Component {
             <PersianPickers />
           </SourcablePanel> */}
         </div>
-      </main>
+      </div>
     );
   }
 }

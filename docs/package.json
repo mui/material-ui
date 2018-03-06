@@ -47,6 +47,8 @@
     "react-dom": "^16.2.0",
     "react-jss": "^8.3.1",
     "react-markdown": "^2.5.1",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",

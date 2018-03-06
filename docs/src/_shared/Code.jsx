@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
-import prism from '../../utils/prism';
+import prism from 'utils/prism';
 
 const anchorLinkStyle = (theme, size) => ({
   '& .anchor-link-style': {
@@ -157,7 +157,7 @@ const styles = theme => ({
 
 const Code = (props) => {
   const { classes, className, text } = props;
-  const hightlightedCode = prism.highlight(text, prism.languages.jsx);
+  const hightlightedCode = prism.highlight(text, prism.languages.js);
 
   return (
     <div className={classes.root}>

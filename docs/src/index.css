@@ -9,3 +9,12 @@ body {
 *::after {
   box-sizing: border-box;
 }
+
+.picker {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  margin: 10px 40px 40px;
+}
