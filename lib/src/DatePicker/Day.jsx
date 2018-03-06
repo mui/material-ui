@@ -73,4 +73,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(Day);
+export default withStyles(styles, { name: 'MuiPickersDay' })(Day);
