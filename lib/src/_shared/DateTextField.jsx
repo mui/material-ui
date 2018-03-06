@@ -142,7 +142,8 @@ export class DateTextField extends PureComponent {
       nextProps.value !== this.state.value ||
       nextProps.format !== this.props.format ||
       nextProps.maxDate !== this.props.maxDate ||
-      nextProps.minDate !== this.props.minDate
+      nextProps.minDate !== this.props.minDate ||
+      nextProps.emptyLabel !== this.props.emptyLabel
     ) {
       this.setState(this.updateState(nextProps));
     }
