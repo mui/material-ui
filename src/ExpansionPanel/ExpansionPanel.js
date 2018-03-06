@@ -79,14 +79,14 @@ class ExpansionPanel extends React.Component {
   isControlled = null;
 
   handleChange = event => {
-    const expanded = !this.state.expanded;
+    const expanded = this.isControlled ? this.props.expanded : this.state.expanded;
 
     if (!this.isControlled) {
-      this.setState({ expanded });
+      this.setState({ expanded: !expanded });
     }
 
     if (this.props.onChange) {
-      this.props.onChange(event, expanded);
+      this.props.onChange(event, !expanded);
     }
   };
 

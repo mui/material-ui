@@ -98,6 +98,7 @@ describe('<ExpansionPanel />', () => {
     );
     wrapper.find(ExpansionPanelSummary).simulate('click');
     assert.strictEqual(handleChange.callCount, 1, 'it should forward the onChange');
+    assert.strictEqual(handleChange.args[0][1], false);
   });
 
   it('when undefined onChange and controlled should not call the onChange', () => {
