@@ -85,3 +85,7 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
  
   github: https://github.com/DalerAsrorov/componofy
   
+### 15. Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio
+  Cryptoverview is a responsive webapp that displays a user's Bittrex portfolio, trending currencies and market caps. It provides some fancy charts, news related to cryptocurrencies, and more.
+
+  homepage: https://cryptoverview.com
