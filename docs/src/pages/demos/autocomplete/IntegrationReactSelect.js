@@ -123,7 +123,6 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     height: 250,
-    width: 200,
   },
   chip: {
     margin: theme.spacing.unit / 4,
@@ -259,7 +258,7 @@ class IntegrationReactSelect extends React.Component {
             classes,
             value: single,
             onChange: this.handleChangeSingle,
-            placeholder: 'Select single-value…',
+            placeholder: 'Search a country (start with a)',
             instanceId: 'react-select-single',
             id: 'react-select-single',
             name: 'react-select-single',
@@ -275,7 +274,7 @@ class IntegrationReactSelect extends React.Component {
             value: multi,
             multi: true,
             onChange: this.handleChangeMulti,
-            placeholder: 'Select multi-value…',
+            placeholder: 'Select multiple countries',
             instanceId: 'react-select-chip',
             id: 'react-select-chip',
             name: 'react-select-chip',
