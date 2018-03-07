@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import prism from 'utils/prism';
 
@@ -25,10 +26,10 @@ const anchorLinkStyle = (theme, size) => ({
 
 const styles = theme => ({
   root: {
+    margin: 0,
     fontFamily: theme.typography.fontFamily,
     fontSize: 16,
     color: theme.palette.text.primary,
-    margin: 0,
     backgroundColor: theme.palette.background.paper,
     padding: 10,
 
@@ -153,19 +154,28 @@ const styles = theme => ({
       },
     },
   },
+  margin: {
+    margin: '10px 0 30px'
+  },
 });
 
 const Code = (props) => {
-  const { classes, className, text } = props;
-  const hightlightedCode = prism.highlight(text, prism.languages.js);
+  const { classes, language, text, withMargin } = props;
+  console.log(prism.languages)
+  const hightlightedCode = prism.highlight(text, prism.languages[language]);
 
   return (
-    <div className={classes.root}>
+    <div className={classnames(classes.root, { [classes.margin]: withMargin })}>
       <pre>
         <code dangerouslySetInnerHTML={{ __html: hightlightedCode }} />
       </pre>
     </div>
   );
 };
+
+Code.defaultProps = {
+  withMargin: false,
+  language: 'jsx'
+}
 
 export default withStyles(styles)(Code);

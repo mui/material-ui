@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import classnames from 'classnames'
 import PropTypes from 'prop-types';
 import Hidden from 'material-ui/Hidden';
 import Drawer from 'material-ui/Drawer';
-import{ AppBar, Toolbar, IconButton, Icon, withStyles, Tooltip } from 'material-ui';
+import { withRouter } from 'react-router-dom';
+import { AppBar, Toolbar, IconButton, Icon, withStyles, Tooltip } from 'material-ui';
 
 import Github from '_shared/GithubIcon';
 import DrawerMenu from './DrawerMenu';
@@ -34,12 +36,16 @@ class Layout extends Component {
 
   render() {
     const {
-      classes, toggleThemeType, toggleDirection, toggleFrench, theme,
+      classes, toggleThemeType, toggleDirection, toggleFrench, theme, location
     } = this.props;
+    const isLanding = location.pathname === '/'
 
     return (
       <React.Fragment>
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar 
+          position="fixed" 
+          className={classnames(classes.appBar, { [classes.landingAppBar]: isLanding })}
+        >
           <Toolbar>
             <IconButton
               className={classes.menuButton} 
@@ -99,8 +105,8 @@ class Layout extends Component {
         </Hidden>
         <Hidden smDown implementation="css">
           <Drawer
-            variant="permanent"
-            open
+            variant={isLanding ? 'temporary' : 'permanent'}
+            open={this.state.dr}
             classes={{
               paper: classes.drawerPaper,
             }}
@@ -109,8 +115,8 @@ class Layout extends Component {
           </Drawer>
         </Hidden>
 
-        <main className={classes.main}>
-          <div className={classes.content}>
+        <main className={classnames(classes.main, { [classes.landingMain]: isLanding })}>
+          <div className={classnames(classes.content, { [classes.landingMain]: isLanding })}>
             {this.props.children}
           </div>
         </main>
@@ -132,7 +138,7 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       left: 250,
       width: 'calc(100% - 250px)'
-    },
+    }
   },
   main: {
     marginTop: 55,
@@ -150,7 +156,18 @@ const styles = theme => ({
       maxWidth: 960,
       margin: '0 auto'
     }
-  }
+  },
+  landingMain: {
+    padding: 0,
+    width: '100vw',
+    maxWidth: '100vw',
+    marginLeft: 0,
+  },
+  landingAppBar: {
+    left: 0,
+    width: '100vw',
+    boxShadow: 'unset'
+  },
 });
 
-export default withStyles(styles, { withTheme: true })(Layout);
+export default withStyles(styles, { withTheme: true })(withRouter(Layout));

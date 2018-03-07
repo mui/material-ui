@@ -1,10 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { List, ListItem, withStyles } from 'material-ui'
+import { List, ListItem, withStyles, ListSubheader } from 'material-ui'
 import { withRouter, Link } from 'react-router-dom'
 
 const NavigationMenu = ({ classes }) => (
   <List component="nav">
+    <ListSubheader component="div"> Getting Started  </ListSubheader>
+    <Link to="/installation" className={classes.navLink}>
+      <ListItem button> Installation </ListItem> 
+    </Link>
+    <Link to="/usage" className={classes.navLink}>
+      <ListItem button> Usage </ListItem> 
+    </Link>
+
+    <ListSubheader component="div"> Components </ListSubheader>
     <Link to="/demo/datepicker" className={classes.navLink}>
       <ListItem button> Date Picker </ListItem> 
     </Link>
@@ -28,6 +37,7 @@ const styles = theme => ({
     color: theme.palette.text.primary,
     textDecoration: 'none',
     ...theme.typography.subheading,
+    fontSize: '0.9rem',
 
     '&>*': {
       paddingTop: 8,
