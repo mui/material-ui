@@ -62,11 +62,9 @@ function renderInput(inputProps) {
   );
 }
 
-function renderSuggestion(params) {
-  const { suggestion, index, itemProps, highlightedIndex, selectedItem } = params;
+function renderSuggestion({ suggestion, index, itemProps, highlightedIndex, selectedItem }) {
   const isHighlighted = highlightedIndex === index;
-  const isSelected =
-    selectedItem === suggestion.label || selectedItem.indexOf(suggestion.label) > -1;
+  const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1;
 
   return (
     <MenuItem
@@ -82,6 +80,13 @@ function renderSuggestion(params) {
     </MenuItem>
   );
 }
+renderSuggestion.propTypes = {
+  highlightedIndex: PropTypes.number,
+  index: PropTypes.number,
+  itemProps: PropTypes.object,
+  selectedItem: PropTypes.string,
+  suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
+};
 
 function getSuggestions(inputValue) {
   let count = 0;
