@@ -95,14 +95,6 @@ Users trying out and using v1-beta and giving feedback has been a tremendous hel
 This feedback has guided the following list of important breaking changes
 that **are needed for the stable version**:
 
-- [ ] Rename `Reboot` to `CssBaseline` [#10233](https://github.com/mui-org/material-ui/issues/10233).
-  The new wording should clarify the purpose of the component. For instance, it's not about adding JavaScript polyfills.
-
-   ```diff
-   -<Reboot />
-   +<CssBaseline />
-   ```
-
 - [x] Remove the `fontSize` property from the `Icon` and `SvgIcon` components in order to make it the default behavior.
 It's already the default behavior of the `Icon` component. You will still be able to change the size of the icons with the `width` and `height` CSS properties. The difference is that they can use the `font-size` as a shorthand.
 
@@ -117,6 +109,14 @@ It's already the default behavior of the `Icon` component. You will still be abl
   -<TableCell variant="head" classes={{ typeHead: 'typeHead' }} />
   +<TableCell variant="head" classes={{ head: 'head' }} />
   ```
+
+- [ ] Rename `Reboot` to `CssBaseline` [#10233](https://github.com/mui-org/material-ui/issues/10233).
+  The new wording should clarify the purpose of the component. For instance, it's not about adding JavaScript polyfills.
+
+   ```diff
+   -<Reboot />
+   +<CssBaseline />
+   ```
 
 - [ ] Remove the `xxxClassName` properties when already covered the `classes` property.
   These properties were introduced before`classes`.
@@ -168,14 +168,11 @@ It's already the default behavior of the `Icon` component. You will still be abl
   +  checked: {},
   };
 
-  // ...
-
-     <Checkbox
-       classes={{
-  +      root: classes.root,
-         checked: classes.checked,
-       }}
-     />
+  <Checkbox
+    classes={{
+  +   root: classes.root,
+      checked: classes.checked,
+    }} />
   ```
 
 - [ ] Use `@material-ui npm scope name` #9673. The pros have been raised in the linked issue.

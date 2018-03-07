@@ -210,6 +210,18 @@ These sizes are used across the components.
 Have a look at the following example regarding changing the default values, such as the font family.
 If you want to learn more about typography, you can check out [the typography section](/style/typography).
 
+```js
+const theme = createMuiTheme({
+  typography: {
+    // Use the system font.
+    fontFamily:
+      '-apple-system,system-ui,BlinkMacSystemFont,' +
+      '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+    },
+  },
+});
+```
+
 {{"demo": "pages/customization/themes/TypographyTheme.js"}}
 
 ### Font size
