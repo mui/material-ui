@@ -62,7 +62,7 @@ function TableSortLabel(props) {
     >
       {children}
       <ArrowDownwardIcon
-        className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
+        className={classNames(classes.icon, classes[`iconDirection${capitalize(direction || '')}`])}
       />
     </ButtonBase>
   );
