@@ -9,7 +9,7 @@ export interface TableRowProps extends StandardProps<TableRowBaseProps, TableRow
 
 export type TableRowBaseProps = React.HTMLAttributes<HTMLTableRowElement>;
 
-export type TableRowClassKey = 'root' | 'typeHead' | 'typeFooter' | 'hover' | 'selected';
+export type TableRowClassKey = 'root' | 'head' | 'footer' | 'hover' | 'selected';
 
 declare const TableRow: React.ComponentType<TableRowProps>;
 

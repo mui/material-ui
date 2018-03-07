@@ -15,18 +15,18 @@ export interface TooltipProps
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
   placement?:
-    | 'bottom-end'
-    | 'bottom-start'
-    | 'bottom'
-    | 'left-end'
-    | 'left-start'
-    | 'left'
-    | 'right-end'
-    | 'right-start'
-    | 'right'
-    | 'top-end'
-    | 'top-start'
-    | 'top';
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'bottom'
+  | 'left-end'
+  | 'left-start'
+  | 'left'
+  | 'right-end'
+  | 'right-start'
+  | 'right'
+  | 'top-end'
+  | 'top-start'
+  | 'top';
   PopperProps?: Partial<PopperProps>;
   title: React.ReactNode;
 }
@@ -36,10 +36,10 @@ export type TooltipClassKey =
   | 'popper'
   | 'popperClose'
   | 'tooltip'
-  | 'tooltipLeft'
-  | 'tooltipRight'
-  | 'tooltipTop'
-  | 'tooltipBottom'
+  | 'tooltipPlacementLeft'
+  | 'tooltipPlacementRight'
+  | 'tooltipPlacementTop'
+  | 'tooltipPlacementBottom'
   | 'tooltipOpen';
 
 interface PopperProps extends IPopperProps {

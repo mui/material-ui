@@ -18,21 +18,21 @@ export interface TabProps extends StandardProps<ButtonBaseProps, TabClassKey, 'o
 
 export type TabClassKey =
   | ButtonBaseClassKey
-  | 'rootLabelIcon'
-  | 'rootPrimary'
-  | 'rootPrimarySelected'
-  | 'rootPrimaryDisabled'
-  | 'rootSecondary'
-  | 'rootSecondarySelected'
-  | 'rootSecondaryDisabled'
-  | 'rootInherit'
-  | 'rootInheritSelected'
-  | 'rootInheritDisabled'
+  | 'labelIcon'
+  | 'textColorInherit'
+  | 'textColorPrimary'
+  | 'textColorPrimarySelected'
+  | 'textColorPrimaryDisabled'
+  | 'textColorSecondary'
+  | 'textColorSecondarySelected'
+  | 'textColorSecondaryDisabled'
+  | 'textColorInheritSelected'
+  | 'textColorInheritDisabled'
   | 'fullWidth'
   | 'wrapper'
   | 'labelContainer'
   | 'label'
-  | 'labelWrapped';
+  | 'labelWrapped'
 
 declare const Tab: React.ComponentType<TabProps>;
 
