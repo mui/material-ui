@@ -11,21 +11,21 @@ export interface LinearProgressProps
 
 export type LinearProgressClassKey =
   | 'root'
-  | 'primaryColor'
-  | 'primaryColorBar'
-  | 'primaryDashed'
-  | 'secondaryColor'
-  | 'secondaryColorBar'
-  | 'secondaryDashed'
-  | 'bar'
+  | 'colorPrimary'
+  | 'colorSecondary'
+  | 'buffer'
+  | 'query'
   | 'dashed'
-  | 'bufferBar2'
-  | 'rootBuffer'
-  | 'rootQuery'
-  | 'indeterminateBar1'
-  | 'indeterminateBar2'
-  | 'determinateBar1'
-  | 'bufferBar1';
+  | 'dashedColorPrimary'
+  | 'dashedColorSecondary'
+  | 'bar'
+  | 'barColorPrimary'
+  | 'barColorSecondary'
+  | 'bar1Indeterminate'
+  | 'bar2Indeterminate'
+  | 'bar1Determinate'
+  | 'bar1Buffer'
+  | 'bar2Buffer';
 
 declare const LinearProgress: React.ComponentType<LinearProgressProps>;
 

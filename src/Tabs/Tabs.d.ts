@@ -22,10 +22,11 @@ export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 
 export type TabsClassKey =
   | ButtonBaseClassKey
   | 'flexContainer'
-  | 'scrollingContainer'
+  | 'scroller'
   | 'fixed'
   | 'scrollable'
-  | 'centered';
+  | 'centered'
+  | 'scrollButtonsAuto';
 
 export interface TabsActions {
   updateIndicator(): void;

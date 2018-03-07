@@ -9,7 +9,7 @@ export interface DividerProps
   light?: boolean;
 }
 
-export type DividerClassKey = 'root' | 'default' | 'inset' | 'light' | 'absolute';
+export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light';
 
 declare const Divider: React.ComponentType<DividerProps>;
 

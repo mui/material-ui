@@ -11,16 +11,13 @@ export interface GridListTileBarProps extends StandardProps<{}, GridListTileBarC
 
 export type GridListTileBarClassKey =
   | 'root'
-  | 'rootBottom'
-  | 'rootTop'
-  | 'rootWithSubtitle'
-  | 'titleWrap'
-  | 'titleWrapActionLeft'
-  | 'titleWrapActionRight'
-  | 'title'
-  | 'subtitle'
-  | 'actionIconPositionLeft'
-  | 'childImg';
+  | 'titlePositionBottom'
+  | 'titlePositionTop'
+  | 'rootSubtitle'
+  | 'titleWrapActionPosLeft'
+  | 'titleWrapActionPosRight'
+  | 'actionIcon'
+  | 'actionIconActionPosLeft'
 
 declare const GridListTileBar: React.ComponentType<GridListTileBarProps>;
 

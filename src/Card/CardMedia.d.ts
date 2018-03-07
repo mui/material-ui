@@ -8,7 +8,7 @@ export interface CardMediaProps
   src?: string;
 }
 
-export type CardMediaClassKey = 'root';
+export type CardMediaClassKey = 'root' | 'media';
 
 declare const CardMedia: React.ComponentType<CardMediaProps>;
 

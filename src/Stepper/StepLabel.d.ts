@@ -27,7 +27,7 @@ export type StepLabelClasskey =
   | 'labelCompleted'
   | 'labelAlternativeLabel'
   | 'iconContainer'
-  | 'iconContainerNoAlternative'
+  | 'iconContainerAlternativeLabel'
   | 'labelContainer';
 
 declare const StepLabel: React.ComponentType<StepLabelProps>;

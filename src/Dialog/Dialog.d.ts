@@ -17,13 +17,12 @@ export interface DialogProps
 
 export type DialogClassKey =
   | ModalClassKey
-  | 'root'
   | 'paper'
   | 'paperWidthXs'
   | 'paperWidthSm'
   | 'paperWidthMd'
-  | 'fullWidth'
-  | 'fullScreen';
+  | 'paperFullWidth'
+  | 'paperFullScreen';
 
 declare const Dialog: React.ComponentType<DialogProps>;
 
