@@ -110,7 +110,9 @@ class Layout extends Component {
         </Hidden>
 
         <main className={classes.main}>
-          {this.props.children}
+          <div className={classes.content}>
+            {this.props.children}
+          </div>
         </main>
       </React.Fragment>
     );
@@ -132,48 +134,23 @@ const styles = theme => ({
       width: 'calc(100% - 250px)'
     },
   },
-  appToolbar: {
-    backgroundColor: theme.palette.primary.main,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    color: theme.palette.common.white,
-    padding: '40px 20px',
-    [theme.breakpoints.down('md')]: {
-      paddingTop: '100px',
-      minHeight: 'calc(100vh - 55px)',
-    },
-  },
-  getStarted: {
-    marginTop: '10px',
-  },
   main: {
     marginTop: 55,
     padding: '20px',
-    height: 'calc(100vh - 55px)',
+    minHeight: 'calc(100vh - 55px)',
     backgroundColor: theme.palette.background.default,
     [theme.breakpoints.up('md')]: {
       marginTop: 64,
-      height: 'calc(100vh - 64px)',
-      marginLeft: 250
-    },
+      minHeight: 'calc(100vh - 64px)',
+      marginLeft: 250,
+    }
   },
   content: {
-    paddingTop: '80px',
-    backgroundColor: theme.palette.background.default,
-    minHeight: 'calc(100vh - 63px)',
-    maxWidth: 900,
-    margin: '0 auto',
-    display: 'flex',
-    flexDirection: 'column',
-    '@media(max-width: 600px)': {
-      minHeight: 'calc(100vh - 55px)',
-    },
-  },
-  changeOutside: {
-    maxWidth: 200,
-    margin: '0 auto',
-  },
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: 960,
+      margin: '0 auto'
+    }
+  }
 });
 
 export default withStyles(styles, { withTheme: true })(Layout);

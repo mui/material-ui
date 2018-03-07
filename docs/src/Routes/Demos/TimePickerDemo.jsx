@@ -7,6 +7,9 @@ const DatePickerDemoDemo = () => (
     <Typography variant="display1" gutterBottom>
       Time picker
     </Typography>
+    <Typography variant="body1" gutterBottom>
+      Time pickers use a dialog to select a single time (in the hours:minutes format).
+    </Typography>
     <Typography variant="body1">
       The selected time is indicated by the filled circle at the end of the clock hand.
     </Typography>

@@ -7,6 +7,9 @@ const DatePickerDemoDemo = () => (
     <Typography variant="display1" gutterBottom>
       Date picker
     </Typography>
+    <Typography variant="body1" gutterBottom>
+      Date pickers use a dialog window to select a single date.
+    </Typography>
     <Typography variant="body1">
       The selected day is indicated by a filled circle. The current day is indicated by a different color and type weight.
     </Typography>

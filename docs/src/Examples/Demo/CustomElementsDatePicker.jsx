@@ -23,7 +23,7 @@ class CustomElements extends PureComponent {
   }
 
   handleWeekChange = (date) => {
-    this.setState({ selectedDate: date.clone().startOf('week') });
+    this.setState({ selectedDate: startOfWeek(date) });
   }
 
   formatWeekSelectLabel = (date, invalidLabel) => {
@@ -82,7 +82,7 @@ class CustomElements extends PureComponent {
         <DatePicker
           label="Week picker"
           value={selectedDate}
-          onChange={this.handleDateChange}
+          onChange={this.handleWeekChange}
           renderDay={this.renderWrappedWeekDay}
           labelFunc={this.formatWeekSelectLabel}
         />
