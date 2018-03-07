@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AppBar, Toolbar, IconButton, Icon, Typography, withStyles, Button, Tooltip } from 'material-ui';
-
-import Github from '_shared/GithubIcon';
-import SourcablePanel from '_shared/SourcablePanel';
-import BasicUsage from 'Examples/BasicUsage';
-import CustomElements from 'Examples/CustomElements';
-import DateTimePickers from 'Examples/DateTimePickers';
-// import PersianPickers from './Examples/PersianPickers';
+import { Toolbar, Typography, withStyles, Button } from 'material-ui';
 
 class Demo extends Component {
   static propTypes = {
@@ -49,41 +42,6 @@ class Demo extends Component {
           <Typography variant="display2" align="center" gutterBottom>
             Here you are!
           </Typography>
-
-          <SourcablePanel
-            title="Basic Usage"
-            sourceFile="BasicUsage.jsx"
-          >
-            <BasicUsage />
-          </SourcablePanel>
-
-          <SourcablePanel
-            title="Date & Time pickers"
-            sourceFile="DateTimePickers.jsx"
-          >
-            <DateTimePickers />
-          </SourcablePanel>
-
-          <SourcablePanel
-            title="Custom Day Element"
-            sourceFile="CustomElements.jsx"
-          >
-            <CustomElements />
-          </SourcablePanel>
-
-          {/* <SourcablePanel
-            title="Persian Pickers"
-            description={
-              <p key="persian-desc">
-                Make sure you have read the
-                <a href="https://material-ui-next.com/guides/right-to-left/"> right to left section </a>
-                of the material-ui documentation page
-              </p>
-            }
-            sourceFile="PersianPickers.jsx"
-          >
-            <PersianPickers />
-          </SourcablePanel> */}
         </div>
       </div>
     );

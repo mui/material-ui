@@ -39,7 +39,7 @@ const Installation = () => (
 
     <Code withMargin text={installLibCode}/>
     <Typography>
-      Teach pickers how to use one of that library using <span className="inline-code"> MuiPickersUtilsProvider </span>. This component takes an utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.
+      Teach pickers how to use one of that library using <span className="inline-code">MuiPickersUtilsProvider</span>. This component takes an utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.
     </Typography>
 
     <Code withMargin text={muiPickerProviderCode}/>

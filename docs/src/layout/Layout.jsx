@@ -106,7 +106,7 @@ class Layout extends Component {
         <Hidden smDown implementation="css">
           <Drawer
             variant={isLanding ? 'temporary' : 'permanent'}
-            open={this.state.dr}
+            open={this.state.drawerOpen}
             classes={{
               paper: classes.drawerPaper,
             }}
