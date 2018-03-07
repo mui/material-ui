@@ -93,7 +93,7 @@ function getSuggestions(inputValue) {
 
   return suggestions.filter(suggestion => {
     const keep =
-      (!inputValue || suggestion.label.toLowerCase().includes(inputValue.toLowerCase())) &&
+      (!inputValue || suggestion.label.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1) &&
       count < 5;
 
     if (keep) {
