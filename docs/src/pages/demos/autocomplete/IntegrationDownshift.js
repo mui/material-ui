@@ -66,7 +66,7 @@ function renderSuggestion(params) {
   const { suggestion, index, itemProps, highlightedIndex, selectedItem } = params;
   const isHighlighted = highlightedIndex === index;
   const isSelected =
-    selectedItem === suggestion.label || selectedItem.indexOf(suggestion.label) > -1;
+    selectedItem === suggestion.label || (selectedItem || '').indexOf(suggestion.label) > -1;
 
   return (
     <MenuItem
