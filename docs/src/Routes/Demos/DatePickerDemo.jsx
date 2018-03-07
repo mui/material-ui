@@ -20,6 +20,16 @@ const DatePickerDemoDemo = () => (
       title="Keyboard input"
       sourceFile="Demo/KeyboardDatePicker.jsx"
     />
+
+    <SourcablePanel
+      title="Custom day element"
+      sourceFile="Demo/CustomElementsDatePicker.jsx"
+      description={
+        <Typography variant="body1" gutterBottom>
+          Customization performing by overriding render method for Day component
+        </Typography>
+      }
+    />
   </div>
 )
 
