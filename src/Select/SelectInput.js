@@ -110,7 +110,7 @@ class SelectInput extends React.Component {
       return;
     }
 
-    if (['space', 'up', 'down'].includes(keycode(event))) {
+    if (['space', 'up', 'down'].indexOf(keycode(event)) !== -1) {
       event.preventDefault();
       // Opening the menu is going to blur the. It will be focused back when closed.
       this.ignoreNextBlur = true;
