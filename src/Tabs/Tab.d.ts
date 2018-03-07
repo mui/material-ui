@@ -32,7 +32,7 @@ export type TabClassKey =
   | 'wrapper'
   | 'labelContainer'
   | 'label'
-  | 'labelWrapped'
+  | 'labelWrapped';
 
 declare const Tab: React.ComponentType<TabProps>;
 

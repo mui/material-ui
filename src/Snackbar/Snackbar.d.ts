@@ -10,9 +10,9 @@ export type SnackBarOrigin = {
 
 export interface SnackbarProps
   extends StandardProps<
-  React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
-  SnackbarClassKey
-  > {
+      React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
+      SnackbarClassKey
+    > {
   action?: React.ReactElement<any> | React.ReactElement<any>[];
   anchorOrigin?: SnackBarOrigin;
   autoHideDuration?: number;

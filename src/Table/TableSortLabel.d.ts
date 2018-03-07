@@ -8,7 +8,12 @@ export interface TableSortLabelProps
   direction?: 'asc' | 'desc';
 }
 
-export type TableSortLabelClassKey = ButtonBaseClassKey | 'active' | 'icon' | 'iconDirectionDesc' | 'iconDirectionAsc';
+export type TableSortLabelClassKey =
+  | ButtonBaseClassKey
+  | 'active'
+  | 'icon'
+  | 'iconDirectionDesc'
+  | 'iconDirectionAsc';
 
 declare const TableSortLabel: React.ComponentType<TableSortLabelProps>;
 

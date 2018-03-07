@@ -17,7 +17,7 @@ export type GridListTileBarClassKey =
   | 'titleWrapActionPosLeft'
   | 'titleWrapActionPosRight'
   | 'actionIcon'
-  | 'actionIconActionPosLeft'
+  | 'actionIconActionPosLeft';
 
 declare const GridListTileBar: React.ComponentType<GridListTileBarProps>;
 
