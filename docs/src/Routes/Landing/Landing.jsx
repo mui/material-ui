@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Toolbar, Typography, withStyles, Button } from 'material-ui';
 
 class Demo extends Component {
@@ -30,9 +31,11 @@ class Demo extends Component {
             Date and Time pickers for material-ui v1
           </Typography>
 
-          <Button variant="raised" className={classes.getStarted} onClick={this.scrollToContent}>
-            Get Started
-          </Button>
+          <Link to="/installation">
+            <Button variant="raised" className={classes.getStarted} onClick={this.scrollToContent}>
+              Get Started
+            </Button>
+          </Link>
         </Toolbar>
 
         <div id="content" className={classes.content}>

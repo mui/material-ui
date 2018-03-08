@@ -12,7 +12,8 @@
     "jsx-a11y/anchor-is-valid": 0
   },
   "globals": {
-    "document": true
+    "document": true,
+    "window": true
   },
   "env": {
     "jest": true

@@ -32,7 +32,7 @@ export default class BasicUsage extends PureComponent {
             keyboard
             format="MMM DD"
             placeholder="Jan 01"
-            mask={[ /[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, ' ', /\d/, /\d/]}
+            mask={[/[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, ' ', /\d/, /\d/]}
             value={selectedDate}
             onChange={this.handleDateChange}
             animateYearScrolling={false}

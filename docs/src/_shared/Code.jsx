@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import prism from 'utils/prism';
@@ -155,12 +156,14 @@ const styles = theme => ({
     },
   },
   margin: {
-    margin: '10px 0 30px'
+    margin: '10px 0 30px',
   },
 });
 
 const Code = (props) => {
-  const { classes, language, text, withMargin } = props;
+  const {
+    classes, language, text, withMargin,
+  } = props;
   const hightlightedCode = prism.highlight(text, prism.languages[language]);
 
   return (
@@ -172,9 +175,16 @@ const Code = (props) => {
   );
 };
 
+Code.propTypes = {
+  classes: PropTypes.object.isRequired,
+  language: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  withMargin: PropTypes.bool,
+};
+
 Code.defaultProps = {
   withMargin: false,
-  language: 'jsx'
-}
+  language: 'jsx',
+};
 
 export default withStyles(styles)(Code);

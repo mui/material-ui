@@ -39,7 +39,7 @@ export default class CustomDateTimePicker extends PureComponent {
             }}
           />
         </div>
-        
+
         <div className="picker">
           <DateTimePicker
             keyboard
@@ -47,11 +47,11 @@ export default class CustomDateTimePicker extends PureComponent {
             value={selectedDate}
             onChange={this.handleDateChange}
             format="YYYY/MM/DD hh:mm A"
-            mask={[ /\d/, /\d/, /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
+            mask={[/\d/, /\d/, /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
           />
         </div>
       </Fragment>
-      
+
     );
   }
 }
