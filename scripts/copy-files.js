@@ -19,7 +19,9 @@ function typescriptCopy(from, to) {
 
 async function createPackageFile() {
   const packageData = await fse.readFile(path.resolve(__dirname, '../package.json'), 'utf8');
-  const { nyc, scripts, devDependencies, ...packageDataOther } = JSON.parse(packageData);
+  const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } = JSON.parse(
+    packageData,
+  );
   const newPackageData = {
     ...packageDataOther,
     main: './index.js',
