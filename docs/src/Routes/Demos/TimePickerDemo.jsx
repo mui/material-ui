@@ -1,5 +1,5 @@
-import React from 'react'
-import SourcablePanel from '_shared/SourcablePanel'
+import React from 'react';
+import SourcablePanel from '_shared/SourcablePanel';
 import { Typography } from 'material-ui';
 
 const DatePickerDemoDemo = () => (
@@ -19,7 +19,8 @@ const DatePickerDemoDemo = () => (
       sourceFile="Demo/TimePickerBasic.jsx"
       description={
         <Typography variant="body1" gutterBottom>
-          A time picker should adjusts to a user’s preferred time setting, i.e. the 12-hour or 24-hour format.
+          A time picker should adjusts to a user’s preferred time setting,
+          i.e. the 12-hour or 24-hour format.
         </Typography>
       }
     />
@@ -29,6 +30,7 @@ const DatePickerDemoDemo = () => (
       sourceFile="Demo/KeyboardTimePicker.jsx"
     />
   </div>
-)
+);
 
-export default DatePickerDemoDemo
+export default DatePickerDemoDemo;
+

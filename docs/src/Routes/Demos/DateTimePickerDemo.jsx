@@ -1,5 +1,5 @@
-import React from 'react'
-import SourcablePanel from '_shared/SourcablePanel'
+import React from 'react';
+import SourcablePanel from '_shared/SourcablePanel';
 import { Typography } from 'material-ui';
 
 const DateTimePickerDemo = () => (
@@ -11,8 +11,9 @@ const DateTimePickerDemo = () => (
       This component is not from material design guidelines.
     </Typography>
     <Typography variant="body1">
-      Its a combination of date & time picker and allows that uses the modal to select both date and time with one control.
-    </Typography> 
+      Its a combination of date & time picker and allows
+      that uses the modal to select both date and time with one control.
+    </Typography>
 
     <SourcablePanel
       title="Basic usage"
@@ -28,6 +29,7 @@ const DateTimePickerDemo = () => (
       }
     />
   </div>
-)
+);
 
-export default DateTimePickerDemo
+export default DateTimePickerDemo;
+

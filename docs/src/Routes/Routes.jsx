@@ -1,8 +1,8 @@
-import React from 'react'
-import { Switch, Route } from 'react-router'
+import React from 'react';
+import { Switch, Route } from 'react-router';
 
-import Demos from './Demos'
-import Landing from './Landing/Landing'
+import Demos from './Demos';
+import Landing from './Landing/Landing';
 import Installation from './GettingStarted/Installation';
 import Usage from './GettingStarted/Usage';
 
@@ -13,4 +13,5 @@ export default () => (
     <Route path="/usage" component={Usage} />
     <Route path="/demo" component={Demos} />
   </Switch>
-)
+);
+

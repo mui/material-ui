@@ -19,7 +19,7 @@ npm install moment -S
 ```
 
 ## Documentation
-Check out material-ui-picker's [documentation](https://material-ui-pic.firebaseapp.com/)
+Check out material-ui-picker's [documentation](https://material-ui-pickers.firebaseapp.com/)
 
 ### Recently updated?
 Changelog available [here](https://github.com/dmtrKovalenko/material-ui-pickers/releases)

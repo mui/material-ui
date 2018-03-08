@@ -1,5 +1,5 @@
-import React from 'react'
-import SourcablePanel from '_shared/SourcablePanel'
+import React from 'react';
+import SourcablePanel from '_shared/SourcablePanel';
 import { Typography } from 'material-ui';
 
 const DatePickerDemoDemo = () => (
@@ -11,7 +11,8 @@ const DatePickerDemoDemo = () => (
       Date pickers use a dialog window to select a single date.
     </Typography>
     <Typography variant="body1">
-      The selected day is indicated by a filled circle. The current day is indicated by a different color and type weight.
+      The selected day is indicated by a filled circle.
+      The current day is indicated by a different color and type weight.
     </Typography>
 
     <SourcablePanel
@@ -34,6 +35,7 @@ const DatePickerDemoDemo = () => (
       }
     />
   </div>
-)
+);
 
-export default DatePickerDemoDemo
+export default DatePickerDemoDemo;
+
