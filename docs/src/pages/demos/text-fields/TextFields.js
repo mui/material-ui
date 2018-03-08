@@ -89,7 +89,7 @@ class TextFields extends React.Component {
           margin="normal"
         />
         <TextField
-          id="password"
+          id="password-input"
           label="Password"
           className={classes.textField}
           type="password"

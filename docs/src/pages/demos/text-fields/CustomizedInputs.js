@@ -70,6 +70,7 @@ function CustomizedInputs(props) {
       <TextField
         defaultValue="react-bootstrap"
         label="Bootstrap"
+        id="bootstrap-input"
         InputProps={{
           disableUnderline: true,
           classes: {

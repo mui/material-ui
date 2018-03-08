@@ -69,6 +69,7 @@ class InputAdornments extends React.Component {
       <div className={classes.root}>
         <TextField
           label="With normal TextField"
+          id="simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
           InputProps={{
             startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
@@ -91,7 +92,7 @@ class InputAdornments extends React.Component {
           ))}
         </TextField>
         <FormControl fullWidth className={classes.margin}>
-          <InputLabel htmlFor="amount">Amount</InputLabel>
+          <InputLabel htmlFor="adornment-amount">Amount</InputLabel>
           <Input
             id="adornment-amount"
             value={this.state.amount}
@@ -108,11 +109,14 @@ class InputAdornments extends React.Component {
             value={this.state.weight}
             onChange={this.handleChange('weight')}
             endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+            inputProps={{
+              'aria-label': 'Weight',
+            }}
           />
           <FormHelperText id="weight-helper-text">Weight</FormHelperText>
         </FormControl>
         <FormControl className={classNames(classes.margin, classes.textField)}>
-          <InputLabel htmlFor="password">Password</InputLabel>
+          <InputLabel htmlFor="adornment-password">Password</InputLabel>
           <Input
             id="adornment-password"
             type={this.state.showPassword ? 'text' : 'password'}
@@ -121,6 +125,7 @@ class InputAdornments extends React.Component {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
+                  aria-label="Toggle password visibility"
                   onClick={this.handleClickShowPasssword}
                   onMouseDown={this.handleMouseDownPassword}
                 >

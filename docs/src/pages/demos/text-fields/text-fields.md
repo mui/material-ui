@@ -45,7 +45,8 @@ These can be used to add a prefix, a suffix or an action to an input.
 ## Formatted inputs
 
 We demonstrate how you could be using third-party libraries to [format your input](https://material.io/guidelines/components/text-fields.html#text-fields-input-types).
-Here, we are using [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
+In the following demo, we are using [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
+You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
