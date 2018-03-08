@@ -7,7 +7,7 @@ import muiPickerProviderCode from '!raw-loader!Examples/CodeSnippets/MuiPickerPr
 
 const installLibCode =
 `npm i -s date-fns@next
-// or s
+// or
 npm i -s moment`;
 
 const Installation = () => (
@@ -22,7 +22,11 @@ const Installation = () => (
       Material-ui-pickers was designed to use that date management library that you need.
     </Typography>
     <Typography variant="body1" gutterBottom>
-      We are providing interfaces for <a href="https://momentjs.com/"> moment </a> and <a href="https://date-fns.org/"> date-fns 2 </a>. If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns, because it much more lightweight and will be correctly tree-shaked from the bundle.
+      We are providing interfaces for <a className="link" href="https://momentjs.com/">moment</a>
+      &nbsp;and <a className="link" href="https://date-fns.org/">date-fns 2</a>.
+      If you are not using moment in the project (or dont have it in the bundle already)
+      we suggest using date-fns,
+      because it much more lightweight and will be correctly tree-shaked from the bundle.
     </Typography>
 
     <Code withMargin text={installLibCode} />

@@ -109,6 +109,7 @@ class Layout extends Component {
           <Drawer
             variant={isLanding ? 'temporary' : 'permanent'}
             open={this.state.drawerOpen}
+            onClose={this.handleDrawerToggle}
             classes={{
               paper: classes.drawerPaper,
             }}

@@ -42,7 +42,8 @@ class Demo extends Component {
 
           <Typography align="center" gutterBottom>
             Material-UI-pickers is a MIT licensed open source project.
-            We are intent on code quality and project maintain. Entirely thanks to our awesome bakers.
+            We are intent on code quality and project maintain.
+            Entirely thanks to our awesome bakers.
           </Typography>
 
           <Typography

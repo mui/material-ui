@@ -24,6 +24,10 @@ a {
   color: #3f51b5;
 }
 
+a.link:hover {
+  text-decoration: underline;
+}
+
 .inline-code {
   padding-top: 2px 2px 0;
   background-color: white;
