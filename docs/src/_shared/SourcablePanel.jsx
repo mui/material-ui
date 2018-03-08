@@ -1,3 +1,6 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
@@ -22,13 +25,9 @@ class SourcablePanel extends PureComponent {
 
   }
 
-  getSource = () => {
-    return require(`!raw-loader!../Examples/${this.props.sourceFile}`)
-  }
+  getSource = () => require(`!raw-loader!../Examples/${this.props.sourceFile}`)
 
-  getComponent = () => {
-    return require(`../Examples/${this.props.sourceFile}`).default
-  }
+  getComponent = () => require(`../Examples/${this.props.sourceFile}`).default
 
   toggleSource = () => {
     this.setState({ sourceExpanded: !this.state.sourceExpanded });
@@ -37,7 +36,7 @@ class SourcablePanel extends PureComponent {
   render() {
     const { sourceExpanded } = this.state;
     const { classes, title, description } = this.props;
-    const Component = this.getComponent()
+    const Component = this.getComponent();
 
     return (
       <React.Fragment>
@@ -61,7 +60,7 @@ class SourcablePanel extends PureComponent {
           <Component />
         </div>
       </React.Fragment>
-    )
+    );
   }
 }
 

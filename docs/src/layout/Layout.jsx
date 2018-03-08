@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classnames from 'classnames'
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import Hidden from 'material-ui/Hidden';
 import Drawer from 'material-ui/Drawer';
@@ -16,6 +16,8 @@ class Layout extends Component {
     toggleDirection: PropTypes.func.isRequired,
     toggleFrench: PropTypes.func.isRequired,
     theme: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    children: PropTypes.element.isRequired,
   }
 
   state = {
@@ -36,20 +38,20 @@ class Layout extends Component {
 
   render() {
     const {
-      classes, toggleThemeType, toggleDirection, toggleFrench, theme, location
+      classes, toggleThemeType, toggleDirection, toggleFrench, theme, location,
     } = this.props;
-    const isLanding = location.pathname === '/'
+    const isLanding = location.pathname === '/';
 
     return (
       <React.Fragment>
-        <AppBar 
-          position="fixed" 
+        <AppBar
+          position="fixed"
           className={classnames(classes.appBar, { [classes.landingAppBar]: isLanding })}
         >
           <Toolbar>
             <IconButton
-              className={classes.menuButton} 
-              color="inherit" 
+              className={classes.menuButton}
+              color="inherit"
               aria-label="Menu"
               onClick={this.handleDrawerToggle}
             >
@@ -137,8 +139,8 @@ const styles = theme => ({
     // boxShadow: 'unset',
     [theme.breakpoints.up('md')]: {
       left: 250,
-      width: 'calc(100% - 250px)'
-    }
+      width: 'calc(100% - 250px)',
+    },
   },
   main: {
     marginTop: 55,
@@ -149,13 +151,13 @@ const styles = theme => ({
       marginTop: 64,
       minHeight: 'calc(100vh - 64px)',
       marginLeft: 250,
-    }
+    },
   },
   content: {
     [theme.breakpoints.up('lg')]: {
       maxWidth: 960,
-      margin: '0 auto'
-    }
+      margin: '0 auto',
+    },
   },
   landingMain: {
     padding: 0,
@@ -166,7 +168,7 @@ const styles = theme => ({
   landingAppBar: {
     left: 0,
     width: '100vw',
-    boxShadow: 'unset'
+    boxShadow: 'unset',
   },
 });
 

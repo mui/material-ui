@@ -5,9 +5,6 @@ import { Toolbar, Typography, withStyles, Button } from 'material-ui';
 class Demo extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    toggleThemeType: PropTypes.func.isRequired,
-    toggleDirection: PropTypes.func.isRequired,
-    toggleFrench: PropTypes.func.isRequired,
   }
 
   scrollToContent = () => {
@@ -39,8 +36,26 @@ class Demo extends Component {
         </Toolbar>
 
         <div id="content" className={classes.content}>
-          <Typography variant="display2" align="center" gutterBottom>
-            Here you are!
+          <Typography variant="display1" align="center" gutterBottom>
+            Support material-ui-pickers
+          </Typography>
+
+          <Typography align="center" gutterBottom>
+            Material-UI-pickers is a MIT licensed open source project.
+            We are intent on code quality and project maintain. Entirely thanks to our awesome bakers.
+          </Typography>
+
+          <Typography
+            align="center"
+            className={classes.sponsorHeader}
+            variant="headline"
+            gutterBottom
+          >
+            Our awesome sponsors via <a className="link" href="https://www.patreon.com/user?u=9897423"> patreon </a>
+          </Typography>
+
+          <Typography variant="caption" align="center">
+            There is no sponsors yet <span aria-label="crying emoji" role="img"> 😢 </span>
           </Typography>
         </div>
       </div>
@@ -93,6 +108,9 @@ const styles = theme => ({
   changeOutside: {
     maxWidth: 200,
     margin: '0 auto',
+  },
+  sponsorHeader: {
+    marginTop: '2em',
   },
 });
 
