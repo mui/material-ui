@@ -14,6 +14,8 @@ export const CalendarHeader = (props) => {
     onMonthChange,
     leftArrowIcon,
     rightArrowIcon,
+    disablePrevMonth,
+    disableNextMonth,
     utils,
   } = props;
 
@@ -25,7 +27,7 @@ export const CalendarHeader = (props) => {
   return (
     <div>
       <div className={classes.switchHeader}>
-        <IconButton onClick={selectPreviousMonth}>
+        <IconButton disabled={disablePrevMonth} onClick={selectPreviousMonth}>
           <Icon>{rtl ? rightArrowIcon : leftArrowIcon}</Icon>
         </IconButton>
 
@@ -33,7 +35,7 @@ export const CalendarHeader = (props) => {
           {utils.getCalendarHeaderText(currentMonth)}
         </Typography>
 
-        <IconButton onClick={selectNextMonth}>
+        <IconButton disabled={disableNextMonth} onClick={selectNextMonth}>
           <Icon>{rtl ? leftArrowIcon : rightArrowIcon}</Icon>
         </IconButton>
       </div>
@@ -61,12 +63,16 @@ CalendarHeader.propTypes = {
   theme: PropTypes.object.isRequired,
   leftArrowIcon: PropTypes.node,
   rightArrowIcon: PropTypes.node,
+  disablePrevMonth: PropTypes.bool,
+  disableNextMonth: PropTypes.bool,
   utils: PropTypes.func.isRequired,
 };
 
 CalendarHeader.defaultProps = {
   leftArrowIcon: 'keyboard_arrow_left',
   rightArrowIcon: 'keyboard_arrow_right',
+  disablePrevMonth: false,
+  disableNextMonth: false,
 };
 
 const styles = theme => ({
