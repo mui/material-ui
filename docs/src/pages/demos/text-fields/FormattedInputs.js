@@ -5,14 +5,16 @@ import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Input from 'material-ui/Input';
+import Input, { InputLabel } from 'material-ui/Input';
+import TextField from 'material-ui/TextField';
+import { FormControl } from 'material-ui/Form';
 
 const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
-  input: {
+  formControl: {
     margin: theme.spacing.unit,
   },
 });
@@ -74,24 +76,27 @@ class FormattedInputs extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const { textmask, numberformat } = this.state;
+
     return (
       <div className={classes.container}>
-        <Input
-          value={this.state.textmask}
-          inputComponent={TextMaskCustom}
-          onChange={this.handleChange('textmask')}
-          className={classes.input}
-          inputProps={{
-            'aria-label': 'Description',
-          }}
-        />
-        <Input
-          value={this.state.numberformat}
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
+          <Input
+            value={textmask}
+            onChange={this.handleChange('textmask')}
+            id="formatted-text-mask-input"
+            inputComponent={TextMaskCustom}
+          />
+        </FormControl>
+        <TextField
+          className={classes.formControl}
+          label="react-number-format"
+          value={numberformat}
           onChange={this.handleChange('numberformat')}
-          inputComponent={NumberFormatCustom}
-          className={classes.input}
-          inputProps={{
-            'aria-label': 'Description',
+          id="formatted-numberformat-input"
+          InputProps={{
+            inputComponent: NumberFormatCustom,
           }}
         />
       </div>
