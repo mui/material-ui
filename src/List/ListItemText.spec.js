@@ -57,6 +57,12 @@ describe('<ListItemText />', () => {
       const wrapper = shallow(<ListItemText primary={primary} />);
       assert.strictEqual(wrapper.contains(primary), true, 'should find the node');
     });
+
+    it('should use the children prop as primary node', () => {
+      const primary = <span />;
+      const wrapper = shallow(<ListItemText>{primary}</ListItemText>);
+      assert.strictEqual(wrapper.contains(primary), true, 'should find the node');
+    });
   });
 
   describe('prop: secondary', () => {

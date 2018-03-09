@@ -36,11 +36,12 @@ export const styles = theme => ({
 
 function ListItemText(props, context) {
   const {
+    children,
     classes,
     className: classNameProp,
     disableTypography,
     inset,
-    primary,
+    primary = children,
     secondary,
     ...other
   } = props;
@@ -87,6 +88,10 @@ function ListItemText(props, context) {
 
 ListItemText.propTypes = {
   /**
+   * Alias for `primary` property,
+   */
+  children: PropTypes.element,
+  /**
    * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
@@ -111,7 +116,7 @@ ListItemText.propTypes = {
 ListItemText.defaultProps = {
   disableTypography: false,
   inset: false,
-  primary: false,
+  primary: undefined,
   secondary: false,
 };
 
