@@ -224,7 +224,7 @@ class Tooltip extends React.Component {
     event.persist();
     this.touchTimer = setTimeout(() => {
       this.handleRequestOpen(event);
-    }, 1e3);
+    }, this.props.enterTouchDelay);
   };
 
   handleTouchEnd = event => {
@@ -240,7 +240,7 @@ class Tooltip extends React.Component {
     event.persist();
     this.leaveTimer = setTimeout(() => {
       this.requestClose(event);
-    }, 1500 + this.props.leaveDelay);
+    }, this.props.leaveTouchDelay + this.props.leaveDelay);
   };
 
   render() {
@@ -252,8 +252,10 @@ class Tooltip extends React.Component {
       disableTriggerHover,
       disableTriggerTouch,
       enterDelay,
+      enterTouchDelay,
       id,
       leaveDelay,
+      leaveTouchDelay,
       onClose,
       onOpen,
       open: openProp,
@@ -390,14 +392,23 @@ Tooltip.propTypes = {
    */
   enterDelay: PropTypes.number,
   /**
+   * The number of milliseconds a user must touch the element before the tooltip is triggered.
+   */
+  enterTouchDelay: PropTypes.number,
+  /**
    * The relationship between the tooltip and the wrapper component is not clear from the DOM.
    * By providing this property, we can use aria-describedby to solve the accessibility issue.
    */
   id: PropTypes.string,
   /**
-   * The number of milliseconds to wait before hidding the tooltip.
+   * The number of milliseconds to wait before hiding the tooltip.
    */
   leaveDelay: PropTypes.number,
+  /**
+   * The number of milliseconds after the user stops touching an element before triggering the
+   * hiding of the tooltip.
+   */
+  leaveTouchDelay: PropTypes.number,
   /**
    * Callback fired when the tooltip requests to be closed.
    *
@@ -450,7 +461,9 @@ Tooltip.defaultProps = {
   disableTriggerHover: false,
   disableTriggerTouch: false,
   enterDelay: 0,
+  enterTouchDelay: 1000,
   leaveDelay: 0,
+  leaveTouchDelay: 1500,
   placement: 'bottom',
 };
 
