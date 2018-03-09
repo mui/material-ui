@@ -20,6 +20,10 @@ const styles = {
     },
   },
   dialogActions: {
+    // set justifyContent to default value to fix IE11 layout bug
+    justifyContent: 'flex-start',
+  },
+  dialogAction: {
     '&:first-child': {
       marginRight: 'auto',
     },
@@ -46,7 +50,8 @@ const ModalDialog = ({
 
     <DialogActions
       classes={{
-        action: clearable && classes.dialogActions,
+        root: clearable && classes.dialogActions,
+        action: clearable && classes.dialogAction,
       }}
     >
 
