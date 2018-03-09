@@ -36,56 +36,67 @@ export const styles = theme => ({
 
 function ListItemText(props, context) {
   const {
+    children,
     classes,
     className: classNameProp,
     disableTypography,
     inset,
-    primary,
-    secondary,
+    primary: primaryProp,
+    secondary: secondaryProp,
     ...other
   } = props;
   const { dense } = context;
-  const className = classNames(
-    classes.root,
-    {
-      [classes.dense]: dense,
-      [classes.inset]: inset,
-    },
-    classNameProp,
-  );
+
+  let primary = primaryProp || children;
+  if (primary && !disableTypography) {
+    primary = (
+      <Typography
+        variant="subheading"
+        className={classNames(classes.primary, { [classes.textDense]: dense })}
+      >
+        {primary}
+      </Typography>
+    );
+  }
+
+  let secondary = secondaryProp;
+  if (secondary && !disableTypography) {
+    secondary = (
+      <Typography
+        variant="body1"
+        className={classNames(classes.secondary, {
+          [classes.textDense]: dense,
+        })}
+        color="textSecondary"
+      >
+        {secondary}
+      </Typography>
+    );
+  }
 
   return (
-    <div className={className} {...other}>
-      {primary &&
-        (disableTypography ? (
-          primary
-        ) : (
-          <Typography
-            variant="subheading"
-            className={classNames(classes.primary, { [classes.textDense]: dense })}
-          >
-            {primary}
-          </Typography>
-        ))}
-      {secondary &&
-        (disableTypography ? (
-          secondary
-        ) : (
-          <Typography
-            variant="body1"
-            className={classNames(classes.secondary, {
-              [classes.textDense]: dense,
-            })}
-            color="textSecondary"
-          >
-            {secondary}
-          </Typography>
-        ))}
+    <div
+      className={classNames(
+        classes.root,
+        {
+          [classes.dense]: dense,
+          [classes.inset]: inset,
+        },
+        classNameProp,
+      )}
+      {...other}
+    >
+      {primary}
+      {secondary}
     </div>
   );
 }
 
 ListItemText.propTypes = {
+  /**
+   * Alias for the `primary` property.
+   */
+  children: PropTypes.element,
   /**
    * Useful to extend the style applied to components.
    */
@@ -111,8 +122,6 @@ ListItemText.propTypes = {
 ListItemText.defaultProps = {
   disableTypography: false,
   inset: false,
-  primary: false,
-  secondary: false,
 };
 
 ListItemText.contextTypes = {
