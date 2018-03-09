@@ -38,6 +38,7 @@ import {
   List,
   ListItem,
   ListItemAvatar,
+  ListItemIcon,
   ListItemSecondaryAction,
   ListItemText,
   Menu,
@@ -266,6 +267,12 @@ const DialogTest = () => {
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="add account" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <FakeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
           </ListItem>
         </List>
       </div>
