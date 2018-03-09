@@ -10,6 +10,7 @@ export const styles = theme => ({
     fontSize: 24,
     width: '1em',
     height: '1em',
+    overflow: 'hidden', // chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
   },
   colorPrimary: {
     color: theme.palette.primary.main,
