@@ -1,6 +1,8 @@
 import { StandardProps } from '..';
 
-export interface ListItemIconProps extends StandardProps<{}, ListItemIconClassKey> {}
+export interface ListItemIconProps extends StandardProps<{}, ListItemIconClassKey> {
+  children: React.ReactElement<any>;
+}
 
 export type ListItemIconClassKey = 'root';
 
