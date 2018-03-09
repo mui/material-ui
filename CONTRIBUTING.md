@@ -60,7 +60,7 @@ You can also run `yarn prettier` to reformat the code.
 
 Finally, when you submit a pull request, they are run again by Circle CI, but hopefully by then your code is already clean!
 
-## How do I add new a demo in the documentation?
+## How do I add a new demo in the documentation?
 
 ### Let's get started.
 
