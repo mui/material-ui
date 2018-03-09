@@ -65,5 +65,14 @@ describe('<Icon />', () => {
         'should have the "primary" color',
       );
     });
+
+    it('should render with dense margin', () => {
+      const wrapper = shallow(<Icon margin="dense">account_circle</Icon>);
+      assert.strictEqual(
+        wrapper.hasClass(classes.marginDense),
+        true,
+        'should have the "dense" margin',
+      );
+    });
   });
 });

@@ -26,10 +26,16 @@ export const styles = theme => ({
   colorError: {
     color: theme.palette.error.main,
   },
+  marginNormal: {
+    margin: `auto ${theme.spacing.unit}px}`,
+  },
+  marginDense: {
+    margin: `auto ${theme.spacing.unit / 2}px}`,
+  },
 });
 
 function Icon(props) {
-  const { children, classes, className, color, ...other } = props;
+  const { children, classes, className, color, margin, ...other } = props;
 
   return (
     <span
@@ -38,6 +44,7 @@ function Icon(props) {
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
+          [classes[`margin${capitalize(margin)}`]]: margin !== 'none',
         },
         className,
       )}
@@ -66,10 +73,15 @@ Icon.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf(['inherit', 'secondary', 'action', 'disabled', 'error', 'primary']),
+  /**
+   * If `dense` or `normal`, will adjust horizontal margin spacing with direct siblings.
+   */
+  margin: PropTypes.oneOf(['none', 'dense', 'normal']),
 };
 
 Icon.defaultProps = {
   color: 'inherit',
+  margin: 'none',
 };
 
 Icon.muiName = 'Icon';
