@@ -254,7 +254,7 @@ Button.propTypes = {
    */
   type: PropTypes.string,
   /**
-   * The type of button to use.
+   * The type of button.
    */
   variant: PropTypes.oneOf(['flat', 'raised', 'fab']),
 };
