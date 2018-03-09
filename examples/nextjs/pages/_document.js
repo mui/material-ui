@@ -1,6 +1,7 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import JssProvider from 'react-jss/lib/JssProvider';
+import flush from 'styled-jsx/server';
 import getPageContext from '../src/getPageContext';
 
 class MyDocument extends Document {
@@ -69,11 +70,14 @@ MyDocument.getInitialProps = ctx => {
     ...page,
     pageContext,
     styles: (
-      <style
-        id="jss-server-side"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
-      />
+      <React.Fragment>
+        <style
+          id="jss-server-side"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
+        />
+        {flush() || null}
+      </React.Fragment>
     ),
   };
 };
