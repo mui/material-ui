@@ -6,10 +6,12 @@ export default class MuiPickersUtilsProvider extends PureComponent {
     utils: PropTypes.func.isRequired,
     locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     children: PropTypes.element.isRequired,
+    moment: PropTypes.func,
   }
 
   static defaultProps = {
     locale: undefined,
+    moment: undefined,
   }
 
   static childContextTypes = {
@@ -17,9 +19,9 @@ export default class MuiPickersUtilsProvider extends PureComponent {
   }
 
   getChildContext() {
-    const { utils: Utils, locale } = this.props;
+    const { utils: Utils, locale, moment } = this.props;
     return {
-      muiPickersDateUtils: new Utils(locale),
+      muiPickersDateUtils: new Utils({ locale, moment }),
     };
   }
 

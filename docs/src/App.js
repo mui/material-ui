@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui';
 
-import dateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
+import Utils from 'material-ui-pickers/utils/date-fns-utils';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
 import { create } from 'jss';
@@ -12,10 +12,15 @@ import createGenerateClassName from 'material-ui/styles/createGenerateClassName'
 import frLocale from 'date-fns/locale/fr';
 import enLocale from 'date-fns/locale/en-US';
 
-// import Demo from './Demo/Demo';
 import { setPrismTheme } from './utils/prism';
 import Layout from './layout/Layout';
 import Routes from './Routes/Routes';
+
+// /* eslint-disable import/first */
+// import moment from 'moment';
+// import 'moment/locale/fr';
+
+// moment.locale('fr');
 
 const jss = create({ plugins: [...preset().plugins, rtl()] });
 jss.options.createGenerateClassName = createGenerateClassName;
@@ -43,7 +48,6 @@ export default class App extends Component {
     const direction = this.state.direction === 'ltr' ? 'rtl' : 'ltr';
 
     document.body.dir = direction;
-
     this.setState({ direction });
   }
 
@@ -66,7 +70,10 @@ export default class App extends Component {
     return (
       <JssProvider jss={jss}>
         <MuiThemeProvider theme={this.getMuiTheme()}>
-          <MuiPickersUtilsProvider utils={dateFnsUtils} locale={this.state.localeObj}>
+          <MuiPickersUtilsProvider
+            utils={Utils}
+            locale={this.state.localeObj}
+          >
             <Layout
               toggleDirection={this.toggleDirection}
               toggleThemeType={this.toggleThemeType}
