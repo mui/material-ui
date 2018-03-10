@@ -9,6 +9,9 @@ export const styles = theme => ({
   root: {
     display: 'block',
   },
+  active: {
+    color: theme.palette.primary.main,
+  },
   completed: {
     color: theme.palette.primary.main,
   },
@@ -21,7 +24,14 @@ function StepIcon(props) {
     if (completed) {
       return <CheckCircle className={classNames(classes.root, classes.completed)} />;
     }
-    return <StepPositionIcon className={classes.root} position={icon} active={active} />;
+    return (
+      <StepPositionIcon
+        className={classNames(classes.root, {
+          [classes.active]: active,
+        })}
+        position={icon}
+      />
+    );
   }
 
   return icon;

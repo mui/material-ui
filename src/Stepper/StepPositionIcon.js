@@ -8,9 +8,6 @@ export const styles = theme => ({
   root: {
     color: theme.palette.text.disabled,
   },
-  active: {
-    color: theme.palette.primary.main,
-  },
   text: {
     fill: theme.palette.primary.contrastText,
     fontSize: theme.typography.caption.fontSize,
@@ -22,14 +19,8 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function StepPositionIcon(props) {
-  const { position, classes, className: classNameProp, active } = props;
-  const className = classNames(
-    classes.root,
-    {
-      [classes.active]: active,
-    },
-    classNameProp,
-  );
+  const { position, classes, className: classNameProp } = props;
+  const className = classNames(classes.root, classNameProp);
 
   return (
     <SvgIcon className={className}>
@@ -42,10 +33,6 @@ function StepPositionIcon(props) {
 }
 
 StepPositionIcon.propTypes = {
-  /**
-   * Whether this step is active.
-   */
-  active: PropTypes.bool,
   /**
    * Classses for component style customizations.
    */

@@ -30,7 +30,7 @@ describe('<StepIcon />', () => {
     assert.strictEqual(checkCircle.length, 1, 'should have an <StepPositionIcon />');
     const props = checkCircle.props();
     assert.strictEqual(props.position, 1, 'should set position');
-    assert.strictEqual(props.active, true, 'should set active');
+    assert.include(props.className, 'active');
   });
 
   it('renders the custom icon', () => {
