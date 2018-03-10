@@ -1,6 +1,10 @@
 import warning from 'warning';
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 
+function arrayMerge(destination, source) {
+  return source;
+}
+
 function getStylesCreator(stylesOrCreator) {
   const themingEnabled = typeof stylesOrCreator === 'function';
 
@@ -22,7 +26,9 @@ function getStylesCreator(stylesOrCreator) {
           `Fix the \`${key}\` key of \`theme.overrides.${name}\`.`,
         ].join('\n'),
       );
-      stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key], overrides[key]);
+      stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key], overrides[key], {
+        arrayMerge,
+      });
     });
 
     return stylesWithOverrides;
