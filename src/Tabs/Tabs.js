@@ -168,7 +168,7 @@ class Tabs extends React.Component {
   handleResize = debounce(() => {
     this.updateIndicatorState(this.props);
     this.updateScrollButtonState();
-  }, 166);
+  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   handleLeftScrollClick = () => {
     if (this.tabs) {
@@ -192,7 +192,7 @@ class Tabs extends React.Component {
 
   handleTabsScroll = debounce(() => {
     this.updateScrollButtonState();
-  }, 166);
+  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   moveTabsScroll = delta => {
     const { theme } = this.props;

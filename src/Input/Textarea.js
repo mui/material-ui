@@ -76,7 +76,7 @@ class Textarea extends React.Component {
 
   handleResize = debounce(() => {
     this.syncHeightWithShadow();
-  }, 166);
+  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   syncHeightWithShadow(props = this.props) {
     if (!this.shadow || !this.singlelineShadow) {
