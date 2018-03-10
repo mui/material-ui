@@ -13,7 +13,9 @@ export default function createTypography(palette: Object, typography: Object | F
     fontWeightLight = 300,
     fontWeightRegular = 400,
     fontWeightMedium = 500,
-    htmlFontSize = 16, // 16px is the default font-size used by browsers on the html element.
+    // Tell Material-UI what's the font-size on the html element.
+    // 16px is the default font-size used by browsers.
+    htmlFontSize = 16,
     ...other
   } =
     typeof typography === 'function' ? typography(palette) : typography;
