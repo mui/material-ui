@@ -2,13 +2,12 @@ import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 
-function theme() {
-  return createMuiTheme({
-    typography: {
-      htmlFontSize: 10,
-    },
-  });
-}
+const theme = createMuiTheme({
+  typography: {
+    // Tell Material-UI what's the font-size on the html element is.
+    htmlFontSize: 10,
+  },
+});
 
 function FontSizeTheme() {
   return (
