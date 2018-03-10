@@ -39,6 +39,7 @@ export const styles = {
     pointerEvents: 'none', // Disable link interactions
     cursor: 'default',
   },
+  keyboardFocused: {},
 };
 
 /**
@@ -214,7 +215,6 @@ class ButtonBase extends React.Component {
       disabled,
       disableRipple,
       focusRipple,
-      keyboardFocusedClassName,
       onBlur,
       onFocus,
       onKeyboardFocus,
@@ -236,7 +236,7 @@ class ButtonBase extends React.Component {
       classes.root,
       {
         [classes.disabled]: disabled,
-        [keyboardFocusedClassName || '']: this.state.keyboardFocused,
+        [classes.keyboardFocused]: this.state.keyboardFocused,
       },
       classNameProp,
     );
@@ -328,10 +328,6 @@ ButtonBase.propTypes = {
    * `disableRipple` must also be `false`.
    */
   focusRipple: PropTypes.bool,
-  /**
-   * The CSS class applied while the component is keyboard focused.
-   */
-  keyboardFocusedClassName: PropTypes.string,
   /**
    * @ignore
    */

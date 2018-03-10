@@ -110,6 +110,15 @@ It's already the default behavior of the `Icon` component. You will still be abl
   +<TableCell variant="head" classes={{ head: 'head' }} />
   ```
 
+- [x] Remove the `xxxClassName` properties when already covered the `classes` property.
+  These properties were introduced before`classes`.
+  Using a single pattern makes things more predictable and easier to work with.
+
+  ```diff
+  -<Tabs buttonClassName="buttonClassName" indicatorClassName="indicatorClassName" />
+  +<Tabs classes={{ scrollButtons: 'buttonClassName', indicator: 'indicatorClassName' }} />
+  ```
+
 - [ ] Rename `Reboot` to `CssBaseline` [#10233](https://github.com/mui-org/material-ui/issues/10233).
   The new wording should clarify the purpose of the component. For instance, it's not about adding JavaScript polyfills.
 
@@ -117,15 +126,6 @@ It's already the default behavior of the `Icon` component. You will still be abl
    -<Reboot />
    +<CssBaseline />
    ```
-
-- [ ] Remove the `xxxClassName` properties when already covered the `classes` property.
-  These properties were introduced before`classes`.
-  Using a single pattern makes things more predictable and easier to work with.
-
-  ```diff
-  -<Tabs buttonClassName="buttonClassName" indicatorClassName="indicatorClassName" />
-  +<Tabs classes={{ buttonClassName: 'buttonClassName', indicatorClassName: 'indicatorClassName' }} />
-  ```
 
 - [ ] Grid with no spacing by default [#10223](https://github.com/mui-org/material-ui/issues/10223).
   The negative margin implementation solution currently used comes with [serious limitations](https://material-ui-next.com/layout/grid/#negative-margin).
