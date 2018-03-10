@@ -126,7 +126,7 @@ class Slide extends React.Component {
     if (node) {
       setTranslateValue(this.props, node);
     }
-  }, 166);
+  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   handleEnter = node => {
     setTranslateValue(this.props, node);

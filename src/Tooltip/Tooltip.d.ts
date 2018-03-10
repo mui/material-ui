@@ -9,8 +9,10 @@ export interface TooltipProps
   disableTriggerHover?: boolean;
   disableTriggerTouch?: boolean;
   enterDelay?: number;
+  enterTouchDelay?: number;
   id?: string;
   leaveDelay?: number;
+  leaveTouchDelay?: number;
   onClose?: (event: React.ChangeEvent<{}>) => void;
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;

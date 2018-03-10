@@ -248,7 +248,7 @@ class Popover extends React.Component {
   handleResize = debounce(() => {
     const element = ReactDOM.findDOMNode(this.transitionEl);
     this.setPositioningStyles(element);
-  }, 166);
+  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   render() {
     const {

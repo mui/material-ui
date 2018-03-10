@@ -12,6 +12,8 @@ import Tooltip from './Tooltip';
 
 const TooltipNaked = unwrap(Tooltip);
 
+function persist() {}
+
 // Remove the style from the DOM element.
 // eslint-disable-next-line react/prop-types
 const Hack = ({ style, innerRef, ...other }) => <div ref={innerRef} {...other} />;
@@ -198,8 +200,8 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = getTargetChildren(wrapper);
-      children.simulate('touchStart', { type: 'touchstart', persist: () => {} });
-      children.simulate('touchEnd', { type: 'touchend', persist: () => {} });
+      children.simulate('touchStart', { type: 'touchstart', persist });
+      children.simulate('touchEnd', { type: 'touchend', persist });
       children.simulate('focus', { type: 'focus' });
       children.simulate('mouseover', { type: 'mouseover' });
       assert.strictEqual(wrapper.state().open, false);
@@ -212,12 +214,12 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = getTargetChildren(wrapper);
-      children.simulate('touchStart', { type: 'touchstart', persist: () => {} });
+      children.simulate('touchStart', { type: 'touchstart', persist });
       children.simulate('focus', { type: 'focus' });
       children.simulate('mouseover', { type: 'mouseover' });
       clock.tick(1e3);
       assert.strictEqual(wrapper.state().open, true);
-      children.simulate('touchEnd', { type: 'touchend', persist: () => {} });
+      children.simulate('touchEnd', { type: 'touchend', persist });
       clock.tick(1500);
       assert.strictEqual(wrapper.state().open, false);
     });
@@ -251,7 +253,7 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = getTargetChildren(wrapper);
-      children.simulate('focus', { type: 'focus' });
+      children.simulate('focus', { type: 'focus', persist });
       assert.strictEqual(wrapper.state().open, false);
       clock.tick(111);
       assert.strictEqual(wrapper.state().open, true);
@@ -266,7 +268,7 @@ describe('<Tooltip />', () => {
       const children = getTargetChildren(wrapper);
       children.simulate('focus', { type: 'focus' });
       assert.strictEqual(wrapper.state().open, true);
-      children.simulate('blur', { type: 'blur' });
+      children.simulate('blur', { type: 'blur', persist });
       assert.strictEqual(wrapper.state().open, true);
       clock.tick(111);
       assert.strictEqual(wrapper.state().open, false);
@@ -285,7 +287,7 @@ describe('<Tooltip />', () => {
           );
           const children = getTargetChildren(wrapper);
           const type = name.slice(2).toLowerCase();
-          children.simulate(type, { type, persist: () => {} });
+          children.simulate(type, { type, persist });
           assert.strictEqual(handler.callCount, 1);
         });
       },
