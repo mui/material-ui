@@ -72,6 +72,24 @@ export class Calendar extends Component {
     );
   };
 
+  shouldDisablePrevMonth = () => {
+    const { utils, disablePast, minDate } = this.props;
+    const now = utils.date();
+    return !utils.isBefore(
+      utils.getStartOfMonth(disablePast && utils.isAfter(now, minDate) ? now : minDate),
+      this.state.currentMonth,
+    );
+  };
+
+  shouldDisableNextMonth = () => {
+    const { utils, disableFuture, maxDate } = this.props;
+    const now = utils.date();
+    return !utils.isAfter(
+      utils.getStartOfMonth(disableFuture && utils.isBefore(now, maxDate) ? now : maxDate),
+      this.state.currentMonth,
+    );
+  };
+
   shouldDisableDate = (day) => {
     const {
       disablePast, disableFuture, shouldDisableDate, utils,
@@ -193,6 +211,8 @@ export class Calendar extends Component {
           onMonthChange={this.handleChangeMonth}
           leftArrowIcon={this.props.leftArrowIcon}
           rightArrowIcon={this.props.rightArrowIcon}
+          disablePrevMonth={this.shouldDisablePrevMonth()}
+          disableNextMonth={this.shouldDisableNextMonth()}
           utils={utils}
         />
 
