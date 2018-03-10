@@ -29,13 +29,13 @@ const styles = theme => ({
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
-class Reboot extends React.Component {
+class CssBaseline extends React.Component {
   render() {
     return this.props.children;
   }
 }
 
-Reboot.propTypes = {
+CssBaseline.propTypes = {
   /**
    * You can only provide a single element with react@15, a node with react@16.
    */
@@ -46,10 +46,10 @@ Reboot.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-Reboot.propTypes = exactProp(Reboot.propTypes, 'Reboot');
+CssBaseline.propTypes = exactProp(CssBaseline.propTypes, 'CssBaseline');
 
-Reboot.defaultProps = {
+CssBaseline.defaultProps = {
   children: null,
 };
 
-export default withStyles(styles, { name: 'MuiReboot' })(Reboot);
+export default withStyles(styles, { name: 'MuiCssBaseline' })(CssBaseline);

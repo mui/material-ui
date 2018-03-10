@@ -119,7 +119,7 @@ It's already the default behavior of the `Icon` component. You will still be abl
   +<Tabs classes={{ scrollButtons: 'buttonClassName', indicator: 'indicatorClassName' }} />
   ```
 
-- [ ] Rename `Reboot` to `CssBaseline` [#10233](https://github.com/mui-org/material-ui/issues/10233).
+- [x] Rename `Reboot` to `CssBaseline` [#10233](https://github.com/mui-org/material-ui/issues/10233).
   The new wording should clarify the purpose of the component. For instance, it's not about adding JavaScript polyfills.
 
    ```diff

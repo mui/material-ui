@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MuiThemeProvider } from 'material-ui/styles';
-import Reboot from 'material-ui/Reboot';
+import CssBaseline from 'material-ui/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
 import polyfill from 'react-lifecycles-compat';
 import getPageContext, { getTheme } from 'docs/src/modules/styles/getPageContext';
@@ -86,7 +86,7 @@ class AppWrapper extends React.Component {
         generateClassName={pageContext.generateClassName}
       >
         <MuiThemeProvider theme={pageContext.theme} sheetsManager={pageContext.sheetsManager}>
-          <Reboot />
+          <CssBaseline />
           <AppFrame>{children}</AppFrame>
           <GoogleTag />
         </MuiThemeProvider>

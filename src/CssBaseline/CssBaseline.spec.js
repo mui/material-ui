@@ -1,9 +1,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
-import Reboot from './Reboot';
+import CssBaseline from './CssBaseline';
 
-describe('<Reboot />', () => {
+describe('<CssBaseline />', () => {
   let shallow;
 
   before(() => {
@@ -11,15 +11,15 @@ describe('<Reboot />', () => {
   });
 
   it('should render nothing', () => {
-    const wrapper = shallow(<Reboot />);
+    const wrapper = shallow(<CssBaseline />);
     assert.strictEqual(wrapper.children().length, 0, 'should have no children');
   });
 
   it('should render a div with the root class', () => {
     const wrapper = shallow(
-      <Reboot>
+      <CssBaseline>
         <div />
-      </Reboot>,
+      </CssBaseline>,
     );
     assert.strictEqual(wrapper.name(), 'div');
   });
