@@ -8,7 +8,7 @@ export const styles = theme => ({
   root: {
     flex: '1 1 auto',
     minWidth: 0,
-    padding: '0 16px',
+    padding: `0 ${theme.spacing.unit * 2}px`,
     '&:first-child': {
       paddingLeft: 0,
     },
