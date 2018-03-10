@@ -1,10 +1,10 @@
 ---
-filename: /src/Reboot/Reboot.js
+filename: /src/CssBaseline/CssBaseline.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
-# Reboot
+# CssBaseline
 
 Kickstart an elegant, consistent, and simple baseline to build upon.
 
@@ -18,5 +18,5 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 
 ## Demos
 
-- [Reboot](/style/reboot)
+- [Css Baseline](/style/css-baseline)
 
