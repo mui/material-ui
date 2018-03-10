@@ -96,3 +96,8 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   demo: https://gatsby-starter-personal-blog.greglobinski.com/
  
   github: https://github.com/greglobinski/gatsby-starter-personal-blog
+
+### 17. Planalyze
+  Planalyze is a real-time daily planning & task tracking tool that keeps teams connected & ahead of each day's workload.
+  
+  https://www.planalyze.io
