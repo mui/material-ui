@@ -105,7 +105,9 @@ class ListItem extends React.Component {
 
     if (button) {
       componentProps.component = componentProp || 'div';
-      componentProps.keyboardFocusedClassName = classes.keyboardFocused;
+      componentProps.classes = {
+        keyboardFocused: classes.keyboardFocused,
+      };
       Component = ButtonBase;
     }
 

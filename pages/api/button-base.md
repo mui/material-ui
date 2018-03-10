@@ -22,7 +22,6 @@ It contains a load of style reset and some focus/ripple logic.
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool |  | If `true`, the base button will be disabled. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the ripple effect will be disabled. |
 | <span class="prop-name">focusRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
-| <span class="prop-name">keyboardFocusedClassName</span> | <span class="prop-type">string |  | The CSS class applied while the component is keyboard focused. |
 | <span class="prop-name">onKeyboardFocus</span> | <span class="prop-type">func |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
 | <span class="prop-name">TouchRippleProps</span> | <span class="prop-type">object |  | Properties applied to the `TouchRipple` element. |
 
@@ -34,6 +33,7 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `root`
 - `disabled`
+- `keyboardFocused`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/ButtonBase/ButtonBase.js)

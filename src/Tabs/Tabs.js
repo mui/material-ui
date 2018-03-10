@@ -36,11 +36,13 @@ export const styles = theme => ({
   centered: {
     justifyContent: 'center',
   },
+  scrollButtons: {},
   scrollButtonsAuto: {
     [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
   },
+  indicator: {},
 });
 
 class Tabs extends React.Component {
@@ -87,7 +89,6 @@ class Tabs extends React.Component {
   getConditionalElements = () => {
     const {
       classes,
-      buttonClassName,
       scrollable,
       scrollButtons,
       TabScrollButton: TabScrollButtonProp,
@@ -108,12 +109,9 @@ class Tabs extends React.Component {
         direction={theme && theme.direction === 'rtl' ? 'right' : 'left'}
         onClick={this.handleLeftScrollClick}
         visible={this.state.showLeftScroll}
-        className={classNames(
-          {
-            [classes.scrollButtonsAuto]: scrollButtons === 'auto',
-          },
-          buttonClassName,
-        )}
+        className={classNames(classes.scrollButtons, {
+          [classes.scrollButtonsAuto]: scrollButtons === 'auto',
+        })}
       />
     ) : null;
 
@@ -122,12 +120,9 @@ class Tabs extends React.Component {
         direction={theme && theme.direction === 'rtl' ? 'left' : 'right'}
         onClick={this.handleRightScrollClick}
         visible={this.state.showRightScroll}
-        className={classNames(
-          {
-            [classes.scrollButtonsAuto]: scrollButtons === 'auto',
-          },
-          buttonClassName,
-        )}
+        className={classNames(classes.scrollButtons, {
+          [classes.scrollButtonsAuto]: scrollButtons === 'auto',
+        })}
       />
     ) : null;
 
@@ -280,13 +275,11 @@ class Tabs extends React.Component {
   render() {
     const {
       action,
-      buttonClassName,
       centered,
       children: childrenProp,
       classes,
       className: classNameProp,
       fullWidth,
-      indicatorClassName,
       indicatorColor,
       onChange,
       scrollable,
@@ -310,7 +303,7 @@ class Tabs extends React.Component {
     const indicator = (
       <TabIndicator
         style={this.state.indicatorStyle}
-        className={indicatorClassName}
+        className={classes.indicator}
         color={indicatorColor}
       />
     );
@@ -375,10 +368,6 @@ Tabs.propTypes = {
    */
   action: PropTypes.func,
   /**
-   * The CSS class name of the scroll button elements.
-   */
-  buttonClassName: PropTypes.string,
-  /**
    * If `true`, the tabs will be centered.
    * This property is intended for large views.
    */
@@ -400,10 +389,6 @@ Tabs.propTypes = {
    * This property is intended for small views, like on mobile.
    */
   fullWidth: PropTypes.bool,
-  /**
-   * The CSS class name of the indicator element.
-   */
-  indicatorClassName: PropTypes.string,
   /**
    * Determines the color of the indicator.
    */

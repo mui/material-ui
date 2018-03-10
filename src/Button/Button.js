@@ -187,7 +187,9 @@ function Button(props) {
       className={className}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      keyboardFocusedClassName={classes.keyboardFocused}
+      classes={{
+        keyboardFocused: classes.keyboardFocused,
+      }}
       {...other}
     >
       <span className={classes.label}>{children}</span>

@@ -48,14 +48,12 @@ function TextField(props) {
     FormHelperTextProps,
     fullWidth,
     helperText,
-    helperTextClassName,
     id,
     InputLabelProps,
     inputProps,
     InputProps,
     inputRef,
     label,
-    labelClassName,
     multiline,
     name,
     onChange,
@@ -108,7 +106,7 @@ function TextField(props) {
       {...other}
     >
       {label && (
-        <InputLabel htmlFor={id} className={labelClassName} {...InputLabelProps}>
+        <InputLabel htmlFor={id} {...InputLabelProps}>
           {label}
         </InputLabel>
       )}
@@ -120,7 +118,7 @@ function TextField(props) {
         InputComponent
       )}
       {helperText && (
-        <FormHelperText className={helperTextClassName} id={helperTextId} {...FormHelperTextProps}>
+        <FormHelperText id={helperTextId} {...FormHelperTextProps}>
           {helperText}
         </FormHelperText>
       )}
@@ -173,10 +171,6 @@ TextField.propTypes = {
    */
   helperText: PropTypes.node,
   /**
-   * The CSS class name of the helper text element.
-   */
-  helperTextClassName: PropTypes.string,
-  /**
    * The id of the `input` element.
    * Use that property to make `label` and `helperText` accessible for screen readers.
    */
@@ -201,10 +195,6 @@ TextField.propTypes = {
    * The label content.
    */
   label: PropTypes.node,
-  /**
-   * The CSS class name of the label element.
-   */
-  labelClassName: PropTypes.string,
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */

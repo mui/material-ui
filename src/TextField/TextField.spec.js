@@ -71,8 +71,8 @@ describe('<TextField />', () => {
         assert.strictEqual(wrapper.childAt(0).type(), InputLabel);
       });
 
-      it('should pass labelClassName to the InputLabel as className', () => {
-        wrapper.setProps({ labelClassName: 'foo' });
+      it('should apply the className to the InputLabel', () => {
+        wrapper.setProps({ InputLabelProps: { className: 'foo' } });
         assert.strictEqual(wrapper.find(InputLabel).hasClass('foo'), true);
       });
 
@@ -94,8 +94,8 @@ describe('<TextField />', () => {
         assert.strictEqual(wrapper.childAt(1).type(), FormHelperText);
       });
 
-      it('should pass helperTextClassName to the FormHelperText as className', () => {
-        wrapper.setProps({ helperTextClassName: 'foo' });
+      it('should apply the className to the FormHelperText', () => {
+        wrapper.setProps({ FormHelperTextProps: { className: 'foo' } });
         assert.strictEqual(wrapper.find(FormHelperText).hasClass('foo'), true);
       });
 
