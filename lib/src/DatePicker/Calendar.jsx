@@ -26,7 +26,7 @@ export class Calendar extends Component {
     /** @ignore */
     theme: PropTypes.object.isRequired,
     shouldDisableDate: PropTypes.func,
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
   };
 
   static defaultProps = {

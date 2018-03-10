@@ -65,7 +65,7 @@ CalendarHeader.propTypes = {
   rightArrowIcon: PropTypes.node,
   disablePrevMonth: PropTypes.bool,
   disableNextMonth: PropTypes.bool,
-  utils: PropTypes.func.isRequired,
+  utils: PropTypes.object.isRequired,
 };
 
 CalendarHeader.defaultProps = {

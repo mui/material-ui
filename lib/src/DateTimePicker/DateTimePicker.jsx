@@ -30,7 +30,7 @@ export class DateTimePicker extends Component {
     dateRangeIcon: PropTypes.node,
     timeIcon: PropTypes.node,
     renderDay: PropTypes.func,
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     animateYearScrolling: PropTypes.bool,

@@ -12,7 +12,7 @@ const withUtils = () => (Component) => {
   };
 
   WithUtils.contextTypes = {
-    muiPickersDateUtils: PropTypes.func,
+    muiPickersDateUtils: PropTypes.object,
   };
 
   WithUtils.displayName = `withUtils${Component.displayName || Component.name}`;

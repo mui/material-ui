@@ -16,7 +16,7 @@ export class YearSelection extends PureComponent {
     disablePast: PropTypes.bool.isRequired,
     disableFuture: PropTypes.bool.isRequired,
     animateYearScrolling: PropTypes.bool,
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
