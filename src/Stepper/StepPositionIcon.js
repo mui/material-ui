@@ -19,11 +19,10 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function StepPositionIcon(props) {
-  const { position, classes, className: classNameProp } = props;
-  const className = classNames(classes.root, classNameProp);
+  const { position, classes, className } = props;
 
   return (
-    <SvgIcon className={className}>
+    <SvgIcon className={classNames(classes.root, className)}>
       <circle cx="12" cy="12" r="12" />
       <text className={classes.text} x="12" y="16" textAnchor="middle">
         {position}
@@ -47,4 +46,4 @@ StepPositionIcon.propTypes = {
   position: PropTypes.node,
 };
 
-export default withStyles(styles, { name: 'MuiStepPosition' })(StepPositionIcon);
+export default withStyles(styles, { name: 'MuiStepPositionIcon' })(StepPositionIcon);

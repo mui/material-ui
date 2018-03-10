@@ -8,13 +8,15 @@ import StepPositionIcon from './StepPositionIcon';
 export const styles = theme => ({
   root: {
     display: 'block',
+    '&$active': {
+      color: theme.palette.primary.main,
+    },
+    '&$completed': {
+      color: theme.palette.primary.main,
+    },
   },
-  active: {
-    color: theme.palette.primary.main,
-  },
-  completed: {
-    color: theme.palette.primary.main,
-  },
+  active: {},
+  completed: {},
 });
 
 function StepIcon(props) {
