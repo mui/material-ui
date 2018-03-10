@@ -8,9 +8,6 @@ export const styles = theme => ({
   root: {
     color: theme.palette.text.disabled,
   },
-  active: {
-    color: theme.palette.primary.main,
-  },
   text: {
     fill: theme.palette.primary.contrastText,
     fontSize: theme.typography.caption.fontSize,
@@ -22,17 +19,10 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function StepPositionIcon(props) {
-  const { position, classes, className: classNameProp, active } = props;
-  const className = classNames(
-    classes.root,
-    {
-      [classes.active]: active,
-    },
-    classNameProp,
-  );
+  const { position, classes, className } = props;
 
   return (
-    <SvgIcon className={className}>
+    <SvgIcon className={classNames(classes.root, className)}>
       <circle cx="12" cy="12" r="12" />
       <text className={classes.text} x="12" y="16" textAnchor="middle">
         {position}
@@ -42,10 +32,6 @@ function StepPositionIcon(props) {
 }
 
 StepPositionIcon.propTypes = {
-  /**
-   * Whether this step is active.
-   */
-  active: PropTypes.bool,
   /**
    * Classses for component style customizations.
    */
@@ -60,4 +46,4 @@ StepPositionIcon.propTypes = {
   position: PropTypes.node,
 };
 
-export default withStyles(styles, { name: 'MuiStepPosition' })(StepPositionIcon);
+export default withStyles(styles, { name: 'MuiStepPositionIcon' })(StepPositionIcon);

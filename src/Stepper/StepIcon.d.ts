@@ -8,7 +8,7 @@ export interface StepIconProps
   icon: React.ReactNode;
 }
 
-export type StepIconClasskey = 'root' | 'completed';
+export type StepIconClasskey = 'root' | 'active' | 'completed';
 
 declare const StepIcon: React.ComponentType<StepIconProps>;
 

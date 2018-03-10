@@ -22,11 +22,6 @@ describe('<StepPositionIcon />', () => {
     assert.strictEqual(wrapper.find(SvgIcon).length, 1);
   });
 
-  it('sets active className when active = true', () => {
-    const wrapper = shallow(<StepPositionIcon position={1} active />);
-    assert.include(wrapper.find(SvgIcon).props().className, 'active');
-  });
-
   it('contains text "3" when position is "3"', () => {
     const wrapper = shallow(<StepPositionIcon position={3} />);
     assert.strictEqual(wrapper.find('text').text(), '3');
