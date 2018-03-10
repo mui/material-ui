@@ -4,97 +4,26 @@
 [![Build Status](https://api.travis-ci.org/dmtrKovalenko/material-ui-pickers.svg?branch=master)](https://travis-ci.org/dmtrKovalenko/material-ui-pickers)
 > Components, that implements material design date and time pickers for material-ui v1
 
-## [Click here for demo](https://material-ui-pic.firebaseapp.com/)
-
-### Recently updated?
-Changelog available [here](https://github.com/dmtrKovalenko/material-ui-pickers/releases)
-
 ### Installation
 Available as npm package.
 ```sh
 npm install material-ui-pickers -S
 ```
+
 Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/) and [date-fns](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns, because it much more lightweight and will be correctly tree-shaked from the bundle.
+
 ```sh
-npm i date-fns@next -S
+npm install date-fns@next -s
 // or
-npm i moment -S
+npm install moment -S
 ```
 
-Teach pickers how to use one of that library using `MuiPickersUtilsProvider`. This component takes an utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.
+## Documentation
+Check out material-ui-picker's [documentation](https://material-ui-pickers.firebaseapp.com/)
 
-```jsx
-import MomentUtils from 'material-ui-pickers/utils/moment-utils';
-import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider'
-
-function App() {
-  return ( 
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Root />
-    </MuiPickersUtilsProvider>
-  );
-}
-
-render(<App />, document.querySelector('#app'));
-```
-
-We are using material-ui-icons icon font to display icons. Just add this to your html 
-```html
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-```
-If you dont want to use icon font, or you are already use `material-ui-icons` you can pass any icon to the components with [corresponding props](https://github.com/dmtrKovalenko/material-ui-pickers#props-documentation)
- 
-### Usage
-Here is a quick example of how to use this package
-
-```jsx
-import { TimePicker, DatePicker, DateTimePicker } from 'material-ui-pickers'
-
-class App extends Component {
-  state = {
-    selectedDate: new Date(),
-    selectedTime: new Date(),
-    selectedDateTime: new Date()
-  }
-
-  handleDateChange = date => {
-    this.setState({ selectedDate: date })
-  }
-
-  handleTimeChange = time => {
-    this.setState({ selectedTime: time })
-  }
-
-  handleDateTimeChange = dateTime => {
-    this.setState({ selectedDateTime: dateTime })
-  }
-
-  render() {
-    const { selectedDate, selectedTime, selectedDateTime } = this.state
-
-    return (
-      <div>
-        <DatePicker
-          value={selectedDate}
-          onChange={this.handleDateChange}
-        />
-
-        <TimePicker
-          value={selectedTime}
-          onChange={this.handleTimeChange}
-        />
-
-        <DateTimePicker
-          value={selectedDateTime}
-          onChange={this.handleDateTimeChange}
-        />
-      </div>
-    )
-  }
-}
-```
-
+### Recently updated?
+Changelog available [here](https://github.com/dmtrKovalenko/material-ui-pickers/releases)
+w
 ### Props documentation
 Here is a list of available props
 

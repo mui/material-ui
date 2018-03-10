@@ -20,4 +20,5 @@ export function setPrismTheme(theme) {
     : darkTheme;
 }
 
-export default prism
+export default prism;
+

@@ -1,13 +1,15 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Collapse from 'material-ui/transitions/Collapse';
 import { Typography, IconButton, Icon, withStyles } from 'material-ui';
-import Code from '../components/Code';
+import Code from './Code';
 
 class SourcablePanel extends PureComponent {
   static propTypes = {
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.object]).isRequired,
     classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.node,
@@ -23,12 +25,9 @@ class SourcablePanel extends PureComponent {
 
   }
 
-  getSource = () => {
-    const webpackRawLoader = require.context('!raw-loader!../Examples', false, /\.jsx$/);
-    const file = webpackRawLoader(`./${this.props.sourceFile}`);
+  getSource = () => require(`!raw-loader!../Examples/${this.props.sourceFile}`)
 
-    return file;
-  }
+  getComponent = () => require(`../Examples/${this.props.sourceFile}`).default
 
   toggleSource = () => {
     this.setState({ sourceExpanded: !this.state.sourceExpanded });
@@ -37,32 +36,31 @@ class SourcablePanel extends PureComponent {
   render() {
     const { sourceExpanded } = this.state;
     const { classes, title, description } = this.props;
+    const Component = this.getComponent();
 
-    return [
-      <Typography
-        key="title"
-        variant="display1"
-        className={classes.exampleTitle}
-      >
-        { title }
-      </Typography>,
+    return (
+      <React.Fragment>
+        <Typography variant="display1" className={classes.exampleTitle}>
+          { title }
+        </Typography>
 
-      description,
+        {description}
 
-      <Collapse key="code" in={sourceExpanded}>
-        <Code className={classes.source} text={this.getSource()} />
-      </Collapse>,
+        <Collapse key="code" in={sourceExpanded}>
+          <Code className={classes.source} text={this.getSource()} />
+        </Collapse>
 
-      <div key="picker" className={classes.pickers}>
-        <IconButton
-          className={classes.sourceBtn}
-          onClick={this.toggleSource}
-        >
-          <Icon>code</Icon>
-        </IconButton>
-        { this.props.children }
-      </div>,
-    ];
+        <div className={classes.pickers}>
+          <IconButton
+            className={classes.sourceBtn}
+            onClick={this.toggleSource}
+          >
+            <Icon>code</Icon>
+          </IconButton>
+          <Component />
+        </div>
+      </React.Fragment>
+    );
   }
 }
 

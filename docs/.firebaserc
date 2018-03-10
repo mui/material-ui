@@ -1,1 +1,5 @@
-{}
+{
+  "projects": {
+    "default": "material-ui-pickers"
+  }
+}
