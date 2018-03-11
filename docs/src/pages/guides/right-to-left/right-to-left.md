@@ -17,7 +17,7 @@ Set `direction: 'rtl'` on your custom theme.
 We are relying on a JSS plugin to flip the styles: [jss-rtl](https://github.com/alitaheri/jss-rtl).
 
 ```sh
-npm install --save jss-rtl
+npm install jss-rtl
 ```
 
 Internally, we are dynamically enabling this plugin when `direction: 'rtl'` is set on the theme.

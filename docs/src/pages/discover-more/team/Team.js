@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardContent, CardMedia } from 'material-ui/Card';
+import { CardMedia } from 'material-ui/Card';
 import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Github from 'docs/src/modules/components/GitHub';
@@ -80,16 +81,10 @@ const members = [
 ];
 
 const styles = theme => ({
-  root: {
-    marginTop: theme.spacing.unit * 3,
-  },
-  card: {
-    display: 'flex',
-    margin: theme.spacing.unit,
-  },
   details: {
     display: 'flex',
     flexDirection: 'column',
+    margin: `${theme.spacing.unit}px 0`,
   },
   cover: {
     width: theme.spacing.unit * 10,
@@ -102,7 +97,6 @@ const styles = theme => ({
   controls: {
     display: 'flex',
     alignItems: 'center',
-    marginLeft: 10,
   },
   icon: {
     margin: theme.spacing.unit,
@@ -115,49 +109,53 @@ const styles = theme => ({
 function Team(props) {
   const { classes } = props;
   return (
-    <Grid container className={classes.root}>
+    <Grid container>
       {members.map(member => (
         <Grid key={member.name} item xs={12} md={6}>
-          <Card className={classes.card}>
-            <CardMedia
-              className={classes.cover}
-              image={`https://github.com/${member.github}.png`}
-              title="Picture"
-            />
-            <div className={classes.details}>
-              <CardContent>
-                <Typography variant="headline">{member.name}</Typography>
-                <Typography variant="subheading" color="textSecondary">
-                  {member.flag}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {member.city}
-                </Typography>
-              </CardContent>
-              <div className={classes.controls}>
-                {member.github && (
-                  <IconButton
-                    aria-label="github"
-                    component="a"
-                    href={`https://github.com/${member.github}`}
-                    className={classes.icon}
-                  >
-                    <Github />
-                  </IconButton>
-                )}
-                {member.twitter && (
-                  <IconButton
-                    aria-label="twitter"
-                    component="a"
-                    href={`https://twitter.com/${member.twitter}`}
-                    className={classes.icon}
-                  >
-                    <Twitter />
-                  </IconButton>
-                )}
-              </div>
-            </div>
-          </Card>
+          <Paper>
+            <Grid container spacing={0}>
+              <Grid item>
+                <CardMedia
+                  className={classes.cover}
+                  image={`https://github.com/${member.github}.png`}
+                  title="Picture"
+                />
+              </Grid>
+              <Grid item>
+                <div className={classes.details}>
+                  <Typography variant="headline">{member.name}</Typography>
+                  <Typography variant="subheading" color="textSecondary">
+                    {member.flag}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    {member.city}
+                  </Typography>
+                  <div className={classes.controls}>
+                    {member.github && (
+                      <IconButton
+                        aria-label="github"
+                        component="a"
+                        href={`https://github.com/${member.github}`}
+                        className={classes.icon}
+                      >
+                        <Github />
+                      </IconButton>
+                    )}
+                    {member.twitter && (
+                      <IconButton
+                        aria-label="twitter"
+                        component="a"
+                        href={`https://twitter.com/${member.twitter}`}
+                        className={classes.icon}
+                      >
+                        <Twitter />
+                      </IconButton>
+                    )}
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+          </Paper>
         </Grid>
       ))}
     </Grid>

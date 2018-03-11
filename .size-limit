@@ -19,6 +19,6 @@
     "name": "The home page of the documentation",
     "path": ".next/bundles/pages/index.js",
     "webpack": false,
-    "limit": "4 KB"
+    "limit": "6 KB"
   }
 ]

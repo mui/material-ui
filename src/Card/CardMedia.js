@@ -6,6 +6,7 @@ import withStyles from '../styles/withStyles';
 
 export const styles = {
   root: {
+    display: 'block',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
