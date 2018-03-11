@@ -101,3 +101,10 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   Planalyze is a real-time daily planning & task tracking tool that keeps teams connected & ahead of each day's workload.
   
   https://www.planalyze.io
+  
+### 18. Material Blog
+  A blog with a UI built entirely using material-ui v1. Check out the [theming page](https://jdupont.github.io/halloween), which leverages `MuiThemeProvider` to allow for live theme changes.
+
+  Demo: https://jdupont.github.io/
+
+  Source: https://github.com/jdupont/jdupont.github.io
