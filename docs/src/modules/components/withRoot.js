@@ -52,7 +52,7 @@ const pages = [
     children: [
       {
         pathname: '/style/css-baseline',
-        title: 'CSS Baseline'
+        title: 'CSS Baseline',
       },
       {
         pathname: '/style/color',
