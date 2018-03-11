@@ -38,6 +38,7 @@ export const styles = theme => ({
     },
   },
   selectMenu: {
+    display: 'flex',
     width: 'auto', // Fix Safari textOverflow
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
