@@ -2,6 +2,79 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.37
+###### *Mar 11, 2018*
+
+Big thanks to the 13 contributors who made this release possible.
+
+Here are some highlights ✨:
+- An important fix of the focus/blur logic of the Select (#10538) @oliviertassinari.
+- A multiple selection downshift example (#10550) @oliviertassinari.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [classes] Move the XXXClassName to the classes property (#10600) @oliviertassinari
+
+These properties were introduced before `classes`.
+Exposing a single pattern makes things more predictable and easier to work with.
+
+```diff
+-<Tabs buttonClassName="foo" indicatorClassName="bar" />
++<Tabs classes={{ scrollButtons: 'foo', indicator: 'bar' }} />
+```
+
+```diff
+-<TextField labelClassName="foo" helperTextClassName="bar" />
++<TextField InputLabelProps={{ className: 'foo' }} FormHelperTextProps={{ className: 'bar' }} />
+```
+
+- [CssBaseline] Rename from Reboot (#10605}
+
+The new wording should clarify the purpose of the component.
+For instance, it's not about adding JavaScript polyfills.
+
+```diff
+-<Reboot />
++<CssBaseline />
+```
+
+#### Component Fixes / Enhancements
+
+- [Select] Fix wrong onBlur onFocus logic (#10538) @oliviertassinari
+- [ExpansionPanel] Fix controlled behavior (#10546) @oliviertassinari
+- [Autocomplete] Add multiple downshift example (#10550) @oliviertassinari
+- [Autocomplete] selectedItem can be null (#10565) @caub
+- [core] Improve IE11 support (#10568) @oliviertassinari
+- [TextField] Better inputComponent demo (#10573) @oliviertassinari
+- [typescript] Add a test case for ListItemIcon (#10593) @oliviertassinari
+- [ListItemText] Make the children an alias of the primary property (#10591) @caub
+- [Button] Fix Button variant prop description (#10578) @teekwak
+- [Table] Fix table pagination example empty row height (#10588) @amcgee
+- [Icon] Fix a bug in Chrome 64.0 (#10594) @caub
+- [List] use theme for margin in ListItemText (#10597) @caub
+- [StepIcon] enable CSS modifications of active step (#10599) @vkentta
+- [Tooltip] Add enterTouchDelay and leaveTouchDelay props (#10577) @petegivens
+
+#### Docs
+
+- [docs] Simplify the CDN example (6e4cc723689961582ede16db421cbdf24ac7c4b9) @oliviertassinari
+- [docs] Add showcase to readme - componofy (#10541) @DalerAsrorov
+- [docs] Add Cryptoverview to the showcase (#10545) @leMaik
+- [docs] Add menu Collapse example (#10548) @oliviertassinari
+- [docs] Add PersonalBlog Gatsby starter to Showcase (#10566) @greglobinski
+- [docs] Add parcel example (#10575) @oliviertassinari
+- [docs] Fix typo in contributing readme (#10586) @chiragmongia
+- [docs] Fix next.js example to enable styled-jsx with material-ui (#10580) @shibukawa
+- [docs] Add the latest backers (#10602) @oliviertassinari
+- [docs] Add Planalyze to Showcase (#10603) @dancastellon
+- [docs] Improve the htmlFontSize documentation (#10604) @oliviertassinari
+
+#### Core
+
+- [core] Fix type definitions (#10553) @stefanorie
+- [core] Better overrides merge support (#10606) @oliviertassinari
+
 ## 1.0.0-beta.36
 ###### *Mar 5, 2018*
 
