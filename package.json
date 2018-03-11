@@ -2,7 +2,7 @@
   "name": "material-ui",
   "private": true,
   "author": "Material-UI Team",
-  "version": "1.0.0-beta.36",
+  "version": "1.0.0-beta.37",
   "description": "React components that implement Google's Material Design.",
   "main": "./src/index.js",
   "keywords": [
