@@ -10,6 +10,7 @@ Big thanks to the 13 contributors who made this release possible.
 Here are some highlights ✨:
 - An important fix of the focus/blur logic of the Select (#10538) @oliviertassinari.
 - A multiple selection downshift example (#10550) @oliviertassinari.
+- A new parcel example (#10575) @oliviertassinari.
 - And many more bug fixes and documentation improvements.
 
 ### Breaking change
