@@ -172,6 +172,9 @@ const pages = [
     ],
   },
   {
+    pathname: '/themes',
+  },
+  {
     pathname: '/lab',
     children: [
       {
