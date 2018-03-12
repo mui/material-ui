@@ -229,9 +229,6 @@ class Input extends React.Component {
     super(props, context);
 
     this.isControlled = props.value != null;
-    if (this.isControlled) {
-      this.checkDirty(props);
-    }
   }
 
   state = {
