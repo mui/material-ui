@@ -22,8 +22,8 @@ function Classes(props) {
   return (
     <Button
       classes={{
-        root: props.classes.root, // className, e.g. `Classes-root-X`
-        label: props.classes.label, // className, e.g. `Classes-label-X`
+        root: props.classes.root, // class name, e.g. `classes-root-x`
+        label: props.classes.label, // class name, e.g. `classes-label-x`
       }}
     >
       {props.children ? props.children : 'classes'}
