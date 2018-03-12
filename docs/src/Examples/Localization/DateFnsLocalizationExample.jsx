@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
-import frLocale from 'date-fns/locale/fr';
-import ruLocale from 'date-fns/locale/ru';
-import enLocale from 'date-fns/locale/en-US';
-
 import DatePicker from 'material-ui-pickers/DatePicker';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 import { Icon, IconButton, Menu, MenuItem } from 'material-ui';
+
+import frLocale from 'date-fns/locale/fr';
+import ruLocale from 'date-fns/locale/ru';
+import enLocale from 'date-fns/locale/en-US';
 
 const localeMap = {
   en: enLocale,
@@ -54,8 +54,8 @@ export default class DateFnsLocalizationExample extends PureComponent {
             InputProps={{
               endAdornment: (
                 <IconButton
-                  aria-label="More"
-                  aria-owns={this.state.anchorEl ? 'long-menu' : null}
+                  aria-label="Select locale"
+                  aria-owns={this.state.anchorEl ? 'locale-menu' : null}
                   onClick={this.handleMenuOpen}
                 >
                   <Icon> more_vert </Icon>
@@ -66,10 +66,10 @@ export default class DateFnsLocalizationExample extends PureComponent {
         </div>
 
         <Menu
-          id="long-menu"
+          id="locale-menu"
           anchorEl={this.state.anchorEl}
           open={Boolean(this.state.anchorEl)}
-          onClose={this.handleClose}
+          onClose={this.handleMenuClose}
         >
           {
             Object.keys(localeMap).map(localeItem => (
