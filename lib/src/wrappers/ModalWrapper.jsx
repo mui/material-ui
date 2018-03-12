@@ -24,6 +24,7 @@ export default class ModalWrapper extends PureComponent {
     onOpen: PropTypes.func,
     /* On close callback */
     onClose: PropTypes.func,
+    /* Format string */
     format: PropTypes.string,
     children: PropTypes.node.isRequired,
     onAccept: PropTypes.func,
