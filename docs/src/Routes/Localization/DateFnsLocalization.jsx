@@ -15,7 +15,7 @@ const DateFnsLocalization = () => (
       sourceFile="Localization/DateFnsLocalizationExample.jsx"
       description={(
         <Typography variant="body1" gutterBottom>
-         Note that pickers would be rerender automatically on locale change
+          Note that pickers would be rerender automatically on locale change
         </Typography>
       )}
     />
