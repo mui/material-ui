@@ -43,7 +43,7 @@ Read more about [Server Rendering](/guides/server-rendering).
 ## Sheets manager
 
 We use a [reference counting](https://en.wikipedia.org/wiki/Reference_counting) algorithm in order to attach and detach the style sheets only once per (styles, theme) couple.
-This technique provides an important performance boost when re-rending instances of a component.
+This technique provides an important performance boost when re-rendering instances of a component.
 
 When only rendering on the client, that's not something you need to be aware of. However, when rendering on the server you do. You can read more about [Server Rendering](/guides/server-rendering).
 
