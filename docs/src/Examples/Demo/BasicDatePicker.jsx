@@ -17,8 +17,6 @@ export default class BasicDatePicker extends PureComponent {
       <Fragment>
         <div className="picker">
           <DatePicker
-            onOpen={() => console.log('open')}
-            onClose={() => console.log('close')}
             label="Basic example"
             value={selectedDate}
             onChange={this.handleDateChange}
