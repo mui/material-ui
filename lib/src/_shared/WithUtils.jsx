@@ -11,7 +11,7 @@ const withUtils = () => (Component) => {
     return <Component ref={pickerRef} utils={context.muiPickersDateUtils} {...other} />;
   };
 
-  WithUtils.displayName = `withUtils(${Component.displayName || Component.name})`;
+  WithUtils.displayName = `WithUtils(${Component.displayName || Component.name})`;
 
   WithUtils.contextTypes = {
     muiPickersDateUtils: PropTypes.func,
