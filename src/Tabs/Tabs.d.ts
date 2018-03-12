@@ -26,7 +26,9 @@ export type TabsClassKey =
   | 'fixed'
   | 'scrollable'
   | 'centered'
-  | 'scrollButtonsAuto';
+  | 'scrollButtons'
+  | 'scrollButtonsAuto'
+  | 'indicator';
 
 export interface TabsActions {
   updateIndicator(): void;
