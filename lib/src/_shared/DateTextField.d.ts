@@ -13,7 +13,7 @@ export interface DateTextFieldProps extends Omit<TextFieldProps, 'onChange' | 'v
     maxDate?: DateType;
     maxDateMessage?: string;
     mask?: any;
-    onChange: (date: MaterialUiPickersDateg) => void;
+    onChange: (date: MaterialUiPickersDate) => void;
     onClear?: () => void;
     keyboard?: boolean;
     format?: string;
@@ -23,6 +23,7 @@ export interface DateTextFieldProps extends Omit<TextFieldProps, 'onChange' | 'v
     keyboardIcon?: ReactNode;
     invalidDateMessage?: string;
     clearable?: boolean;
+    TextFieldComponent?: React.ComponentType<TextFieldProps>;
 }
 
 declare const DateTextField: ComponentClass<DateTextFieldProps>;
