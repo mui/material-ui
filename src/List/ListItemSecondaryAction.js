@@ -8,7 +8,7 @@ export const styles = theme => ({
     position: 'absolute',
     right: 4,
     top: '50%',
-    marginTop: -theme.spacing.unit * 3,
+    transform: `translateY(-50%)`,
   },
 });
 
