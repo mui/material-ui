@@ -2,20 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const withUtils = () => (Component) => {
-  const WithUtils = (props, context) => {
+  const WithUtils = ({ pickerRef, ...other }, context) => {
     if (!context.muiPickersDateUtils) {
       // eslint-disable-next-line no-console
       console.error('Utils should be provided');
     }
 
-    return <Component utils={context.muiPickersDateUtils} {...props} />;
+    return <Component ref={pickerRef} utils={context.muiPickersDateUtils} {...other} />;
   };
+
+  WithUtils.displayName = `withUtils(${Component.displayName || Component.name})`;
 
   WithUtils.contextTypes = {
     muiPickersDateUtils: PropTypes.func,
   };
 
-  WithUtils.displayName = `withUtils${Component.displayName || Component.name}`;
+  WithUtils.propTypes = {
+    pickerRef: PropTypes.func,
+  };
+
+  WithUtils.defaultProps = {
+    pickerRef: undefined,
+  };
 
   return WithUtils;
 };

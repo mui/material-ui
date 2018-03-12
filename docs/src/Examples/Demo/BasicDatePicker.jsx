@@ -1,7 +1,7 @@
 import React, { Fragment, PureComponent } from 'react';
 import { DatePicker } from 'material-ui-pickers';
 
-export default class BasicUsage extends PureComponent {
+export default class BasicDatePicker extends PureComponent {
   state = {
     selectedDate: new Date(),
   }

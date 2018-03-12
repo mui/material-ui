@@ -63,7 +63,7 @@ clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 InputAdornmentProps | object | {} | Props to pass to keyboard input adornment
 inputAdornmentPosition | enum 'start', 'end' | 'end' | Specifies position of keyboard adornment
-
+pickerRef | func | undefined | Ref to the picker component
 
 #### Timepicker
 Prop | Type | Default | Definition
@@ -86,6 +86,7 @@ clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 InputAdornmentProps | object | {} | Props to pass to keyboard input adornment
 inputAdornmentPosition | enum 'start', 'end' | 'end' | Specifies position of keyboard adornment
+pickerRef | func | undefined | Ref to the picker component
 
 #### DateTimepicker
 Prop | Type | Default | Definition
@@ -125,6 +126,7 @@ clearable | boolean | false | If `true`, clear button will be displayed
 TextFieldComponent | func, string | undefined | Component that should replace the default Material-UI TextField
 InputAdornmentProps | object | {} | Props to pass to keyboard input adornment
 inputAdornmentPosition | enum 'start', 'end' | 'end' | Specifies position of keyboard adornment
+pickerRef | func | undefined | Ref to the picker component
 
 
 <!-- Delay support of material-ui-pickers probably to rc-2
