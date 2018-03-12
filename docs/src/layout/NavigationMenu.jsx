@@ -13,6 +13,15 @@ const NavigationMenu = ({ classes }) => (
       <ListItem button> Usage </ListItem>
     </Link>
 
+    <ListSubheader component="div"> Localization </ListSubheader>
+    <Link to="/localization/date-fns" className={classes.navLink}>
+      <ListItem button> Using date-fns </ListItem>
+    </Link>
+
+    <Link to="/localization/moment" className={classes.navLink}>
+      <ListItem button> Using moment </ListItem>
+    </Link>
+
     <ListSubheader component="div"> Components </ListSubheader>
     <Link to="/demo/datepicker" className={classes.navLink}>
       <ListItem button> Date Picker </ListItem>
