@@ -64,6 +64,8 @@ TextFieldComponent | func, string | undefined | Component that should replace th
 InputAdornmentProps | object | {} | Props to pass to keyboard input adornment
 inputAdornmentPosition | enum 'start', 'end' | 'end' | Specifies position of keyboard adornment
 pickerRef | func | undefined | Ref to the picker component
+onOpen | func | undefined | On open callback
+onClose | func | undefined | On close callback
 
 #### Timepicker
 Prop | Type | Default | Definition
@@ -87,6 +89,8 @@ TextFieldComponent | func, string | undefined | Component that should replace th
 InputAdornmentProps | object | {} | Props to pass to keyboard input adornment
 inputAdornmentPosition | enum 'start', 'end' | 'end' | Specifies position of keyboard adornment
 pickerRef | func | undefined | Ref to the picker component
+onOpen | func | undefined | On open callback
+onClose | func | undefined | On close callback
 
 #### DateTimepicker
 Prop | Type | Default | Definition
@@ -127,6 +131,8 @@ TextFieldComponent | func, string | undefined | Component that should replace th
 InputAdornmentProps | object | {} | Props to pass to keyboard input adornment
 inputAdornmentPosition | enum 'start', 'end' | 'end' | Specifies position of keyboard adornment
 pickerRef | func | undefined | Ref to the picker component
+onOpen | func | undefined | On open callback
+onClose | func | undefined | On close callback
 
 
 <!-- Delay support of material-ui-pickers probably to rc-2

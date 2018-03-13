@@ -5,6 +5,8 @@ export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
     onAccept?: () => void;
     onDismiss?: () => void;
     onClear?: () => void;
+    onOpen?: () => void;
+    onClose?: () => void;
     dialogContentClassName?: string;
     okLabel?: ReactNode;
     cancelLabel?: ReactNode;
