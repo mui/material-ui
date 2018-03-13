@@ -50,14 +50,14 @@ function renderInput(inputProps) {
 
   return (
     <TextField
-      {...other}
       inputRef={ref}
       InputProps={{
         classes: {
-          input: classes.input,
+          root: classes.inputRoot,
         },
         ...InputProps,
       }}
+      {...other}
     />
   );
 }
@@ -218,7 +218,10 @@ const styles = theme => ({
     right: 0,
   },
   chip: {
-    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 4}px`,
+    margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
+  },
+  inputRoot: {
+    flexWrap: 'wrap',
   },
 });
 

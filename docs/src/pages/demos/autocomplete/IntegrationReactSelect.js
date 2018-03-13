@@ -129,7 +129,7 @@ const styles = theme => ({
   },
   // We had to use a lot of global selectors in order to style react-select.
   // We are waiting on https://github.com/JedWatson/react-select/issues/1679
-  // to provide a better implementation.
+  // to provide a much better implementation.
   // Also, we had to reset the default style injected by the library.
   '@global': {
     '.Select-control': {
