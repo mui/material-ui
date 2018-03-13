@@ -25,7 +25,7 @@ export interface TablePaginationProps
   page: number;
   rowsPerPage: number;
   rowsPerPageOptions?: number[];
-  selectProps?: Partial<SelectProps>;
+  SelectProps?: Partial<SelectProps>;
 }
 
 export type TablePaginationBaseProps = TableCellProps;
