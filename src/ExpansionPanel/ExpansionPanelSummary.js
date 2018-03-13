@@ -88,10 +88,10 @@ class ExpansionPanelSummary extends React.Component {
       classes,
       className,
       disabled,
+      disableRippleIconButton,
       expanded,
       expandIcon,
       onChange,
-      disableRippleIconButton,
       ...other
     } = this.props;
     const { focused } = this.state;
@@ -158,7 +158,6 @@ ExpansionPanelSummary.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * @ignore
    * Control the ripple effect in the Icon Button.
    */
   disableRippleIconButton: PropTypes.bool,

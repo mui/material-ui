@@ -14,8 +14,8 @@ filename: /src/ExpansionPanel/ExpansionPanelSummary.js
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the expansion panel summary. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">disableRippleIconButton</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Control the ripple effect in the Icon Button. |
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node |  | The icon to display as the expand indicator. |
-| <span class="prop-name">disableRippleIconButton</span> | <span class="prop-type">boolean |  | Control the ripple effect in the Icon Button. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
