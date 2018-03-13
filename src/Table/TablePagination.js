@@ -80,6 +80,7 @@ class TablePagination extends React.Component {
       page,
       rowsPerPage,
       rowsPerPageOptions,
+      SelectProps,
       ...other
     } = this.props;
 
@@ -108,6 +109,7 @@ class TablePagination extends React.Component {
               input={<Input className={classes.input} disableUnderline />}
               value={rowsPerPage}
               onChange={onChangeRowsPerPage}
+              {...SelectProps}
             >
               {rowsPerPageOptions.map(rowsPerPageOption => (
                 <MenuItem key={rowsPerPageOption} value={rowsPerPageOption}>
@@ -175,7 +177,7 @@ TablePagination.propTypes = {
    */
   labelRowsPerPage: PropTypes.node,
   /**
-   * Properties applied to the next arrow `IconButton` component.
+   * Properties applied to the next arrow `IconButton` element.
    */
   nextIconButtonProps: PropTypes.object,
   /**
@@ -204,6 +206,10 @@ TablePagination.propTypes = {
    * available, no select field will be displayed.
    */
   rowsPerPageOptions: PropTypes.array,
+  /**
+   * Properties applied to the rows per page `Select` element.
+   */
+  SelectProps: PropTypes.object,
 };
 
 TablePagination.defaultProps = {

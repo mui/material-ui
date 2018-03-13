@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { TableCellProps, TableCellClassKey } from './TableCell.d';
 import { IconButtonProps } from '../IconButton/IconButton';
+import { SelectProps } from '../Select/Select';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -24,6 +25,7 @@ export interface TablePaginationProps
   page: number;
   rowsPerPage: number;
   rowsPerPageOptions?: number[];
+  SelectProps?: Partial<SelectProps>;
 }
 
 export type TablePaginationBaseProps = TableCellProps;
