@@ -40,7 +40,7 @@ const DecoratedSFC = decorate<Props>(({ text, type, color, classes }) => (
 Class components are a little more cumbersome. Due to a [current limitation in TypeScript's decorator support](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles` can't be used as a class decorator. Instead, we decorate a class component like so:
 
 ```jsx
-import { WithStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 const DecoratedClass = decorate(
   class extends React.Component<Props & WithStyles<'root'>> {
@@ -61,10 +61,10 @@ Note that in the class example you didn't need to annotate `<Props>` in the call
 Scenario 1: your styled component takes _no_ additional props in addition to `classes`. The natural thing would be to write:
 
 ```jsx
-import { WithStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 const DecoratedNoProps = decorate(
-  class extends React.Component<WithStyles<'root'>> {
+  class extends React.Component<withStyles<'root'>> {
     render() {
       return (
         <Typography classes={this.props.classes}>
@@ -79,10 +79,10 @@ const DecoratedNoProps = decorate(
 Unfortunately, TypeScript infers the wrong type in this case and you'll have trouble when you go to make an element of this component. In this case, you'll need to provide an explicit `{}` type argument, like so:
 
 ```jsx
-import { WithStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 const DecoratedNoProps = decorate<{}>( // <-- note the type argument!
-  class extends React.Component<WithStyles<'root'>> {
+  class extends React.Component<withStyles<'root'>> {
     render() {
       return (
         <Typography classes={this.props.classes}>
@@ -97,7 +97,7 @@ const DecoratedNoProps = decorate<{}>( // <-- note the type argument!
 Scenario 2: `Props` is a union type. Again, to avoid getting a compiler error, you'll need to provide an explict type argument:
 
 ```jsx
-import { WithStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 interface Book {
   category: "book";
@@ -112,7 +112,7 @@ interface Painting {
 type Props = Book | Painting;
 
 const DecoratedUnionProps = decorate<Props>( // <-- without the type argument, we'd get a compiler error!
-  class extends React.Component<Props & WithStyles<'root'>> {
+  class extends React.Component<Props & withStyles<'root'>> {
     render() {
       const props = this.props;
       return (
@@ -132,7 +132,7 @@ To avoid worrying about these 2 edge cases, it may be a good habit to always pro
 Injecting multiple classes into a component is as straightforward as possible. Take the following code for example. The classes `one` and `two` are both available with type information on the `classes`-prop passed in by `withStyles`.
 
 ```jsx
-import { Theme, withStyles, WithStyles } from "material-ui/styles";
+import { Theme, withStyles, withStyles } from "material-ui/styles";
 import * as React from "react";
 
 const style = (theme: Theme) => ({
@@ -148,7 +148,7 @@ type Props = {
    someProp: string;
 };
 
-type PropsWithStyles = Props & WithStyles<"one" | "two">;
+type PropsWithStyles = Props & withStyles<"one" | "two">;
 
 const Component: React.SFC<PropsWithStyles> = ({
   classes,
