@@ -13,6 +13,7 @@ export default function SimplePaper() {
     <div>
       <Paper style={style} />
       <Paper style={style} square />
+      <Paper style={style} elevation={6} />
     </div>
   );
 }
