@@ -29,8 +29,8 @@ function clamp(value, min = 0, max = 1) {
 /**
  * Converts a color from CSS hex format to CSS rgb format.
  *
- *  @param {string} color - Hex color, i.e. #nnn or #nnnnnn
- *  @returns {string} A CSS rgb color string
+ * @param {string} color - Hex color, i.e. #nnn or #nnnnnn
+ * @returns {string} A CSS rgb color string
  */
 export function convertHexToRGB(color: string) {
   color = color.substr(1);
@@ -63,6 +63,17 @@ export function decomposeColor(color: string) {
   let values = color.substring(marker + 1, color.length - 1).split(',');
   values = values.map(value => parseFloat(value));
 
+  if (process.env.NODE_ENV !== 'production') {
+    if (['rgb', 'rgba', 'hsl', 'hsla'].indexOf(type) === -1) {
+      throw new Error(
+        [
+          `Material-UI: unsupported \`${color}\` color.`,
+          'We support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla().',
+        ].join('\n'),
+      );
+    }
+  }
+
   return { type, values };
 }
 
@@ -78,12 +89,12 @@ export function recomposeColor(color: Object) {
   const { type } = color;
   let { values } = color;
 
-  if (type.indexOf('rgb') > -1) {
+  if (type.indexOf('rgb') !== -1) {
     // Only convert the first 3 values to int (i.e. not alpha)
     values = values.map((n, i) => (i < 3 ? parseInt(n, 10) : n));
   }
 
-  if (type.indexOf('hsl') > -1) {
+  if (type.indexOf('hsl') !== -1) {
     values[1] = `${values[1]}%`;
     values[2] = `${values[2]}%`;
   }
@@ -118,18 +129,17 @@ export function getContrastRatio(foreground: string, background: string) {
 export function getLuminance(color: string) {
   const decomposedColor = decomposeColor(color);
 
-  if (decomposedColor.type.indexOf('rgb') > -1) {
+  if (decomposedColor.type.indexOf('rgb') !== -1) {
     const rgb = decomposedColor.values.map(val => {
       val /= 255; // normalized
       return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
     });
     // Truncate at 3 digits
     return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3));
-  } else if (decomposedColor.type.indexOf('hsl') > -1) {
-    return decomposedColor.values[2] / 100;
   }
 
-  throw new Error(`Material-UI: unsupported \`${color}\` color.`);
+  // else if (decomposedColor.type.indexOf('hsl') !== -1)
+  return decomposedColor.values[2] / 100;
 }
 
 /**
@@ -183,9 +193,9 @@ export function darken(color: string, coefficient: number) {
   color = decomposeColor(color);
   coefficient = clamp(coefficient);
 
-  if (color.type.indexOf('hsl') > -1) {
+  if (color.type.indexOf('hsl') !== -1) {
     color.values[2] *= 1 - coefficient;
-  } else if (color.type.indexOf('rgb') > -1) {
+  } else if (color.type.indexOf('rgb') !== -1) {
     for (let i = 0; i < 3; i += 1) {
       color.values[i] *= 1 - coefficient;
     }
@@ -208,9 +218,9 @@ export function lighten(color: string, coefficient: number) {
   color = decomposeColor(color);
   coefficient = clamp(coefficient);
 
-  if (color.type.indexOf('hsl') > -1) {
+  if (color.type.indexOf('hsl') !== -1) {
     color.values[2] += (100 - color.values[2]) * coefficient;
-  } else if (color.type.indexOf('rgb') > -1) {
+  } else if (color.type.indexOf('rgb') !== -1) {
     for (let i = 0; i < 3; i += 1) {
       color.values[i] += (255 - color.values[i]) * coefficient;
     }
