@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Input from 'material-ui/Input';
+import TextField from 'material-ui/TextField';
 import { MenuItem } from 'material-ui/Menu';
 import ArrowDropDownIcon from 'material-ui-icons/ArrowDropDown';
 import CancelIcon from 'material-ui-icons/Cancel';
@@ -231,37 +232,31 @@ class IntegrationReactSelect extends React.Component {
   state = {
     single: null,
     multi: null,
+    multiLabel: null,
   };
 
-  handleChangeSingle = single => {
+  handleChange = name => value => {
     this.setState({
-      single,
-    });
-  };
-
-  handleChangeMulti = multi => {
-    this.setState({
-      multi,
+      [name]: value,
     });
   };
 
   render() {
     const { classes } = this.props;
-    const { single, multi } = this.state;
 
     return (
       <div className={classes.root}>
         <Input
           fullWidth
           inputComponent={SelectWrapped}
+          value={this.state.single}
+          onChange={this.handleChange('single')}
+          placeholder="Search a country (start with a)"
+          id="react-select-single"
           inputProps={{
             classes,
-            value: single,
-            onChange: this.handleChangeSingle,
-            placeholder: 'Search a country (start with a)',
-            instanceId: 'react-select-single',
-            id: 'react-select-single',
             name: 'react-select-single',
+            instanceId: 'react-select-single',
             simpleValue: true,
             options: suggestions,
           }}
@@ -269,17 +264,39 @@ class IntegrationReactSelect extends React.Component {
         <Input
           fullWidth
           inputComponent={SelectWrapped}
+          value={this.state.multi}
+          onChange={this.handleChange('multi')}
+          placeholder="Select multiple countries"
+          name="react-select-chip"
           inputProps={{
             classes,
-            value: multi,
             multi: true,
-            onChange: this.handleChangeMulti,
-            placeholder: 'Select multiple countries',
             instanceId: 'react-select-chip',
             id: 'react-select-chip',
-            name: 'react-select-chip',
             simpleValue: true,
             options: suggestions,
+          }}
+        />
+        <TextField
+          fullWidth
+          value={this.state.multiLabel}
+          onChange={this.handleChange('multiLabel')}
+          placeholder="Select multiple countries"
+          name="react-select-chip-label"
+          label="With label"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          InputProps={{
+            inputComponent: SelectWrapped,
+            inputProps: {
+              classes,
+              multi: true,
+              instanceId: 'react-select-chip-label',
+              id: 'react-select-chip-label',
+              simpleValue: true,
+              options: suggestions,
+            },
           }}
         />
       </div>

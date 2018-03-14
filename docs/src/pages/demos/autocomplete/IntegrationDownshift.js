@@ -50,8 +50,8 @@ function renderInput(inputProps) {
 
   return (
     <TextField
-      inputRef={ref}
       InputProps={{
+        inputRef: ref,
         classes: {
           root: classes.inputRoot,
         },
