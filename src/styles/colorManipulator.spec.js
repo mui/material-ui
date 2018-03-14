@@ -123,14 +123,17 @@ describe('utils/colorManipulator', () => {
 
   describe('getLuminance', () => {
     it('returns a valid luminance for rgb white', () => {
+      assert.strictEqual(getLuminance('rgba(0, 0, 0)'), 0);
       assert.strictEqual(getLuminance('rgb(0, 0, 0)'), 0);
     });
 
     it('returns a valid luminance for rgb white', () => {
+      assert.strictEqual(getLuminance('rgba(255, 255, 255)'), 1);
       assert.strictEqual(getLuminance('rgb(255, 255, 255)'), 1);
     });
 
     it('returns a valid luminance for rgb mid-grey', () => {
+      assert.strictEqual(getLuminance('rgba(127, 127, 127)'), 0.212);
       assert.strictEqual(getLuminance('rgb(127, 127, 127)'), 0.212);
     });
 
@@ -182,6 +185,12 @@ describe('utils/colorManipulator', () => {
 
     it('updates an hsla color with the alpha value provided', () => {
       assert.strictEqual(fade('hsla(0, 100%, 50%, 0.2)', 0.5), 'hsla(0, 100%, 50%, 0.5)');
+    });
+
+    it('throw on invalid colors', () => {
+      assert.throw(() => {
+        fade('white', 0.4);
+      }, 'unsupported `white` color');
     });
   });
 
