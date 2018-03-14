@@ -23,7 +23,7 @@ const {
   DialogContentText,
   DialogTitle,
   MuiThemeProvider,
-  Reboot,
+  CssBaseline,
   Typography,
   withStyles,
 } = window['material-ui'];
@@ -74,7 +74,7 @@ class Index extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>
-          <Reboot />
+          <CssBaseline />
           <Dialog open={open} onClose={this.handleClose}>
             <DialogTitle>Super Secret Password</DialogTitle>
             <DialogContent>
