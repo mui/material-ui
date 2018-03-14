@@ -26,7 +26,7 @@ const themes = [
   },
 ];
 
-function Themes(props) {
+function PremiumThemes(props) {
   const { classes } = props;
   return (
     <div>
@@ -66,8 +66,8 @@ function Themes(props) {
   );
 }
 
-Themes.propTypes = {
+PremiumThemes.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Themes);
+export default withStyles(styles)(PremiumThemes);

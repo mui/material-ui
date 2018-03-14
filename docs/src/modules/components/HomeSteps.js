@@ -141,13 +141,13 @@ const App = () => (
           {`Take Material-UI to the next level with premium themes from
             our official marketplace—all built on Material-UI.`}
         </Typography>
-        <Link prefetch href="/themes">
+        <Link prefetch href="/premium-themes">
           <img className={classes.img} alt="themes" src="/static/images/themes.png" />
         </Link>
         <Divider className={classes.divider} />
         <Button
           component={buttonProps => (
-            <Link variant="button" prefetch href="/themes" {...buttonProps} />
+            <Link variant="button" prefetch href="/premium-themes" {...buttonProps} />
           )}
         >
           Browse themes
