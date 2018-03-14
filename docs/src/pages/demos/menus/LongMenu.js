@@ -50,7 +50,7 @@ class LongMenu extends React.Component {
         </IconButton>
         <Menu
           id="long-menu"
-          anchorEl={this.state.anchorEl}
+          anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
           PaperProps={{
