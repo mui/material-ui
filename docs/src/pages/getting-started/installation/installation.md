@@ -6,8 +6,8 @@ Material-UI is available as an [npm package](https://www.npmjs.org/package/mater
 
 To install and save in your `package.json` dependencies, run:
 
-```
-npm install --save material-ui@next
+```sh
+npm install material-ui@next
 ```
 
 ## Roboto Font
@@ -35,6 +35,6 @@ For instance, via Google Web Fonts:
 In order to use prebuilt SVG Material icons, such as those found in the [component demos](/demos/app-bar/)
 you must first install the [material-ui-icons](https://www.npmjs.org/package/material-ui-icons) package:
 
-```
-npm install --save material-ui-icons
+```sh
+npm install material-ui-icons
 ```

@@ -5,7 +5,7 @@ import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
-const styles = theme => ({
+const styles = {
   card: {
     minWidth: 275,
   },
@@ -17,13 +17,11 @@ const styles = theme => ({
   title: {
     marginBottom: 16,
     fontSize: 14,
-    color: theme.palette.text.secondary,
   },
   pos: {
     marginBottom: 12,
-    color: theme.palette.text.secondary,
   },
-});
+};
 
 function SimpleCard(props) {
   const { classes } = props;
@@ -33,11 +31,15 @@ function SimpleCard(props) {
     <div>
       <Card className={classes.card}>
         <CardContent>
-          <Typography className={classes.title}>Word of the Day</Typography>
+          <Typography className={classes.title} color="textSecondary">
+            Word of the Day
+          </Typography>
           <Typography variant="headline" component="h2">
             be{bull}nev{bull}o{bull}lent
           </Typography>
-          <Typography className={classes.pos}>adjective</Typography>
+          <Typography className={classes.pos} color="textSecondary">
+            adjective
+          </Typography>
           <Typography component="p">
             well meaning and kindly.<br />
             {'"a benevolent smile"'}

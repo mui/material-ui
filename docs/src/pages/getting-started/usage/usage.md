@@ -14,7 +14,7 @@ Here is a quick example to get you started, **it's all you need**:
 
 ```jsx
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import Button from 'material-ui/Button';
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
   );
 }
 
-render(<App />, document.querySelector('#app'));
+ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 Yes, it's really all you need to get started as you can see in this live and interactive demo:

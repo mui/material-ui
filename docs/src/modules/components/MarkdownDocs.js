@@ -11,7 +11,7 @@ import Demo from 'docs/src/modules/components/Demo';
 import Carbon from 'docs/src/modules/components/Carbon';
 import { getHeaders, getContents, getTitle } from 'docs/src/modules/utils/parseMarkdown';
 
-const styles = {
+const styles = theme => ({
   root: {
     marginBottom: 100,
   },
@@ -20,7 +20,12 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'flex-end',
   },
-};
+  markdownElement: {
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2,
+    padding: `0 ${theme.spacing.unit}px`,
+  },
+});
 
 const demoRegexp = /^"demo": "(.*)"/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/v1-beta';
@@ -77,10 +82,11 @@ function MarkdownDocs(props, context) {
           );
         }
 
-        return <MarkdownElement key={content} text={content} />;
+        return <MarkdownElement className={classes.markdownElement} key={content} text={content} />;
       })}
       {headers.components.length > 0 ? (
         <MarkdownElement
+          className={classes.markdownElement}
           text={`
 ## API
 
