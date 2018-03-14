@@ -1,20 +1,23 @@
 export default {
-	isDescendant(parent, child) {
-		let node = child.parentNode;
 
-		while (node !== null) {
-			if (node === parent) return true;
-			node = node.parentNode;
-		}
+  isDescendant(parent, child) {
+    let node = child.parentNode;
 
-		return false;
-	},
+    while (node !== null) {
+      if (node === parent) return true;
+      node = node.parentNode;
+    }
 
-	offset(el) {
-		const rect = el.getBoundingClientRect();
-		return {
-			top: rect.top + window.scrollY,
-			left: rect.left + window.scrollX
-		};
-	}
+    return false;
+  },
+
+  offset(el) {
+    const rect = el.getBoundingClientRect();
+    return {
+      top: rect.top + document.body.scrollTop,
+      left: rect.left + document.body.scrollLeft,
+    };
+  },
+
 };
+
