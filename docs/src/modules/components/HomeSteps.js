@@ -7,6 +7,7 @@ import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 import BuildIcon from 'material-ui-icons/Build'; // eslint-disable-line import/no-unresolved
+import WhatshotIcon from 'material-ui-icons/Whatshot';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 
@@ -15,7 +16,7 @@ const styles = theme => ({
     border: `1px solid ${theme.palette.common.white}`,
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
     [theme.breakpoints.up('sm')]: {
-      padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 3}px`,
+      padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 4}px`,
     },
   },
   stepIcon: {
@@ -24,7 +25,7 @@ const styles = theme => ({
     fontSize: 30,
   },
   markdownElement: {
-    maxWidth: 'calc(100vw - 32px)',
+    maxWidth: `calc(100vw - ${theme.spacing.unit * 6 + 1 * 2}px)`,
     '& pre, & pre[class*="language-"], & code': {
       backgroundColor: 'transparent',
     },
@@ -38,7 +39,7 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2,
   },
   img: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit,
     maxWidth: '100%',
     height: 'auto',
   },
@@ -49,12 +50,17 @@ function HomeSteps(props) {
 
   return (
     <Grid container spacing={0}>
-      <Grid item xs={12} sm={6} className={classes.step}>
+      <Grid item xs={12} md={4} className={classes.step}>
         <FileDownloadIcon className={classes.stepIcon} />
         <Typography variant="title" gutterBottom>
           Installation
         </Typography>
-        <Typography gutterBottom>{"Install Material-UI's source files via npm."}</Typography>
+        <Typography variant="subheading" gutterBottom>
+          {`
+          Install Material-UI's source files via npm.
+          We take care of injecting the CSS needed.
+          `}
+        </Typography>
         <MarkdownElement
           className={classes.markdownElement}
           text={`
@@ -63,15 +69,25 @@ $ npm install material-ui@next
 \`\`\`
               `}
         />
-        <Typography gutterBottom>{'Load the Roboto font.'}</Typography>
+        <Typography variant="subheading" gutterBottom>
+          {'or use a CDN.'}
+        </Typography>
         <MarkdownElement
           className={classes.markdownElement}
           text={`
 \`\`\`html
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
->
+<script src="https://unpkg.com/material-ui@next/umd/material-ui.production.min.js" crossorigin="anonymous"></script>
+\`\`\`
+              `}
+        />
+        <Typography variant="subheading" gutterBottom>
+          {'Load the default Roboto font.'}
+        </Typography>
+        <MarkdownElement
+          className={classes.markdownElement}
+          text={`
+\`\`\`html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 \`\`\`
               `}
         />
@@ -84,12 +100,12 @@ $ npm install material-ui@next
           Read installation docs
         </Button>
       </Grid>
-      <Grid item xs={12} sm={6} className={classes.step}>
+      <Grid item xs={12} md={4} className={classes.step}>
         <BuildIcon className={classes.stepIcon} />
         <Typography variant="title" gutterBottom>
           Usage
         </Typography>
-        <Typography gutterBottom>
+        <Typography variant="subheading" gutterBottom>
           {'Material-UI components work in isolation. They are self-supporting.'}
         </Typography>
         <MarkdownElement
@@ -114,6 +130,27 @@ const App = () => (
           )}
         >
           Explore the docs
+        </Button>
+      </Grid>
+      <Grid item xs={12} md={4} className={classes.step}>
+        <WhatshotIcon className={classes.stepIcon} />
+        <Typography variant="title" gutterBottom>
+          Premium Themes
+        </Typography>
+        <Typography variant="subheading" gutterBottom>
+          {`Take Material-UI to the next level with premium themes from
+            our official marketplace—all built on Material-UI.`}
+        </Typography>
+        <Link prefetch href="/themes">
+          <img className={classes.img} alt="themes" src="/static/images/themes.png" />
+        </Link>
+        <Divider className={classes.divider} />
+        <Button
+          component={buttonProps => (
+            <Link variant="button" prefetch href="/themes" {...buttonProps} />
+          )}
+        >
+          Browse themes
         </Button>
       </Grid>
     </Grid>
