@@ -4,11 +4,9 @@ import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase/ButtonBase';
 
 export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 'onChange'> {
   action?: (actions: TabsActions) => void;
-  buttonClassName?: string;
   centered?: boolean;
   children?: React.ReactNode;
   fullWidth?: boolean;
-  indicatorClassName?: string;
   indicatorColor?: 'secondary' | 'primary' | string;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   scrollable?: boolean;

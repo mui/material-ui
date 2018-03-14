@@ -16,14 +16,12 @@ export interface TextFieldProps
   FormHelperTextProps?: Partial<FormHelperTextProps>;
   fullWidth?: boolean;
   helperText?: React.ReactNode;
-  helperTextClassName?: string;
   id?: string;
   InputLabelProps?: Partial<InputLabelProps>;
   InputProps?: Partial<InputProps>;
   inputProps?: InputProps['inputProps'];
   inputRef?: React.Ref<any>;
   label?: React.ReactNode;
-  labelClassName?: string;
   margin?: PropTypes.Margin;
   multiline?: boolean;
   name?: string;

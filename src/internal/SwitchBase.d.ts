@@ -5,11 +5,9 @@ import { IconButtonProps } from '../IconButton';
 export interface SwitchBaseProps
   extends StandardProps<IconButtonProps, SwitchBaseClassKey, 'onChange'> {
   checked?: boolean | string;
-  checkedClassName?: string;
   checkedIcon?: React.ReactNode;
   defaultChecked?: boolean;
   disabled?: boolean;
-  disabledClassName?: string;
   disableRipple?: boolean;
   icon?: React.ReactNode;
   indeterminate?: boolean;

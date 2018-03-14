@@ -12,7 +12,6 @@ export interface ButtonBaseProps
   component?: React.ReactType<ButtonBaseProps>;
   disableRipple?: boolean;
   focusRipple?: boolean;
-  keyboardFocusedClassName?: string;
   onKeyboardFocus?: React.FocusEventHandler<any>;
   TouchRippleProps?: Partial<TouchRippleProps>;
 }
