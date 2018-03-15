@@ -30,7 +30,7 @@ const styles = theme => ({
     fontSize: 30,
   },
   stepBody: {
-    minHeight: 260,
+    minHeight: 270,
   },
   markdownElement: {
     maxWidth: `calc(100vw - ${theme.spacing.unit * 6 + 1 * 2}px)`,
@@ -43,7 +43,7 @@ const styles = theme => ({
     },
   },
   divider: {
-    marginTop: theme.spacing.unit * 6,
+    marginTop: theme.spacing.unit * 4,
     marginBottom: theme.spacing.unit * 2,
   },
   img: {
