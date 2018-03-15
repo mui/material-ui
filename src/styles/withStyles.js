@@ -12,6 +12,7 @@ import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
+import getThemeProps from './getThemeProps';
 
 // Default JSS instance.
 const jss = create(jssPreset());
@@ -265,7 +266,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         classes = renderedClasses;
       }
 
-      const more = {};
+      const more = getThemeProps({ theme: this.theme, name });
 
       // Provide the theme to the wrapped component.
       // So we don't have to use the `withTheme()` Higher-order Component.
@@ -273,7 +274,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         more.theme = this.theme;
       }
 
-      return <Component classes={classes} {...more} {...other} ref={innerRef} />;
+      return <Component {...more} classes={classes} ref={innerRef} {...other} />;
     }
   }
 

@@ -193,7 +193,7 @@ describe('<Button />', () => {
 
   it('should have a ripple by default', () => {
     const wrapper = shallow(<Button>Hello World</Button>);
-    assert.strictEqual(wrapper.props().disableRipple, false);
+    assert.strictEqual(wrapper.props().disableRipple, undefined);
   });
 
   it('should pass disableRipple to ButtonBase', () => {

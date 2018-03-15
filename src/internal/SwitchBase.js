@@ -1,3 +1,5 @@
+// @inheritedComponent IconButton
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -208,7 +210,6 @@ SwitchBase.propTypes = {
 
 SwitchBase.defaultProps = {
   checkedIcon: <CheckBoxIcon />,
-  disableRipple: false,
   icon: <CheckBoxOutlineBlankIcon />,
   type: 'checkbox',
 };

@@ -25,12 +25,14 @@ function createMuiTheme(options: Object = {}) {
   const breakpoints = createBreakpoints(breakpointsInput);
 
   const muiTheme = {
-    direction: 'ltr',
-    palette,
-    typography: createTypography(palette, typographyInput),
-    mixins: createMixins(breakpoints, spacing, mixinsInput),
     breakpoints,
+    direction: 'ltr',
+    mixins: createMixins(breakpoints, spacing, mixinsInput),
+    overrides: {}, // Inject custom styles
+    palette,
+    props: {}, // Inject custom properties
     shadows: shadowsInput || shadows,
+    typography: createTypography(palette, typographyInput),
     ...deepmerge(
       {
         transitions,
