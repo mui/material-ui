@@ -132,7 +132,7 @@ export class DateTextField extends PureComponent {
   updateState = (props = this.props) => ({
     value: props.value,
     displayValue: this.getDisplayDate(props),
-    error: this.getError(props.utils.date(props.value)),
+    error: this.getError(props.utils.date(props.value), props),
   })
 
   state = this.updateState()
