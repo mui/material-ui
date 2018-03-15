@@ -109,6 +109,7 @@ export class DateTextField extends PureComponent {
       if (utils.isNull(value)) {
         return '';
       }
+
       return invalidDateMessage;
     }
 
