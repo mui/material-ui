@@ -60,7 +60,7 @@ class Layout extends Component {
 
             <div className={classes.flex} />
 
-            <Tooltip title="Toggle English/French moment locale" enterDelay={300}>
+            <Tooltip title="Toggle English/French locale for pickers" enterDelay={300}>
               <IconButton color="inherit" onClick={toggleFrench}>
                 <Icon>language</Icon>
               </IconButton>

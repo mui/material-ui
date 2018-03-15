@@ -6,6 +6,7 @@ import Landing from './Landing/Landing';
 import Installation from './GettingStarted/Installation';
 import Usage from './GettingStarted/Usage';
 import DateFnsLocalization from './Localization/DateFnsLocalization';
+import MomentLocalization from './Localization/MomentLocalization';
 
 export default () => (
   <Switch>
@@ -14,7 +15,7 @@ export default () => (
     <Route path="/usage" component={Usage} />
     <Route path="/demo" component={Demos} />
     <Route path="/localization/date-fns" component={DateFnsLocalization} />
-    <Route path="/localization/moment" component={DateFnsLocalization} />
+    <Route path="/localization/moment" component={MomentLocalization} />
   </Switch>
 );
 
