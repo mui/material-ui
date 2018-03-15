@@ -16,7 +16,7 @@ export interface ButtonBaseProps
   TouchRippleProps?: Partial<TouchRippleProps>;
 }
 
-export type ButtonBaseClassKey = 'root' | 'disabled';
+export type ButtonBaseClassKey = 'root' | 'disabled' | 'keyboardFocused';
 
 declare const ButtonBase: React.ComponentType<ButtonBaseProps>;
 

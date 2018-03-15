@@ -36,7 +36,7 @@ export interface TextFieldProps
   value?: Array<string | number> | string | number;
 }
 
-export type TextFieldClassKey = FormControlClassKey;
+export type TextFieldClassKey = FormControlClassKey | 'helperText' | 'label';
 
 declare const TextField: React.ComponentType<TextFieldProps>;
 
