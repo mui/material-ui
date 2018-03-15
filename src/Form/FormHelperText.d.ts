@@ -5,6 +5,7 @@ export interface FormHelperTextProps
   extends StandardProps<React.HTMLAttributes<HTMLParagraphElement>, FormHelperTextClassKey> {
   disabled?: boolean;
   error?: boolean;
+  component?: React.ReactType<FormHelperTextProps>;
   margin?: 'dense';
 }
 
