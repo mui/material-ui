@@ -22,7 +22,7 @@ export class DatePicker extends PureComponent {
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
     shouldDisableDate: PropTypes.func,
   }
 

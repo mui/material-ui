@@ -12,7 +12,7 @@ export default class PickerBase extends PureComponent {
     format: PropTypes.string,
     labelFunc: PropTypes.func,
     ampm: PropTypes.bool,
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
   }
 
   getValidDateOrCurrent = (props = this.props) => {

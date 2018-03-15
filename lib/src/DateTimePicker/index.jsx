@@ -29,7 +29,7 @@ export class DateTimePickerWrapper extends PickerBase {
     timeIcon: PropTypes.node,
     renderDay: PropTypes.func,
     labelFunc: PropTypes.func,
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     animateYearScrolling: PropTypes.bool,

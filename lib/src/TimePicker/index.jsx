@@ -18,7 +18,7 @@ export class TimePickerWrapper extends PickerBase {
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
     invalidLabel: PropTypes.string,
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
   }
 

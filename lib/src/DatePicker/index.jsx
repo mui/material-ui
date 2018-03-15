@@ -40,7 +40,7 @@ export class DatePickerWrapper extends PickerBase {
     /* Custom renderer for day renderDay(date, selectedDate, dayInCurrentMonth) */
     renderDay: PropTypes.func,
     /* Date displaying utils */
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
     /* Disable specific date hook */
     shouldDisableDate: PropTypes.func,
   }

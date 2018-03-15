@@ -13,7 +13,7 @@ npm i -s moment`;
 const Installation = () => (
   <div>
     <Typography variant="display2" gutterBottom> Installation </Typography>
-    <Typography variant="body1" gutterBottom> Available as <a href="https://www.npmjs.com/package/material-ui-pickers"> npm package </a> </Typography>
+    <Typography variant="body1" gutterBottom> Available as <a className="link" href="https://www.npmjs.com/package/material-ui-pickers"> npm package </a> </Typography>
 
     <Code withMargin text="npm i -s material-ui-pickers" />
 

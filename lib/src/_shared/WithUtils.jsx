@@ -14,7 +14,7 @@ const withUtils = () => (Component) => {
   WithUtils.displayName = `WithUtils(${Component.displayName || Component.name})`;
 
   WithUtils.contextTypes = {
-    muiPickersDateUtils: PropTypes.func,
+    muiPickersDateUtils: PropTypes.object,
   };
 
   WithUtils.propTypes = {

@@ -9,7 +9,7 @@ export class HourView extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
   }
 
