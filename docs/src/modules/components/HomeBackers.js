@@ -40,9 +40,24 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 <table>
   <tbody>
     <tr>
-      <td>
-        <a href="https://www.creative-tim.com" rel="noopener" target="_blank">
-          <img width="126" src="https://avatars1.githubusercontent.com/u/20172349" alt="0">
+      <td align="center" valign="middle">
+        <a href="https://www.creative-tim.com?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank">
+          <img
+            width="126"
+            src="https://avatars1.githubusercontent.com/u/20172349?s=378"
+            alt="0"
+            title="Premium Themes"
+          >
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://bitsrc.io" rel="noopener" target="_blank">
+          <img
+            width="80"
+            src="https://avatars1.githubusercontent.com/u/24789812?s=180"
+            alt="1"
+            title="The fastest way to share code"
+          >
         </a>
       </td>
     </tr>
