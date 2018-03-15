@@ -108,3 +108,12 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   Demo: https://jdupont.github.io/
 
   Source: https://github.com/jdupont/jdupont.github.io
+ 
+### 19. Rung - Exceptionality Management 
+  Rung alerts you about the exceptionalities of your personal and professional life. 
+
+  homepage: https://rung.com.br
+  
+  developers: https://developers.rung.com.br
+
+  app: https://app.rung.com.br
