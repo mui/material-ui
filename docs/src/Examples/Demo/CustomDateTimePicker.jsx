@@ -4,7 +4,7 @@ import { IconButton, Icon, InputAdornment } from 'material-ui';
 
 export default class CustomDateTimePicker extends PureComponent {
   state = {
-    selectedDate: new Date(),
+    selectedDate: new Date('2018-01-01 18:54'),
   }
 
   handleDateChange = (date) => {
