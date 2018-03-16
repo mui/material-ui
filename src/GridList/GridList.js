@@ -34,6 +34,9 @@ function GridList(props) {
       {...other}
     >
       {React.Children.map(children, currentChild => {
+        if (!React.isValidElement(currentChild)) {
+          return null;
+        }
         const childCols = currentChild.props.cols || 1;
         const childRows = currentChild.props.rows || 1;
 
