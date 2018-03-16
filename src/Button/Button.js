@@ -265,7 +265,6 @@ Button.defaultProps = {
   color: 'default',
   disabled: false,
   disableFocusRipple: false,
-  disableRipple: false,
   fullWidth: false,
   mini: false,
   size: 'medium',

@@ -55,7 +55,7 @@ describe('<IconButton />', () => {
 
   it('should have a ripple by default', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
-    assert.strictEqual(wrapper.props().disableRipple, false);
+    assert.strictEqual(wrapper.props().disableRipple, undefined);
   });
 
   it('should pass disableRipple to ButtonBase', () => {

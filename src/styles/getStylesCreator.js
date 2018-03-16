@@ -1,6 +1,7 @@
 import warning from 'warning';
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 
+// Support for the jss-expand plugin.
 function arrayMerge(destination, source) {
   return source;
 }
@@ -11,7 +12,7 @@ function getStylesCreator(stylesOrCreator) {
   function create(theme, name) {
     const styles = themingEnabled ? stylesOrCreator(theme) : stylesOrCreator;
 
-    if (!theme.overrides || !name || !theme.overrides[name]) {
+    if (!name || !theme.overrides || !theme.overrides[name]) {
       return styles;
     }
 
