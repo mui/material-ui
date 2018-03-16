@@ -19,10 +19,18 @@ const styles = theme => ({
       padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 4}px`,
     },
   },
+  stepTitle: {
+    display: 'flex',
+    marginBottom: theme.spacing.unit * 3,
+    alignItems: 'center',
+  },
   stepIcon: {
-    marginBottom: theme.spacing.unit,
     color: theme.palette.primary.dark,
+    marginRight: theme.spacing.unit * 2,
     fontSize: 30,
+  },
+  stepBody: {
+    minHeight: 270,
   },
   markdownElement: {
     maxWidth: `calc(100vw - ${theme.spacing.unit * 6 + 1 * 2}px)`,
@@ -35,7 +43,7 @@ const styles = theme => ({
     },
   },
   divider: {
-    marginTop: theme.spacing.unit * 6,
+    marginTop: theme.spacing.unit * 4,
     marginBottom: theme.spacing.unit * 2,
   },
   img: {
@@ -51,46 +59,48 @@ function HomeSteps(props) {
   return (
     <Grid container spacing={0}>
       <Grid item xs={12} md={4} className={classes.step}>
-        <FileDownloadIcon className={classes.stepIcon} />
-        <Typography variant="title" gutterBottom>
-          Installation
-        </Typography>
-        <Typography variant="subheading" gutterBottom>
-          {`
-          Install Material-UI's source files via npm.
-          We take care of injecting the CSS needed.
-          `}
-        </Typography>
-        <MarkdownElement
-          className={classes.markdownElement}
-          text={`
-\`\`\`sh
-$ npm install material-ui@next
-\`\`\`
-              `}
-        />
-        <Typography variant="subheading" gutterBottom>
-          {'or use a CDN.'}
-        </Typography>
-        <MarkdownElement
-          className={classes.markdownElement}
-          text={`
-\`\`\`html
-<script src="https://unpkg.com/material-ui@next/umd/material-ui.production.min.js" crossorigin="anonymous"></script>
-\`\`\`
-              `}
-        />
-        <Typography variant="subheading" gutterBottom>
-          {'Load the default Roboto font.'}
-        </Typography>
-        <MarkdownElement
-          className={classes.markdownElement}
-          text={`
-\`\`\`html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-\`\`\`
-              `}
-        />
+        <div className={classes.stepTitle}>
+          <FileDownloadIcon className={classes.stepIcon} />
+          <Typography variant="title">Installation</Typography>
+        </div>
+        <div className={classes.stepBody}>
+          <Typography variant="subheading" gutterBottom>
+            {`
+            Install Material-UI's source files via npm.
+            We take care of injecting the CSS needed.
+            `}
+          </Typography>
+          <MarkdownElement
+            className={classes.markdownElement}
+            text={`
+  \`\`\`sh
+  $ npm install material-ui@next
+  \`\`\`
+                `}
+          />
+          <Typography variant="subheading" gutterBottom>
+            {'or use a CDN.'}
+          </Typography>
+          <MarkdownElement
+            className={classes.markdownElement}
+            text={`
+  \`\`\`html
+  <script src="https://unpkg.com/material-ui@next/umd/material-ui.production.min.js" crossorigin="anonymous"></script>
+  \`\`\`
+                `}
+          />
+          <Typography variant="subheading" gutterBottom>
+            {'Load the default Roboto font.'}
+          </Typography>
+          <MarkdownElement
+            className={classes.markdownElement}
+            text={`
+  \`\`\`html
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+  \`\`\`
+                `}
+          />
+        </div>
         <Divider className={classes.divider} />
         <Button
           component={buttonProps => (
@@ -101,28 +111,30 @@ $ npm install material-ui@next
         </Button>
       </Grid>
       <Grid item xs={12} md={4} className={classes.step}>
-        <BuildIcon className={classes.stepIcon} />
-        <Typography variant="title" gutterBottom>
-          Usage
-        </Typography>
-        <Typography variant="subheading" gutterBottom>
-          {'Material-UI components work in isolation. They are self-supporting.'}
-        </Typography>
-        <MarkdownElement
-          className={classes.markdownElement}
-          text={`
-\`\`\`jsx
-import React from 'react';
-import Button from 'material-ui/Button';
+        <div className={classes.stepTitle}>
+          <BuildIcon className={classes.stepIcon} />
+          <Typography variant="title">Usage</Typography>
+        </div>
+        <div className={classes.stepBody}>
+          <Typography variant="subheading" gutterBottom>
+            {'Material-UI components work in isolation. They are self-supporting.'}
+          </Typography>
+          <MarkdownElement
+            className={classes.markdownElement}
+            text={`
+  \`\`\`jsx
+  import React from 'react';
+  import Button from 'material-ui/Button';
 
-const App = () => (
-  <Button variant="raised" color="primary">
-    Hello World
-  </Button>
-);
-\`\`\`
-              `}
-        />
+  const App = () => (
+    <Button variant="raised" color="primary">
+      Hello World
+    </Button>
+  );
+  \`\`\`
+                `}
+          />
+        </div>
         <Divider className={classes.divider} />
         <Button
           component={buttonProps => (
@@ -133,17 +145,19 @@ const App = () => (
         </Button>
       </Grid>
       <Grid item xs={12} md={4} className={classes.step}>
-        <WhatshotIcon className={classes.stepIcon} />
-        <Typography variant="title" gutterBottom>
-          Premium Themes
-        </Typography>
-        <Typography variant="subheading" gutterBottom>
-          {`Take Material-UI to the next level with premium themes from
-            our official marketplace—all built on Material-UI.`}
-        </Typography>
-        <Link prefetch href="/premium-themes">
-          <img className={classes.img} alt="themes" src="/static/images/themes.png" />
-        </Link>
+        <div className={classes.stepTitle}>
+          <WhatshotIcon className={classes.stepIcon} />
+          <Typography variant="title">Premium Themes</Typography>
+        </div>
+        <div className={classes.stepBody}>
+          <Typography variant="subheading" gutterBottom>
+            {`Take Material-UI to the next level with premium themes from
+              our official marketplace—all built on Material-UI.`}
+          </Typography>
+          <Link prefetch href="/premium-themes">
+            <img className={classes.img} alt="themes" src="/static/images/themes.png" />
+          </Link>
+        </div>
         <Divider className={classes.divider} />
         <Button
           component={buttonProps => (
