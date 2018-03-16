@@ -12,6 +12,8 @@ As with issues, please begin the title with [ComponentName].
 
 When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup [here](https://github.com/mui-org/material-ui/blob/v1-beta/test/README.md).
 
+When migrating a component to v1-beta, or submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-lab).
+
 ### Branch Structure
 
 All stable releases are tagged ([view tags](https://github.com/mui-org/material-ui/tags)). At any given time, `v1-beta` represents the latest development version of the library.
