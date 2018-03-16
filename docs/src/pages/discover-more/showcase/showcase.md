@@ -117,3 +117,8 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   developers: https://developers.rung.com.br
 
   app: https://app.rung.com.br
+
+### 20. Team SC
+   The site of a cognitive neuroscience research group, with a carefully designed interface and animation.
+   
+   http://sc.bnu.edu.cn
