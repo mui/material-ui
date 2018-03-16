@@ -82,6 +82,7 @@ describe('<GridList />', () => {
             <img src={tile.img} alt="foo" />
           </span>
         ))}
+        {false && <span>this is a null child</span>}
       </GridList>,
     );
 
