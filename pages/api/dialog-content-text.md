@@ -31,3 +31,7 @@ If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiDialogContentText`.
 
+## Inheritance
+
+The properties of the [Typography](/api/typography) component are also available.
+
