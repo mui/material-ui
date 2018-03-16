@@ -9,6 +9,7 @@ function round(value) {
 export default function createTypography(palette: Object, typography: Object | Function) {
   const {
     fontFamily = '"Roboto", "Helvetica", "Arial", sans-serif',
+    // The default font size of the Material Specification.
     fontSize = 14, // px
     fontWeightLight = 300,
     fontWeightRegular = 400,
@@ -20,8 +21,9 @@ export default function createTypography(palette: Object, typography: Object | F
   } =
     typeof typography === 'function' ? typography(palette) : typography;
 
+  const coef = fontSize / 14;
   function pxToRem(value) {
-    return `${value / htmlFontSize}rem`;
+    return `${value / htmlFontSize * coef}rem`;
   }
 
   return deepmerge(
@@ -109,7 +111,7 @@ export default function createTypography(palette: Object, typography: Object | F
         color: palette.text.secondary,
       },
       button: {
-        fontSize: pxToRem(fontSize),
+        fontSize: pxToRem(14),
         textTransform: 'uppercase',
         fontWeight: fontWeightMedium,
         fontFamily,

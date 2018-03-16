@@ -12,7 +12,7 @@ export const styles = theme => ({
     color: theme.palette.text.secondary,
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightMedium,
-    fontSize: theme.typography.pxToRem(theme.typography.fontSize),
+    fontSize: theme.typography.pxToRem(14),
   }),
   colorPrimary: {
     color: theme.palette.primary.main,
