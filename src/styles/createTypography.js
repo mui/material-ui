@@ -39,7 +39,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontFamily,
         letterSpacing: '-.04em',
         lineHeight: `${round(128 / 112)}em`,
-        marginLeft: '-.06em',
+        marginLeft: '-.04em',
         color: palette.text.secondary,
       },
       display3: {
@@ -48,7 +48,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontFamily,
         letterSpacing: '-.02em',
         lineHeight: `${round(73 / 56)}em`,
-        marginLeft: '-.04em',
+        marginLeft: '-.02em',
         color: palette.text.secondary,
       },
       display2: {
@@ -56,7 +56,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontWeight: fontWeightRegular,
         fontFamily,
         lineHeight: `${round(48 / 45)}em`,
-        marginLeft: '-.04em',
+        marginLeft: '-.02em',
         color: palette.text.secondary,
       },
       display1: {
@@ -64,7 +64,6 @@ export default function createTypography(palette: Object, typography: Object | F
         fontWeight: fontWeightRegular,
         fontFamily,
         lineHeight: `${round(41 / 34)}em`,
-        marginLeft: '-.04em',
         color: palette.text.secondary,
       },
       headline: {
