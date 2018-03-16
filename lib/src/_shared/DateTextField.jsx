@@ -41,7 +41,7 @@ export class DateTextField extends PureComponent {
     invalidDateMessage: PropTypes.string,
     clearable: PropTypes.bool,
     TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
     InputAdornmentProps: PropTypes.object,
     adornmentPosition: PropTypes.oneOf(['start', 'end']),
   }
@@ -109,6 +109,7 @@ export class DateTextField extends PureComponent {
       if (utils.isNull(value)) {
         return '';
       }
+
       return invalidDateMessage;
     }
 
@@ -132,7 +133,7 @@ export class DateTextField extends PureComponent {
   updateState = (props = this.props) => ({
     value: props.value,
     displayValue: this.getDisplayDate(props),
-    error: this.getError(props.utils.date(props.value)),
+    error: this.getError(props.utils.date(props.value), props),
   })
 
   state = this.updateState()
@@ -143,7 +144,8 @@ export class DateTextField extends PureComponent {
       nextProps.format !== this.props.format ||
       nextProps.maxDate !== this.props.maxDate ||
       nextProps.minDate !== this.props.minDate ||
-      nextProps.emptyLabel !== this.props.emptyLabel
+      nextProps.emptyLabel !== this.props.emptyLabel ||
+      nextProps.utils !== this.props.utils
     ) {
       this.setState(this.updateState(nextProps));
     }

@@ -72,4 +72,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(Year);
+export default withStyles(styles, { name: 'MuiPickersYear' })(Year);

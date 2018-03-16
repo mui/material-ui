@@ -12,11 +12,11 @@ export default class PickerBase extends PureComponent {
     format: PropTypes.string,
     labelFunc: PropTypes.func,
     ampm: PropTypes.bool,
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
   }
 
-  getValidDateOrCurrent = () => {
-    const { utils, value } = this.props;
+  getValidDateOrCurrent = (props = this.props) => {
+    const { utils, value } = props;
     const date = utils.date(value);
 
     return utils.isValid(date) && value !== null ? date : utils.date();
@@ -24,6 +24,12 @@ export default class PickerBase extends PureComponent {
 
   state = {
     date: this.getValidDateOrCurrent(),
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.utils.isEqual(this.state.date, nextProps.value)) {
+      this.setState({ date: this.getValidDateOrCurrent(nextProps) });
+    }
   }
 
   getFormat = () => {

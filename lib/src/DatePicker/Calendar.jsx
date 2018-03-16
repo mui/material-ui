@@ -26,7 +26,7 @@ export class Calendar extends Component {
     /** @ignore */
     theme: PropTypes.object.isRequired,
     shouldDisableDate: PropTypes.func,
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -69,6 +69,28 @@ export class Calendar extends Component {
     return (
       (minDate && utils.isBeforeDay(day, utils.date(minDate))) ||
       (maxDate && utils.isAfterDay(day, utils.date(maxDate)))
+    );
+  };
+
+  shouldDisablePrevMonth = () => {
+    const { utils, disablePast, minDate } = this.props;
+    const now = utils.date();
+    return !utils.isBefore(
+      utils.getStartOfMonth(disablePast && utils.isAfter(now, minDate)
+        ? now
+        : utils.date(minDate)),
+      this.state.currentMonth,
+    );
+  };
+
+  shouldDisableNextMonth = () => {
+    const { utils, disableFuture, maxDate } = this.props;
+    const now = utils.date();
+    return !utils.isAfter(
+      utils.getStartOfMonth(disableFuture && utils.isBefore(now, maxDate)
+        ? now
+        : utils.date(maxDate)),
+      this.state.currentMonth,
     );
   };
 
@@ -193,6 +215,8 @@ export class Calendar extends Component {
           onMonthChange={this.handleChangeMonth}
           leftArrowIcon={this.props.leftArrowIcon}
           rightArrowIcon={this.props.rightArrowIcon}
+          disablePrevMonth={this.shouldDisablePrevMonth()}
+          disableNextMonth={this.shouldDisableNextMonth()}
           utils={utils}
         />
 

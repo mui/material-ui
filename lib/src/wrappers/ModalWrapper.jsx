@@ -6,19 +6,31 @@ import DomainPropTypes from '../constants/prop-types';
 
 export default class ModalWrapper extends PureComponent {
   static propTypes = {
+    /* Picker value */
     value: DomainPropTypes.date,
-    children: PropTypes.node.isRequired,
+    /* Format string */
+    invalidLabel: PropTypes.string,
+    /* Function for dynamic rendering label (date, invalidLabel) => string */
+    labelFunc: PropTypes.func,
+    /* "OK" label message */
+    okLabel: PropTypes.string,
+    /* "Cancel" label message */
+    cancelLabel: PropTypes.string,
+    /* "Clear" label message */
+    clearLabel: PropTypes.string,
+    /* If true clear button will be displayed */
+    clearable: PropTypes.bool,
+    /* On open callback */
+    onOpen: PropTypes.func,
+    /* On close callback */
+    onClose: PropTypes.func,
+    /* Format string */
     format: PropTypes.string,
+    children: PropTypes.node.isRequired,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
     onClear: PropTypes.func,
     dialogContentClassName: PropTypes.string,
-    invalidLabel: PropTypes.string,
-    labelFunc: PropTypes.func,
-    okLabel: PropTypes.string,
-    cancelLabel: PropTypes.string,
-    clearLabel: PropTypes.string,
-    clearable: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -34,6 +46,8 @@ export default class ModalWrapper extends PureComponent {
     onDismiss: undefined,
     onClear: undefined,
     clearable: false,
+    onOpen: undefined,
+    onClose: undefined,
   }
 
   state = {
@@ -42,10 +56,16 @@ export default class ModalWrapper extends PureComponent {
 
   open = () => {
     this.setState({ open: true });
+    if (this.props.onOpen) {
+      this.props.onOpen();
+    }
   }
 
   close = () => {
     this.setState({ open: false });
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
   }
 
   handleAccept = () => {
@@ -83,6 +103,8 @@ export default class ModalWrapper extends PureComponent {
       cancelLabel,
       clearLabel,
       clearable,
+      onOpen,
+      onClose,
       ...other
     } = this.props;
 

@@ -93,7 +93,7 @@ DateTimePickerHeader.propTypes = {
   openView: PropTypes.string.isRequired,
   onOpenViewChange: PropTypes.func.isRequired,
   setMeridiemMode: PropTypes.func.isRequired,
-  utils: PropTypes.func.isRequired,
+  utils: PropTypes.object.isRequired,
   ampm: PropTypes.bool,
 };
 

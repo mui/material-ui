@@ -1,10 +1,10 @@
-import React, { Fragment, Component } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { DateTimePicker } from 'material-ui-pickers';
-import { IconButton, Typography, Icon, InputAdornment } from 'material-ui';
+import { IconButton, Icon, InputAdornment } from 'material-ui';
 
-export default class BasicUsage extends Component {
+export default class CustomDateTimePicker extends PureComponent {
   state = {
-    selectedDate: new Date(),
+    selectedDate: new Date('2018-01-01 18:54'),
   }
 
   handleDateChange = (date) => {
@@ -17,26 +17,7 @@ export default class BasicUsage extends Component {
     return (
       <Fragment>
         <div className="picker">
-          <Typography variant="headline" align="center" gutterBottom>
-            Default
-          </Typography>
-
           <DateTimePicker
-            value={selectedDate}
-            disablePast
-            onChange={this.handleDateChange}
-            leftArrowIcon={<Icon> keyboard_arrow_left </Icon>}
-            rightArrowIcon={<Icon> keyboard_arrow_right </Icon>}
-          />
-        </div>
-
-        <div className="picker">
-          <Typography variant="headline" align="center" gutterBottom>
-            Custom
-          </Typography>
-
-          <DateTimePicker
-            error
             autoOk
             ampm={false}
             showTabs={false}
@@ -44,7 +25,7 @@ export default class BasicUsage extends Component {
             disableFuture
             value={selectedDate}
             onChange={this.handleDateChange}
-            helperText="Required"
+            helperText="Hardcoded helper text"
             leftArrowIcon={<Icon> add_alarm </Icon>}
             rightArrowIcon={<Icon> snooze </Icon>}
             InputProps={{
@@ -54,11 +35,23 @@ export default class BasicUsage extends Component {
                     <Icon>add_alarm</Icon>
                   </IconButton>
                 </InputAdornment>
-            ),
-          }}
+              ),
+            }}
+          />
+        </div>
+
+        <div className="picker">
+          <DateTimePicker
+            keyboard
+            label="Keyboard input"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+            format="YYYY/MM/DD hh:mm A"
+            mask={[/\d/, /\d/, /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
           />
         </div>
       </Fragment>
+
     );
   }
 }

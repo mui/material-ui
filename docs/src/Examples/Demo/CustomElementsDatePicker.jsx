@@ -1,9 +1,11 @@
-import React, { Fragment, Component } from 'react';
+/* eslint-disable no-param-reassign */
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { IconButton, Typography, withStyles } from 'material-ui';
 import classNames from 'classnames';
-import { DateTimePicker, DatePicker } from 'material-ui-pickers';
 import moment from 'moment';
+
+import { DatePicker } from 'material-ui-pickers';
+import { IconButton, withStyles } from 'material-ui';
 
 import isValid from 'date-fns/isValid';
 import format from 'date-fns/format';
@@ -12,7 +14,7 @@ import startOfWeek from 'date-fns/startOfWeek';
 import endOfWeek from 'date-fns/endOfWeek';
 import isWithinInterval from 'date-fns/isWithinInterval';
 
-class CustomElements extends Component {
+class CustomElements extends PureComponent {
   static propTypes = {
     classes: PropTypes.object.isRequired,
   }
@@ -21,12 +23,8 @@ class CustomElements extends Component {
     selectedDate: new Date(),
   }
 
-  handleDateChange = (date) => {
-    this.setState({ selectedDate: date });
-  }
-
   handleWeekChange = (date) => {
-    this.setState({ selectedDate: date.clone().startOf('week') });
+    this.setState({ selectedDate: startOfWeek(date) });
   }
 
   formatWeekSelectLabel = (date, invalidLabel) => {
@@ -43,22 +41,7 @@ class CustomElements extends Component {
       : invalidLabel;
   }
 
-  renderCustomDayForDateTime = (date, selectedDate, dayInCurrentMonth, dayComponent) => {
-    const { classes } = this.props;
-
-    const dayClassName = classNames({
-      [classes.customDayHighlight]: isSameDay(date, selectedDate),
-    });
-
-    return (
-      <div className={classes.dayWrapper}>
-        {dayComponent}
-        <div className={dayClassName} />
-      </div>
-    );
-  }
-
-  renderWrappedDefaultDay = (date, selectedDate, dayInCurrentMonth) => {
+  renderWrappedWeekDay = (date, selectedDate, dayInCurrentMonth) => {
     const { classes } = this.props;
 
     if (date instanceof moment) {
@@ -96,33 +79,15 @@ class CustomElements extends Component {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
-        <div className="picker">
-          <Typography variant="headline" align="center" gutterBottom>
-            Week picker
-          </Typography>
-
-          <DatePicker
-            value={selectedDate}
-            onChange={this.handleDateChange}
-            renderDay={this.renderWrappedDefaultDay}
-            labelFunc={this.formatWeekSelectLabel}
-          />
-        </div>
-
-        <div className="picker">
-          <Typography variant="headline" align="center" gutterBottom>
-            DateTime picker
-          </Typography>
-
-          <DateTimePicker
-            autoSubmit={false}
-            value={selectedDate}
-            onChange={this.handleDateChange}
-            renderDay={this.renderCustomDayForDateTime}
-          />
-        </div>
-      </Fragment>
+      <div className="picker">
+        <DatePicker
+          label="Week picker"
+          value={selectedDate}
+          onChange={this.handleWeekChange}
+          renderDay={this.renderWrappedWeekDay}
+          labelFunc={this.formatWeekSelectLabel}
+        />
+      </div>
     );
   }
 }
@@ -148,7 +113,7 @@ const styles = theme => ({
     borderRadius: '50%',
   },
   nonCurrentMonthDay: {
-    color: theme.palette.common.minBlack,
+    color: theme.palette.text.disabled,
   },
   highlightNonCurrentMonthDay: {
     color: '#676767',

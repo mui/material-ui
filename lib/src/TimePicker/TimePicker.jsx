@@ -15,7 +15,7 @@ export class TimePicker extends Component {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
     children: PropTypes.node,
-    utils: PropTypes.func.isRequired,
+    utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
   }
 

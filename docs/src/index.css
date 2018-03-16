@@ -9,3 +9,27 @@ body {
 *::after {
   box-sizing: border-box;
 }
+
+.picker {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  margin: 10px 40px 40px;
+}
+
+a {
+  text-decoration: none;
+  color: #3f51b5;
+}
+
+a.link:hover {
+  text-decoration: underline;
+}
+
+.inline-code {
+  padding-top: 2px 2px 0;
+  background-color: white;
+  color: #3f51b5;
+}

@@ -20,6 +20,11 @@ const styles = {
     },
   },
   dialogActions: {
+    // set justifyContent to default value to fix IE11 layout bug
+    // see https://github.com/dmtrKovalenko/material-ui-pickers/pull/267
+    justifyContent: 'flex-start',
+  },
+  dialogAction: {
     '&:first-child': {
       marginRight: 'auto',
     },
@@ -46,7 +51,8 @@ const ModalDialog = ({
 
     <DialogActions
       classes={{
-        action: clearable && classes.dialogActions,
+        root: clearable && classes.dialogActions,
+        action: clearable && classes.dialogAction,
       }}
     >
 
