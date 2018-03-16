@@ -34,6 +34,12 @@ custom actions.
 
 {{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
 
+## Customized tables
+
+You can customize most of the look and feel of the table by on overriding the styles of the `TableCell` component.
+
+{{"demo": "pages/demos/tables/CustomizedTable.js"}}
+
 ## Advanced use cases
 
 For more advanced use cases you might be able to take advantage of [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/). It's a data grid for Material-UI with paging, sorting, filtering, grouping and editing features.
