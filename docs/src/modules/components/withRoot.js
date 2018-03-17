@@ -172,7 +172,8 @@ const pages = [
     ],
   },
   {
-    pathname: '/premium-themes',
+    pathname: '/premium-themes/list',
+    title: 'Premium Themes',
   },
   {
     pathname: '/lab',
