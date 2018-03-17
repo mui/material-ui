@@ -250,12 +250,17 @@ function generateInheritance(reactAPI) {
 
   const component = inheritedComponent[1];
   let pathname;
-  let prefix = '';
+  let suffix = '';
 
   switch (component) {
     case 'Transition':
-      prefix = 'react-transition-group ';
+      suffix = ', from react-transition-group,';
       pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
+      break;
+
+    case 'EventListener':
+      suffix = ', from react-event-listener,';
+      pathname = 'https://github.com/oliviertassinari/react-event-listener';
       break;
 
     default:
@@ -265,7 +270,7 @@ function generateInheritance(reactAPI) {
 
   return `## Inheritance
 
-The properties of the ${prefix}[${component}](${pathname}) component are also available.
+The properties of the [${component}](${pathname}) component${suffix} are also available.
 
 `;
 }

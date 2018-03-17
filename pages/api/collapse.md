@@ -42,7 +42,7 @@ you need to use the following style sheet name: `MuiCollapse`.
 
 ## Inheritance
 
-The properties of the react-transition-group [Transition](https://reactcommunity.org/react-transition-group/#Transition) component are also available.
+The properties of the [Transition](https://reactcommunity.org/react-transition-group/#Transition) component, from react-transition-group, are also available.
 
 ## Demos
 

@@ -1,3 +1,5 @@
+// @inheritedComponent EventListener
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
@@ -32,28 +34,35 @@ class ClickAwayListener extends React.Component {
     }
 
     // IE11 support, which trigger the handleClickAway even after the unbind
-    if (this.mounted) {
-      const el = findDOMNode(this);
-      const doc = ownerDocument(el);
+    if (!this.mounted) {
+      return;
+    }
 
-      if (
-        doc.documentElement &&
-        doc.documentElement.contains(event.target) &&
-        !isDescendant(el, event.target)
-      ) {
-        this.props.onClickAway(event);
-      }
+    const el = findDOMNode(this);
+    const doc = ownerDocument(el);
+
+    if (
+      doc.documentElement &&
+      doc.documentElement.contains(event.target) &&
+      !isDescendant(el, event.target)
+    ) {
+      this.props.onClickAway(event);
     }
   };
 
   render() {
+    const { children, mouseEvent, touchEvent, onClickAway, ...other } = this.props;
+    const listenerProps = {};
+    if (mouseEvent !== false) {
+      listenerProps[mouseEvent] = this.handleClickAway;
+    }
+    if (touchEvent !== false) {
+      listenerProps[touchEvent] = this.handleClickAway;
+    }
+
     return (
-      <EventListener
-        target="document"
-        onMouseup={this.handleClickAway}
-        onTouchend={this.handleClickAway}
-      >
-        {this.props.children}
+      <EventListener target="document" {...listenerProps} {...other}>
+        {children}
       </EventListener>
     );
   }
@@ -61,7 +70,14 @@ class ClickAwayListener extends React.Component {
 
 ClickAwayListener.propTypes = {
   children: PropTypes.node.isRequired,
+  mouseEvent: PropTypes.oneOf(['onClick', 'onMouseDown', 'onMouseUp', false]),
   onClickAway: PropTypes.func.isRequired,
+  touchEvent: PropTypes.oneOf(['onTouchStart', 'onTouchEnd', false]),
+};
+
+ClickAwayListener.defaultProps = {
+  mouseEvent: 'onMouseUp',
+  touchEvent: 'onTouchEnd',
 };
 
 export default ClickAwayListener;
