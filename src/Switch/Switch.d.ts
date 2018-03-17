@@ -4,7 +4,13 @@ import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
 export interface SwitchProps extends StandardProps<SwitchBaseProps, SwitchClassKey> {}
 
-export type SwitchClassKey = SwitchBaseClassKey | 'bar' | 'icon';
+export type SwitchClassKey =
+  | SwitchBaseClassKey
+  | 'bar'
+  | 'icon'
+  | 'iconChecked'
+  | 'checkedPrimary'
+  | 'checkedSecondary';
 
 declare const Switch: React.ComponentType<SwitchProps>;
 
