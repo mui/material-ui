@@ -36,7 +36,7 @@ custom actions.
 
 ## Customized tables
 
-You can customize most of the look and feel of the table by on overriding the styles of the `TableCell` component.
+You can customize the look and feel of the table by overriding the styles of the `TableCell` component.
 
 {{"demo": "pages/demos/tables/CustomizedTable.js"}}
 

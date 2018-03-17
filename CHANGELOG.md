@@ -2,6 +2,69 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.38
+###### *Mar 17, 2018*
+
+Big thanks to the 19 contributors who made this release possible.
+
+This release comes with important theme upgrades:
+
+Here are some highlights ✨:
+- Introduction of a Premium Themes section (#10616).
+- A `props` theme key to globally inject properties on components (#10671).
+- A theme option to change the font-size (#10687).
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Select] Fix chip alignment (#10611) @adamszeptycki
+- [Tabs] Add 'scrollButtons' and 'indicator' to TabsClassKey Typescript defintion (#10618) @cvanem
+- [TablePagination] Add SelectProps property (#10629) @mrahman1122
+- [ListItemSecondaryAction] Vertically center (#10628) @jedwards1211
+- [Select] Add visual tests to prevent future regression (#10642) @oliviertassinari
+- [Popover] Update anchorEl type (#10645) @nicoffee
+- [styles] Better color manipulator warning (#10652) @oliviertassinari
+- [Autocomplete] Show how to use the label (#10653) @oliviertassinari
+- [ButtonBase] Update class keys (#10659) @lukePeavey
+- [FromHelperText] Add missing component prop definition (#10658) @franklixuefei
+- [theme] Reduce the negative margin (#10672) @oliviertassinari
+- [theme] Add a props theme key (#10671) @oliviertassinari
+- [DialogActions] Add missing TypeScript property (#10674) @youngnicks
+- [GridList] Should allow optional children (#10680) @rosskevin
+- [DialogContentText] Extend the Typography component (#10683) @oliviertassinari
+- [theme] Allow changing the font-size (#10687) @oliviertassinari
+- [Stepper] Soft ripple background (#10690) @oliviertassinari
+
+#### Docs
+
+- [docs] Add project to showcase (#10614) @jdupont
+- [docs] Fix typo (#10621) @prastut
+- [docs] Updating the TS example to use CssBaseline (#10633) @yuchen-w
+- [docs] Better support of multiline for downshift (#10641) @oliviertassinari
+- [docs] Simplify LongMenu demo (#10646) @RichardLindhout
+- [docs] Improve the onboarding (#10639) @oliviertassinari
+- [docs] Fix usage of CssBaseline/Reboot in the CDN example (#10655) @SebastianSchmidt
+- [docs] Fix reference to CssBaseline component (#10654) @SebastianSchmidt
+- [themes] Introduce a themes website ⚡️  (#10616) @oliviertassinari
+- [docs] Fix reference to FAQ (#10660) @SebastianSchmidt
+- [docs] Fix reference to Popover demo (#10661) @SebastianSchmidt
+- [docs] Fix reference to Modal demo (#10662) @SebastianSchmidt
+- [docs] Add Rung to showcase (#10669) @vitorebatista
+- [docs] Add Bit as a sponsor ❤️ (#10673) @oliviertassinari
+- [docs] Third iteration on the homepage (#10670) @oliviertassinari
+- [docs] Add Team SC into showcase (#10676) @Losses
+- [docs] Handle optional params (#10685) @oliviertassinari
+- [docs] Customized tables (#10686) @oliviertassinari
+
+#### Core
+
+- [typescript] Remove xxxClassName props from type declarations (#10644) @lukePeavey
+- [typescript] Add inline style prop to transition (#10650) @nmchaves
+
 ## 1.0.0-beta.37
 ###### *Mar 11, 2018*
 
