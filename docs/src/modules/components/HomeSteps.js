@@ -33,7 +33,7 @@ const styles = theme => ({
     minHeight: 270,
   },
   markdownElement: {
-    maxWidth: `calc(100vw - ${theme.spacing.unit * 6 + 1 * 2}px)`,
+    maxWidth: `calc(100vw - ${(theme.spacing.unit * 5 + 1) * 2}px)`,
     '& pre, & pre[class*="language-"], & code': {
       backgroundColor: 'transparent',
     },
@@ -48,7 +48,8 @@ const styles = theme => ({
   },
   img: {
     marginTop: theme.spacing.unit,
-    maxWidth: '100%',
+    maxWidth: 500,
+    width: '100%',
     height: 'auto',
   },
 });
@@ -154,14 +155,14 @@ function HomeSteps(props) {
             {`Take Material-UI to the next level with premium themes from
               our official marketplace—all built on Material-UI.`}
           </Typography>
-          <Link prefetch href="/premium-themes">
+          <Link prefetch href="/premium-themes/list">
             <img className={classes.img} alt="themes" src="/static/images/themes.png" />
           </Link>
         </div>
         <Divider className={classes.divider} />
         <Button
           component={buttonProps => (
-            <Link variant="button" prefetch href="/premium-themes" {...buttonProps} />
+            <Link variant="button" prefetch href="/premium-themes/list" {...buttonProps} />
           )}
         >
           Browse themes
