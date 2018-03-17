@@ -6,30 +6,30 @@ import DomainPropTypes from '../constants/prop-types';
 
 export default class ModalWrapper extends PureComponent {
   static propTypes = {
-    /* Picker value */
+    /** Picker value */
     value: DomainPropTypes.date,
-    /* Format string */
+    /** Format string */
     invalidLabel: PropTypes.string,
-    /* Function for dynamic rendering label (date, invalidLabel) => string */
+    /** Function for dynamic rendering label (date, invalidLabel) => string */
     labelFunc: PropTypes.func,
-    /* "OK" label message */
+    /** "OK" label message */
     okLabel: PropTypes.string,
-    /* "Cancel" label message */
+    /** "Cancel" label message */
     cancelLabel: PropTypes.string,
-    /* "Clear" label message */
+    /** "Clear" label message */
     clearLabel: PropTypes.string,
-    /* If true clear button will be displayed */
+    /** If true clear button will be displayed */
     clearable: PropTypes.bool,
-    /* On open callback */
+    /** On open callback */
     onOpen: PropTypes.func,
-    /* On close callback */
+    /** On close callback */
     onClose: PropTypes.func,
-    /* Format string */
+    /** Format string */
     format: PropTypes.string,
-    children: PropTypes.node.isRequired,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
     onClear: PropTypes.func,
+    children: PropTypes.node.isRequired,
     dialogContentClassName: PropTypes.string,
   }
 
