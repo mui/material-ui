@@ -15,6 +15,9 @@ export const styles = theme => ({
     margin: `${-theme.spacing.unit * 3}px ${-theme.spacing.unit * 2}px`,
     boxSizing: 'content-box',
   },
+  touchRipple: {
+    color: 'rgba(0, 0, 0, 0.3)',
+  },
 });
 
 function StepButton(props) {
@@ -49,7 +52,12 @@ function StepButton(props) {
   );
 
   return (
-    <ButtonBase disabled={disabled} className={classNames(classes.root, classNameProp)} {...other}>
+    <ButtonBase
+      disabled={disabled}
+      TouchRippleProps={{ className: classes.touchRipple }}
+      className={classNames(classes.root, classNameProp)}
+      {...other}
+    >
       {child}
     </ButtonBase>
   );
