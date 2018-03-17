@@ -148,7 +148,7 @@ Select.propTypes = {
    * Callback function fired when a menu item is selected.
    *
    * @param {object} event The event source of the callback
-   * @param {object} child The react element that was selected
+   * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
   onChange: PropTypes.func,
   /**

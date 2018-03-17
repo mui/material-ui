@@ -46,7 +46,9 @@ function generatePropDescription(description, type) {
     }
   }
 
-  const parsed = parseDoctrine(description);
+  const parsed = parseDoctrine(description, {
+    sloppy: true,
+  });
 
   // Two new lines result in a newline in the table.
   // All other new lines must be eliminated to prevent markdown mayhem.
@@ -88,6 +90,10 @@ function generatePropDescription(description, type) {
       .map(tag => {
         if (tag.type.type === 'AllLiteral') {
           return `${tag.name}: any`;
+        }
+
+        if (tag.type.type === 'OptionalType') {
+          return `${tag.name}?: ${tag.type.expression.name}`;
         }
 
         return `${tag.name}: ${tag.type.name}`;
