@@ -7,12 +7,12 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
+    minHeight: 600,
   },
   markdownElement: {
     maxWidth: theme.spacing.unit * 110,
     margin: 'auto',
     padding: theme.spacing.unit * 2,
-    minHeight: 600,
   },
 });
 
