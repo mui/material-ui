@@ -25,8 +25,8 @@ export class DateTimePickerWrapper extends PickerBase {
     autoSubmit: PropTypes.bool,
     /** Disable future dates */
     disableFuture: PropTypes.bool,
-    /** Open to particular view */
-    openTo: PropTypes.string,
+    /** Disable past dates */
+    disablePast: PropTypes.bool,
     /** Min selectable date */
     minDate: DomainPropTypes.date,
     /** Max selectable date */
@@ -49,22 +49,25 @@ export class DateTimePickerWrapper extends PickerBase {
     shouldDisableDate: PropTypes.func,
     /** Enable animated scrolling to current year */
     animateYearScrolling: PropTypes.bool,
+    /** Open directly to particular view */
+    openTo: PropTypes.oneOf(['year', 'date', 'hour', 'minutes']),
   }
 
   static defaultProps = {
     value: new Date(),
     format: undefined,
     autoOk: false,
-    autoSubmit: undefined,
-    openTo: undefined,
-    disableFuture: undefined,
-    minDate: undefined,
-    maxDate: undefined,
+    autoSubmit: true,
+    openTo: 'date',
+    disableFuture: false,
+    disablePast: false,
+    minDate: '1900-01-01',
+    maxDate: '2100-01-01',
     showTabs: true,
-    leftArrowIcon: undefined,
-    rightArrowIcon: undefined,
-    dateRangeIcon: undefined,
-    timeIcon: undefined,
+    leftArrowIcon: 'keyboard_arrow_left',
+    rightArrowIcon: 'keyboard_arrow_right',
+    dateRangeIcon: 'date_range',
+    timeIcon: 'access_time',
     renderDay: undefined,
     ampm: true,
     shouldDisableDate: undefined,

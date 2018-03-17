@@ -19,11 +19,11 @@ export class DateTimePicker extends Component {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     autoSubmit: PropTypes.bool,
-    openTo: PropTypes.oneOf(Object.keys(viewType).map(key => viewType[key])),
+    openTo: PropTypes.oneOf(Object.keys(viewType).map(key => viewType[key])).isRequired,
     disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
-    minDate: DomainPropTypes.date,
-    maxDate: DomainPropTypes.date,
+    minDate: DomainPropTypes.date.isRequired,
+    maxDate: DomainPropTypes.date.isRequired,
     showTabs: PropTypes.bool,
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
@@ -37,10 +37,7 @@ export class DateTimePicker extends Component {
   }
 
   static defaultProps = {
-    minDate: '1900-01-01',
-    maxDate: '2100-01-01',
     autoSubmit: true,
-    openTo: viewType.DATE,
     disablePast: false,
     disableFuture: false,
     showTabs: true,

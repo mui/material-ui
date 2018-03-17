@@ -32,7 +32,7 @@ export class DateTextField extends PureComponent {
     utils: PropTypes.object.isRequired,
     disabled: PropTypes.bool,
     InputProps: PropTypes.shape(),
-    /** Input mask, used in keyboard mode */
+    /** Input mask, used in keyboard mode read more <a href="https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme">here</a> */
     mask: PropTypes.any,
     /** Error message, shown if date is less then minimal date */
     minDateMessage: PropTypes.string,

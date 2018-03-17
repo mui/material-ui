@@ -534,6 +534,13 @@
       "displayName": "DatePickerWrapper",
       "methods": [],
       "props": {
+        "utils": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
         "value": {
           "type": {
             "name": "custom",
@@ -554,8 +561,8 @@
           "required": false,
           "description": "Min selectable date",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'1900-01-01'",
+            "computed": false
           }
         },
         "maxDate": {
@@ -566,8 +573,8 @@
           "required": false,
           "description": "Max selectable date",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'2100-01-01'",
+            "computed": false
           }
         },
         "format": {
@@ -606,8 +613,8 @@
           "required": false,
           "description": "Disable past dates",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "false",
+            "computed": false
           }
         },
         "disableFuture": {
@@ -617,8 +624,8 @@
           "required": false,
           "description": "Disable future dates",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "false",
+            "computed": false
           }
         },
         "animateYearScrolling": {
@@ -628,8 +635,8 @@
           "required": false,
           "description": "To animate scrolling to current year (with scrollIntoView)",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "false",
+            "computed": false
           }
         },
         "openToYearSelection": {
@@ -639,8 +646,8 @@
           "required": false,
           "description": "Open datepicker from year selection",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "false",
+            "computed": false
           }
         },
         "labelFunc": {
@@ -661,8 +668,8 @@
           "required": false,
           "description": "Left arrow icon",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'keyboard_arrow_left'",
+            "computed": false
           }
         },
         "rightArrowIcon": {
@@ -672,8 +679,8 @@
           "required": false,
           "description": "Right arrow icon",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'keyboard_arrow_right'",
+            "computed": false
           }
         },
         "renderDay": {
@@ -686,13 +693,6 @@
             "value": "undefined",
             "computed": true
           }
-        },
-        "utils": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": "Date displaying utils"
         },
         "shouldDisableDate": {
           "type": {
@@ -1166,12 +1166,8 @@
             "computed": true,
             "value": "Object.keys(viewType).map(key => viewType[key])"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "viewType.DATE",
-            "computed": true
-          }
+          "required": true,
+          "description": ""
         },
         "disablePast": {
           "type": {
@@ -1198,26 +1194,18 @@
         "minDate": {
           "type": {
             "name": "custom",
-            "raw": "DomainPropTypes.date"
+            "raw": "DomainPropTypes.date.isRequired"
           },
           "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'1900-01-01'",
-            "computed": false
-          }
+          "description": ""
         },
         "maxDate": {
           "type": {
             "name": "custom",
-            "raw": "DomainPropTypes.date"
+            "raw": "DomainPropTypes.date.isRequired"
           },
           "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'2100-01-01'",
-            "computed": false
-          }
+          "description": ""
         },
         "showTabs": {
           "type": {
@@ -1442,23 +1430,15 @@
           "type": {
             "name": "node"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'date_range'",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         },
         "timeIcon": {
           "type": {
             "name": "node"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'access_time'",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         }
       }
     }
@@ -1568,8 +1548,8 @@
           "required": false,
           "description": "Move to the next part of date on select (year -> date -> hour -> minute)",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "true",
+            "computed": false
           }
         },
         "disableFuture": {
@@ -1579,19 +1559,19 @@
           "required": false,
           "description": "Disable future dates",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "false",
+            "computed": false
           }
         },
-        "openTo": {
+        "disablePast": {
           "type": {
-            "name": "string"
+            "name": "bool"
           },
           "required": false,
-          "description": "Open to particular view",
+          "description": "Disable past dates",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "false",
+            "computed": false
           }
         },
         "minDate": {
@@ -1602,8 +1582,8 @@
           "required": false,
           "description": "Min selectable date",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'1900-01-01'",
+            "computed": false
           }
         },
         "maxDate": {
@@ -1614,8 +1594,8 @@
           "required": false,
           "description": "Max selectable date",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'2100-01-01'",
+            "computed": false
           }
         },
         "showTabs": {
@@ -1636,8 +1616,8 @@
           "required": false,
           "description": "Left arrow icon",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'keyboard_arrow_left'",
+            "computed": false
           }
         },
         "rightArrowIcon": {
@@ -1647,8 +1627,8 @@
           "required": false,
           "description": "Right arrow icon",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'keyboard_arrow_right'",
+            "computed": false
           }
         },
         "dateRangeIcon": {
@@ -1658,8 +1638,8 @@
           "required": false,
           "description": "Date tab icon",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'date_range'",
+            "computed": false
           }
         },
         "timeIcon": {
@@ -1669,8 +1649,8 @@
           "required": false,
           "description": "Time tab icon",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'access_time'",
+            "computed": false
           }
         },
         "renderDay": {
@@ -1714,6 +1694,35 @@
           "description": "Enable animated scrolling to current year",
           "defaultValue": {
             "value": "false",
+            "computed": false
+          }
+        },
+        "openTo": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'year'",
+                "computed": false
+              },
+              {
+                "value": "'date'",
+                "computed": false
+              },
+              {
+                "value": "'hour'",
+                "computed": false
+              },
+              {
+                "value": "'minutes'",
+                "computed": false
+              }
+            ]
+          },
+          "required": false,
+          "description": "Open directly to particular view",
+          "defaultValue": {
+            "value": "'date'",
             "computed": false
           }
         }
@@ -2560,7 +2569,7 @@
             "name": "any"
           },
           "required": false,
-          "description": "Input mask, used in keyboard mode",
+          "description": "Input mask, used in keyboard mode read more <a href=\"https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme\">here</a>",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -2791,34 +2800,22 @@
           "type": {
             "name": "string"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'OK'",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         },
         "cancelLabel": {
           "type": {
             "name": "string"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'Cancel'",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         },
         "clearLabel": {
           "type": {
             "name": "string"
           },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'Clear'",
-            "computed": false
-          }
+          "required": true,
+          "description": ""
         },
         "clearable": {
           "type": {
@@ -3044,8 +3041,8 @@
           "required": false,
           "description": "\"OK\" label message",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'OK'",
+            "computed": false
           }
         },
         "cancelLabel": {
@@ -3055,8 +3052,8 @@
           "required": false,
           "description": "\"Cancel\" label message",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'Cancel'",
+            "computed": false
           }
         },
         "clearLabel": {
@@ -3066,8 +3063,8 @@
           "required": false,
           "description": "\"Clear\" label message",
           "defaultValue": {
-            "value": "undefined",
-            "computed": true
+            "value": "'Clear'",
+            "computed": false
           }
         },
         "clearable": {

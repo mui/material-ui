@@ -62,13 +62,8 @@ DateTimePickerTabs.propTypes = {
   onChange: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  dateRangeIcon: PropTypes.node,
-  timeIcon: PropTypes.node,
-};
-
-DateTimePickerTabs.defaultProps = {
-  dateRangeIcon: 'date_range',
-  timeIcon: 'access_time',
+  dateRangeIcon: PropTypes.node.isRequired,
+  timeIcon: PropTypes.node.isRequired,
 };
 
 const styles = theme => ({

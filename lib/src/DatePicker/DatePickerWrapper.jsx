@@ -9,6 +9,7 @@ import withUtils from '../_shared/WithUtils';
 
 export class DatePickerWrapper extends PickerBase {
   static propTypes = {
+    utils: PropTypes.object.isRequired,
     /** Datepicker value */
     value: DomainPropTypes.date,
     /** Min selectable date */
@@ -37,8 +38,6 @@ export class DatePickerWrapper extends PickerBase {
     rightArrowIcon: PropTypes.node,
     /** Custom renderer for day renderDay(date, selectedDate, dayInCurrentMonth) */
     renderDay: PropTypes.func,
-    /** Date displaying utils */
-    utils: PropTypes.object.isRequired,
     /** Disable specific date */
     shouldDisableDate: PropTypes.func,
   }
@@ -47,14 +46,14 @@ export class DatePickerWrapper extends PickerBase {
     value: new Date(),
     format: 'MMMM Do',
     autoOk: false,
-    minDate: undefined,
-    maxDate: undefined,
-    disablePast: undefined,
-    disableFuture: undefined,
-    animateYearScrolling: undefined,
-    openToYearSelection: undefined,
-    leftArrowIcon: undefined,
-    rightArrowIcon: undefined,
+    minDate: '1900-01-01',
+    maxDate: '2100-01-01',
+    disableFuture: false,
+    disablePast: false,
+    animateYearScrolling: false,
+    openToYearSelection: false,
+    leftArrowIcon: 'keyboard_arrow_left',
+    rightArrowIcon: 'keyboard_arrow_right',
     renderDay: undefined,
     labelFunc: undefined,
     shouldDisableDate: undefined,
