@@ -1,13 +1,14 @@
+// @inheritedComponent Typography
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import Typography from '../Typography';
 
 export const styles = theme => ({
   root: {
-    ...theme.typography.subheading,
     color: theme.palette.text.secondary,
-    margin: 0,
   },
 });
 
@@ -15,9 +16,14 @@ function DialogContentText(props) {
   const { children, classes, className, ...other } = props;
 
   return (
-    <p className={classNames(classes.root, className)} {...other}>
+    <Typography
+      component="p"
+      variant="subheading"
+      className={classNames(classes.root, className)}
+      {...other}
+    >
       {children}
-    </p>
+    </Typography>
   );
 }
 
