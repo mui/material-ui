@@ -47,21 +47,25 @@ class ClickAwayListener extends React.Component {
   };
 
   render() {
-    return (
-      <EventListener
-        target="document"
-        onMouseup={this.handleClickAway}
-        onTouchend={this.handleClickAway}
-      >
-        {this.props.children}
-      </EventListener>
-    );
+    const { mouseEvent, touchEvent } = this.props;
+    const listenerProps = { target: 'document' };
+    if (mouseEvent !== false) listenerProps[mouseEvent] = this.handleClickAway;
+    if (touchEvent !== false) listenerProps[touchEvent] = this.handleClickAway;
+
+    return <EventListener {...listenerProps}>{this.props.children}</EventListener>;
   }
 }
 
 ClickAwayListener.propTypes = {
   children: PropTypes.node.isRequired,
+  mouseEvent: PropTypes.oneOf(['onClick', 'onMouseDown', 'onMouseUp', false]).isRequired,
   onClickAway: PropTypes.func.isRequired,
+  touchEvent: PropTypes.oneOf(['onTouchStart', 'onTouchEnd', false]).isRequired,
+};
+
+ClickAwayListener.defaultProps = {
+  mouseEvent: 'onMouseup',
+  touchEvent: 'onTouchend',
 };
 
 export default ClickAwayListener;

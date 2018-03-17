@@ -76,4 +76,86 @@ describe('<ClickAwayListener />', () => {
       wrapper.unmount();
     });
   });
+
+  describe('prop: mouseEvent', () => {
+    it('should not call `props.onClickAway` when `props.mouseEvent` is `false`', () => {
+      const handleClickAway = spy();
+      const wrapper = mount(
+        <ClickAwayListener onClickAway={handleClickAway} mouseEvent={false}>
+          <span>Hello</span>
+        </ClickAwayListener>,
+      );
+
+      const event = document.createEvent('MouseEvents');
+      event.initEvent('mouseup', true, true);
+      window.document.body.dispatchEvent(event);
+
+      assert.strictEqual(handleClickAway.callCount, 0);
+      wrapper.unmount();
+    });
+
+    it('should call `props.onClickAway` when the appropriate mouse event is triggered', () => {
+      const handleClickAway = spy();
+      const wrapper = mount(
+        <ClickAwayListener onClickAway={handleClickAway} mouseEvent="onMouseDown">
+          <span>Hello</span>
+        </ClickAwayListener>,
+      );
+
+      const mouseUpEvent = document.createEvent('MouseEvents');
+      mouseUpEvent.initEvent('mouseup', true, true);
+      window.document.body.dispatchEvent(mouseUpEvent);
+
+      assert.strictEqual(handleClickAway.callCount, 0);
+
+      const mouseDownEvent = document.createEvent('MouseEvents');
+      mouseDownEvent.initEvent('mousedown', true, true);
+      window.document.body.dispatchEvent(mouseDownEvent);
+
+      assert.strictEqual(handleClickAway.callCount, 1);
+      assert.deepEqual(handleClickAway.args[0], [mouseDownEvent]);
+      wrapper.unmount();
+    });
+  });
+
+  describe('prop: touchEvent', () => {
+    it('should not call `props.onClickAway` when `props.touchEvent` is `false`', () => {
+      const handleClickAway = spy();
+      const wrapper = mount(
+        <ClickAwayListener onClickAway={handleClickAway} touchEvent={false}>
+          <span>Hello</span>
+        </ClickAwayListener>,
+      );
+
+      const event = document.createEvent('Events');
+      event.initEvent('touchend', true, true);
+      window.document.body.dispatchEvent(event);
+
+      assert.strictEqual(handleClickAway.callCount, 0);
+      wrapper.unmount();
+    });
+
+    it('should call `props.onClickAway` when the appropriate touch event is triggered', () => {
+      const handleClickAway = spy();
+      const wrapper = mount(
+        <ClickAwayListener onClickAway={handleClickAway} touchEvent="onTouchStart">
+          <span>Hello</span>
+        </ClickAwayListener>,
+      );
+
+      const touchEndEvent = document.createEvent('Events');
+      touchEndEvent.initEvent('touchend', true, true);
+      window.document.body.dispatchEvent(touchEndEvent);
+
+      assert.strictEqual(handleClickAway.callCount, 0);
+
+      const touchStartEvent = document.createEvent('Events');
+      touchStartEvent.initEvent('touchstart', true, true);
+      window.document.body.dispatchEvent(touchStartEvent);
+
+      assert.strictEqual(handleClickAway.callCount, 1);
+      assert.deepEqual(handleClickAway.args[0], [touchStartEvent]);
+      wrapper.unmount();
+    });
+  });
 });
