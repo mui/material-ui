@@ -44,7 +44,7 @@ export const styles = theme => ({
     width: '100%',
     height: '100%',
     borderRadius: '50%',
-    background: 'currentColor',
+    backgroundColor: 'currentColor',
   },
   childLeaving: {
     opacity: 0,
