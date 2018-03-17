@@ -7,9 +7,7 @@ Changes. Changes everywhere!
 
 Big thanks to the 19 contributors who made this release possible.
 
-This release comes with important theme upgrades:
-
-Here are some highlights ✨:
+This release comes with important theme upgrades. Here are some highlights ✨:
 - Introduction of a Premium Themes section (#10616).
 - A `props` theme key to globally inject properties on components (#10671).
 - A theme option to change the font-size (#10687).
