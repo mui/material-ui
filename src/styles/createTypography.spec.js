@@ -30,6 +30,11 @@ describe('createTypography', () => {
     assert.strictEqual(typography.fontSize, 15);
   });
 
+  it('should accept a custom font size', () => {
+    const typography = createTypography(palette, { fontSize: 16 });
+    assert.strictEqual(typography.body1.fontSize, '1rem', 'should be 16px');
+  });
+
   it('should create a typography with a custom baseFontSize', () => {
     const typography = createTypography(palette, { htmlFontSize: 10 });
     assert.strictEqual(typography.display4.fontSize, '11.2rem');

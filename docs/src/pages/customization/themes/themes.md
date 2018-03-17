@@ -234,6 +234,23 @@ so `rem` units allow us to accommodate the users settings, resulting in a much b
 Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
 for devices that can be vastly different in size and viewing distance.
 
+To change the font-size of Material-UI you can provide a `fontSize` property.
+The default value is `14px`.
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    // In Japanese the characters are usually larger.
+    fontSize: 12,
+  },
+});
+```
+
+The computed font size by the browser follows this mathematical equation:
+
+![font-size](/static/images/font-size.gif)
+<!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
+
 ### Typography - HTML font size
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).

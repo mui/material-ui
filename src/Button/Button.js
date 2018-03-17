@@ -133,13 +133,13 @@ export const styles = theme => ({
     padding: `${theme.spacing.unit - 1}px ${theme.spacing.unit}px`,
     minWidth: theme.spacing.unit * 8,
     minHeight: 32,
-    fontSize: theme.typography.pxToRem(theme.typography.fontSize - 1),
+    fontSize: theme.typography.pxToRem(13),
   },
   sizeLarge: {
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
     minWidth: theme.spacing.unit * 14,
     minHeight: 40,
-    fontSize: theme.typography.pxToRem(theme.typography.fontSize + 1),
+    fontSize: theme.typography.pxToRem(15),
   },
   fullWidth: {
     width: '100%',

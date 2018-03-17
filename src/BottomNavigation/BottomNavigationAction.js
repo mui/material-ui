@@ -36,13 +36,13 @@ export const styles = theme => ({
   },
   label: {
     fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(theme.typography.fontSize - 2),
+    fontSize: theme.typography.pxToRem(12),
     opacity: 1,
     transition: 'font-size 0.2s, opacity 0.2s',
     transitionDelay: '0.1s',
   },
   labelSelected: {
-    fontSize: theme.typography.pxToRem(theme.typography.fontSize),
+    fontSize: theme.typography.pxToRem(14),
   },
   labelHidden: {
     opacity: 0,
