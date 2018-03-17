@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { withStyles, Paper } from 'material-ui';
+import { Typography, withStyles, Paper } from 'material-ui';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import PropTypesDoc from '../../prop-types.json';
 
@@ -74,38 +74,48 @@ class PropTypesTable extends React.PureComponent {
     const propsDoc = this.getPropsDoc();
 
     return (
-      <Paper>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell> Name </TableCell>
-              <TableCell> Type </TableCell>
-              <TableCell> Default </TableCell>
-              <TableCell> Description </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {
-              Object.keys(propsDoc)
-                .sort((a, b) => a.localeCompare(b))
-                .map(prop => (
-                  <TableRow key={prop}>
-                    <TableCell> {prop} </TableCell>
-                    <TableCell
-                      className={classnames({ [classes.required]: propsDoc[prop].required })}
-                    >
-                      {this.getPropType(propsDoc[prop])}
-                    </TableCell>
-                    <TableCell> {this.getDefaultValue(propsDoc[prop].defaultValue)} </TableCell>
-                    <TableCell>
-                      <span dangerouslySetInnerHTML={{ __html: propsDoc[prop].description }} />
-                    </TableCell>
-                  </TableRow>
-                ))
-            }
-          </TableBody>
-        </Table>
-      </Paper>
+      <React.Fragment>
+        <Typography variant="display1" gutterBottom> Component API </Typography>
+        <Typography variant="body1" gutterBottom>
+          <strong> Note: </strong> Any prop not recognized by the pickers
+          and their sub-components are passed down to&nbsp;
+          <a className="link" href="https://material-ui-next.com/api/text-field/#props">
+            material-ui TextField
+          </a> component.
+        </Typography>
+        <Paper>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell> Name </TableCell>
+                <TableCell> Type </TableCell>
+                <TableCell> Default </TableCell>
+                <TableCell> Description </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {
+                Object.keys(propsDoc)
+                  .sort((a, b) => a.localeCompare(b))
+                  .map(prop => (
+                    <TableRow key={prop}>
+                      <TableCell> {prop} </TableCell>
+                      <TableCell
+                        className={classnames({ [classes.required]: propsDoc[prop].required })}
+                      >
+                        {this.getPropType(propsDoc[prop])}
+                      </TableCell>
+                      <TableCell> {this.getDefaultValue(propsDoc[prop].defaultValue)} </TableCell>
+                      <TableCell>
+                        <span dangerouslySetInnerHTML={{ __html: propsDoc[prop].description }} />
+                      </TableCell>
+                    </TableRow>
+                  ))
+              }
+            </TableBody>
+          </Table>
+        </Paper>
+      </React.Fragment>
     );
   }
 }

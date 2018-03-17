@@ -70,7 +70,8 @@
     "start": "cross-env PORT=3002 node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "docs:generate": "react-docgen ../lib/src --out prop-types.json --resolver findAllComponentDefinitions --pretty"
+    "docs:generate": "react-docgen ../lib/src --out prop-types.json --resolver findAllComponentDefinitions --pretty",
+    "deploy": "npm run docs:generate && firebase deploy"
   },
   "jest": {
     "collectCoverageFrom": [
