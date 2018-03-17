@@ -5,6 +5,7 @@ import { Utils } from '../typings/utils';
 export interface MuiPickersUtilsProviderProps {
   utils: Utils;
   children: ReactNode;
+  locale: (any | string);
 }
 
 declare const MuiPickersUtilsProvider: ComponentClass<MuiPickersUtilsProviderProps>;
