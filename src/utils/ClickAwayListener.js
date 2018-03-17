@@ -64,8 +64,8 @@ ClickAwayListener.propTypes = {
 };
 
 ClickAwayListener.defaultProps = {
-  mouseEvent: 'onMouseup',
-  touchEvent: 'onTouchend',
+  mouseEvent: 'onMouseUp',
+  touchEvent: 'onTouchEnd',
 };
 
 export default ClickAwayListener;
