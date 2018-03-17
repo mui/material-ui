@@ -575,7 +575,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "Moment format string for input",
+          "description": "Date format string for input",
           "defaultValue": {
             "value": "'MMMM Do'",
             "computed": false
@@ -710,7 +710,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Disable specific date hook",
+          "description": "Disable specific date",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1511,19 +1511,33 @@
       }
     }
   ],
-  "../lib/src/DateTimePicker/index.jsx": [
+  "../lib/src/DateTimePicker/DateTimePickerWrapper.jsx": [
     {
       "description": "",
       "displayName": "DateTimePickerWrapper",
       "methods": [],
       "props": {
+        "utils": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
         "value": {
           "type": {
             "name": "custom",
             "raw": "DomainPropTypes.date"
           },
           "required": false,
-          "description": "",
+          "description": "DateTimepicker value",
           "defaultValue": {
             "value": "new Date()",
             "computed": false
@@ -1534,7 +1548,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "Date format string for input",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1545,32 +1559,25 @@
             "name": "func"
           },
           "required": true,
-          "description": ""
+          "description": "Callback firing when date accepted"
         },
         "autoOk": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Auto accept date on minute selection",
           "defaultValue": {
             "value": "false",
             "computed": false
           }
-        },
-        "classes": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
         },
         "autoSubmit": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Move to the next part of date on select (year -> date -> hour -> minute)",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1581,7 +1588,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Disable future dates",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1592,7 +1599,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "Open to particular view",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1604,7 +1611,7 @@
             "raw": "DomainPropTypes.date"
           },
           "required": false,
-          "description": "",
+          "description": "Min selectable date",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1616,7 +1623,7 @@
             "raw": "DomainPropTypes.date"
           },
           "required": false,
-          "description": "",
+          "description": "Max selectable date",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1627,7 +1634,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Show date/time tabs",
           "defaultValue": {
             "value": "true",
             "computed": false
@@ -1638,7 +1645,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "Displayed string if date can`t be parsed (or null)",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1649,7 +1656,7 @@
             "name": "node"
           },
           "required": false,
-          "description": "",
+          "description": "Left arrow icon",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1660,7 +1667,7 @@
             "name": "node"
           },
           "required": false,
-          "description": "",
+          "description": "Right arrow icon",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1671,7 +1678,7 @@
             "name": "node"
           },
           "required": false,
-          "description": "",
+          "description": "Date tab icon",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1682,7 +1689,7 @@
             "name": "node"
           },
           "required": false,
-          "description": "",
+          "description": "Time tab icon",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1693,36 +1700,18 @@
             "name": "func"
           },
           "required": false,
-          "description": "",
+          "description": "Custom renderer for day renderDay(date, selectedDate, dayInCurrentMonth)",
           "defaultValue": {
             "value": "undefined",
             "computed": true
           }
-        },
-        "labelFunc": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "utils": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
         },
         "ampm": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "12h/24h view for hour selection clock",
           "defaultValue": {
             "value": "true",
             "computed": false
@@ -1733,7 +1722,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "",
+          "description": "Disable specific date",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1744,7 +1733,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Enable animated scrolling to current year",
           "defaultValue": {
             "value": "false",
             "computed": false

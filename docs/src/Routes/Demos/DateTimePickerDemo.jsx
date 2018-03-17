@@ -30,7 +30,7 @@ const DateTimePickerDemo = () => (
       }
     />
 
-    <PropTypesTable src="DateTimePickerPicker/index.jsx" />
+    <PropTypesTable src="DateTimePicker/DateTimePickerWrapper.jsx" />
   </div>
 );
 
