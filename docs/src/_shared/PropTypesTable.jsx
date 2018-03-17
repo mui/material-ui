@@ -9,7 +9,7 @@ export default class PropTypesTable extends React.PureComponent {
     src: PropTypes.string.isRequired,
   }
 
-  getDefaultProps = () => {
+  getCommonProps = () => {
     const modalWrapperProps = this.getFilteredProps('wrappers/ModalWrapper.jsx');
     const textFieldProps = this.getFilteredProps('_shared/DateTextField.jsx');
     return { ...modalWrapperProps, ...textFieldProps };
@@ -18,7 +18,7 @@ export default class PropTypesTable extends React.PureComponent {
   getPropsDoc = () => {
     const selfProps = this.getFilteredProps(this.props.src);
 
-    return { ...selfProps, ...this.getDefaultProps() };
+    return { ...selfProps, ...this.getCommonProps() };
   }
 
   getFilteredProps = (src) => {
@@ -59,7 +59,7 @@ export default class PropTypesTable extends React.PureComponent {
           <TableBody>
             {
               Object.keys(propsDoc).map(prop => (
-                <TableRow>
+                <TableRow key={prop}>
                   <TableCell> {prop} </TableCell>
                   <TableCell> {propsDoc[prop].type.name} </TableCell>
                   <TableCell> {this.getDefaultValue(propsDoc[prop].defaultValue)} </TableCell>

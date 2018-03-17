@@ -29,8 +29,6 @@ export class DatePickerWrapper extends PickerBase {
     animateYearScrolling: PropTypes.bool,
     /** Open datepicker from year selection */
     openToYearSelection: PropTypes.bool,
-    /** Displayed string if date can`t be parsed (or null) */
-    invalidLabel: PropTypes.string,
     /** Allow to specify dynamic label for text field labelFunc(date, invalidLabel) */
     labelFunc: PropTypes.func,
     /** Left arrow icon */
@@ -55,7 +53,6 @@ export class DatePickerWrapper extends PickerBase {
     disableFuture: undefined,
     animateYearScrolling: undefined,
     openToYearSelection: undefined,
-    invalidLabel: undefined,
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
     renderDay: undefined,
@@ -72,7 +69,6 @@ export class DatePickerWrapper extends PickerBase {
       onChange,
       animateYearScrolling,
       openToYearSelection,
-      invalidLabel,
       leftArrowIcon,
       rightArrowIcon,
       renderDay,
@@ -97,7 +93,6 @@ export class DatePickerWrapper extends PickerBase {
         onAccept={this.handleAccept}
         onChange={this.handleTextFieldChange}
         onDismiss={this.handleDismiss}
-        invalidLabel={invalidLabel}
         labelFunc={labelFunc}
         minDate={minDate}
         maxDate={maxDate}

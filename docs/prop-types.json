@@ -643,17 +643,6 @@
             "computed": true
           }
         },
-        "invalidLabel": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "Displayed string if date can`t be parsed (or null)",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
         "labelFunc": {
           "type": {
             "name": "func"
@@ -1640,17 +1629,6 @@
             "computed": false
           }
         },
-        "invalidLabel": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "Displayed string if date can`t be parsed (or null)",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
         "leftArrowIcon": {
           "type": {
             "name": "node"
@@ -2244,33 +2222,26 @@
       }
     }
   ],
-  "../lib/src/TimePicker/index.jsx": [
+  "../lib/src/TimePicker/TimePickerWrapper.jsx": [
     {
       "description": "",
       "displayName": "TimePickerWrapper",
       "methods": [],
       "props": {
+        "utils": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
         "value": {
           "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "object"
-              },
-              {
-                "name": "string"
-              },
-              {
-                "name": "number"
-              },
-              {
-                "name": "instanceOf",
-                "value": "Date"
-              }
-            ]
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
           },
           "required": false,
-          "description": "",
+          "description": "DateTimepicker value",
           "defaultValue": {
             "value": "new Date()",
             "computed": false
@@ -2281,7 +2252,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "",
+          "description": "Date format string for input",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -2292,43 +2263,25 @@
             "name": "func"
           },
           "required": true,
-          "description": ""
+          "description": "Callback firing when date accepted"
         },
         "autoOk": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "Auto accept date on minute selection",
           "defaultValue": {
             "value": "false",
             "computed": false
           }
-        },
-        "invalidLabel": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "utils": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
         },
         "ampm": {
           "type": {
             "name": "bool"
           },
           "required": false,
-          "description": "",
+          "description": "12h/24h view for hour selection clock",
           "defaultValue": {
             "value": "true",
             "computed": false

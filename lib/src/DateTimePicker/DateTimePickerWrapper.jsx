@@ -33,8 +33,6 @@ export class DateTimePickerWrapper extends PickerBase {
     maxDate: DomainPropTypes.date,
     /** Show date/time tabs */
     showTabs: PropTypes.bool,
-    /** Displayed string if date can`t be parsed (or null) */
-    invalidLabel: PropTypes.string,
     /** Left arrow icon */
     leftArrowIcon: PropTypes.node,
     /** Right arrow icon */
@@ -63,7 +61,6 @@ export class DateTimePickerWrapper extends PickerBase {
     minDate: undefined,
     maxDate: undefined,
     showTabs: true,
-    invalidLabel: undefined,
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
     dateRangeIcon: undefined,
@@ -91,7 +88,6 @@ export class DateTimePickerWrapper extends PickerBase {
       autoSubmit,
       disablePast,
       disableFuture,
-      invalidLabel,
       leftArrowIcon,
       rightArrowIcon,
       dateRangeIcon,
@@ -114,7 +110,6 @@ export class DateTimePickerWrapper extends PickerBase {
         onDismiss={this.handleDismiss}
         onClear={this.handleClear}
         dialogContentClassName={classes.dialogContent}
-        invalidLabel={invalidLabel}
         minDate={minDate}
         maxDate={maxDate}
         disablePast={disablePast}
