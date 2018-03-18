@@ -27,8 +27,8 @@ describe('<StepIcon />', () => {
 
   it('renders <Warning> when error occured', () => {
     const wrapper = mount(<StepIcon icon={1} error />);
-    const errorTriangle = wrapper.find(Warning);
-    assert.strictEqual(errorTriangle.length, 1, 'should have an <Warning />');
+    const warning = wrapper.find(Warning);
+    assert.strictEqual(warning.length, 1, 'should have an <Warning />');
   });
 
   it('renders <StepPositionIcon> when not completed', () => {

@@ -110,7 +110,11 @@ class HorizontalNonLinearStepperWithError extends React.Component {
             const props = {};
             const labelProps = {};
             if (this.isStepOptional(index)) {
-              labelProps.optional = <Typography variant="caption">Optional</Typography>;
+              labelProps.optional = (
+                <Typography variant="caption" color="error">
+                  Alert message
+                </Typography>
+              );
             }
             if (this.isStepFailed(index)) {
               labelProps.error = true;
