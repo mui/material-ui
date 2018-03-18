@@ -4,7 +4,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Textarea from './Textarea';
-import Input, { hasValue, isDirty } from './Input';
+import Input, { hasValue, isEmpty } from './Input';
 import InputAdornment from './InputAdornment';
 
 const NakedInput = unwrap(Input);
@@ -417,23 +417,23 @@ describe('<Input />', () => {
     });
   });
 
-  describe('isDirty', () => {
+  describe('isEmpty', () => {
     [' ', 0].forEach(value => {
       it(`is true for value ${value}`, () => {
-        assert.strictEqual(isDirty({ value }), true);
+        assert.strictEqual(isEmpty({ value }), true);
       });
 
       it(`is true for SSR defaultValue ${value}`, () => {
-        assert.strictEqual(isDirty({ defaultValue: value }, true), true);
+        assert.strictEqual(isEmpty({ defaultValue: value }, true), true);
       });
     });
     [null, undefined, ''].forEach(value => {
       it(`is false for value ${value}`, () => {
-        assert.strictEqual(isDirty({ value }), false);
+        assert.strictEqual(isEmpty({ value }), false);
       });
 
       it(`is false for SSR defaultValue ${value}`, () => {
-        assert.strictEqual(isDirty({ defaultValue: value }, true), false);
+        assert.strictEqual(isEmpty({ defaultValue: value }, true), false);
       });
     });
   });
