@@ -13,7 +13,9 @@ import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
   step: {
-    border: `1px solid ${theme.palette.common.white}`,
+    border: `1px solid ${
+      theme.palette.type === 'light' ? theme.palette.common.white : theme.palette.common.black
+    }`,
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
     [theme.breakpoints.up('sm')]: {
       padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 4}px`,
