@@ -14,9 +14,9 @@ filename: /src/Tooltip/Tooltip.js
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children *</span> | <span class="prop-type">element |  | Tooltip reference element. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
-| <span class="prop-name">disableTriggerFocus</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Do not respond to focus events. |
-| <span class="prop-name">disableTriggerHover</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Do not respond to hover events. |
-| <span class="prop-name">disableTriggerTouch</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Do not respond to long press touch events. |
+| <span class="prop-name">disableFocusListener</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Do not respond to focus events. |
+| <span class="prop-name">disableHoverListener</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Do not respond to hover events. |
+| <span class="prop-name">disableTouchListener</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Do not respond to long press touch events. |
 | <span class="prop-name">enterDelay</span> | <span class="prop-type">number | <span class="prop-default">0</span> | The number of milliseconds to wait before showing the tooltip. This property won't impact the enter touch delay (`enterTouchDelay`). |
 | <span class="prop-name">enterTouchDelay</span> | <span class="prop-type">number | <span class="prop-default">1000</span> | The number of milliseconds a user must touch the element before showing the tooltip. |
 | <span class="prop-name">id</span> | <span class="prop-type">string |  | The relationship between the tooltip and the wrapper component is not clear from the DOM. By providing this property, we can use aria-describedby to solve the accessibility issue. |

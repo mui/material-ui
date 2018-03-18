@@ -252,9 +252,9 @@ class Tooltip extends React.Component {
       children,
       classes,
       className,
-      disableTriggerFocus,
-      disableTriggerHover,
-      disableTriggerTouch,
+      disableFocusListener,
+      disableHoverListener,
+      disableTouchListener,
       enterDelay,
       enterTouchDelay,
       id,
@@ -280,17 +280,17 @@ class Tooltip extends React.Component {
       open = false;
     }
 
-    if (!disableTriggerTouch) {
+    if (!disableTouchListener) {
       childrenProps.onTouchStart = this.handleTouchStart;
       childrenProps.onTouchEnd = this.handleTouchEnd;
     }
 
-    if (!disableTriggerHover) {
+    if (!disableHoverListener) {
       childrenProps.onMouseOver = this.handleEnter;
       childrenProps.onMouseLeave = this.handleLeave;
     }
 
-    if (!disableTriggerFocus) {
+    if (!disableFocusListener) {
       childrenProps.onFocus = this.handleEnter;
       childrenProps.onBlur = this.handleLeave;
     }
@@ -382,15 +382,15 @@ Tooltip.propTypes = {
   /**
    * Do not respond to focus events.
    */
-  disableTriggerFocus: PropTypes.bool,
+  disableFocusListener: PropTypes.bool,
   /**
    * Do not respond to hover events.
    */
-  disableTriggerHover: PropTypes.bool,
+  disableHoverListener: PropTypes.bool,
   /**
    * Do not respond to long press touch events.
    */
-  disableTriggerTouch: PropTypes.bool,
+  disableTouchListener: PropTypes.bool,
   /**
    * The number of milliseconds to wait before showing the tooltip.
    * This property won't impact the enter touch delay (`enterTouchDelay`).
@@ -462,9 +462,9 @@ Tooltip.propTypes = {
 };
 
 Tooltip.defaultProps = {
-  disableTriggerFocus: false,
-  disableTriggerHover: false,
-  disableTriggerTouch: false,
+  disableFocusListener: false,
+  disableHoverListener: false,
+  disableTouchListener: false,
   enterDelay: 0,
   enterTouchDelay: 1000,
   leaveDelay: 0,

@@ -5,9 +5,9 @@ import { StandardProps } from '..';
 export interface TooltipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
   children: React.ReactElement<any>;
-  disableTriggerFocus?: boolean;
-  disableTriggerHover?: boolean;
-  disableTriggerTouch?: boolean;
+  disableFocusListener?: boolean;
+  disableHoverListener?: boolean;
+  disableTouchListener?: boolean;
   enterDelay?: number;
   enterTouchDelay?: number;
   id?: string;
