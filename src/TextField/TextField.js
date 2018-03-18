@@ -149,7 +149,7 @@ TextField.propTypes = {
   /**
    * The default value of the `Input` element.
    */
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * If `true`, the input will be disabled.
    */
