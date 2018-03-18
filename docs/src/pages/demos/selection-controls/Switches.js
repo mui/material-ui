@@ -28,6 +28,7 @@ class Switches extends React.Component {
         <Switch value="checkedC" />
         <Switch disabled value="checkedD" />
         <Switch disabled checked value="checkedE" />
+        <Switch defaultChecked value="checkedF" color="default" />
       </div>
     );
   }

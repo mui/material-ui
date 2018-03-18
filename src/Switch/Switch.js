@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { capitalize } from '../utils/helpers';
 import SwitchBase from '../internal/SwitchBase';
 
 export const styles = theme => ({
@@ -84,8 +85,7 @@ function Switch(props) {
   const icon = <span className={classes.icon} />;
   const checkedIcon = <span className={classNames(classes.icon, classes.iconChecked)} />;
   const checkedClass = classNames(classes.checked, {
-    [classes.checkedPrimary]: color === 'primary',
-    [classes.checkedSecondary]: color === 'secondary',
+    [classes[`checked${capitalize(color)}`]]: color !== 'default',
   });
 
   return (
@@ -125,7 +125,7 @@ Switch.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
   /**
    * @ignore
    */

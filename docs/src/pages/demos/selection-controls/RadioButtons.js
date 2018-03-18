@@ -48,6 +48,14 @@ class RadioButtons extends React.Component {
             checked: classes.checked,
           }}
         />
+        <Radio
+          checked={this.state.selectedValue === 'd'}
+          onChange={this.handleChange}
+          value="d"
+          color="default"
+          name="radio-button-demo"
+          aria-label="D"
+        />
       </div>
     );
   }

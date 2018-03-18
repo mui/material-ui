@@ -35,6 +35,7 @@ class Checkboxes extends React.Component {
           value="checkedF"
           indeterminate
         />
+        <Checkbox defaultChecked color="default" value="checkedG" />
       </div>
     );
   }

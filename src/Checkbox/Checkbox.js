@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
+import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -24,8 +25,7 @@ export const styles = theme => ({
 function Checkbox(props) {
   const { checkedIcon, classes, color, icon, indeterminate, indeterminateIcon, ...other } = props;
   const checkedClass = classNames(classes.checked, {
-    [classes.checkedPrimary]: color === 'primary',
-    [classes.checkedSecondary]: color === 'secondary',
+    [classes[`checked${capitalize(color)}`]]: color !== 'default',
   });
 
   return (
@@ -58,7 +58,7 @@ Checkbox.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
   /**
    * If `true`, the switch will be disabled.
    */
