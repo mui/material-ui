@@ -1,16 +1,16 @@
 {
-  "name": "@material-ui/lab",
+  "name": "@material-ui/docs",
   "private": false,
   "author": "Material-UI Team",
   "version": "1.0.0-alpha.0",
-  "description": "Material-UI Lab - Incubator for Material-UI React components.",
+  "description": "Material-UI Docs - Documentation building blocks.",
   "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
     "material design",
     "material-ui",
-    "lab"
+    "docs"
   ],
   "repository": {
     "type": "git",
@@ -22,14 +22,10 @@
   },
   "homepage": "https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-lab",
   "scripts": {
-    "test": "yarn test:unit",
-    "test:unit": "cd ../../ && ./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/mocha packages/material-ui-lab/src/{,**/}*.spec.js",
-    "test:watch": "yarn test:unit --watch",
     "prebuild": "../../node_modules/.bin/rimraf build",
     "build:es2015": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./build",
-    "build:es2015modules": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=modules ../../node_modules/.bin/babel ./src/index.js --out-file ./build/index.es.js",
     "build:copy-files": "../../node_modules/.bin/babel-node ./scripts/copy-files.js",
-    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:copy-files",
+    "build": "yarn build:es2015 && yarn build:copy-files",
     "version": "yarn build:copy-files && npm publish build"
   },
   "peerDependencies": {
@@ -38,7 +34,11 @@
     "react": "^15.3.0 || ^16.0.0",
     "react-dom": "^15.3.0 || ^16.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "marked": "^0.3.12",
+    "prismjs": "^1.8.4",
+    "nprogress": "^0.2.0"
+  },
   "devDependencies": {
     "material-ui": "^1.0.0-beta.33",
     "material-ui-icons": "^1.0.0-beta.35"

@@ -7,8 +7,8 @@ import Collapse from 'material-ui/transitions/Collapse';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
 import CodeIcon from 'material-ui-icons/Code';
 import Tooltip from 'material-ui/Tooltip';
-import Github from 'docs/src/modules/components/GitHub';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import Github from '@material-ui/docs/svgIcons/GitHub';
+import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import { getDependencies } from 'docs/src/modules/utils/helpers';
 
 const styles = theme => ({

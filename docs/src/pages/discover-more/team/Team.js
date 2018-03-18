@@ -6,8 +6,8 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
-import Github from 'docs/src/modules/components/GitHub';
-import Twitter from 'docs/src/modules/components/Twitter';
+import Github from '@material-ui/docs/svgIcons/GitHub';
+import Twitter from '@material-ui/docs/svgIcons/Twitter';
 
 const members = [
   {

@@ -7,9 +7,9 @@ import { MuiThemeProvider } from 'material-ui/styles';
 import CssBaseline from 'material-ui/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
 import polyfill from 'react-lifecycles-compat';
-import getPageContext, { getTheme } from 'docs/src/modules/styles/getPageContext';
+import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
+import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/utils/prism';
 import GoogleTag from 'docs/src/modules/components/GoogleTag';
 
 // Inject the insertion-point-jss after docssearch
@@ -45,10 +45,7 @@ class AppWrapper extends React.Component {
     ) {
       return {
         prevProps: nextProps,
-        pageContext: {
-          ...prevState.pageContext,
-          theme: getTheme(nextProps.uiTheme),
-        },
+        pageContext: updatePageContext(nextProps.uiTheme),
       };
     }
 

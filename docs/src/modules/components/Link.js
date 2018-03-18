@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import NextLink from 'next/link';
 import { withStyles } from 'material-ui/styles';
-import { capitalize } from 'material-ui/utils/helpers';
 
 const styles = theme => ({
   root: {
@@ -12,16 +11,16 @@ const styles = theme => ({
       textDecoration: 'underline',
     },
   },
-  variantDefault: {
+  default: {
     color: 'inherit',
   },
-  variantPrimary: {
+  primary: {
     color: theme.palette.primary.main,
   },
-  variantSecondary: {
+  secondary: {
     color: theme.palette.secondary.main,
   },
-  variantButton: {
+  button: {
     '&:hover': {
       textDecoration: 'inherit',
     },
@@ -66,11 +65,7 @@ function Link(props, context) {
   } = props;
 
   let ComponentRoot;
-  const className = classNames(
-    classes.root,
-    classes[`variant${capitalize(variant)}`],
-    classNameProp,
-  );
+  const className = classNames(classes.root, classes[variant], classNameProp);
   let RootProps;
   let children = childrenProp;
 

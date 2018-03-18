@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import NoSSR from 'docs/src/modules/components/NoSSR';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import NoSSR from '@material-ui/docs/NoSSR';
+import MarkdownElement from '@material-ui/docs/MarkdownElement';
 
 const styles = theme => ({
   root: {

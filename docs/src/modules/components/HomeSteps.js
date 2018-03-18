@@ -8,7 +8,7 @@ import Divider from 'material-ui/Divider';
 import FileDownloadIcon from 'material-ui-icons/FileDownload';
 import BuildIcon from 'material-ui-icons/Build'; // eslint-disable-line import/no-unresolved
 import WhatshotIcon from 'material-ui-icons/Whatshot';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
