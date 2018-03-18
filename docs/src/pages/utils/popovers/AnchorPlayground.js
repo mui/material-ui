@@ -1,5 +1,4 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { FormControl, FormLabel, FormControlLabel } from 'material-ui/Form';
@@ -73,7 +72,9 @@ class AnchorPlayground extends React.Component {
     return (
       <div>
         <Button
-          buttonRef={elem => this.anchorEl = elem}
+          buttonRef={elem => {
+            this.anchorEl = elem;
+          }}
           variant="raised"
           className={classes.button}
           onClick={this.handleClickButton}
