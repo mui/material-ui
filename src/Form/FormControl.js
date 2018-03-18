@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { isDirty, isAdornedStart } from '../Input/Input';
+import { isEmpty, isAdornedStart } from '../Input/Input';
 import { capitalize } from '../utils/helpers';
 import { isMuiElement } from '../utils/reactHelpers';
 
@@ -53,7 +53,7 @@ class FormControl extends React.Component {
           return;
         }
 
-        if (isDirty(child.props, true)) {
+        if (isEmpty(child.props, true)) {
           this.state.dirty = true;
         }
 

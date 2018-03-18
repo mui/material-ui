@@ -14,15 +14,14 @@ export function hasValue(value) {
   return value != null && !(Array.isArray(value) && value.length === 0);
 }
 
-// Determine if field is dirty (a.k.a. filled).
-//
+// Determine if field is empty or filled.
 // Response determines if label is presented above field or as placeholder.
 //
 // @param obj
 // @param SSR
 // @returns {boolean} False when not present or empty string.
 //                    True when any number or string with length.
-export function isDirty(obj, SSR = false) {
+export function isEmpty(obj, SSR = false) {
   return (
     obj &&
     ((hasValue(obj.value) && obj.value !== '') ||
@@ -330,7 +329,7 @@ class Input extends React.Component {
   checkDirty(obj) {
     const { muiFormControl } = this.context;
 
-    if (isDirty(obj)) {
+    if (isEmpty(obj)) {
       if (muiFormControl && muiFormControl.onDirty) {
         muiFormControl.onDirty();
       }

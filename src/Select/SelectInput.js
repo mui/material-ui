@@ -5,7 +5,7 @@ import keycode from 'keycode';
 import warning from 'warning';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Menu from '../Menu/Menu';
-import { isDirty } from '../Input/Input';
+import { isEmpty } from '../Input/Input';
 
 /**
  * @ignore - internal component.
@@ -217,7 +217,7 @@ class SelectInput extends React.Component {
     let computeDisplay = false;
 
     // No need to display any value if the field is empty.
-    if (isDirty(this.props) || displayEmpty) {
+    if (isEmpty(this.props) || displayEmpty) {
       if (renderValue) {
         display = renderValue(value);
       } else {
