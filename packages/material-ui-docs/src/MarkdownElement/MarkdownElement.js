@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import marked from 'marked';
 import { withStyles } from 'material-ui/styles';
-import prism from 'docs/src/modules/utils/prism';
+import prism from './prism';
 
-// monkey patch to preserve non-breaking spaces
+// Monkey patch to preserve non-breaking spaces
 // https://github.com/chjj/marked/blob/6b0416d10910702f73da9cb6bb3d4c8dcb7dead7/lib/marked.js#L142-L150
 marked.Lexer.prototype.lex = function lex(src) {
   src = src

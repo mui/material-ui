@@ -12,25 +12,16 @@ import IconButton from 'material-ui/IconButton';
 import Tooltip from 'material-ui/Tooltip';
 import MenuIcon from 'material-ui-icons/Menu';
 import LightbulbOutline from 'material-ui-icons/LightbulbOutline';
-import LightbublFull from 'docs/src/modules/components/LightbublFull';
+import LightbublFull from '@material-ui/docs/svgIcons/LightbublFull';
+import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from 'material-ui-icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from 'material-ui-icons/FormatTextdirectionRToL';
-import Github from 'docs/src/modules/components/GitHub';
+import Github from '@material-ui/docs/svgIcons/GitHub';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import actionTypes from 'docs/src/modules/redux/actionTypes';
-
-// Disaply a progress bar between route transitions
-NProgress.configure({
-  template: `
-    <div class="bar" role="bar">
-      <dt></dt>
-      <dd></dd>
-    </div>
-  `,
-});
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -45,55 +36,6 @@ Router.onRouteChangeError = () => {
 };
 
 const styles = theme => ({
-  '@global': {
-    '#nprogress': {
-      pointerEvents: 'none',
-      '& .bar': {
-        position: 'fixed',
-        background:
-          theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
-        borderRadius: 1,
-        zIndex: theme.zIndex.tooltip,
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: 2,
-      },
-      '& dd, & dt': {
-        position: 'absolute',
-        top: 0,
-        height: 2,
-        boxShadow: `${
-          theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white
-        } 1px 0 6px 1px`,
-        borderRadius: '100%',
-        animation: 'nprogress-pulse 2s ease-out 0s infinite',
-      },
-      '& dd': {
-        opacity: 0.6,
-        width: 20,
-        right: 0,
-        clip: 'rect(-6px,22px,14px,10px)',
-      },
-      '& dt': {
-        opacity: 0.6,
-        width: 180,
-        right: -80,
-        clip: 'rect(-6px,90px,14px,-6px)',
-      },
-    },
-    '@keyframes nprogress-pulse': {
-      '30%': {
-        opacity: 0.6,
-      },
-      '60%': {
-        opacity: 0,
-      },
-      to: {
-        opacity: 0.6,
-      },
-    },
-  },
   root: {
     display: 'flex',
     alignItems: 'stretch',
@@ -185,6 +127,7 @@ class AppFrame extends React.Component {
 
     return (
       <div className={classes.root}>
+        <NProgressBar />
         <AppBar className={appBarClassName}>
           <Toolbar>
             <IconButton

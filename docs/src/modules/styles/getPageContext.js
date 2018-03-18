@@ -7,9 +7,12 @@ import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
 import { darken } from 'material-ui/styles/colorManipulator';
 
-export function getTheme(uiTheme) {
+function getTheme(uiTheme) {
   const theme = createMuiTheme({
     direction: uiTheme.direction,
+    nprogress: {
+      color: uiTheme.paletteType === 'light' ? '#000' : '#fff',
+    },
     palette: {
       primary: blue,
       secondary: {
@@ -51,6 +54,16 @@ function createPageContext() {
   };
 }
 
+export function updatePageContext(uiTheme) {
+  const pageContext = {
+    ...global.__MUI_PAGE_CONTEXT__,
+    theme: getTheme(uiTheme),
+  };
+  global.__MUI_PAGE_CONTEXT__ = pageContext;
+
+  return pageContext;
+}
+
 export default function getPageContext() {
   // Make sure to create a new store for every server-side request so that data
   // isn't shared between connections (which would be bad)
@@ -59,9 +72,9 @@ export default function getPageContext() {
   }
 
   // Reuse context on the client-side
-  if (!global.__INIT_MATERIAL_UI__) {
-    global.__INIT_MATERIAL_UI__ = createPageContext();
+  if (!global.__MUI_PAGE_CONTEXT__) {
+    global.__MUI_PAGE_CONTEXT__ = createPageContext();
   }
 
-  return global.__INIT_MATERIAL_UI__;
+  return global.__MUI_PAGE_CONTEXT__;
 }

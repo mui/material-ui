@@ -27,6 +27,7 @@
           "module-resolver",
           {
             "alias": {
+              "@material-ui/docs": "./packages/material-ui-docs/src",
               "@material-ui/lab": "./packages/material-ui-lab/src",
               "docs": "./docs",
               "material-ui": "./src",
@@ -48,6 +49,7 @@
           "module-resolver",
           {
             "alias": {
+              "@material-ui/docs": "./packages/material-ui-docs/src",
               "@material-ui/lab": "./packages/material-ui-lab/src",
               "docs": "./docs",
               "material-ui": "./src",
