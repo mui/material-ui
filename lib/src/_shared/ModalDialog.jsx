@@ -92,17 +92,14 @@ ModalDialog.propTypes = {
   onClear: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   dialogContentClassName: PropTypes.string,
-  okLabel: PropTypes.string,
-  cancelLabel: PropTypes.string,
-  clearLabel: PropTypes.string,
+  okLabel: PropTypes.string.isRequired,
+  cancelLabel: PropTypes.string.isRequired,
+  clearLabel: PropTypes.string.isRequired,
   clearable: PropTypes.bool.isRequired,
 };
 
 ModalDialog.defaultProps = {
   dialogContentClassName: '',
-  okLabel: 'OK',
-  cancelLabel: 'Cancel',
-  clearLabel: 'Clear',
 };
 
 export default withStyles(styles, { name: 'MuiPickersModal' })(ModalDialog);

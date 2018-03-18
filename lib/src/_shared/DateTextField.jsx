@@ -1,4 +1,3 @@
-/* eslint-disable react/sort-comp */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'material-ui/Icon';
@@ -11,6 +10,7 @@ import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
 import withUtils from '../_shared/WithUtils';
 
+/* eslint-disable react/sort-comp */
 export class DateTextField extends PureComponent {
   static propTypes = {
     classes: PropTypes.shape({}).isRequired,
@@ -20,29 +20,41 @@ export class DateTextField extends PureComponent {
       PropTypes.number,
       PropTypes.instanceOf(Date),
     ]),
-    mask: PropTypes.any,
     minDate: DomainPropTypes.date,
-    minDateMessage: PropTypes.string,
     maxDate: DomainPropTypes.date,
-    maxDateMessage: PropTypes.string,
     disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
-    disabled: PropTypes.bool,
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onClear: PropTypes.func,
     onClick: PropTypes.func.isRequired,
-    invalidLabel: PropTypes.string,
-    emptyLabel: PropTypes.string,
-    labelFunc: PropTypes.func,
-    keyboard: PropTypes.bool,
-    InputProps: PropTypes.shape(),
-    keyboardIcon: PropTypes.node,
-    invalidDateMessage: PropTypes.string,
     clearable: PropTypes.bool,
-    TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     utils: PropTypes.object.isRequired,
+    disabled: PropTypes.bool,
+    InputProps: PropTypes.shape(),
+    /** Input mask, used in keyboard mode read more <a href="https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme">here</a> */
+    mask: PropTypes.any,
+    /** Error message, shown if date is less then minimal date */
+    minDateMessage: PropTypes.string,
+    /** Error message, shown if date is more then maximal date */
+    maxDateMessage: PropTypes.string,
+    /** Error message, shown if date is invalid */
+    invalidLabel: PropTypes.string,
+    /** Message displaying in text field, if null passed */
+    emptyLabel: PropTypes.string,
+    /** Dynamic label generation function (date, invalidLabel) => string */
+    labelFunc: PropTypes.func,
+    /** On/off manual keyboard input mode */
+    keyboard: PropTypes.bool,
+    /** Icon displayed for open picker button in keyboard mode */
+    keyboardIcon: PropTypes.node,
+    /** Message, appearing when date cannot be parsed */
+    invalidDateMessage: PropTypes.string,
+    /** Component that should replace the default Material-UI TextField */
+    TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    /** Props to pass to keyboard input adornment */
     InputAdornmentProps: PropTypes.object,
+    /** Specifies position of keyboard button adornment */
     adornmentPosition: PropTypes.oneOf(['start', 'end']),
   }
 

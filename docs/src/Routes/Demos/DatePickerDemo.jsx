@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypesTable from '_shared/PropTypesTable';
 import SourcablePanel from '_shared/SourcablePanel';
 import { Typography } from 'material-ui';
 
@@ -34,6 +35,8 @@ const DatePickerDemoDemo = () => (
         </Typography>
       }
     />
+
+    <PropTypesTable src="DatePicker/DatePickerWrapper.jsx" />
   </div>
 );
 
