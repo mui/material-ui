@@ -2,7 +2,9 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
-export interface SwitchProps extends StandardProps<SwitchBaseProps, SwitchClassKey> {}
+export interface SwitchProps extends StandardProps<SwitchBaseProps, SwitchClassKey, 'color'> {
+  color?: 'primary' | 'secondary' | 'default';
+}
 
 export type SwitchClassKey =
   | SwitchBaseClassKey
