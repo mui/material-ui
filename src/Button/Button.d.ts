@@ -29,6 +29,7 @@ export type ButtonClassKey =
   | 'raisedSecondary'
   | 'fab'
   | 'sizeSmall'
+  | 'sizeMedium'
   | 'sizeLarge'
   | 'fullWidth';
 
