@@ -11,6 +11,7 @@ import { isMuiElement } from '../utils/reactHelpers';
 export const styles = theme => ({
   root: {
     width: '100%',
+    justifyContent: 'left',
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
     margin: `${-theme.spacing.unit * 3}px ${-theme.spacing.unit * 2}px`,
     boxSizing: 'content-box',
