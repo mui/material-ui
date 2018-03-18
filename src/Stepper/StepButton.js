@@ -15,6 +15,9 @@ export const styles = theme => ({
     margin: `${-theme.spacing.unit * 3}px ${-theme.spacing.unit * 2}px`,
     boxSizing: 'content-box',
   },
+  vertical: {
+    justifyContent: 'left',
+  },
   touchRipple: {
     color: 'rgba(0, 0, 0, 0.3)',
   },
@@ -55,7 +58,13 @@ function StepButton(props) {
     <ButtonBase
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
-      className={classNames(classes.root, classNameProp)}
+      className={classNames(
+        classes.root,
+        {
+          [classes.vertical]: orientation === 'vertical',
+        },
+        classNameProp,
+      )}
       {...other}
     >
       {child}
