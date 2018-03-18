@@ -18,7 +18,6 @@ export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassK
 
 export type ButtonClassKey =
   | ButtonBaseClassKey
-  | 'dense'
   | 'label'
   | 'flatPrimary'
   | 'flatSecondary'
@@ -27,7 +26,9 @@ export type ButtonClassKey =
   | 'keyboardFocused'
   | 'raisedPrimary'
   | 'raisedSecondary'
+  | 'disabled'
   | 'fab'
+  | 'mini'
   | 'sizeSmall'
   | 'sizeLarge'
   | 'fullWidth';
