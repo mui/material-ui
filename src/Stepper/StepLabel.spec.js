@@ -56,15 +56,7 @@ describe('<StepLabel />', () => {
     });
   });
 
-  describe('prop: active = false', () => {
-    it('renders <Typography> without the className active', () => {
-      const wrapper = shallow(<StepLabel active={false}>Step One</StepLabel>);
-      const text = wrapper.find(Typography);
-      assert.strictEqual(text.hasClass(classes.labelActive), false);
-    });
-  });
-
-  describe('prop: active = true', () => {
+  describe('prop: active', () => {
     it('renders <Typography> with the className active', () => {
       const wrapper = shallow(<StepLabel active>Step One</StepLabel>);
       const text = wrapper.find(Typography);
@@ -80,9 +72,15 @@ describe('<StepLabel />', () => {
       const stepIcon = wrapper.find(StepIcon);
       assert.strictEqual(stepIcon.props().active, true, 'should set active');
     });
+
+    it('renders <Typography> without the className active', () => {
+      const wrapper = shallow(<StepLabel active={false}>Step One</StepLabel>);
+      const text = wrapper.find(Typography);
+      assert.strictEqual(text.hasClass(classes.labelActive), false);
+    });
   });
 
-  describe('prop: completed = true', () => {
+  describe('prop: completed', () => {
     it('renders <Typography> with the className completed', () => {
       const wrapper = shallow(<StepLabel completed>Step One</StepLabel>);
       const text = wrapper.find(Typography);
@@ -100,7 +98,25 @@ describe('<StepLabel />', () => {
     });
   });
 
-  describe('prop: disabled = true', () => {
+  describe('prop: error', () => {
+    it('renders <Typography> with the className error', () => {
+      const wrapper = shallow(<StepLabel error>Step One</StepLabel>);
+      const text = wrapper.find(Typography);
+      assert.strictEqual(text.hasClass(classes.labelError), true);
+    });
+
+    it('renders <StepIcon> with the prop error set to true', () => {
+      const wrapper = shallow(
+        <StepLabel icon={1} error>
+          Step One
+        </StepLabel>,
+      );
+      const stepIcon = wrapper.find(StepIcon);
+      assert.strictEqual(stepIcon.props().error, true, 'should set error');
+    });
+  });
+
+  describe('prop: disabled', () => {
     it('renders with disabled className when disabled', () => {
       const wrapper = shallow(
         <StepLabel icon={1} disabled>

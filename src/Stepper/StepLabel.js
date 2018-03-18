@@ -18,6 +18,7 @@ export const styles = theme => ({
   disabled: {
     cursor: 'default',
   },
+  error: {},
   label: {
     color: theme.palette.text.secondary,
   },
@@ -32,6 +33,9 @@ export const styles = theme => ({
   labelAlternativeLabel: {
     textAlign: 'center',
     marginTop: theme.spacing.unit * 2,
+  },
+  labelError: {
+    color: theme.palette.error.main,
   },
   iconContainer: {
     paddingRight: theme.spacing.unit,
@@ -53,6 +57,7 @@ function StepLabel(props) {
     className: classNameProp,
     completed,
     disabled,
+    error,
     icon,
     last,
     optional,
@@ -68,6 +73,7 @@ function StepLabel(props) {
         {
           [classes.disabled]: disabled,
           [classes.alternativeLabel]: alternativeLabel,
+          [classes.error]: error,
         },
         classNameProp,
       )}
@@ -82,6 +88,7 @@ function StepLabel(props) {
           <StepIcon
             completed={completed}
             active={active}
+            error={error}
             icon={icon}
             alternativeLabel={alternativeLabel}
           />
@@ -95,6 +102,7 @@ function StepLabel(props) {
             [classes.labelAlternativeLabel]: alternativeLabel,
             [classes.labelCompleted]: completed,
             [classes.labelActive]: active,
+            [classes.labelError]: error,
           })}
         >
           {children}
@@ -121,7 +129,7 @@ StepLabel.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Custom styles for component.
+   * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -138,6 +146,10 @@ StepLabel.propTypes = {
    * `StepLabelButton` is a child of `StepLabel`. Is passed to child components.
    */
   disabled: PropTypes.bool,
+  /**
+   * Mark the step as failed.
+   */
+  error: PropTypes.bool,
   /**
    * Override the default icon.
    */
@@ -161,6 +173,7 @@ StepLabel.defaultProps = {
   alternativeLabel: false,
   completed: false,
   disabled: false,
+  error: false,
   last: false,
   orientation: 'horizontal',
 };

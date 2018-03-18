@@ -14,6 +14,7 @@ filename: /src/Stepper/Step.js
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">active</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Sets the step as active. Is passed to child components. |
 | <span class="prop-name">children</span> | <span class="prop-type">node |  | Should be `Step` sub-components such as `StepLabel`, `StepContent`. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
 | <span class="prop-name">completed</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Mark the step as completed. Is passed to child components. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Mark the step as disabled, will also disable the button if `StepButton` is a child of `Step`. Is passed to child components. |
 

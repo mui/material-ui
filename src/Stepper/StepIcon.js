@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
+import Warning from '../internal/svg-icons/Warning';
 import withStyles from '../styles/withStyles';
 import StepPositionIcon from './StepPositionIcon';
 
@@ -14,15 +15,22 @@ export const styles = theme => ({
     '&$completed': {
       color: theme.palette.primary.main,
     },
+    '&$error': {
+      color: theme.palette.error.main,
+    },
   },
   active: {},
   completed: {},
+  error: {},
 });
 
 function StepIcon(props) {
-  const { completed, icon, active, classes } = props;
+  const { completed, icon, active, error, classes } = props;
 
   if (typeof icon === 'number' || typeof icon === 'string') {
+    if (error) {
+      return <Warning className={classNames(classes.root, classes.error)} />;
+    }
     if (completed) {
       return <CheckCircle className={classNames(classes.root, classes.completed)} />;
     }
@@ -45,13 +53,17 @@ StepIcon.propTypes = {
    */
   active: PropTypes.bool,
   /**
-   * Classses for component style customizations.
+   * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
   /**
    * Mark the step as completed. Is passed to child components.
    */
   completed: PropTypes.bool,
+  /**
+   * Mark the step as failed.
+   */
+  error: PropTypes.bool,
   /**
    * The icon displayed by the step label.
    */
@@ -61,6 +73,7 @@ StepIcon.propTypes = {
 StepIcon.defaultProps = {
   active: false,
   completed: false,
+  error: false,
 };
 
 export default withStyles(styles, { name: 'MuiStepIcon' })(StepIcon);
