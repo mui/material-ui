@@ -27,6 +27,7 @@ class SelectInput extends React.Component {
 
   ignoreNextBlur = false;
   displayNode = null;
+  displayWidth = null;
   isControlled = this.props.open !== undefined;
 
   update = this.isControlled
@@ -118,6 +119,15 @@ class SelectInput extends React.Component {
         open: true,
         event,
       });
+    }
+  };
+
+  handleDisplayRef = node => {
+    this.displayNode = node;
+
+    if (node) {
+      // Perfom the layout computation outside of the render method.
+      this.displayWidth = node.clientWidth;
     }
   };
 
@@ -263,7 +273,7 @@ class SelectInput extends React.Component {
       display = multiple ? displayMultiple.join(', ') : displaySingle;
     }
 
-    const MenuMinWidth = this.displayNode && !autoWidth ? this.displayNode.clientWidth : undefined;
+    const MenuMinWidth = this.displayNode && !autoWidth ? this.displayWidth : undefined;
 
     let tabIndex;
     if (typeof tabIndexProp !== 'undefined') {
@@ -283,9 +293,7 @@ class SelectInput extends React.Component {
             },
             classNameProp,
           )}
-          ref={node => {
-            this.displayNode = node;
-          }}
+          ref={this.handleDisplayRef}
           data-mui-test="SelectDisplay"
           aria-pressed={open ? 'true' : 'false'}
           tabIndex={tabIndex}
