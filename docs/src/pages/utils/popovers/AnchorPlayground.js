@@ -72,8 +72,8 @@ class AnchorPlayground extends React.Component {
     return (
       <div>
         <Button
-          buttonRef={elem => {
-            this.anchorEl = elem;
+          buttonRef={node => {
+            this.anchorEl = node;
           }}
           variant="raised"
           className={classes.button}
