@@ -22,7 +22,6 @@ const styles = theme => ({
 class AnchorPlayground extends React.Component {
   state = {
     open: false,
-    anchorEl: null,
     anchorOriginVertical: 'bottom',
     anchorOriginHorizontal: 'center',
     transformOriginVertical: 'top',
@@ -47,7 +46,6 @@ class AnchorPlayground extends React.Component {
   handleClickButton = () => {
     this.setState({
       open: true,
-      anchorEl: findDOMNode(this.button),
     });
   };
 
@@ -57,13 +55,12 @@ class AnchorPlayground extends React.Component {
     });
   };
 
-  button = null;
+  anchorEl = null;
 
   render() {
     const { classes } = this.props;
     const {
       open,
-      anchorEl,
       anchorOriginVertical,
       anchorOriginHorizontal,
       transformOriginVertical,
@@ -76,9 +73,7 @@ class AnchorPlayground extends React.Component {
     return (
       <div>
         <Button
-          ref={node => {
-            this.button = node;
-          }}
+          buttonRef={elem => this.anchorEl = elem}
           variant="raised"
           className={classes.button}
           onClick={this.handleClickButton}
@@ -87,7 +82,7 @@ class AnchorPlayground extends React.Component {
         </Button>
         <Popover
           open={open}
-          anchorEl={anchorEl}
+          anchorEl={this.anchorEl}
           anchorReference={anchorReference}
           anchorPosition={{ top: positionTop, left: positionLeft }}
           onClose={this.handleClose}
