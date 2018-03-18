@@ -100,6 +100,24 @@ describe('<StepLabel />', () => {
     });
   });
 
+  describe('prop: error = true', () => {
+    it('renders <Typography> with the className error', () => {
+      const wrapper = shallow(<StepLabel error>Step One</StepLabel>);
+      const text = wrapper.find(Typography);
+      assert.strictEqual(text.hasClass(classes.labelError), true);
+    });
+
+    it('renders <StepIcon> with the prop error set to true', () => {
+      const wrapper = shallow(
+        <StepLabel icon={1} error>
+          Step One
+        </StepLabel>,
+      );
+      const stepIcon = wrapper.find(StepIcon);
+      assert.strictEqual(stepIcon.props().error, true, 'should set error');
+    });
+  });
+
   describe('prop: disabled = true', () => {
     it('renders with disabled className when disabled', () => {
       const wrapper = shallow(

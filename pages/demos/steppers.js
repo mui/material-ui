@@ -47,6 +47,14 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/steppers/VerticalLinearStepper'), 'utf8')
 `,
         },
+        'pages/demos/steppers/HorizontalNonLinearStepperWithError.js': {
+          js: require('docs/src/pages/demos/steppers/HorizontalNonLinearStepperWithError').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require
+    .resolve('docs/src/pages/demos/steppers/HorizontalNonLinearStepperWithError'), 'utf8')
+`,
+        },
         'pages/demos/steppers/TextMobileStepper.js': {
           js: require('docs/src/pages/demos/steppers/TextMobileStepper').default,
           raw: preval`

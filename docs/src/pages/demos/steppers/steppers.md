@@ -54,6 +54,10 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prope
 
 {{"demo": "pages/demos/steppers/HorizontalNonLinearAlternativeLabelStepper.js"}}
 
+## Horizontal Non Linear - Error Step
+
+{{"demo": "pages/demos/steppers/HorizontalNonLinearStepperWithError.js"}}
+
 ## Vertical Stepper
 
 {{"demo": "pages/demos/steppers/VerticalLinearStepper.js"}}

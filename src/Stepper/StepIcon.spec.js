@@ -1,6 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
+import ErrorTriangle from '../internal/svg-icons/ErrorTriangle';
 import { createShallow, createMount } from '../test-utils';
 import StepIcon from './StepIcon';
 import StepPositionIcon from './StepPositionIcon';
@@ -22,6 +23,12 @@ describe('<StepIcon />', () => {
     const wrapper = mount(<StepIcon icon={1} completed />);
     const checkCircle = wrapper.find(CheckCircle);
     assert.strictEqual(checkCircle.length, 1, 'should have an <CheckCircle />');
+  });
+
+  it('renders <ErrorTriangle> when error occured', () => {
+    const wrapper = mount(<StepIcon icon={1} error />);
+    const errorTriangle = wrapper.find(ErrorTriangle);
+    assert.strictEqual(errorTriangle.length, 1, 'should have an <ErrorTriangle />');
   });
 
   it('renders <StepPositionIcon> when not completed', () => {
