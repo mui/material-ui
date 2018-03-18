@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
-import ErrorTriangle from '../internal/svg-icons/ErrorTriangle';
+import Warning from '../internal/svg-icons/Warning';
 import withStyles from '../styles/withStyles';
 import StepPositionIcon from './StepPositionIcon';
 
@@ -29,7 +29,7 @@ function StepIcon(props) {
 
   if (typeof icon === 'number' || typeof icon === 'string') {
     if (error) {
-      return <ErrorTriangle className={classNames(classes.root, classes.error)} />;
+      return <Warning className={classNames(classes.root, classes.error)} />;
     }
     if (completed) {
       return <CheckCircle className={classNames(classes.root, classes.completed)} />;
@@ -53,7 +53,7 @@ StepIcon.propTypes = {
    */
   active: PropTypes.bool,
   /**
-   * Classes for component style customizations.
+   * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
   /**

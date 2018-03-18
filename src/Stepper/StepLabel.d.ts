@@ -29,6 +29,7 @@ export type StepLabelClasskey =
   | 'labelCompleted'
   | 'labelAlternativeLabel'
   | 'iconContainer'
+  | 'labelError'
   | 'iconContainerAlternativeLabel'
   | 'labelContainer';
 

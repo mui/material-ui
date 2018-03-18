@@ -66,7 +66,7 @@ StepConnector.propTypes = {
    */
   alternativeLabel: PropTypes.bool,
   /**
-   * Useful to extend the style applied to the component.
+   * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
   /**

@@ -18,9 +18,7 @@ export const styles = theme => ({
   disabled: {
     cursor: 'default',
   },
-  error: {
-    color: theme.palette.error.main,
-  },
+  error: {},
   label: {
     color: theme.palette.text.secondary,
   },
@@ -131,7 +129,7 @@ StepLabel.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Custom styles for component.
+   * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
   /**

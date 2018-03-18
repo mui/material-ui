@@ -33,7 +33,7 @@ function StepPositionIcon(props) {
 
 StepPositionIcon.propTypes = {
   /**
-   * Classses for component style customizations.
+   * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
   /**

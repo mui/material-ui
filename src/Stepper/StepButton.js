@@ -88,7 +88,7 @@ StepButton.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
   /**

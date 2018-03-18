@@ -13,6 +13,7 @@ filename: /src/Stepper/StepButton.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node |  | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node |  | The icon displayed by the step label. |
 | <span class="prop-name">optional</span> | <span class="prop-type">node |  | The optional node to display. |
 
