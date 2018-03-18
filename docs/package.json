@@ -71,7 +71,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "docs:generate": "react-docgen ../lib/src --out prop-types.json --resolver findAllComponentDefinitions --pretty",
-    "deploy": "npm run docs:generate && firebase deploy"
+    "deploy": "npm run build && npm run docs:generate && firebase deploy"
   },
   "jest": {
     "collectCoverageFrom": [

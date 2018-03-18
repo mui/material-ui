@@ -18,35 +18,35 @@ npm install date-fns@next -s
 npm install moment -S
 ```
 
-## Documentation
-Check out material-ui-picker's [documentation](https://material-ui-pickers.firebaseapp.com/)
-
-### Recently updated?
-Changelog available [here](https://github.com/dmtrKovalenko/material-ui-pickers/releases)
-
-<!-- Delay support of material-ui-pickers probably to rc-2
-### Jalali Calendar
-We are fully supporting Jalali calendar system and [right-to-left](https://material-ui-next.com/guides/right-to-left/) material-ui api. Special thanks to @alitaheri.
-Here is a little example of how to use it
-
-Don't forget to install [material-ui-pickers-jalali-utils](https://github.com/alitaheri/material-ui-pickers-jalali-utils).
-
-```sh
-npm install material-ui-pickers-jalali-utils
-```
+Then teach pickers which library to use with `MuiPickerUtilsProvider`.This component takes an utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.
 
 ```jsx
-import { MuiPickersUtilsProvider } from 'material-ui-pickers';
-import jalaliUtils from 'material-ui-pickers-jalali-utils';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
 function App() {
-  return ( 
-    <MuiPickersUtilsProvider utils={jalaliUtils}>
+  return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Root />
     </MuiPickersUtilsProvider>
   );
 }
-``` -->
+
+render(<App />, document.querySelector('#app'));
+```
+
+And the last step of installation would be an icon font. By default we relying on material-icons font, but its possible to override any icons with a help of corresponding props.
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+```
+
+## Documentation
+Check out the [documentation website](https://material-ui-pickers.firebaseapp.com/)
+
+### Recently updated?
+Changelog available [here](https://github.com/dmtrKovalenko/material-ui-pickers/releases)
 
 ### Contributing
 For information about how to contribute, see the [CONTRIBUTING](https://github.com/dmtrKovalenko/material-ui-pickers/blob/master/CONTRIBUTING.md) file.
