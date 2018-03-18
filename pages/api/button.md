@@ -44,6 +44,7 @@ This property accepts the following keys:
 - `fab`
 - `mini`
 - `sizeSmall`
+- `sizeMedium`
 - `sizeLarge`
 - `fullWidth`
 

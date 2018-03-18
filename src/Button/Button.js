@@ -13,9 +13,6 @@ export const styles = theme => ({
     ...theme.typography.button,
     lineHeight: '1.4em', // Improve readability for multiline button.
     boxSizing: 'border-box',
-    minWidth: theme.spacing.unit * 11,
-    minHeight: 36,
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
     borderRadius: 2,
     color: theme.palette.text.primary,
     transition: theme.transitions.create(['background-color', 'box-shadow'], {
@@ -135,6 +132,11 @@ export const styles = theme => ({
     minHeight: 32,
     fontSize: theme.typography.pxToRem(13),
   },
+  sizeMedium: {
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    minWidth: theme.spacing.unit * 11,
+    minHeight: 36,
+  },
   sizeLarge: {
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
     minWidth: theme.spacing.unit * 14,
@@ -166,6 +168,7 @@ function Button(props) {
   const flat = !raised && !fab;
   const className = classNames(
     classes.root,
+    classes[`size${capitalize(size)}`],
     {
       [classes.raised]: raised || fab,
       [classes.fab]: fab,
@@ -175,7 +178,6 @@ function Button(props) {
       [classes.flatSecondary]: flat && color === 'secondary',
       [classes.raisedPrimary]: !flat && color === 'primary',
       [classes.raisedSecondary]: !flat && color === 'secondary',
-      [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
     },
