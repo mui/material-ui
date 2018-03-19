@@ -1,6 +1,8 @@
 import React from 'react';
+import keycode from 'keycode';
 import compose from 'recompose/compose';
 import pure from 'recompose/pure';
+import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import SearchIcon from 'material-ui-icons/Search';
@@ -114,24 +116,47 @@ const styles = theme => ({
   },
 });
 
-function AppSearch(props) {
-  const { classes, width } = props;
+class AppSearch extends React.Component {
+  handleKeyDown = event => {
+    if (
+      ['/', 's'].indexOf(keycode(event)) !== -1 &&
+      document.activeElement.nodeName.toLowerCase() === 'body' &&
+      document.activeElement !== this.input
+    ) {
+      event.preventDefault();
+      this.input.focus();
+    }
+  };
 
-  if (!isWidthUp('sm', width)) {
-    removeDocsearch();
-    return null;
+  input = null;
+
+  render() {
+    const { classes, width } = this.props;
+
+    if (!isWidthUp('sm', width)) {
+      removeDocsearch();
+      return null;
+    }
+
+    initDocsearch();
+
+    return (
+      <EventListener target="window" onKeyDown={this.handleKeyDown}>
+        <div className={classes.root}>
+          <div className={classes.search}>
+            <SearchIcon />
+          </div>
+          <input
+            id="docsearch-input"
+            ref={node => {
+              this.input = node;
+            }}
+            className={classes.input}
+          />
+        </div>
+      </EventListener>
+    );
   }
-
-  initDocsearch();
-
-  return (
-    <div className={classes.root}>
-      <div className={classes.search}>
-        <SearchIcon />
-      </div>
-      <input id="docsearch-input" className={classes.input} />
-    </div>
-  );
 }
 
 AppSearch.propTypes = {
