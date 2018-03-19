@@ -94,7 +94,7 @@ class Drawer extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.type === 'temporary') {
+    if (this.props.variant === 'temporary') {
       this.enableSwipeHandling();
     }
     this.mounted = true;
@@ -105,9 +105,9 @@ class Drawer extends React.Component {
       firstMount: false,
     });
 
-    if (this.props.type !== 'temporary' && nextProps.type === 'temporary') {
+    if (this.props.variant !== 'temporary' && nextProps.variant === 'temporary') {
       this.enableSwipeHandling();
-    } else if (this.props.type === 'temporary' && nextProps.type !== 'temporary') {
+    } else if (this.props.variant === 'temporary' && nextProps.variant !== 'temporary') {
       this.disableSwipeHandling();
     }
   }
@@ -359,7 +359,7 @@ class Drawer extends React.Component {
 
     const slidingDrawer = (
       <Slide
-        in={open || (type === 'temporary' && !!this.maybeSwiping)}
+        in={open || (variant === 'temporary' && !!this.maybeSwiping)}
         direction={getSlideDirection(anchor)}
         timeout={transitionDuration}
         appear={!this.state.firstMount}
@@ -387,7 +387,7 @@ class Drawer extends React.Component {
           transitionDuration,
         }}
         className={classNames(classes.modal, className)}
-        open={open || (type === 'temporary' && !!this.maybeSwiping)}
+        open={open || (variant === 'temporary' && !!this.maybeSwiping)}
         onClose={onClose}
         {...other}
         {...ModalProps}
@@ -469,7 +469,7 @@ Drawer.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
   /**
-   * The type of drawer.
+   * The variant of drawer.
    */
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 };

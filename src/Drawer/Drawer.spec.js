@@ -410,14 +410,14 @@ describe('<Drawer />', () => {
         fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
       });
 
-      it('toggles swipe handling when the type is changed', () => {
-        // type is 'temporary' by default
+      it('toggles swipe handling when the variant is changed', () => {
+        // variant is 'temporary' by default
         spy(wrapper.instance(), 'disableSwipeHandling');
-        wrapper.setProps({ type: 'persistent' });
+        wrapper.setProps({ variant: 'persistent' });
         assert.strictEqual(wrapper.instance().disableSwipeHandling.callCount, 1);
 
         spy(wrapper.instance(), 'enableSwipeHandling');
-        wrapper.setProps({ type: 'temporary' });
+        wrapper.setProps({ variant: 'temporary' });
         assert.strictEqual(wrapper.instance().enableSwipeHandling.callCount, 1);
       });
     });
