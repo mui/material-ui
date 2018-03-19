@@ -175,12 +175,12 @@ function Grid(props) {
     justify,
     lg,
     md,
-    zeroMinWidth,
     sm,
     spacing,
     wrap,
     xl,
     xs,
+    zeroMinWidth,
     ...other
   } = props;
 
@@ -332,9 +332,9 @@ Grid.defaultProps = {
   direction: 'row',
   item: false,
   justify: 'flex-start',
-  zeroMinWidth: false,
   spacing: 16,
   wrap: 'wrap',
+  zeroMinWidth: false,
 };
 
 // Add a wrapper component to generate some helper messages in the development
