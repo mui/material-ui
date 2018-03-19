@@ -44,6 +44,7 @@ export interface GridProps
   justify?: GridJustification;
   spacing?: GridSpacing;
   wrap?: GridWrap;
+  zeroMinWidth?: boolean;
 }
 
 export type GridClassKey =
