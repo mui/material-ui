@@ -397,27 +397,28 @@ describe('<Drawer />', () => {
           assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
         });
 
-        it(`should stay hidden if disableAccidentalDiscovery is true ` +
-          `when touching near the ${params.anchor} edge`, () => {
-          wrapper.setProps({ anchor: params.anchor, disableAccidentalDiscovery: true });
+        describe('disableAccidentalDiscovery', () => {
+          it(`makes the drawer stay hidden when touching near the ${params.anchor} edge `, () => {
+            wrapper.setProps({ anchor: params.anchor, disableAccidentalDiscovery: true });
 
-          // mock the internal setPosition function that moves the drawer while swiping
-          const setPosition = spy();
-          wrapper.instance().setPosition = setPosition;
+            // mock the internal setPosition function that moves the drawer while swiping
+            const setPosition = spy();
+            wrapper.instance().setPosition = setPosition;
 
-          const handleOpen = spy();
-          const handleClose = spy();
-          wrapper.setProps({ onOpen: handleOpen, onClose: handleClose });
-          fireBodyMouseEvent('touchstart', { touches: [params.edgeTouch] });
-          assert.strictEqual(
-            wrapper.instance().maybeSwiping,
-            true,
-            'should be listening for swipe',
-          );
-          assert.strictEqual(setPosition.callCount, 0, 'should not slide in');
-          fireBodyMouseEvent('touchend', { changedTouches: [params.edgeTouch] });
-          assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen');
-          assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
+            const handleOpen = spy();
+            const handleClose = spy();
+            wrapper.setProps({ onOpen: handleOpen, onClose: handleClose });
+            fireBodyMouseEvent('touchstart', { touches: [params.edgeTouch] });
+            assert.strictEqual(
+              wrapper.instance().maybeSwiping,
+              true,
+              'should be listening for swipe',
+            );
+            assert.strictEqual(setPosition.callCount, 0, 'should not slide in');
+            fireBodyMouseEvent('touchend', { changedTouches: [params.edgeTouch] });
+            assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen');
+            assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
+          });
         });
       });
 
