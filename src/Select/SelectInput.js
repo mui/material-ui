@@ -265,7 +265,7 @@ class SelectInput extends React.Component {
         role: 'option',
         selected,
         value: undefined, // The value is most likely not a valid HTML attribute.
-        'data-value': value, // Instead, we provide it as a data attribute.
+        'data-value': child.props.value, // Instead, we provide it as a data attribute.
       });
     });
 

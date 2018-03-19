@@ -42,6 +42,13 @@ describe('<SelectInput />', () => {
   it('should render a correct top element', () => {
     const wrapper = shallow(<SelectInput {...defaultProps} />);
     assert.strictEqual(wrapper.name(), 'div');
+    assert.strictEqual(
+      wrapper
+        .find(MenuItem)
+        .at(0)
+        .props()['data-value'],
+      10,
+    );
   });
 
   it('should accept invalid child', () => {
