@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import { ListItem } from 'material-ui/List';
 import Button from 'material-ui/Button';
@@ -27,10 +28,14 @@ const styles = theme => ({
     justifyContent: 'flex-start',
     textTransform: 'none',
     width: '100%',
-    color: theme.palette.text.secondary,
+    fontWeight: theme.typography.fontWeightRegular,
+    '&.depth-0': {
+      fontWeight: theme.typography.fontWeightMedium,
+    },
   },
   active: {
-    color: theme.palette.text.primary,
+    color: theme.palette.primary.main,
+    fontWeight: theme.typography.fontWeightMedium,
   },
 });
 
@@ -74,7 +79,7 @@ class AppDrawerNavItem extends React.Component {
             component={props => (
               <Link variant="button" activeClassName={classes.active} href={href} {...props} />
             )}
-            className={classes.buttonLeaf}
+            className={classNames(classes.buttonLeaf, `depth-${depth}`)}
             disableRipple
             onClick={onClick}
             style={style}
