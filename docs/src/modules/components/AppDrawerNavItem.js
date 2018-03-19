@@ -30,12 +30,13 @@ const styles = theme => ({
     width: '100%',
     fontWeight: theme.typography.fontWeightRegular,
     '&.depth-0': {
-      fontWeight: theme.typography.fontWeightMedium
-    }
+      fontWeight: theme.typography.fontWeightMedium,
+    },
   },
   active: {
-    color: theme.palette.primary.main,
-    fontWeight: theme.typography.fontWeightMedium
+    color:
+      theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.light,
+    fontWeight: theme.typography.fontWeightMedium,
   },
 });
 
