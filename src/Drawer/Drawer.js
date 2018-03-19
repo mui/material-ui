@@ -146,7 +146,7 @@ class Drawer extends React.Component {
     this.touchStartX = touchStartX;
     this.touchStartY = touchStartY;
 
-    if (!this.props.open) {
+    if (!this.props.open && !this.props.disableAccidentalDiscovery) {
       this.setPosition(this.getMaxTranslate() - swipeAreaWidth);
     }
 
@@ -314,6 +314,7 @@ class Drawer extends React.Component {
       children,
       classes,
       className,
+      disableAccidentalDiscovery, // eslint-disable-line
       disableSwipeToOpen, // eslint-disable-line
       elevation,
       ModalProps,
@@ -416,6 +417,11 @@ Drawer.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, touching the screen near the edge of the drawer will not slide in the drawer a bit
+   * to promote accidental discovery of the swipe gesture.
+   */
+  disableAccidentalDiscovery: PropTypes.bool,
+  /**
    * If `true`, the drawer cannot be opened by swiping from the edge of the screen.
    */
   disableSwipeToOpen: PropTypes.bool,
@@ -476,6 +482,7 @@ Drawer.propTypes = {
 
 Drawer.defaultProps = {
   anchor: 'left',
+  disableAccidentalDiscovery: false,
   disableSwipeToOpen: false,
   elevation: 16,
   open: false,

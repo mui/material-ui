@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import ReactDOM from 'react-dom';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
-import mockPortal from '../../test/utils/mockPortal';
 import Slide from '../transitions/Slide';
 import createMuiTheme from '../styles/createMuiTheme';
 import Paper from '../Paper';
@@ -23,12 +22,10 @@ describe('<Drawer />', () => {
         <div />
       </Drawer>,
     );
-    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
-    mockPortal.reset();
   });
 
   describe('prop: variant=temporary', () => {
@@ -395,6 +392,29 @@ describe('<Drawer />', () => {
             'should be listening for swipe',
           );
           assert.strictEqual(setPosition.callCount, 1, 'should slide in a bit');
+          fireBodyMouseEvent('touchend', { changedTouches: [params.edgeTouch] });
+          assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen');
+          assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
+        });
+
+        it(`should stay hidden if disableAccidentalDiscovery is true ` +
+          `when touching near the ${params.anchor} edge`, () => {
+          wrapper.setProps({ anchor: params.anchor, disableAccidentalDiscovery: true });
+
+          // mock the internal setPosition function that moves the drawer while swiping
+          const setPosition = spy();
+          wrapper.instance().setPosition = setPosition;
+
+          const handleOpen = spy();
+          const handleClose = spy();
+          wrapper.setProps({ onOpen: handleOpen, onClose: handleClose });
+          fireBodyMouseEvent('touchstart', { touches: [params.edgeTouch] });
+          assert.strictEqual(
+            wrapper.instance().maybeSwiping,
+            true,
+            'should be listening for swipe',
+          );
+          assert.strictEqual(setPosition.callCount, 0, 'should not slide in');
           fireBodyMouseEvent('touchend', { changedTouches: [params.edgeTouch] });
           assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen');
           assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
