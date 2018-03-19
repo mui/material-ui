@@ -196,6 +196,10 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       const stylesCreatorSaved = this.stylesCreatorSaved;
       const sheetManager = this.sheetsManager.get(stylesCreatorSaved);
       const sheetManagerTheme = sheetManager.get(theme);
+          
+      if (!sheetManagerTheme) {
+        return;
+      }
 
       sheetManagerTheme.refs -= 1;
 
