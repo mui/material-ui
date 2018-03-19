@@ -34,8 +34,7 @@ const styles = theme => ({
     },
   },
   active: {
-    color:
-      theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.light,
+    color: theme.palette.primary.main,
     fontWeight: theme.typography.fontWeightMedium,
   },
 });
