@@ -95,7 +95,7 @@ describe('<Textarea />', () => {
     });
   });
 
-  it('should set dirty', () => {
+  it('should set filled', () => {
     const wrapper = shallow(<Textarea />);
     assert.strictEqual(wrapper.find('textarea').length, 3);
 

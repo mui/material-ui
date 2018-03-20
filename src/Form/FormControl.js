@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { isEmpty, isAdornedStart } from '../Input/Input';
+import { isFilled, isAdornedStart } from '../Input/Input';
 import { capitalize } from '../utils/helpers';
 import { isMuiElement } from '../utils/reactHelpers';
 
@@ -31,7 +31,7 @@ export const styles = theme => ({
 });
 
 /**
- * Provides context such as dirty/focused/error/required for form inputs.
+ * Provides context such as filled/focused/error/required for form inputs.
  * Relying on the context provides high flexibilty and ensures that the state always stay
  * consitent across the children of the `FormControl`.
  * This context is used by the following components:
@@ -53,8 +53,8 @@ class FormControl extends React.Component {
           return;
         }
 
-        if (isEmpty(child.props, true)) {
-          this.state.dirty = true;
+        if (isFilled(child.props, true)) {
+          this.state.filled = true;
         }
 
         const input = isMuiElement(child, ['Select']) ? child.props.input : child;
@@ -68,27 +68,27 @@ class FormControl extends React.Component {
 
   state = {
     adornedStart: false,
-    dirty: false,
+    filled: false,
     focused: false,
   };
 
   getChildContext() {
     const { disabled, error, required, margin } = this.props;
-    const { adornedStart, dirty, focused } = this.state;
+    const { adornedStart, filled, focused } = this.state;
 
     return {
       muiFormControl: {
         adornedStart,
-        dirty,
         disabled,
         error,
+        filled,
         focused,
         margin,
-        required,
-        onDirty: this.handleDirty,
-        onClean: this.handleClean,
-        onFocus: this.handleFocus,
         onBlur: this.handleBlur,
+        onEmpty: this.handleClean,
+        onFilled: this.handleDirty,
+        onFocus: this.handleFocus,
+        required,
       },
     };
   }
@@ -111,14 +111,14 @@ class FormControl extends React.Component {
   };
 
   handleDirty = () => {
-    if (!this.state.dirty) {
-      this.setState({ dirty: true });
+    if (!this.state.filled) {
+      this.setState({ filled: true });
     }
   };
 
   handleClean = () => {
-    if (this.state.dirty) {
-      this.setState({ dirty: false });
+    if (this.state.filled) {
+      this.setState({ filled: false });
     }
   };
 

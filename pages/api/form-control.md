@@ -6,7 +6,7 @@ filename: /src/Form/FormControl.js
 
 # FormControl
 
-Provides context such as dirty/focused/error/required for form inputs.
+Provides context such as filled/focused/error/required for form inputs.
 Relying on the context provides high flexibilty and ensures that the state always stay
 consitent across the children of the `FormControl`.
 This context is used by the following components:

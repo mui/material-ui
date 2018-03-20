@@ -63,8 +63,8 @@ describe('<FormControl />', () => {
       wrapper = shallow(<FormControl />);
     });
 
-    it('should not be dirty initially', () => {
-      assert.strictEqual(wrapper.state().dirty, false);
+    it('should not be filled initially', () => {
+      assert.strictEqual(wrapper.state().filled, false);
     });
 
     it('should not be focused initially', () => {
@@ -80,22 +80,22 @@ describe('<FormControl />', () => {
   });
 
   describe('input', () => {
-    it('should be dirty with a value', () => {
+    it('should be filled with a value', () => {
       const wrapper = shallow(
         <FormControl>
           <Input value="bar" />
         </FormControl>,
       );
-      assert.strictEqual(wrapper.state().dirty, true);
+      assert.strictEqual(wrapper.state().filled, true);
     });
 
-    it('should be dirty with a defaultValue', () => {
+    it('should be filled with a defaultValue', () => {
       const wrapper = shallow(
         <FormControl>
           <Input defaultValue="bar" />
         </FormControl>,
       );
-      assert.strictEqual(wrapper.state().dirty, true);
+      assert.strictEqual(wrapper.state().filled, true);
     });
 
     it('should be adorned with an endAdornment', () => {
@@ -151,11 +151,11 @@ describe('<FormControl />', () => {
     });
 
     describe('from state', () => {
-      it('should have the dirty state from the instance', () => {
-        assert.strictEqual(muiFormControlContext.dirty, false);
-        wrapper.setState({ dirty: true });
+      it('should have the filled state from the instance', () => {
+        assert.strictEqual(muiFormControlContext.filled, false);
+        wrapper.setState({ filled: true });
         loadChildContext();
-        assert.strictEqual(muiFormControlContext.dirty, true);
+        assert.strictEqual(muiFormControlContext.filled, true);
       });
 
       it('should have the focused state from the instance', () => {
@@ -197,27 +197,27 @@ describe('<FormControl />', () => {
     });
 
     describe('callbacks', () => {
-      describe('onDirty', () => {
-        it('should set the dirty state', () => {
-          assert.strictEqual(muiFormControlContext.dirty, false);
-          muiFormControlContext.onDirty();
+      describe('onFilled', () => {
+        it('should set the filled state', () => {
+          assert.strictEqual(muiFormControlContext.filled, false);
+          muiFormControlContext.onFilled();
           loadChildContext();
-          assert.strictEqual(muiFormControlContext.dirty, true);
-          muiFormControlContext.onDirty();
-          assert.strictEqual(muiFormControlContext.dirty, true);
+          assert.strictEqual(muiFormControlContext.filled, true);
+          muiFormControlContext.onFilled();
+          assert.strictEqual(muiFormControlContext.filled, true);
         });
       });
 
-      describe('onClean', () => {
-        it('should clean the dirty state', () => {
-          muiFormControlContext.onDirty();
+      describe('onEmpty', () => {
+        it('should clean the filled state', () => {
+          muiFormControlContext.onFilled();
           loadChildContext();
-          assert.strictEqual(muiFormControlContext.dirty, true);
-          muiFormControlContext.onClean();
+          assert.strictEqual(muiFormControlContext.filled, true);
+          muiFormControlContext.onEmpty();
           loadChildContext();
-          assert.strictEqual(muiFormControlContext.dirty, false);
-          muiFormControlContext.onClean();
-          assert.strictEqual(muiFormControlContext.dirty, false);
+          assert.strictEqual(muiFormControlContext.filled, false);
+          muiFormControlContext.onEmpty();
+          assert.strictEqual(muiFormControlContext.filled, false);
         });
       });
 

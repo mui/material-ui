@@ -21,7 +21,7 @@ export function hasValue(value) {
 // @param SSR
 // @returns {boolean} False when not present or empty string.
 //                    True when any number or string with length.
-export function isEmpty(obj, SSR = false) {
+export function isFilled(obj, SSR = false) {
   return (
     obj &&
     ((hasValue(obj.value) && obj.value !== '') ||
@@ -329,21 +329,21 @@ class Input extends React.Component {
   checkDirty(obj) {
     const { muiFormControl } = this.context;
 
-    if (isEmpty(obj)) {
-      if (muiFormControl && muiFormControl.onDirty) {
-        muiFormControl.onDirty();
+    if (isFilled(obj)) {
+      if (muiFormControl && muiFormControl.onFilled) {
+        muiFormControl.onFilled();
       }
-      if (this.props.onDirty) {
-        this.props.onDirty();
+      if (this.props.onFilled) {
+        this.props.onFilled();
       }
       return;
     }
 
-    if (muiFormControl && muiFormControl.onClean) {
-      muiFormControl.onClean();
+    if (muiFormControl && muiFormControl.onEmpty) {
+      muiFormControl.onEmpty();
     }
-    if (this.props.onClean) {
-      this.props.onClean();
+    if (this.props.onEmpty) {
+      this.props.onEmpty();
     }
   }
 
@@ -368,8 +368,8 @@ class Input extends React.Component {
       name,
       onBlur,
       onChange,
-      onClean,
-      onDirty,
+      onEmpty,
+      onFilled,
       onFocus,
       onKeyDown,
       onKeyUp,
@@ -561,13 +561,13 @@ Input.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * TODO
+   * @ignore
    */
-  onClean: PropTypes.func,
+  onEmpty: PropTypes.func,
   /**
-   * TODO
+   * @ignore
    */
-  onDirty: PropTypes.func,
+  onFilled: PropTypes.func,
   /**
    * @ignore
    */

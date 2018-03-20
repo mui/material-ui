@@ -4,7 +4,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Textarea from './Textarea';
-import Input, { hasValue, isEmpty } from './Input';
+import Input, { hasValue, isFilled } from './Input';
 import InputAdornment from './InputAdornment';
 
 const NakedInput = unwrap(Input);
@@ -145,13 +145,13 @@ describe('<Input />', () => {
     ['', 0].forEach(value => {
       describe(`${typeof value} value`, () => {
         let wrapper;
-        let handleDirty;
-        let handleClean;
+        let handleFilled;
+        let handleEmpty;
 
         before(() => {
-          handleClean = spy();
-          handleDirty = spy();
-          wrapper = shallow(<Input value={value} onDirty={handleDirty} onClean={handleClean} />);
+          handleEmpty = spy();
+          handleFilled = spy();
+          wrapper = shallow(<Input value={value} onFilled={handleFilled} onEmpty={handleEmpty} />);
         });
 
         it('should check that the component is controlled', () => {
@@ -159,26 +159,26 @@ describe('<Input />', () => {
           assert.strictEqual(instance.isControlled, true, 'isControlled should return true');
         });
 
-        // don't test number because zero is a dirty state, whereas '' is not
+        // don't test number because zero is a empty state, whereas '' is not
         if (typeof value !== 'number') {
-          it('should have called the handleClean callback', () => {
-            assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean cb');
+          it('should have called the handleEmpty callback', () => {
+            assert.strictEqual(handleEmpty.callCount, 1, 'should have called the onEmpty cb');
           });
 
-          it('should fire the onDirty callback when dirtied', () => {
-            assert.strictEqual(handleDirty.callCount, 0);
+          it('should fire the onFilled callback when dirtied', () => {
+            assert.strictEqual(handleFilled.callCount, 0);
             wrapper.setProps({ value: typeof value === 'number' ? 2 : 'hello' });
-            assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty cb');
+            assert.strictEqual(handleFilled.callCount, 1, 'should have called the onFilled cb');
           });
 
-          it('should fire the onClean callback when dirtied', () => {
+          it('should fire the onEmpty callback when dirtied', () => {
             assert.strictEqual(
-              handleClean.callCount,
+              handleEmpty.callCount,
               1,
-              'should have called the onClean cb once already',
+              'should have called the onEmpty cb once already',
             );
             wrapper.setProps({ value });
-            assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
+            assert.strictEqual(handleEmpty.callCount, 2, 'should have called the onEmpty cb again');
           });
         }
       });
@@ -213,14 +213,19 @@ describe('<Input />', () => {
   // uncontrolled only fires for a full mount
   describe('uncontrolled', () => {
     let wrapper;
-    let handleDirty;
-    let handleClean;
+    let handleFilled;
+    let handleEmpty;
 
     before(() => {
-      handleClean = spy();
-      handleDirty = spy();
+      handleEmpty = spy();
+      handleFilled = spy();
       wrapper = mount(
-        <NakedInput classes={{}} onDirty={handleDirty} defaultValue="hell" onClean={handleClean} />,
+        <NakedInput
+          classes={{}}
+          onFilled={handleFilled}
+          defaultValue="hell"
+          onEmpty={handleEmpty}
+        />,
       );
     });
 
@@ -229,19 +234,19 @@ describe('<Input />', () => {
       assert.strictEqual(instance.isControlled, false, 'isControlled should return false');
     });
 
-    it('should fire the onDirty callback when dirtied', () => {
-      assert.strictEqual(handleDirty.callCount, 1, 'should not have called the onDirty cb yet');
+    it('should fire the onFilled callback when dirtied', () => {
+      assert.strictEqual(handleFilled.callCount, 1, 'should not have called the onFilled cb yet');
       wrapper.instance().input.value = 'hello';
       wrapper.find('input').simulate('change');
-      assert.strictEqual(handleDirty.callCount, 2, 'should have called the onDirty cb');
+      assert.strictEqual(handleFilled.callCount, 2, 'should have called the onFilled cb');
     });
 
-    it('should fire the onClean callback when cleaned', () => {
+    it('should fire the onEmpty callback when cleaned', () => {
       // Because of shallow() this hasn't fired since there is no mounting
-      assert.strictEqual(handleClean.callCount, 0, 'should not have called the onClean cb yet');
+      assert.strictEqual(handleEmpty.callCount, 0, 'should not have called the onEmpty cb yet');
       wrapper.instance().input.value = '';
       wrapper.find('input').simulate('change');
-      assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean cb');
+      assert.strictEqual(handleEmpty.callCount, 1, 'should have called the onEmpty cb');
     });
   });
 
@@ -264,37 +269,37 @@ describe('<Input />', () => {
     });
 
     describe('callbacks', () => {
-      let handleDirty;
-      let handleClean;
+      let handleFilled;
+      let handleEmpty;
 
       beforeEach(() => {
-        handleDirty = spy();
-        handleClean = spy();
+        handleFilled = spy();
+        handleEmpty = spy();
         // Mock the input ref
-        wrapper.setProps({ onDirty: handleDirty, onClean: handleClean });
+        wrapper.setProps({ onFilled: handleFilled, onEmpty: handleEmpty });
         wrapper.instance().input = { value: '' };
-        setFormControlContext({ onDirty: spy(), onClean: spy() });
+        setFormControlContext({ onFilled: spy(), onEmpty: spy() });
       });
 
-      it('should fire the onDirty muiFormControl and props callback when dirtied', () => {
+      it('should fire the onFilled muiFormControl and props callback when dirtied', () => {
         wrapper.instance().input.value = 'hello';
         wrapper.find('input').simulate('change');
-        assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty props cb');
+        assert.strictEqual(handleFilled.callCount, 1, 'should have called the onFilled props cb');
         assert.strictEqual(
-          muiFormControl.onDirty.callCount,
+          muiFormControl.onFilled.callCount,
           1,
-          'should have called the onDirty muiFormControl cb',
+          'should have called the onFilled muiFormControl cb',
         );
       });
 
-      it('should fire the onClean muiFormControl and props callback when cleaned', () => {
+      it('should fire the onEmpty muiFormControl and props callback when cleaned', () => {
         wrapper.instance().input.value = '';
         wrapper.find('input').simulate('change');
-        assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean props cb');
+        assert.strictEqual(handleEmpty.callCount, 1, 'should have called the onEmpty props cb');
         assert.strictEqual(
-          muiFormControl.onClean.callCount,
+          muiFormControl.onEmpty.callCount,
           1,
-          'should have called the onClean muiFormControl cb',
+          'should have called the onEmpty muiFormControl cb',
         );
       });
     });
@@ -417,23 +422,23 @@ describe('<Input />', () => {
     });
   });
 
-  describe('isEmpty', () => {
+  describe('isFilled', () => {
     [' ', 0].forEach(value => {
       it(`is true for value ${value}`, () => {
-        assert.strictEqual(isEmpty({ value }), true);
+        assert.strictEqual(isFilled({ value }), true);
       });
 
       it(`is true for SSR defaultValue ${value}`, () => {
-        assert.strictEqual(isEmpty({ defaultValue: value }, true), true);
+        assert.strictEqual(isFilled({ defaultValue: value }, true), true);
       });
     });
     [null, undefined, ''].forEach(value => {
       it(`is false for value ${value}`, () => {
-        assert.strictEqual(isEmpty({ value }), false);
+        assert.strictEqual(isFilled({ value }), false);
       });
 
       it(`is false for SSR defaultValue ${value}`, () => {
-        assert.strictEqual(isEmpty({ defaultValue: value }, true), false);
+        assert.strictEqual(isFilled({ defaultValue: value }, true), false);
       });
     });
   });
