@@ -263,7 +263,7 @@ class Drawer extends React.Component {
   }
 
   setPosition(translate) {
-    const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(this.props.anchor) !== -1 ? 1 : -1;
+    const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(this.getAnchor()) !== -1 ? 1 : -1;
     const transformCSS = this.isHorizontalSwiping()
       ? `translate(${rtlTranslateMultiplier * translate}px, 0)`
       : `translate(0, ${rtlTranslateMultiplier * translate}px)`;
