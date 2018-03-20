@@ -1,7 +1,7 @@
 {
   "name": "Material-UI",
   "short_name": "MUI",
-  "display": "browser",
+  "display": "minimal-ui",
   "start_url": "/",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
