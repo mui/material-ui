@@ -397,9 +397,9 @@ describe('<Drawer />', () => {
           assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
         });
 
-        describe('disableAccidentalDiscovery', () => {
+        describe('disableDiscovery', () => {
           it(`makes the drawer stay hidden when touching near the ${params.anchor} edge `, () => {
-            wrapper.setProps({ anchor: params.anchor, disableAccidentalDiscovery: true });
+            wrapper.setProps({ anchor: params.anchor, disableDiscovery: true });
 
             // mock the internal setPosition function that moves the drawer while swiping
             const setPosition = spy();

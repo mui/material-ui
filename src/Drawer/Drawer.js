@@ -91,31 +91,28 @@ class Drawer extends React.Component {
     if (this.props.variant === 'temporary') {
       this.enableSwipeHandling();
     }
-    this.mounted = true;
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      firstMount: false,
-    });
-
-    if (this.props.variant !== 'temporary' && nextProps.variant === 'temporary') {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.variant === 'temporary' && prevProps.variant !== 'temporary') {
       this.enableSwipeHandling();
-    } else if (this.props.variant === 'temporary' && nextProps.variant !== 'temporary') {
+    } else if (this.props.variant !== 'temporary' && prevProps.variant === 'temporary') {
       this.disableSwipeHandling();
+    }
+
+    if (this.state.firstMount) {
+      this.setState({
+        firstMount: false,
+      });
     }
   }
 
   componentWillUnmount() {
     this.disableSwipeHandling();
     this.removeBodyTouchListeners();
-    this.mounted = false;
   }
 
   onBodyTouchStart = event => {
-    // sometimes the event handler is called after unbinding it
-    if (!this.mounted) return;
-
     const anchor = this.getAnchor();
     const swipeAreaWidth = this.props.swipeAreaWidth;
 
@@ -141,7 +138,7 @@ class Drawer extends React.Component {
     this.touchStartX = touchStartX;
     this.touchStartY = touchStartY;
 
-    if (!this.props.open && !this.props.disableAccidentalDiscovery) {
+    if (!this.props.open && !this.props.disableDiscovery) {
       this.setPosition(this.getMaxTranslate() - swipeAreaWidth);
     }
 
@@ -151,9 +148,6 @@ class Drawer extends React.Component {
   };
 
   onBodyTouchMove = event => {
-    // sometimes the event handler is called after unbinding it
-    if (!this.mounted) return;
-
     const anchor = this.getAnchor();
     const horizontalSwipe = this.isHorizontalSwiping();
 
@@ -199,9 +193,6 @@ class Drawer extends React.Component {
   };
 
   onBodyTouchEnd = event => {
-    // sometimes the event handler is called after unbinding it
-    if (!this.mounted) return;
-
     if (this.state.swiping) {
       const anchor = this.getAnchor();
       const currentX =
@@ -302,21 +293,21 @@ class Drawer extends React.Component {
 
   render() {
     const {
-      anchor: anchorProp, // eslint-disable-line
+      anchor: anchorProp,
       children,
       classes,
       className,
-      disableAccidentalDiscovery, // eslint-disable-line
-      disableSwipeToOpen, // eslint-disable-line
+      disableDiscovery,
+      disableSwipeToOpen,
       elevation,
       ModalProps,
       onClose,
-      onOpen, // eslint-disable-line
+      onOpen,
       open,
       PaperProps,
       SlideProps,
-      swipeAreaWidth, // eslint-disable-line
-      theme, // eslint-disable-line
+      swipeAreaWidth,
+      theme,
       transitionDuration: transitionDurationProp,
       variant,
       ...other
@@ -352,7 +343,7 @@ class Drawer extends React.Component {
 
     const slidingDrawer = (
       <Slide
-        in={open || (variant === 'temporary' && !!this.maybeSwiping)}
+        in={open || (variant === 'temporary' && this.maybeSwiping)}
         direction={oppositeDirection[anchor]}
         timeout={transitionDuration}
         appear={!this.state.firstMount}
@@ -412,7 +403,7 @@ Drawer.propTypes = {
    * If `true`, touching the screen near the edge of the drawer will not slide in the drawer a bit
    * to promote accidental discovery of the swipe gesture.
    */
-  disableAccidentalDiscovery: PropTypes.bool,
+  disableDiscovery: PropTypes.bool,
   /**
    * If `true`, the drawer cannot be opened by swiping from the edge of the screen.
    */
@@ -474,7 +465,7 @@ Drawer.propTypes = {
 
 Drawer.defaultProps = {
   anchor: 'left',
-  disableAccidentalDiscovery: false,
+  disableDiscovery: false,
   disableSwipeToOpen: false,
   elevation: 16,
   open: false,
