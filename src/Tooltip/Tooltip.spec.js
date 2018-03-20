@@ -340,7 +340,7 @@ describe('<Tooltip />', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
       assert.match(
         consoleErrorMock.args()[0][0],
-        /Material-UI: you are providing a disabled button children to the Tooltip component/,
+        /Material-UI: you are providing a disabled `button` child to the Tooltip component/,
       );
     });
   });
