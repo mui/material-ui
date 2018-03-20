@@ -264,7 +264,7 @@ class Drawer extends React.Component {
       Math.max(
         this.state.swiping === 'closing'
           ? -(current - swipeStart)
-          : this.getMaxTranslate() + (swipeStart - current) - this.props.swipeAreaWidth
+          : this.getMaxTranslate() + (swipeStart - current) - this.props.swipeAreaWidth,
         0,
       ),
       this.getMaxTranslate(),
