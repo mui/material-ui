@@ -112,11 +112,11 @@ class Tooltip extends React.Component {
         !this.children.disabled ||
         !this.children.tagName.toLowerCase() === 'button',
       [
-        'Material-UI: you are providing a disabled button children to the Tooltip component.',
-        'A disabled element do not fire events.',
-        'But the Tooltip needs to listen to the children element events to display the title.',
+        'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
+        'A disabled element does not fire events.',
+        "Tooltip needs to listen to the child element's events to display the title.",
         '',
-        'Place a `div` over top of the element.',
+        'Place a `div` container on top of the element.',
       ].join('\n'),
     );
   }
