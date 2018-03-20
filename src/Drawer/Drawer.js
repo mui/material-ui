@@ -85,6 +85,8 @@ class Drawer extends React.Component {
     // We use that state is order to skip the appear transition during the
     // initial mount of the component.
     firstMount: true,
+    maybeSwiping: false,
+    swiping: false,
   };
 
   componentDidMount() {
@@ -133,8 +135,7 @@ class Drawer extends React.Component {
       if (this.props.disableSwipeToOpen) return;
     }
 
-    this.maybeSwiping = true;
-    this.forceUpdate();
+    this.setState({ maybeSwiping: true });
     this.touchStartX = touchStartX;
     this.touchStartY = touchStartY;
 
@@ -163,7 +164,7 @@ class Drawer extends React.Component {
     if (this.state.swiping) {
       event.preventDefault();
       this.setPosition(this.getTranslate(horizontalSwipe ? currentX : currentY));
-    } else if (this.maybeSwiping) {
+    } else if (this.state.maybeSwiping) {
       const dXAbs = Math.abs(currentX - this.touchStartX);
       const dYAbs = Math.abs(currentY - this.touchStartY);
       // If the user has moved his thumb ten pixels in either direction,
@@ -207,10 +208,10 @@ class Drawer extends React.Component {
         ? this.getTranslate(currentX) / this.getMaxTranslate()
         : this.getTranslate(currentY) / this.getMaxTranslate();
 
-      this.maybeSwiping = false;
       const swiping = this.state.swiping;
       this.setState({
         swiping: null,
+        maybeSwiping: false,
       });
 
       // We have to open or close after setting swiping to null,
@@ -228,12 +229,11 @@ class Drawer extends React.Component {
       } else {
         this.setPosition(0);
       }
-    } else if (this.maybeSwiping) {
+    } else if (this.state.maybeSwiping) {
       if (!this.props.open && event != null) {
         event.preventDefault(); // prevent ghost clicks
       }
-      this.maybeSwiping = false;
-      this.forceUpdate();
+      this.setState({ maybeSwiping: false });
     }
 
     this.removeBodyTouchListeners();
@@ -313,9 +313,13 @@ class Drawer extends React.Component {
       ...other
     } = this.props;
 
+    const {
+      maybeSwiping
+    } = this.state;
+
     const anchor = this.getAnchor();
     // prevent flickering when swiping fast
-    const transitionDuration = this.maybeSwiping ? 0 : transitionDurationProp;
+    const transitionDuration = maybeSwiping ? 0 : transitionDurationProp;
 
     const drawer = (
       <Paper
@@ -343,7 +347,7 @@ class Drawer extends React.Component {
 
     const slidingDrawer = (
       <Slide
-        in={open || (variant === 'temporary' && this.maybeSwiping)}
+        in={open || (variant === 'temporary' && maybeSwiping)}
         direction={oppositeDirection[anchor]}
         timeout={transitionDuration}
         appear={!this.state.firstMount}
@@ -371,7 +375,7 @@ class Drawer extends React.Component {
           transitionDuration,
         }}
         className={classNames(classes.modal, className)}
-        open={open || (variant === 'temporary' && !!this.maybeSwiping)}
+        open={open || (variant === 'temporary' && maybeSwiping)}
         onClose={onClose}
         {...other}
         {...ModalProps}
