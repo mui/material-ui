@@ -98,6 +98,12 @@ Usage:
 </RootRef>
 ```
 
+## Why are the colors I am seeing different from what I see here?
+
+The documentation site is using a custom theme. Hence, the color palette is
+different from the default theme that Material-UI ships. Please refer to [this
+page](/customization/themes) to learn about theme customization.
+
 ## Material-UI is awesome. How can I support the project?
 
 There are many ways to support Material-UI:
