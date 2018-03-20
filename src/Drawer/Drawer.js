@@ -11,18 +11,12 @@ import Paper from '../Paper';
 import { capitalize } from '../utils/helpers';
 import { duration } from '../styles/transitions';
 
-function getSlideDirection(anchor) {
-  if (anchor === 'left') {
-    return 'right';
-  } else if (anchor === 'right') {
-    return 'left';
-  } else if (anchor === 'top') {
-    return 'down';
-  }
-
-  // (anchor === 'bottom')
-  return 'up';
-}
+const oppositeDirection = {
+  left: 'right',
+  right: 'left',
+  top: 'down',
+  bottom: 'up',
+};
 
 export const styles = theme => ({
   docked: {
@@ -122,14 +116,15 @@ class Drawer extends React.Component {
     // sometimes the event handler is called after unbinding it
     if (!this.mounted) return;
 
+    const anchor = this.getAnchor();
     const swipeAreaWidth = this.props.swipeAreaWidth;
 
     const touchStartX =
-      this.getAnchor() === 'right'
+      anchor === 'right'
         ? document.body.offsetWidth - event.touches[0].pageX
         : event.touches[0].pageX;
     const touchStartY =
-      this.getAnchor() === 'bottom'
+      anchor === 'bottom'
         ? window.innerHeight - event.touches[0].clientY
         : event.touches[0].clientY;
 
@@ -254,11 +249,9 @@ class Drawer extends React.Component {
   };
 
   getAnchor() {
-    let anchor = this.props.anchor;
-    if (this.props.theme.direction === 'rtl' && ['left', 'right'].indexOf(anchor) !== -1) {
-      anchor = anchor === 'left' ? 'right' : 'left';
-    }
-    return anchor;
+    return this.props.theme.direction === 'rtl' && this.isHorizontalSwiping()
+      ? oppositeDirection[this.props.anchor]
+      : this.props.anchor;
   }
 
   getMaxTranslate() {
@@ -266,13 +259,12 @@ class Drawer extends React.Component {
   }
 
   getTranslate(current) {
-    const swipeAreaWidth = this.props.swipeAreaWidth;
     const swipeStart = this.isHorizontalSwiping() ? this.swipeStartX : this.swipeStartY;
     return Math.min(
       Math.max(
         this.state.swiping === 'closing'
           ? -(current - swipeStart)
-          : this.getMaxTranslate() + (swipeStart - current) - swipeAreaWidth,
+          : this.getMaxTranslate() + (swipeStart - current) - this.props.swipeAreaWidth
         0,
       ),
       this.getMaxTranslate(),
@@ -280,7 +272,7 @@ class Drawer extends React.Component {
   }
 
   setPosition(translate) {
-    const rtlTranslateMultiplier = ['right', 'bottom'].includes(this.getAnchor()) ? 1 : -1;
+    const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(this.props.anchor) !== -1 ? 1 : -1;
     const transformCSS = this.isHorizontalSwiping()
       ? `translate(${rtlTranslateMultiplier * translate}px, 0)`
       : `translate(0, ${rtlTranslateMultiplier * translate}px)`;
@@ -291,7 +283,7 @@ class Drawer extends React.Component {
   }
 
   isHorizontalSwiping() {
-    return ['left', 'right'].includes(this.props.anchor);
+    return ['left', 'right'].indexOf(this.props.anchor) !== -1;
   }
 
   enableSwipeHandling() {
@@ -361,7 +353,7 @@ class Drawer extends React.Component {
     const slidingDrawer = (
       <Slide
         in={open || (variant === 'temporary' && !!this.maybeSwiping)}
-        direction={getSlideDirection(anchor)}
+        direction={oppositeDirection[anchor]}
         timeout={transitionDuration}
         appear={!this.state.firstMount}
         {...SlideProps}
