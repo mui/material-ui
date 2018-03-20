@@ -5,6 +5,7 @@ import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 export interface ExpansionPanelSummaryProps
   extends StandardProps<ButtonBaseProps, ExpansionPanelSummaryClassKey> {
   disabled?: boolean;
+  disableRippleIconButton?: boolean;
   expanded?: boolean;
   expandIcon?: React.ReactNode;
   onChange?: React.ReactEventHandler<{}>;

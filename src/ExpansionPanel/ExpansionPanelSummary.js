@@ -88,6 +88,7 @@ class ExpansionPanelSummary extends React.Component {
       classes,
       className,
       disabled,
+      disableRippleIconButton,
       expanded,
       expandIcon,
       onChange,
@@ -128,6 +129,7 @@ class ExpansionPanelSummary extends React.Component {
             component="div"
             tabIndex={-1}
             aria-hidden="true"
+            disableRipple={disableRippleIconButton}
           >
             {expandIcon}
           </IconButton>
@@ -156,6 +158,10 @@ ExpansionPanelSummary.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * Control the ripple effect in the Icon Button.
+   */
+  disableRippleIconButton: PropTypes.bool,
+  /**
    * @ignore
    * If `true`, expands the summary, otherwise collapse it.
    */
@@ -176,6 +182,7 @@ ExpansionPanelSummary.propTypes = {
 
 ExpansionPanelSummary.defaultProps = {
   disabled: false,
+  disableRippleIconButton: false,
 };
 
 ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
