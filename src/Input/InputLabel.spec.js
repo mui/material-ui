@@ -65,7 +65,7 @@ describe('<InputLabel />', () => {
       assert.strictEqual(wrapper.hasClass(classes.marginDense), true);
     });
 
-    ['dirty', 'focused'].forEach(state => {
+    ['filled', 'focused'].forEach(state => {
       describe(state, () => {
         beforeEach(() => {
           setFormControlContext({ [state]: true });

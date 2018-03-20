@@ -30,8 +30,6 @@ export interface InputProps
   startAdornment?: React.ReactNode;
   type?: string;
   value?: Array<string | number> | string | number;
-  onClean?: () => void;
-  onDirty?: () => void;
   /**
    * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
    * which by default is an input or textarea. Since these handlers differ from the

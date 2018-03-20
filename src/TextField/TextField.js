@@ -56,7 +56,9 @@ function TextField(props) {
     label,
     multiline,
     name,
+    onBlur,
     onChange,
+    onFocus,
     placeholder,
     required,
     rows,
@@ -74,7 +76,7 @@ function TextField(props) {
   );
 
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
-  const InputComponent = (
+  const InputElement = (
     <Input
       autoComplete={autoComplete}
       autoFocus={autoFocus}
@@ -89,7 +91,9 @@ function TextField(props) {
       value={value}
       id={id}
       inputRef={inputRef}
+      onBlur={onBlur}
       onChange={onChange}
+      onFocus={onFocus}
       placeholder={placeholder}
       inputProps={inputProps}
       {...InputProps}
@@ -111,11 +115,11 @@ function TextField(props) {
         </InputLabel>
       )}
       {select ? (
-        <Select value={value} input={InputComponent} {...SelectProps}>
+        <Select value={value} input={InputElement} {...SelectProps}>
           {children}
         </Select>
       ) : (
-        InputComponent
+        InputElement
       )}
       {helperText && (
         <FormHelperText id={helperTextId} {...FormHelperTextProps}>
@@ -208,11 +212,19 @@ TextField.propTypes = {
    */
   name: PropTypes.string,
   /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
    * Callback fired when the value is changed.
    *
    * @param {object} event The event source of the callback
    */
   onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
   /**
    * The short hint displayed in the input before the user enters a value.
    */

@@ -46,7 +46,7 @@ class Textarea extends React.Component {
     super(props, context);
 
     // <Input> expects the components it renders to respond to 'value'
-    // so that it can check whether they are dirty
+    // so that it can check whether they are filled.
     this.value = props.value || props.defaultValue || '';
     this.state = {
       height: Number(props.rows) * ROWS_HEIGHT,
