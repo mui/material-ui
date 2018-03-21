@@ -31,9 +31,6 @@ export const styles = theme => ({
       easing: theme.transitions.easing.easeOut,
     }),
   },
-  disabled: {
-    color: theme.palette.text.disabled,
-  },
 });
 
 function InputLabel(props, context) {
@@ -42,7 +39,6 @@ function InputLabel(props, context) {
     classes,
     className: classNameProp,
     disableAnimation,
-    disabled,
     FormControlClasses,
     margin: marginProp,
     shrink: shrinkProp,
@@ -67,7 +63,6 @@ function InputLabel(props, context) {
       [classes.formControl]: muiFormControl,
       [classes.animated]: !disableAnimation,
       [classes.shrink]: shrink,
-      [classes.disabled]: disabled,
       [classes.marginDense]: margin === 'dense',
     },
     classNameProp,
@@ -129,7 +124,6 @@ InputLabel.propTypes = {
 };
 
 InputLabel.defaultProps = {
-  disabled: false,
   disableAnimation: false,
 };
 

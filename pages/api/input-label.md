@@ -15,7 +15,7 @@ filename: /src/Input/InputLabel.js
 | <span class="prop-name">children</span> | <span class="prop-type">node |  | The contents of the `InputLabel`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
 | <span class="prop-name">disableAnimation</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the transition animation is disabled. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, apply disabled class. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool |  | If `true`, apply disabled class. |
 | <span class="prop-name">error</span> | <span class="prop-type">bool |  | If `true`, the label will be displayed in an error state. |
 | <span class="prop-name">focused</span> | <span class="prop-type">bool |  | If `true`, the input of this label is focused. |
 | <span class="prop-name">FormControlClasses</span> | <span class="prop-type">object |  | `classes` property applied to the `FormControl` element. |
@@ -34,7 +34,6 @@ This property accepts the following keys:
 - `marginDense`
 - `shrink`
 - `animated`
-- `disabled`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Input/InputLabel.js)
