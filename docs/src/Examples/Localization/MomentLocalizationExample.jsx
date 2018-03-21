@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import MomentUtils from 'material-ui-pickers/utils/date-fns-utils';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
 moment.locale('fr');
