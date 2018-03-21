@@ -1,13 +1,11 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy, stub } from 'sinon';
-import ReactDOM from 'react-dom';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import Slide from '../transitions/Slide';
 import createMuiTheme from '../styles/createMuiTheme';
 import Paper from '../Paper';
 import Modal from '../Modal';
-import Drawer, { isHorizontal, getAnchor } from './Drawer';
+import Drawer, { getAnchor, isHorizontal } from './Drawer';
 
 describe('<Drawer />', () => {
   let shallow;
@@ -296,5 +294,27 @@ describe('isHorizontal', () => {
     assert.strictEqual(isHorizontal({ anchor: 'right' }), true);
     assert.strictEqual(isHorizontal({ anchor: 'top' }), false);
     assert.strictEqual(isHorizontal({ anchor: 'bottom' }), false);
+  });
+});
+
+describe('getAnchor', () => {
+  it('should return the anchor', () => {
+    const theme = createMuiTheme({
+      direction: 'ltr',
+    });
+
+    assert.strictEqual(getAnchor({ anchor: 'left', theme }), 'left');
+    assert.strictEqual(getAnchor({ anchor: 'right', theme }), 'right');
+    assert.strictEqual(getAnchor({ anchor: 'top', theme }), 'top');
+    assert.strictEqual(getAnchor({ anchor: 'bottom', theme }), 'bottom');
+  });
+
+  it('should switch left/right if RTL is enabled', () => {
+    const theme = createMuiTheme({
+      direction: 'rtl',
+    });
+
+    assert.strictEqual(getAnchor({ anchor: 'left', theme }), 'right');
+    assert.strictEqual(getAnchor({ anchor: 'right', theme }), 'left');
   });
 });

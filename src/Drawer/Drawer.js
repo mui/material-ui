@@ -17,14 +17,14 @@ const oppositeDirection = {
   bottom: 'up',
 };
 
+export function isHorizontal(props) {
+  return ['left', 'right'].indexOf(props.anchor) !== -1;
+}
+
 export function getAnchor(props) {
   return props.theme.direction === 'rtl' && isHorizontal(props)
     ? oppositeDirection[props.anchor]
     : props.anchor;
-}
-
-export function isHorizontal(props) {
-  return ['left', 'right'].indexOf(props.anchor) !== -1;
 }
 
 export const styles = theme => ({
