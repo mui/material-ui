@@ -206,6 +206,7 @@ class SwipeableDrawer extends React.Component {
   render() {
     const {
       disableDiscovery,
+      ModalProps,
       onOpen,
       open,
       swipeAreaWidth,
@@ -220,11 +221,19 @@ class SwipeableDrawer extends React.Component {
 
     return (
       <Drawer
-        backdropRef={ref => {
-          this.backdrop = ref != null ? ReactDOM.findDOMNode(ref) : null;
+        ModalProps={{
+          BackdropProps: {
+            transitionDuration,
+            ref: ref => {
+              this.backdrop = ref != null ? ReactDOM.findDOMNode(ref) : null;
+            },
+          },
+          ...ModalProps
         }}
-        paperRef={ref => {
-          this.drawer = ref != null ? ReactDOM.findDOMNode(ref) : null;
+        PaperProps={{
+          ref: ref => {
+            this.drawer = ref != null ? ReactDOM.findDOMNode(ref) : null;
+          }
         }}
         open={open || (this.props.variant === 'temporary' && maybeSwiping)}
         transitionDuration={transitionDuration}

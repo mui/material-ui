@@ -106,7 +106,6 @@ class Drawer extends React.Component {
   render() {
     const {
       anchor: anchorProp,
-      backdropRef,
       children,
       classes,
       className,
@@ -115,7 +114,6 @@ class Drawer extends React.Component {
       onClose,
       open,
       PaperProps,
-      paperRef,
       SlideProps,
       theme,
       transitionDuration,
@@ -132,7 +130,6 @@ class Drawer extends React.Component {
         className={classNames(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
           [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
         })}
-        ref={paperRef}
         {...PaperProps}
       >
         {children}
@@ -171,7 +168,6 @@ class Drawer extends React.Component {
     return (
       <Modal
         BackdropProps={{
-          ref: backdropRef,
           transitionDuration,
         }}
         className={classNames(classes.modal, className)}
