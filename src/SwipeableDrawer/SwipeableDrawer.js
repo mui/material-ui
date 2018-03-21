@@ -7,13 +7,6 @@ import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
 
-const oppositeDirection = {
-  left: 'right',
-  right: 'left',
-  top: 'down',
-  bottom: 'up',
-};
-
 class SwipeableDrawer extends React.Component {
   state = {
     maybeSwiping: false,
@@ -228,12 +221,12 @@ class SwipeableDrawer extends React.Component {
               this.backdrop = ref != null ? ReactDOM.findDOMNode(ref) : null;
             },
           },
-          ...ModalProps
+          ...ModalProps,
         }}
         PaperProps={{
           ref: ref => {
             this.drawer = ref != null ? ReactDOM.findDOMNode(ref) : null;
-          }
+          },
         }}
         open={open || (this.props.variant === 'temporary' && maybeSwiping)}
         transitionDuration={transitionDuration}
@@ -257,6 +250,10 @@ SwipeableDrawer.propTypes = {
    * to promote accidental discovery of the swipe gesture.
    */
   disableDiscovery: PropTypes.bool,
+  /**
+   * Properties applied to the `Modal` element.
+   */
+  ModalProps: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -282,6 +279,18 @@ SwipeableDrawer.propTypes = {
    * @ignore
    */
   theme: PropTypes.object.isRequired,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  transitionDuration: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+  ]),
+  /**
+   * The variant of drawer.
+   */
+  variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 };
 
 export default withTheme()(SwipeableDrawer);

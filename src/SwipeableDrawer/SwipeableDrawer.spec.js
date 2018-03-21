@@ -2,9 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import ReactDOM from 'react-dom';
-import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
-import Slide from '../transitions/Slide';
-import createMuiTheme from '../styles/createMuiTheme';
+import { createShallow, createMount, unwrap } from '../test-utils';
 import Paper from '../Paper';
 import Drawer from '../Drawer';
 import SwipeableDrawer from './SwipeableDrawer';
@@ -12,7 +10,6 @@ import SwipeableDrawer from './SwipeableDrawer';
 describe('<SwipeableDrawer />', () => {
   let shallow;
   let mount;
-  let classes;
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -25,7 +22,7 @@ describe('<SwipeableDrawer />', () => {
 
   it('should render a Drawer', () => {
     const wrapper = shallow(
-      <SwipeableDrawer>
+      <SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false}>
         <div />
       </SwipeableDrawer>,
     );
@@ -69,7 +66,7 @@ describe('<SwipeableDrawer />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <DrawerNaked theme={{ direction: 'ltr' }}>
+        <DrawerNaked theme={{ direction: 'ltr' }} onOpen={() => {}} onClose={() => {}} open={false}>
           <h1>Hello</h1>
         </DrawerNaked>,
       );
