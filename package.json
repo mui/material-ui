@@ -73,6 +73,7 @@
     "babel-runtime": "^6.26.0",
     "brcast": "^3.0.1",
     "classnames": "^2.2.5",
+    "clipboard-copy": "^2.0.0",
     "deepmerge": "^2.0.1",
     "dom-helpers": "^3.2.1",
     "hoist-non-react-statics": "^2.5.0",
