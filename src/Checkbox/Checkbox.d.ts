@@ -6,7 +6,7 @@ export interface CheckboxProps extends StandardProps<SwitchBaseProps, CheckboxCl
   color?: 'primary' | 'secondary' | 'default';
 }
 
-export type CheckboxClassKey = SwitchBaseClassKey;
+export type CheckboxClassKey = SwitchBaseClassKey | 'checkedPrimary' | 'checkedSecondary';
 
 declare const Checkbox: React.ComponentType<CheckboxProps>;
 
