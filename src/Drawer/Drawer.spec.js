@@ -279,11 +279,7 @@ describe('<Drawer />', () => {
           const handleOpen = spy();
           wrapper.setProps({ onOpen: handleOpen });
           fireBodyMouseEvent('touchstart', { touches: [params.openTouches[0]] });
-          assert.strictEqual(
-            wrapper.instance().maybeSwiping,
-            true,
-            'should be listening for swipe',
-          );
+          assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
           fireBodyMouseEvent('touchmove', { touches: [params.openTouches[1]] });
           assert.strictEqual(wrapper.state().swiping, 'opening', 'should be opening');
           fireBodyMouseEvent('touchmove', { touches: [params.openTouches[2]] });
@@ -300,11 +296,7 @@ describe('<Drawer />', () => {
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
           fireBodyMouseEvent('touchstart', { touches: [params.closeTouches[0]] });
-          assert.strictEqual(
-            wrapper.instance().maybeSwiping,
-            true,
-            'should be listening for swipe',
-          );
+          assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
           assert.strictEqual(wrapper.state().swiping, 'closing', 'should be closing');
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[2]] });
@@ -320,11 +312,7 @@ describe('<Drawer />', () => {
           const handleOpen = spy();
           wrapper.setProps({ onOpen: handleOpen });
           fireBodyMouseEvent('touchstart', { touches: [params.openTouches[0]] });
-          assert.strictEqual(
-            wrapper.instance().maybeSwiping,
-            true,
-            'should be listening for swipe',
-          );
+          assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
           fireBodyMouseEvent('touchmove', { touches: [params.openTouches[1]] });
           assert.strictEqual(wrapper.state().swiping, 'opening', 'should be opening');
           fireBodyMouseEvent('touchend', { changedTouches: [params.openTouches[1]] });
@@ -338,11 +326,7 @@ describe('<Drawer />', () => {
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
           fireBodyMouseEvent('touchstart', { touches: [params.closeTouches[0]] });
-          assert.strictEqual(
-            wrapper.instance().maybeSwiping,
-            true,
-            'should be listening for swipe',
-          );
+          assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
           assert.strictEqual(wrapper.state().swiping, 'closing', 'should be closing');
           fireBodyMouseEvent('touchend', { changedTouches: [params.closeTouches[1]] });
@@ -372,7 +356,7 @@ describe('<Drawer />', () => {
               ],
             });
           }
-          assert.equal(wrapper.state().swiping, null, 'should not be swiping');
+          assert.equal(wrapper.state().swiping, false, 'should not be swiping');
         });
 
         it(`should slide in a bit when touching near the ${params.anchor} edge`, () => {
@@ -386,11 +370,7 @@ describe('<Drawer />', () => {
           const handleClose = spy();
           wrapper.setProps({ onOpen: handleOpen, onClose: handleClose });
           fireBodyMouseEvent('touchstart', { touches: [params.edgeTouch] });
-          assert.strictEqual(
-            wrapper.instance().maybeSwiping,
-            true,
-            'should be listening for swipe',
-          );
+          assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
           assert.strictEqual(setPosition.callCount, 1, 'should slide in a bit');
           fireBodyMouseEvent('touchend', { changedTouches: [params.edgeTouch] });
           assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen');
@@ -409,11 +389,7 @@ describe('<Drawer />', () => {
             const handleClose = spy();
             wrapper.setProps({ onOpen: handleOpen, onClose: handleClose });
             fireBodyMouseEvent('touchstart', { touches: [params.edgeTouch] });
-            assert.strictEqual(
-              wrapper.instance().maybeSwiping,
-              true,
-              'should be listening for swipe',
-            );
+            assert.strictEqual(wrapper.state().maybeSwiping, true, 'should be listening for swipe');
             assert.strictEqual(setPosition.callCount, 0, 'should not slide in');
             fireBodyMouseEvent('touchend', { changedTouches: [params.edgeTouch] });
             assert.strictEqual(handleOpen.callCount, 0, 'should not call onOpen');

@@ -93,19 +93,18 @@ class Drawer extends React.Component {
     if (this.props.variant === 'temporary') {
       this.enableSwipeHandling();
     }
+
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({
+      firstMount: false,
+    });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (this.props.variant === 'temporary' && prevProps.variant !== 'temporary') {
       this.enableSwipeHandling();
     } else if (this.props.variant !== 'temporary' && prevProps.variant === 'temporary') {
       this.disableSwipeHandling();
-    }
-
-    if (this.state.firstMount) {
-      this.setState({
-        firstMount: false,
-      });
     }
   }
 
@@ -313,9 +312,7 @@ class Drawer extends React.Component {
       ...other
     } = this.props;
 
-    const {
-      maybeSwiping
-    } = this.state;
+    const { maybeSwiping } = this.state;
 
     const anchor = this.getAnchor();
     // prevent flickering when swiping fast
