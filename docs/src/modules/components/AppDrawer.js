@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List from 'material-ui/List';
 import Drawer from 'material-ui/Drawer';
+import SwipeableDrawer from 'material-ui/SwipeableDrawer';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
@@ -114,7 +115,7 @@ function AppDrawer(props, context) {
   return (
     <div className={className}>
       <Hidden lgUp={!disablePermanent}>
-        <Drawer
+        <SwipeableDrawer
           classes={{
             paper: classNames(classes.paper, 'algolia-drawer'),
           }}
@@ -127,7 +128,7 @@ function AppDrawer(props, context) {
           }}
         >
           {drawer}
-        </Drawer>
+        </SwipeableDrawer>
       </Hidden>
       {disablePermanent ? null : (
         <Hidden mdDown implementation="css">
