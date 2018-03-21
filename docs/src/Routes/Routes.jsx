@@ -7,6 +7,7 @@ import Installation from './GettingStarted/Installation';
 import Usage from './GettingStarted/Usage';
 import DateFnsLocalization from './Localization/DateFnsLocalization';
 import MomentLocalization from './Localization/MomentLocalization';
+import CssOverrides from './Guides/CssOverrides';
 
 export default () => (
   <Switch>
@@ -16,6 +17,7 @@ export default () => (
     <Route path="/demo" component={Demos} />
     <Route path="/localization/date-fns" component={DateFnsLocalization} />
     <Route path="/localization/moment" component={MomentLocalization} />
+    <Route path="/guides/css-overrides" component={CssOverrides} />
   </Switch>
 );
 

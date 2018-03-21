@@ -34,6 +34,11 @@ const NavigationMenu = ({ classes }) => (
     <Link to="/demo/datetimepicker" className={classes.navLink}>
       <ListItem button> Date & Time Picker </ListItem>
     </Link>
+
+    <ListSubheader component="div"> Guides </ListSubheader>
+    <Link to="/guides/css-overrides" className={classes.navLink}>
+      <ListItem button> CSS overrides </ListItem>
+    </Link>
   </List>
 );
 
