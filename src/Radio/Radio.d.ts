@@ -6,7 +6,7 @@ export interface RadioProps extends StandardProps<SwitchBaseProps, RadioClassKey
   color?: 'primary' | 'secondary' | 'default';
 }
 
-export type RadioClassKey = SwitchBaseClassKey;
+export type RadioClassKey = SwitchBaseClassKey | 'checkedPrimary' | 'checkedSecondary';
 
 declare const Radio: React.ComponentType<RadioProps>;
 
