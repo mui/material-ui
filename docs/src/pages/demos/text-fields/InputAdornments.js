@@ -58,7 +58,7 @@ class InputAdornments extends React.Component {
     event.preventDefault();
   };
 
-  handleClickShowPasssword = () => {
+  handleClickShowPassword = () => {
     this.setState({ showPassword: !this.state.showPassword });
   };
 
@@ -126,7 +126,7 @@ class InputAdornments extends React.Component {
               <InputAdornment position="end">
                 <IconButton
                   aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPasssword}
+                  onClick={this.handleClickShowPassword}
                   onMouseDown={this.handleMouseDownPassword}
                 >
                   {this.state.showPassword ? <VisibilityOff /> : <Visibility />}

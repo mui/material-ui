@@ -11,6 +11,7 @@ interface SheetManagerTheme {
 export interface MuiThemeProviderProps {
   theme: Theme | ((outer: Theme | null) => Theme);
   sheetsManager?: Map<StylesCreator, Map<Theme, SheetManagerTheme>>;
+  disableStylesGeneration?: boolean;
   children: React.ReactNode;
 }
 
