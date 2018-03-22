@@ -43,6 +43,7 @@ class InteractiveGrid extends React.Component {
         <Grid item xs={12}>
           <Grid
             container
+            spacing={16}
             className={classes.demo}
             alignItems={alignItems}
             direction={direction}

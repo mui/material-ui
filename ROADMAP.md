@@ -120,16 +120,6 @@ that **are needed for the stable version**:
     }} />
   ```
 
-- [ ] Grid with no spacing by default [#10223](https://github.com/mui-org/material-ui/issues/10223).
-  The negative margin implementation solution currently used comes with [serious limitations](https://material-ui-next.com/layout/grid/#negative-margin).
-  Material-UI is the only library with a non-zero default spacing between the items.
-  Having zero spacing by default will ease the usage of the component.
-
-  ```diff
-  -<Grid />
-  +<Grid spacing={8} />
-  ```
-
 - [ ] Flatten the import path [#9532](https://github.com/mui-org/material-ui/issues/9532).
   Knowing the component name should be enough for being able to import it.
 

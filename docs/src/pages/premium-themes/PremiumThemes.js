@@ -40,7 +40,7 @@ function PremiumThemes(props) {
             title={theme.name}
           />
           <CardContent>
-            <Grid container spacing={0} alignItems="center">
+            <Grid container alignItems="center">
               <Grid item xs>
                 <Typography gutterBottom variant="headline" align="left" component="h2">
                   {theme.name}

@@ -60,7 +60,7 @@ function HomeSteps(props) {
   const classes = props.classes;
 
   return (
-    <Grid container spacing={0}>
+    <Grid container>
       <Grid item xs={12} md={4} className={classes.step}>
         <div className={classes.stepTitle}>
           <FileDownloadIcon className={classes.stepIcon} />
