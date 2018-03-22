@@ -11,10 +11,17 @@ const DrawerMenu = ({ classes }) => (
     <Toolbar className={classes.drawerToolbar}>
       <Link to="/">
         <Typography variant="subheading" className={classes.headerLink}>
-         Material-UI pickers
+          Material-UI pickers
         </Typography>
       </Link>
-      <Typography variant="caption"> v{version} </Typography>
+
+      <Link
+        target="_blank"
+        rel="noopenner noreferrer"
+        to="https://github.com/dmtrKovalenko/material-ui-pickers/releases"
+      >
+        <Typography variant="caption" className={classes.headerLink}> v{version} </Typography>
+      </Link>
     </Toolbar>
 
     <Divider />

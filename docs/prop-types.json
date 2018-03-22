@@ -216,7 +216,7 @@
             "name": "object"
           },
           "required": true,
-          "description": "@ignore"
+          "description": ""
         },
         "shouldDisableDate": {
           "type": {

@@ -44,10 +44,8 @@ class PropTypesTable extends React.PureComponent {
   }
 
   getPropType = (prop) => {
-    let type = prop.type.name;
-
     if (prop.type.name === 'custom') {
-      type = 'date';
+      return 'date';
     }
 
     if (prop.type.name === 'enum') {
@@ -55,7 +53,7 @@ class PropTypesTable extends React.PureComponent {
         .map(item => item.value)
         .join(' | ');
 
-      type = `enum ${variants}`;
+      return `enum ${variants}`;
     }
 
     if (prop.type.name === 'union') {
@@ -63,10 +61,10 @@ class PropTypesTable extends React.PureComponent {
         .map(item => item.name)
         .join(' | ');
 
-      type = `union ${variants}`;
+      return `union ${variants}`;
     }
 
-    return `${type} ${prop.required ? '*' : ''}`;
+    return prop.type.name;
   }
 
   render() {
@@ -78,12 +76,12 @@ class PropTypesTable extends React.PureComponent {
         <Typography variant="display1" gutterBottom> Component API </Typography>
         <Typography variant="body1" gutterBottom>
           <strong> Note: </strong> Any prop not recognized by the pickers
-          and their sub-components are passed down to&nbsp;
+          and their sub-components are passed down to material-ui&nbsp;
           <a className="link" href="https://material-ui-next.com/api/text-field/#props">
-            material-ui TextField
+            TextField
           </a> component.
         </Typography>
-        <Paper>
+        <Paper className={classes.tableWrapper}>
           <Table>
             <TableHead>
               <TableRow>
@@ -99,10 +97,16 @@ class PropTypesTable extends React.PureComponent {
                   .sort((a, b) => a.localeCompare(b))
                   .map(prop => (
                     <TableRow key={prop}>
-                      <TableCell> {prop} </TableCell>
                       <TableCell
                         className={classnames({ [classes.required]: propsDoc[prop].required })}
                       >
+                        {
+                          propsDoc[prop].required
+                            ? `${prop} *`
+                            : prop
+                        }
+                      </TableCell>
+                      <TableCell className={classes.type}>
                         {this.getPropType(propsDoc[prop])}
                       </TableCell>
                       <TableCell> {this.getDefaultValue(propsDoc[prop].defaultValue)} </TableCell>
@@ -120,11 +124,17 @@ class PropTypesTable extends React.PureComponent {
   }
 }
 
-const styles = {
+const styles = theme => ({
+  tableWrapper: {
+    overflowX: 'auto',
+  },
   required: {
     color: '#8bc34a',
   },
-};
+  type: {
+    color: theme.palette.primary.main,
+  },
+});
 
 
 export default withStyles(styles)(PropTypesTable);

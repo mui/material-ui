@@ -22,7 +22,11 @@ class Demo extends Component {
     return (
       <div>
         <Toolbar color="primary" className={classes.appToolbar}>
-          <img alt="Material-UI logo" className="material-ui-logo" src="https://material-ui-1dab0.firebaseapp.com/static/images/material-ui-logo.svg" />
+          <img
+            alt="Material-UI logo"
+            className={classes.materialUILogo}
+            src="https://material-ui-1dab0.firebaseapp.com/static/images/material-ui-logo.svg"
+          />
 
           <Typography variant="display1" color="inherit" className="title text-light" gutterBottom>
             Material-UI Pickers
@@ -71,6 +75,12 @@ const styles = theme => ({
   flex: {
     flex: 1,
   },
+  materialUILogo: {
+    width: '100%',
+    height: '35vw',
+    maxHeight: 200,
+    margin: '20px 0',
+  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
@@ -84,11 +94,8 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     color: theme.palette.common.white,
-    padding: '40px 20px',
-    '@media (max-width: 600px)': {
-      paddingTop: '100px',
-      minHeight: 'calc(100vh - 55px)',
-    },
+    padding: '100px 20px',
+    minHeight: 'calc(75vh - 55px)',
   },
   getStarted: {
     marginTop: '10px',
