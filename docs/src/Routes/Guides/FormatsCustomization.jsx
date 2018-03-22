@@ -4,7 +4,7 @@ import SourcablePanel from '_shared/SourcablePanel';
 import { Typography } from 'material-ui';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import quickStartCode from '!raw-loader!material-ui-pickers/typings/utils.d.ts';
+import utilsInterfaceCode from '!raw-loader!material-ui-pickers/typings/utils.d.ts';
 
 const FormatCustomization = () => (
   <div>
@@ -38,7 +38,7 @@ const FormatCustomization = () => (
       MaterialUiPickersDate - date object passed from state (moment or native Date)
     </Typography>
 
-    <Code language="ts" text={quickStartCode} />
+    <Code language="ts" text={utilsInterfaceCode} />
   </div>
 );
 
