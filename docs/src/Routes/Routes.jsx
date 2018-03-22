@@ -8,6 +8,7 @@ import Usage from './GettingStarted/Usage';
 import DateFnsLocalization from './Localization/DateFnsLocalization';
 import MomentLocalization from './Localization/MomentLocalization';
 import CssOverrides from './Guides/CssOverrides';
+import FormatCustomization from './Guides/FormatsCustomization';
 
 export default () => (
   <Switch>
@@ -18,6 +19,7 @@ export default () => (
     <Route path="/localization/date-fns" component={DateFnsLocalization} />
     <Route path="/localization/moment" component={MomentLocalization} />
     <Route path="/guides/css-overrides" component={CssOverrides} />
+    <Route path="/guides/formats" component={FormatCustomization} />
   </Switch>
 );
 

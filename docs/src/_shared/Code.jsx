@@ -165,7 +165,6 @@ const Code = (props) => {
     classes, language, text, withMargin,
   } = props;
   const hightlightedCode = prism.highlight(text, prism.languages[language]);
-
   return (
     <div className={classnames(classes.root, { [classes.margin]: withMargin })}>
       <pre>

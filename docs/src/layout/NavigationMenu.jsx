@@ -39,6 +39,10 @@ const NavigationMenu = ({ classes }) => (
     <Link to="/guides/css-overrides" className={classes.navLink}>
       <ListItem button> CSS overrides </ListItem>
     </Link>
+
+    <Link to="/guides/formats" className={classes.navLink}>
+      <ListItem button> Global format customization </ListItem>
+    </Link>
   </List>
 );
 
