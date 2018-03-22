@@ -98,7 +98,7 @@ class AnchorPlayground extends React.Component {
         >
           <Typography className={classes.typography}>The content of the Popover.</Typography>
         </Popover>
-        <Grid container>
+        <Grid container spacing={16}>
           <Grid item xs={12} sm={6}>
             <FormControl component="fieldset">
               <FormLabel component="legend">anchorReference</FormLabel>

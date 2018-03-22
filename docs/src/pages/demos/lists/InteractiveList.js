@@ -72,7 +72,7 @@ class InteractiveList extends React.Component {
             label="Enable secondary text"
           />
         </FormGroup>
-        <Grid container>
+        <Grid container spacing={16}>
           <Grid item xs={12} md={6}>
             <Typography variant="title" className={classes.title}>
               Text only
@@ -111,7 +111,7 @@ class InteractiveList extends React.Component {
             </div>
           </Grid>
         </Grid>
-        <Grid container>
+        <Grid container spacing={16}>
           <Grid item xs={12} md={6}>
             <Typography variant="title" className={classes.title}>
               Avatar with text

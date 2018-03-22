@@ -39,7 +39,7 @@ function MyTable(props: Props) {
 function PaddingTable() {
   return (
     <div>
-      <Grid container>
+      <Grid container spacing={16}>
         <Grid item xs={6}>
           <MyTable padding="default" />
         </Grid>

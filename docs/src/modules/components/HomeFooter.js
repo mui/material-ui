@@ -37,7 +37,7 @@ function HomeFooter(props) {
         Quick Links
       </Typography>
       <Typography variant="subheading" component="div">
-        <Grid container spacing={0}>
+        <Grid container>
           <Grid item xs={12} sm={6}>
             <ul className={classes.list}>
               <li className={classes.listItem}>

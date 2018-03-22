@@ -29,7 +29,7 @@ function AutoGridNoWrap(props) {
     <div className={classes.root}>
       <div className={classes.wrapper}>
         <Paper className={classes.paper}>
-          <Grid container wrap="nowrap">
+          <Grid container wrap="nowrap" spacing={16}>
             <Grid item>
               <Avatar>W</Avatar>
             </Grid>
@@ -39,7 +39,7 @@ function AutoGridNoWrap(props) {
           </Grid>
         </Paper>
         <Paper className={classes.paper}>
-          <Grid container wrap="nowrap">
+          <Grid container wrap="nowrap" spacing={16}>
             <Grid item>
               <Avatar>W</Avatar>
             </Grid>
@@ -49,7 +49,7 @@ function AutoGridNoWrap(props) {
           </Grid>
         </Paper>
         <Paper className={classes.paper}>
-          <Grid container wrap="nowrap">
+          <Grid container wrap="nowrap" spacing={16}>
             <Grid item>
               <Avatar>W</Avatar>
             </Grid>

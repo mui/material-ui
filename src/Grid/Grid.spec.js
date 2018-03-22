@@ -59,9 +59,9 @@ describe('<Grid />', () => {
   });
 
   describe('prop: spacing', () => {
-    it('should have a default spacing', () => {
-      const wrapper = shallow(<Grid container />);
-      assert.strictEqual(wrapper.hasClass(classes['spacing-xs-16']), true);
+    it('should have a spacing', () => {
+      const wrapper = shallow(<Grid container spacing={8} />);
+      assert.strictEqual(wrapper.hasClass(classes['spacing-xs-8']), true);
     });
   });
 

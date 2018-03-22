@@ -332,7 +332,7 @@ Grid.defaultProps = {
   direction: 'row',
   item: false,
   justify: 'flex-start',
-  spacing: 16,
+  spacing: 0,
   wrap: 'wrap',
   zeroMinWidth: false,
 };

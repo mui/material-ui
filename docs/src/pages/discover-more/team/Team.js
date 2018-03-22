@@ -109,11 +109,11 @@ const styles = theme => ({
 function Team(props) {
   const { classes } = props;
   return (
-    <Grid container>
+    <Grid container spacing={16}>
       {members.map(member => (
         <Grid key={member.name} item xs={12} md={6}>
           <Paper>
-            <Grid container spacing={0}>
+            <Grid container>
               <Grid item>
                 <CardMedia
                   className={classes.cover}
