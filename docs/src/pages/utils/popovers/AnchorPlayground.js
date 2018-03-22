@@ -21,10 +21,10 @@ const styles = theme => ({
 class AnchorPlayground extends React.Component {
   state = {
     open: false,
-    anchorOriginVertical: 'bottom',
-    anchorOriginHorizontal: 'center',
+    anchorOriginVertical: 'top',
+    anchorOriginHorizontal: 'left',
     transformOriginVertical: 'top',
-    transformOriginHorizontal: 'center',
+    transformOriginHorizontal: 'left',
     positionTop: 200, // Just so the popover can be spotted more easily
     positionLeft: 400, // Same as above
     anchorReference: 'anchorEl',
@@ -71,16 +71,20 @@ class AnchorPlayground extends React.Component {
 
     return (
       <div>
-        <Button
-          buttonRef={node => {
-            this.anchorEl = node;
-          }}
-          variant="raised"
-          className={classes.button}
-          onClick={this.handleClickButton}
-        >
-          Open Popover
-        </Button>
+        <Grid container justify="center" spacing={0}>
+          <Grid item>
+            <Button
+              buttonRef={node => {
+                this.anchorEl = node;
+              }}
+              variant="raised"
+              className={classes.button}
+              onClick={this.handleClickButton}
+            >
+              Open Popover
+            </Button>
+          </Grid>
+        </Grid>
         <Popover
           open={open}
           anchorEl={this.anchorEl}
@@ -98,7 +102,7 @@ class AnchorPlayground extends React.Component {
         >
           <Typography className={classes.typography}>The content of the Popover.</Typography>
         </Popover>
-        <Grid container>
+        <Grid container spacing={0}>
           <Grid item xs={12} sm={6}>
             <FormControl component="fieldset">
               <FormLabel component="legend">anchorReference</FormLabel>

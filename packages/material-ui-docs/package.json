@@ -37,8 +37,8 @@
   },
   "dependencies": {
     "marked": "^0.3.12",
-    "prismjs": "^1.8.4",
-    "nprogress": "^0.2.0"
+    "nprogress": "^0.2.0",
+    "prismjs": "^1.8.4"
   },
   "devDependencies": {
     "material-ui": "^1.0.0-beta.33",
