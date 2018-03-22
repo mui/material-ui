@@ -61,7 +61,7 @@ Unfortunately, CSS grid is only supported by the most recent browsers.
 There is one limitation with the negative margin we use to implement the spacing between items.
 A horizontal scroll will appear if a negative margin goes beyond the `<body>`.
 There are 3 available workarounds:
-1. Not using the spacing feature and implementing it in user space `spacing={0}`.
+1. Not using the spacing feature and implementing it in user space `spacing={0}` (default).
 2. Adding a padding on the parent with, at least, the spacing value:
 ```jsx
   <body>
