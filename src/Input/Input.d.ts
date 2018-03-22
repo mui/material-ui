@@ -43,7 +43,7 @@ export interface InputProps
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 }
 
-interface InputComponentProps extends InputProps {
+export interface InputComponentProps extends InputProps {
   // Accommodate arbitrary additional props coming from the `inputProps` prop
   [arbitrary: string]: any;
 }
