@@ -16,10 +16,8 @@ export interface InputProps
   error?: boolean;
   fullWidth?: boolean;
   id?: string;
-  inputComponent?: React.ReactType<InputProps>;
-  inputProps?:
-    | React.TextareaHTMLAttributes<HTMLTextAreaElement>
-    | React.InputHTMLAttributes<HTMLInputElement>;
+  inputComponent?: React.ReactType<InputComponentProps>;
+  inputProps?: { [arbitrary: string]: any };
   inputRef?: React.Ref<any>;
   margin?: 'dense';
   multiline?: boolean;
@@ -41,6 +39,11 @@ export interface InputProps
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+}
+
+export interface InputComponentProps extends InputProps {
+  // Accommodate arbitrary additional props coming from the `inputProps` prop
+  [arbitrary: string]: any;
 }
 
 export type InputClassKey =
