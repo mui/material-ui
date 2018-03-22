@@ -191,7 +191,7 @@ class SwipeableDrawer extends React.Component {
   }
 
   removeBodyTouchListeners() {
-    document.body.removeEventListener('touchmove', this.onBodyTouchMove);
+    document.body.removeEventListener('touchmove', this.onBodyTouchMove, { passive: false });
     document.body.removeEventListener('touchend', this.onBodyTouchEnd);
     document.body.removeEventListener('touchcancel', this.onBodyTouchEnd);
   }
