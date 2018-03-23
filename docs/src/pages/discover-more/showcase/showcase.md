@@ -122,3 +122,8 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
    The site of a cognitive neuroscience research group, with a carefully designed interface and animation.
    
    http://sc.bnu.edu.cn
+
+### 21. Johnny Metrics
+   Upload your trades, and analyze your crypto portfolio.
+
+   https://johnnymetrics.com/demo
