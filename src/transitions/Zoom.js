@@ -26,17 +26,11 @@ class Zoom extends React.Component {
     const { theme } = this.props;
     reflow(node); // So the animation always start from the start.
 
-    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+    const transitionProps = getTransitionProps(this.props, {
       mode: 'enter',
     });
-    node.style.transition = theme.transitions.create('transform', {
-      duration: transitionDuration,
-      delay,
-    });
-    node.style.webkitTransition = theme.transitions.create('transform', {
-      duration: transitionDuration,
-      delay,
-    });
+    node.style.transition = theme.transitions.create('transform', transitionProps);
+    node.style.webkitTransition = theme.transitions.create('transform', transitionProps);
 
     if (this.props.onEnter) {
       this.props.onEnter(node);
@@ -76,6 +70,7 @@ class Zoom extends React.Component {
           return React.cloneElement(children, {
             style: {
               transform: 'scale(0)',
+              willChange: 'transform',
               ...styles[state],
               ...style,
             },

@@ -175,9 +175,11 @@ function generateProps(reactAPI) {
 
   text = Object.keys(reactAPI.props).reduce((textProps, propRaw) => {
     const prop = getProp(reactAPI.props, propRaw);
-    if (prop.flowType == null && prop.type == null) {
-      return textProps;
+
+    if (typeof prop.description === 'undefined') {
+      throw new Error(`The "${propRaw}"" property is missing a description`);
     }
+
     const description = generatePropDescription(prop.description, prop.flowType || prop.type);
 
     if (description === null) {

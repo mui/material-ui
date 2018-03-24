@@ -1,5 +1,3 @@
-// @inheritedComponent Modal
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -88,20 +86,19 @@ export const styles = theme => ({
   modal: {}, // Just here so people can override the style.
 });
 
+/**
+ * The properties of the [Modal](/api/modal) component are available
+ * when `variant="temporary"` is set.
+ */
 class Drawer extends React.Component {
-  state = {
-    // Let's assume that the Drawer will always be rendered on user space.
-    // We use that state is order to skip the appear transition during the
-    // initial mount of the component.
-    firstMount: true,
-  };
-
   componentDidMount() {
-    // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({
-      firstMount: false,
-    });
+    this.mounted = true;
   }
+
+  // Let's assume that the Drawer will always be rendered on user space.
+  // We use that state is order to skip the appear transition during the
+  // initial mount of the component.
+  mounted = false;
 
   render() {
     const {
@@ -110,7 +107,7 @@ class Drawer extends React.Component {
       classes,
       className,
       elevation,
-      ModalProps,
+      ModalProps: { BackdropProps: BackdropPropsProp, ...ModalProps } = {},
       onClose,
       open,
       PaperProps,
@@ -122,7 +119,6 @@ class Drawer extends React.Component {
     } = this.props;
 
     const anchor = getAnchor(this.props);
-
     const drawer = (
       <Paper
         elevation={variant === 'temporary' ? elevation : 0}
@@ -149,7 +145,7 @@ class Drawer extends React.Component {
         in={open}
         direction={oppositeDirection[anchor]}
         timeout={transitionDuration}
-        appear={!this.state.firstMount}
+        appear={this.mounted}
         {...SlideProps}
       >
         {drawer}
@@ -168,6 +164,7 @@ class Drawer extends React.Component {
     return (
       <Modal
         BackdropProps={{
+          ...BackdropPropsProp,
           transitionDuration,
         }}
         className={classNames(classes.modal, className)}

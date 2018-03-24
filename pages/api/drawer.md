@@ -6,7 +6,8 @@ filename: /src/Drawer/Drawer.js
 
 # Drawer
 
-
+The properties of the [Modal](/api/modal) component are available
+when `variant="temporary"` is set.
 
 ## Props
 
@@ -49,10 +50,6 @@ for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiDrawer`.
-
-## Inheritance
-
-The properties of the [Modal](/api/modal) component are also available.
 
 ## Demos
 

@@ -4,12 +4,11 @@ import { assert } from 'chai';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
-const TouchRippleNaked = unwrap(TouchRipple);
-
 describe('<TouchRipple />', () => {
   let shallow;
   let mount;
   let classes;
+  const TouchRippleNaked = unwrap(TouchRipple);
 
   before(() => {
     shallow = createShallow({ dive: true });

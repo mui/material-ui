@@ -8,11 +8,10 @@ import Slide, { setTranslateValue } from './Slide';
 import transitions, { easing } from '../styles/transitions';
 import createMuiTheme from '../styles/createMuiTheme';
 
-const SlideNaked = unwrap(Slide);
-
 describe('<Slide />', () => {
   let shallow;
   let mount;
+  const SlideNaked = unwrap(Slide);
   const defaultProps = {
     in: true,
     children: <div />,

@@ -14,7 +14,6 @@ export const styles = {
     left: 0,
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
-    willChange: 'opacity',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   invisible: {
@@ -23,15 +22,21 @@ export const styles = {
 };
 
 function Backdrop(props) {
-  const { classes, invisible, open, transitionDuration, ...other } = props;
-
-  const className = classNames(classes.root, {
-    [classes.invisible]: invisible,
-  });
+  const { classes, className, invisible, open, transitionDuration, ...other } = props;
 
   return (
     <Fade appear in={open} timeout={transitionDuration} {...other}>
-      <div data-mui-test="Backdrop" className={className} aria-hidden="true" />
+      <div
+        data-mui-test="Backdrop"
+        className={classNames(
+          classes.root,
+          {
+            [classes.invisible]: invisible,
+          },
+          className,
+        )}
+        aria-hidden="true"
+      />
     </Fade>
   );
 }
@@ -41,6 +46,10 @@ Backdrop.propTypes = {
    * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * If `true`, the backdrop is invisible.
    * It can be used when rendering a popover or a custom select component.

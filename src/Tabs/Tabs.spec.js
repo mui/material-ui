@@ -10,26 +10,24 @@ import TabScrollButton from './TabScrollButton';
 import TabIndicator from './TabIndicator';
 import Tab from './Tab';
 
-const TabsNaked = unwrap(Tabs);
-
-const noop = () => {};
-const fakeTabs = {
-  getBoundingClientRect: () => ({}),
-  children: [
-    {
-      children: [
-        {
-          getBoundingClientRect: () => ({}),
-        },
-      ],
-    },
-  ],
-};
-
 describe('<Tabs />', () => {
   let mount;
   let shallow;
   let classes;
+  const TabsNaked = unwrap(Tabs);
+  const noop = () => {};
+  const fakeTabs = {
+    getBoundingClientRect: () => ({}),
+    children: [
+      {
+        children: [
+          {
+            getBoundingClientRect: () => ({}),
+          },
+        ],
+      },
+    ],
+  };
 
   before(() => {
     shallow = createShallow({ untilSelector: 'Tabs' });

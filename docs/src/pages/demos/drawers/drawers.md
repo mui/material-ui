@@ -16,6 +16,16 @@ It closes when an item is selected, handled by controlling the `open` prop.
 
 {{"demo": "pages/demos/drawers/TemporaryDrawer.js", "hideEditButton": true}}
 
+## Swipeable Temporary drawer
+
+You can make the drawer swipeable with the `SwipeableDrawer` component.
+
+This component comes with a 2 kB gzipped payload overhead.
+Some low-end mobile devices won't be able to follow the fingers at 60 FPS.
+You can use the `disableBackdropTransition` property to help.
+
+{{"demo": "pages/demos/drawers/SwipeableTemporaryDrawer.js", "hideEditButton": true}}
+
 ## Permanent drawer
 
 Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.

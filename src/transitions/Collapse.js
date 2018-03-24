@@ -139,11 +139,11 @@ class Collapse extends React.Component {
 
     return (
       <Transition
-        onEntering={this.handleEntering}
         onEnter={this.handleEnter}
         onEntered={this.handleEntered}
-        onExiting={this.handleExiting}
+        onEntering={this.handleEntering}
         onExit={this.handleExit}
+        onExiting={this.handleExiting}
         addEndListener={this.addEndListener}
         timeout={timeout === 'auto' ? null : timeout}
         {...other}
