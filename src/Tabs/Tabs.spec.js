@@ -52,6 +52,24 @@ describe('<Tabs />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
+  describe('warning', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn if the input is invalid', () => {
+      shallow(<Tabs onChange={noop} value={0} centered scrollable />);
+      assert.match(
+        consoleErrorMock.args()[0][0],
+        /Material-UI: you can not use the `centered={true}` and `scrollable={true}`/,
+      );
+    });
+  });
+
   describe('prop: action', () => {
     it('should be able to access updateIndicator function', () => {
       let tabsActions = {};

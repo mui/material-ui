@@ -175,7 +175,7 @@ class SelectInput extends React.Component {
     if (native) {
       warning(
         multiple === false,
-        'Material-UI: you can not use the `native` and `multiple` properties ' +
+        'Material-UI: you can not use the `native={true}` and `multiple={true}` properties ' +
           'at the same time on a `Select` component.',
       );
       warning(

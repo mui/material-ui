@@ -157,7 +157,7 @@ class Tabs extends React.Component {
     return { tabsMeta, tabMeta };
   };
 
-  tabs: ?HTMLElement = undefined;
+  tabs = undefined;
   valueToIndex: { [key: any]: any } = {};
 
   handleResize = debounce(() => {
@@ -290,6 +290,12 @@ class Tabs extends React.Component {
       value,
       ...other
     } = this.props;
+
+    warning(
+      !centered || !scrollable,
+      'Material-UI: you can not use the `centered={true}` and `scrollable={true}` properties ' +
+        'at the same time on a `Tabs` component.',
+    );
 
     const className = classNames(classes.root, classNameProp);
     const scrollerClassName = classNames(classes.scroller, {
