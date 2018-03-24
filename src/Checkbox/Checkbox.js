@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
+import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
@@ -109,7 +111,9 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
+  checkedIcon: <CheckBoxIcon />,
   color: 'secondary',
+  icon: <CheckBoxOutlineBlankIcon />,
   indeterminate: false,
   indeterminateIcon: <IndeterminateCheckBoxIcon />,
 };
