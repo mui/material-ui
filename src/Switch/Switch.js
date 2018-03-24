@@ -157,7 +157,8 @@ Switch.propTypes = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.checked`.
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,

@@ -15,8 +15,8 @@ class CheckboxesGroup extends React.Component {
     antoine: true,
   };
 
-  handleChange = name => (event, checked) => {
-    this.setState({ [name]: checked });
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.checked });
   };
 
   render() {

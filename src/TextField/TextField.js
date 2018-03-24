@@ -218,7 +218,8 @@ TextField.propTypes = {
   /**
    * Callback fired when the value is changed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value`.
    */
   onChange: PropTypes.func,
   /**
