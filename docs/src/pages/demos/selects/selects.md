@@ -22,6 +22,8 @@ we allow such pattern.
 The `Select` component can handle multiple selections.
 It's enabled with the `multiple` property.
 
+Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
+
 {{"demo": "pages/demos/selects/MultipleSelect.js"}}
 
 ## With a Dialog

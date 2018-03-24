@@ -20,7 +20,7 @@ Use this component if you want to display an extra label.
 | <span class="prop-name">inputRef</span> | <span class="prop-type">func |  | Use that property to pass a ref callback to the native input component. |
 | <span class="prop-name">label</span> | <span class="prop-type">node |  | The text to be used in an enclosing label element. |
 | <span class="prop-name">name</span> | <span class="prop-type">string |  |  |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
+| <span class="prop-name">onChange</span> | <span class="prop-type">func |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.checked`.<br>*checked:* The `checked` value of the switch |
 | <span class="prop-name">value</span> | <span class="prop-type">string |  | The value of the component. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
