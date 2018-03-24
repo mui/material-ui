@@ -3,8 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
 
@@ -138,7 +136,7 @@ SwitchBase.propTypes = {
   /**
    * The icon to display when the component is checked.
    */
-  checkedIcon: PropTypes.node,
+  checkedIcon: PropTypes.node.isRequired,
   /**
    * Useful to extend the style applied to components.
    */
@@ -162,7 +160,7 @@ SwitchBase.propTypes = {
   /**
    * The icon to display when the component is unchecked.
    */
-  icon: PropTypes.node,
+  icon: PropTypes.node.isRequired,
   /**
    * The id of the `input` element.
    */
@@ -209,8 +207,6 @@ SwitchBase.propTypes = {
 };
 
 SwitchBase.defaultProps = {
-  checkedIcon: <CheckBoxIcon />,
-  icon: <CheckBoxOutlineBlankIcon />,
   type: 'checkbox',
 };
 

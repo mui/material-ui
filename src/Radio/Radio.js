@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
-import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 

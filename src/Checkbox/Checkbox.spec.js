@@ -20,17 +20,19 @@ describe('<Checkbox />', () => {
     mount.cleanUp();
   });
 
-  describe('styleSheet', () => {
-    it('should have the classes required for Checkbox', () => {
-      assert.strictEqual(typeof classes.default, 'string');
-      assert.strictEqual(typeof classes.checked, 'string');
-      assert.strictEqual(typeof classes.disabled, 'string');
-    });
+  it('should have the classes required for Checkbox', () => {
+    assert.strictEqual(typeof classes.default, 'string');
+    assert.strictEqual(typeof classes.checked, 'string');
+    assert.strictEqual(typeof classes.disabled, 'string');
   });
 
   it('should render a div with a SwitchBase', () => {
     const wrapper = shallow(<Checkbox />);
     assert.strictEqual(wrapper.type(), SwitchBase);
+  });
+
+  it('should mount without issue', () => {
+    mount(<Checkbox checked />);
   });
 
   describe('prop: indeterminate', () => {
