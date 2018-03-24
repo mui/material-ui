@@ -98,7 +98,7 @@ palette: {
   },
   error: {
     light: palette.error[300],
-    main: palette.errorr[500],
+    main: palette.error[500],
     dark: palette.error[700],
     contrastText: getContrastText(palette.error[500]),
   },
