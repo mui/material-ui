@@ -175,6 +175,9 @@ function generateProps(reactAPI) {
 
   text = Object.keys(reactAPI.props).reduce((textProps, propRaw) => {
     const prop = getProp(reactAPI.props, propRaw);
+    if (prop.flowType == null && prop.type == null) {
+      return textProps;
+    }
     const description = generatePropDescription(prop.description, prop.flowType || prop.type);
 
     if (description === null) {

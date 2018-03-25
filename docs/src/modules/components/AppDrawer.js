@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List from 'material-ui/List';
 import Drawer from 'material-ui/Drawer';
+import SwipeableDrawer from 'material-ui/SwipeableDrawer';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
@@ -85,7 +86,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth }) {
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases/tag/';
 
 function AppDrawer(props, context) {
-  const { classes, className, disablePermanent, mobileOpen, onClose } = props;
+  const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
 
   const drawer = (
     <div className={classes.nav}>
@@ -114,19 +115,20 @@ function AppDrawer(props, context) {
   return (
     <div className={className}>
       <Hidden lgUp={!disablePermanent}>
-        <Drawer
+        <SwipeableDrawer
           classes={{
             paper: classNames(classes.paper, 'algolia-drawer'),
           }}
           variant="temporary"
           open={mobileOpen}
+          onOpen={onOpen}
           onClose={onClose}
           ModalProps={{
             keepMounted: true,
           }}
         >
           {drawer}
-        </Drawer>
+        </SwipeableDrawer>
       </Hidden>
       {disablePermanent ? null : (
         <Hidden mdDown implementation="css">
@@ -151,6 +153,7 @@ AppDrawer.propTypes = {
   disablePermanent: PropTypes.bool.isRequired,
   mobileOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  onOpen: PropTypes.func.isRequired,
 };
 
 AppDrawer.contextTypes = {

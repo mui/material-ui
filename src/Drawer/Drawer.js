@@ -10,17 +10,21 @@ import Paper from '../Paper';
 import { capitalize } from '../utils/helpers';
 import { duration } from '../styles/transitions';
 
-function getSlideDirection(anchor) {
-  if (anchor === 'left') {
-    return 'right';
-  } else if (anchor === 'right') {
-    return 'left';
-  } else if (anchor === 'top') {
-    return 'down';
-  }
+const oppositeDirection = {
+  left: 'right',
+  right: 'left',
+  top: 'down',
+  bottom: 'up',
+};
 
-  // (anchor === 'bottom')
-  return 'up';
+export function isHorizontal(props) {
+  return ['left', 'right'].indexOf(props.anchor) !== -1;
+}
+
+export function getAnchor(props) {
+  return props.theme.direction === 'rtl' && isHorizontal(props)
+    ? oppositeDirection[props.anchor]
+    : props.anchor;
 }
 
 export const styles = theme => ({
@@ -92,7 +96,8 @@ class Drawer extends React.Component {
     firstMount: true,
   };
 
-  componentWillReceiveProps() {
+  componentDidMount() {
+    // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({
       firstMount: false,
     });
@@ -116,10 +121,7 @@ class Drawer extends React.Component {
       ...other
     } = this.props;
 
-    let anchor = anchorProp;
-    if (theme.direction === 'rtl' && ['left', 'right'].indexOf(anchor) !== -1) {
-      anchor = anchor === 'left' ? 'right' : 'left';
-    }
+    const anchor = getAnchor(this.props);
 
     const drawer = (
       <Paper
@@ -145,7 +147,7 @@ class Drawer extends React.Component {
     const slidingDrawer = (
       <Slide
         in={open}
-        direction={getSlideDirection(anchor)}
+        direction={oppositeDirection[anchor]}
         timeout={transitionDuration}
         appear={!this.state.firstMount}
         {...SlideProps}
@@ -236,7 +238,7 @@ Drawer.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
   /**
-   * The type of drawer.
+   * The variant of drawer.
    */
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 };
