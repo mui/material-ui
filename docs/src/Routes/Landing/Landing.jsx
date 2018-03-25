@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Toolbar, Typography, withStyles, Button } from 'material-ui';
+import PatreonSponsors from './components/PatreonSponsors';
 
 class Demo extends Component {
   static propTypes = {
@@ -59,12 +60,9 @@ class Demo extends Component {
             variant="headline"
             gutterBottom
           >
-            Our awesome sponsors via <a className="link" href="https://www.patreon.com/user?u=9897423"> patreon </a>
+            Our awesome sponsors via <a className="link" href="https://www.patreon.com/user?u=9897423"> patreon </a> ❤️
           </Typography>
-
-          <Typography variant="caption" align="center">
-            There is no sponsors yet <span aria-label="crying emoji" role="img"> 😢 </span>
-          </Typography>
+          <PatreonSponsors />
         </div>
       </div>
     );
