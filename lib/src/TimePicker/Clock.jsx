@@ -102,6 +102,8 @@ export class Clock extends Component {
             onMouseMove={this.handleMove}
           />
 
+          <div className={classes.pin} />
+
           <ClockPointer
             max={max}
             value={value}
@@ -137,6 +139,16 @@ const styles = theme => ({
     position: 'absolute',
     pointerEvents: 'auto',
     outline: 'none',
+  },
+  pin: {
+    width: 6,
+    height: 6,
+    borderRadius: '50%',
+    backgroundColor: theme.palette.primary.main,
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
   },
 });
 
