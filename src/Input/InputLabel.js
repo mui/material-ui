@@ -39,7 +39,7 @@ function InputLabel(props, context) {
     classes,
     className: classNameProp,
     disableAnimation,
-    FormControlClasses,
+    FormLabelClasses,
     margin: marginProp,
     shrink: shrinkProp,
     ...other
@@ -69,7 +69,7 @@ function InputLabel(props, context) {
   );
 
   return (
-    <FormLabel data-shrink={shrink} className={className} classes={FormControlClasses} {...other}>
+    <FormLabel data-shrink={shrink} className={className} classes={FormLabelClasses} {...other}>
       {children}
     </FormLabel>
   );
@@ -105,9 +105,9 @@ InputLabel.propTypes = {
    */
   focused: PropTypes.bool,
   /**
-   * `classes` property applied to the `FormControl` element.
+   * `classes` property applied to the `FormLabel` element.
    */
-  FormControlClasses: PropTypes.object,
+  FormLabelClasses: PropTypes.object,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.

@@ -30,9 +30,9 @@ describe('<InputLabel />', () => {
     assert.strictEqual(wrapper.hasClass(classes.animated), false);
   });
 
-  describe('prop: FormControlClasses', () => {
+  describe('prop: FormLabelClasses', () => {
     it('should be able to change the FormLabel style', () => {
-      const wrapper = shallow(<InputLabel FormControlClasses={{ foo: 'bar' }}>Foo</InputLabel>);
+      const wrapper = shallow(<InputLabel FormLabelClasses={{ foo: 'bar' }}>Foo</InputLabel>);
       assert.strictEqual(wrapper.props().classes.foo, 'bar');
     });
   });
