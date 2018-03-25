@@ -152,14 +152,6 @@ Grow.propTypes = {
   /**
    * @ignore
    */
-  onEntered: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onEntering: PropTypes.func,
-  /**
-   * @ignore
-   */
   onExit: PropTypes.func,
   /**
    * @ignore

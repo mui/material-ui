@@ -11,12 +11,11 @@ import Fade from '../transitions/Fade';
 import Backdrop from './Backdrop';
 import Modal from './Modal';
 
-const ModalNaked = unwrap(Modal);
-
 describe('<Modal />', () => {
   let shallow;
   let mount;
   let classes;
+  const ModalNaked = unwrap(Modal);
 
   before(() => {
     shallow = createShallow({ dive: true, disableLifecycleMethods: true });

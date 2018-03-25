@@ -146,8 +146,8 @@ class SpeedDial extends React.Component {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : 'false'}
             aria-controls={`${id}-actions`}
-            ref={fab => {
-              this.fab = fab;
+            ref={node => {
+              this.fab = node;
             }}
             data-mui-test="SpeedDial"
             {...ButtonProps}

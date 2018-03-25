@@ -87,6 +87,7 @@ describe('<Fade />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         opacity: 0,
+        willChange: 'opacity',
       });
     });
 
@@ -98,6 +99,7 @@ describe('<Fade />', () => {
       );
       assert.deepEqual(wrapper.find('div').props().style, {
         opacity: 0,
+        willChange: 'opacity',
       });
     });
   });

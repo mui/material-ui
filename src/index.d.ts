@@ -123,6 +123,7 @@ import * as colors from './colors';
 export { colors };
 
 export { default as SvgIcon } from './SvgIcon';
+export { default as SwipeableDrawer } from './SwipeableDrawer';
 export { default as Switch } from './Switch';
 export {
   default as Table,

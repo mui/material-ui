@@ -15,6 +15,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/drawers/TemporaryDrawer'), 'utf8')
 `,
         },
+        'pages/demos/drawers/SwipeableTemporaryDrawer.js': {
+          js: require('docs/src/pages/demos/drawers/SwipeableTemporaryDrawer').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/drawers/SwipeableTemporaryDrawer'), 'utf8')
+`,
+        },
         'pages/demos/drawers/PermanentDrawer.js': {
           js: require('docs/src/pages/demos/drawers/PermanentDrawer').default,
           raw: preval`

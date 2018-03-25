@@ -14,11 +14,8 @@ export interface DrawerProps
     > {
   anchor?: 'left' | 'top' | 'right' | 'bottom';
   children?: React.ReactNode;
-  disableAccidentalDiscovery?: boolean;
-  disableSwipeToOpen?: boolean;
   elevation?: number;
   ModalProps?: Partial<ModalProps>;
-  onOpen?: React.ReactEventHandler<{}>;
   open?: boolean;
   PaperProps?: Partial<PaperProps>;
   SlideProps?: Partial<SlideProps>;

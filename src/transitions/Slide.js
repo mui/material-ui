@@ -70,20 +70,6 @@ export function setTranslateValue(props, node) {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Slide extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.mounted === 'undefined') {
-      return {
-        mounted: false,
-      };
-    }
-
-    return {
-      mounted: true,
-    };
-  }
-
-  state = {};
-
   componentDidMount() {
     // state.mounted handle SSR, once the component is mounted, we need
     // to properly hide it.
@@ -92,6 +78,8 @@ class Slide extends React.Component {
       // otherwise component will be shown when in=false.
       this.updatePosition();
     }
+
+    this.mounted = true;
   }
 
   componentDidUpdate(prevProps) {
@@ -106,6 +94,7 @@ class Slide extends React.Component {
     this.handleResize.cancel();
   }
 
+  mounted = false;
   transition = null;
 
   updatePosition() {
@@ -140,18 +129,16 @@ class Slide extends React.Component {
   handleEntering = node => {
     const { theme } = this.props;
 
-    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+    const transitionProps = getTransitionProps(this.props, {
       mode: 'enter',
     });
     node.style.transition = theme.transitions.create('transform', {
-      duration: transitionDuration,
+      ...transitionProps,
       easing: theme.transitions.easing.easeOut,
-      delay,
     });
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
-      duration: transitionDuration,
+      ...transitionProps,
       easing: theme.transitions.easing.easeOut,
-      delay,
     });
     node.style.transform = 'translate3d(0, 0, 0)';
     node.style.webkitTransform = 'translate3d(0, 0, 0)';
@@ -163,18 +150,16 @@ class Slide extends React.Component {
   handleExit = node => {
     const { theme } = this.props;
 
-    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+    const transitionProps = getTransitionProps(this.props, {
       mode: 'exit',
     });
     node.style.transition = theme.transitions.create('transform', {
-      duration: transitionDuration,
+      ...transitionProps,
       easing: theme.transitions.easing.sharp,
-      delay,
     });
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
-      duration: transitionDuration,
+      ...transitionProps,
       easing: theme.transitions.easing.sharp,
-      delay,
     });
     setTranslateValue(this.props, node);
 
@@ -210,7 +195,7 @@ class Slide extends React.Component {
     // We use this state to handle the server-side rendering.
     // We don't know the width of the children ahead of time.
     // We need to render it.
-    if (!this.props.in && !this.state.mounted) {
+    if (!this.props.in && !this.mounted) {
       style.visibility = 'hidden';
     }
 
@@ -261,10 +246,6 @@ Slide.propTypes = {
   /**
    * @ignore
    */
-  onEntered: PropTypes.func,
-  /**
-   * @ignore
-   */
   onEntering: PropTypes.func,
   /**
    * @ignore
@@ -274,10 +255,6 @@ Slide.propTypes = {
    * @ignore
    */
   onExited: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onExiting: PropTypes.func,
   /**
    * @ignore
    */

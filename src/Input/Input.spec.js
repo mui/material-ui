@@ -7,12 +7,11 @@ import Textarea from './Textarea';
 import Input, { hasValue, isFilled } from './Input';
 import InputAdornment from './InputAdornment';
 
-const NakedInput = unwrap(Input);
-
 describe('<Input />', () => {
   let shallow;
   let classes;
   let mount;
+  const NakedInput = unwrap(Input);
 
   before(() => {
     shallow = createShallow({ untilSelector: 'Input' });

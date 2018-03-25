@@ -10,8 +10,6 @@ import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import createMuiTheme from '../styles/createMuiTheme';
 import Tooltip from './Tooltip';
 
-const TooltipNaked = unwrap(Tooltip);
-
 function persist() {}
 
 // Remove the style from the DOM element.
@@ -42,6 +40,7 @@ describe('<Tooltip />', () => {
   let shallow;
   let mount;
   let classes;
+  const TooltipNaked = unwrap(Tooltip);
 
   before(() => {
     shallow = createShallow({ dive: true });

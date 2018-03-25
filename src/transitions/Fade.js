@@ -25,17 +25,11 @@ class Fade extends React.Component {
     const { theme } = this.props;
     reflow(node); // So the animation always start from the start.
 
-    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+    const transitionProps = getTransitionProps(this.props, {
       mode: 'enter',
     });
-    node.style.transition = theme.transitions.create('opacity', {
-      duration: transitionDuration,
-      delay,
-    });
-    node.style.webkitTransition = theme.transitions.create('opacity', {
-      duration: transitionDuration,
-      delay,
-    });
+    node.style.transition = theme.transitions.create('opacity', transitionProps);
+    node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
 
     if (this.props.onEnter) {
       this.props.onEnter(node);
@@ -75,6 +69,7 @@ class Fade extends React.Component {
           return React.cloneElement(children, {
             style: {
               opacity: 0,
+              willChange: 'opacity',
               ...styles[state],
               ...style,
             },
@@ -99,10 +94,6 @@ Fade.propTypes = {
    * @ignore
    */
   onEnter: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onEntering: PropTypes.func,
   /**
    * @ignore
    */

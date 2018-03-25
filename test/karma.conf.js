@@ -13,6 +13,7 @@ const browserStack = {
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
+    // phantomjs is no longer maintained, we should switch to chrome headless.
     browsers: ['PhantomJS_Sized'],
     // to avoid DISCONNECTED messages on travis
     browserDisconnectTimeout: 120000, // default 2000
@@ -99,7 +100,7 @@ module.exports = function setKarmaConfig(config) {
         base: 'PhantomJS',
         options: {
           viewportSize: {
-            // Matches JSDom size.
+            // Matches jsdom size.
             width: 1024,
             height: 768,
           },

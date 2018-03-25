@@ -1,26 +1,36 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createMount } from '../test-utils';
 import CssBaseline from './CssBaseline';
 
 describe('<CssBaseline />', () => {
-  let shallow;
+  let mount;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render nothing', () => {
-    const wrapper = shallow(<CssBaseline />);
-    assert.strictEqual(wrapper.children().length, 0, 'should have no children');
+    const wrapper = mount(<CssBaseline />);
+    assert.strictEqual(wrapper.childAt(0).children().length, 0, 'should have no children');
   });
 
   it('should render a div with the root class', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <CssBaseline>
         <div />
       </CssBaseline>,
     );
-    assert.strictEqual(wrapper.name(), 'div');
+    assert.strictEqual(
+      wrapper
+        .childAt(0)
+        .children()
+        .name(),
+      'div',
+    );
   });
 });

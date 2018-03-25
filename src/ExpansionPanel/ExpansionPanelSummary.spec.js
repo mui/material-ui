@@ -7,12 +7,11 @@ import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import ButtonBase from '../ButtonBase';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
 
-const ExpansionPanelSummaryNaked = unwrap(ExpansionPanelSummary);
-
 describe('<ExpansionPanelSummary />', () => {
   let mount;
   let shallow;
   let classes;
+  const ExpansionPanelSummaryNaked = unwrap(ExpansionPanelSummary);
 
   before(() => {
     shallow = createShallow({ dive: true });
