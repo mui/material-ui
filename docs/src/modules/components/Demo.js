@@ -246,7 +246,9 @@ class Demo extends React.Component {
             }}
           >
             <MenuItem onClick={this.handleClickCopy}>Copy the source</MenuItem>
-            <MenuItem onClick={this.handleClickStackBlitz}>Edit in StackBlitz</MenuItem>
+            {demoOptions.hideEditButton ? null : (
+              <MenuItem onClick={this.handleClickStackBlitz}>Edit in StackBlitz</MenuItem>
+            )}
           </Menu>
         </div>
         <Collapse in={codeOpen} unmountOnExit>
