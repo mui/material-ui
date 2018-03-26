@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Toolbar, Typography, withStyles, Button } from 'material-ui';
+import PatreonSponsors from './components/PatreonSponsors';
 
 class Demo extends Component {
   static propTypes = {
@@ -22,7 +23,11 @@ class Demo extends Component {
     return (
       <div>
         <Toolbar color="primary" className={classes.appToolbar}>
-          <img alt="Material-UI logo" className="material-ui-logo" src="https://material-ui-1dab0.firebaseapp.com/static/images/material-ui-logo.svg" />
+          <img
+            alt="Material-UI logo"
+            className={classes.materialUILogo}
+            src="https://material-ui-1dab0.firebaseapp.com/static/images/material-ui-logo.svg"
+          />
 
           <Typography variant="display1" color="inherit" className="title text-light" gutterBottom>
             Material-UI Pickers
@@ -55,12 +60,9 @@ class Demo extends Component {
             variant="headline"
             gutterBottom
           >
-            Our awesome sponsors via <a className="link" href="https://www.patreon.com/user?u=9897423"> patreon </a>
+            Our awesome sponsors via <a className="link" href="https://www.patreon.com/user?u=9897423"> patreon </a> ❤️
           </Typography>
-
-          <Typography variant="caption" align="center">
-            There is no sponsors yet <span aria-label="crying emoji" role="img"> 😢 </span>
-          </Typography>
+          <PatreonSponsors />
         </div>
       </div>
     );
@@ -70,6 +72,12 @@ class Demo extends Component {
 const styles = theme => ({
   flex: {
     flex: 1,
+  },
+  materialUILogo: {
+    width: '100%',
+    height: '35vw',
+    maxHeight: 200,
+    margin: '20px 0',
   },
   menuButton: {
     marginLeft: -12,
@@ -84,11 +92,8 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     color: theme.palette.common.white,
-    padding: '40px 20px',
-    '@media (max-width: 600px)': {
-      paddingTop: '100px',
-      minHeight: 'calc(100vh - 55px)',
-    },
+    padding: '100px 20px',
+    minHeight: 'calc(75vh - 55px)',
   },
   getStarted: {
     marginTop: '10px',

@@ -95,6 +95,7 @@ class Layout extends Component {
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={this.state.drawerOpen}
             onClose={this.handleDrawerToggle}
+            onClick={this.handleDrawerToggle}
             classes={{
               paper: classes.drawerPaper,
             }}

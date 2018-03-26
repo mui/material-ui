@@ -23,7 +23,6 @@ export class Calendar extends Component {
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
     renderDay: PropTypes.func,
-    /** @ignore */
     theme: PropTypes.object.isRequired,
     shouldDisableDate: PropTypes.func,
     utils: PropTypes.object.isRequired,

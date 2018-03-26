@@ -29,7 +29,7 @@ const styles = theme => ({
   root: {
     margin: 0,
     fontFamily: theme.typography.fontFamily,
-    fontSize: 16,
+    fontSize: '0.9em',
     color: theme.palette.text.primary,
     backgroundColor: theme.palette.background.paper,
     padding: 10,
@@ -50,11 +50,11 @@ const styles = theme => ({
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
       padding: '3px 6px',
       color: theme.palette.text.primary,
-      fontSize: 14,
+      fontSize: '0.9em',
       backgroundColor: theme.palette.background.paper,
     },
     '& p code, & ul code, & pre code': {
-      fontSize: 14,
+      fontSize: '0.9em',
       lineHeight: 1.6,
     },
     '& h1 code, & h2 code, & h3 code, & h4 code': {
@@ -165,7 +165,6 @@ const Code = (props) => {
     classes, language, text, withMargin,
   } = props;
   const hightlightedCode = prism.highlight(text, prism.languages[language]);
-
   return (
     <div className={classnames(classes.root, { [classes.margin]: withMargin })}>
       <pre>

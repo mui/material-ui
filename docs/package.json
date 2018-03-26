@@ -34,6 +34,7 @@
     "moment": "^2.20.1",
     "moment-jalaali": "^0.7.2",
     "object-assign": "4.1.1",
+    "patreon": "^0.4.0",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "prismjs": "^1.11.0",
