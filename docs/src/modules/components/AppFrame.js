@@ -80,8 +80,12 @@ class AppFrame extends React.Component {
     mobileOpen: false,
   };
 
-  handleDrawerToggle = () => {
-    this.setState({ mobileOpen: !this.state.mobileOpen });
+  handleDrawerOpen = () => {
+    this.setState({ mobileOpen: true });
+  };
+
+  handleDrawerClose = () => {
+    this.setState({ mobileOpen: false });
   };
 
   handleTogglePaletteType = () => {
@@ -133,7 +137,7 @@ class AppFrame extends React.Component {
             <IconButton
               color="inherit"
               aria-label="open drawer"
-              onClick={this.handleDrawerToggle}
+              onClick={this.handleDrawerOpen}
               className={navIconClassName}
             >
               <MenuIcon />
@@ -187,8 +191,8 @@ class AppFrame extends React.Component {
         <AppDrawer
           className={classes.drawer}
           disablePermanent={disablePermanent}
-          onClose={this.handleDrawerToggle}
-          onOpen={this.handleDrawerToggle}
+          onClose={this.handleDrawerClose}
+          onOpen={this.handleDrawerOpen}
           mobileOpen={this.state.mobileOpen}
         />
         {children}
