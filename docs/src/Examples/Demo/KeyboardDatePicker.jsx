@@ -28,11 +28,11 @@ export default class BasicUsage extends PureComponent {
 
         <div className="picker">
           <DatePicker
-            label="Masked input"
             keyboard
-            format="MMM DD"
-            placeholder="Jan 01"
-            mask={[/[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, ' ', /\d/, /\d/]}
+            label="Masked input"
+            format="DD/MM/YYYY"
+            placeholder="10/10/2018"
+            mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
             value={selectedDate}
             onChange={this.handleDateChange}
             animateYearScrolling={false}

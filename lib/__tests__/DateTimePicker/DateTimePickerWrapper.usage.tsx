@@ -25,7 +25,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
     return (
       <MuiUtilsProvider utils={utilsToUse}>
         <DateTimePickerWrapper
-          value={selectedDate}
+          value={null}
           onChange={this.handleChange}
           leftArrowIcon={<Icon> keyboard_arrow_left </Icon>}
           rightArrowIcon={<Icon> keyboard_arrow_right </Icon>}
