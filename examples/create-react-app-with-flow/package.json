@@ -13,6 +13,7 @@
     "flow-bin": "^0.62.0"
   },
   "scripts": {
+    "flow": "flow",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
