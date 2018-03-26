@@ -28,8 +28,8 @@ class Fade extends React.Component {
     const transitionProps = getTransitionProps(this.props, {
       mode: 'enter',
     });
-    node.style.transition = theme.transitions.create('opacity', transitionProps);
     node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
+    node.style.transition = theme.transitions.create('opacity', transitionProps);
 
     if (this.props.onEnter) {
       this.props.onEnter(node);
@@ -38,17 +38,11 @@ class Fade extends React.Component {
 
   handleExit = node => {
     const { theme } = this.props;
-    const { duration: transitionDuration, delay } = getTransitionProps(this.props, {
+    const transitionProps = getTransitionProps(this.props, {
       mode: 'exit',
     });
-    node.style.transition = theme.transitions.create('opacity', {
-      duration: transitionDuration,
-      delay,
-    });
-    node.style.webkitTransition = theme.transitions.create('opacity', {
-      duration: transitionDuration,
-      delay,
-    });
+    node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
+    node.style.transition = theme.transitions.create('opacity', transitionProps);
 
     if (this.props.onExit) {
       this.props.onExit(node);

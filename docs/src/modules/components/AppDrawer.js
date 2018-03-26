@@ -84,6 +84,12 @@ function reduceChildRoutes({ props, activePage, items, page, depth }) {
 }
 
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases/tag/';
+// iOS is hosted on high-end devices. We can enable the backdrop transition without
+// dropping frames. The performance will be good enough.
+// iOS has a "swipe to go back" feature that mess with the discovery feature.
+// We have to disable it.
+// So: <SwipeableDrawer disableBackdropTransition={false} disableDiscovery={true} />
+const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 function AppDrawer(props, context) {
   const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
@@ -119,6 +125,8 @@ function AppDrawer(props, context) {
           classes={{
             paper: classNames(classes.paper, 'algolia-drawer'),
           }}
+          disableBackdropTransition={!iOS}
+          disableDiscovery={iOS}
           variant="temporary"
           open={mobileOpen}
           onOpen={onOpen}
