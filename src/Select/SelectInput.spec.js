@@ -372,5 +372,12 @@ describe('<SelectInput />', () => {
         assert.deepEqual(handleChange.args[1][0].target.value, [30, 10]);
       });
     });
+
+    describe('prop: autoFocus', () => {
+      it('should focus select after SelectInput did mount', () => {
+        mount(<SelectInput {...defaultProps} autoFocus />);
+        assert.strictEqual(document.activeElement.className, `${defaultProps.classes.select}`);
+      });
+    });
   });
 });

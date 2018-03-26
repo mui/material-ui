@@ -24,7 +24,7 @@ class SelectInput extends React.Component {
       this.forceUpdate();
     }
 
-    if (this.props.autoFocus) {
+    if (this.props.autoFocus && !this.props.native) {
       this.displayNode.focus();
     }
   }
@@ -149,7 +149,6 @@ class SelectInput extends React.Component {
 
   render() {
     const {
-      autoFocus,
       autoWidth,
       children,
       classes,
@@ -351,7 +350,7 @@ class SelectInput extends React.Component {
 
 SelectInput.propTypes = {
   /**
-   * If true, select automatically get focus when the page loads.
+   * @ignore
    */
   autoFocus: PropTypes.bool,
   /**
