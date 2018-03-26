@@ -26,7 +26,7 @@ You can use the `disableBackdropTransition` property to help.
 
 {{"demo": "pages/demos/drawers/SwipeableTemporaryDrawer.js", "hideEditButton": true}}
 
-We are using the follow set of properties on this documentation website for optimal usability of the component:
+We are using the following set of properties on this documentation website for optimal usability of the component:
 - iOS is hosted on high-end devices.
 We can enable the backdrop transition without dropping frames.
 The performance will be good enough.
