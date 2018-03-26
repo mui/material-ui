@@ -3,6 +3,7 @@ import { StandardProps } from '..';
 import { MenuProps } from '../Menu';
 
 export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey> {
+  autoFocus?: boolean;
   autoWidth: boolean;
   disabled?: boolean;
   inputRef?: (

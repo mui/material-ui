@@ -23,6 +23,10 @@ class SelectInput extends React.Component {
       // Rerender with the resolve `displayNode` reference.
       this.forceUpdate();
     }
+
+    if (this.props.autoFocus && !this.props.native) {
+      this.displayNode.focus();
+    }
   }
 
   ignoreNextBlur = false;
@@ -345,6 +349,10 @@ class SelectInput extends React.Component {
 }
 
 SelectInput.propTypes = {
+  /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
   /**
    * If true, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
