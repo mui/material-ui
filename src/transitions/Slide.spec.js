@@ -194,7 +194,7 @@ describe('<Slide />', () => {
       });
 
       it('should reset the translate3d', () => {
-        assert.strictEqual(element.style.transform, 'translate3d(0, 0, 0)');
+        assert.strictEqual(element.style.transform, 'translate(0, 0)');
       });
     });
 

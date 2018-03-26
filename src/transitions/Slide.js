@@ -60,8 +60,8 @@ export function setTranslateValue(props, node) {
   const transform = getTranslateValue(props, node);
 
   if (transform) {
-    node.style.transform = transform;
     node.style.webkitTransform = transform;
+    node.style.transform = transform;
   }
 }
 
@@ -132,16 +132,16 @@ class Slide extends React.Component {
     const transitionProps = getTransitionProps(this.props, {
       mode: 'enter',
     });
-    node.style.transition = theme.transitions.create('transform', {
-      ...transitionProps,
-      easing: theme.transitions.easing.easeOut,
-    });
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
       easing: theme.transitions.easing.easeOut,
     });
-    node.style.transform = 'translate3d(0, 0, 0)';
-    node.style.webkitTransform = 'translate3d(0, 0, 0)';
+    node.style.transition = theme.transitions.create('transform', {
+      ...transitionProps,
+      easing: theme.transitions.easing.easeOut,
+    });
+    node.style.webkitTransform = 'translate(0, 0)';
+    node.style.transform = 'translate(0, 0)';
     if (this.props.onEntering) {
       this.props.onEntering(node);
     }
@@ -153,11 +153,11 @@ class Slide extends React.Component {
     const transitionProps = getTransitionProps(this.props, {
       mode: 'exit',
     });
-    node.style.transition = theme.transitions.create('transform', {
+    node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
       easing: theme.transitions.easing.sharp,
     });
-    node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
+    node.style.transition = theme.transitions.create('transform', {
       ...transitionProps,
       easing: theme.transitions.easing.sharp,
     });
@@ -170,8 +170,8 @@ class Slide extends React.Component {
 
   handleExited = node => {
     // No need for transitions when the component is hidden
-    node.style.transition = '';
     node.style.webkitTransition = '';
+    node.style.transition = '';
 
     if (this.props.onExited) {
       this.props.onExited(node);

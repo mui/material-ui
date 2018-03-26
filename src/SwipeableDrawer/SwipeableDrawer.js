@@ -67,7 +67,7 @@ class SwipeableDrawer extends React.Component {
   }
 
   setPosition(translate, options = {}) {
-    const { mode = null } = options;
+    const { mode = null, changeTransition = true } = options;
 
     const anchor = getAnchor(this.props);
     const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(anchor) !== -1 ? 1 : -1;
@@ -94,15 +94,19 @@ class SwipeableDrawer extends React.Component {
       );
     }
 
-    drawerStyle.webkitTransition = transition;
-    drawerStyle.transition = transition;
+    if (changeTransition) {
+      drawerStyle.webkitTransition = transition;
+      drawerStyle.transition = transition;
+    }
 
     if (!this.props.disableBackdropTransition) {
       const backdropStyle = this.backdrop.style;
       backdropStyle.opacity = 1 - translate / this.getMaxTranslate();
 
-      backdropStyle.webkitTransition = transition;
-      backdropStyle.transition = transition;
+      if (changeTransition) {
+        backdropStyle.webkitTransition = transition;
+        backdropStyle.transition = transition;
+      }
     }
   }
 
@@ -139,7 +143,9 @@ class SwipeableDrawer extends React.Component {
 
     this.setState({ maybeSwiping: true });
     if (!open) {
-      this.setPosition(this.getMaxTranslate() - (disableDiscovery ? 0 : swipeAreaWidth));
+      this.setPosition(this.getMaxTranslate() - (disableDiscovery ? 0 : swipeAreaWidth), {
+        changeTransition: false,
+      });
     }
 
     document.body.addEventListener('touchmove', this.handleBodyTouchMove, { passive: false });
@@ -173,11 +179,20 @@ class SwipeableDrawer extends React.Component {
         ? dx > UNCERTAINTY_THRESHOLD && dy <= UNCERTAINTY_THRESHOLD
         : dy > UNCERTAINTY_THRESHOLD && dx <= UNCERTAINTY_THRESHOLD;
 
+      // We are likely to be swiping, let's prevent the scroll event on iOS.
+      if (dx > dy) {
+        event.preventDefault();
+      }
+
       if (isSwiping) {
         this.isSwiping = this.props.open ? 'closing' : 'opening';
 
+        // Shift the starting point.
+        this.startX = currentX;
+        this.startY = currentY;
+
         // Compensate for the part of the drawer displayed on touch start.
-        if (!this.props.disableDiscovery) {
+        if (!this.props.disableDiscovery && !this.props.open) {
           if (horizontalSwipe) {
             this.startX -= this.props.swipeAreaWidth;
           } else {
@@ -197,6 +212,8 @@ class SwipeableDrawer extends React.Component {
       return;
     }
 
+    // We are swiping, let's prevent the scroll event on iOS.
+    event.preventDefault();
     this.setPosition(this.getTranslate(horizontalSwipe ? currentX : currentY));
   };
 

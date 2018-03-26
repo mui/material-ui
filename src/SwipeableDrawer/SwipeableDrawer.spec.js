@@ -329,6 +329,7 @@ describe('<SwipeableDrawer />', () => {
         </div>,
       );
       fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+      fireBodyMouseEvent('touchmove', { touches: [{ pageX: 20, clientY: 0 }] });
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 180, clientY: 0 }] });
       fireBodyMouseEvent('touchend', { changedTouches: [{ pageX: 180, clientY: 0 }] });
       assert.strictEqual(handleOpen.callCount, 1, 'should call onOpen once, not twice');
