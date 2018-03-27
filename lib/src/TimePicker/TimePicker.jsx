@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'material-ui/styles/withStyles';
+import Fade from 'material-ui/transitions/Fade';
+
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import HourView from './HourView';
@@ -17,6 +19,7 @@ export class TimePicker extends Component {
     children: PropTypes.node,
     utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
+    fadeTimeout: PropTypes.number.isRequired,
   }
 
   static defaultProps = {
@@ -56,7 +59,6 @@ export class TimePicker extends Component {
     this.props.onChange(withMeridiem, false);
   }
 
-
   handleHourChange = (time, isFinish) => {
     this.handleChange(time, isFinish, true);
   }
@@ -75,7 +77,7 @@ export class TimePicker extends Component {
 
   render() {
     const {
-      classes, theme, date, utils, ampm,
+      classes, theme, date, utils, ampm, fadeTimeout,
     } = this.props;
 
     const { isHourViewShown, meridiemMode } = this.state;
@@ -135,9 +137,9 @@ export class TimePicker extends Component {
 
         {this.props.children}
 
-        {
-          isHourViewShown
-            ?
+        <div className={classes.viewContainer}>
+          <Fade timeout={fadeTimeout} in={isHourViewShown}>
+            <div className={classes.viewRoot}>
               <HourView
                 date={date}
                 meridiemMode={meridiemMode}
@@ -145,19 +147,35 @@ export class TimePicker extends Component {
                 utils={utils}
                 ampm={ampm}
               />
-            :
+            </div>
+          </Fade>
+
+          <Fade timeout={fadeTimeout} in={!isHourViewShown}>
+            <div className={classes.viewRoot}>
               <MinutesView
                 date={date}
                 onChange={this.handleMinutesChange}
                 utils={utils}
               />
-        }
+            </div>
+          </Fade>
+        </div>
       </Fragment>
     );
   }
 }
 
 const styles = () => ({
+  viewContainer: {
+    position: 'relative',
+    minHeight: 300,
+    minWidth: 260,
+  },
+  viewRoot: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+  },
   toolbar: {
     flexDirection: 'row',
     alignItems: 'center',

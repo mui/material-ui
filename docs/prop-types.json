@@ -1312,6 +1312,13 @@
             "value": "false",
             "computed": false
           }
+        },
+        "fadeTimeout": {
+          "type": {
+            "name": "number"
+          },
+          "required": true,
+          "description": ""
         }
       }
     }
@@ -1723,6 +1730,17 @@
           "description": "Open directly to particular view",
           "defaultValue": {
             "value": "'date'",
+            "computed": false
+          }
+        },
+        "fadeTimeout": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "Switching hour/minutes animation timeout in milliseconds (set 0 to disable)",
+          "defaultValue": {
+            "value": "400",
             "computed": false
           }
         }
@@ -2227,6 +2245,13 @@
             "value": "true",
             "computed": false
           }
+        },
+        "fadeTimeout": {
+          "type": {
+            "name": "number"
+          },
+          "required": true,
+          "description": ""
         }
       }
     }
@@ -2293,6 +2318,17 @@
           "description": "12h/24h view for hour selection clock",
           "defaultValue": {
             "value": "true",
+            "computed": false
+          }
+        },
+        "fadeTimeout": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "Switching hour/minutes animation timeout in milliseconds (set 0 to disable)",
+          "defaultValue": {
+            "value": "400",
             "computed": false
           }
         }

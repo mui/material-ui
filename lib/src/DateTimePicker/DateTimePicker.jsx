@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Fade from 'material-ui/transitions/Fade';
 
 import View from './DateTimePickerView';
 import YearSelection from '../DatePicker/YearSelection';
@@ -34,6 +35,7 @@ export class DateTimePicker extends Component {
     ampm: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     animateYearScrolling: PropTypes.bool,
+    fadeTimeout: PropTypes.number.isRequired,
   }
 
   static defaultProps = {
@@ -115,6 +117,7 @@ export class DateTimePicker extends Component {
       ampm,
       shouldDisableDate,
       animateYearScrolling,
+      fadeTimeout,
     } = this.props;
 
     return (
@@ -169,21 +172,30 @@ export class DateTimePicker extends Component {
         </View>
 
         <View view={viewType.HOUR} selected={openView}>
-          <HourView
-            date={date}
-            meridiemMode={meridiemMode}
-            onChange={this.handleHourChange}
-            utils={utils}
-            ampm={ampm}
-          />
+          <Fade timeout={fadeTimeout} in>
+            <div>
+              <HourView
+                date={date}
+                meridiemMode={meridiemMode}
+                onChange={this.handleHourChange}
+                utils={utils}
+                ampm={ampm}
+              />
+            </div>
+          </Fade>
+
         </View>
 
         <View view={viewType.MINUTES} selected={openView}>
-          <MinutesView
-            date={date}
-            onChange={this.handleChange}
-            utils={utils}
-          />
+          <Fade timeout={fadeTimeout} in>
+            <div>
+              <MinutesView
+                date={date}
+                onChange={this.handleChange}
+                utils={utils}
+              />
+            </div>
+          </Fade>
         </View>
       </Fragment>
     );
