@@ -16,11 +16,11 @@ const UNCERTAINTY_THRESHOLD = 3; // px
 // We can only have one node at the time claiming ownership for handling the swipe.
 // Otherwise, the UX would be confusing.
 // That's why we use a singleton here.
-let nodeHowClaimedTheSwipe = null;
+let nodeThatClaimedTheSwipe = null;
 
 // Exported for test purposes.
 export function reset() {
-  nodeHowClaimedTheSwipe = null;
+  nodeThatClaimedTheSwipe = null;
 }
 
 class SwipeableDrawer extends React.Component {
@@ -48,6 +48,9 @@ class SwipeableDrawer extends React.Component {
   componentWillUnmount() {
     this.removeTouchStart();
     this.removeBodyTouchListeners();
+    if (nodeThatClaimedTheSwipe === this) {
+      nodeThatClaimedTheSwipe = null;
+    }
   }
 
   getMaxTranslate() {
@@ -112,7 +115,7 @@ class SwipeableDrawer extends React.Component {
 
   handleBodyTouchStart = event => {
     // We are not supposed to hanlde this touch move.
-    if (nodeHowClaimedTheSwipe !== null && nodeHowClaimedTheSwipe !== this) {
+    if (nodeThatClaimedTheSwipe !== null && nodeThatClaimedTheSwipe !== this) {
       return;
     }
 
@@ -137,7 +140,7 @@ class SwipeableDrawer extends React.Component {
       }
     }
 
-    nodeHowClaimedTheSwipe = this;
+    nodeThatClaimedTheSwipe = this;
     this.startX = currentX;
     this.startY = currentY;
 
@@ -218,7 +221,7 @@ class SwipeableDrawer extends React.Component {
   };
 
   handleBodyTouchEnd = event => {
-    nodeHowClaimedTheSwipe = null;
+    nodeThatClaimedTheSwipe = null;
     this.removeBodyTouchListeners();
     this.setState({ maybeSwiping: false });
 

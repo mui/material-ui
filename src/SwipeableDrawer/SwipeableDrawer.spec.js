@@ -204,7 +204,9 @@ describe('<SwipeableDrawer />', () => {
           assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
         });
 
-        it('should not start swiping when swiping in the wrong direction', () => {
+        it('should ignore swiping in the wrong direction if discovery is disabled', () => {
+          wrapper.setProps({ disableDiscovery: true });
+
           fireBodyMouseEvent('touchstart', { touches: [params.openTouches[0]] });
           if (['left', 'right'].includes(params.anchor)) {
             fireBodyMouseEvent('touchmove', {
