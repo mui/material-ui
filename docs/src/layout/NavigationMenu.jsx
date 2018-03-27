@@ -22,6 +22,10 @@ const NavigationMenu = ({ classes }) => (
       <ListItem button> Using moment </ListItem>
     </Link>
 
+    <Link to="/localization/persian" className={classes.navLink}>
+      <ListItem button> Persian Calendar System </ListItem>
+    </Link>
+
     <ListSubheader component="div"> Components </ListSubheader>
     <Link to="/demo/datepicker" className={classes.navLink}>
       <ListItem button> Date Picker </ListItem>
@@ -42,10 +46,6 @@ const NavigationMenu = ({ classes }) => (
 
     <Link to="/guides/formats" className={classes.navLink}>
       <ListItem button> Global format customization </ListItem>
-    </Link>
-
-    <Link to="/guides/persian" className={classes.navLink}>
-      <ListItem button> Persian Calendar System </ListItem>
     </Link>
   </List>
 );

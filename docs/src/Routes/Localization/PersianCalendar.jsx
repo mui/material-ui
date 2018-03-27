@@ -1,8 +1,9 @@
 import React from 'react';
+import Code from '_shared/Code';
 import SourcablePanel from '_shared/SourcablePanel';
 import { Typography } from 'material-ui';
 
-const CssOverrides = () => (
+const PersianCalendar = () => (
   <div>
     <Typography variant="display2" gutterBottom> Setting Up Persian Calendar System </Typography>
 
@@ -19,13 +20,11 @@ const CssOverrides = () => (
       package from npm.
     </Typography>
 
-    <Typography variant="body1">
-      <code>npm install material-ui-pickers-jalali-utils </code>
-    </Typography>
+    <Code language="markup" text="npm install material-ui-pickers-jalali-utils" />
 
     <SourcablePanel
       title="Samples"
-      sourceFile="Guides/PersianPickers.jsx"
+      sourceFile="Localization/PersianPickers.jsx"
       description={
         <div>
           <Typography variant="body1" gutterBottom>
@@ -43,5 +42,5 @@ const CssOverrides = () => (
   </div>
 );
 
-export default CssOverrides;
+export default PersianCalendar;
 
