@@ -29,7 +29,7 @@ export const styles = theme => ({
     opacity: 0.7,
   },
   textColorPrimary: {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
   },
   textColorPrimarySelected: {
     color: theme.palette.primary.main,
