@@ -1,6 +1,7 @@
 import React, { Fragment, PureComponent } from 'react';
 import { DatePicker } from 'material-ui-pickers';
-import { FormControl } from 'material-ui';
+
+ g;
 
 export default class BasicDatePicker extends PureComponent {
   state = {
@@ -17,15 +18,12 @@ export default class BasicDatePicker extends PureComponent {
     return (
       <Fragment>
         <div className="picker">
-          <FormControl>
-            <DatePicker
-              label="Basic example"
-              value={selectedDate}
-              onChange={this.handleDateChange}
-              animateYearScrolling={false}
-            />
-          </FormControl>
-
+          <DatePicker
+            label="Basic example"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+            animateYearScrolling={false}
+          />
         </div>
 
         <div className="picker">
