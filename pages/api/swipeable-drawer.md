@@ -26,3 +26,7 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 
 The properties of the [Drawer](/api/drawer) component are also available.
 
+## Demos
+
+- [Drawers](/demos/drawers)
+

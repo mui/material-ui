@@ -1,5 +1,5 @@
 ---
-components: Drawer
+components: Drawer, SwipeableDrawer
 ---
 
 # Drawer
