@@ -211,7 +211,7 @@ export class DateTextField extends PureComponent {
       return;
     }
 
-    e.target.blur();
+
     this.openPicker(e);
   }
 
