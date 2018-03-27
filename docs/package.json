@@ -30,7 +30,7 @@
     "jss-preset-default": "^4.3.0",
     "jss-rtl": "^0.2.1",
     "material-ui": "^1.0.0-beta.33",
-    "material-ui-pickers-jalali-utils": "^0.2.0",
+    "material-ui-pickers-jalali-utils": "^0.4.0",
     "moment": "^2.20.1",
     "moment-jalaali": "^0.7.2",
     "object-assign": "4.1.1",
