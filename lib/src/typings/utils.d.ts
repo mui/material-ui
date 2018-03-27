@@ -39,7 +39,7 @@ export interface Utils {
   getYearRange(): MaterialUiPickersDate[];
 
   // displaying methods
-  getMeridiemText(ampm: boolean): string;
+  getMeridiemText(ampm: 'am' | 'pm'): string;
   getCalendarHeaderText(date: MaterialUiPickersDate): string;
   getDatePickerHeaderText(date: MaterialUiPickersDate): string;
   getDateTimePickerHeaderText(date: MaterialUiPickersDate): string;

@@ -9,6 +9,7 @@ import DateFnsLocalization from './Localization/DateFnsLocalization';
 import MomentLocalization from './Localization/MomentLocalization';
 import CssOverrides from './Guides/CssOverrides';
 import FormatCustomization from './Guides/FormatsCustomization';
+import PersianCalendar from './Guides/PersianCalendar';
 
 export default () => (
   <Switch>
@@ -20,6 +21,7 @@ export default () => (
     <Route path="/localization/moment" component={MomentLocalization} />
     <Route path="/guides/css-overrides" component={CssOverrides} />
     <Route path="/guides/formats" component={FormatCustomization} />
+    <Route path="/guides/persian" component={PersianCalendar} />
   </Switch>
 );
 

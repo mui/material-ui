@@ -43,6 +43,10 @@ const NavigationMenu = ({ classes }) => (
     <Link to="/guides/formats" className={classes.navLink}>
       <ListItem button> Global format customization </ListItem>
     </Link>
+
+    <Link to="/guides/persian" className={classes.navLink}>
+      <ListItem button> Persian Calendar System </ListItem>
+    </Link>
   </List>
 );
 
