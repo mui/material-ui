@@ -178,14 +178,9 @@ class SwipeableDrawer extends React.Component {
       // If the user has moved his thumb some pixels in either direction,
       // we can safely make an assumption about whether he was intending
       // to swipe or scroll.
-      // If the drawer was opened a bit due to the discovery feature, the
-      // user is already swiping.
-      const isDiscovering = !this.props.disableDiscovery && this.state.maybeSwiping;
-      const isSwiping =
-        isDiscovering ||
-        (horizontalSwipe
-          ? dx > UNCERTAINTY_THRESHOLD && dy <= UNCERTAINTY_THRESHOLD
-          : dy > UNCERTAINTY_THRESHOLD && dx <= UNCERTAINTY_THRESHOLD);
+      const isSwiping = horizontalSwipe
+        ? dx > UNCERTAINTY_THRESHOLD && dy <= UNCERTAINTY_THRESHOLD
+        : dy > UNCERTAINTY_THRESHOLD && dx <= UNCERTAINTY_THRESHOLD;
 
       // We are likely to be swiping, let's prevent the scroll event on iOS.
       if (dx > dy) {

@@ -230,31 +230,6 @@ describe('<SwipeableDrawer />', () => {
           assert.strictEqual(instance.isSwiping, undefined, 'should not be swiping');
         });
 
-        it('should not start swiping no matter the direction if discovery is enabled', () => {
-          fireBodyMouseEvent('touchstart', { touches: [params.openTouches[0]] });
-          // the drawer is already visible now, so the swiping direction doesn't matter
-          if (['left', 'right'].includes(params.anchor)) {
-            fireBodyMouseEvent('touchmove', {
-              touches: [
-                {
-                  pageX: params.openTouches[0].pageX,
-                  clientY: params.openTouches[0].clientY + 50,
-                },
-              ],
-            });
-          } else {
-            fireBodyMouseEvent('touchmove', {
-              touches: [
-                {
-                  pageX: params.openTouches[0].pageX + 50,
-                  clientY: params.openTouches[0].clientY,
-                },
-              ],
-            });
-          }
-          assert.strictEqual(instance.isSwiping, 'opening', 'should be swiping');
-        });
-
         it('should slide in a bit when touching near the edge', () => {
           // mock the internal setPosition function that moves the drawer while swiping
           instance.setPosition = spy();
