@@ -4,6 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import polyfill from 'react-lifecycles-compat';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
@@ -24,9 +25,14 @@ export function reset() {
 }
 
 class SwipeableDrawer extends React.Component {
-  state = {
-    maybeSwiping: false,
-  };
+  static getDerivedStateFromProps() {
+    // Reset the maybeSwiping state everytime we receive new properties.
+    return {
+      maybeSwiping: false,
+    };
+  }
+
+  state = {};
 
   componentDidMount() {
     if (this.props.variant === 'temporary') {
@@ -48,6 +54,8 @@ class SwipeableDrawer extends React.Component {
   componentWillUnmount() {
     this.removeTouchStart();
     this.removeBodyTouchListeners();
+
+    // We need to release the lock.
     if (nodeThatClaimedTheSwipe === this) {
       nodeThatClaimedTheSwipe = null;
     }
@@ -146,7 +154,7 @@ class SwipeableDrawer extends React.Component {
 
     this.setState({ maybeSwiping: true });
     if (!open) {
-      this.setPosition(this.getMaxTranslate() - (disableDiscovery ? 0 : swipeAreaWidth), {
+      this.setPosition(this.getMaxTranslate() + (disableDiscovery ? 20 : -swipeAreaWidth), {
         changeTransition: false,
       });
     }
@@ -175,20 +183,26 @@ class SwipeableDrawer extends React.Component {
       const dx = Math.abs(currentX - this.startX);
       const dy = Math.abs(currentY - this.startY);
 
-      // If the user has moved his thumb some pixels in either direction,
-      // we can safely make an assumption about whether he was intending
-      // to swipe or scroll.
-      const isSwiping = horizontalSwipe
-        ? dx > UNCERTAINTY_THRESHOLD && dy <= UNCERTAINTY_THRESHOLD
-        : dy > UNCERTAINTY_THRESHOLD && dx <= UNCERTAINTY_THRESHOLD;
-
       // We are likely to be swiping, let's prevent the scroll event on iOS.
       if (dx > dy) {
         event.preventDefault();
       }
 
-      if (isSwiping) {
-        this.isSwiping = this.props.open ? 'closing' : 'opening';
+      const isSwiping = horizontalSwipe
+        ? dx > dy && dx > UNCERTAINTY_THRESHOLD
+        : dy > dx && dy > UNCERTAINTY_THRESHOLD;
+
+      if (
+        isSwiping === true ||
+        (horizontalSwipe ? dy > UNCERTAINTY_THRESHOLD : dx > UNCERTAINTY_THRESHOLD)
+      ) {
+        if (isSwiping) {
+          this.isSwiping = this.props.open ? 'closing' : 'opening';
+        } else {
+          this.isSwiping = false;
+          this.handleBodyTouchEnd(event);
+          return;
+        }
 
         // Shift the starting point.
         this.startX = currentX;
@@ -202,12 +216,6 @@ class SwipeableDrawer extends React.Component {
             this.startY -= this.props.swipeAreaWidth;
           }
         }
-      } else if (
-        horizontalSwipe
-          ? dx <= UNCERTAINTY_THRESHOLD && dy > UNCERTAINTY_THRESHOLD
-          : dy <= UNCERTAINTY_THRESHOLD && dx > UNCERTAINTY_THRESHOLD
-      ) {
-        this.handleBodyTouchEnd(event);
       }
     }
 
@@ -225,7 +233,9 @@ class SwipeableDrawer extends React.Component {
     this.removeBodyTouchListeners();
     this.setState({ maybeSwiping: false });
 
-    if (this.isSwiping === undefined) {
+    // The swipe wasn't started.
+    if (this.isSwiping !== 'opening' && this.isSwiping !== 'closing') {
+      this.isSwiping = undefined;
       return;
     }
 
@@ -401,4 +411,4 @@ SwipeableDrawer.defaultProps = {
   variant: 'temporary', // Mobile first.
 };
 
-export default withTheme()(SwipeableDrawer);
+export default withTheme()(polyfill(SwipeableDrawer));
