@@ -23,7 +23,7 @@ Having zero spacing by default will ease the usage of the component.
 
 ```diff
 -<Grid />
-+<Grid spacing={8} />
++<Grid spacing={16} />
 ```
 
 - [Tooltip] Rename disableTriggerX (#10700) @oliviertassinari
