@@ -2,6 +2,102 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.39
+###### *Mar 28, 2018*
+
+Big thanks to the 25 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Add a [swipeable drawer](https://material-ui-next.com/demos/drawers/#swipeable-temporary-drawer) component (#9730) @leMaik.
+- Add a [StackBlitz](https://stackblitz.com/) edit link (#10758).
+- Add a new npm package: @material-ui/docs (#10699).
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [Grid] Change default spacing value: 0 (#10768) @oliviertassinari
+
+The negative margin implementation solution currently used comes with [serious limitations](https://material-ui-next.com/layout/grid/#negative-margin).
+Material-UI is the only library with a non-zero default spacing between the items.
+Having zero spacing by default will ease the usage of the component.
+
+```diff
+-<Grid />
++<Grid spacing={8} />
+```
+
+- [Tooltip] Rename disableTriggerX (#10700) @oliviertassinari
+
+For consistency with the Web API [removeEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) and the Snackbar `disableWindowBlurListener` property.
+
+```diff
+<Tooltip
+- disableTriggerFocus
+- disableTriggerHover
+- disableTriggerTouch
++ disableFocusListener
++ disableHoverListener
++ disableTouchListener
+/>
+```
+
+- [InputLabel] Rename FormControlClasses property (#10796) @oliviertassinari
+
+I have completely fucked up in [#8108](https://github.com/mui-org/material-ui/pull/8108). The property isn't applied on a `FormControl` but on a `FormLabel` component.
+
+```diff
+-<InputLabel FormControlClasses={classes} />
++<InputLabel FormLabelClasses={classes} />
+```
+
+#### Component Fixes / Enhancements
+
+- [Switch] Add missing TypeScript class keys (#10691) @wenduzer
+- [ClickAwayListener] Add mouseEvent and touchEvent property (#10694) @tgrowden
+- [Switch] Add default color (#10697) @oliviertassinari
+- [StepButton] Support vertical stepper (#10698) @danieljuhl
+- [TextField] Update defaultValue prop types (#10703) @moondef
+- [Input] Rename isDirty to isEmpty (#10704) @oliviertassinari
+- [Select] Perfom the layout computation as soon as possible (#10706) @oliviertassinari
+- [Stepper] Add error prop to StepIcon and StepLabel (#10705) @nicoffee
+- [Grid] Add zeroMinWidth to Typescript definition (#10712) @cvanem
+- [Select] Fix data-value value (#10723) @a-x-
+- [Tooltip] Update error message (#10742) @MoonDawg92
+- [TextField] Apply onFocus and onBlur on the input (#10746) @oliviertassinari
+- [TextField] Remove dead code (#10757) @oliviertassinari
+- [Checkbox] Add checkedPrimary and checkedSecondary to Typescript definition (#10747) @cvanem
+- [️MuiThemeProvider] TypeScript disableStylesGeneration (#10759) @djeeg
+- [Input] Relax inputProps and inputComponent Types (#10767) @pelotom
+- [Tabs] Warn on invalid combination (#10788) @oliviertassinari
+- [Select] Better document event.target.value (#10791) @oliviertassinari
+- [Drawer] Add Swipeable feature (#9730) @leMaik
+- [Select] Add support for autoFocus (#10792) @nicoffee
+- [Icon] Fix typing by taking out fontSize property (#10821) @franklixuefei
+
+#### Docs
+
+- [docs] Add new npm package: @material-ui/docs (#10699) @oliviertassinari
+- [docs] Use buttonRef instead of ref in anchor playground example (#10708) @pelotom
+- [docs] Fix "Edit this page" button (#10722) @SebastianSchmidt
+- [docs] Add search shortcut (#10725) @oliviertassinari
+- [docs] Make navigation look more like the material guidelines (#10709) @leMaik
+- [docs] Clarify discrepancies from default theme (#10732) @yihangho
+- [examples] Update next.js PWA color (#10749) @blainegarrett
+- [docs] Add StackBlitz demo link (#10758) @oliviertassinari
+- [docs] Fix typo TextField demo (#10766) @elertan
+- [docs] Better CssBaseline documentation (#10770) @oliviertassinari
+- [docs] Remove flow warning (#10780) @rosskevin
+- [docs] Minor typographical fix (#10786) @samdenty99
+- [docs] Selection control, customization example (#10787) @oliviertassinari
+- [docs] Fix typo (#10794) @dylangarcia
+- [examples] Update Flow Example (#10799) @prastut
+- [docs] Material Dashboard Pro React (#10832) @oliviertassinari
+
+#### Core
+
+- [core] Upgrade the dev dependencies (#10702) @oliviertassinari
+- [typings] Fix `mixins.gutter` signature (argument is optional) (#10814) @sebald
+
 ## 1.0.0-beta.38
 ###### *Mar 17, 2018*
 
