@@ -17,12 +17,12 @@ const styles = {
 
 const themes = [
   {
-    name: 'Material Dashboard React',
-    description: 'Material Dashboard React is a free Material-UI Admin.',
+    name: 'Material Dashboard Pro',
+    description: 'Material Dashboard Pro React is a Premium Material-UI Admin.',
     src: '/static/images/themes/creative-tim.png',
-    price: 'FREE',
+    price: '$59',
     category: 'Admin & Dashboard',
-    href: 'https://www.creative-tim.com/product/material-dashboard-react?partner=104080',
+    href: 'https://www.creative-tim.com/product/material-dashboard-pro-react?partner=104080',
   },
 ];
 
