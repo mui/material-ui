@@ -10,12 +10,12 @@ Big thanks to the 25 contributors who made this release possible.
 Here are some highlights ✨:
 - Add a [swipeable drawer](https://material-ui-next.com/demos/drawers/#swipeable-temporary-drawer) component (#9730) @leMaik.
 - Add a [StackBlitz](https://stackblitz.com/) edit link (#10758).
-- Add a new npm package: @material-ui/docs (#10699).
+- Add a new npm package: [@material-ui/docs](https://www.npmjs.com/package/@material-ui/docs) (#10699).
 - And many more bug fixes and documentation improvements.
 
 ### Breaking change
 
-- [Grid] Change default spacing value: 0 (#10768) @oliviertassinari
+- [Grid] Change the default spacing value: 0 (#10768) @oliviertassinari
 
 The negative margin implementation solution currently used comes with [serious limitations](https://material-ui-next.com/layout/grid/#negative-margin).
 Material-UI is the only library with a non-zero default spacing between the items.
@@ -28,7 +28,7 @@ Having zero spacing by default will ease the usage of the component.
 
 - [Tooltip] Rename disableTriggerX (#10700) @oliviertassinari
 
-For consistency with the Web API [removeEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) and the Snackbar `disableWindowBlurListener` property.
+For consistency with the [removeEventListener Web API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) and the Snackbar `disableWindowBlurListener` property.
 
 ```diff
 <Tooltip
@@ -43,7 +43,7 @@ For consistency with the Web API [removeEventListener](https://developer.mozilla
 
 - [InputLabel] Rename FormControlClasses property (#10796) @oliviertassinari
 
-I have completely fucked up in [#8108](https://github.com/mui-org/material-ui/pull/8108). The property isn't applied on a `FormControl` but on a `FormLabel` component.
+I have made a mistake in [#8108](https://github.com/mui-org/material-ui/pull/8108). The property isn't applied on a `FormControl` but on a `FormLabel` component.
 
 ```diff
 -<InputLabel FormControlClasses={classes} />
