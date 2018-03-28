@@ -1,6 +1,6 @@
 [
   {
-    "id": 8,
-    "text": "<span style=\"font-weight: bold;\">Feedback wanted!</span> We're <a style=\"color: white;\" target=\"_blank\" href=\"https://github.com/mui-org/material-ui/blob/v1-beta/ROADMAP.md#breaking-changes-before-v1\">planning the last breaking changes</a> needed before releasing Material-UI v1. Your feedback is welcome."
+    "id": 9,
+    "text": "We've released v1.0.0-beta.39. Please check the <a style=\"color: white;\" target=\"_blank\" href=\"https://github.com/mui-org/material-ui/releases/tag/v1.0.0-beta.39\">release notes</a> for breaking changes."
   }
 ]
