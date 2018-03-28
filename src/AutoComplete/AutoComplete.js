@@ -538,7 +538,7 @@ class AutoComplete extends Component {
           {...other}
           // value and onChange are idiomatic properties often leaked.
           // We prevent their overrides in order to reduce potential bugs.
-          value={searchText}
+          value={searchText || ''}
           onChange={this.handleChange}
         />
         <Popover
