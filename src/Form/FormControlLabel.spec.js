@@ -30,6 +30,7 @@ describe('FormControlLabel', () => {
   describe('prop: disabled', () => {
     it('should disable everything', () => {
       const wrapper = shallow(<FormControlLabel label="Pizza" disabled control={<div />} />);
+      const label = wrapper.childAt(1);
       assert.strictEqual(
         wrapper.hasClass(classes.disabled),
         true,
@@ -37,10 +38,12 @@ describe('FormControlLabel', () => {
       );
       assert.strictEqual(wrapper.hasClass(classes.disabled), true);
       assert.strictEqual(wrapper.find('div').props().disabled, true);
+      assert.strictEqual(label.hasClass(classes.labelDisabled), true);
     });
 
     it('should disable everything', () => {
       const wrapper = shallow(<FormControlLabel label="Pizza" control={<div disabled />} />);
+      const label = wrapper.childAt(1);
       assert.strictEqual(
         wrapper.hasClass(classes.disabled),
         true,
@@ -48,6 +51,7 @@ describe('FormControlLabel', () => {
       );
       assert.strictEqual(wrapper.hasClass(classes.disabled), true);
       assert.strictEqual(wrapper.find('div').props().disabled, true);
+      assert.strictEqual(label.hasClass(classes.labelDisabled), true);
     });
   });
 
