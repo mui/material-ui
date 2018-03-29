@@ -24,10 +24,13 @@ const styles = {
     // see https://github.com/dmtrKovalenko/material-ui-pickers/pull/267
     justifyContent: 'flex-start',
   },
-  dialogAction: {
+  clearableDialogAction: {
     '&:first-child': {
       marginRight: 'auto',
     },
+  },
+  dialogAction: {
+    // empty but may be needed for override
   },
 };
 
@@ -52,10 +55,9 @@ const ModalDialog = ({
     <DialogActions
       classes={{
         root: clearable && classes.dialogActions,
-        action: clearable && classes.dialogAction,
+        action: classnames(classes.dialogAction, { [classes.clearableDialogAction]: clearable }),
       }}
     >
-
       { clearable &&
         <Button
           color="primary"
@@ -65,6 +67,7 @@ const ModalDialog = ({
           { clearLabel }
         </Button>
       }
+
       <Button
         color="primary"
         onClick={onDismiss}
