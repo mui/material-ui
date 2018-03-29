@@ -9,6 +9,7 @@ export const styles = theme => ({
     display: 'flex',
     maxHeight: '2em',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   positionStart: {
     marginRight: theme.spacing.unit,
