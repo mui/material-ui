@@ -13,8 +13,8 @@ import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
   state = {
     selectedDate: new Date(),
-  }
 
+  }
   handleChange = (date: Moment | Date) => {
     this.setState({ selectedDate: date as Date });
   }
