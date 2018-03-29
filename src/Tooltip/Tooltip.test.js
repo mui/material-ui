@@ -343,4 +343,15 @@ describe('<Tooltip />', () => {
       );
     });
   });
+
+  describe('prop: appendToBody', () => {
+    it('renders inside a Portal', () => {
+      const wrapper = shallow(
+        <Tooltip title="Hello World" appendToBody>
+          <button>Hello World</button>
+        </Tooltip>,
+      );
+      assert.strictEqual(wrapper.find('Portal').length, 1, 'should contain Portal');
+    });
+  });
 });

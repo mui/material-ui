@@ -10,6 +10,7 @@ import classNames from 'classnames';
 import { Manager, Target, Popper } from 'react-popper';
 import { capitalize } from '../utils/helpers';
 import RefHolder from '../internal/RefHolder';
+import Portal from '../Portal';
 import common from '../colors/common';
 import withStyles from '../styles/withStyles';
 
@@ -23,6 +24,7 @@ export const styles = theme => ({
   },
   popperClose: {
     pointerEvents: 'none',
+    display: 'none',
   },
   tooltip: {
     backgroundColor: theme.palette.grey[700],
@@ -247,8 +249,16 @@ class Tooltip extends React.Component {
     }, leaveTouchDelay);
   };
 
+  renderPopperWrapper(popper) {
+    if (this.props.appendToBody) {
+      return <Portal>{popper}</Portal>;
+    }
+    return popper;
+  }
+
   render() {
     const {
+      appendToBody,
       children,
       classes,
       className,
@@ -318,48 +328,50 @@ class Tooltip extends React.Component {
               </RefHolder>
             )}
           </Target>
-          <Popper
-            placement={placement}
-            eventsEnabled={open}
-            className={classNames(
-              classes.popper,
-              { [classes.popperClose]: !open },
-              PopperClassName,
-            )}
-            ref={node => {
-              this.popper = node;
-            }}
-            {...PopperOther}
-          >
-            {({ popperProps, restProps }) => {
-              const actualPlacement = popperProps['data-placement'] || placement;
-              return (
-                <div
-                  {...popperProps}
-                  {...restProps}
-                  style={{
-                    ...popperProps.style,
-                    top: popperProps.style.top || 0,
-                    left: popperProps.style.left || 0,
-                    ...restProps.style,
-                  }}
-                >
+          {this.renderPopperWrapper(
+            <Popper
+              placement={placement}
+              eventsEnabled={open}
+              className={classNames(
+                classes.popper,
+                { [classes.popperClose]: !open },
+                PopperClassName,
+              )}
+              ref={node => {
+                this.popper = node;
+              }}
+              {...PopperOther}
+            >
+              {({ popperProps, restProps }) => {
+                const actualPlacement = popperProps['data-placement'] || placement;
+                return (
                   <div
-                    id={id}
-                    role="tooltip"
-                    aria-hidden={!open}
-                    className={classNames(
-                      classes.tooltip,
-                      { [classes.tooltipOpen]: open },
-                      classes[`tooltipPlacement${capitalize(actualPlacement.split('-')[0])}`],
-                    )}
+                    {...popperProps}
+                    {...restProps}
+                    style={{
+                      ...popperProps.style,
+                      top: popperProps.style.top || 0,
+                      left: popperProps.style.left || 0,
+                      ...restProps.style,
+                    }}
                   >
-                    {title}
+                    <div
+                      id={id}
+                      role="tooltip"
+                      aria-hidden={!open}
+                      className={classNames(
+                        classes.tooltip,
+                        { [classes.tooltipOpen]: open },
+                        classes[`tooltipPlacement${capitalize(actualPlacement.split('-')[0])}`],
+                      )}
+                    >
+                      {title}
+                    </div>
                   </div>
-                </div>
-              );
-            }}
-          </Popper>
+                );
+              }}
+            </Popper>,
+          )}
         </Manager>
       </EventListener>
     );
@@ -367,6 +379,13 @@ class Tooltip extends React.Component {
 }
 
 Tooltip.propTypes = {
+  /**
+   * Appends the Tooltip to the body of the DOM rather than the immediate parent.
+   *
+   * This is useful for working around issues where the tooltip is cut off,
+   * e.g. by `overflow: hidden`, but may hinder SEO.
+   */
+  appendToBody: PropTypes.bool,
   /**
    * Tooltip reference element.
    */

@@ -29,6 +29,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tooltips/ControlledTooltips'), 'utf8')
 `,
         },
+        'pages/demos/tooltips/AppendToBodyTooltips.js': {
+          js: require('docs/src/pages/demos/tooltips/AppendToBodyTooltips').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tooltips/AppendToBodyTooltips'), 'utf8')
+`,
+        },
       }}
     />
   );
