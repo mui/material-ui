@@ -1,72 +1,36 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { List, ListItem, withStyles, ListSubheader } from 'material-ui';
-import { withRouter, Link } from 'react-router-dom';
+import { List, ListSubheader } from 'material-ui';
+import { withRouter } from 'react-router-dom';
+import NavLink from './NavLink';
 
-const NavigationMenu = ({ classes }) => (
+const NavigationMenu = () => (
   <List component="nav">
     <ListSubheader component="div"> Getting Started  </ListSubheader>
-    <Link to="/installation" className={classes.navLink}>
-      <ListItem button> Installation </ListItem>
-    </Link>
-    <Link to="/usage" className={classes.navLink}>
-      <ListItem button> Usage </ListItem>
-    </Link>
+    <NavLink to="/installation"> Installation </NavLink>
+    <NavLink to="/usage"> Usage </NavLink>
 
     <ListSubheader component="div"> Localization </ListSubheader>
-    <Link to="/localization/date-fns" className={classes.navLink}>
-      <ListItem button> Using date-fns </ListItem>
-    </Link>
 
-    <Link to="/localization/moment" className={classes.navLink}>
-      <ListItem button> Using moment </ListItem>
-    </Link>
-
-    <Link to="/localization/persian" className={classes.navLink}>
-      <ListItem button> Persian Calendar System </ListItem>
-    </Link>
+    <NavLink to="/localization/date-fns"> Using date-fns </NavLink>
+    <NavLink to="/localization/moment"> Using moment </NavLink>
+    <NavLink to="/localization/persian"> Persian Calendar System </NavLink>
 
     <ListSubheader component="div"> Components </ListSubheader>
-    <Link to="/demo/datepicker" className={classes.navLink}>
-      <ListItem button> Date Picker </ListItem>
-    </Link>
 
-    <Link to="/demo/timepicker" className={classes.navLink}>
-      <ListItem button> Time Picker </ListItem>
-    </Link>
-
-    <Link to="/demo/datetimepicker" className={classes.navLink}>
-      <ListItem button> Date & Time Picker </ListItem>
-    </Link>
+    <NavLink to="/demo/datepicker"> Date Picker </NavLink>
+    <NavLink to="/demo/timepicker"> Time Picker </NavLink>
+    <NavLink to="/demo/datetimepicker"> Date & Time Picker </NavLink>
 
     <ListSubheader component="div"> Guides </ListSubheader>
-    <Link to="/guides/css-overrides" className={classes.navLink}>
-      <ListItem button> CSS overrides </ListItem>
-    </Link>
 
-    <Link to="/guides/formats" className={classes.navLink}>
-      <ListItem button> Global format customization </ListItem>
-    </Link>
+    <NavLink to="/guides/css-overrides"> CSS overrides </NavLink>
+    <NavLink to="/guides/formats"> Global format customization </NavLink>
   </List>
 );
 
 NavigationMenu.propTypes = {
-  classes: PropTypes.object.isRequired,
+  // classes: PropTypes.object.isRequired,
 };
 
-const styles = theme => ({
-  navLink: {
-    color: theme.palette.text.primary,
-    textDecoration: 'none',
-    ...theme.typography.subheading,
-    fontSize: '0.9rem',
-
-    '&>*': {
-      paddingTop: 8,
-      paddingBottom: 8,
-    },
-  },
-});
-
-export default withStyles(styles)(withRouter(NavigationMenu));
+export default withRouter(NavigationMenu);
 
