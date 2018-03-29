@@ -28,9 +28,5 @@ const NavigationMenu = () => (
   </List>
 );
 
-NavigationMenu.propTypes = {
-  // classes: PropTypes.object.isRequired,
-};
-
 export default withRouter(NavigationMenu);
 
