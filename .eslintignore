@@ -8,7 +8,8 @@
 /flow
 /flow-typed
 /packages/material-ui-codemod/lib
-/packages/material-ui-codemod/src/*/*.spec*
+/packages/material-ui-codemod/src/*/*.test
+/packages/material-ui-codemod/src/*/*.test.js
 /packages/material-ui-icons/src
 /packages/material-ui-icons/test/fixtures
 /packages/material-ui-icons/tpl

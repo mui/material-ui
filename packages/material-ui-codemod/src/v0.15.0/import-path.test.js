@@ -17,11 +17,11 @@ describe('material-ui-codemod', () => {
     describe('import-path', () => {
       it('convert path as needed', () => {
         const actual = transform(
-          { source: read('./import-path.spec/actual.js') },
+          { source: read('./import-path.test/actual.js') },
           { jscodeshift: jscodeshift },
         );
 
-        const expected = read('./import-path.spec/expected.js');
+        const expected = read('./import-path.test/expected.js');
 
         assert.strictEqual(
           trim(actual),

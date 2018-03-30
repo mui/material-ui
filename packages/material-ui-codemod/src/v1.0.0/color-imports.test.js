@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { assert } from 'chai';
 import jscodeshift from 'jscodeshift';
-import transform from './svg-icon-imports';
+import transform from './color-imports';
 
 function trim(str) {
   return str.replace(/^\s+|\s+$/, '');
@@ -14,14 +14,14 @@ function read(fileName) {
 
 describe('material-ui-codemod', () => {
   describe('v1.0.0', () => {
-    describe('svg-icon-imports', () => {
-      it('update svg-icon imports', () => {
+    describe('color-imports', () => {
+      it('update color module imports', () => {
         const actual = transform(
-          { source: read('./svg-icon-imports.spec/actual.js') },
+          { source: read('./color-imports.test/actual.js') },
           { jscodeshift: jscodeshift },
         );
 
-        const expected = read('./svg-icon-imports.spec/expected.js');
+        const expected = read('./color-imports.test/expected.js');
 
         assert.strictEqual(
           trim(actual),

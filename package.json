@@ -41,19 +41,19 @@
     "size:overhead:why": "size-limit --why ./test/size/overhead.js",
     "spellcheck": "eslint . --config .eslintrc.spellcheck.js && echo \"eslint: no lint errors\"",
     "test": "yarn lint && yarn flow && yarn typescript && yarn test:unit",
-    "test:unit": "cross-env NODE_ENV=test mocha test/**/*.spec.js src/{,**/}*.spec.js docs/src/**/*.spec.js",
+    "test:unit": "cross-env NODE_ENV=test mocha test/**/*.test.js src/{,**/}*.test.js docs/src/**/*.test.js",
     "test:watch": "yarn test:unit --watch",
-    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.spec.js src/{,**/}*.spec.js && nyc report -r lcovonly",
-    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.spec.js src/{,**/}*.spec.js && nyc report --reporter=html",
+    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.test.js src/{,**/}*.test.js && nyc report -r lcovonly",
+    "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.test.js src/{,**/}*.test.js && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
     "typescript": "tsc -p tsconfig.json",
     "flow": "flow --show-all-errors",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true",
     "prebuild": "rimraf build",
-    "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.spec.js --out-dir ./build",
+    "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.test.js --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --ignore *.spec.js --out-dir ./build/es",
+    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --ignore *.test.js --out-dir ./build/es",
     "build:umd:dev": "webpack --config scripts/umd.webpack.config.js",
     "build:umd:prod": "cross-env NODE_ENV=production webpack --config scripts/umd.webpack.config.js",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
@@ -209,7 +209,7 @@
       "src/**/*.js"
     ],
     "exclude": [
-      "**/*.spec.js"
+      "**/*.test.js"
     ],
     "sourceMap": false,
     "instrument": false
