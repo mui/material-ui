@@ -286,6 +286,16 @@ describe('<SwipeableDrawer />', () => {
       });
     });
 
+    it('should wait for a clear signal to determin this.isSwiping', () => {
+      assert.strictEqual(instance.isSwiping, undefined);
+      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+      assert.strictEqual(instance.isSwiping, undefined);
+      fireBodyMouseEvent('touchmove', { touches: [{ pageX: 3, clientY: 0 }] });
+      assert.strictEqual(instance.isSwiping, undefined);
+      fireBodyMouseEvent('touchmove', { touches: [{ pageX: 10, clientY: 0 }] });
+      assert.strictEqual(instance.isSwiping, 'opening');
+    });
+
     it('removes event listeners on unmount', () => {
       fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
       wrapper.unmount();
