@@ -31,7 +31,7 @@ const demoRegexp = /^"demo": "(.*)"/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/v1-beta';
 
 function MarkdownDocs(props, context) {
-  const { classes, demos, markdown, markdownLocation: markdownLocationProp } = props;
+  const { classes, demos, disableCarbon, markdown, markdownLocation: markdownLocationProp } = props;
   const contents = getContents(markdown);
   const headers = getHeaders(markdown);
 
@@ -61,7 +61,7 @@ function MarkdownDocs(props, context) {
           {'Edit this page'}
         </Button>
       </div>
-      <Carbon key={markdownLocation} />
+      {disableCarbon ? null : <Carbon key={markdownLocation} />}
       {contents.map((content, index) => {
         const match = content.match(demoRegexp);
 
@@ -108,10 +108,15 @@ ${headers.components
 MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
   demos: PropTypes.object,
+  disableCarbon: PropTypes.bool,
   markdown: PropTypes.string.isRequired,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.
   markdownLocation: PropTypes.string,
+};
+
+MarkdownDocs.defaultProps = {
+  disableCarbon: false,
 };
 
 MarkdownDocs.contextTypes = {
