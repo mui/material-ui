@@ -1,72 +1,74 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List, ListItem, withStyles, ListSubheader } from 'material-ui';
-import { withRouter, Link } from 'react-router-dom';
+import { List } from 'material-ui';
+import { withRouter } from 'react-router-dom';
+import NavItem from './NavItem';
 
-const NavigationMenu = ({ classes }) => (
-  <List component="nav">
-    <ListSubheader component="div"> Getting Started  </ListSubheader>
-    <Link to="/installation" className={classes.navLink}>
-      <ListItem button> Installation </ListItem>
-    </Link>
-    <Link to="/usage" className={classes.navLink}>
-      <ListItem button> Usage </ListItem>
-    </Link>
+const navItems = [
+  {
+    title: 'Getting Started',
+    children: [
+      { title: 'Installation', href: '/installation' },
+      { title: 'Usage', href: '/usage' },
+    ],
+  },
+  {
+    title: 'Localization',
+    children: [
+      { title: 'Using date-fns', href: '/localization/date-fns' },
+      { title: 'Using moment', href: '/localization/moment' },
+      { title: 'Persian Calendar System', href: '/localization/persian' },
+    ],
+  },
+  {
+    title: 'Components',
+    children: [
+      { title: 'Date Picker', href: '/demo/datepicker' },
+      { title: 'Time Picker', href: '/demo/timepicker' },
+      { title: 'Date & Time Picker', href: '/demo/datetimepicker' },
+    ],
+  },
+  {
+    title: 'Guides',
+    children: [
+      { title: 'CSS overrides', href: '/guides/css-overrides' },
+      { title: 'Global format customization', href: '/guides/formats' },
+    ],
+  },
+];
 
-    <ListSubheader component="div"> Localization </ListSubheader>
-    <Link to="/localization/date-fns" className={classes.navLink}>
-      <ListItem button> Using date-fns </ListItem>
-    </Link>
-
-    <Link to="/localization/moment" className={classes.navLink}>
-      <ListItem button> Using moment </ListItem>
-    </Link>
-
-    <Link to="/localization/persian" className={classes.navLink}>
-      <ListItem button> Persian Calendar System </ListItem>
-    </Link>
-
-    <ListSubheader component="div"> Components </ListSubheader>
-    <Link to="/demo/datepicker" className={classes.navLink}>
-      <ListItem button> Date Picker </ListItem>
-    </Link>
-
-    <Link to="/demo/timepicker" className={classes.navLink}>
-      <ListItem button> Time Picker </ListItem>
-    </Link>
-
-    <Link to="/demo/datetimepicker" className={classes.navLink}>
-      <ListItem button> Date & Time Picker </ListItem>
-    </Link>
-
-    <ListSubheader component="div"> Guides </ListSubheader>
-    <Link to="/guides/css-overrides" className={classes.navLink}>
-      <ListItem button> CSS overrides </ListItem>
-    </Link>
-
-    <Link to="/guides/formats" className={classes.navLink}>
-      <ListItem button> Global format customization </ListItem>
-    </Link>
-  </List>
-);
+class NavigationMenu extends React.Component {
+  mapNavigation(depth) {
+    return ({ title, children, href }) => {
+      const { location } = this.props;
+      const open = children && children.length > 0
+        ? children.some(item => item.href === location.pathname)
+        : false;
+      return (
+        <NavItem
+          key={href || title}
+          title={title}
+          depth={depth}
+          href={href}
+          open={open}
+        >
+          {children && children.length > 0 && children.map(this.mapNavigation(depth + 1))}
+        </NavItem>
+      );
+    };
+  }
+  render() {
+    return (
+      <List component="nav">
+        {navItems.map(this.mapNavigation(0))}
+      </List>
+    );
+  }
+}
 
 NavigationMenu.propTypes = {
-  classes: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
-const styles = theme => ({
-  navLink: {
-    color: theme.palette.text.primary,
-    textDecoration: 'none',
-    ...theme.typography.subheading,
-    fontSize: '0.9rem',
-
-    '&>*': {
-      paddingTop: 8,
-      paddingBottom: 8,
-    },
-  },
-});
-
-export default withStyles(styles)(withRouter(NavigationMenu));
+export default withRouter(NavigationMenu);
 
