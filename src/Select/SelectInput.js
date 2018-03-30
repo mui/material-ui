@@ -16,7 +16,7 @@ class SelectInput extends React.Component {
   };
 
   componentDidMount() {
-    if (this.isControlled && this.props.open) {
+    if (this.isOpenControlled && this.props.open) {
       // Focus the display node so the focus is restored on this element once
       // the menu is closed.
       this.displayNode.focus();
@@ -32,9 +32,10 @@ class SelectInput extends React.Component {
   ignoreNextBlur = false;
   displayNode = null;
   displayWidth = null;
-  isControlled = this.props.open !== undefined;
+  isOpenControlled = this.props.open !== undefined;
+  isControlled = this.props.value != null;
 
-  update = this.isControlled
+  update = this.isOpenControlled
     ? ({ event, open }) => {
         if (open) {
           this.props.onOpen(event);
@@ -174,7 +175,7 @@ class SelectInput extends React.Component {
       value,
       ...other
     } = this.props;
-    const open = this.isControlled && this.displayNode ? openProp : this.state.open;
+    const open = this.isOpenControlled && this.displayNode ? openProp : this.state.open;
 
     if (native) {
       warning(
@@ -218,7 +219,7 @@ class SelectInput extends React.Component {
       );
     }
 
-    if (value === undefined) {
+    if (!this.isControlled) {
       throw new Error(
         'Material-UI: the `value` property is required ' +
           'when using the `Select` component with `native=false` (default).',
