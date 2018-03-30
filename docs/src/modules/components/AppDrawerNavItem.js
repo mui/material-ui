@@ -5,7 +5,6 @@ import { withStyles } from 'material-ui/styles';
 import { ListItem } from 'material-ui/List';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/transitions/Collapse';
-import polyfill from 'react-lifecycles-compat';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
@@ -40,17 +39,22 @@ const styles = theme => ({
 });
 
 class AppDrawerNavItem extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.open === 'undefined') {
-      return {
-        open: nextProps.openImmediately,
-      };
+  state = {
+    open: this.props.openImmediately,
+  };
+
+  componentDidMount() {
+    // So we only run this logic once.
+    if (!this.props.openImmediately) {
+      return;
     }
 
-    return null;
+    // Center the selected item in the list container.
+    const activeElement = document.querySelector(`.${this.props.classes.active}`);
+    if (activeElement && activeElement.scrollIntoView) {
+      activeElement.scrollIntoView({});
+    }
   }
-
-  state = {};
 
   handleClick = () => {
     this.setState({ open: !this.state.open });
@@ -124,4 +128,4 @@ AppDrawerNavItem.defaultProps = {
   openImmediately: false,
 };
 
-export default withStyles(styles)(polyfill(AppDrawerNavItem));
+export default withStyles(styles)(AppDrawerNavItem);
