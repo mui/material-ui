@@ -47,10 +47,10 @@ class MuiThemeProvider extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     // Propagate a local theme update
-    if (this.props.theme !== nextProps.theme) {
-      this.broadcast.setState(this.mergeOuterLocalTheme(nextProps.theme));
+    if (this.props.theme !== prevProps.theme) {
+      this.broadcast.setState(this.mergeOuterLocalTheme(this.props.theme));
     }
   }
 

@@ -115,7 +115,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       });
     }
 
-    componentWillReceiveProps() {
+    componentDidUpdate() {
       // react-hot-loader specific logic
       if (this.stylesCreatorSaved === stylesCreator || process.env.NODE_ENV === 'production') {
         return;
@@ -124,6 +124,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       this.detach(this.theme);
       this.stylesCreatorSaved = stylesCreator;
       this.attach(this.theme);
+      this.forceUpdate();
     }
 
     componentWillUnmount() {
