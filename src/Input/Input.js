@@ -227,7 +227,6 @@ class Input extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.isControlled = props.value != null;
     if (this.isControlled) {
       this.checkDirty(props);
     }
@@ -281,8 +280,8 @@ class Input extends React.Component {
     }
   }
 
-  // Holds the input reference
-  input = null;
+  isControlled = this.props.value != null;
+  input = null; // Holds the input reference
 
   handleFocus = event => {
     // Fix an bug with IE11 where the focus/blur events are triggered
