@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import ownerDocument from 'dom-helpers/ownerDocument';
 
@@ -38,7 +38,7 @@ class ClickAwayListener extends React.Component {
       return;
     }
 
-    const el = findDOMNode(this);
+    const el = ReactDOM.findDOMNode(this);
     const doc = ownerDocument(el);
 
     if (

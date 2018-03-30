@@ -12,7 +12,6 @@ import inDOM from 'dom-helpers/util/inDOM';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import RefHolder from '../internal/RefHolder';
 import Portal from '../Portal';
-import addEventListener from '../utils/addEventListener';
 import { createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import ModalManager from './ModalManager';
@@ -108,14 +107,15 @@ class Modal extends React.Component {
     const container = getContainer(this.props.container, doc.body);
 
     this.props.manager.add(this, container);
-    this.onDocumentKeydownListener = addEventListener(doc, 'keydown', this.handleDocumentKeyDown);
-    this.onFocusinListener = addEventListener(doc, 'focus', this.enforceFocus, true);
+    doc.addEventListener('keydown', this.handleDocumentKeyDown);
+    doc.addEventListener('focus', this.enforceFocus, true);
   };
 
   handleClose = () => {
     this.props.manager.remove(this);
-    this.onDocumentKeydownListener.remove();
-    this.onFocusinListener.remove();
+    const doc = ownerDocument(this.mountNode);
+    doc.removeEventListener('keydown', this.handleDocumentKeyDown);
+    doc.removeEventListener('focus', this.enforceFocus);
     this.restoreLastFocus();
   };
 
