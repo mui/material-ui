@@ -69,7 +69,7 @@ function HomeFooter(props) {
         </Grid>
       </Typography>
       <Typography className={classes.version}>
-        {`Currently v${process.env.MATERIAL_UI_VERSION}. Released under the `}
+        {`Currently v${process.env.LIB_VERSION}. Released under the `}
         <Link href="https://github.com/mui-org/material-ui/blob/v1-beta/LICENSE">MIT License</Link>
         {'.'}
       </Typography>
