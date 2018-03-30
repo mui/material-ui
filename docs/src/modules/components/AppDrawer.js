@@ -103,12 +103,12 @@ function AppDrawer(props, context) {
               Material-UI
             </Typography>
           </Link>
-          {process.env.MATERIAL_UI_VERSION ? (
+          {process.env.LIB_VERSION ? (
             <Link
               className={classes.anchor}
-              href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
+              href={`${GITHUB_RELEASE_BASE_URL}v${process.env.LIB_VERSION}`}
             >
-              <Typography variant="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
+              <Typography variant="caption">{`v${process.env.LIB_VERSION}`}</Typography>
             </Link>
           ) : null}
         </div>
