@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "test": "yarn test:unit",
-    "test:unit": "cd ../../ && ./node_modules/.bin/mocha packages/material-ui-codemod/src/**/*.spec.js",
+    "test:unit": "cd ../../ && ./node_modules/.bin/mocha packages/material-ui-codemod/src/**/*.test.js",
     "test:watch": "yarn test:unit --watch",
     "build": "../../node_modules/.bin/rimraf lib && ../../node_modules/.bin/babel ./src --out-dir ./lib",
     "version": "npm publish"

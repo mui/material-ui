@@ -23,7 +23,7 @@
   "homepage": "https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-lab",
   "scripts": {
     "test": "yarn test:unit",
-    "test:unit": "cd ../../ && ./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/mocha packages/material-ui-lab/src/{,**/}*.spec.js",
+    "test:unit": "cd ../../ && ./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/mocha packages/material-ui-lab/src/{,**/}*.test.js",
     "test:watch": "yarn test:unit --watch",
     "prebuild": "../../node_modules/.bin/rimraf build",
     "build:es2015": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./build",
