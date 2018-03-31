@@ -19,14 +19,14 @@ class ControlledTooltips extends React.Component {
   render() {
     return (
       <Tooltip
-        id="tooltip-controlled"
-        title="Delete"
-        onClose={this.handleTooltipClose}
         enterDelay={300}
+        id="tooltip-controlled"
         leaveDelay={300}
+        onClose={this.handleTooltipClose}
         onOpen={this.handleTooltipOpen}
         open={this.state.open}
         placement="bottom"
+        title="Delete"
       >
         <IconButton aria-label="Delete">
           <DeleteIcon />

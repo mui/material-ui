@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';
@@ -33,7 +33,7 @@ class MenuList extends React.Component {
   handleBlur = event => {
     this.blurTimer = setTimeout(() => {
       if (this.list) {
-        const list = findDOMNode(this.list);
+        const list = ReactDOM.findDOMNode(this.list);
         const currentFocus = activeElement(ownerDocument(list));
         if (!contains(list, currentFocus)) {
           this.resetTabIndex();
@@ -47,7 +47,7 @@ class MenuList extends React.Component {
   };
 
   handleKeyDown = event => {
-    const list = findDOMNode(this.list);
+    const list = ReactDOM.findDOMNode(this.list);
     const key = keycode(event);
     const currentFocus = activeElement(ownerDocument(list));
 
@@ -56,7 +56,7 @@ class MenuList extends React.Component {
       (!currentFocus || (currentFocus && !contains(list, currentFocus)))
     ) {
       if (this.selectedItem) {
-        findDOMNode(this.selectedItem).focus();
+        ReactDOM.findDOMNode(this.selectedItem).focus();
       } else {
         list.firstChild.focus();
       }
@@ -78,7 +78,7 @@ class MenuList extends React.Component {
   };
 
   handleItemFocus = event => {
-    const list = findDOMNode(this.list);
+    const list = ReactDOM.findDOMNode(this.list);
     if (list) {
       for (let i = 0; i < list.children.length; i += 1) {
         if (list.children[i] === event.currentTarget) {
@@ -91,7 +91,7 @@ class MenuList extends React.Component {
 
   focus() {
     const { currentTabIndex } = this.state;
-    const list = findDOMNode(this.list);
+    const list = ReactDOM.findDOMNode(this.list);
     if (!list || !list.children || !list.firstChild) {
       return;
     }
@@ -104,7 +104,7 @@ class MenuList extends React.Component {
   }
 
   resetTabIndex() {
-    const list = findDOMNode(this.list);
+    const list = ReactDOM.findDOMNode(this.list);
     const currentFocus = activeElement(ownerDocument(list));
     const items = [...list.children];
     const currentFocusIndex = items.indexOf(currentFocus);
@@ -114,7 +114,7 @@ class MenuList extends React.Component {
     }
 
     if (this.selectedItem) {
-      return this.setTabIndex(items.indexOf(findDOMNode(this.selectedItem)));
+      return this.setTabIndex(items.indexOf(ReactDOM.findDOMNode(this.selectedItem)));
     }
 
     return this.setTabIndex(0);

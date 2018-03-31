@@ -2,20 +2,24 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import warning from 'warning';
 import classNames from 'classnames';
-import { Manager, Target, Popper } from 'react-popper';
+import Manager from 'react-popper/lib/Manager';
+import Popper from 'react-popper/lib/Popper';
+import Target from 'react-popper/lib/Target';
 import { capitalize } from '../utils/helpers';
-import RefHolder from '../internal/RefHolder';
+import RootRef from '../internal/RootRef';
+import Portal from '../Portal';
 import common from '../colors/common';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  // Will be gone once we drop React 15.x support.
   root: {
-    display: 'inline',
+    display: 'inline-block',
     flexDirection: 'inherit', // Makes the wrapper more transparent.
   },
   popper: {
@@ -264,7 +268,7 @@ class Tooltip extends React.Component {
       onOpen,
       open: openProp,
       placement: placementProp,
-      PopperProps: { className: PopperClassName, ...PopperOther } = {},
+      PopperProps: { className: PopperClassName, ...PopperProps } = {},
       theme,
       title,
       ...other
@@ -274,8 +278,10 @@ class Tooltip extends React.Component {
     let open = this.isControlled ? openProp : this.state.open;
     const childrenProps = {
       'aria-describedby': id,
+      title: typeof title === 'string' && !open ? title : '',
     };
 
+    // There is no point at displaying an empty tooltip.
     if (title === '') {
       open = false;
     }
@@ -304,20 +310,25 @@ class Tooltip extends React.Component {
     );
 
     return (
-      <EventListener target="window" onResize={this.handleResize}>
-        <Manager className={classNames(classes.root, className)} {...other}>
-          <Target>
-            {({ targetProps }) => (
-              <RefHolder
-                ref={node => {
-                  this.children = findDOMNode(node);
-                  targetProps.ref(this.children);
-                }}
-              >
-                {React.cloneElement(children, childrenProps)}
-              </RefHolder>
-            )}
-          </Target>
+      <Manager
+        tag={ReactDOM.createPortal ? false : 'div'}
+        className={classNames(classes.root, className)}
+        {...other}
+      >
+        <EventListener target="window" onResize={this.handleResize} />
+        <Target>
+          {({ targetProps }) => (
+            <RootRef
+              rootRef={node => {
+                this.children = node;
+                targetProps.ref(this.children);
+              }}
+            >
+              {React.cloneElement(children, childrenProps)}
+            </RootRef>
+          )}
+        </Target>
+        <Portal>
           <Popper
             placement={placement}
             eventsEnabled={open}
@@ -329,10 +340,10 @@ class Tooltip extends React.Component {
             ref={node => {
               this.popper = node;
             }}
-            {...PopperOther}
+            {...PopperProps}
           >
             {({ popperProps, restProps }) => {
-              const actualPlacement = popperProps['data-placement'] || placement;
+              const actualPlacement = (popperProps['data-placement'] || placement).split('-')[0];
               return (
                 <div
                   {...popperProps}
@@ -351,7 +362,7 @@ class Tooltip extends React.Component {
                     className={classNames(
                       classes.tooltip,
                       { [classes.tooltipOpen]: open },
-                      classes[`tooltipPlacement${capitalize(actualPlacement.split('-')[0])}`],
+                      classes[`tooltipPlacement${capitalize(actualPlacement)}`],
                     )}
                   >
                     {title}
@@ -360,8 +371,8 @@ class Tooltip extends React.Component {
               );
             }}
           </Popper>
-        </Manager>
-      </EventListener>
+        </Portal>
+      </Manager>
     );
   }
 }

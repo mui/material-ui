@@ -226,41 +226,40 @@ class Snackbar extends React.Component {
     }
 
     return (
-      <EventListener
-        target="window"
-        onFocus={disableWindowBlurListener ? undefined : this.handleResume}
-        onBlur={disableWindowBlurListener ? undefined : this.handlePause}
-      >
-        <ClickAwayListener onClickAway={this.handleClickAway}>
-          <div
-            className={classNames(
-              classes.root,
-              classes[`anchorOrigin${capitalize(vertical)}${capitalize(horizontal)}`],
-              className,
-            )}
-            onMouseEnter={this.handleMouseEnter}
-            onMouseLeave={this.handleMouseLeave}
-            {...other}
+      <ClickAwayListener onClickAway={this.handleClickAway}>
+        <div
+          className={classNames(
+            classes.root,
+            classes[`anchorOrigin${capitalize(vertical)}${capitalize(horizontal)}`],
+            className,
+          )}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+          {...other}
+        >
+          <EventListener
+            target="window"
+            onFocus={disableWindowBlurListener ? undefined : this.handleResume}
+            onBlur={disableWindowBlurListener ? undefined : this.handlePause}
+          />
+          <TransitionProp
+            appear
+            in={open}
+            onEnter={onEnter}
+            onEntered={onEntered}
+            onEntering={onEntering}
+            onExit={onExit}
+            onExited={createChainedFunction(this.handleExited, onExited)}
+            onExiting={onExiting}
+            timeout={transitionDuration}
+            {...transitionProps}
           >
-            <TransitionProp
-              appear
-              in={open}
-              onEnter={onEnter}
-              onEntered={onEntered}
-              onEntering={onEntering}
-              onExit={onExit}
-              onExited={createChainedFunction(this.handleExited, onExited)}
-              onExiting={onExiting}
-              timeout={transitionDuration}
-              {...transitionProps}
-            >
-              {children || (
-                <SnackbarContent message={message} action={action} {...SnackbarContentProps} />
-              )}
-            </TransitionProp>
-          </div>
-        </ClickAwayListener>
-      </EventListener>
+            {children || (
+              <SnackbarContent message={message} action={action} {...SnackbarContentProps} />
+            )}
+          </TransitionProp>
+        </div>
+      </ClickAwayListener>
     );
   }
 }

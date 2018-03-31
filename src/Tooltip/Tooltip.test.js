@@ -3,7 +3,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { Target, Popper } from 'react-popper';
+import Popper from 'react-popper/lib/Popper';
+import Target from 'react-popper/lib/Target';
 import { ShallowWrapper } from 'enzyme';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
@@ -62,8 +63,8 @@ describe('<Tooltip />', () => {
         <span>Hello World</span>
       </Tooltip>,
     );
-    assert.strictEqual(wrapper.name(), 'EventListener');
-    assert.strictEqual(wrapper.childAt(0).name(), 'Manager');
+    assert.strictEqual(wrapper.name(), 'Manager');
+    assert.strictEqual(wrapper.childAt(0).name(), 'EventListener');
   });
 
   it('should render with the user, root and tooltip classes', () => {
@@ -72,8 +73,8 @@ describe('<Tooltip />', () => {
         <span>Hello World</span>
       </Tooltip>,
     );
-    assert.strictEqual(wrapper.childAt(0).hasClass('woofTooltip'), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass('woofTooltip'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
 
     const popperChildren = getPopperChildren(wrapper);
     assert.strictEqual(popperChildren.childAt(0).hasClass(classes.tooltip), true);
@@ -97,7 +98,6 @@ describe('<Tooltip />', () => {
           <span>Hello World</span>
         </Tooltip>,
       );
-      assert.strictEqual(wrapper.childAt(0).hasClass(classes.root), true);
       const popperChildren = getPopperChildren(wrapper);
       assert.strictEqual(popperChildren.childAt(0).hasClass(classes.tooltip), true);
       wrapper.childAt(0).simulate('click');
@@ -141,7 +141,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it('should call handleClose & handleRequestOpen', () => {
+  it('should respond to external events', () => {
     const wrapper = shallow(
       <Tooltip placement="top" title="Hello World">
         <button>Hello World</button>

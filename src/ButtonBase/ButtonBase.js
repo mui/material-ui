@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import ownerWindow from 'dom-helpers/ownerWindow';
@@ -74,7 +74,7 @@ class ButtonBase extends React.Component {
   state = {};
 
   componentDidMount() {
-    this.button = findDOMNode(this);
+    this.button = ReactDOM.findDOMNode(this);
     listenForFocusKeys(ownerWindow(this.button));
   }
 

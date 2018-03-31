@@ -11,7 +11,7 @@ import activeElement from 'dom-helpers/activeElement';
 import contains from 'dom-helpers/query/contains';
 import inDOM from 'dom-helpers/util/inDOM';
 import ownerDocument from 'dom-helpers/ownerDocument';
-import RefHolder from '../internal/RefHolder';
+import RootRef from '../internal/RootRef';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
@@ -94,11 +94,7 @@ class Modal extends React.Component {
     }
   }
 
-  getDialogElement() {
-    return ReactDOM.findDOMNode(this.dialog);
-  }
-
-  dialog = null;
+  dialogElement = null;
   mounted = false;
   mountNode = null;
 
@@ -171,13 +167,12 @@ class Modal extends React.Component {
       return;
     }
 
-    const dialogElement = this.getDialogElement();
     const currentActiveElement = activeElement(ownerDocument(this.mountNode));
 
-    if (dialogElement && !contains(dialogElement, currentActiveElement)) {
+    if (this.dialogElement && !contains(this.dialogElement, currentActiveElement)) {
       this.lastFocus = currentActiveElement;
 
-      if (!dialogElement.hasAttribute('tabIndex')) {
+      if (!this.dialogElement.hasAttribute('tabIndex')) {
         warning(
           false,
           [
@@ -186,10 +181,10 @@ class Modal extends React.Component {
               'the tabIndex of the node is being set to "-1".',
           ].join('\n'),
         );
-        dialogElement.setAttribute('tabIndex', -1);
+        this.dialogElement.setAttribute('tabIndex', -1);
       }
 
-      dialogElement.focus();
+      this.dialogElement.focus();
     }
   }
 
@@ -209,11 +204,10 @@ class Modal extends React.Component {
       return;
     }
 
-    const dialogElement = this.getDialogElement();
     const currentActiveElement = activeElement(ownerDocument(this.mountNode));
 
-    if (dialogElement && !contains(dialogElement, currentActiveElement)) {
-      dialogElement.focus();
+    if (this.dialogElement && !contains(this.dialogElement, currentActiveElement)) {
+      this.dialogElement.focus();
     }
   };
 
@@ -283,13 +277,13 @@ class Modal extends React.Component {
           {hideBackdrop ? null : (
             <BackdropComponent open={open} onClick={this.handleBackdropClick} {...BackdropProps} />
           )}
-          <RefHolder
-            ref={node => {
-              this.dialog = node;
+          <RootRef
+            rootRef={node => {
+              this.dialogElement = node;
             }}
           >
             {React.cloneElement(children, childProps)}
-          </RefHolder>
+          </RootRef>
         </div>
       </Portal>
     );
