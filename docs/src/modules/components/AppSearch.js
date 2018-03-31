@@ -141,20 +141,19 @@ class AppSearch extends React.Component {
     initDocsearch();
 
     return (
-      <EventListener target="window" onKeyDown={this.handleKeyDown}>
-        <div className={classes.root}>
-          <div className={classes.search}>
-            <SearchIcon />
-          </div>
-          <input
-            id="docsearch-input"
-            ref={node => {
-              this.input = node;
-            }}
-            className={classes.input}
-          />
+      <div className={classes.root}>
+        <EventListener target="window" onKeyDown={this.handleKeyDown} />
+        <div className={classes.search}>
+          <SearchIcon />
         </div>
-      </EventListener>
+        <input
+          id="docsearch-input"
+          ref={node => {
+            this.input = node;
+          }}
+          className={classes.input}
+        />
+      </div>
     );
   }
 }

@@ -27,8 +27,8 @@ function SimpleTooltips(props) {
           <DeleteIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip id="tooltip-fab" className={classes.fab} title="Add">
-        <Button variant="fab" color="primary" aria-label="Add">
+      <Tooltip id="tooltip-fab" title="Add">
+        <Button variant="fab" color="primary" aria-label="Add" className={classes.fab}>
           <AddIcon />
         </Button>
       </Tooltip>

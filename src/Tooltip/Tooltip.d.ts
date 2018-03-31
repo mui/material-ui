@@ -4,7 +4,6 @@ import { StandardProps } from '..';
 
 export interface TooltipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
-  appendToBody?: boolean;
   children: React.ReactElement<any>;
   disableFocusListener?: boolean;
   disableHoverListener?: boolean;

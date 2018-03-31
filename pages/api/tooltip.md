@@ -12,7 +12,6 @@ filename: /src/Tooltip/Tooltip.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">appendToBody</span> | <span class="prop-type">bool |  | Appends the Tooltip to the body of the DOM rather than the immediate parent.<br>This is useful for working around issues where the tooltip is cut off, e.g. by `overflow: hidden`, but may hinder SEO. |
 | <span class="prop-name required">children *</span> | <span class="prop-type">element |  | Tooltip reference element. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
 | <span class="prop-name">disableFocusListener</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Do not respond to focus events. |

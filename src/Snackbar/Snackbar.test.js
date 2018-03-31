@@ -20,14 +20,11 @@ describe('<Snackbar />', () => {
     mount.cleanUp();
   });
 
-  it('should render a EventListener with classes', () => {
+  it('should render a ClickAwayListener with classes', () => {
     const wrapper = shallow(<Snackbar open message="message" />);
-    assert.strictEqual(wrapper.name(), 'EventListener');
+    assert.strictEqual(wrapper.name(), 'ClickAwayListener');
     assert.strictEqual(
-      wrapper
-        .childAt(0)
-        .childAt(0)
-        .hasClass(classes.root),
+      wrapper.childAt(0).hasClass(classes.root),
       true,
       'should have the root class',
     );

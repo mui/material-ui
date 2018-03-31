@@ -2,21 +2,24 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import warning from 'warning';
 import classNames from 'classnames';
-import { Manager, Target, Popper } from 'react-popper';
+import Manager from 'react-popper/lib/Manager';
+import Popper from 'react-popper/lib/Popper';
+import Target from 'react-popper/lib/Target';
 import { capitalize } from '../utils/helpers';
-import RefHolder from '../internal/RefHolder';
+import RootRef from '../internal/RootRef';
 import Portal from '../Portal';
 import common from '../colors/common';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  // Will be gone once we drop React 15.x support.
   root: {
-    display: 'inline',
+    display: 'inline-block',
     flexDirection: 'inherit', // Makes the wrapper more transparent.
   },
   popper: {
@@ -24,7 +27,6 @@ export const styles = theme => ({
   },
   popperClose: {
     pointerEvents: 'none',
-    display: 'none',
   },
   tooltip: {
     backgroundColor: theme.palette.grey[700],
@@ -249,16 +251,8 @@ class Tooltip extends React.Component {
     }, leaveTouchDelay);
   };
 
-  renderPopperWrapper(popper) {
-    if (this.props.appendToBody) {
-      return <Portal>{popper}</Portal>;
-    }
-    return popper;
-  }
-
   render() {
     const {
-      appendToBody,
       children,
       classes,
       className,
@@ -274,7 +268,7 @@ class Tooltip extends React.Component {
       onOpen,
       open: openProp,
       placement: placementProp,
-      PopperProps: { className: PopperClassName, ...PopperOther } = {},
+      PopperProps: { className: PopperClassName, ...PopperProps } = {},
       theme,
       title,
       ...other
@@ -284,8 +278,10 @@ class Tooltip extends React.Component {
     let open = this.isControlled ? openProp : this.state.open;
     const childrenProps = {
       'aria-describedby': id,
+      title: typeof title === 'string' && !open ? title : '',
     };
 
+    // There is no point at displaying an empty tooltip.
     if (title === '') {
       open = false;
     }
@@ -314,78 +310,74 @@ class Tooltip extends React.Component {
     );
 
     return (
-      <EventListener target="window" onResize={this.handleResize}>
-        <Manager className={classNames(classes.root, className)} {...other}>
-          <Target>
-            {({ targetProps }) => (
-              <RefHolder
-                ref={node => {
-                  this.children = findDOMNode(node);
-                  targetProps.ref(this.children);
-                }}
-              >
-                {React.cloneElement(children, childrenProps)}
-              </RefHolder>
-            )}
-          </Target>
-          {this.renderPopperWrapper(
-            <Popper
-              placement={placement}
-              eventsEnabled={open}
-              className={classNames(
-                classes.popper,
-                { [classes.popperClose]: !open },
-                PopperClassName,
-              )}
-              ref={node => {
-                this.popper = node;
+      <Manager
+        tag={ReactDOM.createPortal ? false : 'div'}
+        className={classNames(classes.root, className)}
+        {...other}
+      >
+        <EventListener target="window" onResize={this.handleResize} />
+        <Target>
+          {({ targetProps }) => (
+            <RootRef
+              rootRef={node => {
+                this.children = node;
+                targetProps.ref(this.children);
               }}
-              {...PopperOther}
             >
-              {({ popperProps, restProps }) => {
-                const actualPlacement = popperProps['data-placement'] || placement;
-                return (
-                  <div
-                    {...popperProps}
-                    {...restProps}
-                    style={{
-                      ...popperProps.style,
-                      top: popperProps.style.top || 0,
-                      left: popperProps.style.left || 0,
-                      ...restProps.style,
-                    }}
-                  >
-                    <div
-                      id={id}
-                      role="tooltip"
-                      aria-hidden={!open}
-                      className={classNames(
-                        classes.tooltip,
-                        { [classes.tooltipOpen]: open },
-                        classes[`tooltipPlacement${capitalize(actualPlacement.split('-')[0])}`],
-                      )}
-                    >
-                      {title}
-                    </div>
-                  </div>
-                );
-              }}
-            </Popper>,
+              {React.cloneElement(children, childrenProps)}
+            </RootRef>
           )}
-        </Manager>
-      </EventListener>
+        </Target>
+        <Portal>
+          <Popper
+            placement={placement}
+            eventsEnabled={open}
+            className={classNames(
+              classes.popper,
+              { [classes.popperClose]: !open },
+              PopperClassName,
+            )}
+            ref={node => {
+              this.popper = node;
+            }}
+            {...PopperProps}
+          >
+            {({ popperProps, restProps }) => {
+              const actualPlacement = (popperProps['data-placement'] || placement).split('-')[0];
+              return (
+                <div
+                  {...popperProps}
+                  {...restProps}
+                  style={{
+                    ...popperProps.style,
+                    top: popperProps.style.top || 0,
+                    left: popperProps.style.left || 0,
+                    ...restProps.style,
+                  }}
+                >
+                  <div
+                    id={id}
+                    role="tooltip"
+                    aria-hidden={!open}
+                    className={classNames(
+                      classes.tooltip,
+                      { [classes.tooltipOpen]: open },
+                      classes[`tooltipPlacement${capitalize(actualPlacement)}`],
+                    )}
+                  >
+                    {title}
+                  </div>
+                </div>
+              );
+            }}
+          </Popper>
+        </Portal>
+      </Manager>
     );
   }
 }
 
 Tooltip.propTypes = {
-  /**
-   * Appends the Tooltip to the body of the DOM rather than the immediate parent.
-   *
-   * This is useful for working around issues where the tooltip is cut off,
-   * e.g. by `overflow: hidden`, but may hinder SEO.
-   */
-  appendToBody: PropTypes.bool,
   /**
    * Tooltip reference element.
    */

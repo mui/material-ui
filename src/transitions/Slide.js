@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import Transition from 'react-transition-group/Transition';
@@ -98,7 +98,7 @@ class Slide extends React.Component {
   transition = null;
 
   updatePosition() {
-    const node = findDOMNode(this.transition);
+    const node = ReactDOM.findDOMNode(this.transition);
     if (node) {
       node.style.visibility = 'inherit';
       setTranslateValue(this.props, node);
@@ -111,7 +111,7 @@ class Slide extends React.Component {
       return;
     }
 
-    const node = findDOMNode(this.transition);
+    const node = ReactDOM.findDOMNode(this.transition);
     if (node) {
       setTranslateValue(this.props, node);
     }

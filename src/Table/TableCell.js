@@ -28,7 +28,6 @@ export const styles = theme => ({
     color: theme.palette.text.secondary,
     fontSize: theme.typography.pxToRem(12),
     fontWeight: theme.typography.fontWeightMedium,
-    position: 'relative', // Workaround for Tooltip positioning issue.
   },
   body: {
     fontSize: theme.typography.pxToRem(13),
