@@ -230,6 +230,42 @@ class Input extends React.Component {
     if (this.isControlled) {
       this.checkDirty(props);
     }
+
+    const componentWillReceiveProps = (nextProps, nextContext) => {
+      // The blur won't fire when the disabled state is set on a focused input.
+      // We need to book keep the focused state manually.
+      if (
+        !formControlState(this.props, this.context).disabled &&
+        formControlState(nextProps, nextContext).disabled
+      ) {
+        this.setState({
+          focused: false,
+        });
+      }
+    };
+
+    const componentWillUpdate = (nextProps, nextState, nextContext) => {
+      // Book keep the focused state.
+      if (
+        !formControlState(this.props, this.context).disabled &&
+        formControlState(nextProps, nextContext).disabled
+      ) {
+        const { muiFormControl } = this.context;
+        if (muiFormControl && muiFormControl.onBlur) {
+          muiFormControl.onBlur();
+        }
+      }
+    };
+
+    // Support for react >= 16.3.0 && < 17.0.0
+    /* istanbul ignore else */
+    if (React.createContext) {
+      this.UNSAFE_componentWillReceiveProps = componentWillReceiveProps;
+      this.UNSAFE_componentWillUpdate = componentWillUpdate;
+    } else {
+      this.componentWillReceiveProps = componentWillReceiveProps;
+      this.componentWillUpdate = componentWillUpdate;
+    }
   }
 
   state = {
@@ -250,34 +286,10 @@ class Input extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    // The blur won't fire when the disabled state is set on a focused input.
-    // We need to book keep the focused state manually.
-    if (
-      !formControlState(this.props, this.context).disabled &&
-      formControlState(nextProps, nextContext).disabled
-    ) {
-      this.setState({
-        focused: false,
-      });
-    }
-  }
-
-  componentWillUpdate(nextProps, nextState, nextContext) {
+  componentDidUpdate() {
     if (this.isControlled) {
-      this.checkDirty(nextProps);
+      this.checkDirty(this.props);
     } // else performed in the onChange
-
-    // Book keep the focused state.
-    if (
-      !formControlState(this.props, this.context).disabled &&
-      formControlState(nextProps, nextContext).disabled
-    ) {
-      const { muiFormControl } = this.context;
-      if (muiFormControl && muiFormControl.onBlur) {
-        muiFormControl.onBlur();
-      }
-    }
   }
 
   isControlled = this.props.value != null;

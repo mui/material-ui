@@ -24,15 +24,12 @@ class LegacyPortal extends React.Component {
     this.renderOverlay();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.overlayTarget && nextProps.container !== this.props.container) {
+  componentDidUpdate(prevProps) {
+    if (this.overlayTarget && prevProps.container !== this.props.container) {
       this.mountNode.removeChild(this.overlayTarget);
-      this.mountNode = getContainer(nextProps.container, getOwnerDocument(this).body);
+      this.mountNode = getContainer(this.props.container, getOwnerDocument(this).body);
       this.mountNode.appendChild(this.overlayTarget);
     }
-  }
-
-  componentDidUpdate() {
     this.renderOverlay();
   }
 

@@ -56,10 +56,12 @@ export const styles = theme => ({
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
 class TablePagination extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    const { count, onChangePage, rowsPerPage } = nextProps;
+  // This logic would be better handled on userside.
+  // However, we have it just in case.
+  componentDidUpdate() {
+    const { count, onChangePage, page, rowsPerPage } = this.props;
     const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
-    if (this.props.page > newLastPage) {
+    if (page > newLastPage) {
       onChangePage(null, newLastPage);
     }
   }

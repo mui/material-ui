@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import polyfill from 'react-lifecycles-compat';
 import warning from 'warning';
 import keycode from 'keycode';
 import activeElement from 'dom-helpers/activeElement';
@@ -42,8 +43,24 @@ export const styles = theme => ({
 });
 
 class Modal extends React.Component {
+  static getDerivedStateFromProps(nextProps) {
+    if (nextProps.open) {
+      return {
+        exited: false,
+      };
+    } else if (!getHasTransition(nextProps)) {
+      // Otherwise let handleExited take care of marking exited.
+      return {
+        exited: true,
+      };
+    }
+
+    return null;
+  }
+
   constructor(props, context) {
     super(props, context);
+
     this.state = {
       exited: !this.props.open,
     };
@@ -53,15 +70,6 @@ class Modal extends React.Component {
     this.mounted = true;
     if (this.props.open) {
       this.handleOpen();
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.open) {
-      this.setState({ exited: false });
-    } else if (!getHasTransition(nextProps)) {
-      // Otherwise let handleExited take care of marking exited.
-      this.setState({ exited: true });
     }
   }
 
@@ -399,4 +407,4 @@ Modal.defaultProps = {
   BackdropComponent: Backdrop,
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiModal' })(Modal);
+export default withStyles(styles, { flip: false, name: 'MuiModal' })(polyfill(Modal));

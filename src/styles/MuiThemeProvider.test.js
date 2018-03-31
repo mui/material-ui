@@ -136,12 +136,12 @@ describe('<MuiThemeProvider />', () => {
 
       wrapper.setProps({ theme: createMuiTheme({ status: { color: 'blue' } }) });
 
-      assert.strictEqual(themeSpy1.callCount, 2);
-      assert.strictEqual(themeSpy1.args[1][0].status.color, 'blue');
-      assert.strictEqual(themeSpy2.callCount, 2);
-      assert.strictEqual(themeSpy2.args[1][0].status.color, 'green');
-      assert.strictEqual(themeSpy3.callCount, 2);
-      assert.strictEqual(themeSpy3.args[1][0].status.color, 'yellow');
+      assert.strictEqual(themeSpy1.callCount, 3);
+      assert.strictEqual(themeSpy1.args[2][0].status.color, 'blue');
+      assert.strictEqual(themeSpy2.callCount, 3);
+      assert.strictEqual(themeSpy2.args[2][0].status.color, 'green');
+      assert.strictEqual(themeSpy3.callCount, 3);
+      assert.strictEqual(themeSpy3.args[2][0].status.color, 'yellow');
     });
 
     it('should forward the parent options', () => {

@@ -53,7 +53,7 @@ function CustomizedInputs(props) {
     <div className={classes.container}>
       <FormControl className={classes.formControl}>
         <InputLabel
-          FormControlClasses={{
+          FormLabelClasses={{
             focused: classes.inputLabelFocused,
           }}
           htmlFor="custom-color-input"

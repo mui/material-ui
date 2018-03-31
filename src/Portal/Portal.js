@@ -25,9 +25,10 @@ class Portal extends React.Component {
     this.forceUpdate(this.props.onRendered);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.container !== this.props.container) {
-      this.setContainer(nextProps.container);
+  componentDidUpdate(prevProps) {
+    if (prevProps.container !== this.props.container) {
+      this.setContainer(this.props.container);
+      this.forceUpdate();
     }
   }
 
