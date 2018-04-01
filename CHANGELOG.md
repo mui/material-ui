@@ -2,6 +2,50 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0
+###### *May 17, 2018*
+
+Coming Soon
+
+## 1.0.0-beta.40
+###### *Apr 1, 2018*
+
+Big thanks to the 4 contributors who made this release possible.
+
+Here are some highlights ✨:
+- React 16.3.0 support (#10867).
+- Many bug fixes on the Tooltip component (#10843) @shssoichiro.
+- A much better navigation experience on the docs (#10859).
+
+### Breaking change
+
+- [Tooltip] Portal the component to the body (#10843) @shssoichiro
+
+We take advantage of the latest features of React 16.x.
+React is allowing us to return an array of elements in the render method.
+We have removed the useless root `div` element.
+Nothing has changed for people using React 15.x.
+
+#### Component Fixes / Enhancements
+
+- [FormControlLabel] Enable disabled label CSS modifications (#10841) @vkentta
+- [Select] Throw when the non native select is not controlled (#10860) @oliviertassinari
+- [Drawer] Back to 100% test coverage (#10861) @oliviertassinari
+- [core] Work on React 16.3.0 support (#10867) @oliviertassinari
+
+#### Docs
+
+- [docs] typo: reponse => response (#10850) @luminaxster
+- [docs] Remove dead code (#10855) @oliviertassinari
+- [docs] Much better navigation experience (#10859) @oliviertassinari
+- [examples] Demonstrate how to use the icons CDN (#10874) @oliviertassinari
+
+#### Core
+
+- [core] Remove the addEventListener module (#10856) @oliviertassinari
+- [core] Upgrade the dependencies (#10853) @oliviertassinari
+- [core] Rename .spec.js to .test.js (#10854) @oliviertassinari
+
 ## 1.0.0-beta.39
 ###### *Mar 28, 2018*
 
