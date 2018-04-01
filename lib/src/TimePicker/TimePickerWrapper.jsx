@@ -50,6 +50,7 @@ export class TimePickerWrapper extends PickerBase {
         onAccept={this.handleAccept}
         onChange={this.handleTextFieldChange}
         onDismiss={this.handleDismiss}
+        onSetToday={this.handleSetTodayDate}
         {...other}
       >
         <TimePicker
