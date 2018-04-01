@@ -3,8 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import Popper from 'react-popper/lib/Popper';
-import Target from 'react-popper/lib/Target';
+import { Popper, Target } from 'react-popper';
 import { ShallowWrapper } from 'enzyme';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
