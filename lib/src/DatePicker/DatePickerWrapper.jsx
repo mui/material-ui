@@ -92,6 +92,7 @@ export class DatePickerWrapper extends PickerBase {
         onAccept={this.handleAccept}
         onChange={this.handleTextFieldChange}
         onDismiss={this.handleDismiss}
+        onSetToday={this.handleSetTodayDate}
         labelFunc={labelFunc}
         minDate={minDate}
         maxDate={maxDate}
