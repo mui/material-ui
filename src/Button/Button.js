@@ -23,8 +23,8 @@ export const styles = theme => ({
     }),
     '&:hover': {
       textDecoration: 'none',
-      // Reset on mouse devices
       backgroundColor: fade(theme.palette.text.primary, 0.12),
+      // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
@@ -43,7 +43,7 @@ export const styles = theme => ({
     color: theme.palette.primary.main,
     '&:hover': {
       backgroundColor: fade(theme.palette.primary.main, 0.12),
-      // Reset on mouse devices
+      // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
@@ -53,7 +53,7 @@ export const styles = theme => ({
     color: theme.palette.secondary.main,
     '&:hover': {
       backgroundColor: fade(theme.palette.secondary.main, 0.12),
-      // Reset on mouse devices
+      // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
@@ -78,7 +78,7 @@ export const styles = theme => ({
     },
     '&:hover': {
       backgroundColor: theme.palette.grey.A100,
-      // Reset on mouse devices
+      // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: theme.palette.grey[300],
       },
@@ -93,7 +93,7 @@ export const styles = theme => ({
     backgroundColor: theme.palette.primary.main,
     '&:hover': {
       backgroundColor: theme.palette.primary.dark,
-      // Reset on mouse devices
+      // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: theme.palette.primary.main,
       },
@@ -104,7 +104,7 @@ export const styles = theme => ({
     backgroundColor: theme.palette.secondary.main,
     '&:hover': {
       backgroundColor: theme.palette.secondary.dark,
-      // Reset on mouse devices
+      // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: theme.palette.secondary.main,
       },
