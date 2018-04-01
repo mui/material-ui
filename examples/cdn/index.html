@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/material-ui@next/umd/material-ui.development.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
     <div id="root"></div>
@@ -17,13 +18,14 @@ const {
   Button,
   colors,
   createMuiTheme,
+  CssBaseline,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Icon,
   MuiThemeProvider,
-  CssBaseline,
   Typography,
   withStyles,
 } = window['material-ui'];
@@ -47,6 +49,9 @@ const styles = theme => ({
   root: {
     textAlign: 'center',
     paddingTop: theme.spacing.unit * 20,
+  },
+  icon: {
+    marginRight: theme.spacing.unit,
   },
 });
 
@@ -93,6 +98,7 @@ class Index extends React.Component {
             example project
           </Typography>
           <Button variant="raised" color="secondary" onClick={this.handleClick}>
+            <Icon className={classes.icon}>fingerprint</Icon>
             Super Secret Password
           </Button>
         </div>
