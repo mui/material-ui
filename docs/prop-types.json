@@ -2859,6 +2859,27 @@
           },
           "required": true,
           "description": ""
+        },
+        "todayLabel": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "showTodayButton": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onSetToday": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
         }
       }
     }
@@ -3000,6 +3021,13 @@
       "displayName": "ModalWrapper",
       "methods": [
         {
+          "name": "handleSetTodayDate",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
           "name": "open",
           "docblock": null,
           "modifiers": [],
@@ -3114,6 +3142,28 @@
             "computed": false
           }
         },
+        "todayLabel": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "\"Today\" label message",
+          "defaultValue": {
+            "value": "'Today'",
+            "computed": false
+          }
+        },
+        "showTodayButton": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If true today button will be displayed\n<b>Note*</b> that clear button has higher priority",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
         "onOpen": {
           "type": {
             "name": "func"
@@ -3170,6 +3220,17 @@
           }
         },
         "onClear": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "onSetToday": {
           "type": {
             "name": "func"
           },
