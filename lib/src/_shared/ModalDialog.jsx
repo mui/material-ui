@@ -39,7 +39,7 @@ const styles = {
   },
 };
 
-const ModalDialog = ({
+export const ModalDialog = ({
   children,
   classes,
   onAccept,
