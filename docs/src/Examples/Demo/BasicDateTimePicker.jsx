@@ -34,6 +34,16 @@ export default class BasicDateTimePicker extends PureComponent {
             label="24h clock"
           />
         </div>
+
+        <div className="picker">
+          <DateTimePicker
+            value={selectedDate}
+            disablePast
+            onChange={this.handleDateChange}
+            label="With Today Button"
+            showTodayButton
+          />
+        </div>
       </Fragment>
     );
   }

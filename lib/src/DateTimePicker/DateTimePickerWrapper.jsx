@@ -116,6 +116,7 @@ export class DateTimePickerWrapper extends PickerBase {
         onChange={this.handleTextFieldChange}
         onDismiss={this.handleDismiss}
         onClear={this.handleClear}
+        onSetToday={this.handleSetTodayDate}
         dialogContentClassName={classes.dialogContent}
         minDate={minDate}
         maxDate={maxDate}
