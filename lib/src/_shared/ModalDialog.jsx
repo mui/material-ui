@@ -29,6 +29,11 @@ const styles = {
       marginRight: 'auto',
     },
   },
+  todayDialogAction: {
+    '&:first-child': {
+      marginRight: 'auto',
+    },
+  },
   dialogAction: {
     // empty but may be needed for override
   },
@@ -40,11 +45,14 @@ const ModalDialog = ({
   onAccept,
   onDismiss,
   onClear,
+  onSetToday,
   okLabel,
   cancelLabel,
   clearLabel,
+  todayLabel,
   dialogContentClassName,
   clearable,
+  showTodayButton,
   ...other
 }) => (
   <Dialog onClose={onDismiss} classes={{ paper: classes.dialogRoot }} {...other}>
@@ -55,7 +63,10 @@ const ModalDialog = ({
     <DialogActions
       classes={{
         root: clearable && classes.dialogActions,
-        action: classnames(classes.dialogAction, { [classes.clearableDialogAction]: clearable }),
+        action: classnames(classes.dialogAction, {
+          [classes.clearableDialogAction]: clearable,
+          [classes.todayDialogAction]: !clearable && showTodayButton,
+        }),
       }}
     >
       { clearable &&
@@ -65,6 +76,16 @@ const ModalDialog = ({
           aria-label={clearLabel}
         >
           { clearLabel }
+        </Button>
+      }
+
+      { !clearable && showTodayButton &&
+        <Button
+          color="primary"
+          onClick={onSetToday}
+          aria-label={todayLabel}
+        >
+          { todayLabel }
         </Button>
       }
 
@@ -99,6 +120,9 @@ ModalDialog.propTypes = {
   cancelLabel: PropTypes.string.isRequired,
   clearLabel: PropTypes.string.isRequired,
   clearable: PropTypes.bool.isRequired,
+  todayLabel: PropTypes.string.isRequired,
+  showTodayButton: PropTypes.bool.isRequired,
+  onSetToday: PropTypes.func.isRequired,
 };
 
 ModalDialog.defaultProps = {
