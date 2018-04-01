@@ -317,6 +317,27 @@ describe('<SwipeableDrawer />', () => {
     });
   });
 
+  describe('disableSwiping', () => {
+    it('should not swipe if disableSwiping is set', () => {
+      const wrapper = mount(
+        <SwipeableDrawerNaked
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          theme={createMuiTheme()}
+        >
+          <h1>Hello</h1>
+        </SwipeableDrawerNaked>,
+      );
+
+      // simulate open swipe
+      wrapper.setProps({ disableSwiping: true });
+      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+      assert.strictEqual(wrapper.state().maybeSwiping, false, 'should not be listening for swipe');
+      wrapper.unmount();
+    });
+  });
+
   describe('lock', () => {
     it('should handle a single swipe at the time', () => {
       const handleOpen = spy();

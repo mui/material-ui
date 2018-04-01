@@ -24,6 +24,10 @@ export function reset() {
   nodeThatClaimedTheSwipe = null;
 }
 
+function isSwipeable(props) {
+  return props.variant === 'temporary' && !props.disableSwiping;
+}
+
 class SwipeableDrawer extends React.Component {
   static getDerivedStateFromProps() {
     // Reset the maybeSwiping state everytime we receive new properties.
@@ -35,18 +39,18 @@ class SwipeableDrawer extends React.Component {
   state = {};
 
   componentDidMount() {
-    if (this.props.variant === 'temporary') {
+    if (isSwipeable(this.props)) {
       this.listenTouchStart();
     }
   }
 
   componentDidUpdate(prevProps) {
-    const variant = this.props.variant;
-    const prevVariant = prevProps.variant;
+    const wasSwipeable = isSwipeable(prevProps);
+    const isNowSwipeable = isSwipeable(this.props);
 
-    if (variant === 'temporary' && prevVariant !== 'temporary') {
+    if (!wasSwipeable && isNowSwipeable) {
       this.listenTouchStart();
-    } else if (variant !== 'temporary' && prevVariant === 'temporary') {
+    } else if (wasSwipeable && !isNowSwipeable) {
       this.removeTouchStart();
     }
   }
@@ -309,6 +313,7 @@ class SwipeableDrawer extends React.Component {
     const {
       disableBackdropTransition,
       disableDiscovery,
+      disableSwiping,
       ModalProps: { BackdropProps, ...ModalPropsProp } = {},
       onOpen,
       open,
@@ -355,6 +360,11 @@ SwipeableDrawer.propTypes = {
    * to promote accidental discovery of the swipe gesture.
    */
   disableDiscovery: PropTypes.bool,
+  /**
+   * If `true`, swiping is completely disabled. This is useful in browsers where swiping triggers
+   * navigation actions. Swiping is disabled on iOS browsers by default.
+   */
+  disableSwiping: PropTypes.bool,
   /**
    * @ignore
    */
@@ -406,6 +416,7 @@ SwipeableDrawer.defaultProps = {
   anchor: 'left',
   disableBackdropTransition: false,
   disableDiscovery: false,
+  disableSwiping: process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent),
   swipeAreaWidth: 20,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
   variant: 'temporary', // Mobile first.
