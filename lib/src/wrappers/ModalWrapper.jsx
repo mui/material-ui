@@ -20,6 +20,12 @@ export default class ModalWrapper extends PureComponent {
     clearLabel: PropTypes.string,
     /** If true clear button will be displayed */
     clearable: PropTypes.bool,
+    /** "Today" label message */
+    todayLabel: PropTypes.string,
+    /** If true today button will be displayed
+     * <b>Note*</b> that clear button has higher priority
+     */
+    showTodayButton: PropTypes.bool,
     /** On open callback */
     onOpen: PropTypes.func,
     /** On close callback */
@@ -29,6 +35,7 @@ export default class ModalWrapper extends PureComponent {
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
     onClear: PropTypes.func,
+    onSetToday: PropTypes.func,
     children: PropTypes.node.isRequired,
     dialogContentClassName: PropTypes.string,
   }
@@ -41,17 +48,26 @@ export default class ModalWrapper extends PureComponent {
     okLabel: 'OK',
     cancelLabel: 'Cancel',
     clearLabel: 'Clear',
+    todayLabel: 'Today',
+    clearable: false,
+    showTodayButton: false,
     format: undefined,
     onAccept: undefined,
     onDismiss: undefined,
     onClear: undefined,
-    clearable: false,
     onOpen: undefined,
     onClose: undefined,
+    onSetToday: undefined,
   }
 
   state = {
     open: false,
+  }
+
+  handleSetTodayDate = () => {
+    if (this.props.onSetToday) {
+      this.props.onSetToday();
+    }
   }
 
   open = () => {
@@ -103,8 +119,11 @@ export default class ModalWrapper extends PureComponent {
       cancelLabel,
       clearLabel,
       clearable,
+      todayLabel,
+      showTodayButton,
       onOpen,
       onClose,
+      onSetToday,
       ...other
     } = this.props;
 
@@ -126,11 +145,14 @@ export default class ModalWrapper extends PureComponent {
           onClear={this.handleClear}
           onAccept={this.handleAccept}
           onDismiss={this.handleDismiss}
+          onSetToday={this.handleSetTodayDate}
           dialogContentClassName={dialogContentClassName}
           clearLabel={clearLabel}
+          todayLabel={todayLabel}
           okLabel={okLabel}
           cancelLabel={cancelLabel}
           clearable={clearable}
+          showTodayButton={showTodayButton}
         >
           {children}
         </ModalDialog>
