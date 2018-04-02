@@ -83,7 +83,6 @@ function reduceChildRoutes({ props, activePage, items, page, depth }) {
   return items;
 }
 
-const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases/tag/';
 // iOS is hosted on high-end devices. We can enable the backdrop transition without
 // dropping frames. The performance will be good enough.
 // So: <SwipeableDrawer disableBackdropTransition={false} />
@@ -102,10 +101,7 @@ function AppDrawer(props, context) {
             </Typography>
           </Link>
           {process.env.LIB_VERSION ? (
-            <Link
-              className={classes.anchor}
-              href={`${GITHUB_RELEASE_BASE_URL}v${process.env.LIB_VERSION}`}
-            >
+            <Link className={classes.anchor} href="/versions">
               <Typography variant="caption">{`v${process.env.LIB_VERSION}`}</Typography>
             </Link>
           ) : null}

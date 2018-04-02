@@ -222,6 +222,10 @@ const pages = [
     pathname: '/',
     title: false,
   },
+  {
+    pathname: '/versions',
+    title: false,
+  },
 ];
 
 function findActivePage(currentPages, url) {
