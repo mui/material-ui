@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Theme } from './createMuiTheme';
+import { Omit } from '..'
 
 /**
  * This is basically the API of JSS. It defines a Map<string, CSS>,
