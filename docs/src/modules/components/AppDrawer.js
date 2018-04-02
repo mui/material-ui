@@ -56,6 +56,10 @@ function renderNavItems({ pages, ...params }) {
 }
 
 function reduceChildRoutes({ props, activePage, items, page, depth }) {
+  if (page.displayNav === false) {
+    return items;
+  }
+
   if (page.children && page.children.length > 1) {
     const title = pageToTitle(page);
     const openImmediately = activePage.pathname.indexOf(page.pathname) === 0;
@@ -65,7 +69,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth }) {
         {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1 })}
       </AppDrawerNavItem>,
     );
-  } else if (page.title !== false) {
+  } else {
     const title = pageToTitle(page);
     page = page.children && page.children.length === 1 ? page.children[0] : page;
 

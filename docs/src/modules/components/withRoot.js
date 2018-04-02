@@ -219,11 +219,12 @@ const pages = [
     ],
   },
   {
-    pathname: '/',
-    title: false,
+    pathname: '/versions',
+    displayNav: false,
   },
   {
-    pathname: '/versions',
+    pathname: '/',
+    displayNav: false,
     title: false,
   },
 ];

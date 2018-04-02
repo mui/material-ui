@@ -1,9 +1,14 @@
 # Material-UI Versions
 
-## Latest version
-To see what changes are coming and provide better feedback to Material-UI contributors, use the latest version in development when possible ([Documentation](https://material-ui-master.netlify.com)).
-
 ## Stable versions
+
 The most recent stable version is recommended in production.
 
-{{"demo": "pages/versions/Versions.js", "hideEditButton": true}}
+{{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
+
+## Latest version
+
+Here you can find the latest unreleased documentation and code.
+You can use it to see what changes are coming and provide better feedback to Material-UI contributors.
+
+{{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
