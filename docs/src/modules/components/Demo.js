@@ -1,6 +1,7 @@
 import React from 'react';
 import LZString from 'lz-string';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import copy from 'clipboard-copy';
 import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
@@ -81,8 +82,15 @@ const styles = theme => ({
       paddingLeft: theme.spacing.unit * 3,
       paddingRight: theme.spacing.unit * 3,
       paddingTop: theme.spacing.unit * 6,
+      paddingBottom: theme.spacing.unit * 3,
     },
   }),
+  demoHiddenHeader: {
+    paddingTop: theme.spacing.unit * 2,
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: theme.spacing.unit * 3,
+    },
+  },
   header: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
@@ -195,66 +203,85 @@ class Demo extends React.Component {
 
     return (
       <div className={classes.root}>
-        <div className={classes.header}>
-          <Tooltip id={`demo-github-${index}`} title="See the source on GitHub" placement="top">
-            <IconButton
-              href={githubLocation}
-              target="_blank"
-              aria-labelledby={`demo-github-${index}`}
-            >
-              <Github />
-            </IconButton>
-          </Tooltip>
-          {demoOptions.hideEditButton ? null : (
-            <Tooltip id={`demo-codesandbox-${index}`} title="Edit in CodeSandbox" placement="top">
-              <IconButton
-                onClick={this.handleClickCodeSandbox}
-                aria-labelledby={`demo-codesandbox-${index}`}
+        {demoOptions.hideHeader ? null : (
+          <div>
+            <div className={classes.header}>
+              <Tooltip id={`demo-github-${index}`} title="See the source on GitHub" placement="top">
+                <IconButton
+                  href={githubLocation}
+                  target="_blank"
+                  aria-labelledby={`demo-github-${index}`}
+                >
+                  <Github />
+                </IconButton>
+              </Tooltip>
+              {demoOptions.hideEditButton ? null : (
+                <Tooltip
+                  id={`demo-codesandbox-${index}`}
+                  title="Edit in CodeSandbox"
+                  placement="top"
+                >
+                  <IconButton
+                    onClick={this.handleClickCodeSandbox}
+                    aria-labelledby={`demo-codesandbox-${index}`}
+                  >
+                    <ModeEditIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
+              <Tooltip
+                id={`demo-source-${index}`}
+                title={codeOpen ? 'Hide the source' : 'Show the source'}
+                placement="top"
               >
-                <ModeEditIcon />
+                <IconButton
+                  onClick={this.handleClickCodeOpen}
+                  aria-labelledby={`demo-source-${index}`}
+                >
+                  <CodeIcon />
+                </IconButton>
+              </Tooltip>
+              <IconButton
+                onClick={this.handleClickMore}
+                aria-owns={anchorEl ? 'demo-menu-more' : null}
+                aria-haspopup="true"
+                aria-label="See more"
+              >
+                <MoreVertIcon />
               </IconButton>
-            </Tooltip>
-          )}
-          <Tooltip
-            id={`demo-source-${index}`}
-            title={codeOpen ? 'Hide the source' : 'Show the source'}
-            placement="top"
-          >
-            <IconButton onClick={this.handleClickCodeOpen} aria-labelledby={`demo-source-${index}`}>
-              <CodeIcon />
-            </IconButton>
-          </Tooltip>
-          <IconButton
-            onClick={this.handleClickMore}
-            aria-owns={anchorEl ? 'demo-menu-more' : null}
-            aria-haspopup="true"
-            aria-label="See more"
-          >
-            <MoreVertIcon />
-          </IconButton>
-          <Menu
-            id="demo-menu-more"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={this.handleCloseMore}
-            getContentAnchorEl={null}
-            anchorOrigin={{
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              horizontal: 'right',
-            }}
-          >
-            <MenuItem onClick={this.handleClickCopy}>Copy the source</MenuItem>
-            {demoOptions.hideEditButton ? null : (
-              <MenuItem onClick={this.handleClickStackBlitz}>Edit in StackBlitz</MenuItem>
-            )}
-          </Menu>
-        </div>
-        <Collapse in={codeOpen} unmountOnExit>
-          <MarkdownElement dir="ltr" className={classes.code} text={`\`\`\`jsx\n${raw}\n\`\`\``} />
-        </Collapse>
-        <div className={classes.demo}>
+              <Menu
+                id="demo-menu-more"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={this.handleCloseMore}
+                getContentAnchorEl={null}
+                anchorOrigin={{
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  horizontal: 'right',
+                }}
+              >
+                <MenuItem onClick={this.handleClickCopy}>Copy the source</MenuItem>
+                {demoOptions.hideEditButton ? null : (
+                  <MenuItem onClick={this.handleClickStackBlitz}>Edit in StackBlitz</MenuItem>
+                )}
+              </Menu>
+            </div>
+            <Collapse in={codeOpen} unmountOnExit>
+              <MarkdownElement
+                dir="ltr"
+                className={classes.code}
+                text={`\`\`\`jsx\n${raw}\n\`\`\``}
+              />
+            </Collapse>
+          </div>
+        )}
+        <div
+          className={classNames(classes.demo, {
+            [classes.demoHiddenHeader]: demoOptions.hideHeader,
+          })}
+        >
           <DemoComponent />
         </div>
       </div>

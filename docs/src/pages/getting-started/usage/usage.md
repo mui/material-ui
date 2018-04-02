@@ -1,8 +1,8 @@
 # Usage
 
 Material-UI components work in isolation.
-**They are self-supporting**, they will inject, and only inject, the styles they need to display.
-They don't rely on any global styles like [normalize.css](https://github.com/necolas/normalize.css/),
+**They are self-supporting**, and will inject, and only inject, the styles they need to display.
+They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/),
 although Material-UI does provide an optional [CssBaseline](/style/css-baseline) component.
 
 You can use any of the components as demonstrated in the documentation.
@@ -10,7 +10,7 @@ Please refer to each component's [demo page](/demos/app-bar/) to see how they sh
 
 ## Quick start
 
-Here is a quick example to get you started, **it's all you need**:
+Here's a quick example to get you started, **it's literally all you need**:
 
 ```jsx
 import React from 'react';
@@ -28,13 +28,13 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-Yes, it's really all you need to get started as you can see in this live and interactive demo:
+Yes, this really is all you need to get started, as you can see in this live and interactive demo:
 
-{{"demo": "pages/getting-started/usage/Usage.js"}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
 
 ## Next steps
 
-Now that you have an idea about the basic setup, it's time to learn more about:
+Now that you have an idea of the basic setup, it's time to learn more about:
 - How to provide [the Material Design font and typography](/style/typography).
 - How to take advantage of the [theming solution](/customization/themes).
 - How to [override](/customization/overrides) the look and feel of the components.
