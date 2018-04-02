@@ -68,4 +68,4 @@ const theme = createMuiTheme({
 
 This color palette comprises primary and accent colors that can be used for illustration or to develop your brand colors. They’ve been designed to work harmoniously with each other.
 
-{{"demo": "pages/style/color/Color.js"}}
+{{"demo": "pages/style/color/Color.js", "hideHeader": true}}
