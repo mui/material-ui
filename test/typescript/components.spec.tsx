@@ -718,7 +718,7 @@ const TableTest = () => {
     );
   }
 
-  return withStyles(styles)<{}>(BasicTable);
+  return withStyles(styles)(BasicTable);
 };
 
 const TabsTest = () => {

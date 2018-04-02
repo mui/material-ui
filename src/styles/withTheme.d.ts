@@ -1,11 +1,12 @@
 import { Theme } from './createMuiTheme';
+import { Omit } from '..'
 
 export interface WithTheme {
   theme: Theme;
 }
 
-declare const withTheme: () => <P>(
-  component: React.ComponentType<P & WithTheme>,
-) => React.ComponentClass<P>;
+declare const withTheme: () => <P extends WithTheme>(
+  component: React.ComponentType<P>,
+) => React.ComponentClass<Omit<P, keyof WithTheme>>;
 
 export default withTheme;
