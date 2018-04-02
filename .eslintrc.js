@@ -34,6 +34,7 @@ module.exports = {
     'function-paren-newline': 'off', // Incompatible with prettier
     indent: 'off', // Incompatible with prettier
     'space-before-function-paren': 'off', // Incompatible with prettier
+    'no-confusing-arrow': 'off', // Incompatible with prettier
     'no-mixed-operators': 'off', // Incompatible with prettier
     'consistent-this': ['error', 'self'],
     'max-len': [
