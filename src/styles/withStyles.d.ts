@@ -44,4 +44,4 @@ export default function withStyles<ClassKey extends string>(
   options?: WithStylesOptions,
 ): <P extends WithStyles<ClassKey>>(
   component: React.ComponentType<P>,
-) => React.ComponentType<Omit<P, keyof StyledComponentProps<ClassKey>>>;
+) => React.ComponentType<Omit<P, keyof WithStyles<ClassKey>> & StyledComponentProps<ClassKey>>;
