@@ -1,11 +1,9 @@
-// @flow
-
 module.exports = {
-  printWidth: 100,
-  singleQuote: true,
-  trailingComma: 'all',
   bracketSpacing: true,
   jsxBracketSameLine: false,
   parser: 'babylon',
+  printWidth: 100,
   semi: true,
+  singleQuote: true,
+  trailingComma: 'all',
 };
