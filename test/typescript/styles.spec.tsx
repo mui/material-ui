@@ -28,7 +28,7 @@ const styles: StyleRulesCallback<'root'> = ({ palette, spacing }) => ({
   },
 });
 
-const StyledExampleOne = withStyles(styles)<ComponentProps>(({ classes, text }) => (
+const StyledExampleOne = withStyles(styles)(({ classes, text }) => (
   <div className={classes.root}>{text}</div>
 ));
 <StyledExampleOne text="I am styled!" />;
@@ -57,7 +57,7 @@ const ComponentWithChildren: React.SFC<WithStyles<ComponentClassNames>> = ({
   children,
 }) => <div className={classes.root}>{children}</div>;
 
-const StyledExampleThree = withStyles(styleRule)<{}>(ComponentWithChildren);
+const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
 <StyledExampleThree />;
 
 // Also works with a plain object
