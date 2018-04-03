@@ -102,6 +102,14 @@ AppWrapper.propTypes = {
   uiTheme: PropTypes.object.isRequired,
 };
 
+const AppWrapper2 = polyfill(AppWrapper);
+
+// Solve an isolation issue with hoist-non-react-statics.
+// TODO: remove once hoist-non-react-statics has been updated.
+function AppWrapper3(props) {
+  return <AppWrapper2 {...props} />;
+}
+
 export default connect(state => ({
   uiTheme: state.theme,
-}))(polyfill(AppWrapper));
+}))(AppWrapper3);
