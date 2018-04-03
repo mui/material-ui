@@ -7,8 +7,16 @@ import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 
 const styles = {
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
   media: {
-    height: 230,
+    height: 220,
   },
 };
 
@@ -36,8 +44,8 @@ function PremiumThemes(props) {
   return (
     <Grid container spacing={16}>
       {themes.map(theme => (
-        <Grid item xs={12} sm={6} md={4}>
-          <Card key={theme.name}>
+        <Grid item xs={12} sm={6}>
+          <Card key={theme.name} className={classes.card}>
             <CardMedia
               component="a"
               href={theme.href}
@@ -45,7 +53,7 @@ function PremiumThemes(props) {
               image={theme.src}
               title={theme.name}
             />
-            <CardContent>
+            <CardContent className={classes.cardContent}>
               <Grid container alignItems="center">
                 <Grid item xs>
                   <Typography gutterBottom variant="headline" align="left" component="h2">

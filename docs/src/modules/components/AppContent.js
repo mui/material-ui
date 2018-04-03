@@ -12,7 +12,7 @@ const styles = theme => ({
   }),
   [theme.breakpoints.up(900 + theme.spacing.unit * 6)]: {
     root: {
-      maxWidth: 900,
+      maxWidth: 900 + theme.spacing.unit * 6,
     },
   },
 });
