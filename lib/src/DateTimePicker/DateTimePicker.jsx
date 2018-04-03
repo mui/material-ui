@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Fade from 'material-ui/transitions/Fade';
+import withStyles from 'material-ui/styles/withStyles';
 
 import View from './DateTimePickerView';
 import YearSelection from '../DatePicker/YearSelection';
@@ -36,6 +36,7 @@ export class DateTimePicker extends Component {
     shouldDisableDate: PropTypes.func,
     animateYearScrolling: PropTypes.bool,
     fadeTimeout: PropTypes.number.isRequired,
+    classes: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
@@ -118,6 +119,7 @@ export class DateTimePicker extends Component {
       shouldDisableDate,
       animateYearScrolling,
       fadeTimeout,
+      classes,
     } = this.props;
 
     return (
@@ -142,64 +144,72 @@ export class DateTimePicker extends Component {
             />
         }
 
-        <View view={viewType.YEAR} selected={openView}>
-          <YearSelection
-            date={date}
-            minDate={minDate}
-            maxDate={maxDate}
-            onChange={this.handleYearChange}
-            disablePast={disablePast}
-            disableFuture={disableFuture}
-            utils={utils}
-            animateYearScrolling={animateYearScrolling}
-          />
-        </View>
+        <div className={classes.viewContainer}>
+          <View view={viewType.YEAR} selected={openView}>
+            <YearSelection
+              date={date}
+              minDate={minDate}
+              maxDate={maxDate}
+              onChange={this.handleYearChange}
+              disablePast={disablePast}
+              disableFuture={disableFuture}
+              utils={utils}
+              animateYearScrolling={animateYearScrolling}
+            />
+          </View>
 
-        <View view={viewType.DATE} selected={openView}>
-          <Calendar
-            date={date}
-            minDate={minDate}
-            maxDate={maxDate}
-            onChange={this.handleDayChange}
-            disablePast={disablePast}
-            disableFuture={disableFuture}
-            leftArrowIcon={leftArrowIcon}
-            rightArrowIcon={rightArrowIcon}
-            renderDay={renderDay}
-            utils={utils}
-            shouldDisableDate={shouldDisableDate}
-          />
-        </View>
+          <View view={viewType.DATE} selected={openView}>
+            <Calendar
+              date={date}
+              minDate={minDate}
+              maxDate={maxDate}
+              onChange={this.handleDayChange}
+              disablePast={disablePast}
+              disableFuture={disableFuture}
+              leftArrowIcon={leftArrowIcon}
+              rightArrowIcon={rightArrowIcon}
+              renderDay={renderDay}
+              utils={utils}
+              shouldDisableDate={shouldDisableDate}
+            />
+          </View>
 
-        <View view={viewType.HOUR} selected={openView}>
-          <Fade timeout={fadeTimeout} in>
-            <div>
-              <HourView
-                date={date}
-                meridiemMode={meridiemMode}
-                onChange={this.handleHourChange}
-                utils={utils}
-                ampm={ampm}
-              />
-            </div>
-          </Fade>
+          <View
+            timeout={fadeTimeout}
+            view={viewType.HOUR}
+            selected={openView}
+          >
+            <HourView
+              date={date}
+              meridiemMode={meridiemMode}
+              onChange={this.handleHourChange}
+              utils={utils}
+              ampm={ampm}
+            />
+          </View>
 
-        </View>
-
-        <View view={viewType.MINUTES} selected={openView}>
-          <Fade timeout={fadeTimeout} in>
-            <div>
-              <MinutesView
-                date={date}
-                onChange={this.handleChange}
-                utils={utils}
-              />
-            </div>
-          </Fade>
-        </View>
+          <View
+            timeout={fadeTimeout}
+            view={viewType.MINUTES}
+            selected={openView}
+          >
+            <MinutesView
+              date={date}
+              onChange={this.handleChange}
+              utils={utils}
+            />
+          </View>
+        </div>
       </Fragment>
     );
   }
 }
 
-export default withUtils()(DateTimePicker);
+const styles = {
+  viewContainer: {
+    minHeight: 300,
+    position: 'relative',
+  },
+};
+
+export default withStyles(styles)(withUtils()(DateTimePicker));
