@@ -50,3 +50,16 @@ Pick one of the following plugins:
 - [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) aims to work out of the box with all the `package.json`.
 
 **Important note**: Both of the options *should be temporary* until you add tree shaking capabilities to your project.
+
+## ECMAScript
+
+The published package on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms).
+
+We also publish a second version of the components to target **evergreen browsers**.
+You can find this version under the [`/es` folder](https://unpkg.com/material-ui@next/es/).
+We transpile all the non-official syntax to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more.
+It can be used to make separate bundles targeting different browsers.
+Old browsers will require more JavaScript features to be transpiled.
+So you have to increase the size of the bundle to support older browsers.
+
+⚠️ In order to minimize duplication of code in people bundle, we **discourage** library authors to use the `/es` folder.
