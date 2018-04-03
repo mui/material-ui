@@ -44,7 +44,9 @@ export default class CustomDateTimePicker extends PureComponent {
         <div className="picker">
           <DateTimePicker
             keyboard
-            label="Keyboard input"
+            label="Keyboard with error handler"
+            onError={console.log}
+            minDate={new Date('2018-01-01T00:00')}
             value={selectedDate}
             onChange={this.handleDateChange}
             format="YYYY/MM/DD hh:mm A"
