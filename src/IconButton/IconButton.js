@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
 
@@ -20,15 +21,39 @@ export const styles = theme => ({
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.action.active, 0.04),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+      '&$disabled': {
+        backgroundColor: 'transparent',
+      },
+    },
   },
   colorInherit: {
     color: 'inherit',
   },
   colorPrimary: {
     color: theme.palette.primary.main,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.primary.main, 0.04),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
   },
   colorSecondary: {
     color: theme.palette.secondary.main,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.secondary.main, 0.04),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
   },
   disabled: {
     color: theme.palette.action.disabled,
