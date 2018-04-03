@@ -157,14 +157,14 @@ function HomeSteps(props) {
             {`Take Material-UI to the next level with premium themes from
               our official marketplace—all built on Material-UI.`}
           </Typography>
-          <Link prefetch href="/premium-themes/list">
+          <Link prefetch href="/premium-themes">
             <img className={classes.img} alt="themes" src="/static/images/themes.png" />
           </Link>
         </div>
         <Divider className={classes.divider} />
         <Button
           component={buttonProps => (
-            <Link variant="button" prefetch href="/premium-themes/list" {...buttonProps} />
+            <Link variant="button" prefetch href="/premium-themes" {...buttonProps} />
           )}
         >
           Browse themes
