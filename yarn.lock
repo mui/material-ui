@@ -108,8 +108,10 @@
     "@types/node" "*"
 
 "@types/jss@^9.3.0":
-  version "9.3.3"
-  resolved "https://registry.yarnpkg.com/@types/jss/-/jss-9.3.3.tgz#818c6281c1909bfba173ee220fd1236fdeeb708e"
+  version "9.5.1"
+  resolved "https://registry.yarnpkg.com/@types/jss/-/jss-9.5.1.tgz#b98788a235fc9b6c592ba83547c000b10d00ef2e"
+  dependencies:
+    csstype "^2.0.0"
 
 "@types/minimatch@*":
   version "3.0.3"
@@ -125,9 +127,11 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@16.1.0":
-  version "16.1.0"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.1.0.tgz#6c0e9955ce73f332b4a1948d45decaf18c764c6e"
+"@types/react@*", "@types/react@16.3.4":
+  version "16.3.4"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.4.tgz#9bbb301cd38270ae200bed329a342bd2f140c3ea"
+  dependencies:
+    csstype "^2.0.0"
 
 "@zeit/check-updates@1.1.1":
   version "1.1.1"
@@ -2924,6 +2928,10 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   resolved "https://registry.yarnpkg.com/cssstyle/-/cssstyle-0.2.37.tgz#541097234cb2513c83ceed3acddc27ff27987d54"
   dependencies:
     cssom "0.3.x"
+
+csstype@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.0.0.tgz#7d199dd8dca409077e81569eca0c71a74c4f4158"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
