@@ -61,9 +61,16 @@ module.exports = {
 
       lvl0Page.children.forEach(lvl1Page => {
         if (!lvl1Page.children) {
-          map[lvl1Page.pathname] = {
-            page: lvl1Page.pathname,
-          };
+          const path = lvl1Page.pathname.split('/');
+          if (path[2] === 'index') {
+            map[`/${path[1]}`] = {
+              page: `/${path[1]}`,
+            };
+          } else {
+            map[lvl1Page.pathname] = {
+              page: lvl1Page.pathname,
+            };
+          }
           return;
         }
 
