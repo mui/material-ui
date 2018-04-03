@@ -180,10 +180,10 @@ export class DateTextField extends PureComponent {
       onError,
     } = this.props;
 
-    if (clearable && e.target.value === '') {
+    if (e.target.value === '') {
       if (this.props.value === null) {
         this.setState(this.updateState());
-      } else if (onClear) {
+      } else if (clearable && onClear) {
         onClear();
       }
 
