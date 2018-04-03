@@ -255,10 +255,19 @@ function withRoot(Component) {
     }
 
     getChildContext() {
+      const url = this.props.url;
+
+      let pathname = url.pathname;
+      if (pathname !== '/') {
+        // The leading / is only added to support static hosting (resolve /index.html).
+        // We remove it to normalize the pathname.
+        pathname = pathname.replace(/\/$/, '');
+      }
+
       return {
-        url: this.props.url ? this.props.url : null,
+        url,
         pages,
-        activePage: findActivePage(pages, this.props.url),
+        activePage: findActivePage(pages, { ...url, pathname }),
       };
     }
 
