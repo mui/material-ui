@@ -1,15 +1,8 @@
 import React from 'react';
-import pure from 'recompose/pure';
-import SvgIcon from '{{{ muiRequireStmt }}}';
+import createSvgIcon from './utils/createSvgIcon';
 
-const SvgIconCustom = global.__MUI_SvgIcon__ || SvgIcon;
-
-let {{className}} = props =>
-  <SvgIconCustom {...props}>
+export default createSvgIcon(
+  <g>
     {{{paths}}}
-  </SvgIconCustom>;
-
-{{className}} = pure({{className}});
-{{className}}.muiName = 'SvgIcon';
-
-export default {{className}};
+  </g>
+)('{{className}}');
