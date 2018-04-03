@@ -122,6 +122,9 @@ class SwipeableDrawer extends React.Component {
   }
 
   handleBodyTouchStart = event => {
+    // the ref may be null when a parent component updates while swiping
+    if (!this.paper) return;
+
     // We are not supposed to hanlde this touch move.
     if (nodeThatClaimedTheSwipe !== null && nodeThatClaimedTheSwipe !== this) {
       return;
@@ -166,6 +169,9 @@ class SwipeableDrawer extends React.Component {
   };
 
   handleBodyTouchMove = event => {
+    // the ref may be null when a parent component updates while swiping
+    if (!this.paper) return;
+
     const anchor = getAnchor(this.props);
     const horizontalSwipe = isHorizontal(this.props);
 
