@@ -78,6 +78,8 @@ const jsRegex = /\.js$/;
 const blackList = ['/.eslintrc', '/_document'];
 
 // Returns the next.js pages available in a nested format.
+// The output is in the next.js format.
+// Each pathname is a route you can navigate to.
 function findPages(
   options = {},
   directory = path.resolve(__dirname, '../../../../pages'),
@@ -88,7 +90,9 @@ function findPages(
     const pathname = itemPath
       .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
       .replace(/^.*\/pages/, '')
-      .replace('.js', '');
+      .replace('.js', '')
+      .replace(/^\/index$/, '/') // Replace `index` by `/`.
+      .replace(/\/index$/, '');
 
     if (
       options.front &&

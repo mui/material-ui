@@ -47,38 +47,25 @@ module.exports = {
     });
   },
   webpackDevMiddleware: config => config,
+  // next.js also provide a `defaultPathMap` so we could simplify the logic.
+  // However, we keep it in order to prevent any future regression on the `findPages()` side.
   exportPathMap: () => {
-    // Replace `index` by `/`.
-    function sanitize(pathname) {
-      return pathname.replace(/^\/index$/, '/').replace(/\/index$/, '');
-    }
-
     const map = {};
 
-    // Do not use a recursive logic as we don't want to support a depth > 2.
-    findPages().forEach(lvl0Page => {
-      if (!lvl0Page.children) {
-        map[sanitize(lvl0Page.pathname)] = {
-          page: sanitize(lvl0Page.pathname),
-        };
-        return;
-      }
-
-      lvl0Page.children.forEach(lvl1Page => {
-        if (!lvl1Page.children) {
-          map[sanitize(lvl1Page.pathname)] = {
-            page: sanitize(lvl1Page.pathname),
+    function generateMap(pages) {
+      pages.forEach(page => {
+        if (!page.children) {
+          map[page.pathname] = {
+            page: page.pathname,
           };
           return;
         }
 
-        lvl1Page.children.forEach(lvl2Page => {
-          map[sanitize(lvl2Page.pathname)] = {
-            page: sanitize(lvl2Page.pathname),
-          };
-        });
+        generateMap(page.children);
       });
-    });
+    }
+
+    generateMap(findPages());
 
     return map;
   },
