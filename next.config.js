@@ -48,28 +48,33 @@ module.exports = {
   },
   webpackDevMiddleware: config => config,
   exportPathMap: () => {
-    const pages = findPages();
-    const map = {
-      '/': { page: '/' },
-    };
+    // Replace `index` by `/`.
+    function sanitize(pathname) {
+      return pathname.replace(/^\/index$/, '/').replace(/\/index$/, '');
+    }
+
+    const map = {};
 
     // Do not use a recursive logic as we don't want to support a depth > 2.
-    pages.forEach(lvl0Page => {
+    findPages().forEach(lvl0Page => {
       if (!lvl0Page.children) {
+        map[sanitize(lvl0Page.pathname)] = {
+          page: sanitize(lvl0Page.pathname),
+        };
         return;
       }
 
       lvl0Page.children.forEach(lvl1Page => {
         if (!lvl1Page.children) {
-          map[lvl1Page.pathname] = {
-            page: lvl1Page.pathname,
+          map[sanitize(lvl1Page.pathname)] = {
+            page: sanitize(lvl1Page.pathname),
           };
           return;
         }
 
         lvl1Page.children.forEach(lvl2Page => {
-          map[lvl2Page.pathname] = {
-            page: lvl2Page.pathname,
+          map[sanitize(lvl2Page.pathname)] = {
+            page: sanitize(lvl2Page.pathname),
           };
         });
       });
