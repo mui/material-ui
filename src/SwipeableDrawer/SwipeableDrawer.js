@@ -50,6 +50,7 @@ class SwipeableDrawer extends React.Component {
       } else if (prevVariant === 'temporary') {
         this.removeTouchStart();
       }
+    }
   }
 
   componentWillUnmount() {
@@ -362,7 +363,7 @@ SwipeableDrawer.propTypes = {
   disableDiscovery: PropTypes.bool,
   /**
    * If `true`, swipe to open is disabled. This is useful in browsers where swiping triggers
-   * navigation actions. Swiping is disabled on iOS browsers by default.
+   * navigation actions. Swipe to open disabled on iOS browsers by default.
    */
   disableSwipeToOpen: PropTypes.bool,
   /**
