@@ -44,11 +44,12 @@ class SwipeableDrawer extends React.Component {
     const variant = this.props.variant;
     const prevVariant = prevProps.variant;
 
-    if (variant === 'temporary' && prevVariant !== 'temporary') {
-      this.listenTouchStart();
-    } else if (variant !== 'temporary' && prevVariant === 'temporary') {
-      this.removeTouchStart();
-    }
+    if (variant !== prevVariant) {
+      if (variant === 'temporary') {
+        this.listenTouchStart();
+      } else if (prevVariant === 'temporary') {
+        this.removeTouchStart();
+      }
   }
 
   componentWillUnmount() {
