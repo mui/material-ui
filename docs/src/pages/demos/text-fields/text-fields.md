@@ -15,7 +15,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 ## Components
 
-`TextField` is composed of smaller components (`FormControl`, `InputLabel`, `Input`, and `FormHelperText`) that you can leverage directly to significantly customize your form inputs.
+`TextField` is composed of smaller components ([`FormControl`](/api/form-control), [`InputLabel`](/api/input-label), [`Input`](/api/input), and [`FormHelperText`](/api/form-helper-text)) that you can leverage directly to significantly customize your form inputs.
 
 You might also have noticed that some native HTML input properties are missing from the `TextField` component.
 This is on purpose.
@@ -58,3 +58,9 @@ Here is an example of how you can change the main color of an input from "primar
 There is no limit.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
+
+## With icon
+
+Icons can be specified as prepended or appended.
+
+{{"demo": "pages/demos/text-fields/InputWithIcon.js"}}
