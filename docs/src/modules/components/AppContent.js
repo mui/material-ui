@@ -10,9 +10,9 @@ const styles = theme => ({
     maxWidth: '100%',
     margin: '0 auto',
   }),
-  [theme.breakpoints.up(900 + theme.spacing.unit * 6)]: {
+  [theme.breakpoints.up('md')]: {
     root: {
-      maxWidth: 900,
+      maxWidth: theme.breakpoints.values.md,
     },
   },
 });
