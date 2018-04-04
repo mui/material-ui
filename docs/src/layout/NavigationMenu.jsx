@@ -33,6 +33,7 @@ const navItems = [
     children: [
       { title: 'CSS overrides', href: '/guides/css-overrides' },
       { title: 'Global format customization', href: '/guides/formats' },
+      { title: 'Open pickers programmatically', href: '/guides/controlling-programmatically' },
     ],
   },
 ];
