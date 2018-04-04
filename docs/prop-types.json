@@ -1319,6 +1319,13 @@
           },
           "required": true,
           "description": ""
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
         }
       }
     }
@@ -1456,6 +1463,17 @@
       "displayName": "DateTimePickerView",
       "methods": [],
       "props": {
+        "timeout": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
         "view": {
           "type": {
             "name": "string"
@@ -2748,6 +2766,17 @@
           "defaultValue": {
             "value": "'end'",
             "computed": false
+          }
+        },
+        "onError": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Callback firing when date that applied in the keyboard is invalid",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
           }
         }
       }
