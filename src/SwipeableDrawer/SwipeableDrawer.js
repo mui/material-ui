@@ -122,9 +122,6 @@ class SwipeableDrawer extends React.Component {
   }
 
   handleBodyTouchStart = event => {
-    // the ref may be null when a parent component updates while swiping
-    if (!this.paper) return;
-
     // We are not supposed to hanlde this touch move.
     if (nodeThatClaimedTheSwipe !== null && nodeThatClaimedTheSwipe !== this) {
       return;
@@ -156,7 +153,8 @@ class SwipeableDrawer extends React.Component {
     this.startY = currentY;
 
     this.setState({ maybeSwiping: true });
-    if (!open) {
+    if (!open && this.paper) {
+      // the ref may be null when a parent component updates while swiping
       this.setPosition(this.getMaxTranslate() + (disableDiscovery ? 20 : -swipeAreaWidth), {
         changeTransition: false,
       });
