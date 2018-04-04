@@ -363,7 +363,7 @@ SwipeableDrawer.propTypes = {
   disableDiscovery: PropTypes.bool,
   /**
    * If `true`, swipe to open is disabled. This is useful in browsers where swiping triggers
-   * navigation actions. Swipe to open disabled on iOS browsers by default.
+   * navigation actions. Swipe to open is disabled on iOS browsers by default.
    */
   disableSwipeToOpen: PropTypes.bool,
   /**
