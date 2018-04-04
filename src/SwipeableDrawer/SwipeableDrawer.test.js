@@ -396,4 +396,21 @@ describe('<SwipeableDrawer />', () => {
       wrapper.unmount();
     });
   });
+
+  it('does not crash when updating the parent component while swiping', () => {
+    const wrapper = mount(
+      <SwipeableDrawerNaked
+        onOpen={() => {}}
+        onClose={() => {}}
+        open={false}
+        theme={createMuiTheme()}
+      >
+        <h1>Hello</h1>
+      </SwipeableDrawerNaked>,
+    );
+    fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+    // simulate paper ref being null because of the drawer being updated
+    wrapper.instance().handlePaperRef(null);
+    fireBodyMouseEvent('touchmove', { touches: [{ pageX: 20, clientY: 0 }] });
+  });
 });
