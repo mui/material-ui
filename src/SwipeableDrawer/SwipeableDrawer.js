@@ -44,10 +44,12 @@ class SwipeableDrawer extends React.Component {
     const variant = this.props.variant;
     const prevVariant = prevProps.variant;
 
-    if (variant === 'temporary' && prevVariant !== 'temporary') {
-      this.listenTouchStart();
-    } else if (variant !== 'temporary' && prevVariant === 'temporary') {
-      this.removeTouchStart();
+    if (variant !== prevVariant) {
+      if (variant === 'temporary') {
+        this.listenTouchStart();
+      } else if (prevVariant === 'temporary') {
+        this.removeTouchStart();
+      }
     }
   }
 
@@ -127,7 +129,7 @@ class SwipeableDrawer extends React.Component {
       return;
     }
 
-    const { disableDiscovery, open, swipeAreaWidth } = this.props;
+    const { disableDiscovery, disableSwipeToOpen, open, swipeAreaWidth } = this.props;
     const anchor = getAnchor(this.props);
     const currentX =
       anchor === 'right'
@@ -139,6 +141,9 @@ class SwipeableDrawer extends React.Component {
         : event.touches[0].clientY;
 
     if (!open) {
+      if (disableSwipeToOpen) {
+        return;
+      }
       if (isHorizontal(this.props)) {
         if (currentX > swipeAreaWidth) {
           return;
@@ -309,6 +314,7 @@ class SwipeableDrawer extends React.Component {
     const {
       disableBackdropTransition,
       disableDiscovery,
+      disableSwipeToOpen,
       ModalProps: { BackdropProps, ...ModalPropsProp } = {},
       onOpen,
       open,
@@ -355,6 +361,11 @@ SwipeableDrawer.propTypes = {
    * to promote accidental discovery of the swipe gesture.
    */
   disableDiscovery: PropTypes.bool,
+  /**
+   * If `true`, swipe to open is disabled. This is useful in browsers where swiping triggers
+   * navigation actions. Swipe to open is disabled on iOS browsers by default.
+   */
+  disableSwipeToOpen: PropTypes.bool,
   /**
    * @ignore
    */
@@ -406,6 +417,8 @@ SwipeableDrawer.defaultProps = {
   anchor: 'left',
   disableBackdropTransition: false,
   disableDiscovery: false,
+  disableSwipeToOpen:
+    typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent),
   swipeAreaWidth: 20,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
   variant: 'temporary', // Mobile first.

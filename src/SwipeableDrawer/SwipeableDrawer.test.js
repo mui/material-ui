@@ -317,6 +317,54 @@ describe('<SwipeableDrawer />', () => {
     });
   });
 
+  describe('disableSwipeToOpen', () => {
+    it('should not support swipe to open if disableSwipeToOpen is set', () => {
+      const wrapper = mount(
+        <SwipeableDrawerNaked
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          theme={createMuiTheme()}
+        >
+          <h1>Hello</h1>
+        </SwipeableDrawerNaked>,
+      );
+
+      // simulate open swipe
+      wrapper.setProps({ disableSwipeToOpen: true });
+      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+      assert.strictEqual(
+        wrapper.state().maybeSwiping,
+        false,
+        'should not be listening for open swipe',
+      );
+      wrapper.unmount();
+    });
+
+    it('should support swipe to close if disableSwipeToOpen is set', () => {
+      const wrapper = mount(
+        <SwipeableDrawerNaked
+          onOpen={() => {}}
+          onClose={() => {}}
+          open={false}
+          theme={createMuiTheme()}
+        >
+          <h1>Hello</h1>
+        </SwipeableDrawerNaked>,
+      );
+
+      // simulate close swipe
+      wrapper.setProps({ disableSwipeToOpen: true, open: true });
+      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+      assert.strictEqual(
+        wrapper.state().maybeSwiping,
+        true,
+        'should not be listening for open swipe',
+      );
+      wrapper.unmount();
+    });
+  });
+
   describe('lock', () => {
     it('should handle a single swipe at the time', () => {
       const handleOpen = spy();

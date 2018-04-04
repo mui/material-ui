@@ -5,6 +5,7 @@ import { DrawerProps } from '../Drawer';
 export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'open'> {
   disableBackdropTransition?: boolean;
   disableDiscovery?: boolean;
+  disableSwipeToOpen?: boolean;
   onClose: React.ReactEventHandler<{}>;
   onOpen: React.ReactEventHandler<{}>;
   open: boolean;
