@@ -1,7 +1,7 @@
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class MuiPickersUtilsProvider extends PureComponent {
+export default class MuiPickersUtilsProvider extends Component {
   static propTypes = {
     utils: PropTypes.func.isRequired,
     locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
