@@ -358,11 +358,11 @@ describe('<SwipeableDrawer />', () => {
         theme={createMuiTheme()}
       >
         <h1>Hello</h1>
-      </SwipeableDrawerNaked>
+      </SwipeableDrawerNaked>,
     );
     fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
     // simulate paper ref being null because of the drawer being updated
     wrapper.instance().handlePaperRef(null);
     fireBodyMouseEvent('touchmove', { touches: [{ pageX: 20, clientY: 0 }] });
-  })
+  });
 });
