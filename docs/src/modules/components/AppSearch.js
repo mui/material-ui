@@ -4,12 +4,14 @@ import compose from 'recompose/compose';
 import pure from 'recompose/pure';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import SearchIcon from 'material-ui-icons/Search';
 import { fade } from 'material-ui/styles/colorManipulator';
 import { withStyles } from 'material-ui/styles';
 
 let searchTimer;
+let initialized = false;
 
 function initDocsearch() {
   if (!process.browser) {
@@ -18,21 +20,34 @@ function initDocsearch() {
 
   clearInterval(searchTimer);
   searchTimer = setInterval(() => {
-    if (window.docsearch && document.querySelector('#docsearch-input')) {
-      clearInterval(searchTimer);
-      window.docsearch({
-        apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
-        indexName: 'material-ui',
-        inputSelector: '#docsearch-input',
-        // Set debug to true if you want to inspect the dropdown.
-        // debug: true,
-      });
-    }
-  }, 100);
-}
+    const docsearchInput = document.querySelector('#docsearch-input');
 
-function removeDocsearch() {
-  clearInterval(searchTimer);
+    if (!window.docsearch || !docsearchInput) {
+      return;
+    }
+
+    if (initialized === docsearchInput) {
+      clearInterval(searchTimer);
+      return;
+    }
+
+    initialized = docsearchInput;
+    clearInterval(searchTimer);
+    window.docsearch({
+      apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
+      indexName: 'material-ui',
+      inputSelector: '#docsearch-input',
+      handleSelected: (input, event, suggestion) => {
+        const url = suggestion.url
+          .replace(/^https:\/\/material-ui-next\.com/, '')
+          .replace(/\/#/, '#')
+          .replace(/\/$/, '');
+        Router.push(url);
+      },
+      // Set debug to true if you want to inspect the dropdown.
+      debug: true,
+    });
+  }, 100);
 }
 
 const styles = theme => ({
@@ -42,8 +57,29 @@ const styles = theme => ({
       '& .algolia-docsearch-suggestion--category-header-lvl0': {
         color: theme.palette.text.primary,
       },
+      '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--subcategory-column': {
+        opacity: 1,
+        padding: '5.33px 10.66px',
+        textAlign: 'right',
+        width: '30%',
+        '&:before': {
+          display: 'block',
+        },
+        '&:after': {
+          display: 'none',
+        },
+      },
+      '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--content': {
+        float: 'right',
+        padding: '5.33px 0 5.33px 10.66px',
+        width: '70%',
+        '&:before': {
+          display: 'block',
+        },
+      },
       '& .algolia-docsearch-suggestion--subcategory-column-text': {
         color: theme.palette.text.secondary,
+        fontWeight: theme.typography.fontWeightRegular,
       },
       '& .algolia-docsearch-suggestion--highlight': {
         color: theme.palette.type === 'light' ? '#174d8c' : '#acccf1',
@@ -133,15 +169,12 @@ class AppSearch extends React.Component {
   render() {
     const { classes, width } = this.props;
 
-    if (!isWidthUp('sm', width)) {
-      removeDocsearch();
-      return null;
+    if (isWidthUp('sm', width)) {
+      initDocsearch();
     }
 
-    initDocsearch();
-
     return (
-      <div className={classes.root}>
+      <div className={classes.root} style={{ display: isWidthUp('sm', width) ? 'block' : 'none' }}>
         <EventListener target="window" onKeyDown={this.handleKeyDown} />
         <div className={classes.search}>
           <SearchIcon />
