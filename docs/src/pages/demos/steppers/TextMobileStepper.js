@@ -30,13 +30,13 @@ class TextMobileStepper extends React.Component {
 
   handleNext = () => {
     this.setState(prevState => ({
-      activeStep: prevState + 1,
+      activeStep: prevState.activeStep + 1,
     }));
   };
 
   handleBack = () => {
     this.setState(prevState => ({
-      activeStep: prevState - 1,
+      activeStep: prevState.activeStep - 1,
     }));
   };
 
