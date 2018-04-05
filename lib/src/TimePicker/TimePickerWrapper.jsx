@@ -20,6 +20,8 @@ export class TimePickerWrapper extends PickerBase {
     autoOk: PropTypes.bool,
     /** 12h/24h view for hour selection clock */
     ampm: PropTypes.bool,
+    /** Switching hour/minutes animation timeout in milliseconds (set 0 to disable) */
+    fadeTimeout: PropTypes.number,
   }
 
   static defaultProps = {
@@ -27,6 +29,7 @@ export class TimePickerWrapper extends PickerBase {
     format: undefined,
     autoOk: false,
     ampm: true,
+    fadeTimeout: 400,
   }
 
   default12hFormat = 'hh:mm A'
@@ -35,7 +38,7 @@ export class TimePickerWrapper extends PickerBase {
   render() {
     const { date } = this.state;
     const {
-      value, format, autoOk, onChange, utils, ampm, ...other
+      value, format, autoOk, onChange, utils, ampm, fadeTimeout, ...other
     } = this.props;
 
     return (
@@ -47,6 +50,7 @@ export class TimePickerWrapper extends PickerBase {
         onAccept={this.handleAccept}
         onChange={this.handleTextFieldChange}
         onDismiss={this.handleDismiss}
+        onSetToday={this.handleSetTodayDate}
         {...other}
       >
         <TimePicker
@@ -54,6 +58,7 @@ export class TimePickerWrapper extends PickerBase {
           onChange={this.handleChange}
           utils={utils}
           ampm={ampm}
+          fadeTimeout={fadeTimeout}
         />
       </ModalWrapper>
     );

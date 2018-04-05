@@ -22,10 +22,17 @@ const materialTheme = createMuiTheme({
         color: lightBlue.A700,
       },
       selected: {
-        backgroundColor: lightBlue['500'],
+        backgroundColor: lightBlue['400'],
       },
       current: {
         color: lightBlue['900'],
+      },
+    },
+    MuiPickersModal: {
+      dialogAction: {
+        '& > button': {
+          color: lightBlue['400'],
+        },
       },
     },
   },

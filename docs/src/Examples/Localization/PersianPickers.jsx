@@ -1,18 +1,12 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 import jMoment from 'moment-jalaali';
 import { Typography } from 'material-ui';
 import { TimePicker, DateTimePicker, DatePicker } from 'material-ui-pickers';
-import jalaliUtils from 'material-ui-pickers-jalali-utils';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import JalaliUtils from 'material-ui-pickers-jalali-utils';
 
 jMoment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
-
-function format(date, formatting) {
-  if (date === null) {
-    return '';
-  }
-  return jMoment(date).locale('fa').format(formatting);
-}
 
 export default class BasicUsage extends Component {
   state = {
@@ -27,7 +21,7 @@ export default class BasicUsage extends Component {
     const { selectedDate } = this.state;
 
     return (
-      <Fragment>
+      <MuiPickersUtilsProvider utils={JalaliUtils} locale="fa">
         <div className="picker">
           <Typography variant="headline" align="center" gutterBottom>
             Date picker
@@ -38,11 +32,10 @@ export default class BasicUsage extends Component {
             okLabel="تأیید"
             cancelLabel="لغو"
             clearLabel="پاک کردن"
-            labelFunc={date => format(date, 'jYYYY/jMM/jDD')}
+            labelFunc={date => (date ? date.format('jYYYY/jMM/jDD') : '')}
             value={selectedDate}
             onChange={this.handleDateChange}
             animateYearScrolling={false}
-            utils={jalaliUtils}
           />
         </div>
 
@@ -56,10 +49,9 @@ export default class BasicUsage extends Component {
             okLabel="تأیید"
             cancelLabel="لغو"
             clearLabel="پاک کردن"
-            labelFunc={date => format(date, 'hh:mm A')}
+            labelFunc={date => (date ? date.format('hh:mm A') : '')}
             value={selectedDate}
             onChange={this.handleDateChange}
-            utils={jalaliUtils}
           />
         </div>
 
@@ -71,13 +63,12 @@ export default class BasicUsage extends Component {
           <DateTimePicker
             okLabel="تأیید"
             cancelLabel="لغو"
-            labelFunc={date => format(date, 'jYYYY/jMM/jDD hh:mm A')}
+            labelFunc={date => (date ? date.format('jYYYY/jMM/jDD hh:mm A') : '')}
             value={selectedDate}
             onChange={this.handleDateChange}
-            utils={jalaliUtils}
           />
         </div>
-      </Fragment>
+      </MuiPickersUtilsProvider>
     );
   }
 }

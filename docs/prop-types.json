@@ -1312,6 +1312,20 @@
             "value": "false",
             "computed": false
           }
+        },
+        "fadeTimeout": {
+          "type": {
+            "name": "number"
+          },
+          "required": true,
+          "description": ""
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
         }
       }
     }
@@ -1449,6 +1463,17 @@
       "displayName": "DateTimePickerView",
       "methods": [],
       "props": {
+        "timeout": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
         "view": {
           "type": {
             "name": "string"
@@ -1723,6 +1748,17 @@
           "description": "Open directly to particular view",
           "defaultValue": {
             "value": "'date'",
+            "computed": false
+          }
+        },
+        "fadeTimeout": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "Switching hour/minutes animation timeout in milliseconds (set 0 to disable)",
+          "defaultValue": {
+            "value": "400",
             "computed": false
           }
         }
@@ -2227,6 +2263,13 @@
             "value": "true",
             "computed": false
           }
+        },
+        "fadeTimeout": {
+          "type": {
+            "name": "number"
+          },
+          "required": true,
+          "description": ""
         }
       }
     }
@@ -2293,6 +2336,17 @@
           "description": "12h/24h view for hour selection clock",
           "defaultValue": {
             "value": "true",
+            "computed": false
+          }
+        },
+        "fadeTimeout": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "Switching hour/minutes animation timeout in milliseconds (set 0 to disable)",
+          "defaultValue": {
+            "value": "400",
             "computed": false
           }
         }
@@ -2713,6 +2767,17 @@
             "value": "'end'",
             "computed": false
           }
+        },
+        "onError": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Callback firing when date that applied in the keyboard is invalid",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
         }
       }
     }
@@ -2820,6 +2885,27 @@
         "clearable": {
           "type": {
             "name": "bool"
+          },
+          "required": true,
+          "description": ""
+        },
+        "todayLabel": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "showTodayButton": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onSetToday": {
+          "type": {
+            "name": "func"
           },
           "required": true,
           "description": ""
@@ -2964,6 +3050,13 @@
       "displayName": "ModalWrapper",
       "methods": [
         {
+          "name": "handleSetTodayDate",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
           "name": "open",
           "docblock": null,
           "modifiers": [],
@@ -3078,6 +3171,28 @@
             "computed": false
           }
         },
+        "todayLabel": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "\"Today\" label message",
+          "defaultValue": {
+            "value": "'Today'",
+            "computed": false
+          }
+        },
+        "showTodayButton": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If true today button will be displayed\n<b>Note*</b> that clear button has higher priority",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
         "onOpen": {
           "type": {
             "name": "func"
@@ -3134,6 +3249,17 @@
           }
         },
         "onClear": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "onSetToday": {
           "type": {
             "name": "func"
           },

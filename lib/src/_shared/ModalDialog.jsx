@@ -24,24 +24,35 @@ const styles = {
     // see https://github.com/dmtrKovalenko/material-ui-pickers/pull/267
     justifyContent: 'flex-start',
   },
-  dialogAction: {
+  clearableDialogAction: {
     '&:first-child': {
       marginRight: 'auto',
     },
   },
+  todayDialogAction: {
+    '&:first-child': {
+      marginRight: 'auto',
+    },
+  },
+  dialogAction: {
+    // empty but may be needed for override
+  },
 };
 
-const ModalDialog = ({
+export const ModalDialog = ({
   children,
   classes,
   onAccept,
   onDismiss,
   onClear,
+  onSetToday,
   okLabel,
   cancelLabel,
   clearLabel,
+  todayLabel,
   dialogContentClassName,
   clearable,
+  showTodayButton,
   ...other
 }) => (
   <Dialog onClose={onDismiss} classes={{ paper: classes.dialogRoot }} {...other}>
@@ -52,10 +63,12 @@ const ModalDialog = ({
     <DialogActions
       classes={{
         root: clearable && classes.dialogActions,
-        action: clearable && classes.dialogAction,
+        action: classnames(classes.dialogAction, {
+          [classes.clearableDialogAction]: clearable,
+          [classes.todayDialogAction]: !clearable && showTodayButton,
+        }),
       }}
     >
-
       { clearable &&
         <Button
           color="primary"
@@ -65,6 +78,17 @@ const ModalDialog = ({
           { clearLabel }
         </Button>
       }
+
+      { !clearable && showTodayButton &&
+        <Button
+          color="primary"
+          onClick={onSetToday}
+          aria-label={todayLabel}
+        >
+          { todayLabel }
+        </Button>
+      }
+
       <Button
         color="primary"
         onClick={onDismiss}
@@ -96,6 +120,9 @@ ModalDialog.propTypes = {
   cancelLabel: PropTypes.string.isRequired,
   clearLabel: PropTypes.string.isRequired,
   clearable: PropTypes.bool.isRequired,
+  todayLabel: PropTypes.string.isRequired,
+  showTodayButton: PropTypes.bool.isRequired,
+  onSetToday: PropTypes.func.isRequired,
 };
 
 ModalDialog.defaultProps = {

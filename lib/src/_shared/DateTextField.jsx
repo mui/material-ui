@@ -56,6 +56,8 @@ export class DateTextField extends PureComponent {
     InputAdornmentProps: PropTypes.object,
     /** Specifies position of keyboard button adornment */
     adornmentPosition: PropTypes.oneOf(['start', 'end']),
+    /** Callback firing when date that applied in the keyboard is invalid  */
+    onError: PropTypes.func,
   }
 
   static defaultProps = {
@@ -74,6 +76,7 @@ export class DateTextField extends PureComponent {
     onClear: undefined,
     disablePast: false,
     disableFuture: false,
+    onError: undefined,
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
     minDateMessage: 'Date should not be before minimal date',
@@ -174,12 +177,13 @@ export class DateTextField extends PureComponent {
       onClear,
       utils,
       format,
+      onError,
     } = this.props;
 
-    if (clearable && e.target.value === '') {
+    if (e.target.value === '') {
       if (this.props.value === null) {
         this.setState(this.updateState());
-      } else if (onClear) {
+      } else if (clearable && onClear) {
         onClear();
       }
 
@@ -199,6 +203,10 @@ export class DateTextField extends PureComponent {
       if (!error && utils.format(newValue, 'LLLL') !== utils.format(oldValue, 'LLLL')) {
         this.props.onChange(newValue);
       }
+
+      if (error && onError) {
+        onError(newValue, error);
+      }
     });
   }
 
@@ -211,7 +219,7 @@ export class DateTextField extends PureComponent {
       return;
     }
 
-    e.target.blur();
+
     this.openPicker(e);
   }
 

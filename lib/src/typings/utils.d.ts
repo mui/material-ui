@@ -1,6 +1,9 @@
 import { MaterialUiPickersDate } from './date'
 
-export interface Utils {
+export class Utils {
+  locale: any;
+  constructor (options?: { locale: any, moment: any });
+
   date(value: any): MaterialUiPickersDate;
   addDays(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate;
   isValid(value: MaterialUiPickersDate): boolean;
@@ -29,7 +32,6 @@ export interface Utils {
   getYear(value: MaterialUiPickersDate): number;
   setYear(value: MaterialUiPickersDate): MaterialUiPickersDate;
 
-
   getStartOfMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
   getNextMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
   getPreviousMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
@@ -39,7 +41,7 @@ export interface Utils {
   getYearRange(): MaterialUiPickersDate[];
 
   // displaying methods
-  getMeridiemText(ampm: boolean): string;
+  getMeridiemText(ampm: 'am' | 'pm'): string;
   getCalendarHeaderText(date: MaterialUiPickersDate): string;
   getDatePickerHeaderText(date: MaterialUiPickersDate): string;
   getDateTimePickerHeaderText(date: MaterialUiPickersDate): string;
