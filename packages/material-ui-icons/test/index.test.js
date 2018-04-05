@@ -149,70 +149,8 @@ describe('--svg-dir, --innerPath, --fileSuffix', () => {
       assert.strictEqual(fs.existsSync(actualFilePath), true);
 
       const actualFileData = fs.readFileSync(actualFilePath, { encoding: 'utf8' });
-      assert.include(actualFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
+      assert.include(actualFileData, "import createSvgIcon from './utils/createSvgIcon'");
       done();
-    });
-  });
-});
-
-describe('--mui-require', () => {
-  const options = {
-    svgDir: MUI_ICONS_SVG_DIR,
-    innerPath: '/svg/production/',
-    glob: '/**/production/*_24px.svg',
-    disableLog: DISABLE_LOG,
-    renameFilter: builder.RENAME_FILTER_MUI,
-    outputDir: null,
-  };
-  let tempPath;
-  let actualFilePath;
-
-  before(() => {
-    tempPath = temp.mkdirSync();
-    actualFilePath = path.join(tempPath, 'Accessibility.js');
-    options.outputDir = tempPath;
-  });
-
-  after(() => {
-    temp.cleanupSync();
-  });
-
-  describe('absolute', () => {
-    it('default should be absolute', done => {
-      builder.main(options, () => {
-        assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
-        assert.strictEqual(fs.existsSync(actualFilePath), true);
-
-        const actualFileData = fs.readFileSync(actualFilePath, { encoding: 'utf8' });
-        assert.include(actualFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
-        done();
-      });
-    });
-
-    it('should load SvgIcon as absolute', done => {
-      const absoluteOptions = { ...options, muiRequire: 'absolute' };
-      builder.main(absoluteOptions, () => {
-        assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
-        assert.strictEqual(fs.existsSync(actualFilePath), true);
-
-        const actualFileData = fs.readFileSync(actualFilePath, { encoding: 'utf8' });
-        assert.include(actualFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
-        done();
-      });
-    });
-  });
-
-  describe('relative', () => {
-    it('should load SvgIcon as relative', done => {
-      const relativeOptions = { ...options, muiRequire: 'relative' };
-      builder.main(relativeOptions, () => {
-        assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
-        assert.strictEqual(fs.existsSync(actualFilePath), true);
-
-        const actualFileData = fs.readFileSync(actualFilePath, { encoding: 'utf8' });
-        assert.include(actualFileData, builder.SVG_ICON_RELATIVE_REQUIRE);
-        done();
-      });
     });
   });
 });

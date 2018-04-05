@@ -4,16 +4,16 @@ import SvgIcon from 'material-ui/SvgIcon';
 
 const SvgIconCustom = global.__MUI_SvgIcon__ || SvgIcon;
 
-const createSvgIcon = path => displayName => {
+function createSvgIcon(path, displayName) {
   let Icon = props => (
     <SvgIconCustom {...props}>
       {path}
     </SvgIconCustom>
   );
 
+  Icon.displayName = displayName;
   Icon = pure(Icon);
   Icon.muiName = 'SvgIcon';
-  Icon.displayName = displayName;
 
   return Icon;
 };
