@@ -163,7 +163,6 @@ const styles = theme => ({
   },
   landingMain: {
     padding: 0,
-    width: '100vw',
     maxWidth: '100vw',
     marginLeft: 0,
   },
