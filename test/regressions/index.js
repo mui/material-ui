@@ -33,6 +33,7 @@ const blacklistSuite = [
 
   // Useless
   'docs-', // Home
+  'docs-versions',
   'docs-guides',
   'docs-premium-themes',
 ];
