@@ -2,7 +2,7 @@ import React from 'react';
 import pure from 'recompose/pure';
 import SvgIcon from 'material-ui/SvgIcon';
 
-const SvgIconCustom = global.__MUI_SvgIcon__ || SvgIcon;
+const SvgIconCustom = typeof global !== 'undefined' && global.__MUI_SvgIcon__ || SvgIcon;
 
 function createSvgIcon(path, displayName) {
   let Icon = props => (
