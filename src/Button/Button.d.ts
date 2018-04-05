@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
+import { Link } from 'react-router-dom';
 
 export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassKey, 'component'> {
   color?: PropTypes.Color;
-  component?: React.ReactType<ButtonProps>;
+  component?: React.ReactType<ButtonProps> | Link;
+  to?: string;
   disabled?: boolean;
   disableFocusRipple?: boolean;
   disableRipple?: boolean;

@@ -99,6 +99,7 @@
   "devDependencies": {
     "@types/enzyme": "^3.1.4",
     "@types/react": "16.3.4",
+    "@types/react-router-dom": "^4.2.6",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "autoprefixer": "^8.0.0",
