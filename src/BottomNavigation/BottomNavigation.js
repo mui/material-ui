@@ -30,7 +30,7 @@ function BottomNavigation(props) {
       return null;
     }
 
-    const childValue = child.props.value || childIndex;
+    const childValue = child.props.value === undefined ? childIndex : child.props.value;
     return React.cloneElement(child, {
       selected: childValue === value,
       showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,

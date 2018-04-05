@@ -94,4 +94,42 @@ describe('<BottomNavigation />', () => {
     assert.strictEqual(handleChange.callCount, 1, 'should have been called once');
     assert.strictEqual(handleChange.args[0][1], 1, 'should have been called with value 1');
   });
+
+  it('should use custom action values', () => {
+    const handleChange = spy();
+    const wrapper = mount(
+      <BottomNavigation showLabels value={'first'} onChange={handleChange}>
+        <BottomNavigationAction value={'first'} icon={icon} />
+        <BottomNavigationAction value={'second'} icon={icon} />
+      </BottomNavigation>,
+    );
+    wrapper
+      .find(BottomNavigationAction)
+      .at(1)
+      .simulate('click');
+    assert.strictEqual(
+      handleChange.args[0][1],
+      'second',
+      'should have been called with value second',
+    );
+  });
+
+  it('should handle also empty action value', () => {
+    const handleChange = spy();
+    const wrapper = mount(
+      <BottomNavigation showLabels value={'val'} onChange={handleChange}>
+        <BottomNavigationAction value={''} icon={icon} />
+        <BottomNavigationAction value={'val'} icon={icon} />
+      </BottomNavigation>,
+    );
+    wrapper
+      .find(BottomNavigationAction)
+      .at(0)
+      .simulate('click');
+    assert.strictEqual(
+      handleChange.args[0][1],
+      '',
+      'should have been called with empty string value',
+    );
+  });
 });
