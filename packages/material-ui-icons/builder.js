@@ -8,8 +8,6 @@ import Mustache from 'mustache';
 import glob from 'glob';
 import mkdirp from 'mkdirp';
 
-const SVG_ICON_RELATIVE_REQUIRE = '../../SvgIcon';
-const SVG_ICON_ABSOLUTE_REQUIRE = 'material-ui/SvgIcon';
 const RENAME_FILTER_DEFAULT = './filters/rename/default';
 const RENAME_FILTER_MUI = './filters/rename/material-design-icons';
 
@@ -32,7 +30,7 @@ function pascalCase(destPath) {
   return className;
 }
 
-function getJsxString(svgPath, destPath, options) {
+function getJsxString(svgPath, destPath) {
   const className = pascalCase(destPath);
 
   console.log(`  ${className}`);
@@ -54,12 +52,7 @@ function getJsxString(svgPath, destPath, options) {
   paths = paths.replace(/\s?fill=".*?"/g, '');
   paths = paths.replace(/"\/>/g, '" />');
 
-  // Node acts weird if we put this directly into string concatenation
-  const muiRequireStmt =
-    options.muiRequire === 'relative' ? SVG_ICON_RELATIVE_REQUIRE : SVG_ICON_ABSOLUTE_REQUIRE;
-
   return Mustache.render(template, {
-    muiRequireStmt,
     paths,
     className,
   });
@@ -81,7 +74,7 @@ function processFile(svgPath, destPath, options) {
     console.log(`Making dir: ${outputFileDir}`);
     mkdirp.sync(outputFileDir);
   }
-  const fileString = getJsxString(svgPath, destPath, options);
+  const fileString = getJsxString(svgPath, destPath);
   const absDestPath = path.join(options.outputDir, destPath);
   fs.writeFileSync(absDestPath, fileString);
 }
@@ -137,7 +130,6 @@ function parseArgs() {
 function main(options, callback) {
   let originalWrite; // todo, add winston / other logging tool
 
-  options.muiRequire = options.muiRequire || 'absolute';
   options.glob = options.glob || '/**/*.svg';
   options.innerPath = options.innerPath || '';
   options.renameFilter = options.renameFilter || RENAME_FILTER_DEFAULT;
@@ -199,8 +191,6 @@ export default {
   processFile,
   processIndex,
   main,
-  SVG_ICON_RELATIVE_REQUIRE,
-  SVG_ICON_ABSOLUTE_REQUIRE,
   RENAME_FILTER_DEFAULT,
   RENAME_FILTER_MUI,
 };
