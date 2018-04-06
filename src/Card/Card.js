@@ -2,15 +2,33 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Paper from '../Paper';
+import withStyles from '../styles/withStyles';
+
+export const styles = {
+  root: {
+    overflow: 'hidden',
+  },
+};
 
 function Card(props) {
-  const { raised, ...other } = props;
+  const { classes, className, raised, ...other } = props;
 
-  return <Paper elevation={raised ? 8 : 2} {...other} />;
+  return (
+    <Paper className={classNames(classes.root, className)} elevation={raised ? 8 : 2} {...other} />
+  );
 }
 
 Card.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * If `true`, the card will use raised styling.
    */
@@ -21,4 +39,4 @@ Card.defaultProps = {
   raised: false,
 };
 
-export default Card;
+export default withStyles(styles, { name: 'MuiCard' })(Card);
