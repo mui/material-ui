@@ -18,7 +18,8 @@ const styles = theme => ({
     maxWidth: 400,
   },
   media: {
-    height: 194,
+    height: 0,
+    paddingTop: '56.25%', // 16:9
   },
   actions: {
     display: 'flex',
