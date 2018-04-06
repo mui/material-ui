@@ -96,7 +96,7 @@ ListItemText.propTypes = {
   /**
    * Alias for the `primary` property.
    */
-  children: PropTypes.element,
+  children: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
