@@ -12,10 +12,11 @@ describe('<CardActions />', () => {
     classes = getClasses(<CardActions />);
   });
 
-  it('should render a div with the root class', () => {
-    const wrapper = shallow(<CardActions />);
+  it('should render a div with the root and custom class', () => {
+    const wrapper = shallow(<CardActions className="cardActions" />);
     assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass('cardActions'), true);
   });
 
   it('should pass the action class to children', () => {
