@@ -2706,6 +2706,17 @@
             "computed": false
           }
         },
+        "disableOpenOnEnter": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "enables/disable automatic opening of the picker when the user clicks enter",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
         "invalidDateMessage": {
           "type": {
             "name": "string"

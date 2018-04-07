@@ -50,6 +50,7 @@ export default class CustomDateTimePicker extends PureComponent {
             value={selectedDate}
             onChange={this.handleDateChange}
             format="YYYY/MM/DD hh:mm A"
+            disableOpenOnEnter
             mask={[/\d/, /\d/, /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
           />
         </div>
