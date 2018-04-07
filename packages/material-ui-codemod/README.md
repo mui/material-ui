@@ -44,14 +44,14 @@ jscodeshift -t <color-imports.js> <path> --importPath='mui/styles/colors' --targ
 
 #### `svg-icon-imports`
 
-Updates the `svg-icons` import paths from `material-ui/svg-icons/<category>/<icon-name>` to `material-ui-icons/<IconName>`, to use the new [`material-ui-icons`](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-icons) package.
+Updates the `svg-icons` import paths from `material-ui/svg-icons/<category>/<icon-name>` to `@material-ui/icons/<IconName>`, to use the new [`@material-ui/icons`](https://github.com/mui-org/material-ui/tree/v1-beta/packages/@material-ui/icons) package.
 The diff should look like this:
 
 ```diff
 -import AccessAlarmIcon from 'material-ui/svg-icons/device/AccessAlarm';
 -import ThreeDRotation from 'material-ui/svg-icons/action/ThreeDRotation';
-+import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
-+import ThreeDRotation from 'material-ui-icons/ThreeDRotation';
++import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
++import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 ```
 
 ```sh

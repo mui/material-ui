@@ -57,7 +57,7 @@ Optionally, you can set the icon color using one of the theme color properties: 
 
 It's interesting to have the building blocks needed to implement custom icons, but what about presets?
 We provide a separate NPM package,
-[material-ui-icons](https://www.npmjs.com/package/material-ui-icons),
+[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons),
 that includes the 900+ official material system icons: [material.io/icons](https://material.io/icons/) converted to `SvgIcon` components.
 
 <a href="https://material.io/icons/#ic_alarm">
@@ -67,8 +67,8 @@ that includes the 900+ official material system icons: [material.io/icons](https
 Let's say you are looking for a specific icon.
 You can take advantage of the **search bar** of [material.io/icons](https://material.io/icons/) to find it.
 Keep in mind that we `PascalCase` the names of the icons, for instance:
-- [`alarm`](https://material.io/icons/#ic_alarm) is exposed as `material-ui-icons/Alarm`
-- [`alarm off`](https://material.io/icons/#ic_alarm_off) is exposed as `material-ui-icons/AlarmOff`
+- [`alarm`](https://material.io/icons/#ic_alarm) is exposed as `@material-ui/icons/Alarm`
+- [`alarm off`](https://material.io/icons/#ic_alarm_off) is exposed as `@material-ui/icons/AlarmOff`
 
 {{"demo": "pages/style/icons/SvgMaterialIcons.js"}}
 

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
-import DeleteIcon from 'material-ui-icons/Delete';
-import AddShoppingCartIcon from 'material-ui-icons/AddShoppingCart';
-import PhotoCamera from 'material-ui-icons/PhotoCamera';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 const styles = theme => ({
   button: {

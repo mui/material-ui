@@ -9,8 +9,8 @@ import List, {
   ListSubheader,
 } from 'material-ui/List';
 import Switch from 'material-ui/Switch';
-import WifiIcon from 'material-ui-icons/Wifi';
-import BluetoothIcon from 'material-ui-icons/Bluetooth';
+import WifiIcon from '@material-ui/icons/Wifi';
+import BluetoothIcon from '@material-ui/icons/Bluetooth';
 
 const styles = theme => ({
   root: {

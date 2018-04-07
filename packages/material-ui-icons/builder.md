@@ -1,4 +1,4 @@
-# material-ui-icons-builder
+# @material-ui/icons-builder
 
 This tool generates Material-UI SvgIcon components for a set of svg icons.
 

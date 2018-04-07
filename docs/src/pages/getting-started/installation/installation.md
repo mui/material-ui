@@ -33,8 +33,8 @@ For instance, via Google Web Fonts:
 ## SVG Icons
 
 In order to use prebuilt SVG Material icons, such as those found in the [component demos](/demos/app-bar/)
-you must first install the [material-ui-icons](https://www.npmjs.com/package/material-ui-icons) package:
+you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
 
 ```sh
-npm install material-ui-icons
+npm install @material-ui/icons
 ```

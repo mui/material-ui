@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
-import CommentIcon from 'material-ui-icons/Comment';
+import CommentIcon from '@material-ui/icons/Comment';
 
 const styles = theme => ({
   root: {

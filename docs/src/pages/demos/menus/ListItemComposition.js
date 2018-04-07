@@ -4,9 +4,9 @@ import { MenuList, MenuItem } from 'material-ui/Menu';
 import Paper from 'material-ui/Paper';
 import { withStyles } from 'material-ui/styles';
 import { ListItemIcon, ListItemText } from 'material-ui/List';
-import InboxIcon from 'material-ui-icons/MoveToInbox';
-import DraftsIcon from 'material-ui-icons/Drafts';
-import SendIcon from 'material-ui-icons/Send';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
 
 const styles = theme => ({
   menuItem: {

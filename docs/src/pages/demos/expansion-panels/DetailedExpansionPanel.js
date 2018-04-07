@@ -8,7 +8,7 @@ import ExpansionPanel, {
   ExpansionPanelActions,
 } from 'material-ui/ExpansionPanel';
 import Typography from 'material-ui/Typography';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from 'material-ui/Chip';
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';

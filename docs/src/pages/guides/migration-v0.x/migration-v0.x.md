@@ -99,7 +99,7 @@ In the future, we will look into providing a simple component to solve the simpl
 First, run [the migration helper](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
 
 However, this might not be enough when using the svg icons.
-The `material-ui-icons` package has a dependency on the `material-ui/SvgIcon` module.
+The `@material-ui/icons` package has a dependency on the `material-ui/SvgIcon` module.
 The `SvgIcon` component slightly changed between the two versions.
 You might see some missing context errors and wrong colors.
 
@@ -109,7 +109,7 @@ Apply it before all the other imports:
 ```js
 import SvgIcon from 'material-ui-next/SvgIcon';
 
-// Tells `material-ui-icons` to use `material-ui-next/SvgIcon` module
+// Tells `@material-ui/icons` to use `material-ui-next/SvgIcon` module
 // instead of `material-ui/SvgIcon`.
 global.__MUI_SvgIcon__ = SvgIcon;
 ```
