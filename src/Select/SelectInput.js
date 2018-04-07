@@ -29,11 +29,24 @@ class SelectInput extends React.Component {
     }
   }
 
+  shouldComponentUpdate() {
+    this.updateDisplayWidth();
+
+    return true;
+  }
+
   ignoreNextBlur = false;
   displayNode = null;
   displayWidth = null;
   isOpenControlled = this.props.open !== undefined;
   isControlled = this.props.value != null;
+
+  updateDisplayWidth = () => {
+    // Perfom the layout computation outside of the render method.
+    if (this.displayNode) {
+      this.displayWidth = this.displayNode.clientWidth;
+    }
+  };
 
   update = this.isOpenControlled
     ? ({ event, open }) => {
@@ -129,11 +142,7 @@ class SelectInput extends React.Component {
 
   handleDisplayRef = node => {
     this.displayNode = node;
-
-    if (node) {
-      // Perfom the layout computation outside of the render method.
-      this.displayWidth = node.clientWidth;
-    }
+    this.updateDisplayWidth();
   };
 
   handleSelectRef = node => {
