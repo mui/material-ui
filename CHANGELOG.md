@@ -10,7 +10,7 @@ Coming Soon
 ## 1.0.0-beta.41
 ###### *Apr 7, 2018*
 
-Big thanks to the 4 contributors who made this release possible.
+Big thanks to the 14 contributors who made this release possible.
 
 Here are some highlights ✨:
 - An icon package ready for v1 stable (#10902, #10933, #10957).
