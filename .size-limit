@@ -7,13 +7,13 @@
   {
     "name": "The size of the whole library.",
     "path": "build/index.js",
-    "limit": "100.1 KB"
+    "limit": "100.2 KB"
   },
   {
     "name": "The main bundle of the documentation",
     "webpack": false,
     "path": ".next/main.js",
-    "limit": "185 KB"
+    "limit": "184 KB"
   },
   {
     "name": "The home page of the documentation",
