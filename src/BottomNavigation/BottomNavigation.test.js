@@ -99,8 +99,8 @@ describe('<BottomNavigation />', () => {
     const handleChange = spy();
     const wrapper = mount(
       <BottomNavigation showLabels value={'first'} onChange={handleChange}>
-        <BottomNavigationAction value={'first'} icon={icon} />
-        <BottomNavigationAction value={'second'} icon={icon} />
+        <BottomNavigationAction value="first" icon={icon} />
+        <BottomNavigationAction value="second" icon={icon} />
       </BottomNavigation>,
     );
     wrapper
@@ -117,19 +117,26 @@ describe('<BottomNavigation />', () => {
   it('should handle also empty action value', () => {
     const handleChange = spy();
     const wrapper = mount(
-      <BottomNavigation showLabels value={'val'} onChange={handleChange}>
-        <BottomNavigationAction value={''} icon={icon} />
-        <BottomNavigationAction value={'val'} icon={icon} />
+      <BottomNavigation showLabels value="val" onChange={handleChange}>
+        <BottomNavigationAction value="" icon={icon} />
+        <BottomNavigationAction icon={icon} />
+        <BottomNavigationAction value={null} icon={icon} />
       </BottomNavigation>,
     );
     wrapper
       .find(BottomNavigationAction)
       .at(0)
       .simulate('click');
-    assert.strictEqual(
-      handleChange.args[0][1],
-      '',
-      'should have been called with empty string value',
-    );
+    assert.strictEqual(handleChange.args[0][1], '');
+    wrapper
+      .find(BottomNavigationAction)
+      .at(1)
+      .simulate('click');
+    assert.strictEqual(handleChange.args[1][1], 1);
+    wrapper
+      .find(BottomNavigationAction)
+      .at(2)
+      .simulate('click');
+    assert.strictEqual(handleChange.args[2][1], null);
   });
 });
