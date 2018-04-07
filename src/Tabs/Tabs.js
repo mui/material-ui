@@ -321,7 +321,7 @@ class Tabs extends React.Component {
         return null;
       }
 
-      const childValue = child.props.value || childIndex;
+      const childValue = child.props.value === undefined ? childIndex : child.props.value;
       this.valueToIndex[childValue] = childIndex;
       const selected = childValue === value;
 
