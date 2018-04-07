@@ -52,6 +52,9 @@
     "yargs": "^11.0.0"
   },
   "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=6.11.0"
   }

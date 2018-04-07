@@ -43,6 +43,7 @@
     "material-ui": "^1.0.0-beta.33",
     "@material-ui/icons": "^1.0.0-beta.35"
   },
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
