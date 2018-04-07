@@ -44,17 +44,6 @@ export default class BasicDateTimePicker extends PureComponent {
             showTodayButton
           />
         </div>
-
-        <div className="picker">
-          <DateTimePicker
-            value={selectedDate}
-            disablePast
-            onChange={this.handleDateChange}
-            label="With close on selection"
-            showTodayButton
-            autoOk
-          />
-        </div>
       </Fragment>
     );
   }
