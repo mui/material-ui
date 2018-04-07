@@ -1,15 +1,6 @@
 import React from 'react';
-import pure from 'recompose/pure';
-import SvgIcon from 'material-ui/SvgIcon';
+import createSvgIcon from './utils/createSvgIcon';
 
-const SvgIconCustom = global.__MUI_SvgIcon__ || SvgIcon;
-
-let FlashOff = props =>
-  <SvgIconCustom {...props}>
-    <path d="M3.27 3L2 4.27l5 5V13h3v9l3.58-6.14L17.73 20 19 18.73 3.27 3zM17 10h-4l4-8H7v2.18l8.46 8.46L17 10z" />
-  </SvgIconCustom>;
-
-FlashOff = pure(FlashOff);
-FlashOff.muiName = 'SvgIcon';
-
-export default FlashOff;
+export default createSvgIcon(
+  <g><path d="M3.27 3L2 4.27l5 5V13h3v9l3.58-6.14L17.73 20 19 18.73 3.27 3zM17 10h-4l4-8H7v2.18l8.46 8.46L17 10z" /></g>
+, 'FlashOff');

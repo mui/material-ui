@@ -1,15 +1,6 @@
 import React from 'react';
-import pure from 'recompose/pure';
-import SvgIcon from 'material-ui/SvgIcon';
+import createSvgIcon from './utils/createSvgIcon';
 
-const SvgIconCustom = global.__MUI_SvgIcon__ || SvgIcon;
-
-let FormatPaint = props =>
-  <SvgIconCustom {...props}>
-    <path d="M18 4V3c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V6h1v4H9v11c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-9h8V4h-3z" />
-  </SvgIconCustom>;
-
-FormatPaint = pure(FormatPaint);
-FormatPaint.muiName = 'SvgIcon';
-
-export default FormatPaint;
+export default createSvgIcon(
+  <g><path d="M18 4V3c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V6h1v4H9v11c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-9h8V4h-3z" /></g>
+, 'FormatPaint');
