@@ -18,9 +18,24 @@ The ripple effect is exclusively coming from the `BaseButton` component.
 You can find the components using the BaseButton [here](https://github.com/mui-org/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
 Then, all you have to do is to provide the `disableRipple` property.
 
+## Do I have to use JSS to style my app?
+
+It's highly recommended:
+
+- It comes built in, so carries no additional bundle size overhead.
+- It's fast & memory efficient.
+- It has a clean, consistent [API](http://cssinjs.org/json-api).
+- It supports a number of advanced features, either natively, or through [plugins](http://cssinjs.org/plugins/). 
+
+However perhaps you're adding some Material-UI components to an app that already uses another styling solution,
+or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the 
+[Style Library Interoperability](/guides/interoperability) section, 
+where we show how simple it is to restyle Material-UI components with alternative style libraries.
+
 ## When should I use inline-style vs `withStyles()`?
 
 As a rule of thumb, only use inline-style for dynamic style properties. The CSS alternative provides more advantages, such as:
+
 - auto-prefixing
 - better debugging
 - media queries
@@ -37,13 +52,13 @@ You can use the same solution with them.
 
 There are a number of different options:
 
-- `withTheme` option:
+### `withTheme` option:
 
 ```js
 export default withStyles(styles, { withTheme: true })(Modal);
 ```
 
-- `compose()` helper function:
+### `compose()` helper function:
 
 ```js
 import { compose } from 'recompose';
@@ -54,7 +69,7 @@ export default compose(
 )(Modal);
 ```
 
-- raw function chaining:
+### raw function chaining:
 
 ```js
 export default withTheme()(withStyles(styles)(Modal));
