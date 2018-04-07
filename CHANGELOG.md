@@ -23,7 +23,7 @@ Here are some highlights ✨:
 
 ```diff
 -import FormatTextdirectionRToL from 'material-ui-icons/FormatTextdirectionRToL';
-+import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
++import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 ```
 
 #### Component Fixes / Enhancements
