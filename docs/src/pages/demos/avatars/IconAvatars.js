@@ -4,9 +4,9 @@ import { withStyles } from 'material-ui/styles';
 import pink from 'material-ui/colors/pink';
 import green from 'material-ui/colors/green';
 import Avatar from 'material-ui/Avatar';
-import FolderIcon from 'material-ui-icons/Folder';
-import PageviewIcon from 'material-ui-icons/Pageview';
-import AssignmentIcon from 'material-ui-icons/Assignment';
+import FolderIcon from '@material-ui/icons/Folder';
+import PageviewIcon from '@material-ui/icons/Pageview';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 const styles = {
   avatar: {

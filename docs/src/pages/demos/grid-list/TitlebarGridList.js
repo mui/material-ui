@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import GridList, { GridListTile, GridListTileBar } from 'material-ui/GridList';
 import Subheader from 'material-ui/List/ListSubheader';
 import IconButton from 'material-ui/IconButton';
-import InfoIcon from 'material-ui-icons/Info';
+import InfoIcon from '@material-ui/icons/Info';
 import tileData from './tileData';
 
 const styles = theme => ({

@@ -7,8 +7,8 @@ import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
 import List, { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
 import Dialog, { DialogTitle } from 'material-ui/Dialog';
-import PersonIcon from 'material-ui-icons/Person';
-import AddIcon from 'material-ui-icons/Add';
+import PersonIcon from '@material-ui/icons/Person';
+import AddIcon from '@material-ui/icons/Add';
 import Typography from 'material-ui/Typography';
 import blue from 'material-ui/colors/blue';
 

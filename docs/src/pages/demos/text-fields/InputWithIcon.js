@@ -5,7 +5,7 @@ import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
-import AccountCircle from 'material-ui-icons/AccountCircle';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 const styles = theme => ({
   margin: {

@@ -1,4 +1,4 @@
-# material-ui-icons
+# @material-ui/icons
 
 This package provides the Google [Material icons](https://material.io/icons/) packaged as a set of [React](https://facebook.github.io/react/) components.
 
@@ -7,7 +7,7 @@ This package provides the Google [Material icons](https://material.io/icons/) pa
 Install the package in your project directory with:
 
 ```sh
-npm install material-ui-icons
+npm install @material-ui/icons
 ```
 
 These components use the Material-UI [SvgIcon](https://material-ui-next.com/api/svg-icon/) component to
@@ -23,7 +23,7 @@ npm install material-ui@next
 
 The import path for each Material icon component includes the icon name in PascalCase.
 
-For example to use the 'access alarm' icon component, import `material-ui-icons/AccessAlarm`.
+For example to use the 'access alarm' icon component, import `@material-ui/icons/AccessAlarm`.
 
 Note: One exception is '3d rotation', which is named `ThreeDRotation`.
 
@@ -31,13 +31,13 @@ Note: One exception is '3d rotation', which is named `ThreeDRotation`.
 
 - If your environment doesn't support tree-shaking, the **recommended** way to import the icons is the following:
 ```jsx
-import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
-import ThreeDRotation from 'material-ui-icons/ThreeDRotation';
+import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
+import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 ```
 
 - If your environment support tree-shaking you can also import the icons that way:
 ```jsx
-import { AccessAlarm, ThreeDRotation } from 'material-ui-icons';
+import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 ```
 
 Note: Importing named exports in this way will result in the code for *every icon* being included in your project, so is not recommended unless you configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/).
@@ -45,6 +45,6 @@ Note: Importing named exports in this way will result in the code for *every ico
 ## Upgrading
 
 If you are upgrading an existing project from Material-UI 0.x.x, you will need to revise the import paths
-from `material-ui/svg-icons/<category>/<icon-name>` to `material-ui-icons/<IconName>`.
+from `material-ui/svg-icons/<category>/<icon-name>` to `@material-ui/icons/<IconName>`.
 
 [Here](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod#svg-icon-imports)'s a `jscodeshift` [codemod](https://github.com/facebook/codemod) to help you upgrade.

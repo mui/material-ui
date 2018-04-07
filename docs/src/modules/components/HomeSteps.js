@@ -5,9 +5,9 @@ import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
-import FileDownloadIcon from 'material-ui-icons/FileDownload';
-import BuildIcon from 'material-ui-icons/Build'; // eslint-disable-line import/no-unresolved
-import WhatshotIcon from 'material-ui-icons/Whatshot';
+import FileDownloadIcon from '@material-ui/icons/FileDownload';
+import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
+import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import Link from 'docs/src/modules/components/Link';
 

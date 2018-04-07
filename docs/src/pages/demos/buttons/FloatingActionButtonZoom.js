@@ -8,9 +8,9 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 import Typography from 'material-ui/Typography';
 import Zoom from 'material-ui/transitions/Zoom';
 import Button from 'material-ui/Button';
-import AddIcon from 'material-ui-icons/Add';
-import EditIcon from 'material-ui-icons/ModeEdit';
-import UpIcon from 'material-ui-icons/KeyboardArrowUp';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/ModeEdit';
+import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import green from 'material-ui/colors/green';
 
 function TabContainer(props) {

@@ -31,7 +31,7 @@
               "@material-ui/lab": "./packages/material-ui-lab/src",
               "docs": "./docs",
               "material-ui": "./src",
-              "material-ui-icons": "./packages/material-ui-icons/src",
+              "@material-ui/icons": "./packages/material-ui-icons/src",
               "pages": "./pages"
             }
           }
@@ -53,7 +53,7 @@
               "@material-ui/lab": "./packages/material-ui-lab/src",
               "docs": "./docs",
               "material-ui": "./src",
-              "material-ui-icons": "./packages/material-ui-icons/src",
+              "@material-ui/icons": "./packages/material-ui-icons/src",
               "pages": "./pages"
             }
           }
@@ -102,7 +102,7 @@
           {
             "alias": {
               "material-ui": "./src",
-              "material-ui-icons": "./packages/material-ui-icons/src"
+              "@material-ui/icons": "./packages/material-ui-icons/src"
             }
           }
         ],

@@ -111,7 +111,7 @@ function parseArgs() {
     )
     .describe(
       'file-suffix',
-      'Filter only files ending with a suffix (pretty much only for material-ui-icons)',
+      'Filter only files ending with a suffix (pretty much only for @material-ui/icons)',
     )
     .describe(
       'rename-filter',
