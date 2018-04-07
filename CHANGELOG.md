@@ -7,6 +7,59 @@ Changes. Changes everywhere!
 
 Coming Soon
 
+## 1.0.0-beta.41
+###### *Apr 7, 2018*
+
+Big thanks to the 4 contributors who made this release possible.
+
+Here are some highlights ✨:
+- An icon package ready for v1 stable (#10902, #10933, #10957).
+- An important focus on the documentation.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- Move the icon package from `material-ui-icons` to `@material-ui/icons` (#10957) @oliviertassinari
+
+```diff
+-import FormatTextdirectionRToL from 'material-ui-icons/FormatTextdirectionRToL';
++import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
+```
+
+#### Component Fixes / Enhancements
+
+- [icons] Reduce code duplication (#10902) @cherniavskii
+- [icons] Check if `global` is defined before trying to use it (#10933) @joliss
+- [Table] Fix EnhancedTable example to not scroll TablePagination (#10878) @mbrookes
+- [Zoom] Export Zoom in the TypeScript definitions (#10897) @Klynger
+- [IconButton] Add hover effect to IconButton (#10871) @SebastianSchmidt
+- [TextField] Add an icon example (#10899) @oliviertassinari
+- [SwipeableDrawer] Disable swiping on iOS by default (#10877) @leMaik
+- [SwipeableDrawer] Fix crash when swiping during an update (#10906) @leMaik
+- [ListItemText] Fix invalid ListItemText 'children' proptype (#10948) @kendallroth
+- [BottomNavigationAction] Use default childIndex value only if value undefined (#10937) @peterbartos
+- [styles] Add a warning to prevent a memory leak (#10953) @oliviertassinari
+- [Select] Fix width update (#10956) @oliviertassinari
+
+#### Docs
+
+- [docs] Add hideHeader option to Demo component (#10887) @mbrookes
+- [docs] Document the /es folder (#10888) @oliviertassinari
+- [docs] More transparent exportPathMap method (#10894) @oliviertassinari
+- [docs] Dodge issue with hoist-non-react-statics (#10896) @oliviertassinari
+- [docs] Add missing apostrophe (#10911) @davidgilbertson
+- [docs] Improve the search experience (#10905) @oliviertassinari
+- [docs] Improve the layout for premium themes (#10901) @mbrookes
+- [docs] Fix example in TypeScript docs (#10924) @piotros
+- [docs] Atomic state update in the Stepper demo (#10936) @iceveda06
+- [docs] Add versions page (#10883) @mbrookes
+- [docs] Fix npm urls (#10949) @sujeetkrjaiswal
+- [docs] Add "Do I have to use JSS?" to FAQ (#10954) @mbrookes
+
+#### Core
+
+- [typescript] Upgrade React and JSS typings, which both make use of csstype now (#10903) @pelotom
+
 ## 1.0.0-beta.40
 ###### *Apr 1, 2018*
 
