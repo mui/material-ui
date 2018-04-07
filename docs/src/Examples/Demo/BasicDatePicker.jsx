@@ -47,6 +47,19 @@ export default class BasicDatePicker extends PureComponent {
             animateYearScrolling={false}
           />
         </div>
+
+        <div className="picker">
+          <DatePicker
+            label="With close on selection"
+            showTodayButton
+            disableFuture
+            autoOk
+            maxDateMessage="Date must be less than today"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+            animateYearScrolling={false}
+          />
+        </div>
       </Fragment>
     );
   }
