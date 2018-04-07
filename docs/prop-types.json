@@ -2706,14 +2706,14 @@
             "computed": false
           }
         },
-        "openPickerOnEnter": {
+        "disableOpenOnEnter": {
           "type": {
             "name": "bool"
           },
           "required": false,
           "description": "enables/disable automatic opening of the picker when the user clicks enter",
           "defaultValue": {
-            "value": "true",
+            "value": "false",
             "computed": false
           }
         },

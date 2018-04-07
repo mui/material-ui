@@ -36,7 +36,7 @@ export default class BasicUsage extends PureComponent {
             mask={value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : [])}
             value={selectedDate}
             onChange={this.handleDateChange}
-            openPickerOnEnter={false}
+            disableOpenOnEnter
             animateYearScrolling={false}
           />
         </div>

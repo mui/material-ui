@@ -22,7 +22,7 @@ export default class BasicUsage extends PureComponent {
           placeholder="08:00 AM"
           value={selectedDate}
           onChange={this.handleDateChange}
-          openPickerOnEnter={false}
+          disableOpenOnEnter
         />
       </div>
     );
