@@ -228,3 +228,30 @@ export function lighten(color: string, coefficient: number) {
 
   return recomposeColor(color);
 }
+
+/**
+ * Opacifies a color.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {number} alpha - number between 0.0 (fully transparent) and 1.0 (fully opaque)
+ * @returns {string} A CSS color string. Hex input values are returned as rgba
+ */
+export function opacify(color: string, alpha: number) {
+   warning(color, `Material-UI: missing color argument in opacify(${color}, ${alpha}).`);
+  
+    if (!color) return color;
+
+    color = decomposeColor(color);
+    alpha = clamp(alpha);
+
+    if(color.type === 'hsl'){
+            color.type = 'hsla';
+    } else {
+        if(color.type === 'rgb'){
+            color.type = 'rgba';
+        }
+    }
+    color.values[3] = alpha;
+
+    return recomposeColor(color);
+}
