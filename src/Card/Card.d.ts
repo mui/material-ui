@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { PaperProps, PaperClassKey } from '../Paper';
+import { PaperProps } from '../Paper';
 
 export interface CardProps extends StandardProps<PaperProps, CardClassKey> {
   raised?: boolean;
 }
 
-export type CardClassKey = PaperClassKey;
+export type CardClassKey = 'root';
 
 declare const Card: React.ComponentType<CardProps>;
 

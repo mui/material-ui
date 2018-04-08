@@ -92,15 +92,15 @@ class MuiThemeProvider extends React.Component {
   }
 
   render() {
-    warning(
-      typeof window !== 'undefined' || this.props.sheetsManager,
-      [
-        'Material-UI: you need to provide a sheetsManager to the MuiThemeProvider ' +
-          'when rendering on the server.',
-        'If you do not, you might experience a memory leak',
-      ].join('\n'),
-    );
-
+    // TODO move the sheetsManager property to a different component.
+    // warning(
+    //   typeof window !== 'undefined' || this.props.sheetsManager,
+    //   [
+    //     'Material-UI: you need to provide a sheetsManager to the MuiThemeProvider ' +
+    //       'when rendering on the server.',
+    //     'If you do not, you might experience a memory leak',
+    //   ].join('\n'),
+    // );
     return this.props.children;
   }
 }

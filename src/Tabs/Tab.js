@@ -27,31 +27,33 @@ export const styles = theme => ({
   textColorInherit: {
     color: 'inherit',
     opacity: 0.7,
+    '&$selected': {
+      opacity: 1,
+    },
+    '&$disabled': {
+      opacity: 0.4,
+    },
   },
   textColorPrimary: {
     color: theme.palette.text.secondary,
-  },
-  textColorPrimarySelected: {
-    color: theme.palette.primary.main,
-  },
-  textColorPrimaryDisabled: {
-    color: theme.palette.text.disabled,
+    '&$selected': {
+      color: theme.palette.primary.main,
+    },
+    '&$disabled': {
+      color: theme.palette.text.disabled,
+    },
   },
   textColorSecondary: {
     color: theme.palette.text.secondary,
+    '&$selected': {
+      color: theme.palette.secondary.main,
+    },
+    '&$disabled': {
+      color: theme.palette.text.disabled,
+    },
   },
-  textColorSecondarySelected: {
-    color: theme.palette.secondary.main,
-  },
-  textColorSecondaryDisabled: {
-    color: theme.palette.text.disabled,
-  },
-  textColorInheritSelected: {
-    opacity: 1,
-  },
-  textColorInheritDisabled: {
-    opacity: 0.4,
-  },
+  selected: {},
+  disabled: {},
   fullWidth: {
     flexGrow: 1,
   },
@@ -169,8 +171,8 @@ class Tab extends React.Component {
       classes.root,
       classes[`textColor${capitalize(textColor)}`],
       {
-        [classes[`textColor${capitalize(textColor)}Disabled`]]: disabled,
-        [classes[`textColor${capitalize(textColor)}Selected`]]: selected,
+        [classes.disabled]: disabled,
+        [classes.selected]: selected,
         [classes.labelIcon]: icon && label,
         [classes.fullWidth]: fullWidth,
       },

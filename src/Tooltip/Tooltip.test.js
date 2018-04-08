@@ -86,7 +86,7 @@ describe('<Tooltip />', () => {
           <span>Hello World</span>
         </Tooltip>,
       );
-      assert.strictEqual(wrapper.find(Popper).hasClass(classes.popperClose), true);
+      assert.strictEqual(wrapper.find(Popper).hasClass(classes.open), false);
     });
   });
 

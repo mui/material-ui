@@ -27,9 +27,7 @@ This property accepts the following keys:
 - `focused`
 - `disabled`
 - `content`
-- `contentExpanded`
 - `expandIcon`
-- `expandIconExpanded`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/ExpansionPanel/ExpansionPanelSummary.js)

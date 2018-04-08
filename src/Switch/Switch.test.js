@@ -18,7 +18,7 @@ describe('<Switch />', () => {
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
-      assert.strictEqual(typeof classes.default, 'string');
+      assert.strictEqual(typeof classes.root, 'string');
       assert.strictEqual(typeof classes.checked, 'string');
       assert.strictEqual(typeof classes.disabled, 'string');
     });

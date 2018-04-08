@@ -32,6 +32,9 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
   },
   label: {
     width: '100%',
@@ -73,6 +76,7 @@ export const styles = theme => ({
       boxShadow: theme.shadows[8],
     },
     '&$disabled': {
+      color: theme.palette.action.disabled,
       boxShadow: theme.shadows[0],
       backgroundColor: theme.palette.action.disabledBackground,
     },
@@ -87,7 +91,6 @@ export const styles = theme => ({
       },
     },
   },
-  keyboardFocused: {},
   raisedPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
@@ -110,9 +113,8 @@ export const styles = theme => ({
       },
     },
   },
-  disabled: {
-    color: theme.palette.action.disabled,
-  },
+  keyboardFocused: {},
+  disabled: {},
   fab: {
     borderRadius: '50%',
     padding: 0,

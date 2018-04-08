@@ -31,6 +31,9 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
   },
   colorInherit: {
     color: 'inherit',
@@ -55,9 +58,7 @@ export const styles = theme => ({
       },
     },
   },
-  disabled: {
-    color: theme.palette.action.disabled,
-  },
+  disabled: {},
   label: {
     width: '100%',
     display: 'flex',

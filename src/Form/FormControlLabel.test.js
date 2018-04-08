@@ -38,7 +38,7 @@ describe('FormControlLabel', () => {
       );
       assert.strictEqual(wrapper.hasClass(classes.disabled), true);
       assert.strictEqual(wrapper.find('div').props().disabled, true);
-      assert.strictEqual(label.hasClass(classes.labelDisabled), true);
+      assert.strictEqual(label.hasClass(classes.disabled), true);
     });
 
     it('should disable everything', () => {
@@ -51,7 +51,7 @@ describe('FormControlLabel', () => {
       );
       assert.strictEqual(wrapper.hasClass(classes.disabled), true);
       assert.strictEqual(wrapper.find('div').props().disabled, true);
-      assert.strictEqual(label.hasClass(classes.labelDisabled), true);
+      assert.strictEqual(label.hasClass(classes.disabled), true);
     });
   });
 

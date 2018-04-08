@@ -5,15 +5,23 @@ import { createMuiTheme, MuiThemeProvider, withStyles } from 'material-ui/styles
 import orange from 'material-ui/colors/orange';
 
 const styles = theme => ({
-  danger: {
+  root: {
     color: theme.status.danger,
+    '&$checked': {
+      color: theme.status.danger,
+    },
   },
+  checked: {},
 });
 
 let CustomCheckbox = props => (
-  <Checkbox defaultChecked className={props.classes.danger}>
-    {'Danger'}
-  </Checkbox>
+  <Checkbox
+    defaultChecked
+    classes={{
+      root: props.classes.root,
+      checked: props.classes.checked,
+    }}
+  />
 );
 
 CustomCheckbox.propTypes = {

@@ -36,6 +36,9 @@ export const styles = theme => ({
     '&::-ms-expand': {
       display: 'none',
     },
+    '&$disabled': {
+      cursor: 'default',
+    },
   },
   selectMenu: {
     width: 'auto', // Fix Safari textOverflow
@@ -44,9 +47,7 @@ export const styles = theme => ({
     overflow: 'hidden',
     minHeight: '1.1875em', // Reset (19px), match the native input line-height
   },
-  disabled: {
-    cursor: 'default',
-  },
+  disabled: {},
   icon: {
     // We use a position absolute over a flexbox in order to forward the pointer events
     // to the input.

@@ -65,6 +65,9 @@ export const styles = theme => {
       color: light ? 'rgba(0, 0, 0, 0.87)' : theme.palette.common.white,
       fontSize: theme.typography.pxToRem(16),
       lineHeight: '1.1875em', // Reset (19px), match the native input line-height
+      '&$disabled': {
+        color: theme.palette.text.disabled,
+      },
     },
     formControl: {
       'label + &': {
@@ -72,9 +75,7 @@ export const styles = theme => {
       },
     },
     focused: {},
-    disabled: {
-      color: theme.palette.text.disabled,
-    },
+    disabled: {},
     underline: {
       '&:after': {
         backgroundColor: theme.palette.primary[light ? 'dark' : 'light'],
@@ -94,6 +95,10 @@ export const styles = theme => {
       },
       '&$focused:after': {
         transform: 'scaleX(1)',
+      },
+      '&$error:after': {
+        backgroundColor: theme.palette.error.main,
+        transform: 'scaleX(1)', // error is always underlined in red
       },
       '&:before': {
         backgroundColor: bottomLineColor,
@@ -121,12 +126,7 @@ export const styles = theme => {
         backgroundSize: '5px 1px',
       },
     },
-    error: {
-      '&:after': {
-        backgroundColor: theme.palette.error.main,
-        transform: 'scaleX(1)', // error is always underlined in red
-      },
-    },
+    error: {},
     multiline: {
       padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
     },
@@ -174,12 +174,12 @@ export const styles = theme => {
         '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
         '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
       },
+      '&$disabled': {
+        opacity: 1, // Reset iOS opacity
+      },
     },
     inputMarginDense: {
       paddingTop: theme.spacing.unit / 2 - 1,
-    },
-    inputDisabled: {
-      opacity: 1, // Reset iOS opacity
     },
     inputMultiline: {
       resize: 'none',
@@ -414,7 +414,7 @@ class Input extends React.Component {
     const inputClassName = classNames(
       classes.input,
       {
-        [classes.inputDisabled]: disabled,
+        [classes.disabled]: disabled,
         [classes.inputType]: type !== 'text',
         [classes.inputTypeSearch]: type === 'search',
         [classes.inputMultiline]: multiline,

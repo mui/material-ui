@@ -35,11 +35,12 @@ export const styles = {
     '&::-moz-focus-inner': {
       borderStyle: 'none', // Remove Firefox dotted outline.
     },
+    '&$disabled': {
+      pointerEvents: 'none', // Disable link interactions
+      cursor: 'default',
+    },
   },
-  disabled: {
-    pointerEvents: 'none', // Disable link interactions
-    cursor: 'default',
-  },
+  disabled: {},
   keyboardFocused: {},
 };
 

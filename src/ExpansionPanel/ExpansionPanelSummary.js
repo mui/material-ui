@@ -20,16 +20,19 @@ export const styles = theme => {
       '&:hover:not($disabled)': {
         cursor: 'pointer',
       },
+      '&$expanded': {
+        minHeight: 64,
+      },
+      '&$focused': {
+        backgroundColor: theme.palette.grey[300],
+      },
+      '&$disabled': {
+        opacity: 0.38,
+      },
     },
-    expanded: {
-      minHeight: 64,
-    },
-    focused: {
-      backgroundColor: theme.palette.grey[300],
-    },
-    disabled: {
-      opacity: 0.38,
-    },
+    expanded: {},
+    focused: {},
+    disabled: {},
     content: {
       display: 'flex',
       flexGrow: 1,
@@ -38,9 +41,9 @@ export const styles = theme => {
       '& > :last-child': {
         paddingRight: theme.spacing.unit * 4,
       },
-    },
-    contentExpanded: {
-      margin: '20px 0',
+      '&$expanded': {
+        margin: '20px 0',
+      },
     },
     expandIcon: {
       position: 'absolute',
@@ -54,9 +57,9 @@ export const styles = theme => {
         // not only to the IconButton.
         backgroundColor: 'transparent',
       },
-    },
-    expandIconExpanded: {
-      transform: 'translateY(-50%) rotate(180deg)',
+      '&$expanded': {
+        transform: 'translateY(-50%) rotate(180deg)',
+      },
     },
   };
 };
@@ -122,14 +125,14 @@ class ExpansionPanelSummary extends React.Component {
         onBlur={this.handleBlur}
         onClick={this.handleChange}
       >
-        <div className={classNames(classes.content, { [classes.contentExpanded]: expanded })}>
+        <div className={classNames(classes.content, { [classes.expanded]: expanded })}>
           {children}
         </div>
         {expandIcon && (
           <IconButton
             disabled={disabled}
             className={classNames(classes.expandIcon, {
-              [classes.expandIconExpanded]: expanded,
+              [classes.expanded]: expanded,
             })}
             component="div"
             tabIndex={-1}

@@ -7,9 +7,13 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 const styles = {
-  checked: {
-    color: green[500],
+  root: {
+    color: green[600],
+    '&$checked': {
+      color: green[500],
+    },
   },
+  checked: {},
   size: {
     width: 40,
     height: 40,
@@ -54,6 +58,7 @@ class RadioButtons extends React.Component {
           name="radio-button-demo"
           aria-label="C"
           classes={{
+            root: classes.root,
             checked: classes.checked,
           }}
         />

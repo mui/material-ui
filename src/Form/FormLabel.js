@@ -10,19 +10,23 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(16),
     lineHeight: 1,
     padding: 0,
+    '&$focused': {
+      color: theme.palette.primary[theme.palette.type === 'light' ? 'dark' : 'light'],
+    },
+    '&$disabled': {
+      color: theme.palette.text.disabled,
+    },
+    '&$error': {
+      color: theme.palette.error.main,
+    },
   },
-  focused: {
-    color: theme.palette.primary[theme.palette.type === 'light' ? 'dark' : 'light'],
-  },
-  disabled: {
-    color: theme.palette.text.disabled,
-  },
-  error: {
-    color: theme.palette.error.main,
-  },
-  asterisk: {},
-  asteriskError: {
-    color: theme.palette.error.main,
+  focused: {},
+  disabled: {},
+  error: {},
+  asterisk: {
+    '&$error': {
+      color: theme.palette.error.main,
+    },
   },
 });
 
@@ -77,7 +81,7 @@ function FormLabel(props, context) {
       {required && (
         <span
           className={classNames(classes.asterisk, {
-            [classes.asteriskError]: error,
+            [classes.error]: error,
           })}
           data-mui-test="FormLabelAsterisk"
         >

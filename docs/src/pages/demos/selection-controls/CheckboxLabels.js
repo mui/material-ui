@@ -10,9 +10,13 @@ import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 const styles = {
-  checked: {
-    color: green[500],
+  root: {
+    color: green[600],
+    '&$checked': {
+      color: green[500],
+    },
   },
+  checked: {},
   size: {
     width: 40,
     height: 40,
@@ -85,6 +89,7 @@ class CheckboxLabels extends React.Component {
               onChange={this.handleChange('checkedG')}
               value="checkedG"
               classes={{
+                root: classes.root,
                 checked: classes.checked,
               }}
             />

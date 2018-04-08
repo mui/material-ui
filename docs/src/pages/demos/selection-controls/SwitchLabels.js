@@ -6,13 +6,17 @@ import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 
 const styles = {
-  checked: {
-    color: green[500],
-    '& + $bar': {
-      backgroundColor: green[500],
+  switchBase: {
+    color: green[50],
+    '&$checked': {
+      color: green[500],
+      '& + $bar': {
+        backgroundColor: green[500],
+      },
     },
   },
   bar: {},
+  checked: {},
 };
 
 class SwitchLabels extends React.Component {
@@ -62,6 +66,7 @@ class SwitchLabels extends React.Component {
               onChange={this.handleChange('checkedF')}
               value="checkedF"
               classes={{
+                switchBase: classes.switchBase,
                 checked: classes.checked,
                 bar: classes.bar,
               }}

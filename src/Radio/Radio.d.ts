@@ -9,7 +9,7 @@ export interface RadioProps
   icon?: React.ReactNode;
 }
 
-export type RadioClassKey = SwitchBaseClassKey | 'checkedPrimary' | 'checkedSecondary';
+export type RadioClassKey = SwitchBaseClassKey | 'colorPrimary' | 'colorSecondery';
 
 declare const Radio: React.ComponentType<RadioProps>;
 

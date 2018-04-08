@@ -8,26 +8,31 @@ import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
-  default: {
+  root: {
     color: theme.palette.text.secondary,
   },
   checked: {},
-  checkedPrimary: {
-    color: theme.palette.primary.main,
+  disabled: {},
+  colorPrimary: {
+    '&$checked': {
+      color: theme.palette.primary.main,
+    },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
   },
-  checkedSecondary: {
-    color: theme.palette.secondary.main,
-  },
-  disabled: {
-    color: theme.palette.action.disabled,
+  colorSecondary: {
+    '&$checked': {
+      color: theme.palette.secondary.main,
+    },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
   },
 });
 
 function Radio(props) {
   const { classes, color, ...other } = props;
-  const checkedClass = classNames(classes.checked, {
-    [classes[`checked${capitalize(color)}`]]: color !== 'default',
-  });
 
   return (
     <SwitchBase
@@ -35,8 +40,8 @@ function Radio(props) {
       icon={<RadioButtonUncheckedIcon />}
       checkedIcon={<RadioButtonCheckedIcon />}
       classes={{
-        default: classes.default,
-        checked: checkedClass,
+        root: classNames(classes.root, classes[`color${capitalize(color)}`]),
+        checked: classes.checked,
         disabled: classes.disabled,
       }}
       {...other}

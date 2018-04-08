@@ -54,8 +54,7 @@ You have to provide a custom implementation of the `<input>` element with the `i
 
 You have been reading our [overrides documentation page](/customization/overrides)
 but you are not confident jumping in?
-Here is an example of how you can change the main color of an input from "primary" to purple.
-There is no limit.
+Here is an example of how you can change the main color of an input. There is no limit.
 
 {{"demo": "pages/demos/text-fields/CustomizedInputs.js"}}
 
