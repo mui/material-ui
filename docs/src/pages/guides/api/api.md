@@ -81,9 +81,8 @@ for instance, exposing the `inputProps` and `InputProps` properties on component
 ### Property naming
 
 The name of a boolean property should be chosen based on the **default value**.
-For instance, the `disabled` attribute on an input element, if supplied should default to `true`.
-This choice allows the shorthand notation.
-(We are using the HTML specification approach).
+For instance, the `disabled` attribute on an input element, if supplied, defaults to `true`.
+This choice allows the shorthand notation:
 
 ```diff
 -<Input enabled={false} />
