@@ -152,7 +152,7 @@ class Tabs extends React.Component {
   };
 
   tabs = undefined;
-  valueToIndex: { [key: any]: any } = {};
+  valueToIndex = {};
 
   handleResize = debounce(() => {
     this.updateIndicatorState(this.props);

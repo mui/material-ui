@@ -29,6 +29,9 @@ module.exports = {
 
     return Object.assign({}, config, {
       plugins,
+      node: {
+        fs: 'empty',
+      },
       module: Object.assign({}, config.module, {
         rules: config.module.rules.concat([
           {
