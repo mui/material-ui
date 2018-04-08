@@ -69,9 +69,8 @@ Sometimes you might want to have icons for certain button to enhance the UX of t
 
 ## Customized Buttons
 
-You have been reading our [overrides documentation page](/customization/overrides)
-but you are not confident jumping in?
-Here is an example of how you can change the main color of an input. There is no limit.
+If you have been reading the [overrides documentation page](/customization/overrides)
+but you are not confident jumping in, here's an example of how you can change the main color of a Button.
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 
