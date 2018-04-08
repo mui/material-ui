@@ -6,9 +6,17 @@
   "env": {
     "coverage": {
       "plugins": [
+        "istanbul",
         [
-          "istanbul"
-        ]
+          "module-resolver",
+          {
+            "root": ["./"],
+            "alias": {
+              "material-ui": "./src",
+              "@material-ui/icons": "./packages/material-ui-icons/src"
+            }
+          }
+        ],
       ]
     },
     "development": {
@@ -100,6 +108,7 @@
         [
           "module-resolver",
           {
+            "root": ["./"],
             "alias": {
               "material-ui": "./src",
               "@material-ui/icons": "./packages/material-ui-icons/src"

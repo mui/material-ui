@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
-    - image: circleci/node:9.5
+    - image: circleci/node:9.10
 restore_repo: &restore_repo
   restore_cache:
     keys:
@@ -69,7 +69,7 @@ jobs:
     # This isn't user facing code.
     # Let's take advantage of the most up to date node version.
     docker:
-      - image: circleci/node:9.5
+      - image: circleci/node:9.10
     steps:
       - *restore_repo
       - run:
@@ -97,8 +97,8 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:9.5
-      - image: selenium/standalone-chrome:3.9.0
+      - image: circleci/node:9.10
+      - image: selenium/standalone-chrome:3.11.0
     steps:
       - *restore_repo
       - run:
