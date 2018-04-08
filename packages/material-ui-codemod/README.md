@@ -1,9 +1,9 @@
-# material-ui-codemod
+# @material-ui/codemod
 
 > Codemod scripts for Material-UI
 
-[![npm version](https://img.shields.io/npm/v/material-ui-codemod.svg?style=flat-square)](https://www.npmjs.com/package/material-ui-codemod)
-[![npm downloads](https://img.shields.io/npm/dm/material-ui-codemod.svg?style=flat-square)](https://www.npmjs.com/package/material-ui-codemod)
+[![npm version](https://img.shields.io/npm/v/@material-ui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@material-ui/codemod)
+[![npm downloads](https://img.shields.io/npm/dm/@material-ui/codemod.svg?style=flat-square)](https://www.npmjs.com/package/@material-ui/codemod)
 
 This repository contains a collection of codemod scripts based for use with
 [JSCodeshift](https://github.com/facebook/jscodeshift) that help update Material-UI
@@ -12,7 +12,7 @@ APIs.
 ## Setup & Run
 
 - `npm install -g jscodeshift`
-- `npm install material-ui-codemod`
+- `npm install @material-ui/codemod`
 - `jscodeshift -t <codemod-script> <path>`
 - Use the `-d` option for a dry-run and use `-p` to print the output
   for comparison
@@ -34,7 +34,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs jscodeshift -t node_modules/material-ui-codemod/lib/v1.0.0/color-imports.js
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/codemod/lib/v1.0.0/color-imports.js
 ```
 
 **additional options**
@@ -55,7 +55,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs jscodeshift -t node_modules/material-ui-codemod/lib/v1.0.0/svg-icon-imports.js
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/codemod/lib/v1.0.0/svg-icon-imports.js
 ```
 
 ### v0.15.0
@@ -77,7 +77,7 @@ The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs jscodeshift -t node_modules/material-ui-codemod/lib/v0.15.0/import-path.js
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/codemod/lib/v0.15.0/import-path.js
 ```
 
 ### Recast Options

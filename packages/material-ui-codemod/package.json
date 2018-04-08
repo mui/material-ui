@@ -1,8 +1,8 @@
 {
-  "name": "material-ui-codemod",
+  "name": "@material-ui/codemod",
   "private": false,
   "author": "Material-UI Team",
-  "version": "1.0.0-beta.35",
+  "version": "1.0.0-beta.41",
   "description": "Codemod scripts for Material-UI.",
   "keywords": [
     "react",
@@ -27,6 +27,10 @@
   "homepage": "https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod",
   "devDependencies": {
     "jscodeshift": "^0.4.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
   },
   "engines": {
     "node": ">=6.11.0"

@@ -12,7 +12,7 @@ function read(fileName) {
   return fs.readFileSync(path.join(__dirname, fileName), 'utf8').toString();
 }
 
-describe('material-ui-codemod', () => {
+describe('@material-ui/codemod', () => {
   describe('v1.0.0', () => {
     describe('color-imports', () => {
       it('update color module imports', () => {
