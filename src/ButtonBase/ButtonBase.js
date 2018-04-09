@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import keycode from 'keycode';
-import ownerWindow from 'dom-helpers/ownerWindow';
+import ownerWindow from '../utils/ownerWindow';
 import { polyfill } from 'react-lifecycles-compat';
 import withStyles from '../styles/withStyles';
 import { listenForFocusKeys, detectKeyboardFocus } from '../utils/keyboardFocus';

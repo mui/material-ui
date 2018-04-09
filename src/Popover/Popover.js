@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
 import ownerDocument from 'dom-helpers/ownerDocument';
-import ownerWindow from 'dom-helpers/ownerWindow';
+import ownerWindow from '../utils/ownerWindow';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
