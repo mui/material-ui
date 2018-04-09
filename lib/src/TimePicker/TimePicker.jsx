@@ -138,7 +138,12 @@ export class TimePicker extends Component {
         {this.props.children}
 
         <div className={classes.viewContainer}>
-          <Fade timeout={fadeTimeout} in={isHourViewShown}>
+          <Fade
+            timeout={fadeTimeout}
+            in={isHourViewShown}
+            mountOnEnter
+            unmountOnExit
+          >
             <div className={classes.viewRoot}>
               <HourView
                 date={date}
@@ -150,7 +155,12 @@ export class TimePicker extends Component {
             </div>
           </Fade>
 
-          <Fade timeout={fadeTimeout} in={!isHourViewShown}>
+          <Fade
+            timeout={fadeTimeout}
+            in={!isHourViewShown}
+            mountOnEnter
+            unmountOnExit
+          >
             <div className={classes.viewRoot}>
               <MinutesView
                 date={date}
