@@ -276,10 +276,7 @@ class Tooltip extends React.Component {
 
     const placement = theme.direction === 'rtl' ? flipPlacement(placementProp) : placementProp;
     let open = this.isControlled ? openProp : this.state.open;
-    const childrenProps = {
-      'aria-describedby': id,
-      title: typeof title === 'string' && !open ? title : '',
-    };
+    const childrenProps = { 'aria-describedby': id };
 
     // There is no point at displaying an empty tooltip.
     if (title === '') {
