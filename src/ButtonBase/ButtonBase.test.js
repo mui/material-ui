@@ -5,7 +5,6 @@ import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
-import { focusKeyPressed } from '../utils/keyboardFocus';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 
@@ -316,7 +315,7 @@ describe('<ButtonBase />', () => {
         1,
         'should call stop on the ripple',
       );
-      assert.strictEqual(wrapper.state('keyboardFocused'), false, 'should not be keyboardFocused');
+      assert.strictEqual(wrapper.state().keyboardFocused, false, 'should not be keyboardFocused');
     });
   });
 
@@ -326,7 +325,7 @@ describe('<ButtonBase />', () => {
     let button;
     let clock;
 
-    before(() => {
+    beforeEach(() => {
       clock = useFakeTimers();
       wrapper = mount(
         <ButtonBaseNaked theme={{}} classes={{}} id="test-button">
@@ -345,21 +344,49 @@ describe('<ButtonBase />', () => {
       window.dispatchEvent(event);
     });
 
-    after(() => {
+    afterEach(() => {
       clock.restore();
     });
 
-    it('should work', () => {
+    it('should detect the keyboard', () => {
       assert.strictEqual(
-        wrapper.state('keyboardFocused'),
+        wrapper.state().keyboardFocused,
         false,
         'should not set keyboard focus before time has passed',
       );
       clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
       assert.strictEqual(
-        wrapper.state('keyboardFocused'),
+        wrapper.state().keyboardFocused,
         true,
         'should listen for tab presses and set keyboard focus',
+      );
+    });
+
+    it('should ignore the keyboard after 1s', () => {
+      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      assert.strictEqual(
+        wrapper.state().keyboardFocused,
+        true,
+        'should think it is keyboard based',
+      );
+      button.blur();
+      assert.strictEqual(wrapper.state().keyboardFocused, false, 'should has lost the focus');
+      button.focus();
+      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      assert.strictEqual(
+        wrapper.state().keyboardFocused,
+        true,
+        'should still think it is keyboard based',
+      );
+      clock.tick(1e3);
+      button.blur();
+      assert.strictEqual(wrapper.state().keyboardFocused, false, 'should has lost the focus');
+      button.focus();
+      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      assert.strictEqual(
+        wrapper.state().keyboardFocused,
+        false,
+        'should stop think it is keyboard based',
       );
     });
   });
@@ -452,7 +479,6 @@ describe('<ButtonBase />', () => {
     });
 
     it('should work with a functionnal component', () => {
-      focusKeyPressed(true);
       const MyLink = props => (
         <a href="/foo" {...props}>
           bar
@@ -464,7 +490,6 @@ describe('<ButtonBase />', () => {
         </ButtonBaseNaked>,
       );
       const instance = wrapper.instance();
-      instance.focusKeyPressed = true;
       wrapper.simulate('focus');
       clock.tick(instance.keyboardFocusCheckTime);
     });

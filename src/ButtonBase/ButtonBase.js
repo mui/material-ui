@@ -6,7 +6,7 @@ import keycode from 'keycode';
 import ownerWindow from 'dom-helpers/ownerWindow';
 import { polyfill } from 'react-lifecycles-compat';
 import withStyles from '../styles/withStyles';
-import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
+import { listenForFocusKeys, detectKeyboardFocus } from '../utils/keyboardFocus';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
@@ -170,7 +170,6 @@ class ButtonBase extends React.Component {
 
   handleMouseDown = createRippleHandler(this, 'MouseDown', 'start', () => {
     clearTimeout(this.keyboardFocusTimeout);
-    focusKeyPressed(false);
     if (this.state.keyboardFocused) {
       this.setState({ keyboardFocused: false });
     }
@@ -192,8 +191,9 @@ class ButtonBase extends React.Component {
 
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
     clearTimeout(this.keyboardFocusTimeout);
-    focusKeyPressed(false);
-    this.setState({ keyboardFocused: false });
+    if (this.state.keyboardFocused) {
+      this.setState({ keyboardFocused: false });
+    }
   });
 
   handleFocus = event => {

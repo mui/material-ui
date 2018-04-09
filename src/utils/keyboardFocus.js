@@ -7,15 +7,8 @@ import ownerDocument from 'dom-helpers/ownerDocument';
 
 const internal = {
   focusKeyPressed: false,
+  keyUpEventTimeout: -1,
 };
-
-export function focusKeyPressed(pressed) {
-  if (typeof pressed !== 'undefined') {
-    internal.focusKeyPressed = Boolean(pressed);
-  }
-
-  return internal.focusKeyPressed;
-}
 
 export function detectKeyboardFocus(instance, element, callback, attempt = 1) {
   warning(instance.keyboardFocusCheckTime, 'Material-UI: missing instance.keyboardFocusCheckTime');
@@ -28,7 +21,7 @@ export function detectKeyboardFocus(instance, element, callback, attempt = 1) {
     const doc = ownerDocument(element);
 
     if (
-      focusKeyPressed() &&
+      internal.focusKeyPressed &&
       (doc.activeElement === element || contains(element, doc.activeElement))
     ) {
       callback();
@@ -47,6 +40,12 @@ function isFocusKey(event) {
 const handleKeyUpEvent = event => {
   if (isFocusKey(event)) {
     internal.focusKeyPressed = true;
+
+    // Let's consider that the user is using a keyboard during a window frame of 1s.
+    clearTimeout(internal.keyUpEventTimeout);
+    internal.keyUpEventTimeout = setTimeout(() => {
+      internal.focusKeyPressed = false;
+    }, 1e3);
   }
 };
 
