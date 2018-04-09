@@ -30,7 +30,7 @@ declare class DateFnsUtils extends Utils {
   setMinutes(value: Date, count: number): Date
   getMonth(value: Date): number;
   getYear(value: Date): number;
-  setYear(value: Date): Date;
+  setYear(value: Date, count: number): Date;
 
   getStartOfMonth(value: Date): Date;
   getNextMonth(value: Date): Date;
