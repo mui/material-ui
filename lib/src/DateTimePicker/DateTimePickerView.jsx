@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import withStyles from 'material-ui/styles/withStyles';
 import Fade from 'material-ui/transitions/Fade';
 
@@ -11,8 +10,13 @@ export const DateTimePickerView = (props) => {
 
   if (timeout) {
     return (
-      <Fade in={view === selected} timeout={timeout}>
-        <div className={classnames(classes.view, { [classes.disabled]: view !== selected })}>
+      <Fade
+        in={view === selected}
+        timeout={timeout}
+        mountOnEnter
+        unmountOnExit
+      >
+        <div className={classes.view}>
           { children }
         </div>
       </Fade>
@@ -48,12 +52,6 @@ const styles = {
     position: 'absolute',
     left: 0,
     right: 0,
-  },
-  disabled: {
-    zIndex: 0,
-    '& *': {
-      pointerEvents: 'none',
-    },
   },
 };
 
