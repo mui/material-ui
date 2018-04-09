@@ -7,15 +7,23 @@ import green from 'material-ui/colors/green';
 import pink from 'material-ui/colors/pink';
 
 const styles = theme => ({
-  danger: {
+  root: {
     color: theme.status.color,
+    '&$checked': {
+      color: theme.status.color,
+    },
   },
+  checked: {},
 });
 
 let NestedCheckbox = props => (
-  <Checkbox defaultChecked className={props.classes.danger}>
-    {'Danger'}
-  </Checkbox>
+  <Checkbox
+    defaultChecked
+    classes={{
+      root: props.classes.root,
+      checked: props.classes.checked,
+    }}
+  />
 );
 
 NestedCheckbox.propTypes = {
@@ -30,8 +38,7 @@ const theme1 = createMuiTheme({
   },
 });
 
-const theme2 = outerTheme => ({
-  ...outerTheme,
+const theme2 = createMuiTheme({
   status: {
     color: green[500],
   },

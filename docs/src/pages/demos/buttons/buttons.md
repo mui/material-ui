@@ -67,6 +67,13 @@ Sometimes you might want to have icons for certain button to enhance the UX of t
 
 {{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
 
+## Customized Buttons
+
+If you have been reading the [overrides documentation page](/customization/overrides)
+but you are not confident jumping in, here's an example of how you can change the main color of a Button.
+
+{{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
+
 ## Complex Buttons
 
 The Flat Buttons, Raised Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.

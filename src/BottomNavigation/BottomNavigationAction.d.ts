@@ -16,11 +16,9 @@ export interface BottomNavigationActionProps
 export type BottomNavigationActionClassKey =
   | ButtonBaseClassKey
   | 'selected'
-  | 'selectedIconOnly'
+  | 'iconOnly'
   | 'wrapper'
-  | 'label'
-  | 'labelSelected'
-  | 'labelHidden';
+  | 'label';
 
 declare const BottomNavigationAction: React.ComponentType<BottomNavigationActionProps>;
 

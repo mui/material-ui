@@ -77,12 +77,17 @@ for instance, exposing the `inputProps` and `InputProps` properties on component
 - their own `xxxRef` property when user might need to perform imperative actions.
   For instance, exposing a `inputRef` property to access the native `input` on the `Input` component.
   It help answering the following question. [How can I access the DOM element?](/getting-started/faq#how-can-i-access-the-dom-element-)
-- their own `xxxClassName` property when `classes` isn't enough.
 
 ### Property naming
 
-The name of the boolean properties should be chosen based on the default value. We are following the HTML specification.
-For instance, the `disabled` attribute on an input element. This choice allows the shorthand notation.
+The name of a boolean property should be chosen based on the **default value**.
+For instance, the `disabled` attribute on an input element, if supplied, defaults to `true`.
+This choice allows the shorthand notation:
+
+```diff
+-<Input enabled={false} />
++<Input disabled />
+```
 
 ### Controllable components
 

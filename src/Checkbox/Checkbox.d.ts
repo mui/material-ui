@@ -9,7 +9,7 @@ export interface CheckboxProps
   icon?: React.ReactNode;
 }
 
-export type CheckboxClassKey = SwitchBaseClassKey | 'checkedPrimary' | 'checkedSecondary';
+export type CheckboxClassKey = SwitchBaseClassKey | 'colorPrimary' | 'colorSecondary';
 
 declare const Checkbox: React.ComponentType<CheckboxProps>;
 

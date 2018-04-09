@@ -17,7 +17,7 @@ export interface FormControlLabelProps
   value?: string;
 }
 
-export type FormControlLabelClassKey = 'root' | 'disabled' | 'label' | 'labelDisabled';
+export type FormControlLabelClassKey = 'root' | 'disabled' | 'label';
 
 declare const FormControlLabel: React.ComponentType<FormControlLabelProps>;
 

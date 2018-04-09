@@ -28,13 +28,9 @@ This property accepts the following keys:
 - `labelIcon`
 - `textColorInherit`
 - `textColorPrimary`
-- `textColorPrimarySelected`
-- `textColorPrimaryDisabled`
 - `textColorSecondary`
-- `textColorSecondarySelected`
-- `textColorSecondaryDisabled`
-- `textColorInheritSelected`
-- `textColorInheritDisabled`
+- `selected`
+- `disabled`
 - `fullWidth`
 - `wrapper`
 - `labelContainer`

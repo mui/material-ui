@@ -19,14 +19,16 @@ export const styles = theme => ({
     maxWidth: 168,
     color: theme.palette.text.secondary,
     flex: '1',
+    '&$iconOnly': {
+      paddingTop: theme.spacing.unit * 2,
+    },
+    '&$selected': {
+      paddingTop: 6,
+      color: theme.palette.primary.main,
+    },
   },
-  selected: {
-    paddingTop: 6,
-    color: theme.palette.primary.main,
-  },
-  selectedIconOnly: {
-    paddingTop: theme.spacing.unit * 2,
-  },
+  selected: {},
+  iconOnly: {},
   wrapper: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -40,13 +42,13 @@ export const styles = theme => ({
     opacity: 1,
     transition: 'font-size 0.2s, opacity 0.2s',
     transitionDelay: '0.1s',
-  },
-  labelSelected: {
-    fontSize: theme.typography.pxToRem(14),
-  },
-  labelHidden: {
-    opacity: 0,
-    transitionDelay: '0s',
+    '&$iconOnly': {
+      opacity: 0,
+      transitionDelay: '0s',
+    },
+    '&$selected': {
+      fontSize: theme.typography.pxToRem(14),
+    },
   },
 });
 
@@ -81,14 +83,14 @@ class BottomNavigationAction extends React.Component {
       classes.root,
       {
         [classes.selected]: selected,
-        [classes.selectedIconOnly]: !showLabelProp && !selected,
+        [classes.iconOnly]: !showLabelProp && !selected,
       },
       classNameProp,
     );
 
     const labelClassName = classNames(classes.label, {
-      [classes.labelSelected]: selected,
-      [classes.labelHidden]: !showLabelProp && !selected,
+      [classes.selected]: selected,
+      [classes.iconOnly]: !showLabelProp && !selected,
     });
 
     return (

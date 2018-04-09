@@ -317,6 +317,13 @@ This can be really useful when dealing with different area of your application t
 
 {{"demo": "pages/customization/themes/Nested.js"}}
 
+#### A note on performance
+
+The performance implications of nesting the `MuiThemeProvider` component are linked to JSS's work behind the scenes.
+The main point to understand is that we cache the injected CSS with the following tuple `(styles, theme)`.
+- `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
+- `styles`: The larger the styles object is, the more work is needed.
+
 ## API
 
 ### `MuiThemeProvider`

@@ -16,9 +16,7 @@ export type ExpansionPanelSummaryClassKey =
   | 'focused'
   | 'disabled'
   | 'content'
-  | 'contentExpanded'
-  | 'expandIcon'
-  | 'expandIconExpanded';
+  | 'expandIcon';
 
 declare const ExpansionPanelSummary: React.ComponentType<ExpansionPanelSummaryProps>;
 

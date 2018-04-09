@@ -40,11 +40,7 @@ describe('<BottomNavigationAction />', () => {
 
   it('should render with the selectedIconOnly and root classes', () => {
     const wrapper = shallow(<BottomNavigationAction icon={icon} showLabel={false} />);
-    assert.strictEqual(
-      wrapper.hasClass(classes.selectedIconOnly),
-      true,
-      'should have the selectedIconOnly class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.iconOnly), true, 'should have the iconOnly class');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
@@ -53,20 +49,20 @@ describe('<BottomNavigationAction />', () => {
     assert.strictEqual(wrapper.contains(icon), true, 'should have the icon');
   });
 
-  it('should render label with the labelSelected class', () => {
+  it('should render label with the selected class', () => {
     const wrapper = shallow(<BottomNavigationAction icon={icon} selected />);
     const labelWrapper = wrapper.childAt(0).childAt(1);
-    assert.strictEqual(labelWrapper.hasClass(classes.labelSelected), true);
+    assert.strictEqual(labelWrapper.hasClass(classes.selected), true);
     assert.strictEqual(labelWrapper.hasClass(classes.label), true);
   });
 
-  it('should render label with the labelHidden class', () => {
+  it('should render label with the iconOnly class', () => {
     const wrapper = shallow(<BottomNavigationAction icon={icon} showLabel={false} />);
     const labelWrapper = wrapper.childAt(0).childAt(1);
     assert.strictEqual(
-      labelWrapper.hasClass(classes.labelHidden),
+      labelWrapper.hasClass(classes.iconOnly),
       true,
-      'should have the labelHidden class',
+      'should have the iconOnly class',
     );
     assert.strictEqual(labelWrapper.hasClass(classes.label), true, 'should have the label class');
   });

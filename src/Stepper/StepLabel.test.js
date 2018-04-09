@@ -60,7 +60,7 @@ describe('<StepLabel />', () => {
     it('renders <Typography> with the className active', () => {
       const wrapper = shallow(<StepLabel active>Step One</StepLabel>);
       const text = wrapper.find(Typography);
-      assert.strictEqual(text.hasClass(classes.labelActive), true);
+      assert.strictEqual(text.hasClass(classes.active), true);
     });
 
     it('renders <StepIcon> with the prop active set to true', () => {
@@ -84,7 +84,7 @@ describe('<StepLabel />', () => {
     it('renders <Typography> with the className completed', () => {
       const wrapper = shallow(<StepLabel completed>Step One</StepLabel>);
       const text = wrapper.find(Typography);
-      assert.strictEqual(text.hasClass(classes.labelCompleted), true);
+      assert.strictEqual(text.hasClass(classes.completed), true);
     });
 
     it('renders <StepIcon> with the prop completed set to true', () => {
@@ -102,7 +102,7 @@ describe('<StepLabel />', () => {
     it('renders <Typography> with the className error', () => {
       const wrapper = shallow(<StepLabel error>Step One</StepLabel>);
       const text = wrapper.find(Typography);
-      assert.strictEqual(text.hasClass(classes.labelError), true);
+      assert.strictEqual(text.hasClass(classes.error), true);
     });
 
     it('renders <StepIcon> with the prop error set to true', () => {

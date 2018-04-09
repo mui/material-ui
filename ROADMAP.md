@@ -95,31 +95,6 @@ Users trying out and using v1-beta and giving feedback has been a tremendous hel
 This feedback has guided the following list of important breaking changes
 that **are needed for the stable version**:
 
-- [ ] Change the CSS specificity rule to solve [#10010](https://github.com/mui-org/material-ui/issues/10010) and [#9742](https://github.com/mui-org/material-ui/issues/9742) at scale.
-  It's inspired by the Bootstrap approach to writing CSS. Basically, it follows two rules:
-  1. A variant has one level of specificity. User overrides can be considered a variant, so we can keep things as simple as possible, e.g. `color` or `variant`.
-  2. We increase the specificity for a variant modifier. We already have to do it for the pseudo-classes (`:hover`, `:focus`, etc.). It allows much more control at the cost of extra complexity. Hopefully it makes it more intuitive.
-
-  ```diff
-  const styles = {
-  -  checked: {
-  -    color: green[500],
-  +  root: {
-  +    color: green[600],
-  +    '&$checked': {
-  +      color: green[500],
-  +    },
-     },
-  +  checked: {},
-  };
-
-  <Checkbox
-    classes={{
-  +   root: classes.root,
-      checked: classes.checked,
-    }} />
-  ```
-
 - [ ] Flatten the import path [#9532](https://github.com/mui-org/material-ui/issues/9532).
   Knowing the component name should be enough for being able to import it.
 

@@ -12,26 +12,26 @@ export const styles = theme => ({
     '&:focus': {
       outline: 'none',
     },
-  },
-  head: {
-    height: 56,
-  },
-  footer: {
-    height: 56,
-  },
-  selected: {
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? 'rgba(0, 0, 0, 0.04)' // grey[100]
-        : 'rgba(255, 255, 255, 0.08)',
-  },
-  hover: {
-    '&:hover': {
+    '&$selected': {
+      backgroundColor:
+        theme.palette.type === 'light'
+          ? 'rgba(0, 0, 0, 0.04)' // grey[100]
+          : 'rgba(255, 255, 255, 0.08)',
+    },
+    '&$hover:hover': {
       backgroundColor:
         theme.palette.type === 'light'
           ? 'rgba(0, 0, 0, 0.07)' // grey[200]
           : 'rgba(255, 255, 255, 0.14)',
     },
+  },
+  selected: {},
+  hover: {},
+  head: {
+    height: 56,
+  },
+  footer: {
+    height: 56,
   },
 });
 

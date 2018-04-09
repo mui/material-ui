@@ -9,39 +9,43 @@ export const styles = theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
+    '&$alternativeLabel': {
+      flexDirection: 'column',
+    },
+    '&$disabled': {
+      cursor: 'default',
+    },
   },
   horizontal: {},
   vertical: {},
-  alternativeLabel: {
-    flexDirection: 'column',
-  },
-  disabled: {
-    cursor: 'default',
-  },
+  active: {},
+  completed: {},
+  alternativeLabel: {},
   error: {},
+  disabled: {},
   label: {
     color: theme.palette.text.secondary,
-  },
-  labelActive: {
-    color: theme.palette.text.primary,
-    fontWeight: 500,
-  },
-  labelCompleted: {
-    color: theme.palette.text.primary,
-    fontWeight: 500,
-  },
-  labelAlternativeLabel: {
-    textAlign: 'center',
-    marginTop: theme.spacing.unit * 2,
-  },
-  labelError: {
-    color: theme.palette.error.main,
+    '&$active': {
+      color: theme.palette.text.primary,
+      fontWeight: 500,
+    },
+    '&$completed': {
+      color: theme.palette.text.primary,
+      fontWeight: 500,
+    },
+    '&$alternativeLabel': {
+      textAlign: 'center',
+      marginTop: theme.spacing.unit * 2,
+    },
+    '&$error': {
+      color: theme.palette.error.main,
+    },
   },
   iconContainer: {
     paddingRight: theme.spacing.unit,
-  },
-  iconContainerAlternativeLabel: {
-    paddingRight: 0,
+    '&$alternativeLabel': {
+      paddingRight: 0,
+    },
   },
   labelContainer: {
     width: '100%',
@@ -82,7 +86,7 @@ function StepLabel(props) {
       {icon && (
         <span
           className={classNames(classes.iconContainer, {
-            [classes.iconContainerAlternativeLabel]: alternativeLabel,
+            [classes.alternativeLabel]: alternativeLabel,
           })}
         >
           <StepIcon
@@ -99,10 +103,10 @@ function StepLabel(props) {
           variant="body1"
           component="span"
           className={classNames(classes.label, {
-            [classes.labelAlternativeLabel]: alternativeLabel,
-            [classes.labelCompleted]: completed,
-            [classes.labelActive]: active,
-            [classes.labelError]: error,
+            [classes.alternativeLabel]: alternativeLabel,
+            [classes.completed]: completed,
+            [classes.active]: active,
+            [classes.error]: error,
           })}
         >
           {children}

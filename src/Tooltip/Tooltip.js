@@ -22,10 +22,12 @@ export const styles = theme => ({
   },
   popper: {
     zIndex: theme.zIndex.tooltip,
-  },
-  popperClose: {
     pointerEvents: 'none',
+    '&$open': {
+      pointerEvents: 'auto',
+    },
   },
+  open: {},
   tooltip: {
     backgroundColor: theme.palette.grey[700],
     borderRadius: 2,
@@ -44,6 +46,10 @@ export const styles = theme => ({
       padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit}px`,
       fontSize: theme.typography.pxToRem(10),
       lineHeight: `${theme.typography.round(14 / 10)}em`,
+    },
+    '&$open': {
+      opacity: 0.9,
+      transform: 'scale(1)',
     },
   },
   tooltipPlacementLeft: {
@@ -73,10 +79,6 @@ export const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       margin: '14px 0',
     },
-  },
-  tooltipOpen: {
-    opacity: 0.9,
-    transform: 'scale(1)',
   },
 });
 
@@ -330,11 +332,7 @@ class Tooltip extends React.Component {
           <Popper
             placement={placement}
             eventsEnabled={open}
-            className={classNames(
-              classes.popper,
-              { [classes.popperClose]: !open },
-              PopperClassName,
-            )}
+            className={classNames(classes.popper, { [classes.open]: open }, PopperClassName)}
             ref={node => {
               this.popper = node;
             }}
@@ -359,7 +357,7 @@ class Tooltip extends React.Component {
                     aria-hidden={!open}
                     className={classNames(
                       classes.tooltip,
-                      { [classes.tooltipOpen]: open },
+                      { [classes.open]: open },
                       classes[`tooltipPlacement${capitalize(actualPlacement)}`],
                     )}
                   >

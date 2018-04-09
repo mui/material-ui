@@ -66,11 +66,7 @@ describe('<Input />', () => {
       const input = wrapper.find('input');
       assert.strictEqual(input.name(), 'input');
       assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
-      assert.strictEqual(
-        input.hasClass(classes.inputDisabled),
-        true,
-        'should have the disabled class',
-      );
+      assert.strictEqual(input.hasClass(classes.disabled), true, 'should have the disabled class');
     });
 
     it('should reset the focused state', () => {

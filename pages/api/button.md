@@ -37,9 +37,9 @@ This property accepts the following keys:
 - `flatSecondary`
 - `colorInherit`
 - `raised`
-- `keyboardFocused`
 - `raisedPrimary`
 - `raisedSecondary`
+- `keyboardFocused`
 - `disabled`
 - `fab`
 - `mini`

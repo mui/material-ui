@@ -28,16 +28,13 @@ This property accepts the following keys:
 - `root`
 - `horizontal`
 - `vertical`
+- `active`
+- `completed`
 - `alternativeLabel`
-- `disabled`
 - `error`
+- `disabled`
 - `label`
-- `labelActive`
-- `labelCompleted`
-- `labelAlternativeLabel`
-- `labelError`
 - `iconContainer`
-- `iconContainerAlternativeLabel`
 - `labelContainer`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

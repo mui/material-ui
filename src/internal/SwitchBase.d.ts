@@ -20,7 +20,7 @@ export interface SwitchBaseProps
   value?: string;
 }
 
-export type SwitchBaseClassKey = 'root' | 'default' | 'checked' | 'disabled' | 'input';
+export type SwitchBaseClassKey = 'root' | 'checked' | 'disabled' | 'input';
 
 export type SwitchBase = React.Component<SwitchBaseProps>;
 

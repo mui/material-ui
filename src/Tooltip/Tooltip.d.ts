@@ -36,13 +36,12 @@ export interface TooltipProps
 export type TooltipClassKey =
   | 'root'
   | 'popper'
-  | 'popperClose'
+  | 'open'
   | 'tooltip'
   | 'tooltipPlacementLeft'
   | 'tooltipPlacementRight'
   | 'tooltipPlacementTop'
-  | 'tooltipPlacementBottom'
-  | 'tooltipOpen';
+  | 'tooltipPlacementBottom';
 
 interface PopperProps extends IPopperProps {
   PopperClassName: string;

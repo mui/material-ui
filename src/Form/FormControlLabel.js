@@ -17,13 +17,15 @@ export const styles = theme => ({
     WebkitTapHighlightColor: 'transparent',
     marginLeft: -14,
     marginRight: theme.spacing.unit * 2, // used for row presentation of radio/checkbox
+    '&$disabled': {
+      cursor: 'default',
+    },
   },
-  disabled: {
-    cursor: 'default',
-  },
-  label: {},
-  labelDisabled: {
-    color: theme.palette.text.disabled,
+  disabled: {},
+  label: {
+    '&$disabled': {
+      color: theme.palette.text.disabled,
+    },
   },
 });
 
@@ -81,7 +83,7 @@ function FormControlLabel(props, context) {
       })}
       <Typography
         component="span"
-        className={classNames(classes.label, { [classes.labelDisabled]: disabled })}
+        className={classNames(classes.label, { [classes.disabled]: disabled })}
       >
         {label}
       </Typography>

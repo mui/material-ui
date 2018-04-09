@@ -53,7 +53,6 @@ This property accepts the following keys:
 - `fullWidth`
 - `input`
 - `inputMarginDense`
-- `inputDisabled`
 - `inputMultiline`
 - `inputType`
 - `inputTypeSearch`
