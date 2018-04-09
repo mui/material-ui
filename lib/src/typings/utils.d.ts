@@ -30,7 +30,7 @@ export class Utils {
   setMinutes(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate
   getMonth(value: MaterialUiPickersDate): number;
   getYear(value: MaterialUiPickersDate): number;
-  setYear(value: MaterialUiPickersDate, year: number): MaterialUiPickersDate;
+  setYear(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate;
 
   getStartOfMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
   getNextMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
