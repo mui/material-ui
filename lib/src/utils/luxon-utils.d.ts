@@ -38,13 +38,13 @@ declare class LuxonUtils extends Utils {
     getPreviousMonth(value: DateTime): DateTime;
 
     getWeekdays(): string[];
-    getWeekArray(): DateTime[];
-    getYearRange(): DateTime[];
+    getWeekArray(date: DateTime): DateTime[];
+    getYearRange(start: DateTime, end: DateTime): DateTime[];
 
     // displaying methods
     getMeridiemText(ampm: 'am' | 'pm'): string;
     getCalendarHeaderText(date: DateTime): string;
-    getDateTimePickerHeaderText(date: DateTime): string;
+    getDatePickerHeaderText(date: DateTime): string;
     getDateTimePickerHeaderText(date: DateTime): string;
     getDayText(date: DateTime): string;
     getHourText(date: DateTime, ampm: boolean): string;
