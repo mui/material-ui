@@ -31,7 +31,7 @@ declare class LuxonUtils extends Utils {
     setMinutes(value: DateTime, count: number): DateTime
     getMonth(value: DateTime): number;
     getYear(value: DateTime): number;
-    setYear(value: DateTime): DateTime;
+    setYear(value: DateTime, year: number): DateTime;
 
     getStartOfMonth(value: DateTime): DateTime;
     getNextMonth(value: DateTime): DateTime;
