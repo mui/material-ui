@@ -48,8 +48,8 @@
     "react-text-mask": "^5.1.0"
   },
   "scripts": {
-    "test": "cross-env NODE_ICU_DATA=node_modules/full-icu && npm run test:moment && npm run test:date-fns && npm run test:luxon",
-    "all-tests": "cross-env NODE_ICU_DATA=node_modules/full-icu jest && npm run typescript",
+    "test": "cross-env NODE_ICU_DATA=./node_modules/full-icu && npm run test:moment && npm run test:date-fns && npm run test:luxon",
+    "all-tests": "cross-env NODE_ICU_DATA=./node_modules/full-icu jest && npm run typescript",
     "test:moment": "cross-env UTILS=moment && npm run all-tests",
     "test:date-fns": "cross-env UTILS=date-fns && npm run all-tests",
     "test:luxon": "cross-env UTILS=luxon && npm run all-tests",
