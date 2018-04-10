@@ -76,7 +76,7 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
   }
 }
 
-export function getContrastText(background) {
+export function getContrastText(background, contrastThreshold) {
   // Use the same logic as
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
@@ -100,7 +100,7 @@ export function getContrastText(background) {
   return contrastText;
 }
 
-export function augmentColor(color, mainShade, lightShade, darkShade, tonalOffset) {
+export function augmentColor(color, mainShade, lightShade, darkShade, tonalOffset, contrastThreshold) {
   if (!color.main && color[mainShade]) {
     color.main = color[mainShade];
   }
@@ -134,9 +134,9 @@ export default function createPalette(palette: Object) {
     ...other
   } = palette;
 
-  augmentColor(primary, 500, 300, 700, tonalOffset);
-  augmentColor(secondary, 'A400', 'A200', 'A700', tonalOffset);
-  augmentColor(error, 500, 300, 700, tonalOffset);
+  augmentColor(primary, 500, 300, 700, tonalOffset, contrastThreshold);
+  augmentColor(secondary, 'A400', 'A200', 'A700', tonalOffset, contrastThreshold);
+  augmentColor(error, 500, 300, 700, tonalOffset, contrastThreshold);
 
   const types = { dark, light };
 

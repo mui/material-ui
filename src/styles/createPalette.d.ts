@@ -88,6 +88,7 @@ export function augmentColor(
   mainShade: number | string,
   lightShade: number | string,
   darkShade: number | string,
-  tonalOffset: number): void;
+  tonalOffset: number,
+  contrastThreshold: number): void;
 
 export default function createPalette(palette: PaletteOptions): Palette;
