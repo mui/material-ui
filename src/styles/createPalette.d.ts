@@ -77,6 +77,7 @@ export interface PaletteOptions {
   action?: Partial<TypeAction>;
   background?: Partial<TypeBackground>;
   getContrastText?: (color: string) => string;
+  augmentColor?(color: PaletteColorOptions, mainShade: number | string, lightShade: number | string, darkShade: number | string): void;
 }
 
 //export type PaletteOptions = DeepPartial<Palette>;
