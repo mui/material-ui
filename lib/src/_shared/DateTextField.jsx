@@ -237,7 +237,9 @@ export class DateTextField extends PureComponent {
   handleBlur = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    this.commitUpdates(e.target.value);
+    if (e.target.tagName.toLowerCase() === 'input') {
+      this.commitUpdates(e.target.value);
+    }
   };
 
   handleChange = (e) => {
