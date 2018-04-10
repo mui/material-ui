@@ -48,8 +48,8 @@
     "react-text-mask": "^5.1.0"
   },
   "scripts": {
-    "test": "npm run test:moment && npm run test:date-fns",
-    "all-tests": "jest && npm run typescript",
+    "test": "cross-env NODE_ICU_DATA=node_modules/full-icu && npm run test:moment && npm run test:date-fns && npm run test:luxon",
+    "all-tests": "cross-env NODE_ICU_DATA=node_modules/full-icu jest && npm run typescript",
     "test:moment": "cross-env UTILS=moment && npm run all-tests",
     "test:date-fns": "cross-env UTILS=date-fns && npm run all-tests",
     "test:luxon": "cross-env UTILS=luxon && npm run all-tests",
@@ -67,7 +67,7 @@
     "postrelease": "npm run build && npm publish build",
     "lint": "eslint ./src/**/*.js*",
     "lint-fix": "npm run lint -- --fix",
-    "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1m Did not forget to install date-fns@next or moment?')\""
+    "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1m Did not forget to install date-fns@next, luxon or moment?')\""
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
@@ -102,6 +102,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.7.0",
     "fs-extra": "^4.0.2",
+    "full-icu": "^1.2.1",
     "glob": "^7.1.2",
     "jest": "^21.2.1",
     "material-ui": "^1.0.0-beta.35",
