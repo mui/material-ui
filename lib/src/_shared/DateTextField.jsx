@@ -267,6 +267,7 @@ export class DateTextField extends PureComponent {
       TextFieldComponent,
       InputAdornmentProps,
       adornmentPosition,
+      disableOpenOnEnter,
       ...other
     } = this.props;
 
