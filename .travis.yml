@@ -3,4 +3,4 @@ node_js:
   - "8"
 
 script: 
-  - cd lib && npm install --ignore-scripts && ls node_modules && npm run ci
+  - cd lib && npm install --ignore-scripts && npm run ci
