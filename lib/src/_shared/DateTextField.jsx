@@ -25,6 +25,7 @@ export class DateTextField extends PureComponent {
     disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
     format: PropTypes.string,
+    parseFormats: PropTypes.arrayOf(PropTypes.string),
     onChange: PropTypes.func.isRequired,
     onClear: PropTypes.func,
     onClick: PropTypes.func.isRequired,
@@ -69,6 +70,7 @@ export class DateTextField extends PureComponent {
     value: new Date(),
     labelFunc: undefined,
     format: undefined,
+    parseFormats: undefined,
     InputProps: undefined,
     keyboard: false,
     mask: undefined,
@@ -169,21 +171,17 @@ export class DateTextField extends PureComponent {
     }
   }
 
-  handleBlur = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
-  handleChange = (e) => {
+  commitUpdates = (value) => {
     const {
       clearable,
       onClear,
       utils,
       format,
       onError,
+      parseFormats,
     } = this.props;
 
-    if (e.target.value === '') {
+    if (value === '') {
       if (this.props.value === null) {
         this.setState(this.updateState());
       } else if (clearable && onClear) {
@@ -194,12 +192,27 @@ export class DateTextField extends PureComponent {
     }
 
     const oldValue = utils.date(this.state.value);
-    const newValue = utils.parse(e.target.value, format);
+    let newValue;
+
+    if (parseFormats) {
+      newValue = parseFormats.reduce((result, parseFormat) => {
+        if (result) {
+          return result;
+        }
+
+        const date = utils.parse(value, parseFormat);
+        return utils.isValid(date) && date;
+      }, undefined);
+    }
+
+    if (newValue === false) {
+      newValue = utils.parse(value, format);
+    }
 
     const error = this.getError(newValue);
 
     this.setState({
-      displayValue: e.target.value,
+      displayValue: value,
       value: error ? newValue : oldValue,
       error,
     }, () => {
@@ -210,6 +223,25 @@ export class DateTextField extends PureComponent {
       if (error && onError) {
         onError(newValue, error);
       }
+
+      if (!error) {
+        this.setState({
+          displayValue: utils.format(this.state.value, format),
+        });
+      }
+    });
+  }
+
+  handleBlur = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.commitUpdates(e.target.value);
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      displayValue: e.target.value,
+      error: '',
     });
   }
 
@@ -222,13 +254,16 @@ export class DateTextField extends PureComponent {
       return;
     }
 
-
     this.openPicker(e);
   }
 
   handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !this.props.disableOpenOnEnter) {
-      this.openPicker(e);
+    if (e.key === 'Enter') {
+      if (!this.props.disableOpenOnEnter) {
+        this.openPicker(e);
+      } else {
+        this.commitUpdates(e.target.value);
+      }
     }
   }
 
@@ -244,6 +279,7 @@ export class DateTextField extends PureComponent {
     const {
       utils,
       format,
+      parseFormats,
       classes,
       disabled,
       onClick,
