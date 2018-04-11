@@ -203,11 +203,10 @@ export class DateTextField extends PureComponent {
         const date = utils.parse(value, parseFormat);
         return utils.isValid(date) && date;
       }, undefined);
-    } else {
-      newValue = utils.parse(value, format);
+
     }
 
-    if (newValue === false) {
+    if (!parseFormats || newValue === false) {
       newValue = utils.parse(value, format);
     }
 
