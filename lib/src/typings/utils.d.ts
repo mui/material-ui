@@ -30,15 +30,15 @@ export class Utils {
   setMinutes(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate
   getMonth(value: MaterialUiPickersDate): number;
   getYear(value: MaterialUiPickersDate): number;
-  setYear(value: MaterialUiPickersDate): MaterialUiPickersDate;
+  setYear(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate;
 
   getStartOfMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
   getNextMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
   getPreviousMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
  
   getWeekdays(): string[];
-  getWeekArray(): MaterialUiPickersDate[];
-  getYearRange(): MaterialUiPickersDate[];
+  getWeekArray(date: MaterialUiPickersDate): MaterialUiPickersDate[];
+  getYearRange(start: MaterialUiPickersDate, end: MaterialUiPickersDate): MaterialUiPickersDate[];
 
   // displaying methods
   getMeridiemText(ampm: 'am' | 'pm'): string;

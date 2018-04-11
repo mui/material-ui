@@ -31,7 +31,7 @@ declare class MomentUtils extends Utils {
   setMinutes(value: Moment, count: number): Moment
   getMonth(value: Moment): number;
   getYear(value: Moment): number;
-  setYear(value: Moment): Moment;
+  setYear(value: Moment, count: number): Moment;
 
   getStartOfMonth(value: Moment): Moment;
   getNextMonth(value: Moment): Moment;
