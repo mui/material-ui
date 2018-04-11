@@ -14,7 +14,7 @@ A palette is a collection of colors, i.e. hues and their shades. Material-UI pro
 
 A single color within the palette is made up of a hue such as "red", and shade, such as "500".
 "red 50" is the lightest shade of red (*pink!*), while "red 900" is the darkest.
-In addition, most hues come with "accent" shades, prefixed wih `A`.
+In addition, most hues come with "accent" shades, prefixed with an `A`.
 
 ### Examples
 
