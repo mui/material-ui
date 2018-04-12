@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { WithTheme } from '../styles/withTheme';
+import { Omit } from '..';
 import { Theme } from './createMuiTheme';
 
 /**
@@ -28,9 +30,8 @@ export interface WithStylesOptions {
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
-export interface WithStyles<ClassKey extends string = string> {
+export interface WithStyles<ClassKey extends string = string> extends Partial<WithTheme> {
   classes: ClassNameMap<ClassKey>;
-  theme?: Theme;
 }
 
 export interface StyledComponentProps<ClassKey extends string = string> {
@@ -38,13 +39,13 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   innerRef?: React.Ref<any>;
 }
 
-// Diff / Omit taken from https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-311923766
-export type Diff<T extends string, U extends string> = ({ [P in T]: P } & { [P in U]: never } & { [x: string]: never })[T];
-export type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
-
+/*
+  The Omit<P, 'classes'> below (rather than the canonical Omit<P, WithStyles<ClassKey>>)
+  is used to allow interoperability with withTheme, which may provide the 'theme' prop.
+ */
 export default function withStyles<ClassKey extends string>(
-    style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
-    options?: WithStylesOptions,
+  style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
+  options?: WithStylesOptions,
 ): <P extends WithStyles<ClassKey>>(
-    component: React.ComponentType<P>,
-) => React.ComponentType<Omit<P, keyof WithStyles<ClassKey>> & StyledComponentProps<ClassKey>>;
+  component: React.ComponentType<P>,
+) => React.ComponentType<Omit<P, 'classes'> & StyledComponentProps<ClassKey>>;
