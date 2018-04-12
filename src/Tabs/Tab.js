@@ -182,7 +182,7 @@ class Tab extends React.Component {
 
     let style = {};
 
-    if (textColor !== 'secondary' && textColor !== 'inherit') {
+    if (textColor !== 'primary' && textColor !== 'secondary' && textColor !== 'inherit') {
       style.color = selected ? textColor : theme.palette.text.secondary;
     }
 
