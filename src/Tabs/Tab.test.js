@@ -150,7 +150,7 @@ describe('<Tab />', () => {
   it('should have a ref on label property', () => {
     const TabNaked = unwrap(Tab);
     const instance = mount(
-      <TabNaked textColor="inherit" label="foo" classes={classes} />,
+      <TabNaked textColor="inherit" label="foo" classes={classes} theme={{}} />,
     ).instance();
     assert.isDefined(instance.label, 'should be defined');
   });
