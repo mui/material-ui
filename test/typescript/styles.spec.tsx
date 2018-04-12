@@ -166,3 +166,12 @@ const DecoratedComponent = withStyles(styles)(
 
 // no 'classes' property required at element creation time (#8267)
 <DecoratedComponent text="foo" />;
+
+// Allow nested pseudo selectors
+withStyles<'listItem'>(theme => ({
+  listItem: {
+    '&:hover $listItemIcon': {
+      visibility: 'inherit',
+    },
+  },
+}))
