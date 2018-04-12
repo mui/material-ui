@@ -38,9 +38,13 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   innerRef?: React.Ref<any>;
 }
 
+// Diff / Omit taken from https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-311923766
+export type Diff<T extends string, U extends string> = ({ [P in T]: P } & { [P in U]: never } & { [x: string]: never })[T];
+export type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
+
 export default function withStyles<ClassKey extends string>(
-  style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
-  options?: WithStylesOptions,
-): <P>(
-  component: React.ComponentType<P & WithStyles<ClassKey>>,
-) => React.ComponentType<P & StyledComponentProps<ClassKey>>;
+    style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
+    options?: WithStylesOptions,
+): <P extends WithStyles<ClassKey>>(
+    component: React.ComponentType<P>,
+) => React.ComponentType<Omit<P, keyof WithStyles<ClassKey>> & StyledComponentProps<ClassKey>>;
