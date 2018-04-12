@@ -59,7 +59,13 @@ export interface Palette {
   divider: string;
   action: TypeAction;
   background: TypeBackground;
-  getContrastText: (color: string) => string;
+  getContrastText: (background: string) => string;
+  augmentColor: (
+    color: string,
+    mainShade: number | string,
+    lightShade: number | string,
+    darkShade: number | string,
+  ) => void;
 }
 
 type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
@@ -76,19 +82,9 @@ export interface PaletteOptions {
   divider?: string;
   action?: Partial<TypeAction>;
   background?: Partial<TypeBackground>;
-  getContrastText?: (color: string) => string;  
+  getContrastText?: (background: string) => string;
 }
 
 //export type PaletteOptions = DeepPartial<Palette>;
-
-export function getContrastText(color: string): string;
-
-export function augmentColor(
-  color: PaletteColorOptions,
-  mainShade: number | string,
-  lightShade: number | string,
-  darkShade: number | string,
-  tonalOffset: number,
-  contrastThreshold: number): void;
 
 export default function createPalette(palette: PaletteOptions): Palette;

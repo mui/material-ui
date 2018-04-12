@@ -76,41 +76,6 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
   }
 }
 
-export function getContrastText(background, contrastThreshold) {
-  // Use the same logic as
-  // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
-  // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
-  const contrastText =
-    getContrastRatio(background, dark.text.primary) >= contrastThreshold
-      ? dark.text.primary
-      : light.text.primary;
-
-  if (process.env.NODE_ENV !== 'production') {
-    const contrast = getContrastRatio(background, contrastText);
-    warning(
-      contrast >= 3,
-      [
-        `Material-UI: the contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
-        'falls below the WACG recommended absolute minimum contrast ratio of 3:1.',
-        'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
-      ].join('\n'),
-    );
-  }
-
-  return contrastText;
-}
-
-export function augmentColor(color, mainShade, lightShade, darkShade, tonalOffset, contrastThreshold) {
-  if (!color.main && color[mainShade]) {
-    color.main = color[mainShade];
-  }
-  addLightOrDark(color, 'light', lightShade, tonalOffset);
-  addLightOrDark(color, 'dark', darkShade, tonalOffset);
-  if (!color.contrastText) {
-    color.contrastText = getContrastText(color.main);
-  }
-}
-
 export default function createPalette(palette: Object) {
   const {
     primary = {
@@ -134,9 +99,44 @@ export default function createPalette(palette: Object) {
     ...other
   } = palette;
 
-  augmentColor(primary, 500, 300, 700, tonalOffset, contrastThreshold);
-  augmentColor(secondary, 'A400', 'A200', 'A700', tonalOffset, contrastThreshold);
-  augmentColor(error, 500, 300, 700, tonalOffset, contrastThreshold);
+  function getContrastText(background) {
+    // Use the same logic as
+    // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
+    // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
+    const contrastText =
+      getContrastRatio(background, dark.text.primary) >= contrastThreshold
+        ? dark.text.primary
+        : light.text.primary;
+
+    if (process.env.NODE_ENV !== 'production') {
+      const contrast = getContrastRatio(background, contrastText);
+      warning(
+        contrast >= 3,
+        [
+          `Material-UI: the contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
+          'falls below the WACG recommended absolute minimum contrast ratio of 3:1.',
+          'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
+        ].join('\n'),
+      );
+    }
+
+    return contrastText;
+  }
+
+  function augmentColor(color, mainShade, lightShade, darkShade) {
+    if (!color.main && color[mainShade]) {
+      color.main = color[mainShade];
+    }
+    addLightOrDark(color, 'light', lightShade, tonalOffset);
+    addLightOrDark(color, 'dark', darkShade, tonalOffset);
+    if (!color.contrastText) {
+      color.contrastText = getContrastText(color.main);
+    }
+  }
+
+  augmentColor(primary, 500, 300, 700);
+  augmentColor(secondary, 'A400', 'A200', 'A700');
+  augmentColor(error, 500, 300, 700);
 
   const types = { dark, light };
 
@@ -160,8 +160,9 @@ export default function createPalette(palette: Object) {
       // the text.
       contrastThreshold,
       // Take a background color and return the color of the text to maximize the contrast.
-      // NOTE: This should be deprecated in favor to getContrastText exported - lines 79 - 101
       getContrastText,
+      // Generate a rich color object.
+      augmentColor,
       // Used by the functions below to shift a color's luminance by approximately
       // two indexes within its tonal palette.
       // E.g., shift from Red 500 to Red 300 or Red 700.
