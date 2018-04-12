@@ -145,6 +145,7 @@ class Tab extends React.Component {
       style: styleProp,
       textColor,
       value,
+      theme,
       ...other
     } = this.props;
 
@@ -182,7 +183,7 @@ class Tab extends React.Component {
     let style = {};
 
     if (textColor !== 'secondary' && textColor !== 'inherit') {
-      style.color = textColor;
+      style.color = selected ? textColor : theme.palette.text.secondary;
     }
 
     style =
@@ -269,6 +270,10 @@ Tab.propTypes = {
     PropTypes.oneOf(['secondary', 'primary', 'inherit']),
   ]),
   /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
   value: PropTypes.any,
@@ -279,4 +284,4 @@ Tab.defaultProps = {
   textColor: 'inherit',
 };
 
-export default withStyles(styles, { name: 'MuiTab' })(Tab);
+export default withStyles(styles, { name: 'MuiTab', withTheme: true })(Tab);
