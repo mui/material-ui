@@ -5,7 +5,7 @@ declare class LuxonUtils extends Utils {
     locale: any;
     constructor (options?: { locale: any });
 
-    date(value: any): DateTime;
+    date(value: DateTime | Date | string): DateTime;
     addDays(value: DateTime, count: number): DateTime;
     isValid(value: DateTime): boolean;
     isEqual(value: DateTime, comparing: DateTime): boolean;
@@ -39,7 +39,7 @@ declare class LuxonUtils extends Utils {
 
     getWeekdays(): string[];
     getWeekArray(date: DateTime): DateTime[];
-    getYearRange(start: DateTime, end: DateTime): DateTime[];
+    getYearRange(start: DateTime | string, end: DateTime | string): DateTime[];
 
     // displaying methods
     getMeridiemText(ampm: 'am' | 'pm'): string;
