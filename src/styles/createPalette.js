@@ -161,6 +161,8 @@ export default function createPalette(palette: Object) {
       contrastThreshold,
       // Take a background color and return the color of the text to maximize the contrast.
       getContrastText,
+      // Generate a rich color object.
+      augmentColor,
       // Used by the functions below to shift a color's luminance by approximately
       // two indexes within its tonal palette.
       // E.g., shift from Red 500 to Red 300 or Red 700.
