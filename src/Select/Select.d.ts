@@ -2,8 +2,9 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
+import { SelectInputProps } from './SelectInput';
 
-export interface SelectProps extends StandardProps<InputProps, SelectClassKey, 'value'> {
+export interface SelectProps extends StandardProps<InputProps, SelectClassKey, 'value' | 'onChange'> {
   autoWidth?: boolean;
   displayEmpty?: boolean;
   input?: React.ReactNode;
@@ -12,6 +13,7 @@ export interface SelectProps extends StandardProps<InputProps, SelectClassKey, '
   native?: boolean;
   onClose?: (event: React.ChangeEvent<{}>) => void;
   onOpen?: (event: React.ChangeEvent<{}>) => void;
+  onChange: SelectInputProps['onChange'];
   open?: boolean;
   renderValue?: (value: SelectProps['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
