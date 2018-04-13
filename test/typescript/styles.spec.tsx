@@ -59,7 +59,7 @@ const ComponentWithChildren: React.SFC<WithStyles<ComponentClassNames>> = ({
   children,
 }) => <div className={classes.root}>{children}</div>;
 
-const StyledExampleThree = withStyles(styleRule)<WithStyles<'root'>>(ComponentWithChildren);
+const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
 <StyledExampleThree />;
 
 // Also works with a plain object
