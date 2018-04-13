@@ -28,9 +28,11 @@ const styles: StyleRulesCallback<'root'> = ({ palette, spacing }) => ({
   },
 });
 
-const StyledExampleOne = withStyles(styles)<ComponentProps & WithStyles<'root'>>(
-  ({ classes, text }) => <div className={classes.root}>{text}</div>,
+const StyledViewOne: React.SFC<ComponentProps & WithStyles<'root'>> = ({ classes, text }) => (
+  <div className={classes.root}>{text}</div>
 );
+const StyledExampleOne = withStyles(styles)(StyledViewOne);
+
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2

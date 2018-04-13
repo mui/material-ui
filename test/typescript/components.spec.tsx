@@ -718,7 +718,7 @@ const TableTest = () => {
     );
   }
 
-  return withStyles(styles)<WithStyles<'paper'>>(BasicTable);
+  return withStyles(styles)(BasicTable);
 };
 
 const TabsTest = () => {
