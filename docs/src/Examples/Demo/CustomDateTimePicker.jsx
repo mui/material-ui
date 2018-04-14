@@ -5,19 +5,19 @@ import { IconButton, Icon, InputAdornment } from 'material-ui';
 export default class CustomDateTimePicker extends PureComponent {
   state = {
     selectedDate: new Date('2018-01-01T18:54'),
-    clearedDate: null
-
+    clearedDate: null,
   }
 
   handleDateChange = (date) => {
     this.setState({ selectedDate: date });
   }
+
   handleClearedDateChange = (date) => {
     this.setState({ clearedDate: date });
   }
 
   render() {
-    const { selectedDate } = this.state;
+    const { selectedDate, clearedDate } = this.state;
 
     return (
       <Fragment>
