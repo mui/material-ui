@@ -48,6 +48,8 @@ export class DateTextField extends PureComponent {
     keyboard: PropTypes.bool,
     /** Icon displayed for open picker button in keyboard mode */
     keyboardIcon: PropTypes.node,
+    /** enables/disable automatic opening of the picker when the user clicks enter */
+    disableOpenOnEnter: PropTypes.bool,
     /** Message, appearing when date cannot be parsed */
     invalidDateMessage: PropTypes.string,
     /** Component that should replace the default Material-UI TextField */
@@ -71,6 +73,7 @@ export class DateTextField extends PureComponent {
     keyboard: false,
     mask: undefined,
     keyboardIcon: 'event',
+    disableOpenOnEnter: false,
     invalidDateMessage: 'Invalid Date Format',
     clearable: false,
     onClear: undefined,
@@ -224,7 +227,7 @@ export class DateTextField extends PureComponent {
   }
 
   handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !this.props.disableOpenOnEnter) {
       this.openPicker(e);
     }
   }
@@ -264,6 +267,7 @@ export class DateTextField extends PureComponent {
       TextFieldComponent,
       InputAdornmentProps,
       adornmentPosition,
+      disableOpenOnEnter,
       ...other
     } = this.props;
 

@@ -15,14 +15,17 @@ Now choose the library that pickers will use to work with date. We are providing
 ```sh
 npm install date-fns@next -s
 // or
-npm install moment -S
+npm install moment -s
+// or
+npm i luxon -s
 ```
 
-Then teach pickers which library to use with `MuiPickerUtilsProvider`.This component takes an utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.
+Then teach pickers which library to use with `MuiPickerUtilsProvider`. This component takes an utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.
 
 ```jsx
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
+import LuxonUtils from 'material-ui-picker/luxon-utils;
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
 function App() {

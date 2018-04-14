@@ -28,3 +28,7 @@ yarn-error.log*
 .idea/
 /lib/yarn.lock
 /docs/yarn.lock
+
+# editors
+.vs
+.vscode

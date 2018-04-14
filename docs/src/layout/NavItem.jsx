@@ -38,7 +38,11 @@ class NavItem extends React.Component {
     };
   }
 
-  handleClick = () => {
+  handleClick = (e) => {
+    if (this.props.depth === 0) {
+      e.stopPropagation();
+    }
+
     this.setState({ open: !this.state.open });
   };
 

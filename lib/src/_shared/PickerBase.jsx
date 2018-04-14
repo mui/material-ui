@@ -74,6 +74,6 @@ export default class PickerBase extends PureComponent {
   }
 
   handleSetTodayDate = () => {
-    this.props.onChange(this.props.utils.date());
+    this.handleChange(this.props.utils.date());
   }
 }

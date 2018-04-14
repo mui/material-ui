@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.6",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "build/dist/material-ui-pickers.cjs.js",
@@ -40,17 +40,20 @@
   },
   "externalDependencies": {
     "moment": "^2.19.2",
-    "date-fns": "^2.0.0-alpha.7"
+    "date-fns": "^2.0.0-alpha.7",
+    "luxon": "^1.0.0"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
+    "luxon": "^1.0.0",
     "react-text-mask": "^5.1.0"
   },
   "scripts": {
-    "test": "npm run test:moment && npm run test:date-fns",
+    "test": "npm run test:moment && npm run test:date-fns && npm run test:luxon",
     "all-tests": "jest && npm run typescript",
-    "test:moment": "UTILS=moment && npm run all-tests",
-    "test:date-fns": "UTILS=date-fns && npm run all-tests",
+    "test:moment": "cross-env UTILS=moment && npm run all-tests",
+    "test:date-fns": "cross-env UTILS=date-fns && npm run all-tests",
+    "test:luxon": "cross-env NODE_ICU_DATA=./node_modules/full-icu UTILS=luxon && npm run all-tests",
     "typescript": "tsc -p tsconfig.json",
     "start": "cross-env NODE_ENV=development rollup --config --watch",
     "prebuild": "rimraf build",
@@ -65,11 +68,13 @@
     "postrelease": "npm run build && npm publish build",
     "lint": "eslint ./src/**/*.js*",
     "lint-fix": "npm run lint -- --fix",
-    "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1m Did not forget to install date-fns@next or moment?')\""
+    "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1m Did not forget to install date-fns@next, luxon or moment?')\""
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
+    "@types/jest": "^22.2.2",
     "@types/jss": "^9.3.0",
+    "@types/luxon": "^0.5.0",
     "@types/moment": "^2.13.0",
     "@types/prop-types": "^15.5.2",
     "@types/react": "^16.0.39",
@@ -98,6 +103,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.7.0",
     "fs-extra": "^4.0.2",
+    "full-icu": "^1.2.1",
     "glob": "^7.1.2",
     "jest": "^21.2.1",
     "material-ui": "^1.0.0-beta.35",
