@@ -16,12 +16,11 @@ interface Props {
   variant: TypographyProps['variant'];
 }
 
-const Decoratee: React.SFC<Props & WithStyles<'root'>> = ({ text, variant, color, classes }) => (
+const DecoratedSFC = decorate<Props>(({ text, variant, color, classes }) => (
   <Typography variant={variant} color={color} classes={classes}>
     {text}
   </Typography>
-);
-const DecoratedSFC = decorate(Decoratee);
+));
 
 const DecoratedClass = decorate(
   class extends React.Component<Props & WithStyles<'root'>> {

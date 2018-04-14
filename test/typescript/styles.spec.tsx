@@ -28,11 +28,9 @@ const styles: StyleRulesCallback<'root'> = ({ palette, spacing }) => ({
   },
 });
 
-const StyledViewOne: React.SFC<ComponentProps & WithStyles<'root'>> = ({ classes, text }) => (
+const StyledExampleOne = withStyles(styles)<ComponentProps>(({ classes, text }) => (
   <div className={classes.root}>{text}</div>
-);
-const StyledExampleOne = withStyles(styles)(StyledViewOne);
-
+));
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
@@ -138,7 +136,7 @@ function OverridesTheme() {
   );
 }
 
-// withTheme.
+// withTheme
 const ComponentWithTheme = withTheme()(({ theme }) => <div>{theme.spacing.unit}</div>);
 
 <ComponentWithTheme />;
