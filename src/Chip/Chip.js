@@ -25,7 +25,7 @@ export const styles = theme => {
       backgroundColor,
       borderRadius: height / 2,
       whiteSpace: 'nowrap',
-      transition: theme.transitions.create(),
+      transition: theme.transitions.create(['background-color', 'box-shadow']),
       // label will inherit this from root, then `clickable` class overrides this for both
       cursor: 'default',
       outline: 'none', // No outline on focused element in Chrome (as triggered by tabIndex prop)
