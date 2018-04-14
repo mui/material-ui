@@ -32,7 +32,8 @@ import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 ```
 
-The public API available in this manner is defined as the set of imports available from the top-level `material-ui` module. Anything not available through the top-level `material-ui` module is a **private API**, and is subject to change without notice.
+The public API available in this manner is defined as the set of imports available from the top-level `material-ui` module. You can check our [`index.js`](https://github.com/mui-org/material-ui/blob/v1-beta/src/index.js) to see the list of public modules.
+Anything not available through the top-level `material-ui` module is a **private API**, and is subject to change without notice. For instance, the `Tabs` component is a public module while `TabIndicator` is private.
 
 ### Option 2
 
