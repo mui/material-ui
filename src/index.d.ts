@@ -107,6 +107,7 @@ export { default as Select } from './Select';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
 export { default as Stepper, Step, StepButton, StepContent, StepIcon, StepLabel } from './Stepper';
 export {
+  createGenerateClassName,
   createMuiTheme,
   jssPreset,
   MuiThemeProvider,
