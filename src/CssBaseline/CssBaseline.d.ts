@@ -6,4 +6,7 @@ export interface CssBaselineProps {
 
 declare const CssBaseline: React.ComponentType<CssBaselineProps>;
 
+export type CssBaselineClassKey =
+  | '@global';
+
 export default CssBaseline;
