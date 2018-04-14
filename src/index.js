@@ -54,7 +54,14 @@ export { default as Radio, RadioGroup } from './Radio';
 export { default as Select } from './Select';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
 export { default as Stepper, Step, StepButton, StepIcon, StepContent, StepLabel } from './Stepper';
-export { MuiThemeProvider, withStyles, withTheme, createMuiTheme, jssPreset } from './styles';
+export {
+  createGenerateClassName,
+  createMuiTheme,
+  jssPreset,
+  MuiThemeProvider,
+  withStyles,
+  withTheme,
+} from './styles';
 
 // eslint-disable-next-line import/first
 import * as colors from './colors';
