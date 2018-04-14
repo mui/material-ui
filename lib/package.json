@@ -40,7 +40,8 @@
   },
   "externalDependencies": {
     "moment": "^2.19.2",
-    "date-fns": "^2.0.0-alpha.7"
+    "date-fns": "^2.0.0-alpha.7",
+    "luxon": "^1.0.0"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",

@@ -8,7 +8,9 @@ import muiPickerProviderCode from '!raw-loader!Examples/CodeSnippets/MuiPickerPr
 const installLibCode =
 `npm i -s date-fns@next
 // or
-npm i -s moment`;
+npm i -s moment
+// or
+npm i -s luxon`;
 
 const Installation = () => (
   <div>
@@ -23,8 +25,9 @@ const Installation = () => (
     </Typography>
     <Typography variant="body1" gutterBottom>
       We are providing interfaces for <a className="link" href="https://momentjs.com/">moment</a>
-      &nbsp;and <a className="link" href="https://date-fns.org/">date-fns 2</a>.
-      If you are not using moment in the project (or dont have it in the bundle already)
+      &nbsp;, <a className="link" href="https://date-fns.org/">date-fns 2</a> and
+      <a className="link" href="https://moment.github.io/luxon/"> luxon</a>. If you
+      are not using moment in the project (or dont have it in the bundle already)
       we suggest using date-fns,
       because it much more lightweight and will be correctly tree-shaked from the bundle.
     </Typography>
