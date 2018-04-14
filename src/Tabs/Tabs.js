@@ -428,7 +428,10 @@ Tabs.propTypes = {
   /**
    * Determines the color of the `Tab`.
    */
-  textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
+  textColor: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.oneOf(['secondary', 'primary', 'inherit']),
+  ]),
   /**
    * @ignore
    */
