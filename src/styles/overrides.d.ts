@@ -15,6 +15,7 @@ import { CheckboxClassKey } from '../Checkbox/Checkbox';
 import { ChipClassKey } from '../Chip/Chip';
 import { CircularProgressClassKey } from '../Progress/CircularProgress';
 import { CollapseClassKey } from '../transitions/Collapse';
+import { CssBaselineClassKey } from '../CssBaseline/CssBaseline';
 import { DialogActionsClassKey } from '../Dialog/DialogActions';
 import { DialogClassKey } from '../Dialog/Dialog';
 import { DialogContentClassKey } from '../Dialog/DialogContent';
@@ -107,6 +108,7 @@ type ComponentNameToClassKey = {
   MuiChip: ChipClassKey;
   MuiCircularProgress: CircularProgressClassKey;
   MuiCollapse: CollapseClassKey;
+  MuiCssBaseline: CssBaselineClassKey;
   MuiDialog: DialogClassKey;
   MuiDialogActions: DialogActionsClassKey;
   MuiDialogContent: DialogContentClassKey;
