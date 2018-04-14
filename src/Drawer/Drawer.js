@@ -35,7 +35,6 @@ export const styles = theme => ({
     flexDirection: 'column',
     height: '100vh',
     flex: '1 0 auto',
-    whiteSpace: 'nowrap',
     zIndex: theme.zIndex.drawer,
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
     // temporary style
