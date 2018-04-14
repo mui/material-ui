@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles, MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import purple from 'material-ui/colors/purple';
@@ -58,10 +59,7 @@ function CustomizedInputs(props) {
       <Button
         variant="raised"
         color="primary"
-        className={classes.margin}
-        classes={{
-          root: classes.cssRoot,
-        }}
+        className={classNames(classes.margin, classes.cssRoot)}
       >
         Custom CSS
       </Button>
@@ -73,11 +71,8 @@ function CustomizedInputs(props) {
       <Button
         variant="raised"
         color="primary"
-        className={classes.margin}
         disableRipple
-        classes={{
-          root: classes.bootstrapRoot,
-        }}
+        className={classNames(classes.margin, classes.bootstrapRoot)}
       >
         Bootstrap
       </Button>
