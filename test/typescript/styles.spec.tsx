@@ -138,7 +138,7 @@ function OverridesTheme() {
   );
 }
 
-// withTheme
+// withTheme.
 const ComponentWithTheme = withTheme()(({ theme }) => <div>{theme.spacing.unit}</div>);
 
 <ComponentWithTheme />;
