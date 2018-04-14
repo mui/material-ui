@@ -128,11 +128,17 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@16.3.4":
-  version "16.3.4"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.4.tgz#9bbb301cd38270ae200bed329a342bd2f140c3ea"
+"@types/react-transition-group@^2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-2.0.8.tgz#1ea86f6d8288e4bba8d743317ba9cc61cdacc1ad"
   dependencies:
-    csstype "^2.0.0"
+    "@types/react" "*"
+
+"@types/react@*", "@types/react@16.3.9":
+  version "16.3.9"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.9.tgz#15be16b53c89aac558cf6445774502b2792555ff"
+  dependencies:
+    csstype "^2.2.0"
 
 "@zeit/check-updates@1.1.1":
   version "1.1.1"
@@ -2945,6 +2951,10 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
 csstype@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.1.1.tgz#37b01a7a9958ef0b88167ff6678deccd732e0ae2"
+
+csstype@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.2.0.tgz#1656ef97553ac53b77090844a2531c6660ebd902"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"

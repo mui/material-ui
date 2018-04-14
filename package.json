@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "@types/jss": "^9.3.0",
-    "@types/react-transition-group": "^2.0.6",
+    "@types/react-transition-group": "^2.0.8",
     "babel-runtime": "^6.26.0",
     "brcast": "^3.0.1",
     "classnames": "^2.2.5",
@@ -98,7 +98,7 @@
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.4",
-    "@types/react": "16.3.4",
+    "@types/react": "16.3.9",
     "argos-cli": "^0.0.9",
     "autoprefixer": "^8.0.0",
     "autosuggest-highlight": "^3.1.1",
@@ -196,7 +196,7 @@
     "workbox-build": "^3.0.1"
   },
   "resolutions": {
-    "@types/react": "16.3.4"
+    "@types/react": "16.3.9"
   },
   "sideEffects": false,
   "nyc": {
