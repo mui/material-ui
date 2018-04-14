@@ -4,12 +4,11 @@ import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
-const styles = theme => ({
+const styles = {
   root: {
     flexGrow: 1,
-    marginTop: theme.spacing.unit * 3,
   },
-});
+};
 
 class CenteredTabs extends React.Component {
   state = {

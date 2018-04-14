@@ -25,24 +25,14 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function TabIndicator(props) {
-  const { classes, className: classNameProp, color, style: styleProp } = props;
-  const colorPredefined = ['primary', 'secondary'].indexOf(color) !== -1;
-  const className = classNames(
-    classes.root,
-    {
-      [classes[`color${capitalize(color)}`]]: colorPredefined,
-    },
-    classNameProp,
+  const { classes, className, color, ...other } = props;
+
+  return (
+    <span
+      className={classNames(classes.root, classes[`color${capitalize(color)}`], className)}
+      {...other}
+    />
   );
-
-  const style = colorPredefined
-    ? styleProp
-    : {
-        ...styleProp,
-        backgroundColor: color,
-      };
-
-  return <span className={className} style={style} />;
 }
 
 TabIndicator.propTypes = {
@@ -58,12 +48,7 @@ TabIndicator.propTypes = {
    * @ignore
    * The color of the tab indicator.
    */
-  color: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf(['primary', 'secondary'])]),
-  /**
-   * @ignore
-   * The style of the root element.
-   */
-  style: PropTypes.object,
+  color: PropTypes.oneOf(['primary', 'secondary']),
 };
 
 export default withStyles(styles, { name: 'MuiTabIndicator' })(TabIndicator);
