@@ -69,7 +69,7 @@ function generateGutter(theme, breakpoint) {
     styles[`spacing-${breakpoint}-${spacing}`] = {
       margin: -spacing / 2,
       width: `calc(100% + ${spacing}px)`,
-      '& > $typeItem': {
+      '& > $item': {
         padding: spacing / 2,
       },
     };
@@ -85,13 +85,13 @@ function generateGutter(theme, breakpoint) {
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
 export const styles = theme => ({
-  typeContainer: {
+  container: {
     boxSizing: 'border-box',
     display: 'flex',
     flexWrap: 'wrap',
     width: '100%',
   },
-  typeItem: {
+  item: {
     boxSizing: 'border-box',
     flex: '0 0 auto',
     margin: '0', // For instance, it's useful when used with a `figure` element.
@@ -186,8 +186,8 @@ function Grid(props) {
 
   const className = classNames(
     {
-      [classes.typeContainer]: container,
-      [classes.typeItem]: item,
+      [classes.container]: container,
+      [classes.item]: item,
       [classes.zeroMinWidth]: zeroMinWidth,
       [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
       [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
@@ -286,17 +286,17 @@ Grid.propTypes = {
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
    */
-  lg: PropTypes.oneOf([true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  lg: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `md` breakpoint and wider screens if not overridden.
    */
-  md: PropTypes.oneOf([true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  md: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    */
-  sm: PropTypes.oneOf([true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  sm: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
@@ -311,12 +311,12 @@ Grid.propTypes = {
    * Defines the number of grids the component is going to use.
    * It's applied for the `xl` breakpoint and wider screens.
    */
-  xl: PropTypes.oneOf([true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  xl: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
    */
-  xs: PropTypes.oneOf([true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  xs: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * If `true`, it sets `min-width: 0` on the item.
    * Refer to the limitations section of the documentation to better understand the use case.
@@ -332,8 +332,13 @@ Grid.defaultProps = {
   direction: 'row',
   item: false,
   justify: 'flex-start',
+  lg: false,
+  md: false,
+  sm: false,
   spacing: 0,
   wrap: 'wrap',
+  xl: false,
+  xs: false,
   zeroMinWidth: false,
 };
 

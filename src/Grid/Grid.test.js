@@ -28,14 +28,14 @@ describe('<Grid />', () => {
   describe('prop: container', () => {
     it('should apply the container class', () => {
       const wrapper = shallow(<Grid container />);
-      assert.strictEqual(wrapper.hasClass(classes.typeContainer), true);
+      assert.strictEqual(wrapper.hasClass(classes.container), true);
     });
   });
 
   describe('prop: item', () => {
     it('should apply the item class', () => {
       const wrapper = shallow(<Grid item />);
-      assert.strictEqual(wrapper.hasClass(classes.typeItem), true);
+      assert.strictEqual(wrapper.hasClass(classes.item), true);
     });
   });
 
