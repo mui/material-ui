@@ -11,6 +11,8 @@ import withTheme from '../styles/withTheme';
 import { getTransitionProps } from '../transitions/utils';
 import SwipeArea from './SwipeArea';
 
+const Fragment = React.Fragment || 'div';
+
 // This value is closed to what browsers are using internally to
 // trigger a native scroll.
 const UNCERTAINTY_THRESHOLD = 3; // px
@@ -331,7 +333,7 @@ class SwipeableDrawer extends React.Component {
     const { maybeSwiping } = this.state;
 
     return (
-      <div>
+      <Fragment>
         <Drawer
           open={variant === 'temporary' && maybeSwiping ? true : open}
           variant={variant}
@@ -352,7 +354,7 @@ class SwipeableDrawer extends React.Component {
           !disableSwipeToOpen && (
             <SwipeArea anchor={other.anchor} swipeAreaWidth={swipeAreaWidth} />
           )}
-      </div>
+      </Fragment>
     );
   }
 }

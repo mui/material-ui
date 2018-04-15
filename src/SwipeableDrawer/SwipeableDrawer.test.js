@@ -41,7 +41,7 @@ describe('<SwipeableDrawer />', () => {
     mount.cleanUp();
   });
 
-  it('should render a div with a Drawer and a SwipeArea', () => {
+  it('should render a Drawer and a SwipeArea', () => {
     const wrapper = mount(
       <SwipeableDrawerNaked
         onOpen={() => {}}
@@ -50,21 +50,25 @@ describe('<SwipeableDrawer />', () => {
         theme={createMuiTheme()}
       />,
     );
-    assert.strictEqual(wrapper.childAt(0).type(), 'div');
-    assert.strictEqual(
-      wrapper
-        .childAt(0)
-        .childAt(0)
-        .type(),
-      Drawer,
-    );
-    assert.strictEqual(
-      wrapper
-        .childAt(0)
-        .childAt(1)
-        .type(),
-      SwipeArea,
-    );
+    if (React.Fragment) {
+      assert.strictEqual(wrapper.childAt(0).type(), Drawer);
+      assert.strictEqual(wrapper.childAt(1).type(), SwipeArea);
+    } else {
+      assert.strictEqual(
+        wrapper
+          .childAt(0)
+          .childAt(0)
+          .type(),
+        Drawer,
+      );
+      assert.strictEqual(
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .type(),
+        SwipeArea,
+      );
+    }
     wrapper.unmount();
   });
 
@@ -78,8 +82,7 @@ describe('<SwipeableDrawer />', () => {
         disableSwipeToOpen
       />,
     );
-    assert.strictEqual(wrapper.childAt(0).type(), 'div');
-    assert.strictEqual(wrapper.childAt(0).children().length, 1);
+    assert.strictEqual(wrapper.children().length, 1);
     wrapper.unmount();
   });
 
@@ -93,8 +96,7 @@ describe('<SwipeableDrawer />', () => {
         disableDiscovery
       />,
     );
-    assert.strictEqual(wrapper.childAt(0).type(), 'div');
-    assert.strictEqual(wrapper.childAt(0).children().length, 1);
+    assert.strictEqual(wrapper.children().length, 1);
     wrapper.unmount();
   });
 

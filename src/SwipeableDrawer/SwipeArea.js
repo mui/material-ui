@@ -35,12 +35,7 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function SwipeArea(props) {
-  const {
-    anchor,
-    classes,
-    swipeAreaWidth,
-    ...other
-  } = props;
+  const { anchor, classes, swipeAreaWidth, ...other } = props;
 
   return (
     <div
