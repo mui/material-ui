@@ -22,7 +22,7 @@ export const styles = theme => ({
       duration: theme.transitions.duration.shortest,
     }),
     '&:hover': {
-      backgroundColor: fade(theme.palette.action.active, 0.04),
+      backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -41,7 +41,7 @@ export const styles = theme => ({
   colorPrimary: {
     color: theme.palette.primary.main,
     '&:hover': {
-      backgroundColor: fade(theme.palette.primary.main, 0.04),
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -51,7 +51,7 @@ export const styles = theme => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
     '&:hover': {
-      backgroundColor: fade(theme.palette.secondary.main, 0.04),
+      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',

@@ -174,4 +174,4 @@ withStyles<'listItem'>(theme => ({
       visibility: 'inherit',
     },
   },
-}))
+}));
