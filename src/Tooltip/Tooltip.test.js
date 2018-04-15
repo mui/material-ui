@@ -217,9 +217,6 @@ describe('<Tooltip />', () => {
       children.simulate('mouseover', { type: 'mouseover' });
       clock.tick(1e3);
       assert.strictEqual(wrapper.state().open, true);
-      children.simulate('touchEnd', { type: 'touchmove', persist });
-      clock.tick(1500);
-      assert.strictEqual(wrapper.state().open, true);
       children.simulate('touchEnd', { type: 'touchend', persist });
       clock.tick(1500);
       assert.strictEqual(wrapper.state().open, false);

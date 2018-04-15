@@ -239,10 +239,6 @@ class Tooltip extends React.Component {
     const { children, leaveTouchDelay } = this.props;
     const childrenProps = children.props;
 
-    if (event.type !== 'touchend') {
-      return;
-    }
-
     if (childrenProps.onTouchEnd) {
       childrenProps.onTouchEnd(event);
     }
