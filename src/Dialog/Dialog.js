@@ -58,10 +58,10 @@ function Dialog(props) {
     children,
     classes,
     className,
-    fullScreen,
-    fullWidth,
     disableBackdropClick,
     disableEscapeKeyDown,
+    fullScreen,
+    fullWidth,
     maxWidth,
     onBackdropClick,
     onClose,
@@ -81,8 +81,11 @@ function Dialog(props) {
 
   return (
     <Modal
-      BackdropProps={BackdropProps}
       className={classNames(classes.root, className)}
+      BackdropProps={{
+        transitionDuration,
+        ...BackdropProps,
+      }}
       disableBackdropClick={disableBackdropClick}
       disableEscapeKeyDown={disableEscapeKeyDown}
       onBackdropClick={onBackdropClick}
@@ -122,7 +125,7 @@ function Dialog(props) {
 
 Dialog.propTypes = {
   /**
-   * Properties applied to the `Backdrop` element.
+   * @ignore
    */
   BackdropProps: PropTypes.object,
   /**
@@ -222,10 +225,10 @@ Dialog.propTypes = {
 };
 
 Dialog.defaultProps = {
-  fullScreen: false,
-  fullWidth: false,
   disableBackdropClick: false,
   disableEscapeKeyDown: false,
+  fullScreen: false,
+  fullWidth: false,
   maxWidth: 'sm',
   transition: Fade,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
