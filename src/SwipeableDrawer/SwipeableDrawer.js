@@ -351,7 +351,8 @@ class SwipeableDrawer extends React.Component {
           {...other}
         />
         {!disableDiscovery &&
-          !disableSwipeToOpen && (
+          !disableSwipeToOpen &&
+          variant === 'temporary' && (
             <SwipeArea anchor={other.anchor} swipeAreaWidth={swipeAreaWidth} />
           )}
       </Fragment>
