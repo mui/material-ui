@@ -7,6 +7,81 @@ Changes. Changes everywhere!
 
 Coming Soon
 
+## 1.0.0-beta.42
+###### *Apr 15, 2018*
+
+Big thanks to the 13 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A better CSS override story (#10961) @oliviertassinari
+- Strongly typed React.CSSProperties TypeScript definitions (#11007) @pelotom
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [styles] Change the CSS specificity (#10961) @oliviertassinari
+
+This breaking change is important. It might be the most painful to recover from before stable v1.
+Change the CSS specificity rule to solve #10771 at scale.
+
+It's inspired by the Bootstrap approach to writing CSS. Basically, it follows two rules:
+1. A variant has one level of specificity. User overrides can be considered a variant, so we can keep things as simple as possible (low specificity), e.g. `color` or `variant`.
+2. We increase the specificity for a variant **modifier**. We already have to do it for the pseudo-classes (`:hover`, `:focus`, etc.). It allows much more control at the cost of extra complexity. Hopefully it makes it more intuitive.
+
+Example:
+```diff
+const styles = {
+-  checked: {
+-    color: green[500],
++  root: {
++    color: green[600],
++    '&$checked': {
++      color: green[500],
++    },
+   },
++  checked: {},
+};
+
+<Checkbox
+  classes={{
++   root: classes.root,
+    checked: classes.checked,
+  }}
+/>
+```
+
+#### Component Fixes / Enhancements
+
+- [lab] No side effect (7c379fa7ba4ed2a3eb8abc841a9a4376014b6145) @oliviertassinari
+- [Card] Hide overflow to maintain round corners with CardMedia (#10946) @mbrookes
+- [ButtonBase] More robust button keyboard accessibility (#10965) @oliviertassinari
+- [Tooltip] Remove title from chldrenProps (#10977) @mbrookes
+- [theme] Expose augmentColor for colors outside the palette (#10985) @AiusDa
+- [Select] Update onChange props definition to match with SelectInput (#11012) @t49tran
+- [lab] Bump version for @material-ui/icons dependency (#10992) @mbrookes
+- [Drawer] Improve the "Mini variant drawer" demo (#11010) @andriyor
+- [Step] Remove private modules from the export (#11020) @oliviertassinari
+- [Grid] Update propTypes to accept false (#11022) @oliviertassinari
+- [Chip] only transition the CSS properties we need (#11023) @oliviertassinari
+- [CssBaseline] Add key to theme overrides type definition (#11025) @roosmaa
+- [Tabs] Add a customization demo (#10999) @cherniavskii
+- [theme] Use a single theme variable for the hover effects of Button, IconButton and ListItem (#10952) @SebastianSchmidt
+- [Dialog] Fix BackdropProps propagation (#11029) @sepehr1313
+- [ButtonBase] Fix wrong touchMove wiring (#11026) @mbrookes
+
+#### Docs
+
+- [docs] Fix typo (#10990) @jleeohsu
+- [docs] Better private/public API description (#11024) @oliviertassinari
+
+#### Core
+
+- [core] Add fallback to ownerWindow (#10978) @richardscarrott
+- [typescript] Remove unnecessary Partial<> for `style` prop (#10994) @franklixuefei
+- [core] Export all the style modules (#11021) @oliviertassinari
+- [typescript] Upgrade types, use string index fallback for CSSProperties to allow nested pseudos (#11007) @pelotom
+- [core] Upgrade the dependencies (#11030) @oliviertassinari
+
 ## 1.0.0-beta.41
 ###### *Apr 7, 2018*
 
