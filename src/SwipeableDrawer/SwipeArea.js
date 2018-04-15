@@ -39,11 +39,11 @@ function SwipeArea(props) {
 
   return (
     <div
-      {...other}
       className={classNames(classes.root, classes[`discoveryAnchor${capitalize(anchor)}`])}
       style={{
         [isHorizontal(props) ? 'width' : 'height']: swipeAreaWidth,
       }}
+      {...other}
     />
   );
 }
