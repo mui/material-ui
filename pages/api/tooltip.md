@@ -39,6 +39,7 @@ This property accepts the following keys:
 - `popper`
 - `open`
 - `tooltip`
+- `touch`
 - `tooltipPlacementLeft`
 - `tooltipPlacementRight`
 - `tooltipPlacementTop`

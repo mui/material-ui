@@ -37,20 +37,25 @@ export const styles = theme => ({
     transform: 'scale(0)',
     transition: theme.transitions.create(['opacity', 'transform'], {
       duration: theme.transitions.duration.shortest,
+      easing: theme.transitions.easing.easeIn,
     }),
     minHeight: 0,
-    padding: theme.spacing.unit,
-    fontSize: theme.typography.pxToRem(14),
-    lineHeight: `${theme.typography.round(16 / 14)}em`,
-    [theme.breakpoints.up('sm')]: {
-      padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit}px`,
-      fontSize: theme.typography.pxToRem(10),
-      lineHeight: `${theme.typography.round(14 / 10)}em`,
-    },
+    padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit}px`,
+    fontSize: theme.typography.pxToRem(10),
+    lineHeight: `${theme.typography.round(14 / 10)}em`,
     '&$open': {
       opacity: 0.9,
       transform: 'scale(1)',
+      transition: theme.transitions.create(['opacity', 'transform'], {
+        duration: theme.transitions.duration.shortest,
+        easing: theme.transitions.easing.easeOut,
+      }),
     },
+  },
+  touch: {
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    fontSize: theme.typography.pxToRem(14),
+    lineHeight: `${theme.typography.round(16 / 14)}em`,
   },
   tooltipPlacementLeft: {
     transformOrigin: 'right center',
@@ -128,12 +133,15 @@ class Tooltip extends React.Component {
   componentWillUnmount() {
     clearTimeout(this.enterTimer);
     clearTimeout(this.leaveTimer);
+    clearTimeout(this.touchTimer);
+    clearTimeout(this.closeTimer);
     this.handleResize.cancel();
   }
 
   enterTimer = null;
   leaveTimer = null;
   touchTimer = null;
+  closeTimer = null;
   isControlled = null;
   popper = null;
   children = null;
@@ -208,8 +216,6 @@ class Tooltip extends React.Component {
   };
 
   handleClose = event => {
-    this.ignoreNonTouchEvents = false;
-
     if (!this.isControlled) {
       this.setState({ open: false });
     }
@@ -217,6 +223,11 @@ class Tooltip extends React.Component {
     if (this.props.onClose) {
       this.props.onClose(event, false);
     }
+
+    clearTimeout(this.closeTimer);
+    this.closeTimer = setTimeout(() => {
+      this.ignoreNonTouchEvents = false;
+    }, this.props.theme.transitions.duration.shortest);
   };
 
   handleTouchStart = event => {
@@ -228,6 +239,8 @@ class Tooltip extends React.Component {
       childrenProps.onTouchStart(event);
     }
 
+    clearTimeout(this.leaveTimer);
+    clearTimeout(this.closeTimer);
     clearTimeout(this.touchTimer);
     event.persist();
     this.touchTimer = setTimeout(() => {
@@ -355,6 +368,7 @@ class Tooltip extends React.Component {
                     className={classNames(
                       classes.tooltip,
                       { [classes.open]: open },
+                      { [classes.touch]: this.ignoreNonTouchEvents },
                       classes[`tooltipPlacement${capitalize(actualPlacement)}`],
                     )}
                   >
