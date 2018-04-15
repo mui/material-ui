@@ -33,15 +33,4 @@ describe('<TabIndicator />', () => {
       assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the property class');
     });
   });
-
-  describe('prop: color', () => {
-    it('should use the style when color is a string', () => {
-      const color = 'blue';
-      const wrapper = shallow(<TabIndicator color={color} style={style} />);
-
-      assert.strictEqual(wrapper.props().style.backgroundColor, color);
-      assert.strictEqual(wrapper.props().style.left, 1);
-      assert.strictEqual(wrapper.props().style.width, 2);
-    });
-  });
 });

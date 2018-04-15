@@ -142,7 +142,6 @@ class Tab extends React.Component {
       label: labelProp,
       onChange,
       selected,
-      style: styleProp,
       textColor,
       value,
       ...other
@@ -179,25 +178,10 @@ class Tab extends React.Component {
       classNameProp,
     );
 
-    let style = {};
-
-    if (textColor !== 'secondary' && textColor !== 'inherit') {
-      style.color = textColor;
-    }
-
-    style =
-      Object.keys(style).length > 0
-        ? {
-            ...style,
-            ...styleProp,
-          }
-        : styleProp;
-
     return (
       <ButtonBase
         focusRipple
         className={className}
-        style={style}
         role="tab"
         aria-selected={selected}
         disabled={disabled}
@@ -260,14 +244,7 @@ Tab.propTypes = {
   /**
    * @ignore
    */
-  style: PropTypes.object,
-  /**
-   * @ignore
-   */
-  textColor: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.oneOf(['secondary', 'primary', 'inherit']),
-  ]),
+  textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */

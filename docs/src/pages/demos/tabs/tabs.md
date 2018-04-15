@@ -67,3 +67,10 @@ Tab labels may be either all icons or all text.
 Tab may be disabled by setting `disabled` property.
 
 {{"demo": "pages/demos/tabs/DisabledTabs.js"}}
+
+## Customized Tabs
+
+If you have been reading the [overrides documentation page](/customization/overrides)
+but you are not confident jumping in, here's an example of how you can change the main color of the Tabs.
+
+{{"demo": "pages/demos/tabs/CustomizedTabs.js"}}

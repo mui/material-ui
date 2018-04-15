@@ -124,12 +124,6 @@ describe('<Tab />', () => {
       assert.strictEqual(wrapper.hasClass(classes.textColorInherit), true);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
-
-    it('should support an arbitrary value', () => {
-      const textColor = '#eee';
-      const wrapper = shallow(<Tab selected textColor={textColor} />);
-      assert.strictEqual(wrapper.props().style.color, textColor);
-    });
   });
 
   describe('prop: fullWidth', () => {
@@ -142,7 +136,7 @@ describe('<Tab />', () => {
   describe('prop: style', () => {
     it('should be able to override everything', () => {
       const style = { width: '80%', color: 'red', alignText: 'center' };
-      const wrapper = shallow(<Tab fullWidth textColor="#eee" style={style} />);
+      const wrapper = shallow(<Tab fullWidth style={style} />);
       assert.deepEqual(wrapper.props().style, style);
     });
   });
