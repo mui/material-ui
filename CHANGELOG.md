@@ -21,12 +21,16 @@ Here are some highlights ✨:
 
 - [styles] Change the CSS specificity (#10961) @oliviertassinari
 
-This breaking change is important. It might be the most painful to recover from before stable v1.
-Change the CSS specificity rule to solve #10771 at scale.
+This breaking change is important. It might be the most painful to recover from before stable v1 (May 17th 2018).
+We have changed the CSS specificity rule to solve #10771 at scale.
 
-It's inspired by the Bootstrap approach to writing CSS. Basically, it follows two rules:
-1. A variant has one level of specificity. User overrides can be considered a variant, so we can keep things as simple as possible (low specificity), e.g. `color` or `variant`.
-2. We increase the specificity for a variant **modifier**. We already have to do it for the pseudo-classes (`:hover`, `:focus`, etc.). It allows much more control at the cost of extra complexity. Hopefully it makes it more intuitive.
+It's inspired by the Bootstrap approach to writing CSS. It follows two rules:
+1. A "variant" has one level of specificity.
+User overrides can be considered a variant, so we can keep things as simple as possible (=low specificity), e.g. the `color` or `variant` properties are considered "variants".
+2. We increase the specificity for a "variant modifier".
+We already have to do it for the pseudo-classes (`:hover`, `:focus`, etc.).
+It allows much more control at the cost of more boilerplate.
+Hopefully, it's more intuitive.
 
 Example:
 ```diff
