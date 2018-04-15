@@ -159,23 +159,16 @@ export function emphasize(color: string, coefficient: number = 0.15) {
  * Any existing alpha values are overwritten.
  *
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
- * @param {number | string} value - value to set the alpha channel to in the range 0-1 or
- *                                  CSS color whose transparency is applied to the color
+ * @param {number} value - value to set the alpha channel to in the range 0 -1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function fade(color: string, value: number | string) {
+export function fade(color: string, value: number) {
   warning(color, `Material-UI: missing color argument in fade(${color}, ${value}).`);
 
   if (!color) return color;
 
   color = decomposeColor(color);
-
-  if (typeof value === 'string') {
-    value = decomposeColor(value);
-    value = value.values.length === 4 ? value.values[3] : 1;
-  } else {
-    value = clamp(value);
-  }
+  value = clamp(value);
 
   if (color.type === 'rgb' || color.type === 'hsl') {
     color.type += 'a';

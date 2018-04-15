@@ -187,17 +187,6 @@ describe('utils/colorManipulator', () => {
       assert.strictEqual(fade('hsla(0, 100%, 50%, 0.2)', 0.5), 'hsla(0, 100%, 50%, 0.5)');
     });
 
-    it('sets the transparency of a color to the transparency of the color provided', () => {
-      assert.strictEqual(
-        fade('rgba(255, 0, 0, 0.2)', 'rgba(1, 2, 3, 0.5)'),
-        'rgba(255, 0, 0, 0.5)',
-      );
-    });
-
-    it('sets the transparency of a color to 1 if the provided color is not transparent', () => {
-      assert.strictEqual(fade('hsla(0, 100%, 50%, 0.2)', '#FF0'), 'hsla(0, 100%, 50%, 1)');
-    });
-
     it('throw on invalid colors', () => {
       assert.throw(() => {
         fade('white', 0.4);

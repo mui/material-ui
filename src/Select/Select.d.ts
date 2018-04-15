@@ -4,7 +4,8 @@ import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectInputProps } from './SelectInput';
 
-export interface SelectProps extends StandardProps<InputProps, SelectClassKey, 'value' | 'onChange'> {
+export interface SelectProps
+  extends StandardProps<InputProps, SelectClassKey, 'value' | 'onChange'> {
   autoWidth?: boolean;
   displayEmpty?: boolean;
   input?: React.ReactNode;
