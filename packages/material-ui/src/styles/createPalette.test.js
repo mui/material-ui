@@ -1,9 +1,9 @@
 // @flow
 
 import { assert } from 'chai';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import createPalette, { dark, light } from './createPalette';
 import { indigo, pink, deepOrange, green, red } from '../colors';
-import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import { lighten, darken } from '../styles/colorManipulator';
 
 describe('createPalette()', () => {

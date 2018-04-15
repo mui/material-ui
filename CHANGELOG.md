@@ -73,11 +73,14 @@ const styles = {
 - [theme] Use a single theme variable for the hover effects of Button, IconButton and ListItem (#10952) @SebastianSchmidt
 - [Dialog] Fix BackdropProps propagation (#11029) @sepehr1313
 - [ButtonBase] Fix wrong touchMove wiring (#11026) @mbrookes
+- [SwipeableDrawer] Simplify isSwiping logic (#11032) @leMaik
+- [SwipeableDrawer] Add a blocking div to the edge of the screen (#11031) @leMaik
 
 #### Docs
 
 - [docs] Fix typo (#10990) @jleeohsu
 - [docs] Better private/public API description (#11024) @oliviertassinari
+- [Collapse] Fix typo in comment (#11035) @mknet
 
 #### Core
 
@@ -86,6 +89,7 @@ const styles = {
 - [core] Export all the style modules (#11021) @oliviertassinari
 - [typescript] Upgrade types, use string index fallback for CSSProperties to allow nested pseudos (#11007) @pelotom
 - [core] Upgrade the dependencies (#11030) @oliviertassinari
+- [core] Move to the packages structure (#11033) @oliviertassinari
 
 ## 1.0.0-beta.41
 ###### *Apr 7, 2018*

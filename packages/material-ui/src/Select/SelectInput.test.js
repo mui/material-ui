@@ -2,9 +2,9 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import keycode from 'keycode';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, createMount } from '../test-utils';
 import Menu, { MenuItem } from '../Menu';
-import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import SelectInput from './SelectInput';
 
 describe('<SelectInput />', () => {

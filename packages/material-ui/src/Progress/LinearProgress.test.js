@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { assert } from 'chai';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, getClasses } from '../test-utils';
 import LinearProgress from './LinearProgress';
-import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 describe('<LinearProgress />', () => {
   let shallow;

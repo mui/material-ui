@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createMount } from 'src/test-utils';
+import { createMount } from 'packages/material-ui/src/test-utils';
 import SelectAndDialog from './fixtures/select/SelectAndDialog';
 
 describe('<Select> integration', () => {

@@ -5,8 +5,8 @@ import keycode from 'keycode';
 import { assert } from 'chai';
 import { ReactWrapper } from 'enzyme';
 import TestUtils from 'react-dom/test-utils';
-import { createMount } from 'src/test-utils';
-import Popover from 'src/Popover';
+import { createMount } from 'packages/material-ui/src/test-utils';
+import Popover from 'packages/material-ui/src/Popover';
 import SimpleMenu from './fixtures/menus/SimpleMenu';
 
 function simulateEvent(node, event, mock) {

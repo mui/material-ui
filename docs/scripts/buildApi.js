@@ -7,8 +7,8 @@ import * as reactDocgen from 'react-docgen';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
-import createMuiTheme from '../../src/styles/createMuiTheme';
-import getStylesCreator from '../../src/styles/getStylesCreator';
+import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
+import getStylesCreator from '../../packages/material-ui/src/styles/getStylesCreator';
 
 function ensureExists(pat, mask, cb) {
   mkdir(pat, mask, err => {

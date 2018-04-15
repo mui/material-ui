@@ -1,5 +1,5 @@
 ---
-filename: /src/Table/TableFooter.js
+filename: /packages/material-ui/src/Table/TableFooter.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

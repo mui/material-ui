@@ -73,8 +73,8 @@ jobs:
     steps:
       - *restore_repo
       - run:
-          name: Can we generate the build?
-          command: yarn build
+          name: Can we generate the material-ui build?
+          command: cd packages/material-ui && yarn build
       - run:
           name: Can we build the docs?
           command: yarn docs:build

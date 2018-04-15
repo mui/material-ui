@@ -1,0 +1,73 @@
+{
+  "name": "material-ui",
+  "private": true,
+  "author": "Material-UI Team",
+  "version": "1.0.0",
+  "description": "React components that implement Google's Material Design.",
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "material-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "homepage": "http://material-ui.com/",
+  "scripts": {
+    "prebuild": "rimraf build",
+    "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.test.js --out-dir ./build",
+    "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
+    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --ignore *.test.js --out-dir ./build/es",
+    "build:umd:dev": "webpack --config scripts/umd.webpack.config.js",
+    "build:umd:prod": "cross-env NODE_ENV=production webpack --config scripts/umd.webpack.config.js",
+    "build:copy-files": "babel-node ./scripts/copy-files.js",
+    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:umd:dev && yarn build:umd:prod && yarn build:copy-files",
+    "version": "yarn build",
+    "release": "np --no-publish --any-branch"
+  },
+  "peerDependencies": {
+    "react": "^15.3.0 || ^16.0.0",
+    "react-dom": "^15.3.0 || ^16.0.0"
+  },
+  "dependencies": {
+    "@types/jss": "^9.3.0",
+    "@types/react-transition-group": "^2.0.8",
+    "babel-runtime": "^6.26.0",
+    "brcast": "^3.0.1",
+    "classnames": "^2.2.5",
+    "deepmerge": "^2.0.1",
+    "dom-helpers": "^3.2.1",
+    "hoist-non-react-statics": "^2.5.0",
+    "jss": "^9.3.3",
+    "jss-camel-case": "^6.0.0",
+    "jss-default-unit": "^8.0.2",
+    "jss-global": "^3.0.0",
+    "jss-nested": "^6.0.1",
+    "jss-props-sort": "^6.0.0",
+    "jss-vendor-prefixer": "^7.0.0",
+    "keycode": "^2.1.9",
+    "lodash": "^4.2.0",
+    "normalize-scroll-left": "^0.1.2",
+    "prop-types": "^15.6.0",
+    "react-event-listener": "^0.5.1",
+    "react-jss": "^8.1.0",
+    "react-lifecycles-compat": "^2.0.0",
+    "react-popper": "^0.10.0",
+    "react-scrollbar-size": "^2.0.2",
+    "react-transition-group": "^2.2.1",
+    "recompose": "^0.26.0",
+    "scroll": "^2.0.3",
+    "warning": "^3.0.0"
+  },
+  "devDependencies": {},
+  "sideEffects": false,
+  "engines": {
+    "node": ">=6.11.0"
+  }
+}

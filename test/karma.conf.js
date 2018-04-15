@@ -1,6 +1,5 @@
 // @flow weak
 
-const path = require('path');
 const webpack = require('webpack');
 
 const browserStack = {
@@ -75,20 +74,9 @@ module.exports = function setKarmaConfig(config) {
             loader: 'json-loader',
           },
         ],
-        noParse: [/node_modules\/sinon\//],
-      },
-      resolve: {
-        alias: {
-          'material-ui': path.resolve(__dirname, '../src'),
-          sinon: 'sinon/pkg/sinon.js',
-        },
-        extensions: ['.js', '.json'],
-        modules: [path.join(__dirname, '../'), 'node_modules'],
-      },
-      externals: {
-        jsdom: 'window',
       },
       node: {
+        // Some tests import fs
         fs: 'empty',
       },
     },
