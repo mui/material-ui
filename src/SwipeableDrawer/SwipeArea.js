@@ -6,14 +6,14 @@ import { capitalize } from '../utils/helpers';
 import { isHorizontal } from '../Drawer/Drawer';
 
 export const styles = theme => ({
-  discovery: {
+  root: {
     position: 'fixed',
     top: 0,
+    left: 0,
     height: '100vh',
     zIndex: theme.zIndex.drawer - 1,
   },
   discoveryAnchorLeft: {
-    left: 0,
     right: 'auto',
   },
   discoveryAnchorRight: {
@@ -21,25 +21,31 @@ export const styles = theme => ({
     right: 0,
   },
   discoveryAnchorTop: {
-    top: 0,
-    left: 0,
     bottom: 'auto',
     right: 0,
   },
   discoveryAnchorBottom: {
     top: 'auto',
-    left: 0,
     bottom: 0,
     right: 0,
   },
 });
 
+/**
+ * @ignore - internal component.
+ */
 function SwipeArea(props) {
-  const { anchor, classes, swipeAreaWidth } = props;
+  const {
+    anchor,
+    classes,
+    swipeAreaWidth,
+    ...other
+  } = props;
 
   return (
     <div
-      className={classNames(classes.discovery, classes[`discoveryAnchor${capitalize(anchor)}`])}
+      {...other}
+      className={classNames(classes.root, classes[`discoveryAnchor${capitalize(anchor)}`])}
       style={{
         [isHorizontal(props) ? 'width' : 'height']: swipeAreaWidth,
       }}
