@@ -54,6 +54,7 @@ export const styles = theme => ({
  */
 function Dialog(props) {
   const {
+    BackdropProps,
     children,
     classes,
     className,
@@ -80,10 +81,8 @@ function Dialog(props) {
 
   return (
     <Modal
+      BackdropProps={BackdropProps}
       className={classNames(classes.root, className)}
-      BackdropProps={{
-        transitionDuration,
-      }}
       disableBackdropClick={disableBackdropClick}
       disableEscapeKeyDown={disableEscapeKeyDown}
       onBackdropClick={onBackdropClick}
@@ -122,6 +121,10 @@ function Dialog(props) {
 }
 
 Dialog.propTypes = {
+  /**
+   * Properties applied to the `Backdrop` element.
+   */
+  BackdropProps: PropTypes.object,
   /**
    * Dialog children, usually the included sub-components.
    */
