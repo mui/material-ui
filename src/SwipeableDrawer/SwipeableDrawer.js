@@ -69,12 +69,8 @@ class SwipeableDrawer extends React.Component {
 
   getTranslate(current) {
     const start = isHorizontal(this.props) ? this.startX : this.startY;
-
     return Math.min(
-      Math.max(
-        this.props.open && this.isSwiping ? start - current : this.getMaxTranslate() + start - current,
-        0,
-      ),
+      Math.max(this.props.open ? start - current : this.getMaxTranslate() + start - current, 0),
       this.getMaxTranslate(),
     );
   }
