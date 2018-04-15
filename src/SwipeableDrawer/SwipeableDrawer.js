@@ -72,7 +72,7 @@ class SwipeableDrawer extends React.Component {
 
     return Math.min(
       Math.max(
-        this.isSwiping === 'closing' ? start - current : this.getMaxTranslate() + start - current,
+        this.props.open && this.isSwiping ? start - current : this.getMaxTranslate() + start - current,
         0,
       ),
       this.getMaxTranslate(),
@@ -188,7 +188,7 @@ class SwipeableDrawer extends React.Component {
         : event.touches[0].clientY;
 
     // We don't know yet.
-    if (this.isSwiping === undefined) {
+    if (this.isSwiping == null) {
       const dx = Math.abs(currentX - this.startX);
       const dy = Math.abs(currentY - this.startY);
 
@@ -205,10 +205,8 @@ class SwipeableDrawer extends React.Component {
         isSwiping === true ||
         (horizontalSwipe ? dy > UNCERTAINTY_THRESHOLD : dx > UNCERTAINTY_THRESHOLD)
       ) {
-        if (isSwiping) {
-          this.isSwiping = this.props.open ? 'closing' : 'opening';
-        } else {
-          this.isSwiping = false;
+        this.isSwiping = isSwiping;
+        if (!isSwiping) {
           this.handleBodyTouchEnd(event);
           return;
         }
@@ -228,7 +226,7 @@ class SwipeableDrawer extends React.Component {
       }
     }
 
-    if (this.isSwiping === undefined) {
+    if (!this.isSwiping) {
       return;
     }
 
@@ -243,8 +241,8 @@ class SwipeableDrawer extends React.Component {
     this.setState({ maybeSwiping: false });
 
     // The swipe wasn't started.
-    if (this.isSwiping !== 'opening' && this.isSwiping !== 'closing') {
-      this.isSwiping = undefined;
+    if (!this.isSwiping) {
+      this.isSwiping = null;
       return;
     }
 
@@ -266,7 +264,7 @@ class SwipeableDrawer extends React.Component {
     // We have to open or close after setting swiping to null,
     // because only then CSS transition is enabled.
     if (translateRatio > 0.5) {
-      if (this.isSwiping === 'opening') {
+      if (this.isSwiping && !this.props.open) {
         // Reset the position, the swipe was aborted.
         this.setPosition(this.getMaxTranslate(), {
           mode: 'enter',
@@ -274,7 +272,7 @@ class SwipeableDrawer extends React.Component {
       } else {
         this.props.onClose();
       }
-    } else if (this.isSwiping === 'opening') {
+    } else if (this.isSwiping && !this.props.open) {
       this.props.onOpen();
     } else {
       // Reset the position, the swipe was aborted.
@@ -283,12 +281,12 @@ class SwipeableDrawer extends React.Component {
       });
     }
 
-    this.isSwiping = undefined;
+    this.isSwiping = null;
   };
 
   backdrop = null;
   paper = null;
-  isSwiping = undefined;
+  isSwiping = null;
   startX = null;
   startY = null;
 
