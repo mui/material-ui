@@ -9,6 +9,7 @@ import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 import { getTransitionProps } from '../transitions/utils';
+import SwipeArea from './SwipeArea';
 
 // This value is closed to what browsers are using internally to
 // trigger a native scroll.
@@ -330,22 +331,28 @@ class SwipeableDrawer extends React.Component {
     const { maybeSwiping } = this.state;
 
     return (
-      <Drawer
-        open={variant === 'temporary' && maybeSwiping ? true : open}
-        variant={variant}
-        ModalProps={{
-          BackdropProps: {
-            ...BackdropProps,
-            ref: this.handleBackdropRef,
-          },
-          ...ModalPropsProp,
-        }}
-        PaperProps={{
-          ...PaperProps,
-          ref: this.handlePaperRef,
-        }}
-        {...other}
-      />
+      <div>
+        <Drawer
+          open={variant === 'temporary' && maybeSwiping ? true : open}
+          variant={variant}
+          ModalProps={{
+            BackdropProps: {
+              ...BackdropProps,
+              ref: this.handleBackdropRef,
+            },
+            ...ModalPropsProp,
+          }}
+          PaperProps={{
+            ...PaperProps,
+            ref: this.handlePaperRef,
+          }}
+          {...other}
+        />
+        {!disableDiscovery &&
+          !disableSwipeToOpen && (
+            <SwipeArea anchor={other.anchor} swipeAreaWidth={swipeAreaWidth} />
+          )}
+      </div>
     );
   }
 }
