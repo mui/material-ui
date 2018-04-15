@@ -239,6 +239,8 @@ class Tooltip extends React.Component {
       childrenProps.onTouchStart(event);
     }
 
+    clearTimeout(this.leaveTimer);
+    clearTimeout(this.closeTimer);
     clearTimeout(this.touchTimer);
     event.persist();
     this.touchTimer = setTimeout(() => {
