@@ -8,9 +8,9 @@ Changes. Changes everywhere!
 Coming Soon
 
 ## 1.0.0-beta.42
-###### *Apr 15, 2018*
+###### *Apr 16, 2018*
 
-Big thanks to the 13 contributors who made this release possible.
+Big thanks to the 15 contributors who made this release possible.
 
 Here are some highlights ✨:
 - A better CSS override story (#10961) @oliviertassinari
