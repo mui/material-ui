@@ -27,7 +27,7 @@ export const styles = theme => ({
 });
 
 /**
- * The Collapes transition is used by the
+ * The Collapse transition is used by the
  * [Vertical Stepper](/demos/steppers#vertical-stepper) StepContent component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
