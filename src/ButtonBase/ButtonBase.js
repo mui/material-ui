@@ -187,7 +187,7 @@ class ButtonBase extends React.Component {
 
   handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
 
-  handleTouchMove = createRippleHandler(this, 'TouchEnd', 'stop');
+  handleTouchMove = createRippleHandler(this, 'TouchMove', 'stop');
 
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
     clearTimeout(this.keyboardFocusTimeout);

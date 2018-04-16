@@ -54,13 +54,14 @@ export const styles = theme => ({
  */
 function Dialog(props) {
   const {
+    BackdropProps,
     children,
     classes,
     className,
-    fullScreen,
-    fullWidth,
     disableBackdropClick,
     disableEscapeKeyDown,
+    fullScreen,
+    fullWidth,
     maxWidth,
     onBackdropClick,
     onClose,
@@ -83,6 +84,7 @@ function Dialog(props) {
       className={classNames(classes.root, className)}
       BackdropProps={{
         transitionDuration,
+        ...BackdropProps,
       }}
       disableBackdropClick={disableBackdropClick}
       disableEscapeKeyDown={disableEscapeKeyDown}
@@ -122,6 +124,10 @@ function Dialog(props) {
 }
 
 Dialog.propTypes = {
+  /**
+   * @ignore
+   */
+  BackdropProps: PropTypes.object,
   /**
    * Dialog children, usually the included sub-components.
    */
@@ -219,10 +225,10 @@ Dialog.propTypes = {
 };
 
 Dialog.defaultProps = {
-  fullScreen: false,
-  fullWidth: false,
   disableBackdropClick: false,
   disableEscapeKeyDown: false,
+  fullScreen: false,
+  fullWidth: false,
   maxWidth: 'sm',
   transition: Fade,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
