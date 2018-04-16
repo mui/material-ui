@@ -8,7 +8,7 @@ Have a look at the [Create React App with TypeScript](https://github.com/mui-org
 The usage of `withStyles` in TypeScript can be a little tricky, so it's worth showing some examples. You can first call `withStyles()` to create a decorator function, like so:
 
 ```js
-const withMyStyles = withStyles(({ palette, spacing }) => ({
+const decorate = withStyles(({ palette, spacing }) => ({
   root: {
     padding: spacing.unit,
     backgroundColor: palette.background.default,
@@ -30,7 +30,7 @@ interface Props {
 Functional components are straightforward:
 
 ```jsx
-const DecoratedSFC = withMyStyles<Props>(({ text, type, color, classes }) => (
+const DecoratedSFC = decorate<Props>(({ text, type, color, classes }) => (
   <Typography variant={type} color={color} classes={classes}>
     {text}
   </Typography>
@@ -42,7 +42,7 @@ Class components are a little more cumbersome. Due to a [current limitation in T
 ```jsx
 import { WithStyles } from 'material-ui/styles';
 
-const DecoratedClass = withMyStyles(
+const DecoratedClass = decorate(
   class extends React.Component<Props & WithStyles<'root'>> {
     render() {
       const { text, type, color, classes } = this.props
@@ -57,7 +57,7 @@ const DecoratedClass = withMyStyles(
 ```
 
 When your `props` are a union, Typescript needs you to explicitly tell it the type, 
-by providing an explicit generic `<Props>` parameter to `withMyStyles`:
+by providing an explicit generic `<Props>` parameter to `decorate`:
 
 ```jsx
 import { WithStyles } from 'material-ui/styles';
@@ -74,7 +74,7 @@ interface Painting {
 
 type Props = Book | Painting;
 
-const DecoratedUnionProps = withMyStyles<Props>( // <-- without the type argument, we'd get a compiler error!
+const DecoratedUnionProps = decorate<Props>( // <-- without the type argument, we'd get a compiler error!
   class extends React.Component<Props & WithStyles<'root'>> {
     render() {
       const props = this.props;
