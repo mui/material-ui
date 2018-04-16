@@ -25,4 +25,4 @@ export default function withWidth(
   options?: WithWidthOptions,
 ): <P extends ConsistentWith<WithWidthProps>>(
   component: React.ComponentType<P & WithWidthProps>,
-) => React.ComponentClass<Omit<P, keyof WithWidthProps> & Partial<WithWidthProps>>;
+) => React.ComponentClass<P & Partial<WithWidthProps>>;

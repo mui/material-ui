@@ -8,7 +8,7 @@ Have a look at the [Create React App with TypeScript](https://github.com/mui-org
 The usage of `withStyles` in TypeScript can be a little tricky, so it's worth showing some examples. You can first call `withStyles()` to create a decorator function, like so:
 
 ```js
-const decorate = withStyles(({ palette, spacing }) => ({
+const withMyStyles = withStyles(({ palette, spacing }) => ({
   root: {
     padding: spacing.unit,
     backgroundColor: palette.background.default,
@@ -30,7 +30,7 @@ interface Props {
 Functional components are straightforward:
 
 ```jsx
-const DecoratedSFC = decorate<Props>(({ text, type, color, classes }) => (
+const DecoratedSFC = withMyStyles<Props>(({ text, type, color, classes }) => (
   <Typography variant={type} color={color} classes={classes}>
     {text}
   </Typography>
@@ -42,7 +42,7 @@ Class components are a little more cumbersome. Due to a [current limitation in T
 ```jsx
 import { WithStyles } from 'material-ui/styles';
 
-const DecoratedClass = decorate(
+const DecoratedClass = withMyStyles(
   class extends React.Component<Props & WithStyles<'root'>> {
     render() {
       const { text, type, color, classes } = this.props
@@ -55,40 +55,6 @@ const DecoratedClass = decorate(
   }
 );
 ```
-
-
-Scenario 2: `Props` is a union type. Again, to avoid getting a compiler error, you'll need to provide an explict type argument:
-
-```jsx
-import { WithStyles } from 'material-ui/styles';
-
-interface Book {
-  category: "book";
-  author: string;
-}
-
-interface Painting {
-  category: "painting";
-  artist: string;
-}
-
-type Props = Book | Painting;
-
-const DecoratedUnionProps = decorate<Props>( // <-- without the type argument, we'd get a compiler error!
-  class extends React.Component<Props & WithStyles<'root'>> {
-    render() {
-      const props = this.props;
-      return (
-        <Typography classes={props.classes}>
-          {props.category === "book" ? props.author : props.artist}
-        </Typography>
-      );
-    }
-  }
-);
-```
-
-To avoid worrying about these 2 edge cases, it may be a good habit to always provide an explicit type argument to `decorate`.
 
 ### Injecting Multiple Classes
 

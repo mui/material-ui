@@ -7,6 +7,6 @@ export interface WithTheme {
 
 declare const withTheme: () => <P extends ConsistentWith<WithTheme>>(
   component: React.ComponentType<P & WithTheme>,
-) => React.ComponentClass<Omit<P, keyof WithTheme>>;
+) => React.ComponentClass<P>;
 
 export default withTheme;
