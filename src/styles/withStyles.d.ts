@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { WithTheme } from '../styles/withTheme';
-import { Omit } from '..';
+import { Omit, ConsistentWith } from '..';
 import { Theme } from './createMuiTheme';
 
 /**
@@ -39,26 +39,9 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   innerRef?: React.Ref<any>;
 }
 
-/*
-  The Omit<P, 'classes'> below (rather than the canonical Omit<P, WithStyles<ClassKey>>)
-  is used to allow interoperability with withTheme, which may provide the 'theme' prop.
- */
-/*
 export default function withStyles<ClassKey extends string>(
   style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
   options?: WithStylesOptions,
-): <P extends WithStyles<ClassKey>>(
-  component: React.ComponentType<P>,
-) => React.ComponentType<Omit<P, 'classes'> & StyledComponentProps<ClassKey>>;
-*/
-
-interface MaybeWithStyles<ClassKey extends string> extends Partial<WithStyles<ClassKey>> {
-  [k: string]: any;
-}
-
-export default function withStyles<ClassKey extends string>(
-  style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
-  options?: WithStylesOptions,
-): <P extends MaybeWithStyles<ClassKey>>(
+): <P extends ConsistentWith<WithStyles<ClassKey>>>(
   component: React.ComponentType<P & WithStyles<ClassKey>>,
 ) => React.ComponentType<Omit<P, 'classes'> & StyledComponentProps<ClassKey>>;

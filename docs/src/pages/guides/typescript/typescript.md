@@ -56,43 +56,6 @@ const DecoratedClass = decorate(
 );
 ```
 
-Note that in the class example you didn't need to annotate `<Props>` in the call to `decorate`; type inference took care of everything. However, there are 2 scenarios where you _do_ need to provide an explicit type argument to `decorate`.
-
-Scenario 1: your styled component takes _no_ additional props in addition to `classes`. The natural thing would be to write:
-
-```jsx
-import { WithStyles } from 'material-ui/styles';
-
-const DecoratedNoProps = decorate(
-  class extends React.Component<WithStyles<'root'>> {
-    render() {
-      return (
-        <Typography classes={this.props.classes}>
-          Hello, World!
-        </Typography>
-      );
-    }
-  }
-);
-```
-
-Unfortunately, TypeScript infers the wrong type in this case and you'll have trouble when you go to make an element of this component. In this case, you'll need to provide an explicit `{}` type argument, like so:
-
-```jsx
-import { WithStyles } from 'material-ui/styles';
-
-const DecoratedNoProps = decorate<{}>( // <-- note the type argument!
-  class extends React.Component<WithStyles<'root'>> {
-    render() {
-      return (
-        <Typography classes={this.props.classes}>
-          Hello, World!
-        </Typography>
-      );
-    }
-  }
-);
-```
 
 Scenario 2: `Props` is a union type. Again, to avoid getting a compiler error, you'll need to provide an explict type argument:
 
