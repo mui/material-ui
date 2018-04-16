@@ -2,10 +2,11 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import ReactDOM from 'react-dom';
-import { createShallow, createMount, unwrap } from '../test-utils';
+import { createMount, unwrap } from '../test-utils';
 import Paper from '../Paper';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
+import SwipeArea from './SwipeArea';
 import createMuiTheme from '../styles/createMuiTheme';
 
 function fireBodyMouseEvent(name, properties) {
@@ -19,12 +20,10 @@ function fireBodyMouseEvent(name, properties) {
 
 describe('<SwipeableDrawer />', () => {
   const SwipeableDrawerNaked = unwrap(SwipeableDrawer);
-  let shallow;
   let mount;
   let findDOMNodeStub;
 
   before(() => {
-    shallow = createShallow({ dive: true });
     mount = createMount();
     // mock the drawer DOM node, since jsdom doesn't do layouting but its size is required
     const findDOMNode = ReactDOM.findDOMNode;
@@ -42,9 +41,62 @@ describe('<SwipeableDrawer />', () => {
     mount.cleanUp();
   });
 
-  it('should render a Drawer', () => {
-    const wrapper = shallow(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open={false} />);
-    assert.strictEqual(wrapper.type(), Drawer);
+  it('should render a Drawer and a SwipeArea', () => {
+    const wrapper = mount(
+      <SwipeableDrawerNaked
+        onOpen={() => {}}
+        onClose={() => {}}
+        open={false}
+        theme={createMuiTheme()}
+      />,
+    );
+    if (React.Fragment) {
+      assert.strictEqual(wrapper.childAt(0).type(), Drawer);
+      assert.strictEqual(wrapper.childAt(1).type(), SwipeArea);
+    } else {
+      assert.strictEqual(
+        wrapper
+          .childAt(0)
+          .childAt(0)
+          .type(),
+        Drawer,
+      );
+      assert.strictEqual(
+        wrapper
+          .childAt(0)
+          .childAt(1)
+          .type(),
+        SwipeArea,
+      );
+    }
+    wrapper.unmount();
+  });
+
+  it('should hide the SwipeArea if swipe to open is disabled', () => {
+    const wrapper = mount(
+      <SwipeableDrawerNaked
+        onOpen={() => {}}
+        onClose={() => {}}
+        open={false}
+        theme={createMuiTheme()}
+        disableSwipeToOpen
+      />,
+    );
+    assert.strictEqual(wrapper.children().length, 1);
+    wrapper.unmount();
+  });
+
+  it('should hide the SwipeArea if discovery is disabled', () => {
+    const wrapper = mount(
+      <SwipeableDrawerNaked
+        onOpen={() => {}}
+        onClose={() => {}}
+        open={false}
+        theme={createMuiTheme()}
+        disableDiscovery
+      />,
+    );
+    assert.strictEqual(wrapper.children().length, 1);
     wrapper.unmount();
   });
 
