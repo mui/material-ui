@@ -1,0 +1,8 @@
+codecov:
+  branch: next
+coverage:
+  status:
+    patch:
+      default:
+        threshold: 0.0%
+comment: false

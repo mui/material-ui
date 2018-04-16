@@ -1,0 +1,41 @@
+import React from 'react';
+import Menu, { MenuItem } from 'src/Menu';
+
+const options = ['Menu Item 1', 'Menu Item 2', 'Menu Item 3'];
+
+class SimpleMenu extends React.Component {
+  state = {
+    open: false,
+    selectedIndex: undefined,
+  };
+
+  handleMenuItemClick = (event, index) => {
+    this.setState({ selectedIndex: index, open: false });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    return (
+      <div data-mui-test="SimpleMenu">
+        <Menu id="simple-menu" open={this.state.open} onClose={this.handleClose} {...this.props}>
+          {options.map((label, index) => {
+            return (
+              <MenuItem
+                key={label}
+                selected={index === this.state.selectedIndex}
+                onClick={event => this.handleMenuItemClick(event, index)}
+              >
+                {label}
+              </MenuItem>
+            );
+          })}
+        </Menu>
+      </div>
+    );
+  }
+}
+
+export default SimpleMenu;
