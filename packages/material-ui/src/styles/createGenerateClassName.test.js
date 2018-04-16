@@ -1,6 +1,6 @@
 import { assert } from 'chai';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import createGenerateClassName from './createGenerateClassName';
-import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 describe('createGenerateClassName', () => {
   describe('counter', () => {

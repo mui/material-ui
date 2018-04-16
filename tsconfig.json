@@ -14,5 +14,5 @@
     "noEmit": true,
     "experimentalDecorators": true
   },
-  "include": ["src/**/*", "test/typescript/*"]
+  "include": ["packages/material-ui/src/**/*", "packages/material-ui/test/typescript/*"]
 }

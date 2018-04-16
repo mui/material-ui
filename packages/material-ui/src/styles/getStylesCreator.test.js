@@ -1,8 +1,8 @@
 // @flow
 
 import { assert } from 'chai';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import getStylesCreator from './getStylesCreator';
-import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 describe('getStylesCreator', () => {
   const name = 'name';

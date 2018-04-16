@@ -5,11 +5,12 @@ const path = require('path');
 module.exports = {
   context: path.resolve(__dirname),
   resolve: {
+    modules: [path.join(__dirname, '../'), 'node_modules'],
     alias: {
       '@material-ui/docs': path.resolve(__dirname, '../packages/material-ui-docs/src'),
       '@material-ui/icons': path.resolve(__dirname, '../packages/material-ui-icons/src'),
       '@material-ui/lab': path.resolve(__dirname, '../packages/material-ui-lab/src'),
-      'material-ui': path.resolve(__dirname, '../src'),
+      'material-ui': path.resolve(__dirname, '../packages/material-ui/src'),
       docs: path.resolve(__dirname, '../docs'),
     },
   },

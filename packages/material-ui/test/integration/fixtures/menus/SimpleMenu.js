@@ -1,5 +1,5 @@
 import React from 'react';
-import Menu, { MenuItem } from 'src/Menu';
+import Menu, { MenuItem } from 'packages/material-ui/src/Menu';
 
 const options = ['Menu Item 1', 'Menu Item 2', 'Menu Item 3'];
 

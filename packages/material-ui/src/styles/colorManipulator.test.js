@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import consoleErrorMock from '../../test/utils/consoleErrorMock';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import {
   recomposeColor,
   convertHexToRGB,

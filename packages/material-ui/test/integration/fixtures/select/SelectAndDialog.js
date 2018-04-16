@@ -1,9 +1,9 @@
 // @flow
 
 import React from 'react';
-import { MenuItem } from 'src/Menu';
-import Select from 'src/Select';
-import Dialog from 'src/Dialog';
+import { MenuItem } from 'packages/material-ui/src/Menu';
+import Select from 'packages/material-ui/src/Select';
+import Dialog from 'packages/material-ui/src/Dialog';
 
 type Props = {
   MenuProps?: Object,

@@ -1,5 +1,5 @@
 ---
-filename: /src/transitions/Zoom.js
+filename: /packages/material-ui/src/transitions/Zoom.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,24 +1,26 @@
 [
   {
     "name": "The initial cost people pay for using one component",
-    "path": "test/size/overhead.js",
-    "limit": "25.1 KB"
+    "webpack": true,
+    "path": "packages/material-ui/build/Paper/index.js",
+    "limit": "25.4 KB"
   },
   {
-    "name": "The size of the whole library.",
-    "path": "build/index.js",
-    "limit": "100.6 KB"
+    "name": "The size of all the modules of material-ui.",
+    "webpack": true,
+    "path": "packages/material-ui/build/index.js",
+    "limit": "100.9 KB"
   },
   {
-    "name": "The main bundle of the documentation",
+    "name": "The main bundle of the docs",
     "webpack": false,
     "path": ".next/main.js",
     "limit": "185 KB"
   },
   {
-    "name": "The home page of the documentation",
-    "path": ".next/bundles/pages/index.js",
+    "name": "The home page of the docs",
     "webpack": false,
+    "path": ".next/bundles/pages/index.js",
     "limit": "6 KB"
   }
 ]

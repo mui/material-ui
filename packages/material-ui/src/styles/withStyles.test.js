@@ -5,13 +5,13 @@ import { spy } from 'sinon';
 import { assert } from 'chai';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create, SheetsRegistry } from 'jss';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import jssPreset from './jssPreset';
 import withStyles from './withStyles';
 import MuiThemeProvider from './MuiThemeProvider';
 import createMuiTheme from './createMuiTheme';
 import createGenerateClassName from './createGenerateClassName';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Empty extends React.Component<{ classes: Object, theme?: Object }> {

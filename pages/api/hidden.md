@@ -1,5 +1,5 @@
 ---
-filename: /src/Hidden/Hidden.js
+filename: /packages/material-ui/src/Hidden/Hidden.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

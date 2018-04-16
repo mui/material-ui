@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, getClasses } from '../test-utils';
-import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import Avatar from '../Avatar';
 import ListItemAvatar from './ListItemAvatar';
 

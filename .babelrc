@@ -12,8 +12,8 @@
           {
             "root": ["./"],
             "alias": {
-              "material-ui": "./src",
-              "@material-ui/icons": "./packages/material-ui-icons/src"
+              "@material-ui/icons": "./packages/material-ui-icons/src",
+              "material-ui": "./packages/material-ui/src"
             }
           }
         ],
@@ -36,10 +36,10 @@
           {
             "alias": {
               "@material-ui/docs": "./packages/material-ui-docs/src",
+              "@material-ui/icons": "./packages/material-ui-icons/src",
               "@material-ui/lab": "./packages/material-ui-lab/src",
               "docs": "./docs",
-              "material-ui": "./src",
-              "@material-ui/icons": "./packages/material-ui-icons/src",
+              "material-ui": "./packages/material-ui/src",
               "pages": "./pages"
             }
           }
@@ -58,10 +58,10 @@
           {
             "alias": {
               "@material-ui/docs": "./packages/material-ui-docs/src",
+              "@material-ui/icons": "./packages/material-ui-icons/src",
               "@material-ui/lab": "./packages/material-ui-lab/src",
               "docs": "./docs",
-              "material-ui": "./src",
-              "@material-ui/icons": "./packages/material-ui-icons/src",
+              "material-ui": "./packages/material-ui/src",
               "pages": "./pages"
             }
           }
@@ -110,8 +110,8 @@
           {
             "root": ["./"],
             "alias": {
-              "material-ui": "./src",
-              "@material-ui/icons": "./packages/material-ui-icons/src"
+              "@material-ui/icons": "./packages/material-ui-icons/src",
+              "material-ui": "./src"
             }
           }
         ],
