@@ -68,11 +68,11 @@ const DecoratedUnionProps = decorate<ArtProps>( // <-- without the type argument
       const props = this.props;
       return (
         <Typography classes={props.classes}>
-          {props.category === 'book' ? props.author : props.artist}
+          {props.category === "book" ? props.author : props.artist}
         </Typography>
       );
     }
-  },
+  }
 );
 
 const unionPropElem = <DecoratedUnionProps category="book" author="Twain, Mark" />;

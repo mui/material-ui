@@ -56,6 +56,39 @@ const DecoratedClass = withMyStyles(
 );
 ```
 
+When your `props` are a union, Typescript needs you to explicitly tell it the type, 
+by providing an explicit generic `<Props>` parameter to `withMyStyles`:
+
+```jsx
+import { WithStyles } from 'material-ui/styles';
+
+interface Book {
+  category: "book";
+  author: string;
+}
+
+interface Painting {
+  category: "painting";
+  artist: string;
+}
+
+type Props = Book | Painting;
+
+const DecoratedUnionProps = withMyStyles<Props>( // <-- without the type argument, we'd get a compiler error!
+  class extends React.Component<Props & WithStyles<'root'>> {
+    render() {
+      const props = this.props;
+      return (
+        <Typography classes={props.classes}>
+          {props.category === "book" ? props.author : props.artist}
+        </Typography>
+      );
+    }
+  }
+);
+```
+
+
 ### Injecting Multiple Classes
 
 Injecting multiple classes into a component is as straightforward as possible. Take the following code for example. The classes `one` and `two` are both available with type information on the `classes`-prop passed in by `withStyles`.
