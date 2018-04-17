@@ -31,9 +31,6 @@ export const styles = {
   },
 };
 
-/**
- * @ignore - internal component.
- */
 class SwitchBase extends React.Component {
   constructor(props, context) {
     super(props, context);

@@ -87,9 +87,6 @@ export const styles = theme => ({
   },
 });
 
-/**
- * @ignore - internal component.
- */
 class TouchRipple extends React.Component {
   state = {
     nextKey: 0,
