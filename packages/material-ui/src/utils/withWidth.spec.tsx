@@ -34,3 +34,10 @@ export class Hello extends React.Component<IHelloProps & WithWidthProps & WithSt
 const Decorated = withWidth()(withStyles(styles)(Hello));
 
 <Decorated name="Bob" />;
+
+const WidthSFC = withWidth()<{
+  // shouldn't need to specify width here; it's a given
+  name: string;
+}>(({ width, name }) => <div style={{ width }}>hello, {name}</div>);
+
+<WidthSFC name="Hortense" />;

@@ -35,7 +35,7 @@ const DecoratedClass = decorate(
   },
 );
 
-const DecoratedNoProps = decorate<{}>(
+const DecoratedNoProps = decorate(
   class extends React.Component<WithStyles<'root'>> {
     render() {
       return <Typography classes={this.props.classes}>Hello, World!</Typography>;
@@ -46,3 +46,31 @@ const DecoratedNoProps = decorate<{}>(
 const sfcElem = <DecoratedSFC text="Hello, World!" variant="title" color="secondary" />;
 const classElem = <DecoratedClass text="Hello, World!" variant="title" color="secondary" />;
 const noPropsElem = <DecoratedNoProps />;
+
+interface Book {
+  category: 'book';
+  author: string;
+}
+
+interface Painting {
+  category: 'painting';
+  artist: string;
+}
+
+type ArtProps = Book | Painting;
+
+const DecoratedUnionProps = decorate<ArtProps>( // <-- without the type argument, we'd get a compiler error!
+  class extends React.Component<ArtProps & WithStyles<'root'>> {
+    render() {
+      const props = this.props;
+      return (
+        <Typography classes={props.classes}>
+          {props.category === 'book' ? props.author : props.artist}
+        </Typography>
+      );
+    }
+  },
+);
+
+const unionPropElem = <DecoratedUnionProps category="book" author="Twain, Mark" />;
+

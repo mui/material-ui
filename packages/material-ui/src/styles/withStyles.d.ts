@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { WithTheme } from '../styles/withTheme';
+import { ConsistentWith } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 
@@ -34,9 +36,8 @@ export interface WithStylesOptions {
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
-export interface WithStyles<ClassKey extends string = string> {
+export interface WithStyles<ClassKey extends string = string> extends Partial<WithTheme> {
   classes: ClassNameMap<ClassKey>;
-  theme?: Theme;
 }
 
 export interface StyledComponentProps<ClassKey extends string = string> {
@@ -47,6 +48,11 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 export default function withStyles<ClassKey extends string>(
   style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
   options?: WithStylesOptions,
-): <P>(
-  component: React.ComponentType<P & WithStyles<ClassKey>>,
-) => React.ComponentType<P & StyledComponentProps<ClassKey>>;
+): {
+  (
+    component: React.ComponentType<WithStyles<ClassKey>>,
+  ): React.ComponentType<StyledComponentProps<ClassKey>>;
+  <P extends ConsistentWith<WithStyles<ClassKey>>>(
+    component: React.ComponentType<P & WithStyles<ClassKey>>,
+  ): React.ComponentType<P & StyledComponentProps<ClassKey>>;
+};
