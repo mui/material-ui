@@ -1,5 +1,5 @@
 ---
-filename: /src/transitions/Grow.js
+filename: /packages/material-ui/src/transitions/Grow.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

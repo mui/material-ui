@@ -2,7 +2,7 @@
   "name": "@material-ui/lab",
   "private": false,
   "author": "Material-UI Team",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",
   "main": "./src/index.js",
   "keywords": [
@@ -33,15 +33,15 @@
     "version": "yarn build:copy-files && npm publish build"
   },
   "peerDependencies": {
-    "material-ui": "^1.0.0-beta.33",
     "@material-ui/icons": "^1.0.0-beta.17",
+    "material-ui": "^1.0.0-beta.33",
     "react": "^15.3.0 || ^16.0.0",
     "react-dom": "^15.3.0 || ^16.0.0"
   },
   "dependencies": {},
   "devDependencies": {
-    "material-ui": "^1.0.0-beta.33",
-    "@material-ui/icons": "^1.0.0-beta.35"
+    "@material-ui/icons": "^1.0.0-beta.35",
+    "material-ui": "^1.0.0-beta.33"
   },
   "sideEffects": false,
   "publishConfig": {

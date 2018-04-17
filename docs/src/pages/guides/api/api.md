@@ -53,7 +53,10 @@ We try to make the classes structure as simple as possible while keeping it comp
 - A variant has **one level of specificity**.
 For instance, the `color` and `variant` properties are considered a variant.
 The lower the style specificity is, the simpler you can override it.
-- We increase the specificity for a variant modifier. We already **have to do** it for the pseudo-classes (`:hover`, `:focus`, etc.). It allows much more control at the cost of extra complexity. Hopefully, it's more intuitive.
+- We increase the specificity for a variant modifier.
+We already **have to do** it for the pseudo-classes (`:hover`, `:focus`, etc.).
+It allows much more control at the cost of more boilerplate.
+Hopefully, it's more intuitive.
 
 ```js
 const styles = {

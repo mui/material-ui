@@ -1,5 +1,5 @@
 ---
-filename: /src/SwipeableDrawer/SwipeableDrawer.js
+filename: /packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

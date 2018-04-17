@@ -1,5 +1,5 @@
 ---
-filename: /src/Radio/RadioGroup.js
+filename: /packages/material-ui/src/Radio/RadioGroup.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

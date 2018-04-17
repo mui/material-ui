@@ -30,8 +30,8 @@
     "version": "yarn build:copy-files && npm publish build"
   },
   "peerDependencies": {
-    "material-ui": "^1.0.0-beta.33",
     "@material-ui/icons": "^1.0.0-beta.17",
+    "material-ui": "^1.0.0-beta.33",
     "react": "^15.3.0 || ^16.0.0",
     "react-dom": "^15.3.0 || ^16.0.0"
   },
@@ -41,8 +41,8 @@
     "prismjs": "^1.8.4"
   },
   "devDependencies": {
-    "material-ui": "^1.0.0-beta.33",
-    "@material-ui/icons": "^1.0.0-beta.35"
+    "@material-ui/icons": "^1.0.0-beta.35",
+    "material-ui": "^1.0.0-beta.33"
   },
   "publishConfig": {
     "access": "public"

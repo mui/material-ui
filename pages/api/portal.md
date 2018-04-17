@@ -1,5 +1,5 @@
 ---
-filename: /src/Portal/Portal.js
+filename: /packages/material-ui/src/Portal/Portal.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

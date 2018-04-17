@@ -1,5 +1,5 @@
 ---
-filename: /src/TextField/TextField.js
+filename: /packages/material-ui/src/TextField/TextField.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

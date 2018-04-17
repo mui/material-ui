@@ -4,7 +4,6 @@
 .idea
 .vscode
 
-# Screenshors generated for Argos-CI
 *.log
 .DS_STORE
 /.eslintcache

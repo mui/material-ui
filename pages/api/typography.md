@@ -1,5 +1,5 @@
 ---
-filename: /src/Typography/Typography.js
+filename: /packages/material-ui/src/Typography/Typography.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -55,7 +55,7 @@ This property accepts the following keys:
 - `colorError`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Typography/Typography.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui/src/Typography/Typography.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented

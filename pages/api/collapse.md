@@ -1,12 +1,12 @@
 ---
-filename: /src/transitions/Collapse.js
+filename: /packages/material-ui/src/transitions/Collapse.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Collapse
 
-The Collapes transition is used by the
+The Collapse transition is used by the
 [Vertical Stepper](/demos/steppers#vertical-stepper) StepContent component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
@@ -33,7 +33,7 @@ This property accepts the following keys:
 - `wrapperInner`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/transitions/Collapse.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui/src/transitions/Collapse.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented

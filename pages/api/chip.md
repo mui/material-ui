@@ -1,5 +1,5 @@
 ---
-filename: /src/Chip/Chip.js
+filename: /packages/material-ui/src/Chip/Chip.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -34,7 +34,7 @@ This property accepts the following keys:
 - `deleteIcon`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/Chip/Chip.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui/src/Chip/Chip.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
