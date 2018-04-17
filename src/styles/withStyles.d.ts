@@ -49,4 +49,4 @@ export default function withStyles<ClassKey extends string>(
   <P extends ConsistentWith<WithStyles<ClassKey>>>(
     component: React.ComponentType<P & WithStyles<ClassKey>>,
   ): React.ComponentType<P & StyledComponentProps<ClassKey>>;
-}
+};

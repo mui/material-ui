@@ -56,7 +56,7 @@ const DecoratedClass = decorate(
 );
 ```
 
-When your `props` are a union, Typescript needs you to explicitly tell it the type, by providing an explicit generic `<Props>` parameter to `decorate`:
+When your `props` are a union, Typescript needs you to explicitly tell it the type, by providing a generic `<Props>` parameter to `decorate`:
 
 ```jsx
 import { WithStyles } from 'material-ui/styles';
