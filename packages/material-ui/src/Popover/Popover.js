@@ -367,7 +367,7 @@ Popover.propTypes = {
    * This determines which anchor prop to refer to to set
    * the position of the popover.
    */
-  anchorReference: PropTypes.oneOf(['anchorEl', 'anchorPosition']),
+  anchorReference: PropTypes.oneOf(['anchorEl', 'anchorPosition', 'none']),
   /**
    * The content of the component.
    */
