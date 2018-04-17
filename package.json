@@ -187,7 +187,7 @@
     "rimraf": "^2.6.2",
     "sinon": "^4.1.2",
     "size-limit": "0.14.1",
-    "typescript": "2.6.1",
+    "typescript": "^2.6.1",
     "url-loader": "^1.0.1",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
