@@ -5,7 +5,8 @@ import { MenuProps } from '../Menu';
 import { SelectInputProps } from './SelectInput';
 
 export interface SelectProps
-  extends StandardProps<InputProps, SelectClassKey, 'value' | 'onChange'> {
+  extends StandardProps<InputProps, SelectClassKey, 'value' | 'onChange'>,
+    Pick<SelectInputProps, 'onChange'> {
   autoWidth?: boolean;
   displayEmpty?: boolean;
   input?: React.ReactNode;
@@ -14,7 +15,6 @@ export interface SelectProps
   native?: boolean;
   onClose?: (event: React.ChangeEvent<{}>) => void;
   onOpen?: (event: React.ChangeEvent<{}>) => void;
-  onChange: SelectInputProps['onChange'];
   open?: boolean;
   renderValue?: (value: SelectProps['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
