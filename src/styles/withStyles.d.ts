@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { WithTheme } from '../styles/withTheme';
-import { Omit, ConsistentWith } from '..';
+import { ConsistentWith } from '..';
 import { Theme } from './createMuiTheme';
 
 /**

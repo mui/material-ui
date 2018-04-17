@@ -1,5 +1,5 @@
 import { Theme } from './createMuiTheme';
-import { Omit, ConsistentWith } from '..';
+import { ConsistentWith } from '..';
 
 export interface WithTheme {
   theme: Theme;

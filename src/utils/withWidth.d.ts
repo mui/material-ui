@@ -1,5 +1,5 @@
 import { Breakpoint } from '../styles/createBreakpoints';
-import { Omit, ConsistentWith } from '..';
+import { ConsistentWith } from '..';
 
 export interface WithWidthOptions {
   resizeInterval: number;
