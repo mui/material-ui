@@ -47,8 +47,6 @@ const sfcElem = <DecoratedSFC text="Hello, World!" variant="title" color="second
 const classElem = <DecoratedClass text="Hello, World!" variant="title" color="secondary" />;
 const noPropsElem = <DecoratedNoProps />;
 
-// This is the "scenario 2" example straight from the doc, then invoked:
-
 interface Book {
   category: 'book';
   author: string;
