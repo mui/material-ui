@@ -20,7 +20,6 @@ class TablePaginationActions extends React.Component {
   render() {
     const {
       backIconButtonProps,
-      classes,
       count,
       nextIconButtonProps,
       onChangePage,
@@ -31,7 +30,7 @@ class TablePaginationActions extends React.Component {
     } = this.props;
 
     return (
-      <div className={classes.root} {...other}>
+      <div {...other}>
         <IconButton
           onClick={this.handleBackButtonClick}
           disabled={page === 0}
@@ -56,10 +55,6 @@ TablePaginationActions.propTypes = {
    * Properties applied to the back arrow `IconButton` element.
    */
   backIconButtonProps: PropTypes.object,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
   /**
    * The total number of rows.
    */
