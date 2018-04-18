@@ -14,7 +14,7 @@ export interface PopoverPosition {
   left: number;
 }
 
-export type PopoverReference = 'anchorEl' | 'anchorPosition';
+export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 
 export interface PopoverProps
   extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, PopoverClassKey, 'children'> {

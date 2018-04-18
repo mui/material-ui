@@ -99,26 +99,39 @@ class Popover extends React.Component {
   setPositioningStyles = element => {
     if (element && element.style) {
       const positioning = this.getPositioningStyle(element);
-      element.style.top = positioning.top;
-      element.style.left = positioning.left;
+      if (positioning.top !== null) {
+        element.style.top = positioning.top;
+      }
+      if (positioning.left !== null) {
+        element.style.left = positioning.left;
+      }
       element.style.transformOrigin = positioning.transformOrigin;
     }
   };
 
   getPositioningStyle = element => {
-    const { anchorEl, marginThreshold } = this.props;
+    const { anchorEl, anchorReference, marginThreshold } = this.props;
 
     // Check if the parent has requested anchoring on an inner content node
     const contentAnchorOffset = this.getContentAnchorOffset(element);
-    // Get the offset of of the anchoring element
-    const anchorOffset = this.getAnchorOffset(contentAnchorOffset);
-
     const elemRect = {
       width: element.clientWidth,
       height: element.clientHeight,
     };
+
     // Get the transform origin point on the element itself
     const transformOrigin = this.getTransformOrigin(elemRect, contentAnchorOffset);
+
+    if (anchorReference === 'none') {
+      return {
+        top: null,
+        left: null,
+        transformOrigin: getTransformOriginValue(transformOrigin),
+      };
+    }
+
+    // Get the offset of of the anchoring element
+    const anchorOffset = this.getAnchorOffset(contentAnchorOffset);
 
     // Calculate element positioning
     let top = anchorOffset.top - transformOrigin.vertical;
@@ -177,6 +190,11 @@ class Popover extends React.Component {
     const { anchorEl, anchorOrigin, anchorReference, anchorPosition } = this.props;
 
     if (anchorReference === 'anchorPosition') {
+      warning(
+        anchorPosition,
+        'Material-UI: you need to provide a `anchorPosition` property when using ' +
+          '<Popover anchorReference="anchorPosition" />.',
+      );
       return anchorPosition;
     }
 
@@ -367,7 +385,7 @@ Popover.propTypes = {
    * This determines which anchor prop to refer to to set
    * the position of the popover.
    */
-  anchorReference: PropTypes.oneOf(['anchorEl', 'anchorPosition']),
+  anchorReference: PropTypes.oneOf(['anchorEl', 'anchorPosition', 'none']),
   /**
    * The content of the component.
    */

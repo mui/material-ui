@@ -463,7 +463,7 @@ describe('<Popover />', () => {
     });
   });
 
-  describe('positioning on a manual position', () => {
+  describe('prop anchorReference="anchorPosition"', () => {
     const anchorPosition = { top: 300, left: 500 };
 
     let wrapper;
@@ -477,7 +477,7 @@ describe('<Popover />', () => {
           wrapper = mount(
             <Popover
               {...defaultProps}
-              anchorReference={'anchorPosition'}
+              anchorReference="anchorPosition"
               anchorPosition={anchorPosition}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
@@ -518,6 +518,61 @@ describe('<Popover />', () => {
     it('should ignore the anchorOrigin prop when being positioned', () => {
       return openPopover({ vertical: 'top', horizontal: 'right' }).then(() => {
         expectPopover(anchorPosition.top, anchorPosition.left);
+      });
+    });
+  });
+
+  describe('prop anchorReference="none"', () => {
+    let wrapper;
+    let popoverEl;
+    let openPopover;
+    let expectPopover;
+
+    before(() => {
+      openPopover = () => {
+        return new Promise(resolve => {
+          wrapper = mount(
+            <Popover
+              {...defaultProps}
+              anchorReference="none"
+              transitionDuration={0}
+              onEntered={() => {
+                popoverEl = window.document.querySelector('[data-mui-test="Popover"]');
+                resolve();
+              }}
+              PaperProps={{
+                style: {
+                  top: 11,
+                  left: 12,
+                },
+              }}
+            >
+              <div />
+            </Popover>,
+          );
+          wrapper.setProps({ open: true });
+        });
+      };
+
+      expectPopover = (top, left) => {
+        assert.strictEqual(
+          popoverEl.style.top,
+          `${top}px`,
+          'should position at the correct top offset',
+        );
+
+        assert.strictEqual(
+          popoverEl.style.left,
+          `${left}px`,
+          'should position at the correct left offset',
+        );
+        wrapper.unmount();
+      };
+    });
+
+    it('should not try to change the position', () => {
+      return openPopover().then(() => {
+        expectPopover(11, 12);
       });
     });
   });
