@@ -10,7 +10,6 @@ export const styles = theme => ({
     width: '100%',
     borderCollapse: 'collapse',
     borderSpacing: 0,
-    overflow: 'hidden',
   },
 });
 
