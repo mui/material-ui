@@ -15,7 +15,7 @@
     "name": "The main bundle of the docs",
     "webpack": false,
     "path": ".next/main.js",
-    "limit": "185 KB"
+    "limit": "186 KB"
   },
   {
     "name": "The home page of the docs",

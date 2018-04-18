@@ -46,4 +46,4 @@ StepPositionIcon.propTypes = {
   position: PropTypes.node,
 };
 
-export default withStyles(styles, { name: 'MuiStepPositionIcon' })(StepPositionIcon);
+export default withStyles(styles)(StepPositionIcon);

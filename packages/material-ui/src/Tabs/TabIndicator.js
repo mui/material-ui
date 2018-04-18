@@ -51,4 +51,4 @@ TabIndicator.propTypes = {
   color: PropTypes.oneOf(['primary', 'secondary']),
 };
 
-export default withStyles(styles, { name: 'MuiTabIndicator' })(TabIndicator);
+export default withStyles(styles)(TabIndicator);

@@ -97,6 +97,4 @@ TablePaginationActions.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { name: 'MuiTablePaginationActions', withTheme: true })(
-  TablePaginationActions,
-);
+export default withStyles(styles, { withTheme: true })(TablePaginationActions);
