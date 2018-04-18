@@ -99,26 +99,39 @@ class Popover extends React.Component {
   setPositioningStyles = element => {
     if (element && element.style) {
       const positioning = this.getPositioningStyle(element);
-      element.style.top = positioning.top;
-      element.style.left = positioning.left;
+      if (positioning.top !== null) {
+        element.style.top = positioning.top;
+      }
+      if (positioning.left !== null) {
+        element.style.left = positioning.left;
+      }
       element.style.transformOrigin = positioning.transformOrigin;
     }
   };
 
   getPositioningStyle = element => {
-    const { anchorEl, marginThreshold } = this.props;
+    const { anchorEl, anchorReference, marginThreshold } = this.props;
 
     // Check if the parent has requested anchoring on an inner content node
     const contentAnchorOffset = this.getContentAnchorOffset(element);
-    // Get the offset of of the anchoring element
-    const anchorOffset = this.getAnchorOffset(contentAnchorOffset);
-
     const elemRect = {
       width: element.clientWidth,
       height: element.clientHeight,
     };
+
     // Get the transform origin point on the element itself
     const transformOrigin = this.getTransformOrigin(elemRect, contentAnchorOffset);
+
+    if (anchorReference === 'none') {
+      return {
+        top: null,
+        left: null,
+        transformOrigin: getTransformOriginValue(transformOrigin),
+      };
+    }
+
+    // Get the offset of of the anchoring element
+    const anchorOffset = this.getAnchorOffset(contentAnchorOffset);
 
     // Calculate element positioning
     let top = anchorOffset.top - transformOrigin.vertical;
@@ -177,6 +190,11 @@ class Popover extends React.Component {
     const { anchorEl, anchorOrigin, anchorReference, anchorPosition } = this.props;
 
     if (anchorReference === 'anchorPosition') {
+      warning(
+        anchorPosition,
+        'Material-UI: you need to provide a `anchorPosition` property when using ' +
+          '<Popover anchorReference="anchorPosition" />.',
+      );
       return anchorPosition;
     }
 
@@ -185,16 +203,9 @@ class Popover extends React.Component {
       getAnchorEl(anchorEl) || ownerDocument(ReactDOM.findDOMNode(this.transitionEl)).body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
-    const anchorRectTop = anchorRect.top + this.handleGetOffsetTop(anchorRect, anchorVertical);
-
-    if (anchorReference === 'none') {
-      return {
-        top: anchorRectTop,
-      };
-    }
 
     return {
-      top: anchorRectTop,
+      top: anchorRect.top + this.handleGetOffsetTop(anchorRect, anchorVertical),
       left: anchorRect.left + this.handleGetOffsetLeft(anchorRect, anchorOrigin.horizontal),
     };
   }
