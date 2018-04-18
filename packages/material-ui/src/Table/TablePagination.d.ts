@@ -37,7 +37,8 @@ export type TablePaginationClassKey =
   | 'caption'
   | 'input'
   | 'selectRoot'
-  | 'select';
+  | 'select'
+  | 'actions';
 
 declare const TablePagination: React.ComponentType<TablePaginationProps>;
 

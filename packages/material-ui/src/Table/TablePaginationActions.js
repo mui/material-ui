@@ -2,16 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
-import withStyles from '../styles/withStyles';
+import withTheme from '../styles/withTheme';
 import IconButton from '../IconButton';
-
-export const styles = theme => ({
-  root: {
-    flexShrink: 0,
-    color: theme.palette.text.secondary,
-    marginLeft: theme.spacing.unit * 2.5,
-  },
-});
 
 /**
  * @ignore - internal component.
@@ -28,7 +20,6 @@ class TablePaginationActions extends React.Component {
   render() {
     const {
       backIconButtonProps,
-      classes,
       count,
       nextIconButtonProps,
       onChangePage,
@@ -39,7 +30,7 @@ class TablePaginationActions extends React.Component {
     } = this.props;
 
     return (
-      <div className={classes.root} {...other}>
+      <div {...other}>
         <IconButton
           onClick={this.handleBackButtonClick}
           disabled={page === 0}
@@ -64,10 +55,6 @@ TablePaginationActions.propTypes = {
    * Properties applied to the back arrow `IconButton` element.
    */
   backIconButtonProps: PropTypes.object,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
   /**
    * The total number of rows.
    */
@@ -97,4 +84,4 @@ TablePaginationActions.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(TablePaginationActions);
+export default withTheme()(TablePaginationActions);

@@ -130,6 +130,7 @@ class TablePagination extends React.Component {
             })}
           </Typography>
           <Actions
+            className={classes.actions}
             backIconButtonProps={backIconButtonProps}
             count={count}
             nextIconButtonProps={nextIconButtonProps}
