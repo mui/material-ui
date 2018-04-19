@@ -26,6 +26,8 @@ export const styles = theme => ({
     '&:focus': {
       outline: 'none',
     },
+    // Add iOS momentum scrolling. 
+    WebkitOverflowScrolling: 'touch',
   },
   paperWidthXs: {
     maxWidth: Math.max(theme.breakpoints.values.xs, 360),
