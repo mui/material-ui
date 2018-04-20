@@ -9,6 +9,7 @@ export const styles = theme => {
     root: {
       flex: '1 1 auto',
       overflowY: 'auto',
+      WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
       padding: `0 ${spacing}px ${spacing}px ${spacing}px`,
       '&:first-child': {
         paddingTop: spacing,
