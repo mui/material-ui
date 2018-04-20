@@ -34,7 +34,7 @@ Please create a new branch from an up to date v1-beta on your fork. (Note, urgen
 5. Visit GitHub and make your pull request.
 
 If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
-```js
+```sh
 git remote add upstream git@github.com:mui-org/material-ui.git
 git checkout v1-beta
 git pull upstream v1-beta
@@ -46,7 +46,7 @@ yarn
 
 The documentation site is built with Material-UI and contains examples of all the components.
 To get started:
-```js
+```sh
 yarn
 yarn docs:dev
 ```
@@ -102,8 +102,8 @@ pages/demos/buttons.js
 Then, you will need to add the following code:
 ```diff
 + 'pages/demos/buttons/SuperButtons.js': {
-+          js: require('docs/src/pages/demos/buttons/SuperButtons').default,
-+          raw: preval`
++   js: require('docs/src/pages/demos/buttons/SuperButtons').default,
++   raw: preval`
 + module.exports = require('fs')
 +  .readFileSync(require.resolve('docs/src/pages/demos/buttons/SuperButtons'), 'utf8')
 +`,
@@ -122,6 +122,7 @@ First, you have to build your local distribution of Material-UI:
 
 ```shell
 # From the root folder of the material-ui project
+cd packages/material-ui
 yarn build
 ```
 
