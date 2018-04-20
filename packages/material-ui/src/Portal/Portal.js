@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -44,13 +46,30 @@ class Portal extends React.Component {
    * @public
    */
   getMountNode = () => {
+    if (this.disable) {
+      return ReactDOM.findDOMNode(this);
+    }
+
     return this.mountNode;
   };
+
+  // Hack waiting for https://github.com/airbnb/enzyme/issues/252 to be solved.
+  // When `global.__MUI_PORTAL_DISABLE__` is set to `true`,
+  // the portal will behave as a pass-through component.
+  disable = typeof global !== 'undefined' && global.__MUI_PORTAL_DISABLE__;
 
   render() {
     const { children } = this.props;
 
-    return this.mountNode ? ReactDOM.createPortal(children, this.mountNode) : null;
+    if (this.mountNode) {
+      if (this.disable) {
+        return children;
+      }
+
+      return ReactDOM.createPortal(children, this.mountNode);
+    }
+
+    return null;
   }
 }
 
