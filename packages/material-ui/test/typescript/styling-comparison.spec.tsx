@@ -73,4 +73,3 @@ const DecoratedUnionProps = decorate<ArtProps>( // <-- without the type argument
 );
 
 const unionPropElem = <DecoratedUnionProps category="book" author="Twain, Mark" />;
-
