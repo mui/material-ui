@@ -49,9 +49,9 @@ export default function withStyles<ClassKey extends string>(
   style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
   options?: WithStylesOptions,
 ): {
-  (
-    component: React.ComponentType<WithStyles<ClassKey>>,
-  ): React.ComponentType<StyledComponentProps<ClassKey>>;
+  (component: React.ComponentType<WithStyles<ClassKey>>): React.ComponentType<
+    StyledComponentProps<ClassKey>
+  >;
   <P extends ConsistentWith<WithStyles<ClassKey>>>(
     component: React.ComponentType<P & WithStyles<ClassKey>>,
   ): React.ComponentType<P & StyledComponentProps<ClassKey>>;
