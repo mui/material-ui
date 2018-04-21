@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
+import '../Button'; // So we don't have any override priority issue.
 
 export const styles = theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'flex-end',
     alignItems: 'center',
+    justifyContent: 'flex-end',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit}px`,
   },
   action: {
