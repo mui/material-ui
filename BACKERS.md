@@ -117,7 +117,7 @@ Bronze Sponsors are those who have pledged $100/month to $250/month to Material-
 | Hong Yuan | Lucas Nascimento | the-noob | Thomas Hermann | Diana-Alina Olaru |
 | Daniel Faust | David Langheiter | LocalMonero | Adam Wells | Vincent Bouzeran |
 | Ashwin Hegde | Eric Schultz | Conor Dunk | Jerome Wilson | Greenlink |
-| Jolse Maginnis | asmeikal | David Auffret |
+| Jolse Maginnis | asmeikal | David Auffret | Naresh Bhatia |
 
 #### via [OpenCollective](https://opencollective.com/material-ui)
 

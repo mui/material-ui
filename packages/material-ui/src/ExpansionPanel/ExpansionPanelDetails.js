@@ -6,7 +6,6 @@ import withStyles from '../styles/withStyles';
 export const styles = theme => ({
   root: {
     display: 'flex',
-    flexGrow: 1,
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
   },
 });

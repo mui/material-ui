@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    width: '100%',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -72,6 +72,17 @@ class ControlledExpansionPanels extends React.Component {
             <Typography className={classes.secondaryHeading}>
               Filtering has been entirely disabled for whole web server
             </Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>
+              Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas
+              eros, vitae egestas augue. Duis vel est augue.
+            </Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel expanded={expanded === 'panel4'} onChange={this.handleChange('panel4')}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography className={classes.heading}>Personal data</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>

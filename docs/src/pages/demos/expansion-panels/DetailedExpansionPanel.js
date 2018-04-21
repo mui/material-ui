@@ -15,7 +15,7 @@ import Divider from 'material-ui/Divider';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    width: '100%',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
