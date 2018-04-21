@@ -108,13 +108,6 @@ that **are needed for the stable version**:
   +import ListItem from 'material-ui/ListItem';
   ```
 
-- [ ] Use `@material-ui npm scope name` #9673. The pros have been raised in the linked issue.
-
-```diff
--import Button from 'material-ui/Button';
-+import Button from '@material-ui/core/Button';
-```
-
 - [ ] Look into the Render Props API over the Component Injection API. This one is an area of investigation. For instance, there is potential for simplifying the customization of the transitions.
 
 These breaking changes will be spread into different releases over the next few months to make the upgrade path as smooth as possible.
