@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    width: '100%',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
