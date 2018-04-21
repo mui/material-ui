@@ -7,11 +7,11 @@ import '../Button'; // So we don't have any override priority issue.
 
 export const styles = theme => ({
   root: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
     flex: '0 0 auto',
     margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
   },
   action: {
     margin: `0 ${theme.spacing.unit / 2}px`,
