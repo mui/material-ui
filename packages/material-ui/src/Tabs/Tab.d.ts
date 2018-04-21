@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
-import { ButtonBaseClassKey } from '../ButtonBase/ButtonBase';
 
 export interface TabProps extends StandardProps<ButtonBaseProps, TabClassKey, 'onChange'> {
   disabled?: boolean;
@@ -17,7 +16,7 @@ export interface TabProps extends StandardProps<ButtonBaseProps, TabClassKey, 'o
 }
 
 export type TabClassKey =
-  | ButtonBaseClassKey
+  | 'root'
   | 'labelIcon'
   | 'textColorInherit'
   | 'textColorPrimary'

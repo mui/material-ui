@@ -19,7 +19,7 @@ export const styles = theme => ({
   container: {
     position: 'relative',
   },
-  keyboardFocused: {
+  focusVisible: {
     backgroundColor: theme.palette.action.hover,
   },
   default: {
@@ -105,9 +105,7 @@ class ListItem extends React.Component {
 
     if (button) {
       componentProps.component = componentProp || 'div';
-      componentProps.classes = {
-        keyboardFocused: classes.keyboardFocused,
-      };
+      componentProps.focusVisibleClassName = classes.focusVisible;
       Component = ButtonBase;
     }
 

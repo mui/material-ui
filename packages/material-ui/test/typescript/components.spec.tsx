@@ -796,9 +796,7 @@ const SelectTest = () => (
   </Select>
 );
 
-const InputAdornmentTest = () => (
-  <InputAdornment position="end" onClick={() => alert('Hello')} />
-);
+const InputAdornmentTest = () => <InputAdornment position="end" onClick={() => alert('Hello')} />;
 
 const ResponsiveComponentTest = () => {
   const ResponsiveComponent = withMobileDialog({

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase/ButtonBase';
+import { ButtonBaseProps } from '../ButtonBase/ButtonBase';
 
 export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 'onChange'> {
   action?: (actions: TabsActions) => void;
@@ -18,7 +18,7 @@ export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 
 }
 
 export type TabsClassKey =
-  | ButtonBaseClassKey
+  | 'root'
   | 'flexContainer'
   | 'scroller'
   | 'fixed'

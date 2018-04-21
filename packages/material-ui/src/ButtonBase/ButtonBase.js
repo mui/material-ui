@@ -41,7 +41,6 @@ export const styles = {
     },
   },
   disabled: {},
-  keyboardFocused: {},
 };
 
 /**
@@ -51,18 +50,18 @@ export const styles = {
  */
 class ButtonBase extends React.Component {
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.keyboardFocused === 'undefined') {
+    if (typeof prevState.focusVisible === 'undefined') {
       return {
-        keyboardFocused: false,
+        focusVisible: false,
         lastDisabled: nextProps.disabled,
       };
     }
 
     // The blur won't fire when the disabled state is set on a focused input.
     // We need to book keep the focused state manually.
-    if (!prevState.prevState && nextProps.disabled && prevState.keyboardFocused) {
+    if (!prevState.prevState && nextProps.disabled && prevState.focusVisible) {
       return {
-        keyboardFocused: false,
+        focusVisible: false,
         lastDisabled: nextProps.disabled,
       };
     }
@@ -83,8 +82,8 @@ class ButtonBase extends React.Component {
     if (
       this.props.focusRipple &&
       !this.props.disableRipple &&
-      !prevState.keyboardFocused &&
-      this.state.keyboardFocused
+      !prevState.focusVisible &&
+      this.state.focusVisible
     ) {
       this.ripple.pulsate();
     }
@@ -97,7 +96,7 @@ class ButtonBase extends React.Component {
 
   onKeyboardFocusHandler = event => {
     this.keyDown = false;
-    this.setState({ keyboardFocused: true });
+    this.setState({ focusVisible: true });
 
     if (this.props.onKeyboardFocus) {
       this.props.onKeyboardFocus(event);
@@ -120,13 +119,7 @@ class ButtonBase extends React.Component {
     const key = keycode(event);
 
     // Check if key is already down to avoid repeats being counted as multiple activations
-    if (
-      focusRipple &&
-      !this.keyDown &&
-      this.state.keyboardFocused &&
-      this.ripple &&
-      key === 'space'
-    ) {
+    if (focusRipple && !this.keyDown && this.state.focusVisible && this.ripple && key === 'space') {
       this.keyDown = true;
       event.persist();
       this.ripple.stop(event, () => {
@@ -157,7 +150,7 @@ class ButtonBase extends React.Component {
       this.props.focusRipple &&
       keycode(event) === 'space' &&
       this.ripple &&
-      this.state.keyboardFocused
+      this.state.focusVisible
     ) {
       this.keyDown = false;
       event.persist();
@@ -170,15 +163,15 @@ class ButtonBase extends React.Component {
 
   handleMouseDown = createRippleHandler(this, 'MouseDown', 'start', () => {
     clearTimeout(this.keyboardFocusTimeout);
-    if (this.state.keyboardFocused) {
-      this.setState({ keyboardFocused: false });
+    if (this.state.focusVisible) {
+      this.setState({ focusVisible: false });
     }
   });
 
   handleMouseUp = createRippleHandler(this, 'MouseUp', 'stop');
 
   handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop', event => {
-    if (this.state.keyboardFocused) {
+    if (this.state.focusVisible) {
       event.preventDefault();
     }
   });
@@ -191,8 +184,8 @@ class ButtonBase extends React.Component {
 
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
     clearTimeout(this.keyboardFocusTimeout);
-    if (this.state.keyboardFocused) {
-      this.setState({ keyboardFocused: false });
+    if (this.state.focusVisible) {
+      this.setState({ focusVisible: false });
     }
   });
 
@@ -227,6 +220,7 @@ class ButtonBase extends React.Component {
       disabled,
       disableRipple,
       focusRipple,
+      focusVisibleClassName,
       onBlur,
       onFocus,
       onKeyboardFocus,
@@ -248,7 +242,7 @@ class ButtonBase extends React.Component {
       classes.root,
       {
         [classes.disabled]: disabled,
-        [classes.keyboardFocused]: this.state.keyboardFocused,
+        [focusVisibleClassName]: this.state.focusVisible,
       },
       classNameProp,
     );
@@ -340,6 +334,13 @@ ButtonBase.propTypes = {
    * `disableRipple` must also be `false`.
    */
   focusRipple: PropTypes.bool,
+  /**
+   * This property can help a person know which element has the keyboard focus.
+   * The class name will be applied when the element gain the focus throught a keyboard interaction.
+   * It's a polyfill for the [CSS :focus-visible feature](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rational for using this feature [is explain here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   */
+  focusVisibleClassName: PropTypes.string,
   /**
    * @ignore
    */

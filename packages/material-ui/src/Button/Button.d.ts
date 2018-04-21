@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
-import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
+import { ButtonBaseProps } from '../ButtonBase';
 
 export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassKey, 'component'> {
   color?: PropTypes.Color;
@@ -17,13 +17,13 @@ export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassK
 }
 
 export type ButtonClassKey =
-  | ButtonBaseClassKey
+  | 'root'
   | 'label'
   | 'flatPrimary'
   | 'flatSecondary'
   | 'colorInherit'
   | 'raised'
-  | 'keyboardFocused'
+  | 'focusVisible'
   | 'raisedPrimary'
   | 'raisedSecondary'
   | 'disabled'

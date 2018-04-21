@@ -12,11 +12,12 @@ export interface ButtonBaseProps
   component?: React.ReactType<ButtonBaseProps>;
   disableRipple?: boolean;
   focusRipple?: boolean;
+  focusVisibleClassName?: string;
   onKeyboardFocus?: React.FocusEventHandler<any>;
   TouchRippleProps?: Partial<TouchRippleProps>;
 }
 
-export type ButtonBaseClassKey = 'root' | 'disabled' | 'keyboardFocused';
+export type ButtonBaseClassKey = 'root' | 'disabled';
 
 declare const ButtonBase: React.ComponentType<ButtonBaseProps>;
 

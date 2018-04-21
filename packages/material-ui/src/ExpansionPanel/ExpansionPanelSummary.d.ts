@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
+import { ButtonBaseProps } from '../ButtonBase';
 
 export interface ExpansionPanelSummaryProps
   extends StandardProps<ButtonBaseProps, ExpansionPanelSummaryClassKey> {
@@ -11,7 +11,7 @@ export interface ExpansionPanelSummaryProps
 }
 
 export type ExpansionPanelSummaryClassKey =
-  | ButtonBaseClassKey
+  | 'root'
   | 'expanded'
   | 'focused'
   | 'disabled'

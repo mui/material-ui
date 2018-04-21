@@ -1,5 +1,5 @@
 import { PropTypes, StandardProps } from '..';
-import { PaperProps, PaperClassKey } from '../Paper';
+import { PaperProps } from '../Paper';
 
 export interface AppBarProps extends StandardProps<PaperProps, AppBarClassKey> {
   color?: PropTypes.Color;
@@ -7,7 +7,7 @@ export interface AppBarProps extends StandardProps<PaperProps, AppBarClassKey> {
 }
 
 export type AppBarClassKey =
-  | PaperClassKey
+  | 'root'
   | 'positionFixed'
   | 'positionAbsolute'
   | 'positionSticky'
