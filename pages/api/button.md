@@ -39,7 +39,7 @@ This property accepts the following keys:
 - `raised`
 - `raisedPrimary`
 - `raisedSecondary`
-- `keyboardFocused`
+- `focusVisible`
 - `disabled`
 - `fab`
 - `mini`

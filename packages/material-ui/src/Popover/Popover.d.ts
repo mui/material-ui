@@ -35,7 +35,7 @@ export interface PopoverProps
   transitionDuration?: TransitionProps['timeout'] | 'auto';
 }
 
-export type PopoverClassKey = ModalClassKey | 'paper';
+export type PopoverClassKey = 'paper';
 
 export interface PopoverActions {
   updatePosition(): void;

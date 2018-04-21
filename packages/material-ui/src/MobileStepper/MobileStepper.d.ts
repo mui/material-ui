@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { PaperProps, PaperClassKey } from '../Paper';
+import { PaperProps } from '../Paper';
 import { ButtonProps } from '../Button';
 
 export interface MobileStepperProps extends StandardProps<PaperProps, MobileStepperClassKey> {
@@ -13,7 +13,7 @@ export interface MobileStepperProps extends StandardProps<PaperProps, MobileStep
 }
 
 export type MobileStepperClassKey =
-  | PaperClassKey
+  | 'root'
   | 'positionBottom'
   | 'positionTop'
   | 'positionStatic'

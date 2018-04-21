@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
-import { ModalProps, ModalClassKey } from '../Modal';
+import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface DialogProps
@@ -16,7 +16,7 @@ export interface DialogProps
 }
 
 export type DialogClassKey =
-  | ModalClassKey
+  | 'root'
   | 'paper'
   | 'paperWidthXs'
   | 'paperWidthSm'

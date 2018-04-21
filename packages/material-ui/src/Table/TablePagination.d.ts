@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { TableCellProps, TableCellClassKey } from './TableCell.d';
+import { TableCellProps } from './TableCell.d';
 import { IconButtonProps } from '../IconButton/IconButton';
 import { SelectProps } from '../Select/Select';
 
@@ -31,7 +31,7 @@ export interface TablePaginationProps
 export type TablePaginationBaseProps = TableCellProps;
 
 export type TablePaginationClassKey =
-  | TableCellClassKey
+  | 'root'
   | 'toolbar'
   | 'spacer'
   | 'caption'

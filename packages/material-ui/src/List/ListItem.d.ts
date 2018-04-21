@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
+import { ButtonBaseProps } from '../ButtonBase';
 
 export interface ListItemProps
   extends StandardProps<
@@ -19,11 +19,12 @@ export interface ListItemProps
 }
 
 export type ListItemClassKey =
-  | ButtonBaseClassKey
+  | 'root'
   | 'container'
-  | 'keyboardFocused'
+  | 'focusVisible'
   | 'default'
   | 'dense'
+  | 'disabled'
   | 'divider'
   | 'gutters'
   | 'button'

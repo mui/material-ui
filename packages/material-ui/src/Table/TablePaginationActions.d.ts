@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { TableCellClassKey } from './TableCell.d';
 import { IconButtonProps } from '../IconButton/IconButton';
 
-export interface TablePaginationActionsProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TablePaginationActionsClassKey> {
+export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   backIconButtonProps?: Partial<IconButtonProps>;
   count: number;
   nextIconButtonProps?: Partial<IconButtonProps>;
@@ -12,8 +10,6 @@ export interface TablePaginationActionsProps
   page: number;
   rowsPerPage: number;
 }
-
-export type TablePaginationActionsClassKey = 'root';
 
 declare const TablePaginationActions: React.ComponentType<TablePaginationActionsProps>;
 

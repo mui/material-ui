@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
+import { ButtonBaseProps } from '../ButtonBase';
 
 export interface BottomNavigationActionProps
   extends StandardProps<ButtonBaseProps, BottomNavigationActionClassKey, 'onChange'> {
@@ -13,12 +13,7 @@ export interface BottomNavigationActionProps
   value?: any;
 }
 
-export type BottomNavigationActionClassKey =
-  | ButtonBaseClassKey
-  | 'selected'
-  | 'iconOnly'
-  | 'wrapper'
-  | 'label';
+export type BottomNavigationActionClassKey = 'root' | 'selected' | 'iconOnly' | 'wrapper' | 'label';
 
 declare const BottomNavigationAction: React.ComponentType<BottomNavigationActionProps>;
 

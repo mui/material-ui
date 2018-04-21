@@ -69,7 +69,7 @@ export const styles = theme => ({
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
     boxShadow: theme.shadows[2],
-    '&$keyboardFocused': {
+    '&$focusVisible': {
       boxShadow: theme.shadows[6],
     },
     '&:active': {
@@ -113,7 +113,7 @@ export const styles = theme => ({
       },
     },
   },
-  keyboardFocused: {},
+  focusVisible: {},
   disabled: {},
   fab: {
     borderRadius: '50%',
@@ -157,6 +157,7 @@ function Button(props) {
     disabled,
     disableFocusRipple,
     fullWidth,
+    focusVisibleClassName,
     mini,
     size,
     variant,
@@ -189,9 +190,7 @@ function Button(props) {
       className={className}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      classes={{
-        keyboardFocused: classes.keyboardFocused,
-      }}
+      focusVisibleClassName={classNames(classes.focusVisible, focusVisibleClassName)}
       {...other}
     >
       <span className={classes.label}>{children}</span>
@@ -235,6 +234,10 @@ Button.propTypes = {
    * If `true`, the ripple effect will be disabled.
    */
   disableRipple: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  focusVisibleClassName: PropTypes.string,
   /**
    * If `true`, the button will take up the full width of its container.
    */

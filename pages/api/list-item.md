@@ -30,7 +30,7 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `root`
 - `container`
-- `keyboardFocused`
+- `focusVisible`
 - `default`
 - `dense`
 - `disabled`

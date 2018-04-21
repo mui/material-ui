@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
+import { ButtonBaseProps } from '../ButtonBase';
 
 export interface TableSortLabelProps
   extends StandardProps<ButtonBaseProps, TableSortLabelClassKey> {
@@ -9,7 +9,7 @@ export interface TableSortLabelProps
 }
 
 export type TableSortLabelClassKey =
-  | ButtonBaseClassKey
+  | 'root'
   | 'active'
   | 'icon'
   | 'iconDirectionDesc'

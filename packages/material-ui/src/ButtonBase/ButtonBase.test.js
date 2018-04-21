@@ -143,7 +143,7 @@ describe('<ButtonBase />', () => {
 
     it('should not have a focus ripple by default', () => {
       wrapper.instance().ripple = { pulsate: spy() };
-      wrapper.setState({ keyboardFocused: true });
+      wrapper.setState({ focusVisible: true });
 
       assert.strictEqual(
         wrapper.instance().ripple.pulsate.callCount,
@@ -245,9 +245,9 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(ripple.length, 1, 'should have one TouchRipple');
     });
 
-    it('should pulsate the ripple when keyboardFocused', () => {
+    it('should pulsate the ripple when focusVisible', () => {
       wrapper.instance().ripple = { pulsate: spy() };
-      wrapper.setState({ keyboardFocused: true });
+      wrapper.setState({ focusVisible: true });
 
       assert.strictEqual(
         wrapper.instance().ripple.pulsate.callCount,
@@ -306,7 +306,7 @@ describe('<ButtonBase />', () => {
       );
     });
 
-    it('should stop on blur and set keyboardFocused to false', () => {
+    it('should stop on blur and set focusVisible to false', () => {
       wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('blur', {});
 
@@ -315,7 +315,7 @@ describe('<ButtonBase />', () => {
         1,
         'should call stop on the ripple',
       );
-      assert.strictEqual(wrapper.state().keyboardFocused, false, 'should not be keyboardFocused');
+      assert.strictEqual(wrapper.state().focusVisible, false, 'should not be focusVisible');
     });
   });
 
@@ -350,13 +350,13 @@ describe('<ButtonBase />', () => {
 
     it('should detect the keyboard', () => {
       assert.strictEqual(
-        wrapper.state().keyboardFocused,
+        wrapper.state().focusVisible,
         false,
         'should not set keyboard focus before time has passed',
       );
       clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
       assert.strictEqual(
-        wrapper.state().keyboardFocused,
+        wrapper.state().focusVisible,
         true,
         'should listen for tab presses and set keyboard focus',
       );
@@ -364,27 +364,23 @@ describe('<ButtonBase />', () => {
 
     it('should ignore the keyboard after 1s', () => {
       clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
-      assert.strictEqual(
-        wrapper.state().keyboardFocused,
-        true,
-        'should think it is keyboard based',
-      );
+      assert.strictEqual(wrapper.state().focusVisible, true, 'should think it is keyboard based');
       button.blur();
-      assert.strictEqual(wrapper.state().keyboardFocused, false, 'should has lost the focus');
+      assert.strictEqual(wrapper.state().focusVisible, false, 'should has lost the focus');
       button.focus();
       clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
       assert.strictEqual(
-        wrapper.state().keyboardFocused,
+        wrapper.state().focusVisible,
         true,
         'should still think it is keyboard based',
       );
       clock.tick(1e3);
       button.blur();
-      assert.strictEqual(wrapper.state().keyboardFocused, false, 'should has lost the focus');
+      assert.strictEqual(wrapper.state().focusVisible, false, 'should has lost the focus');
       button.focus();
       clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
       assert.strictEqual(
-        wrapper.state().keyboardFocused,
+        wrapper.state().focusVisible,
         false,
         'should stop think it is keyboard based',
       );
@@ -408,14 +404,14 @@ describe('<ButtonBase />', () => {
 
     it('should reset the focused state', () => {
       const wrapper = shallow(<ButtonBase>Hello</ButtonBase>);
-      // We simulate a keyboardFocused button that is getting disabled.
+      // We simulate a focusVisible button that is getting disabled.
       wrapper.setState({
-        keyboardFocused: true,
+        focusVisible: true,
       });
       wrapper.setProps({
         disabled: true,
       });
-      assert.strictEqual(wrapper.state().keyboardFocused, false);
+      assert.strictEqual(wrapper.state().focusVisible, false);
     });
 
     it('should not apply disabled on a span', () => {
@@ -508,7 +504,7 @@ describe('<ButtonBase />', () => {
           </ButtonBaseNaked>,
         );
         wrapper.setProps({ focusRipple: true });
-        wrapper.setState({ keyboardFocused: true });
+        wrapper.setState({ focusVisible: true });
 
         const eventPersistSpy = spy();
         event = { persist: eventPersistSpy, keyCode: keycode('space') };
@@ -597,7 +593,7 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(wrapper.find(TouchRipple).length, 1);
         const onKeyDownSpy = spy();
         wrapper.setProps({ onKeyDown: onKeyDownSpy, disableRipple: true, focusRipple: true });
-        wrapper.setState({ keyboardFocused: true });
+        wrapper.setState({ focusVisible: true });
         assert.strictEqual(wrapper.find(TouchRipple).length, 0);
 
         const eventPersistSpy = spy();

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { Orientation } from './Stepper';
-import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
+import { ButtonBaseProps } from '../ButtonBase';
 
 export type StepButtonIcon = React.ReactElement<any> | string | number;
 
@@ -16,7 +16,7 @@ export interface StepButtonProps extends StandardProps<ButtonBaseProps, StepButt
   orientation?: Orientation;
 }
 
-export type StepButtonClasskey = ButtonBaseClassKey | 'root';
+export type StepButtonClasskey = 'root' | 'vertical' | 'touchRipple';
 
 declare const StepButton: React.ComponentType<StepButtonProps>;
 
