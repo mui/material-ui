@@ -340,6 +340,7 @@ class SwipeableDrawer extends React.Component {
           }}
           PaperProps={{
             ...PaperProps,
+            style: { pointerEvents: variant === 'temporary' && !open ? 'none' : '' },
             ref: this.handlePaperRef,
           }}
           {...other}
