@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/no-multi-comp */
 
 import React from 'react';
@@ -22,6 +23,29 @@ describe('<Portal />', () => {
 
   after(() => {
     mount.cleanUp();
+  });
+
+  describe('disable portal for tests', () => {
+    const Portal = NewPortal;
+
+    before(() => {
+      global.__MUI_PORTAL_DISABLE__ = true;
+    });
+
+    after(() => {
+      global.__MUI_PORTAL_DISABLE__ = false;
+    });
+
+    it('should disable the portal feature', () => {
+      const wrapper = mount(
+        <Portal>
+          <h1 className="woofPortal">Foo</h1>
+        </Portal>,
+      );
+      assert.strictEqual(wrapper.children().length, 1, 'should have one children');
+      const instance = wrapper.instance();
+      assert.strictEqual(instance.getMountNode().nodeName.toLowerCase(), 'h1');
+    });
   });
 
   versions.map(verion => {

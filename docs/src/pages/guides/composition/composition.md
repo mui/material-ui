@@ -89,6 +89,6 @@ class ListItemLink extends React.Component {
 }
 ```
 
-`renderLink` will now always reference the same component. Here is a demo:
+`renderLink` will now always reference the same component. Here is a demo with react-router:
 
 {{"demo": "pages/guides/composition/ComponentProperty.js"}}
