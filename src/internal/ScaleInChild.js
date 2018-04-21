@@ -23,7 +23,12 @@ class ScaleInChild extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
+  componentDidMount() {
+    this.isMounted = true;
+  }
+
   componentWillUnmount() {
+    this.isMounted = false;
     clearTimeout(this.enterTimer);
     clearTimeout(this.leaveTimer);
   }
@@ -54,6 +59,7 @@ class ScaleInChild extends Component {
   }
 
   animate() {
+    if (!this.isMounted) return;
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '1';
