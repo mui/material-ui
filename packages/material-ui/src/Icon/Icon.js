@@ -13,6 +13,7 @@ export const styles = theme => ({
     // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
     // To remove at some point.
     overflow: 'hidden',
+    flexShrink: 0,
   },
   colorPrimary: {
     color: theme.palette.primary.main,
