@@ -7,6 +7,54 @@ Changes. Changes everywhere!
 
 Coming Soon
 
+## 1.0.0-beta.43
+###### *Apr 22, 2018*
+
+Big thanks to the 8 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A better keyboard focused customization story (#11090) @oliviertassinari
+- Various TypeScript fixes
+
+### Breaking change
+
+- [ButtonBase] Better keyboard focused story (#11090) @oliviertassinari
+  - Rename the `keyboardFocused` feature `focusVisible` in order to follow the CSS specification wording:
+  https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo
+  - Give up on the `classes` property to host the focus visible feature. The fact that the classes don't cascade was making it hard to use. Instead, we rely on a `focusVisibleClassName` property. This is allowing any component along the rendering chain to use the feature. For instance, a Switch component: Switch > SwitchBase > IconButton > ButtonBase.
+
+  ```diff
+  <ButtonBase
+  - classes={{
+  -   keyboardFocused: 'my-class-name',
+  - }}
+  + focusVisibleClassName="my-class-name"
+  />
+  ```
+
+#### Component Fixes / Enhancements
+
+- [typescript] Constrain props type param appropriately in withStyles, withTheme, withWidth HOCs (#11003) @estaub
+- [typescript] make Select's onChange prop optional (#11041) @nmchaves
+- [Table] Remove overflow (#11062) @oliviertassinari
+- [TablePagination] Allow the override of the action buttons (#11058) @lukePeavey
+- [Popover] Add option to disable Menu auto positioning (#11050) @nicoffee
+- [Input] Allow div props on InputAdornment in TypeScript (#11077) @mtandersson
+- [Dialog] Fix iOS momentum scroll (#11066) @greenwombat
+- [Portal] Global option to disable the portal (#11086) @oliviertassinari
+- [ExpansionPanel] Fix display on IE11 and Edge (#11087) @oliviertassinari
+- [CardActions] Fix CSS override (#11092) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix broken link (#11042) @imrobinized
+- [CONTRIBUTING] Update the docs (#11078) @oliviertassinari
+
+#### Core
+
+- [core] Better distinction between the private and public components (#11051) @oliviertassinari
+- [core] Upgrade dev dependencies (#11096) @oliviertassinari
+
 ## 1.0.0-beta.42
 ###### *Apr 16, 2018*
 

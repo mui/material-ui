@@ -60,7 +60,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/enzyme": "^3.1.4",
-    "@types/react": "16.3.10",
+    "@types/react": "^16.3.12",
     "argos-cli": "^0.0.9",
     "autoprefixer": "^8.0.0",
     "autosuggest-highlight": "^3.1.1",
@@ -144,7 +144,7 @@
     "react-test-renderer": "^16.1.1",
     "react-text-mask": "^5.0.2",
     "recast": "^0.14.4",
-    "redux": "^3.7.2",
+    "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "rimraf": "^2.6.2",
     "sinon": "^4.1.2",
@@ -156,9 +156,6 @@
     "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.9.1",
     "workbox-build": "^3.0.1"
-  },
-  "resolutions": {
-    "@types/react": "16.3.10"
   },
   "sideEffects": false,
   "nyc": {

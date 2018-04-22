@@ -61,7 +61,7 @@
     "react-popper": "^0.10.0",
     "react-scrollbar-size": "^2.0.2",
     "react-transition-group": "^2.2.1",
-    "recompose": "^0.26.0",
+    "recompose": "^0.26.0 || ^0.27.0",
     "scroll": "^2.0.3",
     "warning": "^3.0.0"
   },
