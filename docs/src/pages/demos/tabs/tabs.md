@@ -71,6 +71,6 @@ Tab may be disabled by setting `disabled` property.
 ## Customized Tabs
 
 If you have been reading the [overrides documentation page](/customization/overrides)
-but you are not confident jumping in, here's an example of how you can change the main color of the Tabs.
+but you are not confident jumping in, here's an example of how you can change the main color of the Tabs. The following demo matches the [Ant Design UI](https://ant.design/components/tabs/).
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}

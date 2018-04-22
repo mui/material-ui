@@ -17,8 +17,21 @@ const styles = theme => ({
   },
   tabRoot: {
     textTransform: 'initial',
+    minWidth: 72,
     fontWeight: theme.typography.fontWeightRegular,
     marginRight: theme.spacing.unit * 4,
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
     '&:hover': {
       color: '#40a9ff',
       opacity: 1,
@@ -73,7 +86,7 @@ class CustomizedTabs extends React.Component {
             label="Tab 3"
           />
         </Tabs>
-        <Typography className={classes.typography}>Ant Design</Typography>
+        <Typography className={classes.typography}>Ant Design UI powered by Material-UI</Typography>
       </div>
     );
   }
