@@ -2,7 +2,7 @@
   "name": "material-ui-workspace",
   "private": true,
   "author": "Material-UI Team",
-  "version": "1.0.0-beta.42",
+  "version": "1.0.0-beta.43",
   "description": "Material-UI's workspace package",
   "keywords": [
     "react",
@@ -48,9 +48,6 @@
     "typescript": "tsc -p tsconfig.json",
     "flow": "flow --show-all-errors",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true",
-    "version": "cd packages/material-ui && yarn build",
-    "release": "np --no-publish --any-branch",
-    "postrelease": "yarn docs:deploy && npm publish packages/material-ui/build --tag next",
     "monorepo:release": "yarn lerna exec yarn build && ./node_modules/.bin/lerna publish --skip-npm"
   },
   "peerDependencies": {
