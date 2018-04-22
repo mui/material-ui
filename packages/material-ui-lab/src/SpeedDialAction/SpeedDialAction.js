@@ -118,7 +118,7 @@ SpeedDialAction.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Label to display in the tooltip.
+   * Make the tooltip always visible.
    */
   tooltipAlwaysOpen: PropTypes.bool,
   /**
@@ -130,6 +130,7 @@ SpeedDialAction.propTypes = {
 SpeedDialAction.defaultProps = {
   delay: 0,
   open: false,
+  tooltipAlwaysOpen: false,
 };
 
 export default withStyles(styles)(SpeedDialAction);
