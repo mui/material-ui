@@ -21,3 +21,7 @@ You can provide an alternate icon for the closed and open states using the `icon
 of the `SpeedDialIcon` component.
 
 {{"demo": "pages/lab/speed-dial/OpenIconSpeedDial.js"}}
+
+Actions tooltip can be set to always visible to prevent long press on mobile platform.
+
+{{"demo": "pages/lab/speed-dial/SpeedDialTooltipOpen.js"}}
