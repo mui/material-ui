@@ -48,8 +48,8 @@ export interface GridProps
 }
 
 export type GridClassKey =
-  | 'typeContainer'
-  | 'typeItem'
+  | 'container'
+  | 'item'
   | 'direction-xs-column'
   | 'direction-xs-column-reverse'
   | 'direction-xs-row-reverse'
