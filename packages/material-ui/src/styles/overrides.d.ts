@@ -73,6 +73,7 @@ import { SvgIconClassKey } from '../SvgIcon/SvgIcon';
 import { SwitchBaseClassKey } from '../internal/SwitchBase';
 import { SwitchClassKey } from '../Switch/Switch';
 import { TabClassKey } from '../Tabs/Tab';
+import { TabIndicatorClassKey } from '../Tabs/TabIndicator';
 import { TableClassKey } from '../Table/Table';
 import { TableCellClassKey } from '../Table/TableCell';
 import { TablePaginationClassKey } from '../Table/TablePagination';
@@ -160,6 +161,7 @@ type ComponentNameToClassKey = {
   MuiSwitchBase: SwitchBaseClassKey;
   MuiSwitch: SwitchClassKey;
   MuiTab: TabClassKey;
+  MuiTabIndicator: TabIndicatorClassKey;
   MuiTable: TableClassKey;
   MuiTableCell: TableCellClassKey;
   MuiTablePagination: TablePaginationClassKey;
