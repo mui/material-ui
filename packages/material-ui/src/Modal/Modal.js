@@ -194,7 +194,11 @@ class Modal extends React.Component {
     }
 
     if (this.lastFocus) {
-      this.lastFocus.focus();
+      // Not all elements in IE11 have a focus method
+      if (this.lastFocus.focus) {
+        this.lastFocus.focus();
+      }
+
       this.lastFocus = null;
     }
   }
