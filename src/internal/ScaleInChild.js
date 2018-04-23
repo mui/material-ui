@@ -50,6 +50,7 @@ class ScaleInChild extends Component {
   }
 
   componentWillLeave(callback) {
+    if (!this.isMounted) return;
     const style = ReactDOM.findDOMNode(this).style;
 
     style.opacity = '0';
