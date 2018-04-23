@@ -127,3 +127,10 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
    Upload your trades, and analyze your crypto portfolio.
 
    https://johnnymetrics.com/demo
+
+### 22. npm registry browser
+   A web app that lets you search the npm registry and browse packages details.
+
+   homepage: https://topheman.github.io/npm-registry-browser
+
+   github: https://github.com/topheman/npm-registry-browser
