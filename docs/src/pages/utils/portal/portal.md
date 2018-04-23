@@ -15,9 +15,3 @@ You have to wait for the client side reconciliation to see the children.
 ## Simple Portal
 
 {{"demo": "pages/utils/portal/SimplePortal.js"}}
-
-## Portal & tests
-
-The portal behavior can be challenging for testing libraries, like [enzyme](https://github.com/airbnb/enzyme/issues/252), to handle.
-We provide a global option to disable the behavior: `global.__MUI_PORTAL_DISABLE__`.
-When set to `true`, the portal will behave as a pass-through component.

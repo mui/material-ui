@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/no-multi-comp */
 
 import React from 'react';
@@ -8,6 +7,8 @@ import { spy } from 'sinon';
 import { createMount, createRender } from '../test-utils';
 import NewPortal from './Portal';
 import LegacyPortal from './LegacyPortal';
+import Select from '../Select';
+import { MenuItem } from '../Menu';
 
 const versions = ['old', 'latest'];
 
@@ -25,27 +26,19 @@ describe('<Portal />', () => {
     mount.cleanUp();
   });
 
-  describe('disable portal for tests', () => {
-    const Portal = NewPortal;
+  it('should work with a high level component like the Select', () => {
+    const wrapper = mount(
+      <Select value={1} open>
+        <MenuItem value={1}>
+          <em>1</em>
+        </MenuItem>
+        <MenuItem value={2}>
+          <em>2</em>
+        </MenuItem>
+      </Select>,
+    );
 
-    before(() => {
-      global.__MUI_PORTAL_DISABLE__ = true;
-    });
-
-    after(() => {
-      global.__MUI_PORTAL_DISABLE__ = false;
-    });
-
-    it('should disable the portal feature', () => {
-      const wrapper = mount(
-        <Portal>
-          <h1 className="woofPortal">Foo</h1>
-        </Portal>,
-      );
-      assert.strictEqual(wrapper.children().length, 1, 'should have one children');
-      const instance = wrapper.instance();
-      assert.strictEqual(instance.getMountNode().nodeName.toLowerCase(), 'h1');
-    });
+    assert.strictEqual(wrapper.find(MenuItem).length, 2);
   });
 
   versions.map(verion => {
