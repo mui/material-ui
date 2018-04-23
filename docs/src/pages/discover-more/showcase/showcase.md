@@ -131,4 +131,6 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
 ### 22. npm registry browser
    A web app that lets you search the npm registry and browse packages details.
 
-   https://topheman.github.io/npm-registry-browser
+   homepage: https://topheman.github.io/npm-registry-browser
+
+   github: https://github.com/topheman/npm-registry-browser
