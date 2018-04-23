@@ -86,6 +86,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    maxHeight: 16,
   },
   dayLabel: {
     width: 36,
