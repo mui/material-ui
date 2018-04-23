@@ -50,6 +50,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/snackbars/FabIntegrationSnackbar'), 'utf8')
 `,
         },
+        'pages/demos/snackbars/ConsecutiveSnackbars.js': {
+          js: require('docs/src/pages/demos/snackbars/ConsecutiveSnackbars').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/snackbars/ConsecutiveSnackbars'), 'utf8')
+`,
+        },
       }}
     />
   );

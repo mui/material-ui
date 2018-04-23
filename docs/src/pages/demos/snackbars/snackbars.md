@@ -48,3 +48,9 @@ Use a different transition all together.
 Move the floating action button vertically to accommodate the snackbar height.
 
 {{"demo": "pages/demos/snackbars/FabIntegrationSnackbar.js"}}
+
+### Consecutive Snackbars
+
+Per [Google's guidelines](https://material.io/guidelines/components/snackbars-toasts.html#snackbars-toasts-usage), when a second snackbar is triggered while the first is displayed, the first should start the contraction motion downwards before the second one animates upwards.
+
+{{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
