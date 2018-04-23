@@ -1,32 +1,32 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "material-ui/styles";
-import Button from "material-ui/Button";
-import Snackbar from "material-ui/Snackbar";
-import IconButton from "material-ui/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import Button from 'material-ui/Button';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
   close: {
     width: theme.spacing.unit * 4,
-    height: theme.spacing.unit * 4
-  }
+    height: theme.spacing.unit * 4,
+  },
 });
 
 class ConsecutiveSnackbars extends React.Component {
   state = {
     open: false,
-    messageInfo: {}
+    messageInfo: {},
   };
 
   queue = [];
 
   handleClick = message => () => {
-    const messageInfo = {
+    this.queue.push({
       message,
-      key: new Date().getTime()
-    };
-    this.queue.push(messageInfo);
+      key: new Date().getTime(),
+    });
+
     if (this.state.open) {
       // immediately begin dismissing current message
       // to start showing new one
@@ -37,9 +37,11 @@ class ConsecutiveSnackbars extends React.Component {
   };
 
   processQueue = () => {
-    if (this.queue.length) {
-      const messageInfo = this.queue.shift();
-      this.setState({ messageInfo, open: true });
+    if (this.queue.length > 0) {
+      this.setState({
+        messageInfo: this.queue.shift(),
+        open: true,
+      });
     }
   };
 
@@ -59,29 +61,24 @@ class ConsecutiveSnackbars extends React.Component {
     const { message, key } = this.state.messageInfo;
     return (
       <div>
-        <Button onClick={this.handleClick("message a")}>Show message A</Button>
-        <Button onClick={this.handleClick("message b")}>Show message B</Button>
+        <Button onClick={this.handleClick('message a')}>Show message A</Button>
+        <Button onClick={this.handleClick('message b')}>Show message B</Button>
         <Snackbar
           key={key}
           anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left"
+            vertical: 'bottom',
+            horizontal: 'left',
           }}
           open={this.state.open}
           autoHideDuration={6000}
           onClose={this.handleClose}
           onExited={this.handleExited}
           SnackbarContentProps={{
-            "aria-describedby": "message-id"
+            'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">{message}</span>}
           action={[
-            <Button
-              key="undo"
-              color="secondary"
-              size="small"
-              onClick={this.handleClose}
-            >
+            <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
               UNDO
             </Button>,
             <IconButton
@@ -92,7 +89,7 @@ class ConsecutiveSnackbars extends React.Component {
               onClick={this.handleClose}
             >
               <CloseIcon />
-            </IconButton>
+            </IconButton>,
           ]}
         />
       </div>
@@ -101,7 +98,7 @@ class ConsecutiveSnackbars extends React.Component {
 }
 
 ConsecutiveSnackbars.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(ConsecutiveSnackbars);
