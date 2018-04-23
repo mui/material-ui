@@ -127,3 +127,9 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
    Upload your trades, and analyze your crypto portfolio.
 
    https://johnnymetrics.com/demo
+
+### 22. Aware Meditation App Dashboard
+      Your Personal Mindfulness Trainer
+      This site allow you to manage your Aware Subscription and payment.
+
+      https://my.awaremeditationapp.com
