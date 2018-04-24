@@ -27,8 +27,11 @@ function CardMedia(props) {
   );
 
   const isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;
-  const composedStyle =
-    !isMediaComponent && image ? { backgroundImage: `url(${image})`, ...style } : style;
+  const composedStyle = style || {};
+  if (!isMediaComponent && image) {
+    const escapedImage = JSON.stringify(image);
+    composedStyle.backgroundImage = `url(${escapedImage})`;
+  }
 
   return (
     <Component
