@@ -70,21 +70,21 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
 
 ### 12. AudioNodes
   Modular audio production suite with multi-track audio mixing, audio effects, parameter automation, MIDI editing, synthesis, cloud production, and more.
-  
+
   https://audionodes.com
 
 ### 13. CountUp: A Running Total Game
   A numbers game, currently in development.
-  
+
   https://chrisward.co.uk/code/countup/
-  
+
 ### 14. Componofy: Spotify Playlist Combination
   A web app that allows a Spotify user to combine private and public playlists and either create a new one or merge with existing playlist. You can also reorder your playlist tracks and upload new playlist cover images.
 
   homepage: https://componofy.herokuapp.com
- 
+
   github: https://github.com/DalerAsrorov/componofy
-  
+
 ### 15. Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio
   Cryptoverview is a responsive webapp that displays a user's Bittrex portfolio, trending currencies and market caps. It provides some fancy charts, news related to cryptocurrencies, and more.
 
@@ -94,33 +94,33 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   A ready to use, easy to customize starter for GatsbyJS, blazing-fast static site generator for React.
 
   demo: https://gatsby-starter-personal-blog.greglobinski.com/
- 
+
   github: https://github.com/greglobinski/gatsby-starter-personal-blog
 
 ### 17. Planalyze
   Planalyze is a real-time daily planning & task tracking tool that keeps teams connected & ahead of each day's workload.
-  
+
   https://www.planalyze.io
-  
+
 ### 18. Material Blog
   A blog with a UI built entirely using material-ui v1. Check out the [theming page](https://jdupont.github.io/halloween), which leverages `MuiThemeProvider` to allow for live theme changes.
 
   Demo: https://jdupont.github.io/
 
   Source: https://github.com/jdupont/jdupont.github.io
- 
-### 19. Rung - Exceptionality Management 
-  Rung alerts you about the exceptionalities of your personal and professional life. 
+
+### 19. Rung - Exceptionality Management
+  Rung alerts you about the exceptionalities of your personal and professional life.
 
   homepage: https://rung.com.br
-  
+
   developers: https://developers.rung.com.br
 
   app: https://app.rung.com.br
 
 ### 20. Team SC
    The site of a cognitive neuroscience research group, with a carefully designed interface and animation.
-   
+
    http://sc.bnu.edu.cn
 
 ### 21. Johnny Metrics
@@ -134,3 +134,10 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
    homepage: https://topheman.github.io/npm-registry-browser
 
    github: https://github.com/topheman/npm-registry-browser
+
+### 23. Local Insights
+  A real estate data provider that aggregates and analyzes property records, permits, and tax documents.
+
+  homepage: https://localinsights.io
+
+  github: https://github.com/local-insights
