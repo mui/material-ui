@@ -41,6 +41,7 @@ export const styles = {
     },
   },
   disabled: {},
+  focusVisible: {},
 };
 
 /**
@@ -242,6 +243,7 @@ class ButtonBase extends React.Component {
       classes.root,
       {
         [classes.disabled]: disabled,
+        [classes.focusVisible]: this.state.focusVisible,
         [focusVisibleClassName]: this.state.focusVisible,
       },
       classNameProp,
