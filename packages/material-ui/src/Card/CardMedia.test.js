@@ -20,7 +20,7 @@ describe('<CardMedia />', () => {
 
   it('should have the backgroundImage specified', () => {
     const wrapper = shallow(<CardMedia image="/foo.jpg" />);
-    assert.strictEqual(wrapper.prop('style').backgroundImage, 'url(/foo.jpg)');
+    assert.strictEqual(wrapper.prop('style').backgroundImage, 'url("/foo.jpg")');
   });
 
   it('should spread custom props on the root node', () => {
@@ -34,7 +34,7 @@ describe('<CardMedia />', () => {
 
   it('should have backgroundImage specified even though custom styles got passed', () => {
     const wrapper = shallow(<CardMedia image="/foo.jpg" style={{ height: 200 }} />);
-    assert.strictEqual(wrapper.prop('style').backgroundImage, 'url(/foo.jpg)');
+    assert.strictEqual(wrapper.prop('style').backgroundImage, 'url("/foo.jpg")');
     assert.strictEqual(wrapper.prop('style').height, 200);
   });
 
