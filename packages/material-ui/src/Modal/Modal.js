@@ -194,7 +194,13 @@ class Modal extends React.Component {
     }
 
     if (this.lastFocus) {
-      this.lastFocus.focus();
+      // Not all elements in IE11 have a focus method.
+      // Because IE11 market share is low, we accept the restore focus being broken
+      // and we silent the issue.
+      if (this.lastFocus.focus) {
+        this.lastFocus.focus();
+      }
+
       this.lastFocus = null;
     }
   }
