@@ -1,5 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import keycode from 'keycode';
 import ModalDialog from '../_shared/ModalDialog';
 import DateTextField from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
@@ -63,6 +64,20 @@ export default class ModalWrapper extends PureComponent {
   state = {
     open: false,
   }
+
+  handleKeyDown = (event) => {
+    switch (keycode(event)) {
+      case 'enter':
+        this.handleAccept();
+        break;
+      default:
+        // if keycode is not handled, stop execution
+        return;
+    }
+
+    // if event was handled prevent other side effects
+    event.preventDefault();
+  };
 
   handleSetTodayDate = () => {
     if (this.props.onSetToday) {
@@ -142,6 +157,7 @@ export default class ModalWrapper extends PureComponent {
 
         <ModalDialog
           open={this.state.open}
+          onKeyDown={this.handleKeyDown}
           onClear={this.handleClear}
           onAccept={this.handleAccept}
           onDismiss={this.handleDismiss}

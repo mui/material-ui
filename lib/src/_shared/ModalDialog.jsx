@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import EventListener from 'react-event-listener';
 import withStyles from 'material-ui/styles/withStyles';
 import Button from 'material-ui/Button';
 import Dialog from 'material-ui/Dialog/Dialog';
@@ -42,6 +43,7 @@ const styles = {
 export const ModalDialog = ({
   children,
   classes,
+  onKeyDown,
   onAccept,
   onDismiss,
   onClear,
@@ -56,6 +58,8 @@ export const ModalDialog = ({
   ...other
 }) => (
   <Dialog onClose={onDismiss} classes={{ paper: classes.dialogRoot }} {...other}>
+    <EventListener target="window" onKeyDown={onKeyDown} />
+
     <DialogContent className={classnames(classes.dialog, dialogContentClassName)}>
       { children }
     </DialogContent>
@@ -111,6 +115,7 @@ export const ModalDialog = ({
 
 ModalDialog.propTypes = {
   children: PropTypes.node.isRequired,
+  onKeyDown: PropTypes.func.isRequired,
   onAccept: PropTypes.func.isRequired,
   onDismiss: PropTypes.func.isRequired,
   onClear: PropTypes.func.isRequired,
