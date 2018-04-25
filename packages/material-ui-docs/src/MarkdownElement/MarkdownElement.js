@@ -89,6 +89,7 @@ const styles = theme => ({
       backgroundColor: theme.palette.background.paper,
       borderRadius: 3,
       overflow: 'auto',
+      WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     },
     '& code': {
       display: 'inline-block',
@@ -157,6 +158,7 @@ const styles = theme => ({
       width: '100%',
       display: 'block',
       overflowX: 'auto',
+      WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
       borderCollapse: 'collapse',
       borderSpacing: 0,
       overflow: 'hidden',
