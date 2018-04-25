@@ -1,5 +1,5 @@
 ---
-filename: /src/ToggleButton/ToggleButton.js
+filename: /packages/material-ui-lab/src/ToggleButton/ToggleButton.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -12,14 +12,13 @@ filename: /src/ToggleButton/ToggleButton.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | node |  | The content of the button. |
-| classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
-| disabled | bool | false | If `true`, the button will be disabled. |
-| disableFocusRipple | bool | false | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
-| disableRipple | bool | false | If `true`, the ripple effect will be disabled. |
-| selected | bool |  | If `true`, the button will be rendered in an active state. |
-| value | any |  | The value to associate with the button when selected in a ToggleButtonGroup. |
+| <span class="prop-name required">children *</span> | <span class="prop-type">node |  | The content of the button. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
+| <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
+| <span class="prop-name">disableRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the ripple effect will be disabled. |
+| <span class="prop-name">selected</span> | <span class="prop-type">bool |  | If `true`, the button will be rendered in an active state. |
+| <span class="prop-name">value</span> | <span class="prop-type">any |  | The value to associate with the button when selected in a ToggleButtonGroup. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -33,7 +32,7 @@ This property accepts the following keys:
 - `selected`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/ToggleButton/ToggleButton.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-lab/src/ToggleButton/ToggleButton.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
@@ -42,9 +41,9 @@ you need to use the following style sheet name: `MuiToggleButton`.
 
 ## Inheritance
 
-The properties of the [&lt;ButtonBase /&gt;](/api/button-base) component are also available.
+The properties of the [ButtonBase](/api/button-base) component are also available.
 
 ## Demos
 
-- [Buttons](/demos/buttons)
+- [Toggle Button](/lab/toggle-button)
 

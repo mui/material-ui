@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from 'material-ui/styles/withStyles';
+import hasValue from './hasValue';
+import isValueSelected from './isValueSelected';
 
 export const styles = theme => ({
   root: {
@@ -17,20 +19,8 @@ export const styles = theme => ({
   },
 });
 
-function isValueSelected(value, candidate) {
-  if (candidate === undefined || value === undefined) {
-    return false;
-  }
-
-  if (Array.isArray(candidate)) {
-    return candidate.indexOf(value) >= 0;
-  }
-
-  return value === candidate;
-}
-
 class ToggleButtonGroup extends React.Component {
-  handleChange = (e, buttonValue) => {
+  handleChange = buttonValue => {
     const { onChange, value } = this.props;
 
     if (!onChange) {
@@ -40,24 +30,25 @@ class ToggleButtonGroup extends React.Component {
     const index = value && value.indexOf(buttonValue);
     let newValue;
 
-    if (index >= 0) {
+    if (value && index >= 0) {
       newValue = [...value];
       newValue.splice(index, 1);
+      if (newValue.length === 0) newValue = null;
     } else {
       newValue = value ? [...value, buttonValue] : [buttonValue];
     }
 
-    onChange(e, newValue);
+    onChange(newValue);
   };
 
-  handleExclusiveChange = (e, buttonValue) => {
+  handleExclusiveChange = buttonValue => {
     const { onChange, value } = this.props;
 
     if (!onChange) {
       return;
     }
 
-    onChange(e, value === buttonValue ? null : buttonValue);
+    onChange(value === buttonValue ? null : buttonValue);
   };
 
   render() {
@@ -71,7 +62,6 @@ class ToggleButtonGroup extends React.Component {
       selected: selectedProp,
       ...other
     } = this.props;
-    let groupSelected = selectedProp;
 
     const children = React.Children.map(childrenProp, child => {
       if (!React.isValidElement(child)) {
@@ -83,16 +73,13 @@ class ToggleButtonGroup extends React.Component {
       const selected =
         buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
 
-      if (selectedProp === undefined) {
-        groupSelected = groupSelected || selected;
-      }
-
       return React.cloneElement(child, {
         selected,
         onChange: exclusive ? this.handleExclusiveChange : this.handleChange,
       });
     });
 
+    const groupSelected = selectedProp === 'auto' ? hasValue(value) : selectedProp;
     const className = classNames(
       classes.root,
       {
@@ -130,14 +117,15 @@ ToggleButtonGroup.propTypes = {
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback
-   * @param {number} value of the selected buttons
+   * @param {object} value of the selected buttons. When `exclusive` is true
+   * this is a single value; when false an array of selected values.
    */
   onChange: PropTypes.func,
   /**
-   * If `true` render the group in a selected state. If `auto` render in a
-   * selected state if any of the child ToggleButtons are selected.
+   * If `true` render the group in a selected state. If `auto` (the default)
+   * render in a selected state if `value` is not empty.
    */
-  selected: PropTypes.bool,
+  selected: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['auto'])]),
   /**
    * The currently selected value within the group or an array of selected
    * values when `exclusive` is false.
@@ -147,6 +135,8 @@ ToggleButtonGroup.propTypes = {
 
 ToggleButtonGroup.defaultProps = {
   exclusive: false,
+  selected: 'auto',
+  value: null,
 };
 
 export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(ToggleButtonGroup);

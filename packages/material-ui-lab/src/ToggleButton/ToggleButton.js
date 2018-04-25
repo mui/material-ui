@@ -85,7 +85,7 @@ export const styles = theme => ({
 
 class ToggleButton extends React.Component {
   handleChange = event => {
-    const { onChange, value, onClick } = this.props;
+    const { onChange, onClick, value } = this.props;
 
     if (onClick) {
       onClick(event);
@@ -95,7 +95,7 @@ class ToggleButton extends React.Component {
     }
 
     if (onChange) {
-      onChange(event, value);
+      onChange(value);
     }
   };
 
@@ -124,7 +124,6 @@ class ToggleButton extends React.Component {
         className={className}
         disabled={disabled}
         focusRipple={!disableFocusRipple}
-        keyboardFocusedClassName={classes.keyboardFocused}
         onClick={this.handleChange}
         {...other}
       >
@@ -147,12 +146,6 @@ ToggleButton.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   * The default value is a `button`.
-   */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * If `true`, the button will be disabled.
    */
@@ -179,21 +172,16 @@ ToggleButton.propTypes = {
    */
   selected: PropTypes.bool,
   /**
-   * @ignore
-   */
-  type: PropTypes.string,
-  /**
    * The value to associate with the button when selected in a
    * ToggleButtonGroup.
    */
-  value: PropTypes.any,
+  value: PropTypes.any.isRequired,
 };
 
 ToggleButton.defaultProps = {
   disabled: false,
   disableFocusRipple: false,
   disableRipple: false,
-  type: 'button',
 };
 
 ToggleButton.muiName = 'ToggleButton';

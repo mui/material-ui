@@ -32,8 +32,8 @@ class ToggleButtons extends React.Component {
     formats: ['bold'],
   };
 
-  handleFormat = (e, formats) => this.setState({ formats });
-  handleAlignment = (e, alignment) => this.setState({ alignment });
+  handleFormat = (formats) => this.setState({ formats });
+  handleAlignment = (alignment) => this.setState({ alignment });
 
   render() {
     const { classes } = this.props;
@@ -79,7 +79,7 @@ class ToggleButtons extends React.Component {
               <ToggleButton value="underlined">
                 <FormatUnderlined />
               </ToggleButton>
-              <ToggleButton disabled>
+              <ToggleButton disabled value="color">
                 <FormatColorFill />
                 <ArrowDropDownIcon />
               </ToggleButton>

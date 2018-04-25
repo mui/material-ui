@@ -1,5 +1,5 @@
 ---
-filename: /src/ToggleButton/ToggleButtonGroup.js
+filename: /packages/material-ui-lab/src/ToggleButton/ToggleButtonGroup.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -12,12 +12,12 @@ filename: /src/ToggleButton/ToggleButtonGroup.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | node |  | The content of the button. |
-| classes | object |  | Useful to extend the style applied to components. |
-| exclusive | bool | false | If `true` only allow one of the child ToggleButton values to be selected. |
-| onChange | func |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: number) => void`<br>*event:* The event source of the callback<br>*value:* of the selected buttons |
-| selected | bool |  | If `true` render the group in a selected state. If `auto` render in a selected state if any of the child ToggleButtons are selected. |
-| value | any |  | The currently selected value within the group or an array of selected values when `exclusive` is false. |
+| <span class="prop-name required">children *</span> | <span class="prop-type">node |  | The content of the button. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">exclusive</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true` only allow one of the child ToggleButton values to be selected. |
+| <span class="prop-name">onChange</span> | <span class="prop-type">func |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: object) => void`<br>*event:* The event source of the callback<br>*value:* of the selected buttons. When `exclusive` is true this is a single value; when false an array of selected values. |
+| <span class="prop-name">selected</span> | <span class="prop-type">union:&nbsp;bool&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | <span class="prop-default">'auto'</span> | If `true` render the group in a selected state. If `auto` (the default) render in a selected state if `value` is not empty. |
+| <span class="prop-name">value</span> | <span class="prop-type">any |  | The currently selected value within the group or an array of selected values when `exclusive` is false. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -29,7 +29,7 @@ This property accepts the following keys:
 - `selected`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/src/ToggleButton/ToggleButtonGroup.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-lab/src/ToggleButton/ToggleButtonGroup.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
@@ -38,5 +38,5 @@ you need to use the following style sheet name: `MuiToggleButtonGroup`.
 
 ## Demos
 
-- [Buttons](/demos/buttons)
+- [Toggle Button](/lab/toggle-button)
 
