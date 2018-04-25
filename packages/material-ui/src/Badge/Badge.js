@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
-const RADIUS = 12;
+export const RADIUS = 12;
 
 export const styles = theme => ({
   root: {
