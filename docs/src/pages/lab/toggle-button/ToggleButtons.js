@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import FormatAlignLeft from 'material-ui-icons/FormatAlignLeft';
-import FormatAlignCenter from 'material-ui-icons/FormatAlignCenter';
-import FormatAlignRight from 'material-ui-icons/FormatAlignRight';
-import FormatAlignJustify from 'material-ui-icons/FormatAlignJustify';
-import FormatBold from 'material-ui-icons/FormatBold';
-import FormatItalic from 'material-ui-icons/FormatItalic';
-import FormatUnderlined from 'material-ui-icons/FormatUnderlined';
-import FormatColorFill from 'material-ui-icons/FormatColorFill';
-import ArrowDropDownIcon from 'material-ui-icons/ArrowDropDown';
+import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
+import FormatAlignCenter from '@material-ui/icons/FormatAlignCenter';
+import FormatAlignRight from '@material-ui/icons/FormatAlignRight';
+import FormatAlignJustify from '@material-ui/icons/FormatAlignJustify';
+import FormatBold from '@material-ui/icons/FormatBold';
+import FormatItalic from '@material-ui/icons/FormatItalic';
+import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
+import FormatColorFill from '@material-ui/icons/FormatColorFill';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
-import ToggleButton, { ToggleButtonGroup } from 'material-ui/ToggleButton';
+import ToggleButton, { ToggleButtonGroup } from '@material-ui/lab/ToggleButton';
 
 const styles = theme => ({
   toggleContainer: {

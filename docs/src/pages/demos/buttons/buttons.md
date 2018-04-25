@@ -1,6 +1,6 @@
 ---
 title: Button React component
-components: Button, IconButton, ButtonBase, Zoom, ToggleButton, ToggleButtonGroup
+components: Button, IconButton, ButtonBase, Zoom
 ---
 
 # Buttons
@@ -89,16 +89,6 @@ deselected, such as adding or removing a star to an item.
 Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
 
 {{"demo": "pages/demos/buttons/IconLabelButtons.js"}}
-
-=======
-## Toggle Buttons
-
-[Toggle buttons](https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons) may be used to group related options. Arrange layout and spacing to convey that certain toggle buttons are part of a group.
-
-The `ToggleButtonGroup` will control the selected of its child buttons when
-given its own `value` prop.
-
-{{"demo": "pages/demos/buttons/ToggleButtons.js"}}
 
 ## Customized Buttons
 

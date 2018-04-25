@@ -3,9 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import withStyles from '../styles/withStyles';
-import { fade } from '../styles/colorManipulator';
-import ButtonBase from '../ButtonBase';
+import withStyles from 'material-ui/styles/withStyles';
+import { fade } from 'material-ui/styles/colorManipulator';
+import ButtonBase from 'material-ui/ButtonBase';
 
 export const styles = theme => ({
   root: {
