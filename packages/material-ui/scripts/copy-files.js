@@ -2,7 +2,6 @@
 
 import path from 'path';
 import fse from 'fs-extra';
-import flowCopySource from 'flow-copy-source';
 import glob from 'glob';
 
 async function copyFile(file) {
@@ -69,9 +68,6 @@ async function run() {
     typescriptCopy(from, path.resolve(__dirname, '../build')),
     typescriptCopy(from, path.resolve(__dirname, '../build/es')),
   ]);
-
-  // Flow
-  flowCopySource(['src'], 'build', { verbose: true, ignore: '**/*.spec.js' });
 }
 
 run();

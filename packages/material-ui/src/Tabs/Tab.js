@@ -108,7 +108,7 @@ class Tab extends React.Component {
     }
   }
 
-  handleChange = (event: SyntheticEvent<>) => {
+  handleChange = event => {
     const { onChange, value, onClick } = this.props;
 
     if (onChange) {
