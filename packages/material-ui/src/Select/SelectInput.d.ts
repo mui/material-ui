@@ -6,6 +6,7 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
   autoFocus?: boolean;
   autoWidth: boolean;
   disabled?: boolean;
+  IconComponent?: React.ReactType;
   inputRef?: (
     ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps['value'] },
   ) => void;

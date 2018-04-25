@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
-import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../Input/Input';
 
@@ -165,6 +164,7 @@ class SelectInput extends React.Component {
       className: classNameProp,
       disabled,
       displayEmpty,
+      IconComponent,
       inputRef,
       MenuProps = {},
       multiple,
@@ -223,7 +223,7 @@ class SelectInput extends React.Component {
           >
             {children}
           </select>
-          <ArrowDropDownIcon className={classes.icon} />
+          <IconComponent className={classes.icon} />
         </div>
       );
     }
@@ -332,7 +332,7 @@ class SelectInput extends React.Component {
           type={type}
           {...other}
         />
-        <ArrowDropDownIcon className={classes.icon} />
+        <IconComponent className={classes.icon} />
         <Menu
           id={`menu-${name || ''}`}
           anchorEl={this.displayNode}
@@ -390,6 +390,10 @@ SelectInput.propTypes = {
    * You can only use it when the `native` property is `false` (default).
    */
   displayEmpty: PropTypes.bool,
+  /**
+   * The icon that displays the arrow.
+   */
+  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Use that property to pass a ref callback to the native select element.
    */
