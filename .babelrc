@@ -111,7 +111,7 @@
             "root": ["./"],
             "alias": {
               "@material-ui/icons": "./packages/material-ui-icons/src",
-              "material-ui": "./src"
+              "material-ui": "./packages/material-ui/src"
             }
           }
         ],
