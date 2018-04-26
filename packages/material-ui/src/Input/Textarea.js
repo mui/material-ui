@@ -78,13 +78,14 @@ class Textarea extends React.Component {
     this.syncHeightWithShadow();
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
-  syncHeightWithShadow(props = this.props) {
+  syncHeightWithShadow() {
+    const props = this.props;
     if (!this.shadow || !this.singlelineShadow) {
       return;
     }
 
     // The component is controlled, we need to update the shallow value.
-    if (typeof this.props.value !== 'undefined') {
+    if (typeof props.value !== 'undefined') {
       this.shadow.value = props.value == null ? '' : String(props.value);
     }
 
@@ -103,7 +104,9 @@ class Textarea extends React.Component {
 
     newHeight = Math.max(newHeight, lineHeight);
 
-    if (this.state.height !== newHeight) {
+    // Need a large enough different to update the height.
+    // This prevents infinite rendering loop.
+    if (Math.abs(this.state.height - newHeight) > 1) {
       this.setState({
         height: newHeight,
       });
