@@ -9,9 +9,10 @@ import {
   StyleRules,
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
-import { StyleRulesCallback } from '../../src/styles/withStyles';
+import { StyleRulesCallback, StyledComponentProps } from '../../src/styles/withStyles';
 import blue from '../../src/colors/blue';
 import { WithTheme } from '../../src/styles/withTheme';
+import { StandardProps } from '../../src';
 
 // Shared types for examples
 type ComponentClassNames = 'root';
@@ -180,3 +181,54 @@ withStyles<'listItem' | 'guttered'>(theme => ({
     },
   },
 }));
+
+{
+  type ListItemContentClassKey = 'root' | 'iiiinset' | 'row'
+  const styles = withStyles<ListItemContentClassKey>(
+    theme => ({
+      // Styled similar to ListItemText
+      root: {
+        '&:first-child': {
+          paddingLeft: 0,
+        },
+        flex: '1 1 auto',
+        padding: '0 16px',
+      },
+  
+      iiiinset: {
+        '&:first-child': {
+          paddingLeft: theme.spacing.unit * 7,
+        },
+      },
+      row: {
+        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'row',
+      },
+    }),
+    { name: 'ui-ListItemContent' },
+  )
+  
+  interface ListItemContentProps extends StyledComponentProps<ListItemContentClassKey> {
+    inset?: boolean
+    row?: boolean
+  }
+  
+  const ListItemContent = styles<ListItemContentProps>(props => {
+    const { children, classes, inset, row } = props
+    return (
+      <div className="foo" color="textSecondary">
+        {children}
+      </div>
+    )
+  })
+}
+
+{
+  interface FooProps extends StyledComponentProps<'x' | 'y'> {
+    a: number
+    b: boolean
+  }
+
+  const ListItemContent = withStyles({ x: {}, y: {} })<FooProps>(props => <div />);
+}
