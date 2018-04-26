@@ -86,10 +86,10 @@ describe('<Textarea />', () => {
 
     it('should respect the rowsMax property', () => {
       const instance = wrapper.instance();
-      const rowsMax = 2;
+      const rowsMax = 4;
       const lineHeight = 19;
       instance.singlelineShadow = { scrollHeight: lineHeight };
-      instance.shadow = { scrollHeight: lineHeight * 3 };
+      instance.shadow = { scrollHeight: lineHeight * 5 };
       wrapper.setProps({ rowsMax });
       assert.strictEqual(wrapper.state().height, lineHeight * rowsMax);
     });
