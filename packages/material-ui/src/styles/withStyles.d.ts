@@ -52,7 +52,7 @@ export default function withStyles<ClassKey extends string>(
   (component: React.ComponentType<WithStyles<ClassKey>>): React.ComponentType<
     StyledComponentProps<ClassKey>
   >;
-  <P extends ConsistentWith<WithStyles<ClassKey>>>(
+  <P extends ConsistentWith<StyledComponentProps<ClassKey>>>(
     component: React.ComponentType<P & WithStyles<ClassKey>>,
   ): React.ComponentType<P & StyledComponentProps<ClassKey>>;
 };
