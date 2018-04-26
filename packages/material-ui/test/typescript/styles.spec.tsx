@@ -223,3 +223,12 @@ withStyles<'listItem' | 'guttered'>(theme => ({
     )
   })
 }
+
+{
+  interface FooProps extends StyledComponentProps<'x' | 'y'> {
+    a: number
+    b: boolean
+  }
+
+  const ListItemContent = withStyles({ x: {}, y: {} })<FooProps>(props => <div />);
+}
