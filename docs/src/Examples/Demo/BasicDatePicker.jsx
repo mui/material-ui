@@ -28,10 +28,9 @@ export default class BasicDatePicker extends PureComponent {
           <DatePicker
             label="Clearable"
             clearable
+            disableFuture
             maxDateMessage="Date must be less than today"
             value={selectedDate}
-            minDate="Jan 2 2017"
-            maxDate="Jan 1 2018"
             onChange={this.handleDateChange}
             animateYearScrolling={false}
           />
