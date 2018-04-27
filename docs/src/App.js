@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui';
 
-import Utils from 'material-ui-pickers/utils/moment-utils';
+import Utils from 'material-ui-pickers/utils/date-fns-utils';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
 import { create } from 'jss';
@@ -16,11 +16,11 @@ import { setPrismTheme } from './utils/prism';
 import Layout from './layout/Layout';
 import Routes from './Routes/Routes';
 
-/* eslint-disable import/first */
-import moment from 'moment';
-import 'moment/locale/fr';
+// /* eslint-disable import/first */
+// import moment from 'moment';
+// import 'moment/locale/fr';
 
-moment.locale('fr');
+// moment.locale('fr');
 
 const jss = create({ plugins: [...preset().plugins, rtl()] });
 jss.options.createGenerateClassName = createGenerateClassName;
