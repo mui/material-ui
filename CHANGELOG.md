@@ -20,7 +20,7 @@ As long as you are providing a valid URL to `<CardMedia image />`, it should be 
 
 #### Component Fixes / Enhancements
 
-- [SwipeableDrawer] Prevent interaction with the drawer content if no opened (#11091) @leMaik
+- [SwipeableDrawer] Prevent interaction with the drawer content if not opened (#11091) @leMaik
 - [Icon] Prevent shrinking when inside a flex container (#11097) @ValentinH
 - [Grid] Fix TypeScript definitions of class keys (#11102) @nmchaves
 - [Portal] Revert "Global option to disable the portal" (#11116) @oliviertassinari
