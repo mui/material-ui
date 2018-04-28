@@ -110,5 +110,6 @@
     "rimraf": "^2.6.1",
     "sinon": "^3.0.0",
     "webpack": "^1.13.3"
-  }
+  },
+  "sideEffects": false
 }
