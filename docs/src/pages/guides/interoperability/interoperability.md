@@ -113,7 +113,7 @@ We went ahead and forked the project in order to handle our unique needs, but we
 
 ![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
-It's hard to know the market share of this styling solution as it's dependent on the
+It's hard to know the market share of [this styling solution](https://github.com/css-modules/css-modules) as it's dependent on the
 bundling solution people are using.
 
 **CSSModulesButton.css**
@@ -132,7 +132,7 @@ bundling solution people are using.
 **CSSModulesButton.js**
 ```jsx
 import React from 'react';
-// webpack or else will inject the CSS into the page
+// webpack, parcel or else will inject the CSS into the page
 import styles from './CSSModulesButton.css';
 import Button from 'material-ui/Button';
 
@@ -151,6 +151,10 @@ function CSSModulesButton() {
 
 export default CSSModulesButton;
 ```
+
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/m4j01r75wx)
+
+**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order), as in the demo.
 
 ## Styled Components
 
