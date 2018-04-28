@@ -175,7 +175,7 @@ class AppFrame extends React.Component {
                 )}
               </IconButton>
             </Tooltip>
-            <Tooltip id="appbar-github" title="Material-UI GitHub repo" enterDelay={300}>
+            <Tooltip id="appbar-github" title="GitHub repository" enterDelay={300}>
               <IconButton
                 component="a"
                 color="inherit"
