@@ -183,7 +183,7 @@ withStyles<'listItem' | 'guttered'>(theme => ({
 }));
 
 {
-  type ListItemContentClassKey = 'root' | 'iiiinset' | 'row'
+  type ListItemContentClassKey = 'root' | 'iiiinset' | 'row';
   const styles = withStyles<ListItemContentClassKey>(
     theme => ({
       // Styled similar to ListItemText
@@ -194,7 +194,7 @@ withStyles<'listItem' | 'guttered'>(theme => ({
         flex: '1 1 auto',
         padding: '0 16px',
       },
-  
+
       iiiinset: {
         '&:first-child': {
           paddingLeft: theme.spacing.unit * 7,
@@ -207,27 +207,27 @@ withStyles<'listItem' | 'guttered'>(theme => ({
       },
     }),
     { name: 'ui-ListItemContent' },
-  )
-  
+  );
+
   interface ListItemContentProps extends StyledComponentProps<ListItemContentClassKey> {
-    inset?: boolean
-    row?: boolean
+    inset?: boolean;
+    row?: boolean;
   }
-  
+
   const ListItemContent = styles<ListItemContentProps>(props => {
-    const { children, classes, inset, row } = props
+    const { children, classes, inset, row } = props;
     return (
       <div className="foo" color="textSecondary">
         {children}
       </div>
-    )
-  })
+    );
+  });
 }
 
 {
   interface FooProps extends StyledComponentProps<'x' | 'y'> {
-    a: number
-    b: boolean
+    a: number;
+    b: boolean;
   }
 
   const ListItemContent = withStyles({ x: {}, y: {} })<FooProps>(props => <div />);

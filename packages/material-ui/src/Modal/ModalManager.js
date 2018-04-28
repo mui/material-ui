@@ -16,10 +16,6 @@ function findIndexOf(data, callback) {
   return idx;
 }
 
-function findContainer(data, modal) {
-  return findIndexOf(data, item => item.modals.indexOf(modal) !== -1);
-}
-
 function getPaddingRight(node) {
   return parseInt(css(node, 'paddingRight') || 0, 10);
 }
@@ -63,6 +59,7 @@ function removeContainerStyle(data, container) {
     fixedNodes[i].style.paddingRight = `${data.prevPaddings[i]}px`;
   }
 }
+
 /**
  * @ignore - do not document.
  *
@@ -71,9 +68,12 @@ function removeContainerStyle(data, container) {
  * Used by the Modal to ensure proper styling of containers.
  */
 class ModalManager {
-  constructor({ hideSiblingNodes = true, handleContainerOverflow = true } = {}) {
+  constructor(options = {}) {
+    const { hideSiblingNodes = true, handleContainerOverflow = true } = options;
+
     this.hideSiblingNodes = hideSiblingNodes;
     this.handleContainerOverflow = handleContainerOverflow;
+
     // this.modals[modalIdx] = modal
     this.modals = [];
     // this.containers[containerIdx] = container
@@ -86,8 +86,6 @@ class ModalManager {
 
   add(modal, container) {
     let modalIdx = this.modals.indexOf(modal);
-    const containerIdx = this.containers.indexOf(container);
-
     if (modalIdx !== -1) {
       return modalIdx;
     }
@@ -99,6 +97,7 @@ class ModalManager {
       hideSiblings(container, modal.mountNode);
     }
 
+    const containerIdx = this.containers.indexOf(container);
     if (containerIdx !== -1) {
       this.data[containerIdx].modals.push(modal);
       return modalIdx;
@@ -127,7 +126,7 @@ class ModalManager {
       return modalIdx;
     }
 
-    const containerIdx = findContainer(this.data, modal);
+    const containerIdx = findIndexOf(this.data, item => item.modals.indexOf(modal) !== -1);
     const data = this.data[containerIdx];
     const container = this.containers[containerIdx];
 
@@ -146,7 +145,7 @@ class ModalManager {
       this.containers.splice(containerIdx, 1);
       this.data.splice(containerIdx, 1);
     } else if (this.hideSiblingNodes) {
-      // Otherwise make sure the next top modal is visible to a SR.
+      // Otherwise make sure the next top modal is visible to a screan reader.
       ariaHidden(false, data.modals[data.modals.length - 1].mountNode);
     }
 
