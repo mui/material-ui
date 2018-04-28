@@ -7,6 +7,47 @@ Changes. Changes everywhere!
 
 Coming Soon
 
+## 1.0.0-beta.44
+###### *Apr 28, 2018*
+
+Big thanks to the 15 contributors who made this release possible.
+
+### Breaking change
+
+- [CardMedia] Escape background image url (#11126) @Bennit
+
+As long as you are providing a valid URL to `<CardMedia image />`, it should be working. However, previously `"` escaped URL will no longer work.
+
+#### Component Fixes / Enhancements
+
+- [SwipeableDrawer] Prevent interaction with the drawer content if no opened (#11091) @leMaik
+- [Icon] Prevent shrinking when inside a flex container (#11097) @ValentinH
+- [Grid] Fix TypeScript definitions of class keys (#11102) @nmchaves
+- [Portal] Revert "Global option to disable the portal" (#11116) @oliviertassinari
+- [ButtonBase] Simpler global focus visible style override (#11130) @oliviertassinari
+- [Modal] Prevent IE11 from crashing on modal close (#11115) @JonAbrams
+- [Input] Fix infinite rendering loop (#11159) @oliviertassinari
+- [lab] Fix the tests (#11160) @oliviertassinari
+
+#### Docs
+
+- [Tabs] Better Ant Design demo (#11095) @theiliad
+- [docs] Add npm-registry-browser into showcase (#11114) @topheman
+- [docs] Fix the flow example (#11118) @prastut
+- [Snackbar] Add a consecutive demo (#11111) @simoami
+- [docs] Add showcase for Local Insights (#11131) @hrdymchl
+- [docs] Add iOS momentum scrolling (#11140) @cherniavskii
+- [docs] Add a CSS modules example (#11171) @oliviertassinari
+- [docs] Fix typo in themes.md (#11149) @zhuangya
+- [docs] Make sure next@6 is working (#11168) @oliviertassinari
+
+#### Core
+
+- [core] Reduce the size of the npm package (#11144) @oliviertassinari
+- [typescript] allow pseudos on any theme mixins (#11145) @rosskevin
+- [core] Upgrade dev dependencies (#11146) @oliviertassinari
+- [styles] Fix constraint on withStyles P parameter to allow StyledComponentProps (#11156) @pelotom
+
 ## 1.0.0-beta.43
 ###### *Apr 22, 2018*
 
