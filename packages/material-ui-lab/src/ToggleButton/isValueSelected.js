@@ -9,5 +9,5 @@ export default function isValueSelected(value, candidate) {
     return candidate.indexOf(value) >= 0;
   }
 
-  return value == candidate;
+  return value === candidate;
 }

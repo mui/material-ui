@@ -12,15 +12,15 @@ describe('<ToggleButton /> isValueSelected', () => {
 
   describe('non exclusive', () => {
     it('is true if candidate is contained in value', () => {
-      assert.strictEqual(isValueSelected(['one'], 'one'), true);
+      assert.strictEqual(isValueSelected('one', ['one']), true);
     });
 
     it('is false if value is not contained in candidate', () => {
-      assert.strictEqual(isValueSelected(['one'], 'two'), false);
+      assert.strictEqual(isValueSelected('one', ['two']), false);
     });
 
-    it('is true if value is loosely contained in candidate', () => {
-      assert.strictEqual(isValueSelected(['3'], 3), true);
+    it('is false if value is loosely contained in candidate', () => {
+      assert.strictEqual(isValueSelected('3', [3]), false);
     });
   });
 
@@ -33,8 +33,8 @@ describe('<ToggleButton /> isValueSelected', () => {
       assert.strictEqual(isValueSelected('two', 'one'), false);
     });
 
-    it('is true if candidate loosely equals value', () => {
-      assert.strictEqual(isValueSelected('3', 3), true);
+    it('is false if candidate loosely equals value', () => {
+      assert.strictEqual(isValueSelected('3', 3), false);
     });
   });
 });

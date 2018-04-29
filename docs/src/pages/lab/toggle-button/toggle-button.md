@@ -2,7 +2,7 @@
 components: ToggleButton, ToggleButtonGroup
 ---
 
-## Toggle Buttons
+# Toggle Buttons
 
 [Toggle buttons](https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons) may be used to group related options. Arrange layout and spacing to convey that certain toggle buttons are part of a group.
 
