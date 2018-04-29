@@ -58,7 +58,9 @@ async function addLicense(packageData) {
 }
 
 async function run() {
-  await ['README.md', 'CHANGELOG.md', 'LICENSE'].map(file => copyFile(file));
+  await Promise.all(
+    ['../../README.md', '../../CHANGELOG.md', '../../LICENSE'].map(file => copyFile(file)),
+  );
   const packageData = await createPackageFile();
   await addLicense(packageData);
 
