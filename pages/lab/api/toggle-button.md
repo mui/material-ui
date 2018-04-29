@@ -18,7 +18,7 @@ filename: /packages/material-ui-lab/src/ToggleButton/ToggleButton.js
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the ripple effect will be disabled. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool |  | If `true`, the button will be rendered in an active state. |
-| <span class="prop-name">value</span> | <span class="prop-type">any |  | The value to associate with the button when selected in a ToggleButtonGroup. |
+| <span class="prop-name required">value *</span> | <span class="prop-type">any |  | The value to associate with the button when selected in a ToggleButtonGroup. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
