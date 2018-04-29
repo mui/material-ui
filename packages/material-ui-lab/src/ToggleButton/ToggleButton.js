@@ -101,12 +101,12 @@ class ToggleButton extends React.Component {
 
   render() {
     const {
-      selected,
       children,
-      classes,
       className: classNameProp,
-      disabled,
+      classes,
       disableFocusRipple,
+      disabled,
+      selected,
       ...other
     } = this.props;
 

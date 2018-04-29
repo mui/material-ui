@@ -54,12 +54,12 @@ class ToggleButtonGroup extends React.Component {
   render() {
     const {
       children: childrenProp,
-      classes,
       className: classNameProp,
+      classes,
       exclusive,
-      value,
       onChange,
       selected: selectedProp,
+      value,
       ...other
     } = this.props;
 
