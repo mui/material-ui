@@ -8,7 +8,7 @@ import Button from 'material-ui/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
-import imagesData from './steppersData';
+import { imagesData } from './steppersData';
 
 const styles = theme => ({
   root: {
@@ -68,7 +68,9 @@ class TextMobileStepper extends React.Component {
           enableMouseEvents
           index={this.state.activeStep}
         >
-          {imagesData.map(data => <img className={classes.img} src={data.source} alt={data.alt} />)}
+          {imagesData.map(data => (
+            <img key={data.alt} className={classes.img} src={data.source} alt={data.alt} />
+          ))}
         </SwipeableViews>
         <MobileStepper
           variant="text"
