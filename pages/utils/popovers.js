@@ -8,6 +8,13 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
+        'pages/utils/popovers/SimplePopover.js': {
+          js: require('docs/src/pages/utils/popovers/SimplePopover').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/utils/popovers/SimplePopover'), 'utf8')
+`,
+        },
         'pages/utils/popovers/AnchorPlayground.js': {
           js: require('docs/src/pages/utils/popovers/AnchorPlayground').default,
           raw: preval`

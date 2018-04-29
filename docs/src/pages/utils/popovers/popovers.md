@@ -6,6 +6,10 @@ components: Grow, Popover
 
 A `Popover` can be used to display some content on top of another.
 
+## Simple Popover
+
+{{"demo": "pages/utils/popovers/SimplePopover.js" }}
+
 ## Anchor playground
 
 Use the radio buttons to adjust the `anchorOrigin` and `transformOrigin` positions.
