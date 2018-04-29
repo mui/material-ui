@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { SnackbarContentProps } from '.';
+import { ContentProps } from '.';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export type SnackBarOrigin = {
@@ -23,7 +23,7 @@ export interface SnackbarProps
   onMouseLeave?: React.MouseEventHandler<any>;
   open: boolean;
   resumeHideDuration?: number;
-  SnackbarContentProps?: Partial<SnackbarContentProps>;
+  ContentProps?: Partial<ContentProps>;
   transition?: React.ReactType;
   transitionDuration?: TransitionProps['timeout'];
 }

@@ -5,9 +5,10 @@ import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import { withStyles } from 'material-ui/styles';
 import Zoom from 'material-ui/transitions/Zoom';
-import { duration } from 'material-ui/styles/transitions';
 import Button from 'material-ui/Button';
 import { isMuiElement } from 'material-ui/utils/reactHelpers';
+import { duration } from 'material-ui/styles/transitions';
+import { getComponents } from 'material-ui/utils/helpers';
 
 const styles = theme => ({
   root: {
@@ -24,6 +25,10 @@ const styles = theme => ({
     transition: 'top 0s linear 0.2s',
   },
 });
+
+const defaultComponents = {
+  Transition: Zoom,
+};
 
 class SpeedDial extends React.Component {
   state = {
@@ -91,6 +96,7 @@ class SpeedDial extends React.Component {
       children: childrenProp,
       classes,
       className: classNameProp,
+      components: componentsProp,
       hidden,
       icon: iconProp,
       onClick,
@@ -98,10 +104,12 @@ class SpeedDial extends React.Component {
       onKeyDown,
       open,
       openIcon,
-      transition: Transition,
       transitionDuration,
+      TransitionProps,
       ...other
     } = this.props;
+
+    const components = getComponents(defaultComponents, this.props);
 
     // Filter the label for valid id characters.
     const id = ariaLabel.replace(/^[^a-z]+|[^\w:.-]+/gi, '');
@@ -136,7 +144,13 @@ class SpeedDial extends React.Component {
 
     return (
       <div className={classNames(classes.root, classNameProp)} {...other}>
-        <Transition in={!hidden} timeout={transitionDuration} mountOnEnter unmountOnExit>
+        <components.Transition
+          in={!hidden}
+          timeout={transitionDuration}
+          mountOnEnter
+          unmountOnExit
+          {...TransitionProps}
+        >
           <Button
             variant="fab"
             color="primary"
@@ -154,7 +168,7 @@ class SpeedDial extends React.Component {
           >
             {icon()}
           </Button>
-        </Transition>
+        </components.Transition>
         <div
           id={`${id}-actions`}
           className={classNames(classes.actions, { [classes.actionsClosed]: !open })}
@@ -192,6 +206,12 @@ SpeedDial.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The components injection property.
+   */
+  components: PropTypes.shape({
+    Transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  }),
+  /**
    * If `true`, the SpeedDial will be hidden.
    */
   hidden: PropTypes.bool,
@@ -224,10 +244,6 @@ SpeedDial.propTypes = {
    */
   openIcon: PropTypes.node,
   /**
-   * Transition component.
-   */
-  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
@@ -235,15 +251,16 @@ SpeedDial.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 SpeedDial.defaultProps = {
+  components: defaultComponents,
+  transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
   hidden: false,
-  transition: Zoom,
-  transitionDuration: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
 };
 
 export default withStyles(styles)(SpeedDial);

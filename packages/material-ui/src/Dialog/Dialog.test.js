@@ -28,7 +28,7 @@ describe('<Dialog />', () => {
   it('should render a Modal with transition', () => {
     const Transition = props => <div className="cloned-element-class" {...props} />;
     const wrapper = shallow(
-      <Dialog {...defaultProps} transition={Transition}>
+      <Dialog {...defaultProps} components={{ Transition }}>
         foo
       </Dialog>,
     );

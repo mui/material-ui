@@ -9,6 +9,7 @@ import ownerDocument from 'dom-helpers/ownerDocument';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
 import ownerWindow from '../utils/ownerWindow';
+import { getComponents } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
 import Grow from '../transitions/Grow';
@@ -77,10 +78,13 @@ export const styles = {
     minHeight: 16,
     maxWidth: 'calc(100vw - 32px)',
     maxHeight: 'calc(100vh - 32px)',
-    '&:focus': {
-      outline: 'none',
-    },
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 'none',
   },
+};
+
+const defaultComponents = {
+  Transition: Grow,
 };
 
 class Popover extends React.Component {
@@ -277,6 +281,7 @@ class Popover extends React.Component {
       anchorReference,
       children,
       classes,
+      components: componentsProps,
       container: containerProp,
       elevation,
       getContentAnchorEl,
@@ -291,8 +296,8 @@ class Popover extends React.Component {
       PaperProps,
       role,
       transformOrigin,
-      transition: TransitionProp,
       transitionDuration,
+      TransitionProps,
       ...other
     } = this.props;
 
@@ -302,15 +307,11 @@ class Popover extends React.Component {
     const container =
       containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
-    const transitionProps = {};
-    // The provided transition might not support the auto timeout value.
-    if (TransitionProp === Grow) {
-      transitionProps.timeout = transitionDuration;
-    }
+    const components = getComponents(defaultComponents, this.props);
 
     return (
       <Modal container={container} open={open} BackdropProps={{ invisible: true }} {...other}>
-        <TransitionProp
+        <components.Transition
           appear
           in={open}
           onEnter={this.handleEnter}
@@ -320,10 +321,11 @@ class Popover extends React.Component {
           onExited={onExited}
           onExiting={onExiting}
           role={role}
+          timeout={transitionDuration}
           ref={node => {
             this.transitionEl = node;
           }}
-          {...transitionProps}
+          {...TransitionProps}
         >
           <Paper
             className={classes.paper}
@@ -334,7 +336,7 @@ class Popover extends React.Component {
             <EventListener target="window" onResize={this.handleResize} />
             {children}
           </Paper>
-        </TransitionProp>
+        </components.Transition>
       </Modal>
     );
   }
@@ -394,6 +396,12 @@ Popover.propTypes = {
    * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * The components injection property.
+   */
+  components: PropTypes.shape({
+    Transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  }),
   /**
    * A node, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
@@ -476,10 +484,6 @@ Popover.propTypes = {
     vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
   }),
   /**
-   * Transition component.
-   */
-  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */
   transitionDuration: PropTypes.oneOfType([
@@ -487,6 +491,10 @@ Popover.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 Popover.defaultProps = {
@@ -495,13 +503,13 @@ Popover.defaultProps = {
     vertical: 'top',
     horizontal: 'left',
   },
+  components: defaultComponents,
   elevation: 8,
   marginThreshold: 16,
   transformOrigin: {
     vertical: 'top',
     horizontal: 'left',
   },
-  transition: Grow,
   transitionDuration: 'auto',
 };
 

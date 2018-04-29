@@ -6,7 +6,7 @@ import { polyfill } from 'react-lifecycles-compat';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../utils/ClickAwayListener';
-import { capitalize, createChainedFunction } from '../utils/helpers';
+import { capitalize, createChainedFunction, getComponents } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
 
@@ -87,23 +87,12 @@ export const styles = theme => {
   };
 };
 
+const defaultComponents = {
+  Content: SnackbarContent,
+  Transition: Slide,
+};
+
 class Snackbar extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.exited === 'undefined') {
-      return {
-        exited: !nextProps.open,
-      };
-    }
-
-    if (nextProps.open) {
-      return {
-        exited: false,
-      };
-    }
-
-    return null;
-  }
-
   state = {};
 
   componentDidMount() {
@@ -194,6 +183,8 @@ class Snackbar extends React.Component {
       children,
       classes,
       className,
+      components: componentsProp,
+      ContentProps,
       disableWindowBlurListener,
       message,
       onClose,
@@ -207,9 +198,8 @@ class Snackbar extends React.Component {
       onMouseLeave,
       open,
       resumeHideDuration,
-      SnackbarContentProps,
-      transition: TransitionProp,
       transitionDuration,
+      TransitionProps,
       ...other
     } = this.props;
 
@@ -218,12 +208,7 @@ class Snackbar extends React.Component {
       return null;
     }
 
-    const transitionProps = {};
-
-    // The provided transition might not support the direction property.
-    if (TransitionProp === Slide) {
-      transitionProps.direction = vertical === 'top' ? 'down' : 'up';
-    }
+    const components = getComponents(defaultComponents, this.props);
 
     return (
       <ClickAwayListener onClickAway={this.handleClickAway}>
@@ -242,8 +227,9 @@ class Snackbar extends React.Component {
             onFocus={disableWindowBlurListener ? undefined : this.handleResume}
             onBlur={disableWindowBlurListener ? undefined : this.handlePause}
           />
-          <TransitionProp
+          <components.Transition
             appear
+            direction={vertical === 'top' ? 'down' : 'up'}
             in={open}
             onEnter={onEnter}
             onEntered={onEntered}
@@ -252,17 +238,31 @@ class Snackbar extends React.Component {
             onExited={createChainedFunction(this.handleExited, onExited)}
             onExiting={onExiting}
             timeout={transitionDuration}
-            {...transitionProps}
+            {...TransitionProps}
           >
-            {children || (
-              <SnackbarContent message={message} action={action} {...SnackbarContentProps} />
-            )}
-          </TransitionProp>
+            {children || <components.Content message={message} action={action} {...ContentProps} />}
+          </components.Transition>
         </div>
       </ClickAwayListener>
     );
   }
 }
+
+Snackbar.getDerivedStateFromProps = (nextProps, prevState) => {
+  if (typeof prevState.exited === 'undefined') {
+    return {
+      exited: !nextProps.open,
+    };
+  }
+
+  if (nextProps.open) {
+    return {
+      exited: false,
+    };
+  }
+
+  return null;
+};
 
 Snackbar.propTypes = {
   /**
@@ -288,7 +288,7 @@ Snackbar.propTypes = {
   autoHideDuration: PropTypes.number,
   /**
    * If you wish the take control over the children of the component you can use this property.
-   * When used, you replace the `SnackbarContent` component with the children.
+   * When used, you replace the `Content` component with the children.
    */
   children: PropTypes.element,
   /**
@@ -299,6 +299,17 @@ Snackbar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The components injection property.
+   */
+  components: PropTypes.shape({
+    Content: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    Transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  }),
+  /**
+   * Properties applied to the `Content` element.
+   */
+  ContentProps: PropTypes.object,
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    */
@@ -369,14 +380,6 @@ Snackbar.propTypes = {
    */
   resumeHideDuration: PropTypes.number,
   /**
-   * Properties applied to the `SnackbarContent` element.
-   */
-  SnackbarContentProps: PropTypes.object,
-  /**
-   * Transition component.
-   */
-  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
@@ -384,6 +387,10 @@ Snackbar.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 Snackbar.defaultProps = {
@@ -391,12 +398,9 @@ Snackbar.defaultProps = {
     vertical: 'bottom',
     horizontal: 'center',
   },
+  components: defaultComponents,
   disableWindowBlurListener: false,
-  transition: Slide,
-  transitionDuration: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
+  transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };
 
 export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(polyfill(Snackbar));

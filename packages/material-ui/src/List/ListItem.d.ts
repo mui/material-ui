@@ -10,7 +10,9 @@ export interface ListItemProps
     > {
   button?: boolean;
   component?: React.ReactType<ListItemProps>;
-  ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
+  components: {
+    Container?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
+  };
   ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   dense?: boolean;
   disabled?: boolean;

@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
+import { capitalize, getComponents } from '../utils/helpers';
 import Modal from '../Modal';
 import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
@@ -23,9 +23,7 @@ export const styles = theme => ({
     position: 'relative',
     maxHeight: '90vh',
     overflowY: 'auto', // Fix IE11 issue, to remove at some point.
-    '&:focus': {
-      outline: 'none',
-    },
+    outline: 'none',
   },
   paperWidthXs: {
     maxWidth: Math.max(theme.breakpoints.values.xs, 360),
@@ -49,6 +47,10 @@ export const styles = theme => ({
   },
 });
 
+const defaultComponents = {
+  Transition: Fade,
+};
+
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
@@ -58,6 +60,7 @@ function Dialog(props) {
     children,
     classes,
     className,
+    components: componentsProp,
     disableBackdropClick,
     disableEscapeKeyDown,
     fullScreen,
@@ -74,10 +77,12 @@ function Dialog(props) {
     onExiting,
     open,
     PaperProps,
-    transition: TransitionProp,
     transitionDuration,
+    TransitionProps,
     ...other
   } = props;
+
+  const components = getComponents(defaultComponents, props);
 
   return (
     <Modal
@@ -95,7 +100,7 @@ function Dialog(props) {
       role="dialog"
       {...other}
     >
-      <TransitionProp
+      <components.Transition
         appear
         in={open}
         timeout={transitionDuration}
@@ -105,6 +110,7 @@ function Dialog(props) {
         onExit={onExit}
         onExiting={onExiting}
         onExited={onExited}
+        {...TransitionProps}
       >
         <Paper
           data-mui-test="Dialog"
@@ -118,7 +124,7 @@ function Dialog(props) {
         >
           {children}
         </Paper>
-      </TransitionProp>
+      </components.Transition>
     </Modal>
   );
 }
@@ -140,6 +146,12 @@ Dialog.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The components injection property.
+   */
+  components: PropTypes.shape({
+    Transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  }),
   /**
    * If `true`, clicking the backdrop will not fire the `onClose` callback.
    */
@@ -222,15 +234,19 @@ Dialog.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 Dialog.defaultProps = {
+  components: defaultComponents,
   disableBackdropClick: false,
   disableEscapeKeyDown: false,
   fullScreen: false,
   fullWidth: false,
   maxWidth: 'sm',
-  transition: Fade,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };
 

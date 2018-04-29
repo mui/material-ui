@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
+import { getComponents } from '../utils/helpers';
 import Input from '../Input';
 import { MenuItem } from '../Menu';
 import Select from '../Select';
@@ -51,7 +52,12 @@ export const styles = theme => ({
     color: theme.palette.text.secondary,
     marginLeft: theme.spacing.unit * 2.5,
   },
+  menuItem: {},
 });
+
+const defaultComponents = {
+  Actions: TablePaginationActions,
+};
 
 /**
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
@@ -69,11 +75,11 @@ class TablePagination extends React.Component {
 
   render() {
     const {
-      Actions,
       backIconButtonProps,
       classes,
       colSpan: colSpanProp,
       component: Component,
+      components: componentsProp,
       count,
       labelDisplayedRows,
       labelRowsPerPage,
@@ -88,6 +94,8 @@ class TablePagination extends React.Component {
     } = this.props;
 
     let colSpan;
+
+    const components = getComponents(defaultComponents, this.props);
 
     if (Component === TableCell || Component === 'td') {
       colSpan = colSpanProp || 1000; // col-span over everything
@@ -115,7 +123,11 @@ class TablePagination extends React.Component {
               {...SelectProps}
             >
               {rowsPerPageOptions.map(rowsPerPageOption => (
-                <MenuItem key={rowsPerPageOption} value={rowsPerPageOption}>
+                <MenuItem
+                  className={classes.menuItem}
+                  key={rowsPerPageOption}
+                  value={rowsPerPageOption}
+                >
                   {rowsPerPageOption}
                 </MenuItem>
               ))}
@@ -129,7 +141,7 @@ class TablePagination extends React.Component {
               page,
             })}
           </Typography>
-          <Actions
+          <components.Actions
             className={classes.actions}
             backIconButtonProps={backIconButtonProps}
             count={count}
@@ -145,11 +157,6 @@ class TablePagination extends React.Component {
 }
 
 TablePagination.propTypes = {
-  /**
-   * The component used for displaying the actions.
-   * Either a string to use a DOM element or a component.
-   */
-  Actions: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Properties applied to the back arrow `IconButton` component.
    */
@@ -167,6 +174,12 @@ TablePagination.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * The components injection property.
+   */
+  components: PropTypes.shape({
+    Actions: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  }),
   /**
    * The total number of rows.
    */
@@ -217,8 +230,8 @@ TablePagination.propTypes = {
 };
 
 TablePagination.defaultProps = {
-  Actions: TablePaginationActions,
   component: TableCell,
+  components: defaultComponents,
   labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
   labelRowsPerPage: 'Rows per page:',
   rowsPerPageOptions: [5, 10, 25],

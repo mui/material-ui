@@ -4,6 +4,7 @@ import warning from 'warning';
 import classNames from 'classnames';
 import Collapse from '../transitions/Collapse';
 import withStyles from '../styles/withStyles';
+import { getComponents } from '../utils/helpers';
 
 export const styles = theme => ({
   root: {
@@ -21,6 +22,10 @@ export const styles = theme => ({
   transition: {},
 });
 
+const defaultComponents = {
+  Transition: Collapse,
+};
+
 function StepContent(props) {
   const {
     active,
@@ -29,11 +34,12 @@ function StepContent(props) {
     classes,
     className,
     completed,
+    components: componentsProp,
     last,
     optional,
     orientation,
-    transition: Transition,
     transitionDuration,
+    TransitionProps,
     ...other
   } = props;
 
@@ -42,16 +48,19 @@ function StepContent(props) {
     'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',
   );
 
+  const components = getComponents(defaultComponents, props);
+
   return (
     <div className={classNames(classes.root, { [classes.last]: last }, className)} {...other}>
-      <Transition
+      <components.Transition
         in={active}
         className={classes.transition}
         timeout={transitionDuration}
         unmountOnExit
+        {...TransitionProps}
       >
         {children}
-      </Transition>
+      </components.Transition>
     </div>
   );
 }
@@ -84,6 +93,12 @@ StepContent.propTypes = {
    */
   completed: PropTypes.bool,
   /**
+   * The components injection property.
+   */
+  components: PropTypes.shape({
+    Transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  }),
+  /**
    * @ignore
    */
   last: PropTypes.bool,
@@ -97,10 +112,6 @@ StepContent.propTypes = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * Collapse component.
-   */
-  transition: PropTypes.func,
-  /**
    * Adjust the duration of the content expand transition.
    * Passed as a property to the transition component.
    *
@@ -111,10 +122,14 @@ StepContent.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 StepContent.defaultProps = {
-  transition: Collapse,
+  components: defaultComponents,
   transitionDuration: 'auto',
 };
 

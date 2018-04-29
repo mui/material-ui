@@ -62,3 +62,13 @@ export function createChainedFunction(...funcs: Array<any>) {
     () => {},
   );
 }
+
+export function getComponents(defaultComponents, props) {
+  return {
+    ...defaultComponents,
+    ...Object.keys(props.components || {}).reduce((accumulator, key) => {
+      accumulator[key] = props.components[key];
+      return accumulator;
+    }, {}),
+  };
+}

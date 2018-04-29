@@ -47,7 +47,7 @@ class FullScreenDialog extends React.Component {
           fullScreen
           open={this.state.open}
           onClose={this.handleClose}
-          transition={Transition}
+          components={{ Transition }}
         >
           <AppBar className={classes.appBar}>
             <Toolbar>

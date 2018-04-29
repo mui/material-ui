@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
+import { getComponents } from '../utils/helpers';
 
 export const styles = theme => ({
   root: {
@@ -58,6 +59,10 @@ export const styles = theme => ({
   },
 });
 
+const defaultComponents = {
+  Container: 'li',
+};
+
 class ListItem extends React.Component {
   getChildContext() {
     return {
@@ -72,7 +77,7 @@ class ListItem extends React.Component {
       classes,
       className: classNameProp,
       component: componentProp,
-      ContainerComponent,
+      components: componentsProp,
       ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
       dense,
       disabled,
@@ -80,6 +85,8 @@ class ListItem extends React.Component {
       divider,
       ...other
     } = this.props;
+
+    const components = getComponents(defaultComponents, this.props);
 
     const isDense = dense || this.context.dense || false;
     const children = React.Children.toArray(childrenProp);
@@ -114,7 +121,7 @@ class ListItem extends React.Component {
       Component = !componentProps.component && !componentProp ? 'div' : Component;
 
       // Avoid nesting of li > li.
-      if (ContainerComponent === 'li') {
+      if (components.Container === 'li') {
         if (Component === 'li') {
           Component = 'div';
         } else if (componentProps.component === 'li') {
@@ -123,13 +130,13 @@ class ListItem extends React.Component {
       }
 
       return (
-        <ContainerComponent
+        <components.Container
           className={classNames(classes.container, ContainerClassName)}
           {...ContainerProps}
         >
           <Component {...componentProps}>{children}</Component>
           {children.pop()}
-        </ContainerComponent>
+        </components.Container>
       );
     }
 
@@ -161,9 +168,12 @@ ListItem.propTypes = {
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
-   * The container component. Useful when a `ListItemSecondaryAction` is rendered.
+   * The components injection property.
+   * `Container` is useful when a `ListItemSecondaryAction` is rendered.
    */
-  ContainerComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  components: PropTypes.shape({
+    Container: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  }),
   /**
    * Properties applied to the container element when the component
    * is used to display a `ListItemSecondaryAction`.
@@ -189,7 +199,7 @@ ListItem.propTypes = {
 
 ListItem.defaultProps = {
   button: false,
-  ContainerComponent: 'li',
+  components: defaultComponents,
   dense: false,
   disabled: false,
   disableGutters: false,

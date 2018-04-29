@@ -135,9 +135,9 @@ describe('<ListItem />', () => {
       assert.strictEqual(wrapper.childAt(0).type(), ButtonBase);
     });
 
-    it('should accept a ContainerComponent property', () => {
+    it('should accept a components property', () => {
       const wrapper = shallow(
-        <ListItem ContainerComponent="div">
+        <ListItem components={{ Container: 'div' }}>
           <ListItemText primary="primary" />
           <ListItemSecondaryAction />
         </ListItem>,

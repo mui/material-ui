@@ -14,6 +14,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children *</span> | <span class="prop-type">node |  | Dialog children, usually the included sub-components. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">components</span> | <span class="prop-type">{Transition?: union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br>} | <span class="prop-default">{  Transition: Fade,}</span> | The components injection property. |
 | <span class="prop-name">disableBackdropClick</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, clicking the backdrop will not fire the `onClose` callback. |
 | <span class="prop-name">disableEscapeKeyDown</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, hitting escape will not fire the `onClose` callback. |
 | <span class="prop-name">fullScreen</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the dialog will be full-screen |
@@ -30,8 +31,9 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func |  | Callback fired when the dialog is exiting. |
 | <span class="prop-name required">open *</span> | <span class="prop-type">bool |  | If `true`, the Dialog is open. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">object |  | Properties applied to the `Paper` element. |
-| <span class="prop-name">transition</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">Fade</span> | Transition component. |
+| <span class="prop-name">transition</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | Transition component. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object |  | Properties applied to the `Transition` element. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

@@ -9,19 +9,18 @@ export const styles = theme => ({
     display: 'table-row',
     height: 48,
     verticalAlign: 'middle',
-    '&:focus': {
-      outline: 'none',
-    },
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 'none',
     '&$selected': {
       backgroundColor:
         theme.palette.type === 'light'
-          ? 'rgba(0, 0, 0, 0.04)' // grey[100]
+          ? 'rgba(0, 0, 0, 0.04)' // grey[100] but with opacity
           : 'rgba(255, 255, 255, 0.08)',
     },
     '&$hover:hover': {
       backgroundColor:
         theme.palette.type === 'light'
-          ? 'rgba(0, 0, 0, 0.07)' // grey[200]
+          ? 'rgba(0, 0, 0, 0.07)' // grey[200] but with opacity
           : 'rgba(255, 255, 255, 0.14)',
     },
   },

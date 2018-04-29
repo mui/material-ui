@@ -22,6 +22,7 @@ export const styles = {
     boxSizing: 'border-box',
     lineHeight: 'inherit',
     border: 'none',
+    // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
     background: 'transparent',
   },
