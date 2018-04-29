@@ -34,7 +34,7 @@ export default class FormDialog extends React.Component {
           <DialogContent>
             <DialogContentText>
               To subscribe to this website, please enter your email address here. We will send
-              updates occationally.
+              updates occasionally.
             </DialogContentText>
             <TextField
               autoFocus
