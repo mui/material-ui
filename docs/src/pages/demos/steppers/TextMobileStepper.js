@@ -61,7 +61,7 @@ class TextMobileStepper extends React.Component {
     return (
       <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>
-          <Typography>{`Step ${this.state.activeStep + 1} of ${maxSteps}`}</Typography>
+          <Typography>{`Photo ${this.state.activeStep + 1} of ${maxSteps}`}</Typography>
         </Paper>
         <SwipeableViews
           onChangeIndex={this.handleStepChange}
