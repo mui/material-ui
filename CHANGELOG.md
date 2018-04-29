@@ -8,9 +8,9 @@ Changes. Changes everywhere!
 Coming Soon
 
 ## 1.0.0-beta.44
-###### *Apr 28, 2018*
+###### *Apr 29, 2018*
 
-Big thanks to the 15 contributors who made this release possible.
+Big thanks to the 17 contributors who made this release possible.
 
 ### Breaking change
 
@@ -28,18 +28,20 @@ As long as you are providing a valid URL to `<CardMedia image />`, it should be 
 - [Modal] Prevent IE11 from crashing on modal close (#11115) @JonAbrams
 - [Input] Fix infinite rendering loop (#11159) @oliviertassinari
 - [lab] Fix the tests (#11160) @oliviertassinari
+- [Snackbar] Add a consecutive demo (#11111) @simoami
+- [Tabs] Better Ant Design demo (#11095) @theiliad
+- [Popover] Improve the demos (#11175) @oliviertassinari
 
 #### Docs
 
-- [Tabs] Better Ant Design demo (#11095) @theiliad
 - [docs] Add npm-registry-browser into showcase (#11114) @topheman
 - [docs] Fix the flow example (#11118) @prastut
-- [Snackbar] Add a consecutive demo (#11111) @simoami
 - [docs] Add showcase for Local Insights (#11131) @hrdymchl
 - [docs] Add iOS momentum scrolling (#11140) @cherniavskii
 - [docs] Add a CSS modules example (#11171) @oliviertassinari
 - [docs] Fix typo in themes.md (#11149) @zhuangya
 - [docs] Make sure next@6 is working (#11168) @oliviertassinari
+- [docs] Correct spelling error in FormDialog.js example (#11176) @weldon0405
 
 #### Core
 
