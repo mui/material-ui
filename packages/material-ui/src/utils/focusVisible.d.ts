@@ -1,9 +1,9 @@
 export function focusKeyPressed(pressed: boolean): boolean;
-export function detectKeyboardFocus(
+export function detectFocusVisible(
   instance: {
-    keyboardFocusTimeout: any;
-    keyboardFocusCheckTime: number;
-    keyboardFocusMaxCheckTimes: number;
+    focusVisibleTimeout: any;
+    focusVisibleCheckTime: number;
+    focusVisibleMaxCheckTimes: number;
   },
   element: Element,
   cb: () => void,

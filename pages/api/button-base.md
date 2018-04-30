@@ -23,7 +23,7 @@ It contains a load of style reset and some focus/ripple logic.
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the ripple effect will be disabled. |
 | <span class="prop-name">focusRipple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
 | <span class="prop-name">focusVisibleClassName</span> | <span class="prop-type">string |  | This property can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus throught a keyboard interaction. It's a polyfill for the [CSS :focus-visible feature](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rational for using this feature [is explain here](https://github.com/WICG/focus-visible/blob/master/explainer.md). |
-| <span class="prop-name">onKeyboardFocus</span> | <span class="prop-type">func |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
+| <span class="prop-name">onFocusVisible</span> | <span class="prop-type">func |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
 | <span class="prop-name">TouchRippleProps</span> | <span class="prop-type">object |  | Properties applied to the `TouchRipple` element. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
