@@ -117,7 +117,7 @@ export const styles = theme => {
         borderBottom: `2px solid ${theme.palette.text.primary}`,
       },
       '&$disabled:before': {
-        borderBottom: `1px dotted ${bottomLineColor}`,
+        borderBottom: `1px dashed ${bottomLineColor}`,
       },
     },
     error: {},
