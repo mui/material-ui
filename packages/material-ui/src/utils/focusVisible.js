@@ -10,14 +10,14 @@ const internal = {
   keyUpEventTimeout: -1,
 };
 
-export function detectKeyboardFocus(instance, element, callback, attempt = 1) {
-  warning(instance.keyboardFocusCheckTime, 'Material-UI: missing instance.keyboardFocusCheckTime');
+export function detectFocusVisible(instance, element, callback, attempt = 1) {
+  warning(instance.focusVisibleCheckTime, 'Material-UI: missing instance.focusVisibleCheckTime');
   warning(
-    instance.keyboardFocusMaxCheckTimes,
-    'Material-UI: missing instance.keyboardFocusMaxCheckTimes',
+    instance.focusVisibleMaxCheckTimes,
+    'Material-UI: missing instance.focusVisibleMaxCheckTimes',
   );
 
-  instance.keyboardFocusTimeout = setTimeout(() => {
+  instance.focusVisibleTimeout = setTimeout(() => {
     const doc = ownerDocument(element);
 
     if (
@@ -25,10 +25,10 @@ export function detectKeyboardFocus(instance, element, callback, attempt = 1) {
       (doc.activeElement === element || contains(element, doc.activeElement))
     ) {
       callback();
-    } else if (attempt < instance.keyboardFocusMaxCheckTimes) {
-      detectKeyboardFocus(instance, element, callback, attempt + 1);
+    } else if (attempt < instance.focusVisibleMaxCheckTimes) {
+      detectFocusVisible(instance, element, callback, attempt + 1);
     }
-  }, instance.keyboardFocusCheckTime);
+  }, instance.focusVisibleCheckTime);
 }
 
 const FOCUS_KEYS = ['tab', 'enter', 'space', 'esc', 'up', 'down', 'left', 'right'];

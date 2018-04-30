@@ -121,7 +121,7 @@ class ExpansionPanelSummary extends React.Component {
           className,
         )}
         {...other}
-        onKeyboardFocus={this.handleFocus}
+        onFocusVisible={this.handleFocus}
         onBlur={this.handleBlur}
         onClick={this.handleChange}
       >

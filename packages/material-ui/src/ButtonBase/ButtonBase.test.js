@@ -354,7 +354,7 @@ describe('<ButtonBase />', () => {
         false,
         'should not set keyboard focus before time has passed',
       );
-      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
       assert.strictEqual(
         wrapper.state().focusVisible,
         true,
@@ -363,12 +363,12 @@ describe('<ButtonBase />', () => {
     });
 
     it('should ignore the keyboard after 1s', () => {
-      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
       assert.strictEqual(wrapper.state().focusVisible, true, 'should think it is keyboard based');
       button.blur();
       assert.strictEqual(wrapper.state().focusVisible, false, 'should has lost the focus');
       button.focus();
-      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
       assert.strictEqual(
         wrapper.state().focusVisible,
         true,
@@ -378,7 +378,7 @@ describe('<ButtonBase />', () => {
       button.blur();
       assert.strictEqual(wrapper.state().focusVisible, false, 'should has lost the focus');
       button.focus();
-      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
       assert.strictEqual(
         wrapper.state().focusVisible,
         false,
@@ -455,23 +455,23 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(eventMock.persist.callCount, 0);
     });
 
-    it('onKeyboardFocusHandler() should propogate call to onKeyboardFocus prop', () => {
+    it('onFocusVisibleHandler() should propogate call to onFocusVisible prop', () => {
       const eventMock = 'woofButtonBase';
-      const onKeyboardFocusSpy = spy();
+      const onFocusVisibleSpy = spy();
       const wrapper = mount(
         <ButtonBaseNaked
           theme={{}}
           classes={{}}
           component="span"
-          onKeyboardFocus={onKeyboardFocusSpy}
+          onFocusVisible={onFocusVisibleSpy}
         >
           Hello
         </ButtonBaseNaked>,
       );
       const instance = wrapper.instance();
-      instance.onKeyboardFocusHandler(eventMock);
-      assert.strictEqual(onKeyboardFocusSpy.callCount, 1);
-      assert.strictEqual(onKeyboardFocusSpy.calledWith(eventMock), true);
+      instance.onFocusVisibleHandler(eventMock);
+      assert.strictEqual(onFocusVisibleSpy.callCount, 1);
+      assert.strictEqual(onFocusVisibleSpy.calledWith(eventMock), true);
     });
 
     it('should work with a functionnal component', () => {
@@ -487,7 +487,7 @@ describe('<ButtonBase />', () => {
       );
       const instance = wrapper.instance();
       wrapper.simulate('focus');
-      clock.tick(instance.keyboardFocusCheckTime);
+      clock.tick(instance.focusVisibleCheckTime);
     });
   });
 
