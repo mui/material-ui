@@ -56,7 +56,7 @@ Material-UI focuses exclusively on the React library, although, given that Preac
 we hope to soon support it too. Supporting one framework allows us to do less but do it better.
 
 This comes in different flavors:
-- Having fewer constraints, we can make trade-offs specific to out target framework.
+- Having fewer constraints, we can make trade-offs specific to our target framework.
 We have fewer edge-cases to take into account.
 - We can spend more time on nailing the React use case.
 
