@@ -194,6 +194,7 @@ class Snackbar extends React.Component {
       children,
       classes,
       className,
+      ContentProps,
       disableWindowBlurListener,
       message,
       onClose,
@@ -207,7 +208,6 @@ class Snackbar extends React.Component {
       onMouseLeave,
       open,
       resumeHideDuration,
-      SnackbarContentProps,
       transition: TransitionProp,
       transitionDuration,
       TransitionProps,
@@ -249,9 +249,7 @@ class Snackbar extends React.Component {
             direction={vertical === 'top' ? 'down' : 'up'}
             {...TransitionProps}
           >
-            {children || (
-              <SnackbarContent message={message} action={action} {...SnackbarContentProps} />
-            )}
+            {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
           </TransitionProp>
         </div>
       </ClickAwayListener>
@@ -294,6 +292,10 @@ Snackbar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Properties applied to the `SnackbarContent` element.
+   */
+  ContentProps: PropTypes.object,
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    */
@@ -363,10 +365,6 @@ Snackbar.propTypes = {
    * we default to `autoHideDuration / 2` ms.
    */
   resumeHideDuration: PropTypes.number,
-  /**
-   * Properties applied to the `SnackbarContent` element.
-   */
-  SnackbarContentProps: PropTypes.object,
   /**
    * Transition component.
    */

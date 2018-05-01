@@ -43,7 +43,7 @@ class PositionedSnackbar extends React.Component {
           anchorOrigin={{ vertical, horizontal }}
           open={open}
           onClose={this.handleClose}
-          SnackbarContentProps={{
+          ContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">I love snacks</span>}

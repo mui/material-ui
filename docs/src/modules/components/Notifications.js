@@ -75,7 +75,7 @@ class Notifications extends React.Component {
       <Snackbar
         key={message.id}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        SnackbarContentProps={{ 'aria-describedby': 'notification-message' }}
+        ContentProps={{ 'aria-describedby': 'notification-message' }}
         message={
           <span id="notification-message" dangerouslySetInnerHTML={{ __html: message.text }} />
         }

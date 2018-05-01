@@ -13,6 +13,7 @@ export interface DialogProps
   PaperProps?: Partial<PaperProps>;
   transition?: React.ReactType;
   transitionDuration?: TransitionProps['timeout'];
+  TransitionProps?: TransitionProps;
 }
 
 export type DialogClassKey =
