@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({
-  root: theme.typography.button,
+  root: {
+    ...theme.typography.button,
+    backgroundColor: theme.palette.common.white,
+    padding: theme.spacing.unit,
+  },
 });
 
 function TypographyTheme(props) {
