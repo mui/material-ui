@@ -34,6 +34,7 @@ export type TablePaginationClassKey =
   | 'root'
   | 'toolbar'
   | 'spacer'
+  | 'menuItem'
   | 'caption'
   | 'input'
   | 'selectRoot'

@@ -27,6 +27,7 @@ export const styles = theme => ({
   spacer: {
     flex: '1 1 100%',
   },
+  menuItem: {},
   caption: {
     flexShrink: 0,
   },
@@ -115,7 +116,11 @@ class TablePagination extends React.Component {
               {...SelectProps}
             >
               {rowsPerPageOptions.map(rowsPerPageOption => (
-                <MenuItem key={rowsPerPageOption} value={rowsPerPageOption}>
+                <MenuItem
+                  className={classes.menuItem}
+                  key={rowsPerPageOption}
+                  value={rowsPerPageOption}
+                >
                   {rowsPerPageOption}
                 </MenuItem>
               ))}
