@@ -34,6 +34,7 @@ function StepContent(props) {
     orientation,
     transition: Transition,
     transitionDuration,
+    TransitionProps,
     ...other
   } = props;
 
@@ -49,6 +50,7 @@ function StepContent(props) {
         className={classes.transition}
         timeout={transitionDuration}
         unmountOnExit
+        {...TransitionProps}
       >
         {children}
       </Transition>
@@ -111,6 +113,10 @@ StepContent.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 StepContent.defaultProps = {

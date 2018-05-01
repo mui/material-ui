@@ -100,6 +100,7 @@ class SpeedDial extends React.Component {
       openIcon,
       transition: Transition,
       transitionDuration,
+      TransitionProps,
       ...other
     } = this.props;
 
@@ -136,7 +137,7 @@ class SpeedDial extends React.Component {
 
     return (
       <div className={classNames(classes.root, classNameProp)} {...other}>
-        <Transition in={!hidden} timeout={transitionDuration} mountOnEnter unmountOnExit>
+        <Transition in={!hidden} timeout={transitionDuration} unmountOnExit {...TransitionProps}>
           <Button
             variant="fab"
             color="primary"
@@ -235,6 +236,10 @@ SpeedDial.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 SpeedDial.defaultProps = {

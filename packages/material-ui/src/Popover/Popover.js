@@ -292,6 +292,7 @@ class Popover extends React.Component {
       transformOrigin,
       transition: TransitionProp,
       transitionDuration,
+      TransitionProps,
       ...other
     } = this.props;
 
@@ -300,12 +301,6 @@ class Popover extends React.Component {
     // If neither are provided let the Modal take care of choosing the container
     const container =
       containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
-
-    const transitionProps = {};
-    // The provided transition might not support the auto timeout value.
-    if (TransitionProp === Grow) {
-      transitionProps.timeout = transitionDuration;
-    }
 
     return (
       <Modal container={container} open={open} BackdropProps={{ invisible: true }} {...other}>
@@ -322,7 +317,7 @@ class Popover extends React.Component {
           ref={node => {
             this.transitionEl = node;
           }}
-          {...transitionProps}
+          {...TransitionProps}
         >
           <Paper
             className={classes.paper}
@@ -486,6 +481,10 @@ Popover.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 Popover.defaultProps = {
