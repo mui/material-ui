@@ -16,7 +16,7 @@ import { setPrismTheme } from './utils/prism';
 import Layout from './layout/Layout';
 import Routes from './Routes/Routes';
 
-/* eslint-disable import/first */
+// /* eslint-disable import/first */
 // import moment from 'moment';
 // import 'moment/locale/fr';
 

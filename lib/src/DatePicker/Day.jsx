@@ -66,6 +66,9 @@ const styles = theme => ({
     color: theme.palette.common.white,
     backgroundColor: theme.palette.primary.main,
     fontWeight: theme.typography.fontWeightMedium,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+    },
   },
   disabled: {
     pointerEvents: 'none',
