@@ -33,6 +33,7 @@ export interface PopoverProps
   transformOrigin?: PopoverOrigin;
   transition?: React.ReactType;
   transitionDuration?: TransitionProps['timeout'] | 'auto';
+  TransitionProps?: TransitionProps;
 }
 
 export type PopoverClassKey = 'paper';

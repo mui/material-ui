@@ -14,6 +14,7 @@ export interface StepContentProps
   orientation?: Orientation;
   transition?: React.ComponentType<TransitionProps>;
   transitionDuration?: TransitionProps['timeout'] | 'auto';
+  TransitionProps?: TransitionProps;
 }
 
 export type StepContentClasskey = 'root' | 'last' | 'transition';

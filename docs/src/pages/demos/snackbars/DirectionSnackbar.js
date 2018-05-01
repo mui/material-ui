@@ -44,7 +44,7 @@ class DirectionSnackbar extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
           transition={this.state.transition}
-          SnackbarContentProps={{
+          ContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">I love snacks</span>}

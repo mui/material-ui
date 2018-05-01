@@ -96,7 +96,7 @@ class FabIntegrationSnackbar extends React.Component {
             open={open}
             autoHideDuration={4000}
             onClose={this.handleClose}
-            SnackbarContentProps={{
+            ContentProps={{
               'aria-describedby': 'snackbar-fab-message-id',
               className: classes.snackbarContent,
             }}
