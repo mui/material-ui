@@ -36,6 +36,7 @@ This property accepts the following keys:
 - `root`
 - `toolbar`
 - `spacer`
+- `menuItem`
 - `caption`
 - `input`
 - `selectRoot`
