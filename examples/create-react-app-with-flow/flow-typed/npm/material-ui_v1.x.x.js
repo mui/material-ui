@@ -121,7 +121,7 @@ declare module "material-ui/ButtonBase/ButtonBase" {
     disableRipple?: boolean,
     disabled?: boolean,
     focusRipple?: boolean,
-    focusVisibleedClassName?: string,
+    keyboardFocusedClassName?: string,
     onBlur?: Function,
     onClick?: Function,
     onFocus?: Function,
@@ -2281,7 +2281,7 @@ declare module "material-ui/utils/helpers" {
   };
 }
 
-declare module "material-ui/utils/focusVisible" {
+declare module "material-ui/utils/keyboardFocus" {
   declare module.exports: {
     focusKeyPressed: Function,
     detectKeyboardFocus: Function,
@@ -2962,8 +2962,8 @@ declare module "material-ui/utils/exactProp.js" {
 declare module "material-ui/utils/helpers.js" {
   declare module.exports: $Exports<"material-ui/utils/helpers">;
 }
-declare module "material-ui/utils/focusVisible.js" {
-  declare module.exports: $Exports<"material-ui/utils/focusVisible">;
+declare module "material-ui/utils/keyboardFocus.js" {
+  declare module.exports: $Exports<"material-ui/utils/keyboardFocus">;
 }
 declare module "material-ui/utils/manageAriaHidden.js" {
   declare module.exports: $Exports<"material-ui/utils/manageAriaHidden">;
