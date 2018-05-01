@@ -16,6 +16,7 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 2,
     height: '100%',
+    color: theme.palette.text.secondary,
   },
   control: {
     padding: theme.spacing.unit * 2,

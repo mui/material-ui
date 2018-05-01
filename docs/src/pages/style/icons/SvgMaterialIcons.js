@@ -5,6 +5,9 @@ import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({
+  root: {
+    color: theme.palette.text.primary,
+  },
   icon: {
     margin: theme.spacing.unit,
   },
@@ -13,7 +16,7 @@ const styles = theme => ({
 function SvgMaterialIcons(props) {
   const { classes } = props;
   return (
-    <div>
+    <div className={classes.root}>
       <AccessAlarmIcon className={classes.icon} />
       <ThreeDRotation className={classes.icon} />
     </div>
