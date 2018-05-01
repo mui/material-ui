@@ -210,19 +210,13 @@ class Snackbar extends React.Component {
       SnackbarContentProps,
       transition: TransitionProp,
       transitionDuration,
+      TransitionProps,
       ...other
     } = this.props;
 
     // So we only render active snackbars.
     if (!open && this.state.exited) {
       return null;
-    }
-
-    const transitionProps = {};
-
-    // The provided transition might not support the direction property.
-    if (TransitionProp === Slide) {
-      transitionProps.direction = vertical === 'top' ? 'down' : 'up';
     }
 
     return (
@@ -252,7 +246,8 @@ class Snackbar extends React.Component {
             onExited={createChainedFunction(this.handleExited, onExited)}
             onExiting={onExiting}
             timeout={transitionDuration}
-            {...transitionProps}
+            direction={vertical === 'top' ? 'down' : 'up'}
+            {...TransitionProps}
           >
             {children || (
               <SnackbarContent message={message} action={action} {...SnackbarContentProps} />
@@ -384,6 +379,10 @@ Snackbar.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 Snackbar.defaultProps = {

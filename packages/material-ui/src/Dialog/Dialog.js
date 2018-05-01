@@ -76,6 +76,7 @@ function Dialog(props) {
     PaperProps,
     transition: TransitionProp,
     transitionDuration,
+    TransitionProps,
     ...other
   } = props;
 
@@ -105,6 +106,7 @@ function Dialog(props) {
         onExit={onExit}
         onExiting={onExiting}
         onExited={onExited}
+        {...TransitionProps}
       >
         <Paper
           data-mui-test="Dialog"
@@ -222,6 +224,10 @@ Dialog.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 Dialog.defaultProps = {
