@@ -19,6 +19,7 @@ export const styles = {
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'transparent', // Reset default value
+    // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
     border: 0,
     margin: 0, // Remove the margin in Safari

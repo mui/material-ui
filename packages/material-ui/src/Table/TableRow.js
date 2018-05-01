@@ -9,9 +9,8 @@ export const styles = theme => ({
     display: 'table-row',
     height: 48,
     verticalAlign: 'middle',
-    '&:focus': {
-      outline: 'none',
-    },
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 'none',
     '&$selected': {
       backgroundColor:
         theme.palette.type === 'light'

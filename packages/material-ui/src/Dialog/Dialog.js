@@ -23,9 +23,8 @@ export const styles = theme => ({
     position: 'relative',
     maxHeight: '90vh',
     overflowY: 'auto', // Fix IE11 issue, to remove at some point.
-    '&:focus': {
-      outline: 'none',
-    },
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 'none',
   },
   paperWidthXs: {
     maxWidth: Math.max(theme.breakpoints.values.xs, 360),
