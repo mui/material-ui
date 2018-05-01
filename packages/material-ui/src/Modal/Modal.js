@@ -13,7 +13,7 @@ import inDOM from 'dom-helpers/util/inDOM';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import RootRef from '../internal/RootRef';
 import Portal from '../Portal';
-import { createChainedFunction } from '../utils/helpers';
+import { createChainedFunction, getComponents } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import ModalManager from './ModalManager';
 import Backdrop from './Backdrop';
@@ -42,22 +42,11 @@ export const styles = theme => ({
   },
 });
 
+const defaultComponents = {
+  Backdrop,
+};
+
 class Modal extends React.Component {
-  static getDerivedStateFromProps(nextProps) {
-    if (nextProps.open) {
-      return {
-        exited: false,
-      };
-    } else if (!getHasTransition(nextProps)) {
-      // Otherwise let handleExited take care of marking exited.
-      return {
-        exited: true,
-      };
-    }
-
-    return null;
-  }
-
   constructor(props, context) {
     super(props, context);
 
@@ -223,11 +212,11 @@ class Modal extends React.Component {
 
   render() {
     const {
-      BackdropComponent,
       BackdropProps,
       children,
       classes,
       className,
+      components: componentsProp,
       container,
       disableAutoFocus,
       disableBackdropClick,
@@ -265,6 +254,8 @@ class Modal extends React.Component {
       childProps.tabIndex = children.props.tabIndex || '-1';
     }
 
+    const components = getComponents(defaultComponents, this.props);
+
     return (
       <Portal
         ref={node => {
@@ -281,7 +272,11 @@ class Modal extends React.Component {
           {...other}
         >
           {hideBackdrop ? null : (
-            <BackdropComponent open={open} onClick={this.handleBackdropClick} {...BackdropProps} />
+            <components.Backdrop
+              open={open}
+              onClick={this.handleBackdropClick}
+              {...BackdropProps}
+            />
           )}
           <RootRef
             rootRef={node => {
@@ -296,11 +291,22 @@ class Modal extends React.Component {
   }
 }
 
+Modal.getDerivedStateFromProps = nextProps => {
+  if (nextProps.open) {
+    return {
+      exited: false,
+    };
+  } else if (!getHasTransition(nextProps)) {
+    // Otherwise let handleExited take care of marking exited.
+    return {
+      exited: true,
+    };
+  }
+
+  return null;
+};
+
 Modal.propTypes = {
-  /**
-   * A backdrop component. Useful for custom backdrop rendering.
-   */
-  BackdropComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Properties applied to the `Backdrop` element.
    */
@@ -317,6 +323,12 @@ Modal.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The components injection property.
+   */
+  components: PropTypes.shape({
+    Backdrop: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  }),
   /**
    * A node, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
@@ -395,6 +407,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
+  components: defaultComponents,
   disableAutoFocus: false,
   disableBackdropClick: false,
   disableEnforceFocus: false,
@@ -404,7 +417,6 @@ Modal.defaultProps = {
   keepMounted: false,
   // Modals don't open on the server so this won't conflict with concurrent requests.
   manager: new ModalManager(),
-  BackdropComponent: Backdrop,
 };
 
 export default withStyles(styles, { flip: false, name: 'MuiModal' })(polyfill(Modal));

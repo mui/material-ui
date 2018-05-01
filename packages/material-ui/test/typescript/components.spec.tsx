@@ -450,7 +450,7 @@ const ListTest = () => (
         </ListItemSecondaryAction>
       </ListItem>
     ))}
-    <ListItem ContainerComponent="div" ContainerProps={{ className: 'demo' }}>
+    <ListItem components={{ Container: 'div' }} ContainerProps={{ className: 'demo' }}>
       an item
     </ListItem>
   </List>
@@ -573,7 +573,7 @@ const SnackbarTest = () => (
       open={true}
       autoHideDuration={6e3}
       onClose={event => log(event)}
-      SnackbarContentProps={
+      ContentProps={
         {
           // 'aria-describedby': 'message-id',
           // ^ will work once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/22582 is merged.

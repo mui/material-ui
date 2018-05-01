@@ -50,28 +50,6 @@ export const styles = {
  * It contains a load of style reset and some focus/ripple logic.
  */
 class ButtonBase extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.focusVisible === 'undefined') {
-      return {
-        focusVisible: false,
-        lastDisabled: nextProps.disabled,
-      };
-    }
-
-    // The blur won't fire when the disabled state is set on a focused input.
-    // We need to book keep the focused state manually.
-    if (!prevState.prevState && nextProps.disabled && prevState.focusVisible) {
-      return {
-        focusVisible: false,
-        lastDisabled: nextProps.disabled,
-      };
-    }
-
-    return {
-      lastDisabled: nextProps.disabled,
-    };
-  }
-
   state = {};
 
   componentDidMount() {
@@ -294,6 +272,28 @@ class ButtonBase extends React.Component {
     );
   }
 }
+
+ButtonBase.getDerivedStateFromProps = (nextProps, prevState) => {
+  if (typeof prevState.focusVisible === 'undefined') {
+    return {
+      focusVisible: false,
+      lastDisabled: nextProps.disabled,
+    };
+  }
+
+  // The blur won't fire when the disabled state is set on a focused input.
+  // We need to book keep the focused state manually.
+  if (!prevState.prevState && nextProps.disabled && prevState.focusVisible) {
+    return {
+      focusVisible: false,
+      lastDisabled: nextProps.disabled,
+    };
+  }
+
+  return {
+    lastDisabled: nextProps.disabled,
+  };
+};
 
 ButtonBase.propTypes = {
   /**

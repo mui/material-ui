@@ -365,7 +365,7 @@ describe('<Snackbar />', () => {
   describe('prop: transition', () => {
     it('should render a Snackbar with transition', () => {
       const Transition = props => <div className="cloned-element-class" {...props} />;
-      const wrapper = shallow(<Snackbar open transition={Transition} />);
+      const wrapper = shallow(<Snackbar open components={{ Transition }} />);
       assert.strictEqual(
         wrapper.find(Transition).length,
         1,

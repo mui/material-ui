@@ -115,8 +115,6 @@ that **are needed for the stable version**:
 +import Button from '@material-ui/core/Button';
 ```
 
-- [ ] Look into the Render Props API over the Component Injection API. This one is an area of investigation. For instance, there is potential for simplifying the customization of the transitions.
-
 These breaking changes will be spread into different releases over the next few months to make the upgrade path as smooth as possible.
 Not only does the Material-UI project have to be upgraded for each breaking change,
 but we also have to upgrade our own projects.

@@ -12,10 +12,10 @@ filename: /packages/material-ui/src/Modal/Modal.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">BackdropComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">Backdrop</span> | A backdrop component. Useful for custom backdrop rendering. |
 | <span class="prop-name">BackdropProps</span> | <span class="prop-type">object |  | Properties applied to the `Backdrop` element. |
 | <span class="prop-name">children</span> | <span class="prop-type">element |  | A single child content element. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">components</span> | <span class="prop-type">{Backdrop?: union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br>} | <span class="prop-default">{  Backdrop,}</span> | The components injection property. |
 | <span class="prop-name">container</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br> |  | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. |
 | <span class="prop-name">disableAutoFocus</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.<br>Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers. |
 | <span class="prop-name">disableBackdropClick</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, clicking the backdrop will not fire any callback. |

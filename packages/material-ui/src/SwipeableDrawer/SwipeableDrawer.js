@@ -28,13 +28,6 @@ export function reset() {
 }
 
 class SwipeableDrawer extends React.Component {
-  static getDerivedStateFromProps() {
-    // Reset the maybeSwiping state everytime we receive new properties.
-    return {
-      maybeSwiping: false,
-    };
-  }
-
   state = {};
 
   componentDidMount() {
@@ -354,6 +347,13 @@ class SwipeableDrawer extends React.Component {
     );
   }
 }
+
+SwipeableDrawer.getDerivedStateFromProps = () => {
+  // Reset the maybeSwiping state everytime we receive new properties.
+  return {
+    maybeSwiping: false,
+  };
+};
 
 SwipeableDrawer.propTypes = {
   /**

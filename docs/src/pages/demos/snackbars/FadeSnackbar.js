@@ -23,8 +23,8 @@ class FadeSnackbar extends React.Component {
         <Snackbar
           open={this.state.open}
           onClose={this.handleClose}
-          transition={Fade}
-          SnackbarContentProps={{
+          components={{ Transition: Fade }}
+          ContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">I love snacks</span>}

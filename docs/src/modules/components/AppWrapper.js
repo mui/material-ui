@@ -29,29 +29,6 @@ function uiThemeSideEffect(uiTheme) {
 }
 
 class AppWrapper extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.pageContext === 'undefined') {
-      return {
-        prevProps: nextProps,
-        pageContext: nextProps.pageContext || getPageContext(),
-      };
-    }
-
-    const { prevProps } = prevState;
-
-    if (
-      nextProps.uiTheme.paletteType !== prevProps.uiTheme.paletteType ||
-      nextProps.uiTheme.direction !== prevProps.uiTheme.direction
-    ) {
-      return {
-        prevProps: nextProps,
-        pageContext: updatePageContext(nextProps.uiTheme),
-      };
-    }
-
-    return null;
-  }
-
   state = {};
 
   componentDidMount() {
@@ -95,6 +72,29 @@ class AppWrapper extends React.Component {
     );
   }
 }
+
+AppWrapper.getDerivedStateFromProps = (nextProps, prevState) => {
+  if (typeof prevState.pageContext === 'undefined') {
+    return {
+      prevProps: nextProps,
+      pageContext: nextProps.pageContext || getPageContext(),
+    };
+  }
+
+  const { prevProps } = prevState;
+
+  if (
+    nextProps.uiTheme.paletteType !== prevProps.uiTheme.paletteType ||
+    nextProps.uiTheme.direction !== prevProps.uiTheme.direction
+  ) {
+    return {
+      prevProps: nextProps,
+      pageContext: updatePageContext(nextProps.uiTheme),
+    };
+  }
+
+  return null;
+};
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
