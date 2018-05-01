@@ -93,6 +93,9 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       this.theme = listenToTheme ? themeListener.initial(context) || getDefaultTheme() : noopTheme;
 
       this.attach(this.theme);
+      this.classes = {};
+      this.lastClassesProp = {};
+      this.lastRenderedClasses = {};
     }
 
     state = {};
@@ -133,6 +136,64 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       if (this.unsubscribeId !== null) {
         themeListener.unsubscribe(this.context, this.unsubscribeId);
       }
+    }
+
+    getClasses() {
+      let generate = false;
+
+      if (!this.disableStylesGeneration) {
+        const sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
+        const sheetsManagerTheme = sheetManager.get(this.theme);
+        if (sheetsManagerTheme.sheet.classes !== this.lastRenderedClasses) {
+          this.lastRenderedClasses = sheetsManagerTheme.sheet.classes;
+          generate = true;
+        }
+      }
+
+      if (this.props.classes) {
+        if (this.props.classes !== this.lastClassesProp) {
+          this.lastClassesProp = this.props.classes;
+          generate = true;
+        }
+        if (generate) {
+          this.classes = {
+            ...this.lastRenderedClasses,
+            ...Object.keys(this.props.classes).reduce((accumulator, key) => {
+              warning(
+                this.lastRenderedClasses[key] || this.disableStylesGeneration,
+                [
+                  `Material-UI: the key \`${key}\` ` +
+                    `provided to the classes property is not implemented in ${getDisplayName(
+                      Component,
+                    )}.`,
+                  `You can only override one of the following: ${Object.keys(
+                    this.lastRenderedClasses,
+                  ).join(',')}`,
+                ].join('\n'),
+              );
+
+              warning(
+                !this.props.classes[key] || typeof this.props.classes[key] === 'string',
+                [
+                  `Material-UI: the key \`${key}\` ` +
+                    `provided to the classes property is not valid for ${getDisplayName(
+                      Component,
+                    )}.`,
+                  `You need to provide a non empty string instead of: ${this.props.classes[key]}.`,
+                ].join('\n'),
+              );
+
+              if (this.props.classes[key]) {
+                accumulator[key] = `${this.lastRenderedClasses[key]} ${this.props.classes[key]}`;
+              }
+
+              return accumulator;
+            }, {}),
+          };
+        }
+        return this.classes;
+      }
+      return this.lastRenderedClasses;
     }
 
     attach(theme) {
@@ -219,53 +280,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     unsubscribeId = null;
 
     render() {
-      const { classes: classesProp, innerRef, ...other } = this.props;
-
-      let classes;
-      let renderedClasses = {};
-
-      if (!this.disableStylesGeneration) {
-        const sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
-        const sheetsManagerTheme = sheetManager.get(this.theme);
-        renderedClasses = sheetsManagerTheme.sheet.classes;
-      }
-
-      if (classesProp) {
-        classes = {
-          ...renderedClasses,
-          ...Object.keys(classesProp).reduce((accumulator, key) => {
-            warning(
-              renderedClasses[key] || this.disableStylesGeneration,
-              [
-                `Material-UI: the key \`${key}\` ` +
-                  `provided to the classes property is not implemented in ${getDisplayName(
-                    Component,
-                  )}.`,
-                `You can only override one of the following: ${Object.keys(renderedClasses).join(
-                  ',',
-                )}`,
-              ].join('\n'),
-            );
-
-            warning(
-              !classesProp[key] || typeof classesProp[key] === 'string',
-              [
-                `Material-UI: the key \`${key}\` ` +
-                  `provided to the classes property is not valid for ${getDisplayName(Component)}.`,
-                `You need to provide a non empty string instead of: ${classesProp[key]}.`,
-              ].join('\n'),
-            );
-
-            if (classesProp[key]) {
-              accumulator[key] = `${renderedClasses[key]} ${classesProp[key]}`;
-            }
-
-            return accumulator;
-          }, {}),
-        };
-      } else {
-        classes = renderedClasses;
-      }
+      const { classes, innerRef, ...other } = this.props;
 
       const more = getThemeProps({ theme: this.theme, name });
 
@@ -275,7 +290,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         more.theme = this.theme;
       }
 
-      return <Component {...more} classes={classes} ref={innerRef} {...other} />;
+      return <Component {...more} classes={this.getClasses()} ref={innerRef} {...other} />;
     }
   }
 
