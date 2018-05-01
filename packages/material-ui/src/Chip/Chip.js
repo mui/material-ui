@@ -28,7 +28,8 @@ export const styles = theme => {
       transition: theme.transitions.create(['background-color', 'box-shadow']),
       // label will inherit this from root, then `clickable` class overrides this for both
       cursor: 'default',
-      outline: 'none', // No outline on focused element in Chrome (as triggered by tabIndex prop)
+      // We disable the focus ring for mouse, touch and keyboard users.
+      outline: 'none',
       border: 'none', // Remove `button` border
       padding: 0, // Remove `button` padding
     },

@@ -77,9 +77,8 @@ export const styles = {
     minHeight: 16,
     maxWidth: 'calc(100vw - 32px)',
     maxHeight: 'calc(100vh - 32px)',
-    '&:focus': {
-      outline: 'none',
-    },
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 'none',
   },
 };
 
