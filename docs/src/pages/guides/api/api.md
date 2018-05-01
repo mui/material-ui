@@ -70,13 +70,14 @@ const styles = {
 };
 ```
 
-### Internal components
+### Nested components
 
-Internal components have:
-- their own flattened properties when these are key to the abstraction.
-- their own `xxxProps` property when users might need to tweak the internal render method's sub-components,
-for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
-  For instance, exposing a `value` property.
+Nested components inside a component have:
+- their own flattened properties when these are key to the top level component abstraction.
+  For instance and `id` property for the `Input` component.
+- their own `xxxProps` property when users might need to tweak the internal render method's sub-components.
+  For instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
+- their own `xxxComponent` property for performing component injection.
 - their own `xxxRef` property when user might need to perform imperative actions.
   For instance, exposing a `inputRef` property to access the native `input` on the `Input` component.
   It help answering the following question. [How can I access the DOM element?](/getting-started/faq#how-can-i-access-the-dom-element-)

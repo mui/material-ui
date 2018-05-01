@@ -12,7 +12,7 @@ export interface StepContentProps
   last?: boolean;
   optional?: boolean;
   orientation?: Orientation;
-  transition?: React.ComponentType<TransitionProps>;
+  TransitionComponent?: React.ComponentType<TransitionProps>;
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   TransitionProps?: TransitionProps;
 }

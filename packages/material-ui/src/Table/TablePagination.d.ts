@@ -13,7 +13,7 @@ export interface LabelDisplayedRowsArgs {
 
 export interface TablePaginationProps
   extends StandardProps<TablePaginationBaseProps, TablePaginationClassKey> {
-  Actions?: React.ReactType<TablePaginationBaseProps>;
+  ActionsComponent?: React.ReactType<TablePaginationBaseProps>;
   backIconButtonProps?: Partial<IconButtonProps>;
   component?: React.ReactType<TablePaginationBaseProps>;
   count: number;

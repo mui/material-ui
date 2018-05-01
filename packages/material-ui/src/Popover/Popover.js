@@ -290,7 +290,7 @@ class Popover extends React.Component {
       PaperProps,
       role,
       transformOrigin,
-      transition: TransitionProp,
+      TransitionComponent,
       transitionDuration,
       TransitionProps,
       ...other
@@ -304,7 +304,7 @@ class Popover extends React.Component {
 
     return (
       <Modal container={container} open={open} BackdropProps={{ invisible: true }} {...other}>
-        <TransitionProp
+        <TransitionComponent
           appear
           in={open}
           onEnter={this.handleEnter}
@@ -328,7 +328,7 @@ class Popover extends React.Component {
             <EventListener target="window" onResize={this.handleResize} />
             {children}
           </Paper>
-        </TransitionProp>
+        </TransitionComponent>
       </Modal>
     );
   }
@@ -472,7 +472,7 @@ Popover.propTypes = {
   /**
    * Transition component.
    */
-  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */
@@ -499,7 +499,7 @@ Popover.defaultProps = {
     vertical: 'top',
     horizontal: 'left',
   },
-  transition: Grow,
+  TransitionComponent: Grow,
   transitionDuration: 'auto',
 };
 
