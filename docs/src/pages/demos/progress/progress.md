@@ -62,7 +62,7 @@ const MAX = y; // Maximium expected value
 const normalise = value => (value - MIN) * (MAX - MIN);
 
 // Example component that utilizes the `normalise` function at the point of render.
-function Progress(value) {
+function Progress(props) {
   return (
     <React.Fragment>
       <CircularProgress variant="determinate" value={normalise(props.value)} />
