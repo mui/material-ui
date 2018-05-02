@@ -91,6 +91,7 @@ class Tabs extends React.Component {
       classes,
       scrollable,
       scrollButtons,
+      scrollButtonsConsumeSpaceWhenHidden,
       TabScrollButton: TabScrollButtonProp,
       theme,
     } = this.props;
@@ -104,27 +105,35 @@ class Tabs extends React.Component {
 
     const showScrollButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === 'on');
 
-    conditionalElements.scrollButtonLeft = showScrollButtons ? (
-      <TabScrollButtonProp
-        direction={theme && theme.direction === 'rtl' ? 'right' : 'left'}
-        onClick={this.handleLeftScrollClick}
-        visible={this.state.showLeftScroll}
-        className={classNames(classes.scrollButtons, {
-          [classes.scrollButtonsAuto]: scrollButtons === 'auto',
-        })}
-      />
-    ) : null;
+    if (!scrollButtonsConsumeSpaceWhenHidden && !this.state.showLeftScroll) {
+      conditionalElements.scrollButtonLeft = null;
+    } else {
+      conditionalElements.scrollButtonLeft = showScrollButtons ? (
+        <TabScrollButtonProp
+          direction={theme && theme.direction === 'rtl' ? 'right' : 'left'}
+          onClick={this.handleLeftScrollClick}
+          visible={this.state.showLeftScroll}
+          className={classNames(classes.scrollButtons, {
+            [classes.scrollButtonsAuto]: scrollButtons === 'auto',
+          })}
+        />
+      ) : null;
+    }
 
-    conditionalElements.scrollButtonRight = showScrollButtons ? (
-      <TabScrollButtonProp
-        direction={theme && theme.direction === 'rtl' ? 'left' : 'right'}
-        onClick={this.handleRightScrollClick}
-        visible={this.state.showRightScroll}
-        className={classNames(classes.scrollButtons, {
-          [classes.scrollButtonsAuto]: scrollButtons === 'auto',
-        })}
-      />
-    ) : null;
+    if (!scrollButtonsConsumeSpaceWhenHidden && !this.state.showRightScroll) {
+      conditionalElements.scrollButtonRight = null;
+    } else {
+      conditionalElements.scrollButtonRight = showScrollButtons ? (
+        <TabScrollButtonProp
+          direction={theme && theme.direction === 'rtl' ? 'left' : 'right'}
+          onClick={this.handleRightScrollClick}
+          visible={this.state.showRightScroll}
+          className={classNames(classes.scrollButtons, {
+            [classes.scrollButtonsAuto]: scrollButtons === 'auto',
+          })}
+        />
+      ) : null;
+    }
 
     return conditionalElements;
   };
@@ -419,6 +428,10 @@ Tabs.propTypes = {
    */
   scrollButtons: PropTypes.oneOf(['auto', 'on', 'off']),
   /**
+   * Should the scroll buttonss consume space when buttons are hidden.
+   */
+  scrollButtonsConsumeSpaceWhenHidden: PropTypes.bool,
+  /**
    * The component used to render the scroll buttons.
    */
   TabScrollButton: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
@@ -443,6 +456,7 @@ Tabs.defaultProps = {
   indicatorColor: 'secondary',
   scrollable: false,
   scrollButtons: 'auto',
+  scrollButtonsConsumeSpaceWhenHidden: true,
   TabScrollButton,
   textColor: 'inherit',
 };
