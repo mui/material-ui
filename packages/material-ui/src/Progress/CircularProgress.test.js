@@ -109,17 +109,5 @@ describe('<CircularProgress />', () => {
       assert.strictEqual(style.strokeDashoffset, '11.310px', 'should have strokeDashoffset set');
       assert.strictEqual(wrapper.props()['aria-valuenow'], 70);
     });
-
-    it('should set strokeDasharray of circle based on min max', () => {
-      const wrapper = shallow(
-        <CircularProgress variant="determinate" value={5} min={0} max={10} />,
-      );
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      const svg = wrapper.childAt(0);
-      const style = svg.childAt(0).props().style;
-      assert.strictEqual(style.strokeDasharray, '125.664', 'should have strokeDasharray set');
-      assert.strictEqual(style.strokeDashoffset, '31.416px', 'should have strokeDashoffset set');
-      assert.strictEqual(wrapper.props()['aria-valuenow'], 50);
-    });
   });
 });
