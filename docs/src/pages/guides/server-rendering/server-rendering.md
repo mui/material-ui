@@ -30,7 +30,6 @@ If you're unfamiliar with Express or middleware, just know that our handleRender
 `server.js`
 
 ```js
-import path from 'path';
 import express from 'express';
 import React from 'react';
 import App from './App';
@@ -133,7 +132,7 @@ Let's take a look at our client file:
 
 ```jsx
 import React from 'react';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { green, red } from 'material-ui/colors';
 import App from './App';
@@ -161,7 +160,7 @@ const theme = createMuiTheme({
   },
 });
 
-render(
+hydrate(
   <MuiThemeProvider theme={theme}>
     <Main />
   </MuiThemeProvider>,
