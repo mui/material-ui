@@ -5,9 +5,7 @@ import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   root: {
-    height: 24,
     marginRight: theme.spacing.unit * 2,
-    width: 24,
     color: theme.palette.action.active,
     flexShrink: 0,
   },
