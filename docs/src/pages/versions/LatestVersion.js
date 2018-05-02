@@ -21,10 +21,10 @@ function LatestVersion(props) {
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell>
+            <TableCell padding="dense">
               <Typography>v1-beta branch</Typography>
             </TableCell>
-            <TableCell>
+            <TableCell padding="dense">
               <Typography
                 component={props2 => (
                   <Link
@@ -37,7 +37,7 @@ function LatestVersion(props) {
                 Documentation
               </Typography>
             </TableCell>
-            <TableCell>
+            <TableCell padding="dense">
               <Typography
                 component={props2 => (
                   <Link

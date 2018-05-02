@@ -67,10 +67,10 @@ class StableVersions extends React.Component {
             {VERSIONS.map(version => {
               return (
                 <TableRow key={version.semver}>
-                  <TableCell>
+                  <TableCell padding="dense">
                     <Typography>{version.semver}</Typography>
                   </TableCell>
-                  <TableCell>
+                  <TableCell padding="dense">
                     <Typography
                       component={props2 => (
                         <Link {...props2} variant="secondary" href={version.url} />
@@ -79,7 +79,7 @@ class StableVersions extends React.Component {
                       Documentation
                     </Typography>
                   </TableCell>
-                  <TableCell>
+                  <TableCell padding="dense">
                     <Typography
                       component={props2 => (
                         <Link
