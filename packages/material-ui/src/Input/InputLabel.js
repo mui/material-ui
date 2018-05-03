@@ -24,6 +24,7 @@ export const styles = theme => ({
   shrink: {
     transform: 'translate(0, 1.5px) scale(0.75)',
     transformOrigin: 'top left',
+    width: '133.33%',
   },
   animated: {
     transition: theme.transitions.create('transform', {
