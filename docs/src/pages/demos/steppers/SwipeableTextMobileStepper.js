@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import SwipeableViews from 'react-swipeable-views';
 import tutorialData from './steppersData';
 
 const styles = theme => ({
@@ -30,7 +31,7 @@ const styles = theme => ({
   },
 });
 
-class TextMobileStepper extends React.Component {
+class SwipeableTextMobileStepper extends React.Component {
   state = {
     activeStep: 0,
   };
@@ -47,6 +48,10 @@ class TextMobileStepper extends React.Component {
     }));
   };
 
+  handleStepChange = activeStep => {
+    this.setState({ activeStep });
+  };
+
   render() {
     const { classes, theme } = this.props;
     const { activeStep } = this.state;
@@ -58,11 +63,15 @@ class TextMobileStepper extends React.Component {
         <Paper square elevation={0} className={classes.header}>
           <Typography>{tutorialData[activeStep].label}</Typography>
         </Paper>
-        <img
-          className={classes.img}
-          src={tutorialData[activeStep].imgPath}
-          alt={tutorialData[activeStep].label}
-        />
+        <SwipeableViews
+          onChangeIndex={this.handleStepChange}
+          enableMouseEvents
+          index={this.state.activeStep}
+        >
+          {tutorialData.map(step => (
+            <img className={classes.img} src={step.imgPath} alt={step.label} />
+          ))}
+        </SwipeableViews>
         <MobileStepper
           variant="text"
           steps={maxSteps}
@@ -87,9 +96,9 @@ class TextMobileStepper extends React.Component {
   }
 }
 
-TextMobileStepper.propTypes = {
+SwipeableTextMobileStepper.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(TextMobileStepper);
+export default withStyles(styles, { withTheme: true })(SwipeableTextMobileStepper);

@@ -73,6 +73,13 @@ You must implement the textual description yourself, however, an example is prov
 
 {{"demo": "pages/demos/steppers/TextMobileStepper.js"}}
 
+### Mobile Stepper - Text with Carousel effect
+
+This demo is very similar to the previous, the difference is the usage of 
+[react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to make the transition of steps.
+
+{{"demo": "pages/demos/steppers/SwipeableTextMobileStepper.js"}}
+
 ### Mobile Stepper - Dots
 
 Use dots when the number of steps isn’t large.
