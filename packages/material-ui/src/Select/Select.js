@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SelectInput from './SelectInput';
 import withStyles from '../styles/withStyles';
+import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input'; // Import to enforce the CSS injection order
 
 export const styles = theme => ({
@@ -65,6 +66,7 @@ function Select(props) {
     children,
     classes,
     displayEmpty,
+    IconComponent,
     input,
     inputProps,
     MenuProps,
@@ -87,6 +89,7 @@ function Select(props) {
       children,
       classes,
       displayEmpty,
+      IconComponent,
       MenuProps,
       multiple,
       native,
@@ -123,6 +126,10 @@ Select.propTypes = {
    * You can only use it when the `native` property is `false` (default).
    */
   displayEmpty: PropTypes.bool,
+  /**
+   * The icon that displays the arrow.
+   */
+  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
@@ -198,6 +205,7 @@ Select.propTypes = {
 Select.defaultProps = {
   autoWidth: false,
   displayEmpty: false,
+  IconComponent: ArrowDropDownIcon,
   input: <Input />,
   multiple: false,
   native: false,

@@ -17,6 +17,7 @@ describe('<SelectInput />', () => {
     native: false,
     multiple: false,
     displayEmpty: false,
+    IconComponent: 'div',
     children: [
       <MenuItem key={1} value={10}>
         Ten
