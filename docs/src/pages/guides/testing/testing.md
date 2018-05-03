@@ -10,24 +10,30 @@ To learn more about our internal tests, you can have a look at the [README](http
 
 ## Userspace
 
-What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions on top of enzyme to make the process easier.
-You can take advantage of those helpers if you so choose.
+What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier.
+We are exposing them. You can take advantage of our helpers if you so choose.
 
 ### Shallow rendering
 
 Shallow rendering is useful to constrain your testing to a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components.
-We expose a `createShallow()` function for this situation. However, you will most likely not need it most of the time. Shallow rendering was created to test components in isolation. This means without leaking child implementation details such as the context.
+Shallow rendering was created to test components in isolation. This means without leaking child implementation details such as the context.
+
+We expose a `createShallow()` function for this situation. Aside from wrapping the enzyme API, it's providing a `dive` and `untilSelector` option.
 
 ### Full DOM rendering
 
 Full DOM rendering is ideal for use cases where you have components that may interact with DOM APIs or may require the full lifecycle in order to fully test the component (i.e., `componentDidMount` etc.).
+
 We expose a `createMount()` function for this situation.
+Aside from wrapping the enzyme API, it's providing a `cleanUp` function.
 
 ### Render to string
 
 Rendering to a string is useful to test the behavior of the components that are used on the server.
 You can take advantage of it to assert the generated HTML string.
-We expose a `createRender()` function for this situation.
+
+We expose a `createRender()` function for this situation. It's an alias for the enzyme API.
+We only expose this function for consitency.
 
 ## API
 
