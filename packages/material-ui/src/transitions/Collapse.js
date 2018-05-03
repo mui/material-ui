@@ -73,7 +73,10 @@ class Collapse extends React.Component {
   };
 
   handleEntered = node => {
+    const { transitionDuration } = node.style;
+    node.style.transitionDuration = '0s';
     node.style.height = 'auto';
+    node.style.transitionDuration = transitionDuration;
 
     if (this.props.onEntered) {
       this.props.onEntered(node);
