@@ -10,8 +10,8 @@ export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 
   indicatorColor?: 'secondary' | 'primary' | string;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   scrollable?: boolean;
+  ScrollButtonComponent?: React.ReactType;
   scrollButtons?: 'auto' | 'on' | 'off';
-  TabScrollButton?: React.ReactType;
   textColor?: 'secondary' | 'primary' | 'inherit' | string;
   value: any;
   width?: string;

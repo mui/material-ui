@@ -33,7 +33,7 @@ filename: /packages/material-ui/src/Popover/Popover.js
 | <span class="prop-name required">open *</span> | <span class="prop-type">bool |  | If `true`, the popover is visible. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">object |  | Properties applied to the `Paper` element. |
 | <span class="prop-name">transformOrigin</span> | <span class="prop-type">{horizontal?: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'right'<br><br>, vertical?: union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'center'&nbsp;&#124;<br>&nbsp;'bottom'<br><br>} | <span class="prop-default">{  vertical: 'top',  horizontal: 'left',}</span> | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
-| <span class="prop-name">transition</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">Grow</span> | Transition component. |
+| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">Grow</span> | Transition component. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | <span class="prop-default">'auto'</span> | Set to 'auto' to automatically calculate transition time based on height. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object |  | Properties applied to the `Transition` element. |
 

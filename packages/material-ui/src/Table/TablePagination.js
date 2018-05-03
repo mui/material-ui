@@ -70,7 +70,7 @@ class TablePagination extends React.Component {
 
   render() {
     const {
-      Actions,
+      ActionsComponent,
       backIconButtonProps,
       classes,
       colSpan: colSpanProp,
@@ -134,7 +134,7 @@ class TablePagination extends React.Component {
               page,
             })}
           </Typography>
-          <Actions
+          <ActionsComponent
             className={classes.actions}
             backIconButtonProps={backIconButtonProps}
             count={count}
@@ -154,7 +154,7 @@ TablePagination.propTypes = {
    * The component used for displaying the actions.
    * Either a string to use a DOM element or a component.
    */
-  Actions: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  ActionsComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Properties applied to the back arrow `IconButton` component.
    */
@@ -222,7 +222,7 @@ TablePagination.propTypes = {
 };
 
 TablePagination.defaultProps = {
-  Actions: TablePaginationActions,
+  ActionsComponent: TablePaginationActions,
   component: TableCell,
   labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
   labelRowsPerPage: 'Rows per page:',

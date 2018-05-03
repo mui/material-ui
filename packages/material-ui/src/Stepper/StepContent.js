@@ -32,7 +32,7 @@ function StepContent(props) {
     last,
     optional,
     orientation,
-    transition: Transition,
+    TransitionComponent,
     transitionDuration,
     TransitionProps,
     ...other
@@ -45,7 +45,7 @@ function StepContent(props) {
 
   return (
     <div className={classNames(classes.root, { [classes.last]: last }, className)} {...other}>
-      <Transition
+      <TransitionComponent
         in={active}
         className={classes.transition}
         timeout={transitionDuration}
@@ -53,7 +53,7 @@ function StepContent(props) {
         {...TransitionProps}
       >
         {children}
-      </Transition>
+      </TransitionComponent>
     </div>
   );
 }
@@ -101,7 +101,7 @@ StepContent.propTypes = {
   /**
    * Collapse component.
    */
-  transition: PropTypes.func,
+  TransitionComponent: PropTypes.func,
   /**
    * Adjust the duration of the content expand transition.
    * Passed as a property to the transition component.
@@ -120,7 +120,7 @@ StepContent.propTypes = {
 };
 
 StepContent.defaultProps = {
-  transition: Collapse,
+  TransitionComponent: Collapse,
   transitionDuration: 'auto',
 };
 

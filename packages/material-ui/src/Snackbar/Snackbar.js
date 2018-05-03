@@ -208,7 +208,7 @@ class Snackbar extends React.Component {
       onMouseLeave,
       open,
       resumeHideDuration,
-      transition: TransitionProp,
+      TransitionComponent,
       transitionDuration,
       TransitionProps,
       ...other
@@ -236,7 +236,7 @@ class Snackbar extends React.Component {
             onFocus={disableWindowBlurListener ? undefined : this.handleResume}
             onBlur={disableWindowBlurListener ? undefined : this.handlePause}
           />
-          <TransitionProp
+          <TransitionComponent
             appear
             in={open}
             onEnter={onEnter}
@@ -250,7 +250,7 @@ class Snackbar extends React.Component {
             {...TransitionProps}
           >
             {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
-          </TransitionProp>
+          </TransitionComponent>
         </div>
       </ClickAwayListener>
     );
@@ -368,7 +368,7 @@ Snackbar.propTypes = {
   /**
    * Transition component.
    */
-  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -389,7 +389,7 @@ Snackbar.defaultProps = {
     horizontal: 'center',
   },
   disableWindowBlurListener: false,
-  transition: Slide,
+  TransitionComponent: Slide,
   transitionDuration: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,

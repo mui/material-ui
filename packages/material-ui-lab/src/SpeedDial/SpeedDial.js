@@ -98,7 +98,7 @@ class SpeedDial extends React.Component {
       onKeyDown,
       open,
       openIcon,
-      transition: Transition,
+      TransitionComponent,
       transitionDuration,
       TransitionProps,
       ...other
@@ -137,7 +137,12 @@ class SpeedDial extends React.Component {
 
     return (
       <div className={classNames(classes.root, classNameProp)} {...other}>
-        <Transition in={!hidden} timeout={transitionDuration} unmountOnExit {...TransitionProps}>
+        <TransitionComponent
+          in={!hidden}
+          timeout={transitionDuration}
+          unmountOnExit
+          {...TransitionProps}
+        >
           <Button
             variant="fab"
             color="primary"
@@ -155,7 +160,7 @@ class SpeedDial extends React.Component {
           >
             {icon()}
           </Button>
-        </Transition>
+        </TransitionComponent>
         <div
           id={`${id}-actions`}
           className={classNames(classes.actions, { [classes.actionsClosed]: !open })}
@@ -227,7 +232,7 @@ SpeedDial.propTypes = {
   /**
    * Transition component.
    */
-  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -244,7 +249,7 @@ SpeedDial.propTypes = {
 
 SpeedDial.defaultProps = {
   hidden: false,
-  transition: Zoom,
+  TransitionComponent: Zoom,
   transitionDuration: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,

@@ -11,7 +11,7 @@ export interface DialogProps
   fullWidth?: boolean;
   maxWidth?: 'xs' | 'sm' | 'md' | false;
   PaperProps?: Partial<PaperProps>;
-  transition?: React.ReactType;
+  TransitionComponent?: React.ReactType;
   transitionDuration?: TransitionProps['timeout'];
   TransitionProps?: TransitionProps;
 }

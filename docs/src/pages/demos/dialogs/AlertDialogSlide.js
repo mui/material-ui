@@ -31,7 +31,7 @@ class AlertDialogSlide extends React.Component {
         <Button onClick={this.handleClickOpen}>Slide in alert dialog</Button>
         <Dialog
           open={this.state.open}
-          transition={Transition}
+          TransitionComponent={Transition}
           keepMounted
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-slide-title"

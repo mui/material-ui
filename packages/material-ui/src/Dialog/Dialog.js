@@ -73,7 +73,7 @@ function Dialog(props) {
     onExiting,
     open,
     PaperProps,
-    transition: TransitionProp,
+    TransitionComponent,
     transitionDuration,
     TransitionProps,
     ...other
@@ -95,7 +95,7 @@ function Dialog(props) {
       role="dialog"
       {...other}
     >
-      <TransitionProp
+      <TransitionComponent
         appear
         in={open}
         timeout={transitionDuration}
@@ -119,7 +119,7 @@ function Dialog(props) {
         >
           {children}
         </Paper>
-      </TransitionProp>
+      </TransitionComponent>
     </Modal>
   );
 }
@@ -214,7 +214,7 @@ Dialog.propTypes = {
   /**
    * Transition component.
    */
-  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -235,7 +235,7 @@ Dialog.defaultProps = {
   fullScreen: false,
   fullWidth: false,
   maxWidth: 'sm',
-  transition: Fade,
+  TransitionComponent: Fade,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
 };
 

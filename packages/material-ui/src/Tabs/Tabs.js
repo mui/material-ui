@@ -87,13 +87,7 @@ class Tabs extends React.Component {
   }
 
   getConditionalElements = () => {
-    const {
-      classes,
-      scrollable,
-      scrollButtons,
-      TabScrollButton: TabScrollButtonProp,
-      theme,
-    } = this.props;
+    const { classes, scrollable, ScrollButtonComponent, scrollButtons, theme } = this.props;
     const conditionalElements = {};
     conditionalElements.scrollbarSizeListener = scrollable ? (
       <ScrollbarSize
@@ -105,7 +99,7 @@ class Tabs extends React.Component {
     const showScrollButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === 'on');
 
     conditionalElements.scrollButtonLeft = showScrollButtons ? (
-      <TabScrollButtonProp
+      <ScrollButtonComponent
         direction={theme && theme.direction === 'rtl' ? 'right' : 'left'}
         onClick={this.handleLeftScrollClick}
         visible={this.state.showLeftScroll}
@@ -116,7 +110,7 @@ class Tabs extends React.Component {
     ) : null;
 
     conditionalElements.scrollButtonRight = showScrollButtons ? (
-      <TabScrollButtonProp
+      <ScrollButtonComponent
         direction={theme && theme.direction === 'rtl' ? 'left' : 'right'}
         onClick={this.handleRightScrollClick}
         visible={this.state.showRightScroll}
@@ -283,8 +277,8 @@ class Tabs extends React.Component {
       indicatorColor,
       onChange,
       scrollable,
+      ScrollButtonComponent,
       scrollButtons,
-      TabScrollButton: TabScrollButtonProp,
       textColor,
       theme,
       value,
@@ -412,16 +406,16 @@ Tabs.propTypes = {
    */
   scrollable: PropTypes.bool,
   /**
+   * The component used to render the scroll buttons.
+   */
+  ScrollButtonComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
    * Determine behavior of scroll buttons when tabs are set to scroll
    * `auto` will only present them on medium and larger viewports
    * `on` will always present them
    * `off` will never present them
    */
   scrollButtons: PropTypes.oneOf(['auto', 'on', 'off']),
-  /**
-   * The component used to render the scroll buttons.
-   */
-  TabScrollButton: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Determines the color of the `Tab`.
    */
@@ -442,8 +436,8 @@ Tabs.defaultProps = {
   fullWidth: false,
   indicatorColor: 'secondary',
   scrollable: false,
+  ScrollButtonComponent: TabScrollButton,
   scrollButtons: 'auto',
-  TabScrollButton,
   textColor: 'inherit',
 };
 

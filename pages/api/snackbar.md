@@ -30,7 +30,7 @@ filename: /packages/material-ui/src/Snackbar/Snackbar.js
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func |  | Callback fired when the transition is exiting. |
 | <span class="prop-name">open</span> | <span class="prop-type">bool |  | If true, `Snackbar` is open. |
 | <span class="prop-name">resumeHideDuration</span> | <span class="prop-type">number |  | The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` property isn't specified, it does nothing. If `autoHideDuration` property is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms. |
-| <span class="prop-name">transition</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">Slide</span> | Transition component. |
+| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">Slide</span> | Transition component. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object |  | Properties applied to the `Transition` element. |
 
