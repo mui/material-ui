@@ -40,7 +40,23 @@ you wish to add or override.
 
 Notice that in addition to the button styling, the button label's capitalization has been changed:
 
-{{"demo": "pages/customization/overrides/Classes.js"}}
+{{"demo": "pages/customization/overrides/ClassesNesting.js"}}
+
+Aside from accessing nested elements, the `classes` property can be used to customize the internal states of Material-UI components.
+The components internal states, like `:hover`, `:focus`, `disabled` and `selected`, are styled with a higher CSS specificity.
+[Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
+In order to override the components internal states, **you need to increase specificity too**.
+
+```css
+.classes-state-root {
+  /* ... */
+}
+.classes-state-root.disabled {
+  color: white;
+}
+```
+
+{{"demo": "pages/customization/overrides/ClassesState.js"}}
 
 ### Overriding with inline-style
 

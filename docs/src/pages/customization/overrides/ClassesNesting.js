@@ -18,22 +18,23 @@ const styles = {
   },
 };
 
-function Classes(props) {
+function ClassesNesting(props) {
+  const { classes } = props;
+
   return (
     <Button
       classes={{
-        root: props.classes.root, // class name, e.g. `classes-root-x`
-        label: props.classes.label, // class name, e.g. `classes-label-x`
+        root: classes.root, // class name, e.g. `classes-nesting-root-x`
+        label: classes.label, // class name, e.g. `classes-nesting-label-x`
       }}
     >
-      {props.children ? props.children : 'classes'}
+      classes nesting
     </Button>
   );
 }
 
-Classes.propTypes = {
-  children: PropTypes.node,
+ClassesNesting.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Classes);
+export default withStyles(styles)(ClassesNesting);
