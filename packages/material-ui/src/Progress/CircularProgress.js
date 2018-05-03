@@ -75,38 +75,25 @@ export const styles = theme => ({
  * attribute to `true` on that region until it has finished loading.
  */
 function CircularProgress(props) {
-  const {
-    classes,
-    className,
-    color,
-    max,
-    min,
-    size,
-    style,
-    thickness,
-    value,
-    variant,
-    ...other
-  } = props;
+  const { classes, className, color, size, style, thickness, value, variant, ...other } = props;
 
   const circleStyle = {};
   const rootStyle = {};
   const rootProps = {};
 
   if (variant === 'determinate' || variant === 'static') {
-    const relVal = getRelativeValue(value, min, max) * 100;
     const circumference = 2 * Math.PI * (SIZE / 2 - 5);
     circleStyle.strokeDasharray = circumference.toFixed(3);
-    rootProps['aria-valuenow'] = Math.round(relVal);
+    rootProps['aria-valuenow'] = Math.round(value);
 
     if (variant === 'static') {
-      circleStyle.strokeDashoffset = `${((100 - relVal) / 100 * circumference).toFixed(3)}px`;
+      circleStyle.strokeDashoffset = `${((100 - value) / 100 * circumference).toFixed(3)}px`;
       rootStyle.transform = 'rotate(-90deg)';
     } else {
-      circleStyle.strokeDashoffset = `${(easeIn((100 - relVal) / 100) * circumference).toFixed(
+      circleStyle.strokeDashoffset = `${(easeIn((100 - value) / 100) * circumference).toFixed(
         3,
       )}px`;
-      rootStyle.transform = `rotate(${(easeOut(relVal / 70) * 270).toFixed(3)}deg)`;
+      rootStyle.transform = `rotate(${(easeOut(value / 70) * 270).toFixed(3)}deg)`;
     }
   }
 
@@ -127,7 +114,6 @@ function CircularProgress(props) {
       <svg
         className={classNames(classes.svg, {
           [classes.svgIndeterminate]: variant === 'indeterminate',
-          [classes.svgStatic]: variant === 'static',
         })}
         viewBox={`0 0 ${SIZE} ${SIZE}`}
       >
@@ -161,14 +147,6 @@ CircularProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
-   * The max value of progress in determinate variant.
-   */
-  max: PropTypes.number,
-  /**
-   * The min value of progress in determinate variant.
-   */
-  min: PropTypes.number,
-  /**
    * The size of the circle.
    */
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -194,8 +172,6 @@ CircularProgress.propTypes = {
 
 CircularProgress.defaultProps = {
   color: 'primary',
-  max: 100,
-  min: 0,
   size: 40,
   thickness: 3.6,
   value: 0,

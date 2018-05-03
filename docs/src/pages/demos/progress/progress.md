@@ -50,6 +50,28 @@ For example, a refresh operation should display either a refresh bar or an activ
 
 {{"demo": "pages/demos/progress/LinearQuery.js"}}
 
+## Non-standard ranges
+
+The progress components accept a value in the range 0 - 100. This simplifies things for screen-reader users, where these are the default min / max values. Sometimes, however, you might be working with a data source where the values fall outside this range. Here's how you can easily transform a value in any range to a scale of 0 - 100:
+
+```jsx
+const MIN = x; // Minimum expected value
+const MAX = y; // Maximium expected value
+
+// Function to normalise the values (MIN / MAX could be integrated)
+const normalise = value => (value - MIN) * (MAX - MIN);
+
+// Example component that utilizes the `normalise` function at the point of render.
+function Progress(props) {
+  return (
+    <React.Fragment>
+      <CircularProgress variant="determinate" value={normalise(props.value)} />
+      <LinearProgress variant="determinate" value={normalise(props.value)} />
+    </React.Fragment>
+  )
+}
+```
+
 ## Delaying appearance
 
 There are [3 important limits](http://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time.
