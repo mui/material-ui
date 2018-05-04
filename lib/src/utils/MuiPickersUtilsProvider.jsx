@@ -1,7 +1,10 @@
-import { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class MuiPickersUtilsProvider extends Component {
+const { Consumer, Provider } = React.createContext();
+export const MuiPickersContextConsumer = Consumer;
+
+export default class MuiPickersUtilsProvider extends PureComponent {
   static propTypes = {
     utils: PropTypes.func.isRequired,
     locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -14,18 +17,10 @@ export default class MuiPickersUtilsProvider extends Component {
     moment: undefined,
   }
 
-  static childContextTypes = {
-    muiPickersDateUtils: PropTypes.object,
-  }
-
-  getChildContext() {
-    const { utils: Utils, locale, moment } = this.props;
-    return {
-      muiPickersDateUtils: new Utils({ locale, moment }),
-    };
-  }
-
   render() {
-    return this.props.children;
+    const { utils: Utils, locale, moment } = this.props;
+    const utils = new Utils({ locale, moment });
+
+    return <Provider value={utils}> {this.props.children} </Provider>;
   }
 }
