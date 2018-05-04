@@ -15,11 +15,18 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/overrides/ClassNames'), 'utf8')
 `,
         },
-        'pages/customization/overrides/Classes.js': {
-          js: require('docs/src/pages/customization/overrides/Classes').default,
+        'pages/customization/overrides/ClassesNesting.js': {
+          js: require('docs/src/pages/customization/overrides/ClassesNesting').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/overrides/Classes'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/customization/overrides/ClassesNesting'), 'utf8')
+`,
+        },
+        'pages/customization/overrides/ClassesState.js': {
+          js: require('docs/src/pages/customization/overrides/ClassesState').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/customization/overrides/ClassesState'), 'utf8')
 `,
         },
         'pages/customization/overrides/InlineStyle.js': {
