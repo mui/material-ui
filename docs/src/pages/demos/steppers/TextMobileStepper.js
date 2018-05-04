@@ -7,11 +7,14 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import SwipeableViews from 'react-swipeable-views';
+import { imagesData } from './steppersData';
 
 const styles = theme => ({
   root: {
-    maxWidth: 400,
     flexGrow: 1,
+    maxWidth: 384,
+    width: 'calc(100% - 16px)',
   },
   header: {
     display: 'flex',
@@ -20,6 +23,12 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit * 4,
     marginBottom: 20,
     backgroundColor: theme.palette.background.default,
+  },
+  img: {
+    height: 255,
+    maxWidth: 400,
+    overflow: 'hidden',
+    width: '100%',
   },
 });
 
@@ -40,22 +49,41 @@ class TextMobileStepper extends React.Component {
     }));
   };
 
+  handleStepChange = activeStep => {
+    this.setState({ activeStep });
+  };
+
   render() {
     const { classes, theme } = this.props;
+
+    const maxSteps = imagesData.length;
 
     return (
       <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>
-          <Typography>Step {this.state.activeStep + 1} of 6</Typography>
+          <Typography>{`Photo ${this.state.activeStep + 1} of ${maxSteps}`}</Typography>
         </Paper>
+        <SwipeableViews
+          onChangeIndex={this.handleStepChange}
+          enableMouseEvents
+          index={this.state.activeStep}
+        >
+          {imagesData.map(data => (
+            <img key={data.alt} className={classes.img} src={data.source} alt={data.alt} />
+          ))}
+        </SwipeableViews>
         <MobileStepper
           variant="text"
-          steps={6}
+          steps={5}
           position="static"
           activeStep={this.state.activeStep}
           className={classes.mobileStepper}
           nextButton={
-            <Button size="small" onClick={this.handleNext} disabled={this.state.activeStep === 5}>
+            <Button
+              size="small"
+              onClick={this.handleNext}
+              disabled={this.state.activeStep === maxSteps - 1}
+            >
               Next
               {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
             </Button>

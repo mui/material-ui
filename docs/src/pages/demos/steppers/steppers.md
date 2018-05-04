@@ -70,14 +70,15 @@ This component implements a compact stepper suitable for a mobile device. See [m
 
 This is essentially a back/next button positioned correctly.
 You must implement the textual description yourself, however, an example is provided below for reference.
+This demo uses [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to animate the Step transition, and allowing steps to be swiped when you drag the image horizontally.
 
-{{"demo": "pages/demos/steppers/TextMobileStepper.js"}}
+{{"demo": "pages/demos/steppers/TextMobileStepper.js", "hideEditButton": true}}
 
 ### Mobile Stepper - Dots
 
 Use dots when the number of steps isn’t large.
 
-{{"demo": "pages/demos/steppers/DotsMobileStepper.js"}}
+{{"demo": "pages/demos/steppers/DotsMobileStepper.js", "hideEditButton": true}}
 
 ### Mobile Stepper - Progress
 
