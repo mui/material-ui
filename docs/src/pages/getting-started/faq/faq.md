@@ -15,7 +15,7 @@ In this situation, you can apply a global `.mui-fixed` class name to tell Materi
 
 The best solution at present is to write wrapping components for all the Material-UI components showing a ripple.
 The ripple effect is exclusively coming from the `BaseButton` component.
-You can find the components using the BaseButton [here](https://github.com/mui-org/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
+You can find the components using the ButtonBase [here](https://github.com/mui-org/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
 Then, all you have to do is to provide the `disableRipple` property.
 
 ## Do I have to use JSS to style my app?

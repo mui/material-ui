@@ -21,8 +21,7 @@ For instance, via Google Web Fonts:
 
 ## Font Icons
 
-In order to use the font `Icon` component, or to use icon names (ligatures) directly in components
-that support them, you must first add the [Material icons](https://material.io/icons/) font.
+In order to use the font `Icon` component you must first add the [Material icons](https://material.io/icons/) font.
 Here are [some instructions](/style/icons#font-icons)
 on how to do so.
 For instance, via Google Web Fonts:

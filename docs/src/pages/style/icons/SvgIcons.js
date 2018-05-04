@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import green from 'material-ui/colors/green';
+import red from 'material-ui/colors/red';
 import SvgIcon from 'material-ui/SvgIcon';
 
 const styles = theme => ({
@@ -16,7 +16,7 @@ const styles = theme => ({
   iconHover: {
     margin: theme.spacing.unit * 2,
     '&:hover': {
-      color: green[200],
+      color: red[800],
     },
   },
 });
@@ -34,11 +34,11 @@ function SvgIcons(props) {
   return (
     <div className={classes.root}>
       <HomeIcon className={classes.icon} />
+      <HomeIcon className={classes.icon} color="primary" />
       <HomeIcon className={classes.icon} color="secondary" />
       <HomeIcon className={classes.icon} color="action" />
-      <HomeIcon className={classes.icon} color="disabled" />
-      <HomeIcon className={classes.icon} color="primary" style={{ fontSize: 30 }} />
-      <HomeIcon color="error" className={classes.iconHover} style={{ fontSize: 36 }} />
+      <HomeIcon className={classes.iconHover} color="error" style={{ fontSize: 30 }} />
+      <HomeIcon color="disabled" className={classes.icon} style={{ fontSize: 36 }} />
     </div>
   );
 }

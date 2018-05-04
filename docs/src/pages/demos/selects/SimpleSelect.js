@@ -121,11 +121,6 @@ class SimpleSelect extends React.Component {
           <FormHelperText>Error</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="name-input">Name</InputLabel>
-          <Input id="name-input" />
-          <FormHelperText>Alignment with an input</FormHelperText>
-        </FormControl>
-        <FormControl className={classes.formControl}>
           <InputLabel htmlFor="name-readonly">Name</InputLabel>
           <Select
             value={this.state.name}

@@ -18,6 +18,13 @@ Long labels will automatically wrap on tabs. If the label is too long for the ta
 
 {{"demo": "pages/demos/tabs/TabsWrappedLabel.js"}}
 
+
+### Disabled Tab
+
+A Tab can be disabled by setting `disabled` property.
+
+{{"demo": "pages/demos/tabs/DisabledTabs.js"}}
+
 ## Fixed Tabs
 
 Fixed tabs should be used with a limited number of tabs and when consistent placement will aid muscle memory.
@@ -62,15 +69,9 @@ Tab labels may be either all icons or all text.
 {{"demo": "pages/demos/tabs/IconTabs.js"}}
 {{"demo": "pages/demos/tabs/IconLabelTabs.js"}}
 
-## Disabled Tab
-
-Tab may be disabled by setting `disabled` property.
-
-{{"demo": "pages/demos/tabs/DisabledTabs.js"}}
-
 ## Customized Tabs
 
-If you have been reading the [overrides documentation page](/customization/overrides)
-but you are not confident jumping in, here's an example of how you can change the main color of the Tabs. The following demo matches the [Ant Design UI](https://ant.design/components/tabs/).
+If you have read the [overrides documentation page](/customization/overrides)
+but aren't confident jumping in, here's an example of how you can change the main color of the Tabs. The following demo matches the [Ant Design UI](https://ant.design/components/tabs/).
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}

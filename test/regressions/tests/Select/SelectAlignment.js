@@ -1,7 +1,7 @@
 import React from 'react';
 import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
-import { FormControl } from 'material-ui/Form';
+import { FormControl, FormHelperText } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 
 function SelectAlignment() {
@@ -24,6 +24,11 @@ function SelectAlignment() {
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
         </Select>
+      </FormControl>
+      <FormControl>
+        <InputLabel htmlFor="name-input">Name</InputLabel>
+        <Input id="name-input" />
+        <FormHelperText>Alignment with an input</FormHelperText>
       </FormControl>
     </div>
   );
