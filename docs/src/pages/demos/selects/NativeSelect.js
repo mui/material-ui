@@ -118,11 +118,6 @@ class NativeSelect extends React.Component {
           <FormHelperText>Error</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="name-input">Name</InputLabel>
-          <Input id="name-input" />
-          <FormHelperText>Alignment with an input</FormHelperText>
-        </FormControl>
-        <FormControl className={classes.formControl}>
           <InputLabel htmlFor="uncontrolled-native">Name</InputLabel>
           <Select native defaultValue={30} input={<Input id="uncontrolled-native" />}>
             <option value="" />

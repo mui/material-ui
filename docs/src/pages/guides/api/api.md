@@ -1,7 +1,7 @@
 # API Design Approach
 
-We have learned a lot regarding how people use Material-UI.
-The 1.x.x rewrite allowed us to completely rethink our component API.
+We have learned a great deal regarding how Material-UI is used,
+and the 1.x.x rewrite allowed us to completely rethink the component API.
 
 > API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
 
@@ -12,7 +12,7 @@ We are providing low-level components to maximize composition capabilities.
 
 ## Composition
 
-You may have noticed some inconsistency in our API regarding composing components.
+You may have noticed some inconsistency in the API regarding composing components.
 To provide some transparency, we have been using the following rules when designing the API:
 
 1. Using the `children` property is the idiomatic way to do composition with React.
@@ -26,8 +26,8 @@ Aside from the above composition trade-off, we enforce the following rules:
 
 ### Spread
 
-Undocumented properties supplied are spread to the root element.
-For instance, the `className` property is applied to the root.
+Undocumented properties supplied are spread to the root element;
+for instance, the `className` property is applied to the root.
 
 Now, let's say you want to disable the ripples on the `MenuItem`.
 You can take advantage of the spread behavior:
@@ -43,20 +43,22 @@ We avoid documenting native properties supported by the DOM like [`className`](/
 ### CSS Classes
 
 All the components accept a [`classes`](/customization/overrides#overriding-with-classes) property to customize the styles.
-The classes design answers two constraints.
-We try to make the classes structure as simple as possible while keeping it complex enough for implementing the Material specification.
-- The class applied on the root element is always called `root`.
-- The classes applied on non-root element are prefixed with the name of the element, e.g. `dashedXX`.
+The classes design answers two constraints:
+to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
+- The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
-- The boolean variants applied **aren't** prefixed e.g. `rounded`.
-- The enum variants applied **are** prefixed e.g. `colorXX`.
+- The classes applied to non-root elements are prefixed with the name of the element, e.g. `paperWidthXs` in the Dialog component.
+- The variants applied by a boolean property **aren't** prefixed, e.g. the `rounded` class 
+applied by the `rounded` property.
+- The variants applied by and enum property **are** prefixed, e.g. the `colorPrimary` class
+applied by the `color="primary"` property.
 - A variant has **one level of specificity**.
-For instance, the `color` and `variant` properties are considered a variant.
-The lower the style specificity is, the simpler you can override it.
+The `color` and `variant` properties are considered a variant.
+The lower the style specificity is, the simpler it is to override.
 - We increase the specificity for a variant modifier.
-We already **have to do** it for the pseudo-classes (`:hover`, `:focus`, etc.).
+We already **have to do it** for the pseudo-classes (`:hover`, `:focus`, etc.).
 It allows much more control at the cost of more boilerplate.
-Hopefully, it's more intuitive.
+Hopefully, it's also more intuitive.
 
 ```js
 const styles = {
@@ -73,19 +75,19 @@ const styles = {
 ### Nested components
 
 Nested components inside a component have:
-- their own flattened properties when these are key to the top level component abstraction.
-  For instance and `id` property for the `Input` component.
-- their own `xxxProps` property when users might need to tweak the internal render method's sub-components.
-  For instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
+- their own flattened properties when these are key to the top level component abstraction,
+  for instance and `id` property for the `Input` component.
+- their own `xxxProps` property when users might need to tweak the internal render method's sub-components,
+  for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
 - their own `xxxComponent` property for performing component injection.
-- their own `xxxRef` property when user might need to perform imperative actions.
-  For instance, exposing a `inputRef` property to access the native `input` on the `Input` component.
-  It help answering the following question. [How can I access the DOM element?](/getting-started/faq#how-can-i-access-the-dom-element-)
+- their own `xxxRef` property when user might need to perform imperative actions,
+  for instance, exposing a `inputRef` property to access the native `input` on the `Input` component.
+  This helps answer the  question ["How can I access the DOM element?"](/getting-started/faq#how-can-i-access-the-dom-element-)
 
 ### Property naming
 
 The name of a boolean property should be chosen based on the **default value**.
-For instance, the `disabled` attribute on an input element, if supplied, defaults to `true`.
+For example, the `disabled` attribute on an input element, if supplied, defaults to `true`.
 This choice allows the shorthand notation:
 
 ```diff
@@ -93,38 +95,45 @@ This choice allows the shorthand notation:
 +<Input disabled />
 ```
 
-### Controllable components
+### Controlled components
 
-Most of the controllable component are controlled via the `value` and the `onChange` properties,
-however, the `open`/`onClose`/`onOpen` combination is used for display related state.
+Most of the controlled component are controlled via the `value` and the `onChange` properties,
+however, the `open` / `onClose` / `onOpen` combination is used for display related state.
 
 ### boolean vs enum
 
-You can potentially expose the variations of a component with a *boolean* or an *enum*.
-For instance, let's say you have a button of different types.
-You can use one of the two following options, each with its pros and cons:
-- Option 1 *boolean*: `<Button>`, `<Button raised />`, `<Button fab />`.
-  With this API, you can use the shorthand notation.
+There are a couple of way to the variants of a component: with a *boolean*; or with an *enum*.
+For example, let's take a button that has different types. Each option has its pros and cons:
 
-```tsx
-type Props = {
-  raised: boolean;
-  fab: boolean;
-};
-```
+- Option 1 *boolean*:
 
-- Option 2 *enum*: `<Button>`, `<Button variant="raised">`, `<Button variant="fab">`.
-  With this API, you prevent invalid combination from being used, you bound the number of properties you expose, and you can easily support new values in the future.
+  ```tsx
+  type Props = {
+    raised: boolean;
+    fab: boolean;
+  };
+  ```
+  
+   This API enabled the shorthand notation:
+   `<Button>`, `<Button raised />`, `<Button fab />`.
+   
+- Option 2 *enum*:
 
-```tsx
-type Props = {
-  variant: 'flat' | 'raised' | 'fab';
-}
-```
+  ```tsx
+  type Props = {
+    variant: 'flat' | 'raised' | 'fab';
+  }
+  ```
+  
+  This API is more verbose:
+  `<Button>`, `<Button variant="raised">`, `<Button variant="fab">`.
+  
+   However it prevents an invalid combination from being used,
+   bounds the number of properties exposed,
+   and can easily support new values in the future.
 
-The Material-UI components use a combination of the two approaches.
-We enforce the following rule:
-- We use a *boolean* when the degrees of freedom required is **2**.
-- We use an *enum* when the degrees of freedom required is **> 2**.
+The Material-UI components use a combination of the two approaches according to the following rules:
+- A *boolean* is used when **2** degrees of freedom are required.
+- An *enum* is used when **> 2** degrees of freedom are required, or if there is the possbility that additional degrees of freedom may be required in the future.
 
 Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.

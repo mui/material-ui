@@ -13,7 +13,7 @@ We think that it's the future:
 - [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [The future of component-based styling](https://medium.freecodecamp.com/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
 
-So, you may have noticed in the demos how this *CSS-in-JS* looks.
+So, you may have noticed in the demos what *CSS-in-JS* looks like.
 We use the higher-order component created by [`withStyles`](#api)
 to inject an array of styles into the DOM as CSS, using JSS. Here's an example:
 
@@ -42,7 +42,7 @@ Read more about [Server Rendering](/guides/server-rendering).
 
 ## Sheets manager
 
-We use a [reference counting](https://en.wikipedia.org/wiki/Reference_counting) algorithm in order to attach and detach the style sheets only once per (styles, theme) couple.
+The sheets manager uses a [reference counting](https://en.wikipedia.org/wiki/Reference_counting) algorithm in order to attach and detach the style sheets only once per (styles, theme) couple.
 This technique provides an important performance boost when re-rendering instances of a component.
 
 When only rendering on the client, that's not something you need to be aware of. However, when rendering on the server you do. You can read more about [Server Rendering](/guides/server-rendering).
@@ -78,10 +78,10 @@ As well as the option to make the class names **deterministic** with the `danger
 - production: `.MuiAppBar-root`
 
 ⚠️ **Be very cautious when using `dangerouslyUseGlobalCSS`.**
-We provide this option as an escape hatch for quick prototyping.
-Avoid relying on it for code running in production.
-It's very hard to keep track of class name API changes.
-Global CSS is fragile by design.
+We provide this option as an escape hatch for quick prototyping,
+but you should avoid relying on it for code running in production
+as it's very hard to keep track of class name API changes.
+Global CSS is inherently fragile.
 
 ## CSS injection order
 
@@ -339,8 +339,7 @@ export default App;
 
 ## Alternative APIs
 
-Do you think that [higher-order components are the new mixins](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)? We don't, but rest assured, because `withStyles()` is a higher-order component.
-It can be extended with **few lines of code** to match different patterns, they are all idiomatic React.
+Do you think that [higher-order components are the new mixins](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)? Rest assured we don't, however because `withStyles()` is a higher-order component, it can be extended with just a **few lines of code** to match different patterns that are all idiomatic React. Here are a couple of examples.
 
 ### Render props API (+11 lines)
 

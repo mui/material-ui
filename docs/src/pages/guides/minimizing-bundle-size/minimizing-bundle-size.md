@@ -2,18 +2,17 @@
 
 ## Bundle size matters
 
-Material-UI takes the bundle size very seriously.
-We are relying on [size-limit](https://github.com/ai/size-limit) to prevent introducing any regression.
-We monitor the size of the bundle at each commit:
+The bundle size of Material-UI is taken very seriously, so
+[size-limit](https://github.com/ai/size-limit) is used to prevent introducing any size regression.
+The size of the bundle is checked at each commit:
 - When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/tree/v1-beta/.size-limit#L4).
 - When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/mui-org/material-ui/tree/v1-beta/.size-limit#L8). (styling, theming, etc.: ~20 kB gzipped)
 
 ## How to reduce the bundle size?
 
 For convenience, Material-UI exposes its full API on the top-level `material-ui` import.
-This will work fine if you have tree shaking working.
-
-However, in the case where tree shaking is not supported or configured in your build chain, **this causes the entire library and its dependencies to be included** in client bundles that include code that imports from the top-level bundle.
+Using this is fine if you have tree shaking working, 
+however, in the case where tree shaking is not supported or configured in your build chain, **this causes the entire library and its dependencies to be included** in your client bundle.
 
 You have couple of options to overcome this situation:
 
@@ -34,7 +33,7 @@ import TextField from 'material-ui/TextField';
 
 While importing directly in this manner doesn't use the exports in [`material-ui/index.js`](https://github.com/mui-org/material-ui/blob/v1-beta/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
 Anything not listed there should be considered **private**, and subject to change without notice.
-For instance, the `Tabs` component is a public module while `TabIndicator` is private.
+For example, the `Tabs` component is a public module while `TabIndicator` is private.
 
 ### Option 2
 
@@ -51,17 +50,17 @@ Pick one of the following plugins:
 - [babel-plugin-direct-import](https://github.com/umidbekkarimov/babel-plugin-direct-import) automatically scans exported modules so in most cases it works with zero configuration.
 - [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) aims to work out of the box with all the `package.json`.
 
-**Important note**: Both of the options *should be temporary* until you add tree shaking capabilities to your project.
+**Important note**: Both of these options *should be temporary* until you add tree shaking capabilities to your project.
 
 ## ECMAScript
 
-The published package on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms).
+The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms).
 
 We also publish a second version of the components to target **evergreen browsers**.
 You can find this version under the [`/es` folder](https://unpkg.com/material-ui@next/es/).
-We transpile all the non-official syntax to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more.
-It can be used to make separate bundles targeting different browsers.
-Old browsers will require more JavaScript features to be transpiled.
-So you have to increase the size of the bundle to support older browsers.
+All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more.
+This can be used to make separate bundles targeting different browsers.
+Older browsers will require more JavaScript features to be transpiled,
+which increases the size of the bundle.
 
-⚠️ In order to minimize duplication of code in people bundle, we **discourage** library authors to use the `/es` folder.
+⚠️ In order to minimize duplication of code is users' bundles, we **strongly discourage** library authors from using the `/es` folder.

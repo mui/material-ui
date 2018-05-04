@@ -8,7 +8,7 @@ I’m glad you asked! The answer is no. The core concepts haven’t changed.
 You will notice that the API provides more flexibility, but this has a cost.
 We have been making lower-level components, abstracting less complexity.
 
-### What motivated such large change?
+### What motivated such a large change?
 
 Material-UI was started [3 years ago](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
 The ecosystem has evolved a lot since then, we have also learned a lot.
@@ -89,7 +89,7 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
 
 ### Autocomplete
 
-Material-UI doesn't provide any high-level API for solving this problem.
+Material-UI doesn't provide a high-level API for solving this problem.
 You're encouraged you to explore [the solutions the React community has built](https://material-ui-next.com/demos/autocomplete/).
 
 In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui-org/material-ui/issues/9997).
@@ -136,5 +136,5 @@ global.__MUI_SvgIcon__ = SvgIcon;
 
 ### To be continued…
 
-You successfully migrated your app and wish to help the community?
+Have you successfully migrated your app, and wish to help the community?
 Please help us! We have an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). Any pull request is welcomed 😊.

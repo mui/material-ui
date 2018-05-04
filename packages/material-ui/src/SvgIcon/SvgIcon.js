@@ -26,11 +26,11 @@ export const styles = theme => ({
   colorAction: {
     color: theme.palette.action.active,
   },
-  colorDisabled: {
-    color: theme.palette.action.disabled,
-  },
   colorError: {
     color: theme.palette.error.main,
+  },
+  colorDisabled: {
+    color: theme.palette.action.disabled,
   },
 });
 
@@ -86,7 +86,7 @@ SvgIcon.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * You can use the `nativeColor` property to apply a color attribute to the SVG element.
    */
-  color: PropTypes.oneOf(['action', 'disabled', 'error', 'inherit', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
   /**
    * Applies a color attribute to the SVG element.
    */

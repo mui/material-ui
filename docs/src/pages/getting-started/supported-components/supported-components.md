@@ -19,7 +19,7 @@ to discuss the approach before submitting a PR.
   - Avatar
   - Group avatar
 - **[Bottom navigation](https://material.io/guidelines/components/bottom-navigation.html) ✓**
-- [Bottom sheets](https://material.io/guidelines/components/bottom-sheets.html)
+- **[Bottom sheets](https://material.io/guidelines/components/bottom-sheets.html) (Drawer)✓**
 - **[Buttons](https://material.io/guidelines/components/buttons.html) ✓**
   - **[Flat & raised buttons](https://material.io/guidelines/components/buttons.html#buttons-flat-raised-buttons) ✓**
   - [Toggle buttons](https://material.io/guidelines/components/buttons.html#buttons-toggle-buttons)
@@ -111,7 +111,7 @@ to discuss the approach before submitting a PR.
     - **[Icon and text](https://material.io/guidelines/components/tabs.html#tabs-usage) ✓**
 - **[Text fields](https://material.io/guidelines/components/text-fields.html) ✓**
   - **[Single-line](https://material.io/guidelines/components/text-fields.html#text-fields-single-line-text-field) ✓**
-  - [Multi-line](https://material.io/guidelines/components/text-fields.html#text-fields-field-types)
+  - **[Multi-line](https://material.io/guidelines/components/text-fields.html#text-fields-field-types) ✓**
   - [Text-area](https://material.io/guidelines/components/text-fields.html#text-fields-field-types)
   - **[Full-width](https://material.io/guidelines/components/text-fields.html#text-fields-multi-line-text-field) ✓**
   - [Character counter](https://material.io/guidelines/components/text-fields.html#text-fields-character-counter)

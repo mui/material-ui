@@ -65,7 +65,7 @@ function TableRow(props, context) {
 
 TableRow.propTypes = {
   /**
-   * Should be valid `<tr>` children such as `TableCell`.
+   * Should be valid <tr> children such as `TableCell`.
    */
   children: PropTypes.node,
   /**
