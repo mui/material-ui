@@ -2,7 +2,7 @@
 
 ## Bundle size matters
 
-The bundle size of Material-UI is takenvery seriously, so
+The bundle size of Material-UI is taken very seriously, so
 [size-limit](https://github.com/ai/size-limit) is used to prevent introducing any size regression.
 The size of the bundle is checked at each commit:
 - When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/tree/v1-beta/.size-limit#L4).
@@ -63,4 +63,4 @@ This can be used to make separate bundles targeting different browsers.
 Older browsers will require more JavaScript features to be transpiled,
 which increases the size of the bundle.
 
-⚠️ In order to minimize duplication of code is users' bundles, we ** strongly discourage** library authors from using the `/es` folder.
+⚠️ In order to minimize duplication of code is users' bundles, we **strongly discourage** library authors from using the `/es` folder.

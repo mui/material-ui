@@ -36,7 +36,7 @@ for example:
 ```
 
 By default, an Icon will inherit the current text color.
-Optionally, you can set the icon color using one of the theme color properties: `primary`,`secondary`, `action`, `error` & `disabled`,.
+Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
 
 {{"demo": "pages/style/icons/Icons.js"}}
 
@@ -48,7 +48,7 @@ and allows the icon to be styled and respond to mouse events.
 The resulting icon can be used as is,
 or included as a child for other Material-UI components that use icons.
 By default, an Icon will inherit the current text color.
-Optionally, you can set the icon color using one of the theme color properties: `primary`,`secondary`, `action`, `error` & `disabled`.
+Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
 
 {{"demo": "pages/style/icons/SvgIcons.js"}}
 
