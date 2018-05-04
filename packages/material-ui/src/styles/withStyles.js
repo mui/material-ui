@@ -93,6 +93,15 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       this.theme = listenToTheme ? themeListener.initial(context) || getDefaultTheme() : noopTheme;
 
       this.attach(this.theme);
+
+      this.cacheClasses = {
+        // Cache for the finalized classes value.
+        value: null,
+        // Cache for the last used classes prop pointer.
+        lastProp: null,
+        // Cache for the last used rendered classes pointer.
+        lastJSS: {},
+      };
     }
 
     state = {};
@@ -133,6 +142,69 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       if (this.unsubscribeId !== null) {
         themeListener.unsubscribe(this.context, this.unsubscribeId);
       }
+    }
+
+    getClasses() {
+      // Tracks if either the rendered classes or classes prop has changed,
+      // requiring the generation of a new finalized classes object.
+      let generate = false;
+
+      if (!this.disableStylesGeneration) {
+        const sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
+        const sheetsManagerTheme = sheetManager.get(this.theme);
+        if (sheetsManagerTheme.sheet.classes !== this.cacheClasses.lastJSS) {
+          this.cacheClasses.lastJSS = sheetsManagerTheme.sheet.classes;
+          generate = true;
+        }
+      }
+
+      if (this.props.classes !== this.cacheClasses.lastProp) {
+        this.cacheClasses.lastProp = this.props.classes;
+        generate = true;
+      }
+
+      if (generate) {
+        if (this.props.classes) {
+          this.cacheClasses.value = {
+            ...this.cacheClasses.lastJSS,
+            ...Object.keys(this.props.classes).reduce((accumulator, key) => {
+              warning(
+                this.cacheClasses.lastJSS[key] || this.disableStylesGeneration,
+                [
+                  `Material-UI: the key \`${key}\` ` +
+                    `provided to the classes property is not implemented in ${getDisplayName(
+                      Component,
+                    )}.`,
+                  `You can only override one of the following: ${Object.keys(
+                    this.cacheClasses.lastJSS,
+                  ).join(',')}`,
+                ].join('\n'),
+              );
+
+              warning(
+                !this.props.classes[key] || typeof this.props.classes[key] === 'string',
+                [
+                  `Material-UI: the key \`${key}\` ` +
+                    `provided to the classes property is not valid for ${getDisplayName(
+                      Component,
+                    )}.`,
+                  `You need to provide a non empty string instead of: ${this.props.classes[key]}.`,
+                ].join('\n'),
+              );
+
+              if (this.props.classes[key]) {
+                accumulator[key] = `${this.cacheClasses.lastJSS[key]} ${this.props.classes[key]}`;
+              }
+
+              return accumulator;
+            }, {}),
+          };
+        } else {
+          this.cacheClasses.value = this.cacheClasses.lastJSS;
+        }
+      }
+
+      return this.cacheClasses.value;
     }
 
     attach(theme) {
@@ -219,53 +291,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     unsubscribeId = null;
 
     render() {
-      const { classes: classesProp, innerRef, ...other } = this.props;
-
-      let classes;
-      let renderedClasses = {};
-
-      if (!this.disableStylesGeneration) {
-        const sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
-        const sheetsManagerTheme = sheetManager.get(this.theme);
-        renderedClasses = sheetsManagerTheme.sheet.classes;
-      }
-
-      if (classesProp) {
-        classes = {
-          ...renderedClasses,
-          ...Object.keys(classesProp).reduce((accumulator, key) => {
-            warning(
-              renderedClasses[key] || this.disableStylesGeneration,
-              [
-                `Material-UI: the key \`${key}\` ` +
-                  `provided to the classes property is not implemented in ${getDisplayName(
-                    Component,
-                  )}.`,
-                `You can only override one of the following: ${Object.keys(renderedClasses).join(
-                  ',',
-                )}`,
-              ].join('\n'),
-            );
-
-            warning(
-              !classesProp[key] || typeof classesProp[key] === 'string',
-              [
-                `Material-UI: the key \`${key}\` ` +
-                  `provided to the classes property is not valid for ${getDisplayName(Component)}.`,
-                `You need to provide a non empty string instead of: ${classesProp[key]}.`,
-              ].join('\n'),
-            );
-
-            if (classesProp[key]) {
-              accumulator[key] = `${renderedClasses[key]} ${classesProp[key]}`;
-            }
-
-            return accumulator;
-          }, {}),
-        };
-      } else {
-        classes = renderedClasses;
-      }
+      const { classes, innerRef, ...other } = this.props;
 
       const more = getThemeProps({ theme: this.theme, name });
 
@@ -275,7 +301,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         more.theme = this.theme;
       }
 
-      return <Component {...more} classes={classes} ref={innerRef} {...other} />;
+      return <Component {...more} classes={this.getClasses()} ref={innerRef} {...other} />;
     }
   }
 
