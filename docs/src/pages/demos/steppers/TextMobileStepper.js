@@ -7,7 +7,29 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import tutorialData from './steppersData';
+
+const tutorialSteps = [
+  {
+    label: 'How to be happy :)',
+    imgPath: '/static/images/steppers/1-happy.jpg',
+  },
+  {
+    label: '1. Work with something that you like, like…',
+    imgPath: '/static/images/steppers/2-work.jpg',
+  },
+  {
+    label: '2. Keep your friends close to you and hangout with them',
+    imgPath: '/static/images/steppers/3-friends.jpg',
+  },
+  {
+    label: '3. Travel everytime that you have a chance',
+    imgPath: '/static/images/steppers/4-travel.jpg',
+  },
+  {
+    label: '4. And contribute to Material-UI :D',
+    imgPath: '/static/images/steppers/5-mui.png',
+  },
+];
 
 const styles = theme => ({
   root: {
@@ -51,17 +73,17 @@ class TextMobileStepper extends React.Component {
     const { classes, theme } = this.props;
     const { activeStep } = this.state;
 
-    const maxSteps = tutorialData.length;
+    const maxSteps = tutorialSteps.length;
 
     return (
       <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>
-          <Typography>{tutorialData[activeStep].label}</Typography>
+          <Typography>{tutorialSteps[activeStep].label}</Typography>
         </Paper>
         <img
           className={classes.img}
-          src={tutorialData[activeStep].imgPath}
-          alt={tutorialData[activeStep].label}
+          src={tutorialSteps[activeStep].imgPath}
+          alt={tutorialSteps[activeStep].label}
         />
         <MobileStepper
           variant="text"
