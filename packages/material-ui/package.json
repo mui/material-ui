@@ -57,7 +57,7 @@
     "prop-types": "^15.6.0",
     "react-event-listener": "^0.5.1",
     "react-jss": "^8.1.0",
-    "react-lifecycles-compat": "^2.0.0",
+    "react-lifecycles-compat": "^3.0.0",
     "react-popper": "^0.10.0",
     "react-scrollbar-size": "^2.0.2",
     "react-transition-group": "^2.2.1",
