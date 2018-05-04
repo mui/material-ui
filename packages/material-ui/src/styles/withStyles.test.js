@@ -65,7 +65,7 @@ describe('withStyles', () => {
 
       it('should ignore undefined property', () => {
         const wrapper = shallow(<StyledComponent1 classes={{ root: undefined }} />);
-        assert.deepEqual(wrapper.props().classes, { root: `${classes.root}` });
+        assert.deepEqual(wrapper.props().classes, { root: classes.root });
         assert.strictEqual(consoleErrorMock.callCount(), 0);
       });
 
@@ -90,14 +90,6 @@ describe('withStyles', () => {
           /Material-UI: the key `root` provided to the classes property is not valid/,
         );
       });
-
-      it('should recycle the object between two render if possible', () => {
-        const wrapper = mount(<StyledComponent1 />);
-        const classes1 = wrapper.find(Empty).props().classes;
-        wrapper.update();
-        const classes2 = wrapper.find(Empty).props().classes;
-        assert.strictEqual(classes1, classes2);
-      });
     });
 
     describe('prop: innerRef', () => {
@@ -105,6 +97,43 @@ describe('withStyles', () => {
         const handleRef = spy();
         mount(<StyledComponent1 innerRef={handleRef} />);
         assert.strictEqual(handleRef.callCount, 1);
+      });
+    });
+
+    describe('cache', () => {
+      it('should recycle with no classes property', () => {
+        const wrapper = mount(<StyledComponent1 />);
+        const classes1 = wrapper.find(Empty).props().classes;
+        wrapper.update();
+        const classes2 = wrapper.find(Empty).props().classes;
+        assert.strictEqual(classes1, classes2);
+      });
+
+      it('should recycle even when a classes property is provided', () => {
+        const inputClasses = { root: 'foo' };
+        const wrapper = mount(<StyledComponent1 classes={inputClasses} />);
+        const classes1 = wrapper.find(Empty).props().classes;
+        wrapper.setProps({
+          classes: inputClasses,
+        });
+        const classes2 = wrapper.find(Empty).props().classes;
+        assert.strictEqual(classes1, classes2);
+      });
+
+      it('should invalidate the cache', () => {
+        const wrapper = mount(<StyledComponent1 classes={{ root: 'foo' }} />);
+        const classes1 = wrapper.find(Empty).props().classes;
+        assert.deepEqual(classes1, {
+          root: `${classes.root} foo`,
+        });
+        wrapper.setProps({
+          classes: { root: 'bar' },
+        });
+        const classes2 = wrapper.find(Empty).props().classes;
+        assert.notStrictEqual(classes1, classes2);
+        assert.deepEqual(classes2, {
+          root: `${classes.root} bar`,
+        });
       });
     });
   });

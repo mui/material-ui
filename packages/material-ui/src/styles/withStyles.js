@@ -93,9 +93,15 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       this.theme = listenToTheme ? themeListener.initial(context) || getDefaultTheme() : noopTheme;
 
       this.attach(this.theme);
-      this.classes = {};
-      this.lastClassesProp = {};
-      this.lastRenderedClasses = {};
+
+      this.cacheClasses = {
+        // Cache for the finalized classes value.
+        value: null,
+        // Cache for the last used classes prop pointer.
+        lastProp: null,
+        // Cache for the last used rendered classes pointer.
+        lastJSS: {},
+      };
     }
 
     state = {};
@@ -139,35 +145,38 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     }
 
     getClasses() {
+      // Tracks if either the rendered classes or classes prop has changed,
+      // requiring the generation of a new finalized classes object.
       let generate = false;
 
       if (!this.disableStylesGeneration) {
         const sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
         const sheetsManagerTheme = sheetManager.get(this.theme);
-        if (sheetsManagerTheme.sheet.classes !== this.lastRenderedClasses) {
-          this.lastRenderedClasses = sheetsManagerTheme.sheet.classes;
+        if (sheetsManagerTheme.sheet.classes !== this.cacheClasses.lastJSS) {
+          this.cacheClasses.lastJSS = sheetsManagerTheme.sheet.classes;
           generate = true;
         }
       }
 
-      if (this.props.classes) {
-        if (this.props.classes !== this.lastClassesProp) {
-          this.lastClassesProp = this.props.classes;
-          generate = true;
-        }
-        if (generate) {
-          this.classes = {
-            ...this.lastRenderedClasses,
+      if (this.props.classes !== this.cacheClasses.lastProp) {
+        this.cacheClasses.lastProp = this.props.classes;
+        generate = true;
+      }
+
+      if (generate) {
+        if (this.props.classes) {
+          this.cacheClasses.value = {
+            ...this.cacheClasses.lastJSS,
             ...Object.keys(this.props.classes).reduce((accumulator, key) => {
               warning(
-                this.lastRenderedClasses[key] || this.disableStylesGeneration,
+                this.cacheClasses.lastJSS[key] || this.disableStylesGeneration,
                 [
                   `Material-UI: the key \`${key}\` ` +
                     `provided to the classes property is not implemented in ${getDisplayName(
                       Component,
                     )}.`,
                   `You can only override one of the following: ${Object.keys(
-                    this.lastRenderedClasses,
+                    this.cacheClasses.lastJSS,
                   ).join(',')}`,
                 ].join('\n'),
               );
@@ -184,16 +193,18 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
               );
 
               if (this.props.classes[key]) {
-                accumulator[key] = `${this.lastRenderedClasses[key]} ${this.props.classes[key]}`;
+                accumulator[key] = `${this.cacheClasses.lastJSS[key]} ${this.props.classes[key]}`;
               }
 
               return accumulator;
             }, {}),
           };
+        } else {
+          this.cacheClasses.value = this.cacheClasses.lastJSS;
         }
-        return this.classes;
       }
-      return this.lastRenderedClasses;
+
+      return this.cacheClasses.value;
     }
 
     attach(theme) {
