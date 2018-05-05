@@ -62,6 +62,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/steppers/TextMobileStepper'), 'utf8')
 `,
         },
+        'pages/demos/steppers/SwipeableTextMobileStepper.js': {
+          js: require('docs/src/pages/demos/steppers/SwipeableTextMobileStepper').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/steppers/SwipeableTextMobileStepper'), 'utf8')
+          `,
+        },
         'pages/demos/steppers/DotsMobileStepper.js': {
           js: require('docs/src/pages/demos/steppers/DotsMobileStepper').default,
           raw: preval`

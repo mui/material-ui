@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import SwipeableViews from 'react-swipeable-views';
 
 const tutorialSteps = [
   {
@@ -52,7 +53,7 @@ const styles = theme => ({
   },
 });
 
-class TextMobileStepper extends React.Component {
+class SwipeableTextMobileStepper extends React.Component {
   state = {
     activeStep: 0,
   };
@@ -69,6 +70,10 @@ class TextMobileStepper extends React.Component {
     }));
   };
 
+  handleStepChange = activeStep => {
+    this.setState({ activeStep });
+  };
+
   render() {
     const { classes, theme } = this.props;
     const { activeStep } = this.state;
@@ -80,11 +85,16 @@ class TextMobileStepper extends React.Component {
         <Paper square elevation={0} className={classes.header}>
           <Typography>{tutorialSteps[activeStep].label}</Typography>
         </Paper>
-        <img
-          className={classes.img}
-          src={tutorialSteps[activeStep].imgPath}
-          alt={tutorialSteps[activeStep].label}
-        />
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={this.state.activeStep}
+          onChangeIndex={this.handleStepChange}
+          enableMouseEvents
+        >
+          {tutorialSteps.map(step => (
+            <img key={step.label} className={classes.img} src={step.imgPath} alt={step.label} />
+          ))}
+        </SwipeableViews>
         <MobileStepper
           variant="text"
           steps={maxSteps}
@@ -109,9 +119,9 @@ class TextMobileStepper extends React.Component {
   }
 }
 
-TextMobileStepper.propTypes = {
+SwipeableTextMobileStepper.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(TextMobileStepper);
+export default withStyles(styles, { withTheme: true })(SwipeableTextMobileStepper);

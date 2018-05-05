@@ -18,7 +18,6 @@ Long labels will automatically wrap on tabs. If the label is too long for the ta
 
 {{"demo": "pages/demos/tabs/TabsWrappedLabel.js"}}
 
-
 ### Disabled Tab
 
 A Tab can be disabled by setting `disabled` property.
