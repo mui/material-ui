@@ -147,9 +147,9 @@ function transformNamespaceImports(j, root, importPath, targetPath) {
   });
 }
 
-module.exports = function transformer(file, api, options = {}) {
+module.exports = function transformer(fileInfo, api, options = {}) {
   const j = api.jscodeshift;
-  const root = j(file.source);
+  const root = j(fileInfo.source);
   const importPath = options.importPath || 'material-ui/styles/colors';
   const targetPath = options.targetPath || 'material-ui/colors';
 
