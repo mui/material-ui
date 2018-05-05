@@ -21,6 +21,21 @@ APIs.
 
 ### v1.0.0
 
+#### `import-path`
+
+Updates the `import-paths` for the new location of the components.
+Material-UI v1.0.0 flatten the import paths.
+The diff should look like this:
+
+```diff
+-import { MenuItem } from 'material-ui/Menu';
++import MenuItem from 'material-ui/MenuItem';
+```
+
+```sh
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/codemod/lib/v0.15.0/import-path.js
+```
+
 #### `color-imports`
 
 Updates the `color-imports` for the new location of Material-UI color palettes.

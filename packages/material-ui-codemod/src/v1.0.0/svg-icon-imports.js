@@ -39,9 +39,9 @@ function transformSVGIconImports(j, root) {
     });
 }
 
-module.exports = function transformer(file, api) {
+module.exports = function transformer(fileInfo, api) {
   const j = api.jscodeshift;
-  const root = j(file.source);
+  const root = j(fileInfo.source);
 
   // transforms
   transformSVGIconImports(j, root);

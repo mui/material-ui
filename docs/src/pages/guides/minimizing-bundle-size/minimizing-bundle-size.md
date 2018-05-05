@@ -11,7 +11,7 @@ The size of the bundle is checked at each commit:
 ## How to reduce the bundle size?
 
 For convenience, Material-UI exposes its full API on the top-level `material-ui` import.
-Using this is fine if you have tree shaking working, 
+Using this is fine if you have tree shaking working,
 however, in the case where tree shaking is not supported or configured in your build chain, **this causes the entire library and its dependencies to be included** in your client bundle.
 
 You have couple of options to overcome this situation:
@@ -47,7 +47,6 @@ Pick one of the following plugins:
 
 - [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) is quite customizable and with enough tweaks works with Material-UI.
 - [babel-transform-imports](https://bitbucket.org/amctheatres/babel-transform-imports) has a different api than a `babel-plugin-import` but does same thing.
-- [babel-plugin-direct-import](https://github.com/umidbekkarimov/babel-plugin-direct-import) automatically scans exported modules so in most cases it works with zero configuration.
 - [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) aims to work out of the box with all the `package.json`.
 
 **Important note**: Both of these options *should be temporary* until you add tree shaking capabilities to your project.
