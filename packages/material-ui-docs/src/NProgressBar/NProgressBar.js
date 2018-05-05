@@ -23,15 +23,21 @@ const styles = theme => {
   return {
     '@global': {
       '#nprogress': {
+        direction: 'ltr',
         pointerEvents: 'none',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 2,
+        zIndex: theme.zIndex.tooltip,
+        backgroundColor: '#e0e0e0',
         '& .nprogress-bar': {
           position: 'fixed',
-          background: theme.nprogress.color,
-          borderRadius: 1,
-          zIndex: theme.zIndex.tooltip,
+          backgroundColor: theme.nprogress.color,
           top: 0,
           left: 0,
-          width: '100%',
+          right: 0,
           height: 2,
         },
         '& dd, & dt': {
@@ -92,4 +98,4 @@ NProgressBar.defaultProps = {
   children: null,
 };
 
-export default withStyles(styles)(NProgressBar);
+export default withStyles(styles, { flip: false })(NProgressBar);
