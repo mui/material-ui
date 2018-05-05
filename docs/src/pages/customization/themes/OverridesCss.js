@@ -4,10 +4,11 @@ import Button from 'material-ui/Button';
 
 const theme = createMuiTheme({
   overrides: {
+    // Name of the component ⚛️ / style shee
     MuiButton: {
-      // Name of the styleSheet
+      // Name of the rule
       root: {
-        // Name of the rule
+        // Some CSS
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         borderRadius: 3,
         border: 0,
@@ -20,12 +21,12 @@ const theme = createMuiTheme({
   },
 });
 
-function OverridesTheme() {
+function OverridesCss() {
   return (
     <MuiThemeProvider theme={theme}>
-      <Button>Overrides</Button>
+      <Button>Overrides CSS</Button>
     </MuiThemeProvider>
   );
 }
 
-export default OverridesTheme;
+export default OverridesCss;
