@@ -217,11 +217,19 @@ If you want to learn more about typography, you can check out [the typography se
 ```js
 const theme = createMuiTheme({
   typography: {
-    // Use the system font over Roboto.
-    fontFamily:
-      '-apple-system,system-ui,BlinkMacSystemFont,' +
-      '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-    },
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
   },
 });
 ```
@@ -293,15 +301,48 @@ For instance:
 
 ## Customizing all instances of a component type
 
+### CSS
+
 When the configuration variables aren't powerful enough, you can take advantage of the
-`overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM.
+`overrides` key of the `theme` to potentially change every single **style** injected by Material-UI into the DOM.
 That's a really powerful feature.
 
-{{"demo": "pages/customization/themes/OverridesTheme.js"}}
+```js
+const theme = createMuiTheme({
+  overrides: {
+    MuiButton: { // Name of the component ⚛️ / style shee
+      root: { // Name of the rule
+        color: 'white', // Some CSS
+      },
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/themes/OverridesCss.js"}}
 
 The list of these customization points for each component is documented under the **Component API** section.
 For instance, you can have a look at the [Button](/api/button#css-api).
 Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/v1-beta/packages/material-ui/src/Button/Button.js).
+
+### Properties
+
+You can also apply properties on all the instances of a component type.
+We expose a `props` key in the `theme` for this use case.
+
+```js
+const theme = createMuiTheme({
+  props: {
+    // Name of the component ⚛️
+    MuiButtonBase: {
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 💣!
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/themes/OverridesProperties.js"}}
 
 ## Accessing the theme in a component
 

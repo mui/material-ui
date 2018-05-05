@@ -43,11 +43,18 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/themes/CustomStyles'), 'utf8')
 `,
         },
-        'pages/customization/themes/OverridesTheme.js': {
-          js: require('docs/src/pages/customization/themes/OverridesTheme').default,
+        'pages/customization/themes/OverridesCss.js': {
+          js: require('docs/src/pages/customization/themes/OverridesCss').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/themes/OverridesTheme'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/customization/themes/OverridesCss'), 'utf8')
+`,
+        },
+        'pages/customization/themes/OverridesProperties.js': {
+          js: require('docs/src/pages/customization/themes/OverridesProperties').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/customization/themes/OverridesProperties'), 'utf8')
 `,
         },
         'pages/customization/themes/WithTheme.js': {
