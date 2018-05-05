@@ -9,6 +9,7 @@ import FileDownloadIcon from '@material-ui/icons/FileDownload';
 import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import NoSSR from '@material-ui/docs/NoSSR';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
@@ -48,8 +49,11 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 4,
     marginBottom: theme.spacing.unit * 2,
   },
-  img: {
+  link: {
     marginTop: theme.spacing.unit,
+    display: 'block',
+  },
+  img: {
     maxWidth: 500,
     width: '100%',
     height: 'auto',
@@ -157,8 +161,10 @@ function HomeSteps(props) {
             {`Take Material-UI to the next level with premium themes from
               our official marketplace—all built on Material-UI.`}
           </Typography>
-          <Link prefetch href="/premium-themes">
-            <img className={classes.img} alt="themes" src="/static/images/themes.png" />
+          <Link prefetch href="/premium-themes" className={classes.link}>
+            <NoSSR>
+              <img className={classes.img} alt="themes" src="/static/images/themes.png" />
+            </NoSSR>
           </Link>
         </div>
         <Divider className={classes.divider} />
