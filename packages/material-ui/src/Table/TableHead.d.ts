@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { StandardProps } from '..';
 
-export interface TableHeadProps extends TableHeadBaseProps {
+export interface TableHeadProps extends StandardProps<TableHeadBaseProps, TableHeadClassKey> {
   component?: React.ReactType<TableHeadBaseProps>;
 }
+
+export type TableHeadClassKey = 'root';
 
 export type TableHeadBaseProps = React.HTMLAttributes<HTMLTableSectionElement>;
 
