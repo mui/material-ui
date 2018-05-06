@@ -80,7 +80,7 @@ This way, we can go back to the render props after stable v1 is released and see
 
 This change is for consistency with the other components. No need to repeat the component name in the property.
 
-```jsx
+```diff
        <Snackbar
 -        SnackbarContentProps={{ 'aria-describedby': 'notification-message' }}
 +        ContentProps={{ 'aria-describedby': 'notification-message' }}
