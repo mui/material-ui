@@ -9,7 +9,7 @@ describe('<TableHead />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<TableHead />);
+    classes = getClasses(<TableHead>foo</TableHead>);
   });
 
   it('should render a thead', () => {

@@ -660,7 +660,7 @@ const StepperTest = () =>
   };
 
 const TableTest = () => {
-  const styles: StyleRulesCallback<'paper' | 'thead'> = theme => {
+  const styles: StyleRulesCallback<'paper'> = theme => {
     const backgroundColor: string = theme.palette.secondary.light;
     return {
       paper: {
@@ -668,9 +668,6 @@ const TableTest = () => {
         marginTop: theme.spacing.unit * 3,
         backgroundColor,
         overflowX: 'auto',
-      },
-      thead: {
-        backgroundColor
       }
     };
   };
@@ -689,13 +686,13 @@ const TableTest = () => {
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ];
 
-  function BasicTable(props: WithStyles<'paper' | 'thead'>) {
+  function BasicTable(props: WithStyles<'paper'>) {
     const classes = props.classes;
 
     return (
       <Paper className={classes.paper}>
         <Table>
-          <TableHead classes={{root: classes.thead}}>
+          <TableHead>
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>
               <TableCell numeric>Calories</TableCell>
