@@ -28,7 +28,7 @@ function TabIndicator(props) {
   const { classes, className, color, style, ...other } = props;
 
   const styleProps =
-    color !== 'primary' || color !== 'secondary'
+    color.toLowerCase() !== 'primary' || color.toLowerCase() !== 'secondary'
       ? {
           backgroundColor: color,
           ...style,
@@ -53,6 +53,10 @@ TabIndicator.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * @ignore
    * The color of the tab indicator.
