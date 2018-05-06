@@ -1,5 +1,5 @@
-import React from 'react'
-import { withStyles } from 'material-ui/styles'
+import React from 'react';
+import { withStyles } from 'material-ui/styles';
 import MenuItem from 'material-ui/MenuItem';
 import Tab from 'material-ui/Tab';
 import MuiTabs from 'material-ui/Tabs';

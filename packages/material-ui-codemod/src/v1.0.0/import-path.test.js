@@ -45,7 +45,7 @@ describe('@material-ui/codemod', () => {
           trim(expected),
           'The transformed version should be correct',
         );
-      })
+      });
     });
   });
 });
