@@ -55,7 +55,9 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
+  TablePagination,
   TableRow,
   Tabs,
   TextField,
@@ -692,7 +694,7 @@ const TableTest = () => {
     return (
       <Paper className={classes.paper}>
         <Table>
-          <TableHead>
+          <TableHead classes={{ root: 'foo' }}>
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>
               <TableCell numeric>Calories</TableCell>
@@ -714,6 +716,11 @@ const TableTest = () => {
               );
             })}
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination count={2} rowsPerPage={1} page={1} onChangePage={() => {}} />
+            </TableRow>
+          </TableFooter>
         </Table>
       </Paper>
     );
