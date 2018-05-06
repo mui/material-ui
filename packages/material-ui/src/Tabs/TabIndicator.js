@@ -55,13 +55,13 @@ TabIndicator.propTypes = {
   className: PropTypes.string,
   /**
    * @ignore
-   */
-  style: PropTypes.object,
-  /**
-   * @ignore
    * The color of the tab indicator.
    */
   color: PropTypes.oneOf([PropTypes.string, PropTypes.oneOf(['secondary', 'primary'])]),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
 };
 
 export default withStyles(styles)(TabIndicator);
