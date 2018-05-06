@@ -2,7 +2,7 @@
   "name": "@material-ui/docs",
   "private": false,
   "author": "Material-UI Team",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Material-UI Docs - Documentation building blocks.",
   "main": "./src/index.js",
   "keywords": [
@@ -27,7 +27,7 @@
     "build:es2015modules": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=modules ../../node_modules/.bin/babel ./src/index.js --out-file ./build/index.es.js",
     "build:copy-files": "../../node_modules/.bin/babel-node ./scripts/copy-files.js",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:copy-files",
-    "version": "yarn build:copy-files && npm publish build"
+    "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
     "@material-ui/icons": "^1.0.0-beta.17",
