@@ -19,21 +19,29 @@ export const styles = theme => ({
   colorSecondary: {
     backgroundColor: theme.palette.secondary.main,
   },
-  colorOther: color => ({
-    backgroundColor: color,
-  }),
 });
 
 /**
  * @ignore - internal component.
  */
 function TabIndicator(props) {
-  const { classes, className, color, ...other } = props;
+  const { classes, className, color, style, ...other } = props;
 
-  const condition = color !== 'primary' || color !== 'secondary';
-  const colorToApply = condition ? classes.colorOther(color) : classes[`color${capitalize(color)}`];
+  const styleProps =
+    color !== 'primary' || color !== 'secondary'
+      ? {
+          backgroundColor: color,
+          ...style,
+        }
+      : style;
 
-  return <span className={classNames(classes.root, colorToApply, className)} {...other} />;
+  return (
+    <span
+      className={classNames(classes.root, classes[`color${capitalize(color)}`], className)}
+      style={styleProps}
+      {...other}
+    />
+  );
 }
 
 TabIndicator.propTypes = {
