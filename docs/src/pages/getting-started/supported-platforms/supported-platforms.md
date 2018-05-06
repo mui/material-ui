@@ -13,4 +13,4 @@ You don't need to provide any JavaScript polyfill as we manage unsupported brows
 ## Server
 
 Because Material-UI supports server side rendering, we need to support the latest, stable releases of [Node.js](https://github.com/nodejs/node).
-We try to support the [last active LTS version](https://github.com/nodejs/LTS#lts-schedule1). Right now, we support **node@6.11** and newer versions.
+We try to support the [last active LTS version](https://github.com/nodejs/LTS#lts-schedule1). Right now, we support **node v6.x** and newer versions.
