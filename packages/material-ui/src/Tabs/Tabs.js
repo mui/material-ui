@@ -279,6 +279,7 @@ class Tabs extends React.Component {
       scrollable,
       ScrollButtonComponent,
       scrollButtons,
+      TabIndicatorProps,
       textColor,
       theme,
       value,
@@ -305,6 +306,7 @@ class Tabs extends React.Component {
         style={this.state.indicatorStyle}
         className={classes.indicator}
         color={indicatorColor}
+        {...TabIndicatorProps}
       />
     );
 
@@ -416,6 +418,10 @@ Tabs.propTypes = {
    * `off` will never present them
    */
   scrollButtons: PropTypes.oneOf(['auto', 'on', 'off']),
+  /**
+   * Properties applied to the `TabIndicator` element.
+   */
+  TabIndicatorProps: PropTypes.object,
   /**
    * Determines the color of the `Tab`.
    */

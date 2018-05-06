@@ -22,6 +22,7 @@ filename: /packages/material-ui/src/Tabs/Tabs.js
 | <span class="prop-name">scrollable</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | True invokes scrolling properties and allow for horizontally scrolling (or swiping) the tab bar. |
 | <span class="prop-name">ScrollButtonComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">TabScrollButton</span> | The component used to render the scroll buttons. |
 | <span class="prop-name">scrollButtons</span> | <span class="prop-type">enum:&nbsp;'auto'&nbsp;&#124;<br>&nbsp;'on'&nbsp;&#124;<br>&nbsp;'off'<br> | <span class="prop-default">'auto'</span> | Determine behavior of scroll buttons when tabs are set to scroll `auto` will only present them on medium and larger viewports `on` will always present them `off` will never present them |
+| <span class="prop-name">TabIndicatorProps</span> | <span class="prop-type">object |  | Properties applied to the `TabIndicator` element. |
 | <span class="prop-name">textColor</span> | <span class="prop-type">enum:&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'inherit'<br> | <span class="prop-default">'inherit'</span> | Determines the color of the `Tab`. |
 | <span class="prop-name">value</span> | <span class="prop-type">any |  | The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`. |
 
