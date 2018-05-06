@@ -5,7 +5,144 @@ Changes. Changes everywhere!
 ## 1.0.0
 ###### *May 17, 2018*
 
-Coming Soon
+...
+
+## 1.0.0-beta.46
+###### *Mai 13, 2018*
+
+...
+
+## 1.0.0-beta.45
+###### *Mai 6, 2018*
+
+Big thanks to the 12 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A release date. We will release Material-UI v1 May 17th.
+- Improve the performance of withStyles by adding memoization (#11202) @CharlesStover.
+- Standardization of the component injection pattern (#11204) @oliviertassinari
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [core] Standardize the component injection pattern (#11204) @oliviertassinari
+
+I couldn't find a clean way to support the render props pattern.
+Doing such would require to greatly reduce the usage of JSX.
+It would really harm source code readability.
+
+Instead, I have been focusing on standardizing our component injection story.
+This way, we can go back to the render props after stable v1 is released and see if source code readability worth be sacrificed for the render prop pattern.
+
+```diff
+<Tabs
+- TabScrollButton={TabScrollButtonWrapped}
++ ScrollButtonComponent={TabScrollButtonWrapped}
+```
+
+```diff
+<TablePagination
+- Actions={TablePaginationActionsWrapped}
++ ActionsComponent={TablePaginationActionsWrapped}
+```
+
+```diff
+<Dialog
+- transition={Transition}
++ TransitionComponent={Transition}
+```
+
+```diff
+<Menu
+- transition={Transition}
++ TransitionComponent={Transition}
+```
+
+```diff
+<Snackbar
+- transition={Transition}
++ TransitionComponent={Transition}
+```
+
+```diff
+<Popover
+- transition={Transition}
++ TransitionComponent={Transition}
+```
+
+```diff
+<StepContent
+- transition={Transition}
++ TransitionComponent={Transition}
+```
+
+- [Snackbar] Rename SnackbarContentProps (#11203) @oliviertassinari
+
+This change is for consistency with the other components. No need to repeat the component name in the property.
+
+```jsx
+       <Snackbar
+-        SnackbarContentProps={{ 'aria-describedby': 'notification-message' }}
++        ContentProps={{ 'aria-describedby': 'notification-message' }}
+```
+
+- [CircularProgress] Remove min & max props (#11211) @mbrookes
+
+Makes the API consistant with LinearProgress
+
+```diff
+<CircularProgress
+- min={10}
+- max={20}
+- value={15}
++ value={(15 - 10) / (20 - 10) * 100}
+/>
+```
+
+- [ButtonBase] Complete the focusVisible rename (#11188) @oliviertassinari
+
+The rename started with #11090. I should have taken the time to complete it in the first place. This way, we are fully consistent with the spec: https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo :)
+
+```diff
+<ButtonBase
+- onKeyboardFocus={this.handleVisible}
++ onFocusVisible={this.handleVisible}
+```
+
+#### Component Fixes / Enhancements
+
+- [ButtonBase] Update TypeScript to sync with the implementation (#11189) @franklixuefei
+- [styles] Simpler outline reset (#11199) @oliviertassinari
+- [Transition] Add a TransitionProps (#11201) @oliviertassinari
+- [TablePagination] Allow the MenuItem customization (#11200) @oliviertassinari
+- [ListItemIcon] Take advantage of CSS inheritance (#11206) @xiaoyu-tamu
+- [StepButton] Allow null to be assigned to icon prop (#11221) @franklixuefei
+- [TextField] Increase shrunk label width to match 100% input width (#11215) @pandaiolo
+- [Select] Add IconComponent property (#11136) @sepehr1313
+- [withStyles] Memoization the classes property (#11202) @CharlesStover
+- [NProgress] Better RTL support and closer to YouTube version (#11246) @oliviertassinari
+- [Stepper] Swipeable demo integration (#11241) @Klynger
+- [codemod] Prepare the import path breaking change (#11249) @oliviertassinari
+- [codemod] Support the private and direct imports (#11253) @oliviertassinari
+- [Table] Fix Typescript classes support (#11255) @t49tran
+
+#### Docs
+
+- [docs] Fix typo in comparison.md (#11185) @morleytatro
+- [docs] Fix dark theme display (#11194) @oliviertassinari
+- [example] Revert wrong change (#11195) @oliviertassinari
+- [docs] Improve server-rendering, replace render by hydrate (#11210) @Mystraht
+- [docs] Update notification (#11213) @simsim0709
+- [docs] Clarify the difference with enzyme (#11228) @oliviertassinari
+- [docs] Add a note on the override of internal states (#11227) @oliviertassinari
+- [docs] Misc fixes (#11239) @mbrookes
+- [docs] Document the theme.props feature (#11245) @oliviertassinari
+- [docs] Speedup a bit the homepage (#11248) @oliviertassinari
+
+#### Core
+
+- [test] Fix the CI (#11187) @oliviertassinari
+- [core] Update dependencies (#11240) @oliviertassinari
 
 ## 1.0.0-beta.44
 ###### *Apr 29, 2018*
