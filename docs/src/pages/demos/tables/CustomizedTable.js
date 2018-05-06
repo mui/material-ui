@@ -63,7 +63,9 @@ function CustomizedTable(props) {
           {data.map(n => {
             return (
               <TableRow className={classes.row} key={n.id}>
-                <CustomTableCell>{n.name}</CustomTableCell>
+                <CustomTableCell component="th" scope="row">
+                  {n.name}
+                </CustomTableCell>
                 <CustomTableCell numeric>{n.calories}</CustomTableCell>
                 <CustomTableCell numeric>{n.fat}</CustomTableCell>
                 <CustomTableCell numeric>{n.carbs}</CustomTableCell>

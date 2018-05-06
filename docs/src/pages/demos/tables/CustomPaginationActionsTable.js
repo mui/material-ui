@@ -159,7 +159,9 @@ class CustomPaginationActionsTable extends React.Component {
               {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
                 return (
                   <TableRow key={n.id}>
-                    <TableCell>{n.name}</TableCell>
+                    <TableCell component="th" scope="row">
+                      {n.name}
+                    </TableCell>
                     <TableCell numeric>{n.calories}</TableCell>
                     <TableCell numeric>{n.fat}</TableCell>
                   </TableRow>

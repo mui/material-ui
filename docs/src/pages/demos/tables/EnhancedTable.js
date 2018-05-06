@@ -131,7 +131,9 @@ let EnhancedTableToolbar = props => {
             {numSelected} selected
           </Typography>
         ) : (
-          <Typography variant="title">Nutrition</Typography>
+          <Typography variant="title" id="tableTitle">
+            Nutrition
+          </Typography>
         )}
       </div>
       <div className={classes.spacer} />
@@ -266,7 +268,7 @@ class EnhancedTable extends React.Component {
       <Paper className={classes.root}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
-          <Table className={classes.table}>
+          <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
               numSelected={selected.length}
               order={order}
@@ -291,7 +293,9 @@ class EnhancedTable extends React.Component {
                     <TableCell padding="checkbox">
                       <Checkbox checked={isSelected} />
                     </TableCell>
-                    <TableCell padding="none">{n.name}</TableCell>
+                    <TableCell component="th" scope="row" padding="none">
+                      {n.name}
+                    </TableCell>
                     <TableCell numeric>{n.calories}</TableCell>
                     <TableCell numeric>{n.fat}</TableCell>
                     <TableCell numeric>{n.carbs}</TableCell>

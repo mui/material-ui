@@ -30,8 +30,9 @@ export const styles = theme => ({
     fontWeight: theme.typography.fontWeightMedium,
   },
   body: {
-    fontSize: theme.typography.pxToRem(13),
     color: theme.palette.text.primary,
+    fontSize: theme.typography.pxToRem(13),
+    fontWeight: theme.typography.fontWeightRegular,
   },
   footer: {
     borderBottom: 0,

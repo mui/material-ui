@@ -48,7 +48,9 @@ function SimpleTable(props) {
           {data.map(n => {
             return (
               <TableRow key={n.id}>
-                <TableCell>{n.name}</TableCell>
+                <TableCell component="th" scope="row">
+                  {n.name}
+                </TableCell>
                 <TableCell numeric>{n.calories}</TableCell>
                 <TableCell numeric>{n.fat}</TableCell>
                 <TableCell numeric>{n.carbs}</TableCell>
