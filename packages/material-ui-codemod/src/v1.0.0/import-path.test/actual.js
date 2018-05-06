@@ -28,3 +28,4 @@ import Table, {
 } from 'material-ui/Table';
 import Input, { InputLabel } from 'material-ui/Input';
 import Grow from 'material-ui/transitions/Grow';
+import TableFooter from 'material-ui/Table/TableFooter';
