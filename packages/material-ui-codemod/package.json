@@ -2,7 +2,7 @@
   "name": "@material-ui/codemod",
   "private": false,
   "author": "Material-UI Team",
-  "version": "1.0.0-beta.41",
+  "version": "1.0.0-beta.45",
   "description": "Codemod scripts for Material-UI.",
   "keywords": [
     "react",
@@ -16,8 +16,8 @@
     "test": "yarn test:unit",
     "test:unit": "cd ../../ && ./node_modules/.bin/mocha packages/material-ui-codemod/src/**/*.test.js",
     "test:watch": "yarn test:unit --watch",
-    "build": "../../node_modules/.bin/rimraf lib && ../../node_modules/.bin/babel ./src --out-dir ./lib",
-    "version": "npm publish"
+    "build": "../../node_modules/.bin/rimraf lib && ../../node_modules/.bin/babel ./src --out-dir ./lib --ignore *.test",
+    "release": "yarn build && npm publish"
   },
   "repository": {
     "type": "git",
