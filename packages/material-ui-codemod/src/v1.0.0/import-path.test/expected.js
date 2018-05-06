@@ -54,3 +54,4 @@ import Table from 'material-ui/Table';
 import InputLabel from 'material-ui/InputLabel';
 import Input from 'material-ui/Input';
 import Grow from 'material-ui/Grow';
+import TableFooter from 'material-ui/TableFooter';
