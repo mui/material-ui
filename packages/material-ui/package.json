@@ -53,7 +53,6 @@
     "keycode": "^2.1.9",
     "lodash": "^4.2.0",
     "normalize-scroll-left": "^0.1.2",
-    "npm": "^6.0.0",
     "prop-types": "^15.6.0",
     "react-event-listener": "^0.5.1",
     "react-jss": "^8.1.0",
