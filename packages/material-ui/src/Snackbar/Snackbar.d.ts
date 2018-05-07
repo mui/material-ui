@@ -24,7 +24,7 @@ export interface SnackbarProps
   onMouseLeave?: React.MouseEventHandler<any>;
   open: boolean;
   resumeHideDuration?: number;
-  transition?: React.ReactType;
+  TransitionComponent?: React.ReactType;
   transitionDuration?: TransitionProps['timeout'];
   TransitionProps?: TransitionProps;
 }
