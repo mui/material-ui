@@ -1,6 +1,5 @@
 function createRippleHandler(instance, eventName, action, cb) {
   return function handleEvent(event) {
-    if (instance.props && instance.props.disabled) return false;
     if (cb) {
       cb.call(instance, event);
     }

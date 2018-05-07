@@ -185,17 +185,6 @@ describe('<ButtonBase />', () => {
       );
     });
 
-    it('should start the ripple when the button receives focus', () => {
-      wrapper.instance().ripple = { start: spy() };
-      wrapper.simulate('focus', { persist: () => {} });
-
-      assert.strictEqual(
-        wrapper.instance().ripple.start.callCount,
-        1,
-        'should call start on the ripple',
-      );
-    });
-
     it('should stop the ripple when the button blurs', () => {
       wrapper.instance().ripple = { stop: spy() };
       wrapper.simulate('blur', {});
@@ -639,6 +628,34 @@ describe('<ButtonBase />', () => {
       mount(<ButtonBaseRef rootRef={ref}>Hello</ButtonBaseRef>);
       assert.strictEqual(ref.callCount, 1, 'should call the ref function');
       assert.strictEqual(ReactDOM.findDOMNode(ref.args[0][0]).type, 'button');
+    });
+  });
+
+  describe('prop: action', () => {
+    it('should be able to focus visible the button', () => {
+      let buttonActions = {};
+      const wrapper = mount(
+        <ButtonBaseNaked
+          theme={{}}
+          classes={{}}
+          action={actions => {
+            buttonActions = actions;
+          }}
+          focusVisibleClassName="focusVisible"
+        >
+          Hello
+        </ButtonBaseNaked>,
+      );
+
+      assert.strictEqual(
+        typeof buttonActions.focusVisible === 'function',
+        true,
+        'Should be a function.',
+      );
+      buttonActions.focusVisible();
+      wrapper.update();
+      assert.strictEqual(wrapper.instance().button, document.activeElement);
+      assert.strictEqual(wrapper.find('.focusVisible').length, 1);
     });
   });
 });
