@@ -78,6 +78,15 @@ class ButtonBase extends React.Component {
   componentDidMount() {
     this.button = ReactDOM.findDOMNode(this);
     listenForFocusKeys(ownerWindow(this.button));
+
+    if (this.props.action) {
+      this.props.action({
+        focusVisible: () => {
+          this.setState({ focusVisible: true });
+          this.button.focus();
+        },
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -213,6 +222,7 @@ class ButtonBase extends React.Component {
 
   render() {
     const {
+      action,
       buttonRef,
       centerRipple,
       children,
@@ -297,6 +307,15 @@ class ButtonBase extends React.Component {
 }
 
 ButtonBase.propTypes = {
+  /**
+   * Callback fired when the component mounts.
+   * This is useful when you want to trigger an action programmatically.
+   * It currently only supports `focusVisible()` action.
+   *
+   * @param {object} actions This object contains all possible actions
+   * that can be triggered programmatically.
+   */
+  action: PropTypes.func,
   /**
    * Use that property to pass a ref callback to the native button component.
    */

@@ -7,6 +7,7 @@ export interface ButtonBaseProps
       React.AnchorHTMLAttributes<HTMLElement> & React.ButtonHTMLAttributes<HTMLElement>,
       ButtonBaseClassKey
     > {
+  action?: (actions: ButtonBaseActions) => void;
   buttonRef?: React.Ref<any>;
   centerRipple?: boolean;
   component?: React.ReactType<ButtonBaseProps>;
@@ -18,6 +19,10 @@ export interface ButtonBaseProps
 }
 
 export type ButtonBaseClassKey = 'root' | 'disabled' | 'focusVisible';
+
+export interface ButtonBaseActions {
+  focusVisible(): void;
+}
 
 declare const ButtonBase: React.ComponentType<ButtonBaseProps>;
 
