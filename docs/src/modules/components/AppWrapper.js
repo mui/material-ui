@@ -64,6 +64,7 @@ class AppWrapper extends React.Component {
 
     if (
       nextProps.uiTheme.paletteType !== prevProps.uiTheme.paletteType ||
+      nextProps.uiTheme.paletteColors !== prevProps.uiTheme.paletteColors ||
       nextProps.uiTheme.direction !== prevProps.uiTheme.direction
     ) {
       return {

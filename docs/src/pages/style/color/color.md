@@ -45,6 +45,8 @@ It will help you create a color palette for your UI, as well as measure the acce
   <img src="/static/images/color/colorTool.png" style="width: 574px" />
 </a>
 
+### In your project
+
 The output can be fed directly to `createMuiTheme()` function:
 
 ```jsx
@@ -67,6 +69,15 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+### In the documentation
+
+To test a [material.io/color](https://material.io/color) color sceme with the Material-UI
+documentation, simply copy the URL (there is an IconButton in the top right-hand corner of the page)
+and past it in the TextField below.
+Alternatively, you can enter hex values in the Primary and Secondary TextFields.
+
+{{"demo": "pages/style/color/ColorChooser.js", "hideHeader": true}}
 
 ## Color palette
 
