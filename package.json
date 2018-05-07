@@ -132,6 +132,7 @@
     "react-dom": "^16.2.0",
     "react-inspector": "^2.2.2",
     "react-number-format": "^3.0.2",
+    "react-popper": "^0.10.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",

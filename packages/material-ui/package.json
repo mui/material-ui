@@ -32,7 +32,8 @@
   },
   "peerDependencies": {
     "react": "^15.3.0 || ^16.0.0",
-    "react-dom": "^15.3.0 || ^16.0.0"
+    "react-dom": "^15.3.0 || ^16.0.0",
+    "react-popper": "^0.10.0"
   },
   "dependencies": {
     "@types/jss": "^9.3.0",
@@ -57,7 +58,6 @@
     "react-event-listener": "^0.5.1",
     "react-jss": "^8.1.0",
     "react-lifecycles-compat": "^3.0.0",
-    "react-popper": "^0.10.0",
     "react-scrollbar-size": "^2.0.2",
     "react-transition-group": "^2.2.1",
     "recompose": "^0.26.0 || ^0.27.0",
