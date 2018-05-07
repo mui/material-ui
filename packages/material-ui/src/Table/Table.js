@@ -22,9 +22,9 @@ class Table extends React.Component {
   }
 
   render() {
-    const { classes, className: classNameProp, component: Component, ...other } = this.props;
+    const { classes, className, component: Component, ...other } = this.props;
 
-    return <Component className={classNames(classes.root, classNameProp)} {...other} />;
+    return <Component className={classNames(classes.root, className)} {...other} />;
   }
 }
 
