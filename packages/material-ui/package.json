@@ -67,6 +67,6 @@
   "devDependencies": {},
   "sideEffects": false,
   "engines": {
-    "node": ">=6.11.0"
+    "node": ">=6.0.0"
   }
 }

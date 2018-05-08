@@ -7,7 +7,7 @@ import CssInJs from './CssInJs';
 const sheetsRegistry = new SheetsRegistry();
 const theme = createMuiTheme();
 
-class JssRegistry extends React.Component<any, any> {
+class JssRegistry extends React.Component {
   state = {
     length: 0,
   };

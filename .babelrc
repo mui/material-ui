@@ -1,12 +1,11 @@
 {
-  "presets": ["./scripts/material-ui-babel-preset", "stage-1", "react"],
-  "plugins": [
-    "transform-object-assign"
-  ],
+  "presets": ["./scripts/material-ui-babel-preset", "@babel/preset-stage-1", "@babel/preset-react"],
+  "plugins": ["@babel/plugin-transform-object-assign"],
   "env": {
     "coverage": {
       "plugins": [
         "istanbul",
+        "@babel/plugin-transform-flow-strip-types",
         [
           "module-resolver",
           {
@@ -16,21 +15,17 @@
               "material-ui": "./packages/material-ui/src"
             }
           }
-        ],
+        ]
       ]
     },
     "development": {
       "sourceMaps": "both",
-      "plugins": [
-        "transform-flow-strip-types"
-      ]
+      "plugins": ["@babel/plugin-transform-flow-strip-types"]
     },
     "docs-development": {
-      "presets": [
-        "next/babel"
-      ],
+      "presets": ["next/babel"],
       "plugins": [
-        "preval",
+        "./scripts/material-ui-babel-preval",
         [
           "module-resolver",
           {
@@ -44,15 +39,13 @@
             }
           }
         ],
-        "transform-flow-strip-types"
+        "@babel/plugin-transform-flow-strip-types"
       ]
     },
     "docs-production": {
-      "presets": [
-        "next/babel"
-      ],
+      "presets": ["next/babel"],
       "plugins": [
-        "preval",
+        "./scripts/material-ui-babel-preval",
         [
           "module-resolver",
           {
@@ -68,43 +61,46 @@
         ],
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "transform-runtime",
-        ["react-remove-properties", {"properties": ["data-mui-test"]}],
-        ["transform-react-remove-prop-types", {"mode": "remove"}]
+        "@babel/transform-runtime",
+        "@babel/plugin-transform-flow-strip-types",
+        ["react-remove-properties", { "properties": ["data-mui-test"] }],
+        ["transform-react-remove-prop-types", { "mode": "remove" }]
       ]
     },
     "es": {
       "plugins": [
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "transform-runtime",
-        ["react-remove-properties", {"properties": ["data-mui-test"]}],
-        ["transform-react-remove-prop-types", {
-          "mode": "wrap",
-          "plugins": [
-            "babel-plugin-transform-flow-strip-types"
-          ]
-        }]
+        "@babel/transform-runtime",
+        "@babel/plugin-transform-flow-strip-types",
+        ["react-remove-properties", { "properties": ["data-mui-test"] }],
+        [
+          "transform-react-remove-prop-types",
+          {
+            "mode": "wrap"
+          }
+        ]
       ]
-   },
+    },
     "production": {
       "plugins": [
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "transform-runtime",
-        ["react-remove-properties", {"properties": ["data-mui-test"]}],
-        ["transform-react-remove-prop-types", {
-          "mode": "wrap",
-          "plugins": [
-            "babel-plugin-transform-flow-strip-types"
-          ]
-        }]
+        "@babel/transform-runtime",
+        "@babel/plugin-transform-flow-strip-types",
+        ["react-remove-properties", { "properties": ["data-mui-test"] }],
+        [
+          "transform-react-remove-prop-types",
+          {
+            "mode": "wrap"
+          }
+        ]
       ]
-   },
+    },
     "test": {
       "sourceMaps": "both",
       "plugins": [
-        "transform-flow-strip-types",
+        "@babel/plugin-transform-flow-strip-types",
         [
           "module-resolver",
           {
@@ -114,8 +110,9 @@
               "material-ui": "./packages/material-ui/src"
             }
           }
-        ],
+        ]
       ]
     }
-  }
+  },
+  "ignore": ["scripts/material-ui-babel-preset.js", "scripts/*.js"]
 }

@@ -3,18 +3,18 @@
     "name": "The initial cost people pay for using one component",
     "webpack": true,
     "path": "packages/material-ui/build/Paper/index.js",
-    "limit": "25.4 KB"
+    "limit": "26.0 KB"
   },
   {
     "name": "The size of all the modules of material-ui.",
     "webpack": true,
     "path": "packages/material-ui/build/index.js",
-    "limit": "101.4 KB"
+    "limit": "102.3 KB"
   },
   {
     "name": "The main bundle of the docs",
     "webpack": false,
-    "path": ".next/main.js",
+    "path": ".next/bundles/pages/_app.js",
     "limit": "186 KB"
   },
   {
