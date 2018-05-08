@@ -5,7 +5,7 @@ export interface WithTheme {
   theme: Theme;
 }
 
-declare const withTheme: () => <P extends ConsistentWith<WithTheme>>(
+declare const withTheme: () => <P extends ConsistentWith<P, WithTheme>>(
   component: React.ComponentType<P & WithTheme>,
 ) => React.ComponentClass<P>;
 

@@ -1,5 +1,5 @@
 import { Breakpoint } from '../styles/createBreakpoints';
-import { ConsistentWith } from '..';
+import { ConsistentWith, Overwrite } from '..';
 
 export interface WithWidthOptions {
   resizeInterval: number;
@@ -23,6 +23,6 @@ export function isWidthUp(
 
 export default function withWidth(
   options?: WithWidthOptions,
-): <P extends ConsistentWith<WithWidthProps>>(
+): <P extends ConsistentWith<P, WithWidthProps>>(
   component: React.ComponentType<P & WithWidthProps>,
-) => React.ComponentClass<P & Partial<WithWidthProps>>;
+) => React.ComponentClass<Overwrite<P, Partial<WithWidthProps>>>;

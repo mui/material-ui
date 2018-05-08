@@ -7,11 +7,10 @@ export { StyledComponentProps };
  * certain `classes`, on which one can also set a top-level `className` and inline
  * `style`.
  */
-export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> = Omit<
-  C & { classes: any },
-  'classes' | Removals
-> &
-  StyledComponentProps<ClassKey> & {
+export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> =
+  & Omit<C, 'classes' | Removals>
+  & StyledComponentProps<ClassKey>
+  & {
     className?: string;
     style?: React.CSSProperties;
   };
@@ -35,19 +34,26 @@ export interface Color {
 }
 
 /**
- * Utilies types based on:
- * https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-307871458
+ * Remove properties `K` from `T`.
+ *
+ * @internal
  */
+export type Omit<T, K extends string> = Pick<T, Exclude<keyof T, K>>;
 
-/** @internal */
-type Diff<T extends string, U extends string> = ({ [P in T]: P } &
-  { [P in U]: never } & { [x: string]: never })[T];
+/**
+ * `T extends ConsistentWith<T, U>` means that where `T` has overlapping properties with
+ * `U`, their value types do not conflict.
+ *
+ * @internal
+ */
+export type ConsistentWith<T, U> = Pick<U, keyof T & keyof U>;
 
-/** @internal */
-export type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
-
-/** @internal */
-export type ConsistentWith<O> = Partial<O> & Record<string, any>;
+/**
+ * Like `T & U`, but using the value types from `U` where their properties overlap.
+ *
+ * @internal
+ */
+export type Overwrite<T, U> = (U extends ConsistentWith<U, T> ? T : Omit<T, keyof U>) & U;
 
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
