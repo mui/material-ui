@@ -49,7 +49,7 @@ export type Omit<T, K extends string> = Pick<T, Exclude<keyof T, K>>;
 export type ConsistentWith<T, U> = Pick<U, keyof T & keyof U>;
 
 /**
- * Like `T & U`, but using the value type from `U` where their properties overlap.
+ * Like `T & U`, but using the value types from `U` where their properties overlap.
  *
  * @internal
  */
