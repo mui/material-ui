@@ -10,7 +10,32 @@ Changes. Changes everywhere!
 ## 1.0.0-beta.46
 ###### *May 13, 2018*
 
-...
+Big thanks to the 7 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Fix an important regression (npm dependency)
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Table] Add table-footer-group CSS (#11264) @t49tran
+- [ButtonBase] Add a focusVisible action (#9712) @tkvw
+- [ButtonBase] Better performance (#11277) @oliviertassinari
+- [Tabs] Add a TabIndicatorProps property (#11254) @adeelibr
+
+#### Docs
+
+- [docs] Improve the table examples' accessibility (#11256) @mbrookes
+- [docs] Add Pilcro to showcase apps (#11274) @hugowoodhead
+
+#### Core
+
+- [typescript] Fix type definitions for Snackbar and CircularProgress (#11265) @franklixuefei
+- [core] Upgrade Babel 6 to Babel 7 (#10964) @oliviertassinari
+- [core] npm shouldn't be a dependency (#11263) @oliviertassinari
 
 ## 1.0.0-beta.45
 ###### *May 6, 2018*
