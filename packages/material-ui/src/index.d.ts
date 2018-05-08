@@ -39,13 +39,26 @@ export interface Color {
  * https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-307871458
  */
 
-/** @internal */
+/**
+ * Remove properties `K` from `T`.
+ *
+ * @internal
+ */
 export type Omit<T, K extends string> = Pick<T, Exclude<keyof T, K>>;
 
-/** @internal */
+/**
+ * `T extends ConsistentWith<U>` means that where `T` has overlapping properties with
+ * `U`, their value types do not conflict.
+ *
+ * @internal
+ */
 export type ConsistentWith<O> = Partial<O> & Record<string, any>;
 
-/** @internal */
+/**
+ * Like `T & U`, but using the value type from `U` where their properties overlap.
+ *
+ * @internal
+ */
 export type Overwrite<T, U> = (U extends Pick<T, keyof T & keyof U> ? T : Omit<T, keyof U>) & U;
 
 export namespace PropTypes {
