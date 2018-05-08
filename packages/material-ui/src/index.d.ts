@@ -7,11 +7,10 @@ export { StyledComponentProps };
  * certain `classes`, on which one can also set a top-level `className` and inline
  * `style`.
  */
-export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> = Omit<
-  C & { classes: any },
-  'classes' | Removals
-> &
-  StyledComponentProps<ClassKey> & {
+export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> =
+  & Omit<C, 'classes' | Removals>
+  & StyledComponentProps<ClassKey>
+  & {
     className?: string;
     style?: React.CSSProperties;
   };
