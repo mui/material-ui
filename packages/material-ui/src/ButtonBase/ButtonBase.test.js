@@ -4,6 +4,7 @@ import keycode from 'keycode';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
+import rerender from 'test/utils/rerender';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
@@ -656,6 +657,24 @@ describe('<ButtonBase />', () => {
       wrapper.update();
       assert.strictEqual(wrapper.instance().button, document.activeElement);
       assert.strictEqual(wrapper.find('.focusVisible').length, 1);
+    });
+  });
+
+  describe('rerender', () => {
+    beforeEach(() => {
+      rerender.spy();
+    });
+
+    afterEach(() => {
+      rerender.reset();
+    });
+
+    it('should not rerender the TouchRipple', () => {
+      const wrapper = mount(<ButtonBase>foo</ButtonBase>);
+      wrapper.setProps({
+        children: 'bar',
+      });
+      assert.strictEqual(rerender.updates.length, 1);
     });
   });
 });
