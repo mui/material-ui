@@ -87,7 +87,7 @@ export const styles = theme => ({
   },
 });
 
-class TouchRipple extends React.Component {
+class TouchRipple extends React.PureComponent {
   state = {
     nextKey: 0,
     ripples: [],
