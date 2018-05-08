@@ -35,11 +35,6 @@ export interface Color {
 }
 
 /**
- * Utilies types based on:
- * https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-307871458
- */
-
-/**
  * Remove properties `K` from `T`.
  *
  * @internal
