@@ -8,7 +8,7 @@ Changes. Changes everywhere!
 ...
 
 ## 1.0.0-beta.46
-###### *May 13, 2018*
+###### *May 8, 2018*
 
 Big thanks to the 7 contributors who made this release possible.
 
