@@ -141,3 +141,8 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   homepage: https://localinsights.io
 
   github: https://github.com/local-insights
+
+### 24. Pilcro
+  A free brand management software for the Google Suite.
+
+  homepage: https://www.pilcro.com
