@@ -46,7 +46,7 @@ export type Omit<T, K extends string> = Pick<T, Exclude<keyof T, K>>;
 export type ConsistentWith<O> = Partial<O> & Record<string, any>;
 
 /** @internal */
-export type Replace<T, U> = (U extends Pick<T, keyof T & keyof U> ? T : Omit<T, keyof U>) & U;
+export type Overwrite<T, U> = (U extends Pick<T, keyof T & keyof U> ? T : Omit<T, keyof U>) & U;
 
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
