@@ -41,19 +41,19 @@ export interface Color {
 export type Omit<T, K extends string> = Pick<T, Exclude<keyof T, K>>;
 
 /**
- * `T extends ConsistentWith<U>` means that where `T` has overlapping properties with
+ * `T extends ConsistentWith<T, U>` means that where `T` has overlapping properties with
  * `U`, their value types do not conflict.
  *
  * @internal
  */
-export type ConsistentWith<O> = Partial<O> & Record<string, any>;
+export type ConsistentWith<T, U> = Pick<U, keyof T & keyof U>;
 
 /**
  * Like `T & U`, but using the value type from `U` where their properties overlap.
  *
  * @internal
  */
-export type Overwrite<T, U> = (U extends Pick<T, keyof T & keyof U> ? T : Omit<T, keyof U>) & U;
+export type Overwrite<T, U> = (U extends ConsistentWith<U, T> ? T : Omit<T, keyof U>) & U;
 
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';

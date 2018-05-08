@@ -49,7 +49,7 @@ export default function withStyles<ClassKey extends string>(
   style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
   options?: WithStylesOptions,
 ): {
-  <P extends ConsistentWith<StyledComponentProps<ClassKey>>>(
+  <P extends ConsistentWith<P, StyledComponentProps<ClassKey>>>(
     component: React.ComponentType<P & WithStyles<ClassKey>>,
   ): React.ComponentType<Overwrite<P, StyledComponentProps<ClassKey>>>;
 };
