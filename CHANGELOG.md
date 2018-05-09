@@ -5,7 +5,35 @@ Changes. Changes everywhere!
 ## 1.0.0
 ###### *May 17, 2018*
 
-...
+## 1.0.0-rc.0
+###### *May 12, 2018*
+
+## 1.0.0-beta.47
+###### *May 9, 2018*
+
+Big thanks to the 4 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Fix an important regression (Babel upgrade)
+
+### Breaking change
+
+- [typescript] Fix withStyles edge cases (#11280) @pelotom
+
+If you are using TypeScript, 2.8 or later is required.
+
+#### Component Fixes / Enhancements
+
+- [withStyles] Support createRef() (#11293) @rolandjitsu
+- [InputLabel] Remove the width style property (#11297) @C-Rodg
+
+#### Docs
+
+N/A
+
+#### Core
+
+- [core] Add @babel/runtime as a dependency (#11298) @oliviertassinari
 
 ## 1.0.0-beta.46
 ###### *May 8, 2018*
