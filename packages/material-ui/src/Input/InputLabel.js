@@ -16,8 +16,6 @@ export const styles = theme => ({
     top: 0,
     // slight alteration to spec spacing to match visual spec result
     transform: `translate(0, ${theme.spacing.unit * 3}px) scale(1)`,
-    width: '100%',
-    textAlign: 'left',
   },
   marginDense: {
     // Compensation for the `Input.inputDense` style.
