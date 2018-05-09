@@ -42,7 +42,7 @@ export interface WithStyles<ClassKey extends string = string> extends Partial<Wi
 
 export interface StyledComponentProps<ClassKey extends string = string> {
   classes?: Partial<ClassNameMap<ClassKey>>;
-  innerRef?: React.Ref<any>;
+  innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
 export default function withStyles<ClassKey extends string>(

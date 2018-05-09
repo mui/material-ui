@@ -313,7 +313,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     /**
      * Use that property to pass a ref callback to the decorated component.
      */
-    innerRef: PropTypes.func,
+    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   };
 
   WithStyles.contextTypes = {
