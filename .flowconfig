@@ -27,8 +27,8 @@ esproposal.class_instance_fields=enable
 module.file_ext=.js
 module.file_ext=.md
 module.name_mapper='.*\.\(html\|css\|svg\|png\|jpg\|gif\)$' -> '<PROJECT_ROOT>/flow/stubs/url-loader.js'
-module.name_mapper='^material-ui\/\(.*\)$' -> '<PROJECT_ROOT>/packages/material-ui/src/\1'
-module.name_mapper='^material-ui-icons\/\(.*\)$' -> '<PROJECT_ROOT>/packages/material-ui-icons/src/\1'
+module.name_mapper='^@material-ui/core\/\(.*\)$' -> '<PROJECT_ROOT>/packages/material-ui/src/\1'
+module.name_mapper='^@material-ui/icons\/\(.*\)$' -> '<PROJECT_ROOT>/packages/material-ui-icons/src/\1'
 
 module.ignore_non_literal_requires=true
 module.system.node.resolve_dirname=node_modules

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import compose from 'recompose/compose';
 import { withRouter } from 'next/router';
 import NextLink from 'next/link';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {

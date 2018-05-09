@@ -63,7 +63,7 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
   import React from 'react';
   import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'material-ui-next/styles';
   import { MuiThemeProvider } from 'material-ui';
-  import getMuiTheme from 'material-ui/styles/getMuiTheme';
+  import getMuiTheme from '@material-ui/core/styles/getMuiTheme';
 
   const themeV1 = createMuiTheme({
     /* theme for v1 */

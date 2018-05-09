@@ -105,7 +105,7 @@ The simplest approach is to add an HTML comment that determines where JSS will i
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
@@ -140,7 +140,7 @@ For example, a `<noscript>` element:
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
@@ -166,7 +166,7 @@ To get around the issue, you can use the JavaScript `document.createComment()` A
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const styleNode = document.createComment("jss-insertion-point");
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -199,7 +199,7 @@ Here is an example:
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
@@ -263,7 +263,7 @@ Use the function signature if you need to have access to the theme. It's provide
 #### Examples
 
 ```jsx
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -283,7 +283,7 @@ export default withStyles(styles)(MyComponent);
 Also, you can use as [decorators](https://babeljs.io/docs/plugins/transform-decorators/) like so:
 
 ```jsx
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -319,7 +319,7 @@ A function which returns a class name generator function.
 
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
-import { createGenerateClassName } from 'material-ui/styles';
+import { createGenerateClassName } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName({
   dangerouslyUseGlobalCSS: true,

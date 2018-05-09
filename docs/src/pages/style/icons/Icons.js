@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import red from 'material-ui/colors/red';
-import Icon from 'material-ui/Icon';
+import { withStyles } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
+import Icon from '@material-ui/core/Icon';
 
 const styles = theme => ({
   root: {

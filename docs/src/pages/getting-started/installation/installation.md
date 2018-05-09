@@ -1,13 +1,13 @@
 # Installation
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/material-ui).
+Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
 
 ## npm
 
 To install and save in your `package.json` dependencies, run:
 
 ```sh
-npm install material-ui@next
+npm install @material-ui/core
 ```
 
 ## Roboto Font

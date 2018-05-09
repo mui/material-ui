@@ -1,5 +1,5 @@
 import React from 'react';
-import Switch from 'material-ui/Switch';
+import Switch from '@material-ui/core/Switch';
 
 class Switches extends React.Component {
   state = {

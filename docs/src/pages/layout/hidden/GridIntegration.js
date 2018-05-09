@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import Grid from 'material-ui/Grid';
-import withWidth from 'material-ui/utils/withWidth';
-import Typography from 'material-ui/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import withWidth from '@material-ui/core/utils/withWidth';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {

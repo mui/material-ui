@@ -66,8 +66,11 @@ export default function transformer(fileInfo, api, options) {
     trailingComma: true,
   };
 
+  const importModule = options.importModule || 'material-ui';
+  const targetModule = options.targetModule || 'material-ui';
+
   const root = j(fileInfo.source);
-  const importRegExp = /^material-ui\/(.+)/;
+  const importRegExp = new RegExp(`^${importModule}/(.+)$`);
 
   root.find(j.ImportDeclaration).forEach(path => {
     const importPath = path.value.source.value;
@@ -95,14 +98,14 @@ export default function transformer(fileInfo, api, options) {
       if (!importedName) {
         const importStatement = j.importDeclaration(
           [j.importDefaultSpecifier(j.identifier(localName))],
-          j.literal(`material-ui/${entryModule}`),
+          j.literal(`${targetModule}/${entryModule}`),
         );
 
         j(path).insertBefore(importStatement);
       } else {
         const importStatement = j.importDeclaration(
           [j.importDefaultSpecifier(j.identifier(localName))],
-          j.literal(`material-ui/${importedName}`),
+          j.literal(`${targetModule}/${importedName}`),
         );
 
         j(path).insertBefore(importStatement);

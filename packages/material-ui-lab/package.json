@@ -41,7 +41,7 @@
   "dependencies": {},
   "devDependencies": {
     "@material-ui/icons": "^1.0.0-beta.35",
-    "material-ui": "^1.0.0-beta.33"
+    "@material-ui/core": "^1.0.0-beta.33"
   },
   "sideEffects": false,
   "publishConfig": {

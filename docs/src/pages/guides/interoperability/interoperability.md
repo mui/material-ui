@@ -36,7 +36,7 @@ Nothing fancy, just plain old CSS. Why reinvent the wheel when it has been worki
 **RawCSSButton.js**
 ```jsx
 import React from 'react';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 function RawCSSButton() {
   return (
@@ -80,7 +80,7 @@ prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js#global-css).
 **GlobalCSSButton.js**
 ```jsx
 import React from 'react';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 function GlobalCSSButton() {
   return (
@@ -134,7 +134,7 @@ bundling solution people are using.
 import React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CSSModulesButton.css';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 function CSSModulesButton() {
   return (
@@ -166,7 +166,7 @@ The `styled()` method works perfectly on all of our components.
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(Button)`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -208,7 +208,7 @@ An example of this solution:
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(Button)`
   && {
@@ -252,7 +252,7 @@ The following example overrides the `label` style of `Button` in addition to the
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(({ color, ...other }) => (
   <Button {...other} classes={{ label: 'label' }} />
@@ -293,7 +293,7 @@ A clean way to apply styles to Material-UI components with glamorous It's just p
 ```jsx
 import React from 'react';
 import glamorous from 'glamorous';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = glamorous(Button)({
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -337,7 +337,7 @@ import React from 'react';
 import glamorous from 'glamorous';
 import { css } from 'glamor';
 import classnames from 'classnames';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 const buttonStyles = {
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',

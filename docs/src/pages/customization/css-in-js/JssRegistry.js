@@ -1,7 +1,7 @@
 import React from 'react';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { SheetsRegistry } from 'jss';
-import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import CssInJs from './CssInJs';
 
 const sheetsRegistry = new SheetsRegistry();

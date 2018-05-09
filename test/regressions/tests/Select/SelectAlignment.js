@@ -1,8 +1,8 @@
 import React from 'react';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import Select from 'material-ui/Select';
+import Input, { InputLabel } from '@material-ui/core/Input';
+import { MenuItem } from '@material-ui/core/Menu';
+import { FormControl, FormHelperText } from '@material-ui/core/Form';
+import Select from '@material-ui/core/Select';
 
 function SelectAlignment() {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, createShallow, getClasses } from 'material-ui/test-utils';
-import Icon from 'material-ui/Icon';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import Icon from '@material-ui/core/Icon';
 import SpeedDialIcon from './SpeedDialIcon';
 
 describe('<SpeedDialIcon />', () => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Checkbox from 'material-ui/Checkbox';
-import { createMuiTheme, MuiThemeProvider, withStyles } from 'material-ui/styles';
-import orange from 'material-ui/colors/orange';
-import green from 'material-ui/colors/green';
-import pink from 'material-ui/colors/pink';
+import Checkbox from '@material-ui/core/Checkbox';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import orange from '@material-ui/core/colors/orange';
+import green from '@material-ui/core/colors/green';
+import pink from '@material-ui/core/colors/pink';
 
 const styles = theme => ({
   root: {

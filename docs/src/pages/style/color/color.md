@@ -24,8 +24,8 @@ They’ve been designed to work harmoniously with each other.
 For instance, you can refer to complementary primary and accent colors (for example 'red 500' & 'purple A200'), like so:
 
 ```js
-import purple from 'material-ui/colors/purple';
-import red from 'material-ui/colors/red';
+import purple from '@material-ui/core/colors/purple';
+import red from '@material-ui/core/colors/red';
 
 const primary = red[500]; // #F44336
 const accent = purple['A200']; // #E040FB
@@ -44,7 +44,7 @@ It will help you create a color palette for your UI, as well as measure the acce
 The output can be fed directly to `createMuiTheme()` function:
 
 ```jsx
-import { createMuiTheme } from 'material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   palette: {
