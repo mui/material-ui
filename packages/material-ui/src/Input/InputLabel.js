@@ -17,7 +17,7 @@ export const styles = theme => ({
     // slight alteration to spec spacing to match visual spec result
     transform: `translate(0, ${theme.spacing.unit * 3}px) scale(1)`,
     width: '100%',
-    textAlign: 'left'
+    textAlign: 'left',
   },
   marginDense: {
     // Compensation for the `Input.inputDense` style.
@@ -25,7 +25,7 @@ export const styles = theme => ({
   },
   shrink: {
     transform: 'translate(0, 1.5px) scale(0.75)',
-    transformOrigin: 'top left'
+    transformOrigin: 'top left',
   },
   animated: {
     transition: theme.transitions.create('transform', {
