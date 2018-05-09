@@ -66,4 +66,20 @@ describe('createMuiTheme', () => {
       assert.strictEqual(muiTheme.shadows, shadows);
     });
   });
+
+  describe('props', () => {
+    it('should have the props as expected', () => {
+      const props = {
+        MuiDialog: {
+          fullScreen: true,
+          fullWidth: false,
+        },
+        MuiButtonBase: {
+          disableRipple: true,
+        },
+      };
+      const muiTheme = createMuiTheme({ props });
+      assert.deepEqual(muiTheme.props, props);
+    });
+  });
 });
