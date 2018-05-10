@@ -26,7 +26,7 @@ class CircularDeterminate extends React.Component {
 
   progress = () => {
     const { completed } = this.state;
-    this.setState({ completed: completed === 100 ? 0 : completed + 1 });
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
   };
 
   render() {

@@ -26,6 +26,12 @@ export const styles = theme => ({
   root: {
     display: 'inline-block',
   },
+  static: {
+    transition: theme.transitions.create('transform'),
+  },
+  indeterminate: {
+    animation: 'mui-progress-circular-rotate 1.4s linear infinite',
+  },
   colorPrimary: {
     color: theme.palette.primary.main,
   },
@@ -33,12 +39,12 @@ export const styles = theme => ({
     color: theme.palette.secondary.main,
   },
   svg: {},
-  svgIndeterminate: {
-    animation: 'mui-progress-circular-rotate 1.4s linear infinite',
-  },
   circle: {
     stroke: 'currentColor',
     strokeLinecap: 'round',
+  },
+  circleStatic: {
+    transition: theme.transitions.create('stroke-dashoffset'),
   },
   circleIndeterminate: {
     animation: 'mui-progress-circular-dash 1.4s ease-in-out infinite',
@@ -103,6 +109,8 @@ function CircularProgress(props) {
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
+          [classes.indeterminate]: variant === 'indeterminate',
+          [classes.static]: variant === 'static',
         },
         className,
       )}
@@ -111,15 +119,11 @@ function CircularProgress(props) {
       {...rootProps}
       {...other}
     >
-      <svg
-        className={classNames(classes.svg, {
-          [classes.svgIndeterminate]: variant === 'indeterminate',
-        })}
-        viewBox={`0 0 ${SIZE} ${SIZE}`}
-      >
+      <svg className={classes.svg} viewBox={`0 0 ${SIZE} ${SIZE}`}>
         <circle
           className={classNames(classes.circle, {
             [classes.circleIndeterminate]: variant === 'indeterminate',
+            [classes.circleStatic]: variant === 'static',
           })}
           style={circleStyle}
           cx={SIZE / 2}

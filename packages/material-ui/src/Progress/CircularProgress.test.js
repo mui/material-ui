@@ -43,7 +43,7 @@ describe('<CircularProgress />', () => {
     const wrapper = shallow(<CircularProgress />);
     const svg = wrapper.childAt(0);
     assert.strictEqual(svg.name(), 'svg');
-    assert.strictEqual(svg.hasClass(classes.svgIndeterminate), true);
+    assert.strictEqual(wrapper.hasClass(classes.indeterminate), true);
     assert.strictEqual(svg.childAt(0).name(), 'circle', 'should be a circle');
     assert.strictEqual(
       svg.childAt(0).hasClass(classes.circle),
