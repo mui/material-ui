@@ -119,12 +119,34 @@ const theme = createMuiTheme({
       },
     },
   },
+  props: {
+    MuiButton: {
+      disabled: true,
+    },
+    MuiAppBar: {
+      position: 'fixed',
+    },
+  },
 });
 
 const theme2 = createMuiTheme({
   palette: {
     primary: {
       main: blue[500],
+    },
+  },
+  props: {
+    MuiButton: {
+      disabled: false,
+      TouchRippleProps: {
+        center: true,
+      },
+    },
+    MuiTable: {
+      cellPadding: 12,
+    },
+    MuiButtonBase: {
+      disableRipple: true,
     },
   },
 });
