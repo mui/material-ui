@@ -90,7 +90,7 @@ able to take advantage of it everywhere:
 
 ```jsx
 import { Link } from 'react-router-dom'
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 <Button component={Link} to="/open-collective">
   Link
@@ -101,7 +101,7 @@ or if you want to avoid properties collisions:
 
 ```jsx
 import { Link } from 'react-router-dom'
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 const MyLink = props => <Link to="/open-collective" {...props} />
 

@@ -5,8 +5,8 @@ import {
   FormGroup,
   FormControlLabel,
   FormHelperText,
-} from 'material-ui/Form';
-import Switch from 'material-ui/Switch';
+} from '@material-ui/core/Form';
+import Switch from '@material-ui/core/Switch';
 
 class SwitchesGroup extends React.Component {
   state = {

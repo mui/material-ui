@@ -2,15 +2,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import Avatar from 'material-ui/Avatar';
-import List, { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
-import Dialog, { DialogTitle } from 'material-ui/Dialog';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import List, { ListItem, ListItemAvatar, ListItemText } from '@material-ui/core/List';
+import Dialog, { DialogTitle } from '@material-ui/core/Dialog';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
-import Typography from 'material-ui/Typography';
-import blue from 'material-ui/colors/blue';
+import Typography from '@material-ui/core/Typography';
+import blue from '@material-ui/core/colors/blue';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 const styles = {

@@ -255,32 +255,33 @@ withStyles<'listItem' | 'guttered'>(theme => ({
   const ListItemContent = withStyles({ x: {}, y: {} })<FooProps>(props => <div />);
 }
 
-{ // https://github.com/mui-org/material-ui/issues/11109
+{
+  // https://github.com/mui-org/material-ui/issues/11109
   // The real test here is with "strictFunctionTypes": false,
   // but we don't have a way currently to test under varying
   // TypeScript configurations.
   interface IStyle {
     content: any;
   }
-  
+
   interface IComponentProps {
     caption: string;
   }
-  
+
   type ComponentProps = IComponentProps & WithStyles<'content'>;
-  
+
   const decorate = withStyles((theme): IStyle => ({
     content: {
-      margin: 4
-    }
+      margin: 4,
+    },
   }));
-  
+
   const Component = (props: ComponentProps) => {
-    return <div className={props.classes.content}>Hello {props.caption}</div>
-  }
-  
+    return <div className={props.classes.content}>Hello {props.caption}</div>;
+  };
+
   const StyledComponent = decorate(Component);
-  
+
   class App extends React.Component {
     public render() {
       return (
@@ -294,13 +295,13 @@ withStyles<'listItem' | 'guttered'>(theme => ({
   <App />;
 }
 
-{ // https://github.com/mui-org/material-ui/issues/11191
-  const decorate = withStyles<classList>((theme) => ({
-    main: {}
+{
+  // https://github.com/mui-org/material-ui/issues/11191
+  const decorate = withStyles<classList>(theme => ({
+    main: {},
   }));
 
-  type classList =
-    | 'main';
+  type classList = 'main';
 
   interface IProps {
     someProp?: string;
@@ -308,7 +309,7 @@ withStyles<'listItem' | 'guttered'>(theme => ({
 
   class SomeComponent extends React.PureComponent<IProps & WithStyles<classList>> {
     render() {
-      return <div />
+      return <div />;
     }
   }
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Switch from 'material-ui/Switch';
-import Paper from 'material-ui/Paper';
-import Fade from 'material-ui/transitions/Fade';
+import { withStyles } from '@material-ui/core/styles';
+import Switch from '@material-ui/core/Switch';
+import Paper from '@material-ui/core/Paper';
+import Fade from '@material-ui/core/transitions/Fade';
 
 const styles = theme => ({
   root: {

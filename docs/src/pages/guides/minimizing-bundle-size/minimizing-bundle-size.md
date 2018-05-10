@@ -27,8 +27,8 @@ import { Button, TextField } from 'material-ui';
 use:
 
 ```js
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 ```
 
 While importing directly in this manner doesn't use the exports in [`material-ui/index.js`](https://github.com/mui-org/material-ui/blob/v1-beta/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.

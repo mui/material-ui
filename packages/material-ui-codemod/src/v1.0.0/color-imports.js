@@ -151,7 +151,7 @@ module.exports = function transformer(fileInfo, api, options = {}) {
   const j = api.jscodeshift;
   const root = j(fileInfo.source);
   const importPath = options.importPath || 'material-ui/styles/colors';
-  const targetPath = options.targetPath || 'material-ui/colors';
+  const targetPath = options.targetPath || '@material-ui/core/colors';
 
   // transforms
   transformMemberImports(j, root, importPath, targetPath);

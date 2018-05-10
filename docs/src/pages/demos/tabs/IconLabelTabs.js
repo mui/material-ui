@@ -1,6 +1,6 @@
 import React from 'react';
-import Paper from 'material-ui/Paper';
-import Tabs, { Tab } from 'material-ui/Tabs';
+import Paper from '@material-ui/core/Paper';
+import Tabs, { Tab } from '@material-ui/core/Tabs';
 import PhoneIcon from '@material-ui/icons/Phone';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PersonPinIcon from '@material-ui/icons/PersonPin';

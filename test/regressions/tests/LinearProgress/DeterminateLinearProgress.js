@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import LinearProgress from 'material-ui/Progress/LinearProgress';
+import LinearProgress from '@material-ui/core/Progress/LinearProgress';
 
 export default function DeterminateLinearProgress() {
   return (

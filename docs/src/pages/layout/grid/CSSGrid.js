@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
-import Grid from 'material-ui/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   container: {

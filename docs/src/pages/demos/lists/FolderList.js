@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
+import { withStyles } from '@material-ui/core/styles';
+import List, { ListItem, ListItemText } from '@material-ui/core/List';
+import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';

@@ -42,9 +42,9 @@ Updates the `color-imports` for the new location of Material-UI color palettes.
 The diff should look like this:
 
 ```diff
--import { blue, teal500 } from 'material-ui/src/styles/colors';
-+import blue from 'material-ui/src/colors/blue';
-+import teal from 'material-ui/src/colors/teal';
+-import { blue, teal500 } from 'material-ui/styles/colors';
++import blue from '@material-ui/core/colors/blue';
++import teal from '@material-ui/core/colors/teal';
 +const teal500 = teal['500'];
 ```
 
@@ -98,8 +98,8 @@ find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/co
 ### Recast Options
 
 Options to [recast](https://github.com/benjamn/recast)'s printer can be provided
-through the `printOptions` command line argument
+through the `printOptions` command line argument:
 
 ```sh
-jscodeshift -t transform.js <path> --printOptions='{"quote":"double"}'
+jscodeshift -t transform.js <path> --printOptions='{"quote": "double", "trailingComma": false}'
 ```

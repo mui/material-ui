@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
-import Button from 'material-ui/Button';
-import Divider from 'material-ui/Divider';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 import FileDownloadIcon from '@material-ui/icons/FileDownload';
 import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
 import WhatshotIcon from '@material-ui/icons/Whatshot';
@@ -131,7 +131,7 @@ function HomeSteps(props) {
             text={`
   \`\`\`jsx
   import React from 'react';
-  import Button from 'material-ui/Button';
+  import Button from '@material-ui/core/Button';
 
   const App = () => (
     <Button variant="raised" color="primary">
@@ -163,7 +163,7 @@ function HomeSteps(props) {
           </Typography>
           <Link prefetch href="/premium-themes" className={classes.link}>
             <NoSSR>
-              <img className={classes.img} alt="themes" src="/static/images/themes.png" />
+              <img className={classes.img} alt="themes" src="/static/images/themes.jpg" />
             </NoSSR>
           </Link>
         </div>

@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import ExpansionPanel, {
   ExpansionPanelDetails,
   ExpansionPanelSummary,
   ExpansionPanelActions,
-} from 'material-ui/ExpansionPanel';
-import Typography from 'material-ui/Typography';
+} from '@material-ui/core/ExpansionPanel';
+import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Chip from 'material-ui/Chip';
-import Button from 'material-ui/Button';
-import Divider from 'material-ui/Divider';
+import Chip from '@material-ui/core/Chip';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
   root: {

@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { FormControl, FormLabel, FormControlLabel } from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
+import { withStyles } from '@material-ui/core/styles';
+import { FormControl, FormLabel, FormControlLabel } from '@material-ui/core/Form';
+import Radio, { RadioGroup } from '@material-ui/core/Radio';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
-import Grid from 'material-ui/Grid';
-import green from 'material-ui/colors/green';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import Popover from 'material-ui/Popover';
-import Input, { InputLabel } from 'material-ui/Input';
+import Grid from '@material-ui/core/Grid';
+import green from '@material-ui/core/colors/green';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Popover from '@material-ui/core/Popover';
+import Input, { InputLabel } from '@material-ui/core/Input';
 
 const styles = theme => ({
   buttonWrapper: {

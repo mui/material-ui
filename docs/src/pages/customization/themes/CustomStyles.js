@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Checkbox from 'material-ui/Checkbox';
-import { createMuiTheme, MuiThemeProvider, withStyles } from 'material-ui/styles';
-import orange from 'material-ui/colors/orange';
+import Checkbox from '@material-ui/core/Checkbox';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import orange from '@material-ui/core/colors/orange';
 
 const styles = theme => ({
   root: {

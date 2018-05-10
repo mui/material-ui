@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Table, {
   TableBody,
   TableCell,
   TableFooter,
   TablePagination,
   TableRow,
-} from 'material-ui/Table';
-import Paper from 'material-ui/Paper';
-import IconButton from 'material-ui/IconButton';
+} from '@material-ui/core/Table';
+import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';

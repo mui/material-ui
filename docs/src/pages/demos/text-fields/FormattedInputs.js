@@ -4,10 +4,10 @@ import React from 'react';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Input, { InputLabel } from 'material-ui/Input';
-import TextField from 'material-ui/TextField';
-import { FormControl } from 'material-ui/Form';
+import { withStyles } from '@material-ui/core/styles';
+import Input, { InputLabel } from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
+import { FormControl } from '@material-ui/core/Form';
 
 const styles = theme => ({
   container: {

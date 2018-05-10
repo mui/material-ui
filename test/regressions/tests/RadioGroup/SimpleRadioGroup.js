@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import { FormControlLabel } from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
+import { FormControlLabel } from '@material-ui/core/Form';
+import Radio, { RadioGroup } from '@material-ui/core/Radio';
 
 export default function SimpleRadioGroup() {
   return (

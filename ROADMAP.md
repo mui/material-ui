@@ -108,13 +108,6 @@ that **are needed for the stable version**:
   +import ListItem from 'material-ui/ListItem';
   ```
 
-- [ ] Use `@material-ui npm scope name` #9673. The pros have been raised in the linked issue.
-
-```diff
--import Button from 'material-ui/Button';
-+import Button from '@material-ui/core/Button';
-```
-
 These breaking changes will be spread into different releases over the next few months to make the upgrade path as smooth as possible.
 Not only does the Material-UI project have to be upgraded for each breaking change,
 but we also have to upgrade our own projects.
