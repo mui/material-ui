@@ -30,11 +30,13 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
+- `static`
+- `indeterminate`
 - `colorPrimary`
 - `colorSecondary`
 - `svg`
-- `svgIndeterminate`
 - `circle`
+- `circleStatic`
 - `circleIndeterminate`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

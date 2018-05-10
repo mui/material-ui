@@ -5,7 +5,7 @@ import warning from 'warning';
 import withStyles from '../styles/withStyles';
 import { lighten } from '../styles/colorManipulator';
 
-const TRANSITION_DURATION = 4; // 400ms
+const TRANSITION_DURATION = 4; // seconds
 
 export const styles = theme => ({
   root: {
