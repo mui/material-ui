@@ -3,7 +3,9 @@ export class Utils<TDate> {
   constructor (options?: { locale: any, moment: any });
 
   date(value: any): TDate;
-  addDays(value: TDate, count: number): TDate;
+  parse(value: string): TDate | null;
+
+  isNull(value: TDate): boolean;
   isValid(value: TDate): boolean;
   isEqual(value: TDate, comparing: TDate): boolean;
   isSameDay(value: TDate, comparing: TDate): boolean
@@ -16,6 +18,7 @@ export class Utils<TDate> {
   isBeforeYear(value: TDate, comparing: TDate): boolean;
   isBefore(value: TDate, comparing: TDate): boolean;
 
+  addDays(value: TDate, count: number): TDate;
   startOfDay(value: TDate): TDate;
   endOfDay(value: TDate): TDate;
 
