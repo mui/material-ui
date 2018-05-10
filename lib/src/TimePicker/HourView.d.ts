@@ -6,7 +6,7 @@ export interface HourViewProps {
     date: MaterialUiPickersDate;
     onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
     ampm?: boolean;
-    utils?: Utils;
+    utils?: Utils<MaterialUiPickersDate>;
 }
 
 declare const HourView: ComponentClass<HourViewProps>;

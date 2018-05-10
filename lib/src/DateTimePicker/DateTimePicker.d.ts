@@ -22,7 +22,7 @@ export interface DateTimePickerProps {
   dateRangeIcon?: ReactNode;
   timeIcon?: ReactNode;
   renderDay?: RenderDay;
-  utils?: Utils;
+  utils?: Utils<MaterialUiPickersDate>;
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
 }
 

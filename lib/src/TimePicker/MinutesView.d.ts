@@ -5,7 +5,7 @@ import { MaterialUiPickersDate } from '../typings/date'
 export interface MinutesViewProps {
     date: MaterialUiPickersDate;
     onChange: (date: MaterialUiPickersDate, isFinished?: boolean) => void;
-    utils?: Utils;
+    utils?: Utils<MaterialUiPickersDate>;
 }
 
 declare const MinutesView: ComponentClass<MinutesViewProps>;

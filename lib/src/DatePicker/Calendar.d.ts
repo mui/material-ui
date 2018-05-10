@@ -6,14 +6,12 @@ import { MaterialUiPickersDate } from '../typings/date'
 
 export type DayComponent = ReactElement<IconButtonProps>;
 
-export type RenderDay =
-    (
-        day: MaterialUiPickersDate,
-        selectedDate: MaterialUiPickersDate,
-        dayInCurrentMonth: boolean,
-        dayComponent: DayComponent,
-    ) => ReactNode;
-
+export type RenderDay = (
+    day: MaterialUiPickersDate,
+    selectedDate: MaterialUiPickersDate,
+    dayInCurrentMonth: boolean,
+    dayComponent: DayComponent,
+) => ReactNode;
 
 export interface CalendarProps {
     date: MaterialUiPickersDate;
@@ -25,7 +23,7 @@ export interface CalendarProps {
     leftArrowIcon?: ReactNode;
     rightArrowIcon?: ReactNode;
     renderDay?: RenderDay;
-    utils?: Utils;
+    utils?: Utils<MaterialUiPickersDate>;
     shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
 }
 
