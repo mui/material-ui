@@ -56,7 +56,11 @@ class StableVersions extends React.Component {
     const VERSIONS = [
       {
         url: 'https://material-ui-next.com',
-        semver: process.env.LIB_VERSION,
+        semver: `v${process.env.LIB_VERSION}`,
+      },
+      {
+        url: 'https://v0.material-ui.com',
+        semver: 'v0.20.1',
       },
     ];
 
@@ -85,7 +89,7 @@ class StableVersions extends React.Component {
                         <Link
                           {...props2}
                           variant="secondary"
-                          href={`${GITHUB_RELEASE_BASE_URL}v${version.semver}`}
+                          href={`${GITHUB_RELEASE_BASE_URL}${version.semver}`}
                         />
                       )}
                     >

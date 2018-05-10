@@ -22,7 +22,7 @@ function LatestVersion(props) {
         <TableBody>
           <TableRow>
             <TableCell padding="dense">
-              <Typography>v1-beta branch</Typography>
+              <Typography>master branch</Typography>
             </TableCell>
             <TableCell padding="dense">
               <Typography
