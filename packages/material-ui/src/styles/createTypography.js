@@ -115,6 +115,7 @@ export default function createTypography(palette: Object, typography: Object | F
         textTransform: 'uppercase',
         fontWeight: fontWeightMedium,
         fontFamily,
+        color: palette.text.primary,
       },
     },
     other,
