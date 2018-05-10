@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Grow from '@material-ui/core/transitions/Grow';
+import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import { Manager, Target, Popper } from 'react-popper';
 

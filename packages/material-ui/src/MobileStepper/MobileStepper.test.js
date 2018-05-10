@@ -5,7 +5,7 @@ import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import Paper from '../Paper';
 import Button from '../Button/Button';
-import { LinearProgress } from '../Progress';
+import LinearProgress from '../LinearProgress';
 import MobileStepper from './MobileStepper';
 
 describe('<MobileStepper />', () => {

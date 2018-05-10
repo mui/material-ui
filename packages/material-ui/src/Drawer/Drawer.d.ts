@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { ModalProps } from '../Modal';
-import { SlideProps } from '../transitions/Slide';
+import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
 import { Theme } from '../styles/createMuiTheme';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';

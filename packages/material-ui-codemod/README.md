@@ -28,12 +28,12 @@ Material-UI v1.0.0 flatten the import paths.
 The diff should look like this:
 
 ```diff
--import { MenuItem } from 'material-ui/Menu';
-+import MenuItem from 'material-ui/MenuItem';
+-import { MenuItem } from '@material-ui/core/Menu';
++import MenuItem from '@material-ui/core/MenuItem';
 ```
 
 ```sh
-find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/codemod/lib/v0.15.0/import-path.js
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/codemod/lib/v1.0.0/import-path.js
 ```
 
 #### `color-imports`

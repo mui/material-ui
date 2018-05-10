@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
-import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
+import withWidth, { isWidthDown, isWidthUp } from '../withWidth';
 import exactProp from '../utils/exactProp';
 
 /**

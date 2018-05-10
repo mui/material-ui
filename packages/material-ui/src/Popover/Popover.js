@@ -11,7 +11,7 @@ import EventListener from 'react-event-listener';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
-import Grow from '../transitions/Grow';
+import Grow from '../Grow';
 import Paper from '../Paper';
 
 function getOffsetTop(rect, vertical) {

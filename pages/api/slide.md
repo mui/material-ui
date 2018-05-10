@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui/src/transitions/Slide.js
+filename: /packages/material-ui/src/Slide/Slide.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

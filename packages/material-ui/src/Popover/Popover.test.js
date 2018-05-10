@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import css from 'dom-helpers/style';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import Grow from '../transitions/Grow';
+import Grow from '../Grow';
 import Paper from '../Paper';
 import Popover from './Popover';
 

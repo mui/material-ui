@@ -8,7 +8,7 @@ import { createMount, createRender } from '../test-utils';
 import NewPortal from './Portal';
 import LegacyPortal from './LegacyPortal';
 import Select from '../Select';
-import { MenuItem } from '../Menu';
+import MenuItem from '../MenuItem';
 
 const versions = ['old', 'latest'];
 

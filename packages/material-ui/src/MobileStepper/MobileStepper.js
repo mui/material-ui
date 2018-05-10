@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import { capitalize } from '../utils/helpers';
-import { LinearProgress } from '../Progress';
+import LinearProgress from '../LinearProgress';
 
 export const styles = theme => ({
   root: {

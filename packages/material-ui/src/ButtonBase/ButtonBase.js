@@ -6,7 +6,7 @@ import keycode from 'keycode';
 import { polyfill } from 'react-lifecycles-compat';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
-import { listenForFocusKeys, detectFocusVisible } from '../utils/focusVisible';
+import { listenForFocusKeys, detectFocusVisible } from './focusVisible';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 

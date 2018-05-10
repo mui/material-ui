@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui/src/Table/TableHead.js
+filename: /packages/material-ui/src/TableHead/TableHead.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

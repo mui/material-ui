@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tabs/Tab';
+import Tab from '@material-ui/core/Tab';
 
 const noop = () => {};
 

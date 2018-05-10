@@ -5,7 +5,7 @@ import pure from 'recompose/pure';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
-import withWidth, { isWidthUp } from '@material-ui/core/utils/withWidth';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';

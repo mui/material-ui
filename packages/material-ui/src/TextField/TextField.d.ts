@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
-import { FormControlProps, FormHelperTextProps } from '../Form';
-import { InputProps, InputLabelProps } from '../Input';
-import { FormControlClassKey } from '../Form/FormControl';
+import { FormControlProps } from '../FormControl';
+import { FormHelperTextProps } from '../FormHelperText';
+import { InputProps } from '../Input';
+import { InputLabelProps } from '../InputLabel';
+import { FormControlClassKey } from '../FormControl';
 import { SelectProps } from '../Select';
 
 export interface TextFieldProps

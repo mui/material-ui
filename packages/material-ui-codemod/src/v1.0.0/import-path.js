@@ -7,6 +7,7 @@ const entryModuleToFlatten = [
   'CardHeader',
   'CardMedia',
   'CircularProgress',
+  'ClickAwayListener',
   'Collapse',
   'Dialog',
   'DialogActions',
@@ -56,7 +57,11 @@ const entryModuleToFlatten = [
   'TableRow',
   'Tabs',
   'withMobileDialog',
+  'withWidth',
+  'Zoom',
 ];
+
+const keepSpecifiers = ['withWidth'];
 
 export default function transformer(fileInfo, api, options) {
   const j = api.jscodeshift;
@@ -66,8 +71,8 @@ export default function transformer(fileInfo, api, options) {
     trailingComma: true,
   };
 
-  const importModule = options.importModule || 'material-ui';
-  const targetModule = options.targetModule || 'material-ui';
+  const importModule = options.importModule || '@material-ui/core';
+  const targetModule = options.targetModule || '@material-ui/core';
 
   const root = j(fileInfo.source);
   const importRegExp = new RegExp(`^${importModule}/(.+)$`);
@@ -89,7 +94,11 @@ export default function transformer(fileInfo, api, options) {
     }
 
     hasModifications = true;
-    // console.log('entryModule', entryModule);
+
+    if (keepSpecifiers.includes(entryModule)) {
+      path.value.source.value = `${targetModule}/${entryModule}`;
+      return;
+    }
 
     path.node.specifiers.forEach(specifier => {
       const localName = specifier.local.name;

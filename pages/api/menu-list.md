@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui/src/Menu/MenuList.js
+filename: /packages/material-ui/src/MenuList/MenuList.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

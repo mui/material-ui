@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { CollapseProps } from '../transitions/Collapse';
+import { CollapseProps } from '../Collapse';
 import { PaperProps } from '../Paper';
 
 export interface ExpansionPanelProps
