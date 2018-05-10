@@ -140,6 +140,7 @@ const styles = theme => ({
     position: 'absolute',
     pointerEvents: 'auto',
     outline: 'none',
+    touchActions: 'none',
   },
   pin: {
     width: 6,
