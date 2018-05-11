@@ -4,7 +4,7 @@ components: MobileStepper, Step, StepButton, StepContent, StepIcon, StepLabel, S
 
 # Steppers
 
-[Steppers](https://material.io/guidelines/components/steppers.html) convey progress through numbered steps.
+[Steppers](https://material.io/archive/guidelines/components/steppers.html) convey progress through numbered steps.
 
 > Steppers display progress through a sequence of logical and numbered steps. They may also be used for navigation.
 >
@@ -64,7 +64,7 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prope
 
 ## Mobile Stepper
 
-This component implements a compact stepper suitable for a mobile device. See [mobile steps](https://material.io/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
+This component implements a compact stepper suitable for a mobile device. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
 
 ### Mobile Stepper - Text
 

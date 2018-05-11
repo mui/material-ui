@@ -5,7 +5,7 @@ components: Collapse, Fade, Grow, Slide, Zoom
 # Transitions
 
 Material-UI provides a number of transitions that can be used to introduce some basic
-[motion](https://material.io/guidelines/motion/material-motion.html)
+[motion](https://material.io/design/motion/)
 to your applications components.
 
 To better support server rendering Material-UI provides a `style` property

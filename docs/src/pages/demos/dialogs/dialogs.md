@@ -4,7 +4,7 @@ components: Dialog, DialogTitle, DialogContent, DialogActions, Slide
 
 # Dialogs
 
-[Dialogs](https://material.io/guidelines/components/dialogs.html) inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.
+[Dialogs](https://material.io/design/components/dialogs.html) inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.
 
 Dialogs contain text and UI controls.
 They retain focus until dismissed or a required action has been taken.

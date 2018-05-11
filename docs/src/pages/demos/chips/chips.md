@@ -4,7 +4,7 @@ components: Chip
 
 # Chips
 
-[Chips](https://www.google.com/design/spec/components/chips.html)
+[Chips](https://material.io/design/components/chips.html)
 represent complex entities in small blocks, such as a contact.
 
 While included here as a standalone component, the most common use will

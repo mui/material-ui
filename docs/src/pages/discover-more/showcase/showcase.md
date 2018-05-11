@@ -26,7 +26,7 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
 ### 4. Mantic Transparence
   An Open Data tool showing financial and demographic data for all the towns in France (in French).
 
-  https://app.mantic.fr/
+  https://app.manty.eu/
 
 ### 5. Meetingku
   A tool for controlling the meeting time.
@@ -114,7 +114,7 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
 
   homepage: https://rung.com.br
 
-  developers: https://developers.rung.com.br
+  developers: https://rung.com.br/developers
 
   app: https://app.rung.com.br
 
@@ -126,12 +126,12 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
 ### 21. Johnny Metrics
    Upload your trades, and analyze your crypto portfolio.
 
-   https://johnnymetrics.com/demo
+   https://app.johnnymetrics.com/demo
 
 ### 22. npm registry browser
    A web app that lets you search the npm registry and browse packages details.
 
-   homepage: https://topheman.github.io/npm-registry-browser
+   homepage: https://topheman.github.io/npm-registry-browser/
 
    github: https://github.com/topheman/npm-registry-browser
 

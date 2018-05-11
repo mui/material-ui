@@ -59,7 +59,7 @@ The first thing that we need to do on every request is create a new `sheetsRegis
 When rendering, we will wrap `App`, our root component,
 inside a `JssProvider` and [`MuiThemeProvider`](/api/mui-theme-provider) to make the `sheetsRegistry` and the `theme` available to all components in the component tree.
 
-The key step in server side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://facebook.github.io/react/docs/react-dom-server.html).
+The key step in server side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
 We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`. We will see how this is passed along in our `renderFullPage` function.
 

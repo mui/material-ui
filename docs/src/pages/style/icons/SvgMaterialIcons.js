@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+import AlarmIcon from '@material-ui/icons/Alarm';
+import AlarmOffIcon from '@material-ui/icons/AlarmOff';
+import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -17,8 +18,9 @@ function SvgMaterialIcons(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AccessAlarmIcon className={classes.icon} />
-      <ThreeDRotation className={classes.icon} />
+      <AlarmIcon className={classes.icon} />
+      <AlarmOffIcon className={classes.icon} />
+      <ThreeDRotationIcon className={classes.icon} />
     </div>
   );
 }

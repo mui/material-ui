@@ -1,6 +1,6 @@
 # Color
 
-[Color](https://material.io/guidelines/style/color.html) in material design is inspired by bold hues juxtaposed with muted environments, deep shadows, and bright highlights.
+[Color](https://material.io/design/color/) in material design is inspired by bold hues juxtaposed with muted environments, deep shadows, and bright highlights.
 
 ## Color system
 
@@ -34,10 +34,10 @@ const accent2 = purple.A200; // #E040FB (alternative method)
 
 ## Color tool
 
-The Material Design team has built an awesome palette configuration tool: [material.io/color](https://material.io/color).
+The Material Design team has built an awesome palette configuration tool: [material.io/tools/color](https://material.io/tools/color/).
 It will help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
-<a href="https://material.io/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336">
+<a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336">
   <img src="/static/images/color/colorTool.png" style="width: 574px" />
 </a>
 

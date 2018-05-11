@@ -4,7 +4,7 @@ components: CircularProgress, LinearProgress
 
 # Progress
 
-[Progress and activity indicators](https://material.io/guidelines/components/progress-activity.html)
+[Progress and activity indicators](https://material.io/design/components/progress-indicators.html)
 are visual indications of an app loading content.
 
 A single visual indicator should be used to represent each type of operation.
@@ -15,6 +15,11 @@ For example, a refresh operation should display either a refresh bar or an activ
 **Indeterminate** indicators visualize an unspecified wait time.
 
 ## Circular
+
+[Circular progress](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) support both determinate and indeterminate processes.
+
+ - **Determinate** circular indicators fill the invisible, circular track with color, as the indicator moves from 0 to 360 degrees.  
+ - **Indeterminate** circular indicators grow and shrink in size while moving along the invisible track.
 
 ### Circular Indeterminate
 
@@ -33,6 +38,8 @@ For example, a refresh operation should display either a refresh bar or an activ
 {{"demo": "pages/demos/progress/CircularStatic.js"}}
 
 ## Linear
+
+[Linear progress](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) indicators.
 
 ### Linear Indeterminate
 
@@ -74,7 +81,7 @@ function Progress(props) {
 
 ## Delaying appearance
 
-There are [3 important limits](http://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time.
+There are [3 important limits](https://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time.
 The ripple effect of the `ButtonBase` component ensures that the user feels that the system is reacting instantaneously.
 Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second.
 After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.

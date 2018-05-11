@@ -47,7 +47,7 @@ and towards the goal of a canonical Material Design implementation for the entir
 ![npm](https://img.shields.io/npm/dm/material-components-web.svg)
 
 We are very happy to see this project supported by Google and its design team.
-It sends a clear signal that the [Material Design specification](https://material.io/guidelines/) is
+It sends a clear signal that the [Material Design specification](https://material.io/design/) is
 here to stay, as they continue to invest in it.
 
 ### Frameworks and libraries

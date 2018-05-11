@@ -4,7 +4,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 # Tables
 
-[Data tables](https://material.io/guidelines/components/data-tables.html) display sets of raw data.
+[Data tables](https://material.io/design/components/data-tables.html) display sets of raw data.
 They usually appear in desktop enterprise products.
 
 ## Structure

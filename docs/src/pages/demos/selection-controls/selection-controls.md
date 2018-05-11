@@ -4,7 +4,7 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
 
 # Selection Controls
 
-[Selection controls](https://material.io/guidelines/components/selection-controls.html) allow the user to select options.
+[Selection controls](https://material.io/design/components/selection-controls.html) allow the user to select options.
 
 Three types of selection controls are covered in this section:
 

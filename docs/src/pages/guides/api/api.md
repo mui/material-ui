@@ -7,7 +7,7 @@ and the 1.x.x rewrite allowed us to completely rethink the component API.
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 
-As Sebastian Markbage [pointed out](http://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html), no abstraction is superior to wrong abstractions.
+As Sebastian Markbage [pointed out](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html), no abstraction is superior to wrong abstractions.
 We are providing low-level components to maximize composition capabilities.
 
 ## Composition

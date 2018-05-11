@@ -5,7 +5,7 @@ components: Typography
 # Typography
 
 Too many type sizes and styles at once can spoil any layout.
-A [typographic scale](https://material.google.com/style/typography.html#typography-styles) has a limited set of type sizes that work well together along with the layout grid.
+A [typographic scale](https://material.io/design/typography/#type-scale) has a limited set of type sizes that work well together along with the layout grid.
 
 ## General
 
