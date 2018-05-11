@@ -29,7 +29,7 @@ export interface StylesCreator {
   themingEnabled: boolean;
 }
 
-export interface WithStylesOptions<ClassKey extends string> extends JSS.CreateStyleSheetOptions<ClassKey> {
+export interface WithStylesOptions<ClassKey extends string = string> extends JSS.CreateStyleSheetOptions<ClassKey> {
   flip?: boolean;
   withTheme?: boolean;
   name?: string;
