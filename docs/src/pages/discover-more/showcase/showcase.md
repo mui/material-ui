@@ -146,3 +146,8 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   A free brand management software for the Google Suite.
 
   homepage: https://www.pilcro.com
+
+### 25. HIJUP
+  A pioneering Muslim Fashion e-commerce. 
+  
+  homepage: https://www.hijup.com/
