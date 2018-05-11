@@ -29,18 +29,7 @@ export interface StylesCreator {
   themingEnabled: boolean;
 }
 
-// FIXME obtain this type from @types/jss once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/25692 lands.
-type CreateStyleSheetOptions<Name extends string = any> = Partial<{
-	media: string;
-	meta: string;
-	link: boolean;
-	element: HTMLStyleElement;
-	index: number;
-	generateClassName: JSS.GenerateClassName<Name>;
-	classNamePrefix: string;
-}>;
-
-export interface WithStylesOptions<ClassKey extends string> extends CreateStyleSheetOptions<ClassKey> {
+export interface WithStylesOptions<ClassKey extends string> extends JSS.CreateStyleSheetOptions<ClassKey> {
   flip?: boolean;
   withTheme?: boolean;
   name?: string;
