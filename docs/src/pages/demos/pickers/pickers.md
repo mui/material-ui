@@ -4,7 +4,7 @@ components: TextField
 
 # Pickers
 
-[Pickers](https://material.io/guidelines/components/pickers.html) provide a simple way to select a single value from a pre-determined set.
+Pickers provide a simple way to select a single value from a pre-determined set.
 
 - On mobile, pickers are best suited for display in confirmation dialog.
 - For inline display, such as on a form, consider using compact controls such as segmented dropdown buttons.

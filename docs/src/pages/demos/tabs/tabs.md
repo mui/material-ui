@@ -4,7 +4,7 @@ components: Tabs, Tab
 
 # Tabs
 
-[Tabs](https://material.io/guidelines/components/tabs.html) make it easy to explore and switch between different views.
+[Tabs](https://material.io/design/components/tabs.html) make it easy to explore and switch between different views.
 
 ## Simple Tabs
 

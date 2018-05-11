@@ -4,7 +4,7 @@ components: Drawer, SwipeableDrawer
 
 # Drawer
 
-The [Drawer](https://material.io/guidelines/patterns/navigation-drawer.html) slides in from the side.
+The [Drawer](https://material.io/design/components/navigation-drawer.html) slides in from the side.
 It is a common pattern found in Google apps and follows the keylines and metrics for lists.
 
 ## Temporary drawer

@@ -4,7 +4,7 @@ components: Tooltip
 
 # Tooltips
 
-The [tooltips](https://material.io/guidelines/components/tooltips.html#) are text labels that appear when the user hovers over, focuses on, or touches an element.
+[Tooltips](https://material.io/design/components/tooltips.html) are text labels that appear when the user hovers over, focuses on, or touches an element.
 
 ## Simple Tooltips
 

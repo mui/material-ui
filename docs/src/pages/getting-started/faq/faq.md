@@ -2,7 +2,7 @@
 
 Stuck on a particular problem? Check some of these common gotchas first.
 
-If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/callemall/material-ui).
+If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/mui-org/material-ui).
 For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
 
 ## Why do the fixed positioned elements move when a modal is opened?
@@ -24,7 +24,7 @@ It's highly recommended:
 
 - It comes built in, so carries no additional bundle size overhead.
 - It's fast & memory efficient.
-- It has a clean, consistent [API](http://cssinjs.org/json-api).
+- It has a clean, consistent [API](http://cssinjs.org/json-api/).
 - It supports a number of advanced features, either natively, or through [plugins](http://cssinjs.org/plugins/). 
 
 However perhaps you're adding some Material-UI components to an app that already uses another styling solution,

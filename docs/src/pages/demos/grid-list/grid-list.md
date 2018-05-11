@@ -4,7 +4,7 @@ components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 
 # Grid List
 
-[Grid lists](https://www.google.com/design/spec/components/grid-lists.html)
+[Grid lists](https://material.io/design/components/image-lists.html)
 are an alternative to standard list views.
 A grid list consists of a repeated pattern of cells arrayed in a vertical and horizontal layout.
 

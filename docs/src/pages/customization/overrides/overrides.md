@@ -78,7 +78,7 @@ The best approach is to follow option 1 and then take advantage of the compositi
 
 ## 3. Material Design variations
 
-The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [flat](https://material.io/guidelines/components/buttons.html#buttons-flat-buttons), [raised](https://material.io/guidelines/components/buttons.html#buttons-raised-buttons), [floating](https://material.io/guidelines/components/buttons-floating-action-button.html) and more.
+The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (AKA "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (AKA "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
 
 Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components) documentation to find out the current status of all supported Material Design components.
 
