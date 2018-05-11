@@ -150,4 +150,4 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
 ### 25. HIJUP
   A pioneering Muslim Fashion e-commerce. 
   
-  homepage: https://www.hijup.com/id/
+  homepage: https://www.hijup.com/
