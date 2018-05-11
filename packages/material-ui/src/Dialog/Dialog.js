@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import Modal from '../Modal';
-import Fade from '../transitions/Fade';
+import Fade from '../Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 

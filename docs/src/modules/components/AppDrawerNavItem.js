@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { ListItem } from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
-import Collapse from '@material-ui/core/transitions/Collapse';
+import Collapse from '@material-ui/core/Collapse';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({

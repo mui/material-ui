@@ -1,174 +1,172 @@
-import { AppBarProps } from '../AppBar/AppBar';
-import { AvatarProps } from '../Avatar/Avatar';
-import { BackdropProps } from '../Modal/Backdrop';
-import { BadgeProps } from '../Badge/Badge';
-import { BottomNavigationProps } from '../BottomNavigation/BottomNavigation';
-import { BottomNavigationActionProps } from '../BottomNavigation/BottomNavigationAction';
-import { ButtonProps } from '../Button/Button';
-import { ButtonBaseProps } from '../ButtonBase/ButtonBase';
-import { CardProps } from '../Card/Card';
-import { CardActionsProps } from '../Card/CardActions';
-import { CardContentProps } from '../Card/CardContent';
-import { CardHeaderProps } from '../Card/CardHeader';
-import { CardMediaProps } from '../Card/CardMedia';
-import { CheckboxProps } from '../Checkbox/Checkbox';
-import { ChipProps } from '../Chip/Chip';
-import { CircularProgressProps } from '../Progress/CircularProgress';
-import { CollapseProps } from '../transitions/Collapse';
-import { CssBaselineProps } from '../CssBaseline/CssBaseline';
-import { DialogActionsProps } from '../Dialog/DialogActions';
-import { DialogProps } from '../Dialog/Dialog';
-import { DialogContentProps } from '../Dialog/DialogContent';
-import { DialogContentTextProps } from '../Dialog/DialogContentText';
-import { DialogTitleProps } from '../Dialog/DialogTitle';
-import { DividerProps } from '../Divider/Divider';
-import { DrawerProps } from '../Drawer/Drawer';
-import { ExpansionPanelActionsProps } from '../ExpansionPanel/ExpansionPanelActions';
-import { ExpansionPanelProps } from '../ExpansionPanel/ExpansionPanel';
-import { ExpansionPanelDetailsProps } from '../ExpansionPanel/ExpansionPanelDetails';
-import { ExpansionPanelSummaryProps } from '../ExpansionPanel/ExpansionPanelSummary';
-import { FormControlProps } from '../Form/FormControl';
-import { FormControlLabelProps } from '../Form/FormControlLabel';
-import { FormGroupProps } from '../Form/FormGroup';
-import { FormHelperTextProps } from '../Form/FormHelperText';
-import { FormLabelProps } from '../Form/FormLabel';
-import { GridProps } from '../Grid/Grid';
-import { GridListProps } from '../GridList/GridList';
-import { GridListTileBarProps } from '../GridList/GridListTileBar';
-import { GridListTileProps } from '../GridList/GridListTile';
-import { IconButtonProps } from '../IconButton/IconButton';
-import { IconProps } from '../Icon/Icon';
-import { InputAdornmentProps } from '../Input/InputAdornment';
-import { InputProps } from '../Input/Input';
-import { InputLabelProps } from '../Input/InputLabel';
-import { LinearProgressProps } from '../Progress/LinearProgress';
-import { ListProps } from '../List/List';
-import { ListItemAvatarProps } from '../List/ListItemAvatar';
-import { ListItemProps } from '../List/ListItem';
-import { ListItemIconProps } from '../List/ListItemIcon';
-import { ListItemSecondaryActionProps } from '../List/ListItemSecondaryAction';
-import { ListItemTextProps } from '../List/ListItemText';
-import { ListSubheaderProps } from '../List/ListSubheader';
-import { MenuProps } from '../Menu/Menu';
-import { MenuItemProps } from '../Menu/MenuItem';
-import { MenuListProps } from '../Menu/MenuList';
-import { MobileStepperProps } from '../MobileStepper/MobileStepper';
-import { ModalProps } from '../Modal/Modal';
-import { PaperProps } from '../Paper/Paper';
-import { PopoverProps } from '../Popover/Popover';
-import { RadioProps } from '../Radio/Radio';
-import { RadioGroupProps } from '../Radio/RadioGroup';
-import { SelectProps } from '../Select/Select';
-import { SelectInputProps } from '../Select/SelectInput';
-import { SnackbarProps } from '../Snackbar/Snackbar';
-import { ContentProps } from '../Snackbar/SnackbarContent';
-import { StepProps } from '../Stepper/Step';
-import { StepButtonProps } from '../Stepper/StepButton';
-import { StepContentProps } from '../Stepper/StepContent';
-import { StepIconProps } from '../Stepper/StepIcon';
-import { StepLabelProps } from '../Stepper/StepLabel';
-import { StepperProps } from '../Stepper/Stepper';
+import { AppBarProps } from '../AppBar';
+import { AvatarProps } from '../Avatar';
+import { BackdropProps } from '../Backdrop';
+import { BadgeProps } from '../Badge';
+import { BottomNavigationActionProps } from '../BottomNavigationAction';
+import { BottomNavigationProps } from '../BottomNavigation';
+import { ButtonBaseProps } from '../ButtonBase';
+import { ButtonProps } from '../Button';
+import { CardActionsProps } from '../CardActions';
+import { CardContentProps } from '../CardContent';
+import { CardHeaderProps } from '../CardHeader';
+import { CardMediaProps } from '../CardMedia';
+import { CardProps } from '../Card';
+import { CheckboxProps } from '../Checkbox';
+import { ChipProps } from '../Chip';
+import { CircularProgressProps } from '../CircularProgress';
+import { CollapseProps } from '../Collapse';
+import { CssBaselineProps } from '../CssBaseline';
+import { DialogActionsProps } from '../DialogActions';
+import { DialogContentProps } from '../DialogContent';
+import { DialogContentTextProps } from '../DialogContentText';
+import { DialogProps } from '../Dialog';
+import { DialogTitleProps } from '../DialogTitle';
+import { DividerProps } from '../Divider';
+import { DrawerProps } from '../Drawer';
+import { ExpansionPanelActionsProps } from '../ExpansionPanelActions';
+import { ExpansionPanelDetailsProps } from '../ExpansionPanelDetails';
+import { ExpansionPanelProps } from '../ExpansionPanel';
+import { ExpansionPanelSummaryProps } from '../ExpansionPanelSummary';
+import { FormControlLabelProps } from '../FormControlLabel';
+import { FormControlProps } from '../FormControl';
+import { FormGroupProps } from '../FormGroup';
+import { FormHelperTextProps } from '../FormHelperText';
+import { FormLabelProps } from '../FormLabel';
+import { GridListProps } from '../GridList';
+import { GridListTileBarProps } from '../GridListTileBar';
+import { GridListTileProps } from '../GridListTile';
+import { GridProps } from '../Grid';
+import { IconButtonProps } from '../IconButton';
+import { IconProps } from '../Icon';
+import { InputAdornmentProps } from '../InputAdornment';
+import { InputLabelProps } from '../InputLabel';
+import { InputProps } from '../Input';
+import { LinearProgressProps } from '../LinearProgress';
+import { ListItemAvatarProps } from '../ListItemAvatar';
+import { ListItemIconProps } from '../ListItemIcon';
+import { ListItemProps } from '../ListItem';
+import { ListItemSecondaryActionProps } from '../ListItemSecondaryAction';
+import { ListItemTextProps } from '../ListItemText';
+import { ListProps } from '../List';
+import { ListSubheaderProps } from '../ListSubheader';
+import { MenuItemProps } from '../MenuItem';
+import { MenuListProps } from '../MenuList';
+import { MenuProps } from '../Menu';
+import { MobileStepperProps } from '../MobileStepper';
+import { ModalProps } from '../Modal';
+import { PaperProps } from '../Paper';
+import { PopoverProps } from '../Popover';
+import { RadioGroupProps } from '../RadioGroup';
+import { RadioProps } from '../Radio';
+import { SelectProps } from '../Select';
+import { SnackbarContentProps } from '../SnackbarContent';
+import { SnackbarProps } from '../Snackbar';
+import { StepButtonProps } from '../StepButton';
+import { StepContentProps } from '../StepContent';
+import { StepIconProps } from '../StepIcon';
+import { StepLabelProps } from '../StepLabel';
+import { StepperProps } from '../Stepper';
+import { StepProps } from '../Step';
 import { StyleRules } from './withStyles';
-import { SvgIconProps } from '../SvgIcon/SvgIcon';
+import { SvgIconProps } from '../SvgIcon';
 import { SwitchBaseProps } from '../internal/SwitchBase';
-import { SwitchProps } from '../Switch/Switch';
-import { TabProps } from '../Tabs/Tab';
-import { TableProps } from '../Table/Table';
-import { TableCellProps } from '../Table/TableCell';
-import { TablePaginationProps } from '../Table/TablePagination';
-import { TableRowProps } from '../Table/TableRow';
-import { TableSortLabelProps } from '../Table/TableSortLabel';
-import { TabsProps } from '../Tabs/Tabs';
-import { ToolbarProps } from '../Toolbar/Toolbar';
-import { TooltipProps } from '../Tooltip/Tooltip';
+import { SwitchProps } from '../Switch';
+import { TableCellProps } from '../TableCell';
+import { TablePaginationProps } from '../TablePagination';
+import { TableProps } from '../Table';
+import { TableRowProps } from '../TableRow';
+import { TableSortLabelProps } from '../TableSortLabel';
+import { TabProps } from '../Tab';
+import { TabsProps } from '../Tabs';
+import { ToolbarProps } from '../Toolbar';
+import { TooltipProps } from '../Tooltip';
 import { TouchRippleProps } from '../ButtonBase/TouchRipple';
-import { TypographyProps } from '../Typography/Typography';
-
+import { TypographyProps } from '../Typography';
 
 export type ComponentsProps = {
   [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>
-}
+};
 
 type ComponentsPropsList = {
-  MuiAppBar: AppBarProps,
-  MuiAvatar: AvatarProps,
-  MuiBackdrop: BackdropProps,
-  MuiBadge: BadgeProps,
-  MuiBottomNavigation: BottomNavigationProps,
-  MuiBottomNavigationAction: BottomNavigationActionProps,
-  MuiButton: ButtonProps,
-  MuiButtonBase: ButtonBaseProps,
-  MuiCard: CardProps,
-  MuiCardActions: CardActionsProps,
-  MuiCardContent: CardContentProps,
-  MuiCardHeader: CardHeaderProps,
-  MuiCardMedia: CardMediaProps,
-  MuiCheckbox: CheckboxProps,
-  MuiChip: ChipProps,
-  MuiCircularProgress: CircularProgressProps,
-  MuiCollapse: CollapseProps,
-  MuiCssBaseline: CssBaselineProps,
-  MuiDialog: DialogProps,
-  MuiDialogActions: DialogActionsProps,
-  MuiDialogContent: DialogContentProps,
-  MuiDialogContentText: DialogContentTextProps,
-  MuiDialogTitle: DialogTitleProps,
-  MuiDivider: DividerProps,
-  MuiDrawer: DrawerProps,
-  MuiExpansionPanel: ExpansionPanelProps,
-  MuiExpansionPanelActions: ExpansionPanelActionsProps,
-  MuiExpansionPanelDetails: ExpansionPanelDetailsProps,
-  MuiExpansionPanelSummary: ExpansionPanelSummaryProps,
-  MuiFormControl: FormControlProps,
-  MuiFormControlLabel: FormControlLabelProps,
-  MuiFormGroup: FormGroupProps,
-  MuiFormHelperText: FormHelperTextProps,
-  MuiFormLabel: FormLabelProps,
-  MuiGrid: GridProps,
-  MuiGridList: GridListProps,
-  MuiGridListTile: GridListTileProps,
-  MuiGridListTileBar: GridListTileBarProps,
-  MuiIcon: IconProps,
-  MuiIconButton: IconButtonProps,
-  MuiInput: InputProps,
-  MuiInputAdornment: InputAdornmentProps,
-  MuiInputLabel: InputLabelProps,
-  MuiLinearProgress: LinearProgressProps,
-  MuiList: ListProps,
-  MuiListItem: ListItemProps,
-  MuiListItemAvatar: ListItemAvatarProps,
-  MuiListItemIcon: ListItemIconProps,
-  MuiListItemSecondaryAction: ListItemSecondaryActionProps,
-  MuiListItemText: ListItemTextProps,
-  MuiListSubheader: ListSubheaderProps,
-  MuiMenu: MenuProps,
-  MuiMenuItem: MenuItemProps,
-  MuiMobileStepper: MobileStepperProps,
-  MuiModal: ModalProps,
-  MuiPaper: PaperProps,
-  MuiPopover: PopoverProps,
-  MuiRadio: RadioProps,
-  MuiSelect: SelectProps,
-  MuiSnackbar: SnackbarProps,
-  MuiSnackbarContent: ContentProps,
-  MuiStep: StepProps,
-  MuiStepButton: StepButtonProps,
-  MuiStepContent: StepContentProps,
-  MuiStepIcon: StepIconProps,
-  MuiStepLabel: StepLabelProps,
-  MuiStepper: StepperProps,
-  MuiSvgIcon: SvgIconProps,
-  MuiSwitchBase: SwitchBaseProps,
-  MuiSwitch: SwitchProps,
-  MuiTab: TabProps,
-  MuiTable: TableProps,
-  MuiTableCell: TableCellProps,
-  MuiTablePagination: TablePaginationProps,
-  MuiTableRow: TableRowProps,
-  MuiTableSortLabel: TableSortLabelProps,
-  MuiTabs: TabsProps,
-  MuiToolbar: ToolbarProps,
-  MuiTooltip: TooltipProps,
-  MuiTouchRipple: TouchRippleProps,
-  MuiTypography: TypographyProps,
-}
+  MuiAppBar: AppBarProps;
+  MuiAvatar: AvatarProps;
+  MuiBackdrop: BackdropProps;
+  MuiBadge: BadgeProps;
+  MuiBottomNavigation: BottomNavigationProps;
+  MuiBottomNavigationAction: BottomNavigationActionProps;
+  MuiButton: ButtonProps;
+  MuiButtonBase: ButtonBaseProps;
+  MuiCard: CardProps;
+  MuiCardActions: CardActionsProps;
+  MuiCardContent: CardContentProps;
+  MuiCardHeader: CardHeaderProps;
+  MuiCardMedia: CardMediaProps;
+  MuiCheckbox: CheckboxProps;
+  MuiChip: ChipProps;
+  MuiCircularProgress: CircularProgressProps;
+  MuiCollapse: CollapseProps;
+  MuiCssBaseline: CssBaselineProps;
+  MuiDialog: DialogProps;
+  MuiDialogActions: DialogActionsProps;
+  MuiDialogContent: DialogContentProps;
+  MuiDialogContentText: DialogContentTextProps;
+  MuiDialogTitle: DialogTitleProps;
+  MuiDivider: DividerProps;
+  MuiDrawer: DrawerProps;
+  MuiExpansionPanel: ExpansionPanelProps;
+  MuiExpansionPanelActions: ExpansionPanelActionsProps;
+  MuiExpansionPanelDetails: ExpansionPanelDetailsProps;
+  MuiExpansionPanelSummary: ExpansionPanelSummaryProps;
+  MuiFormControl: FormControlProps;
+  MuiFormControlLabel: FormControlLabelProps;
+  MuiFormGroup: FormGroupProps;
+  MuiFormHelperText: FormHelperTextProps;
+  MuiFormLabel: FormLabelProps;
+  MuiGrid: GridProps;
+  MuiGridList: GridListProps;
+  MuiGridListTile: GridListTileProps;
+  MuiGridListTileBar: GridListTileBarProps;
+  MuiIcon: IconProps;
+  MuiIconButton: IconButtonProps;
+  MuiInput: InputProps;
+  MuiInputAdornment: InputAdornmentProps;
+  MuiInputLabel: InputLabelProps;
+  MuiLinearProgress: LinearProgressProps;
+  MuiList: ListProps;
+  MuiListItem: ListItemProps;
+  MuiListItemAvatar: ListItemAvatarProps;
+  MuiListItemIcon: ListItemIconProps;
+  MuiListItemSecondaryAction: ListItemSecondaryActionProps;
+  MuiListItemText: ListItemTextProps;
+  MuiListSubheader: ListSubheaderProps;
+  MuiMenu: MenuProps;
+  MuiMenuItem: MenuItemProps;
+  MuiMobileStepper: MobileStepperProps;
+  MuiModal: ModalProps;
+  MuiPaper: PaperProps;
+  MuiPopover: PopoverProps;
+  MuiRadio: RadioProps;
+  MuiSelect: SelectProps;
+  MuiSnackbar: SnackbarProps;
+  MuiSnackbarContent: SnackbarContentProps;
+  MuiStep: StepProps;
+  MuiStepButton: StepButtonProps;
+  MuiStepContent: StepContentProps;
+  MuiStepIcon: StepIconProps;
+  MuiStepLabel: StepLabelProps;
+  MuiStepper: StepperProps;
+  MuiSvgIcon: SvgIconProps;
+  MuiSwitch: SwitchProps;
+  MuiSwitchBase: SwitchBaseProps;
+  MuiTab: TabProps;
+  MuiTable: TableProps;
+  MuiTableCell: TableCellProps;
+  MuiTablePagination: TablePaginationProps;
+  MuiTableRow: TableRowProps;
+  MuiTableSortLabel: TableSortLabelProps;
+  MuiTabs: TabsProps;
+  MuiToolbar: ToolbarProps;
+  MuiTooltip: TooltipProps;
+  MuiTouchRipple: TouchRippleProps;
+  MuiTypography: TypographyProps;
+};

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import { withStyles } from '@material-ui/core/styles';
-import Zoom from '@material-ui/core/transitions/Zoom';
+import Zoom from '@material-ui/core/Zoom';
 import { duration } from '@material-ui/core/styles/transitions';
 import Button from '@material-ui/core/Button';
 import { isMuiElement } from '@material-ui/core/utils/reactHelpers';

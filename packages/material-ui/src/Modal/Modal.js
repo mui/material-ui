@@ -11,12 +11,12 @@ import activeElement from 'dom-helpers/activeElement';
 import contains from 'dom-helpers/query/contains';
 import inDOM from 'dom-helpers/util/inDOM';
 import ownerDocument from 'dom-helpers/ownerDocument';
-import RootRef from '../internal/RootRef';
+import RootRef from '../RootRef';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import ModalManager from './ModalManager';
-import Backdrop from './Backdrop';
+import Backdrop from '../Backdrop';
 
 function getContainer(container, defaultContainer) {
   container = typeof container === 'function' ? container() : container;

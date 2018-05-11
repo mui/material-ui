@@ -5,10 +5,10 @@ import EventListener from 'react-event-listener';
 import { polyfill } from 'react-lifecycles-compat';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
-import ClickAwayListener from '../utils/ClickAwayListener';
+import ClickAwayListener from '../ClickAwayListener';
 import { capitalize, createChainedFunction } from '../utils/helpers';
-import Slide from '../transitions/Slide';
-import SnackbarContent from './SnackbarContent';
+import Slide from '../Slide';
+import SnackbarContent from '../SnackbarContent';
 
 export const styles = theme => {
   const gutter = theme.spacing.unit * 3;

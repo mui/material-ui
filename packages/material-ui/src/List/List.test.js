@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import ListSubheader from './ListSubheader';
+import ListSubheader from '../ListSubheader';
 import List from './List';
 
 describe('<List />', () => {

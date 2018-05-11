@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
-import StepConnector from './StepConnector';
+import StepConnector from '../StepConnector';
 
 export const styles = theme => ({
   root: {

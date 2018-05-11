@@ -2,10 +2,10 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import Collapse from '../transitions/Collapse';
+import Collapse from '../Collapse';
 import Paper from '../Paper';
 import ExpansionPanel from './ExpansionPanel';
-import ExpansionPanelSummary from './ExpansionPanelSummary';
+import ExpansionPanelSummary from '../ExpansionPanelSummary';
 
 describe('<ExpansionPanel />', () => {
   let mount;

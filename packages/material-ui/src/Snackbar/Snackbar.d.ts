@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { ContentProps } from '.';
+import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export type SnackBarOrigin = {
@@ -16,7 +16,7 @@ export interface SnackbarProps
   action?: React.ReactElement<any> | React.ReactElement<any>[];
   anchorOrigin?: SnackBarOrigin;
   autoHideDuration?: number;
-  ContentProps?: Partial<ContentProps>;
+  ContentProps?: Partial<SnackbarContentProps>;
   disableWindowBlurListener?: boolean;
   message?: React.ReactElement<any>;
   onClose?: (event: React.SyntheticEvent<any>, reason: string) => void;

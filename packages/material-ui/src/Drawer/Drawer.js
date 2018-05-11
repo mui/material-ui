@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Modal from '../Modal';
 import withStyles from '../styles/withStyles';
-import Slide from '../transitions/Slide';
+import Slide from '../Slide';
 import Paper from '../Paper';
 import { capitalize } from '../utils/helpers';
 import { duration } from '../styles/transitions';

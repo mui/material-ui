@@ -30,6 +30,7 @@ const generateClassName = createGenerateClassName();
 // that parent has a higher specificity.
 let indexCounter = Number.MIN_SAFE_INTEGER;
 
+// Exported for test purposes
 export const sheetsManager = new Map();
 
 // We use the same empty object to ref count the styles that don't need a theme object.

@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Snackbar from './Snackbar';
-import Slide from '../transitions/Slide';
+import Slide from '../Slide';
 
 describe('<Snackbar />', () => {
   let shallow;

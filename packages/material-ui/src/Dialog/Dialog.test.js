@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Paper from '../Paper';
-import Fade from '../transitions/Fade';
+import Fade from '../Fade';
 import Modal from '../Modal';
 import Dialog from './Dialog';
 

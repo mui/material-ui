@@ -5,10 +5,10 @@ import scroll from 'scroll';
 import { ShallowWrapper } from 'enzyme';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import Tab from '../Tab';
 import Tabs from './Tabs';
 import TabScrollButton from './TabScrollButton';
 import TabIndicator from './TabIndicator';
-import Tab from './Tab';
 
 describe('<Tabs />', () => {
   let mount;

@@ -1,11 +1,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount } from '../test-utils';
-import Input, { InputLabel } from '../Input';
-import FormHelperText from '../Form/FormHelperText';
-import FormControl from '../Form/FormControl';
+import Input from '../Input';
+import InputLabel from '../InputLabel';
+import FormHelperText from '../FormHelperText';
+import FormControl from '../FormControl';
 import TextField from './TextField';
-import Select from '../Select/Select';
+import Select from '../Select';
 
 describe('<TextField />', () => {
   let shallow;

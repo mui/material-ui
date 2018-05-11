@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui/src/transitions/Fade.js
+filename: /packages/material-ui/src/Fade/Fade.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

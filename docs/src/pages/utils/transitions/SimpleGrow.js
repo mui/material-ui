@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
-import Grow from '@material-ui/core/transitions/Grow';
+import Grow from '@material-ui/core/Grow';
 
 const styles = theme => ({
   root: {

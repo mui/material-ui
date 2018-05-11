@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui/src/Table/TableBody.js
+filename: /packages/material-ui/src/TableBody/TableBody.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

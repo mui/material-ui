@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses, createMount } from '../test-utils';
-import { MenuItem } from '../Menu';
+import MenuItem from '../MenuItem';
 import Input from '../Input';
 import Select from './Select';
 
