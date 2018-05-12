@@ -13,7 +13,7 @@ filename: /packages/material-ui/src/StepIcon/StepIcon.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">active</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Whether this step is active. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">completed</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Mark the step as completed. Is passed to child components. |
 | <span class="prop-name">error</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Mark the step as failed. |
 | <span class="prop-name required">icon *</span> | <span class="prop-type">node |  | The icon displayed by the step label. |

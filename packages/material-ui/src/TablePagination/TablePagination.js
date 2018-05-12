@@ -160,7 +160,8 @@ TablePagination.propTypes = {
    */
   backIconButtonProps: PropTypes.object,
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -177,11 +178,11 @@ TablePagination.propTypes = {
    */
   count: PropTypes.number.isRequired,
   /**
-   * Useful to customize the displayed rows label.
+   * Customize the displayed rows label.
    */
   labelDisplayedRows: PropTypes.func,
   /**
-   * Useful to customize the rows per page label. Invoked with a `{ from, to, count, page }`
+   * Customize the rows per page label. Invoked with a `{ from, to, count, page }`
    * object.
    */
   labelRowsPerPage: PropTypes.node,

@@ -385,13 +385,14 @@ Popover.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
    * A node, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
-   * By default, it's using the body of the anchorEl's top-level document object,
+   * By default, it uses the body of the anchorEl's top-level document object,
    * so it's simply `document.body` most of the time.
    */
   container: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),

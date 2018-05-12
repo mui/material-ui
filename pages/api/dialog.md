@@ -13,7 +13,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children *</span> | <span class="prop-type">node |  | Dialog children, usually the included sub-components. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">disableBackdropClick</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, clicking the backdrop will not fire the `onClose` callback. |
 | <span class="prop-name">disableEscapeKeyDown</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, hitting escape will not fire the `onClose` callback. |
 | <span class="prop-name">fullScreen</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the dialog will be full-screen |

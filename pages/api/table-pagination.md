@@ -14,11 +14,11 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">ActionsComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">TablePaginationActions</span> | The component used for displaying the actions. Either a string to use a DOM element or a component. |
 | <span class="prop-name">backIconButtonProps</span> | <span class="prop-type">object |  | Properties applied to the back arrow `IconButton` component. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">TableCell</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name required">count *</span> | <span class="prop-type">number |  | The total number of rows. |
-| <span class="prop-name">labelDisplayedRows</span> | <span class="prop-type">func | <span class="prop-default">({ from, to, count }) => `${from}-${to} of ${count}`</span> | Useful to customize the displayed rows label. |
-| <span class="prop-name">labelRowsPerPage</span> | <span class="prop-type">node | <span class="prop-default">'Rows per page:'</span> | Useful to customize the rows per page label. Invoked with a `{ from, to, count, page }` object. |
+| <span class="prop-name">labelDisplayedRows</span> | <span class="prop-type">func | <span class="prop-default">({ from, to, count }) => `${from}-${to} of ${count}`</span> | Customize the displayed rows label. |
+| <span class="prop-name">labelRowsPerPage</span> | <span class="prop-type">node | <span class="prop-default">'Rows per page:'</span> | Customize the rows per page label. Invoked with a `{ from, to, count, page }` object. |
 | <span class="prop-name">nextIconButtonProps</span> | <span class="prop-type">object |  | Properties applied to the next arrow `IconButton` element. |
 | <span class="prop-name required">onChangePage *</span> | <span class="prop-type">func |  | Callback fired when the page is changed.<br><br>**Signature:**<br>`function(event: object, page: number) => void`<br>*event:* The event source of the callback<br>*page:* The page selected |
 | <span class="prop-name">onChangeRowsPerPage</span> | <span class="prop-type">func |  | Callback fired when the number of rows per page is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
