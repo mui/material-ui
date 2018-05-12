@@ -3,6 +3,7 @@ import { WithTheme } from '../styles/withTheme';
 import { ConsistentWith, Overwrite } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
+import * as JSS from 'jss'
 
 export interface CSSProperties extends CSS.Properties<number | string> {
   // Allow pseudo selectors and media queries
@@ -28,7 +29,7 @@ export interface StylesCreator {
   themingEnabled: boolean;
 }
 
-export interface WithStylesOptions {
+export interface WithStylesOptions<ClassKey extends string = string> extends JSS.CreateStyleSheetOptions<ClassKey> {
   flip?: boolean;
   withTheme?: boolean;
   name?: string;
@@ -47,7 +48,7 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 
 export default function withStyles<ClassKey extends string>(
   style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
-  options?: WithStylesOptions,
+  options?: WithStylesOptions<ClassKey>,
 ): {
   <P extends ConsistentWith<P, StyledComponentProps<ClassKey>>>(
     component: React.ComponentType<P & WithStyles<ClassKey>>,

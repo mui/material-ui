@@ -317,3 +317,7 @@ withStyles<'listItem' | 'guttered'>(theme => ({
 
   <DecoratedSomeComponent someProp="hello world" />;
 }
+
+{ // https://github.com/mui-org/material-ui/issues/11312
+  withStyles(styles, { name: "MyComponent", index: 0 })(() => <div/>);
+}
