@@ -122,6 +122,48 @@ describe('<Button />', () => {
     );
   });
 
+  it('should render an outlined button', () => {
+    const wrapper = shallow(<Button variant="outlined">Hello World</Button>);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.outlined), true, 'should have the outlined class');
+    assert.strictEqual(wrapper.hasClass(classes.raised), false, 'should not have the raised class');
+    assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
+  });
+
+  it('should render a primary outlined button', () => {
+    const wrapper = shallow(
+      <Button variant="outlined" color="primary">
+        Hello World
+      </Button>,
+    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.outlined), true, 'should have the outlined class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.flatPrimary),
+      true,
+      'should have the flatPrimary class',
+    );
+    assert.strictEqual(wrapper.hasClass(classes.raised), false, 'should not have the raised class');
+    assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
+  });
+
+  it('should render a secondary outlined button', () => {
+    const wrapper = shallow(
+      <Button variant="outlined" color="secondary">
+        Hello World
+      </Button>,
+    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.outlined), true, 'should have the outlined class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.flatSecondary),
+      true,
+      'should have the flatSecondary class',
+    );
+    assert.strictEqual(wrapper.hasClass(classes.raised), false, 'should not have the raised class');
+    assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
+  });
+
   it('should render a floating action button', () => {
     const wrapper = shallow(<Button variant="fab">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);

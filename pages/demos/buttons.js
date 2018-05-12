@@ -15,6 +15,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/buttons/FlatButtons'), 'utf8')
 `,
         },
+        'pages/demos/buttons/OutlinedButtons.js': {
+          js: require('docs/src/pages/demos/buttons/OutlinedButtons').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/OutlinedButtons'), 'utf8')
+`,
+        },
         'pages/demos/buttons/RaisedButtons.js': {
           js: require('docs/src/pages/demos/buttons/RaisedButtons').default,
           raw: preval`
