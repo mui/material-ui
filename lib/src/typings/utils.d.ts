@@ -7,6 +7,7 @@ export class Utils<TDate> {
 
   isNull(value: TDate): boolean;
   isValid(value: TDate): boolean;
+  getDiff(value: TDate, comparing: TDate): number;
   isEqual(value: TDate, comparing: TDate): boolean;
   isSameDay(value: TDate, comparing: TDate): boolean
 
