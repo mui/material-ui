@@ -75,8 +75,8 @@ export const styles = {
     // It's most likely on issue on userland.
     minWidth: 16,
     minHeight: 16,
-    maxWidth: 'calc(100vw - 32px)',
-    maxHeight: 'calc(100vh - 32px)',
+    maxWidth: 'calc(100% - 32px)',
+    maxHeight: 'calc(100% - 32px)',
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
   },
