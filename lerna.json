@@ -6,6 +6,6 @@
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "allowBranch": ["v1-beta"],
+  "allowBranch": ["master"],
   "concurrency": 2
 }

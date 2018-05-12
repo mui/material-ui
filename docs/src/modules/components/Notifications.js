@@ -26,7 +26,7 @@ async function getMessages() {
     if (!messages) {
       await pause(1e3); // Soften the pressure on the main thread.
       const result = await fetch(
-        'https://raw.githubusercontent.com/mui-org/material-ui/v1-beta/docs/notifications.json',
+        'https://raw.githubusercontent.com/mui-org/material-ui/master/docs/notifications.json',
       );
       messages = await result.json();
     }

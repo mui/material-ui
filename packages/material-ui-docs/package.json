@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-lab",
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab",
   "scripts": {
     "prebuild": "../../node_modules/.bin/rimraf build",
     "build:es2015": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./build",

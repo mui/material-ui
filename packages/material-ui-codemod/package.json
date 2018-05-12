@@ -24,7 +24,7 @@
     "url": "https://github.com/mui-org/material-ui.git"
   },
   "license": "MIT",
-  "homepage": "https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod",
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod",
   "devDependencies": {
     "jscodeshift": "^0.5.0"
   },

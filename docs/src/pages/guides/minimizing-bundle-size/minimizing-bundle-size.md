@@ -5,8 +5,8 @@
 The bundle size of Material-UI is taken very seriously, so
 [size-limit](https://github.com/ai/size-limit) is used to prevent introducing any size regression.
 The size of the bundle is checked at each commit:
-- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/blob/v1-beta/.size-limit#L4).
-- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/mui-org/material-ui/blob/v1-beta/.size-limit#L8). (styling, theming, etc.: ~20 kB gzipped)
+- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/mui-org/material-ui/blob/master/.size-limit#L4).
+- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/mui-org/material-ui/blob/master/.size-limit#L8). (styling, theming, etc.: ~20 kB gzipped)
 
 ## How to reduce the bundle size?
 
@@ -31,7 +31,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-While importing directly in this manner doesn't use the exports in [`material-ui/index.js`](https://github.com/mui-org/material-ui/blob/v1-beta/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
+While importing directly in this manner doesn't use the exports in [`material-ui/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
 Anything not listed there should be considered **private**, and subject to change without notice.
 For example, the `Tabs` component is a public module while `TabIndicator` is private.
 

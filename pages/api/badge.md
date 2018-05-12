@@ -31,7 +31,7 @@ This property accepts the following keys:
 - `colorError`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui/src/Badge/Badge.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Badge/Badge.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented
