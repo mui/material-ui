@@ -62,6 +62,17 @@ export const styles = theme => ({
       },
     },
   },
+  outlined: {
+    border: `1px solid ${theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`,
+    borderRadius: 4,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+  },
   colorInherit: {
     color: 'inherit',
   },
@@ -178,6 +189,7 @@ function Button(props) {
       [classes.flatSecondary]: flat && color === 'secondary',
       [classes.raisedPrimary]: !flat && color === 'primary',
       [classes.raisedSecondary]: !flat && color === 'secondary',
+      [classes.outlined]: variant === 'outlined',
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
@@ -263,7 +275,7 @@ Button.propTypes = {
   /**
    * The type of button.
    */
-  variant: PropTypes.oneOf(['flat', 'raised', 'fab']),
+  variant: PropTypes.oneOf(['flat', 'outlined', 'raised', 'fab']),
 };
 
 Button.defaultProps = {

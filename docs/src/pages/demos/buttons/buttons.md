@@ -18,6 +18,13 @@ They do not lift, but fill with color on press.
 
 {{"demo": "pages/demos/buttons/FlatButtons.js"}}
 
+## Outlined Buttons
+Outlined buttons are text-only buttons with medium emphasis.
+They behave like flat buttons but have an outline and are typically used for actions that are important, but
+aren’t the primary action in an app.
+
+{{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
+
 ## Raised Buttons
 
 Raised buttons are rectangular-shaped buttons.
