@@ -20,7 +20,7 @@ The grid system is implemented with the `Grid` component:
 
 The responsive grid focuses on consistent spacing widths, rather than column width.
 Material design margins and columns follow an **8dp** square baseline grid.
-Spacing can be 8, 16, 24, or 40dp wide.
+Spacing can be 8, 16, 24, 32 or 40dp wide.
 
 {{"demo": "pages/layout/grid/SpacingGrid.js"}}
 
