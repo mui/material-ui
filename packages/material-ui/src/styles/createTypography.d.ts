@@ -17,7 +17,7 @@ export type Style = TextStyle | 'button';
 
 export interface FontStyle {
   fontFamily: React.CSSProperties['fontFamily'];
-  fontSize: React.CSSProperties['fontSize'];
+  fontSize: number;
   fontWeightLight: React.CSSProperties['fontWeight'];
   fontWeightRegular: React.CSSProperties['fontWeight'];
   fontWeightMedium: React.CSSProperties['fontWeight'];

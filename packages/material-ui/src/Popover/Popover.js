@@ -11,7 +11,7 @@ import EventListener from 'react-event-listener';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
-import Grow from '../transitions/Grow';
+import Grow from '../Grow';
 import Paper from '../Paper';
 
 function getOffsetTop(rect, vertical) {
@@ -77,9 +77,8 @@ export const styles = {
     minHeight: 16,
     maxWidth: 'calc(100vw - 32px)',
     maxHeight: 'calc(100vh - 32px)',
-    '&:focus': {
-      outline: 'none',
-    },
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 'none',
   },
 };
 
@@ -291,8 +290,9 @@ class Popover extends React.Component {
       PaperProps,
       role,
       transformOrigin,
-      transition: TransitionProp,
+      TransitionComponent,
       transitionDuration,
+      TransitionProps,
       ...other
     } = this.props;
 
@@ -302,15 +302,9 @@ class Popover extends React.Component {
     const container =
       containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
-    const transitionProps = {};
-    // The provided transition might not support the auto timeout value.
-    if (TransitionProp === Grow) {
-      transitionProps.timeout = transitionDuration;
-    }
-
     return (
       <Modal container={container} open={open} BackdropProps={{ invisible: true }} {...other}>
-        <TransitionProp
+        <TransitionComponent
           appear
           in={open}
           onEnter={this.handleEnter}
@@ -323,7 +317,7 @@ class Popover extends React.Component {
           ref={node => {
             this.transitionEl = node;
           }}
-          {...transitionProps}
+          {...TransitionProps}
         >
           <Paper
             className={classes.paper}
@@ -334,7 +328,7 @@ class Popover extends React.Component {
             <EventListener target="window" onResize={this.handleResize} />
             {children}
           </Paper>
-        </TransitionProp>
+        </TransitionComponent>
       </Modal>
     );
   }
@@ -478,7 +472,7 @@ Popover.propTypes = {
   /**
    * Transition component.
    */
-  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */
@@ -487,6 +481,10 @@ Popover.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 Popover.defaultProps = {
@@ -501,7 +499,7 @@ Popover.defaultProps = {
     vertical: 'top',
     horizontal: 'left',
   },
-  transition: Grow,
+  TransitionComponent: Grow,
   transitionDuration: 'auto',
 };
 

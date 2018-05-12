@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import InputAdornment from '../InputAdornment';
 import Textarea from './Textarea';
 import Input, { hasValue, isFilled } from './Input';
-import InputAdornment from './InputAdornment';
 
 describe('<Input />', () => {
   let shallow;

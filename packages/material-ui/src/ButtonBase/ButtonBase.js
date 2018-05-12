@@ -6,7 +6,7 @@ import keycode from 'keycode';
 import { polyfill } from 'react-lifecycles-compat';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
-import { listenForFocusKeys, detectKeyboardFocus } from '../utils/keyboardFocus';
+import { listenForFocusKeys, detectFocusVisible } from './focusVisible';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
@@ -19,6 +19,7 @@ export const styles = {
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'transparent', // Reset default value
+    // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
     border: 0,
     margin: 0, // Remove the margin in Safari
@@ -77,6 +78,15 @@ class ButtonBase extends React.Component {
   componentDidMount() {
     this.button = ReactDOM.findDOMNode(this);
     listenForFocusKeys(ownerWindow(this.button));
+
+    if (this.props.action) {
+      this.props.action({
+        focusVisible: () => {
+          this.setState({ focusVisible: true });
+          this.button.focus();
+        },
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -92,15 +102,15 @@ class ButtonBase extends React.Component {
 
   componentWillUnmount() {
     this.button = null;
-    clearTimeout(this.keyboardFocusTimeout);
+    clearTimeout(this.focusVisibleTimeout);
   }
 
-  onKeyboardFocusHandler = event => {
+  onFocusVisibleHandler = event => {
     this.keyDown = false;
     this.setState({ focusVisible: true });
 
-    if (this.props.onKeyboardFocus) {
-      this.props.onKeyboardFocus(event);
+    if (this.props.onFocusVisible) {
+      this.props.onFocusVisible(event);
     }
   };
 
@@ -111,9 +121,9 @@ class ButtonBase extends React.Component {
   ripple = null;
   keyDown = false; // Used to help track keyboard activation keyDown
   button = null;
-  keyboardFocusTimeout = null;
-  keyboardFocusCheckTime = 50;
-  keyboardFocusMaxCheckTimes = 5;
+  focusVisibleTimeout = null;
+  focusVisibleCheckTime = 50;
+  focusVisibleMaxCheckTimes = 5;
 
   handleKeyDown = event => {
     const { component, focusRipple, onKeyDown, onClick } = this.props;
@@ -163,7 +173,7 @@ class ButtonBase extends React.Component {
   };
 
   handleMouseDown = createRippleHandler(this, 'MouseDown', 'start', () => {
-    clearTimeout(this.keyboardFocusTimeout);
+    clearTimeout(this.focusVisibleTimeout);
     if (this.state.focusVisible) {
       this.setState({ focusVisible: false });
     }
@@ -184,7 +194,7 @@ class ButtonBase extends React.Component {
   handleTouchMove = createRippleHandler(this, 'TouchMove', 'stop');
 
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
-    clearTimeout(this.keyboardFocusTimeout);
+    clearTimeout(this.focusVisibleTimeout);
     if (this.state.focusVisible) {
       this.setState({ focusVisible: false });
     }
@@ -201,8 +211,8 @@ class ButtonBase extends React.Component {
     }
 
     event.persist();
-    detectKeyboardFocus(this, this.button, () => {
-      this.onKeyboardFocusHandler(event);
+    detectFocusVisible(this, this.button, () => {
+      this.onFocusVisibleHandler(event);
     });
 
     if (this.props.onFocus) {
@@ -212,6 +222,7 @@ class ButtonBase extends React.Component {
 
   render() {
     const {
+      action,
       buttonRef,
       centerRipple,
       children,
@@ -224,7 +235,7 @@ class ButtonBase extends React.Component {
       focusVisibleClassName,
       onBlur,
       onFocus,
-      onKeyboardFocus,
+      onFocusVisible,
       onKeyDown,
       onKeyUp,
       onMouseDown,
@@ -297,6 +308,15 @@ class ButtonBase extends React.Component {
 
 ButtonBase.propTypes = {
   /**
+   * Callback fired when the component mounts.
+   * This is useful when you want to trigger an action programmatically.
+   * It currently only supports `focusVisible()` action.
+   *
+   * @param {object} actions This object contains all possible actions
+   * that can be triggered programmatically.
+   */
+  action: PropTypes.func,
+  /**
    * Use that property to pass a ref callback to the native button component.
    */
   buttonRef: PropTypes.func,
@@ -359,7 +379,7 @@ ButtonBase.propTypes = {
    * Callback fired when the component is focused with a keyboard.
    * We trigger a `onFocus` callback too.
    */
-  onKeyboardFocus: PropTypes.func,
+  onFocusVisible: PropTypes.func,
   /**
    * @ignore
    */

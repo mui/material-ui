@@ -4,7 +4,7 @@ components: MobileStepper, Step, StepButton, StepContent, StepIcon, StepLabel, S
 
 # Steppers
 
-[Steppers](https://material.io/guidelines/components/steppers.html) convey progress through numbered steps.
+[Steppers](https://material.io/archive/guidelines/components/steppers.html) convey progress through numbered steps.
 
 > Steppers display progress through a sequence of logical and numbered steps. They may also be used for navigation.
 >
@@ -64,7 +64,7 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prope
 
 ## Mobile Stepper
 
-This component implements a compact stepper suitable for a mobile device. See [mobile steps](https://material.io/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
+This component implements a compact stepper suitable for a mobile device. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
 
 ### Mobile Stepper - Text
 
@@ -72,6 +72,13 @@ This is essentially a back/next button positioned correctly.
 You must implement the textual description yourself, however, an example is provided below for reference.
 
 {{"demo": "pages/demos/steppers/TextMobileStepper.js"}}
+
+### Mobile Stepper - Text with Carousel effect
+
+This demo is very similar to the previous, the difference is the usage of 
+[react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to make the transition of steps.
+
+{{"demo": "pages/demos/steppers/SwipeableTextMobileStepper.js"}}
 
 ### Mobile Stepper - Dots
 

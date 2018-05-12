@@ -55,17 +55,20 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
+  TablePagination,
   TableRow,
   Tabs,
   TextField,
   Toolbar,
   Tooltip,
   Typography,
+  withMobileDialog,
   WithStyles,
 } from '../../src';
 import { withStyles, StyleRulesCallback } from '../../src/styles';
-import { withMobileDialog, DialogProps } from '../../src/Dialog';
+import { DialogProps } from '../../src/Dialog';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -573,7 +576,7 @@ const SnackbarTest = () => (
       open={true}
       autoHideDuration={6e3}
       onClose={event => log(event)}
-      SnackbarContentProps={
+      ContentProps={
         {
           // 'aria-describedby': 'message-id',
           // ^ will work once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/22582 is merged.
@@ -692,7 +695,7 @@ const TableTest = () => {
     return (
       <Paper className={classes.paper}>
         <Table>
-          <TableHead>
+          <TableHead classes={{ root: 'foo' }}>
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>
               <TableCell numeric>Calories</TableCell>
@@ -714,6 +717,11 @@ const TableTest = () => {
               );
             })}
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination count={2} rowsPerPage={1} page={1} onChangePage={() => {}} />
+            </TableRow>
+          </TableFooter>
         </Table>
       </Paper>
     );

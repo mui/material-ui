@@ -4,6 +4,7 @@ import keycode from 'keycode';
 import { assert } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
+import rerender from 'test/utils/rerender';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
@@ -354,7 +355,7 @@ describe('<ButtonBase />', () => {
         false,
         'should not set keyboard focus before time has passed',
       );
-      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
       assert.strictEqual(
         wrapper.state().focusVisible,
         true,
@@ -363,12 +364,12 @@ describe('<ButtonBase />', () => {
     });
 
     it('should ignore the keyboard after 1s', () => {
-      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
       assert.strictEqual(wrapper.state().focusVisible, true, 'should think it is keyboard based');
       button.blur();
       assert.strictEqual(wrapper.state().focusVisible, false, 'should has lost the focus');
       button.focus();
-      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
       assert.strictEqual(
         wrapper.state().focusVisible,
         true,
@@ -378,7 +379,7 @@ describe('<ButtonBase />', () => {
       button.blur();
       assert.strictEqual(wrapper.state().focusVisible, false, 'should has lost the focus');
       button.focus();
-      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      clock.tick(instance.focusVisibleCheckTime * instance.focusVisibleMaxCheckTimes);
       assert.strictEqual(
         wrapper.state().focusVisible,
         false,
@@ -455,23 +456,23 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(eventMock.persist.callCount, 0);
     });
 
-    it('onKeyboardFocusHandler() should propogate call to onKeyboardFocus prop', () => {
+    it('onFocusVisibleHandler() should propogate call to onFocusVisible prop', () => {
       const eventMock = 'woofButtonBase';
-      const onKeyboardFocusSpy = spy();
+      const onFocusVisibleSpy = spy();
       const wrapper = mount(
         <ButtonBaseNaked
           theme={{}}
           classes={{}}
           component="span"
-          onKeyboardFocus={onKeyboardFocusSpy}
+          onFocusVisible={onFocusVisibleSpy}
         >
           Hello
         </ButtonBaseNaked>,
       );
       const instance = wrapper.instance();
-      instance.onKeyboardFocusHandler(eventMock);
-      assert.strictEqual(onKeyboardFocusSpy.callCount, 1);
-      assert.strictEqual(onKeyboardFocusSpy.calledWith(eventMock), true);
+      instance.onFocusVisibleHandler(eventMock);
+      assert.strictEqual(onFocusVisibleSpy.callCount, 1);
+      assert.strictEqual(onFocusVisibleSpy.calledWith(eventMock), true);
     });
 
     it('should work with a functionnal component', () => {
@@ -487,7 +488,7 @@ describe('<ButtonBase />', () => {
       );
       const instance = wrapper.instance();
       wrapper.simulate('focus');
-      clock.tick(instance.keyboardFocusCheckTime);
+      clock.tick(instance.focusVisibleCheckTime);
     });
   });
 
@@ -628,6 +629,52 @@ describe('<ButtonBase />', () => {
       mount(<ButtonBaseRef rootRef={ref}>Hello</ButtonBaseRef>);
       assert.strictEqual(ref.callCount, 1, 'should call the ref function');
       assert.strictEqual(ReactDOM.findDOMNode(ref.args[0][0]).type, 'button');
+    });
+  });
+
+  describe('prop: action', () => {
+    it('should be able to focus visible the button', () => {
+      let buttonActions = {};
+      const wrapper = mount(
+        <ButtonBaseNaked
+          theme={{}}
+          classes={{}}
+          action={actions => {
+            buttonActions = actions;
+          }}
+          focusVisibleClassName="focusVisible"
+        >
+          Hello
+        </ButtonBaseNaked>,
+      );
+
+      assert.strictEqual(
+        typeof buttonActions.focusVisible === 'function',
+        true,
+        'Should be a function.',
+      );
+      buttonActions.focusVisible();
+      wrapper.update();
+      assert.strictEqual(wrapper.instance().button, document.activeElement);
+      assert.strictEqual(wrapper.find('.focusVisible').length, 1);
+    });
+  });
+
+  describe('rerender', () => {
+    beforeEach(() => {
+      rerender.spy();
+    });
+
+    afterEach(() => {
+      rerender.reset();
+    });
+
+    it('should not rerender the TouchRipple', () => {
+      const wrapper = mount(<ButtonBase>foo</ButtonBase>);
+      wrapper.setProps({
+        children: 'bar',
+      });
+      assert.strictEqual(rerender.updates.length, 1);
     });
   });
 });

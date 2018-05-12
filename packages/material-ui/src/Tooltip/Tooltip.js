@@ -9,7 +9,7 @@ import warning from 'warning';
 import classNames from 'classnames';
 import { Manager, Popper, Target } from 'react-popper';
 import { capitalize } from '../utils/helpers';
-import RootRef from '../internal/RootRef';
+import RootRef from '../RootRef';
 import Portal from '../Portal';
 import common from '../colors/common';
 import withStyles from '../styles/withStyles';

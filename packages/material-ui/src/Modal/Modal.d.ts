@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps, ModalManager } from '..';
-import { BackdropProps } from './Backdrop';
+import { BackdropProps } from '../Backdrop';
 import { PortalProps } from '../Portal';
 
 export interface ModalProps

@@ -47,7 +47,7 @@ and towards the goal of a canonical Material Design implementation for the entir
 ![npm](https://img.shields.io/npm/dm/material-components-web.svg)
 
 We are very happy to see this project supported by Google and its design team.
-It sends a clear signal that the [Material Design specification](https://material.io/guidelines/) is
+It sends a clear signal that the [Material Design specification](https://material.io/design/) is
 here to stay, as they continue to invest in it.
 
 ### Frameworks and libraries
@@ -56,7 +56,7 @@ Material-UI focuses exclusively on the React library, although, given that Preac
 we hope to soon support it too. Supporting one framework allows us to do less but do it better.
 
 This comes in different flavors:
-- Having fewer constraints, we can make trade-offs specific to out target framework.
+- Having fewer constraints, we can make trade-offs specific to our target framework.
 We have fewer edge-cases to take into account.
 - We can spend more time on nailing the React use case.
 

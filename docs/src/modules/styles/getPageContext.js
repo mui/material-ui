@@ -2,10 +2,10 @@
 
 import { create, SheetsRegistry } from 'jss';
 import rtl from 'jss-rtl';
-import { createMuiTheme, createGenerateClassName, jssPreset } from 'material-ui/styles';
-import blue from 'material-ui/colors/blue';
-import pink from 'material-ui/colors/pink';
-import { darken } from 'material-ui/styles/colorManipulator';
+import { createMuiTheme, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
+import pink from '@material-ui/core/colors/pink';
+import { darken } from '@material-ui/core/styles/colorManipulator';
 
 function getTheme(uiTheme) {
   const theme = createMuiTheme({

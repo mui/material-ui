@@ -4,7 +4,7 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 # Lists
 
-[Lists](https://material.io/guidelines/components/lists.html) present multiple line items vertically as a single continuous element.
+[Lists](https://material.io/design/components/lists.html) present multiple line items vertically as a single continuous element.
 
 Lists are made up of a continuous column of rows. Each row contains a tile. Primary actions fill the tile, and supplemental actions are represented by icons and text.
 

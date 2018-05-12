@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui/src/Modal/Backdrop.js
+filename: /packages/material-ui/src/Backdrop/Backdrop.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -27,7 +27,7 @@ This property accepts the following keys:
 - `invisible`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui/src/Modal/Backdrop.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui/src/Backdrop/Backdrop.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented

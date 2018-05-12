@@ -4,7 +4,7 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 # Expansion Panel
 
-[Expansion Panels](https://material.io/guidelines/components/expansion-panels.html) contain creation flows and allow lightweight editing of an element.
+[Expansion Panels](https://material.io/archive/guidelines/components/expansion-panels.html) contain creation flows and allow lightweight editing of an element.
 
 ## Simple Expansion Panel
 

@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { MenuItem } from 'packages/material-ui/src/Menu';
+import MenuItem from 'packages/material-ui/src/MenuItem';
 import Select from 'packages/material-ui/src/Select';
 import Dialog from 'packages/material-ui/src/Dialog';
 

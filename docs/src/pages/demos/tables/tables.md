@@ -4,7 +4,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 # Tables
 
-[Data tables](https://material.io/guidelines/components/data-tables.html) display sets of raw data.
+[Data tables](https://material.io/design/components/data-tables.html) display sets of raw data.
 They usually appear in desktop enterprise products.
 
 ## Structure
@@ -12,6 +12,8 @@ They usually appear in desktop enterprise products.
 A data table contains a header row at the top that lists column names, followed by rows for data.
 
 Checkboxes should accompany each row if the user needs to select or manipulate data.
+
+For accessibility, the first column is set to be a `<th>` element, with a `scope` of `"row"`. This enables screen readers to identify a cell's value by it's row and column name.
 
 ## Simple Table
 

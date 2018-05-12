@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
-import Button from 'material-ui/Button';
-import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
@@ -24,7 +27,7 @@ const themes = [
   {
     name: 'Material Dashboard Pro',
     description: 'Material Dashboard Pro React is a Premium Material-UI Admin.',
-    src: '/static/images/themes/creative-tim.png',
+    src: '/static/images/themes/creative-tim-dashboard.jpg',
     price: '$59',
     category: 'Admin & Dashboard',
     href: 'https://www.creative-tim.com/product/material-dashboard-pro-react?partner=104080',
@@ -32,10 +35,18 @@ const themes = [
   {
     name: 'Material Dashboard',
     description: 'Material Dashboard React is a Free Material-UI Admin.',
-    src: '/static/images/themes/creative-tim.png',
+    src: '/static/images/themes/creative-tim-dashboard.jpg',
     price: 'FREE',
     category: 'Admin & Dashboard',
     href: 'https://www.creative-tim.com/product/material-dashboard-react?partner=104080',
+  },
+  {
+    name: 'Material Kit',
+    description: 'A Badass Material-UI Kit based on Material Design.',
+    src: '/static/images/themes/creative-tim-kit.jpg',
+    price: 'FREE',
+    category: 'Components',
+    href: 'https://www.creative-tim.com/product/material-kit-react?partner=104080',
   },
 ];
 

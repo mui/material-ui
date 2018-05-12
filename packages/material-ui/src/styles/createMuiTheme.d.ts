@@ -7,6 +7,7 @@ import { Transitions, TransitionsOptions } from './transitions';
 import { Typography, TypographyOptions } from './createTypography';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Overrides } from './overrides';
+import { ComponentsProps } from './props';
 
 export type Direction = 'ltr' | 'rtl';
 
@@ -21,6 +22,7 @@ export interface ThemeOptions {
   spacing?: SpacingOptions;
   zIndex?: ZIndexOptions;
   overrides?: Overrides;
+  props?: ComponentsProps;
 }
 
 export interface Theme {
@@ -34,6 +36,7 @@ export interface Theme {
   spacing: Spacing;
   zIndex: ZIndex;
   overrides?: Overrides;
+  props?: ComponentsProps;
 }
 
 export default function createMuiTheme(options?: ThemeOptions): Theme;

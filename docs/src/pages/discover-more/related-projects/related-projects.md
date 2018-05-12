@@ -19,8 +19,8 @@ Feel free to submit a pull-request to add more projects; we will accept them if 
 
 - [react-autosuggest](https://github.com/moroshko/react-autosuggest) WAI-ARIA compliant React autosuggest component.
 - [react-number-format](https://github.com/s-yadav/react-number-format) React component to format numbers in an input or as a text.
-- [react-popper](https://github.com/souporserious/react-popper) React wrapper around PopperJS.
+- [react-popper](https://github.com/FezVrasta/react-popper) React wrapper around PopperJS.
 - [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) A React component for swipeable views. Plays well with the `Tabs` component.
 - [react-text-mask](https://github.com/text-mask/text-mask) Input mask for React, Angular, Ember, Vue, & plain JavaScript.
-- [redux-form](http://redux-form.com/6.1.1/examples/material-ui/) Manage your form state in Redux.
+- [redux-form](https://redux-form.com/7.3.0/examples/material-ui/) Manage your form state in Redux.
 - [react-final-form](https://github.com/final-form/react-final-form#material-ui-10) Subscription-based form state management for React.

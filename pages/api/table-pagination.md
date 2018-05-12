@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui/src/Table/TablePagination.js
+filename: /packages/material-ui/src/TablePagination/TablePagination.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -12,7 +12,7 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">Actions</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">TablePaginationActions</span> | The component used for displaying the actions. Either a string to use a DOM element or a component. |
+| <span class="prop-name">ActionsComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">TablePaginationActions</span> | The component used for displaying the actions. Either a string to use a DOM element or a component. |
 | <span class="prop-name">backIconButtonProps</span> | <span class="prop-type">object |  | Properties applied to the back arrow `IconButton` component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">TableCell</span> | The component used for the root node. Either a string to use a DOM element or a component. |
@@ -36,6 +36,7 @@ This property accepts the following keys:
 - `root`
 - `toolbar`
 - `spacer`
+- `menuItem`
 - `caption`
 - `input`
 - `selectRoot`
@@ -44,7 +45,7 @@ This property accepts the following keys:
 - `actions`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui/src/Table/TablePagination.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui/src/TablePagination/TablePagination.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented

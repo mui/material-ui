@@ -40,7 +40,23 @@ you wish to add or override.
 
 Notice that in addition to the button styling, the button label's capitalization has been changed:
 
-{{"demo": "pages/customization/overrides/Classes.js"}}
+{{"demo": "pages/customization/overrides/ClassesNesting.js"}}
+
+Aside from accessing nested elements, the `classes` property can be used to customize the internal states of Material-UI components.
+The components internal states, like `:hover`, `:focus`, `disabled` and `selected`, are styled with a higher CSS specificity.
+[Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
+In order to override the components internal states, **you need to increase specificity too**.
+
+```css
+.classes-state-root {
+  /* ... */
+}
+.classes-state-root.disabled {
+  color: white;
+}
+```
+
+{{"demo": "pages/customization/overrides/ClassesState.js"}}
 
 ### Overriding with inline-style
 
@@ -62,7 +78,7 @@ The best approach is to follow option 1 and then take advantage of the compositi
 
 ## 3. Material Design variations
 
-The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [flat](https://material.io/guidelines/components/buttons.html#buttons-flat-buttons), [raised](https://material.io/guidelines/components/buttons.html#buttons-raised-buttons), [floating](https://material.io/guidelines/components/buttons-floating-action-button.html) and more.
+The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (AKA "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (AKA "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
 
 Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components) documentation to find out the current status of all supported Material Design components.
 

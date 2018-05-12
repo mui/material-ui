@@ -7,8 +7,8 @@ import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
-import Fade from '../transitions/Fade';
-import Backdrop from './Backdrop';
+import Fade from '../Fade';
+import Backdrop from '../Backdrop';
 import Modal from './Modal';
 
 describe('<Modal />', () => {

@@ -31,8 +31,9 @@ export interface PopoverProps
   PaperProps?: Partial<PaperProps>;
   role?: string;
   transformOrigin?: PopoverOrigin;
-  transition?: React.ReactType;
+  TransitionComponent?: React.ReactType;
   transitionDuration?: TransitionProps['timeout'] | 'auto';
+  TransitionProps?: TransitionProps;
 }
 
 export type PopoverClassKey = 'paper';

@@ -24,11 +24,11 @@ export const styles = theme => ({
   colorAction: {
     color: theme.palette.action.active,
   },
-  colorDisabled: {
-    color: theme.palette.action.disabled,
-  },
   colorError: {
     color: theme.palette.error.main,
+  },
+  colorDisabled: {
+    color: theme.palette.action.disabled,
   },
 });
 
@@ -69,7 +69,7 @@ Icon.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['inherit', 'secondary', 'action', 'disabled', 'error', 'primary']),
+  color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
 };
 
 Icon.defaultProps = {

@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from 'material-ui/Button';
-import Snackbar from 'material-ui/Snackbar';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 
 class PositionedSnackbar extends React.Component {
   state = {
@@ -43,7 +43,7 @@ class PositionedSnackbar extends React.Component {
           anchorOrigin={{ vertical, horizontal }}
           open={open}
           onClose={this.handleClose}
-          SnackbarContentProps={{
+          ContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">I love snacks</span>}

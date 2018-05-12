@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 
 const style = {
   margin: 15,

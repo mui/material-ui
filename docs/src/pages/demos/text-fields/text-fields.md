@@ -4,7 +4,7 @@ components: FormControl, FormHelperText, Input, InputAdornment, InputLabel, Text
 
 # Text Fields
 
-[Text fields](https://material.io/guidelines/components/text-fields.html) allow users to input text and usually appear in forms.
+[Text fields](https://material.io/design/components/text-fields.html) allow users to input text and usually appear in forms.
 Users may enter text, numbers, or mixed-format types of input.
 
 ## TextField
@@ -44,9 +44,11 @@ These can be used to add a prefix, a suffix or an action to an input.
 
 ## Formatted inputs
 
-We demonstrate how you could be using third-party libraries to [format your input](https://material.io/guidelines/components/text-fields.html#text-fields-input-types).
-In the following demo, we are using [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
+You can use third-party libraries to format an input.
 You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
+
+The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
+
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 

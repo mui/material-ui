@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import Head from 'next/head';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import withRoot from 'docs/src/modules/components/withRoot';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
@@ -66,59 +66,67 @@ const styles = theme => ({
   markdownElement: {},
 });
 
-function PageHome(props) {
-  const classes = props.classes;
+class HomePage extends React.Component {
+  componentDidMount() {
+    if (window.location.hash !== '') {
+      window.location.replace(`http://v0.material-ui.com/${window.location.hash}`);
+    }
+  }
 
-  return (
-    <div className={classes.root}>
-      <Head>
-        <title>Material-UI</title>
-      </Head>
-      <div className={classes.hero}>
-        <div className={classes.content}>
-          <img
-            src="/static/images/material-ui-logo.svg"
-            alt="Material-UI Logo"
-            className={classes.logo}
-          />
-          <div className={classes.text}>
-            <Typography variant="display2" component="h1" color="inherit" gutterBottom>
-              {'Material-UI'}
-            </Typography>
-            <Typography
-              variant="headline"
-              component="h2"
-              color="inherit"
-              className={classes.headline}
-            >
-              {"React components that implement Google's Material Design."}
-            </Typography>
-            <Button
-              component={buttonProps => (
-                <Link
-                  variant="button"
-                  prefetch
-                  href="/getting-started/installation"
-                  {...buttonProps}
-                />
-              )}
-              className={classes.button}
-              variant="raised"
-            >
-              {'Get Started'}
-            </Button>
+  render() {
+    const classes = this.props.classes;
+
+    return (
+      <div className={classes.root}>
+        <Head>
+          <title>Material-UI</title>
+        </Head>
+        <div className={classes.hero}>
+          <div className={classes.content}>
+            <img
+              src="/static/images/material-ui-logo.svg"
+              alt="Material-UI Logo"
+              className={classes.logo}
+            />
+            <div className={classes.text}>
+              <Typography variant="display2" component="h1" color="inherit" gutterBottom>
+                {'Material-UI'}
+              </Typography>
+              <Typography
+                variant="headline"
+                component="h2"
+                color="inherit"
+                className={classes.headline}
+              >
+                {"React components that implement Google's Material Design."}
+              </Typography>
+              <Button
+                component={buttonProps => (
+                  <Link
+                    variant="button"
+                    prefetch
+                    href="/getting-started/installation"
+                    {...buttonProps}
+                  />
+                )}
+                className={classes.button}
+                variant="raised"
+              >
+                {'Get Started'}
+              </Button>
+            </div>
           </div>
         </div>
+        <HomeSteps />
+        <HomeBackers />
+        <HomeFooter />
       </div>
-      <HomeSteps />
-      <HomeBackers />
-      <HomeFooter />
-    </div>
-  );
+    );
+  }
 }
 
-PageHome.propTypes = {
+HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(withRoot, withStyles(styles))(PageHome);
+export default compose(withRoot, withStyles(styles))(HomePage);

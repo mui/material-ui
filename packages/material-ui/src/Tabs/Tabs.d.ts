@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase/ButtonBase';
+import { TabIndicatorProps } from './TabIndicator';
 
-export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 'onChange'> {
+export interface TabsProps
+  extends StandardProps<ButtonBaseProps, TabsClassKey, 'onChange' | 'action'> {
   action?: (actions: TabsActions) => void;
   centered?: boolean;
   children?: React.ReactNode;
@@ -10,8 +12,9 @@ export interface TabsProps extends StandardProps<ButtonBaseProps, TabsClassKey, 
   indicatorColor?: 'secondary' | 'primary' | string;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   scrollable?: boolean;
+  ScrollButtonComponent?: React.ReactType;
   scrollButtons?: 'auto' | 'on' | 'off';
-  TabScrollButton?: React.ReactType;
+  TabIndicatorProps?: Partial<TabIndicatorProps>;
   textColor?: 'secondary' | 'primary' | 'inherit' | string;
   value: any;
   width?: string;

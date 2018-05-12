@@ -1,12 +1,11 @@
 import React from 'react';
-import Button from 'material-ui/Button';
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from 'material-ui/Dialog';
-import Slide from 'material-ui/transitions/Slide';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -31,7 +30,7 @@ class AlertDialogSlide extends React.Component {
         <Button onClick={this.handleClickOpen}>Slide in alert dialog</Button>
         <Dialog
           open={this.state.open}
-          transition={Transition}
+          TransitionComponent={Transition}
           keepMounted
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-slide-title"

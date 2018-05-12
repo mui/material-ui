@@ -95,27 +95,7 @@ Users trying out and using v1-beta and giving feedback has been a tremendous hel
 This feedback has guided the following list of important breaking changes
 that **are needed for the stable version**:
 
-- [ ] Flatten the import path [#9532](https://github.com/mui-org/material-ui/issues/9532).
-  Knowing the component name should be enough for being able to import it.
-
-  ```diff
-  -import CircularProgress from 'material-ui/Progress/CircularProgress';
-  +import CircularProgress from 'material-ui/CircularProgress';
-  ```
-
-  ```diff
-  -import { ListItem } from 'material-ui/List';
-  +import ListItem from 'material-ui/ListItem';
-  ```
-
-- [ ] Use `@material-ui npm scope name` #9673. The pros have been raised in the linked issue.
-
-```diff
--import Button from 'material-ui/Button';
-+import Button from '@material-ui/core/Button';
-```
-
-- [ ] Look into the Render Props API over the Component Injection API. This one is an area of investigation. For instance, there is potential for simplifying the customization of the transitions.
+- None
 
 These breaking changes will be spread into different releases over the next few months to make the upgrade path as smooth as possible.
 Not only does the Material-UI project have to be upgraded for each breaking change,

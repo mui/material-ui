@@ -1,10 +1,10 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 const theme = createMuiTheme({
   typography: {
-    // Tell Material-UI what's the font-size on the html element is.
+    // Tell Material-UI what the font-size on the html element is.
     htmlFontSize: 10,
   },
 });

@@ -10,7 +10,7 @@ We host some example projects which you can find in the [GitHub repository](http
 - And more
 
 Create React App is an awesome project for learning React.
-Have a look at [the alternatives available](https://github.com/facebookincubator/create-react-app/blob/master/README.md#popular-alternatives) to see which project best fits your needs.
+Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/master/README.md#popular-alternatives) to see which project best fits your needs.
 
 The source code for this documentation site is also included in the repository.
 This is a slightly more complex project.

@@ -3,10 +3,11 @@
 import React from 'react';
 import warning from 'warning';
 import PropTypes from 'prop-types';
-import Input, { InputLabel } from '../Input';
-import FormControl from '../Form/FormControl';
-import FormHelperText from '../Form/FormHelperText';
-import Select from '../Select/Select';
+import Input from '../Input';
+import InputLabel from '../InputLabel';
+import FormControl from '../FormControl';
+import FormHelperText from '../FormHelperText';
+import Select from '../Select';
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).

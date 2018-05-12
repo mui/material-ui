@@ -4,7 +4,8 @@ import { spy } from 'sinon';
 import keycode from 'keycode';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, createMount } from '../test-utils';
-import Menu, { MenuItem } from '../Menu';
+import Menu from '../Menu';
+import MenuItem from '../MenuItem';
 import SelectInput from './SelectInput';
 
 describe('<SelectInput />', () => {
@@ -17,6 +18,7 @@ describe('<SelectInput />', () => {
     native: false,
     multiple: false,
     displayEmpty: false,
+    IconComponent: 'div',
     children: [
       <MenuItem key={1} value={10}>
         Ten

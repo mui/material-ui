@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Paper from '../Paper';
-import Fade from '../transitions/Fade';
+import Fade from '../Fade';
 import Modal from '../Modal';
 import Dialog from './Dialog';
 
@@ -25,17 +25,17 @@ describe('<Dialog />', () => {
     assert.strictEqual(wrapper.type(), Modal);
   });
 
-  it('should render a Modal with transition', () => {
+  it('should render a Modal with TransitionComponent', () => {
     const Transition = props => <div className="cloned-element-class" {...props} />;
     const wrapper = shallow(
-      <Dialog {...defaultProps} transition={Transition}>
+      <Dialog {...defaultProps} TransitionComponent={Transition}>
         foo
       </Dialog>,
     );
     assert.strictEqual(
       wrapper.find(Transition).length,
       1,
-      'should include element given in transition',
+      'should include element given in TransitionComponent',
     );
   });
 

@@ -4,7 +4,7 @@ components: Card, CardActions, CardContent, CardHeader, CardMedia, Collapse
 
 # Cards
 
-A [card](https://material.io/guidelines/components/cards.html) is a sheet of material that serves as an entry point to more detailed information.
+A [card](https://material.io/design/components/cards.html) is a sheet of material that serves as an entry point to more detailed information.
 
 Cards display content composed of different elements whose size or supported actions vary.
 

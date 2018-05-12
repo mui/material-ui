@@ -4,8 +4,8 @@ import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import MenuList from 'packages/material-ui/src/Menu/MenuList';
-import MenuItem from 'packages/material-ui/src/Menu/MenuItem';
+import MenuList from 'packages/material-ui/src/MenuList';
+import MenuItem from 'packages/material-ui/src/MenuItem';
 import { createMount } from 'packages/material-ui/src/test-utils';
 
 function assertMenuItemTabIndexed(wrapper, tabIndexed) {

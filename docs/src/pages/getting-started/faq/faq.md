@@ -2,7 +2,7 @@
 
 Stuck on a particular problem? Check some of these common gotchas first.
 
-If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/callemall/material-ui).
+If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/mui-org/material-ui).
 For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
 
 ## Why do the fixed positioned elements move when a modal is opened?
@@ -15,7 +15,7 @@ In this situation, you can apply a global `.mui-fixed` class name to tell Materi
 
 The best solution at present is to write wrapping components for all the Material-UI components showing a ripple.
 The ripple effect is exclusively coming from the `BaseButton` component.
-You can find the components using the BaseButton [here](https://github.com/mui-org/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
+You can find the components using the ButtonBase [here](https://github.com/mui-org/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
 Then, all you have to do is to provide the `disableRipple` property.
 
 ## Do I have to use JSS to style my app?
@@ -24,7 +24,7 @@ It's highly recommended:
 
 - It comes built in, so carries no additional bundle size overhead.
 - It's fast & memory efficient.
-- It has a clean, consistent [API](http://cssinjs.org/json-api).
+- It has a clean, consistent [API](http://cssinjs.org/json-api/).
 - It supports a number of advanced features, either natively, or through [plugins](http://cssinjs.org/plugins/). 
 
 However perhaps you're adding some Material-UI components to an app that already uses another styling solution,

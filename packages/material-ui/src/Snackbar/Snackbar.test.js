@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Snackbar from './Snackbar';
-import Slide from '../transitions/Slide';
+import Slide from '../Slide';
 
 describe('<Snackbar />', () => {
   let shallow;
@@ -362,14 +362,14 @@ describe('<Snackbar />', () => {
     });
   });
 
-  describe('prop: transition', () => {
-    it('should render a Snackbar with transition', () => {
+  describe('prop: TransitionComponent', () => {
+    it('should render a Snackbar with TransitionComponent', () => {
       const Transition = props => <div className="cloned-element-class" {...props} />;
-      const wrapper = shallow(<Snackbar open transition={Transition} />);
+      const wrapper = shallow(<Snackbar open TransitionComponent={Transition} />);
       assert.strictEqual(
         wrapper.find(Transition).length,
         1,
-        'should include element given in transition',
+        'should include element given in TransitionComponent',
       );
     });
   });

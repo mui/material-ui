@@ -69,10 +69,10 @@ function getPathsBase(path) {
   return new Error('Wrong path');
 }
 
-export default function transformer(file, api) {
+export default function transformer(fileInfo, api) {
   const j = api.jscodeshift;
 
-  return j(file.source)
+  return j(fileInfo.source)
     .find(j.ImportDeclaration)
     .filter(path => {
       // Only consider Material-UI imports

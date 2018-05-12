@@ -3,8 +3,8 @@ import { assert } from 'chai';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import { createShallow, createMount } from '../test-utils';
 import Paper from '../Paper';
-import Step from './Step';
-import StepConnector from './StepConnector';
+import Step from '../Step';
+import StepConnector from '../StepConnector';
 import Stepper from './Stepper';
 
 describe('<Stepper />', () => {

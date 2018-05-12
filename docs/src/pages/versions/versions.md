@@ -1,8 +1,8 @@
 # Material-UI Versions
 
-## Beta versions
+## Stable versions
 
-The most recent beta version is recommended in production.
+The most recent version is recommended in production.
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 

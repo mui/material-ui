@@ -61,7 +61,7 @@ export interface Palette {
   background: TypeBackground;
   getContrastText: (background: string) => string;
   augmentColor: (
-    color: string,
+    color: SimplePaletteColorOptions,
     mainShade: number | string,
     lightShade: number | string,
     darkShade: number | string,

@@ -11,9 +11,9 @@ components, but these approaches have proven to be limited. Most recently, we ha
 a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 We think that it's the future:
 - [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
-- [The future of component-based styling](https://medium.freecodecamp.com/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
+- [The future of component-based styling](https://medium.freecodecamp.org/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
 
-So, you may have noticed in the demos how this *CSS-in-JS* looks.
+So, you may have noticed in the demos what *CSS-in-JS* looks like.
 We use the higher-order component created by [`withStyles`](#api)
 to inject an array of styles into the DOM as CSS, using JSS. Here's an example:
 
@@ -26,7 +26,7 @@ It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/perfor
 It is about 8 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 
 If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
-The best place to start is by looking at the features that each [plugin](http://cssinjs.org/plugins) provides. Material-UI uses [few of them](#plugins).
+The best place to start is by looking at the features that each [plugin](http://cssinjs.org/plugins/) provides. Material-UI uses [few of them](#plugins).
 You can always add new plugins if needed with the [`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup) helper.
 
 If you wish to build your own instance of `jss` **and** support *rtl* make sure you also include the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
@@ -42,7 +42,7 @@ Read more about [Server Rendering](/guides/server-rendering).
 
 ## Sheets manager
 
-We use a [reference counting](https://en.wikipedia.org/wiki/Reference_counting) algorithm in order to attach and detach the style sheets only once per (styles, theme) couple.
+The sheets manager uses a [reference counting](https://en.wikipedia.org/wiki/Reference_counting) algorithm in order to attach and detach the style sheets only once per (styles, theme) couple.
 This technique provides an important performance boost when re-rendering instances of a component.
 
 When only rendering on the client, that's not something you need to be aware of. However, when rendering on the server you do. You can read more about [Server Rendering](/guides/server-rendering).
@@ -78,10 +78,10 @@ As well as the option to make the class names **deterministic** with the `danger
 - production: `.MuiAppBar-root`
 
 ⚠️ **Be very cautious when using `dangerouslyUseGlobalCSS`.**
-We provide this option as an escape hatch for quick prototyping.
-Avoid relying on it for code running in production.
-It's very hard to keep track of class name API changes.
-Global CSS is fragile by design.
+We provide this option as an escape hatch for quick prototyping,
+but you should avoid relying on it for code running in production
+as it's very hard to keep track of class name API changes.
+Global CSS is inherently fragile.
 
 ## CSS injection order
 
@@ -105,7 +105,7 @@ The simplest approach is to add an HTML comment that determines where JSS will i
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
@@ -125,7 +125,7 @@ export default App;
 
 ### Other HTML element
 
-[Create React App](https://github.com/facebookincubator/create-react-app) strips HTML comments when creating the production build.
+[Create React App](https://github.com/facebook/create-react-app) strips HTML comments when creating the production build.
 To get around the issue, you can provide a DOM element (other than a comment) as the JSS insertion point.
 
 For example, a `<noscript>` element:
@@ -140,7 +140,7 @@ For example, a `<noscript>` element:
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
@@ -166,7 +166,7 @@ To get around the issue, you can use the JavaScript `document.createComment()` A
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const styleNode = document.createComment("jss-insertion-point");
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -193,13 +193,13 @@ react-jss exposes a `JssProvider` component to configure JSS for the underlying 
 There are different use cases:
 - [Providing a Sheets registry.](/customization/css-in-js#sheets-registry)
 - Providing a JSS instance. You might want to support [Right-to-left](/guides/right-to-left) or changing the [CSS injection order](/customization/css-in-js#css-injection-order).
-Read [the JSS documentation](http://cssinjs.org/js-api) to learn more about the options available.
+Read [the JSS documentation](http://cssinjs.org/js-api/) to learn more about the options available.
 Here is an example:
 
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
@@ -220,14 +220,14 @@ export default App;
 JSS uses the concept of plugins to extend its core, allowing people to cherry-pick the features they need.
 You pay the performance overhead for only what's you are using.
 Given `withStyles` is our internal styling solution, all the plugins aren't available by default. We have added the following list:
-- [jss-global](http://cssinjs.org/jss-global)
-- [jss-nested](http://cssinjs.org/jss-nested)
-- [jss-camel-case](http://cssinjs.org/jss-camel-case)
-- [jss-default-unit](http://cssinjs.org/jss-default-unit)
-- [jss-vendor-prefixer](http://cssinjs.org/jss-vendor-prefixer)
-- [jss-props-sort](http://cssinjs.org/jss-props-sort)
+- [jss-global](http://cssinjs.org/jss-global/)
+- [jss-nested](http://cssinjs.org/jss-nested/)
+- [jss-camel-case](http://cssinjs.org/jss-camel-case/)
+- [jss-default-unit](http://cssinjs.org/jss-default-unit/)
+- [jss-vendor-prefixer](http://cssinjs.org/jss-vendor-prefixer/)
+- [jss-props-sort](http://cssinjs.org/jss-props-sort/)
 
-It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default).
+It's a subset of [jss-preset-default](http://cssinjs.org/jss-preset-default/).
 Of course, you are free to add a new plugin. We have one example for the [`jss-rtl` plugin](/guides/right-to-left#3-jss-rtl).
 
 ## API
@@ -263,7 +263,7 @@ Use the function signature if you need to have access to the theme. It's provide
 #### Examples
 
 ```jsx
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -283,7 +283,7 @@ export default withStyles(styles)(MyComponent);
 Also, you can use as [decorators](https://babeljs.io/docs/plugins/transform-decorators/) like so:
 
 ```jsx
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -319,7 +319,7 @@ A function which returns a class name generator function.
 
 ```jsx
 import JssProvider from 'react-jss/lib/JssProvider';
-import { createGenerateClassName } from 'material-ui/styles';
+import { createGenerateClassName } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName({
   dangerouslyUseGlobalCSS: true,
@@ -339,8 +339,7 @@ export default App;
 
 ## Alternative APIs
 
-Do you think that [higher-order components are the new mixins](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)? We don't, but rest assured, because `withStyles()` is a higher-order component.
-It can be extended with **few lines of code** to match different patterns, they are all idiomatic React.
+Do you think that [higher-order components are the new mixins](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)? Rest assured we don't, however because `withStyles()` is a higher-order component, it can be extended with just a **few lines of code** to match different patterns that are all idiomatic React. Here are a couple of examples.
 
 ### Render props API (+11 lines)
 

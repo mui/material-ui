@@ -9,7 +9,7 @@ Material-UI provides a `CssBaseline` component to kickstart an elegant, consiste
 
 ```jsx
 import React from 'react';
-import CssBaseline from 'material-ui/CssBaseline';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 function MyApp() {
   return (

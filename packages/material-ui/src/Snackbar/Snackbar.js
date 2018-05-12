@@ -5,10 +5,10 @@ import EventListener from 'react-event-listener';
 import { polyfill } from 'react-lifecycles-compat';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
-import ClickAwayListener from '../utils/ClickAwayListener';
+import ClickAwayListener from '../ClickAwayListener';
 import { capitalize, createChainedFunction } from '../utils/helpers';
-import Slide from '../transitions/Slide';
-import SnackbarContent from './SnackbarContent';
+import Slide from '../Slide';
+import SnackbarContent from '../SnackbarContent';
 
 export const styles = theme => {
   const gutter = theme.spacing.unit * 3;
@@ -144,21 +144,21 @@ class Snackbar extends React.Component {
 
   timerAutoHide = null;
 
-  handleMouseEnter = (event: SyntheticUIEvent<>) => {
+  handleMouseEnter = event => {
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
     }
     this.handlePause();
   };
 
-  handleMouseLeave = (event: SyntheticUIEvent<>) => {
+  handleMouseLeave = event => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
     }
     this.handleResume();
   };
 
-  handleClickAway = (event: Event) => {
+  handleClickAway = event => {
     if (this.props.onClose) {
       this.props.onClose(event, 'clickaway');
     }
@@ -194,6 +194,7 @@ class Snackbar extends React.Component {
       children,
       classes,
       className,
+      ContentProps,
       disableWindowBlurListener,
       message,
       onClose,
@@ -207,22 +208,15 @@ class Snackbar extends React.Component {
       onMouseLeave,
       open,
       resumeHideDuration,
-      SnackbarContentProps,
-      transition: TransitionProp,
+      TransitionComponent,
       transitionDuration,
+      TransitionProps,
       ...other
     } = this.props;
 
     // So we only render active snackbars.
     if (!open && this.state.exited) {
       return null;
-    }
-
-    const transitionProps = {};
-
-    // The provided transition might not support the direction property.
-    if (TransitionProp === Slide) {
-      transitionProps.direction = vertical === 'top' ? 'down' : 'up';
     }
 
     return (
@@ -242,7 +236,7 @@ class Snackbar extends React.Component {
             onFocus={disableWindowBlurListener ? undefined : this.handleResume}
             onBlur={disableWindowBlurListener ? undefined : this.handlePause}
           />
-          <TransitionProp
+          <TransitionComponent
             appear
             in={open}
             onEnter={onEnter}
@@ -252,12 +246,11 @@ class Snackbar extends React.Component {
             onExited={createChainedFunction(this.handleExited, onExited)}
             onExiting={onExiting}
             timeout={transitionDuration}
-            {...transitionProps}
+            direction={vertical === 'top' ? 'down' : 'up'}
+            {...TransitionProps}
           >
-            {children || (
-              <SnackbarContent message={message} action={action} {...SnackbarContentProps} />
-            )}
-          </TransitionProp>
+            {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
+          </TransitionComponent>
         </div>
       </ClickAwayListener>
     );
@@ -299,6 +292,10 @@ Snackbar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Properties applied to the `SnackbarContent` element.
+   */
+  ContentProps: PropTypes.object,
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    */
@@ -369,13 +366,9 @@ Snackbar.propTypes = {
    */
   resumeHideDuration: PropTypes.number,
   /**
-   * Properties applied to the `SnackbarContent` element.
-   */
-  SnackbarContentProps: PropTypes.object,
-  /**
    * Transition component.
    */
-  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -384,6 +377,10 @@ Snackbar.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 Snackbar.defaultProps = {
@@ -392,7 +389,7 @@ Snackbar.defaultProps = {
     horizontal: 'center',
   },
   disableWindowBlurListener: false,
-  transition: Slide,
+  TransitionComponent: Slide,
   transitionDuration: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,

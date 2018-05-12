@@ -1,10 +1,13 @@
 import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = {
@@ -21,10 +24,10 @@ function LatestVersion(props) {
       <Table>
         <TableBody>
           <TableRow>
-            <TableCell>
-              <Typography>v1-beta branch</Typography>
+            <TableCell padding="dense">
+              <Typography>master branch</Typography>
             </TableCell>
-            <TableCell>
+            <TableCell padding="dense">
               <Typography
                 component={props2 => (
                   <Link
@@ -37,7 +40,7 @@ function LatestVersion(props) {
                 Documentation
               </Typography>
             </TableCell>
-            <TableCell>
+            <TableCell padding="dense">
               <Typography
                 component={props2 => (
                   <Link

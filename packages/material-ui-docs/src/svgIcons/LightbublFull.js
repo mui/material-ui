@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 
 import React from 'react';
-import SvgIcon from 'material-ui/SvgIcon';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 function LightbublFull(props) {
   return (

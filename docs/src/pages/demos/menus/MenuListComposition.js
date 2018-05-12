@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Manager, Target, Popper } from 'react-popper';
-import Button from 'material-ui/Button';
-import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
-import Collapse from 'material-ui/transitions/Collapse';
-import Grow from 'material-ui/transitions/Grow';
-import Paper from 'material-ui/Paper';
-import Portal from 'material-ui/Portal';
-import { MenuItem, MenuList } from 'material-ui/Menu';
-import { withStyles } from 'material-ui/styles';
+import Button from '@material-ui/core/Button';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Collapse from '@material-ui/core/Collapse';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Portal from '@material-ui/core/Portal';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
-import { withStyles } from 'material-ui/styles';
-import Zoom from 'material-ui/transitions/Zoom';
-import { duration } from 'material-ui/styles/transitions';
-import Button from 'material-ui/Button';
-import { isMuiElement } from 'material-ui/utils/reactHelpers';
+import { withStyles } from '@material-ui/core/styles';
+import Zoom from '@material-ui/core/Zoom';
+import { duration } from '@material-ui/core/styles/transitions';
+import Button from '@material-ui/core/Button';
+import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 
 const styles = theme => ({
   root: {
@@ -98,8 +98,9 @@ class SpeedDial extends React.Component {
       onKeyDown,
       open,
       openIcon,
-      transition: Transition,
+      TransitionComponent,
       transitionDuration,
+      TransitionProps,
       ...other
     } = this.props;
 
@@ -136,7 +137,12 @@ class SpeedDial extends React.Component {
 
     return (
       <div className={classNames(classes.root, classNameProp)} {...other}>
-        <Transition in={!hidden} timeout={transitionDuration} mountOnEnter unmountOnExit>
+        <TransitionComponent
+          in={!hidden}
+          timeout={transitionDuration}
+          unmountOnExit
+          {...TransitionProps}
+        >
           <Button
             variant="fab"
             color="primary"
@@ -154,7 +160,7 @@ class SpeedDial extends React.Component {
           >
             {icon()}
           </Button>
-        </Transition>
+        </TransitionComponent>
         <div
           id={`${id}-actions`}
           className={classNames(classes.actions, { [classes.actionsClosed]: !open })}
@@ -226,7 +232,7 @@ SpeedDial.propTypes = {
   /**
    * Transition component.
    */
-  transition: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -235,11 +241,15 @@ SpeedDial.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
+  /**
+   * Properties applied to the `Transition` element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 SpeedDial.defaultProps = {
   hidden: false,
-  transition: Zoom,
+  TransitionComponent: Zoom,
   transitionDuration: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen,

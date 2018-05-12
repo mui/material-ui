@@ -30,7 +30,6 @@ If you're unfamiliar with Express or middleware, just know that our handleRender
 `server.js`
 
 ```js
-import path from 'path';
 import express from 'express';
 import React from 'react';
 import App from './App';
@@ -60,7 +59,7 @@ The first thing that we need to do on every request is create a new `sheetsRegis
 When rendering, we will wrap `App`, our root component,
 inside a `JssProvider` and [`MuiThemeProvider`](/api/mui-theme-provider) to make the `sheetsRegistry` and the `theme` available to all components in the component tree.
 
-The key step in server side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://facebook.github.io/react/docs/react-dom-server.html).
+The key step in server side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
 We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`. We will see how this is passed along in our `renderFullPage` function.
 
@@ -68,8 +67,8 @@ We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`.
 import { renderToString } from 'react-dom/server'
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from 'material-ui/styles';
-import { green, red } from 'material-ui/colors';
+import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from '@material-ui/core/styles';
+import { green, red } from '@material-ui/core/colors';
 
 function handleRender(req, res) {
   // Create a sheetsRegistry instance.
@@ -133,9 +132,9 @@ Let's take a look at our client file:
 
 ```jsx
 import React from 'react';
-import { render } from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import { green, red } from 'material-ui/colors';
+import { hydrate } from 'react-dom';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { green, red } from '@material-ui/core/colors';
 import App from './App';
 
 class Main extends React.Component {
@@ -161,7 +160,7 @@ const theme = createMuiTheme({
   },
 });
 
-render(
+hydrate(
   <MuiThemeProvider theme={theme}>
     <Main />
   </MuiThemeProvider>,

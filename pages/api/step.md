@@ -1,5 +1,5 @@
 ---
-filename: /packages/material-ui/src/Stepper/Step.js
+filename: /packages/material-ui/src/Step/Step.js
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
@@ -30,7 +30,7 @@ This property accepts the following keys:
 - `alternativeLabel`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui/src/Stepper/Step.js)
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui/src/Step/Step.js)
 for more detail.
 
 If using the `overrides` key of the theme as documented

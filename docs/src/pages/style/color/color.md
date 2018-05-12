@@ -1,6 +1,6 @@
 # Color
 
-[Color](https://material.io/guidelines/style/color.html) in material design is inspired by bold hues juxtaposed with muted environments, deep shadows, and bright highlights.
+[Color](https://material.io/design/color/) in material design is inspired by bold hues juxtaposed with muted environments, deep shadows, and bright highlights.
 
 ## Color system
 
@@ -24,8 +24,8 @@ They’ve been designed to work harmoniously with each other.
 For instance, you can refer to complementary primary and accent colors (for example 'red 500' & 'purple A200'), like so:
 
 ```js
-import purple from 'material-ui/colors/purple';
-import red from 'material-ui/colors/red';
+import purple from '@material-ui/core/colors/purple';
+import red from '@material-ui/core/colors/red';
 
 const primary = red[500]; // #F44336
 const accent = purple['A200']; // #E040FB
@@ -34,17 +34,17 @@ const accent2 = purple.A200; // #E040FB (alternative method)
 
 ## Color tool
 
-The Material Design team has built an awesome palette configuration tool: [material.io/color](https://material.io/color).
+The Material Design team has built an awesome palette configuration tool: [material.io/tools/color](https://material.io/tools/color/).
 It will help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
-<a href="https://material.io/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336">
+<a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336">
   <img src="/static/images/color/colorTool.png" style="width: 574px" />
 </a>
 
 The output can be fed directly to `createMuiTheme()` function:
 
 ```jsx
-import { createMuiTheme } from 'material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   palette: {

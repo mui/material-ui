@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import find from 'lodash/find';
+import { withRouter } from 'next/router';
 import { Provider } from 'react-redux';
 import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
@@ -232,14 +233,14 @@ const pages = [
   },
 ];
 
-function findActivePage(currentPages, url) {
+function findActivePage(currentPages, router) {
   const activePage = find(currentPages, page => {
     if (page.children) {
-      return url.pathname.indexOf(page.pathname) === 0;
+      return router.pathname.indexOf(page.pathname) === 0;
     }
 
     // Should be an exact match if no children
-    return url.pathname === page.pathname;
+    return router.pathname === page.pathname;
   });
 
   if (!activePage) {
@@ -247,8 +248,8 @@ function findActivePage(currentPages, url) {
   }
 
   // We need to drill down
-  if (activePage.pathname !== url.pathname) {
-    return findActivePage(activePage.children, url);
+  if (activePage.pathname !== router.pathname) {
+    return findActivePage(activePage.children, router);
   }
 
   return activePage;
@@ -263,9 +264,9 @@ function withRoot(Component) {
     }
 
     getChildContext() {
-      const url = this.props.url;
+      const { router } = this.props;
 
-      let pathname = url.pathname;
+      let pathname = router.pathname;
       if (pathname !== '/') {
         // The leading / is only added to support static hosting (resolve /index.html).
         // We remove it to normalize the pathname.
@@ -273,9 +274,8 @@ function withRoot(Component) {
       }
 
       return {
-        url,
         pages,
-        activePage: findActivePage(pages, { ...url, pathname }),
+        activePage: findActivePage(pages, { ...router, pathname }),
       };
     }
 
@@ -299,11 +299,10 @@ function withRoot(Component) {
   WithRoot.propTypes = {
     pageContext: PropTypes.object,
     reduxServerState: PropTypes.object,
-    url: PropTypes.object,
+    router: PropTypes.object.isRequired,
   };
 
   WithRoot.childContextTypes = {
-    url: PropTypes.object,
     pages: PropTypes.array,
     activePage: PropTypes.object,
   };
@@ -332,7 +331,7 @@ function withRoot(Component) {
     };
   };
 
-  return WithRoot;
+  return withRouter(WithRoot);
 }
 
 export default withRoot;
