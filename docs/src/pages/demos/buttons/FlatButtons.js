@@ -7,12 +7,10 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
+  input: {
+    display: 'none',
+  },
 });
-
-function doSomething(event) {
-  // eslint-disable-next-line no-console
-  console.log(event.currentTarget.getAttribute('data-something'));
-}
 
 function FlatButtons(props) {
   const { classes } = props;
@@ -31,12 +29,18 @@ function FlatButtons(props) {
       <Button href="#flat-buttons" className={classes.button}>
         Link
       </Button>
-      <Button disabled href="/" className={classes.button}>
-        Link disabled
-      </Button>
-      <Button className={classes.button} onClick={doSomething} data-something="here I am">
-        Does something
-      </Button>
+      <input
+        accept="image/*"
+        className={classes.input}
+        id="flat-button-file"
+        multiple
+        type="file"
+      />
+      <label htmlFor="flat-button-file">
+        <Button component="span" className={classes.button}>
+          Upload
+        </Button>
+      </label>
     </div>
   );
 }
