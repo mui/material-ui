@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StandardProps, Omit } from '..';
-import { HiddenProps } from '../Hidden/Hidden';
 import { Breakpoint } from '../styles/createBreakpoints';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
@@ -39,7 +38,6 @@ export interface GridProps
   component?: string | React.ComponentType<Omit<GridProps, StrippedProps>>;
   container?: boolean;
   direction?: GridDirection;
-  hidden?: HiddenProps;
   item?: boolean;
   justify?: GridJustification;
   spacing?: GridSpacing;
