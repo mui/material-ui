@@ -123,11 +123,7 @@ describe('<Button />', () => {
   });
 
   it('should render an outlined button', () => {
-    const wrapper = shallow(
-      <Button variant="outlined">
-        Hello World
-      </Button>,
-    );
+    const wrapper = shallow(<Button variant="outlined">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.outlined), true, 'should have the outlined class');
     assert.strictEqual(wrapper.hasClass(classes.flat), true, 'should have the flat class');

@@ -63,7 +63,9 @@ export const styles = theme => ({
     },
   },
   outlined: {
-    border: `1px solid ${theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'}`,
+    border: `1px solid ${
+      theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+    }`,
     borderRadius: 4,
     '&:hover': {
       backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),

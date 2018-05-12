@@ -18,7 +18,9 @@ function OutlinedButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button variant="outlined" className={classes.button}>Default</Button>
+      <Button variant="outlined" className={classes.button}>
+        Default
+      </Button>
       <Button color="primary" variant="outlined" className={classes.button}>
         Primary
       </Button>
@@ -34,7 +36,12 @@ function OutlinedButtons(props) {
       <Button variant="outlined" disabled href="/" className={classes.button}>
         Link disabled
       </Button>
-      <Button variant="outlined" className={classes.button} onClick={doSomething} data-something="here I am">
+      <Button
+        variant="outlined"
+        className={classes.button}
+        onClick={doSomething}
+        data-something="here I am"
+      >
         Does something
       </Button>
     </div>
