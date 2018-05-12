@@ -147,7 +147,8 @@ ListItem.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -161,7 +162,7 @@ ListItem.propTypes = {
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
-   * The container component. Useful when a `ListItemSecondaryAction` is rendered.
+   * The container component used when a `ListItemSecondaryAction` is rendered.
    */
   ContainerComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**

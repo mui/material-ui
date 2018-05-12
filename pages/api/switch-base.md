@@ -14,7 +14,7 @@ filename: /packages/material-ui/src/internal/SwitchBase.js
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">checked</span> | <span class="prop-type">union:&nbsp;bool&nbsp;&#124;<br>&nbsp;string<br> |  | If `true`, the component is checked. |
 | <span class="prop-name required">checkedIcon *</span> | <span class="prop-type">node |  | The icon to display when the component is checked. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool |  | If `true`, the switch will be disabled. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool |  | If `true`, the ripple effect will be disabled. |
 | <span class="prop-name required">icon *</span> | <span class="prop-type">node |  | The icon to display when the component is unchecked. |

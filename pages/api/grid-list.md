@@ -14,7 +14,7 @@ filename: /packages/material-ui/src/GridList/GridList.js
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">cellHeight</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | <span class="prop-default">180</span> | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
 | <span class="prop-name required">children *</span> | <span class="prop-type">node |  | Grid Tiles that will be in Grid List. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">cols</span> | <span class="prop-type">number | <span class="prop-default">2</span> | Number of columns. |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'ul'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">spacing</span> | <span class="prop-type">number | <span class="prop-default">4</span> | Number of px for the spacing between tiles. |

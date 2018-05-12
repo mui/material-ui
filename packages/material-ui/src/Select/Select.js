@@ -118,7 +118,8 @@ Select.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -162,14 +163,14 @@ Select.propTypes = {
   onChange: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
-   * Useful in controlled mode (see open).
+   * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback
    */
   onClose: PropTypes.func,
   /**
    * Callback fired when the component requests to be opened.
-   * Useful in controlled mode (see open).
+   * Use in controlled mode (see open).
    *
    * @param {object} event The event source of the callback
    */

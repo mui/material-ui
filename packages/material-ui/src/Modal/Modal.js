@@ -298,7 +298,7 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
   /**
-   * A backdrop component. Useful for custom backdrop rendering.
+   * A backdrop component. This property enables custom backdrop rendering.
    */
   BackdropComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
@@ -310,7 +310,8 @@ Modal.propTypes = {
    */
   children: PropTypes.element,
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
@@ -363,7 +364,7 @@ Modal.propTypes = {
   keepMounted: PropTypes.bool,
   /**
    * A modal manager used to track and manage the state of open
-   * Modals. Useful when customizing how modals interact within a container.
+   * Modals. This enables customizing how modals interact within a container.
    */
   manager: PropTypes.object,
   /**
