@@ -40,7 +40,7 @@ export default class BasicDatePicker extends PureComponent {
           <DatePicker
             label="With today button"
             showTodayButton
-            maxDate="2019-01-01"
+            disableFuture
             maxDateMessage="Date must be less than today"
             value={selectedDate}
             onChange={this.handleDateChange}
