@@ -2,7 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import warning from 'warning';
@@ -320,11 +319,7 @@ class Tooltip extends React.Component {
     );
 
     return (
-      <Manager
-        tag={ReactDOM.createPortal ? false : 'div'}
-        className={classNames(classes.root, className)}
-        {...other}
-      >
+      <Manager tag={false} className={classNames(classes.root, className)} {...other}>
         <EventListener target="window" onResize={this.handleResize} />
         <Target>
           {({ targetProps }) => (
