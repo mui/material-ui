@@ -56,7 +56,7 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
   import Button from 'material-ui-next/Button'; // v1.x
   ```
 
-2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
+2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
 3. `MuiThemeProvider` is optional for v1.x. Still, you are free to use v0.x and v1.x versions of the component at the same time like so:
 
   ```jsx
@@ -96,7 +96,7 @@ In the future, we will look into providing a simple component to solve the simpl
 
 ### Svg Icon
 
-First, run [the migration helper](https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
+First, run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
 
 However, this might not be enough when using the svg icons.
 The `@material-ui/icons` package has a dependency on the `material-ui/SvgIcon` module.

@@ -25,11 +25,11 @@ It's highly recommended:
 - It comes built in, so carries no additional bundle size overhead.
 - It's fast & memory efficient.
 - It has a clean, consistent [API](http://cssinjs.org/json-api/).
-- It supports a number of advanced features, either natively, or through [plugins](http://cssinjs.org/plugins/). 
+- It supports a number of advanced features, either natively, or through [plugins](http://cssinjs.org/plugins/).
 
 However perhaps you're adding some Material-UI components to an app that already uses another styling solution,
-or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the 
-[Style Library Interoperability](/guides/interoperability) section, 
+or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the
+[Style Library Interoperability](/guides/interoperability) section,
 where we show how simple it is to restyle Material-UI components with alternative style libraries.
 
 ## When should I use inline-style vs `withStyles()`?
@@ -122,7 +122,7 @@ page](/customization/themes) to learn about theme customization.
 ## Material-UI is awesome. How can I support the project?
 
 There are many ways to support Material-UI:
-- Improve [the documentation](https://github.com/mui-org/material-ui/tree/v1-beta/docs).
+- Improve [the documentation](https://github.com/mui-org/material-ui/tree/master/docs).
 - Help others to get started.
 - [Spread the word](https://twitter.com/MaterialUI).
 - Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui) or [issues marked as question](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3Aquestion) in the repository.

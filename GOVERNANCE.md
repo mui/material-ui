@@ -35,7 +35,7 @@ also contribute in the following ways.
 and [issues](https://github.com/mui-org/material-ui/issues).
 - Reporting bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
 - Fixing bugs, adding features, and
-[improving our documentation](https://github.com/mui-org/material-ui/tree/v1-beta/docs) by
+[improving our documentation](https://github.com/mui-org/material-ui/tree/master/docs) by
 [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 
 ### Committers

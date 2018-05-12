@@ -23,7 +23,7 @@ If you are interested in following our progress or if you want to help us reach 
 
 ## Q&A with the v1 version
 
-The v1-beta version has matured, so we think that it's time to communicate more on this effort. The following Q&A is an attempt at answering some of your questions.
+The master version has matured, so we think that it's time to communicate more on this effort. The following Q&A is an attempt at answering some of your questions.
 
 ### Summarizing, what are our main problems with CSS?
 
@@ -63,7 +63,7 @@ We don't have an ETA for the release of the `v1`, however, we are going to try t
 
 1. ~~We completely address the styling issue before moving from *alpha* to [*beta*](https://github.com/mui-org/material-ui/milestone/22).~~
 2. ~~We publish our first beta releases.~~
-3. We merge the v1-beta branch into master
+3. We merge the master branch into master
 5. We publish our first pre-releases, if all goes well, we move to the next step.
 6. We publish v1 🎉
 
@@ -90,7 +90,7 @@ On the other hand, using a smart date library for the DatePicker / TimePicker wo
 ## Breaking changes before v1
 
 It's time to look at the last breaking changes needed before releasing Material-UI v1.
-Users trying out and using v1-beta and giving feedback has been a tremendous help. Thank you!
+Users trying out and using master and giving feedback has been a tremendous help. Thank you!
 
 This feedback has guided the following list of important breaking changes
 that **are needed for the stable version**:
