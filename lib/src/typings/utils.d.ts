@@ -1,52 +1,53 @@
-import { MaterialUiPickersDate } from './date'
-
-export class Utils {
+export class Utils<TDate> {
   locale: any;
   constructor (options?: { locale: any, moment: any });
 
-  date(value: any): MaterialUiPickersDate;
-  addDays(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate;
-  isValid(value: MaterialUiPickersDate): boolean;
-  isEqual(value: MaterialUiPickersDate, comparing: MaterialUiPickersDate): boolean;
-  isSameDay(value: MaterialUiPickersDate, comparing: MaterialUiPickersDate): boolean
+  date(value: any): TDate;
+  parse(value: string): TDate | null;
 
-  isAfter(value: MaterialUiPickersDate, comparing: MaterialUiPickersDate): boolean;
-  isAfterDay(value: MaterialUiPickersDate, comparing: MaterialUiPickersDate): boolean;
-  isAfterYear(value: MaterialUiPickersDate, comparing: MaterialUiPickersDate): boolean;
+  isNull(value: TDate): boolean;
+  isValid(value: TDate): boolean;
+  isEqual(value: TDate, comparing: TDate): boolean;
+  isSameDay(value: TDate, comparing: TDate): boolean
 
-  isBeforeDay(value: MaterialUiPickersDate, comparing: MaterialUiPickersDate): boolean;
-  isBeforeYear(value: MaterialUiPickersDate, comparing: MaterialUiPickersDate): boolean;
-  isBefore(value: MaterialUiPickersDate, comparing: MaterialUiPickersDate): boolean;
+  isAfter(value: TDate, comparing: TDate): boolean;
+  isAfterDay(value: TDate, comparing: TDate): boolean;
+  isAfterYear(value: TDate, comparing: TDate): boolean;
 
-  startOfDay(value: MaterialUiPickersDate): MaterialUiPickersDate;
-  endOfDay(value: MaterialUiPickersDate): MaterialUiPickersDate;
+  isBeforeDay(value: TDate, comparing: TDate): boolean;
+  isBeforeYear(value: TDate, comparing: TDate): boolean;
+  isBefore(value: TDate, comparing: TDate): boolean;
 
-  format(value: MaterialUiPickersDate, formatString: string): string;
+  addDays(value: TDate, count: number): TDate;
+  startOfDay(value: TDate): TDate;
+  endOfDay(value: TDate): TDate;
+
+  format(value: TDate, formatString: string): string;
   formatNumber(number: number): string;
 
-  getHours(value: MaterialUiPickersDate): number;
-  setHours(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate;
-  getMinutes(value: MaterialUiPickersDate): number;
-  setMinutes(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate
-  getMonth(value: MaterialUiPickersDate): number;
-  getYear(value: MaterialUiPickersDate): number;
-  setYear(value: MaterialUiPickersDate, count: number): MaterialUiPickersDate;
+  getHours(value: TDate): number;
+  setHours(value: TDate, count: number): TDate;
+  getMinutes(value: TDate): number;
+  setMinutes(value: TDate, count: number): TDate
+  getMonth(value: TDate): number;
+  getYear(value: TDate): number;
+  setYear(value: TDate, count: number): TDate;
 
-  getStartOfMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
-  getNextMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
-  getPreviousMonth(value: MaterialUiPickersDate): MaterialUiPickersDate;
+  getStartOfMonth(value: TDate): TDate;
+  getNextMonth(value: TDate): TDate;
+  getPreviousMonth(value: TDate): TDate;
  
   getWeekdays(): string[];
-  getWeekArray(date: MaterialUiPickersDate): MaterialUiPickersDate[];
-  getYearRange(start: MaterialUiPickersDate, end: MaterialUiPickersDate): MaterialUiPickersDate[];
+  getWeekArray(date: TDate): TDate[];
+  getYearRange(start: TDate, end: TDate): TDate[];
 
   // displaying methods
   getMeridiemText(ampm: 'am' | 'pm'): string;
-  getCalendarHeaderText(date: MaterialUiPickersDate): string;
-  getDatePickerHeaderText(date: MaterialUiPickersDate): string;
-  getDateTimePickerHeaderText(date: MaterialUiPickersDate): string;
-  getDayText(date: MaterialUiPickersDate): string;
-  getHourText(date: MaterialUiPickersDate, ampm: boolean): string;
-  getMinuteText(date: MaterialUiPickersDate): string;
-  getYearText(date: MaterialUiPickersDate): string;
+  getCalendarHeaderText(date: TDate): string;
+  getDatePickerHeaderText(date: TDate): string;
+  getDateTimePickerHeaderText(date: TDate): string;
+  getDayText(date: TDate): string;
+  getHourText(date: TDate, ampm: boolean): string;
+  getMinuteText(date: TDate): string;
+  getYearText(date: TDate): string;
 }

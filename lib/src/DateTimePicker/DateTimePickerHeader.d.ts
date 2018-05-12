@@ -12,7 +12,7 @@ export interface DateTimePickerHeaderProps {
   onOpenViewChange: (view: DateTimePickerView) => void;
   setMeridiemMode: (mode: MeridiemMode) => void;
   ampm?: boolean;
-  utils?: Utils;
+  utils?: Utils<MaterialUiPickersDate>;
 }
 
 declare const DateTimePickerHeader: ComponentClass<DateTimePickerHeaderProps>;

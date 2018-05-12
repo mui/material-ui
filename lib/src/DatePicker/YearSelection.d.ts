@@ -11,7 +11,7 @@ export interface YearSelectionProps {
     disablePast?: boolean;
     disableFuture?: boolean;
     animateYearScrolling?: boolean;
-    utils?: Utils;
+    utils?: Utils<MaterialUiPickersDate>;
 }
 
 declare const YearSelection: ComponentClass<YearSelectionProps>;
