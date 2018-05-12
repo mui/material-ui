@@ -15,7 +15,6 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import requirePropFactory from '../utils/requirePropFactory';
-import Hidden from '../Hidden';
 
 const GUTTERS = [0, 8, 16, 24, 32, 40];
 const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -170,7 +169,6 @@ function Grid(props) {
     component: Component,
     container,
     direction,
-    hidden,
     item,
     justify,
     lg,
@@ -210,17 +208,8 @@ function Grid(props) {
     },
     classNameProp,
   );
-  const gridProps = { className, ...other };
 
-  if (hidden) {
-    return (
-      <Hidden {...hidden}>
-        <Component {...gridProps} />
-      </Hidden>
-    );
-  }
-
-  return <Component {...gridProps} />;
+  return <Component className={className} {...other} />;
 }
 
 Grid.propTypes = {
@@ -268,10 +257,6 @@ Grid.propTypes = {
    * It is applied for all screen sizes.
    */
   direction: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
-  /**
-   * If provided, will wrap with [Hidden](/api/hidden) component and given properties.
-   */
-  hidden: PropTypes.object,
   /**
    * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.

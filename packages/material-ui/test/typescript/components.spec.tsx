@@ -426,7 +426,7 @@ const GridTest = () => (
     <Grid item xl={true}>
       ...
     </Grid>
-    <Grid item hidden={{ smDown: true }} style={{ color: 'red' }}>
+    <Grid item style={{ color: 'red' }}>
       ...
     </Grid>
   </Grid>

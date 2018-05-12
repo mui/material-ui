@@ -1,7 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Hidden from '../Hidden';
 import Grid from './Grid';
 
 describe('<Grid />', () => {
@@ -84,31 +83,6 @@ describe('<Grid />', () => {
       const handleClick = () => {};
       const wrapper = shallow(<Grid component="span" onClick={handleClick} />);
       assert.strictEqual(wrapper.props().onClick, handleClick);
-    });
-  });
-
-  describe('hidden', () => {
-    const hiddenProps = {
-      onlyHidden: 'xs',
-      xsUpHidden: true,
-      smUpHidden: true,
-      mdUpHidden: true,
-      lgUpHidden: true,
-      xlUpHidden: true,
-      xsDownHidden: true,
-      smDownHidden: true,
-      mdDownHidden: true,
-      lgDownHidden: true,
-      xlDownHidden: true,
-    };
-
-    Object.keys(hiddenProps).forEach(key => {
-      const value = hiddenProps[key];
-
-      it(`should render ${key} with Hidden`, () => {
-        const wrapper = shallow(<Grid hidden={{ [key]: value }} />);
-        assert.strictEqual(wrapper.type(), Hidden);
-      });
     });
   });
 });
