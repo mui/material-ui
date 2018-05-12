@@ -63,6 +63,7 @@ class GuttersGrid extends React.Component {
                   <FormControlLabel value="8" control={<Radio />} label="8" />
                   <FormControlLabel value="16" control={<Radio />} label="16" />
                   <FormControlLabel value="24" control={<Radio />} label="24" />
+                  <FormControlLabel value="32" control={<Radio />} label="32" />
                   <FormControlLabel value="40" control={<Radio />} label="40" />
                 </RadioGroup>
               </Grid>
