@@ -67,13 +67,6 @@ export const styles = theme => ({
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
     borderRadius: 4,
-    '&:hover': {
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
   },
   colorInherit: {
     color: 'inherit',
