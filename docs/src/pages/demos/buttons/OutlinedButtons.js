@@ -7,12 +7,10 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
+  input: {
+    display: 'none',
+  },
 });
-
-function doSomething(event) {
-  // eslint-disable-next-line no-console
-  console.log(event.currentTarget.getAttribute('data-something'));
-}
 
 function OutlinedButtons(props) {
   const { classes } = props;
@@ -21,29 +19,30 @@ function OutlinedButtons(props) {
       <Button variant="outlined" className={classes.button}>
         Default
       </Button>
-      <Button color="primary" variant="outlined" className={classes.button}>
+      <Button variant="outlined" color="primary" className={classes.button}>
         Primary
       </Button>
-      <Button color="secondary" variant="outlined" className={classes.button}>
+      <Button variant="outlined" color="secondary" className={classes.button}>
         Secondary
       </Button>
       <Button variant="outlined" disabled className={classes.button}>
         Disabled
       </Button>
-      <Button variant="outlined" href="#flat-buttons" className={classes.button}>
+      <Button variant="outlined" href="#outlined-buttons" className={classes.button}>
         Link
       </Button>
-      <Button variant="outlined" disabled href="/" className={classes.button}>
-        Link disabled
-      </Button>
-      <Button
-        variant="outlined"
-        className={classes.button}
-        onClick={doSomething}
-        data-something="here I am"
-      >
-        Does something
-      </Button>
+      <input
+        accept="image/*"
+        className={classes.input}
+        id="outlined-button-file"
+        multiple
+        type="file"
+      />
+      <label htmlFor="outlined-button-file">
+        <Button variant="outlined" component="span" className={classes.button}>
+          Upload
+        </Button>
+      </label>
     </div>
   );
 }

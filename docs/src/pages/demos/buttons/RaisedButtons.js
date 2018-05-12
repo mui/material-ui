@@ -28,6 +28,9 @@ function RaisedButtons(props) {
       <Button variant="raised" color="secondary" disabled className={classes.button}>
         Disabled
       </Button>
+      <Button variant="raised" href="#raised-buttons" className={classes.button}>
+        Link
+      </Button>
       <input
         accept="image/*"
         className={classes.input}
