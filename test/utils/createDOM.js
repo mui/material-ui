@@ -4,7 +4,7 @@ const { JSDOM } = require('jsdom');
 const Node = require('jsdom/lib/jsdom/living/node-document-position');
 
 // We can use jsdom-global at some point if maintaining that list turns out to be a burden.
-const KEYS = ['HTMLElement'];
+const KEYS = ['HTMLElement', 'Performance'];
 
 function createDOM() {
   const dom = new JSDOM('');
