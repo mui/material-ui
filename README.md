@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://material-ui-next.com/" rel="noopener" target="_blank"><img width="200" src="/static/brand.png" alt="Material-UI logo"></a></p>
+  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="200" src="/static/brand.png" alt="Material-UI logo"></a></p>
 </p>
 
 <h1 align="center">Material-UI</h1>
@@ -141,11 +141,11 @@ There is a StackOverflow tag called "material-ui" that you can use to tag your q
 ## Examples
 
 Are you looking for an example project to get started?
-[We host some](https://material-ui-next.com/getting-started/example-projects/).
+[We host some](https://material-ui.com/getting-started/example-projects/).
 
 ## Documentation
 
-Check out our [documentation website](https://material-ui-next.com/).
+Check out our [documentation website](https://material-ui.com/).
 
 ## Contributing
 
@@ -158,7 +158,7 @@ Please read the [changelog](https://github.com/mui-org/material-ui/releases).
 
 ## Roadmap
 
-The future plans and high priority features and enhancements can be found in the [ROADMAP.md](https://material-ui-next.com/discover-more/roadmap/) file.
+The future plans and high priority features and enhancements can be found in the [ROADMAP.md](https://material-ui.com/discover-more/roadmap/) file.
 
 ## Thanks
 
