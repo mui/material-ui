@@ -47,7 +47,7 @@ import {
 
 #### Upgrade path
 
-We provide a codemod to automate the migration: https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod#import-path. I have used it to upgrade all the demos in the documentation :).
+We provide a codemod to automate the migration: https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod#import-path. I have used it to upgrade all the demos in the documentation :).
 
 - [core] Move material-ui to @material-ui/core (#11310) @oliviertassinari
 
@@ -57,6 +57,7 @@ We provide a codemod to automate the migration: https://github.com/mui-org/mater
 ```
 
 - [core] Remove React 15 support (#11347) @oliviertassinari
+- [core] Require React 16.3.0 or greater (#11361) @oliviertassinari
 
 - [Grid] Remove the hidden property (#11348) @oliviertassinari
 
@@ -111,7 +112,6 @@ The text underline color customization change:
 - [typescript] Fix color type in augmentColor function (#11302) @AiusDa
 - Make WithStylesOptions extend the options argument of createStyleSheet (#11325) @pelotom
 - [core] Update the dev dependencies (#11355) @oliviertassinari
-- [core] Require React 16.3.0 or greater (#11361) @oliviertassinari
 
 ## 1.0.0-beta.47
 ###### *May 9, 2018*
