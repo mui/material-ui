@@ -29,14 +29,14 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
 
   With yarn:
   ```sh
-  yarn add material-ui@latest
-  yarn add @material-ui/core@latest
+  yarn add material-ui
+  yarn add @material-ui/core
   ```
 
   Or with npm:
   ```sh
-  npm install material-ui@latest
-  npm install @material-ui/core@latest
+  npm install material-ui
+  npm install @material-ui/core
   ```
 
   then

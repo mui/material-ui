@@ -15,6 +15,13 @@ Here are some highlights ✨:
 
 ### Breaking change
 
+- [core] Move material-ui to @material-ui/core (#11310) @oliviertassinari
+
+```diff
+-import { withStyles } from 'material-ui/styles';
++import { withStyles } from '@material-ui/core/styles';
+```
+
 - [core] Flatten the import path (#11330) @oliviertassinari
 
 #### Motivation
@@ -49,16 +56,7 @@ import {
 
 We provide a codemod to automate the migration: https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod#import-path. I have used it to upgrade all the demos in the documentation :).
 
-- [core] Move material-ui to @material-ui/core (#11310) @oliviertassinari
-
-```diff
--import { withStyles } from 'material-ui/styles';
-+import { withStyles } from '@material-ui/core/styles';
-```
-
-- [core] Remove React 15 support (#11347) @oliviertassinari
-- [core] Require React 16.3.0 or greater (#11361) @oliviertassinari
-
+- [core] Require React 16.3.0 or greater (#11347, #11361) @oliviertassinari
 - [Grid] Remove the hidden property (#11348) @oliviertassinari
 
 Split the responsabilities between the different components. Help with tree-shaking.
