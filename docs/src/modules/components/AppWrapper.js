@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { polyfill } from 'react-lifecycles-compat';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import AppFrame from 'docs/src/modules/components/AppFrame';
@@ -102,14 +101,6 @@ AppWrapper.propTypes = {
   uiTheme: PropTypes.object.isRequired,
 };
 
-const AppWrapper2 = polyfill(AppWrapper);
-
-// Solve an isolation issue with hoist-non-react-statics.
-// TODO: remove once hoist-non-react-statics has been updated.
-function AppWrapper3(props) {
-  return <AppWrapper2 {...props} />;
-}
-
 export default connect(state => ({
   uiTheme: state.theme,
-}))(AppWrapper3);
+}))(AppWrapper);

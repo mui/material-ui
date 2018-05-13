@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import keycode from 'keycode';
-import { polyfill } from 'react-lifecycles-compat';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
 import { listenForFocusKeys, detectFocusVisible } from './focusVisible';
@@ -439,4 +438,4 @@ ButtonBase.defaultProps = {
   type: 'button',
 };
 
-export default withStyles(styles, { name: 'MuiButtonBase' })(polyfill(ButtonBase));
+export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);
