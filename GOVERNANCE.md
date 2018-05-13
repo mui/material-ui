@@ -70,7 +70,7 @@ In addition to their participation as a committer, Core Team members have the fo
 - Ability to [publish a release](https://github.com/mui-org/material-ui/releases).
 - Access to Material-UI's [Twitter](https://twitter.com/i/notifications) and Medium account.
 - Owner access to [mui-org on GitHub](https://github.com/mui-org).
-- Admin access to various tools and services ([npm](https://www.npmjs.com/package/material-ui),
+- Admin access to various tools and services ([npm](https://www.npmjs.com/package/@material-ui/core),
 [CircleCi](https://circleci.com/gh/mui-org/material-ui),
 [BrowserStack](https://www.browserstack.com/), [Gitter](https://gitter.im/mui-org/material-ui)).
 - Admin access to all financial accounts.
