@@ -77,6 +77,7 @@ function getStyles(props, context, state) {
       textAlign: 'center',
     },
     label: {
+      verticalAlign: 'middle',
       position: 'relative',
       opacity: 1,
       fontSize: raisedButton.fontSize,
