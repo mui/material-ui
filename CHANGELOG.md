@@ -5,6 +5,30 @@ Changes. Changes everywhere!
 ## 1.0.0
 ###### *May 17, 2018*
 
+## 0.20.1
+###### *May 13, 2018*
+
+Big thanks to the 14 contributors who made this release possible.
+
+#### Component Fixes / Enhancements
+
+- [Tabs] Add support for inline style override for parent container of InkBar (#9598) @PharaohMaster
+- Popover does not listen to events unless it is open at the moment (#9482) @romanzenka
+- [EnhancedButton] Fix onClick event being fired twice on "Enter Key" press (#9439) @karaggeorge
+- [Slider] Fix handle case where ref is null (#10006) @jony89
+- [RaisedButton] Conditionally apply overlay backgroundColor (#9811) @walwoodr
+- [Snackbar] Static properties for reason string constants (#10300) @RavenHursT
+- [TextField] Fix caret position issue (#10214) @MaratFaskhiev
+- Add sideEffects: false for webpack 4 (#11167) @matthoffner
+
+#### Docs
+
+- [docs] Adding smpl to showcase (#9386) @Bonitis
+- [docs] Remove HEAD in versions list (#9391) @HZooly
+- Add Governance Document (#9423) @hai-cea
+- [docs] Add v1 recommendation to home page (#9727) @mbrookes
+- [docs] Remove BrainBOK from showcase (#11292) @brainbok
+
 ## 1.0.0-rc.0
 ###### *May 13, 2018*
 
