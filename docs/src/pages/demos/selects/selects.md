@@ -15,7 +15,7 @@ Menus are positioned over their emitting elements such that the currently select
 As the user experience can be improved on mobile using the native select of the platform,
 we allow such pattern.
 
-{{"demo": "pages/demos/selects/NativeSelect.js"}}
+{{"demo": "pages/demos/selects/NativeSelects.js"}}
 
 ## Multiple Select
 
