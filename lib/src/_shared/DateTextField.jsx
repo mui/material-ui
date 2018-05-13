@@ -283,7 +283,7 @@ export class DateTextField extends PureComponent {
 
     if (keyboard) {
       localInputProps[`${adornmentPosition}Adornment`] = (
-        <InputAdornment position={adornmentPosition} {...InputAdornmentProps}>
+        <InputAdornment position={adornmentPosition} {...InputAdornmentProps} disabled={disabled}>
           <IconButton onClick={this.openPicker}> <Icon> {keyboardIcon} </Icon> </IconButton>
         </InputAdornment>
       );
