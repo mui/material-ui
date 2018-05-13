@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import Transition from 'react-transition-group/Transition';
-import { polyfill } from 'react-lifecycles-compat';
 import ownerWindow from '../utils/ownerWindow';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
@@ -281,4 +280,4 @@ Slide.defaultProps = {
   },
 };
 
-export default withTheme()(polyfill(Slide));
+export default withTheme()(Slide);
