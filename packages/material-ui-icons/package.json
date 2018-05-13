@@ -2,7 +2,7 @@
   "name": "@material-ui/icons",
   "private": false,
   "author": "Material-UI Team",
-  "version": "1.0.0-beta.43",
+  "version": "1.0.0-rc.0",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
   "main": "./src/index.js",
   "keywords": [
@@ -33,10 +33,10 @@
     "build:copy-files": "../../node_modules/.bin/babel-node ./scripts/copy-files.js",
     "build:typings": "../../node_modules/.bin/babel-node ./scripts/create-typings.js",
     "build": "yarn src:icons && yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:typings && yarn build:copy-files",
-    "version": "yarn build && npm publish build"
+    "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
-    "material-ui": "^1.0.0-beta.16",
+    "@material-ui/core": "^1.0.0-rc.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
   },

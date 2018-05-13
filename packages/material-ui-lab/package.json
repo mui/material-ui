@@ -2,7 +2,7 @@
   "name": "@material-ui/lab",
   "private": false,
   "author": "Material-UI Team",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",
   "main": "./src/index.js",
   "keywords": [
@@ -30,18 +30,18 @@
     "build:es2015modules": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=modules ../../node_modules/.bin/babel ./src/index.js --out-file ./build/index.es.js",
     "build:copy-files": "../../node_modules/.bin/babel-node ./scripts/copy-files.js",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:copy-files",
-    "version": "yarn build:copy-files && npm publish build"
+    "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
-    "@material-ui/icons": "^1.0.0-beta.17",
-    "material-ui": "^1.0.0-beta.33",
+    "@material-ui/icons": "^1.0.0-rc.0",
+    "@material-ui/core": "^1.0.0-rc.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
   },
   "dependencies": {},
   "devDependencies": {
-    "@material-ui/icons": "^1.0.0-beta.35",
-    "@material-ui/core": "^1.0.0-beta.33"
+    "@material-ui/icons": "^1.0.0-rc.0",
+    "@material-ui/core": "^1.0.0-rc.0"
   },
   "sideEffects": false,
   "publishConfig": {

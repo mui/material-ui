@@ -2,7 +2,7 @@
   "name": "@material-ui/core",
   "private": true,
   "author": "Material-UI Team",
-  "version": "1.0.0-beta.47",
+  "version": "1.0.0-rc.0",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
@@ -28,7 +28,7 @@
     "build:umd:prod": "cross-env NODE_ENV=production webpack --config scripts/umd.webpack.config.js",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:umd:dev && yarn build:umd:prod && yarn build:copy-files",
-    "release": "npm run build && npm publish build"
+    "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
     "react": "^16.3.0",
@@ -65,6 +65,9 @@
   },
   "devDependencies": {},
   "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=6.0.0"
   }
