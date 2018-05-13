@@ -35,7 +35,7 @@ const FormatCustomization = () => (
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      MaterialUiPickersDate - date object passed from state (moment or native Date)
+      Where TDate - date object passed from state (moment, native Date or Luxon`s DateTime)
     </Typography>
 
     <Code language="ts" text={utilsInterfaceCode} />
