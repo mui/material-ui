@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
-import ButtonBase from '@material-ui/core//ButtonBase';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import clamp from '../utils/clamp';
 
