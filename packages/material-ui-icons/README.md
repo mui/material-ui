@@ -16,7 +16,11 @@ render the SVG path for each icon, and so a have a peer-dependency on the `next`
 If you are not already using Material-UI in your project, you can add it with:
 
 ```sh
-npm install material-ui@next
+// with npm
+npm install @material-ui/core
+
+// with yarn
+yarn add @material-ui/core
 ```
 
 ## Usage

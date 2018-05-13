@@ -39,10 +39,10 @@ yarn add material-ui
 **[Pre-release channel (v1-rc)](https://material-ui-next.com/)**
 ([Recommended](#should-i-start-with-v1-beta) for new projects.)
 ```sh
-//with npm
+// with npm
 npm install @material-ui/core
 
-//with yarn
+// with yarn
 yarn add @material-ui/core
 ```
 
