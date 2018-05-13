@@ -47,7 +47,7 @@ function HomeFooter(props) {
                 <Link href="https://twitter.com/MaterialUI">Twitter</Link>
               </li>
               <li className={classes.listItem}>
-                <Link href="https://github.com/mui-org/material-ui/tree/v1-beta/examples">
+                <Link href="https://github.com/mui-org/material-ui/tree/master/examples">
                   Examples
                 </Link>
               </li>
@@ -70,7 +70,7 @@ function HomeFooter(props) {
       </Typography>
       <Typography className={classes.version}>
         {`Currently v${process.env.LIB_VERSION}. Released under the `}
-        <Link href="https://github.com/mui-org/material-ui/blob/v1-beta/LICENSE">MIT License</Link>
+        <Link href="https://github.com/mui-org/material-ui/blob/master/LICENSE">MIT License</Link>
         {'.'}
       </Typography>
     </footer>
