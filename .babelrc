@@ -1,11 +1,10 @@
 {
-  "presets": ["./scripts/material-ui-babel-preset", "@babel/preset-stage-1", "@babel/preset-react"],
+  "presets": ["./scripts/material-ui-babel-preset", "@babel/preset-stage-1", "@babel/preset-react", "@babel/flow"],
   "plugins": ["@babel/plugin-transform-object-assign"],
   "env": {
     "coverage": {
       "plugins": [
         "istanbul",
-        "@babel/plugin-transform-flow-strip-types",
         [
           "module-resolver",
           {
@@ -19,8 +18,7 @@
       ]
     },
     "development": {
-      "sourceMaps": "both",
-      "plugins": ["@babel/plugin-transform-flow-strip-types"]
+      "sourceMaps": "both"
     },
     "docs-development": {
       "presets": ["next/babel"],
@@ -38,8 +36,7 @@
               "pages": "./pages"
             }
           }
-        ],
-        "@babel/plugin-transform-flow-strip-types"
+        ]
       ]
     },
     "docs-production": {
@@ -62,7 +59,6 @@
         "transform-react-constant-elements",
         "transform-dev-warning",
         "@babel/transform-runtime",
-        "@babel/plugin-transform-flow-strip-types",
         ["react-remove-properties", { "properties": ["data-mui-test"] }],
         ["transform-react-remove-prop-types", { "mode": "remove" }]
       ]
@@ -75,7 +71,6 @@
           "polyfill": false,
           "useBuiltIns": true
         }],
-        "@babel/plugin-transform-flow-strip-types",
         ["react-remove-properties", { "properties": ["data-mui-test"] }],
         [
           "transform-react-remove-prop-types",
@@ -91,7 +86,6 @@
         "transform-react-constant-elements",
         "transform-dev-warning",
         "@babel/transform-runtime",
-        "@babel/plugin-transform-flow-strip-types",
         ["react-remove-properties", { "properties": ["data-mui-test"] }],
         [
           "transform-react-remove-prop-types",
@@ -102,10 +96,23 @@
       ],
       "ignore": ["**/*.test*"]
     },
+    "production-umd": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "@babel/transform-runtime",
+        ["react-remove-properties", { "properties": ["data-mui-test"] }],
+        [
+          "transform-react-remove-prop-types",
+          {
+            "mode": "wrap"
+          }
+        ]
+      ]
+    },
     "test": {
       "sourceMaps": "both",
       "plugins": [
-        "@babel/plugin-transform-flow-strip-types",
         [
           "module-resolver",
           {
