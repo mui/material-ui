@@ -6,7 +6,112 @@ Changes. Changes everywhere!
 ###### *May 17, 2018*
 
 ## 1.0.0-rc.0
-###### *May 12, 2018*
+###### *May 13, 2018*
+
+Big thanks to the 11 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Introduce the last planned breaking changes before stable v1
+
+### Breaking change
+
+- [core] Flatten the import path (#11330) @oliviertassinari
+
+#### Motivation
+
+1. It's a simple pattern to learn. People won't need to go back and forth with the documentation to learn the import paths 💭.
+2. People bundle size will decrease 🚀.
+3. In an ideal world, we would import everything from the root module and tree sharking would be taken care of for us. This change doesn't matter in this world ☮️.
+```jsx
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableFooter,
+  TablePagination,
+  TableRow,
+} from 'material-ui';
+```
+
+#### The diff
+
+```diff
+-import CircularProgress from '@material-ui/core/Progress/CircularProgress';
++import CircularProgress from '@material-ui/core/CircularProgress';
+```
+
+```diff
+-import { ListItem } from '@material-ui/core/List';
++import ListItem from '@material-ui/core/ListItem';
+```
+
+#### Upgrade path
+
+We provide a codemod to automate the migration: https://github.com/mui-org/material-ui/tree/v1-beta/packages/material-ui-codemod#import-path. I have used it to upgrade all the demos in the documentation :).
+
+- [core] Move material-ui to @material-ui/core (#11310) @oliviertassinari
+
+```diff
+-import { withStyles } from 'material-ui/styles';
++import { withStyles } from '@material-ui/core/styles';
+```
+
+- [core] Remove React 15 support (#11347) @oliviertassinari
+
+- [Grid] Remove the hidden property (#11348) @oliviertassinari
+
+Split the responsabilities between the different components. Help with tree-shaking.
+
+```diff
+-        <Grid item xs hidden={{ xlUp: true }}>
+-          <Paper>xlUp</Paper>
+-        </Grid>
++        <Hidden xlUp>
++          <Grid item xs>
++            <Paper>xlUp</Paper>
++          </Grid>
++        </Hidden>
+```
+
+- [TextField] change underline approach to prevent browser zoom issue (#11181) @Jdubedition
+
+The text underline color customization change:
+```diff
+   underline: {
+     '&:after': {
+-      backgroundColor: purple[500],
++      borderBottomColor: purple[500],
+     },
+   },
+```
+
+#### Component Fixes / Enhancements
+
+- [CircularProgress] Add transition for static variant (#11313) @oliviertassinari
+- [createTypography] Add primary text color to 'button' typography variant (#11322) @ValentineStone
+- [styles] Fix typings for FontStyle (#11326) @vkentta
+- [Grid] Add 32px gutter to grid spacing (#11338) @abnersajr
+- [Button] Add outlined variant (#11346) @leMaik
+
+#### Docs
+
+- [docs] v0 redirect (#11303) @mbrookes
+- [docs] Add a new premium-theme (#11300) @oliviertassinari
+- [docs] Prepare the v1 release (#11317) @oliviertassinari
+- [docs] Add HIJUP.com to the showcase site (#11328) @fikriauliya
+- [docs] Update material.io URLs (#11334) @mbrookes
+- [docs] Make the button examples consistent (#11352) @mbrookes
+- [docs] Eradicate 'Useful to' (#11353) @mbrookes
+- [docs] Move v1-beta to master (#11354) @oliviertassinari
+- [docs] Install with yarn (#11357) @Xakher
+
+#### Core
+
+- [typescript] Add CreateMuiTheme props Typescript definition (#11296) @abnersajr
+- [typescript] Fix color type in augmentColor function (#11302) @AiusDa
+- Make WithStylesOptions extend the options argument of createStyleSheet (#11325) @pelotom
+- [core] Update the dev dependencies (#11355) @oliviertassinari
+- [core] Require React 16.3.0 or greater (#11361) @oliviertassinari
 
 ## 1.0.0-beta.47
 ###### *May 9, 2018*
