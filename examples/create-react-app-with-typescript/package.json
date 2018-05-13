@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "latest",
     "@types/react": "*",
     "@types/react-dom": "*",
-    "material-ui": "next",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts-ts": "latest"

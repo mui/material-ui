@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "latest",
     "jss": "latest",
-    "material-ui": "next",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",

@@ -81,7 +81,7 @@ function HomeSteps(props) {
             className={classes.markdownElement}
             text={`
   \`\`\`sh
-  $ npm install material-ui@next
+  $ npm install @material-ui/core
   \`\`\`
                 `}
           />
@@ -92,7 +92,7 @@ function HomeSteps(props) {
             className={classes.markdownElement}
             text={`
   \`\`\`html
-  <script src="https://unpkg.com/material-ui@next/umd/material-ui.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js" crossorigin="anonymous"></script>
   \`\`\`
                 `}
           />

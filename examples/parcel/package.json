@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "latest",
     "babel-plugin-transform-class-properties": "latest",
     "babel-preset-env": "latest",
     "babel-preset-react": "latest",
     "babel-preset-stage-2": "latest",
-    "material-ui": "next",
     "parcel-bundler": "latest",
     "prop-types": "latest",
     "react": "latest",

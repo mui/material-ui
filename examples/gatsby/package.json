@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "latest",
     "gatsby": "latest",
     "jss": "latest",
-    "material-ui": "next",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",

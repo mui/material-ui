@@ -36,14 +36,14 @@ npm install material-ui
 yarn add material-ui
 ```
 
-**[Pre-release channel (v1-beta)](https://material-ui-next.com/)**
+**[Pre-release channel (v1-rc)](https://material-ui-next.com/)**
 ([Recommended](#should-i-start-with-v1-beta) for new projects.)
 ```sh
-//with npm
-npm install material-ui@next
+// with npm
+npm install @material-ui/core
 
-//with yarn
-yarn add material-ui@next
+// with yarn
+yarn add @material-ui/core
 ```
 
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
@@ -116,7 +116,7 @@ Here is a quick example to get you started, **it's all you need**:
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 function App() {
   return (
