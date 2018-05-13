@@ -38,7 +38,7 @@ class SwipeableDrawer extends React.Component {
   state = {};
 
   componentDidMount() {
-    if (this.props.variant === 'temporary') {
+    if (this.props.variant === 'temporary' && this.props.open) {
       this.listenTouchStart();
     }
   }
@@ -47,12 +47,10 @@ class SwipeableDrawer extends React.Component {
     const variant = this.props.variant;
     const prevVariant = prevProps.variant;
 
-    if (variant !== prevVariant) {
-      if (variant === 'temporary') {
-        this.listenTouchStart();
-      } else if (prevVariant === 'temporary') {
-        this.removeTouchStart();
-      }
+    if (variant === 'temporary' && this.props.open) {
+      this.listenTouchStart();
+    } else {
+      this.removeTouchStart();
     }
   }
 
@@ -122,7 +120,7 @@ class SwipeableDrawer extends React.Component {
     }
   }
 
-  handleBodyTouchStart = event => {
+  handleTouchStart = event => {
     // We are not supposed to hanlde this touch move.
     if (nodeThatClaimedTheSwipe !== null && nodeThatClaimedTheSwipe !== this) {
       return;
@@ -139,17 +137,8 @@ class SwipeableDrawer extends React.Component {
         ? window.innerHeight - event.touches[0].clientY
         : event.touches[0].clientY;
 
-    if (!open) {
-      if (disableSwipeToOpen) {
-        return;
-      }
-      if (isHorizontal(this.props)) {
-        if (currentX > swipeAreaWidth) {
-          return;
-        }
-      } else if (currentY > swipeAreaWidth) {
-        return;
-      }
+    if (!open && disableSwipeToOpen) {
+      return;
     }
 
     nodeThatClaimedTheSwipe = this;
@@ -157,12 +146,15 @@ class SwipeableDrawer extends React.Component {
     this.startY = currentY;
 
     this.setState({ maybeSwiping: true });
-    if (!open && this.paper) {
-      // the ref may be null when a parent component updates while swiping
-      this.setPosition(this.getMaxTranslate() + (disableDiscovery ? 20 : -swipeAreaWidth), {
-        changeTransition: false,
-      });
-    }
+    setImmediate(() => {
+      // without this, the drawer opeens immediately
+      if (!open && this.paper) {
+        // the ref may be null when a parent component updates while swiping
+        this.setPosition(this.getMaxTranslate() + (disableDiscovery ? 20 : -swipeAreaWidth), {
+          changeTransition: false,
+        });
+      }
+    });
 
     document.body.addEventListener('touchmove', this.handleBodyTouchMove, { passive: false });
     document.body.addEventListener('touchend', this.handleBodyTouchEnd);
@@ -290,11 +282,11 @@ class SwipeableDrawer extends React.Component {
   startY = null;
 
   listenTouchStart() {
-    document.body.addEventListener('touchstart', this.handleBodyTouchStart);
+    document.body.addEventListener('touchstart', this.handleTouchStart);
   }
 
   removeTouchStart() {
-    document.body.removeEventListener('touchstart', this.handleBodyTouchStart);
+    document.body.removeEventListener('touchstart', this.handleTouchStart);
   }
 
   removeBodyTouchListeners() {
@@ -345,10 +337,13 @@ class SwipeableDrawer extends React.Component {
           }}
           {...other}
         />
-        {!disableDiscovery &&
-          !disableSwipeToOpen &&
+        {!disableSwipeToOpen &&
           variant === 'temporary' && (
-            <SwipeArea anchor={other.anchor} swipeAreaWidth={swipeAreaWidth} />
+            <SwipeArea
+              anchor={other.anchor}
+              swipeAreaWidth={swipeAreaWidth}
+              onTouchStart={this.handleTouchStart}
+            />
           )}
       </Fragment>
     );
