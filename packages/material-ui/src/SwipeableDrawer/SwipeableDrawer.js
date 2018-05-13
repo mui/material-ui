@@ -341,7 +341,7 @@ class SwipeableDrawer extends React.Component {
           variant === 'temporary' && (
             <SwipeArea
               anchor={other.anchor}
-              swipeAreaWidth={swipeAreaWidth}
+              width={swipeAreaWidth}
               onTouchStart={this.handleTouchStart}
             />
           )}

@@ -35,13 +35,13 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function SwipeArea(props) {
-  const { anchor, classes, swipeAreaWidth, ...other } = props;
+  const { anchor, classes, width, ...other } = props;
 
   return (
     <div
       className={classNames(classes.root, classes[`discoveryAnchor${capitalize(anchor)}`])}
       style={{
-        [isHorizontal(props) ? 'width' : 'height']: swipeAreaWidth,
+        [isHorizontal(props) ? 'width' : 'height']: width,
       }}
       {...other}
     />
@@ -58,10 +58,9 @@ SwipeArea.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
-   * The width of the left most (or right most) area in pixels where the
-   * drawer can be swiped open from.
+   * The width, in pixels, of area where the drawer can be swiped open from.
    */
-  swipeAreaWidth: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(SwipeArea);
