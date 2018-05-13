@@ -113,4 +113,3 @@ to discuss the approach before submitting a PR.
 -  **[Tooltips](https://material.io/design/components/tooltips.html) ✓**
   -  **Desktop ✓**
   -  **Mobile ✓**
-
