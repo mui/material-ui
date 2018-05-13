@@ -80,6 +80,7 @@ const styles = (theme) => {
     clockNumber: {
       width: size,
       height: size,
+      userSelect: 'none',
       position: 'absolute',
       left: `calc(50% - ${size / 2}px)`,
       display: 'inline-flex',

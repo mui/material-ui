@@ -141,6 +141,10 @@ const styles = theme => ({
     pointerEvents: 'auto',
     outline: 'none',
     touchActions: 'none',
+    userSelect: 'none',
+    '&:active': {
+      cursor: 'move',
+    },
   },
   pin: {
     width: 6,
