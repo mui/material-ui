@@ -53,6 +53,7 @@ import Table from '@material-ui/core/Table';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Grow from '@material-ui/core/Grow';
+import TableFooter from '@material-ui/core/TableFooter';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import Zoom from '@material-ui/core/Zoom';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
