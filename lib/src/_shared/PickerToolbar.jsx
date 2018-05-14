@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import withStyles from 'material-ui/styles/withStyles';
-import Toolbar from 'material-ui/Toolbar';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Toolbar from '@material-ui/core/Toolbar';
 
 const PickerToolbar = (props) => {
   const {

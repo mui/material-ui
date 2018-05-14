@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import withStyles from 'material-ui/styles/withStyles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import DomainPropTypes from '../constants/prop-types';
 import withUtils from '../_shared/WithUtils';
 import Year from './Year';

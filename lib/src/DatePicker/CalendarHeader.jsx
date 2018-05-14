@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'material-ui/styles/withStyles';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import Icon from 'material-ui/Icon';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 import withUtils from '../_shared/WithUtils';
 
 export const CalendarHeader = (props) => {

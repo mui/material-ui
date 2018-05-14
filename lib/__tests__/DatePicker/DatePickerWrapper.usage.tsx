@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as PropTypes from 'prop-types';
 import { Fragment, Component } from 'react';
 import DatePickerWrapper  from '../../src/DatePicker';
-import { IconButton } from 'material-ui'
+import { IconButton } from '@material-ui/core'
 import * as classNames from 'classnames';
 import { Moment } from 'moment'
 import { DayComponent } from '../../src/DatePicker/Calendar'
