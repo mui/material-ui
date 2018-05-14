@@ -42,7 +42,6 @@ import Stepper, { Step, StepButton, StepContent } from '@material-ui/core/Steppe
 import Table, {
   TableBody,
   TableCell,
-  TableFooter,
   TablePagination,
   TableRow,
 } from '@material-ui/core/Table';
