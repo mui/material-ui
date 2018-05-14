@@ -1,5 +1,5 @@
 import { ComponentClass, ReactElement, ReactNode } from 'react';
-import { IconButtonProps } from 'material-ui/IconButton';
+import { IconButtonProps } from '@material-ui/core/IconButton';
 import { DateType } from '../constants/prop-types';
 import { Utils } from '../typings/utils';
 import { MaterialUiPickersDate } from '../typings/date'

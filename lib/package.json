@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "classnames": "^2.2.5",
-    "material-ui": "^1.0.0-beta.33",
+    "@material-ui/core": "^1.0.0-rc.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
@@ -70,6 +70,7 @@
     "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mHave you installed one of peer libraries?\\u001b[22m\\u001b[39m\\n > date-fns \\n > luxon \\n > moment')\""
   },
   "devDependencies": {
+    "@material-ui/core": "^1.0.0-rc.0",
     "@types/classnames": "^2.2.3",
     "@types/jest": "^22.2.3",
     "@types/jss": "^9.5.2",
@@ -106,7 +107,6 @@
     "glob": "^7.1.2",
     "jest": "^21.2.1",
     "luxon": "^1.2.0",
-    "material-ui": "^1.0.0-beta.43",
     "moment": "^2.22.1",
     "np": "^2.20.1",
     "prop-types": "^15.6.1",
