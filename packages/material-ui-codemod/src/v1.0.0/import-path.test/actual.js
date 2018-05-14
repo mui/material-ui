@@ -1,58 +1,54 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import Tab from '@material-ui/core/Tab';
-import MuiTabs from '@material-ui/core/Tabs';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardHeader from '@material-ui/core/CardHeader';
-import MuiCollapse from '@material-ui/core/Collapse';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import List from '@material-ui/core/List';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
-import withMobileDialog from '@material-ui/core/withMobileDialog';
-import Slide from '@material-ui/core/Slide';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridList from '@material-ui/core/GridList';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import MuiLinearProgress from '@material-ui/core/LinearProgress';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Fade from '@material-ui/core/Fade';
-import StepContent from '@material-ui/core/StepContent';
-import StepButton from '@material-ui/core/StepButton';
-import Step from '@material-ui/core/Step';
-import Stepper from '@material-ui/core/Stepper';
-import TableRow from '@material-ui/core/TableRow';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableFooter from '@material-ui/core/TableFooter';
-import TableCell from '@material-ui/core/TableCell';
-import TableBody from '@material-ui/core/TableBody';
-import Table from '@material-ui/core/Table';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import Grow from '@material-ui/core/Grow';
+import { MenuItem } from '@material-ui/core/Menu';
+import MuiTabs, { Tab } from '@material-ui/core/Tabs';
+import BottomNavigation, { BottomNavigationAction } from '@material-ui/core/BottomNavigation';
+import Card, { CardActions, CardContent } from '@material-ui/core/Card';
+import { CardHeader, CardMedia } from '@material-ui/core/Card';
+import MuiCollapse from '@material-ui/core/transitions/Collapse';
+import List, {
+  ListItemIcon,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  ListItemSecondaryAction,
+} from '@material-ui/core/List';
+import Dialog, { DialogTitle } from '@material-ui/core/Dialog';
+import {
+  withMobileDialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from '@material-ui/core/Dialog';
+import Slide from '@material-ui/core/transitions/Slide';
+import Radio, { RadioGroup } from '@material-ui/core/Radio';
+import { FormControlLabel } from '@material-ui/core/Form';
+import ExpansionPanel, {
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+  ExpansionPanelActions,
+} from '@material-ui/core/ExpansionPanel';
+import GridList, { GridListTile } from '@material-ui/core/GridList';
+import { CircularProgress } from '@material-ui/core/Progress';
+import { LinearProgress as MuiLinearProgress } from '@material-ui/core/Progress';
+import {
+  FormLabel,
+  FormControl,
+  FormGroup,
+  FormHelperText,
+} from '@material-ui/core/Form';
+import Fade from '@material-ui/core/transitions/Fade';
+import Stepper, { Step, StepButton, StepContent } from '@material-ui/core/Stepper';
+import Table, {
+  TableBody,
+  TableCell,
+  TableFooter,
+  TablePagination,
+  TableRow,
+} from '@material-ui/core/Table';
+import Input, { InputLabel } from '@material-ui/core/Input';
+import Grow from '@material-ui/core/transitions/Grow';
+import TableFooter from '@material-ui/core/Table/TableFooter';
 import withWidth, { isWidthUp } from '@material-ui/core/utils/withWidth';
 import Zoom from '@material-ui/core/transitions/Zoom';
 import ClickAwayListener from '@material-ui/core/utils/ClickAwayListener';
