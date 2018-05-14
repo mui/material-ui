@@ -1,9 +1,9 @@
 {
-  "name": "@material-ui/core",
+  "name": "@cake-ui/core",
   "private": true,
-  "author": "Material-UI Team",
-  "version": "1.0.0-rc.0",
-  "description": "React components that implement Google's Material Design.",
+  "author": "Roam Frontend Team",
+  "version": "1.0.0-cake.0",
+  "description": "Next generation Ui Library from Material-UI",
   "keywords": [
     "react",
     "react-component",
@@ -12,13 +12,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
+    "url": "https://github.com/Roamltd/cake-ui"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/Roamltd/cake-ui/issues"
   },
-  "homepage": "http://material-ui.com/",
+  "homepage": "https://roamltd.github.io/cake-ui/#/",
+
+
   "scripts": {
     "prebuild": "rimraf build",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.test.js --out-dir ./build",

@@ -1,9 +1,9 @@
 {
-  "name": "material-ui-workspace",
+  "name": "cake-ui-workspace",
   "private": true,
-  "author": "Material-UI Team",
+  "author": "Roam Frontend Team",
   "version": "1.0.0-cake.0",
-  "description": "Material-UI's workspace package",
+  "description": "Next generation Ui Library from Material-UI",
   "keywords": [
     "react",
     "react-component",
@@ -12,13 +12,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git"
+    "url": "https://github.com/Roamltd/cake-ui"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/Roamltd/cake-ui/issues"
   },
-  "homepage": "http://material-ui.com/",
+  "homepage": "https://roamltd.github.io/cake-ui/#/",
   "scripts": {
     "start": "yarn docs:dev",
     "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev",
