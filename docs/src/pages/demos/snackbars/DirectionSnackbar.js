@@ -4,19 +4,19 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 
 function TransitionLeft(props) {
-  return <Slide direction="left" {...props} />;
+  return <Slide {...props} direction="left" />;
 }
 
 function TransitionUp(props) {
-  return <Slide direction="up" {...props} />;
+  return <Slide {...props} direction="up" />;
 }
 
 function TransitionRight(props) {
-  return <Slide direction="right" {...props} />;
+  return <Slide {...props} direction="right" />;
 }
 
 function TransitionDown(props) {
-  return <Slide direction="down" {...props} />;
+  return <Slide {...props} direction="down" />;
 }
 
 class DirectionSnackbar extends React.Component {
