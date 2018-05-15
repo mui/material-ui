@@ -61,5 +61,8 @@ All the non-official syntax is transpiled to the [ECMA-262 standard](https://www
 This can be used to make separate bundles targeting different browsers.
 Older browsers will require more JavaScript features to be transpiled,
 which increases the size of the bundle.
+No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the
+necessary features. If you need support for other browsers, consider using
+[`@babel/polyfill`](https://npmjs.com/package/@babel/polyfill).
 
 ⚠️ In order to minimize duplication of code is users' bundles, we **strongly discourage** library authors from using the `/es` folder.
