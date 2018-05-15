@@ -78,7 +78,8 @@
             "mode": "wrap"
           }
         ]
-      ]
+      ],
+      "ignore": ["**/*.test*"]
     },
     "production": {
       "plugins": [
@@ -92,7 +93,8 @@
             "mode": "wrap"
           }
         ]
-      ]
+      ],
+      "ignore": ["**/*.test*"]
     },
     "test": {
       "sourceMaps": "both",
