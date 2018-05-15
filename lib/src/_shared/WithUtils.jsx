@@ -1,25 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { MuiPickersContextConsumer } from '../utils/MuiPickersUtilsProvider';
 
-const withUtils = () => (Component) => {
-  const WithUtils = ({ pickerRef, ...other }) => (
+const WithUtils = () => (Component) => {
+  const withUtils = React.forwardRef((props, ref) => (
     <MuiPickersContextConsumer>
-      {utils => <Component ref={pickerRef} utils={utils} {...other} />}
+      {utils => <Component ref={ref} utils={utils} {...props} />}
     </MuiPickersContextConsumer>
-  );
+  ));
 
-  WithUtils.displayName = `WithUtils(${Component.displayName || Component.name})`;
-
-  WithUtils.propTypes = {
-    pickerRef: PropTypes.func,
-  };
-
-  WithUtils.defaultProps = {
-    pickerRef: undefined,
-  };
-
-  return WithUtils;
+  withUtils.displayName = `WithUtils(${Component.displayName || Component.name})`;
+  return withUtils;
 };
 
-export default withUtils;
+export default WithUtils;
+
