@@ -4,7 +4,7 @@ import * as classNames from 'classnames';
 import * as format from 'date-fns/format'
 
 import { Fragment, Component } from 'react';
-import { IconButton } from 'material-ui'
+import { IconButton } from '@material-ui/core'
 import { Moment } from 'moment'
 import { DayComponent } from '../../src/DatePicker/Calendar'
 import DatePickerWrapper  from '../../src/DatePicker';

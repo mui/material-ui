@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as PropTypes from 'prop-types';
 import { Fragment, Component } from 'react';
 import DatePickerWrapper  from '../../src/DatePicker';
-import { IconButton } from 'material-ui'
+import { IconButton } from '@material-ui/core'
 import * as classNames from 'classnames';
 import { Moment } from 'moment'
 import { DayComponent } from '../../src/DatePicker/Calendar'
@@ -53,10 +53,9 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
       return '';
     }
 
-    return date && date.isValid() ?
-      `Week of ${date.clone().startOf('week').format('MMM Do')}`
-      :
-      invalidLabel;
+    return date && date.isValid() 
+      ? `Week of ${date.clone().startOf('week').format('MMM Do')}`
+      : invalidLabel;
   }
 
   renderWrappedDefaultDay = (day: Moment, selectedDate: Moment, dayInCurrentMonth: boolean, dayComponent: DayComponent) => {

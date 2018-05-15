@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import EventListener from 'react-event-listener';
-import withStyles from 'material-ui/styles/withStyles';
-import Button from 'material-ui/Button';
-import Dialog from 'material-ui/Dialog/Dialog';
-import DialogActions from 'material-ui/Dialog/DialogActions';
-import DialogContent from 'material-ui/Dialog/DialogContent';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
 
 const dialogWidth = 310;
 const styles = {
