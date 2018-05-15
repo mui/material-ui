@@ -82,7 +82,7 @@ function buildDocs(options) {
   // }
 
   // Relative location in the file system.
-  reactAPI.filename = componentObject.filename.replace(rootDirectory, '/cake-ui-v1/');
+  reactAPI.filename = componentObject.filename.replace(rootDirectory, '');
   let markdown;
   try {
     markdown = generateMarkdown(reactAPI);
