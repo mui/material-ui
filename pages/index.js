@@ -84,7 +84,7 @@ class HomePage extends React.Component {
         <div className={classes.hero}>
           <div className={classes.content}>
             <img
-              src="static/images/cake-ui-logo.svg"
+              src="/static/images/cake-ui-logo.svg"
               alt="Cake-UI Logo"
               className={classes.logo}
             />
