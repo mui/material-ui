@@ -117,6 +117,11 @@ class MenuItem extends Component {
      */
     menuItems: PropTypes.node,
     /**
+     * Override the inline-styles of the nested `List`.
+     * This will only affect the component if `menuItems` are specified.
+     */
+    nestedListStyle: PropTypes.object,
+    /**
      * Callback function fired when the menu item is clicked.
      *
      * @param {object} event Click event targeting the menu item.
@@ -249,6 +254,7 @@ class MenuItem extends Component {
       insetChildren,
       leftIcon,
       menuItems,
+      nestedListStyle,
       rightIcon,
       secondaryText,
       style,
@@ -303,7 +309,12 @@ class MenuItem extends Component {
           useLayerForClickAway={false}
           onRequestClose={this.handleRequestClose}
         >
-          <Menu desktop={desktop} disabled={disabled} style={nestedMenuStyle}>
+          <Menu
+            desktop={desktop}
+            disabled={disabled}
+            listStyle={nestedListStyle}
+            style={nestedMenuStyle}
+          >
             {React.Children.map(menuItems, this.cloneMenuItem)}
           </Menu>
         </Popover>
