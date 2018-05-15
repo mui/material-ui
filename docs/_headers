@@ -1,0 +1,5 @@
+/_next/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/static/images/*
+  Cache-Control: public, max-age=7200
