@@ -23,9 +23,6 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          {process.NODE_ENV === 'production' ? (
-            <base href="https://roamltd.github.io/cake-ui-v1/" />
-          ) : null}
           <meta
             name="description"
             content="Roam's next generation UI library from Material-UI v1"

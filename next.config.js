@@ -49,6 +49,7 @@ module.exports = {
       }),
     });
   },
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/cake-ui-v1/' : '',
   webpackDevMiddleware: config => config,
   // next.js also provide a `defaultPathMap` so we could simplify the logic.
   // However, we keep it in order to prevent any future regression on the `findPages()` side.
