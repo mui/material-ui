@@ -1,10 +1,10 @@
-import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import postcss from 'postcss';
+import React from 'react';
 import autoprefixer from 'autoprefixer';
+import config from 'docs/src/config';
 import cssnano from 'cssnano';
 import getPageContext from 'docs/src/modules/styles/getPageContext';
-import config from 'docs/src/config';
+import postcss from 'postcss';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -25,7 +25,7 @@ class MyDocument extends Document {
         <Head>
           <meta
             name="description"
-            content="React Components that Implement Google's Material Design."
+            content="Roam's next generation UI library from Material-UI v1"
           />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
@@ -49,21 +49,19 @@ class MyDocument extends Document {
           <style id="insertion-point-jss" />
           {/* Twitter */}
           <meta name="twitter:card" content="summary" />
-          <meta name="twitter:site" content="@MaterialUI" />
-          <meta name="twitter:title" content="Material-UI" />
+          <meta name="twitter:site" content="@CakeUI" />
+          <meta name="twitter:title" content="Cake-UI" />
           <meta
             name="twitter:description"
-            content="React Components that Implement Google's Material Design."
+            content="Roam's next generation UI library from Material-UI v1"
           />
-          <meta name="twitter:image" content="https://material-ui-next.com/static/brand.png" />
           {/* Facebook */}
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="Material-UI" />
+          <meta property="og:title" content="Cake-UI" />
           <meta
             property="og:description"
-            content="React Components that Implement Google's Material Design."
+            content="Roam's next generation UI library from Material-UI v1"
           />
-          <meta property="og:image" content="https://material-ui-next.com/static/brand.png" />
           <meta property="og:locale" content="en_US" />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="canonical" href={canonical} />

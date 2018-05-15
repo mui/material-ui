@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
-import Head from 'next/head';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import withRoot from 'docs/src/modules/components/withRoot';
-import HomeSteps from 'docs/src/modules/components/HomeSteps';
+import Head from 'next/head';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
+import HomeSteps from 'docs/src/modules/components/HomeSteps';
 import Link from 'docs/src/modules/components/Link';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import compose from 'recompose/compose';
+import withRoot from 'docs/src/modules/components/withRoot';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
@@ -79,18 +79,18 @@ class HomePage extends React.Component {
     return (
       <div className={classes.root}>
         <Head>
-          <title>Material-UI</title>
+          <title>Cake-UI</title>
         </Head>
         <div className={classes.hero}>
           <div className={classes.content}>
             <img
-              src="/static/images/material-ui-logo.svg"
-              alt="Material-UI Logo"
+              src="/static/images/cake-ui-logo.svg"
+              alt="Cake-UI Logo"
               className={classes.logo}
             />
             <div className={classes.text}>
               <Typography variant="display2" component="h1" color="inherit" gutterBottom>
-                {'Material-UI'}
+                {'Cake-UI'}
               </Typography>
               <Typography
                 variant="headline"
@@ -98,7 +98,7 @@ class HomePage extends React.Component {
                 color="inherit"
                 className={classes.headline}
               >
-                {"React components that implement Google's Material Design."}
+                {"Roam's next generation UI library from Material-UI v1."}
               </Typography>
               <Button
                 component={buttonProps => (
