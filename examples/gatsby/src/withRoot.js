@@ -30,8 +30,9 @@ function withRoot(Component) {
           sheetsManager={this.pageContext.sheetsManager}
         >
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Component {...this.props} />
+          <CssBaseline>
+            <Component {...this.props} />
+          </CssBaseline>
         </MuiThemeProvider>
       );
     }
