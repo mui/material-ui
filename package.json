@@ -29,7 +29,7 @@
     "docs:build": "cross-env NODE_ENV=production BABEL_ENV=docs-production next build",
     "docs:start": "next start",
     "docs:export": "next export -o docs/export && yarn docs:build-sw",
-    "docs:deploy": "yarn docs:build && yarn docs:export && firebase deploy",
+    "docs:deploy": "yarn docs:build && yarn docs:export && gh-pages-deploy",
     "docs:size-why": "DOCS_STATS_ENABLED=true yarn docs:build",
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
@@ -54,7 +54,6 @@
     "react": "*",
     "react-dom": "*"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.42",
     "@babel/core": "7.0.0-beta.42",
@@ -107,6 +106,7 @@
     "fs-extra": "^6.0.0",
     "glob": "^7.1.2",
     "gm": "^1.23.0",
+    "gh-pages-deploy": "0.4.2",
     "isomorphic-fetch": "^2.2.1",
     "jsdom": "^11.3.0",
     "json-loader": "^0.5.7",
@@ -152,6 +152,9 @@
     "webpack": "3.10.0",
     "webpack-bundle-analyzer": "^2.9.1",
     "workbox-build": "^3.0.1"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "docs/export"
   },
   "sideEffects": false,
   "nyc": {
