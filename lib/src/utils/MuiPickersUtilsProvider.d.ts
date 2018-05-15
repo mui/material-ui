@@ -1,12 +1,10 @@
 import { ComponentClass, ReactNode } from 'react';
 import { DateTimePickerView } from '../constants/date-picker-view';
-import DateFnsUtils from './date-fns-utils';
 import { MaterialUiPickersDate } from '../typings/date';
-import MomentUtils from './moment-utils';
-import LuxonUtils from './luxon-utils';
+import { Utils } from '../typings/utils';
 
 export interface MuiPickersUtilsProviderProps {
-  utils: typeof MomentUtils | typeof DateFnsUtils | typeof LuxonUtils;
+  utils: any;
   children: ReactNode;
   locale?: any;
   moment?: any;
