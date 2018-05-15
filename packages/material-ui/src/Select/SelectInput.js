@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
-import warning from 'warning';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../Input/Input';
 
@@ -23,7 +22,7 @@ class SelectInput extends React.Component {
       this.forceUpdate();
     }
 
-    if (this.props.autoFocus && !this.props.native) {
+    if (this.props.autoFocus) {
       this.displayNode.focus();
     }
   }
@@ -38,7 +37,6 @@ class SelectInput extends React.Component {
   displayNode = null;
   displayWidth = null;
   isOpenControlled = this.props.open !== undefined;
-  isControlled = this.props.value != null;
 
   updateDisplayWidth = () => {
     // Perfom the layout computation outside of the render method.
@@ -161,7 +159,7 @@ class SelectInput extends React.Component {
       autoWidth,
       children,
       classes,
-      className: classNameProp,
+      className,
       disabled,
       displayEmpty,
       IconComponent,
@@ -169,7 +167,6 @@ class SelectInput extends React.Component {
       MenuProps = {},
       multiple,
       name,
-      native,
       onBlur,
       onChange,
       onClose,
@@ -185,55 +182,6 @@ class SelectInput extends React.Component {
       ...other
     } = this.props;
     const open = this.isOpenControlled && this.displayNode ? openProp : this.state.open;
-
-    if (native) {
-      warning(
-        multiple === false,
-        'Material-UI: you can not use the `native={true}` and `multiple={true}` properties ' +
-          'at the same time on a `Select` component.',
-      );
-      warning(
-        !renderValue,
-        'Material-UI: the `renderValue` property is not used by the native implementation.',
-      );
-      warning(
-        !displayEmpty,
-        'Material-UI: the `displayEmpty` property is not used by the native implementation.',
-      );
-
-      return (
-        <div className={classes.root}>
-          <select
-            className={classNames(
-              classes.select,
-              {
-                [classes.disabled]: disabled,
-              },
-              classNameProp,
-            )}
-            name={name}
-            disabled={disabled}
-            onBlur={onBlur}
-            onChange={onChange}
-            onFocus={onFocus}
-            value={value}
-            readOnly={readOnly}
-            ref={inputRef}
-            {...other}
-          >
-            {children}
-          </select>
-          <IconComponent className={classes.icon} />
-        </div>
-      );
-    }
-
-    if (!this.isControlled) {
-      throw new Error(
-        'Material-UI: the `value` property is required ' +
-          'when using the `Select` component with `native=false` (default).',
-      );
-    }
 
     let display;
     let displaySingle = '';
@@ -305,7 +253,7 @@ class SelectInput extends React.Component {
             {
               [classes.disabled]: disabled,
             },
-            classNameProp,
+            className,
           )}
           ref={this.handleDisplayRef}
           data-mui-test="SelectDisplay"
@@ -370,7 +318,7 @@ SelectInput.propTypes = {
   autoWidth: PropTypes.bool,
   /**
    * The option elements to populate the select with.
-   * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
+   * Can be some `<MenuItem>` elements.
    */
   children: PropTypes.node,
   /**
@@ -388,7 +336,6 @@ SelectInput.propTypes = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the selected item is displayed even if its value is empty.
-   * You can only use it when the `native` property is `false` (default).
    */
   displayEmpty: PropTypes.bool,
   /**
@@ -405,17 +352,12 @@ SelectInput.propTypes = {
   MenuProps: PropTypes.object,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
-   * You can only use it when the `native` property is `false` (default).
    */
   multiple: PropTypes.bool,
   /**
    * Name attribute of the `select` or hidden `input` element.
    */
   name: PropTypes.string,
-  /**
-   * If `true`, the component will be using a native `select` element.
-   */
-  native: PropTypes.bool,
   /**
    * @ignore
    */
@@ -425,7 +367,7 @@ SelectInput.propTypes = {
    *
    * @param {object} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value`.
-   * @param {object} [child] The react element that was selected when `native` is `false` (default).
+   * @param {object} [child] The react element that was selected.
    */
   onChange: PropTypes.func,
   /**
@@ -448,7 +390,6 @@ SelectInput.propTypes = {
   onOpen: PropTypes.func,
   /**
    * Control `select` open state.
-   * You can only use it when the `native` property is `false` (default).
    */
   open: PropTypes.bool,
   /**
@@ -457,7 +398,6 @@ SelectInput.propTypes = {
   readOnly: PropTypes.bool,
   /**
    * Render the selected value.
-   * You can only use it when the `native` property is `false` (default).
    *
    * @param {*} value The `value` provided to the component.
    * @returns {ReactElement}
@@ -477,13 +417,12 @@ SelectInput.propTypes = {
   type: PropTypes.string,
   /**
    * The input value.
-   * This property is required when the `native` property is `false` (default).
    */
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-  ]),
+  ]).isRequired,
 };
 
 export default SelectInput;

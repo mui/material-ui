@@ -54,6 +54,7 @@ import { MenuListProps } from '../MenuList';
 import { MenuProps } from '../Menu';
 import { MobileStepperProps } from '../MobileStepper';
 import { ModalProps } from '../Modal';
+import { NativeSelectProps } from '../NativeSelect';
 import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { RadioGroupProps } from '../RadioGroup';
@@ -143,6 +144,7 @@ type ComponentsPropsList = {
   MuiMenuItem: MenuItemProps;
   MuiMobileStepper: MobileStepperProps;
   MuiModal: ModalProps;
+  MuiNativeSelect: NativeSelectProps;
   MuiPaper: PaperProps;
   MuiPopover: PopoverProps;
   MuiRadio: RadioProps;

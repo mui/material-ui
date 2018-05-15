@@ -54,6 +54,7 @@ import { MenuItemClassKey } from '../MenuItem';
 import { MenuListClassKey } from '../MenuList';
 import { MobileStepperClassKey } from '../MobileStepper';
 import { ModalClassKey } from '../Modal';
+import { NativeSelectClassKey } from '../NativeSelect';
 import { PaperClassKey } from '../Paper';
 import { PopoverClassKey } from '../Popover';
 import { RadioClassKey } from '../Radio';
@@ -146,6 +147,7 @@ type ComponentNameToClassKey = {
   MuiMenuItem: MenuItemClassKey;
   MuiMobileStepper: MobileStepperClassKey;
   MuiModal: ModalClassKey;
+  MuiNativeSelect: NativeSelectClassKey;
   MuiPaper: PaperClassKey;
   MuiPopover: PopoverClassKey;
   MuiRadio: RadioClassKey;
@@ -159,8 +161,8 @@ type ComponentNameToClassKey = {
   MuiStepLabel: StepLabelClasskey;
   MuiStepper: StepperClasskey;
   MuiSvgIcon: SvgIconClassKey;
-  MuiSwitchBase: SwitchBaseClassKey;
   MuiSwitch: SwitchClassKey;
+  MuiSwitchBase: SwitchBaseClassKey;
   MuiTab: TabClassKey;
   MuiTable: TableClassKey;
   MuiTableCell: TableCellClassKey;
