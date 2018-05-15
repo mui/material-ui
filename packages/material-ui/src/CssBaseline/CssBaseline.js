@@ -37,7 +37,7 @@ class CssBaseline extends React.Component {
 
 CssBaseline.propTypes = {
   /**
-   * You can only provide a single element with react@15, a node with react@16.
+   * You can wrap a node.
    */
   children: PropTypes.node,
   /**
