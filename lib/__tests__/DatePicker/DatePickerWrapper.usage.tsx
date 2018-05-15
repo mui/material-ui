@@ -53,10 +53,9 @@ class CustomElements extends Component<{classes: any}, {selectedDate: Date}> {
       return '';
     }
 
-    return date && date.isValid() ?
-      `Week of ${date.clone().startOf('week').format('MMM Do')}`
-      :
-      invalidLabel;
+    return date && date.isValid() 
+      ? `Week of ${date.clone().startOf('week').format('MMM Do')}`
+      : invalidLabel;
   }
 
   renderWrappedDefaultDay = (day: Moment, selectedDate: Moment, dayInCurrentMonth: boolean, dayComponent: DayComponent) => {
