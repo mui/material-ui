@@ -23,7 +23,7 @@ export interface DateTimePickerWrapperProps extends PickerBaseProps,
   dateRangeIcon?: ReactNode;
   timeIcon?: ReactNode;
   renderDay?: RenderDay;
-  utils?: Utils;
+  utils?: Utils<MaterialUiPickersDate>;
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
 }
 

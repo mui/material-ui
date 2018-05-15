@@ -9,6 +9,7 @@ import DomainPropTypes from '../constants/prop-types';
 import DayWrapper from './DayWrapper';
 import Day from './Day';
 import withUtils from '../_shared/WithUtils';
+import { findClosestEnabledDate } from '../_helpers/date-utils';
 
 /* eslint-disable no-unused-expressions */
 export class Calendar extends Component {
@@ -42,6 +43,24 @@ export class Calendar extends Component {
   state = {
     currentMonth: this.props.utils.getStartOfMonth(this.props.date),
   };
+
+  componentDidMount() {
+    const {
+      date, minDate, maxDate, utils, disableFuture, disablePast,
+    } = this.props;
+
+    if (this.shouldDisableDate(date)) {
+      this.onDateSelect(findClosestEnabledDate({
+        date,
+        utils,
+        minDate,
+        maxDate,
+        disablePast,
+        disableFuture,
+        shouldDisableDate: this.shouldDisableDate,
+      }));
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     this.setState({

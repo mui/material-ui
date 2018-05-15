@@ -9,7 +9,7 @@ export interface CalendarHeaderProps {
     rightArrowIcon?: ReactNode;
     disablePrevMonth?: boolean;
     disableNextMonth?: boolean;
-    utils?: Utils;
+    utils?: Utils<MaterialUiPickersDate>;
 }
 
 declare const CalendarHeader: ComponentClass<CalendarHeaderProps>;
