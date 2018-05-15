@@ -9847,9 +9847,9 @@ sinon@^5.0.3:
     supports-color "^5.1.0"
     type-detect "^4.0.5"
 
-size-limit@^0.17.0:
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-0.17.1.tgz#6d4ccaaeb8f91206c2d94b4c2fe74275b51af35f"
+size-limit@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-0.18.0.tgz#ed2f07cb66e5a209f1d873104b7f4a7a9f19efc7"
   dependencies:
     bytes "^3.0.0"
     chalk "^2.4.1"
