@@ -16,6 +16,7 @@ const globals = {
 
 const getBabelOptions = () => ({
   exclude: /node_modules/,
+  // We are using @babel/plugin-transform-runtime
   runtimeHelpers: true,
 });
 
