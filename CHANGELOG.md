@@ -1900,7 +1900,9 @@ The existing `InputProps` property can be used to set the className on the input
 ```
 The configuration of the wrapped Input component and its input element should be done through `InputProps`.  To specify a className on the input element:
 ```jsx
-<TextField InputProps={{ inputProps: { className: 'foo' } }} />
+<TextField InputProps={
+  { inputProps: { className: 'foo' } } 
+} />
 ```
 
 - [Stepper] "Optional" label in StepLabel should be localizable (#9489) @karaggeorge
