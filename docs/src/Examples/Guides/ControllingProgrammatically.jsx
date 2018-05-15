@@ -31,7 +31,7 @@ class ControllingProgrammaticallyExample extends PureComponent {
         <div className="picker">
           <DatePicker
             clearable
-            ref={(node) => { this.picker = node; }}
+            pickerRef={(node) => { this.picker = node; }}
             label="Localization done right"
             format="D MMM YYYY"
             value={selectedDate}
