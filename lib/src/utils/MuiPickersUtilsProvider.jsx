@@ -6,9 +6,13 @@ export const MuiPickersContextConsumer = Consumer;
 
 export default class MuiPickersUtilsProvider extends PureComponent {
   static propTypes = {
+    /* eslint-disable react/no-unused-prop-types */
     utils: PropTypes.func.isRequired,
     locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.element.isRequired,
+      PropTypes.arrayOf(PropTypes.element.isRequired),
+    ]).isRequired,
     moment: PropTypes.func,
   }
 
@@ -17,10 +21,17 @@ export default class MuiPickersUtilsProvider extends PureComponent {
     moment: undefined,
   }
 
-  render() {
-    const { utils: Utils, locale, moment } = this.props;
-    const utils = new Utils({ locale, moment });
+  static getDerivedStateFromProps({ utils: Utils, locale, moment }) {
+    return {
+      utils: new Utils({ locale, moment }),
+    };
+  }
 
-    return <Provider value={utils}> {this.props.children} </Provider>;
+  state = {
+    utils: null,
+  }
+
+  render() {
+    return <Provider value={this.state.utils}> {this.props.children} </Provider>;
   }
 }
