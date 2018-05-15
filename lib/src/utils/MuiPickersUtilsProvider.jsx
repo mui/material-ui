@@ -1,11 +1,18 @@
-import { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class MuiPickersUtilsProvider extends Component {
+const { Consumer, Provider } = React.createContext();
+export const MuiPickersContextConsumer = Consumer;
+
+export default class MuiPickersUtilsProvider extends PureComponent {
   static propTypes = {
+    /* eslint-disable react/no-unused-prop-types */
     utils: PropTypes.func.isRequired,
     locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.element.isRequired,
+      PropTypes.arrayOf(PropTypes.element.isRequired),
+    ]).isRequired,
     moment: PropTypes.func,
   }
 
@@ -14,18 +21,17 @@ export default class MuiPickersUtilsProvider extends Component {
     moment: undefined,
   }
 
-  static childContextTypes = {
-    muiPickersDateUtils: PropTypes.object,
-  }
-
-  getChildContext() {
-    const { utils: Utils, locale, moment } = this.props;
+  static getDerivedStateFromProps({ utils: Utils, locale, moment }) {
     return {
-      muiPickersDateUtils: new Utils({ locale, moment }),
+      utils: new Utils({ locale, moment }),
     };
   }
 
+  state = {
+    utils: null,
+  }
+
   render() {
-    return this.props.children;
+    return <Provider value={this.state.utils}> {this.props.children} </Provider>;
   }
 }

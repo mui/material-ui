@@ -1,31 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { MuiPickersContextConsumer } from '../utils/MuiPickersUtilsProvider';
 
-const withUtils = () => (Component) => {
-  const WithUtils = ({ pickerRef, ...other }, context) => {
-    if (!context.muiPickersDateUtils) {
-      // eslint-disable-next-line no-console
-      console.error('Utils should be provided');
-    }
+const WithUtils = () => (Component) => {
+  const withUtils = React.forwardRef((props, ref) => (
+    <MuiPickersContextConsumer>
+      {utils => <Component ref={ref} utils={utils} {...props} />}
+    </MuiPickersContextConsumer>
+  ));
 
-    return <Component ref={pickerRef} utils={context.muiPickersDateUtils} {...other} />;
-  };
-
-  WithUtils.displayName = `WithUtils(${Component.displayName || Component.name})`;
-
-  WithUtils.contextTypes = {
-    muiPickersDateUtils: PropTypes.object,
-  };
-
-  WithUtils.propTypes = {
-    pickerRef: PropTypes.func,
-  };
-
-  WithUtils.defaultProps = {
-    pickerRef: undefined,
-  };
-
-  return WithUtils;
+  withUtils.displayName = `WithUtils(${Component.displayName || Component.name})`;
+  return withUtils;
 };
 
-export default withUtils;
+export default WithUtils;
+
