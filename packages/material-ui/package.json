@@ -21,9 +21,9 @@
   "homepage": "http://material-ui.com/",
   "scripts": {
     "prebuild": "rimraf build",
-    "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.test.js --out-dir ./build",
+    "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build --ignore *.test.js",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --ignore *.test.js --out-dir ./build/es",
+    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./build/es --ignore *.test.js",
     "build:umd:dev": "webpack --config scripts/umd.webpack.config.js",
     "build:umd:prod": "cross-env NODE_ENV=production webpack --config scripts/umd.webpack.config.js",
     "build:copy-files": "babel-node ./scripts/copy-files.js",

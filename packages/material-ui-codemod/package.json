@@ -16,7 +16,8 @@
     "test": "yarn test:unit",
     "test:unit": "cd ../../ && ./node_modules/.bin/mocha packages/material-ui-codemod/src/**/*.test.js",
     "test:watch": "yarn test:unit --watch",
-    "build": "../../node_modules/.bin/rimraf lib && ../../node_modules/.bin/babel ./src --out-dir ./lib --ignore *.test",
+    "prebuild": "../../node_modules/.bin/rimraf lib",
+    "build": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./lib --ignore **/*.test*",
     "release": "yarn build && npm publish"
   },
   "repository": {
