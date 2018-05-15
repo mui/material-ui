@@ -8,7 +8,7 @@ Changes. Changes everywhere!
 ## 1.0.0-rc.1
 ###### *May 15, 2018*
 
-Big thanks to the 9 contributors who made this release possible.
+Big thanks to the 10 contributors who made this release possible.
 
 Here are some highlights ✨:
 - Thanks for trying out v1.0.0-rc.0! This release focus on fixing the reported bugs 🐛.
