@@ -28,7 +28,7 @@
     "docs:icons": "rimraf static/icons/* && babel-node ./docs/scripts/buildIcons.js",
     "docs:build": "cross-env NODE_ENV=production BABEL_ENV=docs-production next build",
     "docs:start": "next start",
-    "docs:export": "next export -o docs/export && yarn docs:build-sw",
+    "docs:export": "next export -o docs/export && yarn docs:build-sw && cp docs/_headers docs/export/_headers",
     "docs:deploy": "yarn docs:build && yarn docs:export && firebase deploy",
     "docs:size-why": "DOCS_STATS_ENABLED=true yarn docs:build",
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
@@ -81,9 +81,9 @@
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.10",
     "chai": "^4.1.2",
+    "clean-css": "^4.1.11",
     "clipboard-copy": "^2.0.0",
     "cross-env": "^5.1.1",
-    "cssnano": "^3.10.0",
     "doctrine": "^2.0.0",
     "downshift": "^1.22.1",
     "enzyme": "^3.2.0",
@@ -165,7 +165,7 @@
     "instrument": false
   },
   "engines": {
-    "node": ">=9.0.0"
+    "node": ">=8.0.0"
   },
   "workspaces": [
     "packages/*"

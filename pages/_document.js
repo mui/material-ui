@@ -2,9 +2,11 @@ import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
-import cssnano from 'cssnano';
+import CleanCSS from 'clean-css';
 import getPageContext from 'docs/src/modules/styles/getPageContext';
 import config from 'docs/src/config';
+
+const cleanCSS = new CleanCSS();
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -14,7 +16,6 @@ import config from 'docs/src/config';
 //
 // It's using .browserslistrc
 const prefixer = postcss([autoprefixer]);
-const minifier = postcss([cssnano]);
 
 class MyDocument extends Document {
   render() {
@@ -117,8 +118,7 @@ MyDocument.getInitialProps = async ctx => {
   if (process.env.NODE_ENV === 'production') {
     const result1 = await prefixer.process(css, { from: undefined });
     css = result1.css;
-    const result2 = await minifier.process(css, { from: undefined });
-    css = result2.css;
+    css = cleanCSS.minify(css).styles;
   }
 
   return {
