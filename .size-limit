@@ -9,7 +9,7 @@
     "name": "The size of all the modules of material-ui.",
     "webpack": true,
     "path": "packages/material-ui/build/index.js",
-    "limit": "99.7 KB"
+    "limit": "99.8 KB"
   },
   {
     "name": "The main bundle of the docs",
