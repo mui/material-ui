@@ -5,6 +5,44 @@ Changes. Changes everywhere!
 ## 1.0.0
 ###### *May 17, 2018*
 
+## 1.0.0-rc.1
+###### *May 15, 2018*
+
+Big thanks to the 9 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Thanks for trying out v1.0.0-rc.0! This release focus on fixing the reported bugs 🐛.
+- Great focus on the performance (#11358, #11360, #11364) @goto-bus-stop, @TrySound
+We will have more time to work on that topic post v1.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [codemod] Revert the codemod inception on the tests (#11376) @oliviertassinari
+- [typescript] Fix DialogContent export (#11378) @ljvanschie
+- [Dialog] Fix content export (#11393) @stefensuhat
+- [icons] Remove deadcode (#11400) @oliviertassinari
+- [NativeSelect] New component (#11364) @oliviertassinari
+- [Popover] Fix max height issue in some mobile browsers (#11349) @gaborcs
+
+#### Docs
+
+- [docs] Update notifications for v1.0.0-rc.0 (#11351) @simsim0709
+- [Snackbar] Fix transition directions demo (#11391) @serendipity1004
+- [docs] Remove react@15 message (#11399) @deltaskelta
+- [docs] Better netlify cache control (#11404) @oliviertassinari
+
+#### Core
+
+- [core] Do not include polyfills in the ES modules build (#11358) @goto-bus-stop
+- [core] Workaround a Babel regression (#11398) @oliviertassinari
+- [core] Fix size-limit for the new Next path (#11401) @oliviertassinari
+- [core] Require node >=8.0.0 to work on the project (#11407) @netdeamon
+- [core] Bundle UMD with rollup (#11360) @TrySound
+
 ## 0.20.1
 ###### *May 13, 2018*
 
