@@ -31,8 +31,6 @@ jobs:
           - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
           - yarn-packages-{{ .Branch }}
           - yarn-packages-
-      
-      - run: yarn install
 
       # include devDependencies
       - run: yarn install --production=false
