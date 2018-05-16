@@ -32,8 +32,10 @@ jobs:
           - yarn-packages-{{ .Branch }}
           - yarn-packages-
       
+      - run: yarn install
+      
       # include devDependencies
-      - run: yarn install && yarn install --dev
+      - run: yarn install --dev
 
       - save_cache:
           name: Save Yarn Package Cache
