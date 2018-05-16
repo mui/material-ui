@@ -5,13 +5,14 @@
 version: 2
 jobs:
   build:
+    filters:
+      branches:
+        only: 
+          - develop
+          - master
+
     docker:
       - image: circleci/node:8.9
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
 
     working_directory: ~/repo
 
@@ -35,27 +36,47 @@ jobs:
       # run tests!
       - run: yarn test
 
-      # deploy docs
-      - run: yarn docs:deploy
-
+  test:
     filters:
       branches:
-        only: master
+        only: 
+          - develop
+          - master
 
-  test:
     docker:
       - image: circleci/node:8.9
 
     steps:
       - checkout
 
-      - run: yarn install
-
       - run:
           name: Test
           command: yarn test
 
+  
+  deploy:
     filters:
       branches:
         only: 
-          - develop
+          - master
+
+    docker:
+      - image: circleci/node:8.9
+
+    steps:
+      - checkout
+
+      # deploy docs
+      - run: yarn docs:deploy
+
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
