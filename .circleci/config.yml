@@ -44,7 +44,7 @@ jobs:
       - run: yarn docs:build
 
       - persist_to_workspace: 
-          root: repo
+          root: .
           paths:
             - node_modules
 
