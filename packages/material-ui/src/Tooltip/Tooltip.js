@@ -14,11 +14,6 @@ import common from '../colors/common';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
-  // Will be gone once we drop React 15.x support.
-  root: {
-    display: 'inline-block',
-    flexDirection: 'inherit', // Makes the wrapper more transparent.
-  },
   popper: {
     zIndex: theme.zIndex.tooltip,
     pointerEvents: 'none',
@@ -319,7 +314,7 @@ class Tooltip extends React.Component {
     );
 
     return (
-      <Manager tag={false} className={classNames(classes.root, className)} {...other}>
+      <Manager tag={false} {...other}>
         <EventListener target="window" onResize={this.handleResize} />
         <Target>
           {({ targetProps }) => (

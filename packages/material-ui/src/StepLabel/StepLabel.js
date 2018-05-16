@@ -89,13 +89,7 @@ function StepLabel(props) {
             [classes.alternativeLabel]: alternativeLabel,
           })}
         >
-          <StepIcon
-            completed={completed}
-            active={active}
-            error={error}
-            icon={icon}
-            alternativeLabel={alternativeLabel}
-          />
+          <StepIcon completed={completed} active={active} error={error} icon={icon} />
         </span>
       )}
       <span className={classes.labelContainer}>
