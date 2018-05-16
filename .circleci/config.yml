@@ -58,7 +58,12 @@ jobs:
     docker:
       - image: circleci/node:8.9
 
+    working_directory: ~/repo
+
     steps:
+      - attach_workspace:
+          at: ~/repo
+
       - checkout
       
       - restore_cache:
@@ -86,7 +91,12 @@ jobs:
     docker:
       - image: circleci/node:8.9
 
+    working_directory: ~/repo
+
     steps:
+      - attach_workspace:
+          at: ~/repo
+
       - checkout
 
       - restore_cache:
