@@ -6,7 +6,6 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/node:8.9
       
       # Specify service dependencies here if necessary
@@ -43,3 +42,20 @@ jobs:
       branches:
         only: master
 
+  test:
+    docker:
+      - image: circleci/node:8.9
+
+    steps:
+      - checkout
+
+      - run: yarn install
+
+      - run:
+          name: Test
+          command: yarn test
+
+    filters:
+      branches:
+        only: 
+          - develop
