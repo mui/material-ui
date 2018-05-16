@@ -33,9 +33,9 @@ jobs:
           - yarn-packages-
       
       - run: yarn install
-      
+
       # include devDependencies
-      - run: yarn install --dev
+      - run: yarn install --production=false
 
       - save_cache:
           name: Save Yarn Package Cache
