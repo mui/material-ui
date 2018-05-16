@@ -67,7 +67,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # include devDependencies for running tests
-      - run: yarn install --production=false
+      - run: yarn install --dev
 
       - save_cache:
           name: Save Yarn Package Cache
