@@ -31,8 +31,9 @@ jobs:
           - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
           - yarn-packages-{{ .Branch }}
           - yarn-packages-
-
-      - run: yarn install
+      
+      # include devDependencies
+      - run: yarn install && yarn install --dev
 
       - save_cache:
           name: Save Yarn Package Cache
@@ -60,20 +61,6 @@ jobs:
           - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
           - yarn-packages-{{ .Branch }}
           - yarn-packages-
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # include devDependencies for running tests
-      - run: yarn install --dev
-
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules/
 
       - run:
           name: Test
