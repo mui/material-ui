@@ -44,9 +44,9 @@ jobs:
       - run: yarn docs:build
 
       - persist_to_workspace: 
-          root: .
+          root: ~/repo
           paths:
-            - node_modules
+            - .
 
   test:
     filters:
@@ -70,6 +70,11 @@ jobs:
       - run:
           name: Test
           command: yarn test
+
+      - persist_to_workspace: 
+          root: ~/repo
+          paths:
+            - .
 
   
   deploy:
