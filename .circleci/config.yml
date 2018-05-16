@@ -1,26 +1,39 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.9
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
 
-# common sauce circle config
-# version 1
-machine:
-  timezone:
-    GMT+0
-  node:
-    version: 8.9.4
+    working_directory: ~/repo
 
-dependencies:
-    override:
-        - npm install
+    steps:
+      - checkout
 
-test:
-    override:
-        - echo "NOT RUNNING TESTS - WAITING ON KARMA-WEBPACK UPDATE!"
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
 
-deployment:
-    # rsync the build to the server. We will use a red/black method later! This method is for testing and not for production use!
+      - run: yarn install
 
-    develop-deployment:
-        branch: "develop"
-        commands:
-            - yarn docs:dev
-            - "echo 'User-agent: *' > dist/robots.txt"
-            - "echo 'Disallow: /' >> dist/robots.txt"
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+        
+      # run tests!
+      - run: yarn test
+
+    
