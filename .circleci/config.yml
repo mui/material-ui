@@ -17,21 +17,30 @@ jobs:
     working_directory: ~/repo
 
     steps:
+
+      - run:
+          name: "Show npm and node versions"
+          command: |
+            node --version
+            npm --version
+
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+          - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          - yarn-packages-{{ .Branch }}
+          - yarn-packages-
 
       - run: yarn install
 
       - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - node_modules/
+
+      - run: yarn docs:build
 
   test:
     filters:
@@ -46,12 +55,11 @@ jobs:
     steps:
       - checkout
       
-      # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+          - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          - yarn-packages-{{ .Branch }}
+          - yarn-packages-
 
       - save_cache:
           paths:
@@ -74,13 +82,12 @@ jobs:
 
     steps:
       - checkout
-      
-      # Download and cache dependencies
+
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+          - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          - yarn-packages-{{ .Branch }}
+          - yarn-packages-
 
       # deploy docs
       - run: yarn docs:deploy
