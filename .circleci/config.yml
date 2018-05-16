@@ -36,4 +36,10 @@ jobs:
       # run tests!
       - run: yarn test
 
-    
+      # deploy docs
+      - run: yarn docs:deploy
+
+    filters:
+      branches:
+        only: master
+
