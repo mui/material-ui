@@ -719,7 +719,12 @@ const TableTest = () => {
           </TableBody>
           <TableFooter>
             <TableRow>
-              <TablePagination count={2} rowsPerPage={1} page={1} onChangePage={() => {}} />
+              <TablePagination
+               count={5}
+               rowsPerPage={2}
+               page={1}
+               onChangePage={() => {}}
+               onChangeRowsPerPage={event => log({ rowsPerPage: event.target.value })}/>
             </TableRow>
           </TableFooter>
         </Table>
