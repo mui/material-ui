@@ -174,7 +174,7 @@ class Snackbar extends Component {
 
     if (this.props.open !== null && this.props.onRequestClose) {
       this.props.onRequestClose(Snackbar.reasons.CLICKAWAY);
-    } else {
+    } else if(this.props.open === null || this.props.open === undefined){
       this.setState({open: false});
     }
   };
@@ -188,7 +188,7 @@ class Snackbar extends Component {
       this.timerAutoHideId = setTimeout(() => {
         if (this.props.open !== null && this.props.onRequestClose) {
           this.props.onRequestClose(Snackbar.reasons.TIMEOUT);
-        } else {
+        } else if(this.props.open === null || this.props.open === undefined) {
           this.setState({open: false});
         }
       }, autoHideDuration);
