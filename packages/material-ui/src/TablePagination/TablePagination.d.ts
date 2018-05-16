@@ -21,7 +21,7 @@ export interface TablePaginationProps
   labelRowsPerPage?: React.ReactNode;
   nextIconButtonProps?: Partial<IconButtonProps>;
   onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
-  onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onChangeRowsPerPage?: (event: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>) => void;
   page: number;
   rowsPerPage: number;
   rowsPerPageOptions?: number[];
