@@ -18,9 +18,7 @@
   "bugs": {
     "url": "https://github.com/Roamltd/cake-ui/issues"
   },
-  "homepage": "https://roamltd.github.io/cake-ui/#/",
-
-
+  "homepage": "http://cakeui.roamcore.com/",
   "scripts": {
     "prebuild": "rimraf build",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.test.js --out-dir ./build",
