@@ -26,7 +26,7 @@
     Include code to reproduce, if relevant (which it most likely is).
 
     This codesandbox.io template _may_ be a good starting point:
-    https://codesandbox.io/s/github/mui-org/material-ui/tree/v1-beta/examples/create-react-app
+    https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/create-react-app
 
 
     If YOU DO NOT take time to provide a codesandbox.io reproduction, should the COMMUNITY take time to help you?
