@@ -24,6 +24,16 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
   },
+  title: {
+    letterSpacing: '1.0rem',
+    textIndent: '1.0rem',
+    fontWeight: theme.typography.fontWeightLight,
+  },
+  headline: {
+    marginTop: theme.spacing.unit,
+    maxWidth: 500,
+    textAlign: 'center',
+  },
   content: {
     paddingBottom: theme.spacing.unit * 8,
     paddingTop: theme.spacing.unit * 8,
@@ -38,10 +48,6 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  headline: {
-    maxWidth: 500,
-    textAlign: 'center',
   },
   button: {
     marginTop: theme.spacing.unit * 3,
@@ -90,10 +96,11 @@ class HomePage extends React.Component {
             <div className={classes.text}>
               <Typography
                 variant="display2"
+                align="center"
                 component="h1"
                 color="inherit"
                 gutterBottom
-                style={{ letterSpacing: '1.4rem' }}
+                className={classes.title}
               >
                 {'MATERIAL-UI'}
               </Typography>
@@ -101,6 +108,7 @@ class HomePage extends React.Component {
                 variant="headline"
                 component="h2"
                 color="inherit"
+                gutterBottom
                 className={classes.headline}
               >
                 {"React components that implement Google's Material Design."}
