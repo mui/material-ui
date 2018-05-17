@@ -11,7 +11,7 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - run:  echo 'github.com ssh-rsa $GITHUB_RSA'
+      - run:  echo 'github.com ssh-rsa '+$GITHUB_RSA
       - run:
           name: "Show npm and node versions"
           command: |
