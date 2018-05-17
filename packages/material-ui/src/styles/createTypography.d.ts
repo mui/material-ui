@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Palette } from './createPalette';
+import { Overwrite, Omit } from '..';
+import { CSSProperties } from './withStyles';
 
 export type TextStyle =
   | 'display1'
@@ -24,15 +26,10 @@ export interface FontStyle {
   htmlFontSize?: number;
 }
 
-export interface TypographyStyle {
-  color?: React.CSSProperties['color'];
-  fontFamily: React.CSSProperties['fontFamily'];
-  fontSize: React.CSSProperties['fontSize'];
-  fontWeight: React.CSSProperties['fontWeight'];
-  letterSpacing?: React.CSSProperties['letterSpacing'];
-  lineHeight?: React.CSSProperties['lineHeight'];
-  textTransform?: React.CSSProperties['textTransform'];
-}
+export type TypographyStyle =
+  & Required<Pick<CSSProperties, 'fontFamily' | 'fontSize' | 'fontWeight' | 'color'>>
+  & Partial<Pick<CSSProperties, 'letterSpacing' | 'lineHeight' | 'textTransform'>>
+  ;
 
 export interface TypographyUtils {
   pxToRem: (px: number) => string;
