@@ -25,8 +25,8 @@ const styles = theme => ({
     color: theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
   },
   title: {
-    letterSpacing: '1.0rem',
-    textIndent: '1.0rem',
+    letterSpacing: '.7rem',
+    textIndent: '.7rem',
     fontWeight: theme.typography.fontWeightLight,
   },
   headline: {
@@ -102,7 +102,7 @@ class HomePage extends React.Component {
                 gutterBottom
                 className={classes.title}
               >
-                {'MATERIAL-UI'}
+                {'MATERIAL‑UI'}
               </Typography>
               <Typography
                 variant="headline"
