@@ -14,7 +14,7 @@ jobs:
     docker:
       - image: circleci/node:8.9
 
-    working_directory: ~/cake-ui-v1
+    working_directory: ~/repo
 
     steps:
 
@@ -46,7 +46,7 @@ jobs:
       - run: yarn docs:export
 
       - persist_to_workspace: 
-          root: ~/cake-ui-v1
+          root: ~/repo
           paths:
             - build
             - node_modules
@@ -62,11 +62,11 @@ jobs:
     docker:
       - image: circleci/node:8.9
 
-    working_directory: ~/cake-ui-v1
+    working_directory: ~/repo
 
     steps:
       - attach_workspace:
-          at: ~/cake-ui-v1
+          at: ~/repo
 
       - checkout
       
@@ -81,9 +81,11 @@ jobs:
           command: yarn test
 
       - persist_to_workspace: 
-          root: ~/cake-ui-v1
+          root: ~/repo
           paths:
-            - .
+            - build
+            - node_modules
+            - docs/export
 
   
   deploy:
@@ -95,11 +97,11 @@ jobs:
     docker:
       - image: circleci/node:8.9
 
-    working_directory: ~/cake-ui-v1
+    working_directory: ~/repo
 
     steps:
       - attach_workspace:
-          at: ~/cake-ui-v1
+          at: ~/repo
 
       - checkout
 
