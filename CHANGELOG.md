@@ -8,7 +8,7 @@ Changes. Changes everywhere!
 Our first stable v1 release! 🎉
 
 It has taken us two years to do it, but Material-UI v1 has finally arrived!
-We are so excited about this release, as it's setting a new course for the project. Thank you to *everyone*, especially to [the team](https://material-ui-next.com/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you**.
+We are so excited about this release, as it's setting a new course for the project. Thank you to *everyone*, especially to [the team](https://material-ui.com/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you**.
 
 Some statistics with v1 while it was in alpha and beta:
 - 304 contributors
