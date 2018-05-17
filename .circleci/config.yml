@@ -46,6 +46,8 @@ jobs:
 
       - run: yarn docs:export
 
+      - run: gh-pages -d docs/export
+
       - persist_to_workspace: 
           root: ~/repo
           paths:
