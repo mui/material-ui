@@ -39,8 +39,6 @@ jobs:
 
       - run: yarn docs:export
 
-      - run: yarn docs:deploy:ghpages
-
       - persist_to_workspace: 
           root: ~/repo
           paths:
@@ -76,7 +74,7 @@ jobs:
           at: ~/repo
 
       # deploy docs
-      - run: gh-pages -d docs/export
+      - run: yarn docs:deploy:ghpages
 
 workflows:
   version: 2
@@ -85,9 +83,9 @@ workflows:
       - build:
           filters:
             branches:
-              ignore: /.*/
-            tags:
-              only: /[0-9]+(\.[0-9]+)+(\-cake)+(\.[0-9]+)/
+              only: 
+                - develop
+                - master
       - test:
           requires:
             - build
@@ -102,7 +100,6 @@ workflows:
             - test
           filters:
             branches:
-              only: 
-                - master
+              ignore: /.*/
             tags:
-              only: /^v.*/
+              only: /[0-9]+(\.[0-9]+)+(\-cake)+(\.[0-9]+)/
