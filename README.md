@@ -27,7 +27,7 @@
 
 Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
 
-**[Stable channel v1](https://material-ui-next.com/)**
+**[Stable channel v1](https://material-ui.com/)**
 ```sh
 // with npm
 npm install @material-ui/core
@@ -36,7 +36,7 @@ npm install @material-ui/core
 yarn add @material-ui/core
 ```
 
-**[v0.x](http://material-ui.com/)**
+**[v0.x](http://v0.material-ui.com/)**
 ```sh
 // with npm
 npm install material-ui
@@ -44,6 +44,7 @@ npm install material-ui
 // with yarn
 yarn add material-ui
 ```
+
 
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
 
