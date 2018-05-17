@@ -78,6 +78,7 @@ class ListItem extends React.Component {
       disabled,
       disableGutters,
       divider,
+      focusVisibleClassName,
       ...other
     } = this.props;
 
@@ -105,7 +106,7 @@ class ListItem extends React.Component {
 
     if (button) {
       componentProps.component = componentProp || 'div';
-      componentProps.focusVisibleClassName = classes.focusVisible;
+      componentProps.focusVisibleClassName = classnames(classes.focusVisible, focusVisibleClassName);
       Component = ButtonBase;
     }
 
