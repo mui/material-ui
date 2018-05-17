@@ -36,7 +36,7 @@ const Installation = () => (
       &nbsp;<a className="link" href="https://github.com/dmtrKovalenko/material-ui-pickers/issues/414#issuecomment-389523267">#414</a>
       ).
       Stay tuned!
-    </Typography >
+    </Typography>
 
     <Code withMargin text={installLibCode} />
     <Typography>
