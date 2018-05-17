@@ -68,8 +68,6 @@ jobs:
       - attach_workspace:
           at: ~/repo
 
-      - checkout
-      
       - restore_cache:
           keys:
           - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
@@ -83,10 +81,7 @@ jobs:
       - persist_to_workspace: 
           root: ~/repo
           paths:
-            - build
-            - node_modules
-            - docs/export
-
+            - .
   
   deploy:
     filters:
@@ -102,8 +97,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-
-      - checkout
 
       - restore_cache:
           keys:
