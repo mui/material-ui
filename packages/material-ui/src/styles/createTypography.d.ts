@@ -22,13 +22,18 @@ export interface FontStyle extends Required<{
   fontWeightLight: CSSProperties['fontWeight'];
   fontWeightRegular: CSSProperties['fontWeight'];
   fontWeightMedium: CSSProperties['fontWeight'];
-  htmlFontSize?: number;
 }> {}
+
+export interface FontStyleOptions extends Partial<FontStyle> {
+  htmlFontSize?: number;
+}
 
 export type TypographyStyle =
   & Required<Pick<CSSProperties, 'fontFamily' | 'fontSize' | 'fontWeight' | 'color'>>
   & Partial<Pick<CSSProperties, 'letterSpacing' | 'lineHeight' | 'textTransform'>>
   ;
+
+export interface TypographyStyleOptions extends Partial<TypographyStyle> {}
 
 export interface TypographyUtils {
   pxToRem: (px: number) => string;
@@ -36,9 +41,7 @@ export interface TypographyUtils {
 
 export type Typography = Record<Style, TypographyStyle> & FontStyle & TypographyUtils;
 
-export type TypographyOptions = Partial<Record<Style, Partial<TypographyStyle>> & FontStyle>;
-
-//export type TypographyOptions = DeepPartial<Typography>;
+export type TypographyOptions = Partial<Record<Style, TypographyStyleOptions> & FontStyleOptions>;
 
 export default function createTypography(
   palette: Palette,
