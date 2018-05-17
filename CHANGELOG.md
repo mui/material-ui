@@ -5,6 +5,17 @@ Changes. Changes everywhere!
 ## 1.0.0
 ###### *May 17, 2018*
 
+Our first stable v1 release! 🎉
+
+It has taken us two years to do it, but Material-UI v1 has finally arrived!
+We are so excited about this release, as it's setting a new course for the project. Thank you to *everyone*, especially to [the team](https://material-ui-next.com/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you**.
+
+Some statistics with v1 while it was in alpha and beta:
+- 304 contributors
+- 2390 commits
+- From 0 downloads/month to 300k downloads/month
+- From 0 users/month to 90k users/month
+
 ## 1.0.0-rc.1
 ###### *May 15, 2018*
 
