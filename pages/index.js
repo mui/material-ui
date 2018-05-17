@@ -21,9 +21,8 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
-    color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
   },
   content: {
     paddingBottom: theme.spacing.unit * 8,
@@ -84,13 +83,19 @@ class HomePage extends React.Component {
         <div className={classes.hero}>
           <div className={classes.content}>
             <img
-              src="/static/images/material-ui-logo.svg"
+              src="/static/images/mui-logo-only.svg"
               alt="Material-UI Logo"
               className={classes.logo}
             />
             <div className={classes.text}>
-              <Typography variant="display2" component="h1" color="inherit" gutterBottom>
-                {'Material-UI'}
+              <Typography
+                variant="display2"
+                component="h1"
+                color="inherit"
+                gutterBottom
+                style={{ letterSpacing: '1.4rem' }}
+              >
+                {'MATERIAL-UI'}
               </Typography>
               <Typography
                 variant="headline"
@@ -110,7 +115,8 @@ class HomePage extends React.Component {
                   />
                 )}
                 className={classes.button}
-                variant="raised"
+                variant="outlined"
+                color="primary"
               >
                 {'Get Started'}
               </Button>
