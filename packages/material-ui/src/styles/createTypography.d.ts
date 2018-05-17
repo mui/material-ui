@@ -16,14 +16,14 @@ export type TextStyle =
 
 export type Style = TextStyle | 'button';
 
-export interface FontStyle {
+export interface FontStyle extends Required<{
   fontFamily: CSSProperties['fontFamily'];
-  fontSize: number;
+  fontSize: CSSProperties['fontSize'];
   fontWeightLight: CSSProperties['fontWeight'];
   fontWeightRegular: CSSProperties['fontWeight'];
   fontWeightMedium: CSSProperties['fontWeight'];
-  htmlFontSize?: number;
-}
+  htmlFontSize?: CSSProperties['fontSize'];
+}> {}
 
 export type TypographyStyle =
   & Required<Pick<CSSProperties, 'fontFamily' | 'fontSize' | 'fontWeight' | 'color'>>
