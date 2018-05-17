@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/Roamltd/cake-ui/issues"
   },
-  "homepage": "https://roamltd.github.io/cake-ui-v1",
+  "homepage": "https://cakeui.roamcore.com",
   "scripts": {
     "start": "yarn docs:dev",
     "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev",
