@@ -5,6 +5,7 @@
 version: 2
 jobs:
   build:
+
     filters:
       branches:
         only: 
@@ -111,10 +112,16 @@ workflows:
   version: 2
   build-test-and-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
       - test:
           requires:
             - build
       - deploy:
           requires:
             - test
+          filters:
+            tags:
+              only: /^v.*/
