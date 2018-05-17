@@ -170,6 +170,7 @@ function Grid(props) {
     container,
     direction,
     item,
+    inputRef,
     justify,
     lg,
     md,
