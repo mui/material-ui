@@ -5,13 +5,6 @@
 version: 2
 jobs:
   build:
-
-    filters:
-      branches:
-        only: 
-          - develop
-          - master
-
     docker:
       - image: circleci/node:8.9
 
@@ -46,7 +39,7 @@ jobs:
 
       - run: yarn docs:export
 
-      - run: gh-pages -d docs/export
+      - run: yarn docs:deploy:ghpages
 
       - persist_to_workspace: 
           root: ~/repo
@@ -54,12 +47,6 @@ jobs:
             - .
 
   test:
-    filters:
-      branches:
-        only: 
-          - develop
-          - master
-
     docker:
       - image: circleci/node:8.9
 
@@ -79,11 +66,6 @@ jobs:
             - .
   
   deploy:
-    filters:
-      branches:
-        only: 
-          - master
-
     docker:
       - image: circleci/node:8.9
 
@@ -100,14 +82,29 @@ workflows:
   version: 2
   build-test-and-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: 
+                - develop
+                - master
+            tags:
+              only: /^v.*/
       - test:
           requires:
             - build
+          filters:
+            branches:
+              only: 
+                - develop
+                - master
       # only deploy tagged commits
       - deploy:
           requires:
             - test
           filters:
+            branches:
+              only: 
+                - master
             tags:
               only: /^v.*/
