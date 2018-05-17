@@ -100,6 +100,7 @@ workflows:
             - test
           filters:
             branches:
-              ignore: /.*/
+              only: 
+                - master
             tags:
               only: /[0-9]+(\.[0-9]+)+(\-cake)+(\.[0-9]+)/
