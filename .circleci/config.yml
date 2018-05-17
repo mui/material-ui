@@ -85,9 +85,7 @@ workflows:
       - build:
           filters:
             branches:
-              only: 
-                - develop
-                - master
+              ignore: /.*/
             tags:
               only: /^v.*/
       - test:
