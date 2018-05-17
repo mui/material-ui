@@ -646,7 +646,7 @@ Nothing has changed for people using React 15.x.
 Big thanks to the 25 contributors who made this release possible.
 
 Here are some highlights ✨:
-- Add a [swipeable drawer](https://material-ui-next.com/demos/drawers/#swipeable-temporary-drawer) component (#9730) @leMaik.
+- Add a [swipeable drawer](https://material-ui.com/demos/drawers/#swipeable-temporary-drawer) component (#9730) @leMaik.
 - Add a [StackBlitz](https://stackblitz.com/) edit link (#10758).
 - Add a new npm package: [@material-ui/docs](https://www.npmjs.com/package/@material-ui/docs) (#10699).
 - And many more bug fixes and documentation improvements.
@@ -655,7 +655,7 @@ Here are some highlights ✨:
 
 - [Grid] Change the default spacing value: 0 (#10768) @oliviertassinari
 
-The negative margin implementation solution currently used comes with [serious limitations](https://material-ui-next.com/layout/grid/#negative-margin).
+The negative margin implementation solution currently used comes with [serious limitations](https://material-ui.com/layout/grid/#negative-margin).
 Material-UI is the only library with a non-zero default spacing between the items.
 Having zero spacing by default will ease the usage of the component.
 
@@ -4120,7 +4120,7 @@ We are now at 93.53%. That's pretty great.
 One year from now, we were struggling with removing all the mixins from the project.
 Now, it's about rewriting all our components.
 We gonna try doing frequent alpha releases to keep some intertie. At least once per week would be good.
-As always, we are keeping the [documentation](https://material-ui-next.com) up to date.
+As always, we are keeping the [documentation](https://material-ui.com) up to date.
 
 #### Component Fixes / Enhancements
 
@@ -4197,7 +4197,7 @@ That wouldn't have been possible without this awesome community.
 **Thank you!**
 
 But this's just the beginning, some [exciting stuff](https://github.com/mui-org/material-ui/blob/master/ROADMAP.md) is coming in 2017 :sparkles:.
-You can preview a **very early** version of the `next` branch following [that link](https://material-ui-next.com).
+You can preview a **very early** version of the `next` branch following [this link](https://material-ui-next.com).
 
 #### Component Fixes / Enhancements
 

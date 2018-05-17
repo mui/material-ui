@@ -33,7 +33,7 @@ function LatestVersion(props) {
                   <Link
                     {...props2}
                     variant="secondary"
-                    href="https://material-ui-next.netlify.com/"
+                    href="https://material-ui-ci.netlify.com/"
                   />
                 )}
               >

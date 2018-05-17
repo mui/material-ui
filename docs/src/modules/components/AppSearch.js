@@ -39,7 +39,7 @@ function initDocsearch() {
       inputSelector: '#docsearch-input',
       handleSelected: (input, event, suggestion) => {
         const url = suggestion.url
-          .replace(/^https:\/\/material-ui-next\.com/, '')
+          .replace(/^https:\/\/material-ui\.com/, '')
           .replace(/\/#/, '#')
           .replace(/\/$/, '');
         Router.push(url);
