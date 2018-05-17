@@ -16,7 +16,9 @@ jobs:
           command: |
             node --version
             npm --version
-      - run: yarn docs:deploy
+
+      - run: yarn docs:deply
+      
       - checkout
 
       - restore_cache:
@@ -81,9 +83,9 @@ jobs:
       - attach_workspace:
           at: ~/repo
 
-      # - run:
-      #    name: Disable host checking
-      #    command: 
+      - run:
+          name: Disable host checking
+          command: 
 
       # deploy docs
       - run: yarn docs:deploy:ghpages
@@ -95,7 +97,9 @@ workflows:
       - build:
           filters:
             branches:
-              ignore: /.*/
+              only: 
+                - develop
+                - master
       - test:
           requires:
             - build
