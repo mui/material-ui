@@ -11,7 +11,6 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - run:  echo 'github.com ssh-rsa '$RSA_GITHUB 'bitbucket.org ssh-rsa '$RSA_BITBUCKET
       - run:
           name: "Show npm and node versions"
           command: |
@@ -87,7 +86,7 @@ jobs:
 
             mkdir -p ~/.ssh
 
-            echo 'github.com ssh-rsa $GITHUB_RSA' >> ~/.ssh/known_hosts
+            echo 'github.com ssh-rsa '$RSA_GITHUB 'bitbucket.org ssh-rsa '$RSA_BITBUCKET >> ~/.ssh/known_hosts
 
       # deploy docs
       - run: yarn docs:deploy:ghpages
