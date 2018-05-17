@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Palette } from './createPalette';
 import { Overwrite, Omit } from '..';
 import { CSSProperties } from './withStyles';
@@ -18,11 +17,11 @@ export type TextStyle =
 export type Style = TextStyle | 'button';
 
 export interface FontStyle {
-  fontFamily: React.CSSProperties['fontFamily'];
+  fontFamily: CSSProperties['fontFamily'];
   fontSize: number;
-  fontWeightLight: React.CSSProperties['fontWeight'];
-  fontWeightRegular: React.CSSProperties['fontWeight'];
-  fontWeightMedium: React.CSSProperties['fontWeight'];
+  fontWeightLight: CSSProperties['fontWeight'];
+  fontWeightRegular: CSSProperties['fontWeight'];
+  fontWeightMedium: CSSProperties['fontWeight'];
   htmlFontSize?: number;
 }
 
