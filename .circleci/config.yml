@@ -18,7 +18,7 @@ jobs:
             npm --version
 
       - run: yarn docs:deploy
-      
+
       - checkout
 
       - restore_cache:
@@ -70,8 +70,7 @@ jobs:
       - image: circleci/node:8.9
 
     working_directory: ~/repo
-      - run:
-          command: echo 'Allow only master branch'
+      - run: echo 'Allow only master branch'
 
   deploy:
     docker:
