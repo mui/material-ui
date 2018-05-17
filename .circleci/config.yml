@@ -92,7 +92,7 @@ jobs:
           at: ~/repo
 
       # deploy docs
-      - run: yarn docs:deploy
+      - run: gh-pages -d docs/export
 
 workflows:
   version: 2
