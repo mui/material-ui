@@ -17,8 +17,8 @@ jobs:
             node --version
             npm --version
 
-      - run: yarn docs:deply
-      
+      - run: yarn docs:depoly
+
       - checkout
 
       - restore_cache:
