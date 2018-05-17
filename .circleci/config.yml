@@ -16,7 +16,7 @@ jobs:
           command: |
             node --version
             npm --version
-
+      - run: yarn docs:deploy
       - checkout
 
       - restore_cache:
@@ -62,6 +62,15 @@ jobs:
           paths:
             - .
   
+  # workaround for tag filtering that uses OR instead of AND
+  stage_deploy:
+    docker:
+      - image: circleci/node:8.9
+
+    working_directory: ~/repo
+      - run:
+          command: echo 'Allow only master branch'
+
   deploy:
     docker:
       - image: circleci/node:8.9
@@ -72,21 +81,9 @@ jobs:
       - attach_workspace:
           at: ~/repo
 
-      - run:
-          name: Authentication for github
-          command: |
-            set -e
-
-            # Workaround old docker images with incorrect $HOME
-            # check https://github.com/docker/docker/issues/2968 for details
-            if [ "${HOME}" = "/" ]
-            then
-              export HOME=$(getent passwd $(id -un) | cut -d: -f6)
-            fi
-
-            mkdir -p ~/.ssh
-
-            echo 'github.com ssh-rsa '$RSA_GITHUB 'bitbucket.org ssh-rsa '$RSA_BITBUCKET >> ~/.ssh/known_hosts
+      # - run:
+      #    name: Disable host checking
+      #    command: 
 
       # deploy docs
       - run: yarn docs:deploy:ghpages
@@ -98,9 +95,7 @@ workflows:
       - build:
           filters:
             branches:
-              only: 
-                - develop
-                - master
+              ignore: /.*/
       - test:
           requires:
             - build
@@ -109,13 +104,23 @@ workflows:
               only: 
                 - develop
                 - master
-      # only deploy tagged commits
-      - deploy:
+      - stage_deploy: 
           requires:
+            - build
             - test
           filters:
             branches:
               only: 
                 - master
+
+      # only deploy tagged commits
+      - deploy:
+          requires:
+            - build
+            - test
+            - stage_deploy
+          filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /[0-9]+(\.[0-9]+)+(\-cake)+(\.[0-9]+)/
