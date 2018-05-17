@@ -68,7 +68,7 @@ jobs:
       - image: circleci/node:8.9
 
     working_directory: ~/repo
-    
+
     steps:
       - run: echo 'Allow only master branch'
 
@@ -126,4 +126,4 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /[0-9]+(\.[0-9]+)+(\-cake)+(\.[0-9]+)/
+              only: /[0-9]+(\.[0-9]+)/
