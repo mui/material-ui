@@ -69,12 +69,6 @@ jobs:
       - attach_workspace:
           at: ~/repo
 
-      - restore_cache:
-          keys:
-          - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          - yarn-packages-{{ .Branch }}
-          - yarn-packages-
-
       - run:
           name: Test
           command: yarn test
@@ -98,12 +92,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-
-      - restore_cache:
-          keys:
-          - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          - yarn-packages-{{ .Branch }}
-          - yarn-packages-
 
       # deploy docs
       - run: yarn docs:deploy
