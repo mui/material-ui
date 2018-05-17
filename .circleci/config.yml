@@ -102,8 +102,6 @@ workflows:
           filters:
             tags:
               only: /^v.*/
-            branches:
-              ignore: /.*/
       - test:
           requires:
             - build
