@@ -1,9 +1,7 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Input from 'material-ui/Input';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
 
 const styles = theme => ({
   container: {
@@ -16,7 +14,7 @@ const styles = theme => ({
 });
 
 function Inputs(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.container}>
       <Input

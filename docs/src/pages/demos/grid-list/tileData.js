@@ -1,5 +1,3 @@
-// @flow weak
-
 const tileData = [
   {
     img: '/static/images/grid-list/breakfast.jpg',

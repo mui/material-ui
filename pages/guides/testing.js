@@ -1,9 +1,7 @@
-// @flow
-
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/guides/testing.md';
+import markdown from 'docs/src/pages/guides/testing/testing.md';
 
 function Page() {
   return <MarkdownDocs markdown={markdown} />;

@@ -1,14 +1,19 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable react/no-multi-comp */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import { FormControlLabel } from 'material-ui/Form';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import Dialog from '@material-ui/core/Dialog';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const options = [
   'None',
@@ -28,17 +33,17 @@ const options = [
 ];
 
 class ConfirmationDialog extends React.Component {
-  state = {
-    value: undefined,
-  };
+  constructor(props, context) {
+    super(props, context);
 
-  componentWillMount() {
-    this.setState({ value: this.props.value });
+    this.state.value = this.props.value;
   }
 
-  componentWillUpdate(nextProps) {
+  state = {};
+
+  // TODO
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
-      // eslint-disable-next-line react/no-will-update-set-state
       this.setState({ value: nextProps.value });
     }
   }
@@ -50,11 +55,11 @@ class ConfirmationDialog extends React.Component {
   };
 
   handleCancel = () => {
-    this.props.onRequestClose(this.props.value);
+    this.props.onClose(this.props.value);
   };
 
   handleOk = () => {
-    this.props.onRequestClose(this.state.value);
+    this.props.onClose(this.state.value);
   };
 
   handleChange = (event, value) => {
@@ -66,16 +71,17 @@ class ConfirmationDialog extends React.Component {
 
     return (
       <Dialog
-        ignoreBackdropClick
-        ignoreEscapeKeyUp
+        disableBackdropClick
+        disableEscapeKeyDown
         maxWidth="xs"
         onEntering={this.handleEntering}
+        aria-labelledby="confirmation-dialog-title"
         {...other}
       >
-        <DialogTitle>Phone Ringtone</DialogTitle>
+        <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
         <DialogContent>
           <RadioGroup
-            innerRef={node => {
+            ref={node => {
               this.radioGroup = node;
             }}
             aria-label="ringtone"
@@ -102,7 +108,7 @@ class ConfirmationDialog extends React.Component {
 }
 
 ConfirmationDialog.propTypes = {
-  onRequestClose: PropTypes.func,
+  onClose: PropTypes.func,
   value: PropTypes.string,
 };
 
@@ -110,7 +116,7 @@ const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    background: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,
   },
   dialog: {
     width: '80%',
@@ -120,23 +126,22 @@ const styles = theme => ({
 
 class ConfirmationDialogDemo extends React.Component {
   state = {
-    anchorEl: null,
     open: false,
     value: 'Dione',
   };
 
   button = undefined;
 
-  handleClickListItem = event => {
-    this.setState({ open: true, anchorEl: event.currentTarget });
+  handleClickListItem = () => {
+    this.setState({ open: true });
   };
 
-  handleRequestClose = value => {
+  handleClose = value => {
     this.setState({ value, open: false });
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <List>
@@ -161,7 +166,7 @@ class ConfirmationDialogDemo extends React.Component {
               paper: classes.dialog,
             }}
             open={this.state.open}
-            onRequestClose={this.handleRequestClose}
+            onClose={this.handleClose}
             value={this.state.value}
           />
         </List>

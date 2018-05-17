@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
@@ -15,6 +13,13 @@ function Page() {
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/drawers/TemporaryDrawer'), 'utf8')
+`,
+        },
+        'pages/demos/drawers/SwipeableTemporaryDrawer.js': {
+          js: require('docs/src/pages/demos/drawers/SwipeableTemporaryDrawer').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/drawers/SwipeableTemporaryDrawer'), 'utf8')
 `,
         },
         'pages/demos/drawers/PermanentDrawer.js': {
@@ -36,6 +41,20 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/drawers/MiniDrawer'), 'utf8')
+`,
+        },
+        'pages/demos/drawers/ResponsiveDrawer.js': {
+          js: require('docs/src/pages/demos/drawers/ResponsiveDrawer').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/drawers/ResponsiveDrawer'), 'utf8')
+`,
+        },
+        'pages/demos/drawers/ClippedDrawer.js': {
+          js: require('docs/src/pages/demos/drawers/ClippedDrawer').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/drawers/ClippedDrawer'), 'utf8')
 `,
         },
       }}

@@ -1,4 +1,3 @@
-// @flow weak
 /* eslint-disable no-console */
 
 import { spy } from 'sinon';
@@ -8,12 +7,10 @@ class ConsoleErrorMock {
 
   spy = () => {
     this.consoleErrorContainer = console.error;
-    // $FlowFixMe
     console.error = spy();
   };
 
   reset = () => {
-    // $FlowFixMe
     console.error = this.consoleErrorContainer;
     delete this.consoleErrorContainer;
   };

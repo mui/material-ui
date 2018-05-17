@@ -1,7 +1,7 @@
-// @flow
 /* eslint-disable no-underscore-dangle */
 
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import themeReducer from 'docs/src/modules/redux/themeReducer';
 
 // Get the Redux DevTools extension and fallback to a no-op function
 let devtools = x => x;
@@ -14,17 +14,7 @@ if (
   devtools = window.__REDUX_DEVTOOLS_EXTENSION__();
 }
 
-function themeReducer(state = { dark: false }, action) {
-  if (action.type === 'TOGGLE_THEME_SHADE') {
-    return {
-      ...state,
-      dark: !state.dark,
-    };
-  }
-  return state;
-}
-
-function create(initialState: Object) {
+function create(initialState) {
   let middlewares = [];
 
   if (
@@ -47,7 +37,7 @@ function create(initialState: Object) {
   );
 }
 
-export default function initRedux(initialState: Object) {
+export default function initRedux(initialState) {
   // Make sure to create a new store for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!process.browser) {

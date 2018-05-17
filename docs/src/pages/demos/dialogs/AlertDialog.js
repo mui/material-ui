@@ -1,40 +1,46 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
-import Button from 'material-ui/Button';
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from 'material-ui/Dialog';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default class AlertDialog extends React.Component {
+class AlertDialog extends React.Component {
   state = {
     open: false,
   };
 
-  handleRequestClose = () => {
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
     this.setState({ open: false });
   };
 
   render() {
     return (
       <div>
-        <Button onClick={() => this.setState({ open: true })}>Open alert dialog</Button>
-        <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
-          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <Button onClick={this.handleClickOpen}>Open alert dialog</Button>
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
-            <DialogContentText>
+            <DialogContentText id="alert-dialog-description">
               Let Google help apps determine location. This means sending anonymous location data to
               Google, even when no apps are running.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleRequestClose} color="primary">
+            <Button onClick={this.handleClose} color="primary">
               Disagree
             </Button>
-            <Button onClick={this.handleRequestClose} color="primary">
+            <Button onClick={this.handleClose} color="primary" autoFocus>
               Agree
             </Button>
           </DialogActions>
@@ -43,3 +49,5 @@ export default class AlertDialog extends React.Component {
     );
   }
 }
+
+export default AlertDialog;

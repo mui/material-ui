@@ -1,9 +1,8 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
-import IconButton from 'material-ui/IconButton';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import MoreVertIcon from 'material-ui-icons/MoreVert';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const options = [
   'None',
@@ -27,23 +26,24 @@ const ITEM_HEIGHT = 48;
 class LongMenu extends React.Component {
   state = {
     anchorEl: null,
-    open: false,
   };
 
   handleClick = event => {
-    this.setState({ open: true, anchorEl: event.currentTarget });
+    this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleRequestClose = () => {
-    this.setState({ open: false });
+  handleClose = () => {
+    this.setState({ anchorEl: null });
   };
 
   render() {
+    const { anchorEl } = this.state;
+
     return (
       <div>
         <IconButton
           aria-label="More"
-          aria-owns={this.state.open ? 'long-menu' : null}
+          aria-owns={anchorEl ? 'long-menu' : null}
           aria-haspopup="true"
           onClick={this.handleClick}
         >
@@ -51,9 +51,9 @@ class LongMenu extends React.Component {
         </IconButton>
         <Menu
           id="long-menu"
-          anchorEl={this.state.anchorEl}
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={this.handleClose}
           PaperProps={{
             style: {
               maxHeight: ITEM_HEIGHT * 4.5,
@@ -62,7 +62,7 @@ class LongMenu extends React.Component {
           }}
         >
           {options.map(option => (
-            <MenuItem key={option} selected={option === 'Pyxis'} onClick={this.handleRequestClose}>
+            <MenuItem key={option} selected={option === 'Pyxis'} onClick={this.handleClose}>
               {option}
             </MenuItem>
           ))}

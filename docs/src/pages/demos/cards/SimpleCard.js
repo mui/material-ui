@@ -1,13 +1,13 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const styles = {
   card: {
     minWidth: 275,
   },
@@ -19,29 +19,27 @@ const styles = theme => ({
   title: {
     marginBottom: 16,
     fontSize: 14,
-    color: theme.palette.text.secondary,
   },
   pos: {
     marginBottom: 12,
-    color: theme.palette.text.secondary,
   },
-});
+};
 
 function SimpleCard(props) {
-  const classes = props.classes;
+  const { classes } = props;
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <div>
       <Card className={classes.card}>
         <CardContent>
-          <Typography type="body1" className={classes.title}>
+          <Typography className={classes.title} color="textSecondary">
             Word of the Day
           </Typography>
-          <Typography type="headline" component="h2">
+          <Typography variant="headline" component="h2">
             be{bull}nev{bull}o{bull}lent
           </Typography>
-          <Typography type="body1" className={classes.pos}>
+          <Typography className={classes.pos} color="textSecondary">
             adjective
           </Typography>
           <Typography component="p">
@@ -50,7 +48,7 @@ function SimpleCard(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button dense>Learn More</Button>
+          <Button size="small">Learn More</Button>
         </CardActions>
       </Card>
     </div>

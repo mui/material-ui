@@ -1,10 +1,8 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import Avatar from 'material-ui/Avatar';
+import { withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
 
 const styles = {
   row: {
@@ -21,7 +19,7 @@ const styles = {
 };
 
 function ImageAvatars(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.row}>
       <Avatar alt="Remy Sharp" src="/static/images/remy.jpg" className={classes.avatar} />

@@ -1,11 +1,11 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { GridList, GridListTile, GridListTileBar } from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
-import StarBorderIcon from 'material-ui-icons/StarBorder';
+import { withStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import IconButton from '@material-ui/core/IconButton';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import tileData from './tileData';
 
 const styles = theme => ({
@@ -14,7 +14,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    background: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,
   },
   gridList: {
     flexWrap: 'nowrap',
@@ -22,7 +22,7 @@ const styles = theme => ({
     transform: 'translateZ(0)',
   },
   title: {
-    color: theme.palette.primary[200],
+    color: theme.palette.primary.light,
   },
   titleBar: {
     background:
@@ -48,7 +48,7 @@ const styles = theme => ({
  * ];
  */
 function SingleLineGridList(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
     <div className={classes.root}>

@@ -1,32 +1,39 @@
 {
-  "name": "material-ui-codemod",
-  "author": "Material-UI collaborators",
-  "version": "0.1.5",
-  "description": "Codemod scripts for Material-UI",
+  "name": "@material-ui/codemod",
+  "private": false,
+  "author": "Material-UI Team",
+  "version": "1.0.0-rc.0",
+  "description": "Codemod scripts for Material-UI.",
   "keywords": [
     "react",
+    "react-component",
+    "material design",
     "material-ui",
     "codemod",
     "jscodeshift"
   ],
   "scripts": {
-    "test": "babel-node test.js",
-    "build": "rimraf transforms && babel ./modules --out-dir ./transforms",
-    "prepublish": "npm run build"
+    "test": "yarn test:unit",
+    "test:unit": "cd ../../ && ./node_modules/.bin/mocha packages/material-ui-codemod/src/**/*.test.js",
+    "test:watch": "yarn test:unit --watch",
+    "prebuild": "../../node_modules/.bin/rimraf lib",
+    "build": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./lib --ignore **/*.test*",
+    "release": "yarn build && npm publish"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/callemall/material-ui.git"
+    "url": "https://github.com/mui-org/material-ui.git"
   },
-  "files": [
-    "modules",
-    "transforms"
-  ],
-  "homepage": "https://github.com/callemall/material-ui/tree/master/packages/material-ui-codemod",
   "license": "MIT",
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod",
   "devDependencies": {
-    "babel-cli": "^6.7.5",
-    "babel-plugin-add-module-exports": "^0.1.4",
-    "jscodeshift": "^0.3.18"
+    "jscodeshift": "^0.5.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   }
 }

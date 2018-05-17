@@ -1,14 +1,12 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import pink from 'material-ui/colors/pink';
-import green from 'material-ui/colors/green';
-import Avatar from 'material-ui/Avatar';
-import FolderIcon from 'material-ui-icons/Folder';
-import PageviewIcon from 'material-ui-icons/Pageview';
-import AssignmentIcon from 'material-ui-icons/Assignment';
+import { withStyles } from '@material-ui/core/styles';
+import pink from '@material-ui/core/colors/pink';
+import green from '@material-ui/core/colors/green';
+import Avatar from '@material-ui/core/Avatar';
+import FolderIcon from '@material-ui/icons/Folder';
+import PageviewIcon from '@material-ui/icons/Pageview';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 const styles = {
   avatar: {
@@ -31,7 +29,7 @@ const styles = {
 };
 
 function IconAvatars(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.row}>
       <Avatar className={classes.avatar}>

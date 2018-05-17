@@ -1,62 +1,61 @@
 {
-  "private": true,
-  "name": "material-ui-icons-builder",
-  "version": "1.0.0-beta.5",
-  "description": "Material Design Svg Icons converted to Material-UI React components.",
+  "name": "@material-ui/icons",
+  "private": false,
   "author": "Material-UI Team",
-  "license": "MIT",
-  "homepage": "http://material-ui.com/",
-  "bugs": {
-    "url": "https://github.com/callemall/material-ui/issues"
-  },
+  "version": "1.0.0-rc.0",
+  "description": "Material Design Svg Icons converted to Material-UI React components.",
+  "main": "./src/index.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "material-ui",
+    "icons"
+  ],
   "repository": {
     "type": "git",
-    "url": "callemall/material-ui"
+    "url": "https://github.com/mui-org/material-ui.git"
   },
-  "keywords": [
-    "Material",
-    "Design",
-    "Material-UI",
-    "Icons",
-    "React",
-    "react-component"
-  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-icons",
   "scripts": {
-    "prebuild": "rimraf build",
-    "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
-    "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
-    "build:copy-files": "babel-node ./copy-files.js",
-    "build:icons": "babel-node ./builder.js --output-dir ./src --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
-    "build:typings": "babel-node ./create-typings.js",
-    "build": "npm run build:icons && npm run build:es2015 && npm run build:es2015modules && npm run build:copy-files && npm run build:typings",
-    "version": "yarn build",
-    "release": "np --no-publish --any-branch",
-    "postrelease": "npm publish build",
-    "test": "mocha",
-    "test:watch": "mocha -w"
+    "test": "yarn test:unit",
+    "test:unit": "cd ../../ && ./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/mocha packages/material-ui-icons/test/index.test.js",
+    "test:watch": "yarn test:unit --watch",
+    "prebuild": "../../node_modules/.bin/rimraf build",
+    "src:icons": "../../node_modules/.bin/babel-node ./builder.js --output-dir ./src --svg-dir ../../node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
+    "build:es2015": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./build",
+    "build:es2015modules": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=modules ../../node_modules/.bin/babel ./src/index.js --out-file ./build/index.es.js",
+    "build:es": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=es ../../node_modules/.bin/babel ./src --out-dir ./build/es",
+    "build:copy-files": "../../node_modules/.bin/babel-node ./scripts/copy-files.js",
+    "build:typings": "../../node_modules/.bin/babel-node ./scripts/create-typings.js",
+    "build": "yarn src:icons && yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:typings && yarn build:copy-files",
+    "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
-    "material-ui": "^1.0.0-beta",
-    "react": "^15.3.0 || ^16.0.0-beta.1",
-    "react-dom": "^15.3.0 || ^16.0.0-beta.1"
+    "@material-ui/core": "^1.0.0-rc.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "recompose": "^0.24.0"
+    "recompose": "^0.26.0 || ^0.27.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "chai": "^4.1.2",
-    "cross-env": "^5.0.5",
-    "fs-extra": "^4.0.1",
-    "glob": "^7.1.2",
-    "lodash": "^4.0.0",
     "material-design-icons": "^3.0.0",
+    "material-ui": "^1.0.0-beta.33",
     "mkdirp": "^0.5.0",
-    "mocha": "^3.5.0",
     "mustache": "^2.0.0",
-    "recursive-readdir-sync": "^1.0.6",
-    "rimraf": "^2.0.0",
     "temp": "^0.8.3",
-    "yargs": "^8.0.2"
+    "yargs": "^11.0.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=6.0.0"
   }
 }

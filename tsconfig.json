@@ -6,10 +6,13 @@
     "sourceMap": true,
     "jsx": "react",
     "moduleResolution": "node",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,
     "noEmit": true,
     "experimentalDecorators": true
   },
-  "include": ["src/**/*", "test/typescript/*"]
+  "include": ["packages/material-ui/src/**/*", "packages/material-ui/test/typescript/*"]
 }

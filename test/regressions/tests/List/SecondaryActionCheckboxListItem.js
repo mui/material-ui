@@ -1,24 +1,29 @@
 // @flow
 
 import React from 'react';
-import { ListItem, ListItemText, ListItemSecondaryAction } from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import Checkbox from '@material-ui/core/Checkbox';
 
 export default function SecondaryActionCheckboxListItem() {
   return (
-    <div style={{ background: '#fff', width: 300 }}>
-      <ListItem button>
-        <ListItemText primary="Primary" />
-        <ListItemSecondaryAction>
-          <Checkbox />
-        </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem button dense>
-        <ListItemText primary="Primary" />
-        <ListItemSecondaryAction>
-          <Checkbox />
-        </ListItemSecondaryAction>
-      </ListItem>
+    <div style={{ backgroundColor: '#fff', width: 300 }}>
+      <List>
+        <ListItem button>
+          <ListItemText primary="Primary" />
+          <ListItemSecondaryAction>
+            <Checkbox />
+          </ListItemSecondaryAction>
+        </ListItem>
+        <ListItem button dense>
+          <ListItemText primary="Primary" />
+          <ListItemSecondaryAction>
+            <Checkbox />
+          </ListItemSecondaryAction>
+        </ListItem>
+      </List>
     </div>
   );
 }

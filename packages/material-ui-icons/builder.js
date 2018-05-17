@@ -1,25 +1,15 @@
-/* eslint-disable no-console, flowtype/require-valid-file-annotation */
+/* eslint-disable no-console */
 
 import fs from 'fs';
 import yargs from 'yargs';
 import path from 'path';
 import rimraf from 'rimraf';
 import Mustache from 'mustache';
-import _ from 'lodash';
 import glob from 'glob';
 import mkdirp from 'mkdirp';
 
-const SVG_ICON_RELATIVE_REQUIRE = '../../SvgIcon';
-const SVG_ICON_ABSOLUTE_REQUIRE = 'material-ui/SvgIcon';
 const RENAME_FILTER_DEFAULT = './filters/rename/default';
 const RENAME_FILTER_MUI = './filters/rename/material-design-icons';
-
-const DEFAULT_OPTIONS = {
-  muiRequire: 'absolute',
-  glob: '/**/*.svg',
-  innerPath: '',
-  renameFilter: RENAME_FILTER_DEFAULT,
-};
 
 /**
  * Return Pascal-Cased classname.
@@ -31,7 +21,7 @@ function pascalCase(destPath) {
   const splitregex = new RegExp(`[${path.sep}-]+`);
 
   let parts = destPath.replace('.js', '').split(splitregex);
-  parts = _.map(parts, part => {
+  parts = parts.map(part => {
     return part.charAt(0).toUpperCase() + part.substring(1);
   });
 
@@ -40,7 +30,7 @@ function pascalCase(destPath) {
   return className;
 }
 
-function getJsxString(svgPath, destPath, options) {
+function getJsxString(svgPath, destPath) {
   const className = pascalCase(destPath);
 
   console.log(`  ${className}`);
@@ -62,12 +52,7 @@ function getJsxString(svgPath, destPath, options) {
   paths = paths.replace(/\s?fill=".*?"/g, '');
   paths = paths.replace(/"\/>/g, '" />');
 
-  // Node acts weird if we put this directly into string concatenation
-  const muiRequireStmt =
-    options.muiRequire === 'relative' ? SVG_ICON_RELATIVE_REQUIRE : SVG_ICON_ABSOLUTE_REQUIRE;
-
   return Mustache.render(template, {
-    muiRequireStmt,
     paths,
     className,
   });
@@ -89,7 +74,7 @@ function processFile(svgPath, destPath, options) {
     console.log(`Making dir: ${outputFileDir}`);
     mkdirp.sync(outputFileDir);
   }
-  const fileString = getJsxString(svgPath, destPath, options);
+  const fileString = getJsxString(svgPath, destPath);
   const absDestPath = path.join(options.outputDir, destPath);
   fs.writeFileSync(absDestPath, fileString);
 }
@@ -126,7 +111,7 @@ function parseArgs() {
     )
     .describe(
       'file-suffix',
-      'Filter only files ending with a suffix (pretty much only for material-ui-icons)',
+      'Filter only files ending with a suffix (pretty much only for @material-ui/icons)',
     )
     .describe(
       'rename-filter',
@@ -145,7 +130,10 @@ function parseArgs() {
 function main(options, callback) {
   let originalWrite; // todo, add winston / other logging tool
 
-  options = _.defaults(options, DEFAULT_OPTIONS);
+  options.glob = options.glob || '/**/*.svg';
+  options.innerPath = options.innerPath || '';
+  options.renameFilter = options.renameFilter || RENAME_FILTER_DEFAULT;
+
   if (options.disableLog) {
     // disable console.log opt, used for tests.
     originalWrite = process.stdout.write;
@@ -156,12 +144,12 @@ function main(options, callback) {
   console.log('** Starting Build');
 
   let renameFilter = options.renameFilter;
-  if (_.isString(renameFilter)) {
+  if (typeof renameFilter === 'string') {
     /* eslint-disable global-require, import/no-dynamic-require */
-    renameFilter = require(renameFilter);
+    renameFilter = require(renameFilter).default;
     /* eslint-enable */
   }
-  if (!_.isFunction(renameFilter)) {
+  if (typeof renameFilter !== 'function') {
     throw Error('renameFilter must be a function');
   }
   if (!fs.existsSync(options.outputDir)) {
@@ -203,8 +191,6 @@ export default {
   processFile,
   processIndex,
   main,
-  SVG_ICON_RELATIVE_REQUIRE,
-  SVG_ICON_ABSOLUTE_REQUIRE,
   RENAME_FILTER_DEFAULT,
   RENAME_FILTER_MUI,
 };

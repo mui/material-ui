@@ -1,15 +1,13 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from 'material-ui/Paper';
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
+import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
-const styles = (theme: Object) => ({
+const styles = theme => ({
   root: {
     width: 400,
-    backgroundColor: theme.palette.primary.A400,
+    backgroundColor: theme.palette.secondary.main,
   },
   paper: {
     padding: 16,
@@ -47,7 +45,7 @@ function StressGrid(props) {
             <Paper className={classes.paper}>between</Paper>
           </Grid>
         </Grid>
-        <Grid container item spacing={8} align="stretch" direction="column-reverse">
+        <Grid container item spacing={8} alignItems="stretch" direction="column-reverse">
           <Grid item>
             <Paper className={classes.paper}>reverse</Paper>
           </Grid>

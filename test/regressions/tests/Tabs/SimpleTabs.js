@@ -1,20 +1,20 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Icon from 'material-ui/Icon';
-import Paper from 'material-ui/Paper';
-import Tabs from 'material-ui/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import { withStyles } from '@material-ui/core/styles';
+import Icon from '@material-ui/core/Icon';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
-const styles = (theme: Object) => ({
+const noop = () => {};
+
+const styles = theme => ({
   root: {
     width: 600,
   },
   appBar: {
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
   },
 });
 
@@ -24,35 +24,35 @@ function SimpleTabs(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.appBar}>
-        <Tabs value={0}>
+        <Tabs onChange={noop} value={0}>
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" disabled />
         </Tabs>
       </Paper>
       <Paper className={classes.root}>
-        <Tabs value={1} textColor="accent" centered>
+        <Tabs onChange={noop} value={1} textColor="secondary" centered>
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" disabled />
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs value={2} textColor="accent" fullWidth>
+        <Tabs onChange={noop} value={2} textColor="secondary" fullWidth>
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" />
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs value={0} textColor="accent" fullWidth>
+        <Tabs onChange={noop} value={0} textColor="secondary" fullWidth>
           <Tab icon={<Icon>phone</Icon>} />
           <Tab icon={<Icon>favorite</Icon>} />
           <Tab icon={<Icon>person_pin</Icon>} disabled />
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs value={1} fullWidth textColor="accent">
+        <Tabs onChange={noop} value={1} fullWidth textColor="secondary">
           <Tab icon={<Icon>phone</Icon>} label="RECENTS" />
           <Tab icon={<Icon>favorite</Icon>} label="FAVORITES" />
           <Tab icon={<Icon>person_pin</Icon>} label="NEARBY" disabled />

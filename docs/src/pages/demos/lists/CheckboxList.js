@@ -1,18 +1,19 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
-import IconButton from 'material-ui/IconButton';
-import CommentIcon from 'material-ui-icons/Comment';
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
+import CommentIcon from '@material-ui/icons/Comment';
 
 const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    background: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,
   },
 });
 
@@ -21,7 +22,7 @@ class CheckboxList extends React.Component {
     checked: [0],
   };
 
-  handleToggle = (event, value) => {
+  handleToggle = value => () => {
     const { checked } = this.state;
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -38,13 +39,20 @@ class CheckboxList extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
         <List>
           {[0, 1, 2, 3].map(value => (
-            <ListItem dense button key={value} onClick={event => this.handleToggle(event, value)}>
+            <ListItem
+              key={value}
+              role={undefined}
+              dense
+              button
+              onClick={this.handleToggle(value)}
+              className={classes.listItem}
+            >
               <Checkbox
                 checked={this.state.checked.indexOf(value) !== -1}
                 tabIndex={-1}

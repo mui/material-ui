@@ -1,40 +1,87 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
-import { FormControlLabel } from 'material-ui/Form';
-import Switch from 'material-ui/Switch';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+
+const styles = {
+  switchBase: {
+    color: green[50],
+    '&$checked': {
+      color: green[500],
+      '& + $bar': {
+        backgroundColor: green[500],
+      },
+    },
+  },
+  bar: {},
+  checked: {},
+};
 
 class SwitchLabels extends React.Component {
   state = {
     checkedA: true,
-    checkedB: false,
+    checkedB: true,
+    checkedF: true,
+  };
+
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.checked });
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <div>
+      <FormGroup row>
         <FormControlLabel
           control={
             <Switch
               checked={this.state.checkedA}
-              onChange={(event, checked) => this.setState({ checkedA: checked })}
+              onChange={this.handleChange('checkedA')}
+              value="checkedA"
             />
           }
-          label="A"
+          label="Secondary"
         />
         <FormControlLabel
           control={
             <Switch
               checked={this.state.checkedB}
-              onChange={(event, checked) => this.setState({ checkedB: checked })}
+              onChange={this.handleChange('checkedB')}
+              value="checkedB"
+              color="primary"
             />
           }
-          label="B"
+          label="Primary"
         />
-        <FormControlLabel control={<Switch />} disabled label="C" />
-      </div>
+        <FormControlLabel control={<Switch value="checkedC" />} label="Uncontrolled" />
+        <FormControlLabel disabled control={<Switch value="checkedD" />} label="Disabled" />
+        <FormControlLabel disabled control={<Switch checked value="checkedE" />} label="Disabled" />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={this.state.checkedF}
+              onChange={this.handleChange('checkedF')}
+              value="checkedF"
+              classes={{
+                switchBase: classes.switchBase,
+                checked: classes.checked,
+                bar: classes.bar,
+              }}
+            />
+          }
+          label="Custom color"
+        />
+      </FormGroup>
     );
   }
 }
 
-export default SwitchLabels;
+SwitchLabels.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(SwitchLabels);

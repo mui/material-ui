@@ -1,15 +1,17 @@
-// @flow weak
 /* eslint-disable no-underscore-dangle */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import getContext, { getTheme } from 'docs/src/modules/styles/getContext';
 import { connect } from 'react-redux';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import JssProvider from 'react-jss/lib/JssProvider';
+import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
+import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import { MuiThemeProvider } from 'material-ui/styles';
-import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/utils/prism';
+import GoogleTag from 'docs/src/modules/components/GoogleTag';
 
-// Injected the insertion-point-jss after docssearch
+// Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
   global.__INSERTION_POINT__ = true;
   const styleNode = document.createComment('insertion-point-jss');
@@ -20,56 +22,85 @@ if (process.browser && !global.__INSERTION_POINT__) {
   }
 }
 
-class AppWrapper extends React.Component<any, any> {
-  componentWillMount() {
-    this.styleContext = getContext();
+function uiThemeSideEffect(uiTheme) {
+  setPrismTheme(uiTheme.paletteType === 'light' ? lightTheme : darkTheme);
+  document.body.dir = uiTheme.direction;
+}
+
+class AppWrapper extends React.Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof prevState.pageContext === 'undefined') {
+      return {
+        prevProps: nextProps,
+        pageContext: nextProps.pageContext || getPageContext(),
+      };
+    }
+
+    const { prevProps } = prevState;
+
+    if (
+      nextProps.uiTheme.paletteType !== prevProps.uiTheme.paletteType ||
+      nextProps.uiTheme.direction !== prevProps.uiTheme.direction
+    ) {
+      return {
+        prevProps: nextProps,
+        pageContext: updatePageContext(nextProps.uiTheme),
+      };
+    }
+
+    return null;
   }
 
+  state = {};
+
   componentDidMount() {
+    uiThemeSideEffect(this.props.uiTheme);
+
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles && jssStyles.parentNode) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
 
-    if (this.props.dark) {
-      setPrismTheme(darkTheme);
-    } else {
-      setPrismTheme(lightTheme);
+    if (
+      'serviceWorker' in navigator &&
+      process.env.NODE_ENV === 'production' &&
+      window.location.host === 'material-ui-next.com'
+    ) {
+      navigator.serviceWorker.register('/sw.js');
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.dark !== this.props.dark) {
-      this.styleContext.theme = getTheme(nextProps.dark);
-
-      if (nextProps.dark) {
-        setPrismTheme(darkTheme);
-      } else {
-        setPrismTheme(lightTheme);
-      }
-    }
+  componentDidUpdate() {
+    uiThemeSideEffect(this.props.uiTheme);
   }
-
-  styleContext = null;
 
   render() {
     const { children } = this.props;
+    const { pageContext } = this.state;
 
     return (
-      <MuiThemeProvider
-        theme={this.styleContext.theme}
-        sheetsManager={this.styleContext.sheetsManager}
+      <JssProvider
+        jss={pageContext.jss}
+        registry={pageContext.sheetsRegistry}
+        generateClassName={pageContext.generateClassName}
       >
-        <AppFrame>{children}</AppFrame>
-      </MuiThemeProvider>
+        <MuiThemeProvider theme={pageContext.theme} sheetsManager={pageContext.sheetsManager}>
+          <CssBaseline />
+          <AppFrame>{children}</AppFrame>
+          <GoogleTag />
+        </MuiThemeProvider>
+      </JssProvider>
     );
   }
 }
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  dark: PropTypes.bool.isRequired,
+  pageContext: PropTypes.object,
+  uiTheme: PropTypes.object.isRequired,
 };
 
-export default connect(state => state.theme)(AppWrapper);
+export default connect(state => ({
+  uiTheme: state.theme,
+}))(AppWrapper);

@@ -3,15 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "jss": "latest",
-    "jss-preset-default": "latest",
-    "material-ui": "next",
+    "@material-ui/core": "latest",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-jss": "latest",
-    "react-scripts": "latest",
-    "recompose": "latest"
+    "react-scripts": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

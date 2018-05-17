@@ -1,9 +1,7 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   container: {
@@ -25,7 +23,6 @@ function DateAndTimePickers(props) {
       <TextField
         id="datetime-local"
         label="Next appointment"
-        step="300"
         type="datetime-local"
         defaultValue="2017-05-24T10:30"
         className={classes.textField}

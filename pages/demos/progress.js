@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
@@ -17,11 +15,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularIndeterminate'), 'utf8')
 `,
         },
-        'pages/demos/progress/CircularFab.js': {
-          js: require('docs/src/pages/demos/progress/CircularFab').default,
+        'pages/demos/progress/CircularIntegration.js': {
+          js: require('docs/src/pages/demos/progress/CircularIntegration').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularFab'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularIntegration'), 'utf8')
 `,
         },
         'pages/demos/progress/CircularDeterminate.js': {
@@ -29,6 +27,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularDeterminate'), 'utf8')
+`,
+        },
+        'pages/demos/progress/CircularStatic.js': {
+          js: require('docs/src/pages/demos/progress/CircularStatic').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/progress/CircularStatic'), 'utf8')
 `,
         },
         'pages/demos/progress/LinearIndeterminate.js': {
@@ -57,6 +62,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/progress/LinearQuery'), 'utf8')
+`,
+        },
+        'pages/demos/progress/DelayingAppearance.js': {
+          js: require('docs/src/pages/demos/progress/DelayingAppearance').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/progress/DelayingAppearance'), 'utf8')
 `,
         },
       }}

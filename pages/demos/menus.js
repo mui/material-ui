@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
@@ -29,6 +27,27 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/menus/LongMenu'), 'utf8')
+`,
+        },
+        'pages/demos/menus/MenuListComposition.js': {
+          js: require('docs/src/pages/demos/menus/MenuListComposition').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/menus/MenuListComposition'), 'utf8')
+`,
+        },
+        'pages/demos/menus/ListItemComposition.js': {
+          js: require('docs/src/pages/demos/menus/ListItemComposition').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/menus/ListItemComposition'), 'utf8')
+`,
+        },
+        'pages/demos/menus/FadeMenu.js': {
+          js: require('docs/src/pages/demos/menus/FadeMenu').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/menus/FadeMenu'), 'utf8')
 `,
         },
       }}

@@ -1,24 +1,31 @@
+---
+filename: /packages/material-ui/src/Slide/Slide.js
+---
+
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Slide
 
-
+The Slide transition is used by the [Snackbar](/demos/snackbars) component.
+It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | A single child content element. |
-| direction | union:&nbsp;'left'<br>&nbsp;'right'<br>&nbsp;'up'<br>&nbsp;'down'<br> | 'down' | Direction the child element will enter from. |
-| enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering. |
-| in | boolean |  | If `true`, show the component; triggers the enter or exit animation. |
-| leaveTransitionDuration | number | duration.leavingScreen | Duration of the animation when the element is exiting. |
-| onEnter | TransitionCallback |  | Callback fired before the component enters. |
-| onEntered | TransitionCallback |  | Callback fired when the component has entered. |
-| onEntering | TransitionCallback |  | Callback fired when the component is entering. |
-| onExit | TransitionCallback |  | Callback fired before the component exits. |
-| onExited | TransitionCallback |  | Callback fired when the component has exited. |
-| onExiting | TransitionCallback |  | Callback fired when the component is exiting. |
+| <span class="prop-name">children</span> | <span class="prop-type">union:&nbsp;element&nbsp;&#124;<br>&nbsp;func<br> |  | A single child content element. |
+| <span class="prop-name">direction</span> | <span class="prop-type">enum:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'&nbsp;&#124;<br>&nbsp;'up'&nbsp;&#124;<br>&nbsp;'down'<br> | <span class="prop-default">'down'</span> | Direction the child node will enter from. |
+| <span class="prop-name">in</span> | <span class="prop-type">bool |  | If `true`, show the component; triggers the enter or exit animation. |
+| <span class="prop-name">timeout</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
+## Inheritance
+
+The properties of the [Transition](https://reactcommunity.org/react-transition-group/#Transition) component, from react-transition-group, are also available.
+
+## Demos
+
+- [Dialogs](/demos/dialogs)
+- [Transitions](/utils/transitions)
 

@@ -1,13 +1,6 @@
 import React from 'react';
-import pure from 'recompose/pure';
-import SvgIcon from 'material-ui/SvgIcon';
+import createSvgIcon from './utils/createSvgIcon';
 
-let ArrowDropUp = props =>
-  <SvgIcon {...props}>
-    <path d="M7 14l5-5 5 5z" />
-  </SvgIcon>;
-
-ArrowDropUp = pure(ArrowDropUp);
-ArrowDropUp.muiName = 'SvgIcon';
-
-export default ArrowDropUp;
+export default createSvgIcon(
+  <g><path d="M7 14l5-5 5 5z" /></g>
+, 'ArrowDropUp');

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
@@ -22,6 +20,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/app-bar/ButtonAppBar'), 'utf8')
+`,
+        },
+        'pages/demos/app-bar/MenuAppBar.js': {
+          js: require('docs/src/pages/demos/app-bar/MenuAppBar').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/MenuAppBar'), 'utf8')
 `,
         },
       }}

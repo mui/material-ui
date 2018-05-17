@@ -1,11 +1,14 @@
 // @flow weak
 
-import consoleError from './utils/consoleError';
+import './utils/performance';
+import './utils/init';
 
-consoleError();
-
-const integrationContext = require.context('./integration', true, /\.js$/);
+const integrationContext = require.context(
+  '../packages/material-ui/test/integration',
+  true,
+  /\.test\.js$/,
+);
 integrationContext.keys().forEach(integrationContext);
 
-const unitContext = require.context('../src/', true, /\.spec\.js$/);
+const unitContext = require.context('../packages/material-ui/src/', true, /\.test\.js$/);
 unitContext.keys().forEach(unitContext);

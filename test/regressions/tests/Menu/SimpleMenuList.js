@@ -1,8 +1,9 @@
 // @flow
 
 import React from 'react';
-import Paper from 'material-ui/Paper';
-import { MenuList, MenuItem } from 'material-ui/Menu';
+import Paper from '@material-ui/core/Paper';
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
 
 export default function SimpleMenuList() {
   return (

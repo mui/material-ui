@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
-    - image: circleci/node:6.11
+    - image: circleci/node:9.10
 restore_repo: &restore_repo
   restore_cache:
     keys:
@@ -26,7 +26,10 @@ jobs:
           key: v1-yarn-sha-{{ checksum "yarn.lock" }}
       - run:
           name: Install js dependencies
-          command: yarn install --pure-lockfile
+          command: yarn
+      - run:
+          name: Should not have any git not staged
+          command: git diff --exit-code
       - save_cache:
           key: v1-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
@@ -46,6 +49,9 @@ jobs:
           name: Flow
           command: yarn flow
       - run:
+          name: TypeScript
+          command: yarn typescript
+      - run:
           name: Tests fake browser
           command: yarn test:coverage
       - run:
@@ -60,29 +66,39 @@ jobs:
           command: bash <(curl -s https://codecov.io/bash)
   test_build:
     <<: *defaults
+    # This isn't user facing code.
+    # Let's take advantage of the most up to date node version.
+    docker:
+      - image: circleci/node:9.10
     steps:
       - *restore_repo
       - run:
-          name: Can we generate the build?
-          command: yarn build
+          name: Can we generate the material-ui build?
+          command: cd packages/material-ui && yarn build
+      - run:
+          name: Can we build the docs?
+          command: yarn docs:build
       - run:
           name: Is the size acceptable?
           command: yarn size
-      - run:
-          name: Can we generate the api of the docs?
-          command: yarn docs:api
   test_browser:
     <<: *defaults
     steps:
       - *restore_repo
+      - run:
+          name: Can we generate the api of the docs?
+          command: yarn docs:api
+      - run:
+          name: Should not have any git not staged
+          command: git diff --exit-code
       - run:
           name: Tests real browsers
           command: yarn test:karma
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:6.11
-      - image: selenium/standalone-chrome:3.4.0
+      - image: circleci/node:9.10
+      - image: selenium/standalone-chrome:3.11.0
     steps:
       - *restore_repo
       - run:

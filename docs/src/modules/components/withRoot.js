@@ -1,11 +1,8 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import find from 'lodash/find';
+import { withRouter } from 'next/router';
 import { Provider } from 'react-redux';
-import pure from 'recompose/pure';
-import wrapDisplayName from 'recompose/wrapDisplayName';
 import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
@@ -33,55 +30,31 @@ const pages = [
         pathname: '/getting-started/usage',
       },
       {
-        pathname: '/getting-started/examples',
-      },
-      {
         pathname: '/getting-started/supported-components',
       },
       {
         pathname: '/getting-started/supported-platforms',
       },
-    ],
-  },
-  {
-    pathname: '/customization',
-    children: [
       {
-        pathname: '/customization/overrides',
+        pathname: '/getting-started/example-projects',
       },
       {
-        pathname: '/customization/themes',
+        pathname: '/getting-started/faq',
+        title: 'Frequently Asked Questions',
       },
       {
-        pathname: '/customization/css-in-js',
-        title: 'CSS in JS',
-      },
-      {
-        pathname: '/customization/api',
-        title: 'API',
-      },
-    ],
-  },
-  {
-    pathname: '/guides',
-    children: [
-      {
-        pathname: '/guides/composition',
-      },
-      {
-        pathname: '/guides/minimizing-bundle-size',
-      },
-      {
-        pathname: '/guides/server-rendering',
-      },
-      {
-        pathname: '/guides/testing',
+        pathname: '/getting-started/comparison',
+        title: 'Comparison With Other Libraries',
       },
     ],
   },
   {
     pathname: '/style',
     children: [
+      {
+        pathname: '/style/css-baseline',
+        title: 'CSS Baseline',
+      },
       {
         pathname: '/style/color',
       },
@@ -112,6 +85,23 @@ const pages = [
     ],
   },
   {
+    pathname: '/utils',
+    children: [
+      {
+        pathname: '/utils/modals',
+      },
+      {
+        pathname: '/utils/popovers',
+      },
+      {
+        pathname: '/utils/portal',
+      },
+      {
+        pathname: '/utils/transitions',
+      },
+    ],
+  },
+  {
     ...findPages[1],
     title: 'Component Demos',
   },
@@ -120,10 +110,103 @@ const pages = [
     title: 'Component API',
   },
   {
+    pathname: '/customization',
+    children: [
+      {
+        pathname: '/customization/overrides',
+      },
+      {
+        pathname: '/customization/themes',
+      },
+      {
+        pathname: '/customization/default-theme',
+        title: 'Default Theme',
+      },
+      {
+        pathname: '/customization/css-in-js',
+        title: 'CSS in JS',
+      },
+    ],
+  },
+  {
+    pathname: '/guides',
+    children: [
+      {
+        pathname: '/guides/api',
+        title: 'API Design Approach',
+      },
+      {
+        pathname: '/guides/minimizing-bundle-size',
+      },
+      {
+        pathname: '/guides/interoperability',
+        title: 'Style Library Interoperability',
+      },
+      {
+        pathname: '/guides/migration-v0.x',
+        title: 'Migration From v0.x',
+      },
+      {
+        pathname: '/guides/server-rendering',
+      },
+      {
+        pathname: '/guides/composition',
+      },
+      {
+        pathname: '/guides/testing',
+      },
+      {
+        pathname: '/guides/typescript',
+        title: 'TypeScript',
+      },
+      {
+        pathname: '/guides/flow',
+      },
+      {
+        pathname: '/guides/csp',
+        title: 'Content Security Policy',
+      },
+      {
+        pathname: '/guides/right-to-left',
+        title: 'Right-to-left',
+      },
+    ],
+  },
+  {
+    pathname: '/premium-themes',
+    title: 'Premium Themes',
+  },
+  {
+    pathname: '/lab',
+    children: [
+      {
+        pathname: '/lab/about',
+        title: 'About The Lab',
+      },
+      {
+        pathname: '/lab/speed-dial',
+      },
+      findPages[2].children[1],
+    ],
+  },
+  {
     pathname: '/discover-more',
     children: [
       {
         pathname: '/discover-more/vision',
+      },
+      {
+        pathname: '/discover-more/roadmap',
+      },
+      {
+        pathname: '/discover-more/governance',
+      },
+      {
+        pathname: '/discover-more/team',
+      },
+      {
+        pathname: '/discover-more/backers',
+        title: 'Sponsors & Backers',
       },
       {
         pathname: '/discover-more/community',
@@ -134,28 +217,27 @@ const pages = [
       {
         pathname: '/discover-more/related-projects',
       },
-      {
-        pathname: '/discover-more/roadmap',
-      },
-      {
-        pathname: '/discover-more/team',
-      },
     ],
   },
   {
+    pathname: '/versions',
+    displayNav: false,
+  },
+  {
     pathname: '/',
+    displayNav: false,
     title: false,
   },
 ];
 
-function findActivePage(currentPages, url) {
+function findActivePage(currentPages, router) {
   const activePage = find(currentPages, page => {
     if (page.children) {
-      return url.pathname.indexOf(page.pathname) !== -1;
+      return router.pathname.indexOf(page.pathname) === 0;
     }
 
     // Should be an exact match if no children
-    return url.pathname === page.pathname;
+    return router.pathname === page.pathname;
   });
 
   if (!activePage) {
@@ -163,83 +245,90 @@ function findActivePage(currentPages, url) {
   }
 
   // We need to drill down
-  if (activePage.pathname !== url.pathname) {
-    return findActivePage(activePage.children, url);
+  if (activePage.pathname !== router.pathname) {
+    return findActivePage(activePage.children, router);
   }
 
   return activePage;
 }
 
-function withRoot(BaseComponent) {
-  // Prevent rerendering
-  const PureBaseComponent = pure(BaseComponent);
+function withRoot(Component) {
+  class WithRoot extends React.Component {
+    constructor(props, context) {
+      super(props, context);
 
-  type WithRootProps = {
-    reduxServerState?: Object,
-    url: Object,
-  };
-  class WithRoot extends React.Component<WithRootProps> {
-    props: WithRootProps;
-    static childContextTypes = {
-      url: PropTypes.object,
-      pages: PropTypes.array,
-      activePage: PropTypes.object,
-    };
-    static getInitialProps(ctx) {
-      let initialProps = {};
-      const redux = initRedux({});
-
-      if (BaseComponent.getInitialProps) {
-        const baseComponentInitialProps = BaseComponent.getInitialProps({ ...ctx, redux });
-        initialProps = {
-          ...baseComponentInitialProps,
-          ...initialProps,
-        };
-      }
-
-      if (process.browser) {
-        return initialProps;
-      }
-
-      return {
-        ...initialProps,
-        // No need to include other initial Redux state because when it
-        // initialises on the client-side it'll create it again anyway
-        reduxServerState: redux.getState(),
-      };
-    }
-
-    constructor(props) {
-      super(props);
       this.redux = initRedux(this.props.reduxServerState || {});
     }
 
     getChildContext() {
+      const { router } = this.props;
+
+      let pathname = router.pathname;
+      if (pathname !== '/') {
+        // The leading / is only added to support static hosting (resolve /index.html).
+        // We remove it to normalize the pathname.
+        pathname = pathname.replace(/\/$/, '');
+      }
+
       return {
-        url: this.props.url ? this.props.url : null,
         pages,
-        activePage: findActivePage(pages, this.props.url),
+        activePage: findActivePage(pages, { ...router, pathname }),
       };
     }
 
     redux = null;
 
     render() {
+      const { pageContext, ...other } = this.props;
+
       return (
-        <Provider store={this.redux}>
-          <AppWrapper>
-            <PureBaseComponent initialProps={this.props} />
-          </AppWrapper>
-        </Provider>
+        <React.StrictMode>
+          <Provider store={this.redux}>
+            <AppWrapper pageContext={pageContext}>
+              <Component initialProps={other} />
+            </AppWrapper>
+          </Provider>
+        </React.StrictMode>
       );
     }
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
-  }
+  WithRoot.propTypes = {
+    pageContext: PropTypes.object,
+    reduxServerState: PropTypes.object,
+    router: PropTypes.object.isRequired,
+  };
 
-  return WithRoot;
+  WithRoot.childContextTypes = {
+    pages: PropTypes.array,
+    activePage: PropTypes.object,
+  };
+
+  WithRoot.getInitialProps = ctx => {
+    let initialProps = {};
+    const redux = initRedux({});
+
+    if (Component.getInitialProps) {
+      const componentInitialProps = Component.getInitialProps({ ...ctx, redux });
+      initialProps = {
+        ...componentInitialProps,
+        ...initialProps,
+      };
+    }
+
+    if (process.browser) {
+      return initialProps;
+    }
+
+    return {
+      ...initialProps,
+      // No need to include other initial Redux state because when it
+      // initialises on the client-side it'll create it again anyway
+      reduxServerState: redux.getState(),
+    };
+  };
+
+  return withRouter(WithRoot);
 }
 
 export default withRoot;

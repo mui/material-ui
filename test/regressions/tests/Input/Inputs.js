@@ -1,10 +1,8 @@
-// @flow weak
-
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from 'material-ui/styles';
-import Input from 'material-ui/Input';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
 
 const styles = {
   container: {
@@ -20,7 +18,7 @@ const styles = {
   },
 };
 
-class Inputs extends Component<$FlowFixMeProps> {
+class Inputs extends React.Component {
   componentDidMount() {
     this.focusInput.focus();
   }

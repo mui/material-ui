@@ -1,31 +1,28 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'material-ui/Button';
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-} from 'material-ui/Dialog';
-import Typography from 'material-ui/Typography';
-import withStyles from 'material-ui/styles/withStyles';
-import withRoot from '../components/withRoot';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import withRoot from '../src/withRoot';
 
-const styles = {
+const styles = theme => ({
   root: {
     textAlign: 'center',
-    paddingTop: 200,
+    paddingTop: theme.spacing.unit * 20,
   },
-};
+});
 
-class Index extends Component {
+class Index extends React.Component {
   state = {
     open: false,
   };
 
-  handleRequestClose = () => {
+  handleClose = () => {
     this.setState({
       open: false,
     });
@@ -38,26 +35,29 @@ class Index extends Component {
   };
 
   render() {
+    const { classes } = this.props;
+    const { open } = this.state;
+
     return (
-      <div className={this.props.classes.root}>
-        <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
+      <div className={classes.root}>
+        <Dialog open={open} onClose={this.handleClose}>
           <DialogTitle>Super Secret Password</DialogTitle>
           <DialogContent>
             <DialogContentText>1-2-3-4-5</DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button color="primary" onClick={this.handleRequestClose}>
+            <Button color="primary" onClick={this.handleClose}>
               OK
             </Button>
           </DialogActions>
         </Dialog>
-        <Typography type="display1" gutterBottom>
+        <Typography variant="display1" gutterBottom>
           Material-UI
         </Typography>
-        <Typography type="subheading" gutterBottom>
+        <Typography variant="subheading" gutterBottom>
           example project
         </Typography>
-        <Button raised color="accent" onClick={this.handleClick}>
+        <Button variant="raised" color="secondary" onClick={this.handleClick}>
           Super Secret Password
         </Button>
       </div>

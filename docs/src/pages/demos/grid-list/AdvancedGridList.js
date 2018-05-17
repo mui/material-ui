@@ -1,11 +1,11 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { GridList, GridListTile, GridListTileBar } from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
-import StarBorderIcon from 'material-ui-icons/StarBorder';
+import { withStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import IconButton from '@material-ui/core/IconButton';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import tileData from './tileData';
 
 const styles = theme => ({
@@ -14,7 +14,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    background: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,
   },
   gridList: {
     width: 500,
@@ -26,6 +26,9 @@ const styles = theme => ({
     background:
       'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
       'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+  },
+  icon: {
+    color: 'white',
   },
 });
 
@@ -48,7 +51,7 @@ const styles = theme => ({
  * ];
  */
 function AdvancedGridList(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
     <div className={classes.root}>
@@ -60,8 +63,8 @@ function AdvancedGridList(props) {
               title={tile.title}
               titlePosition="top"
               actionIcon={
-                <IconButton>
-                  <StarBorderIcon color="white" />
+                <IconButton className={classes.icon}>
+                  <StarBorderIcon />
                 </IconButton>
               }
               actionPosition="left"

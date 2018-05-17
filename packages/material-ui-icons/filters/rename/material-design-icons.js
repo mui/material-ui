@@ -15,4 +15,4 @@ function myDestRewriter(pathObj: Object) {
   return fileName;
 }
 
-module.exports = myDestRewriter;
+export default myDestRewriter;

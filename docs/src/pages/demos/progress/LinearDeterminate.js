@@ -1,19 +1,15 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { LinearProgress } from 'material-ui/Progress';
+import { withStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const styles = {
   root: {
-    width: '100%',
-    marginTop: 30,
+    flexGrow: 1,
   },
 };
 
 class LinearDeterminate extends React.Component {
-  timer: number;
   state = {
     completed: 0,
   };
@@ -26,23 +22,25 @@ class LinearDeterminate extends React.Component {
     clearInterval(this.timer);
   }
 
+  timer = null;
+
   progress = () => {
     const { completed } = this.state;
-    if (completed > 100) {
+    if (completed === 100) {
       this.setState({ completed: 0 });
     } else {
       const diff = Math.random() * 10;
-      this.setState({ completed: completed + diff });
+      this.setState({ completed: Math.min(completed + diff, 100) });
     }
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <LinearProgress mode="determinate" value={this.state.completed} />
+        <LinearProgress variant="determinate" value={this.state.completed} />
         <br />
-        <LinearProgress color="accent" mode="determinate" value={this.state.completed} />
+        <LinearProgress color="secondary" variant="determinate" value={this.state.completed} />
       </div>
     );
   }

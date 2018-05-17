@@ -1,23 +1,21 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import List, {
-  ListItem,
-  ListItemAvatar,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
-} from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
-import IconButton from 'material-ui/IconButton';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
-import Checkbox from 'material-ui/Checkbox';
-import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
-import FolderIcon from 'material-ui-icons/Folder';
-import DeleteIcon from 'material-ui-icons/Delete';
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import FolderIcon from '@material-ui/icons/Folder';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = theme => ({
   root: {
@@ -25,7 +23,7 @@ const styles = theme => ({
     maxWidth: 752,
   },
   demo: {
-    background: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,
   },
   title: {
     margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
@@ -47,7 +45,7 @@ class InteractiveList extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     const { dense, secondary } = this.state;
 
     return (
@@ -74,15 +72,15 @@ class InteractiveList extends React.Component {
             label="Enable secondary text"
           />
         </FormGroup>
-        <Grid container>
+        <Grid container spacing={16}>
           <Grid item xs={12} md={6}>
-            <Typography type="title" className={classes.title}>
+            <Typography variant="title" className={classes.title}>
               Text only
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate(
-                  <ListItem button>
+                  <ListItem>
                     <ListItemText
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
@@ -93,13 +91,13 @@ class InteractiveList extends React.Component {
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography type="title" className={classes.title}>
+            <Typography variant="title" className={classes.title}>
               Icon with text
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate(
-                  <ListItem button>
+                  <ListItem>
                     <ListItemIcon>
                       <FolderIcon />
                     </ListItemIcon>
@@ -113,15 +111,15 @@ class InteractiveList extends React.Component {
             </div>
           </Grid>
         </Grid>
-        <Grid container>
+        <Grid container spacing={16}>
           <Grid item xs={12} md={6}>
-            <Typography type="title" className={classes.title}>
+            <Typography variant="title" className={classes.title}>
               Avatar with text
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate(
-                  <ListItem button>
+                  <ListItem>
                     <ListItemAvatar>
                       <Avatar>
                         <FolderIcon />
@@ -137,13 +135,13 @@ class InteractiveList extends React.Component {
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography type="title" className={classes.title}>
+            <Typography variant="title" className={classes.title}>
               Avatar with text and icon
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate(
-                  <ListItem button>
+                  <ListItem>
                     <ListItemAvatar>
                       <Avatar>
                         <FolderIcon />

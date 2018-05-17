@@ -1,11 +1,10 @@
-// @flow
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import compose from 'recompose/compose';
+import { withRouter } from 'next/router';
 import NextLink from 'next/link';
-import { withStyles } from 'material-ui/styles';
-import { capitalizeFirstLetter } from 'material-ui/utils/helpers';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
@@ -14,23 +13,23 @@ const styles = theme => ({
       textDecoration: 'underline',
     },
   },
-  variantDefault: {
+  default: {
     color: 'inherit',
   },
-  variantPrimary: {
-    color: theme.palette.primary[500],
+  primary: {
+    color: theme.palette.primary.main,
   },
-  variantAccent: {
-    color: theme.palette.secondary.A400,
+  secondary: {
+    color: theme.palette.secondary.main,
   },
-  variantButton: {
+  button: {
     '&:hover': {
       textDecoration: 'inherit',
     },
   },
 });
 
-class OnClick extends React.Component<any, any> {
+class OnClick extends React.Component {
   handleClick = event => {
     if (this.props.onClick) {
       this.props.onClick(event);
@@ -53,48 +52,44 @@ OnClick.propTypes = {
   onCustomClick: PropTypes.func,
 };
 
-function Link(props, context) {
+function Link(props) {
   const {
     activeClassName,
     children: childrenProp,
-    component: ComponentProp,
     classes,
     className: classNameProp,
-    variant,
+    component: ComponentProp,
     href,
     onClick,
     prefetch,
+    router,
+    variant,
     ...other
   } = props;
 
   let ComponentRoot;
-  const className = classNames(
-    classes.root,
-    classes[`variant${capitalizeFirstLetter(variant)}`],
-    classNameProp,
-  );
-  let rootProps;
+  const className = classNames(classes.root, classes[variant], classNameProp);
+  let RootProps;
   let children = childrenProp;
 
   if (ComponentProp) {
     ComponentRoot = ComponentProp;
-    rootProps = {
+    RootProps = {
       ...other,
       className,
     };
   } else if (href) {
     ComponentRoot = NextLink;
-    rootProps = {
+    RootProps = {
       href,
       prefetch,
       passHref: true,
     };
-    const active = context.url.pathname === href;
     children = (
       <OnClick
         component="a"
         className={classNames(className, {
-          [activeClassName]: active && activeClassName,
+          [activeClassName]: router.pathname === href && activeClassName,
         })}
         onCustomClick={onClick}
         {...other}
@@ -104,35 +99,33 @@ function Link(props, context) {
     );
   } else {
     ComponentRoot = 'a';
-    rootProps = {
+    RootProps = {
       ...other,
       className,
     };
   }
 
-  return <ComponentRoot {...rootProps}>{children}</ComponentRoot>;
+  return <ComponentRoot {...RootProps}>{children}</ComponentRoot>;
 }
+
+Link.defaultProps = {
+  variant: 'default',
+  activeClassName: 'active',
+};
 
 Link.propTypes = {
   activeClassName: PropTypes.string,
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.any,
   href: PropTypes.string,
   onClick: PropTypes.func,
   prefetch: PropTypes.bool,
-  variant: PropTypes.oneOf(['default', 'primary', 'accent', 'button']),
-};
-
-Link.contextTypes = {
-  url: PropTypes.shape({
+  router: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
+  variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'button']),
 };
 
-Link.defaultProps = {
-  variant: 'default',
-};
-
-export default withStyles(styles)(Link);
+export default compose(withRouter, withStyles(styles))(Link);

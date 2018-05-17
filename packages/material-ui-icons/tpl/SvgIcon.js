@@ -1,13 +1,6 @@
 import React from 'react';
-import pure from 'recompose/pure';
-import SvgIcon from '{{{ muiRequireStmt }}}';
+import createSvgIcon from './utils/createSvgIcon';
 
-let {{className}} = props =>
-  <SvgIcon {...props}>
-    {{{paths}}}
-  </SvgIcon>;
-
-{{className}} = pure({{className}});
-{{className}}.muiName = 'SvgIcon';
-
-export default {{className}};
+export default createSvgIcon(
+  <g>{{{paths}}}</g>
+, '{{className}}');

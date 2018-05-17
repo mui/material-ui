@@ -1,11 +1,9 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Avatar from 'material-ui/Avatar';
-import deepOrange from 'material-ui/colors/deepOrange';
-import deepPurple from 'material-ui/colors/deepPurple';
+import { withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import deepOrange from '@material-ui/core/colors/deepOrange';
+import deepPurple from '@material-ui/core/colors/deepPurple';
 
 const styles = {
   avatar: {
@@ -28,7 +26,7 @@ const styles = {
 };
 
 function LetterAvatars(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.row}>
       <Avatar className={classes.avatar}>H</Avatar>

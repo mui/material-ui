@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
@@ -10,18 +8,18 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/demos/tabs/BasicTabs.js': {
-          js: require('docs/src/pages/demos/tabs/BasicTabs').default,
+        'pages/demos/tabs/SimpleTabs.js': {
+          js: require('docs/src/pages/demos/tabs/SimpleTabs').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tabs/BasicTabs'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/tabs/SimpleTabs'), 'utf8')
 `,
         },
-        'pages/demos/tabs/BasicTabsWrappedLabel.js': {
-          js: require('docs/src/pages/demos/tabs/BasicTabsWrappedLabel').default,
+        'pages/demos/tabs/TabsWrappedLabel.js': {
+          js: require('docs/src/pages/demos/tabs/TabsWrappedLabel').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tabs/BasicTabsWrappedLabel'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/tabs/TabsWrappedLabel'), 'utf8')
 `,
         },
         'pages/demos/tabs/FullWidthTabs.js': {
@@ -78,6 +76,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tabs/DisabledTabs'), 'utf8')
+`,
+        },
+        'pages/demos/tabs/CustomizedTabs.js': {
+          js: require('docs/src/pages/demos/tabs/CustomizedTabs').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tabs/CustomizedTabs'), 'utf8')
 `,
         },
       }}

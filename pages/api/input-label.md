@@ -1,3 +1,7 @@
+---
+filename: /packages/material-ui/src/InputLabel/InputLabel.js
+---
+
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # InputLabel
@@ -5,38 +9,43 @@
 
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| FormControlClasses | Object |  | `classes` property applied to the `FormControl` element. |
-| children | Node |  | The contents of the `InputLabel`. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| disableAnimation | boolean | false | If `true`, the transition animation is disabled. |
-| disabled | boolean | false | If `true`, apply disabled class. |
-| error | boolean |  | If `true`, the label will be displayed in an error state. |
-| focused | boolean |  | If `true`, the input of this label is focused. |
-| margin | literal |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
-| required | boolean |  | if `true`, the label will indicate that the input is required. |
-| shrink | boolean |  | If `true`, the label is shrunk. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The contents of the `InputLabel`. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">disableAnimation</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the transition animation is disabled. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool |  | If `true`, apply disabled class. |
+| <span class="prop-name">error</span> | <span class="prop-type">bool |  | If `true`, the label will be displayed in an error state. |
+| <span class="prop-name">focused</span> | <span class="prop-type">bool |  | If `true`, the input of this label is focused. |
+| <span class="prop-name">FormLabelClasses</span> | <span class="prop-type">object |  | `classes` property applied to the `FormLabel` element. |
+| <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'dense'<br> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
+| <span class="prop-name">required</span> | <span class="prop-type">bool |  | if `true`, the label will indicate that the input is required. |
+| <span class="prop-name">shrink</span> | <span class="prop-type">bool |  | If `true`, the label is shrunk. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 
-You can overrides all the class names injected by Material-UI thanks to the `classes` property.
+You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
 - `formControl`
-- `labelDense`
+- `marginDense`
 - `shrink`
 - `animated`
-- `disabled`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/InputLabel/InputLabel.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiInputLabel`.
+
+## Inheritance
+
+The properties of the [FormLabel](/api/form-label) component are also available.
 
 ## Demos
 

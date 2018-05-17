@@ -1,9 +1,19 @@
-// @flow weak
-
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
 import kebabCase from 'lodash/kebabCase';
 import { pageToTitle } from './helpers';
+
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
+const PATH_REPLACE_REGEX = /\\/g;
+const PATH_SEPARATOR = '/';
+
+function normalizePath(path) {
+  return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
+}
+
+function generateHeader(reactAPI) {
+  return ['---', `filename: ${normalizePath(reactAPI.filename)}`, '---'].join('\n');
+}
 
 function getDeprecatedInfo(type) {
   const deprecatedPropType = 'deprecated(PropTypes.';
@@ -20,6 +30,11 @@ function getDeprecatedInfo(type) {
   return false;
 }
 
+function escapeCell(value) {
+  // As the pipe is use for the table structure
+  return value.replace(/</g, '&lt;').replace(/\|/g, '&#124;');
+}
+
 function generatePropDescription(description, type) {
   let deprecated = '';
 
@@ -31,15 +46,16 @@ function generatePropDescription(description, type) {
     }
   }
 
-  const parsed = parseDoctrine(description);
+  const parsed = parseDoctrine(description, {
+    sloppy: true,
+  });
 
   // Two new lines result in a newline in the table.
   // All other new lines must be eliminated to prevent markdown mayhem.
-  const jsDocText = parsed.description
+  const jsDocText = escapeCell(parsed.description)
     .replace(/\n\n/g, '<br>')
     .replace(/\n/g, ' ')
-    .replace(/\r/g, '')
-    .replace(/\|/g, '&#124;'); // As the pipe is use for the table structure
+    .replace(/\r/g, '');
 
   if (parsed.tags.some(tag => tag.title === 'ignore')) {
     return null;
@@ -47,12 +63,7 @@ function generatePropDescription(description, type) {
 
   let signature = '';
 
-  if (
-    (type.name === 'func' ||
-      type.name === 'Function' ||
-      (type.name === 'signature' && type.type === 'function')) &&
-    parsed.tags.length > 0
-  ) {
+  if (type.name === 'func' && parsed.tags.length > 0) {
     // Remove new lines from tag descriptions to avoid markdown errors.
     parsed.tags.forEach(tag => {
       if (tag.description) {
@@ -75,7 +86,19 @@ function generatePropDescription(description, type) {
     }
 
     signature += '<br><br>**Signature:**<br>`function(';
-    signature += parsedArgs.map(tag => `${tag.name}: ${tag.type.name}`).join(', ');
+    signature += parsedArgs
+      .map(tag => {
+        if (tag.type.type === 'AllLiteral') {
+          return `${tag.name}: any`;
+        }
+
+        if (tag.type.type === 'OptionalType') {
+          return `${tag.name}?: ${tag.type.expression.name}`;
+        }
+
+        return `${tag.name}: ${tag.type.name}`;
+      })
+      .join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
     signature += parsedArgs.map(tag => `*${tag.name}:* ${tag.description}`).join('<br>');
     if (parsedReturns.description) {
@@ -88,9 +111,6 @@ function generatePropDescription(description, type) {
 
 function generatePropType(type) {
   switch (type.name) {
-    case 'func':
-      return 'function';
-
     case 'custom': {
       const deprecatedInfo = getDeprecatedInfo(type);
 
@@ -103,25 +123,30 @@ function generatePropType(type) {
       return type.raw;
     }
 
+    case 'shape':
+      return `{${Object.keys(type.value)
+        .map(subValue => {
+          return `${subValue}?: ${generatePropType(type.value[subValue])}`;
+        })
+        .join(', ')}}`;
+
     case 'union':
     case 'enum': {
-      let values;
-      if (type.raw) {
-        // flow union
-        values = type.raw.split('|').map(v => v.trim());
-      } else {
-        values = type.value.map(v => v.value || v.name);
-      }
+      let values = type.value.map(type2 => {
+        if (type.name === 'enum') {
+          return escapeCell(type2.value);
+        }
+
+        return generatePropType(type2);
+      });
+
       // Display one value per line as it's better for visibility.
       if (values.length < 5) {
-        values = values.join('<br>&nbsp;');
+        values = values.join('&nbsp;&#124;<br>&nbsp;');
       } else {
         values = values.join(', ');
       }
       return `${type.name}:&nbsp;${values}<br>`;
-    }
-    case 'HiddenProps': {
-      return `[${type.name}](/layout/hidden)`;
     }
     default:
       return type.name;
@@ -144,62 +169,79 @@ function generateProps(reactAPI) {
   const header = '## Props';
 
   let text = `${header}
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|\n`;
 
-  text = Object.keys(reactAPI.props)
-    .sort()
-    .reduce((textProps, propRaw) => {
-      const prop = getProp(reactAPI.props, propRaw);
-      const description = generatePropDescription(prop.description, prop.flowType || prop.type);
+  text = Object.keys(reactAPI.props).reduce((textProps, propRaw) => {
+    const prop = getProp(reactAPI.props, propRaw);
 
-      if (description === null) {
-        return textProps;
-      }
+    if (typeof prop.description === 'undefined') {
+      throw new Error(`The "${propRaw}"" property is missing a description`);
+    }
 
-      let defaultValue = '';
+    const description = generatePropDescription(prop.description, prop.flowType || prop.type);
 
-      if (prop.defaultValue) {
-        defaultValue = prop.defaultValue.value.replace(/\n/g, '');
-      }
-
-      if (prop.required) {
-        propRaw = `<span style="color: #31a148">${propRaw}\u2009*</span>`;
-      }
-
-      const type = prop.flowType || prop.type;
-      if (type && type.name === 'custom') {
-        if (getDeprecatedInfo(prop.type)) {
-          propRaw = `~~${propRaw}~~`;
-        }
-      }
-
-      textProps += `| ${propRaw} | ${generatePropType(
-        type,
-      )} | ${defaultValue} | ${description} |\n`;
-
+    if (description === null) {
       return textProps;
-    }, text);
+    }
+
+    let defaultValue = '';
+
+    if (prop.defaultValue) {
+      defaultValue = `<span class="prop-default">${escapeCell(
+        prop.defaultValue.value.replace(/\n/g, ''),
+      )}</span>`;
+    }
+
+    if (prop.required) {
+      propRaw = `<span class="prop-name required">${propRaw}\u00a0*</span>`;
+    } else {
+      propRaw = `<span class="prop-name">${propRaw}</span>`;
+    }
+
+    if (prop.type.name === 'custom') {
+      if (getDeprecatedInfo(prop.type)) {
+        propRaw = `~~${propRaw}~~`;
+      }
+    }
+
+    textProps += `| ${propRaw} | <span class="prop-type">${generatePropType(
+      prop.type,
+    )} | ${defaultValue} | ${description} |\n`;
+
+    return textProps;
+  }, text);
 
   return text;
 }
 
 function generateClasses(reactAPI) {
-  return reactAPI.styles.classes.length
-    ? `
-## CSS API
+  if (!reactAPI.styles.classes.length) {
+    return '';
+  }
 
-You can overrides all the class names injected by Material-UI thanks to the \`classes\` property.
+  if (!reactAPI.styles.name) {
+    throw new Error(`Missing styles name on ${reactAPI.name} component`);
+  }
+
+  return `## CSS API
+
+You can override all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:
 ${reactAPI.styles.classes.map(className => `- \`${className}\``).join('\n')}
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
+    reactAPI.filename,
+  )})
+for more detail.
 
 If using the \`overrides\` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
-you need to use the following style sheet name: \`${reactAPI.styles.name}\`.`
-    : '';
+you need to use the following style sheet name: \`${reactAPI.styles.name}\`.
+
+`;
 }
 
 const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
@@ -212,13 +254,29 @@ function generateInheritance(reactAPI) {
   }
 
   const component = inheritedComponent[1];
+  let pathname;
+  let suffix = '';
 
-  return `
-## Inheritance
+  switch (component) {
+    case 'Transition':
+      suffix = ', from react-transition-group,';
+      pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
+      break;
 
-The properties of the [&lt;${component} /&gt;](/api/${kebabCase(
-    component,
-  )}) component are also available.
+    case 'EventListener':
+      suffix = ', from react-event-listener,';
+      pathname = 'https://github.com/oliviertassinari/react-event-listener';
+      break;
+
+    default:
+      pathname = `/api/${kebabCase(component)}`;
+      break;
+  }
+
+  return `## Inheritance
+
+The properties of the [${component}](${pathname}) component${suffix} are also available.
+
 `;
 }
 
@@ -235,23 +293,26 @@ function generateDemos(reactAPI) {
     return '';
   }
 
-  return `
-## Demos
+  return `## Demos
 
 ${pagesMarkdown.map(page => `- [${pageToTitle(page)}](${page.pathname})`).join('\n')}
+
 `;
 }
 
-export default function generateMarkdown(reactAPI: Object) {
-  return (
-    '<!--- This documentation is automatically generated, do not try to edit it. -->\n\n' +
-    `# ${reactAPI.name}\n\n` +
-    `${reactAPI.description}\n\n` +
-    `${generateProps(reactAPI)}\n` +
-    'Any other properties supplied will be ' +
-    '[spread to the root element](/customization/api#spread).\n' +
-    `${generateClasses(reactAPI)}\n` +
-    `${generateInheritance(reactAPI)}` +
-    `${generateDemos(reactAPI)}\n`
-  );
+export default function generateMarkdown(reactAPI) {
+  return [
+    generateHeader(reactAPI),
+    '',
+    '<!--- This documentation is automatically generated, do not try to edit it. -->',
+    '',
+    `# ${reactAPI.name}`,
+    '',
+    reactAPI.description,
+    '',
+    generateProps(reactAPI),
+    'Any other properties supplied will be [spread to the root element](/guides/api#spread).',
+    '',
+    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,
+  ].join('\n');
 }

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
@@ -36,6 +34,13 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/lists/NestedList'), 'utf8')
+`,
+        },
+        'pages/demos/lists/PinnedSubheaderList.js': {
+          js: require('docs/src/pages/demos/lists/PinnedSubheaderList').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/lists/PinnedSubheaderList'), 'utf8')
 `,
         },
         'pages/demos/lists/CheckboxList.js': {

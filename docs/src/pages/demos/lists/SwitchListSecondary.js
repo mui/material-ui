@@ -1,24 +1,21 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import List, {
-  ListItem,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
-  ListSubheader,
-} from 'material-ui/List';
-import Switch from 'material-ui/Switch';
-import WifiIcon from 'material-ui-icons/Wifi';
-import BluetoothIcon from 'material-ui-icons/Bluetooth';
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import Switch from '@material-ui/core/Switch';
+import WifiIcon from '@material-ui/icons/Wifi';
+import BluetoothIcon from '@material-ui/icons/Bluetooth';
 
 const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    background: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper,
   },
 });
 
@@ -27,7 +24,7 @@ class SwitchListSecondary extends React.Component {
     checked: ['wifi'],
   };
 
-  handleToggle = (event, value) => {
+  handleToggle = value => () => {
     const { checked } = this.state;
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -44,7 +41,7 @@ class SwitchListSecondary extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
@@ -56,7 +53,7 @@ class SwitchListSecondary extends React.Component {
             <ListItemText primary="Wi-Fi" />
             <ListItemSecondaryAction>
               <Switch
-                onClick={event => this.handleToggle(event, 'wifi')}
+                onChange={this.handleToggle('wifi')}
                 checked={this.state.checked.indexOf('wifi') !== -1}
               />
             </ListItemSecondaryAction>
@@ -68,7 +65,7 @@ class SwitchListSecondary extends React.Component {
             <ListItemText primary="Bluetooth" />
             <ListItemSecondaryAction>
               <Switch
-                onClick={event => this.handleToggle(event, 'bluetooth')}
+                onChange={this.handleToggle('bluetooth')}
                 checked={this.state.checked.indexOf('bluetooth') !== -1}
               />
             </ListItemSecondaryAction>

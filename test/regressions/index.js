@@ -1,8 +1,5 @@
-// @flow
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import vrtest from 'vrtest/client';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
@@ -26,19 +23,27 @@ const regressions = requireRegression.keys().reduce((res, path) => {
 const blacklistSuite = [
   // Flaky
   'docs-demos-progress',
-  'docs-discover-more', // GitHub images
+  'docs-discover-more-team', // GitHub images
 
   // Needs interaction
   'docs-demos-dialogs',
   'docs-demos-menus',
+  'docs-demos-tooltips',
+  'docs-utils-transitions',
 
   // Useless
   'docs-', // Home
-  'docs-style',
+  'docs-versions',
   'docs-guides',
+  'docs-premium-themes',
 ];
 
-const blacklistName = ['tileData'];
+const blacklistFilename = [
+  'docs-getting-started-usage/Usage.png', // codesandbox iframe
+  'docs-demos-drawers/tileData.png', // no component
+  'docs-demos-grid-list/tileData.png', // no component
+  'docs-style-color/Color.png', // non important demo
+];
 
 // Also use some of the demos to avoid code duplication.
 const requireDemos = require.context('docs/src/pages', true, /js$/);
@@ -50,7 +55,7 @@ const demos = requireDemos.keys().reduce((res, path) => {
     .reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (!blacklistSuite.includes(suite) && !blacklistName.includes(name)) {
+  if (!blacklistSuite.includes(suite) && !blacklistFilename.includes(`${suite}/${name}.png`)) {
     res.push({
       path,
       suite,
@@ -97,11 +102,9 @@ tests.forEach(test => {
   suite.createTest(test.name, () => {
     const TestCase = test.case;
     ReactDOM.render(
-      <MuiThemeProvider theme={createMuiTheme()}>
-        <TestViewer>
-          <TestCase />
-        </TestViewer>
-      </MuiThemeProvider>,
+      <TestViewer>
+        <TestCase />
+      </TestViewer>,
       rootEl,
     );
   });

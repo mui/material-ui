@@ -1,128 +1,103 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
-import Button from 'material-ui/Button';
-import List from 'material-ui/List';
-import Divider from 'material-ui/Divider';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const styles = {
   list: {
     width: 250,
-    flex: 'initial',
   },
-  listFull: {
+  fullList: {
     width: 'auto',
-    flex: 'initial',
   },
 };
 
 class TemporaryDrawer extends React.Component {
   state = {
-    open: {
-      top: false,
-      left: false,
-      bottom: false,
-      right: false,
-    },
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
   };
 
-  toggleDrawer = (side, open) => {
-    const drawerState = {};
-    drawerState[side] = open;
-    this.setState({ open: drawerState });
-  };
-
-  handleTopOpen = () => {
-    this.toggleDrawer('top', true);
-  };
-
-  handleTopClose = () => {
-    this.toggleDrawer('top', false);
-  };
-
-  handleLeftOpen = () => {
-    this.toggleDrawer('left', true);
-  };
-
-  handleLeftClose = () => {
-    this.toggleDrawer('left', false);
-  };
-
-  handleBottomOpen = () => {
-    this.toggleDrawer('bottom', true);
-  };
-
-  handleBottomClose = () => {
-    this.toggleDrawer('bottom', false);
-  };
-
-  handleRightOpen = () => {
-    this.toggleDrawer('right', true);
-  };
-
-  handleRightClose = () => {
-    this.toggleDrawer('right', false);
+  toggleDrawer = (side, open) => () => {
+    this.setState({
+      [side]: open,
+    });
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     const sideList = (
-      <div>
-        <List className={classes.list}>{mailFolderListItems}</List>
+      <div className={classes.list}>
+        <List>{mailFolderListItems}</List>
         <Divider />
-        <List className={classes.list}>{otherMailFolderListItems}</List>
+        <List>{otherMailFolderListItems}</List>
       </div>
     );
 
     const fullList = (
-      <div>
-        <List className={classes.listFull}>{mailFolderListItems}</List>
+      <div className={classes.fullList}>
+        <List>{mailFolderListItems}</List>
         <Divider />
-        <List className={classes.listFull}>{otherMailFolderListItems}</List>
+        <List>{otherMailFolderListItems}</List>
       </div>
     );
 
     return (
       <div>
-        <Button onClick={this.handleLeftOpen}>Open Left</Button>
-        <Button onClick={this.handleRightOpen}>Open Right</Button>
-        <Button onClick={this.handleTopOpen}>Open Top</Button>
-        <Button onClick={this.handleBottomOpen}>Open Bottom</Button>
-        <Drawer
-          open={this.state.open.left}
-          onRequestClose={this.handleLeftClose}
-          onClick={this.handleLeftClose}
-        >
-          {sideList}
+        <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
+        <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button>
+        <Button onClick={this.toggleDrawer('top', true)}>Open Top</Button>
+        <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button>
+        <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer('left', false)}
+            onKeyDown={this.toggleDrawer('left', false)}
+          >
+            {sideList}
+          </div>
         </Drawer>
-        <Drawer
-          anchor="top"
-          open={this.state.open.top}
-          onRequestClose={this.handleTopClose}
-          onClick={this.handleTopClose}
-        >
-          {fullList}
+        <Drawer anchor="top" open={this.state.top} onClose={this.toggleDrawer('top', false)}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer('top', false)}
+            onKeyDown={this.toggleDrawer('top', false)}
+          >
+            {fullList}
+          </div>
         </Drawer>
         <Drawer
           anchor="bottom"
-          open={this.state.open.bottom}
-          onRequestClose={this.handleBottomClose}
-          onClick={this.handleBottomClose}
+          open={this.state.bottom}
+          onClose={this.toggleDrawer('bottom', false)}
         >
-          {fullList}
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer('bottom', false)}
+            onKeyDown={this.toggleDrawer('bottom', false)}
+          >
+            {fullList}
+          </div>
         </Drawer>
-        <Drawer
-          anchor="right"
-          open={this.state.open.right}
-          onRequestClose={this.handleRightClose}
-          onClick={this.handleRightClose}
-        >
-          {sideList}
+        <Drawer anchor="right" open={this.state.right} onClose={this.toggleDrawer('right', false)}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer('right', false)}
+            onKeyDown={this.toggleDrawer('right', false)}
+          >
+            {sideList}
+          </div>
         </Drawer>
       </div>
     );

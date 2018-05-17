@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
@@ -43,6 +41,20 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/snackbars/FadeSnackbar'), 'utf8')
+`,
+        },
+        'pages/demos/snackbars/FabIntegrationSnackbar.js': {
+          js: require('docs/src/pages/demos/snackbars/FabIntegrationSnackbar').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/snackbars/FabIntegrationSnackbar'), 'utf8')
+`,
+        },
+        'pages/demos/snackbars/ConsecutiveSnackbars.js': {
+          js: require('docs/src/pages/demos/snackbars/ConsecutiveSnackbars').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/snackbars/ConsecutiveSnackbars'), 'utf8')
 `,
         },
       }}

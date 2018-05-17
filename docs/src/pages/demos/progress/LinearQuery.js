@@ -1,24 +1,21 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { LinearProgress } from 'material-ui/Progress';
+import { withStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
-const styles = theme => ({
+const styles = {
   root: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    flexGrow: 1,
   },
-});
+};
 
 function LinearQuery(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.root}>
-      <LinearProgress mode="query" />
+      <LinearProgress variant="query" />
       <br />
-      <LinearProgress color="accent" mode="query" />
+      <LinearProgress color="secondary" variant="query" />
     </div>
   );
 }

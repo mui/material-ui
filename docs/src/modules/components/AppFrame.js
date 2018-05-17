@@ -1,102 +1,41 @@
-// @flow
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import NProgress from 'nprogress';
 import Router from 'next/router';
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
-import LightbulbOutline from 'material-ui-icons/LightbulbOutline';
-import Github from 'docs/src/modules/components/GitHub';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import MenuIcon from '@material-ui/icons/Menu';
+import LightbulbOutline from '@material-ui/icons/LightbulbOutline';
+import LightbublFull from '@material-ui/docs/svgIcons/LightbublFull';
+import NProgressBar from '@material-ui/docs/NProgressBar';
+import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
+import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
+import Github from '@material-ui/docs/svgIcons/GitHub';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
+import Notifications from 'docs/src/modules/components/Notifications';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-
-// Disaply a progress bar between route transitions
-NProgress.configure({
-  template: `
-    <div class="bar" role="bar">
-      <dt></dt>
-      <dd></dd>
-    </div>
-  `,
-});
+import actionTypes from 'docs/src/modules/redux/actionTypes';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
 };
+
 Router.onRouteChangeComplete = () => {
   NProgress.done();
 };
+
 Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
 const styles = theme => ({
-  '@global': {
-    html: {
-      background: theme.palette.background.default,
-      WebkitFontSmoothing: 'antialiased', // Antialiasing.
-      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-      boxSizing: 'border-box',
-    },
-    '*, *:before, *:after': {
-      boxSizing: 'inherit',
-    },
-    body: {
-      margin: 0,
-    },
-    '#nprogress': {
-      pointerEvents: 'none',
-      '& .bar': {
-        position: 'fixed',
-        background: '#000',
-        borderRadius: 1,
-        zIndex: theme.zIndex.tooltip,
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: 2,
-      },
-      '& dd, & dt': {
-        position: 'absolute',
-        top: 0,
-        height: 2,
-        boxShadow: '#000 1px 0 6px 1px',
-        borderRadius: '100%',
-        animation: 'nprogress-pulse 2s ease-out 0s infinite',
-      },
-      '& dd': {
-        opacity: 0.6,
-        width: 20,
-        right: 0,
-        clip: 'rect(-6px,22px,14px,10px)',
-      },
-      '& dt': {
-        opacity: 0.6,
-        width: 180,
-        right: -80,
-        clip: 'rect(-6px,90px,14px,-6px)',
-      },
-    },
-    '@keyframes nprogress-pulse': {
-      '30%': {
-        opacity: 0.6,
-      },
-      '60%': {
-        opacity: 0,
-      },
-      to: {
-        opacity: 0.6,
-      },
-    },
-  },
   root: {
     display: 'flex',
     alignItems: 'stretch',
@@ -112,6 +51,9 @@ const styles = theme => ({
   },
   appBar: {
     transition: theme.transitions.create('width'),
+    '@media print': {
+      position: 'absolute',
+    },
   },
   appBarHome: {
     boxShadow: 'none',
@@ -133,25 +75,44 @@ const styles = theme => ({
   },
 });
 
-class AppFrame extends React.Component<any, any> {
+class AppFrame extends React.Component {
   state = {
     mobileOpen: false,
+  };
+
+  handleDrawerOpen = () => {
+    this.setState({ mobileOpen: true });
   };
 
   handleDrawerClose = () => {
     this.setState({ mobileOpen: false });
   };
 
-  handleDrawerToggle = () => {
-    this.setState({ mobileOpen: !this.state.mobileOpen });
+  handleTogglePaletteType = () => {
+    this.props.dispatch({
+      type: actionTypes.THEME_CHANGE_PALETTE_TYPE,
+      payload: {
+        paletteType: this.props.uiTheme.paletteType === 'light' ? 'dark' : 'light',
+      },
+    });
   };
 
-  handleToggleShade = () => {
-    this.props.dispatch({ type: 'TOGGLE_THEME_SHADE' });
+  handleToggleDirection = () => {
+    this.props.dispatch({
+      type: actionTypes.THEME_CHANGE_DIRECTION,
+      payload: {
+        direction: this.props.uiTheme.direction === 'ltr' ? 'rtl' : 'ltr',
+      },
+    });
   };
 
   render() {
-    const { children, classes } = this.props;
+    const { children, classes, uiTheme } = this.props;
+
+    if (!this.context.activePage) {
+      throw new Error('Missing activePage.');
+    }
+
     const title =
       this.context.activePage.title !== false ? pageToTitle(this.context.activePage) : null;
 
@@ -164,51 +125,74 @@ class AppFrame extends React.Component<any, any> {
       disablePermanent = true;
       appBarClassName += ` ${classes.appBarHome}`;
     } else {
-      navIconClassName += ` ${classes.navIconHide}`;
+      navIconClassName = classes.navIconHide;
       appBarClassName += ` ${classes.appBarShift}`;
     }
 
     return (
       <div className={classes.root}>
+        <NProgressBar />
         <AppBar className={appBarClassName}>
           <Toolbar>
             <IconButton
-              color="contrast"
+              color="inherit"
               aria-label="open drawer"
-              onClick={this.handleDrawerToggle}
+              onClick={this.handleDrawerOpen}
               className={navIconClassName}
             >
               <MenuIcon />
             </IconButton>
             {title !== null && (
-              <Typography className={classes.title} type="title" color="inherit" noWrap>
+              <Typography className={classes.title} variant="title" color="inherit" noWrap>
                 {title}
               </Typography>
             )}
             <div className={classes.grow} />
             <AppSearch />
-            <IconButton
-              title="Toggle light/dark theme"
-              color="contrast"
-              aria-label="change theme"
-              onClick={this.handleToggleShade}
+            <Tooltip id="appbar-theme" title="Toggle light/dark theme" enterDelay={300}>
+              <IconButton
+                color="inherit"
+                onClick={this.handleTogglePaletteType}
+                aria-labelledby="appbar-theme"
+              >
+                {uiTheme.paletteType === 'light' ? <LightbulbOutline /> : <LightbublFull />}
+              </IconButton>
+            </Tooltip>
+            <Tooltip
+              id="appbar-direction"
+              title="Toggle right-to-left/left-to-right"
+              enterDelay={300}
             >
-              <LightbulbOutline />
-            </IconButton>
-            <IconButton
-              component="a"
-              title="GitHub"
-              color="contrast"
-              href="https://github.com/callemall/material-ui/tree/v1-beta"
-            >
-              <Github />
-            </IconButton>
+              <IconButton
+                color="inherit"
+                onClick={this.handleToggleDirection}
+                aria-labelledby="appbar-direction"
+              >
+                {uiTheme.direction === 'rtl' ? (
+                  <FormatTextdirectionLToR />
+                ) : (
+                  <FormatTextdirectionRToL />
+                )}
+              </IconButton>
+            </Tooltip>
+            <Tooltip id="appbar-github" title="GitHub repository" enterDelay={300}>
+              <IconButton
+                component="a"
+                color="inherit"
+                href="https://github.com/mui-org/material-ui"
+                aria-labelledby="appbar-github"
+              >
+                <Github />
+              </IconButton>
+            </Tooltip>
           </Toolbar>
         </AppBar>
+        <Notifications />
         <AppDrawer
           className={classes.drawer}
           disablePermanent={disablePermanent}
-          onRequestClose={this.handleDrawerClose}
+          onClose={this.handleDrawerClose}
+          onOpen={this.handleDrawerOpen}
           mobileOpen={this.state.mobileOpen}
         />
         {children}
@@ -221,17 +205,20 @@ AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  uiTheme: PropTypes.object.isRequired,
 };
 
 AppFrame.contextTypes = {
   activePage: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
 };
 
 export default compose(
   withStyles(styles, {
     name: 'AppFrame',
   }),
-  connect(),
+  connect(state => ({
+    uiTheme: state.theme,
+  })),
 )(AppFrame);

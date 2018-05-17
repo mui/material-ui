@@ -1,18 +1,16 @@
-// @flow
-
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
-const styles = (theme: Object) => ({
+const styles = theme => ({
   '@global': {
     html: {
       WebkitFontSmoothing: 'antialiased', // Antialiasing.
       MozOsxFontSmoothing: 'grayscale', // Antialiasing.
       // Do the opposite of the docs in order to help catching issues.
-      boxSizing: 'border-box',
+      boxSizing: 'content-box',
     },
-    '*, *:before, *:after': {
+    '*, *::before, *::after': {
       boxSizing: 'inherit',
       // Disable transitions to avoid flaky screenshots
       transition: 'none !important',
@@ -24,12 +22,12 @@ const styles = (theme: Object) => ({
     },
   },
   root: {
-    background: theme.palette.background.default,
+    backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit,
   },
 });
 
-class TestViewer extends Component<$FlowFixMeProps> {
+class TestViewer extends React.Component {
   getChildContext() {
     return {
       url: {
@@ -46,7 +44,7 @@ class TestViewer extends Component<$FlowFixMeProps> {
 }
 
 TestViewer.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
 };
 

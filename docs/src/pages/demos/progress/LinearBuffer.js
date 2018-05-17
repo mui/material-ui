@@ -1,19 +1,15 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { LinearProgress } from 'material-ui/Progress';
+import { withStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const styles = {
   root: {
-    width: '100%',
-    marginTop: 30,
+    flexGrow: 1,
   },
 };
 
 class LinearBuffer extends React.Component {
-  timer: number;
   state = {
     completed: 0,
     buffer: 10,
@@ -27,6 +23,8 @@ class LinearBuffer extends React.Component {
     clearInterval(this.timer);
   }
 
+  timer = null;
+
   progress = () => {
     const { completed } = this.state;
     if (completed > 100) {
@@ -39,13 +37,13 @@ class LinearBuffer extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     const { completed, buffer } = this.state;
     return (
       <div className={classes.root}>
-        <LinearProgress mode="buffer" value={completed} valueBuffer={buffer} />
+        <LinearProgress variant="buffer" value={completed} valueBuffer={buffer} />
         <br />
-        <LinearProgress color="accent" mode="buffer" value={completed} valueBuffer={buffer} />
+        <LinearProgress color="secondary" variant="buffer" value={completed} valueBuffer={buffer} />
       </div>
     );
   }

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
@@ -43,6 +41,20 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/dialogs/FullScreenDialog'), 'utf8')
+`,
+        },
+        'pages/demos/dialogs/FormDialog.js': {
+          js: require('docs/src/pages/demos/dialogs/FormDialog').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/dialogs/FormDialog'), 'utf8')
+`,
+        },
+        'pages/demos/dialogs/ResponsiveDialog.js': {
+          js: require('docs/src/pages/demos/dialogs/ResponsiveDialog').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/dialogs/ResponsiveDialog'), 'utf8')
 `,
         },
       }}

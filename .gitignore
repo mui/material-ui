@@ -1,26 +1,20 @@
-# Exclude compiled files
-build
-/lib
-/.next
-/.eslintcache
-/docs/export
-/tmp
-coverage
-
-# OS files
-.DS_STORE
-
-# Screenshors generated for Argos-CI
-/test/regressions/screenshots
-/test/selenium-output
-
-# npm files
-node_modules
-package-lock.json
-*.log
-
-# Editor files
+# The best pattern people should follow is ignoring the editors' files in their
+# global .gitignore configuration file.
+# However, in order to prevent issues. We also ignore editors' files here.
 .idea
 .vscode
 
-.nyc_output
+*.log
+.DS_STORE
+/.eslintcache
+/.next
+/.nyc_output
+/coverage
+/docs/export
+/packages/material-ui-codemod/lib
+/test/regressions/screenshots
+/test/selenium-output
+/tmp
+build
+node_modules
+package-lock.json

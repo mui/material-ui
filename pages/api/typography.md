@@ -1,3 +1,7 @@
+---
+filename: /packages/material-ui/src/Typography/Typography.js
+---
+
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Typography
@@ -5,24 +9,25 @@
 
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| align | union:&nbsp;'inherit', 'left', 'center', 'right', 'justify'<br> | 'inherit' |  |
-| children | Node |  |  |
-| classes | Object |  | Useful to extend the style applied to components. |
-| color | union:&nbsp;'inherit'<br>&nbsp;'secondary'<br>&nbsp;'accent'<br>&nbsp;'default'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
-| component | union:&nbsp;string<br>&nbsp;ComponentType<*><br> |  | The component used for the root node. Either a string to use a DOM element or a component. By default we map the type to a good default headline component. |
-| gutterBottom | boolean | false | If `true`, the text will have a bottom margin. |
-| headlineMapping | signature | {  display4: 'h1',  display3: 'h1',  display2: 'h1',  display1: 'h1',  headline: 'h1',  title: 'h2',  subheading: 'h3',  body2: 'aside',  body1: 'p',} | We are empirically mapping the type property to a range of different DOM element type. For instance, h1 to h6. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` property. |
-| noWrap | boolean | false | If `true`, the text will not wrap, but instead will truncate with an ellipsis. |
-| paragraph | boolean | false | If `true`, the text will have a bottom margin. |
-| type | union:&nbsp;, 'display4', 'display3', 'display2', 'display1', 'headline', 'title', 'subheading', 'body2', 'body1', 'caption', 'button'<br> | 'body1' | Applies the theme typography styles. |
+| <span class="prop-name">align</span> | <span class="prop-type">enum:&nbsp;'inherit', 'left', 'center', 'right', 'justify'<br> | <span class="prop-default">'inherit'</span> | Set the text-align on the component. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'inherit', 'primary', 'textSecondary', 'secondary', 'error', 'default'<br> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component. |
+| <span class="prop-name">gutterBottom</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the text will have a bottom margin. |
+| <span class="prop-name">headlineMapping</span> | <span class="prop-type">object | <span class="prop-default">{  display4: 'h1',  display3: 'h1',  display2: 'h1',  display1: 'h1',  headline: 'h1',  title: 'h2',  subheading: 'h3',  body2: 'aside',  body1: 'p',}</span> | We are empirically mapping the variant property to a range of different DOM element types. For instance, h1 to h6. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` property. |
+| <span class="prop-name">noWrap</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the text will not wrap, but instead will truncate with an ellipsis. |
+| <span class="prop-name">paragraph</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the text will have a bottom margin. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'display4', 'display3', 'display2', 'display1', 'headline', 'title', 'subheading', 'body2', 'body1', 'caption', 'button'<br> | <span class="prop-default">'body1'</span> | Applies the theme typography styles. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 
-You can overrides all the class names injected by Material-UI thanks to the `classes` property.
+You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
 - `display4`
@@ -44,11 +49,14 @@ This property accepts the following keys:
 - `gutterBottom`
 - `paragraph`
 - `colorInherit`
+- `colorPrimary`
 - `colorSecondary`
-- `colorAccent`
+- `colorTextSecondary`
+- `colorError`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Typography/Typography.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

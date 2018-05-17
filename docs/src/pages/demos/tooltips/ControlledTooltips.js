@@ -1,33 +1,32 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
-import DeleteIcon from 'material-ui-icons/Delete';
-import IconButton from 'material-ui/IconButton';
-import Tooltip from 'material-ui/Tooltip';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 
 class ControlledTooltips extends React.Component {
   state = {
     open: false,
   };
 
-  handleIconButtonRequestClose = () => {
+  handleTooltipClose = () => {
     this.setState({ open: false });
   };
 
-  handleIconButtonRequestOpen = () => {
+  handleTooltipOpen = () => {
     this.setState({ open: true });
   };
 
   render() {
     return (
       <Tooltip
-        label="Delete"
-        onRequestClose={this.handleIconButtonRequestClose}
         enterDelay={300}
+        id="tooltip-controlled"
         leaveDelay={300}
-        onRequestOpen={this.handleIconButtonRequestOpen}
+        onClose={this.handleTooltipClose}
+        onOpen={this.handleTooltipOpen}
         open={this.state.open}
         placement="bottom"
+        title="Delete"
       >
         <IconButton aria-label="Delete">
           <DeleteIcon />

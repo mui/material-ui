@@ -1,9 +1,8 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
+import { withStyles } from '@material-ui/core/styles';
+import MenuItem from 'material-ui/Menu/MenuItem';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   container: {
@@ -15,19 +14,36 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 200,
   },
+  menu: {
+    width: 200,
+  },
 });
+
+const currencies = [
+  {
+    value: 'USD',
+    label: '$',
+  },
+  {
+    value: 'EUR',
+    label: '€',
+  },
+  {
+    value: 'BTC',
+    label: '฿',
+  },
+  {
+    value: 'JPY',
+    label: '¥',
+  },
+];
 
 class TextFields extends React.Component {
   state = {
     name: 'Cat in the Hat',
     age: '',
     multiline: 'Controlled',
-  };
-
-  handleChangeMultiline = event => {
-    this.setState({
-      multiline: event.target.value,
-    });
+    currency: 'EUR',
   };
 
   handleChange = name => event => {
@@ -73,7 +89,7 @@ class TextFields extends React.Component {
           margin="normal"
         />
         <TextField
-          id="password"
+          id="password-input"
           label="Password"
           className={classes.textField}
           type="password"
@@ -86,7 +102,7 @@ class TextFields extends React.Component {
           multiline
           rowsMax="4"
           value={this.state.multiline}
-          onChange={this.handleChangeMultiline}
+          onChange={this.handleChange('multiline')}
           className={classes.textField}
           margin="normal"
         />
@@ -108,12 +124,14 @@ class TextFields extends React.Component {
           margin="normal"
         />
         <TextField
+          id="with-placeholder"
           label="With placeholder"
           placeholder="Placeholder"
           className={classes.textField}
           margin="normal"
         />
         <TextField
+          id="textarea"
           label="With placeholder multiline"
           placeholder="Placeholder"
           multiline
@@ -140,9 +158,55 @@ class TextFields extends React.Component {
           margin="normal"
         />
         <TextField
+          id="select-currency"
+          select
+          label="Select"
+          className={classes.textField}
+          value={this.state.currency}
+          onChange={this.handleChange('currency')}
+          SelectProps={{
+            MenuProps: {
+              className: classes.menu,
+            },
+          }}
+          helperText="Please select your currency"
+          margin="normal"
+        >
+          {currencies.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          id="select-currency-native"
+          select
+          label="Native select"
+          className={classes.textField}
+          value={this.state.currency}
+          onChange={this.handleChange('currency')}
+          SelectProps={{
+            native: true,
+            MenuProps: {
+              className: classes.menu,
+            },
+          }}
+          helperText="Please select your currency"
+          margin="normal"
+        >
+          {currencies.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+        <TextField
           id="full-width"
           label="Label"
-          InputProps={{ placeholder: 'Placeholder' }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          placeholder="Placeholder"
           helperText="Full width!"
           fullWidth
           margin="normal"

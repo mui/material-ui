@@ -1,28 +1,23 @@
-// @flow weak
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Avatar from 'material-ui/Avatar';
-import Chip from 'material-ui/Chip';
-import FaceIcon from 'material-ui-icons/Face';
-import grey from 'material-ui/colors/grey';
+import { withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import Chip from '@material-ui/core/Chip';
+import FaceIcon from '@material-ui/icons/Face';
+import DoneIcon from '@material-ui/icons/Done';
 
 const styles = theme => ({
-  chip: {
-    margin: theme.spacing.unit,
-  },
-  svgIcon: {
-    color: grey[800],
-  },
-  row: {
+  root: {
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
   },
+  chip: {
+    margin: theme.spacing.unit,
+  },
 });
 
-function handleRequestDelete() {
+function handleDelete() {
   alert('You clicked the delete icon.'); // eslint-disable-line no-alert
 }
 
@@ -31,9 +26,9 @@ function handleClick() {
 }
 
 function Chips(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
-    <div className={classes.row}>
+    <div className={classes.root}>
       <Chip label="Basic Chip" className={classes.chip} />
       <Chip
         avatar={<Avatar>MB</Avatar>}
@@ -44,19 +39,26 @@ function Chips(props) {
       <Chip
         avatar={<Avatar src="/static/images/uxceo-128.jpg" />}
         label="Deletable Chip"
-        onRequestDelete={handleRequestDelete}
+        onDelete={handleDelete}
         className={classes.chip}
       />
       <Chip
         avatar={
           <Avatar>
-            <FaceIcon className={classes.svgIcon} />
+            <FaceIcon />
           </Avatar>
         }
         label="Clickable Deletable Chip"
         onClick={handleClick}
-        onRequestDelete={handleRequestDelete}
+        onDelete={handleDelete}
         className={classes.chip}
+      />
+      <Chip
+        label="Custom delete icon Chip"
+        onClick={handleClick}
+        onDelete={handleDelete}
+        className={classes.chip}
+        deleteIcon={<DoneIcon />}
       />
     </div>
   );

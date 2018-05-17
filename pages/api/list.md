@@ -1,3 +1,7 @@
+---
+filename: /packages/material-ui/src/List/List.js
+---
+
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # List
@@ -5,29 +9,30 @@
 
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Node |  | The content of the component. |
-| classes | Object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string<br>&nbsp;ComponentType<*><br> | 'ul' | The component used for the root node. Either a string to use a DOM element or a component. |
-| dense | boolean | false | If `true`, compact vertical padding designed for keyboard and mouse input will be used for the list and list items. The property is available to descendant components as the `dense` context. |
-| disablePadding | boolean | false | If `true`, vertical padding will be removed from the list. |
-| rootRef | Function |  | Use that property to pass a ref callback to the root component. |
-| subheader | Node |  | The content of the component, normally `ListItem`. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |  | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'ul'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span class="prop-name">dense</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, compact vertical padding designed for keyboard and mouse input will be used for the list and list items. The property is available to descendant components as the `dense` context. |
+| <span class="prop-name">disablePadding</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, vertical padding will be removed from the list. |
+| <span class="prop-name">subheader</span> | <span class="prop-type">node |  | The content of the subheader, normally `ListSubheader`. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 
-You can overrides all the class names injected by Material-UI thanks to the `classes` property.
+You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
 - `padding`
 - `dense`
 - `subheader`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/List/List.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

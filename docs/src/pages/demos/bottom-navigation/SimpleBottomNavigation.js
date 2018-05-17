@@ -1,12 +1,11 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
-import RestoreIcon from 'material-ui-icons/Restore';
-import FavoriteIcon from 'material-ui-icons/Favorite';
-import LocationOnIcon from 'material-ui-icons/LocationOn';
+import { withStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import RestoreIcon from '@material-ui/icons/Restore';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const styles = {
   root: {
@@ -24,7 +23,7 @@ class SimpleBottomNavigation extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     const { value } = this.state;
 
     return (
@@ -34,9 +33,9 @@ class SimpleBottomNavigation extends React.Component {
         showLabels
         className={classes.root}
       >
-        <BottomNavigationButton label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationButton label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationButton label="Nearby" icon={<LocationOnIcon />} />
+        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
       </BottomNavigation>
     );
   }
