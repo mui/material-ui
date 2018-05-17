@@ -28,6 +28,9 @@ const styles = theme => ({
     letterSpacing: '.7rem',
     textIndent: '.7rem',
     fontWeight: theme.typography.fontWeightLight,
+    [theme.breakpoints.between('xs', 'sm')]: {
+      fontSize: 34,
+    },
   },
   headline: {
     marginTop: theme.spacing.unit,

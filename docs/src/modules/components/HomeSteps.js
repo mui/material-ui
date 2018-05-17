@@ -17,15 +17,29 @@ const styles = theme => ({
   step: {
     border: `12px solid ${theme.palette.background.paper}`,
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
     [theme.breakpoints.up('sm')]: {
       padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 4}px`,
     },
+    [theme.breakpoints.up('md')]: {
+      borderRightWidth: 12,
+      borderLeftWidth: 12,
+    },
   },
   leftStep: {
-    borderRight: 0,
+    borderBottomWidth: 0,
+    [theme.breakpoints.up('md')]: {
+      borderBottomWidth: 12,
+      borderRightWidth: 0,
+    },
   },
   rightStep: {
-    borderLeft: 0,
+    borderTopWidth: 0,
+    [theme.breakpoints.up('md')]: {
+      borderTopWidth: 12,
+      borderLeftWidth: 0,
+    },
   },
   stepTitle: {
     display: 'flex',
