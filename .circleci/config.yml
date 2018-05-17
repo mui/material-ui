@@ -16,7 +16,7 @@ jobs:
           command: |
             node --version
             npm --version
-            
+
       - checkout
 
       - restore_cache:
@@ -68,6 +68,8 @@ jobs:
       - image: circleci/node:8.9
 
     working_directory: ~/repo
+    
+    steps:
       - run: echo 'Allow only master branch'
 
   deploy:
