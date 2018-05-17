@@ -1,11 +1,10 @@
 {
-  "presets": ["./scripts/material-ui-babel-preset", "@babel/preset-stage-1", "@babel/preset-react"],
-  "plugins": ["@babel/plugin-transform-object-assign", "@babel/transform-runtime"],
+  "presets": ["./scripts/material-ui-babel-preset", "@babel/preset-stage-1", "@babel/preset-react", "@babel/flow"],
+  "plugins": ["@babel/plugin-transform-object-assign"],
   "env": {
     "coverage": {
       "plugins": [
         "istanbul",
-        "@babel/plugin-transform-flow-strip-types",
         [
           "module-resolver",
           {
@@ -19,8 +18,7 @@
       ]
     },
     "development": {
-      "sourceMaps": "both",
-      "plugins": ["@babel/plugin-transform-flow-strip-types"]
+      "sourceMaps": "both"
     },
     "docs-development": {
       "presets": ["next/babel"],
@@ -38,8 +36,7 @@
               "pages": "./pages"
             }
           }
-        ],
-        "@babel/plugin-transform-flow-strip-types"
+        ]
       ]
     },
     "docs-production": {
@@ -61,7 +58,7 @@
         ],
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "@babel/plugin-transform-flow-strip-types",
+        "@babel/transform-runtime",
         ["react-remove-properties", { "properties": ["data-mui-test"] }],
         ["transform-react-remove-prop-types", { "mode": "remove" }]
       ]
@@ -70,7 +67,10 @@
       "plugins": [
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "@babel/plugin-transform-flow-strip-types",
+        ["@babel/transform-runtime", {
+          "polyfill": false,
+          "useBuiltIns": true
+        }],
         ["react-remove-properties", { "properties": ["data-mui-test"] }],
         [
           "transform-react-remove-prop-types",
@@ -78,13 +78,29 @@
             "mode": "wrap"
           }
         ]
-      ]
+      ],
+      "ignore": ["**/*.test*"]
     },
     "production": {
       "plugins": [
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "@babel/plugin-transform-flow-strip-types",
+        "@babel/transform-runtime",
+        ["react-remove-properties", { "properties": ["data-mui-test"] }],
+        [
+          "transform-react-remove-prop-types",
+          {
+            "mode": "wrap"
+          }
+        ]
+      ],
+      "ignore": ["**/*.test*"]
+    },
+    "production-umd": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "@babel/transform-runtime",
         ["react-remove-properties", { "properties": ["data-mui-test"] }],
         [
           "transform-react-remove-prop-types",
@@ -97,7 +113,6 @@
     "test": {
       "sourceMaps": "both",
       "plugins": [
-        "@babel/plugin-transform-flow-strip-types",
         [
           "module-resolver",
           {

@@ -18,70 +18,63 @@ const styles = {
   },
 };
 
-// function pause(timeout) {
-//   return new Promise(accept => {
-//     setTimeout(accept, timeout);
-//   });
-// }
+function pause(timeout) {
+  return new Promise(accept => {
+    setTimeout(accept, timeout);
+  });
+}
 
-// let cacheVersions = null;
+let cacheVersions = null;
 
-// async function getVersions() {
-//   try {
-//     if (!cacheVersions) {
-//       await pause(1e3); // Soften the pressure on the main thread.
-//       const result = await fetch(
-//         'https://raw.githubusercontent.com/mui-org/material-ui/master/docs/versions.json',
-//       );
-//       cacheVersions = await result.json();
-//     }
-//   } catch (err) {
-//     // Swallow the exceptions.
-//   }
+async function getVersions() {
+  try {
+    if (!cacheVersions) {
+      await pause(1e3); // Soften the pressure on the main thread.
+      const result = await fetch(
+        'https://raw.githubusercontent.com/mui-org/material-ui/master/docs/versions.json',
+      );
+      cacheVersions = await result.json();
+    }
+  } catch (err) {
+    // Swallow the exceptions.
+  }
 
-//   cacheVersions = cacheVersions || [];
-//   return cacheVersions;
-// }
+  cacheVersions = cacheVersions || [];
+  return cacheVersions;
+}
 
 class StableVersions extends React.Component {
   state = {
-    // versions: [],
+    versions: [],
   };
 
   componentDidMount = async () => {
-    // const versions = await getVersions();
-    // this.setState({ versions });
+    const versions = await getVersions();
+    this.setState({ versions });
   };
 
   render() {
     const { classes } = this.props;
-
-    const VERSIONS = [
-      {
-        url: 'https://material-ui-next.com',
-        semver: `v${process.env.LIB_VERSION}`,
-      },
-      {
-        url: 'https://v0.material-ui.com',
-        semver: 'v0.20.1',
-      },
-    ];
+    const { versions } = this.state;
 
     return (
       <Paper className={classes.root}>
         <Table>
           <TableBody>
-            {VERSIONS.map(version => {
+            {versions.map(version => {
+              // Replace dot with dashes for Netlify branch subdomains
+              let url = `https://${version.replace(/\./g, '-')}.material-ui.com`;
+              if (version.startsWith('v0')) {
+                url = 'https://v0.material-ui.com';
+              }
               return (
-                <TableRow key={version.semver}>
+                <TableRow key={version}>
                   <TableCell padding="dense">
-                    <Typography>{version.semver}</Typography>
+                    <Typography>{version}</Typography>
                   </TableCell>
                   <TableCell padding="dense">
                     <Typography
-                      component={props2 => (
-                        <Link {...props2} variant="secondary" href={version.url} />
-                      )}
+                      component={props2 => <Link {...props2} variant="secondary" href={url} />}
                     >
                       Documentation
                     </Typography>
@@ -92,7 +85,7 @@ class StableVersions extends React.Component {
                         <Link
                           {...props2}
                           variant="secondary"
-                          href={`${GITHUB_RELEASE_BASE_URL}${version.semver}`}
+                          href={`${GITHUB_RELEASE_BASE_URL}${version}`}
                         />
                       )}
                     >

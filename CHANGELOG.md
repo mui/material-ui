@@ -5,6 +5,55 @@ Changes. Changes everywhere!
 ## 1.0.0
 ###### *May 17, 2018*
 
+Our first stable v1 release! 🎉
+
+It has taken us two years to do it, but Material-UI v1 has finally arrived!
+We are so excited about this release, as it's setting a new course for the project. Thank you to *everyone*, especially to [the team](https://material-ui.com/discover-more/team/), and to everyone who's contributed code, issue triage, and support. **Thank you**.
+
+Some statistics with v1 while it was in alpha and beta:
+- 304 contributors
+- 2390 commits
+- From 0 downloads/month to 300k downloads/month
+- From 0 users/month to 90k users/month
+
+## 1.0.0-rc.1
+###### *May 15, 2018*
+
+Big thanks to the 10 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Thanks for trying out v1.0.0-rc.0! This release focus on fixing the reported bugs 🐛.
+- Great focus on the performance (#11358, #11360, #11364) @goto-bus-stop, @TrySound
+We will have more time to work on that topic post v1.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [codemod] Revert the codemod inception on the tests (#11376) @oliviertassinari
+- [typescript] Fix DialogContent export (#11378) @ljvanschie
+- [Dialog] Fix content export (#11393) @stefensuhat
+- [icons] Remove deadcode (#11400) @oliviertassinari
+- [NativeSelect] New component (#11364) @oliviertassinari
+- [Popover] Fix max height issue in some mobile browsers (#11349) @gaborcs
+
+#### Docs
+
+- [docs] Update notifications for v1.0.0-rc.0 (#11351) @simsim0709
+- [Snackbar] Fix transition directions demo (#11391) @serendipity1004
+- [docs] Remove react@15 message (#11399) @deltaskelta
+- [docs] Better netlify cache control (#11404) @oliviertassinari
+
+#### Core
+
+- [core] Do not include polyfills in the ES modules build (#11358) @goto-bus-stop
+- [core] Workaround a Babel regression (#11398) @oliviertassinari
+- [core] Fix size-limit for the new Next path (#11401) @oliviertassinari
+- [core] Require node >=8.0.0 to work on the project (#11407) @netdeamon
+- [core] Bundle UMD with rollup (#11360) @TrySound
+
 ## 0.20.1
 ###### *May 13, 2018*
 
@@ -597,7 +646,7 @@ Nothing has changed for people using React 15.x.
 Big thanks to the 25 contributors who made this release possible.
 
 Here are some highlights ✨:
-- Add a [swipeable drawer](https://material-ui-next.com/demos/drawers/#swipeable-temporary-drawer) component (#9730) @leMaik.
+- Add a [swipeable drawer](https://material-ui.com/demos/drawers/#swipeable-temporary-drawer) component (#9730) @leMaik.
 - Add a [StackBlitz](https://stackblitz.com/) edit link (#10758).
 - Add a new npm package: [@material-ui/docs](https://www.npmjs.com/package/@material-ui/docs) (#10699).
 - And many more bug fixes and documentation improvements.
@@ -606,7 +655,7 @@ Here are some highlights ✨:
 
 - [Grid] Change the default spacing value: 0 (#10768) @oliviertassinari
 
-The negative margin implementation solution currently used comes with [serious limitations](https://material-ui-next.com/layout/grid/#negative-margin).
+The negative margin implementation solution currently used comes with [serious limitations](https://material-ui.com/layout/grid/#negative-margin).
 Material-UI is the only library with a non-zero default spacing between the items.
 Having zero spacing by default will ease the usage of the component.
 
@@ -4073,7 +4122,7 @@ We are now at 93.53%. That's pretty great.
 One year from now, we were struggling with removing all the mixins from the project.
 Now, it's about rewriting all our components.
 We gonna try doing frequent alpha releases to keep some intertie. At least once per week would be good.
-As always, we are keeping the [documentation](https://material-ui-next.com) up to date.
+As always, we are keeping the [documentation](https://material-ui.com) up to date.
 
 #### Component Fixes / Enhancements
 
@@ -4150,7 +4199,7 @@ That wouldn't have been possible without this awesome community.
 **Thank you!**
 
 But this's just the beginning, some [exciting stuff](https://github.com/mui-org/material-ui/blob/master/ROADMAP.md) is coming in 2017 :sparkles:.
-You can preview a **very early** version of the `next` branch following [that link](https://material-ui-next.com).
+You can preview a **very early** version of the `next` branch following [this link](https://material-ui-next.com).
 
 #### Component Fixes / Enhancements
 

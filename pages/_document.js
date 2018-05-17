@@ -2,9 +2,11 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import React from 'react';
 import autoprefixer from 'autoprefixer';
 import config from 'docs/src/config';
-import cssnano from 'cssnano';
+import CleanCSS from 'clean-css';
 import getPageContext from 'docs/src/modules/styles/getPageContext';
 import postcss from 'postcss';
+
+const cleanCSS = new CleanCSS();
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -14,7 +16,6 @@ import postcss from 'postcss';
 //
 // It's using .browserslistrc
 const prefixer = postcss([autoprefixer]);
-const minifier = postcss([cssnano]);
 
 class MyDocument extends Document {
   render() {
@@ -55,6 +56,7 @@ class MyDocument extends Document {
             name="twitter:description"
             content="Roam's next generation UI library from Material-UI v1"
           />
+          <meta name="twitter:image" content="https://material-ui.com/static/brand.png" />
           {/* Facebook */}
           <meta property="og:type" content="website" />
           <meta property="og:title" content="Cake-UI" />
@@ -62,6 +64,7 @@ class MyDocument extends Document {
             property="og:description"
             content="Roam's next generation UI library from Material-UI v1"
           />
+          <meta property="og:image" content="https://material-ui.com/static/brand.png" />
           <meta property="og:locale" content="en_US" />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="canonical" href={canonical} />
@@ -115,14 +118,13 @@ MyDocument.getInitialProps = async ctx => {
   if (process.env.NODE_ENV === 'production') {
     const result1 = await prefixer.process(css, { from: undefined });
     css = result1.css;
-    const result2 = await minifier.process(css, { from: undefined });
-    css = result2.css;
+    css = cleanCSS.minify(css).styles;
   }
 
   return {
     ...page,
     pageContext,
-    canonical: `https://material-ui-next.com${ctx.req.url.replace(/\/$/, '')}/`,
+    canonical: `https://material-ui.com${ctx.req.url.replace(/\/$/, '')}/`,
     styles: (
       <style
         id="jss-server-side"

@@ -6,6 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
 const styles = theme => ({
   root: {
@@ -21,7 +22,7 @@ const styles = theme => ({
   },
 });
 
-class NativeSelect extends React.Component {
+class NativeSelects extends React.Component {
   state = {
     age: '',
     name: 'hai',
@@ -54,8 +55,7 @@ class NativeSelect extends React.Component {
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-native-helper">Age</InputLabel>
-          <Select
-            native
+          <NativeSelect
             value={this.state.age}
             onChange={this.handleChange('age')}
             input={<Input id="age-native-helper" />}
@@ -64,12 +64,11 @@ class NativeSelect extends React.Component {
             <option value={10}>Ten</option>
             <option value={20}>Twenty</option>
             <option value={30}>Thirty</option>
-          </Select>
+          </NativeSelect>
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <Select
-            native
+          <NativeSelect
             value={this.state.age}
             onChange={this.handleChange('age')}
             className={classes.selectEmpty}
@@ -78,13 +77,12 @@ class NativeSelect extends React.Component {
             <option value={10}>Ten</option>
             <option value={20}>Twenty</option>
             <option value={30}>Thirty</option>
-          </Select>
+          </NativeSelect>
           <FormHelperText>Without label</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} disabled>
           <InputLabel htmlFor="name-native-disabled">Name</InputLabel>
-          <Select
-            native
+          <NativeSelect
             value={this.state.name}
             onChange={this.handleChange('name')}
             input={<Input id="name-native-disabled" />}
@@ -97,13 +95,12 @@ class NativeSelect extends React.Component {
               <option value="olivier">Olivier</option>
               <option value="kevin">Kevin</option>
             </optgroup>
-          </Select>
+          </NativeSelect>
           <FormHelperText>Disabled</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} error>
           <InputLabel htmlFor="name-native-error">Name</InputLabel>
-          <Select
-            native
+          <NativeSelect
             value={this.state.name}
             onChange={this.handleChange('name')}
             input={<Input id="name-native-error" />}
@@ -116,17 +113,17 @@ class NativeSelect extends React.Component {
               <option value="olivier">Olivier</option>
               <option value="kevin">Kevin</option>
             </optgroup>
-          </Select>
+          </NativeSelect>
           <FormHelperText>Error</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="uncontrolled-native">Name</InputLabel>
-          <Select native defaultValue={30} input={<Input id="uncontrolled-native" />}>
+          <NativeSelect defaultValue={30} input={<Input id="uncontrolled-native" />}>
             <option value="" />
             <option value={10}>Ten</option>
             <option value={20}>Twenty</option>
             <option value={30}>Thirty</option>
-          </Select>
+          </NativeSelect>
           <FormHelperText>Uncontrolled</FormHelperText>
         </FormControl>
       </div>
@@ -134,8 +131,8 @@ class NativeSelect extends React.Component {
   }
 }
 
-NativeSelect.propTypes = {
+NativeSelects.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(NativeSelect);
+export default withStyles(styles)(NativeSelects);

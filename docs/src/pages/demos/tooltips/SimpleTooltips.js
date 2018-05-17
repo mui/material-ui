@@ -35,7 +35,7 @@ function SimpleTooltips(props) {
       <br />
       <br />
       <Tooltip title="FAB 'position: absolute;'">
-        <Button variant="fab" color="secondary" className={props.classes.absolute}>
+        <Button variant="fab" color="secondary" className={classes.absolute}>
           <AddIcon />
         </Button>
       </Tooltip>

@@ -66,15 +66,12 @@ describe('<Tooltip />', () => {
     assert.strictEqual(wrapper.childAt(0).name(), 'EventListener');
   });
 
-  it('should render with the user, root and tooltip classes', () => {
+  it('should render with the user, tooltip classes', () => {
     const wrapper = shallow(
-      <Tooltip className="woofTooltip" title="Hello World">
+      <Tooltip title="Hello World">
         <span>Hello World</span>
       </Tooltip>,
     );
-    assert.strictEqual(wrapper.hasClass('woofTooltip'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-
     const popperChildren = getPopperChildren(wrapper);
     assert.strictEqual(popperChildren.childAt(0).hasClass(classes.tooltip), true);
   });

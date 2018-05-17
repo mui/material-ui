@@ -21,8 +21,6 @@ taking advantage of this knowledge to address long-standing issues. To name some
 - Full [server-side rendering](/guides/server-rendering) support
 - Wide range of [supported browsers](/getting-started/supported-platforms)
 
-Curious to learn more about it? You can checkout our [Q&A on the v1 version](/discover-more/roadmap#q-amp-a-with-the-v1-version).
-
 ### Where should I start in a migration?
 
 1. Start by installing the v1.x version of Material-UI along side the v0.x version.
@@ -82,7 +80,7 @@ Curious to learn more about it? You can checkout our [Q&A on the v1 version](/di
 ### Autocomplete
 
 Material-UI doesn't provide a high-level API for solving this problem.
-You're encouraged you to explore [the solutions the React community has built](https://material-ui-next.com/demos/autocomplete/).
+You're encouraged you to explore [the solutions the React community has built](/demos/autocomplete/).
 
 In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui-org/material-ui/issues/9997).
 

@@ -15,11 +15,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/selects/SimpleSelect'), 'utf8')
 `,
         },
-        'pages/demos/selects/NativeSelect.js': {
-          js: require('docs/src/pages/demos/selects/NativeSelect').default,
+        'pages/demos/selects/NativeSelects.js': {
+          js: require('docs/src/pages/demos/selects/NativeSelects').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/NativeSelect'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/selects/NativeSelects'), 'utf8')
 `,
         },
         'pages/demos/selects/MultipleSelect.js': {

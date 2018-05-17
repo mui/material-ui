@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StandardProps } from '..';
 import { MenuProps } from '../Menu';
 
-export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey> {
+export interface SelectInputProps {
   autoFocus?: boolean;
   autoWidth: boolean;
   disabled?: boolean;
@@ -26,8 +25,6 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
   tabIndex?: number;
   value?: string | number | Array<string | number>;
 }
-
-export type SelectInputClassKey = 'root' | 'select' | 'selectMenu' | 'disabled' | 'icon';
 
 declare const SelectInput: React.ComponentType<SelectInputProps>;
 
