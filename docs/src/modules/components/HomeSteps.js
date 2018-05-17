@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -14,12 +15,30 @@ import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
   step: {
-    border: `1px solid ${
-      theme.palette.type === 'light' ? theme.palette.common.white : theme.palette.common.black
-    }`,
+    border: `12px solid ${theme.palette.background.paper}`,
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
     [theme.breakpoints.up('sm')]: {
       padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 4}px`,
+    },
+    [theme.breakpoints.up('md')]: {
+      borderRightWidth: 12,
+      borderLeftWidth: 12,
+    },
+  },
+  leftStep: {
+    borderBottomWidth: 0,
+    [theme.breakpoints.up('md')]: {
+      borderBottomWidth: 12,
+      borderRightWidth: 0,
+    },
+  },
+  rightStep: {
+    borderTopWidth: 0,
+    [theme.breakpoints.up('md')]: {
+      borderTopWidth: 12,
+      borderLeftWidth: 0,
     },
   },
   stepTitle: {
@@ -65,7 +84,7 @@ function HomeSteps(props) {
 
   return (
     <Grid container>
-      <Grid item xs={12} md={4} className={classes.step}>
+      <Grid item xs={12} md={4} className={classNames(classes.step, classes.leftStep)}>
         <div className={classes.stepTitle}>
           <FileDownloadIcon className={classes.stepIcon} />
           <Typography variant="title">Installation</Typography>
@@ -151,7 +170,7 @@ function HomeSteps(props) {
           Explore the docs
         </Button>
       </Grid>
-      <Grid item xs={12} md={4} className={classes.step}>
+      <Grid item xs={12} md={4} className={classNames(classes.step, classes.rightStep)}>
         <div className={classes.stepTitle}>
           <WhatshotIcon className={classes.stepIcon} />
           <Typography variant="title">Premium Themes</Typography>

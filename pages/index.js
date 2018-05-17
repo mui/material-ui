@@ -21,9 +21,21 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
-    color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
+  },
+  title: {
+    letterSpacing: '.7rem',
+    textIndent: '.7rem',
+    fontWeight: theme.typography.fontWeightLight,
+    [theme.breakpoints.between('xs', 'sm')]: {
+      fontSize: 34,
+    },
+  },
+  headline: {
+    marginTop: theme.spacing.unit,
+    maxWidth: 500,
+    textAlign: 'center',
   },
   content: {
     paddingBottom: theme.spacing.unit * 8,
@@ -39,10 +51,6 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  headline: {
-    maxWidth: 500,
-    textAlign: 'center',
   },
   button: {
     marginTop: theme.spacing.unit * 3,
@@ -89,13 +97,21 @@ class HomePage extends React.Component {
               className={classes.logo}
             />
             <div className={classes.text}>
-              <Typography variant="display2" component="h1" color="inherit" gutterBottom>
-                {'Material-UI'}
+              <Typography
+                variant="display2"
+                align="center"
+                component="h1"
+                color="inherit"
+                gutterBottom
+                className={classes.title}
+              >
+                {'MATERIAL‑UI'}
               </Typography>
               <Typography
                 variant="headline"
                 component="h2"
                 color="inherit"
+                gutterBottom
                 className={classes.headline}
               >
                 {"React components that implement Google's Material Design."}
@@ -110,7 +126,8 @@ class HomePage extends React.Component {
                   />
                 )}
                 className={classes.button}
-                variant="raised"
+                variant="outlined"
+                color="primary"
               >
                 {'Get Started'}
               </Button>
