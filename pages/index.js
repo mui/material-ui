@@ -89,7 +89,7 @@ class HomePage extends React.Component {
         <div className={classes.hero}>
           <div className={classes.content}>
             <img
-              src="/static/images/mui-logo-only.svg"
+              src="/static/images/material-ui-logo.svg"
               alt="Material-UI Logo"
               className={classes.logo}
             />
