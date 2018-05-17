@@ -84,11 +84,10 @@ workflows:
     jobs:
       - build:
           filters:
-            # retest
             branches:
               ignore: /.*/
             tags:
-              only: /^v.*/
+              only: /v[0-9]+(\.[0-9]+)+(\-cake)+(\.[0-9]+)/
       - test:
           requires:
             - build
