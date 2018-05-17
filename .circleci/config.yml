@@ -49,9 +49,7 @@ jobs:
       - persist_to_workspace: 
           root: ~/repo
           paths:
-            - build
-            - node_modules
-            - docs/export
+            - .
 
   test:
     filters:
