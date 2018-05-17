@@ -16,9 +16,7 @@ jobs:
           command: |
             node --version
             npm --version
-
-      - run: yarn docs:deploy
-
+            
       - checkout
 
       - restore_cache:
@@ -83,20 +81,8 @@ jobs:
           at: ~/repo
 
       - run:
-          name: Authentication for github
-          command: |
-            set -e
-
-            # Workaround old docker images with incorrect $HOME
-            # check https://github.com/docker/docker/issues/2968 for details
-            if [ "${HOME}" = "/" ]
-            then
-              export HOME=$(getent passwd $(id -un) | cut -d: -f6)
-            fi
-
-            mkdir -p ~/.ssh
-
-            echo 'github.com ssh-rsa '$RSA_GITHUB 'bitbucket.org ssh-rsa '$RSA_BITBUCKET >> ~/.ssh/known_hosts
+          name: Avoid checking for unknown hosts
+          command: mkdir ~/.ssh/ && echo -e "Host 192.30.253.113\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
 
       # deploy docs
       - run: yarn docs:deploy:ghpages
