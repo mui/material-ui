@@ -18,11 +18,11 @@ export type Style = TextStyle | 'button';
 
 export interface FontStyle extends Required<{
   fontFamily: CSSProperties['fontFamily'];
-  fontSize: CSSProperties['fontSize'];
+  fontSize: number;
   fontWeightLight: CSSProperties['fontWeight'];
   fontWeightRegular: CSSProperties['fontWeight'];
   fontWeightMedium: CSSProperties['fontWeight'];
-  htmlFontSize?: CSSProperties['fontSize'];
+  htmlFontSize?: number;
 }> {}
 
 export type TypographyStyle =
