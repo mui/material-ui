@@ -16,7 +16,7 @@ export type SwitchClassKey =
   | 'iconChecked'
   | 'switchBase'
   | 'colorPrimary'
-  | 'colorSecondery';
+  | 'colorSecondary';
 
 declare const Switch: React.ComponentType<SwitchProps>;
 
