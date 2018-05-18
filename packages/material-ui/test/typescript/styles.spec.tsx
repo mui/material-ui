@@ -13,6 +13,7 @@ import { StyleRulesCallback, StyledComponentProps } from '../../src/styles/withS
 import blue from '../../src/colors/blue';
 import { WithTheme } from '../../src/styles/withTheme';
 import { StandardProps } from '../../src';
+import { TypographyStyle } from '../../src/styles/createTypography';
 
 // Shared types for examples
 type ComponentClassNames = 'root';
@@ -320,4 +321,10 @@ withStyles<'listItem' | 'guttered'>(theme => ({
 
 { // https://github.com/mui-org/material-ui/issues/11312
   withStyles(styles, { name: "MyComponent", index: 0 })(() => <div/>);
+}
+
+{ // https://github.com/mui-org/material-ui/issues/11164
+  const style: StyleRulesCallback = theme => ({
+    text: theme.typography.body2
+  });
 }
