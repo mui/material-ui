@@ -10,7 +10,7 @@ To learn more about our internal tests, you can have a look at the [README](http
 
 ## Userspace
 
-What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions built on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier, which we exposing. You can take advantage of them if you so choose.
+What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions built on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier, which we are exposing. You can take advantage of them if you so choose.
 
 ### Shallow rendering
 
