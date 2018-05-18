@@ -30,11 +30,7 @@ function LatestVersion(props) {
             <TableCell padding="dense">
               <Typography
                 component={props2 => (
-                  <Link
-                    {...props2}
-                    variant="secondary"
-                    href="https://material-ui.netlify.com/"
-                  />
+                  <Link {...props2} variant="secondary" href="https://material-ui.netlify.com/" />
                 )}
               >
                 Documentation
