@@ -106,7 +106,10 @@ class ListItem extends React.Component {
 
     if (button) {
       componentProps.component = componentProp || 'div';
-      componentProps.focusVisibleClassName = classnames(classes.focusVisible, focusVisibleClassName);
+      componentProps.focusVisibleClassName = classNames(
+        classes.focusVisible,
+        focusVisibleClassName,
+      );
       Component = ButtonBase;
     }
 
@@ -187,6 +190,7 @@ ListItem.propTypes = {
    * If `true`, a 1px light border is added to the bottom of the list item.
    */
   divider: PropTypes.bool,
+  focusVisibleClassName: PropTypes.string,
 };
 
 ListItem.defaultProps = {
