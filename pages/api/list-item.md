@@ -21,6 +21,7 @@ filename: /packages/material-ui/src/ListItem/ListItem.js
 | <span class="prop-name">dense</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
 | <span class="prop-name">divider</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, a 1px light border is added to the bottom of the list item. |
+| <span class="prop-name">focusVisibleClassName</span> | <span class="prop-type">string |<span class="prop-default"></span> | If passed to the component,the provided CSS class will be applied |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
