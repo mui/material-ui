@@ -61,10 +61,12 @@ class StableVersions extends React.Component {
       <Paper className={classes.root}>
         <Table>
           <TableBody>
-            {versions.map(version => {
+            {versions.map((version, index) => {
               // Replace dot with dashes for Netlify branch subdomains
               let url = `https://${version.replace(/\./g, '-')}.material-ui.com`;
-              if (version.startsWith('v0')) {
+              if (index === 0) {
+                url = 'https://material-ui.com';
+              } else if (version.startsWith('v0')) {
                 url = 'https://v0.material-ui.com';
               }
               return (
