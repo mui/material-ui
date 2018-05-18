@@ -72,7 +72,7 @@ to discuss the approach before submitting a PR.
     - **Text field dropdown menu ✓** (Select)
     - Editable dropdown menu
   - **Contextual ✓**
-- **[Progress indicators](https://material.io/design/components/progress-indicators.html/) ✓**
+- **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓**
   - **[Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) ✓**
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
   - **[Loading](https://material.io/archive/guidelines/components/progress-activity.html) ✓** (*Legacy Material v1*)
