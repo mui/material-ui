@@ -77,7 +77,7 @@ const styles = theme => ({
 class HomePage extends React.Component {
   componentDidMount() {
     if (window.location.hash !== '') {
-      window.location.replace(`http://v0.material-ui.com/${window.location.hash}`);
+      window.location.replace(`https://v0.material-ui.com/${window.location.hash}`);
     }
   }
 
