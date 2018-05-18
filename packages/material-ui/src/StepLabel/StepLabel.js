@@ -66,7 +66,7 @@ function StepLabel(props) {
     last,
     optional,
     orientation,
-    stepIconProps,
+    StepIconProps,
     ...other
   } = props;
 
@@ -96,7 +96,7 @@ function StepLabel(props) {
             error={error}
             icon={icon}
             alternativeLabel={alternativeLabel}
-            {...stepIconProps}
+            {...StepIconProps}
           />
         </span>
       )}
@@ -176,7 +176,7 @@ StepLabel.propTypes = {
   /**
    *  The properties passed to the child <StepIcon />.
    */
-  stepIconProps: PropTypes.object,
+  StepIconProps: PropTypes.object,
 };
 
 StepLabel.defaultProps = {

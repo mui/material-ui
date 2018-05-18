@@ -15,7 +15,7 @@ export interface StepLabelProps
   last?: boolean;
   optional?: React.ReactNode;
   orientation?: Orientation;
-  stepIconProps?: object;
+  StepIconProps?: object;
 }
 
 export type StepLabelClasskey =

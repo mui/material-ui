@@ -46,7 +46,7 @@ describe('<StepLabel />', () => {
     it('renders <StepIcon>', () => {
       const stepIconProps = { prop1: 'value1', prop2: 'value2' };
       const wrapper = shallow(
-        <StepLabel icon={1} active completed alternativeLabel stepIconProps={stepIconProps}>
+        <StepLabel icon={1} active completed alternativeLabel StepIconProps={stepIconProps}>
           Step One
         </StepLabel>,
       );
