@@ -40,10 +40,7 @@
     "nprogress": "^0.2.0",
     "prismjs": "^1.8.4"
   },
-  "devDependencies": {
-    "@material-ui/icons": "^1.0.0-beta.35",
-    "material-ui": "^1.0.0-beta.33"
-  },
+  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   },

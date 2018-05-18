@@ -45,9 +45,11 @@ import Table, {
   TablePagination,
   TableRow,
 } from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/Table/TableHead';
 import Input, { InputLabel } from '@material-ui/core/Input';
 import Grow from '@material-ui/core/transitions/Grow';
 import TableFooter from '@material-ui/core/Table/TableFooter';
 import withWidth, { isWidthUp } from '@material-ui/core/utils/withWidth';
 import Zoom from '@material-ui/core/transitions/Zoom';
 import ClickAwayListener from '@material-ui/core/utils/ClickAwayListener';
+import ListSubheader from '@material-ui/core/List/ListSubheader';
