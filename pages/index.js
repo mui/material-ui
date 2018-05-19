@@ -31,6 +31,7 @@ const styles = theme => ({
     [theme.breakpoints.between('xs', 'sm')]: {
       fontSize: 34,
     },
+    whiteSpace: 'nowrap',
   },
   headline: {
     marginTop: theme.spacing.unit,
@@ -105,7 +106,7 @@ class HomePage extends React.Component {
                 gutterBottom
                 className={classes.title}
               >
-                {'MATERIAL‑UI'}
+                {'MATERIAL-UI'}
               </Typography>
               <Typography
                 variant="headline"
