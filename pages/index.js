@@ -24,16 +24,24 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.type === 'light' ? theme.palette.primary.dark : theme.palette.primary.main,
   },
+  text: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   title: {
     letterSpacing: '.7rem',
     textIndent: '.7rem',
     fontWeight: theme.typography.fontWeightLight,
-    [theme.breakpoints.between('xs', 'sm')]: {
-      fontSize: 34,
+    [theme.breakpoints.only('xs')]: {
+      fontSize: 28,
     },
     whiteSpace: 'nowrap',
   },
   headline: {
+    paddingLeft: theme.spacing.unit * 4,
+    paddingRight: theme.spacing.unit * 4,
     marginTop: theme.spacing.unit,
     maxWidth: 500,
     textAlign: 'center',
@@ -45,19 +53,11 @@ const styles = theme => ({
       paddingTop: theme.spacing.unit * 12,
     },
   },
-  text: {
-    paddingLeft: theme.spacing.unit * 4,
-    paddingRight: theme.spacing.unit * 4,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   button: {
     marginTop: theme.spacing.unit * 3,
   },
   logo: {
-    margin: '20px 0',
+    margin: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 4}px`,
     width: '100%',
     height: '35vw',
     maxHeight: 200,
