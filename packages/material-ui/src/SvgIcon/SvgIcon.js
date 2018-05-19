@@ -7,7 +7,8 @@ import { capitalize } from '../utils/helpers';
 export const styles = theme => ({
   root: {
     userSelect: 'none',
-    fontSize: 24,
+    fontSize: 'inherit',
+    verticalAlign: 'middle',
     width: '1em',
     height: '1em',
     display: 'inline-block',
