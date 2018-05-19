@@ -95,7 +95,6 @@ function StepLabel(props) {
             active={active}
             error={error}
             icon={icon}
-            alternativeLabel={alternativeLabel}
             {...StepIconProps}
           />
         </span>
@@ -174,7 +173,7 @@ StepLabel.propTypes = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   *  The properties passed to the child <StepIcon />.
+   * Properties applied to the `StepIcon` element.
    */
   StepIconProps: PropTypes.object,
 };
