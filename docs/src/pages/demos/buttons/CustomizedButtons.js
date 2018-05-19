@@ -24,7 +24,6 @@ const styles = theme => ({
   bootstrapRoot: {
     boxShadow: 'none',
     textTransform: 'none',
-    borderRadius: 4,
     fontSize: 16,
     padding: '6px 12px',
     border: '1px solid',
