@@ -148,6 +148,13 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
   homepage: https://www.pilcro.com
 
 ### 25. HIJUP
-  A pioneering Muslim Fashion e-commerce. 
+  A pioneering Muslim Fashion e-commerce.
   
   homepage: https://www.hijup.com/
+
+### 26. Snippets Chrome Extension
+  A Chrome extension allowing you to import and execute JavaScript code snippets from GitHub.
+  
+  homepage: https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin
+
+  github: https://github.com/richardscarrott/snippets
