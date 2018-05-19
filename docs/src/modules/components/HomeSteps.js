@@ -129,6 +129,7 @@ function HomeSteps(props) {
         </div>
         <Divider className={classes.divider} />
         <Button
+          variant="text"
           component={buttonProps => (
             <Link variant="button" prefetch href="/getting-started/installation" {...buttonProps} />
           )}
@@ -153,7 +154,7 @@ function HomeSteps(props) {
   import Button from '@material-ui/core/Button';
 
   const App = () => (
-    <Button variant="raised" color="primary">
+    <Button variant="contained" color="primary">
       Hello World
     </Button>
   );
@@ -163,6 +164,7 @@ function HomeSteps(props) {
         </div>
         <Divider className={classes.divider} />
         <Button
+          variant="text"
           component={buttonProps => (
             <Link variant="button" prefetch href="/getting-started/usage" {...buttonProps} />
           )}
@@ -188,6 +190,7 @@ function HomeSteps(props) {
         </div>
         <Divider className={classes.divider} />
         <Button
+          variant="text"
           component={buttonProps => (
             <Link variant="button" prefetch href="/premium-themes" {...buttonProps} />
           )}

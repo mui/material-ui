@@ -12,21 +12,23 @@ const styles = theme => ({
   },
 });
 
-function FlatButtons(props) {
+function TextButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button className={classes.button}>Default</Button>
-      <Button color="primary" className={classes.button}>
+      <Button variant="text" className={classes.button}>
+        Default
+      </Button>
+      <Button variant="text" color="primary" className={classes.button}>
         Primary
       </Button>
-      <Button color="secondary" className={classes.button}>
+      <Button variant="text" color="secondary" className={classes.button}>
         Secondary
       </Button>
-      <Button disabled className={classes.button}>
+      <Button variant="text" disabled className={classes.button}>
         Disabled
       </Button>
-      <Button href="#flat-buttons" className={classes.button}>
+      <Button variant="text" href="#text-buttons" className={classes.button}>
         Link
       </Button>
       <input
@@ -37,7 +39,7 @@ function FlatButtons(props) {
         type="file"
       />
       <label htmlFor="flat-button-file">
-        <Button component="span" className={classes.button}>
+        <Button variant="text" component="span" className={classes.button}>
           Upload
         </Button>
       </label>
@@ -45,8 +47,8 @@ function FlatButtons(props) {
   );
 }
 
-FlatButtons.propTypes = {
+TextButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FlatButtons);
+export default withStyles(styles)(TextButtons);

@@ -36,10 +36,18 @@ class DirectionSnackbar extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleClick(TransitionLeft)}>Right</Button>
-        <Button onClick={this.handleClick(TransitionUp)}>Up</Button>
-        <Button onClick={this.handleClick(TransitionRight)}>Left</Button>
-        <Button onClick={this.handleClick(TransitionDown)}>Down</Button>
+        <Button variant="text" onClick={this.handleClick(TransitionLeft)}>
+          Right
+        </Button>
+        <Button variant="text" onClick={this.handleClick(TransitionUp)}>
+          Up
+        </Button>
+        <Button variant="text" onClick={this.handleClick(TransitionRight)}>
+          Left
+        </Button>
+        <Button variant="text" onClick={this.handleClick(TransitionDown)}>
+          Down
+        </Button>
         <Snackbar
           open={this.state.open}
           onClose={this.handleClose}

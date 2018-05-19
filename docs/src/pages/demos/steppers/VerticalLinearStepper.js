@@ -87,6 +87,7 @@ class VerticalLinearStepper extends React.Component {
                   <div className={classes.actionsContainer}>
                     <div>
                       <Button
+                        variant="text"
                         disabled={activeStep === 0}
                         onClick={this.handleBack}
                         className={classes.button}
@@ -94,7 +95,7 @@ class VerticalLinearStepper extends React.Component {
                         Back
                       </Button>
                       <Button
-                        variant="raised"
+                        variant="contained"
                         color="primary"
                         onClick={this.handleNext}
                         className={classes.button}
@@ -111,7 +112,7 @@ class VerticalLinearStepper extends React.Component {
         {activeStep === steps.length && (
           <Paper square elevation={0} className={classes.resetContainer}>
             <Typography>All steps completed - you&quot;re finished</Typography>
-            <Button onClick={this.handleReset} className={classes.button}>
+            <Button variant="text" onClick={this.handleReset} className={classes.button}>
               Reset
             </Button>
           </Paper>

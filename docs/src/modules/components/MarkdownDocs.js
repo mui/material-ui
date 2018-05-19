@@ -57,7 +57,7 @@ function MarkdownDocs(props, context) {
         <title>{`${getTitle(markdown)} - Material-UI`}</title>
       </Head>
       <div className={classes.header}>
-        <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
+        <Button variant="text" component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
           {'Edit this page'}
         </Button>
       </div>

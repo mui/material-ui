@@ -62,6 +62,7 @@ class MenuListComposition extends React.Component {
               }}
             >
               <Button
+                variant="text"
                 aria-owns={open ? 'menu-list-grow' : null}
                 aria-haspopup="true"
                 onClick={this.handleToggle}
@@ -96,6 +97,7 @@ class MenuListComposition extends React.Component {
               }}
             >
               <Button
+                variant="text"
                 aria-owns={open ? 'menu-list-collapse' : null}
                 aria-haspopup="true"
                 onClick={this.handleToggle}

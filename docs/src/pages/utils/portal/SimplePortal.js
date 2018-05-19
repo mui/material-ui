@@ -30,7 +30,9 @@ class SimplePortal extends React.Component {
     const { show } = this.state;
     return (
       <div>
-        <Button onClick={this.handleClick}>{show ? 'Unmount children' : 'Mount children'}</Button>
+        <Button variant="text" onClick={this.handleClick}>
+          {show ? 'Unmount children' : 'Mount children'}
+        </Button>
         <div className={classes.alert}>
           <Typography>It looks like I will render here.</Typography>
           {show ? (

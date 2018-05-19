@@ -69,19 +69,19 @@ function CustomizedInputs(props) {
   return (
     <div className={classes.container}>
       <Button
-        variant="raised"
+        variant="contained"
         color="primary"
         className={classNames(classes.margin, classes.cssRoot)}
       >
         Custom CSS
       </Button>
       <MuiThemeProvider theme={theme}>
-        <Button variant="raised" color="primary" className={classes.margin}>
+        <Button variant="contained" color="primary" className={classes.margin}>
           MuiThemeProvider
         </Button>
       </MuiThemeProvider>
       <Button
-        variant="raised"
+        variant="contained"
         color="primary"
         disableRipple
         className={classNames(classes.margin, classes.bootstrapRoot)}

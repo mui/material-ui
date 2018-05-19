@@ -41,13 +41,23 @@ class DotsMobileStepper extends React.Component {
         activeStep={this.state.activeStep}
         className={classes.root}
         nextButton={
-          <Button size="small" onClick={this.handleNext} disabled={this.state.activeStep === 5}>
+          <Button
+            variant="text"
+            size="small"
+            onClick={this.handleNext}
+            disabled={this.state.activeStep === 5}
+          >
             Next
             {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
           </Button>
         }
         backButton={
-          <Button size="small" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
+          <Button
+            variant="text"
+            size="small"
+            onClick={this.handleBack}
+            disabled={this.state.activeStep === 0}
+          >
             {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
             Back
           </Button>

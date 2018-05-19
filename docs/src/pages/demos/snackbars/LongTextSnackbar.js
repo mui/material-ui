@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 const action = (
-  <Button color="secondary" size="small">
+  <Button variant="text" color="secondary" size="small">
     lorem ipsum dolorem
   </Button>
 );

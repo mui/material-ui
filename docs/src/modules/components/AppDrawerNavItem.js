@@ -80,6 +80,7 @@ class AppDrawerNavItem extends React.Component {
       return (
         <ListItem className={classes.itemLeaf} disableGutters {...other}>
           <Button
+            variant="text"
             component={props => (
               <Link variant="button" activeClassName={classes.active} href={href} {...props} />
             )}
@@ -97,6 +98,7 @@ class AppDrawerNavItem extends React.Component {
     return (
       <ListItem className={classes.item} disableGutters {...other}>
         <Button
+          variant="text"
           classes={{
             root: classes.button,
             label: openImmediately ? 'algolia-lvl0' : '',

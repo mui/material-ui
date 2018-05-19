@@ -31,7 +31,13 @@ const Styled = createStyled({
 
 function RenderProps() {
   return (
-    <Styled>{({ classes }) => <Button className={classes.root}>{'Render props'}</Button>}</Styled>
+    <Styled>
+      {({ classes }) => (
+        <Button variant="text" className={classes.root}>
+          {'Render props'}
+        </Button>
+      )}
+    </Styled>
   );
 }
 export default RenderProps;

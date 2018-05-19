@@ -95,10 +95,10 @@ class ConfirmationDialog extends React.Component {
           </RadioGroup>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleCancel} color="primary">
+          <Button variant="text" onClick={this.handleCancel} color="primary">
             Cancel
           </Button>
-          <Button onClick={this.handleOk} color="primary">
+          <Button variant="text" onClick={this.handleOk} color="primary">
             Ok
           </Button>
         </DialogActions>

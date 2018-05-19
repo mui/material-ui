@@ -16,7 +16,7 @@ export const styles = theme => ({
     minWidth: theme.spacing.unit * 11,
     minHeight: 36,
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
-    borderRadius: 2,
+    borderRadius: 4,
     color: theme.palette.text.primary,
     transition: theme.transitions.create(['background-color', 'box-shadow'], {
       duration: theme.transitions.duration.short,
@@ -42,7 +42,7 @@ export const styles = theme => ({
     alignItems: 'inherit',
     justifyContent: 'inherit',
   },
-  flatPrimary: {
+  textPrimary: {
     color: theme.palette.primary.main,
     '&:hover': {
       backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
@@ -52,7 +52,7 @@ export const styles = theme => ({
       },
     },
   },
-  flatSecondary: {
+  textSecondary: {
     color: theme.palette.secondary.main,
     '&:hover': {
       backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
@@ -62,16 +62,20 @@ export const styles = theme => ({
       },
     },
   },
+  flat: {
+    borderRadius: 2,
+  },
+  flatPrimary: {},
+  flatSecondary: {},
   outlined: {
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
-    borderRadius: 4,
   },
   colorInherit: {
     color: 'inherit',
   },
-  raised: {
+  contained: {
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
     boxShadow: theme.shadows[2],
@@ -97,7 +101,7 @@ export const styles = theme => ({
       },
     },
   },
-  raisedPrimary: {
+  containedPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
     '&:hover': {
@@ -108,7 +112,7 @@ export const styles = theme => ({
       },
     },
   },
-  raisedSecondary: {
+  containedSecondary: {
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.main,
     '&:hover': {
@@ -119,6 +123,11 @@ export const styles = theme => ({
       },
     },
   },
+  raised: {
+    borderRadius: 2,
+  },
+  raisedPrimary: {},
+  raisedSecondary: {},
   focusVisible: {},
   disabled: {},
   fab: {
@@ -172,18 +181,27 @@ function Button(props) {
 
   const fab = variant === 'fab';
   const raised = variant === 'raised';
-  const flat = !raised && !fab;
+  const contained = variant === 'contained' || raised;
+  const text = !contained && !fab;
+  const flat = variant === 'flat';
   const className = classNames(
     classes.root,
     {
-      [classes.raised]: raised || fab,
+      [classes.contained]: contained || fab,
       [classes.fab]: fab,
       [classes.mini]: fab && mini,
       [classes.colorInherit]: color === 'inherit',
+      [classes.textPrimary]: text && color === 'primary',
+      [classes.textSecondary]: text && color === 'secondary',
+      [classes.flat]: flat,
       [classes.flatPrimary]: flat && color === 'primary',
       [classes.flatSecondary]: flat && color === 'secondary',
-      [classes.raisedPrimary]: !flat && color === 'primary',
-      [classes.raisedSecondary]: !flat && color === 'secondary',
+      [classes.containedPrimary]: !text && !flat && color === 'primary',
+      [classes.containedSecondary]: !text && !flat && color === 'secondary',
+      [classes.raised]: raised || fab,
+      [classes.raisedPrimary]: (raised || fab) && color === 'primary',
+      [classes.raisedSecondary]: (raised || fab) && color === 'secondary',
+      [classes.text]: variant === 'text',
       [classes.outlined]: variant === 'outlined',
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
@@ -270,7 +288,7 @@ Button.propTypes = {
   /**
    * The type of button.
    */
-  variant: PropTypes.oneOf(['flat', 'outlined', 'raised', 'fab']),
+  variant: PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab']),
 };
 
 Button.defaultProps = {

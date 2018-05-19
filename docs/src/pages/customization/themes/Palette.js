@@ -14,8 +14,12 @@ function Palette() {
   return (
     <MuiThemeProvider theme={theme}>
       <div>
-        <Button color="primary">Primary</Button>
-        <Button color="secondary">Secondary</Button>
+        <Button variant="text" color="primary">
+          Primary
+        </Button>
+        <Button variant="text" color="secondary">
+          Secondary
+        </Button>
       </div>
     </MuiThemeProvider>
   );

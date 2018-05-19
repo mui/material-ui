@@ -75,7 +75,7 @@ class FabIntegrationSnackbar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Button className={classes.button} onClick={this.handleClick}>
+        <Button variant="text" className={classes.button} onClick={this.handleClick}>
           Open snackbar
         </Button>
         <div className={classes.appFrame}>
@@ -102,7 +102,7 @@ class FabIntegrationSnackbar extends React.Component {
             }}
             message={<span id="snackbar-fab-message-id">Archived</span>}
             action={
-              <Button color="inherit" size="small" onClick={this.handleClose}>
+              <Button variant="text" color="inherit" size="small" onClick={this.handleClose}>
                 Undo
               </Button>
             }

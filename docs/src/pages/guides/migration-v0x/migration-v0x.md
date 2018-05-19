@@ -114,7 +114,7 @@ This will apply a change such as the following:
 +import Button from '@material-ui/core/Button';
 
 -<RaisedButton />
-+<Button variant="raised" />
++<Button variant="contained" />
 ```
 
 ### To be continued…

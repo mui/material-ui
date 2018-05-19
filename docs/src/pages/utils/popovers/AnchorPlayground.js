@@ -148,7 +148,7 @@ class AnchorPlayground extends React.Component {
               buttonRef={node => {
                 this.anchorEl = node;
               }}
-              variant="raised"
+              variant="contained"
               onClick={this.handleClickButton}
             >
               Open Popover

@@ -8,11 +8,11 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/demos/buttons/FlatButtons.js': {
-          js: require('docs/src/pages/demos/buttons/FlatButtons').default,
+        'pages/demos/buttons/TextButtons.js': {
+          js: require('docs/src/pages/demos/buttons/TextButtons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/FlatButtons'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/TextButtons'), 'utf8')
 `,
         },
         'pages/demos/buttons/OutlinedButtons.js': {
@@ -22,11 +22,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/buttons/OutlinedButtons'), 'utf8')
 `,
         },
-        'pages/demos/buttons/RaisedButtons.js': {
-          js: require('docs/src/pages/demos/buttons/RaisedButtons').default,
+        'pages/demos/buttons/ContainedButtons.js': {
+          js: require('docs/src/pages/demos/buttons/ContainedButtons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/RaisedButtons'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/ContainedButtons'), 'utf8')
 `,
         },
         'pages/demos/buttons/FloatingActionButtons.js': {

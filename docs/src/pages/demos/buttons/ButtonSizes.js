@@ -15,13 +15,13 @@ function ButtonSizes(props) {
   return (
     <div>
       <div>
-        <Button size="small" className={classes.button}>
+        <Button variant="text" size="small" className={classes.button}>
           Small
         </Button>
-        <Button size="medium" className={classes.button}>
+        <Button variant="text" size="medium" className={classes.button}>
           Medium
         </Button>
-        <Button size="large" className={classes.button}>
+        <Button variant="text" size="large" className={classes.button}>
           Large
         </Button>
       </div>
@@ -37,13 +37,13 @@ function ButtonSizes(props) {
         </Button>
       </div>
       <div>
-        <Button variant="raised" size="small" color="primary" className={classes.button}>
+        <Button variant="contained" size="small" color="primary" className={classes.button}>
           Small
         </Button>
-        <Button variant="raised" size="medium" color="primary" className={classes.button}>
+        <Button variant="contained" size="medium" color="primary" className={classes.button}>
           Medium
         </Button>
-        <Button variant="raised" size="large" color="primary" className={classes.button}>
+        <Button variant="contained" size="large" color="primary" className={classes.button}>
           Large
         </Button>
       </div>

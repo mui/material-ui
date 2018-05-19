@@ -19,7 +19,9 @@ class FadeSnackbar extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleClick}>Open with Fade Transition</Button>
+        <Button variant="text" onClick={this.handleClick}>
+          Open with Fade Transition
+        </Button>
         <Snackbar
           open={this.state.open}
           onClose={this.handleClose}

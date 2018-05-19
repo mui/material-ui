@@ -13,7 +13,11 @@ const style = {
 };
 
 function InlineStyle() {
-  return <Button style={style}>inline-style</Button>;
+  return (
+    <Button variant="text" style={style}>
+      inline-style
+    </Button>
+  );
 }
 
 export default InlineStyle;
