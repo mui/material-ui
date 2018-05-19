@@ -395,7 +395,7 @@ Tabs.propTypes = {
   /**
    * Determines the color of the indicator.
    */
-  indicatorColor: PropTypes.oneOf(['secondary', 'primary']),
+  indicatorColor: PropTypes.oneOf([PropTypes.string, PropTypes.oneOf(['secondary', 'primary'])]),
   /**
    * Callback fired when the value changes.
    *
