@@ -92,7 +92,6 @@ export const styles = theme => ({
   },
   item: {
     boxSizing: 'border-box',
-    flex: '0 1 auto', // Allow shrink so text will wrap in items by default.
     margin: '0', // For instance, it's useful when used with a `figure` element.
   },
   zeroMinWidth: {
