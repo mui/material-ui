@@ -25,11 +25,20 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function TabIndicator(props) {
-  const { classes, className, color, ...other } = props;
+  const { classes, className, color, TabIndicatorStyle, style, ...other } = props;
+
+  const styleProps =
+    Object.keys(TabIndicatorStyle).length !== 0
+      ? {
+          ...TabIndicatorStyle,
+          ...style,
+        }
+      : style;
 
   return (
     <span
       className={classNames(classes.root, classes[`color${capitalize(color)}`], className)}
+      style={styleProps}
       {...other}
     />
   );
@@ -49,7 +58,15 @@ TabIndicator.propTypes = {
    * @ignore
    * The color of the tab indicator.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf([PropTypes.string, PropTypes.oneOf(['secondary', 'primary'])]),
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
+   * Useful to extend or add custom style to component
+   */
+  TabIndicatorStyle: PropTypes.object,
 };
 
 export default withStyles(styles)(TabIndicator);
