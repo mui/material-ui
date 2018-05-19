@@ -190,6 +190,9 @@ ListItem.propTypes = {
    * If `true`, a 1px light border is added to the bottom of the list item.
    */
   divider: PropTypes.bool,
+  /**
+   * @ignore
+   */
   focusVisibleClassName: PropTypes.string,
 };
 

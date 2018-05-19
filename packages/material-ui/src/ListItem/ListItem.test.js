@@ -158,4 +158,15 @@ describe('<ListItem />', () => {
       assert.strictEqual(wrapper.hasClass('bubu'), true);
     });
   });
+
+  describe('prop: focusVisibleClassName', () => {
+    it('should merge the class names', () => {
+      const wrapper = shallow(<ListItem button focusVisibleClassName="focusVisibleClassName" />);
+      assert.strictEqual(wrapper.props().component, 'div');
+      assert.strictEqual(
+        wrapper.props().focusVisibleClassName,
+        `${classes.focusVisible} focusVisibleClassName`,
+      );
+    });
+  });
 });
