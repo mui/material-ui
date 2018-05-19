@@ -6,6 +6,7 @@
 -->
 
 <!-- Checked checkbox should look like this: [x] -->
+- [ ] This is a v1.x issue (v0.x is no longer maintained).
 - [ ] I have searched the [issues](https://github.com/mui-org/material-ui/issues) of this repository and believe that this is not a duplicate.
 
 ## Expected Behavior
@@ -49,7 +50,7 @@
 
 | Tech         | Version |
 |--------------|---------|
-| Material-UI  |         |
+| Material-UI  | v1.?.?  |
 | React        |         |
 | browser      |         |
 | etc          |         |
