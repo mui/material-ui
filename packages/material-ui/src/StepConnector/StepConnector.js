@@ -33,9 +33,6 @@ export const styles = theme => ({
   },
 });
 
-/**
- * @ignore - internal component.
- */
 function StepConnector(props) {
   const { alternativeLabel, className: classNameProp, classes, orientation, ...other } = props;
 
