@@ -474,7 +474,7 @@ class Slider extends React.Component {
           onMouseDown={this.handleMouseDown}
           onTouchStartCapture={this.handleTouchStart}
           onTouchMove={this.handleMouseMove}
-          onKeyboardFocus={this.handleFocus}
+          onFocusVisible={this.handleFocus}
         />
         <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
       </Component>
