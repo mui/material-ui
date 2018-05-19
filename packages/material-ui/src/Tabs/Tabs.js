@@ -279,7 +279,7 @@ class Tabs extends React.Component {
       scrollable,
       ScrollButtonComponent,
       scrollButtons,
-      TabIndicatorStyle,
+      TabIndicatorProps = {},
       textColor,
       theme,
       value,
@@ -303,10 +303,13 @@ class Tabs extends React.Component {
 
     const indicator = (
       <TabIndicator
-        style={this.state.indicatorStyle}
         className={classes.indicator}
         color={indicatorColor}
-        TabIndicatorStyle={TabIndicatorStyle}
+        {...TabIndicatorProps}
+        style={{
+          ...this.state.indicatorStyle,
+          ...TabIndicatorProps.style,
+        }}
       />
     );
 
@@ -395,7 +398,7 @@ Tabs.propTypes = {
   /**
    * Determines the color of the indicator.
    */
-  indicatorColor: PropTypes.oneOf([PropTypes.string, PropTypes.oneOf(['secondary', 'primary'])]),
+  indicatorColor: PropTypes.oneOf(['secondary', 'primary']),
   /**
    * Callback fired when the value changes.
    *
@@ -422,7 +425,7 @@ Tabs.propTypes = {
   /**
    * Properties applied to the `TabIndicator` element.
    */
-  TabIndicatorStyle: PropTypes.object,
+  TabIndicatorProps: PropTypes.object,
   /**
    * Determines the color of the `Tab`.
    */
@@ -446,7 +449,6 @@ Tabs.defaultProps = {
   ScrollButtonComponent: TabScrollButton,
   scrollButtons: 'auto',
   textColor: 'inherit',
-  TabIndicatorStyle: {},
 };
 
 export default withStyles(styles, { name: 'MuiTabs', withTheme: true })(Tabs);
