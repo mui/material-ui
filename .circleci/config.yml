@@ -72,7 +72,7 @@ jobs:
     steps:
       - run: echo 'Allow only master branch'
 
-  deploy:
+  deploy_docs:
     docker:
       - image: circleci/node:8.9
 
@@ -100,7 +100,28 @@ jobs:
 
       # deploy docs
       - run: yarn docs:deploy:ghpages
+  
+  deploy_package:
+    docker:
+          - image: circleci/node:8.9
 
+        working_directory: ~/repo
+
+        steps:
+          - attach_workspace:
+              at: ~/repo
+
+          - run:
+              name: Private repo login
+              command: echo -e "frontend\nHnz95Lpuhv5BM5H5\nfranco.sioquim@weareroam.com" | npm login --registry=http://registry.runsonsauce.com:3000
+          
+          - run: cd packages/material-ui/ && yarn install --production=false
+
+          - run: pwd 
+
+          - run: cd packages/material-ui/ && yarn build
+
+          - run: cd packages/material-ui/ && yarn publish
 workflows:
   version: 2
   build-test-and-deploy:
@@ -111,6 +132,15 @@ workflows:
               only: 
                 - develop
                 - master
+
+      - deploy_package:
+          requires:
+            - build
+          filters:
+            branches:
+              only: 
+                - master
+
       - test:
           requires:
             - build
@@ -129,7 +159,7 @@ workflows:
                 - master
 
       # only deploy tagged commits
-      - deploy:
+      - deploy_docs:
           requires:
             - build
             - test

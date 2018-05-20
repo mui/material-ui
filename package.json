@@ -9,10 +9,6 @@
     "material design",
     "material-ui"
   ],
-  "publishConfig": {
-    "registry": "http://registry.runsonsauce.com:3000/",
-    "access": "restricted"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Roamltd/cake-ui-v1.git"
@@ -33,7 +29,7 @@
     "docs:start": "next start",
     "docs:deploy:ghpages": "gh-pages -d docs/export",
     "docs:deploy": "yarn docs:build && yarn docs:export && yarn docs:deploy:ghpages",
-    "docs:export": "next export -o docs/export && yarn docs:build-sw && cp docs/_headers docs/export/_headers",
+    "docs:export": "next export -o docs/export && cp docs/_headers docs/export/_headers",
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "prettier": "find . -name \"*.js\" -o -name \"*.d.ts\" -o -name \"*.tsx\" | grep -v -f .eslintignore | xargs prettier --write",
