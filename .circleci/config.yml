@@ -21,8 +21,8 @@ jobs:
 
       - restore_cache:
           keys:
-          - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          - yarn-packages-{{ .Branch }}
+          - yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          - yarn-packages-v2-{{ .Branch }}
           - yarn-packages-
 
       # include devDependencies
@@ -30,7 +30,7 @@ jobs:
 
       - save_cache:
           name: Save Yarn Package Cache
-          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules/
 
