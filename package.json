@@ -1,6 +1,5 @@
 {
   "name": "@roam/cake-ui-v1",
-  "private": true,
   "author": "Material-UI Team",
   "version": "1.0.5",
   "description": "Next generation Ui Library from Material-UI",
