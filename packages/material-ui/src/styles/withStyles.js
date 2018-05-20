@@ -28,7 +28,7 @@ const generateClassName = createGenerateClassName();
 // StyleSheet of the child has a higher specificity, because of the source order.
 // So our solution is to render sheets them in the reverse order child->sheet, so
 // that parent has a higher specificity.
-let indexCounter = Number.MIN_SAFE_INTEGER;
+let indexCounter = -10e10;
 
 // Exported for test purposes
 export const sheetsManager = new Map();

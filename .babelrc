@@ -1,6 +1,20 @@
 {
-  "presets": ["./scripts/material-ui-babel-preset", "@babel/preset-stage-1", "@babel/preset-react", "@babel/flow"],
-  "plugins": ["@babel/plugin-transform-object-assign"],
+  "presets": [
+    "./scripts/material-ui-babel-preset",
+    "@babel/preset-stage-1",
+    "@babel/preset-react",
+    "@babel/flow"
+  ],
+  "plugins": [
+    "@babel/plugin-transform-object-assign",
+    [
+      "@babel/transform-runtime",
+      {
+        "polyfill": false,
+        "useBuiltIns": true
+      }
+    ]
+  ],
   "env": {
     "coverage": {
       "plugins": [
@@ -58,7 +72,6 @@
         ],
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "@babel/transform-runtime",
         ["react-remove-properties", { "properties": ["data-mui-test"] }],
         ["transform-react-remove-prop-types", { "mode": "remove" }]
       ]
@@ -67,10 +80,6 @@
       "plugins": [
         "transform-react-constant-elements",
         "transform-dev-warning",
-        ["@babel/transform-runtime", {
-          "polyfill": false,
-          "useBuiltIns": true
-        }],
         ["react-remove-properties", { "properties": ["data-mui-test"] }],
         [
           "transform-react-remove-prop-types",
@@ -85,7 +94,6 @@
       "plugins": [
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "@babel/transform-runtime",
         ["react-remove-properties", { "properties": ["data-mui-test"] }],
         [
           "transform-react-remove-prop-types",
@@ -100,7 +108,6 @@
       "plugins": [
         "transform-react-constant-elements",
         "transform-dev-warning",
-        "@babel/transform-runtime",
         ["react-remove-properties", { "properties": ["data-mui-test"] }],
         [
           "transform-react-remove-prop-types",
