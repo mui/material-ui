@@ -26,6 +26,17 @@ function ButtonSizes(props) {
         </Button>
       </div>
       <div>
+        <Button variant="outlined" size="small" color="primary" className={classes.button}>
+          Small
+        </Button>
+        <Button variant="outlined" size="medium" color="primary" className={classes.button}>
+          Medium
+        </Button>
+        <Button variant="outlined" size="large" color="primary" className={classes.button}>
+          Large
+        </Button>
+      </div>
+      <div>
         <Button variant="raised" size="small" color="primary" className={classes.button}>
           Small
         </Button>
