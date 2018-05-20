@@ -113,7 +113,14 @@ jobs:
 
       - run:
           name: Private repo login
-          command: echo -e "$NPM_USER\n$NPM_PASS\n$NPM_EMAIL" | npm login --registry=http://registry.runsonsauce.com:3000
+          command: |
+            set -e -o pipefail
+
+            npm login --registry=http://registry.runsonsauce.com:3000<< MULTILINE
+            $NPM_USER
+            $NPM_PASS
+            $NPM_EMAIL
+            MULTILINE
       
       - run: cd packages/material-ui/ && yarn install --production=false
 
