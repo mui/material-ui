@@ -143,7 +143,7 @@ const pages = [
         title: 'Style Library Interoperability',
       },
       {
-        pathname: '/guides/migration-v0.x',
+        pathname: '/guides/migration-v0x',
         title: 'Migration From v0.x',
       },
       {
