@@ -1,6 +1,7 @@
 {
   "name": "@roam/cake-ui-v1",
   "author": "Material-UI Team",
+  "private": true,
   "version": "1.0.5",
   "description": "Next generation Ui Library from Material-UI",
   "keywords": [
@@ -29,7 +30,7 @@
     "docs:start": "next start",
     "docs:deploy:ghpages": "gh-pages -d docs/export",
     "docs:deploy": "yarn docs:build && yarn docs:export && yarn docs:deploy:ghpages",
-    "docs:export": "next export -o docs/export && cp docs/_headers docs/export/_headers",
+    "docs:export": "next export -o docs/export && yarn docs:build-sw && cp docs/_headers docs/export/_headers",
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "prettier": "find . -name \"*.js\" -o -name \"*.d.ts\" -o -name \"*.tsx\" | grep -v -f .eslintignore | xargs prettier --write",
