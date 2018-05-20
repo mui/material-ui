@@ -1,7 +1,7 @@
 {
-  "name": "cake-ui-workspace",
+  "name": "@roam/cake-ui-v1",
   "private": true,
-  "author": "Roam Frontend Team",
+  "author": "Material-UI Team",
   "version": "1.0.5",
   "description": "Next generation Ui Library from Material-UI",
   "keywords": [
@@ -10,11 +10,15 @@
     "material design",
     "material-ui"
   ],
+  "publishConfig": {
+    "registry": "http://registry.runsonsauce.com:3000/",
+    "access": "restricted"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Roamltd/cake-ui"
+    "url": "git+https://github.com/Roamltd/cake-ui-v1.git"
   },
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "bugs": {
     "url": "https://github.com/Roamltd/cake-ui/issues"
   },
