@@ -606,4 +606,15 @@ describe('<Tabs />', () => {
       assert.strictEqual(scrollStub.callCount, 0, 'should not scroll');
     });
   });
+
+  describe('prop: TabIndicatorProps', () => {
+    it('should merge the style', () => {
+      const wrapper = shallow(
+        <Tabs onChange={noop} value={0} TabIndicatorProps={{ style: { backgroundColor: 'green' } }}>
+          <Tab />
+        </Tabs>,
+      );
+      assert.strictEqual(wrapper.find(TabIndicator).props().style.backgroundColor, 'green');
+    });
+  });
 });

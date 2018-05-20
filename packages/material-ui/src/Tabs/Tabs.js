@@ -279,7 +279,7 @@ class Tabs extends React.Component {
       scrollable,
       ScrollButtonComponent,
       scrollButtons,
-      TabIndicatorProps,
+      TabIndicatorProps = {},
       textColor,
       theme,
       value,
@@ -303,10 +303,13 @@ class Tabs extends React.Component {
 
     const indicator = (
       <TabIndicator
-        style={this.state.indicatorStyle}
         className={classes.indicator}
         color={indicatorColor}
         {...TabIndicatorProps}
+        style={{
+          ...this.state.indicatorStyle,
+          ...TabIndicatorProps.style,
+        }}
       />
     );
 
