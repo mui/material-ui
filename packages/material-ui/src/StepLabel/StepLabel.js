@@ -66,6 +66,7 @@ function StepLabel(props) {
     last,
     optional,
     orientation,
+    StepIconProps,
     ...other
   } = props;
 
@@ -89,7 +90,13 @@ function StepLabel(props) {
             [classes.alternativeLabel]: alternativeLabel,
           })}
         >
-          <StepIcon completed={completed} active={active} error={error} icon={icon} />
+          <StepIcon
+            completed={completed}
+            active={active}
+            error={error}
+            icon={icon}
+            {...StepIconProps}
+          />
         </span>
       )}
       <span className={classes.labelContainer}>
@@ -165,6 +172,10 @@ StepLabel.propTypes = {
    * @ignore
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * Properties applied to the `StepIcon` element.
+   */
+  StepIconProps: PropTypes.object,
 };
 
 StepLabel.defaultProps = {
