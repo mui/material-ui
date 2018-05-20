@@ -103,25 +103,26 @@ jobs:
   
   deploy_package:
     docker:
-          - image: circleci/node:8.9
+      - image: circleci/node:8.9
 
-        working_directory: ~/repo
+    working_directory: ~/repo
 
-        steps:
-          - attach_workspace:
-              at: ~/repo
+    steps:
+      - attach_workspace:
+          at: ~/repo
 
-          - run:
-              name: Private repo login
-              command: echo -e "$NPM_USER\n$NPM_PASS\n$NPM_EMAIL" | npm login --registry=http://registry.runsonsauce.com:3000
-          
-          - run: cd packages/material-ui/ && yarn install --production=false
+      - run:
+          name: Private repo login
+          command: echo -e "$NPM_USER\n$NPM_PASS\n$NPM_EMAIL" | npm login --registry=http://registry.runsonsauce.com:3000
+      
+      - run: cd packages/material-ui/ && yarn install --production=false
 
-          - run: pwd 
+      - run: pwd 
 
-          - run: cd packages/material-ui/ && yarn build
+      - run: cd packages/material-ui/ && yarn build
 
-          - run: cd packages/material-ui/ && yarn publish
+      - run: cd packages/material-ui/ && yarn publish
+
 workflows:
   version: 2
   build-test-and-deploy:
