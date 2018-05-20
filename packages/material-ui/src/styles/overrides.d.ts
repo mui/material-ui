@@ -64,6 +64,7 @@ import { SnackbarClassKey } from '../Snackbar';
 import { SnackbarContentClassKey } from '../SnackbarContent';
 import { StepButtonClasskey } from '../StepButton';
 import { StepClasskey } from '../Step';
+import { StepConnectorClasskey } from '../StepConnector';
 import { StepContentClasskey } from '../StepContent';
 import { StepIconClasskey } from '../StepIcon';
 import { StepLabelClasskey } from '../StepLabel';
@@ -156,6 +157,7 @@ type ComponentNameToClassKey = {
   MuiSnackbarContent: SnackbarContentClassKey;
   MuiStep: StepClasskey;
   MuiStepButton: StepButtonClasskey;
+  MuiStepConnector: StepConnectorClasskey;
   MuiStepContent: StepContentClasskey;
   MuiStepIcon: StepIconClasskey;
   MuiStepLabel: StepLabelClasskey;
