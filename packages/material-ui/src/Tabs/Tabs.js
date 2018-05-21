@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
+import debounce from 'debounce';
 import ScrollbarSize from 'react-scrollbar-size';
 import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
 import scroll from 'scroll';
@@ -82,8 +82,8 @@ class Tabs extends React.Component {
   }
 
   componentWillUnmount() {
-    this.handleResize.cancel();
-    this.handleTabsScroll.cancel();
+    this.handleResize.clear();
+    this.handleTabsScroll.clear();
   }
 
   getConditionalElements = () => {

@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
+import debounce from 'debounce';
 import warning from 'warning';
 import classNames from 'classnames';
 import { Manager, Popper, Target } from 'react-popper';
@@ -129,7 +129,7 @@ class Tooltip extends React.Component {
     clearTimeout(this.leaveTimer);
     clearTimeout(this.touchTimer);
     clearTimeout(this.closeTimer);
-    this.handleResize.cancel();
+    this.handleResize.clear();
   }
 
   enterTimer = null;
