@@ -22,11 +22,9 @@ const styles = theme => ({
   },
   openIcon: {
     position: 'absolute',
-    transition: `${theme.transitions.create('transform', {
+    transition: theme.transitions.create(['transform', 'opacity'], {
       duration: theme.transitions.duration.short,
-    })}, ${theme.transitions.create('opacity', {
-      duration: theme.transitions.duration.short,
-    })}`,
+    }),
     opacity: 0,
     transform: 'rotate(-45deg)',
   },
