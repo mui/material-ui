@@ -34,7 +34,7 @@
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "prettier": "find . -name \"*.js\" -o -name \"*.d.ts\" -o -name \"*.tsx\" | grep -v -f .eslintignore | xargs prettier --write",
     "size": "size-limit",
-    "size:why": "size-limit --why build/index.js",
+    "size:why": "size-limit --why packages/material-ui/build/index.js",
     "size:overhead:why": "size-limit --why ./test/size/overhead.js",
     "spellcheck": "eslint . --config .eslintrc.spellcheck.js && echo \"eslint: no lint errors\"",
     "test": "yarn lint && yarn flow && yarn typescript && yarn test:unit",
