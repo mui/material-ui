@@ -1,30 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-
-const styles = {
-  switchBase: {
-    color: green[50],
-    '&$checked': {
-      color: green[500],
-      '& + $bar': {
-        backgroundColor: green[500],
-      },
-    },
-  },
-  bar: {},
-  checked: {},
-};
 
 class SwitchLabels extends React.Component {
   state = {
     checkedA: true,
     checkedB: true,
-    checkedF: true,
   };
 
   handleChange = name => event => {
@@ -32,8 +15,6 @@ class SwitchLabels extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-
     return (
       <FormGroup row>
         <FormControlLabel
@@ -60,21 +41,6 @@ class SwitchLabels extends React.Component {
         <FormControlLabel control={<Switch value="checkedC" />} label="Uncontrolled" />
         <FormControlLabel disabled control={<Switch value="checkedD" />} label="Disabled" />
         <FormControlLabel disabled control={<Switch checked value="checkedE" />} label="Disabled" />
-        <FormControlLabel
-          control={
-            <Switch
-              checked={this.state.checkedF}
-              onChange={this.handleChange('checkedF')}
-              value="checkedF"
-              classes={{
-                switchBase: classes.switchBase,
-                checked: classes.checked,
-                bar: classes.bar,
-              }}
-            />
-          }
-          label="Custom color"
-        />
       </FormGroup>
     );
   }
@@ -84,4 +50,4 @@ SwitchLabels.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SwitchLabels);
+export default SwitchLabels;
