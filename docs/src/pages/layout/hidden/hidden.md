@@ -61,6 +61,5 @@ The `only` property can be used in two ways:
 ## Integration with Grid
 
 It is quite common to alter `Grid` at different responsive breakpoints, and in many cases, you want to hide some of those elements.
-For brevity, where you are already using `Grid`, you may specify `Hidden` behaviors as the `hidden` property.
 
 {{"demo": "pages/layout/hidden/GridIntegration.js"}}
