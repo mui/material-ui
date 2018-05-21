@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
+import debounce from 'debounce';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import withTheme from '../styles/withTheme';
@@ -39,7 +39,7 @@ const withWidth = (options = {}) => Component => {
     }
 
     componentWillUnmount() {
-      this.handleResize.cancel();
+      this.handleResize.clear();
     }
 
     handleResize = debounce(() => {

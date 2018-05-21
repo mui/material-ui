@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
 import ownerDocument from 'dom-helpers/ownerDocument';
-import debounce from 'lodash/debounce';
+import debounce from 'debounce';
 import EventListener from 'react-event-listener';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
@@ -92,7 +92,7 @@ class Popover extends React.Component {
   }
 
   componentWillUnmount = () => {
-    this.handleResize.cancel();
+    this.handleResize.clear();
   };
 
   setPositioningStyles = element => {
