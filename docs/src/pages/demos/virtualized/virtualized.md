@@ -1,5 +1,5 @@
 ---
-components: TextField, Paper, MenuItem
+components: Card
 ---
 
 # Virtualized

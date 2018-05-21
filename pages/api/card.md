@@ -38,4 +38,5 @@ The properties of the [Paper](/api/paper) component are also available.
 ## Demos
 
 - [Cards](/demos/cards)
+- [Virtualized](/demos/virtualized)
 
