@@ -24,23 +24,21 @@ function pause(timeout) {
   });
 }
 
-let cacheVersions = null;
+let cacheBranches = null;
 
-async function getVersions() {
+async function getBranches() {
   try {
-    if (!cacheVersions) {
+    if (!cacheBranches) {
       await pause(1e3); // Soften the pressure on the main thread.
-      const result = await fetch(
-        'https://raw.githubusercontent.com/mui-org/material-ui/master/docs/versions.json',
-      );
-      cacheVersions = await result.json();
+      const result = await fetch('https://api.github.com/repos/mui-org/material-ui-docs/branches');
+      cacheBranches = await result.json();
     }
   } catch (err) {
     // Swallow the exceptions.
   }
 
-  cacheVersions = cacheVersions || [];
-  return cacheVersions;
+  cacheBranches = cacheBranches || [];
+  return cacheBranches;
 }
 
 class StableVersions extends React.Component {
@@ -49,7 +47,11 @@ class StableVersions extends React.Component {
   };
 
   componentDidMount = async () => {
-    const versions = await getVersions();
+    const branches = await getBranches();
+    const versions = branches.map(n => n.name);
+    versions.reverse().pop(); // most recent first & remove 'latest'
+    versions.push('v0.20.1');
+
     this.setState({ versions });
   };
 
