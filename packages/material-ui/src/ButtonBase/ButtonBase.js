@@ -318,7 +318,7 @@ ButtonBase.propTypes = {
   /**
    * Use that property to pass a ref callback to the native button component.
    */
-  buttonRef: PropTypes.func,
+  buttonRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * If `true`, the ripples will be centered.
    * They won't start at the cursor interaction position.
