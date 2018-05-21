@@ -18,10 +18,10 @@ const styles = theme => ({
   },
   colorBar: {},
   colorChecked: {},
-  switchBase: {
-    '&$checked': {
+  iOSSwitchBase: {
+    '&$iOSChecked': {
       color: theme.palette.common.white,
-      '& + $bar': {
+      '& + $iOSBar': {
         backgroundColor: '#52d869',
       },
     },
@@ -30,14 +30,14 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
     }),
   },
-  checked: {
+  iOSChecked: {
     transform: 'translateX(15px)',
-    '& + $bar': {
+    '& + $iOSBar': {
       opacity: 1,
       border: 'none',
     },
   },
-  bar: {
+  iOSBar: {
     borderRadius: 13,
     width: 42,
     height: 26,
@@ -49,11 +49,11 @@ const styles = theme => ({
     opacity: 1,
     transition: theme.transitions.create(['background-color', 'border']),
   },
-  icon: {
+  iOSIcon: {
     width: 24,
     height: 24,
   },
-  iconChecked: {
+  iOSIconChecked: {
     boxShadow: theme.shadows[1],
   },
 });
@@ -69,16 +69,7 @@ class CustomizedSwitches extends React.Component {
   };
 
   render() {
-    const {
-      colorSwitchBase,
-      colorChecked,
-      colorBar,
-      switchBase,
-      checked,
-      bar,
-      icon,
-      iconChecked,
-    } = this.props.classes;
+    const { classes } = this.props;
 
     return (
       <FormGroup row>
@@ -89,9 +80,9 @@ class CustomizedSwitches extends React.Component {
               onChange={this.handleChange('checkedA')}
               value="checkedA"
               classes={{
-                switchBase: colorSwitchBase,
-                checked: colorChecked,
-                bar: colorBar,
+                switchBase: classes.colorSwitchBase,
+                checked: classes.colorChecked,
+                bar: classes.colorBar,
               }}
             />
           }
@@ -100,7 +91,13 @@ class CustomizedSwitches extends React.Component {
         <FormControlLabel
           control={
             <Switch
-              classes={{ switchBase, bar, icon, iconChecked, checked }}
+              classes={{
+                switchBase: classes.iOSSwitchBase,
+                bar: classes.iOSBar,
+                icon: classes.iOSIcon,
+                iconChecked: classes.iOSIconChecked,
+                checked: classes.iOSChecked,
+              }}
               disableRipple
               checked={this.state.checkedB}
               onChange={this.handleChange('checkedB')}
