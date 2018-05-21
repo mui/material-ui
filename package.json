@@ -29,7 +29,6 @@
     "docs:build": "cross-env NODE_ENV=production BABEL_ENV=docs-production next build",
     "docs:start": "next start",
     "docs:export": "next export -o docs/export && yarn docs:build-sw && cp docs/_headers docs/export/_headers && cp docs/_redirects docs/export/_redirects",
-    "docs:deploy": "yarn docs:build && yarn docs:export && firebase deploy",
     "docs:size-why": "DOCS_STATS_ENABLED=true yarn docs:build",
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
