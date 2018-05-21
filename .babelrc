@@ -35,7 +35,6 @@
       "sourceMaps": "both"
     },
     "docs-development": {
-      "presets": ["next/babel"],
       "plugins": [
         "./scripts/material-ui-babel-preval",
         [
@@ -54,7 +53,6 @@
       ]
     },
     "docs-production": {
-      "presets": ["next/babel"],
       "plugins": [
         "./scripts/material-ui-babel-preval",
         [
