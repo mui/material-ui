@@ -10,12 +10,12 @@ Available as npm package.
 npm install material-ui-pickers -S
 ```
 
-Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/) and [date-fns](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns, because it much more lightweight and will be correctly tree-shaked from the bundle.
+Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/) and [date-fns](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns, because it much more lightweight and will be correctly tree-shaked from the bundle. Note, that we support only 2.0.0-alpha.7 version of date-fns for now (see  #414). Stay tuned!
 
 ```sh
-npm install date-fns@next -s
+npm i -s date-fns@2.0.0-alpha.7
 // or
-npm install moment -s
+npm i moment -s
 // or
 npm i luxon -s
 ```
