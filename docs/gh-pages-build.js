@@ -85,7 +85,7 @@ function addMenuVersion(version) {
     // Write the file
     fs.writeFileSync(versionsFile, JSON.stringify(versions, null, 2));
 
-  // Commit it (on master branch & tag the release)
+  // Commit it (on v0.x branch & tag the release)
     execho('git add ' + versionsFile);
     execho('git commit -m ' + '\'[Docs] Add ' + version + ' to versions.json\'');
     execho('git tag ' + version);
@@ -107,9 +107,9 @@ function buildDocs() {
     execho('git reset --hard HEAD~1');
   }
 
-  // Checkout the tag `version` or master for HEAD
+  // Checkout the tag `version` or v0.x for HEAD
   if (version === 'HEAD') {
-    execho('git checkout --detach master');
+    execho('git checkout --detach v0.x');
   } else {
     execho('git checkout tags/' + version);
   }
