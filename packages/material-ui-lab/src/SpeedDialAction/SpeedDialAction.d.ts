@@ -15,6 +15,6 @@ export type SpeedDialActionClassKey =
     | "button"
     | "buttonClosed";
 
-declare const SpeedDialAction: React.ComponentType<any>;
+declare const SpeedDialAction: React.ComponentType<SpeedDialActionProps>;
 
 export default SpeedDialAction;
