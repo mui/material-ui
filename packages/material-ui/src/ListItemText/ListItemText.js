@@ -53,6 +53,7 @@ function ListItemText(props, context) {
       <Typography
         variant="subheading"
         className={classNames(classes.primary, { [classes.textDense]: dense })}
+        component="span"
       >
         {primary}
       </Typography>
