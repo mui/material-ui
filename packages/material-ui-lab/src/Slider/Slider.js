@@ -1,6 +1,7 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
+import keycode from 'keycode';
 import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -35,7 +36,7 @@ export const style = theme => {
       margin: '10px 0',
       padding: '6px 0',
       cursor: 'pointer',
-      '-webkit-tap-highlight-color': 'transparent',
+      WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
         cursor: 'no-drop',
       },
@@ -142,17 +143,6 @@ export const style = theme => {
   };
 };
 
-const KEY_CODES = {
-  PAGE_UP: 33,
-  PAGE_DOWN: 34,
-  END: 35,
-  HOME: 36,
-  ARROW_LEFT: 37,
-  ARROW_UP: 38,
-  ARROW_RIGHT: 39,
-  ARROW_DOWN: 40,
-};
-
 function addEventListener(node, event, handler, capture) {
   node.addEventListener(event, handler, capture);
   return {
@@ -194,7 +184,7 @@ function getMousePosition(event) {
   };
 }
 
-const calculatePercent = (node, event, isVertical, isReverted) => {
+function calculatePercent(node, event, isVertical, isReverted) {
   const { width, height } = node.getBoundingClientRect();
   const { top, left } = getOffset(node);
   const { x, y } = getMousePosition(event);
@@ -203,20 +193,10 @@ const calculatePercent = (node, event, isVertical, isReverted) => {
   const onePercent = (isVertical ? height : width) / 100;
 
   return isReverted ? 100 - clamp(value / onePercent) : clamp(value / onePercent);
-};
+}
 
 function preventPageScrolling(event) {
   event.preventDefault();
-}
-
-function getAriaProps(props) {
-  return Object.keys(props).reduce((result, key) => {
-    if (/aria-*/.test(key)) {
-      Object.assign(result, { [key]: props[key] });
-    }
-
-    return result;
-  }, {});
 }
 
 class Slider extends React.Component {
@@ -288,43 +268,38 @@ class Slider extends React.Component {
   }
 
   handleKeyDown = event => {
-    const isSupportedKey = Object.values(KEY_CODES).includes(event.keyCode);
-    if (!isSupportedKey) {
-      return;
-    }
-
-    event.preventDefault();
-
     const { min, max, value: currentValue } = this.props;
 
     const onePercent = Math.abs((max - min) / 100);
     const step = this.props.step || onePercent;
     let value;
 
-    switch (event.keyCode) {
-      case KEY_CODES.HOME:
+    switch (keycode(event)) {
+      case 'home':
         value = min;
         break;
-      case KEY_CODES.END:
+      case 'end':
         value = max;
         break;
-      case KEY_CODES.PAGE_UP:
+      case 'page up':
         value = currentValue + onePercent * 10;
         break;
-      case KEY_CODES.PAGE_DOWN:
+      case 'page down':
         value = currentValue - onePercent * 10;
         break;
-      case KEY_CODES.ARROW_RIGHT:
-      case KEY_CODES.ARROW_UP:
+      case 'right':
+      case 'up':
         value = currentValue + step;
         break;
-      case KEY_CODES.ARROW_LEFT:
-      case KEY_CODES.ARROW_DOWN:
+      case 'left':
+      case 'down':
         value = currentValue - step;
         break;
       default:
-        break;
+        return;
     }
+
+    event.preventDefault();
 
     value = clamp(value, min, max);
 
@@ -413,6 +388,7 @@ class Slider extends React.Component {
       vertical,
       reverse,
       disabled,
+      ...otherProps
     } = this.props;
 
     const percent = clamp((value - min) * 100 / (max - min));
@@ -448,8 +424,6 @@ class Slider extends React.Component {
     const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
 
-    const ariaProps = getAriaProps(this.props);
-
     return (
       <Component
         role="slider"
@@ -462,7 +436,7 @@ class Slider extends React.Component {
         ref={node => {
           this.container = findDOMNode(node);
         }}
-        {...ariaProps}
+        {...otherProps}
       >
         <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
         <ButtonBase
