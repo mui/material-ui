@@ -25,7 +25,6 @@ export class DateTextField extends PureComponent {
     disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
     format: PropTypes.string,
-    parseFormats: PropTypes.arrayOf(PropTypes.string),
     onChange: PropTypes.func.isRequired,
     onClear: PropTypes.func,
     onClick: PropTypes.func.isRequired,
@@ -70,7 +69,6 @@ export class DateTextField extends PureComponent {
     value: new Date(),
     labelFunc: undefined,
     format: undefined,
-    parseFormats: undefined,
     InputProps: undefined,
     keyboard: false,
     mask: undefined,
@@ -178,7 +176,6 @@ export class DateTextField extends PureComponent {
       utils,
       format,
       onError,
-      parseFormats,
     } = this.props;
 
     if (value === '') {
@@ -192,23 +189,7 @@ export class DateTextField extends PureComponent {
     }
 
     const oldValue = utils.date(this.state.value);
-    let newValue;
-
-    if (parseFormats) {
-      newValue = parseFormats.reduce((result, parseFormat) => {
-        if (result) {
-          return result;
-        }
-
-        const date = utils.parse(value, parseFormat);
-        return utils.isValid(date) && date;
-      }, undefined);
-    }
-
-    if (!parseFormats || newValue === false) {
-      newValue = utils.parse(value, format);
-    }
-
+    const newValue = utils.parse(value, format);
     const error = this.getError(newValue);
 
     this.setState({
@@ -281,7 +262,6 @@ export class DateTextField extends PureComponent {
     const {
       utils,
       format,
-      parseFormats,
       classes,
       disabled,
       onClick,

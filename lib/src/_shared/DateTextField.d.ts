@@ -17,7 +17,6 @@ export interface DateTextFieldProps extends Omit<TextFieldProps, 'onChange' | 'v
     onClear?: () => void;
     keyboard?: boolean;
     format?: string;
-    parseFormats?: string[];
     invalidLabel?: string;
     emptyLabel?: string;
     labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
