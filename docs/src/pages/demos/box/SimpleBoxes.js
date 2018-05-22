@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
 
 export const styles = theme => {
-  return ({
+  return {
     root: {
       flex: '1',
     },
@@ -13,9 +13,9 @@ export const styles = theme => {
       height: '80px',
       '&>div': {
         border: `1px dotted ${theme.palette.grey[400]}`,
-      }
+      },
     },
-  })
+  };
 };
 
 function SimpleBoxes(props) {
@@ -65,9 +65,9 @@ function SimpleBoxes(props) {
         <div>Box (vAlign: end)</div>
       </Box>
       <Box margin={10} vAlign="baseline" className={classes.box}>
-        <div style={{fontSize:'18px'}}>Box (vAlign: baseline)</div>
-        <div style={{fontSize:'34px'}}>Box (vAlign: baseline)</div>
-        <div style={{fontSize:'10px'}}>Box (vAlign: baseline)</div>
+        <div style={{ fontSize: '18px' }}>Box (vAlign: baseline)</div>
+        <div style={{ fontSize: '34px' }}>Box (vAlign: baseline)</div>
+        <div style={{ fontSize: '10px' }}>Box (vAlign: baseline)</div>
       </Box>
       <Box margin={10} vAlign="stretch" className={classes.box}>
         <div>Box (vAlign: stretch)</div>

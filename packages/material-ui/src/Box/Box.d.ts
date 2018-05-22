@@ -6,7 +6,7 @@ export interface BoxProps
     component?: React.ReactType<BoxProps>;
     cursorPointer?: boolean,
     hAlign?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly';
-    vAlign?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
+    vAlign?: 'start' | 'center' | 'end' | 'baseline' | 'stretch';
     inline?: boolean;
     margin?: number;
     padding?:number;

@@ -1,73 +1,101 @@
-// /* eslint-env mocha */
-// import Box from './Box';
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import TestUtils from 'react-dom/test-utils';
-// import {assert, expect} from 'chai';
-// import getMuiTheme from '../styles/getMuiTheme';
-// import {shallow, mount} from 'enzyme';
+import React from 'react';
+import { assert } from 'chai';
+import Box from './Box';
+import { createShallow, getClasses } from '../test-utils';
 
-// describe('<Box />', () => {
-//   const muiTheme = getMuiTheme();
-//   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
-//   const mountWithContext = (node) => mount(node, {context: {muiTheme}});
-//   const testChildren = <div className="unique">Hello World</div>;
+describe('<Box />', () => {
+  let shallow;
+  let classes;
 
-//   it('renders children by default', () => {
-//     const wrapper = shallowWithContext(
-//       <Box>{testChildren}</Box>
-//     );
+  before(() => {
+    shallow = createShallow({ untilSelector: 'Box' });
+    classes = getClasses(<Box>Hello World</Box>);
+  });
 
-//     assert.ok(wrapper.contains(testChildren), 'should contain the children');
-//   });
+  it('should render a <Box> element with children', () => {
+    const testChildren = <div className="unique">Hello World</div>;
+    const wrapper = shallow(<Box>{testChildren}</Box>);
+    assert.strictEqual(wrapper.contains(testChildren), true);
+  });
 
-//   it('renders className', () => {
-//     const wrapper = shallowWithContext(
-//       <Box className="testClassName" />
-//     );
+  it('should render the props className', () => {
+    const wrapper = shallow(<Box className="testClassName" />);
+    assert.strictEqual(wrapper.hasClass('testClassName'), true);
+  });
 
-//     assert.ok(wrapper.is('.testClassName'), 'should contain the className');
-//   });
+  it('should set default component prop', () => {
+    const wrapper = shallow(<Box />);
+    assert.strictEqual(wrapper.name(), 'div', 'should set component to div');
+  });
 
-//   it('allows us to set props', () => {
-//     const style = {
-//       border: '1px solid grey',
-//     };
-//     const wrapper = mountWithContext(
-//       <Box
-//         inline={false}
-//         hAlign="start"
-//         margin={10}
-//         style={style}
-//         cursorPointer={true}
-//       />
-//     );
-//     assert.strictEqual(wrapper.props().inline, false, 'should equal false');
-//     assert.strictEqual(wrapper.props().hAlign, 'start', 'should equal start');
-//     assert.strictEqual(wrapper.props().margin, 10, 'should equal 10');
-//     assert.strictEqual(wrapper.props().style, style, 'should equal style');
-//     assert.strictEqual(wrapper.props().cursorPointer, true, 'should equal true');
-//   });
+  it('should override default component prop with passed in prop', () => {
+    const wrapper = shallow(<Box component={'h1'} />);
+    assert.strictEqual(wrapper.name(), 'h1', 'should set component to h1');
+  });
 
-//   // it('', () => {
-//   //   const wrapper = mountWithContext(
-//   //     <Box inline={true} />
-//   //   );
-//     // assert.strictEqual(wrapper.find('div').props().style, 'inline');     //style is undefined no matter what
-//     // console.log(wrapper.find('.fuwykd3').props().style);
-//     // console.log(wrapper.childAt(0));
-//   // });
-//   // it('', () => {
-//   //   const wrapper = mountWithContext(
-//   //     <Box inline={true} />
-//   //   );
-//   //   const div = ReactDOM.findDOMNode(
-//   //     TestUtils.findRenderedDOMComponentWithTag(
-//   //       wrapper.instance(),
-//   //       'div'
-//   //     )
-//   //   );
-//   //   console.log(div);       // seem to have no actual element
-//     // expect(wrapper).to.have.style('inline'); // TypeError: (0 , _chai.expect)(...).to.have.style is not a function (copied from the chai-enzyme documentation)
-//   // });
-// });
+  it('should set default styles', () => {
+    const wrapper = shallow(<Box />);
+
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.displayInline),
+      false,
+      'should not have the displayInline class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.cursorPointer),
+      false,
+      'should not have the cursorPointer class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.hAlignCenter),
+      true,
+      'should have the hAlignCenter class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.vAlignCenter),
+      true,
+      'should have the vAlignCenter class',
+    );
+    assert.strictEqual(wrapper.props().style.margin, '0px', 'should set margin to 0px');
+    assert.strictEqual(wrapper.props().style.padding, '10px', 'should set padding to 10px');
+  });
+
+  it('should override default styles with passed in props', () => {
+    const wrapper = shallow(
+      <Box
+        inline
+        margin={20}
+        padding={20}
+        cursorPointer
+        hAlign={'start'}
+        vAlign={'end'}
+        component={'h1'}
+      />,
+    );
+
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.displayInline),
+      true,
+      'should have the displayInline class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.cursorPointer),
+      true,
+      'should have the cursorPointer class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.hAlignStart),
+      true,
+      'should have the hAlignStart class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.vAlignEnd),
+      true,
+      'should have the vAlignEnd class',
+    );
+    assert.strictEqual(wrapper.props().style.margin, '20px', 'should set margin to 20px');
+    assert.strictEqual(wrapper.props().style.padding, '20px', 'should set padding to 20px');
+  });
+});
