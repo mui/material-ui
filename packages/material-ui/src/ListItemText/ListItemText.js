@@ -43,7 +43,6 @@ function ListItemText(props, context) {
     inset,
     primary: primaryProp,
     secondary: secondaryProp,
-    headingType,
     ...other
   } = props;
   const { dense } = context;
@@ -54,7 +53,7 @@ function ListItemText(props, context) {
       <Typography
         variant="subheading"
         className={classNames(classes.primary, { [classes.textDense]: dense })}
-        component={null || headingType}
+        component="span"
       >
         {primary}
       </Typography>
@@ -113,10 +112,6 @@ ListItemText.propTypes = {
    * For instance, that can be useful to can render an h4 instead of a
    */
   disableTypography: PropTypes.bool,
-  /*
-   * List item component html tag type
-   */
-  headingType: PropTypes.string,
   /**
    * If `true`, the children will be indented.
    * This should be used if there is no left avatar or left icon.
