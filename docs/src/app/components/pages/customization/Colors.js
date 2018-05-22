@@ -160,7 +160,7 @@ class ColorsPage extends Component {
           the <a href="https://www.google.com/design/spec/style/color.html#color-ui-color-palette">
           UI Color Palette
           </a>. They are stored
-          in <a href="https://github.com/callemall/material-ui/blob/master/src/styles/colors.js">
+          in <a href="https://github.com/mui-org/material-ui/blob/v0.x/src/styles/colors.js">
           styles/colors.js
           </a>.
         </p>

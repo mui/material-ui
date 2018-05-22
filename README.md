@@ -143,7 +143,7 @@ for build instructions.
 ## Roadmap
 
 The future plans and high priority features and enhancements can be found
-in the [ROADMAP.md](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) file.
+in the [ROADMAP.md](https://github.com/mui-org/material-ui/blob/v0.x/ROADMAP.md) file.
 
 ## Contribute
 
@@ -153,7 +153,7 @@ in the [ROADMAP.md](https://github.com/callemall/material-ui/blob/master/ROADMAP
 We're currently using it on a project at [Call-Em-All](https://www.call-em-all.com/Careers)
 and plan on adding to it and making it better. If you'd like to help,
 check out the [docs folder](https://github.com/callemall/material-ui/tree/master/docs).
-We'd greatly appreciate any [contribution](https://github.com/callemall/material-ui/blob/master/CONTRIBUTING.md)
+We'd greatly appreciate any [contribution](https://github.com/mui-org/material-ui/blob/v0.x/CONTRIBUTING.md)
 you make. :)
 
 ## Thanks
@@ -164,4 +164,4 @@ Thank you to [BrowserStack](https://www.browserstack.com/) for providing the inf
 
 ## License
 This project is licensed under the terms of the
-[MIT license](https://github.com/callemall/material-ui/blob/master/LICENSE)
+[MIT license](https://github.com/mui-org/material-ui/blob/v0.x/LICENSE)

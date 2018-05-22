@@ -49,7 +49,7 @@ import {RaisedButton} from 'material-ui';
 
 This will make your build process faster and your build output smaller.
 For a complete mapping of Material-UI components to `import`,
-see [`/src/index.js`](https://github.com/callemall/material-ui/blob/master/src/index.js) inside the Material-UI npm package root directory.
+see [`/src/index.js`](https://github.com/mui-org/material-ui/blob/v0.x/src/index.js) inside the Material-UI npm package root directory.
 
 ### Customization
 

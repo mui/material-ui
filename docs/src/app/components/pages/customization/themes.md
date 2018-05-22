@@ -1,11 +1,11 @@
 ### Predefined themes
 
 We ship two base themes with Material-UI: light and dark. They are located
-under [`material-ui/styles/baseThemes/`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/).
+under [`material-ui/styles/baseThemes/`](https://github.com/mui-org/material-ui/blob/v0.x/src/styles/baseThemes/).
 Custom themes may be defined similarly.
-The [`lightBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/lightBaseTheme.js)
+The [`lightBaseTheme`](https://github.com/mui-org/material-ui/blob/v0.x/src/styles/baseThemes/lightBaseTheme.js)
 is the default so you will not need to do anything to use it other than using `MuiThemeProvider` as described in [Usage](/#/get-started/usage).
-For the [`darkBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/darkBaseTheme.js) you can use this snippet:
+For the [`darkBaseTheme`](https://github.com/mui-org/material-ui/blob/v0.x/src/styles/baseThemes/darkBaseTheme.js) you can use this snippet:
 
 ```js
 import React from 'react';
@@ -28,7 +28,7 @@ export default Main;
 To achieve the level of customizability that you can see in the example above,
 Material-UI is using a single JS object called `muiTheme`.
 By default, this `muiTheme` object is based on the
-[`lightBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/lightBaseTheme.js).
+[`lightBaseTheme`](https://github.com/mui-org/material-ui/blob/v0.x/src/styles/baseThemes/lightBaseTheme.js).
 
 The `muiTheme` object contains the following keys:
  - `spacing`: can be used to change the spacing of components.
@@ -116,7 +116,7 @@ until another render is triggered for that component leaving your application
 in a moody state.
 
 To see what are the values you can override, use the
-[source](https://github.com/callemall/material-ui/blob/master/src/styles/getMuiTheme.js).
+[source](https://github.com/mui-org/material-ui/blob/v0.x/src/styles/getMuiTheme.js).
 The `lightBaseTheme` object looks like this (these are the defaults):
 
 ```js

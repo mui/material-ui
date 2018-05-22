@@ -39,13 +39,13 @@ When in doubt, keep your pull requests small. To give a PR the best chance of ge
 
 As with issues, please begin the title with [ComponentName].
 
-When adding new features or modifying existing code, please attempt to include tests to confirm the new behaviour. You can read more about our test setup [here](https://github.com/callemall/material-ui/blob/master/test/README.md).
+When adding new features or modifying existing code, please attempt to include tests to confirm the new behaviour. You can read more about our test setup [here](https://github.com/mui-org/material-ui/blob/v0.x/test/README.md).
 
 ### Branch Structure
 
 All stable releases are tagged ([view tags](https://github.com/callemall/material-ui/tags)). At any given time, `master` represents the latest development version of the library.
 
-Work towards rebuilding Material-UI with a new styling system is underway on the `v1-alpha` branch. Please refer to the [roadmap](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) for more details.
+Work towards rebuilding Material-UI with a new styling system is underway on the `v1-alpha` branch. Please refer to the [roadmap](https://github.com/mui-org/material-ui/blob/v0.x/ROADMAP.md) for more details.
 
 #### `master` is unsafe
 
@@ -93,7 +93,7 @@ Finally, when you submit a pull request, linting is run again by Continuous Inte
 
 ## Roadmap
 
-To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) and the list of [Material Design components](https://github.com/callemall/material-ui/issues/2863).
+To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://github.com/mui-org/material-ui/blob/v0.x/ROADMAP.md) and the list of [Material Design components](https://github.com/callemall/material-ui/issues/2863).
 
 
 ## License
