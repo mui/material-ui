@@ -4,6 +4,7 @@ import { BackdropProps } from '../Backdrop';
 import { BadgeProps } from '../Badge';
 import { BottomNavigationActionProps } from '../BottomNavigationAction';
 import { BottomNavigationProps } from '../BottomNavigation';
+import { BoxProps } from '../Box';
 import { ButtonBaseProps } from '../ButtonBase';
 import { ButtonProps } from '../Button';
 import { CardActionsProps } from '../CardActions';
@@ -95,6 +96,7 @@ type ComponentsPropsList = {
   MuiBadge: BadgeProps;
   MuiBottomNavigation: BottomNavigationProps;
   MuiBottomNavigationAction: BottomNavigationActionProps;
+  MuiBox: BoxProps;
   MuiButton: ButtonProps;
   MuiButtonBase: ButtonBaseProps;
   MuiCard: CardProps;

@@ -6,6 +6,7 @@ import {
   Badge,
   BottomNavigation,
   BottomNavigationAction,
+  Box,
   Button,
   Card,
   CardActions,
@@ -107,6 +108,19 @@ const BottomNavigationTest = () => {
       <BottomNavigationAction label={<span>Nearby</span>} icon={<FakeIcon />} />
     </BottomNavigation>
   );
+};
+
+const BoxTest = () => {
+  <Box
+    inline
+    margin={20}
+    padding={20}
+    cursorPointer
+    hAlign={'start'}
+    vAlign={'end'}
+    component={'h1'}>
+    Box Content
+  </Box>
 };
 
 const ButtonTest = () => (

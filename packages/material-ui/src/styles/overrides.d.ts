@@ -4,6 +4,7 @@ import { BackdropClassKey } from '../Backdrop';
 import { BadgeClassKey } from '../Badge';
 import { BottomNavigationActionClassKey } from '../BottomNavigationAction';
 import { BottomNavigationClassKey } from '../BottomNavigation';
+import { BoxClassKey } from '../Box';
 import { ButtonBaseClassKey } from '../ButtonBase';
 import { ButtonClassKey } from '../Button';
 import { CardActionsClassKey } from '../CardActions';
@@ -98,6 +99,7 @@ type ComponentNameToClassKey = {
   MuiBadge: BadgeClassKey;
   MuiBottomNavigation: BottomNavigationClassKey;
   MuiBottomNavigationAction: BottomNavigationActionClassKey;
+  MuiBox: BoxClassKey;
   MuiButton: ButtonClassKey;
   MuiButtonBase: ButtonBaseClassKey;
   MuiCard: CardClassKey;

@@ -18,6 +18,7 @@ export { default as Backdrop } from './Modal';
 export { default as Badge } from './Badge';
 export { default as BottomNavigation } from './BottomNavigation';
 export { default as BottomNavigationAction } from './BottomNavigationAction';
+export { default as Box } from './Box';
 export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
 export { default as Card } from './Card';
