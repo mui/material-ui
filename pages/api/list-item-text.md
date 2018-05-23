@@ -14,10 +14,10 @@ filename: /packages/material-ui/src/ListItemText/ListItemText.js
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node |  | Alias for the `primary` property. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">disableTypography</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the children won't be wrapped by a typography component. For instance, that can be useful to can render an h4 instead of a |
+| <span class="prop-name">disableTypography</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the children won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `children` (or `primary`) text, and optional `secondary` text with the Typography component. |
 | <span class="prop-name">inset</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the children will be indented. This should be used if there is no left avatar or left icon. |
-| <span class="prop-name">primary</span> | <span class="prop-type">node |  |  |
-| <span class="prop-name">secondary</span> | <span class="prop-type">node |  |  |
+| <span class="prop-name">primary</span> | <span class="prop-type">node |  | The main content element. |
+| <span class="prop-name">secondary</span> | <span class="prop-type">node |  | The secondary content element. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
