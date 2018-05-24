@@ -109,7 +109,7 @@ type Props = {
    someProp: string;
 };
 
-type PropsWithStyles = Props & WithStyles<keyof ReturnType<typeof styles>>;
+type PropsWithStyles = Props & WithStyles<keyof ReturnType<typeof style>>;
 
 const Component: React.SFC<PropsWithStyles> = ({
   classes,
