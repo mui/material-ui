@@ -77,7 +77,9 @@ Sometimes you might want to have icons for certain button to enhance the UX of t
 ## Customized Buttons
 
 If you have been reading the [overrides documentation page](/customization/overrides)
-but you are not confident jumping in, here's an example of how you can change the main color of a Button.
+but you are not confident jumping in,
+here are examples of how you can change the main color of a Button using classes,
+and using a theme; and of a Bootstrap style Button.
 
 {{"demo": "pages/demos/buttons/CustomizedButtons.js"}}
 
