@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 
 export const styles = {
   root: {
-    overflow: 'hidden',
+    zIndex: 1,
   },
 };
 
