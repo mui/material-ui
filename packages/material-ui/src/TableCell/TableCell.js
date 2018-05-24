@@ -48,6 +48,9 @@ export const styles = theme => ({
   },
   paddingCheckbox: {
     padding: '0 12px',
+    '&:last-child': {
+      paddingRight: 12,
+    },
   },
   paddingNone: {
     padding: 0,
