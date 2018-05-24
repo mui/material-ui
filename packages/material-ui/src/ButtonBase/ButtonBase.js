@@ -263,12 +263,8 @@ class ButtonBase extends React.Component {
 
     let ComponentProp = component;
 
-    if (!ComponentProp) {
-      if (other.href) {
-        ComponentProp = 'a';
-      } else {
-        ComponentProp = 'button';
-      }
+    if (ComponentProp === 'button' && other.href) {
+      ComponentProp = 'a';
     }
 
     if (ComponentProp === 'button') {
@@ -340,7 +336,6 @@ ButtonBase.propTypes = {
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
-   * The default value is a `button`.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
@@ -432,6 +427,7 @@ ButtonBase.propTypes = {
 
 ButtonBase.defaultProps = {
   centerRipple: false,
+  component: 'button',
   disableRipple: false,
   focusRipple: false,
   tabIndex: '0',
