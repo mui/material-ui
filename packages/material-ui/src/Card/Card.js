@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 
 export const styles = {
   root: {
-    zIndex: 1
+    zIndex: 1,
   },
 };
 
