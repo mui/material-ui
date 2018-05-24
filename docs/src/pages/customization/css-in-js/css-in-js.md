@@ -303,7 +303,7 @@ export default MyComponent
 
 ### `createGenerateClassName([options]) => class name generator`
 
-A function which returns a class name generator function.
+A function which returns [a class name generator function](http://cssinjs.org/js-api#generate-your-own-class-names).
 
 #### Arguments
 

@@ -167,3 +167,27 @@ hydrate(
   document.querySelector('#root'),
 );
 ```
+
+## Troubleshooting
+
+If it doesn't work, in 99% of cases it's a configuration issue.
+A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [examples](https://github.com/mui-org/material-ui/tree/master/examples) (Next.js or Gatsby), bit by bit.
+
+### React class name hydration mismatch
+
+There is a class name mismatch between the client and the server.
+
+#### Action to Take
+
+The class names value relies on the concept of [class name generator](http://0.0.0.0:3000/customization/css-in-js#creategenerateclassname-options-class-name-generator). The whole page needs to be rendered with **one generator**, first on the server, then on the client.
+
+### CSS Works on only on first load
+
+The CSS is only generated on the first load of the page.
+It's missing on the server for consecutive requests.
+
+#### Action to Take
+
+We rely on a cache, the `sheetsManager`, to only inject the CSS once per component type.
+You can learn more about [this concept in the documentation](/customization/css-in-js/#sheets-manager).
+You need to provide **a new sheet manager cache for each request**.
