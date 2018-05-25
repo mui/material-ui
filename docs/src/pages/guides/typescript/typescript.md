@@ -96,7 +96,7 @@ Injecting multiple classes into a component is as straightforward as possible. T
 import { Theme, withStyles, WithStyles } from "material-ui/styles";
 import * as React from "react";
 
-const style = (theme: Theme) => ({
+const styles = (theme: Theme) => ({
   one: {
     backgroundColor: "red",
   },
@@ -121,7 +121,7 @@ const Component: React.SFC<PropsWithStyles> = ({
   </div>
 );
 
-export default withStyles(style)<Props>(Component);
+export default withStyles(styles)<Props>(Component);
 ```
 
 ## Customization of `Theme`
