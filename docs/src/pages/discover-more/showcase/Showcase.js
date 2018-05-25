@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
@@ -10,10 +9,10 @@ import Link from 'docs/src/modules/components/Link';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
 
 const styles = theme => ({
-  gridContainer: {
+  root: {
     backgroundColor: theme.palette.background.default,
     // Hide the demo container padding
-    margin: -24,
+    margin: -theme.spacing.unit * 3,
     width: 'calc(100% + 48px)',
     // Maintain alignment with the markdown text
     [theme.breakpoints.down('xs')]: {
@@ -188,9 +187,9 @@ const appList = [
 function Showcase(props) {
   const { classes } = props;
   return (
-    <Grid container className={classes.gridContainer}>
+    <div className={classes.root}>
       {appList.map(app => (
-        <Grid xs={12} key={app.image}>
+        <div key={app.image}>
           <Typography variant="display1" gutterBottom>
             <span>{app.title}</span>
             {app.source ? (
@@ -207,9 +206,9 @@ function Showcase(props) {
               <CardMedia className={classes.cardMedia} image={app.image} title={app.title} />
             </Link>
           </Card>
-        </Grid>
+        </div>
       ))}
-    </Grid>
+    </div>
   );
 }
 
