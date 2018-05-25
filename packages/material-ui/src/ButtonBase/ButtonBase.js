@@ -146,6 +146,7 @@ class ButtonBase extends React.Component {
       event.target === event.currentTarget &&
       component &&
       component !== 'button' &&
+      this.button.tagName !== 'A' &&
       (key === 'space' || key === 'enter')
     ) {
       event.preventDefault();
