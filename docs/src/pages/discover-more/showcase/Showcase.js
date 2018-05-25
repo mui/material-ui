@@ -44,13 +44,12 @@ const appList = [
       'permits, and tax documents.',
     image: '/static/images/showcase/localinsights.jpg',
     link: 'https://localinsights.io',
-    source: 'https://github.com/local-insights',
   },
   {
     title: 'Hijup',
     description: 'A pioneering Muslim Fashion e-commerce site.',
     image: '/static/images/showcase/hijup.jpg',
-    link: 'hijup.com',
+    link: 'https://hijup.com',
   },
   {
     title: 'Johnny Metrics',
@@ -78,7 +77,6 @@ const appList = [
     description: 'SlidesUp is a platform to help conference organizers plan their events.',
     image: '/static/images/showcase/slidesup.jpg',
     link: 'https://slidesup.com/',
-    source: 'https://github.com/slides/up',
   },
   {
     title: 'Builder Book',
@@ -96,6 +94,15 @@ const appList = [
       'to trade their local currency for Monero, anywhere.',
     image: '/static/images/showcase/localmonero.jpg',
     link: 'https://localmonero.co/?rc=ogps',
+  },
+  {
+    title: 'Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio',
+    description:
+      "Cryptoverview is a responsive webapp that displays a user's Bittrex portfolio, " +
+      'trending currencies and market caps. It provides some fancy charts, ' +
+      'news related to cryptocurrencies, and more. (demo:demo)',
+    image: '/static/images/showcase/cryptoverview.jpg',
+    link: 'https://cryptoverview.com',
   },
   {
     title: 'Mantic Transparence',
@@ -141,15 +148,6 @@ const appList = [
     link: 'https://www.pilcro.com',
   },
   {
-    title: 'Cryptoverview: A friendly Dashboard for your cryptocurrency portfolio',
-    description:
-      "Cryptoverview is a responsive webapp that displays a user's Bittrex portfolio, " +
-      'trending currencies and market caps. It provides some fancy charts, ' +
-      'news related to cryptocurrencies, and more.',
-    image: '/static/images/showcase/cryptoverview.jpg',
-    link: 'https://cryptoverview.com',
-  },
-  {
     title: 'Snippets Chrome Extension',
     description:
       'A Chrome extension allowing you to import and execute JavaScript code snippets from GitHub.',
@@ -174,12 +172,6 @@ const appList = [
       "& ahead of each day's workload.",
     image: '/static/images/showcase/planalyze.jpg',
     link: 'https://www.planalyze.io',
-  },
-  {
-    title: 'CountUp: A Running Total Game',
-    description: 'A numbers game, currently in development.',
-    image: '/static/images/showcase/countup.jpg',
-    link: 'https://chrisward.co.uk/code/countup/',
   },
   {
     title: 'Material Blog',
