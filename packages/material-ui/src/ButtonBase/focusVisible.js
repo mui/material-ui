@@ -11,10 +11,10 @@ const internal = {
 };
 
 export function detectFocusVisible(instance, element, callback, attempt = 1) {
-  warning(instance.focusVisibleCheckTime, 'Material-UI: missing instance.focusVisibleCheckTime');
+  warning(instance.focusVisibleCheckTime, 'Material-UI: missing instance.focusVisibleCheckTime.');
   warning(
     instance.focusVisibleMaxCheckTimes,
-    'Material-UI: missing instance.focusVisibleMaxCheckTimes',
+    'Material-UI: missing instance.focusVisibleMaxCheckTimes.',
   );
 
   instance.focusVisibleTimeout = setTimeout(() => {
@@ -34,7 +34,7 @@ export function detectFocusVisible(instance, element, callback, attempt = 1) {
 const FOCUS_KEYS = ['tab', 'enter', 'space', 'esc', 'up', 'down', 'left', 'right'];
 
 function isFocusKey(event) {
-  return FOCUS_KEYS.indexOf(keycode(event)) !== -1;
+  return FOCUS_KEYS.indexOf(keycode(event)) > -1;
 }
 
 const handleKeyUpEvent = event => {

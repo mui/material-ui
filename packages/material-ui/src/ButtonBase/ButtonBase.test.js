@@ -527,13 +527,12 @@ describe('<ButtonBase />', () => {
 
     describe('prop: onKeyDown', () => {
       it('should work', () => {
+        const onKeyDownSpy = spy();
         wrapper = mount(
-          <ButtonBaseNaked theme={{}} classes={{}}>
+          <ButtonBaseNaked theme={{}} classes={{}} onKeyDown={onKeyDownSpy}>
             Hello
           </ButtonBaseNaked>,
         );
-        const onKeyDownSpy = spy();
-        wrapper.setProps({ onKeyDown: onKeyDownSpy });
 
         const eventPersistSpy = spy();
         event = { persist: eventPersistSpy, keyCode: undefined };
@@ -555,21 +554,18 @@ describe('<ButtonBase />', () => {
 
     describe('Keyboard accessibility for non interactive elements', () => {
       it('should work', () => {
+        const onClickSpy = spy();
         wrapper = mount(
-          <ButtonBaseNaked theme={{}} classes={{}}>
+          <ButtonBaseNaked theme={{}} classes={{}} onClick={onClickSpy} component="div">
             Hello
           </ButtonBaseNaked>,
         );
-        const onClickSpy = spy();
-        wrapper.setProps({ onClick: onClickSpy, component: 'div' });
 
-        const eventTargetMock = 'woofButtonBase';
         event = {
-          persist: spy(),
           preventDefault: spy(),
           keyCode: keycode('space'),
-          target: eventTargetMock,
-          currentTarget: eventTargetMock,
+          target: 'target',
+          currentTarget: 'target',
         };
 
         instance = wrapper.instance();
@@ -577,10 +573,47 @@ describe('<ButtonBase />', () => {
         instance.handleKeyDown(event);
 
         assert.strictEqual(instance.keyDown, false, 'should not change keydown');
-        assert.strictEqual(event.persist.callCount, 0, 'should not call event.persist');
         assert.strictEqual(event.preventDefault.callCount, 1, 'should call event.preventDefault');
         assert.strictEqual(onClickSpy.callCount, 1, 'should call onClick');
         assert.strictEqual(onClickSpy.calledWith(event), true, 'should call onClick with event');
+      });
+
+      it('should hanlde the link with no href', () => {
+        const onClickSpy = spy();
+        wrapper = mount(
+          <ButtonBaseNaked theme={{}} classes={{}} component="a" onClick={onClickSpy}>
+            Hello
+          </ButtonBaseNaked>,
+        );
+        event = {
+          preventDefault: spy(),
+          keyCode: keycode('enter'),
+          target: 'target',
+          currentTarget: 'target',
+        };
+        instance = wrapper.instance();
+        instance.handleKeyDown(event);
+        assert.strictEqual(event.preventDefault.callCount, 1);
+        assert.strictEqual(onClickSpy.callCount, 1);
+      });
+
+      it('should ignore the link with href', () => {
+        const onClickSpy = spy();
+        wrapper = mount(
+          <ButtonBaseNaked theme={{}} classes={{}} component="a" href="href" onClick={onClickSpy}>
+            Hello
+          </ButtonBaseNaked>,
+        );
+        event = {
+          preventDefault: spy(),
+          keyCode: keycode('enter'),
+          target: 'target',
+          currentTarget: 'target',
+        };
+        instance = wrapper.instance();
+        instance.handleKeyDown(event);
+        assert.strictEqual(event.preventDefault.callCount, 0);
+        assert.strictEqual(onClickSpy.callCount, 0);
       });
     });
 
