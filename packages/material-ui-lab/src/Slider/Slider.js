@@ -329,7 +329,7 @@ class Slider extends React.Component {
 
     this.globalMouseUpListener = addEventListener(document, 'touchend', this.handleMouseUp);
 
-    if (typeof this.props.onDragEnd === 'function') {
+    if (typeof this.props.onDragStart === 'function') {
       this.props.onDragStart(event);
     }
   };
@@ -341,7 +341,7 @@ class Slider extends React.Component {
     this.globalMouseMoveListener = addEventListener(document, 'mousemove', this.handleMouseMove);
 
     if (typeof this.props.onDragEnd === 'function') {
-      this.props.onDragStart(event);
+      this.props.onDragEnd(event);
     }
   };
 
