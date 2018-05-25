@@ -8920,16 +8920,7 @@ react-dom@^16.3.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-event-listener@^0.5.1:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.5.6.tgz#f9349fda4b7735fc6886ca403bdcfd6057e89ceb"
-  dependencies:
-    "@babel/runtime" "^7.0.0-beta.42"
-    fbjs "^0.8.16"
-    prop-types "^15.6.0"
-    warning "^3.0.0"
-
-react-event-listener@^0.5.9:
+react-event-listener@^0.5.1, react-event-listener@^0.5.9:
   version "0.5.9"
   resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.5.9.tgz#c64e84f77156a682614835bdc1bc7ba00912df97"
   dependencies:
