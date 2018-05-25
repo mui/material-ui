@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
 import FormatAlignCenter from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignRight from '@material-ui/icons/FormatAlignRight';
@@ -10,8 +10,8 @@ import FormatItalic from '@material-ui/icons/FormatItalic';
 import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
 import FormatColorFill from '@material-ui/icons/FormatColorFill';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import ToggleButton, { ToggleButtonGroup } from '@material-ui/lab/ToggleButton';
 
 const styles = theme => ({
@@ -40,7 +40,7 @@ class ToggleButtons extends React.Component {
     const { alignment, formats } = this.state;
 
     return (
-      <Grid container>
+      <Grid container spacing={16}>
         <Grid item xs={12} sm={6}>
           <div className={classes.toggleContainer}>
             <ToggleButtonGroup value={alignment} exclusive onChange={this.handleAlignment}>
