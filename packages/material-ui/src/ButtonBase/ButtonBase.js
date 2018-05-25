@@ -146,7 +146,8 @@ class ButtonBase extends React.Component {
       event.target === event.currentTarget &&
       component &&
       component !== 'button' &&
-      (key === 'space' || key === 'enter')
+      (key === 'space' || key === 'enter') &&
+      !(this.button.tagName === 'A' && this.button.href)
     ) {
       event.preventDefault();
       if (onClick) {
@@ -164,7 +165,9 @@ class ButtonBase extends React.Component {
     ) {
       this.keyDown = false;
       event.persist();
-      this.ripple.stop(event, () => this.ripple.pulsate(event));
+      this.ripple.stop(event, () => {
+        this.ripple.pulsate(event);
+      });
     }
     if (this.props.onKeyUp) {
       this.props.onKeyUp(event);
