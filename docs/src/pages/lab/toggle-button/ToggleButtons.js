@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft';
-import FormatAlignCenter from '@material-ui/icons/FormatAlignCenter';
-import FormatAlignRight from '@material-ui/icons/FormatAlignRight';
-import FormatAlignJustify from '@material-ui/icons/FormatAlignJustify';
-import FormatBold from '@material-ui/icons/FormatBold';
-import FormatItalic from '@material-ui/icons/FormatItalic';
-import FormatUnderlined from '@material-ui/icons/FormatUnderlined';
-import FormatColorFill from '@material-ui/icons/FormatColorFill';
+import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
+import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
+import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
+import FormatAlignJustifyIcon from '@material-ui/icons/FormatAlignJustify';
+import FormatBoldIcon from '@material-ui/icons/FormatBold';
+import FormatItalicIcon from '@material-ui/icons/FormatItalic';
+import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
+import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -45,16 +45,16 @@ class ToggleButtons extends React.Component {
           <div className={classes.toggleContainer}>
             <ToggleButtonGroup value={alignment} exclusive onChange={this.handleAlignment}>
               <ToggleButton value="left">
-                <FormatAlignLeft />
+                <FormatAlignLeftIcon />
               </ToggleButton>
               <ToggleButton value="center">
-                <FormatAlignCenter />
+                <FormatAlignCenterIcon />
               </ToggleButton>
               <ToggleButton value="right">
-                <FormatAlignRight />
+                <FormatAlignRightIcon />
               </ToggleButton>
               <ToggleButton value="justify" disabled>
-                <FormatAlignJustify />
+                <FormatAlignJustifyIcon />
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
@@ -71,16 +71,16 @@ class ToggleButtons extends React.Component {
           <div className={classes.toggleContainer}>
             <ToggleButtonGroup value={formats} onChange={this.handleFormat}>
               <ToggleButton value="bold">
-                <FormatBold />
+                <FormatBoldIcon />
               </ToggleButton>
               <ToggleButton value="italic">
-                <FormatItalic />
+                <FormatItalicIcon />
               </ToggleButton>
               <ToggleButton value="underlined">
-                <FormatUnderlined />
+                <FormatUnderlinedIcon />
               </ToggleButton>
               <ToggleButton disabled value="color">
-                <FormatColorFill />
+                <FormatColorFillIcon />
                 <ArrowDropDownIcon />
               </ToggleButton>
             </ToggleButtonGroup>
