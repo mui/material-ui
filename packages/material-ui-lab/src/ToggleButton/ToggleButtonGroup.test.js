@@ -13,34 +13,58 @@ describe('<ToggleButtonGroup />', () => {
   before(() => {
     mount = createMount();
     shallow = createShallow({ dive: true });
-    classes = getClasses(<ToggleButtonGroup />);
+    classes = getClasses(
+      <ToggleButtonGroup>
+        <ToggleButton value="hello" />
+      </ToggleButtonGroup>,
+    );
   });
 
   it('should render a <div> element', () => {
-    const wrapper = shallow(<ToggleButtonGroup />);
+    const wrapper = shallow(
+      <ToggleButtonGroup>
+        <ToggleButton value="hello" />
+      </ToggleButtonGroup>,
+    );
     assert.strictEqual(wrapper.type(), 'div');
   });
 
   it('should render the custom className and the root class', () => {
-    const wrapper = shallow(<ToggleButtonGroup className="test-class-name" />);
+    const wrapper = shallow(
+      <ToggleButtonGroup className="test-class-name">
+        <ToggleButton value="hello" />
+      </ToggleButtonGroup>,
+    );
     assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render a selected div', () => {
-    const wrapper = shallow(<ToggleButtonGroup selected />);
+    const wrapper = shallow(
+      <ToggleButtonGroup selected>
+        <ToggleButton value="hello" />
+      </ToggleButtonGroup>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
   });
 
   it('should render a selected div when selected is "auto" and a value is present', () => {
-    const wrapper = shallow(<ToggleButtonGroup selected="auto" value={['one']} />);
+    const wrapper = shallow(
+      <ToggleButtonGroup selected="auto" value={['one']}>
+        <ToggleButton value="hello" />
+      </ToggleButtonGroup>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
   });
 
   it('should not render a selected div when selected is "auto" and a value is missing', () => {
-    const wrapper = shallow(<ToggleButtonGroup selected="auto" value={null} />);
+    const wrapper = shallow(
+      <ToggleButtonGroup selected="auto" value={null}>
+        <ToggleButton value="hello" />
+      </ToggleButtonGroup>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.hasClass(classes.selected),

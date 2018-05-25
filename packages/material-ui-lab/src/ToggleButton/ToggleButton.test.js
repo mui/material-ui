@@ -17,24 +17,36 @@ describe('<ToggleButton />', () => {
   });
 
   it('should render a <ButtonBase> element', () => {
-    const wrapper = shallow(<ToggleButton>Hello World</ToggleButton>);
+    const wrapper = shallow(<ToggleButton value="hello">Hello World</ToggleButton>);
     assert.strictEqual(wrapper.type(), ButtonBase);
   });
 
   it('should render the custom className and the root class', () => {
-    const wrapper = shallow(<ToggleButton className="test-class-name">Hello World</ToggleButton>);
+    const wrapper = shallow(
+      <ToggleButton className="test-class-name" value="hello">
+        Hello World
+      </ToggleButton>,
+    );
     assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render a selected button', () => {
-    const wrapper = shallow(<ToggleButton selected>Hello World</ToggleButton>);
+    const wrapper = shallow(
+      <ToggleButton selected value="hello">
+        Hello World
+      </ToggleButton>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
   });
 
   it('should render a disabled button', () => {
-    const wrapper = shallow(<ToggleButton disabled>Hello World</ToggleButton>);
+    const wrapper = shallow(
+      <ToggleButton disabled value="hello">
+        Hello World
+      </ToggleButton>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.disabled), true, 'should have the disabled class');
   });
@@ -94,7 +106,7 @@ describe('<ToggleButton />', () => {
     }
 
     it('should server side render', () => {
-      const markup = render(<ToggleButton>Hello World</ToggleButton>);
+      const markup = render(<ToggleButton value="hello">Hello World</ToggleButton>);
       assert.strictEqual(markup.text(), 'Hello World');
     });
   });
