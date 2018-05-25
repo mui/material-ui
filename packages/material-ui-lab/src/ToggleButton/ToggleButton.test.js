@@ -1,8 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createRender, createShallow, getClasses } from 'material-ui/test-utils';
-import ButtonBase from 'material-ui/ButtonBase';
+import { createRender, createShallow, getClasses } from '@material-ui/core/test-utils';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import ToggleButton from './ToggleButton';
 
 describe('<ToggleButton />', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createShallow, getClasses } from 'material-ui/test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import ToggleButtonGroup from './ToggleButtonGroup';
 import ToggleButton from './ToggleButton';
 
