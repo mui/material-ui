@@ -84,6 +84,7 @@ export { default as Snackbar } from './Snackbar';
 export { default as SnackbarContent } from './SnackbarContent';
 export { default as Step } from './Step';
 export { default as StepButton } from './StepButton';
+export { default as StepConnector } from './StepConnector';
 export { default as StepContent } from './StepContent';
 export { default as StepIcon } from './StepIcon';
 export { default as StepLabel } from './StepLabel';
