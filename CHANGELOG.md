@@ -2,6 +2,78 @@
 
 Changes. Changes everywhere!
 
+## 1.1.0
+###### *May 26, 2018*
+
+Big thanks to the 30 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A smaller bundle, saved 5 kB gzipped (#11511, #11492, #11521, #11523) @TrySound
+- A new Slider component in the lab (#11040) @epodivilov.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [ListSubheader] Fix demo import path (#11468) @Hocdoc
+- [Backdrop] Fix export paths (#11481) @brandonhall
+- [ListItem] Take the focusVisibleClassName property into account (#11451) @rdemirov
+- [Grid] Allow shrink in items so text will wrap by default (#11411) @ShaneMcX
+- [StepLabel] Allow StepIcon customization (#11446) @jargot
+- [StepConnector] Exposes the component (#11478) @racingrebel
+- [Tabs] Fix TabIndicatorProps merge (#11494) @adeelibr
+- [ButtonBase] Fix React propTypes buttonRef warning (#11519) @t49tran
+- [ListItemText] Shouldn't be a heading by default (#11544) @adeelibr
+- [GridListTileBar] Add missing title and subtitle keys (#11570) @ljani
+- [TableCell] Fix padding for last TableCell if checkbox (#11568) @gfpacheco
+- [Button][ButtonBase] Take advantage of defaultProps for component prop (#11574) @cherniavskii
+- [StepConnector] Add to default export from @material-ui/core (#11583) @OsipovIgor
+- [ButtonBase] Improve enter & space handling (#11585) @TheBear44
+
+#### Docs
+
+- [examples] Fix imports for Dialog (#11469) @sboles
+- [docs] Add v0 subdirectory redirects (#11470) @mbrookes
+- [docs] Remove trailing slash on progress-indicators link (#11473) @srt32
+- [docs] Add HSTS header (#11475) @mbrookes
+- [docs] Add missing word to documentation (#11476) @Skn0tt
+- [docs] Specify correct corner to locate directional toggle (#11479) @jacquesporveau
+- [examples] Fix create-react-app-with-jss theme object (#11485) @Dror88
+- [docs] Add Snippets Chrome extension to showcase (#11487) @richardscarrott
+- [docs] Fix hyphen for iOS (#11490) @mbrookes
+- [docs] Prevent content-type: application/octet-stream (#11501) @oliviertassinari
+- [docs] Add Customized Switches section (#11505) @mbrookes
+- [docs] Remove Firebase config file & deploy script (#11516) @mbrookes
+- [docs] Pull versions from github API (#11522) @mbrookes
+- [docs] Removed references to Grid's hidden property (#11529) @lfalke
+- [docs] Remove background grid from Typography variants demo (#11562) @mbrookes
+- [docs] Finish incomplete list-item-text.md documentation (#11559) @codeheroics
+- [docs] Add outlined buttons to ButtonSizes demo (#11509) @mbrookes
+- [docs] Add a Troubleshooting section for SSR (#11579) @oliviertassinari
+- [docs] Fix a little typo in typescript docs (#11580) @saculbr
+- [docs] Add react-admin to related projects (#11582) @fzaninotto
+- [docs] Update the showcase (#11578) @mbrookes
+
+#### Core
+
+- [typescript] Make TypographyStyle assignable to CSSProperties, misc other typing fixes (#11456) @pelotom
+- [core] Cut the head of the snake 🐍 (#11477) @oliviertassinari
+- [core] Add esm bundle to start tracking treeshakability (#11489) @TrySound
+- [core] More aggressive transpilation (#11492) @oliviertassinari
+- [core] Enable loose mode for staged featues (#11511) @TrySound
+- [core] Simplify the babel docs config (#11514) @oliviertassinari
+- [core] Remove lodash 💃 (#11521) @oliviertassinari
+- [core] Internalize ScrollbarSize (#11523) @oliviertassinari
+- [typescript] add sample with return types (#11512) @yacut
+
+#### Labs
+
+- [SpeedDial] Clean up SpeedDialIcon transition (#11513) @mbrookes
+- [Slider] Port component (#11040) @epodivilov
+
 ## 1.0.0
 ###### *May 17, 2018*
 
