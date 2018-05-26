@@ -17,7 +17,7 @@ filename: /packages/material-ui/src/CardMedia/CardMedia.js
 | <span class="prop-name">image</span> | <span class="prop-type">string |  | Image to be displayed as a background image. Either `image` or `src` prop must be specified. Note that caller must specify height otherwise the image will not be visible. |
 | <span class="prop-name">src</span> | <span class="prop-type">string |  | An alias for `image` property. Available only with media components. Media components: `video`, `audio`, `picture`, `iframe`, `img`. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## CSS API
 

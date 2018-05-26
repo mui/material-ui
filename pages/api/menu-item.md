@@ -17,7 +17,7 @@ filename: /packages/material-ui/src/MenuItem/MenuItem.js
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Use to apply selected styling. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element ([ListItem](/api/list-item)).
 
 ## CSS API
 
@@ -37,6 +37,7 @@ you need to use the following style sheet name: `MuiMenuItem`.
 ## Inheritance
 
 The properties of the [ListItem](/api/list-item) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api#spread).
 
 ## Demos
 

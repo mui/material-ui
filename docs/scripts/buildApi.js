@@ -41,6 +41,38 @@ const rootDirectory = path.resolve(__dirname, '../../');
 const docsApiDirectory = path.resolve(rootDirectory, args[3]);
 const theme = createMuiTheme();
 
+const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
+
+function getInheritance(src) {
+  const inheritedComponent = src.match(inheritedComponentRegexp);
+
+  if (!inheritedComponent) {
+    return null;
+  }
+
+  const component = inheritedComponent[1];
+  let pathname;
+
+  switch (component) {
+    case 'Transition':
+      pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
+      break;
+
+    case 'EventListener':
+      pathname = 'https://github.com/oliviertassinari/react-event-listener';
+      break;
+
+    default:
+      pathname = `/api/${kebabCase(component)}`;
+      break;
+  }
+
+  return {
+    component,
+    pathname,
+  };
+}
+
 function buildDocs(options) {
   const { component: componentObject, pagesMarkdown } = options;
   const src = readFileSync(componentObject.filename, 'utf8');
@@ -72,17 +104,19 @@ function buildDocs(options) {
     throw err;
   }
 
+  // if (reactAPI.name !== 'Select') {
+  //   return;
+  // }
+
   reactAPI.name = path.parse(componentObject.filename).name;
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
 
-  // if (reactAPI.name !== 'Select') {
-  //   return;
-  // }
-
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(rootDirectory, '');
+  reactAPI.inheritance = getInheritance(src);
+
   let markdown;
   try {
     markdown = generateMarkdown(reactAPI);

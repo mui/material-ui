@@ -37,7 +37,7 @@ filename: /packages/material-ui/src/Popover/Popover.js
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | <span class="prop-default">'auto'</span> | Set to 'auto' to automatically calculate transition time based on height. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object |  | Properties applied to the `Transition` element. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element ([Modal](/api/modal)).
 
 ## CSS API
 
@@ -56,6 +56,7 @@ you need to use the following style sheet name: `MuiPopover`.
 ## Inheritance
 
 The properties of the [Modal](/api/modal) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api#spread).
 
 ## Demos
 

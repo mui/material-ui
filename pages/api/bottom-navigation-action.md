@@ -18,7 +18,7 @@ filename: /packages/material-ui/src/BottomNavigationAction/BottomNavigationActio
 | <span class="prop-name">showLabel</span> | <span class="prop-type">bool |  | If `true`, the BottomNavigationAction will show its label. |
 | <span class="prop-name">value</span> | <span class="prop-type">any |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element ([ButtonBase](/api/button-base)).
 
 ## CSS API
 
@@ -41,6 +41,7 @@ you need to use the following style sheet name: `MuiBottomNavigationAction`.
 ## Inheritance
 
 The properties of the [ButtonBase](/api/button-base) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api#spread).
 
 ## Demos
 

@@ -1,6 +1,5 @@
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
-import kebabCase from 'lodash/kebabCase';
 import { pageToTitle } from './helpers';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
@@ -213,6 +212,13 @@ function generateProps(reactAPI) {
     return textProps;
   }, text);
 
+  text = `${text}
+Any other properties supplied will be [spread to](#inheritance) the root element (${
+    reactAPI.inheritance
+      ? `[${reactAPI.inheritance.component}](${reactAPI.inheritance.pathname})`
+      : 'native element'
+  }).`;
+
   return text;
 }
 
@@ -244,38 +250,34 @@ you need to use the following style sheet name: \`${reactAPI.styles.name}\`.
 `;
 }
 
-const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
-
 function generateInheritance(reactAPI) {
-  const inheritedComponent = reactAPI.src.match(inheritedComponentRegexp);
+  const { inheritance } = reactAPI;
 
-  if (!inheritedComponent) {
+  if (!inheritance) {
     return '';
   }
 
-  const component = inheritedComponent[1];
-  let pathname;
   let suffix = '';
 
-  switch (component) {
+  switch (inheritance.component) {
     case 'Transition':
       suffix = ', from react-transition-group,';
-      pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
       break;
 
     case 'EventListener':
       suffix = ', from react-event-listener,';
-      pathname = 'https://github.com/oliviertassinari/react-event-listener';
       break;
 
     default:
-      pathname = `/api/${kebabCase(component)}`;
       break;
   }
 
   return `## Inheritance
 
-The properties of the [${component}](${pathname}) component${suffix} are also available.
+The properties of the [${inheritance.component}](${
+    inheritance.pathname
+  }) component${suffix} are also available.
+You can take advantage of this behavior to [target nested components](/guides/api#spread).
 
 `;
 }
@@ -311,7 +313,6 @@ export default function generateMarkdown(reactAPI) {
     reactAPI.description,
     '',
     generateProps(reactAPI),
-    'Any other properties supplied will be [spread to the root element](/guides/api#spread).',
     '',
     `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,
   ].join('\n');

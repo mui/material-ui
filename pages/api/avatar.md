@@ -21,7 +21,7 @@ filename: /packages/material-ui/src/Avatar/Avatar.js
 | <span class="prop-name">src</span> | <span class="prop-type">string |  | The `src` attribute for the `img` element. |
 | <span class="prop-name">srcSet</span> | <span class="prop-type">string |  | The `srcSet` attribute for the `img` element. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## CSS API
 

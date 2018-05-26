@@ -18,7 +18,7 @@ filename: /packages/material-ui/src/Paper/Paper.js
 | <span class="prop-name">elevation</span> | <span class="prop-type">number | <span class="prop-default">2</span> | Shadow depth, corresponds to `dp` in the spec. It's accepting values between 0 and 24 inclusive. |
 | <span class="prop-name">square</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, rounded corners are disabled. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## CSS API
 

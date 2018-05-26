@@ -21,7 +21,7 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 | <span class="prop-name">in</span> | <span class="prop-type">bool |  | If `true`, the component will transition in. |
 | <span class="prop-name">timeout</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | <span class="prop-default">duration.standard</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.<br>Set to 'auto' to automatically calculate transition time based on height. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element ([Transition](https://reactcommunity.org/react-transition-group/#Transition)).
 
 ## CSS API
 
@@ -43,6 +43,7 @@ you need to use the following style sheet name: `MuiCollapse`.
 ## Inheritance
 
 The properties of the [Transition](https://reactcommunity.org/react-transition-group/#Transition) component, from react-transition-group, are also available.
+You can take advantage of this behavior to [target nested components](/guides/api#spread).
 
 ## Demos
 

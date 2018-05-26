@@ -18,7 +18,7 @@ filename: /packages/material-ui/src/GridListTile/GridListTile.js
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">rows</span> | <span class="prop-type">number | <span class="prop-default">1</span> | Height of the tile in number of grid cells. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## CSS API
 

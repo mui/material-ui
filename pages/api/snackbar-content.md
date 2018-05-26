@@ -16,7 +16,7 @@ filename: /packages/material-ui/src/SnackbarContent/SnackbarContent.js
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">message</span> | <span class="prop-type">node |  | The message to display. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element ([Paper](/api/paper)).
 
 ## CSS API
 
@@ -37,6 +37,7 @@ you need to use the following style sheet name: `MuiSnackbarContent`.
 ## Inheritance
 
 The properties of the [Paper](/api/paper) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api#spread).
 
 ## Demos
 

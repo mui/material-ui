@@ -27,7 +27,7 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 | <span class="prop-name">rowsPerPageOptions</span> | <span class="prop-type">array | <span class="prop-default">[5, 10, 25]</span> | Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. |
 | <span class="prop-name">SelectProps</span> | <span class="prop-type">object |  | Properties applied to the rows per page `Select` element. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element ([TableCell](/api/table-cell)).
 
 ## CSS API
 
@@ -55,6 +55,7 @@ you need to use the following style sheet name: `MuiTablePagination`.
 ## Inheritance
 
 The properties of the [TableCell](/api/table-cell) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api#spread).
 
 ## Demos
 

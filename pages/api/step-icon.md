@@ -18,7 +18,7 @@ filename: /packages/material-ui/src/StepIcon/StepIcon.js
 | <span class="prop-name">error</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Mark the step as failed. |
 | <span class="prop-name required">icon *</span> | <span class="prop-type">node |  | The icon displayed by the step label. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## CSS API
 
