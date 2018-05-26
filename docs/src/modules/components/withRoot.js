@@ -189,6 +189,9 @@ const pages = [
       {
         pathname: '/lab/slider',
       },
+      {
+        pathname: '/lab/notification-bar',
+      },
       findPages[2].children[1],
     ],
   },
