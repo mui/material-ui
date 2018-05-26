@@ -6,10 +6,10 @@ class ClosableNotificationBar extends React.Component {
     super(props);
 
     this.state = {
-      showError: true,
-      showWarning: true,
-      showInfo: true,
-      showSuccess: true,
+      error: true,
+      warning: true,
+      info: true,
+      success: true,
     };
   }
 
@@ -22,35 +22,23 @@ class ClosableNotificationBar extends React.Component {
   render() {
     return (
       <div>
-        {this.state.showError && (
-          <NotificationBar
-            onClose={() => this.onClose('showError')}
-            showCloseButton
-            type="error">
+        {this.state.error && (
+          <NotificationBar onClose={() => this.onClose('error')} showCloseButton type="error">
             This is an error message!
           </NotificationBar>
         )}
-        {this.state.showWarning && (
-          <NotificationBar
-            onClose={() => this.onClose('showWarning')}
-            showCloseButton
-            type="warning">
+        {this.state.warning && (
+          <NotificationBar onClose={() => this.onClose('warning')} showCloseButton type="warning">
             This is a warning message!
           </NotificationBar>
         )}
-        {this.state.showInfo && (
-          <NotificationBar
-            onClose={() => this.onClose('showInfo')}
-            showCloseButton
-            type="info">
+        {this.state.info && (
+          <NotificationBar onClose={() => this.onClose('info')} showCloseButton type="info">
             This is an information message!
           </NotificationBar>
         )}
-        {this.state.showSuccess && (
-          <NotificationBar
-            onClose={() => this.onClose('showSuccess')}
-            showCloseButton
-            type="success">
+        {this.state.success && (
+          <NotificationBar onClose={() => this.onClose('success')} showCloseButton type="success">
             This is a success message!
           </NotificationBar>
         )}
