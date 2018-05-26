@@ -17,7 +17,7 @@ filename: /packages/material-ui/src/MenuItem/MenuItem.js
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">selected</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Use to apply selected styling. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([ListItem](/api/list-item)).
+Any other properties supplied will be spread to the root element ([ListItem](/api/list-item)).
 
 ## CSS API
 

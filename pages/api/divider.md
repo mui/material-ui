@@ -18,7 +18,7 @@ filename: /packages/material-ui/src/Divider/Divider.js
 | <span class="prop-name">inset</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the divider will be indented. |
 | <span class="prop-name">light</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the divider will have a lighter color. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

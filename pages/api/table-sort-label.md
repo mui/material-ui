@@ -17,7 +17,7 @@ A button based label for placing inside `TableCell` for column sorting.
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">direction</span> | <span class="prop-type">enum:&nbsp;'asc'&nbsp;&#124;<br>&nbsp;'desc'<br> | <span class="prop-default">'desc'</span> | The current sort direction. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([ButtonBase](/api/button-base)).
+Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
 
 ## CSS API
 

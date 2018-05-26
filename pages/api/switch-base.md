@@ -28,7 +28,7 @@ filename: /packages/material-ui/src/internal/SwitchBase.js
 | <span class="prop-name">type</span> | <span class="prop-type">string | <span class="prop-default">'checkbox'</span> | The input component property `type`. |
 | <span class="prop-name">value</span> | <span class="prop-type">string |  | The value of the component. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([IconButton](/api/icon-button)).
+Any other properties supplied will be spread to the root element ([IconButton](/api/icon-button)).
 
 ## CSS API
 

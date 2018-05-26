@@ -17,7 +17,7 @@ filename: /packages/material-ui/src/RadioGroup/RadioGroup.js
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |  | Callback fired when a radio button is selected.<br><br>**Signature:**<br>`function(event: object, value: string) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`.<br>*value:* The `value` of the selected radio button |
 | <span class="prop-name">value</span> | <span class="prop-type">string |  | Value of the selected radio button. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([FormGroup](/api/form-group)).
+Any other properties supplied will be spread to the root element ([FormGroup](/api/form-group)).
 
 ## Inheritance
 

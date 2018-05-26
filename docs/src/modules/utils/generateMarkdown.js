@@ -213,7 +213,7 @@ function generateProps(reactAPI) {
   }, text);
 
   text = `${text}
-Any other properties supplied will be [spread to](#inheritance) the root element (${
+Any other properties supplied will be spread to the root element (${
     reactAPI.inheritance
       ? `[${reactAPI.inheritance.component}](${reactAPI.inheritance.pathname})`
       : 'native element'

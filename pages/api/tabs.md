@@ -26,7 +26,7 @@ filename: /packages/material-ui/src/Tabs/Tabs.js
 | <span class="prop-name">textColor</span> | <span class="prop-type">enum:&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'inherit'<br> | <span class="prop-default">'inherit'</span> | Determines the color of the `Tab`. |
 | <span class="prop-name">value</span> | <span class="prop-type">any |  | The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

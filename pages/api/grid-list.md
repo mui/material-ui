@@ -19,7 +19,7 @@ filename: /packages/material-ui/src/GridList/GridList.js
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'ul'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">spacing</span> | <span class="prop-type">number | <span class="prop-default">4</span> | Number of px for the spacing between tiles. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

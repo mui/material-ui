@@ -18,7 +18,7 @@ filename: /packages/material-ui/src/InputAdornment/InputAdornment.js
 | <span class="prop-name">disableTypography</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If children is a string then disable wrapping in a Typography component. |
 | <span class="prop-name">position</span> | <span class="prop-type">enum:&nbsp;'start'&nbsp;&#124;<br>&nbsp;'end'<br> |  | The position this adornment should appear relative to the `Input`. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

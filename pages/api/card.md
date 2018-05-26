@@ -15,7 +15,7 @@ filename: /packages/material-ui/src/Card/Card.js
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">raised</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the card will use raised styling. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([Paper](/api/paper)).
+Any other properties supplied will be spread to the root element ([Paper](/api/paper)).
 
 ## CSS API
 

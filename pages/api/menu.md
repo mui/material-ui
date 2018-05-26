@@ -27,7 +27,7 @@ filename: /packages/material-ui/src/Menu/Menu.js
 | <span class="prop-name">PopoverClasses</span> | <span class="prop-type">object |  | `classes` property applied to the `Popover` element. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | <span class="prop-default">'auto'</span> | The length of the transition in `ms`, or 'auto' |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([Popover](/api/popover)).
+Any other properties supplied will be spread to the root element ([Popover](/api/popover)).
 
 ## CSS API
 

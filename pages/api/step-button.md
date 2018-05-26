@@ -17,7 +17,7 @@ filename: /packages/material-ui/src/StepButton/StepButton.js
 | <span class="prop-name">icon</span> | <span class="prop-type">node |  | The icon displayed by the step label. |
 | <span class="prop-name">optional</span> | <span class="prop-type">node |  | The optional node to display. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([ButtonBase](/api/button-base)).
+Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
 
 ## CSS API
 

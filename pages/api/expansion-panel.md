@@ -20,7 +20,7 @@ filename: /packages/material-ui/src/ExpansionPanel/ExpansionPanel.js
 | <span class="prop-name">expanded</span> | <span class="prop-type">bool |  | If `true`, expands the panel, otherwise collapse it. Setting this prop enables control over the panel. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |  | Callback fired when the expand/collapse state is changed.<br><br>**Signature:**<br>`function(event: object, expanded: boolean) => void`<br>*event:* The event source of the callback<br>*expanded:* The `expanded` state of the panel |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([Paper](/api/paper)).
+Any other properties supplied will be spread to the root element ([Paper](/api/paper)).
 
 ## CSS API
 

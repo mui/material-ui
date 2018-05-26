@@ -23,7 +23,7 @@ filename: /packages/material-ui/src/Typography/Typography.js
 | <span class="prop-name">paragraph</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the text will have a bottom margin. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'display4', 'display3', 'display2', 'display1', 'headline', 'title', 'subheading', 'body2', 'body1', 'caption', 'button'<br> | <span class="prop-default">'body1'</span> | Applies the theme typography styles. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

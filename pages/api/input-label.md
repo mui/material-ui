@@ -23,7 +23,7 @@ filename: /packages/material-ui/src/InputLabel/InputLabel.js
 | <span class="prop-name">required</span> | <span class="prop-type">bool |  | if `true`, the label will indicate that the input is required. |
 | <span class="prop-name">shrink</span> | <span class="prop-type">bool |  | If `true`, the label is shrunk. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([FormLabel](/api/form-label)).
+Any other properties supplied will be spread to the root element ([FormLabel](/api/form-label)).
 
 ## CSS API
 

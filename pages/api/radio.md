@@ -26,7 +26,7 @@ filename: /packages/material-ui/src/Radio/Radio.js
 | <span class="prop-name">type</span> | <span class="prop-type">string |  | The input component property `type`. |
 | <span class="prop-name">value</span> | <span class="prop-type">string |  | The value of the component. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

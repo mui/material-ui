@@ -20,7 +20,7 @@ An alternative to `<Select native />` with a much smaller dependency graph.
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |  | Callback function fired when a menu item is selected.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | The input value. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([Input](/api/input)).
+Any other properties supplied will be spread to the root element ([Input](/api/input)).
 
 ## CSS API
 

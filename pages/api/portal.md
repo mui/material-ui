@@ -19,7 +19,7 @@ and take the control of our destiny.
 | <span class="prop-name">container</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br> |  | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time. |
 | <span class="prop-name">onRendered</span> | <span class="prop-type">func |  | Callback fired once the children has been mounted into the `container`. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## Demos
 

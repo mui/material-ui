@@ -18,7 +18,7 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 | <span class="prop-name">in</span> | <span class="prop-type">bool |  | If `true`, show the component; triggers the enter or exit animation. |
 | <span class="prop-name">timeout</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([Transition](https://reactcommunity.org/react-transition-group/#Transition)).
+Any other properties supplied will be spread to the root element ([Transition](https://reactcommunity.org/react-transition-group/#Transition)).
 
 ## Inheritance
 

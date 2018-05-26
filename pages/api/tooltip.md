@@ -29,7 +29,7 @@ filename: /packages/material-ui/src/Tooltip/Tooltip.js
 | <span class="prop-name">PopperProps</span> | <span class="prop-type">object |  | Properties applied to the `Popper` element. |
 | <span class="prop-name required">title *</span> | <span class="prop-type">node |  | Tooltip title. Zero-length titles string are never displayed. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

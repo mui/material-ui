@@ -19,7 +19,7 @@ Chips represent complex entities in small blocks, such as a contact.
 | <span class="prop-name">label</span> | <span class="prop-type">node |  | The content of the label. |
 | <span class="prop-name">onDelete</span> | <span class="prop-type">func |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

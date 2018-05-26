@@ -31,7 +31,7 @@ filename: /packages/material-ui/src/Modal/Modal.js
 | <span class="prop-name">onRendered</span> | <span class="prop-type">func |  | Callback fired once the children has been mounted into the `container`. It signals that the `open={true}` property took effect. |
 | <span class="prop-name required">open *</span> | <span class="prop-type">bool |  | If `true`, the modal is open. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([Portal](/api/portal)).
+Any other properties supplied will be spread to the root element ([Portal](/api/portal)).
 
 ## CSS API
 

@@ -19,7 +19,7 @@ filename: /packages/material-ui/src/CardHeader/CardHeader.js
 | <span class="prop-name">subheader</span> | <span class="prop-type">node |  | The content of the component. |
 | <span class="prop-name">title</span> | <span class="prop-type">node |  | The content of the Card Title. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

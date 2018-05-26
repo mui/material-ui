@@ -37,7 +37,7 @@ filename: /packages/material-ui/src/Input/Input.js
 | <span class="prop-name">type</span> | <span class="prop-type">string | <span class="prop-default">'text'</span> | Type of the input element. It should be a valid HTML5 input type. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;arrayOf<br> |  | The input value, required for a controlled component. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

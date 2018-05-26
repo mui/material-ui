@@ -18,7 +18,7 @@ filename: /packages/material-ui/src/Tab/Tab.js
 | <span class="prop-name">label</span> | <span class="prop-type">node |  | The label element. |
 | <span class="prop-name">value</span> | <span class="prop-type">any |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([ButtonBase](/api/button-base)).
+Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
 
 ## CSS API
 

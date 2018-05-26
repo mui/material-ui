@@ -20,7 +20,7 @@ filename: /packages/material-ui/src/MobileStepper/MobileStepper.js
 | <span class="prop-name required">steps *</span> | <span class="prop-type">number |  | The total steps. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'text'&nbsp;&#124;<br>&nbsp;'dots'&nbsp;&#124;<br>&nbsp;'progress'<br> | <span class="prop-default">'dots'</span> | The type of mobile stepper to use. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([Paper](/api/paper)).
+Any other properties supplied will be spread to the root element ([Paper](/api/paper)).
 
 ## CSS API
 

@@ -20,7 +20,7 @@ filename: /packages/material-ui/src/StepLabel/StepLabel.js
 | <span class="prop-name">optional</span> | <span class="prop-type">node |  | The optional node to display. |
 | <span class="prop-name">StepIconProps</span> | <span class="prop-type">object |  | Properties applied to the `StepIcon` element. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

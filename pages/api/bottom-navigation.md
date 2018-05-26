@@ -18,7 +18,7 @@ filename: /packages/material-ui/src/BottomNavigation/BottomNavigation.js
 | <span class="prop-name">showLabels</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, all `BottomNavigationAction`s will show their labels. By default, only the selected `BottomNavigationAction` will show its label. |
 | <span class="prop-name">value</span> | <span class="prop-type">any |  | The value of the currently selected `BottomNavigationAction`. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

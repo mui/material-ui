@@ -19,7 +19,7 @@ filename: /packages/material-ui/src/GridListTileBar/GridListTileBar.js
 | <span class="prop-name">title</span> | <span class="prop-type">node |  | Title to be displayed on tile. |
 | <span class="prop-name">titlePosition</span> | <span class="prop-type">enum:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'bottom'<br> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## CSS API
 

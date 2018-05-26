@@ -18,7 +18,7 @@ filename: /packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js
 | <span class="prop-name required">icon *</span> | <span class="prop-type">node |  | The Icon to display in the SpeedDial Floating Action Button. |
 | <span class="prop-name">tooltipTitle</span> | <span class="prop-type">node |  | Label to display in the tooltip. |
 
-Any other properties supplied will be [spread to](#inheritance) the root element (native element).
+Any other properties supplied will be spread to the root element (native element).
 
 ## Demos
 

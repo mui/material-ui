@@ -30,7 +30,7 @@ filename: /packages/material-ui/src/Select/Select.js
 | <span class="prop-name">SelectDisplayProps</span> | <span class="prop-type">object |  | Properties applied to the clickable div element. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;arrayOf<br> |  | The input value. This property is required when the `native` property is `false` (default). |
 
-Any other properties supplied will be [spread to](#inheritance) the root element ([Input](/api/input)).
+Any other properties supplied will be spread to the root element ([Input](/api/input)).
 
 ## CSS API
 
