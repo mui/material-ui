@@ -88,7 +88,7 @@ NotificationBar.propTypes = {
   onClose: PropTypes.func,
   showCloseButton: PropTypes.bool,
   showIcon: PropTypes.bool,
-  type: PropTypes.oneOf('error', 'warning', 'info', 'success'),
+  type: PropTypes.oneOf(['error', 'warning', 'info', 'success']),
 };
 
 NotificationBar.defaultProps = {
