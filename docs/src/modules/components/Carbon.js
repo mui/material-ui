@@ -100,7 +100,7 @@ class Carbon extends React.Component {
 
     const script = document.createElement('script');
     script.setAttribute('async', '');
-    script.src = '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=materialuicom';
+    script.src = '//cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom';
     script.id = '_carbonads_js';
     const ad = document.querySelector('#ad');
     if (ad) {
