@@ -67,7 +67,7 @@ N/A
 - [core] Simplify the babel docs config (#11514) @oliviertassinari
 - [core] Remove lodash 💃 (#11521) @oliviertassinari
 - [core] Internalize ScrollbarSize (#11523) @oliviertassinari
-- [typescript] add sample with return types (#11512) @yacut
+- [typescript] Add sample with return types (#11512) @yacut
 
 #### Labs
 

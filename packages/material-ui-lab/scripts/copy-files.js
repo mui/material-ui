@@ -16,6 +16,7 @@ async function createPackageFile() {
     ...packageDataOther,
     main: './index.js',
     module: './index.es.js',
+    private: false,
   };
   const buildPath = path.resolve(__dirname, '../build/package.json');
 
