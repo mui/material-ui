@@ -25,7 +25,7 @@ filename: /packages/material-ui/src/Button/Button.js
 | <span class="prop-name">size</span> | <span class="prop-type">enum:&nbsp;'small'&nbsp;&#124;<br>&nbsp;'medium'&nbsp;&#124;<br>&nbsp;'large'<br> | <span class="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'flat'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'raised'&nbsp;&#124;<br>&nbsp;'fab'<br> | <span class="prop-default">'flat'</span> | The type of button. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element ([ButtonBase](/api/button-base)).
 
 ## CSS API
 
@@ -59,6 +59,7 @@ you need to use the following style sheet name: `MuiButton`.
 ## Inheritance
 
 The properties of the [ButtonBase](/api/button-base) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api#spread).
 
 ## Demos
 

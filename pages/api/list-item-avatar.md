@@ -15,7 +15,7 @@ It's a simple wrapper to apply the `dense` mode styles to `Avatar`.
 | <span class="prop-name required">children *</span> | <span class="prop-type">element |  | The content of the component, normally `Avatar`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## CSS API
 

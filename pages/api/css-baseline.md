@@ -14,7 +14,7 @@ Kickstart an elegant, consistent, and simple baseline to build upon.
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node | <span class="prop-default">null</span> | You can wrap a node. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## Demos
 

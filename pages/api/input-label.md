@@ -23,7 +23,7 @@ filename: /packages/material-ui/src/InputLabel/InputLabel.js
 | <span class="prop-name">required</span> | <span class="prop-type">bool |  | if `true`, the label will indicate that the input is required. |
 | <span class="prop-name">shrink</span> | <span class="prop-type">bool |  | If `true`, the label is shrunk. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element ([FormLabel](/api/form-label)).
 
 ## CSS API
 
@@ -46,6 +46,7 @@ you need to use the following style sheet name: `MuiInputLabel`.
 ## Inheritance
 
 The properties of the [FormLabel](/api/form-label) component are also available.
+You can take advantage of this behavior to [target nested components](/guides/api#spread).
 
 ## Demos
 

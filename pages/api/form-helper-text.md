@@ -19,7 +19,7 @@ filename: /packages/material-ui/src/FormHelperText/FormHelperText.js
 | <span class="prop-name">error</span> | <span class="prop-type">bool |  | If `true`, helper text should be displayed in an error state. |
 | <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'dense'<br> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## CSS API
 

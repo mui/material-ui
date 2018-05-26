@@ -17,5 +17,5 @@ It's higly inspired by https://github.com/facebook/react/issues/11401#issuecomme
 | <span class="prop-name required">children *</span> | <span class="prop-type">element |  |  |
 | <span class="prop-name required">rootRef *</span> | <span class="prop-type">func |  |  |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 

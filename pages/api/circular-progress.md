@@ -23,7 +23,7 @@ attribute to `true` on that region until it has finished loading.
 | <span class="prop-name">value</span> | <span class="prop-type">number | <span class="prop-default">0</span> | The value of the progress indicator for the determinate and static variants. Value between 0 and 100. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'&nbsp;&#124;<br>&nbsp;'static'<br> | <span class="prop-default">'indeterminate'</span> | The variant of progress indicator. Use indeterminate when there is no progress value. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## CSS API
 

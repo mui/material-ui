@@ -16,7 +16,7 @@ filename: /packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js
 | <span class="prop-name">icon</span> | <span class="prop-type">node |  | The icon to display in the SpeedDial Floating Action Button. |
 | <span class="prop-name">openIcon</span> | <span class="prop-type">node |  | The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## Demos
 

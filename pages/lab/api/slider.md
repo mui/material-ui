@@ -24,7 +24,7 @@ filename: /packages/material-ui-lab/src/Slider/Slider.js
 | <span class="prop-name">value</span> | <span class="prop-type">number | <span class="prop-default">50</span> | The value of the slider. |
 | <span class="prop-name">vertical</span> | <span class="prop-type">bool |  | If `true`, the slider will be vertical. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## Demos
 

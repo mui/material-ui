@@ -19,7 +19,7 @@ filename: /packages/material-ui/src/ListItemText/ListItemText.js
 | <span class="prop-name">primary</span> | <span class="prop-type">node |  | The main content element. |
 | <span class="prop-name">secondary</span> | <span class="prop-type">node |  | The secondary content element. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## CSS API
 

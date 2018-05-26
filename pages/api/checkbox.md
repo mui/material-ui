@@ -28,7 +28,7 @@ filename: /packages/material-ui/src/Checkbox/Checkbox.js
 | <span class="prop-name">type</span> | <span class="prop-type">string |  | The input component property `type`. |
 | <span class="prop-name">value</span> | <span class="prop-type">string |  | The value of the component. |
 
-Any other properties supplied will be [spread to the root element](/guides/api#spread).
+Any other properties supplied will be [spread to](#inheritance) the root element (native element).
 
 ## CSS API
 
