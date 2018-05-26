@@ -15,7 +15,7 @@ filename: /packages/material-ui-lab/src/SpeedDial/SpeedDial.js
 | <span class="prop-name required">ariaLabel *</span> | <span class="prop-type">string |  | The aria-label of the `Button` element. Also used to provide the `id` for the `SpeedDial` element and its children. |
 | <span class="prop-name">ButtonProps</span> | <span class="prop-type">object |  | Properties applied to the `Button` element. |
 | <span class="prop-name required">children *</span> | <span class="prop-type">node |  | SpeedDialActions to display when the SpeedDial is `open`. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Useful to extend the style applied to components. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">hidden</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the SpeedDial will be hidden. |
 | <span class="prop-name required">icon *</span> | <span class="prop-type">element |  | The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component provides a default Icon with animation. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, key: string) => void`<br>*event:* The event source of the callback<br>*key:* The key pressed |
