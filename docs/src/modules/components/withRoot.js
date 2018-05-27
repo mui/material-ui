@@ -199,15 +199,6 @@ const pages = [
         pathname: '/discover-more/vision',
       },
       {
-        pathname: '/discover-more/roadmap',
-      },
-      {
-        pathname: '/discover-more/governance',
-      },
-      {
-        pathname: '/discover-more/team',
-      },
-      {
         pathname: '/discover-more/backers',
         title: 'Sponsors & Backers',
       },
@@ -215,10 +206,22 @@ const pages = [
         pathname: '/discover-more/community',
       },
       {
+        pathname: '/discover-more/related-projects',
+      },
+      {
         pathname: '/discover-more/showcase',
       },
       {
-        pathname: '/discover-more/related-projects',
+        pathname: '/discover-more/roadmap',
+      },
+      {
+        pathname: '/discover-more/changelog',
+      },
+      {
+        pathname: '/discover-more/team',
+      },
+      {
+        pathname: '/discover-more/governance',
       },
     ],
   },
