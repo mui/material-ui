@@ -5,21 +5,78 @@ Have a look at the [Create React App with TypeScript](https://github.com/mui-org
 
 ## Usage of `withStyles`
 
-The usage of `withStyles` in TypeScript can be a little tricky, so it's worth showing some examples. You can first call `withStyles()` to create a decorator function, like so:
+The usage of `withStyles` in TypeScript can be a little tricky, so it's worth showing some examples.
 
-```js
-const decorate = withStyles(({ palette, spacing }) => ({
+### Style rules and type widening
+
+First off, a frequent source of confusion is TypeScript's [type widening](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening), which causes this example not to work:
+
+```ts
+const styles = {
   root: {
+    display: 'flex',
+    flexDirection: 'column',
+  }
+};
+
+withStyles(styles); // Error!
+```
+
+The problem is that the type of the `flexDirection` property here is inferred as `string`, but arbitrary strings are not valid. To fix this, you can pass the styles object directly to `withStyles`:
+
+```ts
+withStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
+```
+
+However type widening rears its ugly head once more if you try to make the styles depend on the theme:
+
+```ts
+withStyles(({ palette, spacing }) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
     padding: spacing.unit,
     backgroundColor: palette.background.default,
-    color: palette.primary.main
+    color: palette.primary.main,
   },
 }));
 ```
 
-This can then subsequently be used to decorate either a stateless functional component or a class component. Suppose we have in either case the following props:
+A more general solution is to use the `createStyles` helper function to construct your style rules object:
 
-```js
+```ts
+// Non-dependent styles
+const styles = createStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
+
+// Theme-dependent styles
+const styles = ({ palette, spacing }: Theme) => createStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: spacing.unit,
+    backgroundColor: palette.background.default,
+    color: palette.primary.main,
+  },
+});
+```
+
+`createStyles` is just the identity function; it doesn't "do anything" at runtime, just helps guide type inference at compile time.
+
+### Styled props
+
+Once you've obtained a decorator from `withStyles(styles)`, it can be used to decorate either a stateless functional component or a class component. Suppose we have in either case the following props:
+
+```ts
 interface Props {
   text: string;
   type: TypographyProps['type'];
@@ -29,8 +86,8 @@ interface Props {
 
 Functional components are straightforward:
 
-```jsx
-const DecoratedSFC = decorate<Props>(({ text, type, color, classes }) => (
+```tsx
+const DecoratedSFC = withStyles(styles)<Props>(({ text, type, color, classes }) => (
   <Typography variant={type} color={color} classes={classes}>
     {text}
   </Typography>
@@ -39,10 +96,10 @@ const DecoratedSFC = decorate<Props>(({ text, type, color, classes }) => (
 
 Class components are a little more cumbersome. Due to a [current limitation in TypeScript's decorator support](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles` can't be used as a class decorator. Instead, we decorate a class component like so:
 
-```jsx
+```tsx
 import { WithStyles } from '@material-ui/core/styles';
 
-const DecoratedClass = decorate(
+const DecoratedClass = withStyles(styles)(
   class extends React.Component<Props & WithStyles<'root'>> {
     render() {
       const { text, type, color, classes } = this.props
@@ -58,7 +115,7 @@ const DecoratedClass = decorate(
 
 When your `props` are a union, Typescript needs you to explicitly tell it the type, by providing a generic `<Props>` parameter to `decorate`:
 
-```jsx
+```tsx
 import { WithStyles } from '@material-ui/core/styles';
 
 interface Book {
@@ -92,7 +149,7 @@ const DecoratedUnionProps = decorate<Props>( // <-- without the type argument, w
 
 Injecting multiple classes into a component is as straightforward as possible. Take the following code for example. The classes `one` and `two` are both available with type information on the `classes`-prop passed in by `withStyles`.
 
-```jsx
+```tsx
 import { Theme, withStyles, WithStyles } from "material-ui/styles";
 import * as React from "react";
 
@@ -105,7 +162,7 @@ const styles = (theme: Theme) => ({
   },
 });
 
-type Props = {
+interface Props {
    someProp: string;
 };
 
@@ -131,7 +188,7 @@ When adding custom properties to the `Theme`, you may continue to use it in a st
 
 The following example adds an `appDrawer` property that is merged into the one exported by `material-ui`:
 
-```js
+```ts
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
@@ -154,7 +211,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 
 And a custom theme factory with additional defaulted options:
 
-```js
+```ts
 import createMuiTheme, { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 
 export default function createMyTheme(options: ThemeOptions) {
@@ -170,7 +227,7 @@ export default function createMyTheme(options: ThemeOptions) {
 
 This could be used like:
 
-```js
+```ts
 import createMyTheme from './styles/createMyTheme';
 
 const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
