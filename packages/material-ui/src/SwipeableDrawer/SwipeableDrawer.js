@@ -145,16 +145,18 @@ class SwipeableDrawer extends React.Component {
     this.startX = currentX;
     this.startY = currentY;
 
-    this.setState({ maybeSwiping: true });
-    setImmediate(() => {
-      // without this, the drawer opeens immediately
-      if (!open && this.paper) {
-        // the ref may be null when a parent component updates while swiping
-        this.setPosition(this.getMaxTranslate() + (disableDiscovery ? 20 : -swipeAreaWidth), {
-          changeTransition: false,
+    // the ref may be null when a parent component updates while swiping
+    if (!open && this.paper) {
+      // setting the position twice ensures that the drawer animates correctly for discovery
+      this.setPosition(this.getMaxTranslate() + 20, { changeTransition: true });
+      if (!disableDiscovery) {
+        this.setPosition(this.getMaxTranslate() - swipeAreaWidth, {
+          changeTransition: true,
+          mode: 'enter'
         });
       }
-    });
+    }
+    this.setState({ maybeSwiping: true });
 
     document.body.addEventListener('touchmove', this.handleBodyTouchMove, { passive: false });
     document.body.addEventListener('touchend', this.handleBodyTouchEnd);
@@ -229,10 +231,10 @@ class SwipeableDrawer extends React.Component {
   handleBodyTouchEnd = event => {
     nodeThatClaimedTheSwipe = null;
     this.removeBodyTouchListeners();
-    this.setState({ maybeSwiping: false });
 
     // The swipe wasn't started.
     if (!this.isSwiping) {
+      this.setState({ maybeSwiping: false });
       this.isSwiping = null;
       return;
     }
@@ -258,22 +260,40 @@ class SwipeableDrawer extends React.Component {
       if (this.isSwiping && !this.props.open) {
         // Reset the position, the swipe was aborted.
         this.setPosition(this.getMaxTranslate(), {
-          mode: 'enter',
+          mode: 'exit',
+          changeTransition: true,
         });
       } else {
+        this.setPosition(this.getMaxTranslate(), {
+          mode: 'exit',
+          changeTransition: true,
+        });
         this.props.onClose();
       }
     } else if (this.isSwiping && !this.props.open) {
+      this.setPosition(0, {
+        mode: 'enter',
+        changeTransition: true,
+      });
       this.props.onOpen();
     } else {
       // Reset the position, the swipe was aborted.
       this.setPosition(0, {
-        mode: 'exit',
+        mode: 'enter',
+        changeTransition: true,
       });
     }
+    this.setState({ maybeSwiping: false });
 
     this.isSwiping = null;
   };
+
+  handleBackdropClick = () => {
+    this.setPosition(this.getMaxTranslate(), {
+      mode: 'exit'
+    });
+    this.props.onClose();
+  }
 
   backdrop = null;
   paper = null;
@@ -321,13 +341,16 @@ class SwipeableDrawer extends React.Component {
     return (
       <Fragment>
         <Drawer
-          open={variant === 'temporary' && maybeSwiping ? true : open}
+          open={variant === 'temporary' ? open || maybeSwiping : open}
           variant={variant}
           ModalProps={{
             BackdropProps: {
+              open: true,
               ...BackdropProps,
               ref: this.handleBackdropRef,
             },
+            keepMounted: true,
+            onBackdropClick: this.handleBackdropClick,
             ...ModalPropsProp,
           }}
           PaperProps={{
@@ -335,6 +358,7 @@ class SwipeableDrawer extends React.Component {
             style: { pointerEvents: variant === 'temporary' && !open ? 'none' : '' },
             ref: this.handlePaperRef,
           }}
+          disableSlide
           {...other}
         />
         {!disableSwipeToOpen &&

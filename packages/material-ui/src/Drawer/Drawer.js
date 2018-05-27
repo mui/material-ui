@@ -138,7 +138,7 @@ class Drawer extends React.Component {
       );
     }
 
-    const slidingDrawer = (
+    const slidingDrawer = other.disableSlide ? drawer : (
       <Slide
         in={open}
         direction={oppositeDirection[anchor]}
