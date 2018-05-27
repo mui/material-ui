@@ -5,11 +5,11 @@ Have a look at the [Create React App with TypeScript](https://github.com/mui-org
 
 ## Usage of `withStyles`
 
-The usage of `withStyles` in TypeScript can be a little tricky, so it's worth showing some examples.
+The usage of `withStyles` in TypeScript can be a little tricky for a number of reasons, but 
 
-### Style rules and type widening
+### Using `createStyles` to defeat type widening
 
-First off, a frequent source of confusion is TypeScript's [type widening](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening), which causes this example not to work:
+A frequent source of confusion is TypeScript's [type widening](https://blog.mariusschulz.com/2017/02/04/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
 
 ```ts
 const styles = {
@@ -22,7 +22,7 @@ const styles = {
 withStyles(styles); // Error!
 ```
 
-The problem is that the type of the `flexDirection` property here is inferred as `string`, but arbitrary strings are not valid. To fix this, you can pass the styles object directly to `withStyles`:
+The problem is that the type of the `flexDirection` property is inferred as `string`, which is too arbitrary. To fix this, you can pass the styles object directly to `withStyles`:
 
 ```ts
 withStyles({
@@ -47,7 +47,9 @@ withStyles(({ palette, spacing }) => ({
 }));
 ```
 
-A more general solution is to use the `createStyles` helper function to construct your style rules object:
+This is because TypeScript [widens the return types of function expressions](https://github.com/Microsoft/TypeScript/issues/241).
+
+Because of this, we recommend using our `createStyles` helper function to construct your style rules object:
 
 ```ts
 // Non-dependent styles
@@ -72,35 +74,60 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
 
 `createStyles` is just the identity function; it doesn't "do anything" at runtime, just helps guide type inference at compile time.
 
-### Styled props
+### Augmenting your props with `InjectedStyles`
 
-Once you've obtained a decorator from `withStyles(styles)`, it can be used to decorate either a stateless functional component or a class component. Suppose we have in either case the following props:
+Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to declare it as such:
 
 ```ts
 interface Props {
-  text: string;
-  type: TypographyProps['type'];
-  color: TypographyProps['color'];
-};
+  // non-style props
+  foo: number;
+  bar: boolean;
+  // injected style props
+  classes: {
+    root: string;
+    paper: string;
+    button: string;
+  };
+}
+
+const styles = (theme: Theme) => createStyles({
+  root: { /* ... */ },
+  paper: { /* ... */ },
+  button: { /* ... */ },
+});
 ```
 
-Functional components are straightforward:
+However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `InjectedStyles` to help with this, so that you can just write
+
+```ts
+import { InjectedStyles } from '@material-ui/core';
+
+interface Props extends InjectedStyles<typeof styles> {
+  foo: number;
+  bar: boolean;
+}
+
+const styles = (theme: Theme) => createStyles({
+  root: { /* ... */ },
+  paper: { /* ... */ },
+  button: { /* ... */ },
+});
+```
+
+### Decorating components
+
+Applying the `withStyles(styles)` decorator as a function works as expected:
 
 ```tsx
-const DecoratedSFC = withStyles(styles)<Props>(({ text, type, color, classes }) => (
+const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
   <Typography variant={type} color={color} classes={classes}>
     {text}
   </Typography>
 ));
-```
-
-Class components are a little more cumbersome. Due to a [current limitation in TypeScript's decorator support](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles` can't be used as a class decorator. Instead, we decorate a class component like so:
-
-```tsx
-import { WithStyles } from '@material-ui/core/styles';
 
 const DecoratedClass = withStyles(styles)(
-  class extends React.Component<Props & WithStyles<'root'>> {
+  class extends React.Component<Props> {
     render() {
       const { text, type, color, classes } = this.props
       return (
@@ -113,11 +140,13 @@ const DecoratedClass = withStyles(styles)(
 );
 ```
 
+Unfortunately due to a [current limitation of TypeScript decorators](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles` can't be used as a decorator in TypeScript.
+
+### Union props
+
 When your `props` are a union, Typescript needs you to explicitly tell it the type, by providing a generic `<Props>` parameter to `decorate`:
 
 ```tsx
-import { WithStyles } from '@material-ui/core/styles';
-
 interface Book {
   category: "book";
   author: string;
@@ -128,10 +157,12 @@ interface Painting {
   artist: string;
 }
 
-type Props = Book | Painting;
+type BookOrPainting = Book | Painting;
 
-const DecoratedUnionProps = decorate<Props>( // <-- without the type argument, we'd get a compiler error!
-  class extends React.Component<Props & WithStyles<'root'>> {
+type Props = BookOrPainting & InjectedStyles<typeof styles>;
+
+const DecoratedUnionProps = withStyles(styles)<BookOrPainting>( // <-- without the type argument, we'd get a compiler error!
+  class extends React.Component<Props> {
     render() {
       const props = this.props;
       return (
@@ -142,43 +173,6 @@ const DecoratedUnionProps = decorate<Props>( // <-- without the type argument, w
     }
   }
 );
-```
-
-
-### Injecting Multiple Classes
-
-Injecting multiple classes into a component is as straightforward as possible. Take the following code for example. The classes `one` and `two` are both available with type information on the `classes`-prop passed in by `withStyles`.
-
-```tsx
-import { Theme, withStyles, WithStyles } from "material-ui/styles";
-import * as React from "react";
-
-const styles = (theme: Theme) => ({
-  one: {
-    backgroundColor: "red",
-  },
-  two: {
-    backgroundColor: "pink",
-  },
-});
-
-interface Props {
-   someProp: string;
-};
-
-type PropsWithStyles = Props & WithStyles<keyof ReturnType<typeof styles>>;
-
-const Component: React.SFC<PropsWithStyles> = ({
-  classes,
-  ...props
-}: PropsWithStyles) => (
-  <div>
-    <div className={classes.one}>One</div>
-    <div className={classes.two}>Two</div>
-  </div>
-);
-
-export default withStyles(styles)<Props>(Component);
 ```
 
 ## Customization of `Theme`

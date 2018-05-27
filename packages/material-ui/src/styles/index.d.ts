@@ -5,6 +5,7 @@ export { default as MuiThemeProvider } from './MuiThemeProvider';
 export { default as createStyles } from './createStyles';
 export {
   default as withStyles,
+  InjectedStyles,
   WithStyles,
   StyleRules,
   StyleRulesCallback,

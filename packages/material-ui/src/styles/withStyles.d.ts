@@ -41,6 +41,11 @@ export interface WithStyles<ClassKey extends string = string> extends Partial<Wi
   classes: ClassNameMap<ClassKey>;
 }
 
+export type InjectedStyles<R extends StyleRules | StyleRulesCallback> = WithStyles<
+  R extends StyleRulesCallback<infer K> ? K :
+  R extends StyleRules<infer K> ? K : never
+>;
+
 export interface StyledComponentProps<ClassKey extends string = string> {
   classes?: Partial<ClassNameMap<ClassKey>>;
   innerRef?: React.Ref<any> | React.RefObject<any>;
