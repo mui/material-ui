@@ -29,8 +29,8 @@ export const style = theme => {
   };
 
   return {
-    /* Styles for wrapper container */
-    container: {
+    // /* Styles for root node */
+    root: {
       position: 'relative',
       width: '100%',
       margin: '10px 0',
@@ -382,13 +382,14 @@ class Slider extends React.Component {
     const {
       component: Component,
       classes,
+      className: classNameProp,
       value,
       min,
       max,
       vertical,
       reverse,
       disabled,
-      ...otherProps
+      ...other
     } = this.props;
 
     const percent = clamp((value - min) * 100 / (max - min));
@@ -400,10 +401,11 @@ class Slider extends React.Component {
       [classes.activated]: !disabled && currentState === 'activated',
     };
 
-    const containerClasses = classNames(classes.container, {
+    const rootClasses = classNames(classes.root, {
       [classes.vertical]: vertical,
       [classes.reverse]: reverse,
       [classes.disabled]: disabled,
+      classNameProp,
     });
 
     const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses, {
@@ -427,7 +429,7 @@ class Slider extends React.Component {
     return (
       <Component
         role="slider"
-        className={containerClasses}
+        className={rootClasses}
         aria-valuenow={value}
         aria-valuemin={min}
         aria-valuemax={max}
@@ -436,7 +438,7 @@ class Slider extends React.Component {
         ref={node => {
           this.container = findDOMNode(node);
         }}
-        {...otherProps}
+        {...other}
       >
         <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
         <ButtonBase
@@ -458,11 +460,17 @@ class Slider extends React.Component {
 
 Slider.propTypes = {
   /**
-   * Useful to extend the style applied to components.
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
   /**
    * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
@@ -506,7 +514,7 @@ Slider.propTypes = {
   /**
    * The value of the slider.
    */
-  value: PropTypes.number,
+  value: PropTypes.number.isRequired,
   /**
    * If `true`, the slider will be vertical.
    */
@@ -516,7 +524,6 @@ Slider.propTypes = {
 Slider.defaultProps = {
   min: 0,
   max: 100,
-  value: 50,
   component: 'div',
 };
 
