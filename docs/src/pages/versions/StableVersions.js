@@ -1,7 +1,8 @@
 import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
-import uniqBy from 'lodash/uniqBy';
+import orderBy from 'lodash/orderBy';
+import sortedUniqBy from 'lodash/sortedUniqBy';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -51,24 +52,25 @@ class StableVersions extends React.Component {
   componentDidMount = async () => {
     const branches = await getBranches();
     let docs = branches.map(n => n.name);
-    docs.sort().reverse();
-    docs.pop(); // most recent first & remove 'latest'
-    docs = docs.map(version => {
-      return {
-        version,
-        // Replace dot with dashes for Netlify branch subdomains
-        url: `https://${version.replace(/\./g, '-')}.material-ui.com`,
-      };
-    });
+    docs = docs.filter(version => version !== 'latest');
+    docs = docs.map(version => ({
+      version,
+      // Replace dot with dashes for Netlify branch subdomains
+      url: `https://${version.replace(/\./g, '-')}.material-ui.com`,
+    }));
+    // Current version.
     docs.push({
       version: `v${process.env.LIB_VERSION}`,
       url: document.location.origin,
     });
+    // Legacy documentation.
     docs.push({
       version: 'v0.20.1',
       url: 'https://v0.material-ui.com',
     });
-    docs = uniqBy(docs, 'version');
+    docs = orderBy(docs, 'version', 'desc');
+    docs = sortedUniqBy(docs, 'version');
+    // The latest version is always using the naked domain.
     docs[0].url = 'https://material-ui.com';
     this.setState({ docs });
   };
