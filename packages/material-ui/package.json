@@ -39,6 +39,7 @@
     "@types/react-transition-group": "^2.0.8",
     "brcast": "^3.0.1",
     "classnames": "^2.2.5",
+    "csstype": "^2.5.2",
     "debounce": "^1.1.0",
     "deepmerge": "^2.0.1",
     "dom-helpers": "^3.2.1",
