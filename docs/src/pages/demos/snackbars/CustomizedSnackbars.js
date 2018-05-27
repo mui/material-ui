@@ -6,16 +6,13 @@ import CheckIcon from '@material-ui/icons/Check';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import InfoIcon from '@material-ui/icons/InfoOutline';
 import CloseIcon from '@material-ui/icons/Close';
-import red from '@material-ui/core/colors/red';
+import green from '@material-ui/core/colors/green';
+import amber from '@material-ui/core/colors/amber';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core/styles';
-
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 const variantIcon = {
   success: CheckIcon,
@@ -25,38 +22,23 @@ const variantIcon = {
 };
 
 const styles1 = theme => ({
-  root: {
-    color: theme.palette.text.primary,
-  },
   success: {
-    backgroundColor: '#b0efd4',
+    backgroundColor: green[600],
   },
   error: {
-    backgroundColor: red[50],
+    backgroundColor: theme.palette.error.dark,
   },
   info: {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.dark,
   },
   warning: {
-    backgroundColor: '#feeebd',
+    backgroundColor: amber[700],
   },
   icon: {
     fontSize: 20,
   },
   iconVariant: {
     marginRight: theme.spacing.unit,
-  },
-  iconSuccess: {
-    color: '#41b382',
-  },
-  iconError: {
-    color: theme.palette.error.main,
-  },
-  iconInfo: {
-    color: theme.palette.primary.dark,
-  },
-  iconWarning: {
-    color: '#e69529',
   },
   message: {
     display: 'flex',
@@ -66,17 +48,15 @@ const styles1 = theme => ({
 
 function MySnackbarContent(props) {
   const { classes, className, message, onClose, variant, ...other } = props;
-
   const Icon = variantIcon[variant];
-  const iconClassName = classNames(classes.icon, classes[`icon${capitalize(variant)}`]);
 
   return (
     <SnackbarContent
-      className={classNames(classes.root, classes[variant], className)}
+      className={classNames(classes[variant], className)}
       aria-describedby="client-snackbar"
       message={
         <span id="client-snackbar" className={classes.message}>
-          <Icon className={classNames(iconClassName, classes.iconVariant)} />
+          <Icon className={classNames(classes.icon, classes.iconVariant)} />
           {message}
         </span>
       }
@@ -88,7 +68,7 @@ function MySnackbarContent(props) {
           className={classes.close}
           onClick={onClose}
         >
-          <CloseIcon className={iconClassName} />
+          <CloseIcon className={classes.icon} />
         </IconButton>,
       ]}
       {...other}
