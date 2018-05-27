@@ -54,3 +54,11 @@ Move the floating action button vertically to accommodate the snackbar height.
 Per [Google's guidelines](https://material.io/archive/guidelines/components/snackbars-toasts.html#snackbars-toasts-usage), when a second snackbar is triggered while the first is displayed, the first should start the contraction motion downwards before the second one animates upwards.
 
 {{"demo": "pages/demos/snackbars/ConsecutiveSnackbars.js"}}
+
+## Customized Snackbars
+
+If you have been reading the [overrides documentation page](/customization/overrides)
+but you are not confident jumping in,
+here are examples of how you can change the look of a Snackbar.
+
+{{"demo": "pages/demos/snackbars/CustomizedSnackbars.js"}}

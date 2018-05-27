@@ -49,7 +49,6 @@ You have to provide a custom implementation of the `<input>` element with the `i
 
 The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
 
-
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
 ## Customized inputs
