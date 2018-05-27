@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
+export { createStyles } from './styles';
 
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with

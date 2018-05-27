@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  createStyles,
   withStyles,
   WithStyles,
   createMuiTheme,
@@ -22,7 +23,7 @@ interface ComponentProps {
 }
 
 // Example 1
-const styles: StyleRulesCallback<'root'> = ({ palette, spacing }) => ({
+const styles = ({ palette, spacing }: Theme) => ({
   root: {
     padding: spacing.unit,
     backgroundColor: palette.background.default,
@@ -192,7 +193,7 @@ const DecoratedComponent = withStyles(styles)(
 <DecoratedComponent text="foo" />;
 
 // Allow nested pseudo selectors
-withStyles<'listItem' | 'guttered'>(theme => ({
+withStyles(theme => createStyles({
   guttered: theme.mixins.gutters({
     '&:hover': {
       textDecoration: 'none',
@@ -207,8 +208,8 @@ withStyles<'listItem' | 'guttered'>(theme => ({
 
 {
   type ListItemContentClassKey = 'root' | 'iiiinset' | 'row';
-  const styles = withStyles<ListItemContentClassKey>(
-    theme => ({
+  const decorate = withStyles(
+    theme => createStyles({
       // Styled similar to ListItemText
       root: {
         '&:first-child': {
@@ -237,7 +238,7 @@ withStyles<'listItem' | 'guttered'>(theme => ({
     row?: boolean;
   }
 
-  const ListItemContent = styles<ListItemContentProps>(props => {
+  const ListItemContent = decorate<ListItemContentProps>(props => {
     const { children, classes, inset, row } = props;
     return (
       <div className="foo" color="textSecondary">
@@ -298,7 +299,7 @@ withStyles<'listItem' | 'guttered'>(theme => ({
 
 {
   // https://github.com/mui-org/material-ui/issues/11191
-  const decorate = withStyles<classList>(theme => ({
+  const decorate = withStyles(theme => ({
     main: {},
   }));
 

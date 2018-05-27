@@ -6,6 +6,7 @@ export { colors };
 export {
   createGenerateClassName,
   createMuiTheme,
+  createStyles,
   jssPreset,
   MuiThemeProvider,
   withStyles,
