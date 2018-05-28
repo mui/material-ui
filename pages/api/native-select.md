@@ -45,3 +45,7 @@ you need to use the following style sheet name: `MuiNativeSelect`.
 The properties of the [Input](/api/input) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api#spread).
 
+## Demos
+
+- [Selects](/demos/selects)
+
