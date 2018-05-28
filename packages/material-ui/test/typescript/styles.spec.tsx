@@ -207,49 +207,44 @@ withStyles(theme => createStyles({
 }));
 
 {
-  type ListItemContentClassKey = 'root' | 'iiiinset' | 'row';
-  const decorate = withStyles(
-    theme => createStyles({
-      // Styled similar to ListItemText
-      root: {
-        '&:first-child': {
-          paddingLeft: 0,
-        },
-        flex: '1 1 auto',
-        padding: '0 16px',
+  const styles = (theme: Theme) => createStyles({
+    // Styled similar to ListItemText
+    root: {
+      '&:first-child': {
+        paddingLeft: 0,
       },
+      flex: '1 1 auto',
+      padding: '0 16px',
+    },
 
-      iiiinset: {
-        '&:first-child': {
-          paddingLeft: theme.spacing.unit * 7,
-        },
+    iiiinset: {
+      '&:first-child': {
+        paddingLeft: theme.spacing.unit * 7,
       },
-      row: {
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'row',
-      },
-    }),
-    { name: 'ui-ListItemContent' },
-  );
+    },
+    row: {
+      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'row',
+    },
+  });
 
-  interface ListItemContentProps extends StyledComponentProps<ListItemContentClassKey> {
+  interface ListItemContentProps extends WithStyles<typeof styles> {
     inset?: boolean;
     row?: boolean;
   }
 
-  const ListItemContent = decorate<ListItemContentProps>(props => {
-    const { children, classes, inset, row } = props;
-    return (
-      <div className="foo" color="textSecondary">
+  const ListItemContent = withStyles(styles, { name: 'ui-ListItemContent' })<ListItemContentProps>(
+    ({ children, classes, inset, row }) => (
+      <div className={classes.root} color="textSecondary">
         {children}
       </div>
-    );
-  });
+    )
+  );
 }
 
 {
-  interface FooProps extends StyledComponentProps<'x' | 'y'> {
+  interface FooProps extends WithStyles<'x' | 'y'> {
     a: number;
     b: boolean;
   }
