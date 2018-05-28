@@ -21,7 +21,6 @@ export type TransitionKeys =
   | 'addEndListener'
   | TransitionHandlerKeys;
 export interface TransitionProps
-  extends TransitionActions,
-    Partial<Pick<_TransitionProps, TransitionKeys>> {
+  extends TransitionActions, Partial<Pick<_TransitionProps, TransitionKeys>> {
   style?: CSSProperties;
 }

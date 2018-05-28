@@ -23,7 +23,7 @@ export default function createTypography(palette: Object, typography: Object | F
 
   const coef = fontSize / 14;
   function pxToRem(value) {
-    return `${value / htmlFontSize * coef}rem`;
+    return `${(value / htmlFontSize) * coef}rem`;
   }
 
   return deepmerge(

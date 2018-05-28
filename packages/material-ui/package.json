@@ -54,7 +54,7 @@
     "keycode": "^2.1.9",
     "normalize-scroll-left": "^0.1.2",
     "prop-types": "^15.6.0",
-    "react-event-listener": "^0.5.9",
+    "react-event-listener": "^0.6.0",
     "react-jss": "^8.1.0",
     "react-popper": "^0.10.0",
     "react-transition-group": "^2.2.1",

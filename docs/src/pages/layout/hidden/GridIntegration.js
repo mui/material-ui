@@ -63,4 +63,7 @@ GridIntegration.propTypes = {
   width: PropTypes.string,
 };
 
-export default compose(withStyles(styles), withWidth())(GridIntegration);
+export default compose(
+  withStyles(styles),
+  withWidth(),
+)(GridIntegration);

@@ -153,7 +153,7 @@ function addEventListener(node, event, handler, capture) {
 }
 
 function percentToValue(percent, min, max) {
-  return (max - min) * percent / 100 + min;
+  return ((max - min) * percent) / 100 + min;
 }
 
 function roundToStep(number, step) {
@@ -392,7 +392,7 @@ class Slider extends React.Component {
       ...other
     } = this.props;
 
-    const percent = clamp((value - min) * 100 / (max - min));
+    const percent = clamp(((value - min) * 100) / (max - min));
 
     const commonClasses = {
       [classes.disabled]: disabled,

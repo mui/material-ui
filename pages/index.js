@@ -147,4 +147,7 @@ HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(withRoot, withStyles(styles))(HomePage);
+export default compose(
+  withRoot,
+  withStyles(styles),
+)(HomePage);
