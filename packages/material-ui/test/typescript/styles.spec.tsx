@@ -193,7 +193,7 @@ const DecoratedComponent = withStyles(styles)(
 <DecoratedComponent text="foo" />;
 
 // Allow nested pseudo selectors
-withStyles(theme => ({
+withStyles(theme => createStyles({
   guttered: theme.mixins.gutters({
     '&:hover': {
       textDecoration: 'none',
@@ -201,7 +201,7 @@ withStyles(theme => ({
   }),
   listItem: {
     '&:hover $listItemIcon': {
-      // visibility: 'inherit',
+      visibility: 'inherit',
     },
   },
 }));
