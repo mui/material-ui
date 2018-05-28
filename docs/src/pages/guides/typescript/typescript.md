@@ -79,6 +79,12 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
 Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
 
 ```ts
+const styles = (theme: Theme) => createStyles({
+  root: { /* ... */ },
+  paper: { /* ... */ },
+  button: { /* ... */ },
+});
+
 interface Props {
   // non-style props
   foo: number;
@@ -90,12 +96,6 @@ interface Props {
     button: string;
   };
 }
-
-const styles = (theme: Theme) => createStyles({
-  root: { /* ... */ },
-  paper: { /* ... */ },
-  button: { /* ... */ },
-});
 ```
 
 However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write
@@ -103,16 +103,16 @@ However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yours
 ```ts
 import { WithStyles } from '@material-ui/core';
 
-interface Props extends WithStyles<typeof styles> {
-  foo: number;
-  bar: boolean;
-}
-
 const styles = (theme: Theme) => createStyles({
   root: { /* ... */ },
   paper: { /* ... */ },
   button: { /* ... */ },
 });
+
+interface Props extends WithStyles<typeof styles> {
+  foo: number;
+  bar: boolean;
+}
 ```
 
 ### Decorating components
