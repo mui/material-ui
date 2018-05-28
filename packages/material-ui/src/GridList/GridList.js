@@ -43,7 +43,7 @@ function GridList(props) {
         return React.cloneElement(currentChild, {
           style: Object.assign(
             {
-              width: `${100 / cols * childCols}%`,
+              width: `${(100 / cols) * childCols}%`,
               height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
               padding: spacing / 2,
             },

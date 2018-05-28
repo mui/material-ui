@@ -1,21 +1,26 @@
 {
   "build/umd/material-ui.development.js": {
-    "bundled": 986509,
-    "minified": 360606,
-    "gzipped": 93973
+    "bundled": 988164,
+    "minified": 361488,
+    "gzipped": 94315
   },
   "build/umd/material-ui.production.min.js": {
-    "bundled": 816961,
-    "minified": 319394,
-    "gzipped": 84680
+    "bundled": 815223,
+    "minified": 319257,
+    "gzipped": 84734
   },
   "build/dist/material-ui.esm.js": {
-    "bundled": 582102,
-    "minified": 283593,
-    "gzipped": 63193,
+    "bundled": 582053,
+    "minified": 283504,
+    "gzipped": 63208,
     "treeshaked": {
-      "rollup": 195777,
-      "webpack": 202862
+      "rollup": {
+        "code": 195843,
+        "import_statements": 1939
+      },
+      "webpack": {
+        "code": 202925
+      }
     }
   }
 }

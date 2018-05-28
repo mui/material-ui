@@ -1,19 +1,19 @@
-const fs = require('fs')
+const fs = require('fs');
 
 function getMainFile() {
-  const dirname = '.next/static/commons'
-  const files = fs.readdirSync(dirname)
+  const dirname = '.next/static/commons';
+  const files = fs.readdirSync(dirname);
   const [file] = files
     .reduce((result, filename) => {
       if (!/^main-[a-f0-9]+\.js$/.test(filename)) {
-        return result
+        return result;
       }
 
-      const path = `${dirname}/${filename}`
-      return [...result, { path, ctime: fs.statSync(path).ctimeMs }]
+      const path = `${dirname}/${filename}`;
+      return [...result, { path, ctime: fs.statSync(path).ctimeMs }];
     }, [])
-    .sort((x, y) => y.ctime - x.ctime)
-  return file
+    .sort((x, y) => y.ctime - x.ctime);
+  return file;
 }
 
 module.exports = [
@@ -27,7 +27,7 @@ module.exports = [
     name: 'The size of all the modules of material-ui.',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '94.5 KB',
+    limit: '94.3 KB',
   },
   {
     name: 'The main bundle of the docs',

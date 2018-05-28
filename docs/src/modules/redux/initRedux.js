@@ -33,7 +33,10 @@ function create(initialState) {
       theme: themeReducer,
     }),
     initialState, // Hydrate the store with server-side data
-    compose(applyMiddleware(...middlewares), devtools),
+    compose(
+      applyMiddleware(...middlewares),
+      devtools,
+    ),
   );
 }
 
