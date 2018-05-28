@@ -5,7 +5,7 @@ Have a look at the [Create React App with TypeScript](https://github.com/mui-org
 
 ## Usage of `withStyles`
 
-The usage of `withStyles` in TypeScript can be a little tricky for a number of reasons, but 
+Using `withStyles` in TypeScript can be a little tricky, but there are some utilities to make the experience as painless as possible.
 
 ### Using `createStyles` to defeat type widening
 
