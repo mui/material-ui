@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography, { TypographyProps } from '../../src/Typography/Typography';
-import { withStyles, InjectedStyles, createStyles, Theme } from '../../src/styles';
+import { withStyles, WithStyles, createStyles, Theme } from '../../src/styles';
 
 const styles = ({ palette, spacing }: Theme) => createStyles({
   root: {
@@ -10,7 +10,7 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
   },
 })
 
-interface Props extends InjectedStyles<typeof styles> {
+interface Props extends WithStyles<typeof styles> {
   color: TypographyProps['color'];
   text: string;
   variant: TypographyProps['variant'];
@@ -36,7 +36,7 @@ const DecoratedClass = withStyles(styles)(
 );
 
 const DecoratedNoProps = withStyles(styles)(
-  class extends React.Component<InjectedStyles<typeof styles>> {
+  class extends React.Component<WithStyles<typeof styles>> {
     render() {
       return <Typography classes={this.props.classes}>Hello, World!</Typography>;
     }
@@ -60,7 +60,7 @@ interface Painting {
 type ArtProps = Book | Painting;
 
 const DecoratedUnionProps = withStyles(styles)<ArtProps>( // <-- without the type argument, we'd get a compiler error!
-  class extends React.Component<ArtProps & InjectedStyles<typeof styles>> {
+  class extends React.Component<ArtProps & WithStyles<typeof styles>> {
     render() {
       const props = this.props;
       return (

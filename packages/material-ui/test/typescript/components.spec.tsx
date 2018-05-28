@@ -66,7 +66,7 @@ import {
   Typography,
   withMobileDialog,
 } from '../../src';
-import { withStyles, StyleRulesCallback, InjectedStyles, Theme, createStyles } from '../../src/styles';
+import { withStyles, StyleRulesCallback, WithStyles, Theme, createStyles } from '../../src/styles';
 import { DialogProps } from '../../src/Dialog';
 
 const log = console.log;
@@ -688,7 +688,7 @@ const TableTest = () => {
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ];
 
-  function BasicTable(props: InjectedStyles<typeof styles>) {
+  function BasicTable(props: WithStyles<typeof styles>) {
     const classes = props.classes;
 
     return (
@@ -750,7 +750,7 @@ const TabsTest = () => {
     },
   });
 
-  class BasicTabs extends React.Component<InjectedStyles<typeof styles>> {
+  class BasicTabs extends React.Component<WithStyles<typeof styles>> {
     state = {
       value: 0,
     };

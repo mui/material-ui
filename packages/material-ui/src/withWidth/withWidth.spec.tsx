@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Grid } from '..';
 import { Theme, createStyles } from '../styles';
-import withStyles, { InjectedStyles } from '../styles/withStyles';
+import withStyles, { WithStyles } from '../styles/withStyles';
 import withWidth, { WithWidthProps } from '../withWidth';
 
 const styles = (theme: Theme) => createStyles({
@@ -12,7 +12,7 @@ const styles = (theme: Theme) => createStyles({
   },
 });
 
-interface IHelloProps extends WithWidthProps, InjectedStyles<typeof styles> {
+interface IHelloProps extends WithWidthProps, WithStyles<typeof styles> {
   name?: string;
 }
 

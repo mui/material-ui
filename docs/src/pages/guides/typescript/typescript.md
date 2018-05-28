@@ -74,7 +74,7 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
 
 `createStyles` is just the identity function; it doesn't "do anything" at runtime, just helps guide type inference at compile time.
 
-### Augmenting your props with `InjectedStyles`
+### Augmenting your props using `WithStyles`
 
 Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
 
@@ -98,12 +98,12 @@ const styles = (theme: Theme) => createStyles({
 });
 ```
 
-However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `InjectedStyles` to help with this, so that you can just write
+However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write
 
 ```ts
-import { InjectedStyles } from '@material-ui/core';
+import { WithStyles } from '@material-ui/core';
 
-interface Props extends InjectedStyles<typeof styles> {
+interface Props extends WithStyles<typeof styles> {
   foo: number;
   bar: boolean;
 }
@@ -159,7 +159,7 @@ interface Painting {
 
 type BookOrPainting = Book | Painting;
 
-type Props = BookOrPainting & InjectedStyles<typeof styles>;
+type Props = BookOrPainting & WithStyles<typeof styles>;
 
 const DecoratedUnionProps = withStyles(styles)<BookOrPainting>( // <-- without the type argument, we'd get a compiler error!
   class extends React.Component<Props> {

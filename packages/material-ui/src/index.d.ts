@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
-export { InjectedStyles, createStyles } from './styles';
 
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
@@ -76,6 +75,7 @@ export {
   Theme,
   withStyles,
   WithStyles,
+  createStyles,
   withTheme,
   WithTheme,
 } from './styles';

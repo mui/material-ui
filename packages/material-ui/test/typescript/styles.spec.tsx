@@ -9,7 +9,7 @@ import {
   StyleRules,
   StyleRulesCallback,
   StyledComponentProps,
-  InjectedStyles,
+  WithStyles,
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
 import blue from '../../src/colors/blue';
@@ -37,7 +37,7 @@ const StyledExampleOne = withStyles(styles)<ComponentProps>(({ classes, text }) 
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.SFC<ComponentProps & InjectedStyles<typeof styles>> = ({
+const Component: React.SFC<ComponentProps & WithStyles<typeof styles>> = ({
   classes,
   text,
 }) => <div className={classes.root}>{text}</div>;
@@ -55,7 +55,7 @@ const styleRule = createStyles({
   },
 });
 
-const ComponentWithChildren: React.SFC<InjectedStyles<typeof styles>> = ({
+const ComponentWithChildren: React.SFC<WithStyles<typeof styles>> = ({
   classes,
   children,
 }) => <div className={classes.root}>{children}</div>;
@@ -167,7 +167,7 @@ const ComponentWithTheme = withTheme()(({ theme }) => <div>{theme.spacing.unit}<
 <ComponentWithTheme />;
 
 // withStyles + withTheme
-type AllTheProps = WithTheme & InjectedStyles<typeof styles>;
+type AllTheProps = WithTheme & WithStyles<typeof styles>;
 
 const AllTheComposition = withTheme()(
   withStyles(styles)(({ theme, classes }: AllTheProps) => (
@@ -181,7 +181,7 @@ const AllTheComposition = withTheme()(
 // due to https://github.com/Microsoft/TypeScript/issues/4881
 //@withStyles(styles)
 const DecoratedComponent = withStyles(styles)(
-  class extends React.Component<ComponentProps & InjectedStyles<typeof styles>> {
+  class extends React.Component<ComponentProps & WithStyles<typeof styles>> {
     render() {
       const { classes, text } = this.props;
       return <div className={classes.root}>{text}</div>;
@@ -263,7 +263,7 @@ withStyles(theme => ({
   // but we don't have a way currently to test under varying
   // TypeScript configurations.
 
-  interface ComponentProps extends InjectedStyles<typeof styles> {
+  interface ComponentProps extends WithStyles<typeof styles> {
     caption: string;
   }
 
@@ -298,7 +298,7 @@ withStyles(theme => ({
     main: {},
   });
 
-  interface Props extends InjectedStyles<typeof styles> {
+  interface Props extends WithStyles<typeof styles> {
     someProp?: string;
   }
 
