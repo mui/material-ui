@@ -76,7 +76,7 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
 
 ### Augmenting your props with `InjectedStyles`
 
-Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to declare it as such:
+Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
 
 ```ts
 interface Props {
