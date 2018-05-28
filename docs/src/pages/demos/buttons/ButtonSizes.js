@@ -15,13 +15,13 @@ function ButtonSizes(props) {
   return (
     <div>
       <div>
-        <Button variant="text" size="small" className={classes.button}>
+        <Button size="small" className={classes.button}>
           Small
         </Button>
-        <Button variant="text" size="medium" className={classes.button}>
+        <Button size="medium" className={classes.button}>
           Medium
         </Button>
-        <Button variant="text" size="large" className={classes.button}>
+        <Button size="large" className={classes.button}>
           Large
         </Button>
       </div>

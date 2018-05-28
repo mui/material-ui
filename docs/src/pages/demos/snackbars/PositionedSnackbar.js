@@ -21,34 +21,22 @@ class PositionedSnackbar extends React.Component {
     const { vertical, horizontal, open } = this.state;
     return (
       <div>
-        <Button
-          variant="text"
-          onClick={this.handleClick({ vertical: 'top', horizontal: 'center' })}
-        >
+        <Button onClick={this.handleClick({ vertical: 'top', horizontal: 'center' })}>
           Top-Center
         </Button>
-        <Button variant="text" onClick={this.handleClick({ vertical: 'top', horizontal: 'right' })}>
+        <Button onClick={this.handleClick({ vertical: 'top', horizontal: 'right' })}>
           Top-Right
         </Button>
-        <Button
-          variant="text"
-          onClick={this.handleClick({ vertical: 'bottom', horizontal: 'right' })}
-        >
+        <Button onClick={this.handleClick({ vertical: 'bottom', horizontal: 'right' })}>
           Bottom-Right
         </Button>
-        <Button
-          variant="text"
-          onClick={this.handleClick({ vertical: 'bottom', horizontal: 'center' })}
-        >
+        <Button onClick={this.handleClick({ vertical: 'bottom', horizontal: 'center' })}>
           Bottom-Center
         </Button>
-        <Button
-          variant="text"
-          onClick={this.handleClick({ vertical: 'bottom', horizontal: 'left' })}
-        >
+        <Button onClick={this.handleClick({ vertical: 'bottom', horizontal: 'left' })}>
           Bottom-Left
         </Button>
-        <Button variant="text" onClick={this.handleClick({ vertical: 'top', horizontal: 'left' })}>
+        <Button onClick={this.handleClick({ vertical: 'top', horizontal: 'left' })}>
           Top-Left
         </Button>
         <Snackbar

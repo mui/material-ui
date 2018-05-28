@@ -56,7 +56,7 @@ class Index extends React.Component<ProvidedProps & Props, State> {
             <DialogContentText>1-2-3-4-5</DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button variant="text" color="primary" onClick={this.handleClose}>
+            <Button color="primary" onClick={this.handleClose}>
               OK
             </Button>
           </DialogActions>

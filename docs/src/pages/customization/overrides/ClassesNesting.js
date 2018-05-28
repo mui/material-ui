@@ -23,7 +23,6 @@ function ClassesNesting(props) {
 
   return (
     <Button
-      variant="text"
       classes={{
         root: classes.root, // class name, e.g. `classes-nesting-root-x`
         label: classes.label, // class name, e.g. `classes-nesting-label-x`

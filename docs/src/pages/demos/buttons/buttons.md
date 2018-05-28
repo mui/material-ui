@@ -20,8 +20,6 @@ are typically used for less-pronounced actions, including those located:
 
 In cards, text buttons help maintain an emphasis on card content.
 
-For Material v1 style Flat buttons with a 2px border-radius, use `variant="flat"`.
-
 {{"demo": "pages/demos/buttons/TextButtons.js"}}
 
 ## Outlined Buttons
@@ -40,8 +38,6 @@ or a higher emphasis alternative to text buttons.
 [Contained buttons](https://material.io/design/components/buttons.html#contained-button)
 are high-emphasis, distinguished by their use of elevation and fill.
 They contain actions that are primary to your app.
-
-For Material v1 style Raised buttons with a 2px border-radius, use `variant="raised"`.
 
 {{"demo": "pages/demos/buttons/ContainedButtons.js"}}
 

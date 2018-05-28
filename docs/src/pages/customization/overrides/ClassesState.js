@@ -28,7 +28,6 @@ function ClassesState(props) {
   const { classes } = props;
   return (
     <Button
-      variant="text"
       disabled
       classes={{
         root: classes.root, // class name, e.g. `classes-state-root-x`

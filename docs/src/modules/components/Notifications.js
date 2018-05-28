@@ -86,7 +86,7 @@ class Notifications extends React.Component {
           <span id="notification-message" dangerouslySetInnerHTML={{ __html: message.text }} />
         }
         action={
-          <Button variant="text" size="small" color="secondary" onClick={this.handleClose}>
+          <Button size="small" color="secondary" onClick={this.handleClose}>
             Close
           </Button>
         }

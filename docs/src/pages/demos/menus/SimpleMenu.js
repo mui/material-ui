@@ -22,7 +22,6 @@ class SimpleMenu extends React.Component {
     return (
       <div>
         <Button
-          variant="text"
           aria-owns={anchorEl ? 'simple-menu' : null}
           aria-haspopup="true"
           onClick={this.handleClick}

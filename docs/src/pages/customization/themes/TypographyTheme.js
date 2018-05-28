@@ -45,7 +45,7 @@ function TypographyTheme(props) {
     <div>
       <Typography>body1</Typography>
       <Typography variant="subheading">subheading</Typography>
-      <Button variant="text">Button</Button>
+      <Button>Button</Button>
     </div>
   );
 

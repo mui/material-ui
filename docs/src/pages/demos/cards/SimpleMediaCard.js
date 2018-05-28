@@ -38,10 +38,10 @@ function SimpleMediaCard(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button variant="text" size="small" color="primary">
+          <Button size="small" color="primary">
             Share
           </Button>
-          <Button variant="text" size="small" color="primary">
+          <Button size="small" color="primary">
             Learn More
           </Button>
         </CardActions>

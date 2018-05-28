@@ -81,7 +81,7 @@ function PremiumThemes(props) {
               <Typography component="p">{theme.description}</Typography>
             </CardContent>
             <CardActions>
-              <Button variant="text" component="a" href={theme.href} size="small" color="primary">
+              <Button component="a" href={theme.href} size="small" color="primary">
                 Learn More
               </Button>
             </CardActions>

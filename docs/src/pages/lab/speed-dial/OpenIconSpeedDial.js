@@ -70,9 +70,7 @@ class OpenIconSpeedDial extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Button variant="text" onClick={this.handleVisibility}>
-          Toggle Speed Dial
-        </Button>
+        <Button onClick={this.handleVisibility}>Toggle Speed Dial</Button>
         <SpeedDial
           ariaLabel="SpeedDial openIcon example"
           className={classes.speedDial}

@@ -51,18 +51,10 @@ class SwipeableTemporaryDrawer extends React.Component {
 
     return (
       <div>
-        <Button variant="text" onClick={this.toggleDrawer('left', true)}>
-          Open Left
-        </Button>
-        <Button variant="text" onClick={this.toggleDrawer('right', true)}>
-          Open Right
-        </Button>
-        <Button variant="text" onClick={this.toggleDrawer('top', true)}>
-          Open Top
-        </Button>
-        <Button variant="text" onClick={this.toggleDrawer('bottom', true)}>
-          Open Bottom
-        </Button>
+        <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
+        <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button>
+        <Button onClick={this.toggleDrawer('top', true)}>Open Top</Button>
+        <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button>
         <SwipeableDrawer
           open={this.state.left}
           onClose={this.toggleDrawer('left', false)}

@@ -86,29 +86,18 @@ class TextMobileStepper extends React.Component {
           alt={tutorialSteps[activeStep].label}
         />
         <MobileStepper
-          variant="text"
           steps={maxSteps}
           position="static"
           activeStep={activeStep}
           className={classes.mobileStepper}
           nextButton={
-            <Button
-              variant="text"
-              size="small"
-              onClick={this.handleNext}
-              disabled={activeStep === maxSteps - 1}
-            >
+            <Button size="small" onClick={this.handleNext} disabled={activeStep === maxSteps - 1}>
               Next
               {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
             </Button>
           }
           backButton={
-            <Button
-              variant="text"
-              size="small"
-              onClick={this.handleBack}
-              disabled={activeStep === 0}
-            >
+            <Button size="small" onClick={this.handleBack} disabled={activeStep === 0}>
               {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
               Back
             </Button>

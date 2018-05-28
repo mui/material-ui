@@ -26,9 +26,7 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div>
-        <Button variant="text" onClick={this.handleClickOpen}>
-          Open responsive dialog
-        </Button>
+        <Button onClick={this.handleClickOpen}>Open responsive dialog</Button>
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}
@@ -43,10 +41,10 @@ class ResponsiveDialog extends React.Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button variant="text" onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} color="primary">
               Disagree
             </Button>
-            <Button variant="text" onClick={this.handleClose} color="primary" autoFocus>
+            <Button onClick={this.handleClose} color="primary" autoFocus>
               Agree
             </Button>
           </DialogActions>

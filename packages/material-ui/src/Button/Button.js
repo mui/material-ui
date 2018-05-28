@@ -62,9 +62,7 @@ export const styles = theme => ({
       },
     },
   },
-  flat: {
-    borderRadius: 2,
-  },
+  flat: {},
   flatPrimary: {},
   flatSecondary: {},
   outlined: {
@@ -123,9 +121,7 @@ export const styles = theme => ({
       },
     },
   },
-  raised: {
-    borderRadius: 2,
-  },
+  raised: {},
   raisedPrimary: {},
   raisedSecondary: {},
   focusVisible: {},
@@ -180,10 +176,8 @@ function Button(props) {
   } = props;
 
   const fab = variant === 'fab';
-  const raised = variant === 'raised';
-  const contained = variant === 'contained' || raised;
+  const contained = variant === 'contained' || variant === 'raised';
   const text = !contained && !fab;
-  const flat = variant === 'flat';
   const className = classNames(
     classes.root,
     {
@@ -193,14 +187,14 @@ function Button(props) {
       [classes.colorInherit]: color === 'inherit',
       [classes.textPrimary]: text && color === 'primary',
       [classes.textSecondary]: text && color === 'secondary',
-      [classes.flat]: flat,
-      [classes.flatPrimary]: flat && color === 'primary',
-      [classes.flatSecondary]: flat && color === 'secondary',
-      [classes.containedPrimary]: !text && !flat && color === 'primary',
-      [classes.containedSecondary]: !text && !flat && color === 'secondary',
-      [classes.raised]: raised || fab,
-      [classes.raisedPrimary]: (raised || fab) && color === 'primary',
-      [classes.raisedSecondary]: (raised || fab) && color === 'secondary',
+      [classes.flat]: text,
+      [classes.flatPrimary]: text && color === 'primary',
+      [classes.flatSecondary]: text && color === 'secondary',
+      [classes.containedPrimary]: !text && color === 'primary',
+      [classes.containedSecondary]: !text && color === 'secondary',
+      [classes.raised]: contained || fab,
+      [classes.raisedPrimary]: (contained || fab) && color === 'primary',
+      [classes.raisedSecondary]: (contained || fab) && color === 'secondary',
       [classes.text]: variant === 'text',
       [classes.outlined]: variant === 'outlined',
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
@@ -300,7 +294,7 @@ Button.defaultProps = {
   mini: false,
   size: 'medium',
   type: 'button',
-  variant: 'flat',
+  variant: 'text',
 };
 
 export default withStyles(styles, { name: 'MuiButton' })(Button);

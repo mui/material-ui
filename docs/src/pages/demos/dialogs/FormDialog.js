@@ -23,9 +23,7 @@ export default class FormDialog extends React.Component {
   render() {
     return (
       <div>
-        <Button variant="text" onClick={this.handleClickOpen}>
-          Open form dialog
-        </Button>
+        <Button onClick={this.handleClickOpen}>Open form dialog</Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -47,10 +45,10 @@ export default class FormDialog extends React.Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button variant="text" onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button variant="text" onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} color="primary">
               Subscribe
             </Button>
           </DialogActions>

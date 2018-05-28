@@ -34,9 +34,7 @@ class SimpleSnackbar extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <Button variant="text" onClick={this.handleClick}>
-          Open simple snackbar
-        </Button>
+        <Button onClick={this.handleClick}>Open simple snackbar</Button>
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
@@ -50,13 +48,7 @@ class SimpleSnackbar extends React.Component {
           }}
           message={<span id="message-id">Note archived</span>}
           action={[
-            <Button
-              variant="text"
-              key="undo"
-              color="secondary"
-              size="small"
-              onClick={this.handleClose}
-            >
+            <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
               UNDO
             </Button>,
             <IconButton

@@ -28,8 +28,8 @@ describe('<Button />', () => {
 
   it('should render with the root & flat classes but no others', () => {
     const wrapper = shallow(<Button>Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.flat), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.flat), true, 'should have the flat class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
     assert.strictEqual(
       wrapper.hasClass(classes.textPrimary),
@@ -82,38 +82,68 @@ describe('<Button />', () => {
   it('should render the custom className and the root class', () => {
     const wrapper = shallow(<Button className="test-class-name">Hello World</Button>);
     assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
   it('should render a primary button', () => {
     const wrapper = shallow(<Button color="primary">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.flat), true, 'should have the flat class');
     assert.strictEqual(wrapper.hasClass(classes.contained), false, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
     assert.strictEqual(
       wrapper.hasClass(classes.textPrimary),
       true,
-      'should have the primary class',
+      'should have the textPrimary class',
     );
-    assert.strictEqual(wrapper.hasClass(classes.textSecondary), false);
+    assert.strictEqual(
+      wrapper.hasClass(classes.textSecondary),
+      false,
+      'should not have the textSecondary class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.flatPrimary),
+      true,
+      'should have the flatPrimary class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.flatSecondary),
+      false,
+      'should not have the flatSecondary class',
+    );
   });
 
-  it('should render an secondary button', () => {
+  it('should render a secondary button', () => {
     const wrapper = shallow(<Button color="secondary">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.flat), true, 'should have the flat class');
     assert.strictEqual(wrapper.hasClass(classes.contained), false, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
     assert.strictEqual(
       wrapper.hasClass(classes.textPrimary),
       false,
-      'should not have the primary class',
+      'should not have the textPrimary class',
     );
-    assert.strictEqual(wrapper.hasClass(classes.textSecondary), true);
+    assert.strictEqual(
+      wrapper.hasClass(classes.textSecondary),
+      true,
+      'should have the textSecondary class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.flatPrimary),
+      false,
+      'should not have the flatPrimary class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.flatSecondary),
+      true,
+      'should have the flatSecondary class',
+    );
   });
 
   it('should render a contained button', () => {
     const wrapper = shallow(<Button variant="contained">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.hasClass(classes.contained),
       true,
@@ -138,7 +168,7 @@ describe('<Button />', () => {
         Hello World
       </Button>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.hasClass(classes.contained),
       true,
@@ -163,7 +193,7 @@ describe('<Button />', () => {
         Hello World
       </Button>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.contained), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
     assert.strictEqual(
@@ -180,7 +210,7 @@ describe('<Button />', () => {
 
   it('should render a raised button', () => {
     const wrapper = shallow(<Button variant="raised">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.hasClass(classes.contained),
       true,
@@ -216,7 +246,7 @@ describe('<Button />', () => {
         Hello World
       </Button>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.hasClass(classes.contained),
       true,
@@ -252,7 +282,7 @@ describe('<Button />', () => {
         Hello World
       </Button>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.hasClass(classes.contained),
       true,
@@ -284,9 +314,9 @@ describe('<Button />', () => {
 
   it('should render an outlined button', () => {
     const wrapper = shallow(<Button variant="outlined">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root, 'should have the root class'), true);
+    assert.strictEqual(wrapper.hasClass(classes.flat), true, 'should have the flat class');
     assert.strictEqual(wrapper.hasClass(classes.outlined), true, 'should have the outlined class');
-    assert.strictEqual(wrapper.hasClass(classes.flat), false, 'should not have the flat class');
     assert.strictEqual(
       wrapper.hasClass(classes.contained),
       false,
@@ -302,14 +332,14 @@ describe('<Button />', () => {
         Hello World
       </Button>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.flat), true, 'should have the flat class');
     assert.strictEqual(wrapper.hasClass(classes.outlined), true, 'should have the outlined class');
     assert.strictEqual(
       wrapper.hasClass(classes.textPrimary),
       true,
       'should have the textPrimary class',
     );
-    assert.strictEqual(wrapper.hasClass(classes.flat), false, 'should not have the flat class');
     assert.strictEqual(
       wrapper.hasClass(classes.contained),
       false,
@@ -325,14 +355,14 @@ describe('<Button />', () => {
         Hello World
       </Button>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.flat), true, 'should have the flat class');
     assert.strictEqual(wrapper.hasClass(classes.outlined), true, 'should have the outlined class');
     assert.strictEqual(
       wrapper.hasClass(classes.textSecondary),
       true,
       'should have the textSecondary class',
     );
-    assert.strictEqual(wrapper.hasClass(classes.flat), false, 'should not have the flat class');
     assert.strictEqual(
       wrapper.hasClass(classes.contained),
       false,
@@ -344,7 +374,7 @@ describe('<Button />', () => {
 
   it('should render a floating action button', () => {
     const wrapper = shallow(<Button variant="fab">Hello World</Button>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.hasClass(classes.contained),
       true,
@@ -370,7 +400,7 @@ describe('<Button />', () => {
         Hello World
       </Button>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.contained), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');
     assert.strictEqual(wrapper.hasClass(classes.mini), true, 'should have the mini class');
@@ -392,7 +422,7 @@ describe('<Button />', () => {
         Hello World
       </Button>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.contained), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');
     assert.strictEqual(
@@ -412,7 +442,7 @@ describe('<Button />', () => {
         Hello World
       </Button>,
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.contained), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');
     assert.strictEqual(
