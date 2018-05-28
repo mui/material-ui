@@ -138,12 +138,13 @@ class Chip extends React.Component {
       onDelete,
       onKeyDown,
       tabIndex: tabIndexProp,
+      clickable,
       ...other
     } = this.props;
 
     const className = classNames(
       classes.root,
-      { [classes.clickable]: onClick },
+      { [classes.clickable]: onClick || clickable},
       { [classes.deletable]: onDelete },
       classNameProp,
     );
@@ -239,10 +240,15 @@ Chip.propTypes = {
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * Boolean to determine if the chip should be clickable.
+   */
+  clickable: PropTypes.bool,
 };
 
 Chip.defaultProps = {
   component: 'div',
+  clickable: false
 };
 
 export default withStyles(styles, { name: 'MuiChip' })(Chip);
