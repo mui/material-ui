@@ -106,7 +106,12 @@ class MenuList extends React.Component {
   resetTabIndex() {
     const list = ReactDOM.findDOMNode(this.list);
     const currentFocus = activeElement(ownerDocument(list));
-    const items = [...list.children];
+
+    const items = [];
+    for (let i = 0; i < list.children.length; i += 1) {
+      items.push(list.children[i]);
+    }
+
     const currentFocusIndex = items.indexOf(currentFocus);
 
     if (currentFocusIndex !== -1) {
