@@ -52,7 +52,7 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 }
 
 export default function withStyles<ClassKey extends string>(
-  style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
+  style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: WithStylesOptions<ClassKey>,
 ): {
   <P extends ConsistentWith<P, StyledComponentProps<ClassKey>>>(
