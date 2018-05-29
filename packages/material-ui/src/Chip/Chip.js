@@ -131,6 +131,7 @@ class Chip extends React.Component {
       avatar: avatarProp,
       classes,
       className: classNameProp,
+      clickable,
       component: Component,
       deleteIcon: deleteIconProp,
       label,
@@ -138,7 +139,6 @@ class Chip extends React.Component {
       onDelete,
       onKeyDown,
       tabIndex: tabIndexProp,
-      clickable,
       ...other
     } = this.props;
 
