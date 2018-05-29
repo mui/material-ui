@@ -37,9 +37,14 @@ export interface WithStylesOptions<ClassKey extends string = string> extends JSS
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
-export interface WithStyles<ClassKey extends string = string> extends Partial<WithTheme> {
-  classes: ClassNameMap<ClassKey>;
-}
+export type WithStyles<T extends string | StyleRules | StyleRulesCallback> = Partial<WithTheme> & {
+  classes: ClassNameMap<
+    T extends string ? T :
+    T extends StyleRulesCallback<infer K> ? K :
+    T extends StyleRules<infer K> ? K :
+    never
+  >;
+};
 
 export interface StyledComponentProps<ClassKey extends string = string> {
   classes?: Partial<ClassNameMap<ClassKey>>;
@@ -47,7 +52,7 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 }
 
 export default function withStyles<ClassKey extends string>(
-  style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
+  style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: WithStylesOptions<ClassKey>,
 ): {
   <P extends ConsistentWith<P, StyledComponentProps<ClassKey>>>(

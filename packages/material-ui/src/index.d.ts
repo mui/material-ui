@@ -75,6 +75,7 @@ export {
   Theme,
   withStyles,
   WithStyles,
+  createStyles,
   withTheme,
   WithTheme,
 } from './styles';

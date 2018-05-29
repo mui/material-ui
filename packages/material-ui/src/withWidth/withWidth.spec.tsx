@@ -1,20 +1,22 @@
 import * as React from 'react';
 import { Grid } from '..';
-import { Theme } from '../styles';
+import { Theme, createStyles } from '../styles';
 import withStyles, { WithStyles } from '../styles/withStyles';
 import withWidth, { WithWidthProps } from '../withWidth';
 
-const styles = (theme: Theme) => ({
+const styles = (theme: Theme) => createStyles({
   root: {
+    display: 'flex',
+    flexDirection: 'column',
     backgroundColor: theme.palette.common.black,
   },
 });
 
-interface IHelloProps {
+interface IHelloProps extends WithWidthProps, WithStyles<typeof styles> {
   name?: string;
 }
 
-export class Hello extends React.Component<IHelloProps & WithWidthProps & WithStyles<'root'>> {
+export class Hello extends React.Component<IHelloProps> {
   public static defaultProps = {
     name: 'Alex',
   };

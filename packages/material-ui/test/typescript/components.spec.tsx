@@ -65,9 +65,8 @@ import {
   Tooltip,
   Typography,
   withMobileDialog,
-  WithStyles,
 } from '../../src';
-import { withStyles, StyleRulesCallback } from '../../src/styles';
+import { withStyles, StyleRulesCallback, WithStyles, Theme, createStyles } from '../../src/styles';
 import { DialogProps } from '../../src/Dialog';
 
 const log = console.log;
@@ -663,16 +662,16 @@ const StepperTest = () =>
   };
 
 const TableTest = () => {
-  const styles: StyleRulesCallback<'paper'> = theme => {
+  const styles = (theme: Theme) => {
     const backgroundColor: string = theme.palette.secondary.light;
-    return {
+    return createStyles({
       paper: {
         width: '100%',
         marginTop: theme.spacing.unit * 3,
         backgroundColor,
         overflowX: 'auto',
       },
-    };
+    });
   };
 
   let id = 0;
@@ -689,7 +688,7 @@ const TableTest = () => {
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ];
 
-  function BasicTable(props: WithStyles<'paper'>) {
+  function BasicTable(props: WithStyles<typeof styles>) {
     const classes = props.classes;
 
     return (
@@ -751,7 +750,7 @@ const TabsTest = () => {
     },
   });
 
-  class BasicTabs extends React.Component<WithStyles<ClassKey>> {
+  class BasicTabs extends React.Component<WithStyles<typeof styles>> {
     state = {
       value: 0,
     };

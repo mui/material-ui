@@ -1,28 +1,29 @@
 import * as React from 'react';
 import {
+  createStyles,
   withStyles,
-  WithStyles,
   createMuiTheme,
   MuiThemeProvider,
   Theme,
   withTheme,
   StyleRules,
+  StyleRulesCallback,
+  StyledComponentProps,
+  WithStyles,
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
-import { StyleRulesCallback, StyledComponentProps } from '../../src/styles/withStyles';
 import blue from '../../src/colors/blue';
 import { WithTheme } from '../../src/styles/withTheme';
 import { StandardProps } from '../../src';
 import { TypographyStyle } from '../../src/styles/createTypography';
 
 // Shared types for examples
-type ComponentClassNames = 'root';
 interface ComponentProps {
   text: string;
 }
 
 // Example 1
-const styles: StyleRulesCallback<'root'> = ({ palette, spacing }) => ({
+const styles = ({ palette, spacing }: Theme) => ({
   root: {
     padding: spacing.unit,
     backgroundColor: palette.background.default,
@@ -36,7 +37,7 @@ const StyledExampleOne = withStyles(styles)<ComponentProps>(({ classes, text }) 
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.SFC<ComponentProps & WithStyles<ComponentClassNames>> = ({
+const Component: React.SFC<ComponentProps & WithStyles<typeof styles>> = ({
   classes,
   text,
 }) => <div className={classes.root}>{text}</div>;
@@ -45,16 +46,16 @@ const StyledExampleTwo = withStyles(styles)(Component);
 <StyledExampleTwo text="I am styled!" />;
 
 // Example 3
-const styleRule: StyleRules<ComponentClassNames> = {
+const styleRule = createStyles({
   root: {
     display: 'flex',
     alignItems: 'stretch',
     height: '100vh',
     width: '100%',
   },
-};
+});
 
-const ComponentWithChildren: React.SFC<WithStyles<ComponentClassNames>> = ({
+const ComponentWithChildren: React.SFC<WithStyles<typeof styles>> = ({
   classes,
   children,
 }) => <div className={classes.root}>{children}</div>;
@@ -166,7 +167,7 @@ const ComponentWithTheme = withTheme()(({ theme }) => <div>{theme.spacing.unit}<
 <ComponentWithTheme />;
 
 // withStyles + withTheme
-type AllTheProps = WithTheme & WithStyles<'root'>;
+type AllTheProps = WithTheme & WithStyles<typeof styles>;
 
 const AllTheComposition = withTheme()(
   withStyles(styles)(({ theme, classes }: AllTheProps) => (
@@ -180,7 +181,7 @@ const AllTheComposition = withTheme()(
 // due to https://github.com/Microsoft/TypeScript/issues/4881
 //@withStyles(styles)
 const DecoratedComponent = withStyles(styles)(
-  class extends React.Component<ComponentProps & WithStyles<'root'>> {
+  class extends React.Component<ComponentProps & WithStyles<typeof styles>> {
     render() {
       const { classes, text } = this.props;
       return <div className={classes.root}>{text}</div>;
@@ -192,7 +193,7 @@ const DecoratedComponent = withStyles(styles)(
 <DecoratedComponent text="foo" />;
 
 // Allow nested pseudo selectors
-withStyles<'listItem' | 'guttered'>(theme => ({
+withStyles(theme => createStyles({
   guttered: theme.mixins.gutters({
     '&:hover': {
       textDecoration: 'none',
@@ -206,49 +207,44 @@ withStyles<'listItem' | 'guttered'>(theme => ({
 }));
 
 {
-  type ListItemContentClassKey = 'root' | 'iiiinset' | 'row';
-  const styles = withStyles<ListItemContentClassKey>(
-    theme => ({
-      // Styled similar to ListItemText
-      root: {
-        '&:first-child': {
-          paddingLeft: 0,
-        },
-        flex: '1 1 auto',
-        padding: '0 16px',
+  const styles = (theme: Theme) => createStyles({
+    // Styled similar to ListItemText
+    root: {
+      '&:first-child': {
+        paddingLeft: 0,
       },
+      flex: '1 1 auto',
+      padding: '0 16px',
+    },
 
-      iiiinset: {
-        '&:first-child': {
-          paddingLeft: theme.spacing.unit * 7,
-        },
+    iiiinset: {
+      '&:first-child': {
+        paddingLeft: theme.spacing.unit * 7,
       },
-      row: {
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'row',
-      },
-    }),
-    { name: 'ui-ListItemContent' },
-  );
+    },
+    row: {
+      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'row',
+    },
+  });
 
-  interface ListItemContentProps extends StyledComponentProps<ListItemContentClassKey> {
+  interface ListItemContentProps extends WithStyles<typeof styles> {
     inset?: boolean;
     row?: boolean;
   }
 
-  const ListItemContent = styles<ListItemContentProps>(props => {
-    const { children, classes, inset, row } = props;
-    return (
-      <div className="foo" color="textSecondary">
+  const ListItemContent = withStyles(styles, { name: 'ui-ListItemContent' })<ListItemContentProps>(
+    ({ children, classes, inset, row }) => (
+      <div className={classes.root} color="textSecondary">
         {children}
       </div>
-    );
-  });
+    )
+  );
 }
 
 {
-  interface FooProps extends StyledComponentProps<'x' | 'y'> {
+  interface FooProps extends WithStyles<'x' | 'y'> {
     a: number;
     b: boolean;
   }
@@ -261,27 +257,22 @@ withStyles<'listItem' | 'guttered'>(theme => ({
   // The real test here is with "strictFunctionTypes": false,
   // but we don't have a way currently to test under varying
   // TypeScript configurations.
-  interface IStyle {
-    content: any;
-  }
 
-  interface IComponentProps {
+  interface ComponentProps extends WithStyles<typeof styles> {
     caption: string;
   }
 
-  type ComponentProps = IComponentProps & WithStyles<'content'>;
-
-  const decorate = withStyles((theme): IStyle => ({
+  const styles = (theme: Theme) => createStyles({
     content: {
       margin: 4,
     },
-  }));
+  });
 
   const Component = (props: ComponentProps) => {
     return <div className={props.classes.content}>Hello {props.caption}</div>;
   };
 
-  const StyledComponent = decorate(Component);
+  const StyledComponent = withStyles(styles)(Component);
 
   class App extends React.Component {
     public render() {
@@ -298,23 +289,21 @@ withStyles<'listItem' | 'guttered'>(theme => ({
 
 {
   // https://github.com/mui-org/material-ui/issues/11191
-  const decorate = withStyles<classList>(theme => ({
+  const styles = (theme: Theme) => createStyles({
     main: {},
-  }));
+  });
 
-  type classList = 'main';
-
-  interface IProps {
+  interface Props extends WithStyles<typeof styles> {
     someProp?: string;
   }
 
-  class SomeComponent extends React.PureComponent<IProps & WithStyles<classList>> {
+  class SomeComponent extends React.PureComponent<Props> {
     render() {
       return <div />;
     }
   }
 
-  const DecoratedSomeComponent = decorate(SomeComponent); // note that I don't specify a generic type here
+  const DecoratedSomeComponent = withStyles(styles)(SomeComponent);
 
   <DecoratedSomeComponent someProp="hello world" />;
 }

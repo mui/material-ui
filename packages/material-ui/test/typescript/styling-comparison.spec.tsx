@@ -1,29 +1,29 @@
 import * as React from 'react';
 import Typography, { TypographyProps } from '../../src/Typography/Typography';
-import { withStyles, WithStyles } from '../../src/styles';
+import { withStyles, WithStyles, createStyles, Theme } from '../../src/styles';
 
-const decorate = withStyles(({ palette, spacing }) => ({
+const styles = ({ palette, spacing }: Theme) => createStyles({
   root: {
     padding: spacing.unit,
     backgroundColor: palette.background.default,
     color: palette.primary.dark,
   },
-}));
+})
 
-interface Props {
+interface Props extends WithStyles<typeof styles> {
   color: TypographyProps['color'];
   text: string;
   variant: TypographyProps['variant'];
 }
 
-const DecoratedSFC = decorate<Props>(({ text, variant, color, classes }) => (
+const DecoratedSFC = withStyles(styles)(({ text, variant, color, classes }: Props) => (
   <Typography variant={variant} color={color} classes={classes}>
     {text}
   </Typography>
 ));
 
-const DecoratedClass = decorate(
-  class extends React.Component<Props & WithStyles<'root'>> {
+const DecoratedClass = withStyles(styles)(
+  class extends React.Component<Props> {
     render() {
       const { text, variant, color, classes } = this.props;
       return (
@@ -35,8 +35,8 @@ const DecoratedClass = decorate(
   },
 );
 
-const DecoratedNoProps = decorate(
-  class extends React.Component<WithStyles<'root'>> {
+const DecoratedNoProps = withStyles(styles)(
+  class extends React.Component<WithStyles<typeof styles>> {
     render() {
       return <Typography classes={this.props.classes}>Hello, World!</Typography>;
     }
@@ -59,8 +59,8 @@ interface Painting {
 
 type ArtProps = Book | Painting;
 
-const DecoratedUnionProps = decorate<ArtProps>( // <-- without the type argument, we'd get a compiler error!
-  class extends React.Component<ArtProps & WithStyles<'root'>> {
+const DecoratedUnionProps = withStyles(styles)<ArtProps>( // <-- without the type argument, we'd get a compiler error!
+  class extends React.Component<ArtProps & WithStyles<typeof styles>> {
     render() {
       const props = this.props;
       return (
