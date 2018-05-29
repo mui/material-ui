@@ -383,7 +383,7 @@ const Styled = createStyled(theme => ({
 }));
 ```
 
-### styled-components API (8 lines)
+### styled-components API (5 lines)
 
 styled-components's API removes the mapping between components and styles. Using components as a low-level styling construct can be simpler.
 
