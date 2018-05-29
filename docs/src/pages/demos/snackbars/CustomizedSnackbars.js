@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
-import CheckIcon from '@material-ui/icons/Check';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import InfoIcon from '@material-ui/icons/InfoOutline';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
+import InfoIcon from '@material-ui/icons/Info';
 import CloseIcon from '@material-ui/icons/Close';
 import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
@@ -15,9 +15,9 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core/styles';
 
 const variantIcon = {
-  success: CheckIcon,
+  success: CheckCircleIcon,
   warning: WarningIcon,
-  error: ErrorOutlineIcon,
+  error: ErrorIcon,
   info: InfoIcon,
 };
 
@@ -38,6 +38,7 @@ const styles1 = theme => ({
     fontSize: 20,
   },
   iconVariant: {
+    opacity: 0.9,
     marginRight: theme.spacing.unit,
   },
   message: {

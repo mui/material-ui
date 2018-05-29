@@ -1,3 +1,5 @@
+/* eslint-disable react/no-did-mount-set-state */
+
 import 'isomorphic-fetch';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -49,7 +51,7 @@ class StableVersions extends React.Component {
     docs: [],
   };
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     const branches = await getBranches();
     let docs = branches.map(n => n.name);
     docs = docs.filter(version => version !== 'latest');
@@ -73,7 +75,7 @@ class StableVersions extends React.Component {
     // The latest version is always using the naked domain.
     docs[0].url = 'https://material-ui.com';
     this.setState({ docs });
-  };
+  }
 
   render() {
     const { classes } = this.props;
