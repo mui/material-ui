@@ -17,7 +17,7 @@ The first way to override the style of a component is to use **class names**.
 Every component provides a `className` property which is always applied to the root element.
 
 In this example, we are using the [`withStyles()`](/customization/css-in-js#withstyles-styles-options-higher-order-component) higher-order
-component to inject custom styles into the DOM, and to pass the class name to the `OverridesClasseNames` component via
+component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via
 its `classes` prop. You can choose any other styling solution, or even plain CSS to create the styles, but be sure to
 consider the [CSS injection order](/customization/css-in-js#css-injection-order), as the CSS injected into the DOM
 by Material-UI to style a component has the highest specificity possible since the `<link>` is injected at the bottom
@@ -33,7 +33,7 @@ component is documented in the **Component API** section.
 For instance, you can have a look at the [Button CSS API](/api/button#css-api).
 Alternatively, you can always look at the [implementation details](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
 
-This example also uses `withStyles()` (see above), but here, `OverridesClasses` is using `Button`'s `classes` prop to
+This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to
 provide an object that maps the **names of classes to override** (keys) to the **CSS class names to apply** (values).
 The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles
 you wish to add or override.
