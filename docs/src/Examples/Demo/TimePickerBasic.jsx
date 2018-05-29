@@ -42,6 +42,29 @@ export default class BasicUsage extends PureComponent {
             onChange={this.handleDateChange}
           />
         </div>
+
+        <div className="picker">
+          <TimePicker
+            seconds
+            format="HH:mm:ss A"
+            todayLabel="now"
+            label="With seconds"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+          />
+        </div>
+
+        <div className="picker">
+          <TimePicker
+            ampm={false}
+            seconds
+            format="HH:mm:ss A"
+            todayLabel="now"
+            label="24 hours with seconds"
+            value={selectedDate}
+            onChange={this.handleDateChange}
+          />
+        </div>
       </Fragment>
     );
   }
