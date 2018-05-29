@@ -12,7 +12,7 @@ const styles = theme => ({
   },
 });
 
-function containedButtons(props) {
+function ContainedButtons(props) {
   const { classes } = props;
   return (
     <div>
@@ -47,8 +47,8 @@ function containedButtons(props) {
   );
 }
 
-containedButtons.propTypes = {
+ContainedButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(containedButtons);
+export default withStyles(styles)(ContainedButtons);
