@@ -104,8 +104,7 @@ export const styles = theme => {
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-        content: '"need text here to prevent subpixel zoom issue"',
-        color: 'transparent',
+        content: '"\\00a0"',
         position: 'absolute',
         right: 0,
         transition: theme.transitions.create('border-bottom-color', {
