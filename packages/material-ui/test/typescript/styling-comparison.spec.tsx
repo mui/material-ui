@@ -2,13 +2,14 @@ import * as React from 'react';
 import Typography, { TypographyProps } from '../../src/Typography/Typography';
 import { withStyles, WithStyles, createStyles, Theme } from '../../src/styles';
 
-const styles = ({ palette, spacing }: Theme) => createStyles({
-  root: {
-    padding: spacing.unit,
-    backgroundColor: palette.background.default,
-    color: palette.primary.dark,
-  },
-})
+const styles = ({ palette, spacing }: Theme) =>
+  createStyles({
+    root: {
+      padding: spacing.unit,
+      backgroundColor: palette.background.default,
+      color: palette.primary.dark,
+    },
+  });
 
 interface Props extends WithStyles<typeof styles> {
   color: TypographyProps['color'];

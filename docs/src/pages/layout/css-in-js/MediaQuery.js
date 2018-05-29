@@ -32,7 +32,4 @@ MediaQuery.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-export default compose(
-  withStyles(styles),
-  withWidth(),
-)(MediaQuery);
+export default compose(withStyles(styles), withWidth())(MediaQuery);
