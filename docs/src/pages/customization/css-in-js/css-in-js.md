@@ -375,7 +375,7 @@ function RenderProps() {
 {{"demo": "pages/customization/css-in-js/RenderProps.js"}}
 
 You can access the theme the same way you would do it with `withStyles`:
-```
+```js
 const Styled = createStyled(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
@@ -408,7 +408,7 @@ function StyledComponents() {
 {{"demo": "pages/customization/css-in-js/StyledComponents.js"}}
 
 You can access the theme the same way you would do it with `withStyles`:
-```
+```js
 const MyButton = styled(Button)(theme => ({
   backgroundColor: theme.palette.background.paper,
 }));
