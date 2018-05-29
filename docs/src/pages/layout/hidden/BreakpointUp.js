@@ -55,7 +55,4 @@ BreakpointUp.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-export default compose(
-  withStyles(styles),
-  withWidth(),
-)(BreakpointUp);
+export default compose(withStyles(styles), withWidth())(BreakpointUp);
