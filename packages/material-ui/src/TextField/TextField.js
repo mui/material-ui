@@ -22,7 +22,7 @@ import Select from '../Select';
  * - [Input](/api/input)
  * - [FormHelperText](/api/form-helper-text)
  *
- * If you wish to alter the properties applied to the native input, you can do as follow:
+ * If you wish to alter the properties applied to the native input, you can do so as follows:
  *
  * ```jsx
  * const inputProps = {
@@ -34,8 +34,8 @@ import Select from '../Select';
  *
  * For advanced cases, please look at the source of TextField by clicking on the
  * "Edit this page" button above. Consider either:
- * - using the upper case props for passing values direct to the components.
- * - using the underlying components directly as shown in the demos.
+ * - using the upper case props for passing values directly to the components
+ * - using the underlying components directly as shown in the demos
  */
 function TextField(props) {
   const {
