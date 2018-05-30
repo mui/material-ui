@@ -16,6 +16,7 @@ export interface ListItemProps
   disabled?: boolean;
   disableGutters?: boolean;
   divider?: boolean;
+  focusVisibleClassName?: string;
 }
 
 export type ListItemClassKey =
