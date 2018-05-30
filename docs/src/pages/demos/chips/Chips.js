@@ -30,7 +30,13 @@ function Chips(props) {
   return (
     <div className={classes.root}>
       <Chip label="Basic Chip" className={classes.chip} />
-      <Chip label="Clickable without onClick Chip" clickable className={classes.chip} />
+      <Chip
+        href="#chip"
+        component="a"
+        label="Clickable Link Chip"
+        className={classes.chip}
+        clickable
+      />
       <Chip
         avatar={<Avatar>MB</Avatar>}
         label="Clickable Chip"
