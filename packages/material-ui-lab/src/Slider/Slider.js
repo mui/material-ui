@@ -340,8 +340,8 @@ class Slider extends React.Component {
     this.globalMouseUpListener = addEventListener(document, 'mouseup', this.handleMouseUp);
     this.globalMouseMoveListener = addEventListener(document, 'mousemove', this.handleMouseMove);
 
-    if (typeof this.props.onDragEnd === 'function') {
-      this.props.onDragEnd(event);
+    if (typeof this.props.onDragStart === 'function') {
+      this.props.onDragStart(event);
     }
   };
 
