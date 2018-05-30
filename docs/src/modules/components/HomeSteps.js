@@ -153,7 +153,7 @@ function HomeSteps(props) {
   import Button from '@material-ui/core/Button';
 
   const App = () => (
-    <Button variant="raised" color="primary">
+    <Button variant="contained" color="primary">
       Hello World
     </Button>
   );

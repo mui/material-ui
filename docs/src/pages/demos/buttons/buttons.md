@@ -8,35 +8,47 @@ components: Button, IconButton, ButtonBase, Zoom
 
 Material buttons trigger an ink reaction on press.
 They may display text, imagery, or both.
-Flat buttons and raised buttons are the most commonly used types.
+Text buttons and Contained buttons are the most commonly used types.
 
-## Flat Buttons
+## Text Buttons
 
-Flat buttons are text-only buttons.
-They may be used in dialogs, toolbars, or inline.
-They do not lift, but fill with color on press.
+[Text buttons](https://material.io/design/components/buttons.html#text-button)
+are typically used for less-pronounced actions, including those located:
 
-{{"demo": "pages/demos/buttons/FlatButtons.js"}}
+- In dialogs
+- In cards
+
+In cards, text buttons help maintain an emphasis on card content.
+
+{{"demo": "pages/demos/buttons/TextButtons.js"}}
 
 ## Outlined Buttons
-Outlined buttons are text-only buttons with medium emphasis.
-They behave like flat buttons but have an outline and are typically used for actions that are important, but
-aren’t the primary action in an app.
+[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button)
+are medium-emphasis buttons. They contain actions that are important,
+but aren’t the primary action in an app.
+
+### Alternatives
+Outlined buttons are also a lower emphasis alternative to contained buttons,
+or a higher emphasis alternative to text buttons.
 
 {{"demo": "pages/demos/buttons/OutlinedButtons.js"}}
 
-## Raised Buttons
+## Contained Buttons
 
-Raised buttons are rectangular-shaped buttons.
-They may be used inline. They lift and display ink reactions on press.
+[Contained buttons](https://material.io/design/components/buttons.html#contained-button)
+are high-emphasis, distinguished by their use of elevation and fill.
+They contain actions that are primary to your app.
 
-{{"demo": "pages/demos/buttons/RaisedButtons.js"}}
+{{"demo": "pages/demos/buttons/ContainedButtons.js"}}
 
 ## Floating Action Buttons
 
-A floating action button represents the primary action in an application.
-Shaped like a circled icon floating above the UI, it has an ink wash upon focus and lifts upon selection.
-When pressed, it may contain more related actions.
+A [floating action button](https://material.io/design/components/buttons-floating-action-button.html)
+(FAB) performs the primary, or most common, action on a screen.
+It appears in front of all screen content, typically as a circular shape with an icon in its center. 
+FABs come in three types: regular, mini, and extended.
+
+Only use a FAB if it is the most suitable way to present a screen’s primary action.
 
 Only one floating action button is recommended per screen to represent the most common action.
 
@@ -85,7 +97,7 @@ and using a theme; and of a Bootstrap style Button.
 
 ## Complex Buttons
 
-The Flat Buttons, Raised Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
+The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
 You can take advantage of this lower level component to build custom interactions.
 
 {{"demo": "pages/demos/buttons/ButtonBases.js"}}

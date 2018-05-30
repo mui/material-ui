@@ -154,7 +154,7 @@ class HorizontalNonLinearStepperWithError extends React.Component {
                 </Button>
                 {this.isStepOptional(activeStep) && (
                   <Button
-                    variant="raised"
+                    variant="contained"
                     color="primary"
                     onClick={this.handleSkip}
                     className={classes.button}
@@ -163,7 +163,7 @@ class HorizontalNonLinearStepperWithError extends React.Component {
                   </Button>
                 )}
                 <Button
-                  variant="raised"
+                  variant="contained"
                   color="primary"
                   onClick={this.handleNext}
                   className={classes.button}

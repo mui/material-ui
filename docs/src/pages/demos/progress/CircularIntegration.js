@@ -93,7 +93,7 @@ class CircularIntegration extends React.Component {
         </div>
         <div className={classes.wrapper}>
           <Button
-            variant="raised"
+            variant="contained"
             color="primary"
             className={buttonClassname}
             disabled={loading}

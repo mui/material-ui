@@ -28,23 +28,23 @@ function IconLabelButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button className={classes.button} variant="raised" color="secondary">
+      <Button variant="contained" color="secondary" className={classes.button}>
         Delete
         <Delete className={classes.rightIcon} />
       </Button>
-      <Button className={classes.button} variant="raised" color="primary">
+      <Button variant="contained" color="primary" className={classes.button}>
         Send
         <Icon className={classes.rightIcon}>send</Icon>
       </Button>
-      <Button className={classes.button} variant="raised" color="default">
+      <Button variant="contained" color="default" className={classes.button}>
         Upload
         <FileUpload className={classes.rightIcon} />
       </Button>
-      <Button className={classes.button} variant="raised" disabled color="secondary">
+      <Button variant="contained" disabled color="secondary" className={classes.button}>
         <KeyboardVoice className={classes.leftIcon} />
         Talk
       </Button>
-      <Button className={classes.button} variant="raised" size="small">
+      <Button variant="contained" size="small" className={classes.button}>
         <Save className={classNames(classes.leftIcon, classes.iconSmall)} />
         Save
       </Button>

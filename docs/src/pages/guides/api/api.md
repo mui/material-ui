@@ -126,7 +126,7 @@ For example, let's take a button that has different types. Each option has its p
   ```
   
   This API is more verbose:
-  `<Button>`, `<Button variant="raised">`, `<Button variant="fab">`.
+  `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
   
    However it prevents an invalid combination from being used,
    bounds the number of properties exposed,

@@ -12,7 +12,7 @@ const styles = theme => ({
   },
 });
 
-function FlatButtons(props) {
+function TextButtons(props) {
   const { classes } = props;
   return (
     <div>
@@ -26,7 +26,7 @@ function FlatButtons(props) {
       <Button disabled className={classes.button}>
         Disabled
       </Button>
-      <Button href="#flat-buttons" className={classes.button}>
+      <Button href="#text-buttons" className={classes.button}>
         Link
       </Button>
       <input
@@ -45,8 +45,8 @@ function FlatButtons(props) {
   );
 }
 
-FlatButtons.propTypes = {
+TextButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FlatButtons);
+export default withStyles(styles)(TextButtons);

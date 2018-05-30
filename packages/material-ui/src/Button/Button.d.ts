@@ -13,19 +13,26 @@ export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassK
   mini?: boolean;
   size?: 'small' | 'medium' | 'large';
   type?: string;
-  variant?: 'flat' | 'outlined' | 'raised' | 'fab';
+  variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab';
 }
 
 export type ButtonClassKey =
   | 'root'
   | 'label'
+  | 'textPrimary'
+  | 'textSecondary'
+  | 'flat'
   | 'flatPrimary'
   | 'flatSecondary'
+  | 'outlined'
   | 'colorInherit'
+  | 'contained'
+  | 'containedPrimary'
+  | 'containedSecondary'
   | 'raised'
-  | 'focusVisible'
   | 'raisedPrimary'
   | 'raisedSecondary'
+  | 'focusVisible'
   | 'disabled'
   | 'fab'
   | 'mini'
