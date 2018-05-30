@@ -24,7 +24,7 @@
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build --ignore *.test.js",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
     "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel ./src --out-dir ./build/es --ignore *.test.js",
-    "build:umd": "BABEL_ENV=production-umd rollup -c scripts/rollup.config.js && rimraf dist/material-ui.esm.js",
+    "build:umd": "cross-env BABEL_ENV=production-umd rollup -c scripts/rollup.config.js && rimraf dist/material-ui.esm.js",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:umd && yarn build:copy-files",
     "release": "yarn build && npm publish build"
