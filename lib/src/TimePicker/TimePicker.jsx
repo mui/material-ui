@@ -40,11 +40,23 @@ export class TimePicker extends Component {
   setMeridiemMode = mode => () => {
     this.setState(
       { meridiemMode: mode },
-      () => this.handleChange(this.props.date, false, false, false),
+      () => this.handleChange({
+        time: this.props.date,
+        isFinish: false,
+        openMinutes: false,
+        openSeconds: false,
+      }),
     );
   }
 
-  handleChange(time, isFinish, openMinutes, openSeconds) {
+  handleChange(params) {
+    const {
+      time,
+      isFinish,
+      openMinutes,
+      openSeconds,
+    } = params;
+
     const withMeridiem = convertToMeridiem(
       time,
       this.state.meridiemMode,
@@ -71,15 +83,30 @@ export class TimePicker extends Component {
   }
 
   handleHourChange = (time, isFinish) => {
-    this.handleChange(time, isFinish, true, false);
+    this.handleChange({
+      time,
+      isFinish,
+      openMinutes: true,
+      openSeconds: false,
+    });
   }
 
   handleMinutesChange = (time, isFinish) => {
-    this.handleChange(time, isFinish, false, true);
+    this.handleChange({
+      time,
+      isFinish,
+      openMinutes: false,
+      openSeconds: true,
+    });
   }
 
   handleSecondsChange = (time, isFinish) => {
-    this.handleChange(time, isFinish, false, false);
+    this.handleChange({
+      time,
+      isFinish,
+      openMinutes: false,
+      openSeconds: false,
+    });
   }
 
   openSecondsView = () => {
