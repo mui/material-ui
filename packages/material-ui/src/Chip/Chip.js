@@ -211,8 +211,9 @@ Chip.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the chip will be clickable.
-   * By default, the chip will not be clickable.
+   * If true, the chip will appear clickable, and will raise when pressed,
+   * even if the onClick property is not defined. This can be used, for example,
+   * along with the component property to indicate an anchor Chip is clickable.
    */
   clickable: PropTypes.bool,
   /**
