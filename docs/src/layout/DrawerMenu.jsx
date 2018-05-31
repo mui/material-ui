@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Divider, Toolbar, Typography, withStyles } from 'material-ui';
+import { Divider, Toolbar, Typography, withStyles } from '@material-ui/core';
 
 import NavigationMenu from './NavigationMenu';
 import { version } from '../../../lib/package.json';

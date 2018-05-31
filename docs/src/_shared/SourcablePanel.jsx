@@ -4,8 +4,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import Collapse from 'material-ui/transitions/Collapse';
-import { Typography, IconButton, Icon, withStyles } from 'material-ui';
+import { Typography, IconButton, Icon, withStyles, Collapse } from '@material-ui/core';
 import Code from './Code';
 
 class SourcablePanel extends PureComponent {

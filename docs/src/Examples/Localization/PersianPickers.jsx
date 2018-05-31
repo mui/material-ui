@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import jMoment from 'moment-jalaali';
-import { Typography } from 'material-ui';
+import { Typography } from '@material-ui/core';
 import { TimePicker, DateTimePicker, DatePicker } from 'material-ui-pickers';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 import JalaliUtils from 'material-ui-pickers-jalali-utils';

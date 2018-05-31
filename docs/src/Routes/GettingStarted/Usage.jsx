@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Code from '_shared/Code';
-import { Typography, withStyles } from 'material-ui';
+import { Typography, withStyles } from '@material-ui/core';
 
 // eslint-disable-next-line
 import quickStartCode from '!raw-loader!Examples/CodeSnippets/QuickStart';
