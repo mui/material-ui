@@ -31,10 +31,10 @@ function Chips(props) {
     <div className={classes.root}>
       <Chip label="Basic Chip" className={classes.chip} />
       <Chip
-        href="#chip"
-        component="a"
         label="Clickable Link Chip"
         className={classes.chip}
+        component="a"
+        href="#chip"
         clickable
       />
       <Chip
