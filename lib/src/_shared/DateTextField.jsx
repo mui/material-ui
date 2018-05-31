@@ -169,12 +169,7 @@ export class DateTextField extends PureComponent {
     }
   }
 
-  handleBlur = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
-  handleChange = (e) => {
+  commitUpdates = (value) => {
     const {
       clearable,
       onClear,
@@ -183,7 +178,7 @@ export class DateTextField extends PureComponent {
       onError,
     } = this.props;
 
-    if (e.target.value === '') {
+    if (value === '') {
       if (this.props.value === null) {
         this.setState(this.updateState());
       } else if (clearable && onClear) {
@@ -194,12 +189,11 @@ export class DateTextField extends PureComponent {
     }
 
     const oldValue = utils.date(this.state.value);
-    const newValue = utils.parse(e.target.value, format);
-
+    const newValue = utils.parse(value, format);
     const error = this.getError(newValue);
 
     this.setState({
-      displayValue: e.target.value,
+      displayValue: value,
       value: error ? newValue : oldValue,
       error,
     }, () => {
@@ -210,6 +204,27 @@ export class DateTextField extends PureComponent {
       if (error && onError) {
         onError(newValue, error);
       }
+
+      if (!error) {
+        this.setState({
+          displayValue: utils.format(this.state.value, format),
+        });
+      }
+    });
+  }
+
+  handleBlur = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.target.tagName.toLowerCase() === 'input') {
+      this.commitUpdates(e.target.value);
+    }
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      displayValue: e.target.value,
+      error: '',
     });
   }
 
@@ -222,13 +237,16 @@ export class DateTextField extends PureComponent {
       return;
     }
 
-
     this.openPicker(e);
   }
 
   handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !this.props.disableOpenOnEnter) {
-      this.openPicker(e);
+    if (e.key === 'Enter') {
+      if (!this.props.disableOpenOnEnter) {
+        this.openPicker(e);
+      } else {
+        this.commitUpdates(e.target.value);
+      }
     }
   }
 
