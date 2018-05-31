@@ -30,6 +30,7 @@ export const styles = theme => {
       cursor: 'default',
       // We disable the focus ring for mouse, touch and keyboard users.
       outline: 'none',
+      textDecoration: 'none',
       border: 'none', // Remove `button` border
       padding: 0, // Remove `button` padding
     },
