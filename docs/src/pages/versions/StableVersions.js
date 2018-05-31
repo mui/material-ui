@@ -23,18 +23,11 @@ const styles = {
   },
 };
 
-function pause(timeout) {
-  return new Promise(accept => {
-    setTimeout(accept, timeout);
-  });
-}
-
 let cacheBranches = null;
 
 async function getBranches() {
   try {
     if (!cacheBranches) {
-      await pause(1e3); // Soften the pressure on the main thread.
       const result = await fetch('https://api.github.com/repos/mui-org/material-ui-docs/branches');
       cacheBranches = await result.json();
     }
