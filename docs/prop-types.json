@@ -2833,6 +2833,13 @@
           "required": true,
           "description": ""
         },
+        "onKeyDown": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
         "onAccept": {
           "type": {
             "name": "func"
@@ -3006,7 +3013,22 @@
     {
       "description": "",
       "displayName": "MuiPickersUtilsProvider",
-      "methods": [],
+      "methods": [
+        {
+          "name": "getDerivedStateFromProps",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ utils: Utils, locale, moment }",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
       "props": {
         "utils": {
           "type": {
@@ -3036,7 +3058,18 @@
         },
         "children": {
           "type": {
-            "name": "element"
+            "name": "union",
+            "value": [
+              {
+                "name": "element"
+              },
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "element"
+                }
+              }
+            ]
           },
           "required": true,
           "description": ""
@@ -3060,6 +3093,18 @@
       "description": "",
       "displayName": "ModalWrapper",
       "methods": [
+        {
+          "name": "handleKeyDown",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
         {
           "name": "handleSetTodayDate",
           "docblock": null,
