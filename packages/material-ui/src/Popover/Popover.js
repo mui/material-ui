@@ -317,7 +317,7 @@ class Popover extends React.Component {
           ref={node => {
             this.transitionEl = node;
           }}
-          transitionDuration={transitionDuration}
+          timeout={transitionDuration}
           {...TransitionProps}
         >
           <Paper
