@@ -31,13 +31,6 @@ function Chips(props) {
     <div className={classes.root}>
       <Chip label="Basic Chip" className={classes.chip} />
       <Chip
-        label="Clickable Link Chip"
-        className={classes.chip}
-        component="a"
-        href="#chip"
-        clickable
-      />
-      <Chip
         avatar={<Avatar>MB</Avatar>}
         label="Clickable Chip"
         onClick={handleClick}
@@ -66,6 +59,13 @@ function Chips(props) {
         onDelete={handleDelete}
         className={classes.chip}
         deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        label="Clickable Link Chip"
+        className={classes.chip}
+        component="a"
+        href="#chip"
+        clickable
       />
     </div>
   );
