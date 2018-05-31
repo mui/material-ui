@@ -174,7 +174,7 @@ class Chip extends React.Component {
     let tabIndex = tabIndexProp;
 
     if (!tabIndex) {
-      tabIndex = onClick || onDelete ? 0 : -1;
+      tabIndex = onClick || onDelete || clickable ? 0 : -1;
     }
 
     return (
