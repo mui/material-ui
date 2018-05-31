@@ -4,6 +4,7 @@ import { StandardProps } from '..';
 export interface ChipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ChipClassKey> {
   avatar?: React.ReactElement<any>;
+  clickable?: boolean;
   component?: React.ReactType<ChipProps>;
   deleteIcon?: React.ReactElement<any>;
   label?: React.ReactNode;
