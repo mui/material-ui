@@ -39,7 +39,7 @@ export interface Color {
  *
  * @internal
  */
-export type Omit<T, K extends string> = Pick<T, Exclude<keyof T, K>>;
+export type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
 
 /**
  * `T extends ConsistentWith<T, U>` means that where `T` has overlapping properties with
