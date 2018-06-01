@@ -157,7 +157,7 @@ export class DateTextField extends PureComponent {
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.value !== this.props.value ||
+      !this.props.utils.isEqual(this.props.value, prevProps.value) ||
       prevProps.format !== this.props.format ||
       prevProps.maxDate !== this.props.maxDate ||
       prevProps.minDate !== this.props.minDate ||
@@ -216,9 +216,12 @@ export class DateTextField extends PureComponent {
   };
 
   handleChange = (e) => {
+    const { utils, format } = this.props;
+    const parsedValue = utils.parse(e.target.value, format);
+
     this.setState({
       displayValue: e.target.value,
-      error: '',
+      error: getError(parsedValue, this.props),
     });
   }
 
