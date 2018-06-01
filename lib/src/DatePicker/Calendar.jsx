@@ -238,7 +238,13 @@ export class Calendar extends Component {
           utils={utils}
         />
 
-        <div className={classes.calendar}>{this.renderWeeks()}</div>
+        <div
+          /* eslint-disable-next-line */
+          autoFocus // We need autofocus for getting work keyboard navigation feature
+          className={classes.calendar}
+        >
+          {this.renderWeeks()}
+        </div>
       </Fragment>
     );
   }
