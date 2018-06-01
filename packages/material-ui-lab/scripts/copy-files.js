@@ -2,11 +2,18 @@
 
 import path from 'path';
 import fse from 'fs-extra';
+import glob from 'glob';
 
 async function copyFile(file) {
   const buildPath = path.resolve(__dirname, '../build/', path.basename(file));
   await fse.copy(file, buildPath);
   console.log(`Copied ${file} to ${buildPath}`);
+}
+
+function typescriptCopy(from, to) {
+  const files = glob.sync('**/*.d.ts', { cwd: from });
+  const cmds = files.map(file => fse.copy(path.resolve(from, file), path.resolve(to, file)));
+  return Promise.all(cmds);
 }
 
 async function createPackageFile() {
@@ -49,6 +56,13 @@ async function run() {
   await ['README.md', '../../LICENSE'].map(file => copyFile(file));
   const packageData = await createPackageFile();
   await addLicense(packageData);
+
+  // TypeScript
+  const from = path.resolve(__dirname, '../src');
+  await Promise.all([
+    typescriptCopy(from, path.resolve(__dirname, '../build')),
+    typescriptCopy(from, path.resolve(__dirname, '../build/es')),
+  ]);
 }
 
 run();
