@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
 import DatePicker from './DatePicker';
 import DomainPropTypes from '../constants/prop-types';
-import PickerBase from '../_shared/PickerBase';
+import withBasePicker from '../_shared/WithBasePicker';
 import withUtils from '../_shared/WithUtils';
 
-export class DatePickerWrapper extends PickerBase {
+export class DatePickerWrapper extends React.Component {
   static propTypes = {
     utils: PropTypes.object.isRequired,
     /** Datepicker value */
@@ -60,7 +60,7 @@ export class DatePickerWrapper extends PickerBase {
   }
 
   render() {
-    const { date } = this.state;
+    const { date } = this.props;
     const {
       value,
       format,
@@ -76,10 +76,17 @@ export class DatePickerWrapper extends PickerBase {
       shouldDisableDate,
       minDateMessage,
       maxDateMessage,
+      handleChange,
       minDate,
       maxDate,
       disablePast,
       disableFuture,
+      handleClear,
+      handleTextFieldChange,
+      handleDismiss,
+      handleSetTodayDate,
+      handleAccept,
+      changeDate,
       ...other
     } = this.props;
 
@@ -88,11 +95,11 @@ export class DatePickerWrapper extends PickerBase {
         ref={this.getRef}
         value={value}
         format={format}
-        onClear={this.handleClear}
-        onAccept={this.handleAccept}
-        onChange={this.handleTextFieldChange}
-        onDismiss={this.handleDismiss}
-        onSetToday={this.handleSetTodayDate}
+        onClear={handleClear}
+        onAccept={handleAccept}
+        onChange={handleTextFieldChange}
+        onDismiss={handleDismiss}
+        onSetToday={handleSetTodayDate}
         labelFunc={labelFunc}
         minDate={minDate}
         maxDate={maxDate}
@@ -104,7 +111,7 @@ export class DatePickerWrapper extends PickerBase {
       >
         <DatePicker
           date={date}
-          onChange={this.handleChange}
+          onChange={handleChange}
           animateYearScrolling={animateYearScrolling}
           openToYearSelection={openToYearSelection}
           leftArrowIcon={leftArrowIcon}
@@ -122,5 +129,5 @@ export class DatePickerWrapper extends PickerBase {
   }
 }
 
-export default withUtils()(DatePickerWrapper);
+export default withUtils()(withBasePicker(DatePickerWrapper));
 

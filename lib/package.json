@@ -44,8 +44,10 @@
     "luxon": "^1.0.0"
   },
   "dependencies": {
+    "@types/recompose": "^0.26.1",
     "babel-runtime": "^6.26.0",
-    "react-text-mask": "^5.3.1"
+    "react-text-mask": "^5.3.1",
+    "recompose": "^0.26.0 || ^0.27.0"
   },
   "scripts": {
     "test": "npm run test:moment && npm run test:date-fns && npm run test:luxon",
