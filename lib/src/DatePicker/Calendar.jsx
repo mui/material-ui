@@ -62,10 +62,12 @@ export class Calendar extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      currentMonth: this.props.utils.getStartOfMonth(nextProps.date),
-    });
+  componentDidUpdate(prevProps) {
+    if (!this.props.utils.isEqual(this.props.date, prevProps.date)) {
+      this.setState({
+        currentMonth: this.props.utils.getStartOfMonth(this.props.date),
+      });
+    }
   }
 
   onDateSelect = (day) => {

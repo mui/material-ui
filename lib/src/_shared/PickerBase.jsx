@@ -2,7 +2,6 @@ import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import DomainPropTypes from '../constants/prop-types';
 
-/* eslint-disable react/sort-comp */
 /* eslint-disable react/require-default-props */
 export default class PickerBase extends PureComponent {
   static propTypes = {
@@ -15,7 +14,7 @@ export default class PickerBase extends PureComponent {
     utils: PropTypes.object.isRequired,
   }
 
-  getValidDateOrCurrent = (props = this.props) => {
+  static getValidDateOrCurrent = (props) => {
     const { utils, value } = props;
     const date = utils.date(value);
 
@@ -23,12 +22,14 @@ export default class PickerBase extends PureComponent {
   }
 
   state = {
-    date: this.getValidDateOrCurrent(),
+    date: PickerBase.getValidDateOrCurrent(this.props),
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.utils.isEqual(this.state.date, nextProps.value)) {
-      this.setState({ date: this.getValidDateOrCurrent(nextProps) });
+  componentDidUpdate(prevProps) {
+    if (!this.props.utils.isEqual(prevProps.value, this.props.value)) {
+      this.setState({
+        date: PickerBase.getValidDateOrCurrent(this.props),
+      });
     }
   }
 
@@ -53,7 +54,7 @@ export default class PickerBase extends PureComponent {
   }
 
   handleDismiss = () => {
-    this.setState({ date: this.getValidDateOrCurrent(this.props) });
+    this.setState({ date: PickerBase.getValidDateOrCurrent(this.props) });
   }
 
   handleChange = (date, isFinish = true) => {
