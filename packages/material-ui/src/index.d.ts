@@ -7,7 +7,7 @@ export { StyledComponentProps };
  * certain `classes`, on which one can also set a top-level `className` and inline
  * `style`.
  */
-export type StandardProps<C, ClassKey extends string, Removals extends Extract<keyof C, string> = never> = Omit<
+export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> = Omit<
   C,
   'classes' | Removals
 > &
@@ -39,7 +39,7 @@ export interface Color {
  *
  * @internal
  */
-export type Omit<T, K extends string> = Pick<T, Exclude<keyof T, K>>;
+export type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
 
 /**
  * `T extends ConsistentWith<T, U>` means that where `T` has overlapping properties with
@@ -54,7 +54,7 @@ export type ConsistentWith<T, U> = Pick<U, keyof T & keyof U>;
  *
  * @internal
  */
-export type Overwrite<T, U> = (U extends ConsistentWith<U, T> ? T : Omit<T, Extract<keyof U, string>>) & U;
+export type Overwrite<T, U> = (U extends ConsistentWith<U, T> ? T : Omit<T, keyof U>) & U;
 
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
