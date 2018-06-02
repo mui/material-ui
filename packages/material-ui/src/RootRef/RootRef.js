@@ -9,11 +9,22 @@ import PropTypes from 'prop-types';
  */
 class RootRef extends React.Component {
   componentDidMount() {
-    this.props.rootRef(ReactDOM.findDOMNode(this));
+    const rootRef = this.props.rootRef;
+    const node = ReactDOM.findDOMNode(this);
+    if (typeof rootRef === 'function') {
+      rootRef(node);
+    } else {
+      rootRef.current = node;
+    }
   }
 
   componentWillUnmount() {
-    this.props.rootRef(null);
+    const rootRef = this.props.rootRef;
+    if (typeof rootRef === 'function') {
+      rootRef(null);
+    } else {
+      rootRef.current = null;
+    }
   }
 
   render() {
@@ -23,7 +34,7 @@ class RootRef extends React.Component {
 
 RootRef.propTypes = {
   children: PropTypes.element.isRequired,
-  rootRef: PropTypes.func.isRequired,
+  rootRef: PropTypes.oneOfType([PropTypes.func.isRequired, PropTypes.object.isRequired]),
 };
 
 export default RootRef;
