@@ -7,7 +7,7 @@ import withUtils from '../_shared/WithUtils';
 import DomainPropTypes from '../constants/prop-types';
 import BasePicker from '../_shared/BasePicker';
 
-const TimePickerWrapper = (props) => {
+export const TimePickerWrapper = (props) => {
   const {
     value, format, autoOk, onChange, utils, ampm, fadeTimeout, forwardedRef, ...other
   } = props;

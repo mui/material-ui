@@ -5,11 +5,10 @@ import { Utils } from '../typings/utils';
 import { RenderDay } from '../DatePicker/Calendar';
 import { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import { MaterialUiPickersDate } from '../typings/date'
-import { PickerBaseProps } from '../_shared/PickerBase'
+import { BasePickerProps } from '../_shared/BasePicker'
 import { Omit } from '@material-ui/core'
 
-export interface DateTimePickerWrapperProps extends PickerBaseProps,
-  Omit<ModalWrapperProps, 'onChange'> {
+export interface DateTimePickerWrapperProps extends BasePickerProps, Omit<ModalWrapperProps, 'onChange' | 'value'> {
   minDate?: DateType;
   maxDate?: DateType;
   disablePast?: boolean;
@@ -23,7 +22,6 @@ export interface DateTimePickerWrapperProps extends PickerBaseProps,
   dateRangeIcon?: ReactNode;
   timeIcon?: ReactNode;
   renderDay?: RenderDay;
-  utils?: Utils<MaterialUiPickersDate>;
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
 }
 

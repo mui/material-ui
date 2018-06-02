@@ -11,7 +11,7 @@ const getValidDateOrCurrent = ({ utils, value }) => {
   return utils.isValid(date) && value !== null ? date : utils.date();
 };
 
-const BasePickerHoc = compose(
+export const BasePickerHoc = compose(
   setDisplayName('BasePicker'),
   withState('date', 'changeDate', getValidDateOrCurrent),
   lifecycle({
