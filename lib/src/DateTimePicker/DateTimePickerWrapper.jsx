@@ -37,11 +37,7 @@ export const DateTimePickerWrapper = (props) => {
   } = props;
 
   return (
-    <BasePicker
-      default12hFormat="MMMM Do hh:mm a"
-      default24hFormat="MMMM Do HH:mm"
-      {...props}
-    >
+    <BasePicker {...props}>
       {
         ({
           date,
@@ -51,14 +47,14 @@ export const DateTimePickerWrapper = (props) => {
           handleDismiss,
           handleSetTodayDate,
           handleTextFieldChange,
-          getDefaultAmPmFormat,
+          pick12hOr24hFormat,
         }) => (
           <ModalWrapper
             ref={forwardedRef}
             dialogContentClassName={classes.dialogContent}
             disableFuture={disableFuture}
             disablePast={disablePast}
-            format={getDefaultAmPmFormat()}
+            format={pick12hOr24hFormat('MMMM Do hh:mm a', 'MMMM Do HH:mm')}
             maxDate={maxDate}
             minDate={minDate}
             onAccept={handleAccept}

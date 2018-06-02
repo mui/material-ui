@@ -32,13 +32,7 @@ export const BasePickerHoc = compose(
         changeDate(date, () => onChange(date));
       }
     },
-    getDefaultAmPmFormat: ({
-      format,
-      labelFunc,
-      ampm,
-      default12hFormat,
-      default24hFormat,
-    }) => () => {
+    pick12hOr24hFormat: ({ format, labelFunc, ampm }) => (default12hFormat, default24hFormat) => {
       if (format || labelFunc) {
         return format;
       }

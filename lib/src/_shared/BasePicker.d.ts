@@ -19,12 +19,10 @@ export interface InnerBasePickerProps {
   handleSetTodayDate: () => void;
   handleChange: (date: MaterialUiPickersDate, isFinish?: Boolean) => void
   handleTextFieldChange: (date: MaterialUiPickersDate | null) => void;
-  getDefaultAmPmFormat: () => string;
+  pick12hOr24hFormat: (default12hFormat: string, default24hFormat: string) => string;
 }
 
 export interface OuterBasePickerProps extends BasePickerProps {
-  default12hFormat?: string;
-  default24hFormat?: string;
   children: (options: InnerBasePickerProps) => ReactNode;
 }
 
