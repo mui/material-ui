@@ -14,8 +14,8 @@ It's higly inspired by https://github.com/facebook/react/issues/11401#issuecomme
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">element |  |  |
-| <span class="prop-name required">rootRef *</span> | <span class="prop-type">func |  |  |
+| <span class="prop-name required">children *</span> | <span class="prop-type">element |   |  |
+| <span class="prop-name required">rootRef *</span> | <span class="prop-type">func |   |  |
 
 Any other properties supplied will be spread to the root element (native element).
 

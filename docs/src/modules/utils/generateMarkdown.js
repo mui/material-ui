@@ -185,7 +185,7 @@ function generateProps(reactAPI) {
       return textProps;
     }
 
-    let defaultValue = '';
+    let defaultValue = '\u00a0';
 
     if (prop.defaultValue) {
       defaultValue = `<span class="prop-default">${escapeCell(

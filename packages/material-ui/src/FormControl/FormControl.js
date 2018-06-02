@@ -41,8 +41,8 @@ export const styles = theme => ({
  *  - InputLabel
  */
 class FormControl extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.

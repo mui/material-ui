@@ -176,8 +176,8 @@ const styles = theme => ({
 });
 
 class EnhancedTable extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       order: 'asc',

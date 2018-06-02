@@ -49,8 +49,6 @@ marked.setOptions({
   sanitize: false,
   smartLists: true,
   smartypants: false,
-  // prism uses the following class prefix.
-  langPrefix: 'language-',
   highlight(code, lang) {
     let language;
     switch (lang) {

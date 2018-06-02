@@ -57,8 +57,8 @@ class Modal extends React.Component {
     return null;
   }
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       exited: !this.props.open,
