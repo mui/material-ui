@@ -22,15 +22,9 @@ const BasePickerHoc = compose(
     },
   }),
   withHandlers({
-    getFormat: ({ format, labelFunc, ampm }) => () => {
-      if (format || labelFunc) {
-        return format;
-      }
-
-      return ampm
-        ? this.default12hFormat
-        : this.default24hFormat;
-    },
+    handleClear: ({ onChange }) => () => onChange(null),
+    handleAccept: ({ onChange, date }) => () => onChange(date),
+    handleSetTodayDate: ({ changeDate, utils }) => () => changeDate(utils.date()),
     handleTextFieldChange: ({ changeDate, onChange }) => (date) => {
       if (date === null) {
         this.handleClear();
@@ -38,8 +32,24 @@ const BasePickerHoc = compose(
         changeDate(date, () => onChange(date));
       }
     },
+    getDefaultAmPmFormat: ({
+      format,
+      labelFunc,
+      ampm,
+      default12hFormat,
+      default24hFormat,
+    }) => () => {
+      if (format || labelFunc) {
+        return format;
+      }
+
+      return ampm ? default12hFormat : default24hFormat;
+    },
     handleChange: ({
-      changeDate, onChange, autoOk, date,
+      autoOk,
+      changeDate,
+      date,
+      onChange,
     }) => (newDate, isFinish = true) => {
       changeDate(newDate, () => {
         if (isFinish && autoOk) {
@@ -47,9 +57,6 @@ const BasePickerHoc = compose(
         }
       });
     },
-    handleClear: ({ onChange }) => () => onChange(null),
-    handleAccept: ({ onChange, date }) => () => onChange(date),
-    handleSetTodayDate: ({ changeDate, utils }) => () => changeDate(utils.date()),
   }),
 );
 
