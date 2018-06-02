@@ -91,7 +91,7 @@ describe('<Tab />', () => {
         true,
         'should have labelWrapped class',
       );
-      assert.strictEqual(wrapper.state().wrappedText, true, 'wrappedText state should be true');
+      assert.strictEqual(wrapper.state().labelWrapped, true, 'labelWrapped state should be true');
     });
   });
 

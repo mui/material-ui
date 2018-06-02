@@ -20,7 +20,8 @@ function create(initialState) {
   if (
     process.env.NODE_ENV !== 'production' &&
     process.browser &&
-    !window.__REDUX_DEVTOOLS_EXTENSION__
+    !window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    Object.assign // redux-logger needs this feature
   ) {
     // eslint-disable-next-line global-require
     const createLogger = require('redux-logger').createLogger;
