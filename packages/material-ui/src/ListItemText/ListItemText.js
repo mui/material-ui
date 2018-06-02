@@ -47,8 +47,8 @@ function ListItemText(props, context) {
   } = props;
   const { dense } = context;
 
-  let primary = primaryProp || children;
-  if (primary && !disableTypography) {
+  let primary = primaryProp != null ? primaryProp : children;
+  if (primary != null && !disableTypography) {
     primary = (
       <Typography
         variant="subheading"
@@ -61,7 +61,7 @@ function ListItemText(props, context) {
   }
 
   let secondary = secondaryProp;
-  if (secondary && !disableTypography) {
+  if (secondary != null && !disableTypography) {
     secondary = (
       <Typography
         variant="body1"
