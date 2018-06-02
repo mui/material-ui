@@ -30,6 +30,14 @@ const styles = theme => ({
 
 const appList = [
   {
+    title: 'NOINCOMEDEV',
+    description:
+      'Personal blogging platform on top of Meteor, Apollo and React+MUI. I write about ' +
+      'software, startups, and more. Wannabe #solopreneur',
+    image: '/static/images/showcase/noincomedev.jpg',
+    link: 'https://www.noincomedev.me',
+  },
+  {
     title: 'Venumob',
     description:
       'A platform for individuals and businesses to find and book the perfect venue for any event.',
