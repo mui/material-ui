@@ -1,6 +1,10 @@
+/* eslint-disable no-underscore-dangle */
+
 import warning from 'warning';
 
-let generatorCounter = 0;
+// People might bundle this classname generator twice.
+// We need to use a global.
+global.__MUI_GENERATOR_COUNTER__ = 0;
 
 // Returns a function which generates unique class names based on counters.
 // When new generator function is created, rule counter is reset.
@@ -24,9 +28,9 @@ export default function createGenerateClassName(options = {}) {
     typeof window !== 'undefined' &&
     productionPrefix === 'jss'
   ) {
-    generatorCounter += 1;
+    global.__MUI_GENERATOR_COUNTER__ += 1;
 
-    if (generatorCounter > 2) {
+    if (global.__MUI_GENERATOR_COUNTER__ > 2) {
       // eslint-disable-next-line no-console
       console.error(
         [

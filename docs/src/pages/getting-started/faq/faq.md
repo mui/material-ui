@@ -5,6 +5,12 @@ Stuck on a particular problem? Check some of these common gotchas first.
 If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/mui-org/material-ui).
 For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
 
+## How to fix a class names production build conflict?
+
+This is probably the n°1 issue people are facing starting with Material-UI.
+The class names value relies on the concept of [class name generator](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
+The whole page needs to be rendered with **one generator**.
+
 ## Why do the fixed positioned elements move when a modal is opened?
 
 We block the scroll as soon as a modal is opened.

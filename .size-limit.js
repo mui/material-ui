@@ -21,7 +21,7 @@ module.exports = [
     name: 'The initial cost people pay for using one component',
     webpack: true,
     path: 'packages/material-ui/build/Paper/index.js',
-    limit: '17.7 KB',
+    limit: '17.8 KB',
   },
   {
     name: 'The size of all the modules of material-ui.',
