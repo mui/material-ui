@@ -15,7 +15,7 @@ describe('<Grid />', () => {
         .find('Grid')
         .shallow({ context: shallowInner.context });
     };
-    classes = getClasses(<Grid />);
+    classes = getClasses(<Grid.Naked />);
   });
 
   it('should render', () => {

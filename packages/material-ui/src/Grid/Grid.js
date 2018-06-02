@@ -331,10 +331,11 @@ Grid.defaultProps = {
 // environment.
 /* eslint-disable react/no-multi-comp */
 // eslint-disable-next-line import/no-mutable-exports
-let GridWrapper = Grid;
+let GridWrapper = withStyles(styles, { name: 'MuiGrid' })(Grid);
 
 if (process.env.NODE_ENV !== 'production') {
-  GridWrapper = props => <Grid {...props} />;
+  const GridStyled = GridWrapper;
+  GridWrapper = props => <GridStyled {...props} />;
 
   const requireProp = requirePropFactory('Grid');
   GridWrapper.propTypes = {
@@ -350,6 +351,8 @@ if (process.env.NODE_ENV !== 'production') {
     xs: requireProp('item'),
     zeroMinWidth: requireProp('zeroMinWidth'),
   };
+  GridWrapper.Naked = GridStyled;
+  GridWrapper.options = GridStyled.options;
 }
 
-export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);
+export default GridWrapper;
