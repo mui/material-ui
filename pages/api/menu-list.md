@@ -12,7 +12,7 @@ filename: /packages/material-ui/src/MenuList/MenuList.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node |  | MenuList contents, normally `MenuItem`s. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |   | MenuList contents, normally `MenuItem`s. |
 
 Any other properties supplied will be spread to the root element ([List](/api/list)).
 

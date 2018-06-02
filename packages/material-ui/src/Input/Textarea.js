@@ -42,8 +42,8 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     // <Input> expects the components it renders to respond to 'value'
     // so that it can check whether they are filled.

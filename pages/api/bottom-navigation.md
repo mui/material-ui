@@ -12,11 +12,11 @@ filename: /packages/material-ui/src/BottomNavigation/BottomNavigation.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children *</span> | <span class="prop-type">node |  | The content of the component. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* We default to the index of the child |
+| <span class="prop-name required">children *</span> | <span class="prop-type">node |   | The content of the component. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* We default to the index of the child |
 | <span class="prop-name">showLabels</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, all `BottomNavigationAction`s will show their labels. By default, only the selected `BottomNavigationAction` will show its label. |
-| <span class="prop-name">value</span> | <span class="prop-type">any |  | The value of the currently selected `BottomNavigationAction`. |
+| <span class="prop-name">value</span> | <span class="prop-type">any |   | The value of the currently selected `BottomNavigationAction`. |
 
 Any other properties supplied will be spread to the root element (native element).
 

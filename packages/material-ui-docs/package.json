@@ -36,7 +36,7 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "marked": "^0.3.12",
+    "marked": "^0.4.0",
     "nprogress": "^0.2.0",
     "prismjs": "^1.8.4"
   },

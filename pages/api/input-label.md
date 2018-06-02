@@ -12,16 +12,16 @@ filename: /packages/material-ui/src/InputLabel/InputLabel.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node |  | The contents of the `InputLabel`. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |   | The contents of the `InputLabel`. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">disableAnimation</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the transition animation is disabled. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool |  | If `true`, apply disabled class. |
-| <span class="prop-name">error</span> | <span class="prop-type">bool |  | If `true`, the label will be displayed in an error state. |
-| <span class="prop-name">focused</span> | <span class="prop-type">bool |  | If `true`, the input of this label is focused. |
-| <span class="prop-name">FormLabelClasses</span> | <span class="prop-type">object |  | `classes` property applied to the `FormLabel` element. |
-| <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'dense'<br> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
-| <span class="prop-name">required</span> | <span class="prop-type">bool |  | if `true`, the label will indicate that the input is required. |
-| <span class="prop-name">shrink</span> | <span class="prop-type">bool |  | If `true`, the label is shrunk. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool |   | If `true`, apply disabled class. |
+| <span class="prop-name">error</span> | <span class="prop-type">bool |   | If `true`, the label will be displayed in an error state. |
+| <span class="prop-name">focused</span> | <span class="prop-type">bool |   | If `true`, the input of this label is focused. |
+| <span class="prop-name">FormLabelClasses</span> | <span class="prop-type">object |   | `classes` property applied to the `FormLabel` element. |
+| <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'dense'<br> |   | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
+| <span class="prop-name">required</span> | <span class="prop-type">bool |   | if `true`, the label will indicate that the input is required. |
+| <span class="prop-name">shrink</span> | <span class="prop-type">bool |   | If `true`, the label is shrunk. |
 
 Any other properties supplied will be spread to the root element ([FormLabel](/api/form-label)).
 

@@ -12,10 +12,10 @@ filename: /packages/material-ui/src/StepButton/StepButton.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node |  | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object |  | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">icon</span> | <span class="prop-type">node |  | The icon displayed by the step label. |
-| <span class="prop-name">optional</span> | <span class="prop-type">node |  | The optional node to display. |
+| <span class="prop-name">children</span> | <span class="prop-type">node |   | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">icon</span> | <span class="prop-type">node |   | The icon displayed by the step label. |
+| <span class="prop-name">optional</span> | <span class="prop-type">node |   | The optional node to display. |
 
 Any other properties supplied will be spread to the root element ([ButtonBase](/api/button-base)).
 
