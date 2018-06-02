@@ -66,7 +66,6 @@ describe('<ListItemText />', () => {
 
     it('should read 0 as primary', () => {
       const wrapper = shallow(<ListItemText primary={0} />);
-
       assert.strictEqual(wrapper.childAt(0).type(), Typography);
     });
   });
@@ -100,7 +99,6 @@ describe('<ListItemText />', () => {
 
     it('should read 0 as secondary', () => {
       const wrapper = shallow(<ListItemText secondary={0} />);
-
       assert.strictEqual(wrapper.childAt(0).type(), Typography);
     });
   });
