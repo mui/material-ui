@@ -7,7 +7,7 @@ filename: /packages/material-ui/src/FormControl/FormControl.js
 # FormControl
 
 Provides context such as filled/focused/error/required for form inputs.
-Relying on the context provides high flexibilty and ensures that the state always stay
+Relying on the context provides high flexibilty and ensures that the state always stays
 consitent across the children of the `FormControl`.
 This context is used by the following components:
  - FormLabel
