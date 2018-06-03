@@ -25,7 +25,14 @@ const inputProps = {
   step: 300,
 };
 
-return <TextField id="time" type="time" inputProps={inputProps} />;
+return (
+  <TextField 
+    id="time" 
+    type="time" 
+    inputProps={inputProps} 
+    inputRef={(elem) => { elem.myData = { foo: 'bar' }; }} 
+  />
+);
 ```
 
 For advanced cases, please look at the source of TextField by clicking on the
