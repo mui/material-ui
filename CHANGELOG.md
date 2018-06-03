@@ -5,6 +5,68 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.2.0
+###### *Jun 3, 2018*
+
+Big thanks to the 23 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Start upgrading the button component to match the new Material specification (#11497) @mbrookes.
+- Fix some regressions (#11614, #11689).
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Snackbar] Add customization example (#11597) @mbrn
+- [Menu] Fix a regression on Edge (#11614) @oliviertassinari
+- [TextField] Replace underline content text with nbsp (#11617) @Jdubedition
+- [TextField] Fix grammar for docs (#11633) @RobBednark
+- [ListItem] Fix typings for ListItem (#11645) @franklixuefei
+- [Button] Add text and contained variants (#11497) @mbrookes
+- [Chip] Add `clickable` property (#11613) @vilvaathibanpb
+- [Popover] Add timeout prop to TransitionComponent (#11657) @C-Rodg
+- [styles] Better class name conflict warning (#11685) @oliviertassinari
+- [Grid] Better support for theme.props (#11688) @oliviertassinari
+- [ListItemText] Fix primary={0} display (#11686) @helfi92
+- [SwipeableDrawer] Fix a regression introduced in React 16.4.0 (#11689) @oliviertassinari
+- [RootRef] Allow using React.createRef api with RootRef component (#11681) @TrySound
+
+#### Docs
+
+- [docs] Better API spread section (#11598) @oliviertassinari
+- [docs] Update Wertarbyte components link (#11603) @leMaik
+- [docs] Add a changelog page (#11604) @oliviertassinari
+- [docs] Keep the current version into account (#11595) @oliviertassinari
+- [ROADMAP] Update the roadmap (#11606) @oliviertassinari
+- [example] Fix missing brackets typescript (#11623) @Ilaiwi
+- [docs] Update overrides.md (#11630) @risafletcher
+- [docs] Styled API Example (5 lines) (#11620) @mssngr
+- [docs] Mention view port size in SVGIcon documentation (#11639) @JesusCrow
+- [docs] Update README for codemod (#11647) @sacdallago
+- [docs] Update link to flow-typed definitions (#11674) @jessrosenfield
+- [docs] Minor grammitcal error (#11691) @NeuTrix
+
+#### Core
+
+- [typescript] Depend directly on CSSType (#11608) @pelotom
+- [core] Upgrade dependencies (#11616) @oliviertassinari
+- [typescript] createStyles and improved WithStyles helpers (#11609) @pelotom
+- [core] Add cross-env back (#11638) @lookfirst
+- [typescript] Fix keyof for typescript@2.9 (#11669) @mctep
+- [core] Some fixes looking into issues (#11676) @oliviertassinari
+- [core] Upgrade dependencies (#11684) @oliviertassinari
+
+#### Labs
+
+- [SpeedDial] Fix classes prop description (#11599) @mbrookes
+- [Slider] Misc fixes towards standard MUI patterns (#11605) @mbrookes
+- [Slider] Fire the right event on mouseDown (#11642) @acroyear
+- [SpeedDial] Add type definitions to lab, so SpeedDial can be use with TypeScript project (#11542) @TR3MIC
+
 ## 1.1.0
 ###### *May 26, 2018*
 
