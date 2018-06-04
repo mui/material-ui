@@ -139,11 +139,11 @@ class SimpleSelect extends React.Component {
           <FormHelperText>Read only</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-simple">Age</InputLabel>
+          <InputLabel htmlFor="age-auto-width">Age</InputLabel>
           <Select
             value={this.state.age}
             onChange={this.handleChange}
-            input={<Input name="age" id="age-simple" />}
+            input={<Input name="age" id="age-auto-width" />}
             autoWidth
           >
             <MenuItem value="">
@@ -154,6 +154,23 @@ class SimpleSelect extends React.Component {
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>
           <FormHelperText>Auto width</FormHelperText>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <Select
+            value={this.state.age}
+            onChange={this.handleChange}
+            name="age"
+            displayEmpty
+            className={classes.selectEmpty}
+          >
+            <MenuItem value="" disabled>
+              Placeholder
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+          <FormHelperText>Placeholder</FormHelperText>
         </FormControl>
       </form>
     );

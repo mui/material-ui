@@ -42,6 +42,14 @@ export const styles = theme => ({
 });
 
 class Modal extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      exited: !this.props.open,
+    };
+  }
+
   static getDerivedStateFromProps(nextProps) {
     if (nextProps.open) {
       return {
@@ -55,14 +63,6 @@ class Modal extends React.Component {
     }
 
     return null;
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      exited: !this.props.open,
-    };
   }
 
   componentDidMount() {

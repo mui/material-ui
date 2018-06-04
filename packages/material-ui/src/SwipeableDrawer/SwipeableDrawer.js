@@ -25,6 +25,8 @@ export function reset() {
 }
 
 class SwipeableDrawer extends React.Component {
+  state = {};
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (typeof prevState.maybeSwiping === 'undefined') {
       return {
@@ -44,8 +46,6 @@ class SwipeableDrawer extends React.Component {
       open: nextProps.open,
     };
   }
-
-  state = {};
 
   componentDidMount() {
     if (this.props.variant === 'temporary') {
