@@ -87,6 +87,8 @@ export const styles = theme => {
 };
 
 class Snackbar extends React.Component {
+  state = {};
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (typeof prevState.exited === 'undefined') {
       return {
@@ -102,8 +104,6 @@ class Snackbar extends React.Component {
 
     return null;
   }
-
-  state = {};
 
   componentDidMount() {
     if (this.props.open) {

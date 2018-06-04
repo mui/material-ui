@@ -50,6 +50,8 @@ export const styles = {
  * It contains a load of style reset and some focus/ripple logic.
  */
 class ButtonBase extends React.Component {
+  state = {};
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (typeof prevState.focusVisible === 'undefined') {
       return {
@@ -71,8 +73,6 @@ class ButtonBase extends React.Component {
       lastDisabled: nextProps.disabled,
     };
   }
-
-  state = {};
 
   componentDidMount() {
     this.button = ReactDOM.findDOMNode(this);
