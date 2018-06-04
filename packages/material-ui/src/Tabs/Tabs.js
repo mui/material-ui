@@ -131,6 +131,8 @@ class Tabs extends React.Component {
     return { tabMeta, tabsMeta };
   };
 
+  getTabMeta = () => {};
+
   getTabsMeta = refreshTabMeta => {
     const { props, state, tabs } = this;
     const { theme, value } = props;
