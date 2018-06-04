@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface RootRefProps {
-  rootRef?: () => React.HTMLAttributes<any>;
+  rootRef?: React.RefObject<{}>;
 }
 
 declare const RootRef: React.ComponentType<RootRefProps>;
