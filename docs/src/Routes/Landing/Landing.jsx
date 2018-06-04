@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Toolbar, Typography, withStyles, Button } from 'material-ui';
+import { Toolbar, Typography, withStyles, Button } from '@material-ui/core';
 import PatreonSponsors from './components/PatreonSponsors';
+import MuiLogo from '../../assets/mui-logo.svg';
 
 class Demo extends Component {
   static propTypes = {
@@ -26,7 +27,7 @@ class Demo extends Component {
           <img
             alt="Material-UI logo"
             className={classes.materialUILogo}
-            src="https://material-ui-1dab0.firebaseapp.com/static/images/material-ui-logo.svg"
+            src={MuiLogo}
           />
 
           <Typography variant="display1" color="inherit" className="title text-light" gutterBottom>
