@@ -535,7 +535,7 @@ Input.propTypes = {
    */
   inputComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
-   * Properties applied to the `input` element.
+   * Attributes applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**

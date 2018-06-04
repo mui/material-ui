@@ -175,7 +175,7 @@ SwitchBase.propTypes = {
    */
   indeterminateIcon: PropTypes.node,
   /**
-   * Properties applied to the `input` element.
+   * Attributes applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
