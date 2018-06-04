@@ -150,7 +150,7 @@ Switch.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the `input` element.
+   * Attributes applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**

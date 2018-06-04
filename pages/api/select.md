@@ -18,7 +18,7 @@ filename: /packages/material-ui/src/Select/Select.js
 | <span class="prop-name">displayEmpty</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the selected item is displayed even if its value is empty. You can only use it when the `native` property is `false` (default). |
 | <span class="prop-name">IconComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">ArrowDropDownIcon</span> | The icon that displays the arrow. |
 | <span class="prop-name">input</span> | <span class="prop-type">element | <span class="prop-default">&lt;Input /></span> | An `Input` element; does not have to be a material-ui specific `Input`. |
-| <span class="prop-name">inputProps</span> | <span class="prop-type">object |   | Properties applied to the `input` element. When `native` is `true`, the properties are applied on the `select` element. |
+| <span class="prop-name">inputProps</span> | <span class="prop-type">object |   | Attributes applied to the `input` element. When `native` is `true`, the attributes are applied on the `select` element. |
 | <span class="prop-name">MenuProps</span> | <span class="prop-type">object |   | Properties applied to the `Menu` element. |
 | <span class="prop-name">multiple</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If true, `value` must be an array and the menu will support multiple selections. You can only use it when the `native` property is `false` (default). |
 | <span class="prop-name">native</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the component will be using a native `select` element. |
