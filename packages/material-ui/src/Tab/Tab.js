@@ -98,6 +98,7 @@ class Tab extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (this.props.staticLabel) return;
     if (this.state.labelWrapped === prevState.labelWrapped) {
       /**
        * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
@@ -245,6 +246,10 @@ Tab.propTypes = {
   /**
    * @ignore
    */
+  staticLabel: PropTypes.bool,
+  /**
+   * @ignore
+   */
   textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
@@ -254,6 +259,7 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
   disabled: false,
+  staticLabel: false,
   textColor: 'inherit',
 };
 

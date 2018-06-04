@@ -54,6 +54,8 @@ class Tabs extends React.Component {
     showLeftScroll: false,
     showRightScroll: false,
     mounted: false,
+    tabsMeta: null,
+    tabMeta: null,
   };
 
   componentDidMount() {
@@ -123,32 +125,40 @@ class Tabs extends React.Component {
     return conditionalElements;
   };
 
-  getTabsMeta = (value, direction) => {
-    let tabsMeta;
-    if (this.tabs) {
-      const rect = this.tabs.getBoundingClientRect();
-      // create a new object with ClientRect class props + scrollLeft
-      tabsMeta = {
-        clientWidth: this.tabs ? this.tabs.clientWidth : 0,
-        scrollLeft: this.tabs ? this.tabs.scrollLeft : 0,
-        scrollLeftNormalized: this.tabs ? getNormalizedScrollLeft(this.tabs, direction) : 0,
-        scrollWidth: this.tabs ? this.tabs.scrollWidth : 0,
-        left: rect.left,
-        right: rect.right,
-      };
-    }
+  getTabsMetaStaticLabel = refreshTabMeta => {
+    const { tabMeta, tabsMeta } = this.state;
+    if (refreshTabMeta) return this.getTabsMeta();
+    return { tabMeta, tabsMeta };
+  };
 
-    let tabMeta;
-    if (this.tabs && value !== false) {
-      const children = this.tabs.children[0].children;
-
-      if (children.length > 0) {
-        const tab = children[this.valueToIndex[value]];
-        warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
-        tabMeta = tab ? tab.getBoundingClientRect() : null;
+  getTabsMeta = refreshTabMeta => {
+    const { props, state, tabs } = this;
+    const { theme, value } = props;
+    const { tabMeta, tabsMeta } = state;
+    const returnValue = { tabMeta, tabsMeta };
+    if (tabs) {
+      if (!tabsMeta) {
+        const tabsRect = this.tabs.getBoundingClientRect();
+        // create a new object with ClientRect class props + scrollLeft
+        returnValue.tabsMeta = {
+          clientWidth: tabs.clientWidth,
+          scrollLeft: tabs.scrollLeft,
+          scrollLeftNormalized: getNormalizedScrollLeft(tabs, theme.direction),
+          scrollWidth: tabs.scrollWidth,
+          left: tabsRect.left,
+          right: tabsRect.right,
+        };
+      }
+      if (value !== false && (!tabMeta || refreshTabMeta)) {
+        const children = tabs.children[0].children;
+        if (children.length > 0) {
+          const tab = children[this.valueToIndex[value]];
+          warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
+          returnValue.tabMeta = tab.getBoundingClientRect();
+        }
       }
     }
-    return { tabsMeta, tabMeta };
+    return returnValue;
   };
 
   tabs = undefined;
@@ -196,9 +206,8 @@ class Tabs extends React.Component {
   };
 
   updateIndicatorState(props) {
-    const { theme, value } = props;
-
-    const { tabsMeta, tabMeta } = this.getTabsMeta(value, theme.direction);
+    const { theme } = props;
+    const { tabsMeta, tabMeta } = this.getTabsMeta(false);
     let left = 0;
 
     if (tabMeta && tabsMeta) {
@@ -226,8 +235,7 @@ class Tabs extends React.Component {
   }
 
   scrollSelectedIntoView = () => {
-    const { theme, value } = this.props;
-    const { tabsMeta, tabMeta } = this.getTabsMeta(value, theme.direction);
+    const { tabsMeta, tabMeta } = this.getTabsMeta(true);
 
     if (!tabMeta || !tabsMeta) {
       return;
@@ -279,6 +287,7 @@ class Tabs extends React.Component {
       scrollable,
       ScrollButtonComponent,
       scrollButtons,
+      staticLabel,
       TabIndicatorProps = {},
       textColor,
       theme,
@@ -330,6 +339,7 @@ class Tabs extends React.Component {
         indicator: selected && !this.state.mounted && indicator,
         selected,
         onChange,
+        staticLabel,
         textColor,
         value: childValue,
       });
@@ -422,6 +432,12 @@ Tabs.propTypes = {
    * `off` will never present them
    */
   scrollButtons: PropTypes.oneOf(['auto', 'on', 'off']),
+  /**
+   * Prevents resizing on the labels after the first query.
+   * This improves performance, but leads to broken UX on resize or label change.
+   * As a result, it works best with mobile devices, where widths are fixed.
+   */
+  staticLabel: PropTypes.bool,
   /**
    * Properties applied to the `TabIndicator` element.
    */
