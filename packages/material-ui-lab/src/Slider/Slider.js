@@ -161,12 +161,12 @@ function roundToStep(number, step) {
 }
 
 function getOffset(node) {
-  const { scrollY, scrollX } = global;
+  const { pageYOffset, pageXOffset } = global;
   const { left, top } = node.getBoundingClientRect();
 
   return {
-    top: top + scrollY,
-    left: left + scrollX,
+    top: top + pageYOffset,
+    left: left + pageXOffset,
   };
 }
 
