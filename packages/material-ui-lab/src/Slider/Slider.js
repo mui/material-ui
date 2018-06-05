@@ -153,7 +153,7 @@ function addEventListener(node, event, handler, capture) {
 }
 
 function percentToValue(percent, min, max) {
-  return ((max - min) * percent) / 100 + min;
+  return (max - min) * percent / 100 + min;
 }
 
 function roundToStep(number, step) {
@@ -161,12 +161,12 @@ function roundToStep(number, step) {
 }
 
 function getOffset(node) {
-  const { scrollY, scrollX } = global;
+  const { pageYOffset, pageXOffset } = global;
   const { left, top } = node.getBoundingClientRect();
 
   return {
-    top: top + scrollY,
-    left: left + scrollX,
+    top: top + pageYOffset,
+    left: left + pageXOffset,
   };
 }
 
@@ -392,7 +392,7 @@ class Slider extends React.Component {
       ...other
     } = this.props;
 
-    const percent = clamp(((value - min) * 100) / (max - min));
+    const percent = clamp((value - min) * 100 / (max - min));
 
     const commonClasses = {
       [classes.disabled]: disabled,
