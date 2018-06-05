@@ -7,7 +7,7 @@ import Collapse from '../Collapse';
 describe('<StepContent />', () => {
   let shallow;
   let mount;
-  const props = {
+  const defaultProps = {
     orientation: 'vertical',
   };
 
@@ -21,7 +21,7 @@ describe('<StepContent />', () => {
   });
 
   it('renders a div', () => {
-    const wrapper = shallow(<StepContent {...props}>Here is the content</StepContent>);
+    const wrapper = shallow(<StepContent {...defaultProps}>Here is the content</StepContent>);
     assert.strictEqual(wrapper.type(), 'div');
   });
 
@@ -30,7 +30,7 @@ describe('<StepContent />', () => {
       <StepContent
         style={{ paddingRight: 200, color: 'purple', border: '1px solid tomato' }}
         role="Tabpanel"
-        {...props}
+        {...defaultProps}
       >
         Lorem ipsum
       </StepContent>,
@@ -44,7 +44,7 @@ describe('<StepContent />', () => {
 
   it('renders children inside an Collapse component', () => {
     const wrapper = shallow(
-      <StepContent {...props}>
+      <StepContent {...defaultProps}>
         <div className="test-content">This is my content!</div>
       </StepContent>,
     );
@@ -53,5 +53,26 @@ describe('<StepContent />', () => {
     const content = collapse.find('.test-content');
     assert.strictEqual(content.length, 1);
     assert.strictEqual(content.props().children, 'This is my content!');
+  });
+
+  describe('prop: transitionDuration', () => {
+    it('should apply the auto property if supported', () => {
+      const wrapper = shallow(
+        <StepContent {...defaultProps}>
+          <div />
+        </StepContent>,
+      );
+      assert.strictEqual(wrapper.find(Collapse).props().timeout, 'auto');
+    });
+
+    it('should not apply the auto property if not supported', () => {
+      const TransitionComponent = props => <div {...props} />;
+      const wrapper = shallow(
+        <StepContent {...defaultProps} TransitionComponent={TransitionComponent}>
+          <div />
+        </StepContent>,
+      );
+      assert.strictEqual(wrapper.find(TransitionComponent).props().timeout, undefined);
+    });
   });
 });

@@ -254,6 +254,8 @@ Collapse.defaultProps = {
   timeout: duration.standard,
 };
 
+Collapse.muiSupportAuto = true;
+
 export default withStyles(styles, {
   withTheme: true,
   name: 'MuiCollapse',
