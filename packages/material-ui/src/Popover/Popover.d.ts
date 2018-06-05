@@ -16,7 +16,7 @@ export interface PopoverPosition {
 
 export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 
-export interface PopoverProps
+export interface PopoverProps<C>
   extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, PopoverClassKey, 'children'> {
   action?: (actions: PopoverActions) => void;
   anchorEl?: HTMLElement | ((element: HTMLElement) => HTMLElement);
@@ -28,7 +28,7 @@ export interface PopoverProps
   getContentAnchorEl?: (element: HTMLElement) => HTMLElement;
   marginThreshold?: number;
   modal?: boolean;
-  PaperProps?: Partial<PaperProps>;
+  PaperProps?: Partial<C & PaperProps<C>>;
   role?: string;
   transformOrigin?: PopoverOrigin;
   TransitionComponent?: React.ReactType;
@@ -42,6 +42,6 @@ export interface PopoverActions {
   updatePosition(): void;
 }
 
-declare const Popover: React.ComponentType<PopoverProps>;
+declare class Popover<C> extends React.Component<PopoverProps<C>> {}
 
 export default Popover;

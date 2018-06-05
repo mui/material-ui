@@ -27,7 +27,7 @@ export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 export type GridSize = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-export interface GridProps
+export interface GridProps<C>
   extends StandardProps<
       React.HTMLAttributes<HTMLElement> & Partial<Record<Breakpoint, boolean | GridSize>>,
       GridClassKey,
@@ -35,7 +35,7 @@ export interface GridProps
     > {
   alignContent?: GridContentAlignment;
   alignItems?: GridItemsAlignment;
-  component?: string | React.ComponentType<Omit<GridProps, StrippedProps>>;
+  component?: string | React.ComponentType<Omit<GridProps<C>, StrippedProps>>;
   container?: boolean;
   direction?: GridDirection;
   item?: boolean;
@@ -84,7 +84,7 @@ export type GridClassKey =
   | 'grid-xs-11'
   | 'grid-xs-12';
 
-declare const Grid: React.ComponentType<GridProps>;
+declare class Grid<C> extends React.Component<C & GridProps<C>> {}
 
 export default Grid;
 

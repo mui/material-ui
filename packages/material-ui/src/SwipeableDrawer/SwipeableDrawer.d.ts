@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Omit } from '..';
 import { DrawerProps } from '../Drawer';
 
-export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'open'> {
+export interface SwipeableDrawerProps<C> extends Omit<DrawerProps<C>, 'onClose' | 'open'> {
   disableBackdropTransition?: boolean;
   disableDiscovery?: boolean;
   disableSwipeToOpen?: boolean;
@@ -12,6 +12,6 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
   swipeAreaWidth?: number;
 }
 
-declare const SwipeableDrawer: React.ComponentType<SwipeableDrawerProps>;
+declare class SwipeableDrawer<C> extends React.Component<C & SwipeableDrawerProps<C>> {}
 
 export default SwipeableDrawer;

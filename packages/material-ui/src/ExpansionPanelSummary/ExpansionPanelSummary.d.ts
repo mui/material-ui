@@ -2,8 +2,8 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface ExpansionPanelSummaryProps
-  extends StandardProps<ButtonBaseProps, ExpansionPanelSummaryClassKey> {
+export interface ExpansionPanelSummaryProps<C>
+  extends StandardProps<ButtonBaseProps<C>, ExpansionPanelSummaryClassKey> {
   disabled?: boolean;
   expanded?: boolean;
   expandIcon?: React.ReactNode;
@@ -18,6 +18,6 @@ export type ExpansionPanelSummaryClassKey =
   | 'content'
   | 'expandIcon';
 
-declare const ExpansionPanelSummary: React.ComponentType<ExpansionPanelSummaryProps>;
+declare class ExpansionPanelSummary<C> extends React.Component<C & ExpansionPanelSummaryProps<C>> {}
 
 export default ExpansionPanelSummary;

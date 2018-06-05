@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { MenuProps } from '../Menu';
 
-export interface SelectInputProps {
+export interface SelectInputProps<C> {
   autoFocus?: boolean;
   autoWidth: boolean;
   disabled?: boolean;
   IconComponent?: React.ReactType;
   inputRef?: (
-    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps['value'] },
+    ref: HTMLSelectElement | { node: HTMLInputElement; value: C & SelectInputProps<C>['value'] },
   ) => void;
-  MenuProps?: Partial<MenuProps>;
+  MenuProps?: Partial<C & MenuProps<C>>;
   multiple: boolean;
   name?: string;
   native: boolean;
@@ -20,12 +20,12 @@ export interface SelectInputProps {
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
   readOnly?: boolean;
-  renderValue?: (value: SelectInputProps['value']) => React.ReactNode;
+  renderValue?: (value: C & SelectInputProps<C>['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
   tabIndex?: number;
   value?: string | number | Array<string | number>;
 }
 
-declare const SelectInput: React.ComponentType<SelectInputProps>;
+declare class SelectInput<C> extends React.Component<SelectInputProps<C>> {}
 
 export default SelectInput;

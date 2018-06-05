@@ -11,24 +11,24 @@ export interface LabelDisplayedRowsArgs {
   page: number;
 }
 
-export interface TablePaginationProps
-  extends StandardProps<TablePaginationBaseProps, TablePaginationClassKey> {
-  ActionsComponent?: React.ReactType<TablePaginationBaseProps>;
-  backIconButtonProps?: Partial<IconButtonProps>;
-  component?: React.ReactType<TablePaginationBaseProps>;
+export interface TablePaginationProps<C>
+  extends StandardProps<TablePaginationBaseProps<C>, TablePaginationClassKey> {
+  ActionsComponent?: React.ReactType<C & TablePaginationBaseProps<C>>;
+  backIconButtonProps?: Partial<C & IconButtonProps<C>>;
+  component?: React.ReactType<C & TablePaginationBaseProps<C>>;
   count: number;
   labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
   labelRowsPerPage?: React.ReactNode;
-  nextIconButtonProps?: Partial<IconButtonProps>;
+  nextIconButtonProps?: Partial<C & IconButtonProps<C>>;
   onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   page: number;
   rowsPerPage: number;
   rowsPerPageOptions?: number[];
-  SelectProps?: Partial<SelectProps>;
+  SelectProps?: Partial<C & SelectProps<C>>;
 }
 
-export type TablePaginationBaseProps = TableCellProps;
+export type TablePaginationBaseProps<C> = TableCellProps<C>;
 
 export type TablePaginationClassKey =
   | 'root'
@@ -41,6 +41,6 @@ export type TablePaginationClassKey =
   | 'select'
   | 'actions';
 
-declare const TablePagination: React.ComponentType<TablePaginationProps>;
+declare class TablePagination<C> extends React.Component<C & TablePaginationProps<C>> {}
 
 export default TablePagination;

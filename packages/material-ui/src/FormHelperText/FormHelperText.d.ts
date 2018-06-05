@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface FormHelperTextProps
+export interface FormHelperTextProps<C>
   extends StandardProps<React.HTMLAttributes<HTMLParagraphElement>, FormHelperTextClassKey> {
   disabled?: boolean;
   error?: boolean;
-  component?: React.ReactType<FormHelperTextProps>;
+  component?: React.ReactType<C>;
   margin?: 'dense';
 }
 
 export type FormHelperTextClassKey = 'root' | 'error' | 'disabled' | 'marginDense';
 
-declare const FormHelperText: React.ComponentType<FormHelperTextProps>;
+declare class FormHelperText<C> extends React.Component<C & FormHelperTextProps<C>> {}
 
 export default FormHelperText;

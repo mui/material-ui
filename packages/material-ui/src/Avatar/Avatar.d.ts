@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface AvatarProps
+export interface AvatarProps<C>
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, AvatarClassKey> {
   alt?: string;
   childrenClassName?: string;
-  component?: React.ReactType<AvatarProps>;
+  component?: React.ReactType<C>;
   imgProps?: React.HtmlHTMLAttributes<HTMLImageElement>;
   sizes?: string;
   src?: string;
@@ -14,6 +14,6 @@ export interface AvatarProps
 
 export type AvatarClassKey = 'root' | 'colorDefault' | 'img';
 
-declare const Avatar: React.ComponentType<AvatarProps>;
+declare class Avatar<C> extends React.Component<C & AvatarProps<C>> {}
 
 export default Avatar;

@@ -7,19 +7,19 @@ import { InputLabelProps } from '../InputLabel';
 import { FormControlClassKey } from '../FormControl';
 import { SelectProps } from '../Select';
 
-export interface TextFieldProps
-  extends StandardProps<FormControlProps, TextFieldClassKey, 'onChange' | 'defaultValue'> {
+export interface TextFieldProps<C>
+  extends StandardProps<FormControlProps<C>, TextFieldClassKey, 'onChange' | 'defaultValue'> {
   autoComplete?: string;
   autoFocus?: boolean;
   children?: React.ReactNode;
   defaultValue?: string | number;
   disabled?: boolean;
   error?: boolean;
-  FormHelperTextProps?: Partial<FormHelperTextProps>;
+  FormHelperTextProps?: Partial<C & FormHelperTextProps<C>>;
   fullWidth?: boolean;
   helperText?: React.ReactNode;
   id?: string;
-  InputLabelProps?: Partial<InputLabelProps>;
+  InputLabelProps?: Partial<C & InputLabelProps<C>>;
   InputProps?: Partial<InputProps>;
   inputProps?: InputProps['inputProps'];
   inputRef?: React.Ref<any>;
@@ -33,13 +33,13 @@ export interface TextFieldProps
   rows?: string | number;
   rowsMax?: string | number;
   select?: boolean;
-  SelectProps?: Partial<SelectProps>;
+  SelectProps?: Partial<C & SelectProps<C>>;
   type?: string;
   value?: Array<string | number> | string | number;
 }
 
 export type TextFieldClassKey = FormControlClassKey;
 
-declare const TextField: React.ComponentType<TextFieldProps>;
+declare class TextField<C> extends React.Component<TextFieldProps<C>> {}
 
 export default TextField;

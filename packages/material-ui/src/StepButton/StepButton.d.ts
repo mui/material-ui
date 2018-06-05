@@ -5,7 +5,7 @@ import { ButtonBaseProps } from '../ButtonBase';
 
 export type StepButtonIcon = React.ReactElement<any> | string | number | null;
 
-export interface StepButtonProps extends StandardProps<ButtonBaseProps, StepButtonClasskey> {
+export interface StepButtonProps<C> extends StandardProps<ButtonBaseProps<C>, StepButtonClasskey> {
   active?: boolean;
   alternativeLabel?: boolean;
   completed?: boolean;
@@ -18,6 +18,6 @@ export interface StepButtonProps extends StandardProps<ButtonBaseProps, StepButt
 
 export type StepButtonClasskey = 'root' | 'vertical' | 'touchRipple';
 
-declare const StepButton: React.ComponentType<StepButtonProps>;
+declare class StepButton<C> extends React.Component<C & StepButtonProps<C>> {}
 
 export default StepButton;

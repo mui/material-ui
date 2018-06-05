@@ -3,8 +3,8 @@ import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase/ButtonBase';
 import { TabIndicatorProps } from './TabIndicator';
 
-export interface TabsProps
-  extends StandardProps<ButtonBaseProps, TabsClassKey, 'onChange' | 'action'> {
+export interface TabsProps<C>
+  extends StandardProps<ButtonBaseProps<C>, TabsClassKey, 'onChange' | 'action'> {
   action?: (actions: TabsActions) => void;
   centered?: boolean;
   children?: React.ReactNode;
@@ -35,6 +35,6 @@ export interface TabsActions {
   updateIndicator(): void;
 }
 
-declare const Tabs: React.ComponentType<TabsProps>;
+declare class Tabs<C> extends React.Component<C & TabsProps<C>> {}
 
 export default Tabs;

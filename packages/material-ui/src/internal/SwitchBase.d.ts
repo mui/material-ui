@@ -2,8 +2,8 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { IconButtonProps } from '../IconButton';
 
-export interface SwitchBaseProps
-  extends StandardProps<IconButtonProps, SwitchBaseClassKey, 'onChange'> {
+export interface SwitchBaseProps<C>
+  extends StandardProps<IconButtonProps<C>, SwitchBaseClassKey, 'onChange'> {
   checked?: boolean | string;
   checkedIcon: React.ReactNode;
   defaultChecked?: boolean;
@@ -22,7 +22,7 @@ export interface SwitchBaseProps
 
 export type SwitchBaseClassKey = 'root' | 'checked' | 'disabled' | 'input';
 
-export type SwitchBase = React.Component<SwitchBaseProps>;
+export type SwitchBase<C> = React.Component<C & SwitchBaseProps<C>>;
 
 export interface CreateSwitchBaseOptions {
   defaultIcon?: React.ReactNode;
@@ -30,4 +30,4 @@ export interface CreateSwitchBaseOptions {
   type?: string;
 }
 
-export default function createSwitch(options: CreateSwitchBaseOptions): SwitchBase;
+export default function createSwitch<C>(options: CreateSwitchBaseOptions): SwitchBase<C>;

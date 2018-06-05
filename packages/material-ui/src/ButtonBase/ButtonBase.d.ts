@@ -2,15 +2,15 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { TouchRippleProps } from './TouchRipple';
 
-export interface ButtonBaseProps
+export interface ButtonBaseProps<C>
   extends StandardProps<
-      React.AnchorHTMLAttributes<HTMLElement> & React.ButtonHTMLAttributes<HTMLElement>,
-      ButtonBaseClassKey
-    > {
+    React.AnchorHTMLAttributes<HTMLElement> & React.ButtonHTMLAttributes<HTMLElement>,
+    ButtonBaseClassKey
+  > {
   action?: (actions: ButtonBaseActions) => void;
   buttonRef?: React.Ref<any> | React.RefObject<any>;
   centerRipple?: boolean;
-  component?: React.ReactType<ButtonBaseProps>;
+  component?: React.ReactType<C>;
   disableRipple?: boolean;
   focusRipple?: boolean;
   focusVisibleClassName?: string;
@@ -24,6 +24,6 @@ export interface ButtonBaseActions {
   focusVisible(): void;
 }
 
-declare const ButtonBase: React.ComponentType<ButtonBaseProps>;
+declare class ButtonBase<C> extends React.Component<C & ButtonBaseProps<C>> {}
 
 export default ButtonBase;

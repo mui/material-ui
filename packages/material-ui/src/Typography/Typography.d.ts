@@ -2,11 +2,11 @@ import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { Style, TextStyle } from '../styles/createTypography';
 
-export interface TypographyProps
+export interface TypographyProps<C>
   extends StandardProps<React.HTMLAttributes<HTMLElement>, TypographyClassKey> {
   align?: PropTypes.Alignment;
   color?: PropTypes.Color | 'textSecondary' | 'error';
-  component?: React.ReactType<TypographyProps>;
+  component?: React.ReactType<C>;
   gutterBottom?: boolean;
   headlineMapping?: { [type in TextStyle]: string };
   noWrap?: boolean;
@@ -38,6 +38,6 @@ export type TypographyClassKey =
   | 'colorSecondary'
   | 'colorTextSecondary';
 
-declare const Typography: React.ComponentType<TypographyProps>;
+declare class Typography<C> extends React.Component<C & TypographyProps<C>> {}
 
 export default Typography;

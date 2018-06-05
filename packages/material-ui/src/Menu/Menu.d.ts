@@ -6,17 +6,17 @@ import { StandardProps } from '..';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 import { ClassNameMap } from '../styles/withStyles';
 
-export interface MenuProps
-  extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>, MenuClassKey> {
+export interface MenuProps<C>
+  extends StandardProps<PopoverProps<C> & Partial<TransitionHandlerProps>, MenuClassKey> {
   anchorEl?: HTMLElement;
-  MenuListProps?: Partial<MenuListProps>;
-  PaperProps?: Partial<PaperProps>;
+  MenuListProps?: Partial<C & MenuListProps<C>>;
+  PaperProps?: Partial<C & PaperProps<C>>;
   PopoverClasses?: Partial<ClassNameMap<PopoverClassKey>>;
   transitionDuration?: TransitionProps['timeout'] | 'auto';
 }
 
 export type MenuClassKey = 'paper';
 
-declare const Menu: React.ComponentType<MenuProps>;
+declare class Menu<C> extends React.Component<MenuProps<C>> {}
 
 export default Menu;

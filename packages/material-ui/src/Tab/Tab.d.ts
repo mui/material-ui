@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface TabProps extends StandardProps<ButtonBaseProps, TabClassKey, 'onChange'> {
+export interface TabProps<C> extends StandardProps<ButtonBaseProps<C>, TabClassKey, 'onChange'> {
   disabled?: boolean;
   fullWidth?: boolean;
   icon?: string | React.ReactElement<any>;
@@ -29,6 +29,6 @@ export type TabClassKey =
   | 'label'
   | 'labelWrapped';
 
-declare const Tab: React.ComponentType<TabProps>;
+declare class Tab<C> extends React.Component<C & TabProps<C>> {}
 
 export default Tab;
