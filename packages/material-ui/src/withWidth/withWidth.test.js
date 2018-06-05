@@ -35,7 +35,6 @@ describe('withWidth', () => {
   describe('prop: width', () => {
     it('should be able to override it', () => {
       const wrapper = mount(<EmptyWithWidth width="xl" />);
-
       assert.strictEqual(wrapper.find(Empty).props().width, 'xl');
     });
   });
@@ -43,7 +42,6 @@ describe('withWidth', () => {
   describe('browser', () => {
     it('should provide the right width to the child element', () => {
       const wrapper = mount(<EmptyWithWidth />);
-
       assert.strictEqual(wrapper.find(Empty).props().width, TEST_ENV_WIDTH);
     });
   });
@@ -78,11 +76,14 @@ describe('withWidth', () => {
     it('should work as expected', () => {
       const wrapper = shallow(<EmptyWithWidth />);
       const instance = wrapper.instance();
-      const updateWidth = instance.updateWidth.bind(instance);
+      const getWidth = instance.getWidth.bind(instance);
 
       breakpoints.keys.forEach(key => {
-        updateWidth(breakpoints.values[key]);
-        assert.strictEqual(wrapper.state().width, key, 'should return the matching width');
+        assert.strictEqual(
+          getWidth(breakpoints.values[key]),
+          key,
+          'should return the matching width',
+        );
       });
     });
   });
@@ -114,11 +115,25 @@ describe('withWidth', () => {
       // First mount on the server
       const wrapper1 = shallow(element);
       assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
-      const wrapper2 = mount(element);
 
       // Second mount on the client
+      const wrapper2 = mount(element);
       assert.strictEqual(wrapper2.find(Empty).props().width, TEST_ENV_WIDTH);
-      assert.strictEqual(TEST_ENV_WIDTH !== 'lg', true);
+    });
+  });
+
+  describe('option: initialWidth', () => {
+    it('should work as expected', () => {
+      const EmptyWithWidth2 = withWidth({ initialWidth: 'lg' })(Empty);
+      const element = <EmptyWithWidth2 />;
+
+      // First mount on the server
+      const wrapper1 = shallow(element);
+      assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
+
+      // Second mount on the client
+      const wrapper2 = mount(element);
+      assert.strictEqual(wrapper2.find(Empty).props().width, TEST_ENV_WIDTH);
     });
   });
 
@@ -134,6 +149,14 @@ describe('withWidth', () => {
       const theme = createMuiTheme();
       const wrapper = mount(<EmptyWithWidth2 theme={theme} />);
       assert.strictEqual(wrapper.find(Empty).props().theme, theme);
+    });
+  });
+
+  describe('option: noSSR', () => {
+    it('should work as expected', () => {
+      const EmptyWithWidth2 = withWidth({ noSSR: true })(Empty);
+      const wrapper = shallow(<EmptyWithWidth2 />);
+      assert.strictEqual(wrapper.find(Empty).props().width, TEST_ENV_WIDTH);
     });
   });
 });

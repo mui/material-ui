@@ -1,3 +1,5 @@
+/* eslint-disable react/no-did-mount-set-state */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
@@ -25,28 +27,39 @@ export const isWidthDown = (breakpoint, width, inclusive = true) => {
 
 const withWidth = (options = {}) => Component => {
   const {
-    resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
     withTheme: withThemeOption = false,
+    noSSR = false,
+    initialWidth: initialWidthOption,
+    resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
   } = options;
 
   class WithWidth extends React.Component {
+    constructor(props) {
+      super(props);
+
+      if (noSSR) {
+        this.state.width = this.getWidth();
+      }
+    }
+
     state = {
       width: undefined,
     };
 
     componentDidMount() {
-      this.updateWidth(window.innerWidth);
+      const width = this.getWidth();
+      if (width !== this.state.width) {
+        this.setState({
+          width,
+        });
+      }
     }
 
     componentWillUnmount() {
       this.handleResize.clear();
     }
 
-    handleResize = debounce(() => {
-      this.updateWidth(window.innerWidth);
-    }, resizeInterval);
-
-    updateWidth(innerWidth) {
+    getWidth(innerWidth = window.innerWidth) {
       const breakpoints = this.props.theme.breakpoints;
       let width = null;
 
@@ -71,18 +84,22 @@ const withWidth = (options = {}) => Component => {
       }
 
       width = width || 'xl';
+      return width;
+    }
 
+    handleResize = debounce(() => {
+      const width = this.getWidth();
       if (width !== this.state.width) {
         this.setState({
           width,
         });
       }
-    }
+    }, resizeInterval);
 
     render() {
       const { initialWidth, theme, width, ...other } = this.props;
       const props = {
-        width: width || this.state.width || initialWidth,
+        width: width || this.state.width || initialWidth || initialWidthOption,
         ...other,
       };
       const more = {};
@@ -112,8 +129,8 @@ const withWidth = (options = {}) => Component => {
   WithWidth.propTypes = {
     /**
      * As `window.innerWidth` is unavailable on the server,
-     * we default to rendering an empty componenent during the first mount.
-     * In some situation you might want to use an heristic to approximate
+     * we default to rendering an empty component during the first mount.
+     * In some situation, you might want to use an heuristic to approximate
      * the screen width of the client browser screen width.
      *
      * For instance, you could be using the user-agent or the client-hints.
