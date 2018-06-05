@@ -30,6 +30,15 @@ const styles = theme => ({
 
 const appList = [
   {
+    title: 'Trafikito',
+    description:
+      'Free servers monitoring solution which can track any output of any command and do ' +
+      'automated action. By default it tracks average load, CPU, HDD, RAM and sends email when ' +
+      'something is going wrong.',
+    image: '/static/images/showcase/trafikito-monitoring.jpg',
+    link: 'https://trafikito.com/',
+  },
+  {
     title: 'Venumob',
     description:
       'A platform for individuals and businesses to find and book the perfect venue for any event.',
