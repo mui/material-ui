@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
-export interface CardProps<C> extends StandardProps<PaperProps<C>, CardClassKey> {
+export interface CardProps<C = {}> extends StandardProps<PaperProps<C>, CardClassKey> {
   raised?: boolean;
 }
 

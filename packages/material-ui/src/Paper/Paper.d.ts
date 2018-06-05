@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface PaperProps<C>
+export interface PaperProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, PaperClassKey> {
   component?: React.ReactType<C>;
   elevation?: number;

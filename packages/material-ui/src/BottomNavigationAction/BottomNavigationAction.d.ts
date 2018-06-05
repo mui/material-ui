@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface BottomNavigationActionProps<C>
+export interface BottomNavigationActionProps<C = {}>
   extends StandardProps<ButtonBaseProps<C>, BottomNavigationActionClassKey, 'onChange'> {
   icon?: string | React.ReactElement<any>;
   label?: React.ReactNode;

@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase/ButtonBase';
 import { TabIndicatorProps } from './TabIndicator';
 
-export interface TabsProps<C>
+export interface TabsProps<C = {}>
   extends StandardProps<ButtonBaseProps<C>, TabsClassKey, 'onChange' | 'action'> {
   action?: (actions: TabsActions) => void;
   centered?: boolean;

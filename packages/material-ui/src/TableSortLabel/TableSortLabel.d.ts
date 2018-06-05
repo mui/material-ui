@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface TableSortLabelProps<C>
+export interface TableSortLabelProps<C = {}>
   extends StandardProps<ButtonBaseProps<C>, TableSortLabelClassKey> {
   active?: boolean;
   direction?: 'asc' | 'desc';

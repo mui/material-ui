@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface InputAdornmentProps<C>
+export interface InputAdornmentProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, InputAdornmentClassKey> {
   component?: React.ReactType<C>;
   disableTypography?: boolean;

@@ -4,7 +4,7 @@ import { PaperProps } from '../Paper';
 
 export type Orientation = 'horizontal' | 'vertical';
 
-export interface StepperProps<C> extends StandardProps<PaperProps<C>, StepperClasskey> {
+export interface StepperProps<C = {}> extends StandardProps<PaperProps<C>, StepperClasskey> {
   activeStep?: number;
   alternativeLabel?: boolean;
   children: React.ReactNode;

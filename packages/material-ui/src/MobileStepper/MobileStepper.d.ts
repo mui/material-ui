@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ButtonProps } from '../Button';
 
-export interface MobileStepperProps<C> extends StandardProps<PaperProps<C>, MobileStepperClassKey> {
+export interface MobileStepperProps<C = {}> extends StandardProps<PaperProps<C>, MobileStepperClassKey> {
   activeStep?: number;
   backButton: React.ReactElement<any>;
   nextButton: React.ReactElement<any>;

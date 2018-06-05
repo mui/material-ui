@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { CardContentProps } from '../CardContent';
 
-export interface CardHeaderProps<C>
+export interface CardHeaderProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CardHeaderClassKey, 'title'> {
   action?: React.ReactNode;
   avatar?: React.ReactNode;

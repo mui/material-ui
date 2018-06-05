@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface AvatarProps<C>
+export interface AvatarProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, AvatarClassKey> {
   alt?: string;
   childrenClassName?: string;

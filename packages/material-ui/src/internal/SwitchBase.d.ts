@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { IconButtonProps } from '../IconButton';
 
-export interface SwitchBaseProps<C>
+export interface SwitchBaseProps<C = {}>
   extends StandardProps<IconButtonProps<C>, SwitchBaseClassKey, 'onChange'> {
   checked?: boolean | string;
   checkedIcon: React.ReactNode;

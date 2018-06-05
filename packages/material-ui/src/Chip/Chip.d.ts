@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface ChipProps<C>
+export interface ChipProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ChipClassKey> {
   avatar?: React.ReactElement<any>;
   clickable?: boolean;

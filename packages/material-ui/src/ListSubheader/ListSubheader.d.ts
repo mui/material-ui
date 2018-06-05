@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface ListSubheaderProps<C>
+export interface ListSubheaderProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListSubheaderClassKey> {
   component?: React.ReactType<C>;
   color?: 'default' | 'primary' | 'inherit';

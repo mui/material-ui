@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface GridListProps<C>
+export interface GridListProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLUListElement>, GridListClassKey> {
   cellHeight?: number | 'auto';
   cols?: number;

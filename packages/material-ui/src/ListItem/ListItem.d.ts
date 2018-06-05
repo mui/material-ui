@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface ListItemProps<C>
+export interface ListItemProps<C = {}>
   extends StandardProps<
     ButtonBaseProps<C> & React.LiHTMLAttributes<HTMLElement>,
     ListItemClassKey,

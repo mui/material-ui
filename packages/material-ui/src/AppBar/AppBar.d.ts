@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PropTypes, StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
-export interface AppBarProps<C> extends StandardProps<PaperProps<C>, AppBarClassKey> {
+export interface AppBarProps<C = {}> extends StandardProps<PaperProps<C>, AppBarClassKey> {
   color?: PropTypes.Color;
   position?: 'fixed' | 'absolute' | 'sticky' | 'static';
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface CardMediaProps<C>
+export interface CardMediaProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CardMediaClassKey> {
   component?: React.ReactType<C>;
   image?: string;

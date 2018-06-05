@@ -11,9 +11,9 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
 })
 
 interface Props extends WithStyles<typeof styles> {
-  color: TypographyProps<{}>['color'];
+  color: TypographyProps['color'];
   text: string;
-  variant: TypographyProps<{}>['variant'];
+  variant: TypographyProps['variant'];
 }
 
 const DecoratedSFC = withStyles(styles)(({ text, variant, color, classes }: Props) => (

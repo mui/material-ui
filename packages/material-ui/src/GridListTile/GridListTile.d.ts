@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface GridListTileProps<C>
+export interface GridListTileProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLLIElement>, GridListTileClassKey> {
   cols?: number;
   component?: React.ReactType<C>;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface ExpansionPanelSummaryProps<C>
+export interface ExpansionPanelSummaryProps<C = {}>
   extends StandardProps<ButtonBaseProps<C>, ExpansionPanelSummaryClassKey> {
   disabled?: boolean;
   expanded?: boolean;

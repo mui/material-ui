@@ -6,7 +6,7 @@ import { StandardProps } from '..';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 import { ClassNameMap } from '../styles/withStyles';
 
-export interface MenuProps<C>
+export interface MenuProps<C = {}>
   extends StandardProps<PopoverProps<C> & Partial<TransitionHandlerProps>, MenuClassKey> {
   anchorEl?: HTMLElement;
   MenuListProps?: Partial<C & MenuListProps<C>>;

@@ -4,7 +4,7 @@ import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
-export interface DialogProps<C>
+export interface DialogProps<C = {}>
   extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, DialogClassKey, 'children'> {
   children?: React.ReactNode;
   fullScreen?: boolean;

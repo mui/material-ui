@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface TableRowProps<C> extends StandardProps<TableRowBaseProps, TableRowClassKey> {
+export interface TableRowProps<C = {}> extends StandardProps<TableRowBaseProps, TableRowClassKey> {
   component?: React.ReactType<C & TableRowBaseProps>;
   hover?: boolean;
   selected?: boolean;

@@ -4,7 +4,7 @@ import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectInputProps } from './SelectInput';
 
-export interface SelectProps<C>
+export interface SelectProps<C = {}>
   extends StandardProps<InputProps, SelectClassKey, 'value' | 'onChange'>,
     Pick<SelectInputProps<C>, 'onChange'> {
   autoWidth?: boolean;

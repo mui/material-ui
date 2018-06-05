@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { CollapseProps } from '../Collapse';
 import { PaperProps } from '../Paper';
 
-export interface ExpansionPanelProps<C>
+export interface ExpansionPanelProps<C = {}>
   extends StandardProps<PaperProps<C>, ExpansionPanelClassKey, 'onChange'> {
   CollapseProps?: Partial<CollapseProps<C>>;
   defaultExpanded?: boolean;

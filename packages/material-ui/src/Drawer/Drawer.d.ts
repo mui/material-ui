@@ -6,7 +6,7 @@ import { PaperProps } from '../Paper';
 import { Theme } from '../styles/createMuiTheme';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
-export interface DrawerProps<C>
+export interface DrawerProps<C = {}>
   extends StandardProps<
       ModalProps & Partial<TransitionHandlerProps>,
       DrawerClassKey,

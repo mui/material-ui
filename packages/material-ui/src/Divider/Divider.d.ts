@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface DividerProps<C>
+export interface DividerProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLHRElement>, DividerClassKey> {
   absolute?: boolean;
   component?: React.ReactType<C>;

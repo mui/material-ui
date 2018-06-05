@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface ListProps<C>
+export interface ListProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLUListElement>, ListClassKey> {
   component?: React.ReactType<C>;
   dense?: boolean;

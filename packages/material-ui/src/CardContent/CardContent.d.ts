@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface CardContentProps<C>
+export interface CardContentProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CardContentClassKey> {
   component?: React.ReactType<C>;
 }

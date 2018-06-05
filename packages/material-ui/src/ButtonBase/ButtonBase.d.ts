@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { TouchRippleProps } from './TouchRipple';
 
-export interface ButtonBaseProps<C>
+export interface ButtonBaseProps<C = {}>
   extends StandardProps<
     React.AnchorHTMLAttributes<HTMLElement> & React.ButtonHTMLAttributes<HTMLElement>,
     ButtonBaseClassKey

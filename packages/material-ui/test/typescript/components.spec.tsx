@@ -724,12 +724,12 @@ const TableTest = () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-                count={5}
-                rowsPerPage={2}
-                page={1}
-                onChangePage={() => {}}
-                onChangeRowsPerPage={event => log({ rowsPerPage: event.target.value })}/>
-             </TableRow>
+               count={5}
+               rowsPerPage={2}
+               page={1}
+               onChangePage={() => {}}
+               onChangeRowsPerPage={event => log({ rowsPerPage: event.target.value })}/>
+            </TableRow>
           </TableFooter>
         </Table>
       </Paper>
@@ -823,7 +823,7 @@ const ResponsiveComponentTest = () => {
   ));
   <ResponsiveComponent />;
 
-  const ResponsiveDialogComponent = withMobileDialog<DialogProps<{}>>()(Dialog);
+  const ResponsiveDialogComponent = withMobileDialog<DialogProps>()(Dialog);
 };
 
 const TooltipComponentTest = () => (

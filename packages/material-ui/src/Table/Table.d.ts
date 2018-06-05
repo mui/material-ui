@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface TableProps<C> extends StandardProps<TableBaseProps<C>, TableClassKey> {
+export interface TableProps<C = {}> extends StandardProps<TableBaseProps<C>, TableClassKey> {
   component?: React.ReactType<C & TableBaseProps<C>>;
 }
 

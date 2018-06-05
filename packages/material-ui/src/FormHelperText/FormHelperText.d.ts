@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface FormHelperTextProps<C>
+export interface FormHelperTextProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLParagraphElement>, FormHelperTextClassKey> {
   disabled?: boolean;
   error?: boolean;

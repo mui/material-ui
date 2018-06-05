@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 
-export interface BadgeProps<C>
+export interface BadgeProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, BadgeClassKey> {
   badgeContent: React.ReactNode;
   children: React.ReactNode;

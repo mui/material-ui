@@ -8,7 +8,7 @@ export type SnackBarOrigin = {
   vertical?: 'top' | 'center' | 'bottom' | number;
 };
 
-export interface SnackbarProps<C>
+export interface SnackbarProps<C = {}>
   extends StandardProps<
       React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
       SnackbarClassKey
