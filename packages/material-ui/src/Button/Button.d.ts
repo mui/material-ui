@@ -2,7 +2,8 @@ import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface ButtonProps<C = {}> extends StandardProps<ButtonBaseProps<C>, ButtonClassKey, 'component'> {
+export interface ButtonProps<C = {}>
+  extends StandardProps<ButtonBaseProps<C>, ButtonClassKey, 'component'> {
   color?: PropTypes.Color;
   component?: React.ReactType<C>;
   disabled?: boolean;

@@ -125,9 +125,13 @@ const ButtonTest = () => (
     </Button>
     <Button component="a">Simple Link</Button>
     <Button component={props => <a {...props} />}>Complexe Link</Button>
-    <Button component={Link} to="/open-collective">Link</Button>    
+    <Button component={Link} to="/open-collective">
+      Link
+    </Button>
     <Button to="/open-collective">Link</Button>
-    <Button<LinkProps> component={Link} to="/open-collective">Link</Button>
+    <Button<LinkProps> component={Link} to="/open-collective">
+      Link
+    </Button>
     <Button<LinkProps> to="/open-collective">Link</Button>
   </div>
 );
@@ -724,11 +728,12 @@ const TableTest = () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-               count={5}
-               rowsPerPage={2}
-               page={1}
-               onChangePage={() => {}}
-               onChangeRowsPerPage={event => log({ rowsPerPage: event.target.value })}/>
+                count={5}
+                rowsPerPage={2}
+                page={1}
+                onChangePage={() => {}}
+                onChangeRowsPerPage={event => log({ rowsPerPage: event.target.value })}
+              />
             </TableRow>
           </TableFooter>
         </Table>

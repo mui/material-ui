@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface FormLabelProps<C = {}> extends StandardProps<FormLabelBaseProps<C>, FormLabelClassKey> {
+export interface FormLabelProps<C = {}>
+  extends StandardProps<FormLabelBaseProps<C>, FormLabelClassKey> {
   component?: React.ReactType<C>;
   disabled?: boolean;
   error?: boolean;

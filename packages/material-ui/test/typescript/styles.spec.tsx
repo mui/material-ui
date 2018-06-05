@@ -37,10 +37,9 @@ const StyledExampleOne = withStyles(styles)<ComponentProps>(({ classes, text }) 
 <StyledExampleOne text="I am styled!" />;
 
 // Example 2
-const Component: React.SFC<ComponentProps & WithStyles<typeof styles>> = ({
-  classes,
-  text,
-}) => <div className={classes.root}>{text}</div>;
+const Component: React.SFC<ComponentProps & WithStyles<typeof styles>> = ({ classes, text }) => (
+  <div className={classes.root}>{text}</div>
+);
 
 const StyledExampleTwo = withStyles(styles)(Component);
 <StyledExampleTwo text="I am styled!" />;
@@ -55,10 +54,9 @@ const styleRule = createStyles({
   },
 });
 
-const ComponentWithChildren: React.SFC<WithStyles<typeof styles>> = ({
-  classes,
-  children,
-}) => <div className={classes.root}>{children}</div>;
+const ComponentWithChildren: React.SFC<WithStyles<typeof styles>> = ({ classes, children }) => (
+  <div className={classes.root}>{children}</div>
+);
 
 const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
 <StyledExampleThree />;
@@ -193,41 +191,44 @@ const DecoratedComponent = withStyles(styles)(
 <DecoratedComponent text="foo" />;
 
 // Allow nested pseudo selectors
-withStyles(theme => createStyles({
-  guttered: theme.mixins.gutters({
-    '&:hover': {
-      textDecoration: 'none',
+withStyles(theme =>
+  createStyles({
+    guttered: theme.mixins.gutters({
+      '&:hover': {
+        textDecoration: 'none',
+      },
+    }),
+    listItem: {
+      '&:hover $listItemIcon': {
+        visibility: 'inherit',
+      },
     },
   }),
-  listItem: {
-    '&:hover $listItemIcon': {
-      visibility: 'inherit',
-    },
-  },
-}));
+);
 
 {
-  const styles = (theme: Theme) => createStyles({
-    // Styled similar to ListItemText
-    root: {
-      '&:first-child': {
-        paddingLeft: 0,
+  const styles = (theme: Theme) =>
+    createStyles({
+      // Styled similar to ListItemText
+      root: {
+        '&:first-child': {
+          paddingLeft: 0,
+        },
+        flex: '1 1 auto',
+        padding: '0 16px',
       },
-      flex: '1 1 auto',
-      padding: '0 16px',
-    },
 
-    iiiinset: {
-      '&:first-child': {
-        paddingLeft: theme.spacing.unit * 7,
+      iiiinset: {
+        '&:first-child': {
+          paddingLeft: theme.spacing.unit * 7,
+        },
       },
-    },
-    row: {
-      alignItems: 'center',
-      display: 'flex',
-      flexDirection: 'row',
-    },
-  });
+      row: {
+        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'row',
+      },
+    });
 
   interface ListItemContentProps extends WithStyles<typeof styles> {
     inset?: boolean;
@@ -239,7 +240,7 @@ withStyles(theme => createStyles({
       <div className={classes.root} color="textSecondary">
         {children}
       </div>
-    )
+    ),
   );
 }
 
@@ -262,11 +263,12 @@ withStyles(theme => createStyles({
     caption: string;
   }
 
-  const styles = (theme: Theme) => createStyles({
-    content: {
-      margin: 4,
-    },
-  });
+  const styles = (theme: Theme) =>
+    createStyles({
+      content: {
+        margin: 4,
+      },
+    });
 
   const Component = (props: ComponentProps) => {
     return <div className={props.classes.content}>Hello {props.caption}</div>;
@@ -289,9 +291,10 @@ withStyles(theme => createStyles({
 
 {
   // https://github.com/mui-org/material-ui/issues/11191
-  const styles = (theme: Theme) => createStyles({
-    main: {},
-  });
+  const styles = (theme: Theme) =>
+    createStyles({
+      main: {},
+    });
 
   interface Props extends WithStyles<typeof styles> {
     someProp?: string;
@@ -308,12 +311,14 @@ withStyles(theme => createStyles({
   <DecoratedSomeComponent someProp="hello world" />;
 }
 
-{ // https://github.com/mui-org/material-ui/issues/11312
-  withStyles(styles, { name: "MyComponent", index: 0 })(() => <div/>);
+{
+  // https://github.com/mui-org/material-ui/issues/11312
+  withStyles(styles, { name: 'MyComponent', index: 0 })(() => <div />);
 }
 
-{ // https://github.com/mui-org/material-ui/issues/11164
+{
+  // https://github.com/mui-org/material-ui/issues/11164
   const style: StyleRulesCallback = theme => ({
-    text: theme.typography.body2
+    text: theme.typography.body2,
   });
 }

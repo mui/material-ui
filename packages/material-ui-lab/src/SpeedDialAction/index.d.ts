@@ -1,2 +1,2 @@
-export { default } from "./SpeedDialAction";
-export * from "./SpeedDialAction";
+export { default } from './SpeedDialAction';
+export * from './SpeedDialAction';

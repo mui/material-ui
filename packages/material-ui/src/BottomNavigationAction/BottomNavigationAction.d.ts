@@ -15,6 +15,8 @@ export interface BottomNavigationActionProps<C = {}>
 
 export type BottomNavigationActionClassKey = 'root' | 'selected' | 'iconOnly' | 'wrapper' | 'label';
 
-declare class BottomNavigationAction<C> extends React.Component<C & BottomNavigationActionProps<C>> {}
+declare class BottomNavigationAction<C> extends React.Component<
+  C & BottomNavigationActionProps<C>
+> {}
 
 export default BottomNavigationAction;

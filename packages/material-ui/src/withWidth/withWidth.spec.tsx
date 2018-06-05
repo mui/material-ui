@@ -4,13 +4,14 @@ import { Theme, createStyles } from '../styles';
 import withStyles, { WithStyles } from '../styles/withStyles';
 import withWidth, { WithWidthProps } from '../withWidth';
 
-const styles = (theme: Theme) => createStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: theme.palette.common.black,
-  },
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      backgroundColor: theme.palette.common.black,
+    },
+  });
 
 interface IHelloProps extends WithWidthProps, WithStyles<typeof styles> {
   name?: string;

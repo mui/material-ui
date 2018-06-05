@@ -38,6 +38,6 @@ export type TypographyClassKey =
   | 'colorSecondary'
   | 'colorTextSecondary';
 
-  declare class Typography<C> extends React.Component<C & TypographyProps<C>> {}
+declare class Typography<C> extends React.Component<C & TypographyProps<C>> {}
 
 export default Typography;

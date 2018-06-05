@@ -3,7 +3,8 @@ import { StandardProps } from '..';
 import { FormLabelProps, FormLabelClassKey } from '../FormLabel';
 import { ClassNameMap } from '../styles/withStyles';
 
-export interface InputLabelProps<C = {}> extends StandardProps<FormLabelProps<C>, InputLabelClassKey> {
+export interface InputLabelProps<C = {}>
+  extends StandardProps<FormLabelProps<C>, InputLabelClassKey> {
   disableAnimation?: boolean;
   disabled?: boolean;
   error?: boolean;

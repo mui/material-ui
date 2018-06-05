@@ -2,7 +2,8 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface TabProps<C = {}> extends StandardProps<ButtonBaseProps<C>, TabClassKey, 'onChange'> {
+export interface TabProps<C = {}>
+  extends StandardProps<ButtonBaseProps<C>, TabClassKey, 'onChange'> {
   disabled?: boolean;
   fullWidth?: boolean;
   icon?: string | React.ReactElement<any>;
