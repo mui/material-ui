@@ -164,6 +164,7 @@ export class DateTextField extends PureComponent {
       prevProps.emptyLabel !== this.props.emptyLabel ||
       prevProps.utils !== this.props.utils
     ) {
+      /* eslint-disable-next-line react/no-did-update-set-state */
       this.setState(DateTextField.updateState(this.props));
     }
   }
