@@ -19,7 +19,7 @@ class ControllingProgrammaticallyExample extends PureComponent {
   }
 
   openPicker = () => {
-    this.picker.wrapper.open();
+    this.picker.open();
   }
 
   render() {
@@ -31,7 +31,7 @@ class ControllingProgrammaticallyExample extends PureComponent {
         <div className="picker">
           <DatePicker
             clearable
-            pickerRef={(node) => { this.picker = node; }}
+            ref={(node) => { this.picker = node; }}
             label="Localization done right"
             format="D MMM YYYY"
             value={selectedDate}

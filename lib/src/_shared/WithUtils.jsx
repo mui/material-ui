@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { MuiPickersContextConsumer } from '../utils/MuiPickersUtilsProvider';
 
 const WithUtils = () => (Component) => {
-  const withUtils = ({ pickerRef, ...props }) => (
+  const withUtils = props => (
     <MuiPickersContextConsumer>
-      {utils => <Component ref={pickerRef} utils={utils} {...props} />}
+      {utils => <Component utils={utils} {...props} />}
     </MuiPickersContextConsumer>
   );
 

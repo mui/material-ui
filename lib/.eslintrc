@@ -5,6 +5,7 @@
     "react/forbid-prop-types": 0,
     "react/jsx-filename-extension": 0,
     "react/no-find-dom-node": 0,
+    "react/no-typos": 0,
     "no-param-reassign": 0,
     "import/no-named-as-default": 0,
     "import/no-extraneous-dependencies": 0,
