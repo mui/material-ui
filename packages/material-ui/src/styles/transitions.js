@@ -1,5 +1,6 @@
 // @flow
 /* eslint-disable no-param-reassign */
+/* eslint-disable no-restricted-globals */
 
 import warning from 'warning';
 
@@ -35,7 +36,7 @@ export const duration = {
 
 export const formatMs = (milliseconds: number) => `${Math.round(milliseconds)}ms`;
 export const isString = (value: any) => typeof value === 'string';
-export const isNumber = (value: any) => !Number.isNaN(parseFloat(value));
+export const isNumber = (value: any) => !isNaN(parseFloat(value));
 
 /**
  * @param {string|Array} props
