@@ -315,13 +315,19 @@ class Slider extends React.Component {
   };
 
   handleClick = event => {
-    const { min, max, vertical, reverse } = this.props;
+    // console.log(this.props);
+    const { min, max, vertical, reverse, disabled } = this.props;
+    if (disabled) {
+      // disable slider sliding, if prop disabled is true
+      return 0;
+    }
     const percent = calculatePercent(this.container, event, vertical, reverse);
     const value = percentToValue(percent, min, max);
 
     this.emitChange(event, value, () => {
       this.playJumpAnimation();
     });
+    return 0;
   };
 
   handleTouchStart = event => {
