@@ -14,8 +14,7 @@ export const styles = theme => ({
     position: 'relative',
     minWidth: 72,
     padding: 0,
-    height: 48,
-    flex: 'none',
+    minHeight: 48,
     overflow: 'hidden',
     [theme.breakpoints.up('md')]: {
       minWidth: 160,
