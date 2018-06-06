@@ -14,15 +14,15 @@ export const styles = theme => ({
     position: 'relative',
     minWidth: 72,
     padding: 0,
-    height: 48,
-    flex: 'none',
+    minHeight: 48,
+    flexShrink: 0,
     overflow: 'hidden',
     [theme.breakpoints.up('md')]: {
       minWidth: 160,
     },
   },
   labelIcon: {
-    height: 72,
+    minHeight: 72,
   },
   textColorInherit: {
     color: 'inherit',
@@ -55,6 +55,7 @@ export const styles = theme => ({
   selected: {},
   disabled: {},
   fullWidth: {
+    flexShrink: 1,
     flexGrow: 1,
   },
   wrapper: {
