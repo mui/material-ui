@@ -134,12 +134,19 @@ class Tabs extends React.Component {
   };
 
   getMetaStaticLabel = refreshTabMeta => {
-    const { tabMeta, tabsMeta } = this.state;
-    if (!refreshTabMeta) return { tabMeta, tabsMeta };
-    return {
-      tabsMeta,
-      tabMeta: this.getTabMeta(),
+    /*
+      Get meta static label only thrashes the DOM at two times:
+        1. On mount, getting all tabs dimensions
+        2. On mount and value change, getting the active tab dimensions
+    */
+    const state = {
+      tabsMeta: this.state.tabsMeta || this.getTabsMeta(),
+      tabMeta: !refreshTabMeta && this.state.tabMeta ? this.state.tabMeta : this.getTabMeta(),
     };
+    if (state.tabsMeta !== this.state.tabsMeta || state.tabMeta !== this.state.tabMeta) {
+      this.setState(state);
+    }
+    return state;
   };
 
   getTabMeta = () => {
