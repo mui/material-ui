@@ -19,9 +19,10 @@ Feel free to submit a pull-request to add more projects; we will accept them if 
 
 - [react-admin](https://github.com/marmelab/react-admin) An admin framework combining material-ui with Redux, redux-form, redux-saga, and recompose
 - [react-autosuggest](https://github.com/moroshko/react-autosuggest) WAI-ARIA compliant React autosuggest component.
+- [react-final-form](https://github.com/final-form/react-final-form#material-ui-10) Subscription-based form state management for React.
+- [react-most-wanted](https://github.com/TarikHuber/react-most-wanted) Starter kit using Material-UI, CRA, Redux, Firebase and all the "Most Wanted" features.
 - [react-number-format](https://github.com/s-yadav/react-number-format) React component to format numbers in an input or as a text.
 - [react-popper](https://github.com/FezVrasta/react-popper) React wrapper around PopperJS.
 - [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) A React component for swipeable views. Plays well with the `Tabs` component.
 - [react-text-mask](https://github.com/text-mask/text-mask) Input mask for React, Angular, Ember, Vue, & plain JavaScript.
 - [redux-form](https://redux-form.com/7.3.0/examples/material-ui/) Manage your form state in Redux.
-- [react-final-form](https://github.com/final-form/react-final-form#material-ui-10) Subscription-based form state management for React.
