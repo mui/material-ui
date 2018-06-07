@@ -21,7 +21,7 @@ filename: /packages/material-ui/src/Radio/Radio.js
 | <span class="prop-name">icon</span> | <span class="prop-type">node |   | The icon to display when the component is unchecked. |
 | <span class="prop-name">id</span> | <span class="prop-type">string |   | The id of the `input` element. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object |   | Attributes applied to the `input` element. |
-| <span class="prop-name">inputRef</span> | <span class="prop-type">func |   | Use that property to pass a ref callback to the native input component. |
+| <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> |   | Use that property to pass a ref callback to the native input component. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`.<br>*checked:* The `checked` value of the switch |
 | <span class="prop-name">type</span> | <span class="prop-type">string |   | The input component property `type`. |
 | <span class="prop-name">value</span> | <span class="prop-type">string |   | The value of the component. |

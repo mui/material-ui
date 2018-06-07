@@ -275,7 +275,7 @@ class Input extends React.Component {
 
   componentDidMount() {
     if (!this.isControlled) {
-      this.checkDirty(this.currentInput());
+      this.checkDirty(this.input);
     }
   }
 
@@ -311,7 +311,7 @@ class Input extends React.Component {
 
   handleChange = event => {
     if (!this.isControlled) {
-      this.checkDirty(this.currentInput());
+      this.checkDirty(this.input);
     }
 
     // Perform in the willUpdate
@@ -323,26 +323,21 @@ class Input extends React.Component {
   handleRefInput = node => {
     this.input = node;
 
-    const { inputRef, inputProps } = this.props;
-    const refCallback = inputRef || (inputProps && inputProps.ref);
+    let ref;
 
-    if (refCallback) {
-      refCallback(node);
+    if (this.props.inputRef) {
+      ref = this.props.inputRef;
+    } else if (this.props.inputProps && this.props.inputProps.ref) {
+      ref = this.props.inputProps.ref;
     }
-  };
 
-  ref = () => {
-    const { inputRef, inputProps } = this.props;
-    const ref = inputRef || (inputProps && inputProps.ref);
-
-    return ref === undefined || typeof ref === 'function' ? this.handleRefInput : ref;
-  };
-
-  currentInput = () => {
-    const { inputRef, inputProps } = this.props;
-    const ref = inputRef || (inputProps && inputProps.ref);
-
-    return ref === undefined || typeof ref === 'function' ? this.input : ref;
+    if (ref) {
+      if (typeof ref === 'function') {
+        ref(node);
+      } else {
+        ref.current = node;
+      }
+    }
   };
 
   checkDirty(obj) {
@@ -436,7 +431,7 @@ class Input extends React.Component {
     let InputComponent = 'input';
     let inputProps = {
       ...inputPropsProp,
-      ref: this.ref(),
+      ref: this.handleRefInput,
     };
 
     if (inputComponent) {
@@ -444,7 +439,7 @@ class Input extends React.Component {
       inputProps = {
         // Rename ref to inputRef as we don't know the
         // provided `inputComponent` structure.
-        inputRef: this.ref(),
+        inputRef: this.handleRefInput,
         ...inputProps,
         ref: null,
       };
@@ -454,7 +449,7 @@ class Input extends React.Component {
       } else {
         inputProps = {
           rowsMax,
-          textareaRef: this.ref(),
+          textareaRef: this.handleRefInput,
           ...inputProps,
           ref: null,
         };

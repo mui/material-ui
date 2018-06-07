@@ -69,7 +69,7 @@ NativeSelectInput.propTypes = {
   /**
    * Use that property to pass a ref callback to the native select element.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Name attribute of the `select` or hidden `input` element.
    */

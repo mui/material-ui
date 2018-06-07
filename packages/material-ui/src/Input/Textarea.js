@@ -115,8 +115,14 @@ class Textarea extends React.Component {
 
   handleRefInput = node => {
     this.input = node;
-    if (this.props.textareaRef) {
-      this.props.textareaRef(node);
+
+    const { textareaRef } = this.props;
+    if (textareaRef) {
+      if (typeof textareaRef === 'function') {
+        textareaRef(node);
+      } else {
+        textareaRef.current = node;
+      }
     }
   };
 
@@ -140,14 +146,6 @@ class Textarea extends React.Component {
     if (this.props.onChange) {
       this.props.onChange(event);
     }
-  };
-
-  ref = () => {
-    const { textareaRef } = this.props;
-
-    return textareaRef === undefined || typeof textareaRef === 'function'
-      ? this.handleRefInput
-      : textareaRef;
   };
 
   render() {
@@ -191,7 +189,7 @@ class Textarea extends React.Component {
           defaultValue={defaultValue}
           value={value}
           onChange={this.handleChange}
-          ref={this.ref()}
+          ref={this.handleRefInput}
           {...other}
         />
       </div>

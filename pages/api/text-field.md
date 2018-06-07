@@ -49,7 +49,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">InputLabelProps</span> | <span class="prop-type">object |   | Properties applied to the `InputLabel` element. |
 | <span class="prop-name">InputProps</span> | <span class="prop-type">object |   | Properties applied to the `Input` element. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object |   | Attributes applied to the native `input` element. |
-| <span class="prop-name">inputRef</span> | <span class="prop-type">func |   | Use that property to pass a ref callback to the native input component. |
+| <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> |   | Use that property to pass a ref callback to the native input component. |
 | <span class="prop-name">label</span> | <span class="prop-type">node |   | The label content. |
 | <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'none'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'normal'<br> |   | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | <span class="prop-name">multiline</span> | <span class="prop-type">bool |   | If `true`, a textarea element will be rendered instead of an input. |
