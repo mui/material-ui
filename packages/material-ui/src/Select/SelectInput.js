@@ -270,7 +270,7 @@ class SelectInput extends React.Component {
         >
           {/* So the vertical align positioning algorithm quicks in. */}
           {/* eslint-disable-next-line react/no-danger */}
-          {display || <span dangerouslySetInnerHTML={{ __html: '&#8203' }} />}
+          {display || <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
         </div>
         <input
           value={Array.isArray(value) ? value.join(',') : value}

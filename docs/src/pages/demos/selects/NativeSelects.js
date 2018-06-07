@@ -44,6 +44,7 @@ class NativeSelects extends React.Component {
             value={this.state.age}
             onChange={this.handleChange('age')}
             inputProps={{
+              name: 'age',
               id: 'age-native-simple',
             }}
           >
@@ -58,7 +59,7 @@ class NativeSelects extends React.Component {
           <NativeSelect
             value={this.state.age}
             onChange={this.handleChange('age')}
-            input={<Input id="age-native-helper" />}
+            input={<Input name="age" id="age-native-helper" />}
           >
             <option value="" />
             <option value={10}>Ten</option>
@@ -71,6 +72,7 @@ class NativeSelects extends React.Component {
           <NativeSelect
             value={this.state.age}
             onChange={this.handleChange('age')}
+            name="age"
             className={classes.selectEmpty}
           >
             <option value="">None</option>
@@ -85,7 +87,7 @@ class NativeSelects extends React.Component {
           <NativeSelect
             value={this.state.name}
             onChange={this.handleChange('name')}
-            input={<Input id="name-native-disabled" />}
+            input={<Input name="name" id="name-native-disabled" />}
           >
             <option value="" />
             <optgroup label="Author">
@@ -103,6 +105,7 @@ class NativeSelects extends React.Component {
           <NativeSelect
             value={this.state.name}
             onChange={this.handleChange('name')}
+            name="name"
             input={<Input id="name-native-error" />}
           >
             <option value="" />
@@ -118,13 +121,29 @@ class NativeSelects extends React.Component {
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="uncontrolled-native">Name</InputLabel>
-          <NativeSelect defaultValue={30} input={<Input id="uncontrolled-native" />}>
+          <NativeSelect defaultValue={30} input={<Input name="name" id="uncontrolled-native" />}>
             <option value="" />
             <option value={10}>Ten</option>
             <option value={20}>Twenty</option>
             <option value={30}>Thirty</option>
           </NativeSelect>
           <FormHelperText>Uncontrolled</FormHelperText>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <NativeSelect
+            className={classes.selectEmpty}
+            value={this.state.age}
+            name="age"
+            onChange={this.handleChange('age')}
+          >
+            <option value="" disabled>
+              Placeholder
+            </option>
+            <option value={10}>Ten</option>
+            <option value={20}>Twenty</option>
+            <option value={30}>Thirty</option>
+          </NativeSelect>
+          <FormHelperText>Placeholder</FormHelperText>
         </FormControl>
       </div>
     );

@@ -161,12 +161,12 @@ function roundToStep(number, step) {
 }
 
 function getOffset(node) {
-  const { scrollY, scrollX } = global;
+  const { pageYOffset, pageXOffset } = global;
   const { left, top } = node.getBoundingClientRect();
 
   return {
-    top: top + scrollY,
-    left: left + scrollX,
+    top: top + pageYOffset,
+    left: left + pageXOffset,
   };
 }
 
@@ -200,6 +200,8 @@ function preventPageScrolling(event) {
 }
 
 class Slider extends React.Component {
+  state = { currentState: 'initial' };
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.disabled) {
       return { currentState: 'disabled' };
@@ -211,8 +213,6 @@ class Slider extends React.Component {
 
     return null;
   }
-
-  state = { currentState: 'initial' };
 
   componentDidMount() {
     if (this.container) {

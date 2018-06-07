@@ -50,6 +50,8 @@ export const styles = {
  * It contains a load of style reset and some focus/ripple logic.
  */
 class ButtonBase extends React.Component {
+  state = {};
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (typeof prevState.focusVisible === 'undefined') {
       return {
@@ -71,8 +73,6 @@ class ButtonBase extends React.Component {
       lastDisabled: nextProps.disabled,
     };
   }
-
-  state = {};
 
   componentDidMount() {
     this.button = ReactDOM.findDOMNode(this);
@@ -423,7 +423,9 @@ ButtonBase.propTypes = {
    */
   TouchRippleProps: PropTypes.object,
   /**
-   * @ignore
+   * Used to control the button's purpose.
+   * This property passes the value to the `type` attribute of the native button component.
+   * Valid property values include `button`, `submit`, and `reset`.
    */
   type: PropTypes.string,
 };

@@ -6,7 +6,7 @@ They don't rely on any global style-sheets such as [normalize.css](https://githu
 although Material-UI does provide an optional [CssBaseline](/style/css-baseline) component.
 
 You can use any of the components as demonstrated in the documentation.
-Please refer to each component's [demo page](/demos/app-bar/) to see how they should be imported.
+Please refer to each component's [demo page](/demos/buttons/) to see how they should be imported.
 
 ## Quick start
 

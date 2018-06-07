@@ -189,7 +189,7 @@ TextField.propTypes = {
    */
   InputProps: PropTypes.object,
   /**
-   * Properties applied to the native `input` element.
+   * Attributes applied to the native `input` element.
    */
   inputProps: PropTypes.object,
   /**

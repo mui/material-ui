@@ -79,8 +79,7 @@ const pages = [
         pathname: '/layout/hidden',
       },
       {
-        pathname: '/layout/css-in-js',
-        title: 'CSS in JS',
+        pathname: '/layout/breakpoints',
       },
     ],
   },

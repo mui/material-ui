@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
-import withWidth from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
+import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
   root: {
     padding: theme.spacing.unit,
+    [theme.breakpoints.down('sm')]: {
+      backgroundColor: theme.palette.secondary.main,
+    },
     [theme.breakpoints.up('md')]: {
       backgroundColor: theme.palette.primary.main,
     },
-    [theme.breakpoints.down('sm')]: {
-      backgroundColor: theme.palette.secondary.main,
+    [theme.breakpoints.up('lg')]: {
+      backgroundColor: green[500],
     },
   },
 });
@@ -22,17 +24,15 @@ function MediaQuery(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="subheading">{`Current width: ${props.width}`}</Typography>
+      <Typography variant="subheading">{'down(sm): red'}</Typography>
+      <Typography variant="subheading">{'up(md): blue'}</Typography>
+      <Typography variant="subheading">{'up(lg): green'}</Typography>
     </div>
   );
 }
 
 MediaQuery.propTypes = {
   classes: PropTypes.object.isRequired,
-  width: PropTypes.string.isRequired,
 };
 
-export default compose(
-  withStyles(styles),
-  withWidth(),
-)(MediaQuery);
+export default withStyles(styles)(MediaQuery);
