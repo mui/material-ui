@@ -152,7 +152,7 @@ class Tabs extends React.Component {
   getTabMeta = () => {
     const { props, tabs } = this;
     const { value } = props;
-    if (tabs && value !== false) {
+    if (tabs) {
       const children = tabs.children[0].children;
       if (children.length > 0) {
         const tab = children[this.valueToIndex[value]];
@@ -165,7 +165,7 @@ class Tabs extends React.Component {
         };
       }
     }
-    return null;
+    return undefined;
   };
 
   getTabsMeta = () => {
@@ -183,7 +183,7 @@ class Tabs extends React.Component {
         right: rect.right,
       };
     }
-    return null;
+    return undefined;
   };
 
   tabs = undefined;
