@@ -142,6 +142,7 @@ class Tab extends React.Component {
       icon,
       indicator,
       label: labelProp,
+      staticLabel,
       onChange,
       selected,
       textColor,
