@@ -18,6 +18,7 @@ Feel free to submit a pull-request to add more projects; we will accept them if 
 ## Complementary Projects
 
 - [react-admin](https://github.com/marmelab/react-admin) An admin framework combining material-ui with Redux, redux-form, redux-saga, and recompose
+- [react-most-wanted](https://github.com/TarikHuber/react-most-wanted) Starter kit for a Create React App project (without ejecting you) using Material-UI, redux, Firebase and more with all "Most Wanted" features.
 - [react-autosuggest](https://github.com/moroshko/react-autosuggest) WAI-ARIA compliant React autosuggest component.
 - [react-number-format](https://github.com/s-yadav/react-number-format) React component to format numbers in an input or as a text.
 - [react-popper](https://github.com/FezVrasta/react-popper) React wrapper around PopperJS.
