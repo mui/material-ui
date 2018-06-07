@@ -275,7 +275,7 @@ class Input extends React.Component {
 
   componentDidMount() {
     if (!this.isControlled) {
-      this.checkDirty(this.input);
+      this.checkDirty(this.currentInput());
     }
   }
 
@@ -311,7 +311,7 @@ class Input extends React.Component {
 
   handleChange = event => {
     if (!this.isControlled) {
-      this.checkDirty(this.input);
+      this.checkDirty(this.currentInput());
     }
 
     // Perform in the willUpdate
@@ -323,11 +323,26 @@ class Input extends React.Component {
   handleRefInput = node => {
     this.input = node;
 
-    if (this.props.inputRef) {
-      this.props.inputRef(node);
-    } else if (this.props.inputProps && this.props.inputProps.ref) {
-      this.props.inputProps.ref(node);
+    const { inputRef, inputProps } = this.props;
+    const refCallback = inputRef || (inputProps && inputProps.ref);
+
+    if (refCallback) {
+      refCallback(node);
     }
+  };
+
+  ref = () => {
+    const { inputRef, inputProps } = this.props;
+    const ref = inputRef || (inputProps && inputProps.ref);
+
+    return ref === undefined || typeof ref === 'function' ? this.handleRefInput : ref;
+  };
+
+  currentInput = () => {
+    const { inputRef, inputProps } = this.props;
+    const ref = inputRef || (inputProps && inputProps.ref);
+
+    return ref === undefined || typeof ref === 'function' ? this.input : ref;
   };
 
   checkDirty(obj) {
@@ -421,7 +436,7 @@ class Input extends React.Component {
     let InputComponent = 'input';
     let inputProps = {
       ...inputPropsProp,
-      ref: this.handleRefInput,
+      ref: this.ref(),
     };
 
     if (inputComponent) {
@@ -429,7 +444,7 @@ class Input extends React.Component {
       inputProps = {
         // Rename ref to inputRef as we don't know the
         // provided `inputComponent` structure.
-        inputRef: this.handleRefInput,
+        inputRef: this.ref(),
         ...inputProps,
         ref: null,
       };
@@ -439,7 +454,7 @@ class Input extends React.Component {
       } else {
         inputProps = {
           rowsMax,
-          textareaRef: this.handleRefInput,
+          textareaRef: this.ref(),
           ...inputProps,
           ref: null,
         };
@@ -541,7 +556,7 @@ Input.propTypes = {
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
