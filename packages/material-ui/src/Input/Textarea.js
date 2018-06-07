@@ -142,6 +142,14 @@ class Textarea extends React.Component {
     }
   };
 
+  ref = () => {
+    const { textareaRef } = this.props;
+
+    return textareaRef === undefined || typeof textareaRef === 'function'
+      ? this.handleRefInput
+      : textareaRef;
+  };
+
   render() {
     const {
       classes,
@@ -183,7 +191,7 @@ class Textarea extends React.Component {
           defaultValue={defaultValue}
           value={value}
           onChange={this.handleChange}
-          ref={this.handleRefInput}
+          ref={this.ref()}
           {...other}
         />
       </div>
@@ -224,7 +232,7 @@ Textarea.propTypes = {
   /**
    * Use that property to pass a ref callback to the native textarea element.
    */
-  textareaRef: PropTypes.func,
+  textareaRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore
    */
