@@ -471,4 +471,18 @@ describe('<Input />', () => {
       assert.strictEqual(wrapper.childAt(1).type(), InputAdornment);
     });
   });
+
+  describe('prop: inputRef', () => {
+    it('should be able to return the input node via a ref object', () => {
+      const ref = React.createRef();
+      mount(<Input inputRef={ref} />);
+      assert.strictEqual(ref.current.tagName, 'INPUT');
+    });
+
+    it('should be able to return the textarea node via a ref object', () => {
+      const ref = React.createRef();
+      mount(<Input multiline inputRef={ref} />);
+      assert.strictEqual(ref.current.tagName, 'TEXTAREA');
+    });
+  });
 });
