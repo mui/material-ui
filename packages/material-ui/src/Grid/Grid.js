@@ -327,18 +327,12 @@ Grid.defaultProps = {
   zeroMinWidth: false,
 };
 
-// Add a wrapper component to generate some helper messages in the development
-// environment.
-/* eslint-disable react/no-multi-comp */
-// eslint-disable-next-line import/no-mutable-exports
-let GridWrapper = withStyles(styles, { name: 'MuiGrid' })(Grid);
+const StyledGrid = withStyles(styles, { name: 'MuiGrid' })(Grid);
 
 if (process.env.NODE_ENV !== 'production') {
-  const GridStyled = GridWrapper;
-  GridWrapper = props => <GridStyled {...props} />;
-
   const requireProp = requirePropFactory('Grid');
-  GridWrapper.propTypes = {
+  StyledGrid.propTypes = {
+    ...StyledGrid.propTypes,
     alignContent: requireProp('container'),
     alignItems: requireProp('container'),
     direction: requireProp('container'),
@@ -351,8 +345,6 @@ if (process.env.NODE_ENV !== 'production') {
     xs: requireProp('item'),
     zeroMinWidth: requireProp('zeroMinWidth'),
   };
-  GridWrapper.Naked = GridStyled;
-  GridWrapper.options = GridStyled.options;
 }
 
-export default GridWrapper;
+export default StyledGrid;
