@@ -22,7 +22,7 @@ filename: /packages/material-ui/src/internal/SwitchBase.js
 | <span class="prop-name">indeterminate</span> | <span class="prop-type">bool |   | If `true`, the component appears indeterminate. |
 | <span class="prop-name">indeterminateIcon</span> | <span class="prop-type">node |   | The icon to display when the component is indeterminate. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object |   | Attributes applied to the `input` element. |
-| <span class="prop-name">inputRef</span> | <span class="prop-type">func |   | Use that property to pass a ref callback to the native input component. |
+| <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> |   | Use that property to pass a ref callback to the native input component. |
 | <span class="prop-name">name</span> | <span class="prop-type">string |   |  |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.checked`.<br>*checked:* The `checked` value of the switch |
 | <span class="prop-name">type</span> | <span class="prop-type">string | <span class="prop-default">'checkbox'</span> | The input component property `type`. |

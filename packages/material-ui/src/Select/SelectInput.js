@@ -142,16 +142,24 @@ class SelectInput extends React.Component {
     this.updateDisplayWidth();
   };
 
-  handleSelectRef = node => {
-    if (!this.props.inputRef) {
+  handleInputRef = node => {
+    const { inputRef } = this.props;
+
+    if (!inputRef) {
       return;
     }
 
-    this.props.inputRef({
+    const nodeProxy = {
       node,
       // By pass the native input as we expose a rich object (array).
       value: this.props.value,
-    });
+    };
+
+    if (typeof inputRef === 'function') {
+      inputRef(nodeProxy);
+    } else {
+      inputRef.current = nodeProxy;
+    }
   };
 
   render() {
@@ -276,7 +284,7 @@ class SelectInput extends React.Component {
           value={Array.isArray(value) ? value.join(',') : value}
           name={name}
           readOnly={readOnly}
-          ref={this.handleSelectRef}
+          ref={this.handleInputRef}
           type={type}
           {...other}
         />
@@ -345,7 +353,7 @@ SelectInput.propTypes = {
   /**
    * Use that property to pass a ref callback to the native select element.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the `Menu` element.
    */

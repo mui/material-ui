@@ -181,7 +181,7 @@ SwitchBase.propTypes = {
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /*
    * @ignore
    */

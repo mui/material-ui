@@ -323,10 +323,20 @@ class Input extends React.Component {
   handleRefInput = node => {
     this.input = node;
 
+    let ref;
+
     if (this.props.inputRef) {
-      this.props.inputRef(node);
+      ref = this.props.inputRef;
     } else if (this.props.inputProps && this.props.inputProps.ref) {
-      this.props.inputProps.ref(node);
+      ref = this.props.inputProps.ref;
+    }
+
+    if (ref) {
+      if (typeof ref === 'function') {
+        ref(node);
+      } else {
+        ref.current = node;
+      }
     }
   };
 
@@ -541,7 +551,7 @@ Input.propTypes = {
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.

@@ -25,7 +25,7 @@ filename: /packages/material-ui/src/Input/Input.js
 | <span class="prop-name">id</span> | <span class="prop-type">string |   | The id of the `input` element. |
 | <span class="prop-name">inputComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> |   | The component used for the native input. Either a string to use a DOM element or a component. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object |   | Attributes applied to the `input` element. |
-| <span class="prop-name">inputRef</span> | <span class="prop-type">func |   | Use that property to pass a ref callback to the native input component. |
+| <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> |   | Use that property to pass a ref callback to the native input component. |
 | <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> |   | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | <span class="prop-name">multiline</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, a textarea element will be rendered. |
 | <span class="prop-name">name</span> | <span class="prop-type">string |   | Name attribute of the `input` element. |
