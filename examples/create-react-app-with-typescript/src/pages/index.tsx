@@ -17,7 +17,7 @@ const styles: StyleRulesCallback<'root'> = theme => ({
 });
 
 type State = {
-  open: boolean,
+  open: boolean;
 };
 
 class Index extends React.Component<WithStyles<'root'>, State> {
@@ -65,4 +65,4 @@ class Index extends React.Component<WithStyles<'root'>, State> {
   }
 }
 
-export default withRoot(withStyles(styles) < {} > (Index));
+export default withRoot(withStyles(styles)<{}>(Index));
