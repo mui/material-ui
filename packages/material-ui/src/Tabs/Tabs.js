@@ -125,42 +125,58 @@ class Tabs extends React.Component {
     return conditionalElements;
   };
 
-  getTabsMetaStaticLabel = refreshTabMeta => {
-    const { tabMeta, tabsMeta } = this.state;
-    if (refreshTabMeta) return this.getTabsMeta();
-    return { tabMeta, tabsMeta };
+  getMeta = refreshTabMeta => {
+    if (this.props.staticLabel) return this.getMetaStaticLabel(refreshTabMeta);
+    return {
+      tabMeta: this.getTabMeta(),
+      tabsMeta: this.getTabsMeta(),
+    };
   };
 
-  getTabMeta = () => {};
+  getMetaStaticLabel = refreshTabMeta => {
+    const { tabMeta, tabsMeta } = this.state;
+    if (!refreshTabMeta) return { tabMeta, tabsMeta };
+    return {
+      tabsMeta,
+      tabMeta: this.getTabMeta(),
+    };
+  };
 
-  getTabsMeta = refreshTabMeta => {
-    const { props, state, tabs } = this;
-    const { theme, value } = props;
-    const { tabMeta, tabsMeta } = state;
-    const returnValue = { tabMeta, tabsMeta };
-    if (tabs) {
-      if (!tabsMeta) {
-        const tabsRect = this.tabs.getBoundingClientRect();
-        // create a new object with ClientRect class props + scrollLeft
-        returnValue.tabsMeta = {
-          clientWidth: tabs.clientWidth,
-          scrollLeft: tabs.scrollLeft,
-          scrollLeftNormalized: getNormalizedScrollLeft(tabs, theme.direction),
-          scrollWidth: tabs.scrollWidth,
-          left: tabsRect.left,
-          right: tabsRect.right,
+  getTabMeta = () => {
+    const { props, tabs } = this;
+    const { value } = props;
+    if (tabs && value !== false) {
+      const children = tabs.children[0].children;
+      if (children.length > 0) {
+        const tab = children[this.valueToIndex[value]];
+        warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
+        const rect = tab.getBoundingClientRect();
+        return {
+          width: rect.width,
+          left: rect.left,
+          right: rect.right,
         };
       }
-      if (value !== false && (!tabMeta || refreshTabMeta)) {
-        const children = tabs.children[0].children;
-        if (children.length > 0) {
-          const tab = children[this.valueToIndex[value]];
-          warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
-          returnValue.tabMeta = tab.getBoundingClientRect();
-        }
-      }
     }
-    return returnValue;
+    return null;
+  };
+
+  getTabsMeta = () => {
+    const { props, tabs } = this;
+    const { theme } = props;
+    if (tabs) {
+      const rect = this.tabs.getBoundingClientRect();
+      // create a new object with ClientRect class props + scrollLeft
+      return {
+        clientWidth: tabs.clientWidth,
+        scrollLeft: tabs.scrollLeft,
+        scrollLeftNormalized: getNormalizedScrollLeft(tabs, theme.direction),
+        scrollWidth: tabs.scrollWidth,
+        left: rect.left,
+        right: rect.right,
+      };
+    }
+    return null;
   };
 
   tabs = undefined;
@@ -207,9 +223,9 @@ class Tabs extends React.Component {
     }
   };
 
-  updateIndicatorState(props) {
-    const { theme } = props;
-    const { tabsMeta, tabMeta } = this.getTabsMeta(false);
+  updateIndicatorState({ theme }) {
+    const { tabsMeta, tabMeta } = this.getMeta(false);
+
     let left = 0;
 
     if (tabMeta && tabsMeta) {
@@ -237,7 +253,7 @@ class Tabs extends React.Component {
   }
 
   scrollSelectedIntoView = () => {
-    const { tabsMeta, tabMeta } = this.getTabsMeta(true);
+    const { tabsMeta, tabMeta } = this.getMeta(true);
 
     if (!tabMeta || !tabsMeta) {
       return;
