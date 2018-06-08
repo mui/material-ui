@@ -27,6 +27,7 @@ export default class CustomDateTimePicker extends PureComponent {
             ampm={false}
             showTabs={false}
             autoSubmit={false}
+            allowKeyboardControl={false}
             disableFuture
             fadeTimeout={0}
             value={selectedDate}
