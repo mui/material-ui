@@ -33,6 +33,7 @@ export const DateTimePickerWrapper = (props) => {
     animateYearScrolling,
     fadeTimeout,
     forwardedRef,
+    allowKeyboardControl,
     ...other
   } = props;
 
@@ -66,6 +67,7 @@ export const DateTimePickerWrapper = (props) => {
             {...other}
           >
             <DateTimePicker
+              allowKeyboardControl={allowKeyboardControl}
               ampm={ampm}
               animateYearScrolling={animateYearScrolling}
               autoSubmit={autoSubmit}
@@ -135,6 +137,8 @@ DateTimePickerWrapper.propTypes = {
   openTo: PropTypes.oneOf(['year', 'date', 'hour', 'minutes']),
   /** Switching hour/minutes animation timeout in milliseconds (set 0 to disable) */
   fadeTimeout: PropTypes.number,
+  /** Enables keyboard listener for moving between days in calendar */
+  allowKeyboardControl: PropTypes.bool,
   forwardedRef: PropTypes.func,
 };
 
@@ -159,6 +163,7 @@ DateTimePickerWrapper.defaultProps = {
   animateYearScrolling: false,
   fadeTimeout: 400,
   forwardedRef: undefined,
+  allowKeyboardControl: true,
 };
 
 const styles = {

@@ -23,9 +23,10 @@ export default class ModalWrapper extends PureComponent {
     clearable: PropTypes.bool,
     /** "Today" label message */
     todayLabel: PropTypes.string,
-    /** If true today button will be displayed
+    /**
+     * If true today button will be displayed
      * <b>Note*</b> that clear button has higher priority
-     */
+    */
     showTodayButton: PropTypes.bool,
     /** On open callback */
     onOpen: PropTypes.func,
