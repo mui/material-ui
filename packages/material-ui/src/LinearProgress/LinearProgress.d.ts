@@ -7,7 +7,7 @@ export interface LinearProgressProps
   value?: number;
   valueBuffer?: number;
   variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
-  styles: {};
+  styles?: React.CSSProperties;
 }
 
 export type LinearProgressClassKey =
@@ -20,6 +20,8 @@ export type LinearProgressClassKey =
   | 'dashedColorPrimary'
   | 'dashedColorSecondary'
   | 'bar'
+  | 'bar1'
+  | 'bar2'
   | 'barColorPrimary'
   | 'barColorSecondary'
   | 'bar1Indeterminate'
