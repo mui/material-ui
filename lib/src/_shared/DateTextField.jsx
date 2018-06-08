@@ -93,9 +93,9 @@ export class DateTextField extends PureComponent {
     /** Input mask, used in keyboard mode read more <a href="https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme">here</a> */
     mask: PropTypes.any,
     /** Error message, shown if date is less then minimal date */
-    minDateMessage: PropTypes.string,
+    minDateMessage: PropTypes.node,
     /** Error message, shown if date is more then maximal date */
-    maxDateMessage: PropTypes.string,
+    maxDateMessage: PropTypes.node,
     /** Error message, shown if date is invalid */
     invalidLabel: PropTypes.string,
     /** Message displaying in text field, if null passed */
@@ -109,7 +109,7 @@ export class DateTextField extends PureComponent {
     /** enables/disable automatic opening of the picker when the user clicks enter */
     disableOpenOnEnter: PropTypes.bool,
     /** Message, appearing when date cannot be parsed */
-    invalidDateMessage: PropTypes.string,
+    invalidDateMessage: PropTypes.node,
     /** Component that should replace the default Material-UI TextField */
     TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     /** Props to pass to keyboard input adornment */
