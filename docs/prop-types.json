@@ -5,6 +5,24 @@
       "displayName": "Calendar",
       "methods": [
         {
+          "name": "getDerivedStateFromProps",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "nextProps",
+              "type": null
+            },
+            {
+              "name": "state",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
           "name": "onDateSelect",
           "docblock": null,
           "modifiers": [],
@@ -235,6 +253,17 @@
           },
           "required": true,
           "description": ""
+        },
+        "allowKeyboardControl": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
         }
       }
     }
@@ -524,6 +553,17 @@
             "value": "undefined",
             "computed": true
           }
+        },
+        "allowKeyboardControl": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
         }
       }
     }
@@ -565,6 +605,17 @@
             "computed": false
           }
         },
+        "minDateMessage": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Error message displaying if date is before minimal date",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
         "maxDate": {
           "type": {
             "name": "custom",
@@ -575,6 +626,17 @@
           "defaultValue": {
             "value": "'2100-01-01'",
             "computed": false
+          }
+        },
+        "maxDateMessage": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Error message displaying if date is after maximal date",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
           }
         },
         "format": {
@@ -700,6 +762,28 @@
           },
           "required": false,
           "description": "Disable specific date",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "allowKeyboardControl": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Allow control calendar by keyboard",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "forwardedRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1135,19 +1219,38 @@
         }
       ],
       "props": {
-        "date": {
+        "allowKeyboardControl": {
           "type": {
-            "name": "object"
+            "name": "bool"
           },
-          "required": true,
-          "description": ""
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
         },
-        "onChange": {
+        "ampm": {
           "type": {
-            "name": "func"
+            "name": "bool"
           },
-          "required": true,
-          "description": ""
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "animateYearScrolling": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
         },
         "autoSubmit": {
           "type": {
@@ -1160,24 +1263,29 @@
             "computed": false
           }
         },
-        "openTo": {
+        "classes": {
           "type": {
-            "name": "enum",
-            "computed": true,
-            "value": "Object.keys(viewType).map(key => viewType[key])"
+            "name": "object"
           },
           "required": true,
           "description": ""
         },
-        "disablePast": {
+        "date": {
           "type": {
-            "name": "bool"
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "dateRangeIcon": {
+          "type": {
+            "name": "node"
           },
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "false",
-            "computed": false
+            "value": "undefined",
+            "computed": true
           }
         },
         "disableFuture": {
@@ -1191,13 +1299,34 @@
             "computed": false
           }
         },
-        "minDate": {
+        "disablePast": {
           "type": {
-            "name": "custom",
-            "raw": "DomainPropTypes.date.isRequired"
+            "name": "bool"
           },
           "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "fadeTimeout": {
+          "type": {
+            "name": "number"
+          },
+          "required": true,
           "description": ""
+        },
+        "leftArrowIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
         },
         "maxDate": {
           "type": {
@@ -1207,20 +1336,33 @@
           "required": false,
           "description": ""
         },
-        "showTabs": {
+        "minDate": {
           "type": {
-            "name": "bool"
+            "name": "custom",
+            "raw": "DomainPropTypes.date.isRequired"
           },
           "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "true",
-            "computed": false
-          }
+          "description": ""
         },
-        "leftArrowIcon": {
+        "onChange": {
           "type": {
-            "name": "node"
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "openTo": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "Object.keys(viewType).map(key => viewType[key])"
+          },
+          "required": true,
+          "description": ""
+        },
+        "renderDay": {
+          "type": {
+            "name": "func"
           },
           "required": false,
           "description": "",
@@ -1240,15 +1382,26 @@
             "computed": true
           }
         },
-        "dateRangeIcon": {
+        "shouldDisableDate": {
           "type": {
-            "name": "node"
+            "name": "func"
           },
           "required": false,
           "description": "",
           "defaultValue": {
             "value": "undefined",
             "computed": true
+          }
+        },
+        "showTabs": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
           }
         },
         "timeIcon": {
@@ -1262,65 +1415,7 @@
             "computed": true
           }
         },
-        "renderDay": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
         "utils": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "ampm": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "true",
-            "computed": false
-          }
-        },
-        "shouldDisableDate": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "animateYearScrolling": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "fadeTimeout": {
-          "type": {
-            "name": "number"
-          },
-          "required": true,
-          "description": ""
-        },
-        "classes": {
           "type": {
             "name": "object"
           },
@@ -1760,6 +1855,28 @@
           "defaultValue": {
             "value": "400",
             "computed": false
+          }
+        },
+        "allowKeyboardControl": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Allow control calendar by keyboard",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "forwardedRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
           }
         }
       }
@@ -2349,6 +2466,17 @@
             "value": "400",
             "computed": false
           }
+        },
+        "forwardedRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
         }
       }
     }
@@ -2359,9 +2487,11 @@
       "displayName": "DateTextField",
       "methods": [
         {
-          "name": "getDisplayDate",
+          "name": "updateState",
           "docblock": null,
-          "modifiers": [],
+          "modifiers": [
+            "static"
+          ],
           "params": [
             {
               "name": "props",
@@ -2371,28 +2501,12 @@
           "returns": null
         },
         {
-          "name": "getError",
+          "name": "commitUpdates",
           "docblock": null,
           "modifiers": [],
           "params": [
             {
               "name": "value",
-              "type": null
-            },
-            {
-              "name": "props",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "updateState",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "props",
               "type": null
             }
           ],
@@ -2833,6 +2947,13 @@
           "required": true,
           "description": ""
         },
+        "onKeyDown": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
         "onAccept": {
           "type": {
             "name": "func"
@@ -3006,7 +3127,22 @@
     {
       "description": "",
       "displayName": "MuiPickersUtilsProvider",
-      "methods": [],
+      "methods": [
+        {
+          "name": "getDerivedStateFromProps",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "{ utils: Utils, locale, moment }",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
       "props": {
         "utils": {
           "type": {
@@ -3036,7 +3172,18 @@
         },
         "children": {
           "type": {
-            "name": "element"
+            "name": "union",
+            "value": [
+              {
+                "name": "element"
+              },
+              {
+                "name": "arrayOf",
+                "value": {
+                  "name": "element"
+                }
+              }
+            ]
           },
           "required": true,
           "description": ""
@@ -3060,6 +3207,18 @@
       "description": "",
       "displayName": "ModalWrapper",
       "methods": [
+        {
+          "name": "handleKeyDown",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
         {
           "name": "handleSetTodayDate",
           "docblock": null,

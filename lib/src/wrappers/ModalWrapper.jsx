@@ -10,22 +10,23 @@ export default class ModalWrapper extends PureComponent {
     /** Picker value */
     value: DomainPropTypes.date,
     /** Format string */
-    invalidLabel: PropTypes.string,
+    invalidLabel: PropTypes.node,
     /** Function for dynamic rendering label (date, invalidLabel) => string */
     labelFunc: PropTypes.func,
     /** "OK" label message */
-    okLabel: PropTypes.string,
+    okLabel: PropTypes.node,
     /** "Cancel" label message */
-    cancelLabel: PropTypes.string,
+    cancelLabel: PropTypes.node,
     /** "Clear" label message */
-    clearLabel: PropTypes.string,
+    clearLabel: PropTypes.node,
     /** If true clear button will be displayed */
     clearable: PropTypes.bool,
     /** "Today" label message */
     todayLabel: PropTypes.string,
-    /** If true today button will be displayed
+    /**
+     * If true today button will be displayed
      * <b>Note*</b> that clear button has higher priority
-     */
+    */
     showTodayButton: PropTypes.bool,
     /** On open callback */
     onOpen: PropTypes.func,

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Code from '_shared/Code';
-import { Typography, withStyles } from 'material-ui';
+import { Typography, withStyles } from '@material-ui/core';
 
 // eslint-disable-next-line
 import quickStartCode from '!raw-loader!Examples/CodeSnippets/QuickStart';
@@ -36,7 +36,7 @@ const Usage = ({ classes }) => (
 
     <iframe
       title="codesandbox"
-      src="https://codesandbox.io/embed/l2ykr7kwvz?hidenavigation=1&fontsize=14&view=preview"
+      src="https://codesandbox.io/embed/42kyyw2pmx?hidenavigation=1&fontsize=14&view=preview"
       style={{
         width: '100%',
         height: 650,

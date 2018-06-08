@@ -10,7 +10,7 @@ Available as npm package.
 npm install material-ui-pickers -S
 ```
 
-Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/) and [date-fns](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns, because it much more lightweight and will be correctly tree-shaked from the bundle. Note, that we support only 2.0.0-alpha.7 version of date-fns for now (see  #414). Stay tuned!
+Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/) and [date-fns](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns, because it's much more lightweight and will be correctly tree-shaked from the bundle. Note, that we support only the 2.0.0-alpha.7 version of date-fns for now (see  #414). Stay tuned!
 
 ```sh
 npm i -s date-fns@2.0.0-alpha.7
@@ -20,7 +20,7 @@ npm i moment -s
 npm i luxon -s
 ```
 
-Then teach pickers which library to use with `MuiPickerUtilsProvider`. This component takes an utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.
+Then teach pickers which library to use with `MuiPickerUtilsProvider`. This component takes a utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.
 
 ```jsx
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
@@ -39,7 +39,7 @@ function App() {
 render(<App />, document.querySelector('#app'));
 ```
 
-And the last step of installation would be an icon font. By default we relying on material-icons font, but its possible to override any icons with a help of corresponding props.
+And the last step of installation would be an icon font. By default, we are relying on material-icons font, but it's possible to override any icons with the help of corresponding props.
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

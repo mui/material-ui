@@ -30,6 +30,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
           value={selectedDate}
           onChange={this.handleChange}
           animateYearScrolling={false}
+          maxDateMessage={<div> Some component </div>}
         />
       </MuiUtilsProvider>
     );

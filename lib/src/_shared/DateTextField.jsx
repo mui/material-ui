@@ -10,7 +10,65 @@ import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
 import withUtils from '../_shared/WithUtils';
 
-/* eslint-disable react/sort-comp */
+const getDisplayDate = (props) => {
+  const {
+    utils, value, format, invalidLabel, emptyLabel, labelFunc,
+  } = props;
+
+  const isEmpty = value === null;
+  const date = utils.date(value);
+
+  if (labelFunc) {
+    return labelFunc(isEmpty ? null : date, invalidLabel);
+  }
+
+  if (isEmpty) {
+    return emptyLabel;
+  }
+
+  return utils.isValid(date)
+    ? utils.format(date, format)
+    : invalidLabel;
+};
+
+const getError = (value, props) => {
+  const {
+    utils,
+    maxDate,
+    minDate,
+    disablePast,
+    disableFuture,
+    maxDateMessage,
+    minDateMessage,
+    invalidDateMessage,
+  } = props;
+
+  if (!utils.isValid(value)) {
+    // if null - do not show error
+    if (utils.isNull(value)) {
+      return '';
+    }
+
+    return invalidDateMessage;
+  }
+
+  if (
+    (maxDate && utils.isAfter(value, maxDate)) ||
+    (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
+  ) {
+    return maxDateMessage;
+  }
+
+  if (
+    (minDate && utils.isBefore(value, minDate)) ||
+    (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
+  ) {
+    return minDateMessage;
+  }
+
+  return '';
+};
+
 export class DateTextField extends PureComponent {
   static propTypes = {
     classes: PropTypes.shape({}).isRequired,
@@ -35,9 +93,9 @@ export class DateTextField extends PureComponent {
     /** Input mask, used in keyboard mode read more <a href="https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme">here</a> */
     mask: PropTypes.any,
     /** Error message, shown if date is less then minimal date */
-    minDateMessage: PropTypes.string,
+    minDateMessage: PropTypes.node,
     /** Error message, shown if date is more then maximal date */
-    maxDateMessage: PropTypes.string,
+    maxDateMessage: PropTypes.node,
     /** Error message, shown if date is invalid */
     invalidLabel: PropTypes.string,
     /** Message displaying in text field, if null passed */
@@ -51,7 +109,7 @@ export class DateTextField extends PureComponent {
     /** enables/disable automatic opening of the picker when the user clicks enter */
     disableOpenOnEnter: PropTypes.bool,
     /** Message, appearing when date cannot be parsed */
-    invalidDateMessage: PropTypes.string,
+    invalidDateMessage: PropTypes.node,
     /** Component that should replace the default Material-UI TextField */
     TextFieldComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     /** Props to pass to keyboard input adornment */
@@ -89,92 +147,29 @@ export class DateTextField extends PureComponent {
     adornmentPosition: 'end',
   }
 
-  getDisplayDate = (props) => {
-    const {
-      utils, value, format, invalidLabel, emptyLabel, labelFunc,
-    } = props;
-
-    const isEmpty = value === null;
-    const date = utils.date(value);
-
-    if (labelFunc) {
-      return labelFunc(isEmpty ? null : date, invalidLabel);
-    }
-
-    if (isEmpty) {
-      return emptyLabel;
-    }
-
-    return utils.isValid(date)
-      ? utils.format(date, format)
-      : invalidLabel;
-  }
-
-  getError = (value, props = this.props) => {
-    const {
-      utils,
-      maxDate,
-      minDate,
-      disablePast,
-      disableFuture,
-      maxDateMessage,
-      minDateMessage,
-      invalidDateMessage,
-    } = props;
-
-    if (!utils.isValid(value)) {
-      // if null - do not show error
-      if (utils.isNull(value)) {
-        return '';
-      }
-
-      return invalidDateMessage;
-    }
-
-    if (
-      (maxDate && utils.isAfter(value, maxDate)) ||
-      (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
-    ) {
-      return maxDateMessage;
-    }
-
-    if (
-      (minDate && utils.isBefore(value, minDate)) ||
-      (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
-    ) {
-      return minDateMessage;
-    }
-
-    return '';
-  }
-
-  updateState = (props = this.props) => ({
+  static updateState = props => ({
     value: props.value,
-    displayValue: this.getDisplayDate(props),
-    error: this.getError(props.utils.date(props.value), props),
-  })
+    displayValue: getDisplayDate(props),
+    error: getError(props.utils.date(props.value), props),
+  });
 
-  state = this.updateState()
+  state = DateTextField.updateState(this.props)
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     if (
-      nextProps.value !== this.state.value ||
-      nextProps.format !== this.props.format ||
-      nextProps.maxDate !== this.props.maxDate ||
-      nextProps.minDate !== this.props.minDate ||
-      nextProps.emptyLabel !== this.props.emptyLabel ||
-      nextProps.utils !== this.props.utils
+      !this.props.utils.isEqual(this.props.value, prevProps.value) ||
+      prevProps.format !== this.props.format ||
+      prevProps.maxDate !== this.props.maxDate ||
+      prevProps.minDate !== this.props.minDate ||
+      prevProps.emptyLabel !== this.props.emptyLabel ||
+      prevProps.utils !== this.props.utils
     ) {
-      this.setState(this.updateState(nextProps));
+      /* eslint-disable-next-line react/no-did-update-set-state */
+      this.setState(DateTextField.updateState(this.props));
     }
   }
 
-  handleBlur = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
-  handleChange = (e) => {
+  commitUpdates = (value) => {
     const {
       clearable,
       onClear,
@@ -183,9 +178,9 @@ export class DateTextField extends PureComponent {
       onError,
     } = this.props;
 
-    if (e.target.value === '') {
+    if (value === '') {
       if (this.props.value === null) {
-        this.setState(this.updateState());
+        this.setState(DateTextField.updateState(this.props));
       } else if (clearable && onClear) {
         onClear();
       }
@@ -194,16 +189,15 @@ export class DateTextField extends PureComponent {
     }
 
     const oldValue = utils.date(this.state.value);
-    const newValue = utils.parse(e.target.value, format);
-
-    const error = this.getError(newValue);
+    const newValue = utils.parse(value, format);
+    const error = getError(newValue, this.props);
 
     this.setState({
-      displayValue: e.target.value,
-      value: error ? newValue : oldValue,
       error,
+      displayValue: value,
+      value: error ? newValue : oldValue,
     }, () => {
-      if (!error && utils.format(newValue, 'LLLL') !== utils.format(oldValue, 'LLLL')) {
+      if (!error && !utils.isEqual(newValue, oldValue)) {
         this.props.onChange(newValue);
       }
 
@@ -213,22 +207,41 @@ export class DateTextField extends PureComponent {
     });
   }
 
+  handleBlur = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (e.target.tagName.toLowerCase() === 'input') {
+      this.commitUpdates(e.target.value);
+    }
+  };
+
+  handleChange = (e) => {
+    const { utils, format } = this.props;
+    const parsedValue = utils.parse(e.target.value, format);
+
+    this.setState({
+      displayValue: e.target.value,
+      error: getError(parsedValue, this.props),
+    });
+  }
+
   handleFocus = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    const { keyboard } = this.props;
 
-    if (keyboard) {
-      return;
+    if (!this.props.keyboard) {
+      this.openPicker(e);
     }
-
-
-    this.openPicker(e);
   }
 
   handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !this.props.disableOpenOnEnter) {
-      this.openPicker(e);
+    if (e.key === 'Enter') {
+      if (!this.props.disableOpenOnEnter) {
+        this.openPicker(e);
+      } else {
+        this.commitUpdates(e.target.value);
+      }
     }
   }
 
@@ -242,48 +255,52 @@ export class DateTextField extends PureComponent {
 
   render() {
     const {
-      utils,
-      format,
-      classes,
-      disabled,
-      onClick,
-      invalidLabel,
-      invalidDateMessage,
-      clearable,
-      onClear,
-      emptyLabel,
-      labelFunc,
-      keyboard,
-      value,
-      mask,
-      InputProps,
-      keyboardIcon,
-      maxDate,
-      minDate,
-      disablePast,
-      disableFuture,
-      maxDateMessage,
-      minDateMessage,
-      TextFieldComponent,
-      InputAdornmentProps,
       adornmentPosition,
+      classes,
+      clearable,
+      disabled,
+      disableFuture,
       disableOpenOnEnter,
+      disablePast,
+      emptyLabel,
+      format,
+      InputAdornmentProps,
+      InputProps,
+      invalidDateMessage,
+      invalidLabel,
+      keyboard,
+      keyboardIcon,
+      labelFunc,
+      mask,
+      maxDate,
+      maxDateMessage,
+      minDate,
+      minDateMessage,
+      onClear,
+      onClick,
+      TextFieldComponent,
+      utils,
+      value,
       ...other
     } = this.props;
 
     const { displayValue, error } = this.state;
     const localInputProps = {
+      className: classes.input,
       inputComponent: MaskedInput,
       inputProps: {
         mask: !keyboard ? null : mask,
         readOnly: !keyboard,
       },
-      className: classes.input,
     };
 
     if (keyboard) {
       localInputProps[`${adornmentPosition}Adornment`] = (
-        <InputAdornment position={adornmentPosition} {...InputAdornmentProps} disabled={disabled}>
+        <InputAdornment
+          position={adornmentPosition}
+          {...InputAdornmentProps}
+          disabled={disabled}
+        >
           <IconButton onClick={this.openPicker}> <Icon> {keyboardIcon} </Icon> </IconButton>
         </InputAdornment>
       );

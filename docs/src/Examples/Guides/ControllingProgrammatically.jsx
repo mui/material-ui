@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'material-ui-pickers/DatePicker';
 
-import Button from 'material-ui/Button';
-import withStyles from 'material-ui/styles/withStyles';
+import Button from '@material-ui/core/Button';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 class ControllingProgrammaticallyExample extends PureComponent {
   static propTypes = {
@@ -19,7 +19,7 @@ class ControllingProgrammaticallyExample extends PureComponent {
   }
 
   openPicker = () => {
-    this.picker.wrapper.open();
+    this.picker.open();
   }
 
   render() {
@@ -31,7 +31,7 @@ class ControllingProgrammaticallyExample extends PureComponent {
         <div className="picker">
           <DatePicker
             clearable
-            pickerRef={(node) => { this.picker = node; }}
+            ref={(node) => { this.picker = node; }}
             label="Localization done right"
             format="D MMM YYYY"
             value={selectedDate}

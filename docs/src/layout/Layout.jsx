@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import Hidden from 'material-ui/Hidden';
-import Drawer from 'material-ui/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import Drawer from '@material-ui/core/Drawer';
 import { withRouter } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Icon, withStyles, Tooltip } from 'material-ui';
+import { AppBar, Toolbar, IconButton, Icon, withStyles, Tooltip } from '@material-ui/core';
 
 import Github from '_shared/GithubIcon';
 import DrawerMenu from './DrawerMenu';

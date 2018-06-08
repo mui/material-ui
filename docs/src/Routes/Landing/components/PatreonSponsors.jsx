@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import { withStyles, Avatar } from 'material-ui';
-
+import { withStyles, Avatar, List, ListItem, ListItemText } from '@material-ui/core';
 import patrons from '../../../../patrons.json';
 
 class PatreonSponsors extends Component {

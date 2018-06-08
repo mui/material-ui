@@ -1,6 +1,6 @@
 import React from 'react';
 import Code from '_shared/Code';
-import { Typography } from 'material-ui';
+import { Typography } from '@material-ui/core';
 
 // eslint-disable-next-line
 import muiPickerProviderCode from '!raw-loader!Examples/CodeSnippets/MuiPickerProviderCode';
