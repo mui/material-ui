@@ -5,7 +5,6 @@ import ModalWrapper from '../wrappers/ModalWrapper';
 import DatePicker from './DatePicker';
 import DomainPropTypes from '../constants/prop-types';
 import BasePicker from '../_shared/BasePicker';
-import withUtils from '../_shared/WithUtils';
 
 export const DatePickerWrapper = (props) => {
   const {
@@ -25,7 +24,6 @@ export const DatePickerWrapper = (props) => {
     renderDay,
     rightArrowIcon,
     shouldDisableDate,
-    utils,
     value,
     ...other
   } = props;
@@ -70,7 +68,6 @@ export const DatePickerWrapper = (props) => {
               renderDay={renderDay}
               rightArrowIcon={rightArrowIcon}
               shouldDisableDate={shouldDisableDate}
-              utils={utils}
             />
           </ModalWrapper>
         )
@@ -80,7 +77,6 @@ export const DatePickerWrapper = (props) => {
 };
 
 DatePickerWrapper.propTypes = {
-  utils: PropTypes.object.isRequired,
   /** Datepicker value */
   value: DomainPropTypes.date,
   /** Min selectable date */
@@ -135,6 +131,7 @@ DatePickerWrapper.defaultProps = {
   forwardedRef: undefined,
 };
 
-const WithUtils = withUtils()(DatePickerWrapper);
-export default React.forwardRef((props, ref) => <WithUtils {...props} forwardedRef={ref} />);
+export default React.forwardRef((props, ref) => (
+  <DatePickerWrapper {...props} forwardedRef={ref} />
+));
 

@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 
 import ModalWrapper from '../wrappers/ModalWrapper';
 import TimePicker from './TimePicker';
-import withUtils from '../_shared/WithUtils';
 import DomainPropTypes from '../constants/prop-types';
 import BasePicker from '../_shared/BasePicker';
 
 export const TimePickerWrapper = (props) => {
   const {
-    value, format, autoOk, onChange, utils, ampm, fadeTimeout, forwardedRef, seconds, ...other
+    value, format, autoOk, onChange, ampm, fadeTimeout, forwardedRef, seconds, ...other
   } = props;
 
   return (
@@ -39,7 +38,6 @@ export const TimePickerWrapper = (props) => {
             <TimePicker
               date={date}
               onChange={handleChange}
-              utils={utils}
               ampm={ampm}
               fadeTimeout={fadeTimeout}
               seconds={seconds}
@@ -52,7 +50,6 @@ export const TimePickerWrapper = (props) => {
 };
 
 TimePickerWrapper.propTypes = {
-  utils: PropTypes.object.isRequired,
   /** DateTimepicker value */
   value: DomainPropTypes.date,
   /** Date format string for input */
@@ -80,5 +77,6 @@ TimePickerWrapper.defaultProps = {
   seconds: false,
 };
 
-const WithUtils = withUtils()(TimePickerWrapper);
-export default React.forwardRef((props, ref) => <WithUtils {...props} forwardedRef={ref} />);
+export default React.forwardRef((props, ref) => (
+  <TimePickerWrapper {...props} forwardedRef={ref} />
+));

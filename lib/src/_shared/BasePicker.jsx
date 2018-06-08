@@ -5,6 +5,8 @@ import withHandlers from 'recompose/withHandlers';
 import withRenderProps from 'recompose/withRenderProps';
 import withState from 'recompose/withState';
 
+import withUtils from '../_shared/WithUtils';
+
 const getValidDateOrCurrent = ({ utils, value }) => {
   const date = utils.date(value);
 
@@ -12,6 +14,7 @@ const getValidDateOrCurrent = ({ utils, value }) => {
 };
 
 export const BasePickerHoc = compose(
+  withUtils(),
   setDisplayName('BasePicker'),
   withState('date', 'changeDate', getValidDateOrCurrent),
   lifecycle({

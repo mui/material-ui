@@ -32,12 +32,10 @@ class ControllingProgrammaticallyExample extends PureComponent {
           <DatePicker
             clearable
             ref={(node) => { this.picker = node; }}
-            label="Localization done right"
+            label="Open me from the button above"
             format="D MMM YYYY"
             value={selectedDate}
             onChange={this.handleDateChange}
-            clearLabel="clair"
-            cancelLabel="annuler"
           />
         </div>
       </div>

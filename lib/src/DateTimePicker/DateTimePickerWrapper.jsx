@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import compose from 'recompose/compose';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
 import DateTimePicker from './DateTimePicker';
 import BasePicker from '../_shared/BasePicker';
-import withUtils from '../_shared/WithUtils';
 
 export const DateTimePickerWrapper = (props) => {
   const {
@@ -27,7 +25,6 @@ export const DateTimePickerWrapper = (props) => {
     dateRangeIcon,
     timeIcon,
     renderDay,
-    utils,
     ampm,
     shouldDisableDate,
     animateYearScrolling,
@@ -95,7 +92,6 @@ export const DateTimePickerWrapper = (props) => {
 };
 
 DateTimePickerWrapper.propTypes = {
-  utils: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   /** DateTimepicker value */
   value: DomainPropTypes.date,
@@ -172,10 +168,6 @@ const styles = {
   },
 };
 
-const EnhancedWrapper = compose(
-  withUtils(),
-  withStyles(styles, { name: 'MuiPickerDTPickerModal' }),
-)(DateTimePickerWrapper);
-
+const EnhancedWrapper = withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerWrapper);
 export default React.forwardRef((props, ref) => <EnhancedWrapper {...props} forwardedRef={ref} />);
 
