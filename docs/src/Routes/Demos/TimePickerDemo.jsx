@@ -27,6 +27,16 @@ const DatePickerDemoDemo = () => (
     />
 
     <SourcablePanel
+      title="Seconds input"
+      sourceFile="Demo/SecondsTimePicker.jsx"
+      description={
+        <Typography variant="body1" gutterBottom>
+          Seconds input can be used for selection of precise time point
+        </Typography>
+      }
+    />
+
+    <SourcablePanel
       title="Keyboard input"
       sourceFile="Demo/KeyboardTimePicker.jsx"
     />
