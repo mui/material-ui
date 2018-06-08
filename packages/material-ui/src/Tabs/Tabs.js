@@ -159,13 +159,15 @@ class Tabs extends React.Component {
       if (children.length > 0) {
         const tab = children[this.valueToIndex[value]];
         warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
-        const rect = tab.getBoundingClientRect();
-        return {
-          left: rect.left,
-          right: rect.right,
-          value,
-          width: rect.width,
-        };
+        if (tab) {
+          const rect = tab.getBoundingClientRect();
+          return {
+            left: rect.left,
+            right: rect.right,
+            value,
+            width: rect.width,
+          };
+        }
       }
     }
     return undefined;
