@@ -52,6 +52,8 @@ export const DatePickerWrapper = (props) => {
             onClear={handleClear}
             onDismiss={handleDismiss}
             onSetToday={handleSetTodayDate}
+            ref={forwardedRef}
+            value={value}
             {...other}
           >
             <DatePicker

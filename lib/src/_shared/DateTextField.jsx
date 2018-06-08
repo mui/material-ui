@@ -208,10 +208,10 @@ export class DateTextField extends PureComponent {
   }
 
   handleBlur = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    if (this.props.keyboard) {
+      e.preventDefault();
+      e.stopPropagation();
 
-    if (e.target.tagName.toLowerCase() === 'input') {
       this.commitUpdates(e.target.value);
     }
   };
