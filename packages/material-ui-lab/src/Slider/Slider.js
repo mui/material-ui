@@ -225,8 +225,12 @@ class Slider extends React.Component {
   }
 
   emitChange(event, rawValue, callback) {
-    const { step, value: previousValue, onChange } = this.props;
+    const { step, value: previousValue, onChange, disabled } = this.props;
     let value = rawValue;
+
+    if (disabled) {
+      return;
+    }
 
     if (step) {
       value = roundToStep(rawValue, step);
