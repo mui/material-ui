@@ -15,6 +15,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tabs/SimpleTabs'), 'utf8')
 `,
         },
+        'pages/demos/tabs/TabsStaticLabel.js': {
+          js: require('docs/src/pages/demos/tabs/TabsStaticLabel').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tabs/TabsStaticLabel'), 'utf8')
+`,
+        },
         'pages/demos/tabs/TabsWrappedLabel.js': {
           js: require('docs/src/pages/demos/tabs/TabsWrappedLabel').default,
           raw: preval`

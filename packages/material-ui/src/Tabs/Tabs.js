@@ -93,8 +93,8 @@ class Tabs extends React.Component {
     const conditionalElements = {};
     conditionalElements.scrollbarSizeListener = scrollable ? (
       <ScrollbarSize
-        onLoad={this.handleScrollbarSizeChange}
         onChange={this.handleScrollbarSizeChange}
+        onLoad={this.handleScrollbarSizeChange}
       />
     ) : null;
 
@@ -139,12 +139,14 @@ class Tabs extends React.Component {
         1. On mount, getting all tabs dimensions
         2. On mount and value change, getting the active tab dimensions
     */
-    const state = {
-      tabsMeta: this.state.tabsMeta || this.getTabsMeta(),
-      tabMeta: !refreshTabMeta && this.state.tabMeta ? this.state.tabMeta : this.getTabMeta(),
-    };
-    if (state.tabsMeta !== this.state.tabsMeta || state.tabMeta !== this.state.tabMeta) {
-      this.setState(state);
+    const state = this.state;
+    const { value } = this.props;
+    const tabsMeta = state.tabsMeta || this.getTabsMeta();
+    const takeTabMeta = refreshTabMeta || !state.tabMeta || state.tabMeta.value !== value;
+    const tabMeta = takeTabMeta ? this.getTabMeta() : state.tabMeta;
+    const tabMetaUpdated = tabMeta && (tabMeta !== state.tabMeta || value !== tabMeta.value);
+    if (tabsMeta !== state.tabsMeta || tabMetaUpdated) {
+      this.setState({ tabMeta, tabsMeta });
     }
     return state;
   };
@@ -152,16 +154,17 @@ class Tabs extends React.Component {
   getTabMeta = () => {
     const { props, tabs } = this;
     const { value } = props;
-    if (tabs) {
+    if (tabs && value !== false) {
       const children = tabs.children[0].children;
       if (children.length > 0) {
         const tab = children[this.valueToIndex[value]];
         warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
         const rect = tab.getBoundingClientRect();
         return {
-          width: rect.width,
           left: rect.left,
           right: rect.right,
+          value,
+          width: rect.width,
         };
       }
     }
@@ -262,10 +265,7 @@ class Tabs extends React.Component {
   scrollSelectedIntoView = () => {
     const { tabsMeta, tabMeta } = this.getMeta(true);
 
-    if (!tabMeta || !tabsMeta) {
-      return;
-    }
-
+    if (!tabMeta || !tabsMeta) return;
     if (tabMeta.left < tabsMeta.left) {
       // left side of button is out of view
       const nextScrollLeft = tabsMeta.scrollLeft + (tabMeta.left - tabsMeta.left);
