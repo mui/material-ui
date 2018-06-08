@@ -49,14 +49,9 @@ export class TimePicker extends Component {
     );
   }
 
-  handleChange(params) {
-    const {
-      time,
-      isFinish,
-      openMinutes,
-      openSeconds,
-    } = params;
-
+  handleChange = ({
+    time, isFinish, openMinutes, openSeconds,
+  }) => {
     const withMeridiem = convertToMeridiem(
       time,
       this.state.meridiemMode,
@@ -96,7 +91,7 @@ export class TimePicker extends Component {
       time,
       isFinish,
       openMinutes: false,
-      openSeconds: true,
+      openSeconds: this.props.seconds,
     });
   }
 
