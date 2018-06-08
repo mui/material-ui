@@ -25,7 +25,7 @@ function easeIn(t) {
 export const styles = theme => ({
   root: {
     display: 'inline-block',
-    lineHeight: 1,
+    lineHeight: 1, // Keep the progress centered
   },
   static: {
     transition: theme.transitions.create('transform'),
