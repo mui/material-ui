@@ -17,9 +17,7 @@ export const DatePickerWrapper = (props) => {
     labelFunc,
     leftArrowIcon,
     maxDate,
-    maxDateMessage,
     minDate,
-    minDateMessage,
     onChange,
     openToYearSelection,
     renderDay,
@@ -57,8 +55,6 @@ export const DatePickerWrapper = (props) => {
             maxDate={maxDate}
             disablePast={disablePast}
             disableFuture={disableFuture}
-            minDateMessage={minDateMessage}
-            maxDateMessage={maxDateMessage}
             {...other}
           >
             <DatePicker
@@ -89,12 +85,8 @@ DatePickerWrapper.propTypes = {
   value: DomainPropTypes.date,
   /** Min selectable date */
   minDate: DomainPropTypes.date,
-  /** Error message displaying if date is before minimal date */
-  minDateMessage: PropTypes.string,
   /** Max selectable date */
   maxDate: DomainPropTypes.date,
-  /** Error message displaying if date is after maximal date */
-  maxDateMessage: PropTypes.string,
   /** Date format string for input */
   format: PropTypes.string,
   /** Callback firing when date accepted */
@@ -137,8 +129,6 @@ DatePickerWrapper.defaultProps = {
   renderDay: undefined,
   labelFunc: undefined,
   shouldDisableDate: undefined,
-  minDateMessage: undefined,
-  maxDateMessage: undefined,
   forwardedRef: undefined,
 };
 
