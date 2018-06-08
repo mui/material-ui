@@ -9,11 +9,13 @@ import withUtils from '../_shared/WithUtils';
 
 export const DatePickerWrapper = (props) => {
   const {
+    allowKeyboardControl,
     animateYearScrolling,
     autoOk,
     disableFuture,
     disablePast,
     format,
+    forwardedRef,
     labelFunc,
     leftArrowIcon,
     maxDate,
@@ -25,7 +27,6 @@ export const DatePickerWrapper = (props) => {
     renderDay,
     rightArrowIcon,
     shouldDisableDate,
-    forwardedRef,
     utils,
     value,
     ...other
@@ -44,37 +45,38 @@ export const DatePickerWrapper = (props) => {
           handleTextFieldChange,
         }) => (
           <ModalWrapper
-            ref={forwardedRef}
-            value={value}
+            disableFuture={disableFuture}
+            disablePast={disablePast}
             format={format}
-            onClear={handleClear}
+            labelFunc={labelFunc}
+            maxDate={maxDate}
+            maxDateMessage={maxDateMessage}
+            minDate={minDate}
+            minDateMessage={minDateMessage}
             onAccept={handleAccept}
             onChange={handleTextFieldChange}
+            onClear={handleClear}
             onDismiss={handleDismiss}
             onSetToday={handleSetTodayDate}
-            labelFunc={labelFunc}
-            minDate={minDate}
-            maxDate={maxDate}
-            disablePast={disablePast}
-            disableFuture={disableFuture}
-            minDateMessage={minDateMessage}
-            maxDateMessage={maxDateMessage}
+            ref={forwardedRef}
+            value={value}
             {...other}
           >
             <DatePicker
-              date={date}
-              onChange={handleChange}
+              allowKeyboardControl={allowKeyboardControl}
               animateYearScrolling={animateYearScrolling}
-              openToYearSelection={openToYearSelection}
-              leftArrowIcon={leftArrowIcon}
-              rightArrowIcon={rightArrowIcon}
-              renderDay={renderDay}
-              utils={utils}
-              minDate={minDate}
-              maxDate={maxDate}
-              disablePast={disablePast}
+              date={date}
               disableFuture={disableFuture}
+              disablePast={disablePast}
+              leftArrowIcon={leftArrowIcon}
+              maxDate={maxDate}
+              minDate={minDate}
+              onChange={handleChange}
+              openToYearSelection={openToYearSelection}
+              renderDay={renderDay}
+              rightArrowIcon={rightArrowIcon}
               shouldDisableDate={shouldDisableDate}
+              utils={utils}
             />
           </ModalWrapper>
         )
@@ -119,6 +121,8 @@ DatePickerWrapper.propTypes = {
   renderDay: PropTypes.func,
   /** Disable specific date */
   shouldDisableDate: PropTypes.func,
+  /** Enables keyboard listener for moving between days in calendar */
+  allowKeyboardControl: PropTypes.bool,
   forwardedRef: PropTypes.func,
 };
 
@@ -132,6 +136,7 @@ DatePickerWrapper.defaultProps = {
   disablePast: false,
   animateYearScrolling: false,
   openToYearSelection: false,
+  allowKeyboardControl: true,
   leftArrowIcon: 'keyboard_arrow_left',
   rightArrowIcon: 'keyboard_arrow_right',
   renderDay: undefined,
