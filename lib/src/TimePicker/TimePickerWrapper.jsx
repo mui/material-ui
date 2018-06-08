@@ -77,8 +77,8 @@ TimePickerWrapper.defaultProps = {
   ampm: true,
   fadeTimeout: 400,
   forwardedRef: undefined,
-  seconds: false
+  seconds: false,
 };
-        
+g
 const WithUtils = withUtils()(TimePickerWrapper);
 export default React.forwardRef((props, ref) => <WithUtils {...props} forwardedRef={ref} />);
