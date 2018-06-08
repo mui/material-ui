@@ -7,8 +7,12 @@ export interface LinearProgressProps
   value?: number;
   valueBuffer?: number;
   variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
-  styles?: React.CSSProperties;
+  styles?: { [P in LinearProgressStylesKeys]?: React.CSSProperties };
 }
+
+export type LinearProgressStylesKeys =
+  | 'bar1'
+  | 'bar2';
 
 export type LinearProgressClassKey =
   | 'root'
