@@ -63,7 +63,7 @@ taking advantage of this knowledge to address long-standing issues. To name some
   function App() {
     return (
       <MuiThemeProvider theme={theme}>
-        <V0ThemeProvider muiTheme={themeV0}>
+        <V0MuiThemeProvider muiTheme={themeV0}>
           {/*Components*/}
         </V0MuiThemeProvider>
       </MuiThemeProvider>
