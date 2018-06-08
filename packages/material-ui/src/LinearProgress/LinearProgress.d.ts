@@ -7,7 +7,7 @@ export interface LinearProgressProps
   value?: number;
   valueBuffer?: number;
   variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
-  style: {};
+  styles: {};
 }
 
 export type LinearProgressClassKey =
