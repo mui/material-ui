@@ -9,7 +9,7 @@ import BasePicker from '../_shared/BasePicker';
 
 export const TimePickerWrapper = (props) => {
   const {
-    value, format, autoOk, onChange, utils, ampm, fadeTimeout, forwardedRef, ...other
+    value, format, autoOk, onChange, utils, ampm, fadeTimeout, forwardedRef, seconds, ...other
   } = props;
 
   return (
@@ -42,6 +42,7 @@ export const TimePickerWrapper = (props) => {
               utils={utils}
               ampm={ampm}
               fadeTimeout={fadeTimeout}
+              seconds={seconds}
             />
           </ModalWrapper>
         )
@@ -64,6 +65,8 @@ TimePickerWrapper.propTypes = {
   ampm: PropTypes.bool,
   /** Switching hour/minutes animation timeout in milliseconds (set 0 to disable) */
   fadeTimeout: PropTypes.number,
+  /** Show the seconds view */
+  seconds: PropTypes.bool,
   forwardedRef: PropTypes.func,
 };
 
@@ -74,7 +77,8 @@ TimePickerWrapper.defaultProps = {
   ampm: true,
   fadeTimeout: 400,
   forwardedRef: undefined,
+  seconds: false
 };
-
+        
 const WithUtils = withUtils()(TimePickerWrapper);
 export default React.forwardRef((props, ref) => <WithUtils {...props} forwardedRef={ref} />);

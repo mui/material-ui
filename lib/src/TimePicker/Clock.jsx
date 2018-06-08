@@ -30,7 +30,8 @@ export class Clock extends Component {
       offsetY = e.changedTouches[0].clientY - rect.top;
     }
 
-    const value = this.props.type === clockType.MINUTES
+    const value = this.props.type === clockType.SECONDS
+      || this.props.type === clockType.MINUTES
       ? getMinutes(offsetX, offsetY)
       : getHours(offsetX, offsetY, this.props.ampm);
 

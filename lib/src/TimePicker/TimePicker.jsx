@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Fade from '@material-ui/core/Fade';
 
@@ -7,6 +8,7 @@ import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import HourView from './HourView';
 import MinutesView from './MinutesView';
+import SecondsView from './SecondsView';
 import { convertToMeridiem } from '../_helpers/time-utils';
 import withUtils from '../_shared/WithUtils';
 
@@ -20,26 +22,41 @@ export class TimePicker extends Component {
     utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
     fadeTimeout: PropTypes.number.isRequired,
+    seconds: PropTypes.bool,
   }
 
   static defaultProps = {
     children: null,
     ampm: true,
+    seconds: false,
   }
 
   state = {
     isHourViewShown: true,
+    isMinuteViewShown: false,
     meridiemMode: this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
   }
 
   setMeridiemMode = mode => () => {
     this.setState(
       { meridiemMode: mode },
-      () => this.handleChange(this.props.date, false, false),
+      () => this.handleChange({
+        time: this.props.date,
+        isFinish: false,
+        openMinutes: false,
+        openSeconds: false,
+      }),
     );
   }
 
-  handleChange(time, isFinish, openMinutes) {
+  handleChange(params) {
+    const {
+      time,
+      isFinish,
+      openMinutes,
+      openSeconds,
+    } = params;
+
     const withMeridiem = convertToMeridiem(
       time,
       this.state.meridiemMode,
@@ -48,39 +65,68 @@ export class TimePicker extends Component {
     );
 
     if (isFinish) {
-      if (!openMinutes) {
+      if (!openMinutes && !openSeconds) {
         this.props.onChange(withMeridiem, isFinish);
         return;
       }
 
-      this.openMinutesView();
+      if (openMinutes) {
+        this.openMinutesView();
+      }
+
+      if (openSeconds) {
+        this.openSecondsView();
+      }
     }
 
     this.props.onChange(withMeridiem, false);
   }
 
   handleHourChange = (time, isFinish) => {
-    this.handleChange(time, isFinish, true);
+    this.handleChange({
+      time,
+      isFinish,
+      openMinutes: true,
+      openSeconds: false,
+    });
   }
 
   handleMinutesChange = (time, isFinish) => {
-    this.handleChange(time, isFinish, false);
+    this.handleChange({
+      time,
+      isFinish,
+      openMinutes: false,
+      openSeconds: true,
+    });
+  }
+
+  handleSecondsChange = (time, isFinish) => {
+    this.handleChange({
+      time,
+      isFinish,
+      openMinutes: false,
+      openSeconds: false,
+    });
+  }
+
+  openSecondsView = () => {
+    this.setState({ isHourViewShown: false, isMinuteViewShown: false });
   }
 
   openMinutesView = () => {
-    this.setState({ isHourViewShown: false });
+    this.setState({ isHourViewShown: false, isMinuteViewShown: true });
   }
 
   openHourView = () => {
-    this.setState({ isHourViewShown: true });
+    this.setState({ isHourViewShown: true, isMinuteViewShown: false });
   }
 
   render() {
     const {
-      classes, theme, date, utils, ampm, fadeTimeout,
+      classes, theme, date, utils, ampm, fadeTimeout, seconds,
     } = this.props;
 
-    const { isHourViewShown, meridiemMode } = this.state;
+    const { isHourViewShown, isMinuteViewShown, meridiemMode } = this.state;
 
     const rtl = theme.direction === 'rtl';
     const hourMinuteClassName = rtl
@@ -89,7 +135,12 @@ export class TimePicker extends Component {
 
     return (
       <Fragment>
-        <PickerToolbar className={classes.toolbar}>
+        <PickerToolbar
+          className={classnames(
+            classes.toolbar,
+            { [classes.toolbarLeftPadding]: ampm },
+          )}
+        >
           <div className={hourMinuteClassName}>
             <ToolbarButton
               variant="display3"
@@ -108,14 +159,33 @@ export class TimePicker extends Component {
             <ToolbarButton
               variant="display3"
               onClick={this.openMinutesView}
-              selected={!isHourViewShown}
+              selected={isMinuteViewShown}
               label={utils.getMinuteText(date)}
             />
+
+            {
+              seconds &&
+                <Fragment>
+                  <ToolbarButton
+                    variant="display3"
+                    label=":"
+                    selected={false}
+                    className={classes.separator}
+                  />
+
+                  <ToolbarButton
+                    variant="display3"
+                    onClick={this.openSecondsView}
+                    selected={!isHourViewShown && !isMinuteViewShown}
+                    label={utils.getSecondText(date)}
+                  />
+                </Fragment>
+            }
           </div>
 
           {
             ampm &&
-              <div className={classes.ampmSelection}>
+              <div className={seconds ? classes.ampmSelectionWithSeconds : classes.ampmSelection}>
                 <ToolbarButton
                   className={classes.ampmLabel}
                   selected={meridiemMode === 'am'}
@@ -157,7 +227,7 @@ export class TimePicker extends Component {
 
           <Fade
             timeout={fadeTimeout}
-            in={!isHourViewShown}
+            in={isMinuteViewShown}
             mountOnEnter
             unmountOnExit
           >
@@ -165,6 +235,21 @@ export class TimePicker extends Component {
               <MinutesView
                 date={date}
                 onChange={this.handleMinutesChange}
+                utils={utils}
+              />
+            </div>
+          </Fade>
+
+          <Fade
+            timeout={fadeTimeout}
+            in={!isHourViewShown && !isMinuteViewShown}
+            mountOnEnter
+            unmountOnExit
+          >
+            <div className={classes.viewRoot}>
+              <SecondsView
+                date={date}
+                onChange={this.handleSecondsChange}
                 utils={utils}
               />
             </div>
@@ -189,6 +274,8 @@ const styles = () => ({
   toolbar: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  toolbarLeftPadding: {
     paddingLeft: 50,
   },
   separator: {
@@ -198,6 +285,10 @@ const styles = () => ({
   ampmSelection: {
     marginLeft: 20,
     marginRight: -20,
+  },
+  ampmSelectionWithSeconds: {
+    marginLeft: 15,
+    marginRight: 10,
   },
   ampmLabel: {
     fontSize: 18,
