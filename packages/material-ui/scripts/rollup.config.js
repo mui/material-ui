@@ -37,7 +37,6 @@ export default [
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
     ],
   },
-
   {
     input,
     output: { file: `build/umd/${name}.production.min.js`, format: 'umd', name, globals },
@@ -51,7 +50,6 @@ export default [
       uglify(),
     ],
   },
-
   {
     input,
     output: { file: `build/dist/${name}.esm.js`, format: 'es' },
