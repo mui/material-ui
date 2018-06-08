@@ -25,6 +25,7 @@ function easeIn(t) {
 export const styles = theme => ({
   root: {
     display: 'inline-block',
+    lineHeight: 1,
   },
   static: {
     transition: theme.transitions.create('transform'),
