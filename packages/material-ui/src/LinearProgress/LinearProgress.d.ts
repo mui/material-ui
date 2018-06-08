@@ -20,8 +20,6 @@ export type LinearProgressClassKey =
   | 'dashedColorPrimary'
   | 'dashedColorSecondary'
   | 'bar'
-  | 'bar1'
-  | 'bar2'
   | 'barColorPrimary'
   | 'barColorSecondary'
   | 'bar1Indeterminate'
