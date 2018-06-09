@@ -117,35 +117,51 @@ describe('<RadioGroup />', () => {
     );
   });
 
-  describe('children radios fire change event', () => {
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = shallow(
-        <RadioGroup value="">
+  describe('prop: onChange', () => {
+    it('should fire onChange', () => {
+      const handleChange = spy();
+      const wrapper = shallow(
+        <RadioGroup value="" onChange={handleChange}>
           <Radio />
           <Radio />
         </RadioGroup>,
       );
-    });
 
-    it('should fire onChange', () => {
       const internalRadio = wrapper.children().first();
       const event = { target: { value: 'woofRadioGroup' } };
-      const onChangeSpy = spy();
-      wrapper.setProps({ onChange: onChangeSpy });
-
       internalRadio.simulate('change', event, true);
-      assert.strictEqual(onChangeSpy.callCount, 1);
-      assert.strictEqual(onChangeSpy.calledWith(event), true);
+      assert.strictEqual(handleChange.callCount, 1);
+      assert.strictEqual(handleChange.calledWith(event), true);
     });
 
     it('should not fire onChange if not checked', () => {
+      const handleChange = spy();
+      const wrapper = shallow(
+        <RadioGroup value="" onChange={handleChange}>
+          <Radio />
+          <Radio />
+        </RadioGroup>,
+      );
+
       const internalRadio = wrapper.children().first();
-      const onChangeSpy = spy();
-      wrapper.setProps({ onChange: onChangeSpy });
       internalRadio.simulate('change', { target: { value: 'woofRadioGroup' } }, false);
-      assert.strictEqual(onChangeSpy.callCount, 0);
+      assert.strictEqual(handleChange.callCount, 0);
+    });
+
+    it('should chain the onChange property', () => {
+      const handleChange1 = spy();
+      const handleChange2 = spy();
+      const wrapper = shallow(
+        <RadioGroup value="" onChange={handleChange1}>
+          <Radio onChange={handleChange2} />
+          <Radio />
+        </RadioGroup>,
+      );
+
+      const internalRadio = wrapper.children().first();
+      internalRadio.simulate('change', { target: { value: 'woofRadioGroup' } }, true);
+      assert.strictEqual(handleChange1.callCount, 1);
+      assert.strictEqual(handleChange2.callCount, 1);
     });
   });
 
