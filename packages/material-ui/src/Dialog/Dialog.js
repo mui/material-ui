@@ -108,7 +108,6 @@ function Dialog(props) {
         {...TransitionProps}
       >
         <Paper
-          data-mui-test="Dialog"
           elevation={24}
           className={classNames(classes.paper, {
             [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,

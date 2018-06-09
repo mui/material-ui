@@ -41,7 +41,7 @@ class RadioGroup extends React.Component {
     this.radios = [];
 
     return (
-      <FormGroup data-mui-test="RadioGroup" role="radiogroup" {...other}>
+      <FormGroup role="radiogroup" {...other}>
         {React.Children.map(children, (child, index) => {
           if (!React.isValidElement(child)) {
             return null;

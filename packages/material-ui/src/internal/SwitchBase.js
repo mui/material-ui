@@ -92,7 +92,6 @@ class SwitchBase extends React.Component {
 
     return (
       <IconButton
-        data-mui-test="SwitchBase"
         component="span"
         className={classNames(
           classes.root,
