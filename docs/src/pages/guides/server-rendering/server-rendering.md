@@ -180,7 +180,8 @@ There is a class name mismatch between the client and the server.
 #### Action to Take
 
 The class names value relies on the concept of [class name generator](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
-The whole page needs to be rendered with **one generator**, first on the server, then on the client.
+The whole page needs to be rendered with **a single generator**.
+This generator needs to behave identically on the server and on the client.
 
 ### CSS Works on only on first load
 
