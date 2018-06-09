@@ -310,7 +310,7 @@ That's a really powerful feature.
 ```js
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: { // Name of the component ⚛️ / style shee
+    MuiButton: { // Name of the component ⚛️ / style sheet
       root: { // Name of the rule
         color: 'white', // Some CSS
       },
