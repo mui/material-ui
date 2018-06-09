@@ -21,13 +21,7 @@ export default function createGenerateClassName(options = {}) {
   // so the warning is only triggered in production.
   // - We expect a class name generator to be instantiated per new request on the server,
   // so the warning is only triggered client side.
-  // - You can get away with having multiple class name generators
-  // by modifying the `productionPrefix`.
-  if (
-    process.env.NODE_ENV === 'production' &&
-    typeof window !== 'undefined' &&
-    productionPrefix === 'jss'
-  ) {
+  if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
     global.__MUI_GENERATOR_COUNTER__ += 1;
 
     if (global.__MUI_GENERATOR_COUNTER__ > 2) {
