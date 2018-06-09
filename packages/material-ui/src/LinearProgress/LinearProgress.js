@@ -178,8 +178,8 @@ function LinearProgress(props) {
   });
   const rootProps = {};
   const inlineStyles = {
-    bar1: props.styles.bar || {},
-    bar2: props.styles.bar || {},
+    bar1: props.styles.bar1 || {},
+    bar2: props.styles.bar2 || {},
   };
 
   if (variant === 'determinate' || variant === 'buffer') {

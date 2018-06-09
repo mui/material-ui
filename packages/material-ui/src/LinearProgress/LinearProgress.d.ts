@@ -7,7 +7,7 @@ export interface LinearProgressProps
   value?: number;
   valueBuffer?: number;
   variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
-  styles?: { [P in LinearProgressStylesKeys]?: React.CSSProperties };
+  styles?: Partial<Record<LinearProgressStylesKeys, React.CSSProperties>>;
 }
 
 export type LinearProgressStylesKeys =
