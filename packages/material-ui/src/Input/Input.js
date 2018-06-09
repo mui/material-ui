@@ -289,7 +289,7 @@ class Input extends React.Component {
   input = null; // Holds the input reference
 
   handleFocus = event => {
-    // Fix an bug with IE11 where the focus/blur events are triggered
+    // Fix a bug with IE11 where the focus/blur events are triggered
     // while the input is disabled.
     if (formControlState(this.props, this.context).disabled) {
       event.stopPropagation();
@@ -300,12 +300,22 @@ class Input extends React.Component {
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
+
+    const { muiFormControl } = this.context;
+    if (muiFormControl && muiFormControl.onFocus) {
+      muiFormControl.onFocus(event);
+    }
   };
 
   handleBlur = event => {
     this.setState({ focused: false });
     if (this.props.onBlur) {
       this.props.onBlur(event);
+    }
+
+    const { muiFormControl } = this.context;
+    if (muiFormControl && muiFormControl.onBlur) {
+      muiFormControl.onBlur(event);
     }
   };
 

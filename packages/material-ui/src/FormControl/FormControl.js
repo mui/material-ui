@@ -93,20 +93,11 @@ class FormControl extends React.Component {
     };
   }
 
-  handleFocus = event => {
-    if (this.props.onFocus) {
-      this.props.onFocus(event);
-    }
+  handleFocus = () => {
     this.setState(state => (!state.focused ? { focused: true } : null));
   };
 
-  handleBlur = event => {
-    // The event might be undefined.
-    // For instance, a child component might call this hook
-    // when an input is disabled but still having the focus.
-    if (this.props.onBlur && event) {
-      this.props.onBlur(event);
-    }
+  handleBlur = () => {
     this.setState(state => (state.focused ? { focused: false } : null));
   };
 
@@ -146,8 +137,6 @@ class FormControl extends React.Component {
           className,
         )}
         {...other}
-        onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
       />
     );
   }
@@ -188,14 +177,6 @@ FormControl.propTypes = {
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
   margin: PropTypes.oneOf(['none', 'dense', 'normal']),
-  /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
   /**
    * If `true`, the label will indicate that the input is required.
    */
