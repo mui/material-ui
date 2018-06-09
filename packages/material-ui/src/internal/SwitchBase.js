@@ -47,6 +47,28 @@ class SwitchBase extends React.Component {
   input = null;
   isControlled = null;
 
+  handleFocus = event => {
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
+
+    const { muiFormControl } = this.context;
+    if (muiFormControl && muiFormControl.onFocus) {
+      muiFormControl.onFocus(event);
+    }
+  };
+
+  handleBlur = event => {
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
+
+    const { muiFormControl } = this.context;
+    if (muiFormControl && muiFormControl.onBlur) {
+      muiFormControl.onBlur(event);
+    }
+  };
+
   handleInputChange = event => {
     const checked = event.target.checked;
 
@@ -71,7 +93,9 @@ class SwitchBase extends React.Component {
       inputProps,
       inputRef,
       name,
+      onBlur,
       onChange,
+      onFocus,
       tabIndex,
       type,
       value,
@@ -104,6 +128,8 @@ class SwitchBase extends React.Component {
         disabled={disabled}
         tabIndex={null}
         role={undefined}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
         {...other}
       >
         {checked ? checkedIcon : icon}
@@ -186,6 +212,10 @@ SwitchBase.propTypes = {
    */
   name: PropTypes.string,
   /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
    * Callback fired when the state is changed.
    *
    * @param {object} event The event source of the callback.
@@ -193,6 +223,10 @@ SwitchBase.propTypes = {
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
   /**
    * @ignore
    */
