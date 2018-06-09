@@ -168,7 +168,7 @@ according to the `tonalOffset` value.
 according to the`contrastThreshold` value.
 
 Both the `tonalOffset` and `contrastThreshold` values may be customized as needed.
-A higher value for `tonalOffset` will make calculate values for `light` lighter, and `dark` darker.
+A higher value for `tonalOffset` will make calculated values for `light` lighter, and `dark` darker.
 A higher value for `contrastThreshold` increases the point at which a background color is considered
 light, and given a dark `contrastText`.
 
