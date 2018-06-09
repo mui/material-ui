@@ -17,7 +17,7 @@ function DialogTitle(props) {
   const { children, classes, className, disableTypography, ...other } = props;
 
   return (
-    <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
+    <div className={classNames(classes.root, className)} {...other}>
       {disableTypography ? children : <Typography variant="title">{children}</Typography>}
     </div>
   );
