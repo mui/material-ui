@@ -100,6 +100,21 @@ describe('<SwipeableDrawer />', () => {
     wrapper.unmount();
   });
 
+  it('should accept user custom style', () => {
+    const customStyle = { style: { backgroundColor: 'hotpink' } };
+    const wrapper = mount(
+      <SwipeableDrawerNaked
+        onOpen={() => {}}
+        onClose={() => {}}
+        open={false}
+        theme={createMuiTheme()}
+        PaperProps={customStyle}
+      />,
+    );
+
+    assert.strictEqual(wrapper.props().PaperProps, customStyle);
+  });
+
   describe('swipe to open', () => {
     let wrapper;
     let instance;
