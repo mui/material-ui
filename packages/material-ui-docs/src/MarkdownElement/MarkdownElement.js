@@ -60,6 +60,11 @@ marked.setOptions({
         language = prism.languages.css;
         break;
 
+      case 'ts':
+      case 'tsx':
+        language = prism.languages.typescript;
+        break;
+
       case 'js':
       case 'jsx':
       default:
