@@ -42,12 +42,17 @@ describe('<Grid />', () => {
   describe('prop: xs', () => {
     it('should apply the flex-grow class', () => {
       const wrapper = shallow(<Grid item xs />);
-      assert.strictEqual(wrapper.hasClass(classes['grid-xs']), true);
+      assert.strictEqual(wrapper.hasClass(classes['grid-xs-true']), true);
     });
 
     it('should apply the flex size class', () => {
       const wrapper = shallow(<Grid item xs={3} />);
       assert.strictEqual(wrapper.hasClass(classes['grid-xs-3']), true);
+    });
+
+    it('should apply the flex auto class', () => {
+      const wrapper = shallow(<Grid item xs="auto" />);
+      assert.strictEqual(wrapper.hasClass(classes['grid-xs-auto']), true);
     });
   });
 
