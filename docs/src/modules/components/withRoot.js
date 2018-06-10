@@ -98,6 +98,9 @@ const pages = [
       {
         pathname: '/utils/transitions',
       },
+      {
+        pathname: '/utils/click-away-listener',
+      },
     ],
   },
   {
