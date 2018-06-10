@@ -54,6 +54,6 @@ export default [
     input,
     output: { file: `build/dist/${name}.esm.js`, format: 'es' },
     external: id => !id.startsWith('.') && !id.startsWith('/'),
-    plugins: [nodeResolve(), babel(getBabelOptions()), sizeSnapshot()],
+    plugins: [nodeResolve(), babel(getBabelOptions())],
   },
 ];

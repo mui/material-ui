@@ -8,19 +8,5 @@
     "bundled": 819243,
     "minified": 320655,
     "gzipped": 85250
-  },
-  "build/dist/material-ui.esm.js": {
-    "bundled": 583544,
-    "minified": 284185,
-    "gzipped": 63320,
-    "treeshaked": {
-      "rollup": {
-        "code": 196284,
-        "import_statements": 1939
-      },
-      "webpack": {
-        "code": 203380
-      }
-    }
   }
 }
