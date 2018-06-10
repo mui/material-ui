@@ -87,6 +87,24 @@ class HomePage extends React.Component {
 
     return (
       <div className={classes.root}>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Material-UI",
+  "url": "https://material-ui.com",
+  "logo": "https://material-ui.com/static/brand.png",
+  "sameAs": [
+    "https://twitter.com/materialUI"
+  ]
+}
+            `,
+          }}
+        />
         <Head>
           <title>Material-UI</title>
         </Head>
