@@ -6,7 +6,8 @@ filename: /packages/material-ui/src/ClickAwayListener/ClickAwayListener.js
 
 # ClickAwayListener
 
-Listen for click events that are triggered outside of the component children.
+Listen for click events that occur somewhere in the document, outside of the element itself.
+For instance, if you need to hide a menu when people click anywhere else on your page.
 
 ## Props
 
@@ -23,4 +24,9 @@ Any other properties supplied will be spread to the root element ([EventListener
 
 The properties of the [EventListener](https://github.com/oliviertassinari/react-event-listener) component, from react-event-listener, are also available.
 You can take advantage of this behavior to [target nested components](/guides/api#spread).
+
+## Demos
+
+- [Menus](/demos/menus)
+- [Click Away Listener](/utils/click-away-listener)
 
