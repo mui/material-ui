@@ -17,21 +17,30 @@ import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import requirePropFactory from '../utils/requirePropFactory';
 
 const GUTTERS = [0, 8, 16, 24, 32, 40];
-const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 function generateGrid(globalStyles, theme, breakpoint) {
-  // For the auto layouting
-  const styles = {
-    [`grid-${breakpoint}`]: {
-      flexBasis: 0,
-      flexGrow: 1,
-      maxWidth: '100%',
-    },
-  };
+  const styles = {};
 
   GRID_SIZES.forEach(size => {
-    if (typeof size === 'boolean') {
-      // Skip the first one as handle above.
+    const key = `grid-${breakpoint}-${size}`;
+
+    if (size === true) {
+      // For the auto layouting
+      styles[key] = {
+        flexBasis: 0,
+        flexGrow: 1,
+        maxWidth: '100%',
+      };
+      return;
+    }
+
+    if (size === 'auto') {
+      styles[key] = {
+        flexBasis: 'auto',
+        flexGrow: 0,
+        maxWidth: 'none',
+      };
       return;
     }
 
@@ -42,8 +51,9 @@ function generateGrid(globalStyles, theme, breakpoint) {
     // Close to the bootstrap implementation:
     // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
     /* eslint-enable max-len */
-    styles[`grid-${breakpoint}-${size}`] = {
+    styles[key] = {
       flexBasis: width,
+      flexGrow: 0,
       maxWidth: width,
     };
   });
@@ -194,16 +204,11 @@ function Grid(props) {
       [classes[`align-content-xs-${String(alignContent)}`]]:
         alignContent !== Grid.defaultProps.alignContent,
       [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
-      [classes['grid-xs']]: xs === true,
-      [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
-      [classes['grid-sm']]: sm === true,
-      [classes[`grid-sm-${String(sm)}`]]: sm && sm !== true,
-      [classes['grid-md']]: md === true,
-      [classes[`grid-md-${String(md)}`]]: md && md !== true,
-      [classes['grid-lg']]: lg === true,
-      [classes[`grid-lg-${String(lg)}`]]: lg && lg !== true,
-      [classes['grid-xl']]: xl === true,
-      [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
+      [classes[`grid-xs-${String(xs)}`]]: xs !== false,
+      [classes[`grid-sm-${String(sm)}`]]: sm !== false,
+      [classes[`grid-md-${String(md)}`]]: md !== false,
+      [classes[`grid-lg-${String(lg)}`]]: lg !== false,
+      [classes[`grid-xl-${String(xl)}`]]: xl !== false,
     },
     classNameProp,
   );
@@ -271,17 +276,17 @@ Grid.propTypes = {
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
    */
-  lg: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  lg: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `md` breakpoint and wider screens if not overridden.
    */
-  md: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  md: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    */
-  sm: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  sm: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
@@ -296,12 +301,12 @@ Grid.propTypes = {
    * Defines the number of grids the component is going to use.
    * It's applied for the `xl` breakpoint and wider screens.
    */
-  xl: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  xl: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
    */
-  xs: PropTypes.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  xs: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * If `true`, it sets `min-width: 0` on the item.
    * Refer to the limitations section of the documentation to better understand the use case.
