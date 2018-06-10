@@ -17,6 +17,8 @@ export default function createTypography(palette: Object, typography: Object | F
     // Tell Material-UI what's the font-size on the html element.
     // 16px is the default font-size used by browsers.
     htmlFontSize = 16,
+    // Apply the CSS properties to all the variants.
+    allVariants,
     ...other
   } =
     typeof typography === 'function' ? typography(palette) : typography;
@@ -43,6 +45,7 @@ export default function createTypography(palette: Object, typography: Object | F
         lineHeight: `${round(128 / 112)}em`,
         marginLeft: '-.04em',
         color: palette.text.secondary,
+        ...allVariants,
       },
       display3: {
         fontSize: pxToRem(56),
@@ -52,6 +55,7 @@ export default function createTypography(palette: Object, typography: Object | F
         lineHeight: `${round(73 / 56)}em`,
         marginLeft: '-.02em',
         color: palette.text.secondary,
+        ...allVariants,
       },
       display2: {
         fontSize: pxToRem(45),
@@ -60,6 +64,7 @@ export default function createTypography(palette: Object, typography: Object | F
         lineHeight: `${round(48 / 45)}em`,
         marginLeft: '-.02em',
         color: palette.text.secondary,
+        ...allVariants,
       },
       display1: {
         fontSize: pxToRem(34),
@@ -67,6 +72,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontFamily,
         lineHeight: `${round(41 / 34)}em`,
         color: palette.text.secondary,
+        ...allVariants,
       },
       headline: {
         fontSize: pxToRem(24),
@@ -74,6 +80,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontFamily,
         lineHeight: `${round(32.5 / 24)}em`,
         color: palette.text.primary,
+        ...allVariants,
       },
       title: {
         fontSize: pxToRem(21),
@@ -81,6 +88,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontFamily,
         lineHeight: `${round(24.5 / 21)}em`,
         color: palette.text.primary,
+        ...allVariants,
       },
       subheading: {
         fontSize: pxToRem(16),
@@ -88,6 +96,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontFamily,
         lineHeight: `${round(24 / 16)}em`,
         color: palette.text.primary,
+        ...allVariants,
       },
       body2: {
         fontSize: pxToRem(14),
@@ -95,6 +104,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontFamily,
         lineHeight: `${round(24 / 14)}em`,
         color: palette.text.primary,
+        ...allVariants,
       },
       body1: {
         fontSize: pxToRem(14),
@@ -102,6 +112,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontFamily,
         lineHeight: `${round(20.5 / 14)}em`,
         color: palette.text.primary,
+        ...allVariants,
       },
       caption: {
         fontSize: pxToRem(12),
@@ -109,6 +120,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontFamily,
         lineHeight: `${round(16.5 / 12)}em`,
         color: palette.text.secondary,
+        ...allVariants,
       },
       button: {
         fontSize: pxToRem(14),
@@ -116,6 +128,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontWeight: fontWeightMedium,
         fontFamily,
         color: palette.text.primary,
+        ...allVariants,
       },
     },
     other,

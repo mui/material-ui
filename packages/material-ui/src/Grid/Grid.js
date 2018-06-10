@@ -47,10 +47,8 @@ function generateGrid(globalStyles, theme, breakpoint) {
     // Only keep 6 significant numbers.
     const width = `${Math.round((size / 12) * 10e6) / 10e4}%`;
 
-    /* eslint-disable max-len */
     // Close to the bootstrap implementation:
     // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
-    /* eslint-enable max-len */
     styles[key] = {
       flexBasis: width,
       flexGrow: 0,
