@@ -14,7 +14,7 @@ export type TouchRippleClassKey =
   | 'ripplePulsate'
   | 'child'
   | 'childLeaving'
-  | 'childPulsate'
+  | 'childPulsate';
 
 declare const TouchRipple: React.ComponentType<TouchRippleProps>;
 
