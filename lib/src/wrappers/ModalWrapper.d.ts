@@ -13,7 +13,7 @@ export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
     cancelLabel?: ReactNode;
     clearLabel?: ReactNode;
     todayLabel?: ReactNode;
-    showTodayButton: boolean;
+    showTodayButton?: boolean;
 }
 
 declare const ModalWrapper: ComponentClass<ModalWrapperProps>;
