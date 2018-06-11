@@ -81,7 +81,7 @@ export class Calendar extends Component {
     const withHours = utils.setHours(day, utils.getHours(date));
     const withMinutes = utils.setMinutes(withHours, utils.getMinutes(date));
 
-    this.props.onChange(withMinutes);
+    this.props.onChange(withMinutes, false);
   };
 
   handleChangeMonth = (newMonth) => {
@@ -230,7 +230,7 @@ export class Calendar extends Component {
       <Fragment>
         {
           allowKeyboardControl &&
-            <EventListener target="window" onKeyDown={this.handleKeyDown} />
+          <EventListener target="window" onKeyDown={this.handleKeyDown} />
         }
 
         <CalendarHeader
