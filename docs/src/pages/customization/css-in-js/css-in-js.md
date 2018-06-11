@@ -12,6 +12,7 @@ a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynam
 We think that it's the future:
 - [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [The future of component-based styling](https://medium.freecodecamp.org/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
+- [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
 So, you may have noticed in the demos what *CSS-in-JS* looks like.
 We use the higher-order component created by [`withStyles`](#api)
