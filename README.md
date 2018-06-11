@@ -36,7 +36,7 @@ npm install @material-ui/core
 yarn add @material-ui/core
 ```
 
-**[v0.x](https://v0.material-ui.com/)**
+**[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
 ```sh
 // with npm
 npm install material-ui
