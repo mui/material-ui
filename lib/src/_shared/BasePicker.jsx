@@ -45,12 +45,11 @@ export const BasePickerHoc = compose(
     handleChange: ({
       autoOk,
       changeDate,
-      date,
       onChange,
     }) => (newDate, isFinish = true) => {
       changeDate(newDate, () => {
         if (isFinish && autoOk) {
-          onChange(date);
+          onChange(newDate);
         }
       });
     },
