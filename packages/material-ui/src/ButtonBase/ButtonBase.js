@@ -238,6 +238,7 @@ class ButtonBase extends React.Component {
       component,
       disabled,
       disableRipple,
+      disableTouchRipple,
       focusRipple,
       focusVisibleClassName,
       onBlur,
@@ -355,6 +356,10 @@ ButtonBase.propTypes = {
    */
   disableRipple: PropTypes.bool,
   /**
+   * If `true`, the touch ripple effect will be disabled.
+   */
+  disableTouchRipple: PropTypes.bool,
+  /**
    * If `true`, the base button will have a keyboard focus ripple.
    * `disableRipple` must also be `false`.
    */
@@ -439,6 +444,7 @@ ButtonBase.defaultProps = {
   centerRipple: false,
   component: 'button',
   disableRipple: false,
+  disableTouchRipple: false,
   focusRipple: false,
   tabIndex: '0',
   type: 'button',

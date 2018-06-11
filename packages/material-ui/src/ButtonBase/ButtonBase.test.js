@@ -500,11 +500,10 @@ describe('<ButtonBase />', () => {
     describe('avoids multiple keydown presses', () => {
       it('should work', () => {
         wrapper = mount(
-          <ButtonBaseNaked theme={{}} classes={{}}>
+          <ButtonBaseNaked theme={{}} classes={{}} focusRipple>
             Hello
           </ButtonBaseNaked>,
         );
-        wrapper.setProps({ focusRipple: true });
         wrapper.setState({ focusVisible: true });
 
         const eventPersistSpy = spy();
@@ -552,7 +551,7 @@ describe('<ButtonBase />', () => {
       });
     });
 
-    describe('Keyboard accessibility for non interactive elements', () => {
+    describe('keyboard accessibility for non interactive elements', () => {
       it('should work', () => {
         const onClickSpy = spy();
         wrapper = mount(
@@ -614,6 +613,30 @@ describe('<ButtonBase />', () => {
         instance.handleKeyDown(event);
         assert.strictEqual(event.preventDefault.callCount, 0);
         assert.strictEqual(onClickSpy.callCount, 0);
+      });
+    });
+
+    describe('prop: disableTouchRipple', () => {
+      it('should work', () => {
+        wrapper = mount(
+          <ButtonBaseNaked theme={{}} classes={{}} disableTouchRipple>
+            Hello
+          </ButtonBaseNaked>,
+        );
+        assert.strictEqual(wrapper.find(TouchRipple).length, 1);
+        wrapper.instance().ripple = { start: spy(), stop: spy() };
+        wrapper.simulate('mouseDown', {});
+        assert.strictEqual(
+          wrapper.instance().ripple.start.callCount,
+          0,
+          'should not call start on the ripple',
+        );
+        wrapper.simulate('mouseUp', {});
+        assert.strictEqual(
+          wrapper.instance().ripple.stop.callCount,
+          0,
+          'should not call stop on the ripple',
+        );
       });
     });
 
