@@ -334,7 +334,7 @@ class SwipeableDrawer extends React.Component {
       ModalProps: { BackdropProps, ...ModalPropsProp } = {},
       onOpen,
       open,
-      PaperProps,
+      PaperProps = {},
       swipeAreaWidth,
       variant,
       ...other
@@ -355,7 +355,10 @@ class SwipeableDrawer extends React.Component {
           }}
           PaperProps={{
             ...PaperProps,
-            style: { pointerEvents: variant === 'temporary' && !open ? 'none' : '' },
+            style: {
+              pointerEvents: variant === 'temporary' && !open ? 'none' : '',
+              ...PaperProps.style,
+            },
             ref: this.handlePaperRef,
           }}
           {...other}
