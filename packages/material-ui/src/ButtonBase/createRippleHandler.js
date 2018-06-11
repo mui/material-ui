@@ -4,15 +4,21 @@ function createRippleHandler(instance, eventName, action, cb) {
       cb.call(instance, event);
     }
 
+    let ignore = false;
+
     if (event.defaultPrevented) {
-      return false;
+      ignore = true;
     }
 
-    if (instance.ripple) {
+    if (instance.props.disableTouchRipple && eventName !== 'Blur') {
+      ignore = true;
+    }
+
+    if (!ignore && instance.ripple) {
       instance.ripple[action](event);
     }
 
-    if (instance.props && typeof instance.props[`on${eventName}`] === 'function') {
+    if (typeof instance.props[`on${eventName}`] === 'function') {
       instance.props[`on${eventName}`](event);
     }
 
