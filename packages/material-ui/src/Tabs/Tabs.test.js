@@ -246,6 +246,19 @@ describe('<Tabs />', () => {
         );
       });
 
+      it('should accept any value as selected tab value', () => {
+        const tab0 = {};
+        const tab1 = {};
+        assert.notStrictEqual(tab0, tab1);
+        const wrapper2 = shallow(
+          <Tabs width="md" onChange={noop} value={tab0}>
+            <Tab value={tab0} />
+            <Tab value={tab1} />
+          </Tabs>,
+        );
+        assert.strictEqual(Object.keys(wrapper2.instance().valueToIndex).length, 2);
+      });
+
       it('should render the indicator', () => {
         const wrapper2 = mount(
           <Tabs width="md" onChange={noop} value={1}>
