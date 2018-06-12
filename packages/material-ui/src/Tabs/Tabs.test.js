@@ -256,7 +256,7 @@ describe('<Tabs />', () => {
             <Tab value={tab1} />
           </Tabs>,
         );
-        assert.strictEqual(Object.keys(wrapper2.instance().valueToIndex).length, 2);
+        assert.strictEqual(wrapper2.instance().valueToIndex.size, 2);
       });
 
       it('should render the indicator', () => {
