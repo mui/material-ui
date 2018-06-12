@@ -71,17 +71,17 @@ export class Calendar extends Component {
         disablePast,
         disableFuture,
         shouldDisableDate: this.shouldDisableDate,
-      }));
+      }), false);
     }
   }
 
-  onDateSelect = (day) => {
+  onDateSelect = (day, isFinish = true) => {
     const { date, utils } = this.props;
 
     const withHours = utils.setHours(day, utils.getHours(date));
     const withMinutes = utils.setMinutes(withHours, utils.getMinutes(date));
 
-    this.props.onChange(withMinutes);
+    this.props.onChange(withMinutes, isFinish);
   };
 
   handleChangeMonth = (newMonth) => {
