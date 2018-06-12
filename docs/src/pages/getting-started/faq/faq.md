@@ -38,7 +38,7 @@ or are already familiar with a different API, and don't want to learn a new one?
 [Style Library Interoperability](/guides/interoperability) section,
 where we show how simple it is to restyle Material-UI components with alternative style libraries.
 
-## When should I use inline-style vs `withStyles()`?
+## When should I use inline-style vs classes?
 
 As a rule of thumb, only use inline-style for dynamic style properties. The CSS alternative provides more advantages, such as:
 

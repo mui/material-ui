@@ -3,9 +3,10 @@
 As components can be used in different contexts, Material-UI supports four different types of customization requirements going from **the most specific** to **the most generic**:
 
 1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
-2. [Specific variation of a component](#2-specific-variation-of-a-component) re-used in different contexts
-4. [Material Design variations](#3-material-design-variations) such as with the button component
-3. [Global theme variation](#4-global-theme-variation)
+1. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
+1. [Specific variation of a component](#3-specific-variation-of-a-component) re-used in different contexts
+1. [Material Design variations](#4-material-design-variations) such as with the button component
+1. [Global theme variation](#5-global-theme-variation)
 
 ## 1. Specific variation for a one-time situation
 
@@ -68,7 +69,44 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 {{"demo": "pages/customization/overrides/InlineStyle.js"}}
 
-## 2. Specific variation of a component
+[When should I use inline-style vs classes?](/getting-started/faq#when-should-i-use-inline-style-vs-classes-)
+
+## 2. Dynamic variation for a one-time situation
+
+You have learn how to override the style of the Material-UI components in the previous sections.
+Now, let's see how we can make these overrides dynamic.
+We demonstrate 5 alternatives, each has it's pros and cons.
+
+### withStyles property support
+
+```jsx
+const styles = {
+  button: {
+    background: props => props.color,
+  },
+};
+```
+
+This feature isn't ready yet.
+It will come with: [#7633](https://github.com/mui-org/material-ui/issues/7633).
+
+### Class name branch
+
+{{"demo": "pages/customization/overrides/DynamicClassName.js"}}
+
+### CSS variables
+
+{{"demo": "pages/customization/overrides/DynamicCSSVariables.js"}}
+
+### Dynamic inline style
+
+{{"demo": "pages/customization/overrides/DynamicInlineStyle.js"}}
+
+### Theme nesting
+
+{{"demo": "pages/customization/overrides/DynamicThemeNesting.js"}}
+
+## 3. Specific variation of a component
 
 You might need to create a variation of a component and use it in different contexts, for instance a colorful button on your product page, however you probably want to keep your code [*DRY*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
@@ -76,13 +114,13 @@ The best approach is to follow option 1 and then take advantage of the compositi
 
 {{"demo": "pages/customization/overrides/Component.js", "hideEditButton": true}}
 
-## 3. Material Design variations
+## 4. Material Design variations
 
 The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (AKA "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (AKA "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
 
 Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components) documentation to find out the current status of all supported Material Design components.
 
-## 4. Global theme variation
+## 5. Global theme variation
 
 ### Theme variables
 
