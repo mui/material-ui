@@ -139,9 +139,9 @@ describe('withWidth', () => {
 
   describe('theme prop: MuiWithWidth.initialWidth', () => {
     it('should use theme prop', () => {
-      const EmptyWithWidth3 = withWidth()(Empty);
+      const EmptyWithWidth2 = withWidth()(Empty);
       const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'lg' } } });
-      const element = <EmptyWithWidth3 theme={theme} />;
+      const element = <EmptyWithWidth2 theme={theme} />;
       // First mount on the server
       const wrapper1 = shallow(element);
       assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
@@ -154,23 +154,23 @@ describe('withWidth', () => {
 
   describe('option: withTheme', () => {
     it('should inject the theme', () => {
-      const EmptyWithWidth4 = withWidth({ withTheme: true })(Empty);
-      const wrapper = mount(<EmptyWithWidth4 />);
+      const EmptyWithWidth2 = withWidth({ withTheme: true })(Empty);
+      const wrapper = mount(<EmptyWithWidth2 />);
       assert.strictEqual(typeof wrapper.find(Empty).props().theme, 'object');
     });
 
     it('should forward the theme', () => {
-      const EmptyWithWidth4 = withWidth({ withTheme: true })(Empty);
+      const EmptyWithWidth2 = withWidth({ withTheme: true })(Empty);
       const theme = createMuiTheme();
-      const wrapper = mount(<EmptyWithWidth4 theme={theme} />);
+      const wrapper = mount(<EmptyWithWidth2 theme={theme} />);
       assert.strictEqual(wrapper.find(Empty).props().theme, theme);
     });
   });
 
   describe('option: noSSR', () => {
     it('should work as expected', () => {
-      const EmptyWithWidth4 = withWidth({ noSSR: true })(Empty);
-      const wrapper = shallow(<EmptyWithWidth4 />);
+      const EmptyWithWidth2 = withWidth({ noSSR: true })(Empty);
+      const wrapper = shallow(<EmptyWithWidth2 />);
       assert.strictEqual(wrapper.find(Empty).props().width, TEST_ENV_WIDTH);
     });
   });
