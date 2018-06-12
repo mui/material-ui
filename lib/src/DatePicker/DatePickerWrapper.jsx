@@ -39,6 +39,7 @@ export const DatePickerWrapper = (props) => {
           handleDismiss,
           handleSetTodayDate,
           handleTextFieldChange,
+          isAccepted,
         }) => (
           <ModalWrapper
             disableFuture={disableFuture}
@@ -54,6 +55,7 @@ export const DatePickerWrapper = (props) => {
             onSetToday={handleSetTodayDate}
             ref={forwardedRef}
             value={value}
+            isAccepted={isAccepted}
             {...other}
           >
             <DatePicker

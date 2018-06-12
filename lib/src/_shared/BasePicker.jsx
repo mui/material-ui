@@ -17,6 +17,7 @@ export const BasePickerHoc = compose(
   withUtils(),
   setDisplayName('BasePicker'),
   withState('date', 'changeDate', getValidDateOrCurrent),
+  withState('isAccepted', 'handleAcceptedChange', false),
   lifecycle({
     componentDidUpdate(prevProps) {
       if (prevProps.value !== this.props.value) {
@@ -46,10 +47,13 @@ export const BasePickerHoc = compose(
       autoOk,
       changeDate,
       onChange,
+      handleAcceptedChange,
     }) => (newDate, isFinish = true) => {
       changeDate(newDate, () => {
         if (isFinish && autoOk) {
           onChange(newDate);
+          // pass down accept true, and make it false in the next tick
+          handleAcceptedChange(true, () => handleAcceptedChange(false));
         }
       });
     },

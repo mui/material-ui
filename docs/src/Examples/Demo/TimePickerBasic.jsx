@@ -17,6 +17,7 @@ export default class BasicUsage extends PureComponent {
       <Fragment>
         <div className="picker">
           <TimePicker
+            autoOk
             label="12 hours"
             value={selectedDate}
             onChange={this.handleDateChange}

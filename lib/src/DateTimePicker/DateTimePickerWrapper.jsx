@@ -45,6 +45,7 @@ export const DateTimePickerWrapper = (props) => {
           handleDismiss,
           handleSetTodayDate,
           handleTextFieldChange,
+          isAccepted,
           pick12hOr24hFormat,
         }) => (
           <ModalWrapper
@@ -61,6 +62,7 @@ export const DateTimePickerWrapper = (props) => {
             onDismiss={handleDismiss}
             onSetToday={handleSetTodayDate}
             value={value}
+            isAccepted={isAccepted}
             {...other}
           >
             <DateTimePicker
