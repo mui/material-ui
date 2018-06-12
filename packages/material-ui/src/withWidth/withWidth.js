@@ -98,8 +98,14 @@ const withWidth = (options = {}) => Component => {
 
     render() {
       const { initialWidth, theme, width, ...other } = this.props;
+
+      const themeInitialWidth =
+        theme && theme.props && theme.props.MuiWithWidth && theme.props.MuiWithWidth.initialWidth
+          ? theme.props.MuiWithWidth.initialWidth
+          : undefined;
+
       const props = {
-        width: width || this.state.width || initialWidth || initialWidthOption,
+        width: width || this.state.width || initialWidth || initialWidthOption || themeInitialWidth,
         ...other,
       };
       const more = {};
