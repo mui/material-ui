@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
@@ -218,8 +220,8 @@ class Tabs extends React.Component {
     if (
       (indicatorStyle.left !== this.state.indicatorStyle.left ||
         indicatorStyle.width !== this.state.indicatorStyle.width) &&
-      !Number.isNaN(indicatorStyle.left) &&
-      !Number.isNaN(indicatorStyle.width)
+      !isNaN(indicatorStyle.left) &&
+      !isNaN(indicatorStyle.width)
     ) {
       this.setState({ indicatorStyle });
     }
