@@ -137,6 +137,21 @@ describe('withWidth', () => {
     });
   });
 
+  describe('theme prop: MuiWithWidth.initialWidth', () => {
+    it('should use theme prop', () => {
+      const EmptyWithWidth2 = withWidth()(Empty);
+      const theme = createMuiTheme({ props: { MuiWithWidth: { initialWidth: 'lg' } } });
+      const element = <EmptyWithWidth2 theme={theme} />;
+      // First mount on the server
+      const wrapper1 = shallow(element);
+      assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
+
+      // Second mount on the client
+      const wrapper2 = mount(element);
+      assert.strictEqual(wrapper2.find(Empty).props().width, TEST_ENV_WIDTH);
+    });
+  });
+
   describe('option: withTheme', () => {
     it('should inject the theme', () => {
       const EmptyWithWidth2 = withWidth({ withTheme: true })(Empty);

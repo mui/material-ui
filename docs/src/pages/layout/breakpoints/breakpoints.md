@@ -71,7 +71,21 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
   In some situation, you might want to use an heuristic to approximate
   the screen width of the client browser screen width.
   For instance, you could be using the user-agent or the client-hints.
-  http://caniuse.com/#search=client%20hint
+  http://caniuse.com/#search=client%20hint, we also can set the initial width
+  globally using [`custom properties`](/customization/themes/#properties) on the theme.
+  In order to set the initialWidth we need to pass a custom property with this shape:
+
+```js
+const theme = createMuiTheme({
+  props: {
+    // withWidth component ⚛️
+    MuiWithWidth: {
+      // Initial width property
+      initialWidth: 'lg', // Breakpoint being globally set 🌎!
+    },
+  },
+});
+```
   - `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
 
 #### Returns
