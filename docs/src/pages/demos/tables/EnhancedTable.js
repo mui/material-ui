@@ -25,11 +25,11 @@ function createData(name, calories, fat, carbs, protein) {
   return { id: counter, name, calories, fat, carbs, protein };
 }
 
-const getSorting = (order, orderBy) => {
+function getSorting(order, orderBy) {
   return order === 'desc'
     ? (a, b) => (b[orderBy] < a[orderBy] ? -1 : 1)
     : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1);
-};
+}
 
 const columnData = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
