@@ -177,10 +177,7 @@ function LinearProgress(props) {
     [classes.bar2Buffer]: variant === 'buffer',
   });
   const rootProps = {};
-  const inlineStyles = {
-    bar1: props.styles.bar1 || {},
-    bar2: props.styles.bar2 || {},
-  };
+  const inlineStyles = { bar1: {}, bar2: {} };
 
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
@@ -232,10 +229,6 @@ LinearProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
-   * @ignore
-   */
-  styles: PropTypes.object,
-  /**
    * The value of the progress indicator for the determinate and buffer variants.
    * Value between 0 and 100.
    */
@@ -255,7 +248,6 @@ LinearProgress.propTypes = {
 LinearProgress.defaultProps = {
   color: 'primary',
   variant: 'indeterminate',
-  styles: {},
 };
 
 export default withStyles(styles, { name: 'MuiLinearProgress' })(LinearProgress);

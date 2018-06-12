@@ -29,7 +29,7 @@ Nothing fancy, just plain old CSS. Why reinvent the wheel when it has been worki
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
 }
 ```
 
@@ -73,7 +73,7 @@ prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js#global-css).
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
 }
 ```
 
@@ -125,7 +125,7 @@ bundling solution people are using.
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
 }
 ```
 
@@ -175,7 +175,7 @@ const StyledButton = styled(Button)`
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
 `;
 
 function StyledComponentsButton() {
@@ -218,7 +218,7 @@ const StyledButton = styled(Button)`
     color: white;
     height: 48px;
     padding: 0 30px;
-    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .30);
+    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
   }
 `;
 
@@ -302,7 +302,7 @@ const StyledButton = glamorous(Button)({
   color: 'white',
   height: 48,
   padding: '0 30px',
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 });
 
 function GlamorousButton() {
@@ -346,7 +346,7 @@ const buttonStyles = {
   color: 'white',
   height: 48,
   padding: '0 30px',
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 };
 
 // First we get the classNames with Glamor css function
