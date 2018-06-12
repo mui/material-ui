@@ -70,6 +70,12 @@ const getError = (value, props) => {
 };
 
 export class DateTextField extends PureComponent {
+  static updateState = props => ({
+    value: props.value,
+    displayValue: getDisplayDate(props),
+    error: getError(props.utils.date(props.value), props),
+  });
+
   static propTypes = {
     classes: PropTypes.shape({}).isRequired,
     value: PropTypes.oneOfType([
@@ -147,11 +153,6 @@ export class DateTextField extends PureComponent {
     adornmentPosition: 'end',
   }
 
-  static updateState = props => ({
-    value: props.value,
-    displayValue: getDisplayDate(props),
-    error: getError(props.utils.date(props.value), props),
-  });
 
   state = DateTextField.updateState(this.props)
 
