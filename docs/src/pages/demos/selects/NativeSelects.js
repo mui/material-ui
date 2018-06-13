@@ -145,6 +145,24 @@ class NativeSelects extends React.Component {
           </NativeSelect>
           <FormHelperText>Placeholder</FormHelperText>
         </FormControl>
+        <FormControl required className={classes.formControl}>
+          <InputLabel htmlFor="age-native-required">Age</InputLabel>
+          <Select
+            native
+            value={this.state.age}
+            onChange={this.handleChange('age')}
+            name="age"
+            inputProps={{
+              id: 'age-native-required',
+            }}
+          >
+            <option value="" />
+            <option value={10}>Ten</option>
+            <option value={20}>Twenty</option>
+            <option value={30}>Thirty</option>
+          </Select>
+          <FormHelperText>Required</FormHelperText>
+        </FormControl>
       </div>
     );
   }
