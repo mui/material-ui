@@ -16,6 +16,7 @@ filename: /packages/material-ui/src/Tabs/Tabs.js
 | <span class="prop-name">centered</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the tabs will be centered. This property is intended for large views. |
 | <span class="prop-name">children</span> | <span class="prop-type">node |   | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
+| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the tabs will grow to use all the available space. This property is intended for small views, like on mobile. |
 | <span class="prop-name">indicatorColor</span> | <span class="prop-type">enum:&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'primary'<br> | <span class="prop-default">'secondary'</span> | Determines the color of the indicator. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: number) => void`<br>*event:* The event source of the callback<br>*value:* We default to the index of the child |
