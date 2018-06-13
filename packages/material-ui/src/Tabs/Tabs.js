@@ -275,6 +275,7 @@ class Tabs extends React.Component {
       children: childrenProp,
       classes,
       className: classNameProp,
+      component: Component,
       fullWidth,
       indicatorColor,
       onChange,
@@ -340,7 +341,7 @@ class Tabs extends React.Component {
     const conditionalElements = this.getConditionalElements();
 
     return (
-      <div className={className} {...other}>
+      <Component className={className} {...other}>
         <EventListener target="window" onResize={this.handleResize} />
         {conditionalElements.scrollbarSizeListener}
         <div className={classes.flexContainer}>
@@ -359,7 +360,7 @@ class Tabs extends React.Component {
           </div>
           {conditionalElements.scrollButtonRight}
         </div>
-      </div>
+      </Component>
     );
   }
 }
@@ -392,6 +393,11 @@ Tabs.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * If `true`, the tabs will grow to use all the available space.
    * This property is intended for small views, like on mobile.
@@ -445,6 +451,7 @@ Tabs.propTypes = {
 
 Tabs.defaultProps = {
   centered: false,
+  component: 'div',
   fullWidth: false,
   indicatorColor: 'secondary',
   scrollable: false,
