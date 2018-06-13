@@ -49,9 +49,17 @@ export const styles = theme => ({
     left: 0,
     right: 'auto',
   },
+  paperAnchorLeftRounded: {
+    borderTopRightRadius: theme.borderRadius.paper,
+    borderBottomRightRadius: theme.borderRadius.paper,
+  },
   paperAnchorRight: {
     left: 'auto',
     right: 0,
+  },
+  paperAnchorRightRounded: {
+    borderTopLeftRadius: theme.borderRadius.paper,
+    borderBottomLeftRadius: theme.borderRadius.paper,
   },
   paperAnchorTop: {
     top: 0,
@@ -61,6 +69,10 @@ export const styles = theme => ({
     height: 'auto',
     maxHeight: '100vh',
   },
+  paperAnchorTopRounded: {
+    borderBottomRightRadius: theme.borderRadius.paper,
+    borderBottomLeftRadius: theme.borderRadius.paper,
+  },
   paperAnchorBottom: {
     top: 'auto',
     left: 0,
@@ -68,6 +80,10 @@ export const styles = theme => ({
     right: 0,
     height: 'auto',
     maxHeight: '100vh',
+  },
+  paperAnchorBottomRounded: {
+    borderTopRightRadius: theme.borderRadius.paper,
+    borderTopLeftRadius: theme.borderRadius.paper,
   },
   paperAnchorDockedLeft: {
     borderRight: `1px solid ${theme.palette.divider}`,
@@ -110,6 +126,7 @@ class Drawer extends React.Component {
       open,
       PaperProps,
       SlideProps,
+      square,
       theme,
       transitionDuration,
       variant,
@@ -117,12 +134,14 @@ class Drawer extends React.Component {
     } = this.props;
 
     const anchor = getAnchor(this.props);
+
     const drawer = (
       <Paper
         elevation={variant === 'temporary' ? elevation : 0}
         square
         className={classNames(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
           [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
+          [classes[`paperAnchor${capitalize(anchor)}Rounded`]]: !square,
         })}
         {...PaperProps}
       >
@@ -222,6 +241,10 @@ Drawer.propTypes = {
    */
   SlideProps: PropTypes.object,
   /**
+   * If `false`, rounded corners are enabled.
+   */
+  square: PropTypes.bool,
+  /**
    * @ignore
    */
   theme: PropTypes.object.isRequired,
@@ -242,6 +265,7 @@ Drawer.propTypes = {
 Drawer.defaultProps = {
   anchor: 'left',
   elevation: 16,
+  square: false,
   open: false,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
   variant: 'temporary', // Mobile first.

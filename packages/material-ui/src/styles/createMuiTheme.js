@@ -10,6 +10,7 @@ import shadows from './shadows';
 import transitions from './transitions';
 import zIndex from './zIndex';
 import spacing from './spacing';
+import borderRadius from './borderRadius';
 
 function createMuiTheme(options: Object = {}) {
   const {
@@ -25,6 +26,7 @@ function createMuiTheme(options: Object = {}) {
   const breakpoints = createBreakpoints(breakpointsInput);
 
   const muiTheme = {
+    borderRadius,
     breakpoints,
     direction: 'ltr',
     mixins: createMixins(breakpoints, spacing, mixinsInput),
