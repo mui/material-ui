@@ -7,11 +7,11 @@ import { MaterialUiPickersDate } from '../typings/date'
 export interface DateTextFieldProps extends Omit<TextFieldProps, 'onChange' | 'value'> {
     value: DateType;
     minDate?: DateType;
-    minDateMessage?: string;
+    minDateMessage?: React.ReactNode;
     disablePast?: boolean;
     disableFuture?: boolean;
     maxDate?: DateType;
-    maxDateMessage?: string;
+    maxDateMessage?: React.ReactNode;
     mask?: any;
     onChange: (date: MaterialUiPickersDate) => void;
     onClear?: () => void;
@@ -21,7 +21,7 @@ export interface DateTextFieldProps extends Omit<TextFieldProps, 'onChange' | 'v
     emptyLabel?: string;
     labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
     keyboardIcon?: ReactNode;
-    invalidDateMessage?: string;
+    invalidDateMessage?: React.ReactNode;
     clearable?: boolean;
     TextFieldComponent?: React.ComponentType<TextFieldProps>;
 }

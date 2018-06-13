@@ -30,6 +30,8 @@ export class Utils<TDate> {
   setHours(value: TDate, count: number): TDate;
   getMinutes(value: TDate): number;
   setMinutes(value: TDate, count: number): TDate
+  getSeconds(value: TDate): number;
+  setSeconds(value: TDate, count: number): TDate
   getMonth(value: TDate): number;
   getYear(value: TDate): number;
   setYear(value: TDate, count: number): TDate;
@@ -50,5 +52,6 @@ export class Utils<TDate> {
   getDayText(date: TDate): string;
   getHourText(date: TDate, ampm: boolean): string;
   getMinuteText(date: TDate): string;
+  getSecondText(date: TDate): string;
   getYearText(date: TDate): string;
 }

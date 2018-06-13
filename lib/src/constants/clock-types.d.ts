@@ -1,1 +1,1 @@
-export type ClockType = 'hours' | 'minutes';
+export type ClockType = 'hours' | 'minutes' | 'seconds';

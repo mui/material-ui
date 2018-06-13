@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'material-ui';
+import { List } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 import NavItem from './NavItem';
 
@@ -34,6 +34,7 @@ const navItems = [
       { title: 'CSS overrides', href: '/guides/css-overrides' },
       { title: 'Global format customization', href: '/guides/formats' },
       { title: 'Open pickers programmatically', href: '/guides/controlling-programmatically' },
+      { title: 'Static picker`s components', href: '/guides/static-pickers' },
     ],
   },
 ];

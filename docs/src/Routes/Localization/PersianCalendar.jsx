@@ -1,7 +1,7 @@
 import React from 'react';
 import Code from '_shared/Code';
 import SourcablePanel from '_shared/SourcablePanel';
-import { Typography } from 'material-ui';
+import { Typography } from '@material-ui/core';
 
 const PersianCalendar = () => (
   <div>

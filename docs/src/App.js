@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 
 import Utils from 'material-ui-pickers/utils/date-fns-utils';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
@@ -8,7 +8,7 @@ import { create } from 'jss';
 import preset from 'jss-preset-default';
 import rtl from 'jss-rtl';
 import JssProvider from 'react-jss/lib/JssProvider';
-import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+import createGenerateClassName from '@material-ui/core/styles/createGenerateClassName';
 import frLocale from 'date-fns/locale/fr';
 import enLocale from 'date-fns/locale/en-US';
 

@@ -26,6 +26,7 @@ export default class BasicDatePicker extends PureComponent {
 
         <div className="picker">
           <DatePicker
+            autoOk
             label="Clearable"
             clearable
             disableFuture

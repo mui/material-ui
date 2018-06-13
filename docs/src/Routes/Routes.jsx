@@ -11,6 +11,7 @@ import PersianCalendar from './Localization/PersianCalendar';
 import CssOverrides from './Guides/CssOverrides';
 import FormatCustomization from './Guides/FormatsCustomization';
 import ControllingProgrammatically from './Guides/ControllingProgrammatically';
+import StaticPickers from './Guides/StaticPickers';
 
 export default () => (
   <Switch>
@@ -24,6 +25,7 @@ export default () => (
     <Route path="/guides/css-overrides" component={CssOverrides} />
     <Route path="/guides/formats" component={FormatCustomization} />
     <Route path="/guides/controlling-programmatically" component={ControllingProgrammatically} />
+    <Route path="/guides/static-pickers" component={StaticPickers} />
   </Switch>
 );
 

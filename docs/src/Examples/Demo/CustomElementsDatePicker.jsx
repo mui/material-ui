@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import moment from 'moment';
 
 import { DatePicker } from 'material-ui-pickers';
-import { IconButton, withStyles } from 'material-ui';
+import { IconButton, withStyles } from '@material-ui/core';
 
 import isValid from 'date-fns/isValid';
 import format from 'date-fns/format';

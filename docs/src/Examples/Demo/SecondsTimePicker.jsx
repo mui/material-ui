@@ -17,8 +17,9 @@ export default class BasicUsage extends PureComponent {
       <Fragment>
         <div className="picker">
           <TimePicker
-            autoOk
-            label="12 hours"
+            seconds
+            format="hh:mm:ss A"
+            label="With seconds"
             value={selectedDate}
             onChange={this.handleDateChange}
           />
@@ -26,19 +27,10 @@ export default class BasicUsage extends PureComponent {
 
         <div className="picker">
           <TimePicker
-            clearable
             ampm={false}
-            label="24 hours"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-          />
-        </div>
-
-        <div className="picker">
-          <TimePicker
-            showTodayButton
-            todayLabel="now"
-            label="With today button"
+            seconds
+            format="HH:mm:ss"
+            label="24 hours with seconds"
             value={selectedDate}
             onChange={this.handleDateChange}
           />

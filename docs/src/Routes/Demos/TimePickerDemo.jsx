@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypesTable from '_shared/PropTypesTable';
 import SourcablePanel from '_shared/SourcablePanel';
-import { Typography } from 'material-ui';
+import { Typography } from '@material-ui/core';
 
 const DatePickerDemoDemo = () => (
   <div>
@@ -22,6 +22,16 @@ const DatePickerDemoDemo = () => (
         <Typography variant="body1" gutterBottom>
           A time picker should adjusts to a user’s preferred time setting,
           i.e. the 12-hour or 24-hour format.
+        </Typography>
+      }
+    />
+
+    <SourcablePanel
+      title="Seconds input"
+      sourceFile="Demo/SecondsTimePicker.jsx"
+      description={
+        <Typography variant="body1" gutterBottom>
+          Seconds input can be used for selection of precise time point
         </Typography>
       }
     />
