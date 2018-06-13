@@ -49,4 +49,7 @@ BreakpointOnly.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-export default compose(withStyles(styles), withWidth())(BreakpointOnly);
+export default compose(
+  withStyles(styles),
+  withWidth(),
+)(BreakpointOnly);

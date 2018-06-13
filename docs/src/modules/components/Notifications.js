@@ -1,9 +1,9 @@
 /* eslint-disable react/no-danger */
 
+import 'isomorphic-fetch';
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-import 'isomorphic-fetch';
 
 function getLastSeenNotification() {
   const seen = document.cookie.replace(
@@ -43,11 +43,17 @@ class Notifications extends React.Component {
     message: {},
   };
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     this.mounted = true;
+
+    // Prevent search engines from indexing the notification.
+    if (/glebot/.test(navigator.userAgent)) {
+      return;
+    }
+
     await getMessages();
     this.handleMessage();
-  };
+  }
 
   componentWillUnmout() {
     this.mounted = false;

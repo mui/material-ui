@@ -63,7 +63,7 @@ taking advantage of this knowledge to address long-standing issues. To name some
   function App() {
     return (
       <MuiThemeProvider theme={theme}>
-        <V0ThemeProvider muiTheme={themeV0}>
+        <V0MuiThemeProvider muiTheme={themeV0}>
           {/*Components*/}
         </V0MuiThemeProvider>
       </MuiThemeProvider>
@@ -114,7 +114,7 @@ This will apply a change such as the following:
 +import Button from '@material-ui/core/Button';
 
 -<RaisedButton />
-+<Button variant="raised" />
++<Button variant="contained" />
 ```
 
 ### To be continued…

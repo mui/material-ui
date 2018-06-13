@@ -1,6 +1,197 @@
-## HEAD
+Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 
-Changes. Changes everywhere!
+#### Release Schedule
+
+- Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
+- Major version release is not included in this schedule for breaking change and new features.
+
+## 1.2.1
+###### *Jun 10, 2018*
+
+Big thanks to the 15 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A lot of bug fixes 🐛!
+- Add full `React.createRef` support ⚛️ (#11757) @t49tran.
+- Document the `withWidth()` helper
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Select] Add a placeholder demo (#11706) @oliviertassinari
+- [RootRef] Update RootRef.d.ts (#11708) @franklixuefei
+- [ButtonBase] Document the `type` property (#11728) @C-Rodg
+- [Popover] Fix default value (#11729) @oliviertassinari
+- [withWidth] Second iteration on the component (#11730) @oliviertassinari
+- [transition] Fix IE11 issue in dev mode (#11743) @adeelibr
+- [Tabs] Better flex layout (#11748) @adeelibr
+- [core] Add React.createRef support (#11757) @t49tran
+- [Grid] Improve the dev warnings (#11765) @oliviertassinari
+- [CircularProgress] Fix centering (#11781) @adeelibr
+- [TextField] Bind the focus/blur explicitly (#11789) @oliviertassinari
+- [RadioGroup] Fix onChange chaining (#11793) @oliviertassinari
+
+#### Docs
+
+- [docs] Property !== attribute (#11694) @adeelibr
+- [docs] Add Trafikito.com to showcase (#11716) @liesislukas
+- [docs] Update meetingku image (#11724) @liganok
+- [docs] Improve docs:dev init by ~2 s and HMR by ~200 ms (#11752) @tal952
+- [docs] Change app bar to button on the getting started (#11756) @Simperfit
+- [docs] Add React Most Wanted to related projects (#11753) @TarikHuber
+- [docs] Error in example in Migration From v0.x Guide (#11771) @AkselsLedins
+- [docs] Simple Grammar Fix (#11785) @jeff-kilbride
+- [docs] Fix typo (#11787) @BenDiuguid
+- [docs] Better troubleshooting action for the hydration mismatch (#11792) @oliviertassinari
+
+#### Core
+
+- [core] Remove parser specification to fix JSON issue (#11763) @ryanpcmcquen
+- [core] Throw if react >= 16.3.0 requirement isn't matched (#11779) @oliviertassinari
+- [core] Better warnings for class names duplicates (#11788) @oliviertassinari
+- [core] Remove dead code (#11791) @oliviertassinari
+
+#### Labs
+
+- [Slider] Fix for IE11 (#11727) @epodivilov
+- [Slider] Value can still be updated while disabled (#11744) @epodivilov
+
+## 1.2.0
+###### *Jun 3, 2018*
+
+Big thanks to the 23 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Start upgrading the button component to match the new Material specification (#11497) @mbrookes.
+- Fix some regressions (#11614, #11689).
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Snackbar] Add customization example (#11597) @mbrn
+- [Menu] Fix a regression on Edge (#11614) @oliviertassinari
+- [TextField] Replace underline content text with nbsp (#11617) @Jdubedition
+- [TextField] Fix grammar for docs (#11633) @RobBednark
+- [ListItem] Fix typings for ListItem (#11645) @franklixuefei
+- [Button] Add text and contained variants (#11497) @mbrookes
+- [Chip] Add `clickable` property (#11613) @vilvaathibanpb
+- [Popover] Add timeout prop to TransitionComponent (#11657) @C-Rodg
+- [styles] Better class name conflict warning (#11685) @oliviertassinari
+- [Grid] Better support for theme.props (#11688) @oliviertassinari
+- [ListItemText] Fix primary={0} display (#11686) @helfi92
+- [SwipeableDrawer] Fix a regression introduced in React 16.4.0 (#11689) @oliviertassinari
+- [RootRef] Allow using React.createRef api with RootRef component (#11681) @TrySound
+
+#### Docs
+
+- [docs] Better API spread section (#11598) @oliviertassinari
+- [docs] Update Wertarbyte components link (#11603) @leMaik
+- [docs] Add a changelog page (#11604) @oliviertassinari
+- [docs] Keep the current version into account (#11595) @oliviertassinari
+- [ROADMAP] Update the roadmap (#11606) @oliviertassinari
+- [example] Fix missing brackets typescript (#11623) @Ilaiwi
+- [docs] Update overrides.md (#11630) @risafletcher
+- [docs] Styled API Example (5 lines) (#11620) @mssngr
+- [docs] Mention view port size in SVGIcon documentation (#11639) @JesusCrow
+- [docs] Update README for codemod (#11647) @sacdallago
+- [docs] Update link to flow-typed definitions (#11674) @jessrosenfield
+- [docs] Minor grammitcal error (#11691) @NeuTrix
+
+#### Core
+
+- [typescript] Depend directly on CSSType (#11608) @pelotom
+- [core] Upgrade dependencies (#11616) @oliviertassinari
+- [typescript] createStyles and improved WithStyles helpers (#11609) @pelotom
+- [core] Add cross-env back (#11638) @lookfirst
+- [typescript] Fix keyof for typescript@2.9 (#11669) @mctep
+- [core] Some fixes looking into issues (#11676) @oliviertassinari
+- [core] Upgrade dependencies (#11684) @oliviertassinari
+
+#### Labs
+
+- [SpeedDial] Fix classes prop description (#11599) @mbrookes
+- [Slider] Misc fixes towards standard MUI patterns (#11605) @mbrookes
+- [Slider] Fire the right event on mouseDown (#11642) @acroyear
+- [SpeedDial] Add type definitions to lab, so SpeedDial can be use with TypeScript project (#11542) @TR3MIC
+
+## 1.1.0
+###### *May 26, 2018*
+
+Big thanks to the 30 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A smaller bundle, saved 5 kB gzipped (#11511, #11492, #11521, #11523) @TrySound
+- A new Slider component in the lab (#11040) @epodivilov.
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [ListSubheader] Fix demo import path (#11468) @Hocdoc
+- [Backdrop] Fix export paths (#11481) @brandonhall
+- [ListItem] Take the focusVisibleClassName property into account (#11451) @rdemirov
+- [Grid] Allow shrink in items so text will wrap by default (#11411) @ShaneMcX
+- [StepLabel] Allow StepIcon customization (#11446) @jargot
+- [StepConnector] Exposes the component (#11478) @racingrebel
+- [Tabs] Fix TabIndicatorProps merge (#11494) @adeelibr
+- [ButtonBase] Fix React propTypes buttonRef warning (#11519) @t49tran
+- [ListItemText] Shouldn't be a heading by default (#11544) @adeelibr
+- [GridListTileBar] Add missing title and subtitle keys (#11570) @ljani
+- [TableCell] Fix padding for last TableCell if checkbox (#11568) @gfpacheco
+- [Button][ButtonBase] Take advantage of defaultProps for component prop (#11574) @cherniavskii
+- [StepConnector] Add to default export from @material-ui/core (#11583) @OsipovIgor
+- [ButtonBase] Improve enter & space handling (#11585) @TheBear44
+
+#### Docs
+
+- [examples] Fix imports for Dialog (#11469) @sboles
+- [docs] Add v0 subdirectory redirects (#11470) @mbrookes
+- [docs] Remove trailing slash on progress-indicators link (#11473) @srt32
+- [docs] Add HSTS header (#11475) @mbrookes
+- [docs] Add missing word to documentation (#11476) @Skn0tt
+- [docs] Specify correct corner to locate directional toggle (#11479) @jacquesporveau
+- [examples] Fix create-react-app-with-jss theme object (#11485) @Dror88
+- [docs] Add Snippets Chrome extension to showcase (#11487) @richardscarrott
+- [docs] Fix hyphen for iOS (#11490) @mbrookes
+- [docs] Prevent content-type: application/octet-stream (#11501) @oliviertassinari
+- [docs] Add Customized Switches section (#11505) @mbrookes
+- [docs] Remove Firebase config file & deploy script (#11516) @mbrookes
+- [docs] Pull versions from github API (#11522) @mbrookes
+- [docs] Removed references to Grid's hidden property (#11529) @lfalke
+- [docs] Remove background grid from Typography variants demo (#11562) @mbrookes
+- [docs] Finish incomplete list-item-text.md documentation (#11559) @codeheroics
+- [docs] Add outlined buttons to ButtonSizes demo (#11509) @mbrookes
+- [docs] Add a Troubleshooting section for SSR (#11579) @oliviertassinari
+- [docs] Fix a little typo in typescript docs (#11580) @saculbr
+- [docs] Add react-admin to related projects (#11582) @fzaninotto
+- [docs] Update the showcase (#11578) @mbrookes
+
+#### Core
+
+- [typescript] Make TypographyStyle assignable to CSSProperties, misc other typing fixes (#11456) @pelotom
+- [core] Cut the head of the snake 🐍 (#11477) @oliviertassinari
+- [core] Add esm bundle to start tracking treeshakability (#11489) @TrySound
+- [core] More aggressive transpilation (#11492) @oliviertassinari
+- [core] Enable loose mode for staged featues (#11511) @TrySound
+- [core] Simplify the babel docs config (#11514) @oliviertassinari
+- [core] Remove lodash 💃 (#11521) @oliviertassinari
+- [core] Internalize ScrollbarSize (#11523) @oliviertassinari
+- [typescript] Add sample with return types (#11512) @yacut
+
+#### Labs
+
+- [SpeedDial] Clean up SpeedDialIcon transition (#11513) @mbrookes
+- [Slider] Port component (#11040) @epodivilov
 
 ## 1.0.0
 ###### *May 17, 2018*

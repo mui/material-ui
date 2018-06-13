@@ -9,7 +9,8 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import Typography from '@material-ui/core/Typography';
-import { MemoryRouter, Route } from 'react-router';
+import MemoryRouter from 'react-router/MemoryRouter';
+import Route from 'react-router/Route';
 import { Link } from 'react-router-dom';
 
 const styles = theme => ({
@@ -61,7 +62,7 @@ ListItemLink2.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
-function SimpleList(props) {
+function ComponentProperty(props) {
   const { classes } = props;
   return (
     <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
@@ -89,8 +90,8 @@ function SimpleList(props) {
   );
 }
 
-SimpleList.propTypes = {
+ComponentProperty.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleList);
+export default withStyles(styles)(ComponentProperty);

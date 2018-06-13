@@ -86,7 +86,6 @@ class TextMobileStepper extends React.Component {
           alt={tutorialSteps[activeStep].label}
         />
         <MobileStepper
-          variant="text"
           steps={maxSteps}
           position="static"
           activeStep={activeStep}

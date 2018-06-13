@@ -8,20 +8,11 @@ const styles = {
     width: '100%',
     maxWidth: 500,
   },
-  light: {
-    background:
-      'transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAICAIAAAC3eAIWAAAAEklEQVR4AWP4fvkRw69fv3BhAG+IFy/ne6sFAAAAAElFTkSuQmCC)', // eslint-disable-line max-len
-  },
 };
 
-function Types(props) {
+function Types() {
   return (
-    <div
-      style={{
-        ...styles.root,
-        ...(props.theme.palette.type === 'light' ? styles.light : {}),
-      }}
-    >
+    <div style={styles.root}>
       <Typography variant="display4" gutterBottom>
         Display 4
       </Typography>

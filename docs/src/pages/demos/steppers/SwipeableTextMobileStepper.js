@@ -96,7 +96,6 @@ class SwipeableTextMobileStepper extends React.Component {
           ))}
         </SwipeableViews>
         <MobileStepper
-          variant="text"
           steps={maxSteps}
           position="static"
           activeStep={activeStep}

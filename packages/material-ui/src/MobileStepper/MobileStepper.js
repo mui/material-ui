@@ -88,7 +88,7 @@ function MobileStepper(props) {
         <LinearProgress
           className={classes.progress}
           variant="determinate"
-          value={Math.ceil(activeStep / (steps - 1) * 100)}
+          value={Math.ceil((activeStep / (steps - 1)) * 100)}
         />
       )}
       {nextButton}

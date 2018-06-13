@@ -6,6 +6,7 @@ export { colors };
 export {
   createGenerateClassName,
   createMuiTheme,
+  createStyles,
   jssPreset,
   MuiThemeProvider,
   withStyles,
@@ -78,12 +79,14 @@ export { default as Popover } from './Popover';
 export { default as Portal } from './Portal';
 export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';
+export { default as RootRef } from './RootRef';
 export { default as Select } from './Select';
 export { default as Slide } from './Slide';
 export { default as Snackbar } from './Snackbar';
 export { default as SnackbarContent } from './SnackbarContent';
 export { default as Step } from './Step';
 export { default as StepButton } from './StepButton';
+export { default as StepConnector } from './StepConnector';
 export { default as StepContent } from './StepContent';
 export { default as StepIcon } from './StepIcon';
 export { default as StepLabel } from './StepLabel';

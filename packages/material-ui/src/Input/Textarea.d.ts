@@ -11,7 +11,7 @@ export interface TextareaProps
   disabled?: boolean;
   rows?: string | number;
   rowsMax?: string | number;
-  textareaRef?: React.Ref<any>;
+  textareaRef?: React.Ref<any> | React.RefObject<any>;
   value?: string;
 }
 

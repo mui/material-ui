@@ -79,8 +79,7 @@ const pages = [
         pathname: '/layout/hidden',
       },
       {
-        pathname: '/layout/css-in-js',
-        title: 'CSS in JS',
+        pathname: '/layout/breakpoints',
       },
     ],
   },
@@ -98,6 +97,9 @@ const pages = [
       },
       {
         pathname: '/utils/transitions',
+      },
+      {
+        pathname: '/utils/click-away-listener',
       },
     ],
   },
@@ -143,7 +145,7 @@ const pages = [
         title: 'Style Library Interoperability',
       },
       {
-        pathname: '/guides/migration-v0.x',
+        pathname: '/guides/migration-v0x',
         title: 'Migration From v0.x',
       },
       {
@@ -186,6 +188,9 @@ const pages = [
       {
         pathname: '/lab/speed-dial',
       },
+      {
+        pathname: '/lab/slider',
+      },
       findPages[2].children[1],
     ],
   },
@@ -196,15 +201,6 @@ const pages = [
         pathname: '/discover-more/vision',
       },
       {
-        pathname: '/discover-more/roadmap',
-      },
-      {
-        pathname: '/discover-more/governance',
-      },
-      {
-        pathname: '/discover-more/team',
-      },
-      {
         pathname: '/discover-more/backers',
         title: 'Sponsors & Backers',
       },
@@ -212,10 +208,22 @@ const pages = [
         pathname: '/discover-more/community',
       },
       {
+        pathname: '/discover-more/related-projects',
+      },
+      {
         pathname: '/discover-more/showcase',
       },
       {
-        pathname: '/discover-more/related-projects',
+        pathname: '/discover-more/roadmap',
+      },
+      {
+        pathname: '/discover-more/changelog',
+      },
+      {
+        pathname: '/discover-more/team',
+      },
+      {
+        pathname: '/discover-more/governance',
       },
     ],
   },
@@ -254,8 +262,8 @@ function findActivePage(currentPages, router) {
 
 function withRoot(Component) {
   class WithRoot extends React.Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
 
       this.redux = initRedux(this.props.reduxServerState || {});
     }

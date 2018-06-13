@@ -16,7 +16,7 @@ export const styles = theme => ({
     boxSizing: 'content-box',
   },
   vertical: {
-    justifyContent: 'left',
+    justifyContent: 'flex-start',
   },
   touchRipple: {
     color: 'rgba(0, 0, 0, 0.3)',

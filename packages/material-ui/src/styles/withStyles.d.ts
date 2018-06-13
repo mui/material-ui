@@ -3,7 +3,7 @@ import { WithTheme } from '../styles/withTheme';
 import { ConsistentWith, Overwrite } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
-import * as JSS from 'jss'
+import * as JSS from 'jss';
 
 export interface CSSProperties extends CSS.Properties<number | string> {
   // Allow pseudo selectors and media queries
@@ -29,7 +29,8 @@ export interface StylesCreator {
   themingEnabled: boolean;
 }
 
-export interface WithStylesOptions<ClassKey extends string = string> extends JSS.CreateStyleSheetOptions<ClassKey> {
+export interface WithStylesOptions<ClassKey extends string = string>
+  extends JSS.CreateStyleSheetOptions<ClassKey> {
   flip?: boolean;
   withTheme?: boolean;
   name?: string;
@@ -37,9 +38,13 @@ export interface WithStylesOptions<ClassKey extends string = string> extends JSS
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
-export interface WithStyles<ClassKey extends string = string> extends Partial<WithTheme> {
-  classes: ClassNameMap<ClassKey>;
-}
+export type WithStyles<T extends string | StyleRules | StyleRulesCallback = string> = Partial<WithTheme> & {
+  classes: ClassNameMap<
+    T extends string
+      ? T
+      : T extends StyleRulesCallback<infer K> ? K : T extends StyleRules<infer K> ? K : never
+  >;
+};
 
 export interface StyledComponentProps<ClassKey extends string = string> {
   classes?: Partial<ClassNameMap<ClassKey>>;
@@ -47,7 +52,7 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 }
 
 export default function withStyles<ClassKey extends string>(
-  style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
+  style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: WithStylesOptions<ClassKey>,
 ): {
   <P extends ConsistentWith<P, StyledComponentProps<ClassKey>>>(

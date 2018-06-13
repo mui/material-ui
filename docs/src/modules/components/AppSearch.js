@@ -196,4 +196,8 @@ AppSearch.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-export default compose(withStyles(styles), withWidth(), pure)(AppSearch);
+export default compose(
+  withStyles(styles),
+  withWidth(),
+  pure,
+)(AppSearch);

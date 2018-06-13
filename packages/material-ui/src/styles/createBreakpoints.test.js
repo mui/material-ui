@@ -4,11 +4,7 @@ import { assert } from 'chai';
 import createBreakpoints from './createBreakpoints';
 
 describe('createBreakpoints', () => {
-  let breakpoints;
-
-  before(() => {
-    breakpoints = createBreakpoints({});
-  });
+  const breakpoints = createBreakpoints({});
 
   describe('up', () => {
     it('should work for xs', () => {

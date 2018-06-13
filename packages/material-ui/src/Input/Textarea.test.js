@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
@@ -154,6 +152,14 @@ describe('<Textarea />', () => {
       assert.strictEqual(wrapper.state().height, 19);
       clock.tick(166);
       assert.strictEqual(wrapper.state().height, 43);
+    });
+  });
+
+  describe('prop: textareaRef', () => {
+    it('should be able to return the input node via a ref object', () => {
+      const ref = React.createRef();
+      mount(<Textarea textareaRef={ref} />);
+      assert.strictEqual(ref.current.tagName, 'TEXTAREA');
     });
   });
 });

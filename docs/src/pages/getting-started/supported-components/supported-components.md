@@ -80,9 +80,10 @@ to discuss the approach before submitting a PR.
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
-- [Sliders](https://material.io/design/components/sliders.html)
-  - [Continuous](https://material.io/design/components/sliders.html#continuous-slider)
-  - [Discrete](https://material.io/design/components/sliders.html#discrete-slider)
+- **[Sliders](https://material.io/design/components/sliders.html) ~
+     **([Lab](/lab/about))
+  - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
+  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~** (WIP)
 - **[Snackbars](https://material.io/archive/guidelines/components/snackbars-toasts.html) ✓** (*Legacy Material v1*)
 - **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*)
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**

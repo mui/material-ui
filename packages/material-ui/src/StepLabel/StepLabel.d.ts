@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { Orientation } from '../Stepper';
 import { StepButtonIcon } from '../StepButton';
+import { StepIconProps } from '../StepIcon';
 
 export interface StepLabelProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepLabelClasskey> {
@@ -15,6 +16,7 @@ export interface StepLabelProps
   last?: boolean;
   optional?: React.ReactNode;
   orientation?: Orientation;
+  StepIconProps?: Partial<StepIconProps>;
 }
 
 export type StepLabelClasskey =

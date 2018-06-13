@@ -12,34 +12,34 @@ const styles = theme => ({
   },
 });
 
-function RaisedButtons(props) {
+function ContainedButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button variant="raised" className={classes.button}>
+      <Button variant="contained" className={classes.button}>
         Default
       </Button>
-      <Button variant="raised" color="primary" className={classes.button}>
+      <Button variant="contained" color="primary" className={classes.button}>
         Primary
       </Button>
-      <Button variant="raised" color="secondary" className={classes.button}>
+      <Button variant="contained" color="secondary" className={classes.button}>
         Secondary
       </Button>
-      <Button variant="raised" color="secondary" disabled className={classes.button}>
+      <Button variant="contained" color="secondary" disabled className={classes.button}>
         Disabled
       </Button>
-      <Button variant="raised" href="#raised-buttons" className={classes.button}>
+      <Button variant="contained" href="#contained-buttons" className={classes.button}>
         Link
       </Button>
       <input
         accept="image/*"
         className={classes.input}
-        id="raised-button-file"
+        id="contained-button-file"
         multiple
         type="file"
       />
-      <label htmlFor="raised-button-file">
-        <Button variant="raised" component="span" className={classes.button}>
+      <label htmlFor="contained-button-file">
+        <Button variant="contained" component="span" className={classes.button}>
           Upload
         </Button>
       </label>
@@ -47,8 +47,8 @@ function RaisedButtons(props) {
   );
 }
 
-RaisedButtons.propTypes = {
+ContainedButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RaisedButtons);
+export default withStyles(styles)(ContainedButtons);

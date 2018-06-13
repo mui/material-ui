@@ -53,7 +53,7 @@ function SimpleBadge(props) {
         <Typography className={classes.padding}>Typography</Typography>
       </Badge>
       <Badge color="primary" badgeContent={4} className={classes.margin}>
-        <Button variant="raised">Button</Button>
+        <Button variant="contained">Button</Button>
       </Badge>
     </div>
   );

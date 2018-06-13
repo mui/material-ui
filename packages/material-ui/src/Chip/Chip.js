@@ -30,6 +30,7 @@ export const styles = theme => {
       cursor: 'default',
       // We disable the focus ring for mouse, touch and keyboard users.
       outline: 'none',
+      textDecoration: 'none',
       border: 'none', // Remove `button` border
       padding: 0, // Remove `button` padding
     },
@@ -131,6 +132,7 @@ class Chip extends React.Component {
       avatar: avatarProp,
       classes,
       className: classNameProp,
+      clickable,
       component: Component,
       deleteIcon: deleteIconProp,
       label,
@@ -143,7 +145,7 @@ class Chip extends React.Component {
 
     const className = classNames(
       classes.root,
-      { [classes.clickable]: onClick },
+      { [classes.clickable]: onClick || clickable },
       { [classes.deletable]: onDelete },
       classNameProp,
     );
@@ -172,7 +174,7 @@ class Chip extends React.Component {
     let tabIndex = tabIndexProp;
 
     if (!tabIndex) {
-      tabIndex = onClick || onDelete ? 0 : -1;
+      tabIndex = onClick || onDelete || clickable ? 0 : -1;
     }
 
     return (
@@ -210,6 +212,12 @@ Chip.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If true, the chip will appear clickable, and will raise when pressed,
+   * even if the onClick property is not defined. This can be used, for example,
+   * along with the component property to indicate an anchor Chip is clickable.
+   */
+  clickable: PropTypes.bool,
+  /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
@@ -242,6 +250,7 @@ Chip.propTypes = {
 };
 
 Chip.defaultProps = {
+  clickable: false,
   component: 'div',
 };
 

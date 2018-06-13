@@ -41,7 +41,20 @@ export const styles = theme => ({
   },
 });
 
+/* istanbul ignore if */
+if (process.env.NODE_ENV !== 'production' && !React.createContext) {
+  throw new Error('Material-UI: react@16.3.0 or greater is required.');
+}
+
 class Modal extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      exited: !this.props.open,
+    };
+  }
+
   static getDerivedStateFromProps(nextProps) {
     if (nextProps.open) {
       return {
@@ -55,14 +68,6 @@ class Modal extends React.Component {
     }
 
     return null;
-  }
-
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      exited: !this.props.open,
-    };
   }
 
   componentDidMount() {

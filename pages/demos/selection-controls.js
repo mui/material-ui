@@ -65,6 +65,15 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/selection-controls/SwitchesGroup'), 'utf8')
 `,
         },
+        'pages/demos/selection-controls/CustomizedSwitches.js': {
+          js: require('docs/src/pages/demos/selection-controls/CustomizedSwitches').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve(
+    'docs/src/pages/demos/selection-controls/CustomizedSwitches'
+  ), 'utf8')
+`,
+        },
       }}
     />
   );

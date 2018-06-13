@@ -49,8 +49,6 @@ marked.setOptions({
   sanitize: false,
   smartLists: true,
   smartypants: false,
-  // prism uses the following class prefix.
-  langPrefix: 'language-',
   highlight(code, lang) {
     let language;
     switch (lang) {
@@ -60,6 +58,11 @@ marked.setOptions({
 
       case 'css':
         language = prism.languages.css;
+        break;
+
+      case 'ts':
+      case 'tsx':
+        language = prism.languages.typescript;
         break;
 
       case 'js':
