@@ -42,6 +42,10 @@ export class Calendar extends Component {
     shouldDisableDate: () => false,
   };
 
+  state = {
+    currentMonth: this.props.utils.getStartOfMonth(this.props.date),
+  };
+
   static getDerivedStateFromProps(nextProps, state) {
     if (!nextProps.utils.isEqual(nextProps.date, state.lastDate)) {
       return {
@@ -52,10 +56,6 @@ export class Calendar extends Component {
 
     return null;
   }
-
-  state = {
-    currentMonth: this.props.utils.getStartOfMonth(this.props.date),
-  };
 
   componentDidMount() {
     const {

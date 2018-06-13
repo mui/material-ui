@@ -63,6 +63,10 @@ export default class ModalWrapper extends PureComponent {
     onSetToday: undefined,
   }
 
+  state = {
+    open: false,
+  }
+
   static getDerivedStateFromProps(nextProps) {
     // only if accept = true close the dialog
     if (nextProps.isAccepted) {
@@ -72,10 +76,6 @@ export default class ModalWrapper extends PureComponent {
     }
 
     return null;
-  }
-
-  state = {
-    open: false,
   }
 
   handleKeyDown = (event) => {
