@@ -21,14 +21,14 @@ export default class MuiPickersUtilsProvider extends PureComponent {
     moment: undefined,
   }
 
-  state = {
-    utils: null,
-  }
-
   static getDerivedStateFromProps({ utils: Utils, locale, moment }) {
     return {
       utils: new Utils({ locale, moment }),
     };
+  }
+
+  state = {
+    utils: null,
   }
 
   render() {
