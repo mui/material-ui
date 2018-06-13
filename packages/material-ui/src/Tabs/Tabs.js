@@ -275,7 +275,7 @@ class Tabs extends React.Component {
       children: childrenProp,
       classes,
       className: classNameProp,
-      component: Component
+      component: Component,
       fullWidth,
       indicatorColor,
       onChange,
