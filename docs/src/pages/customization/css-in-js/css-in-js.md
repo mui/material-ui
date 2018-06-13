@@ -192,6 +192,7 @@ export default App;
 
 react-jss exposes a `JssProvider` component to configure JSS for the underlying child components.
 There are different use cases:
+- Providing a class name generator.
 - [Providing a Sheets registry.](/customization/css-in-js#sheets-registry)
 - Providing a JSS instance. You might want to support [Right-to-left](/guides/right-to-left) or changing the [CSS injection order](/customization/css-in-js#css-injection-order).
 Read [the JSS documentation](http://cssinjs.org/js-api/) to learn more about the options available.

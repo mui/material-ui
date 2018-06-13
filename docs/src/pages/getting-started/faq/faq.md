@@ -5,11 +5,18 @@ Stuck on a particular problem? Check some of these common gotchas first.
 If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/mui-org/material-ui).
 For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
 
-## How to fix a class names production build conflict?
+## How to fix a class names conflict in production?
 
 This is probably the n°1 issue people are facing starting with Material-UI.
 The class names value relies on the concept of [class name generator](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
 The whole page needs to be rendered with **one generator**.
+You might end up using two class name generators in a variety of contexts:
+- You **bundle** two versions of Material-UI. You might have a dependency not correctly setting Material-UI as a peer dependency.
+Each version of Material-UI uses its own default class name generator.
+- You are using `JssProvider` for a **subset** of your React Tree.
+Material-UI has a default class name generator, `JssProvider` is providing a second one.
+
+It's simple to recover from this problem. Use the [`JssProvider`](/customization/css-in-js#jssprovider) component at the top of your React tree to inject a single class name generator.
 
 ## Why do the fixed positioned elements move when a modal is opened?
 
