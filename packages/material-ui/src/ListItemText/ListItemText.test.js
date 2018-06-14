@@ -196,49 +196,20 @@ describe('<ListItemText />', () => {
     );
   });
   it('should not re-wrap primary <Typography> element', () => {
-    const primary = <Typography>This is the primary text</Typography>
-    const wrapper = shallow(
-      <ListItemText
-        primary={primary}
-      />,
-    );
-    assert.strictEqual(
-      wrapper
-        .childAt(0)
-        .props()
-        .children,
-      primary.props.children
-    )
-  })
+    const primary = <Typography>This is the primary text</Typography>;
+    const wrapper = shallow(<ListItemText primary={primary} />);
+    assert.strictEqual(wrapper.childAt(0).props().children, primary.props.children);
+  });
   it('should not re-wrap child <Typography> element', () => {
-    const primary = <Typography>This is the primary text</Typography>
-    const wrapper = shallow(
-      <ListItemText>
-        {primary}
-      </ListItemText>
-    );
-    assert.strictEqual(
-      wrapper
-        .childAt(0)
-        .props()
-        .children,
-      primary.props.children
-    )
-  })
+    const primary = <Typography>This is the primary text</Typography>;
+    const wrapper = shallow(<ListItemText>{primary}</ListItemText>);
+    assert.strictEqual(wrapper.childAt(0).props().children, primary.props.children);
+  });
   it('should not re-wrap secondary <Typography> element', () => {
-    const secondary = <Typography>This is the secondary text</Typography>
+    const secondary = <Typography>This is the secondary text</Typography>;
     const wrapper = shallow(
-      <ListItemText
-        primary="This is the primary text"
-        secondary={secondary}
-      />
+      <ListItemText primary="This is the primary text" secondary={secondary} />,
     );
-    assert.strictEqual(
-      wrapper
-        .childAt(1)
-        .props()
-        .children,
-      secondary.props.children
-    )
-  })
+    assert.strictEqual(wrapper.childAt(1).props().children, secondary.props.children);
+  });
 });
