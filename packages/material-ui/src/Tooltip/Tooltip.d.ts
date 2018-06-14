@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IPopperProps } from 'react-popper';
+import { PopperProps } from 'react-popper';
 import { StandardProps } from '..';
 
 export interface TooltipProps
@@ -42,10 +42,6 @@ export type TooltipClassKey =
   | 'tooltipPlacementRight'
   | 'tooltipPlacementTop'
   | 'tooltipPlacementBottom';
-
-interface PopperProps extends IPopperProps {
-  PopperClassName: string;
-}
 
 declare const Tooltip: React.ComponentType<TooltipProps>;
 

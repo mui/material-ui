@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
-import { Manager, Target, Popper } from 'react-popper';
+import { Manager, Reference, Popper } from 'react-popper';
 
 const styles = theme => ({
   paper: {
@@ -74,31 +74,39 @@ class MouseOverPopover extends React.Component {
           <Typography>I use Popover.</Typography>
         </Popover>
         <Manager>
-          <Target>
-            <Typography
-              aria-describedby="react-popper-tooltip"
-              onMouseOver={this.handlePopperOpen}
-              onMouseOut={this.handlePopperClose}
-            >
-              Hover with react-popper.
-            </Typography>
-          </Target>
+          <Reference>
+            {({ ref }) => (
+              <div ref={ref}>
+                <Typography
+                  aria-describedby="react-popper-tooltip"
+                  onMouseOver={this.handlePopperOpen}
+                  onMouseOut={this.handlePopperClose}
+                >
+                  Hover with react-popper.
+                </Typography>
+              </div>
+            )}
+          </Reference>
           <Popper
             placement="bottom-start"
             eventsEnabled={popperOpen}
             className={!popperOpen ? classes.popperClose : ''}
           >
-            <Grow in={popperOpen} style={{ transformOrigin: '0 0 0' }}>
-              <Paper
-                id="react-popper-tooltip"
-                className={classes.paper}
-                role="tooltip"
-                aria-hidden={!popperOpen}
-                elevation={8}
-              >
-                <Typography>I use react-popper.</Typography>
-              </Paper>
-            </Grow>
+            {({ ref, style }) => (
+              <div ref={ref} style={style}>
+                <Grow in={popperOpen} style={{ transformOrigin: '0 0 0' }}>
+                  <Paper
+                    id="react-popper-tooltip"
+                    className={classes.paper}
+                    role="tooltip"
+                    aria-hidden={!popperOpen}
+                    elevation={8}
+                  >
+                    <Typography>I use react-popper.</Typography>
+                  </Paper>
+                </Grow>
+              </div>
+            )}
           </Popper>
         </Manager>
       </div>
