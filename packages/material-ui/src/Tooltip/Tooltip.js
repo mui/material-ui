@@ -6,7 +6,7 @@ import EventListener from 'react-event-listener';
 import debounce from 'debounce';
 import warning from 'warning';
 import classNames from 'classnames';
-import { Manager, Popper, Target } from 'react-popper';
+import { Manager, Popper, Reference } from 'react-popper';
 import { capitalize } from '../utils/helpers';
 import RootRef from '../RootRef';
 import Portal from '../Portal';
@@ -137,13 +137,13 @@ class Tooltip extends React.Component {
   touchTimer = null;
   closeTimer = null;
   isControlled = null;
-  popper = null;
+  scheduleUpdate = null;
   children = null;
   ignoreNonTouchEvents = false;
 
   handleResize = debounce(() => {
-    if (this.popper) {
-      this.popper._popper.scheduleUpdate();
+    if (this.scheduleUpdate) {
+      this.scheduleUpdate();
     }
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
@@ -314,41 +314,39 @@ class Tooltip extends React.Component {
     );
 
     return (
-      <Manager tag={false} {...other}>
+      <Manager {...other}>
         <EventListener target="window" onResize={this.handleResize} />
-        <Target>
-          {({ targetProps }) => (
+        <Reference>
+          {({ ref }) => (
             <RootRef
               rootRef={node => {
                 this.children = node;
-                targetProps.ref(this.children);
+                ref(this.children);
               }}
             >
               {React.cloneElement(children, childrenProps)}
             </RootRef>
           )}
-        </Target>
+        </Reference>
         <Portal>
           <Popper
             placement={placement}
             eventsEnabled={open}
             className={classNames(classes.popper, { [classes.open]: open }, PopperClassName)}
-            ref={node => {
-              this.popper = node;
-            }}
             {...PopperProps}
           >
-            {({ popperProps, restProps }) => {
-              const actualPlacement = (popperProps['data-placement'] || placement).split('-')[0];
+            {popperProps => {
+              this.scheduleUpdate = popperProps.scheduleUpdate;
+              const actualPlacement = popperProps.placement
+                ? popperProps.placement.split('-')[0]
+                : null;
               return (
                 <div
-                  {...popperProps}
-                  {...restProps}
+                  ref={popperProps.ref}
                   style={{
                     ...popperProps.style,
                     top: popperProps.style.top || 0,
                     left: popperProps.style.left || 0,
-                    ...restProps.style,
                   }}
                 >
                   <div
@@ -357,9 +355,13 @@ class Tooltip extends React.Component {
                     aria-hidden={!open}
                     className={classNames(
                       classes.tooltip,
-                      { [classes.open]: open },
-                      { [classes.touch]: this.ignoreNonTouchEvents },
-                      classes[`tooltipPlacement${capitalize(actualPlacement)}`],
+                      {
+                        [classes.open]: open,
+                        [classes.touch]: this.ignoreNonTouchEvents,
+                      },
+                      popperProps.placement
+                        ? classes[`tooltipPlacement${capitalize(actualPlacement)}`]
+                        : null,
                     )}
                   >
                     {title}
