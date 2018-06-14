@@ -60,7 +60,7 @@ CardMedia.propTypes = {
    * Component for rendering image.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Image to be displayed as a background image.
    * Either `image` or `src` prop must be specified.

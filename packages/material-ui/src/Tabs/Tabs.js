@@ -397,7 +397,7 @@ Tabs.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, the tabs will grow to use all the available space.
    * This property is intended for small views, like on mobile.
@@ -422,7 +422,7 @@ Tabs.propTypes = {
   /**
    * The component used to render the scroll buttons.
    */
-  ScrollButtonComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  ScrollButtonComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Determine behavior of scroll buttons when tabs are set to scroll
    * `auto` will only present them on medium and larger viewports

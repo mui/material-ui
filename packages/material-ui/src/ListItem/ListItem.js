@@ -164,11 +164,11 @@ ListItem.propTypes = {
    * Either a string to use a DOM element or a component.
    * By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * The container component used when a `ListItemSecondaryAction` is rendered.
    */
-  ContainerComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  ContainerComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the container element when the component
    * is used to display a `ListItemSecondaryAction`.
