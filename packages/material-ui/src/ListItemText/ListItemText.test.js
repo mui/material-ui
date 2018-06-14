@@ -213,4 +213,27 @@ describe('<ListItemText />', () => {
     assert.strictEqual(wrapper.childAt(0).props().children, primary.props.children);
     assert.strictEqual(wrapper.childAt(1).props().children, secondary.props.children);
   });
+
+  it('should pass primaryTypographyProps to primary Typography component', () => {
+    const wrapper = shallow(
+      <ListItemText
+        primary="This is the primary text"
+        primaryTypographyProps={{ color: 'inherit' }}
+      />,
+    );
+
+    assert.strictEqual(wrapper.childAt(0).props().color, 'inherit');
+  });
+
+  it('should pass secondaryTypographyProps to secondary Typography component', () => {
+    const wrapper = shallow(
+      <ListItemText
+        primary="This is the primary text"
+        secondary="This is the secondary text"
+        secondaryTypographyProps={{ color: 'inherit' }}
+      />,
+    );
+
+    assert.strictEqual(wrapper.childAt(1).props().color, 'inherit');
+  });
 });
