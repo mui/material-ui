@@ -7,7 +7,8 @@ Feel free to submit a pull-request to add more projects; we will accept them if 
 
 ## Material-UI Specific Projects
 
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features.
+- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/) A chart for Material-UI that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more ([custom license](https://js.devexpress.com/licensing/)).
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([custom license](https://js.devexpress.com/licensing/)).
 - [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) A fuzzy-search component for React and Material-UI.
 - [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Components that implement Material Design date and time pickers for Material-UI.
 - [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker) A TimePicker for Material-UI.
