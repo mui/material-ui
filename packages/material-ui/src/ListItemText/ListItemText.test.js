@@ -205,4 +205,12 @@ describe('<ListItemText />', () => {
       'should have the secondary text class',
     );
   });
+
+  it('should not re-wrap the <Typography> element', () => {
+    const primary = <Typography>This is the primary text</Typography>;
+    const secondary = <Typography>This is the secondary text</Typography>;
+    const wrapper = shallow(<ListItemText primary={primary} secondary={secondary} />);
+    assert.strictEqual(wrapper.childAt(0).props().children, primary.props.children);
+    assert.strictEqual(wrapper.childAt(1).props().children, secondary.props.children);
+  });
 });
