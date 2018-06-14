@@ -134,6 +134,7 @@ class Tab extends React.Component {
 
   render() {
     const {
+      children,
       classes,
       className: classNameProp,
       disabled,
@@ -193,6 +194,7 @@ class Tab extends React.Component {
           {icon}
           {label}
         </span>
+        {children}
         {indicator}
       </ButtonBase>
     );
@@ -200,6 +202,10 @@ class Tab extends React.Component {
 }
 
 Tab.propTypes = {
+  /**
+   * Optional additional children
+   */
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
