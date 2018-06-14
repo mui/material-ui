@@ -7,7 +7,7 @@ import withTheme from '../styles/withTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 
 function getScale(value) {
-  return `scale(${value}, ${value ** 2})`;
+  return `scale(${value}, ${Math.pow(value, 2)})`;
 }
 
 const styles = {
@@ -177,5 +177,7 @@ Grow.propTypes = {
 Grow.defaultProps = {
   timeout: 'auto',
 };
+
+Grow.muiSupportAuto = true;
 
 export default withTheme()(Grow);

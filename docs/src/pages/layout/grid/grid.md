@@ -5,7 +5,7 @@ components: Grid
 # Grid
 
 Material Design’s responsive UI is based on a 12-column grid layout.
-This grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
+The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 
 ## How it works
 

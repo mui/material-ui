@@ -47,8 +47,12 @@ export function find(arr: Array<any>, pred: any) {
  * @returns {function|null}
  */
 export function createChainedFunction(...funcs: Array<any>) {
-  return funcs.filter(func => func != null).reduce(
+  return funcs.reduce(
     (acc, func) => {
+      if (func == null) {
+        return acc;
+      }
+
       warning(
         typeof func === 'function',
         'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.',

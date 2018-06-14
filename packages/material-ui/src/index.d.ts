@@ -39,7 +39,7 @@ export interface Color {
  *
  * @internal
  */
-export type Omit<T, K extends string> = Pick<T, Exclude<keyof T, K>>;
+export type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
 
 /**
  * `T extends ConsistentWith<T, U>` means that where `T` has overlapping properties with
@@ -75,6 +75,7 @@ export {
   Theme,
   withStyles,
   WithStyles,
+  createStyles,
   withTheme,
   WithTheme,
 } from './styles';
@@ -145,12 +146,14 @@ export { default as Popover } from './Popover';
 export { default as Portal } from './Portal';
 export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';
+export { default as RootRef } from './RootRef';
 export { default as Select } from './Select';
 export { default as Slide } from './Slide';
 export { default as Snackbar } from './Snackbar';
 export { default as SnackbarContent } from './SnackbarContent';
 export { default as Step } from './Step';
 export { default as StepButton } from './StepButton';
+export { default as StepConnector } from './StepConnector';
 export { default as StepContent } from './StepContent';
 export { default as StepIcon } from './StepIcon';
 export { default as StepLabel } from './StepLabel';

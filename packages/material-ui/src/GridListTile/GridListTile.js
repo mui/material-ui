@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
-import debounce from 'lodash/debounce';
+import debounce from 'debounce';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -40,7 +40,7 @@ class GridListTile extends React.Component {
   }
 
   componentWillUnmount() {
-    this.handleResize.cancel();
+    this.handleResize.clear();
   }
 
   imgElement = null;

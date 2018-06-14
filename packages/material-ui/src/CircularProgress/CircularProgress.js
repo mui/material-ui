@@ -25,6 +25,7 @@ function easeIn(t) {
 export const styles = theme => ({
   root: {
     display: 'inline-block',
+    lineHeight: 1, // Keep the progress centered
   },
   static: {
     transition: theme.transitions.create('transform'),
@@ -93,7 +94,7 @@ function CircularProgress(props) {
     rootProps['aria-valuenow'] = Math.round(value);
 
     if (variant === 'static') {
-      circleStyle.strokeDashoffset = `${((100 - value) / 100 * circumference).toFixed(3)}px`;
+      circleStyle.strokeDashoffset = `${(((100 - value) / 100) * circumference).toFixed(3)}px`;
       rootStyle.transform = 'rotate(-90deg)';
     } else {
       circleStyle.strokeDashoffset = `${(easeIn((100 - value) / 100) * circumference).toFixed(

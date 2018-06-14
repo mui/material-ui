@@ -9,12 +9,12 @@ export interface TouchRippleProps
 
 export type TouchRippleClassKey =
   | 'root'
-  | 'wrapper'
-  | 'wrapperLeaving'
-  | 'wrapperPulsate'
   | 'ripple'
   | 'rippleVisible'
-  | 'ripplePulsate';
+  | 'ripplePulsate'
+  | 'child'
+  | 'childLeaving'
+  | 'childPulsate';
 
 declare const TouchRipple: React.ComponentType<TouchRippleProps>;
 

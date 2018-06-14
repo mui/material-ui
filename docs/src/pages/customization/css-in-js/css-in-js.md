@@ -12,6 +12,7 @@ a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynam
 We think that it's the future:
 - [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [The future of component-based styling](https://medium.freecodecamp.org/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
+- [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
 
 So, you may have noticed in the demos what *CSS-in-JS* looks like.
 We use the higher-order component created by [`withStyles`](#api)
@@ -191,6 +192,7 @@ export default App;
 
 react-jss exposes a `JssProvider` component to configure JSS for the underlying child components.
 There are different use cases:
+- Providing a class name generator.
 - [Providing a Sheets registry.](/customization/css-in-js#sheets-registry)
 - Providing a JSS instance. You might want to support [Right-to-left](/guides/right-to-left) or changing the [CSS injection order](/customization/css-in-js#css-injection-order).
 Read [the JSS documentation](http://cssinjs.org/js-api/) to learn more about the options available.
@@ -250,7 +252,7 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
 It will be linked to the component.
 Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]):
-  - `options.withTheme` (Boolean [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+  - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
     If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
@@ -303,7 +305,7 @@ export default MyComponent
 
 ### `createGenerateClassName([options]) => class name generator`
 
-A function which returns a class name generator function.
+A function which returns [a class name generator function](http://cssinjs.org/js-api#generate-your-own-class-names).
 
 #### Arguments
 
@@ -355,7 +357,7 @@ const Styled = createStyled({
     color: 'white',
     height: 48,
     padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
 });
 
@@ -375,7 +377,7 @@ function RenderProps() {
 {{"demo": "pages/customization/css-in-js/RenderProps.js"}}
 
 You can access the theme the same way you would do it with `withStyles`:
-```
+```js
 const Styled = createStyled(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
@@ -397,7 +399,7 @@ const MyButton = styled(Button)({
   color: 'white',
   height: 48,
   padding: '0 30px',
-  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 });
 
 function StyledComponents() {
@@ -408,7 +410,7 @@ function StyledComponents() {
 {{"demo": "pages/customization/css-in-js/StyledComponents.js"}}
 
 You can access the theme the same way you would do it with `withStyles`:
-```
+```js
 const MyButton = styled(Button)(theme => ({
   backgroundColor: theme.palette.background.paper,
 }));

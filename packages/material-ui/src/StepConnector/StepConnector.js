@@ -33,9 +33,6 @@ export const styles = theme => ({
   },
 });
 
-/**
- * @ignore - internal component.
- */
 function StepConnector(props) {
   const { alternativeLabel, className: classNameProp, classes, orientation, ...other } = props;
 
@@ -85,4 +82,4 @@ StepConnector.defaultProps = {
   orientation: 'horizontal',
 };
 
-export default withStyles(styles)(StepConnector);
+export default withStyles(styles, { name: 'MuiStepConnector' })(StepConnector);

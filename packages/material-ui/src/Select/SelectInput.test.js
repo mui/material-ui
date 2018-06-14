@@ -327,4 +327,12 @@ describe('<SelectInput />', () => {
       });
     });
   });
+
+  describe('prop: inputRef', () => {
+    it('should be able to return the input node via a ref object', () => {
+      const ref = React.createRef();
+      mount(<SelectInput {...defaultProps} inputRef={ref} />);
+      assert.strictEqual(ref.current.node.tagName, 'INPUT');
+    });
+  });
 });

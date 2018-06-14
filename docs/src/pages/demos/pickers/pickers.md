@@ -17,6 +17,8 @@ Here are some components that are **promising**:
 - [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers)
 - [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker)
 
+⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime).
+
 ## Date pickers
 
 {{"demo": "pages/demos/pickers/DatePickers.js"}}

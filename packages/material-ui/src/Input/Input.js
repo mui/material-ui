@@ -104,8 +104,7 @@ export const styles = theme => {
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-        content: '"need text here to prevent subpixel zoom issue"',
-        color: 'transparent',
+        content: '"\\00a0"',
         position: 'absolute',
         right: 0,
         transition: theme.transitions.create('border-bottom-color', {
@@ -290,7 +289,7 @@ class Input extends React.Component {
   input = null; // Holds the input reference
 
   handleFocus = event => {
-    // Fix an bug with IE11 where the focus/blur events are triggered
+    // Fix a bug with IE11 where the focus/blur events are triggered
     // while the input is disabled.
     if (formControlState(this.props, this.context).disabled) {
       event.stopPropagation();
@@ -301,12 +300,22 @@ class Input extends React.Component {
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
+
+    const { muiFormControl } = this.context;
+    if (muiFormControl && muiFormControl.onFocus) {
+      muiFormControl.onFocus(event);
+    }
   };
 
   handleBlur = event => {
     this.setState({ focused: false });
     if (this.props.onBlur) {
       this.props.onBlur(event);
+    }
+
+    const { muiFormControl } = this.context;
+    if (muiFormControl && muiFormControl.onBlur) {
+      muiFormControl.onBlur(event);
     }
   };
 
@@ -324,10 +333,20 @@ class Input extends React.Component {
   handleRefInput = node => {
     this.input = node;
 
+    let ref;
+
     if (this.props.inputRef) {
-      this.props.inputRef(node);
+      ref = this.props.inputRef;
     } else if (this.props.inputProps && this.props.inputProps.ref) {
-      this.props.inputProps.ref(node);
+      ref = this.props.inputProps.ref;
+    }
+
+    if (ref) {
+      if (typeof ref === 'function') {
+        ref(node);
+      } else {
+        ref.current = node;
+      }
     }
   };
 
@@ -536,13 +555,13 @@ Input.propTypes = {
    */
   inputComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
-   * Properties applied to the `input` element.
+   * Attributes applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.

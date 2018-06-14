@@ -102,8 +102,7 @@ NativeSelect.propTypes = {
    */
   input: PropTypes.element,
   /**
-   * Properties applied to the `input` element.
-   * The properties are applied on the `select` element.
+   * Attributes applied to the `select` element.
    */
   inputProps: PropTypes.object,
   /**

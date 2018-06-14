@@ -18,7 +18,7 @@ export interface InputProps
   id?: string;
   inputComponent?: React.ReactType<InputComponentProps>;
   inputProps?: { [arbitrary: string]: any };
-  inputRef?: React.Ref<any>;
+  inputRef?: React.Ref<any> | React.RefObject<any>;
   margin?: 'dense';
   multiline?: boolean;
   name?: string;

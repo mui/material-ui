@@ -45,7 +45,7 @@ class ControlledOpenSelect extends React.Component {
           Open the select
         </Button>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="controlled-open-select">Age</InputLabel>
+          <InputLabel htmlFor="demo-controlled-open-select">Age</InputLabel>
           <Select
             open={this.state.open}
             onClose={this.handleClose}
@@ -54,7 +54,7 @@ class ControlledOpenSelect extends React.Component {
             onChange={this.handleChange}
             inputProps={{
               name: 'age',
-              id: 'controlled-open-select',
+              id: 'demo-controlled-open-select',
             }}
           >
             <MenuItem value="">

@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
 import ownerDocument from 'dom-helpers/ownerDocument';
-import debounce from 'lodash/debounce';
+import debounce from 'debounce';
 import EventListener from 'react-event-listener';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
@@ -92,7 +92,7 @@ class Popover extends React.Component {
   }
 
   componentWillUnmount = () => {
-    this.handleResize.cancel();
+    this.handleResize.clear();
   };
 
   setPositioningStyles = element => {
@@ -291,10 +291,16 @@ class Popover extends React.Component {
       role,
       transformOrigin,
       TransitionComponent,
-      transitionDuration,
+      transitionDuration: transitionDurationProp,
       TransitionProps,
       ...other
     } = this.props;
+
+    let transitionDuration = transitionDurationProp;
+
+    if (transitionDurationProp === 'auto' && !TransitionComponent.muiSupportAuto) {
+      transitionDuration = undefined;
+    }
 
     // If the container prop is provided, use that
     // If the anchorEl prop is provided, use its parent body element as the container
@@ -317,6 +323,7 @@ class Popover extends React.Component {
           ref={node => {
             this.transitionEl = node;
           }}
+          timeout={transitionDuration}
           {...TransitionProps}
         >
           <Paper

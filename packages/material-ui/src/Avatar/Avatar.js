@@ -122,7 +122,7 @@ Avatar.propTypes = {
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
-   * Properties applied to the `img` element when the component
+   * Attributes applied to the `img` element when the component
    * is used to display an image.
    */
   imgProps: PropTypes.object,

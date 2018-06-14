@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import debounce from 'lodash/debounce';
+import debounce from 'debounce';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 
@@ -42,8 +42,8 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     // <Input> expects the components it renders to respond to 'value'
     // so that it can check whether they are filled.
@@ -66,7 +66,7 @@ class Textarea extends React.Component {
   }
 
   componentWillUnmount() {
-    this.handleResize.cancel();
+    this.handleResize.clear();
   }
 
   shadow = null;
@@ -115,8 +115,14 @@ class Textarea extends React.Component {
 
   handleRefInput = node => {
     this.input = node;
-    if (this.props.textareaRef) {
-      this.props.textareaRef(node);
+
+    const { textareaRef } = this.props;
+    if (textareaRef) {
+      if (typeof textareaRef === 'function') {
+        textareaRef(node);
+      } else {
+        textareaRef.current = node;
+      }
     }
   };
 
@@ -224,7 +230,7 @@ Textarea.propTypes = {
   /**
    * Use that property to pass a ref callback to the native textarea element.
    */
-  textareaRef: PropTypes.func,
+  textareaRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * @ignore
    */

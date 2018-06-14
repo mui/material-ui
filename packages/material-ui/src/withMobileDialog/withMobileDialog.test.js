@@ -1,10 +1,7 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Paper from '../Paper';
-import type { Breakpoint } from '../styles/createBreakpoints';
 import Dialog from '../Dialog';
 import withMobileDialog from './withMobileDialog';
 
@@ -20,7 +17,7 @@ describe('withMobileDialog', () => {
     classes = getClasses(<Dialog {...defaultProps}>foo</Dialog>);
   });
 
-  function isFullScreen(breakpoints: Array<Breakpoint>, width: Breakpoint) {
+  function isFullScreen(breakpoints, width) {
     breakpoints.forEach(breakpoint => {
       it(`is for width: ${width} <= ${breakpoint}`, () => {
         const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
@@ -34,7 +31,7 @@ describe('withMobileDialog', () => {
     });
   }
 
-  function isNotFullScreen(breakpoints: Array<Breakpoint>, width: Breakpoint) {
+  function isNotFullScreen(breakpoints, width) {
     breakpoints.forEach(breakpoint => {
       it(`is not for width: ${width} > ${breakpoint}`, () => {
         const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);

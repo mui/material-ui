@@ -44,8 +44,9 @@ describe('<StepLabel />', () => {
     });
 
     it('renders <StepIcon>', () => {
+      const stepIconProps = { prop1: 'value1', prop2: 'value2' };
       const wrapper = shallow(
-        <StepLabel icon={1} active completed alternativeLabel>
+        <StepLabel icon={1} active completed alternativeLabel StepIconProps={stepIconProps}>
           Step One
         </StepLabel>,
       );
@@ -53,6 +54,8 @@ describe('<StepLabel />', () => {
       assert.strictEqual(stepIcon.length, 1, 'should have an <StepIcon />');
       const props = stepIcon.props();
       assert.strictEqual(props.icon, 1, 'should set icon');
+      assert.strictEqual(props.prop1, 'value1', 'should have inherited custom prop1');
+      assert.strictEqual(props.prop2, 'value2', 'should have inherited custom prop2');
     });
   });
 

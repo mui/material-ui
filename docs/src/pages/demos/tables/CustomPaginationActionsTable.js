@@ -113,8 +113,8 @@ const styles = theme => ({
 });
 
 class CustomPaginationActionsTable extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       data: [

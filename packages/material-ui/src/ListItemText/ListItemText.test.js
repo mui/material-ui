@@ -63,6 +63,11 @@ describe('<ListItemText />', () => {
       const wrapper = shallow(<ListItemText>{primary}</ListItemText>);
       assert.strictEqual(wrapper.contains(primary), true, 'should find the node');
     });
+
+    it('should read 0 as primary', () => {
+      const wrapper = shallow(<ListItemText primary={0} />);
+      assert.strictEqual(wrapper.childAt(0).type(), Typography);
+    });
   });
 
   describe('prop: secondary', () => {
@@ -90,6 +95,11 @@ describe('<ListItemText />', () => {
       const secondary = <span />;
       const wrapper = shallow(<ListItemText secondary={secondary} />);
       assert.strictEqual(wrapper.contains(secondary), true, 'should find the node');
+    });
+
+    it('should read 0 as secondary', () => {
+      const wrapper = shallow(<ListItemText secondary={0} />);
+      assert.strictEqual(wrapper.childAt(0).type(), Typography);
     });
   });
 

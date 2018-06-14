@@ -150,13 +150,13 @@ Switch.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the `input` element.
+   * Attributes applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Callback fired when the state is changed.
    *

@@ -128,4 +128,7 @@ Link.propTypes = {
   variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'button']),
 };
 
-export default compose(withRouter, withStyles(styles))(Link);
+export default compose(
+  withRouter,
+  withStyles(styles),
+)(Link);

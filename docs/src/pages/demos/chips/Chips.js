@@ -60,6 +60,13 @@ function Chips(props) {
         className={classes.chip}
         deleteIcon={<DoneIcon />}
       />
+      <Chip
+        label="Clickable Link Chip"
+        className={classes.chip}
+        component="a"
+        href="#chip"
+        clickable
+      />
     </div>
   );
 }

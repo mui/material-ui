@@ -29,7 +29,7 @@ mdDown      |                     hide | show
 
 ### js
 
-By default, the `js` implementation is used, responsively hiding content based on using the `withWidth()` higher-order component that watches screen size.
+By default, the `js` implementation is used, responsively hiding content based on using the [`withWidth()`](/layout/breakpoints#withwidth-) higher-order component that watches screen size.
 This has the benefit of not rendering any content at all unless the breakpoint is met.
 
 ### css
@@ -61,6 +61,5 @@ The `only` property can be used in two ways:
 ## Integration with Grid
 
 It is quite common to alter `Grid` at different responsive breakpoints, and in many cases, you want to hide some of those elements.
-For brevity, where you are already using `Grid`, you may specify `Hidden` behaviors as the `hidden` property.
 
 {{"demo": "pages/layout/hidden/GridIntegration.js"}}

@@ -246,6 +246,19 @@ describe('<Tabs />', () => {
         );
       });
 
+      it('should accept any value as selected tab value', () => {
+        const tab0 = {};
+        const tab1 = {};
+        assert.notStrictEqual(tab0, tab1);
+        const wrapper2 = shallow(
+          <Tabs width="md" onChange={noop} value={tab0}>
+            <Tab value={tab0} />
+            <Tab value={tab1} />
+          </Tabs>,
+        );
+        assert.strictEqual(wrapper2.instance().valueToIndex.size, 2);
+      });
+
       it('should render the indicator', () => {
         const wrapper2 = mount(
           <Tabs width="md" onChange={noop} value={1}>
@@ -604,6 +617,17 @@ describe('<Tabs />', () => {
 
       instance.scrollSelectedIntoView();
       assert.strictEqual(scrollStub.callCount, 0, 'should not scroll');
+    });
+  });
+
+  describe('prop: TabIndicatorProps', () => {
+    it('should merge the style', () => {
+      const wrapper = shallow(
+        <Tabs onChange={noop} value={0} TabIndicatorProps={{ style: { backgroundColor: 'green' } }}>
+          <Tab />
+        </Tabs>,
+      );
+      assert.strictEqual(wrapper.find(TabIndicator).props().style.backgroundColor, 'green');
     });
   });
 });

@@ -63,6 +63,7 @@ import { SelectProps } from '../Select';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { SnackbarProps } from '../Snackbar';
 import { StepButtonProps } from '../StepButton';
+import { StepConnectorProps } from '../StepConnector';
 import { StepContentProps } from '../StepContent';
 import { StepIconProps } from '../StepIcon';
 import { StepLabelProps } from '../StepLabel';
@@ -153,6 +154,7 @@ type ComponentsPropsList = {
   MuiSnackbarContent: SnackbarContentProps;
   MuiStep: StepProps;
   MuiStepButton: StepButtonProps;
+  MuiStepConnector: StepConnectorProps;
   MuiStepContent: StepContentProps;
   MuiStepIcon: StepIconProps;
   MuiStepLabel: StepLabelProps;

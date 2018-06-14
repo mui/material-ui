@@ -10,8 +10,6 @@ import withTheme from '../styles/withTheme';
 import { getTransitionProps } from '../transitions/utils';
 import SwipeArea from './SwipeArea';
 
-const Fragment = React.Fragment || 'div';
-
 // This value is closed to what browsers are using internally to
 // trigger a native scroll.
 const UNCERTAINTY_THRESHOLD = 3; // px
@@ -26,15 +24,33 @@ export function reset() {
   nodeThatClaimedTheSwipe = null;
 }
 
+/* istanbul ignore if */
+if (process.env.NODE_ENV !== 'production' && !React.createContext) {
+  throw new Error('Material-UI: react@16.3.0 or greater is required.');
+}
+
 class SwipeableDrawer extends React.Component {
-  static getDerivedStateFromProps() {
-    // Reset the maybeSwiping state everytime we receive new properties.
+  state = {};
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof prevState.maybeSwiping === 'undefined') {
+      return {
+        maybeSwiping: false,
+        open: nextProps.open,
+      };
+    }
+
+    if (!nextProps.open && prevState.open) {
+      return {
+        maybeSwiping: false,
+        open: nextProps.open,
+      };
+    }
+
     return {
-      maybeSwiping: false,
+      open: nextProps.open,
     };
   }
-
-  state = {};
 
   componentDidMount() {
     if (this.props.variant === 'temporary') {
@@ -318,7 +334,7 @@ class SwipeableDrawer extends React.Component {
       ModalProps: { BackdropProps, ...ModalPropsProp } = {},
       onOpen,
       open,
-      PaperProps,
+      PaperProps = {},
       swipeAreaWidth,
       variant,
       ...other
@@ -326,7 +342,7 @@ class SwipeableDrawer extends React.Component {
     const { maybeSwiping } = this.state;
 
     return (
-      <Fragment>
+      <React.Fragment>
         <Drawer
           open={variant === 'temporary' && maybeSwiping ? true : open}
           variant={variant}
@@ -339,7 +355,10 @@ class SwipeableDrawer extends React.Component {
           }}
           PaperProps={{
             ...PaperProps,
-            style: { pointerEvents: variant === 'temporary' && !open ? 'none' : '' },
+            style: {
+              pointerEvents: variant === 'temporary' && !open ? 'none' : '',
+              ...PaperProps.style,
+            },
             ref: this.handlePaperRef,
           }}
           {...other}
@@ -349,7 +368,7 @@ class SwipeableDrawer extends React.Component {
           variant === 'temporary' && (
             <SwipeArea anchor={other.anchor} swipeAreaWidth={swipeAreaWidth} />
           )}
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

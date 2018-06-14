@@ -1,5 +1,5 @@
 ---
-components: MobileStepper, Step, StepButton, StepContent, StepIcon, StepLabel, Stepper
+components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 
 # Steppers
@@ -75,7 +75,7 @@ You must implement the textual description yourself, however, an example is prov
 
 ### Mobile Stepper - Text with Carousel effect
 
-This demo is very similar to the previous, the difference is the usage of 
+This demo is very similar to the previous, the difference is the usage of
 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to make the transition of steps.
 
 {{"demo": "pages/demos/steppers/SwipeableTextMobileStepper.js"}}

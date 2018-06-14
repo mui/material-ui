@@ -97,8 +97,8 @@ Select.propTypes = {
    */
   input: PropTypes.element,
   /**
-   * Properties applied to the `input` element.
-   * When `native` is `true`, the properties are applied on the `select` element.
+   * Attributes applied to the `input` element.
+   * When `native` is `true`, the attributes are applied on the `select` element.
    */
   inputProps: PropTypes.object,
   /**

@@ -33,7 +33,7 @@ function StepContent(props) {
     optional,
     orientation,
     TransitionComponent,
-    transitionDuration,
+    transitionDuration: transitionDurationProp,
     TransitionProps,
     ...other
   } = props;
@@ -42,6 +42,12 @@ function StepContent(props) {
     orientation === 'vertical',
     'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',
   );
+
+  let transitionDuration = transitionDurationProp;
+
+  if (transitionDurationProp === 'auto' && !TransitionComponent.muiSupportAuto) {
+    transitionDuration = undefined;
+  }
 
   return (
     <div className={classNames(classes.root, { [classes.last]: last }, className)} {...other}>

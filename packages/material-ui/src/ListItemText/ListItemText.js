@@ -47,13 +47,13 @@ function ListItemText(props, context) {
   } = props;
   const { dense } = context;
 
-  let primary = primaryProp || children;
-
-  if (primary && primary.type !== Typography && !disableTypography) {
+  let primary = primaryProp != null ? primaryProp : children;
+  if (primary != null && primary.type !== Typography && !disableTypography) {
     primary = (
       <Typography
         variant="subheading"
         className={classNames(classes.primary, { [classes.textDense]: dense })}
+        component="span"
       >
         {primary}
       </Typography>
@@ -61,7 +61,7 @@ function ListItemText(props, context) {
   }
 
   let secondary = secondaryProp;
-  if (secondary && secondary.type !== Typography && !disableTypography) {
+  if (secondary != null && secondary.type !== Typography && !disableTypography) {
     secondary = (
       <Typography
         variant="body1"
@@ -108,8 +108,10 @@ ListItemText.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the children won't be wrapped by a typography component.
-   * For instance, that can be useful to can render an h4 instead of a
+   * If `true`, the children won't be wrapped by a Typography component.
+   * This can be useful to render an alternative Typography variant by wrapping
+   * the `children` (or `primary`) text, and optional `secondary` text
+   * with the Typography component.
    */
   disableTypography: PropTypes.bool,
   /**
@@ -117,7 +119,13 @@ ListItemText.propTypes = {
    * This should be used if there is no left avatar or left icon.
    */
   inset: PropTypes.bool,
+  /**
+   * The main content element.
+   */
   primary: PropTypes.node,
+  /**
+   * The secondary content element.
+   */
   secondary: PropTypes.node,
 };
 

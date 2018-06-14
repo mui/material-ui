@@ -100,6 +100,21 @@ describe('<SwipeableDrawer />', () => {
     wrapper.unmount();
   });
 
+  it('should accept user custom style', () => {
+    const customStyle = { style: { backgroundColor: 'hotpink' } };
+    const wrapper = mount(
+      <SwipeableDrawerNaked
+        onOpen={() => {}}
+        onClose={() => {}}
+        open={false}
+        theme={createMuiTheme()}
+        PaperProps={customStyle}
+      />,
+    );
+
+    assert.strictEqual(wrapper.props().PaperProps, customStyle);
+  });
+
   describe('swipe to open', () => {
     let wrapper;
     let instance;
@@ -336,6 +351,22 @@ describe('<SwipeableDrawer />', () => {
           assert.strictEqual(handleClose.callCount, 0, 'should not call onClose');
         });
       });
+    });
+
+    it('should abort when the SwipeableDrawer is closed', () => {
+      wrapper.setProps({
+        open: true,
+      });
+      assert.strictEqual(instance.isSwiping, null);
+      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+      assert.strictEqual(instance.isSwiping, null);
+      fireBodyMouseEvent('touchmove', { touches: [{ pageX: 10, clientY: 0 }] });
+      assert.strictEqual(instance.isSwiping, true);
+      assert.strictEqual(wrapper.state().maybeSwiping, true);
+      wrapper.setProps({
+        open: false,
+      });
+      assert.strictEqual(wrapper.state().maybeSwiping, false);
     });
 
     it('should wait for a clear signal to determin this.isSwiping', () => {

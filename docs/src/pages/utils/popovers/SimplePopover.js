@@ -34,7 +34,7 @@ class SimplePopover extends React.Component {
 
     return (
       <div>
-        <Button variant="raised" onClick={this.handleClick}>
+        <Button variant="contained" onClick={this.handleClick}>
           Open Popover
         </Button>
         <Popover

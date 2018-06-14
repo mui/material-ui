@@ -1,6 +1,10 @@
+/* eslint-disable no-underscore-dangle */
+
 import warning from 'warning';
 
-let generatorCounter = 0;
+// People might bundle this classname generator twice.
+// We need to use a global.
+global.__MUI_GENERATOR_COUNTER__ = 0;
 
 // Returns a function which generates unique class names based on counters.
 // When new generator function is created, rule counter is reset.
@@ -17,16 +21,10 @@ export default function createGenerateClassName(options = {}) {
   // so the warning is only triggered in production.
   // - We expect a class name generator to be instantiated per new request on the server,
   // so the warning is only triggered client side.
-  // - You can get away with having multiple class name generators
-  // by modifying the `productionPrefix`.
-  if (
-    process.env.NODE_ENV === 'production' &&
-    typeof window !== 'undefined' &&
-    productionPrefix === 'jss'
-  ) {
-    generatorCounter += 1;
+  if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
+    global.__MUI_GENERATOR_COUNTER__ += 1;
 
-    if (generatorCounter > 2) {
+    if (global.__MUI_GENERATOR_COUNTER__ > 2) {
       // eslint-disable-next-line no-console
       console.error(
         [

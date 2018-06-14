@@ -1,5 +1,5 @@
 ---
-components: Select
+components: Select, NativeSelect
 ---
 
 # Selects

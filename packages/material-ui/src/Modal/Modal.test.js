@@ -371,6 +371,9 @@ describe('<Modal />', () => {
           </Fade>
         </ModalNaked>,
       );
+      wrapper.setProps({
+        open: false,
+      });
       wrapper
         .find('Transition')
         .at(1)
