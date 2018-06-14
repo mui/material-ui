@@ -42,8 +42,8 @@ function ListItemText(props, context) {
     disableTypography,
     inset,
     primary: primaryProp,
-    secondary: secondaryProp,
     primaryTypographyProps,
+    secondary: secondaryProp,
     secondaryTypographyProps,
     ...other
   } = props;
@@ -56,7 +56,7 @@ function ListItemText(props, context) {
         variant="subheading"
         className={classNames(classes.primary, { [classes.textDense]: dense })}
         component="span"
-        {...primaryTypographyProps || {}}
+        {...primaryTypographyProps}
       >
         {primary}
       </Typography>
@@ -72,7 +72,7 @@ function ListItemText(props, context) {
           [classes.textDense]: dense,
         })}
         color="textSecondary"
-        {...secondaryTypographyProps || {}}
+        {...secondaryTypographyProps}
       >
         {secondary}
       </Typography>

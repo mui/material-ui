@@ -222,7 +222,7 @@ describe('<ListItemText />', () => {
       />,
     );
 
-    assert.strictEqual(wrapper.childAt(0).props().color, 'inherit', "should have color: 'inherit'");
+    assert.strictEqual(wrapper.childAt(0).props().color, 'inherit');
   });
 
   it('should pass secondaryTypographyProps to secondary Typography component', () => {
@@ -234,6 +234,6 @@ describe('<ListItemText />', () => {
       />,
     );
 
-    assert.strictEqual(wrapper.childAt(1).props().color, 'inherit', "should have color: 'inherit'");
+    assert.strictEqual(wrapper.childAt(1).props().color, 'inherit');
   });
 });
