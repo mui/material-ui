@@ -123,7 +123,7 @@ class Modal extends React.Component {
     this.props.manager.remove(this);
     const doc = ownerDocument(this.mountNode);
     doc.removeEventListener('keydown', this.handleDocumentKeyDown);
-    doc.removeEventListener('focus', this.enforceFocus);
+    doc.removeEventListener('focus', this.enforceFocus, true);
     this.restoreLastFocus();
   };
 
