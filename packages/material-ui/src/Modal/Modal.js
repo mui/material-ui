@@ -304,7 +304,7 @@ Modal.propTypes = {
   /**
    * A backdrop component. This property enables custom backdrop rendering.
    */
-  BackdropComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  BackdropComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the `Backdrop` element.
    */

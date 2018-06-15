@@ -553,7 +553,7 @@ Input.propTypes = {
    * The component used for the native input.
    * Either a string to use a DOM element or a component.
    */
-  inputComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  inputComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Attributes applied to the `input` element.
    */

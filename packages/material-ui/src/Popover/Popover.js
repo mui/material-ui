@@ -480,7 +480,7 @@ Popover.propTypes = {
   /**
    * Transition component.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */
