@@ -96,7 +96,6 @@ class GridListTile extends React.Component {
           {React.Children.map(children, child => {
             if (child && child.type === 'img') {
               return React.cloneElement(child, {
-                key: 'img',
                 ref: node => {
                   this.imgElement = node;
                 },

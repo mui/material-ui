@@ -21,7 +21,6 @@ export const styles = theme => ({
     flexDirection: 'column',
     flex: '0 1 auto',
     position: 'relative',
-    maxHeight: '90vh',
     overflowY: 'auto', // Fix IE11 issue, to remove at some point.
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
