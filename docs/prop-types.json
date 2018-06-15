@@ -30,6 +30,10 @@
             {
               "name": "day",
               "type": null
+            },
+            {
+              "name": "isFinish",
+              "type": null
             }
           ],
           "returns": null
@@ -574,13 +578,6 @@
       "displayName": "DatePickerWrapper",
       "methods": [],
       "props": {
-        "utils": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
         "value": {
           "type": {
             "name": "custom",
@@ -605,17 +602,6 @@
             "computed": false
           }
         },
-        "minDateMessage": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "Error message displaying if date is before minimal date",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
         "maxDate": {
           "type": {
             "name": "custom",
@@ -628,12 +614,13 @@
             "computed": false
           }
         },
-        "maxDateMessage": {
+        "initialFocusedDate": {
           "type": {
-            "name": "string"
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
           },
           "required": false,
-          "description": "Error message displaying if date is after maximal date",
+          "description": "Initial focused date when calendar opens, if no value is provided",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -772,7 +759,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "Allow control calendar by keyboard",
+          "description": "Enables keyboard listener for moving between days in calendar",
           "defaultValue": {
             "value": "true",
             "computed": false
@@ -1606,13 +1593,6 @@
       "displayName": "DateTimePickerWrapper",
       "methods": [],
       "props": {
-        "utils": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
         "classes": {
           "type": {
             "name": "object"
@@ -1716,6 +1696,18 @@
           "defaultValue": {
             "value": "'2100-01-01'",
             "computed": false
+          }
+        },
+        "initialFocusedDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "Initial focused date when calendar opens, if no value is provided",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
           }
         },
         "showTabs": {
@@ -1862,7 +1854,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "Allow control calendar by keyboard",
+          "description": "Enables keyboard listener for moving between days in calendar",
           "defaultValue": {
             "value": "true",
             "computed": false
@@ -2239,6 +2231,53 @@
       }
     }
   ],
+  "../lib/src/TimePicker/SecondsView.jsx": [
+    {
+      "description": "",
+      "displayName": "SecondsView",
+      "methods": [
+        {
+          "name": "handleChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "seconds",
+              "type": null
+            },
+            {
+              "name": "isFinish",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "date": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "utils": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        }
+      }
+    }
+  ],
   "../lib/src/TimePicker/TimePicker.jsx": [
     {
       "description": "",
@@ -2262,15 +2301,7 @@
           "modifiers": [],
           "params": [
             {
-              "name": "time",
-              "type": null
-            },
-            {
-              "name": "isFinish",
-              "type": null
-            },
-            {
-              "name": "openMinutes",
+              "name": "{\n  time, isFinish, openMinutes, openSeconds,\n}",
               "type": null
             }
           ],
@@ -2306,6 +2337,29 @@
               "type": null
             }
           ],
+          "returns": null
+        },
+        {
+          "name": "handleSecondsChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "time",
+              "type": null
+            },
+            {
+              "name": "isFinish",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "openSecondsView",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
           "returns": null
         },
         {
@@ -2387,6 +2441,17 @@
           },
           "required": true,
           "description": ""
+        },
+        "seconds": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
         }
       }
     }
@@ -2397,13 +2462,6 @@
       "displayName": "TimePickerWrapper",
       "methods": [],
       "props": {
-        "utils": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
         "value": {
           "type": {
             "name": "custom",
@@ -2464,6 +2522,17 @@
           "description": "Switching hour/minutes animation timeout in milliseconds (set 0 to disable)",
           "defaultValue": {
             "value": "400",
+            "computed": false
+          }
+        },
+        "seconds": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Show the seconds view",
+          "defaultValue": {
+            "value": "false",
             "computed": false
           }
         },
@@ -2745,7 +2814,7 @@
         },
         "minDateMessage": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": false,
           "description": "Error message, shown if date is less then minimal date",
@@ -2756,7 +2825,7 @@
         },
         "maxDateMessage": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": false,
           "description": "Error message, shown if date is more then maximal date",
@@ -2833,7 +2902,7 @@
         },
         "invalidDateMessage": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": false,
           "description": "Message, appearing when date cannot be parsed",
@@ -2995,21 +3064,21 @@
         },
         "okLabel": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": true,
           "description": ""
         },
         "cancelLabel": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": true,
           "description": ""
         },
         "clearLabel": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": true,
           "description": ""
@@ -3023,7 +3092,7 @@
         },
         "todayLabel": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": true,
           "description": ""
@@ -3208,6 +3277,20 @@
       "displayName": "ModalWrapper",
       "methods": [
         {
+          "name": "getDerivedStateFromProps",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "nextProps",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
           "name": "handleKeyDown",
           "docblock": null,
           "modifiers": [],
@@ -3277,7 +3360,7 @@
         },
         "invalidLabel": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": false,
           "description": "Format string",
@@ -3299,7 +3382,7 @@
         },
         "okLabel": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": false,
           "description": "\"OK\" label message",
@@ -3310,7 +3393,7 @@
         },
         "cancelLabel": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": false,
           "description": "\"Cancel\" label message",
@@ -3321,7 +3404,7 @@
         },
         "clearLabel": {
           "type": {
-            "name": "string"
+            "name": "node"
           },
           "required": false,
           "description": "\"Clear\" label message",
@@ -3457,6 +3540,13 @@
             "value": "''",
             "computed": false
           }
+        },
+        "isAccepted": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": ""
         }
       }
     }

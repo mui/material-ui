@@ -88,7 +88,7 @@ DatePickerWrapper.propTypes = {
   minDate: DomainPropTypes.date,
   /** Max selectable date */
   maxDate: DomainPropTypes.date,
-  /** When value is not provided, what date to focus when calendar opens */
+  /** Initial focused date when calendar opens, if no value is provided */
   initialFocusedDate: DomainPropTypes.date,
   /** Date format string for input */
   format: PropTypes.string,
