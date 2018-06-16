@@ -35,11 +35,11 @@ import React from 'react';
 import App from './App';
 
 // We are going to fill these out in the sections to follow.
-function handleRender(req, res) {
+function renderFullPage(html, css) {
   /* ... */
 }
 
-function renderFullPage(html, preloadedState) {
+function handleRender(req, res) {
   /* ... */
 }
 
@@ -67,8 +67,13 @@ We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`.
 import { renderToString } from 'react-dom/server'
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from '@material-ui/core/styles';
-import { green, red } from '@material-ui/core/colors';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  createGenerateClassName,
+} from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+import red from '@material-ui/core/colors/red';
 
 function handleRender(req, res) {
   // Create a sheetsRegistry instance.
@@ -134,7 +139,8 @@ Let's take a look at our client file:
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { green, red } from '@material-ui/core/colors';
+import green from '@material-ui/core/colors/green';
+import red from '@material-ui/core/colors/red';
 import App from './App';
 
 class Main extends React.Component {
@@ -147,7 +153,7 @@ class Main extends React.Component {
   }
 
   render() {
-    return <App {...this.props} />
+    return <App />
   }
 }
 
@@ -167,6 +173,13 @@ hydrate(
   document.querySelector('#root'),
 );
 ```
+
+## Reference implementations
+
+We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+- [The reference implementation of this tutorial](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
+- [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 
 ## Troubleshooting
 
