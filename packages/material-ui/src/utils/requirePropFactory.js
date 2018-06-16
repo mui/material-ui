@@ -1,6 +1,6 @@
 // @flow weak
 
-const requirePropFactory = (componentNameInError: string) => {
+function requirePropFactory(componentNameInError: string) {
   const requireProp = (requiredProp: string) => (
     props: Object,
     propName: string,
@@ -20,6 +20,6 @@ const requirePropFactory = (componentNameInError: string) => {
     return null;
   };
   return requireProp;
-};
+}
 
 export default requirePropFactory;

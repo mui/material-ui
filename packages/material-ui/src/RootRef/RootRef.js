@@ -70,6 +70,6 @@ RootRef.propTypes = {
   rootRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
 };
 
-RootRef.propTypes = exactProp(RootRef.propTypes, 'RootRef');
+RootRef.propTypes = exactProp(RootRef.propTypes);
 
 export default RootRef;

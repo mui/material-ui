@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
+import unsupportedProp from '../utils/unsupportedProp';
 
 export const styles = theme => ({
   root: {
@@ -200,6 +201,11 @@ class Tab extends React.Component {
 }
 
 Tab.propTypes = {
+  /**
+   * This property isn't supported.
+   * Use the `component` property if you need to change the children structure.
+   */
+  children: unsupportedProp,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css-api) below for more details.
