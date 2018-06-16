@@ -7,6 +7,7 @@
 export const specialProperty = 'exact-prop: \u200b';
 
 function exactProp(propTypes: Object) {
+  /* istanbul ignore if */
   if (process.env.NODE_ENV === 'production') {
     return propTypes;
   }
