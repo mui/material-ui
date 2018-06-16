@@ -46,7 +46,7 @@ CssBaseline.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-CssBaseline.propTypes = exactProp(CssBaseline.propTypes, 'CssBaseline');
+CssBaseline.propTypes = exactProp(CssBaseline.propTypes);
 
 CssBaseline.defaultProps = {
   children: null,

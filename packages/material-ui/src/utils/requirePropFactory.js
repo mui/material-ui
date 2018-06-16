@@ -1,6 +1,11 @@
 // @flow weak
 
-const requirePropFactory = (componentNameInError: string) => {
+function requirePropFactory(componentNameInError: string) {
+  /* istanbul ignore if */
+  if (process.env.NODE_ENV === 'production') {
+    return () => null;
+  }
+
   const requireProp = (requiredProp: string) => (
     props: Object,
     propName: string,
@@ -20,6 +25,6 @@ const requirePropFactory = (componentNameInError: string) => {
     return null;
   };
   return requireProp;
-};
+}
 
 export default requirePropFactory;

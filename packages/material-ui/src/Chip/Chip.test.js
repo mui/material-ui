@@ -27,11 +27,7 @@ describe('<Chip />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = shallow(
-        <Chip className="my-Chip" data-my-prop="woofChip">
-          Text Chip
-        </Chip>,
-      );
+      wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" />);
     });
 
     it('should render a div containing a span', () => {
@@ -56,11 +52,7 @@ describe('<Chip />', () => {
 
     before(() => {
       handleClick = () => {};
-      wrapper = shallow(
-        <Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick}>
-          Text Chip
-        </Chip>,
-      );
+      wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick} />);
     });
 
     it('should render a div containing a span', () => {
@@ -82,9 +74,7 @@ describe('<Chip />', () => {
     it('should apply user value of tabIndex', () => {
       wrapper = shallow(
         // eslint-disable-next-line jsx-a11y/tabindex-no-positive
-        <Chip onClick={() => {}} tabIndex={5}>
-          {'Text Chip'}
-        </Chip>,
+        <Chip onClick={() => {}} tabIndex={5} />,
       );
       assert.strictEqual(wrapper.props().tabIndex, 5);
     });
@@ -180,11 +170,7 @@ describe('<Chip />', () => {
       it('should call onKeyDown when a key is pressed', () => {
         const anyKeydownEvent = { keycode: keycode('p') };
         const onKeyDownSpy = spy();
-        wrapper = mount(
-          <Chip classes={{}} onKeyDown={onKeyDownSpy}>
-            Text Chip
-          </Chip>,
-        );
+        wrapper = mount(<Chip classes={{}} onKeyDown={onKeyDownSpy} />);
         wrapper.find('div').simulate('keydown', anyKeydownEvent);
         assert.strictEqual(onKeyDownSpy.callCount, 1, 'should have called onKeyDown');
         assert.strictEqual(
@@ -197,7 +183,7 @@ describe('<Chip />', () => {
 
     describe('escape', () => {
       it('should unfocus when a esc key is pressed', () => {
-        const wrapper2 = mount(<ChipNaked classes={{}}>Text Chip</ChipNaked>);
+        const wrapper2 = mount(<ChipNaked classes={{}} />);
         const handleBlur = spy();
         wrapper2.instance().chipRef.blur = handleBlur;
         wrapper2.find('div').simulate('keydown', {
@@ -212,11 +198,7 @@ describe('<Chip />', () => {
       let onClickSpy;
       before(() => {
         onClickSpy = spy();
-        wrapper = mount(
-          <ChipNaked classes={{}} onClick={onClickSpy}>
-            Text Chip
-          </ChipNaked>,
-        );
+        wrapper = mount(<ChipNaked classes={{}} onClick={onClickSpy} />);
       });
 
       afterEach(() => {
@@ -251,11 +233,7 @@ describe('<Chip />', () => {
     describe('onDelete is defined and `backspace` is pressed', () => {
       it('should call onDelete', () => {
         const onDeleteSpy = spy();
-        const wrapper2 = mount(
-          <ChipNaked classes={{}} onDelete={onDeleteSpy}>
-            Text Chip
-          </ChipNaked>,
-        );
+        const wrapper2 = mount(<ChipNaked classes={{}} onDelete={onDeleteSpy} />);
 
         const preventDefaultSpy = spy();
         const backspaceKeydownEvent = {
