@@ -33,8 +33,7 @@ export const style = theme => {
     root: {
       position: 'relative',
       width: '100%',
-      margin: '10px 0',
-      padding: '6px 0',
+      padding: '20px 0',
       cursor: 'pointer',
       WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
@@ -42,8 +41,7 @@ export const style = theme => {
       },
       '&$vertical': {
         height: '100%',
-        margin: '0 10px',
-        padding: '0 6px',
+        padding: '0 20px',
       },
       '&$reverse': {
         transform: 'scaleX(-1)',
@@ -444,6 +442,9 @@ class Slider extends React.Component {
         aria-valuemax={max}
         aria-orientation={vertical ? 'vertical' : 'horizontal'}
         onClick={this.handleClick}
+        onMouseDown={this.handleMouseDown}
+        onTouchStartCapture={this.handleTouchStart}
+        onTouchMove={this.handleMouseMove}
         ref={node => {
           this.container = findDOMNode(node);
         }}
