@@ -5,6 +5,62 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.2.2
+###### *Jun 18, 2018*
+
+Big thanks to the 16 contributors who made this release possible.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [ClickAwayListener] Add a demo (#11801) @oliviertassinari
+- [Grid] Add support a auto value (#11804) @oliviertassinari
+- [StepButton] Fix IE 11 flexbox (#11814) @paulnta
+- [styles] Re-add default parameter of string for WithStyles (#11808) @pelotom
+- [SwipeableDrawer] Allow custom style (#11805) @Johann-S
+- [ButtonBase] Corrected the type definitions for the TouchRipple classes (#11818) @C-Rodg
+- [RootRef] Updated main index.js to include RootRef export (#11817) @C-Rodg
+- [typography] Add a `allVariants` key in the theme (#11802) @oliviertassinari
+- [ButtonBase] Add a disableTouchRipple property (#11820) @oliviertassinari
+- [Tabs] Fix calculating tab indicator position (#11825) @ljani
+- [Tabs] Fix IE11 support (#11832) @oliviertassinari
+- [withWidth] Reading initialWidth from the theme (#11831) @kleyson
+- [Tabs] Add support for a `component` property (#11844) @C-Rodg
+- [ListItemText] Detect and avoid re-wrapping Typography (#11849) @jedwards1211
+- [ListItemText] Add primaryTypographyProps and secondaryTypographyProps (#11858) @jedwards1211
+- [Tooltip] Update react-popper (#11862) @oliviertassinari
+- [TableCell] Fix property name (#11870) @marutanm
+- [Modal] Fix removeEventListener (#11875) @DominikSerafin
+- [CircularProgress] Fix wobble (#11886) @oliviertassinari
+- [CircularProgress] End of line shape: use butt (#11888) @Modestas
+
+#### Docs
+
+- [docs] Add structured data (#11798) @oliviertassinari
+- [docs] Add a link to a CSS-in-JS egghead.io course (98168a2c749d8da2376d6a997145e3622df71bff) @kof
+- [Table] Derive sorted rows from state at render time in demo (#11828) @charlax
+- [docs] Document the dynamic override alternatives (#11782) @adeelibr
+- [docs] Add a Select required example (#11838) @oliviertassinari
+- [docs] Better class names conflict FAQ (#11846) @oliviertassinari
+- [docs] Add a link toward dx-react-chart-material-ui (#11859) @Krijovnick
+- [docs] Fix the Gatsby example (d7fe8c79dc097105fd1c6035b76a4d30666e9080) @oliviertassinari
+- [docs] Update npm downloads badge to point to @material-ui/core (#11590) @davidcalhoun
+- [examples] Add Server Rendering implementation (#11880) @oliviertassinari
+- [docs] Update react-swipeable-views to fix a warning (#11890) @oliviertassinari
+
+#### Core
+
+- [core] Misc (#11797) @oliviertassinari
+- [core] Better `component` prop types (#11863) @jedwards1211
+- [core] Remove some unneeded code (#11873) @oliviertassinari
+- [core] Fix the UMD release (#11878) @oliviertassinari
+- [core] Document the non supported children properties (#11879) @oliviertassinari
+
+#### Labs
+
 ## 1.2.1
 ###### *Jun 10, 2018*
 
