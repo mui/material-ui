@@ -42,7 +42,7 @@ export const styles = theme => ({
   svg: {},
   circle: {
     stroke: 'currentColor',
-    strokeLinecap: 'round',
+    strokeLinecap: 'butt'
   },
   circleStatic: {
     transition: theme.transitions.create('stroke-dashoffset'),
