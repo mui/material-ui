@@ -71,8 +71,8 @@ describe('<CircularProgress />', () => {
     const svg = wrapper.childAt(0);
     assert.strictEqual(svg.name(), 'svg');
     assert.strictEqual(svg.childAt(0).name(), 'circle');
-    assert.strictEqual(svg.childAt(0).props().cx, 25, 'should have cx correctly set');
-    assert.strictEqual(svg.childAt(0).props().cy, 25, 'should have cx correctly set');
+    assert.strictEqual(svg.childAt(0).props().cx, 44, 'should have cx correctly set');
+    assert.strictEqual(svg.childAt(0).props().cy, 44, 'should have cx correctly set');
   });
 
   describe('prop: variant="static', () => {
@@ -81,8 +81,8 @@ describe('<CircularProgress />', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       const svg = wrapper.childAt(0);
       const style = svg.childAt(0).props().style;
-      assert.strictEqual(style.strokeDasharray, '125.664', 'should have strokeDasharray set');
-      assert.strictEqual(style.strokeDashoffset, '37.699px', 'should have strokeDashoffset set');
+      assert.strictEqual(style.strokeDasharray, '126.920', 'should have strokeDasharray set');
+      assert.strictEqual(style.strokeDashoffset, '38.076px', 'should have strokeDashoffset set');
       assert.strictEqual(wrapper.props()['aria-valuenow'], 70);
     });
   });
@@ -105,8 +105,8 @@ describe('<CircularProgress />', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       const svg = wrapper.childAt(0);
       const style = svg.childAt(0).props().style;
-      assert.strictEqual(style.strokeDasharray, '125.664', 'should have strokeDasharray set');
-      assert.strictEqual(style.strokeDashoffset, '11.310px', 'should have strokeDashoffset set');
+      assert.strictEqual(style.strokeDasharray, '126.920', 'should have strokeDasharray set');
+      assert.strictEqual(style.strokeDashoffset, '11.423px', 'should have strokeDashoffset set');
       assert.strictEqual(wrapper.props()['aria-valuenow'], 70);
     });
   });
