@@ -721,6 +721,7 @@ export { default as RssFeed } from './RssFeed';
 export { default as RvHookup } from './RvHookup';
 export { default as Satellite } from './Satellite';
 export { default as Save } from './Save';
+export { default as SaveAlt } from './SaveAlt';
 export { default as Scanner } from './Scanner';
 export { default as Schedule } from './Schedule';
 export { default as School } from './School';
