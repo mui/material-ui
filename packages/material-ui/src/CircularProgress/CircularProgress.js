@@ -42,7 +42,8 @@ export const styles = theme => ({
   svg: {},
   circle: {
     stroke: 'currentColor',
-    strokeLinecap: 'round',
+    // Use butt to follow the specification, by chance, it's already the default CSS value.
+    // strokeLinecap: 'butt',
   },
   circleStatic: {
     transition: theme.transitions.create('stroke-dashoffset'),
