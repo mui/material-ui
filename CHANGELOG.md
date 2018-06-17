@@ -36,6 +36,7 @@ N/A
 - [Modal] Fix removeEventListener (#11875) @DominikSerafin
 - [CircularProgress] Fix wobble (#11886) @oliviertassinari
 - [CircularProgress] End of line shape: use butt (#11888) @Modestas
+- [Select] Fix reflow in render (#11891) @oliviertassinari
 
 #### Docs
 
