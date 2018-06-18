@@ -31,6 +31,7 @@
     "docs:export": "next export -o docs/export && yarn docs:build-sw && cp docs/_headers docs/export/_headers && cp docs/_redirects docs/export/_redirects",
     "docs:size-why": "DOCS_STATS_ENABLED=true yarn docs:build",
     "docs:build-sw": "babel-node ./docs/scripts/buildServiceWorker.js",
+    "docs:deploy": "git push material-ui-docs master:latest",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "lint:fix": "eslint . --cache --fix && echo \"eslint: no lint errors\"",
     "prettier": "find . -name \"*.js\" -o -name \"*.d.ts\" -o -name \"*.tsx\" | grep -v -f .eslintignore | xargs prettier --write",
