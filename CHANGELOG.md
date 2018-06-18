@@ -10,6 +10,11 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 
 Big thanks to the 16 contributors who made this release possible.
 
+Here are some highlights ✨:
+- 📝 Document the dynamic override alternatives (#11782) @adeelibr
+- 📝 Document the ClickAwayListener component (#11801).
+- And many more bug fixes 🐛 and documentation improvements.
+
 ### Breaking change
 
 N/A
