@@ -43,10 +43,13 @@ Notice that in addition to the button styling, the button label's capitalization
 
 {{"demo": "pages/customization/overrides/ClassesNesting.js"}}
 
+#### Internal states
+
 Aside from accessing nested elements, the `classes` property can be used to customize the internal states of Material-UI components.
 The components internal states, like `:hover`, `:focus`, `disabled` and `selected`, are styled with a higher CSS specificity.
 [Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
-In order to override the components internal states, **you need to increase specificity too**.
+In order to override the components internal states, **you need to increase specificity**.
+Here is an example with the `disable` state and the button component:
 
 ```css
 .classes-state-root {
@@ -57,34 +60,39 @@ In order to override the components internal states, **you need to increase spec
 }
 ```
 
-In some cases, one may want to use a more descriptive name to define references classes. For example overriding `FormLabelClasses` in `TextField`. Instead of using `classes.root` or `classes.focused`, one may instead do `classes.formLabelRoot` and `classes.formLabelFocused` to avoid confusion with the other `InputProps` and `InputLabelProps` classes. In this scenario, it is important to note that in order to override [`&$focused`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormLabel/FormLabel.js#L13), one would instead need to reference it using `&$formLabelFocused` **and** use the same key when creating the empty reference as described in the demo below.
+```jsx
+
+<Button
+  disabled
+  classes={{
+    root: 'classes-state-root',
+    disabled: 'disabled', }
+  }
+>
 
 ```
-const styles = theme => ({
-  root: {
-    // ... some overrides
-  },
-  formLabelRoot: {
-    '&$formLabelFocused': { // <-- must be the same
-      color: 'green'
-    }
-  },
-  formLabelFocused: {} // <-- must be the same
-})
 
-<TextField
-  ...
-  InputProps={{
-    classes: {
-      root: classes.root
-    }
-  }}
-  InputLabelProps={{
-    FormLabelClasses: {
-      root: classes.formLabelRoot,
-      focused: classes.formLabelFocused,
-    }
-  }}
+#### Use `$ruleName` to reference a local rule within the same style sheet
+
+The [jss-nested](https://github.com/cssinjs/jss-nested) plugin (available by default) can make the process of increasing specificity easier.
+
+```js
+const styles = {
+  root: {
+    '&$disabled': {
+      color: 'white',
+    },
+  },
+  disabled: {},
+};
+```
+
+compiles to:
+
+```css
+.root-x.disable-x {
+  color: white;
+}
 ```
 
 {{"demo": "pages/customization/overrides/ClassesState.js"}}
