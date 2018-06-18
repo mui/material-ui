@@ -49,6 +49,8 @@ function Select(props) {
         ? {}
         : {
             autoWidth,
+            children,
+            classes,
             displayEmpty,
             MenuProps,
             multiple,
