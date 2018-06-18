@@ -136,7 +136,7 @@ It will come with: [#7633](https://github.com/mui-org/material-ui/issues/7633).
 
 {{"demo": "pages/customization/overrides/DynamicCSSVariables.js"}}
 
-### Dynamic inline style
+### Inline-style
 
 {{"demo": "pages/customization/overrides/DynamicInlineStyle.js"}}
 

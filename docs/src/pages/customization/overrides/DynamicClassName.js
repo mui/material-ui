@@ -51,7 +51,7 @@ class DynamicClassName extends React.Component {
             [classes.buttonBlue]: this.state.color === 'blue',
           })}
         >
-          {'dynamic class names'}
+          {'Class name branch'}
         </Button>
       </React.Fragment>
     );
