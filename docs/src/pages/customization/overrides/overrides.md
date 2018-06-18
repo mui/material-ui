@@ -43,16 +43,54 @@ Notice that in addition to the button styling, the button label's capitalization
 
 {{"demo": "pages/customization/overrides/ClassesNesting.js"}}
 
+#### Internal states
+
 Aside from accessing nested elements, the `classes` property can be used to customize the internal states of Material-UI components.
 The components internal states, like `:hover`, `:focus`, `disabled` and `selected`, are styled with a higher CSS specificity.
 [Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
-In order to override the components internal states, **you need to increase specificity too**.
+In order to override the components internal states, **you need to increase specificity**.
+Here is an example with the `disable` state and the button component:
 
 ```css
 .classes-state-root {
   /* ... */
 }
 .classes-state-root.disabled {
+  color: white;
+}
+```
+
+```jsx
+
+<Button
+  disabled
+  classes={{
+    root: 'classes-state-root',
+    disabled: 'disabled', }
+  }
+>
+
+```
+
+#### Use `$ruleName` to reference a local rule within the same style sheet
+
+The [jss-nested](https://github.com/cssinjs/jss-nested) plugin (available by default) can make the process of increasing specificity easier.
+
+```js
+const styles = {
+  root: {
+    '&$disabled': {
+      color: 'white',
+    },
+  },
+  disabled: {},
+};
+```
+
+compiles to:
+
+```css
+.root-x.disable-x {
   color: white;
 }
 ```
