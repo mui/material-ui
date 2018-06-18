@@ -47,7 +47,7 @@ class DynamicThemeNesting extends React.Component {
           }
         >
           <Button variant="raised" color="secondary">
-            {'dynamic theme nesting'}
+            {'Theme nesting'}
           </Button>
         </MuiThemeProvider>
       </React.Fragment>

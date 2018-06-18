@@ -57,7 +57,7 @@ class DynamicCSSVariables extends React.Component {
                 }
           }
         >
-          {'dynamic CSS variables'}
+          {'CSS variables'}
         </Button>
       </React.Fragment>
     );

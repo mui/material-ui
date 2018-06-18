@@ -52,11 +52,7 @@ class GridListTile extends React.Component {
   fit = () => {
     const imgElement = this.imgElement;
 
-    if (!imgElement) {
-      return;
-    }
-
-    if (!imgElement.complete) {
+    if (!imgElement || !imgElement.complete) {
       return;
     }
 
