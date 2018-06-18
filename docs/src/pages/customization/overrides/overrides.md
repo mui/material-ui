@@ -57,6 +57,36 @@ In order to override the components internal states, **you need to increase spec
 }
 ```
 
+In some cases, one may want to use a more descriptive name to define references classes. For example overriding `FormLabelClasses` in `TextField`. Instead of using `classes.root` or `classes.focused`, one may instead do `classes.formLabelRoot` and `classes.formLabelFocused` to avoid confusion with the other `InputProps` and `InputLabelProps` classes. In this scenario, it is important to note that in order to override [`&$focused`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormLabel/FormLabel.js#L13), one would instead need to reference it using `&$formLabelFocused` **and** use the same key when creating the empty reference as described in the demo below.
+
+```
+const styles = theme => ({
+  root: {
+    // ... some overrides
+  },
+  formLabelRoot: {
+    '&$formLabelFocused': { // <-- must be the same
+      color: 'green'
+    }
+  },
+  formLabelFocused: {} // <-- must be the same
+})
+
+<TextField
+  ...
+  InputProps={{
+    classes: {
+      root: classes.root
+    }
+  }}
+  InputLabelProps={{
+    FormLabelClasses: {
+      root: classes.formLabelRoot,
+      focused: classes.formLabelFocused,
+    }
+  }}
+```
+
 {{"demo": "pages/customization/overrides/ClassesState.js"}}
 
 ### Overriding with inline-style
