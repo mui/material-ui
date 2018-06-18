@@ -33,7 +33,7 @@ class Menu extends React.Component {
   menuList = null;
 
   componentDidMount() {
-    if (this.props.open) {
+    if (this.props.open && this.props.disableAutoFocus !== true) {
       this.focus();
     }
   }
@@ -63,7 +63,9 @@ class Menu extends React.Component {
     const menuList = ReactDOM.findDOMNode(this.menuList);
 
     // Focus so the scroll computation of the Popover works as expected.
-    this.focus();
+    if (this.props.disableAutoFocus !== true) {
+      this.focus();
+    }
 
     // Let's ignore that piece of logic if users are already overriding the width
     // of the menu.
@@ -147,6 +149,10 @@ Menu.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
+   * If `true`, the first menu item will not be auto focused.
+   */
+  disableAutoFocus: PropTypes.bool,
+  /**
    * Properties applied to the `MenuList` element.
    */
   MenuListProps: PropTypes.object,
@@ -203,7 +209,7 @@ Menu.propTypes = {
     PropTypes.number,
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
     PropTypes.oneOf(['auto']),
-  ]),
+  ])
 };
 
 Menu.defaultProps = {
