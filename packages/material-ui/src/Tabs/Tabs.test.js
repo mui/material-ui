@@ -592,7 +592,7 @@ describe('<Tabs />', () => {
     it('should scroll left tab into view', () => {
       metaStub.returns({
         tabsMeta: { left: 0, right: 100, scrollLeft: 10 },
-        tabMeta: { left: -10, right: 10 },
+        tabMeta: { left: -10, right: 10, value: 0 },
       });
 
       instance.scrollSelectedIntoView();
@@ -602,7 +602,7 @@ describe('<Tabs />', () => {
     it('should scroll right tab into view', () => {
       metaStub.returns({
         tabsMeta: { left: 0, right: 100, scrollLeft: 0 },
-        tabMeta: { left: 90, right: 110 },
+        tabMeta: { left: 90, right: 110, value: 1 },
       });
 
       instance.scrollSelectedIntoView();

@@ -15,6 +15,7 @@ export interface TabsProps
   scrollable?: boolean;
   ScrollButtonComponent?: React.ReactType;
   scrollButtons?: 'auto' | 'on' | 'off';
+  staticLabel?: boolean;
   TabIndicatorProps?: Partial<TabIndicatorProps>;
   textColor?: 'secondary' | 'primary' | 'inherit' | string;
   value: any;

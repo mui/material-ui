@@ -56,6 +56,8 @@ class Tabs extends React.Component {
     showLeftScroll: false,
     showRightScroll: false,
     mounted: false,
+    tabsMeta: null,
+    tabMeta: null,
   };
 
   componentDidMount() {
@@ -93,8 +95,8 @@ class Tabs extends React.Component {
     const conditionalElements = {};
     conditionalElements.scrollbarSizeListener = scrollable ? (
       <ScrollbarSize
-        onLoad={this.handleScrollbarSizeChange}
         onChange={this.handleScrollbarSizeChange}
+        onLoad={this.handleScrollbarSizeChange}
       />
     ) : null;
 
@@ -125,32 +127,70 @@ class Tabs extends React.Component {
     return conditionalElements;
   };
 
-  getTabsMeta = (value, direction) => {
-    let tabsMeta;
-    if (this.tabs) {
+  getMeta = refreshTabMeta => {
+    if (this.props.staticLabel) return this.getMetaStaticLabel(refreshTabMeta);
+    return {
+      tabMeta: this.getTabMeta(),
+      tabsMeta: this.getTabsMeta(),
+    };
+  };
+
+  getMetaStaticLabel = refreshTabMeta => {
+    /*
+      Get meta static label only thrashes the DOM at two times:
+        1. On mount, getting all tabs dimensions
+        2. On mount and value change, getting the active tab dimensions
+    */
+    const state = this.state;
+    const { value } = this.props;
+    const tabsMeta = state.tabsMeta || this.getTabsMeta();
+    const takeTabMeta = refreshTabMeta || !state.tabMeta || state.tabMeta.value !== value;
+    const tabMeta = takeTabMeta ? this.getTabMeta() : state.tabMeta;
+    const tabMetaUpdated = tabMeta && (tabMeta !== state.tabMeta || value !== tabMeta.value);
+    if (tabsMeta !== state.tabsMeta || tabMetaUpdated) {
+      this.setState({ tabMeta, tabsMeta });
+    }
+    return state;
+  };
+
+  getTabMeta = () => {
+    const { props, tabs } = this;
+    const { value } = props;
+    if (tabs && value !== false) {
+      const children = tabs.children[0].children;
+      if (children.length > 0) {
+        const tab = children[this.valueToIndex.get(value)];
+        warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
+        if (tab) {
+          const rect = tab.getBoundingClientRect();
+          return {
+            left: rect.left,
+            right: rect.right,
+            value,
+            width: rect.width,
+          };
+        }
+      }
+    }
+    return undefined;
+  };
+
+  getTabsMeta = () => {
+    const { props, tabs } = this;
+    const { theme } = props;
+    if (tabs) {
       const rect = this.tabs.getBoundingClientRect();
       // create a new object with ClientRect class props + scrollLeft
-      tabsMeta = {
-        clientWidth: this.tabs ? this.tabs.clientWidth : 0,
-        scrollLeft: this.tabs ? this.tabs.scrollLeft : 0,
-        scrollLeftNormalized: this.tabs ? getNormalizedScrollLeft(this.tabs, direction) : 0,
-        scrollWidth: this.tabs ? this.tabs.scrollWidth : 0,
+      return {
+        clientWidth: tabs.clientWidth,
+        scrollLeft: tabs.scrollLeft,
+        scrollLeftNormalized: getNormalizedScrollLeft(tabs, theme.direction),
+        scrollWidth: tabs.scrollWidth,
         left: rect.left,
         right: rect.right,
       };
     }
-
-    let tabMeta;
-    if (this.tabs && value !== false) {
-      const children = this.tabs.children[0].children;
-
-      if (children.length > 0) {
-        const tab = children[this.valueToIndex.get(value)];
-        warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
-        tabMeta = tab ? tab.getBoundingClientRect() : null;
-      }
-    }
-    return { tabsMeta, tabMeta };
+    return undefined;
   };
 
   tabs = undefined;
@@ -197,10 +237,9 @@ class Tabs extends React.Component {
     }
   };
 
-  updateIndicatorState(props) {
-    const { theme, value } = props;
+  updateIndicatorState({ theme }) {
+    const { tabsMeta, tabMeta } = this.getMeta(false);
 
-    const { tabsMeta, tabMeta } = this.getTabsMeta(value, theme.direction);
     let left = 0;
 
     if (tabMeta && tabsMeta) {
@@ -228,13 +267,9 @@ class Tabs extends React.Component {
   }
 
   scrollSelectedIntoView = () => {
-    const { theme, value } = this.props;
-    const { tabsMeta, tabMeta } = this.getTabsMeta(value, theme.direction);
+    const { tabsMeta, tabMeta } = this.getMeta(true);
 
-    if (!tabMeta || !tabsMeta) {
-      return;
-    }
-
+    if (!tabMeta || !tabsMeta) return;
     if (tabMeta.left < tabsMeta.left) {
       // left side of button is out of view
       const nextScrollLeft = tabsMeta.scrollLeft + (tabMeta.left - tabsMeta.left);
@@ -282,6 +317,7 @@ class Tabs extends React.Component {
       scrollable,
       ScrollButtonComponent,
       scrollButtons,
+      staticLabel,
       TabIndicatorProps = {},
       textColor,
       theme,
@@ -333,6 +369,7 @@ class Tabs extends React.Component {
         indicator: selected && !this.state.mounted && indicator,
         selected,
         onChange,
+        staticLabel,
         textColor,
         value: childValue,
       });
@@ -430,6 +467,12 @@ Tabs.propTypes = {
    * `off` will never present them
    */
   scrollButtons: PropTypes.oneOf(['auto', 'on', 'off']),
+  /**
+   * Prevents resizing on the labels after the first query.
+   * This improves performance, but leads to broken UX on resize or label change.
+   * As a result, it works best with mobile devices, where widths are fixed.
+   */
+  staticLabel: PropTypes.bool,
   /**
    * Properties applied to the `TabIndicator` element.
    */

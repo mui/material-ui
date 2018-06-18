@@ -74,3 +74,9 @@ If you have read the [overrides documentation page](/customization/overrides)
 but aren't confident jumping in, here's an example of how you can change the main color of the Tabs. The following demo matches the [Ant Design UI](https://ant.design/components/tabs/).
 
 {{"demo": "pages/demos/tabs/CustomizedTabs.js"}}
+
+### Static Labels
+
+Static labels will ignore resize events and label text dimension changes, to provide a slight performance boost. If you're targetting a mobile device and your labels aren't changing, this may decrease rerender cost.
+
+{{"demo": "pages/demos/tabs/TabsStaticLabel.js"}}
