@@ -9,14 +9,14 @@ describe('<Select />', () => {
   let shallow;
   let classes;
   let mount;
-  const props = {
+  const defaultProps = {
     input: <Input />,
     children: [<MenuItem value="1">1</MenuItem>, <MenuItem value="2">2</MenuItem>],
   };
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<Select {...props} />);
+    classes = getClasses(<Select {...defaultProps} />);
     mount = createMount();
   });
 
@@ -25,18 +25,35 @@ describe('<Select />', () => {
   });
 
   it('should render a correct top element', () => {
-    const wrapper = shallow(<Select {...props} />);
+    const wrapper = shallow(<Select {...defaultProps} />);
     assert.strictEqual(wrapper.type(), Input);
   });
 
   it('should provide the classes to the input component', () => {
-    const wrapper = shallow(<Select {...props} />);
+    const wrapper = shallow(<Select {...defaultProps} />);
     assert.deepEqual(wrapper.props().inputProps.classes, classes);
+  });
+
+  describe('prop: inputProps', () => {
+    it('should be able to provide a custom classes property', () => {
+      const wrapper = shallow(
+        <Select
+          {...defaultProps}
+          inputProps={{
+            classes: { root: 'root' },
+          }}
+        />,
+      );
+      assert.deepEqual(wrapper.props().inputProps.classes, {
+        ...classes,
+        root: `${classes.root} root`,
+      });
+    });
   });
 
   it('should be able to mount the component', () => {
     const wrapper = mount(
-      <Select {...props} value={10}>
+      <Select {...defaultProps} value={10}>
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
