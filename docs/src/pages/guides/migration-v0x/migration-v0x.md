@@ -89,7 +89,7 @@ In the future, we will look into providing a simple component to solve the simpl
 Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
 
 This will apply a change such as the following:
-```
+
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
 +import AddIcon from '@material-ui/icons/Add';
