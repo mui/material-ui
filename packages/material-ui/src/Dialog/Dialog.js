@@ -18,6 +18,7 @@ export const styles = theme => ({
   paper: {
     display: 'flex',
     margin: theme.spacing.unit * 4,
+    maxHeight: `calc(100% - ${theme.spacing.unit * 8}px)`,
     flexDirection: 'column',
     flex: '0 1 auto',
     position: 'relative',
