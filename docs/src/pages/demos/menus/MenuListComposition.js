@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Manager, Reference, Popper } from 'react-popper';
+import { Manager, Target, Popper } from 'react-popper';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Collapse from '@material-ui/core/Collapse';
@@ -55,90 +55,72 @@ class MenuListComposition extends React.Component {
           </MenuList>
         </Paper>
         <Manager>
-          <Reference>
-            {({ ref }) => (
-              <div
-                ref={node => {
-                  this.target1 = node;
-                }}
+          <Target>
+            <div
+              ref={node => {
+                this.target1 = node;
+              }}
+            >
+              <Button
+                aria-owns={open ? 'menu-list-grow' : null}
+                aria-haspopup="true"
+                onClick={this.handleToggle}
               >
-                <Button
-                  buttonRef={ref}
-                  aria-owns={open ? 'menu-list-grow' : null}
-                  aria-haspopup="true"
-                  onClick={this.handleToggle}
-                >
-                  Toggle Menu Grow
-                </Button>
-              </div>
-            )}
-          </Reference>
+                Toggle Menu Grow
+              </Button>
+            </div>
+          </Target>
           <Popper
             placement="bottom-start"
             eventsEnabled={open}
             className={classNames({ [classes.popperClose]: !open })}
           >
-            {({ ref, style }) => (
-              <div ref={ref} style={style}>
-                <ClickAwayListener onClickAway={this.handleClose}>
-                  <Grow in={open} id="menu-list-grow" style={{ transformOrigin: '0 0 0' }}>
-                    <Paper>
-                      <MenuList role="menu">
-                        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                        <MenuItem onClick={this.handleClose}>Logout</MenuItem>
-                      </MenuList>
-                    </Paper>
-                  </Grow>
-                </ClickAwayListener>
-              </div>
-            )}
+            <ClickAwayListener onClickAway={this.handleClose}>
+              <Grow in={open} id="menu-list-grow" style={{ transformOrigin: '0 0 0' }}>
+                <Paper>
+                  <MenuList role="menu">
+                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                    <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                  </MenuList>
+                </Paper>
+              </Grow>
+            </ClickAwayListener>
           </Popper>
         </Manager>
         <Manager>
-          <Reference>
-            {({ ref }) => (
-              <div
-                ref={node => {
-                  this.target2 = node;
-                }}
+          <Target>
+            <div
+              ref={node => {
+                this.target2 = node;
+              }}
+            >
+              <Button
+                aria-owns={open ? 'menu-list-collapse' : null}
+                aria-haspopup="true"
+                onClick={this.handleToggle}
               >
-                <Button
-                  buttonRef={ref}
-                  aria-owns={open ? 'menu-list-collapse' : null}
-                  aria-haspopup="true"
-                  onClick={this.handleToggle}
-                >
-                  Toggle Menu Collapse
-                </Button>
-              </div>
-            )}
-          </Reference>
+                Toggle Menu Collapse
+              </Button>
+            </div>
+          </Target>
           <Portal>
             <Popper
               placement="bottom"
               eventsEnabled={open}
               className={classNames({ [classes.popperClose]: !open })}
             >
-              {({ ref, style }) => (
-                <div ref={ref} style={style}>
-                  <ClickAwayListener onClickAway={this.handleClose}>
-                    <Collapse
-                      in={open}
-                      id="menu-list-collapse"
-                      style={{ transformOrigin: '0 0 0' }}
-                    >
-                      <Paper style={{ margin: 3 }}>
-                        <MenuList role="menu">
-                          <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                          <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                          <MenuItem onClick={this.handleClose}>Logout</MenuItem>
-                        </MenuList>
-                      </Paper>
-                    </Collapse>
-                  </ClickAwayListener>
-                </div>
-              )}
+              <ClickAwayListener onClickAway={this.handleClose}>
+                <Collapse in={open} id="menu-list-collapse" style={{ transformOrigin: '0 0 0' }}>
+                  <Paper style={{ margin: 3 }}>
+                    <MenuList role="menu">
+                      <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                      <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                      <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                    </MenuList>
+                  </Paper>
+                </Collapse>
+              </ClickAwayListener>
             </Popper>
           </Portal>
         </Manager>
