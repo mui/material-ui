@@ -275,7 +275,7 @@ class Tooltip extends React.Component {
       onOpen,
       open: openProp,
       placement: placementProp,
-      PopperProps: { className: PopperClassName, ...PopperProps } = {},
+      PopperProps,
       theme,
       title,
       ...other
@@ -329,12 +329,7 @@ class Tooltip extends React.Component {
           )}
         </Reference>
         <Portal>
-          <Popper
-            placement={placement}
-            eventsEnabled={open}
-            className={classNames(classes.popper, { [classes.open]: open }, PopperClassName)}
-            {...PopperProps}
-          >
+          <Popper placement={placement} eventsEnabled={open} {...PopperProps}>
             {popperProps => {
               this.scheduleUpdate = popperProps.scheduleUpdate;
               const actualPlacement = popperProps.placement
@@ -343,6 +338,7 @@ class Tooltip extends React.Component {
               return (
                 <div
                   ref={popperProps.ref}
+                  className={classNames(classes.popper, { [classes.open]: open })}
                   style={{
                     ...popperProps.style,
                     top: popperProps.style.top || 0,
