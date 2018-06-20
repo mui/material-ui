@@ -29,6 +29,14 @@ const styles = theme => ({
 });
 
 const appList = [
+    {
+    title: 'Antivirus',
+    description:
+      'Online Antivirus Store. Based on React, Material UI, razzle ' + 
+      'With Server Side Rendering and RTL Support.' ,
+    image: '/static/images/showcase/antivirus-ir.jpg',
+    link: 'http://antivirus.ir/',
+  },
   {
     title: 'Trafikito',
     description:
