@@ -5,6 +5,40 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.2.3
+###### *Jun 20, 2018*
+
+Big thanks to the 6 contributors who made this release possible.
+
+This release fixes some important regressions.
+We are making it outside of the normal schedule.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [ButtonBase] Fix exception (#11905) @oliviertassinari
+- [NoSSR] Add a fallback property (#11907) @oliviertassinari
+- [Dialog] Add max-height back (#11914) @oliviertassinari
+- [Tooltip] Revert update react-popper (#11920) @oliviertassinari
+- [Select] Fix classes merge issue (#11904) @C-Rodg
+
+#### Docs
+
+- [docs] Document jss-nested rule reference feature (#11901) @i8ramin
+- [docs] Correct markdown example from svg icon (#11922) @GabrielDuarteM
+- [docs] TS decorating reword (#11923) @swpease
+
+#### Core
+
+N/A
+
+#### Lab
+
+- [Slider] Add TypeScript definitions (#11747) @epodivilov
+
 ## 1.2.2
 ###### *Jun 18, 2018*
 
