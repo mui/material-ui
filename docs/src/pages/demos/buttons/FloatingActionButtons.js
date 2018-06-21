@@ -30,7 +30,7 @@ function FloatingActionButtons(props) {
       <Button variant="fab" color="secondary" aria-label="edit" className={classes.button}>
         <Icon>edit_icon</Icon>
       </Button>
-      <Button variant="extended" aria-label="delete" className={classes.button}>
+      <Button variant="extended-fab" aria-label="delete" className={classes.button}>
         <NavigationIcon className={classes.extendedIcon} />
         <span className={classes.extendedLabel}>Extended</span>
       </Button>

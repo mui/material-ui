@@ -400,7 +400,7 @@ describe('<Button />', () => {
   });
 
   it('should render an extended floating action button', () => {
-    const wrapper = shallow(<Button variant="extended">Hello World</Button>);
+    const wrapper = shallow(<Button variant="extended-fab">Hello World</Button>);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.hasClass(classes.contained),

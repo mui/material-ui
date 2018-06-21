@@ -180,7 +180,7 @@ function Button(props) {
     ...other
   } = props;
 
-  const extended = variant === 'extended';
+  const extended = variant === 'extended-fab';
   const fab = variant === 'fab' || extended;
   const contained = variant === 'contained' || variant === 'raised';
   const text = !contained && !fab;
@@ -289,7 +289,15 @@ Button.propTypes = {
   /**
    * The type of button.
    */
-  variant: PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extended']),
+  variant: PropTypes.oneOf([
+    'text',
+    'flat',
+    'outlined',
+    'contained',
+    'raised',
+    'fab',
+    'extended-fab',
+  ]),
 };
 
 Button.defaultProps = {
