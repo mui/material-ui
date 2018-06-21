@@ -38,7 +38,9 @@ export interface WithStylesOptions<ClassKey extends string = string>
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
-export type WithStyles<T extends string | StyleRules | StyleRulesCallback = string> = Partial<WithTheme> & {
+export type WithStyles<T extends string | StyleRules | StyleRulesCallback = string> = Partial<
+  WithTheme
+> & {
   classes: ClassNameMap<
     T extends string
       ? T

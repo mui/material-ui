@@ -37,7 +37,8 @@ const appList = [
       'theming. The UI is responsive. The code is open-source!',
     image: '/static/images/showcase/posters-galore.jpg',
     link: 'https://marmelab.com/react-admin-demo/',
-    source: 'https://github.com/marmelab/react-admin/tree/be23a1a8ebc4e2293b57898adcb2f359e836f0fd/examples/demo',
+    source:
+      'https://github.com/marmelab/react-admin/tree/be23a1a8ebc4e2293b57898adcb2f359e836f0fd/examples/demo',
   },
   {
     title: 'Trafikito',
