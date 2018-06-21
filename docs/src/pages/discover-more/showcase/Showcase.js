@@ -35,7 +35,7 @@ const appList = [
       'The admin of an imaginary poster shop, used as a demo for the react-admin framework. ' +
       'Uses many material-ui components, including tables, forms, snackbars, buttons, and ' +
       'theming. The UI is responsive. The code is open-source!',
-    image: '/static/images/showcase/posters-galore.gif',
+    image: '/static/images/showcase/posters-galore.jpg',
     link: 'https://marmelab.com/react-admin-demo/',
   },
   {
