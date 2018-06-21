@@ -90,9 +90,9 @@ describe('<MuiThemeProvider />', () => {
       assert.deepEqual(
         sheetsRegistry.registry[1].classes,
         {
-          disabled: 'MuiButtonBase-disabled-24',
-          focusVisible: 'MuiButtonBase-focusVisible-25',
-          root: 'MuiButtonBase-root-23',
+          disabled: 'MuiButtonBase-disabled-25',
+          focusVisible: 'MuiButtonBase-focusVisible-26',
+          root: 'MuiButtonBase-root-24',
         },
         'the class names should be deterministic',
       );
