@@ -136,7 +136,7 @@ export const styles = theme => ({
       boxShadow: theme.shadows[12],
     },
   },
-  extended: {
+  extendedFab: {
     borderRadius: 24,
     padding: 8,
     width: 'initial',
@@ -180,8 +180,8 @@ function Button(props) {
     ...other
   } = props;
 
-  const extended = variant === 'extended-fab';
-  const fab = variant === 'fab' || extended;
+  const extendedFab = variant === 'extendedFab';
+  const fab = variant === 'fab' || extendedFab;
   const contained = variant === 'contained' || variant === 'raised';
   const text = !contained && !fab;
   const className = classNames(
@@ -189,7 +189,7 @@ function Button(props) {
     {
       [classes.contained]: contained || fab,
       [classes.fab]: fab,
-      [classes.extended]: extended,
+      [classes.extendedFab]: extendedFab,
       [classes.mini]: fab && mini,
       [classes.colorInherit]: color === 'inherit',
       [classes.textPrimary]: text && color === 'primary',
@@ -296,7 +296,7 @@ Button.propTypes = {
     'contained',
     'raised',
     'fab',
-    'extended-fab',
+    'extendedFab',
   ]),
 };
 
