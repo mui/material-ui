@@ -381,6 +381,34 @@ describe('<Button />', () => {
       'should have the contained class',
     );
     assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.extended),
+      false,
+      'should not have the extended class',
+    );
+    assert.strictEqual(wrapper.hasClass(classes.flat), false, 'should not have the flat class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.textPrimary),
+      false,
+      'should not have the textPrimary class',
+    );
+    assert.strictEqual(
+      wrapper.hasClass(classes.textSecondary),
+      false,
+      'should not have the textSecondary class',
+    );
+  });
+
+  it('should render an extended floating action button', () => {
+    const wrapper = shallow(<Button variant="extended">Hello World</Button>);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.contained),
+      true,
+      'should have the contained class',
+    );
+    assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');
+    assert.strictEqual(wrapper.hasClass(classes.extended), true, 'should have the extended class');
     assert.strictEqual(wrapper.hasClass(classes.flat), false, 'should not have the flat class');
     assert.strictEqual(
       wrapper.hasClass(classes.textPrimary),

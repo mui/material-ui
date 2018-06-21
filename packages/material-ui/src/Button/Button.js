@@ -37,7 +37,6 @@ export const styles = theme => ({
     },
   },
   label: {
-    width: '100%',
     display: 'inherit',
     alignItems: 'inherit',
     justifyContent: 'inherit',
@@ -131,12 +130,18 @@ export const styles = theme => ({
     padding: 0,
     minWidth: 0,
     width: 56,
-    fontSize: 24,
     height: 56,
     boxShadow: theme.shadows[6],
     '&:active': {
       boxShadow: theme.shadows[12],
     },
+  },
+  extended: {
+    borderRadius: 24,
+    padding: 8,
+    width: 'initial',
+    minWidth: 48,
+    height: 48,
   },
   mini: {
     width: 40,
@@ -175,7 +180,8 @@ function Button(props) {
     ...other
   } = props;
 
-  const fab = variant === 'fab';
+  const extended = variant === 'extended';
+  const fab = variant === 'fab' || extended;
   const contained = variant === 'contained' || variant === 'raised';
   const text = !contained && !fab;
   const className = classNames(
@@ -183,6 +189,7 @@ function Button(props) {
     {
       [classes.contained]: contained || fab,
       [classes.fab]: fab,
+      [classes.extended]: extended,
       [classes.mini]: fab && mini,
       [classes.colorInherit]: color === 'inherit',
       [classes.textPrimary]: text && color === 'primary',
@@ -282,7 +289,7 @@ Button.propTypes = {
   /**
    * The type of button.
    */
-  variant: PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab']),
+  variant: PropTypes.oneOf(['text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extended']),
 };
 
 Button.defaultProps = {
