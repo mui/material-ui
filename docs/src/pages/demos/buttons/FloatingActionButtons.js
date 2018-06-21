@@ -12,11 +12,7 @@ const styles = theme => ({
     margin: theme.spacing.unit,
   },
   extendedIcon: {
-    marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-  },
-  extendedLabel: {
-    marginRight: 12,
   },
 });
 
@@ -32,7 +28,7 @@ function FloatingActionButtons(props) {
       </Button>
       <Button variant="extendedFab" aria-label="delete" className={classes.button}>
         <NavigationIcon className={classes.extendedIcon} />
-        <span className={classes.extendedLabel}>Extended</span>
+        Extended
       </Button>
       <Button variant="fab" disabled aria-label="delete" className={classes.button}>
         <DeleteIcon />

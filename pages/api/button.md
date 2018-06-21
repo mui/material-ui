@@ -33,23 +33,24 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `root`
 - `label`
+- `text`
 - `textPrimary`
 - `textSecondary`
 - `flat`
 - `flatPrimary`
 - `flatSecondary`
 - `outlined`
-- `colorInherit`
 - `contained`
 - `containedPrimary`
 - `containedSecondary`
 - `raised`
 - `raisedPrimary`
 - `raisedSecondary`
-- `focusVisible`
-- `disabled`
 - `fab`
 - `extendedFab`
+- `focusVisible`
+- `disabled`
+- `colorInherit`
 - `mini`
 - `sizeSmall`
 - `sizeLarge`

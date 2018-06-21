@@ -19,6 +19,7 @@ export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassK
 export type ButtonClassKey =
   | 'root'
   | 'label'
+  | 'text'
   | 'textPrimary'
   | 'textSecondary'
   | 'flat'

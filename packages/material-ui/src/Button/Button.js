@@ -41,6 +41,7 @@ export const styles = theme => ({
     alignItems: 'inherit',
     justifyContent: 'inherit',
   },
+  text: {},
   textPrimary: {
     color: theme.palette.primary.main,
     '&:hover': {
@@ -61,16 +62,13 @@ export const styles = theme => ({
       },
     },
   },
-  flat: {},
-  flatPrimary: {},
-  flatSecondary: {},
+  flat: {}, // legacy
+  flatPrimary: {}, // legacy
+  flatSecondary: {}, // legacy
   outlined: {
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
-  },
-  colorInherit: {
-    color: 'inherit',
   },
   contained: {
     color: theme.palette.getContrastText(theme.palette.grey[300]),
@@ -120,11 +118,9 @@ export const styles = theme => ({
       },
     },
   },
-  raised: {},
-  raisedPrimary: {},
-  raisedSecondary: {},
-  focusVisible: {},
-  disabled: {},
+  raised: {}, // legacy
+  raisedPrimary: {}, // legacy
+  raisedSecondary: {}, // legacy
   fab: {
     borderRadius: '50%',
     padding: 0,
@@ -137,11 +133,16 @@ export const styles = theme => ({
     },
   },
   extendedFab: {
-    borderRadius: 24,
-    padding: 8,
+    borderRadius: theme.spacing.unit * 3,
+    padding: `0 ${theme.spacing.unit * 2}px`,
     width: 'initial',
-    minWidth: 48,
-    height: 48,
+    minWidth: theme.spacing.unit * 6,
+    height: theme.spacing.unit * 6,
+  },
+  focusVisible: {},
+  disabled: {},
+  colorInherit: {
+    color: 'inherit',
   },
   mini: {
     width: 40,
@@ -180,33 +181,32 @@ function Button(props) {
     ...other
   } = props;
 
-  const extendedFab = variant === 'extendedFab';
-  const fab = variant === 'fab' || extendedFab;
+  const fab = variant === 'fab' || variant === 'extendedFab';
   const contained = variant === 'contained' || variant === 'raised';
-  const text = !contained && !fab;
+  const text = variant === 'text' || variant === 'flat' || variant === 'outlined';
   const className = classNames(
     classes.root,
     {
-      [classes.contained]: contained || fab,
       [classes.fab]: fab,
-      [classes.extendedFab]: extendedFab,
       [classes.mini]: fab && mini,
-      [classes.colorInherit]: color === 'inherit',
+      [classes.extendedFab]: variant === 'extendedFab',
+      [classes.text]: text,
       [classes.textPrimary]: text && color === 'primary',
       [classes.textSecondary]: text && color === 'secondary',
-      [classes.flat]: text,
-      [classes.flatPrimary]: text && color === 'primary',
-      [classes.flatSecondary]: text && color === 'secondary',
-      [classes.containedPrimary]: !text && color === 'primary',
-      [classes.containedSecondary]: !text && color === 'secondary',
+      [classes.flat]: variant === 'text' || variant === 'flat',
+      [classes.flatPrimary]: (variant === 'text' || variant === 'flat') && color === 'primary',
+      [classes.flatSecondary]: (variant === 'text' || variant === 'flat') && color === 'secondary',
+      [classes.contained]: contained || fab,
+      [classes.containedPrimary]: (contained || fab) && color === 'primary',
+      [classes.containedSecondary]: (contained || fab) && color === 'secondary',
       [classes.raised]: contained || fab,
       [classes.raisedPrimary]: (contained || fab) && color === 'primary',
       [classes.raisedSecondary]: (contained || fab) && color === 'secondary',
-      [classes.text]: variant === 'text',
       [classes.outlined]: variant === 'outlined',
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
+      [classes.colorInherit]: color === 'inherit',
     },
     classNameProp,
   );
