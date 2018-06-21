@@ -206,6 +206,13 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
         if (process.env.NODE_ENV !== 'production' && !meta) {
           meta = getDisplayName(Component);
+          warning(
+            typeof meta === 'string',
+            [
+              'Material-UI: the component displayName is invalid. It needs to be a string.',
+              `Please fix the following component: ${Component}.`,
+            ].join('\n'),
+          );
         }
 
         const sheet = this.jss.createStyleSheet(styles, {
