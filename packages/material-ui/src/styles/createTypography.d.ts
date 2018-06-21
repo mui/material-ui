@@ -27,6 +27,7 @@ export interface FontStyle
 
 export interface FontStyleOptions extends Partial<FontStyle> {
   htmlFontSize?: number;
+  allVariants?: CSSProperties;
 }
 
 export type TypographyStyle = Required<
