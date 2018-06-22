@@ -248,7 +248,7 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
 
 #### Arguments
 
-1. `styles` (*Function | Object*): A function generating the styles or an object.
+1. `styles` (*Function | Object*): A function generating the styles or a styles object.
 It will be linked to the component.
 Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]):
