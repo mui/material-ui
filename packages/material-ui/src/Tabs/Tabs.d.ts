@@ -4,7 +4,7 @@ import { ButtonBaseProps } from '../ButtonBase/ButtonBase';
 import { TabIndicatorProps } from './TabIndicator';
 
 export interface TabsProps<C = {}>
-  extends StandardProps<ButtonBaseProps<C>, TabsClassKey, 'onChange' | 'action' | 'component> {
+  extends StandardProps<ButtonBaseProps<C>, TabsClassKey, 'onChange' | 'action' | 'component'> {
   action?: (actions: TabsActions) => void;
   centered?: boolean;
   children?: React.ReactNode;
