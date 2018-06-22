@@ -65,4 +65,4 @@ class Index extends React.Component<WithStyles<'root'>, State> {
   }
 }
 
-export default withRoot(withStyles(styles)<{}>(Index));
+export default withRoot(withStyles(styles)(Index));
