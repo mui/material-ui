@@ -8,7 +8,7 @@ export interface TabsProps<C = {}>
   action?: (actions: TabsActions) => void;
   centered?: boolean;
   children?: React.ReactNode;
-  component?: React.ReactType<TabsProps>;
+  component?: React.ReactType<TabsProps<C>>;
   fullWidth?: boolean;
   indicatorColor?: 'secondary' | 'primary' | string;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
