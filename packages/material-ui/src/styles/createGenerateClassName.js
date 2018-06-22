@@ -6,6 +6,15 @@ import warning from 'warning';
 // We need to use a global.
 global.__MUI_GENERATOR_COUNTER__ = 0;
 
+const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
+
+function safePrefix(classNamePrefix) {
+  const prefix = String(classNamePrefix);
+  warning(prefix.length < 100, `Material-UI: the class name prefix is too long: ${prefix}.`);
+  // Sanitize the string as will be used to prefix the generated class name.
+  return prefix.replace(escapeRegex, '-');
+}
+
 // Returns a function which generates unique class names based on counters.
 // When new generator function is created, rule counter is reset.
 // We need to reset the rule counter for SSR for each request.
@@ -14,7 +23,6 @@ global.__MUI_GENERATOR_COUNTER__ = 0;
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
 export default function createGenerateClassName(options = {}) {
   const { dangerouslyUseGlobalCSS = false, productionPrefix = 'jss' } = options;
-  const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
   let ruleCounter = 0;
 
   // - HMR can lead to many class name generators being instantiated,
@@ -49,9 +57,7 @@ export default function createGenerateClassName(options = {}) {
     // Code branch the whole block at the expense of more code.
     if (dangerouslyUseGlobalCSS) {
       if (styleSheet && styleSheet.options.classNamePrefix) {
-        let prefix = styleSheet.options.classNamePrefix;
-        // Sanitize the string as will be used to prefix the generated class name.
-        prefix = prefix.replace(escapeRegex, '-');
+        const prefix = safePrefix(styleSheet.options.classNamePrefix);
 
         if (prefix.match(/^Mui/)) {
           return `${prefix}-${rule.key}`;
@@ -74,9 +80,7 @@ export default function createGenerateClassName(options = {}) {
     }
 
     if (styleSheet && styleSheet.options.classNamePrefix) {
-      let prefix = styleSheet.options.classNamePrefix;
-      // Sanitize the string as will be used to prefix the generated class name.
-      prefix = prefix.replace(escapeRegex, '-');
+      const prefix = safePrefix(styleSheet.options.classNamePrefix);
 
       return `${prefix}-${rule.key}-${ruleCounter}`;
     }
