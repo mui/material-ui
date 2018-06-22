@@ -14,12 +14,13 @@ export interface ButtonProps<C = {}>
   mini?: boolean;
   size?: 'small' | 'medium' | 'large';
   type?: string;
-  variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab';
+  variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab' | 'extendedFab';
 }
 
 export type ButtonClassKey =
   | 'root'
   | 'label'
+  | 'text'
   | 'textPrimary'
   | 'textSecondary'
   | 'flat'

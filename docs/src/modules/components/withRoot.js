@@ -79,8 +79,7 @@ const pages = [
         pathname: '/layout/hidden',
       },
       {
-        pathname: '/layout/css-in-js',
-        title: 'CSS in JS',
+        pathname: '/layout/breakpoints',
       },
     ],
   },
@@ -98,6 +97,9 @@ const pages = [
       },
       {
         pathname: '/utils/transitions',
+      },
+      {
+        pathname: '/utils/click-away-listener',
       },
     ],
   },

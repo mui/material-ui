@@ -3,26 +3,16 @@
 ## Responsive UI
 
 [Responsive layouts](https://material.io/design/layout/responsive-layout-grid.html) in Material Design adapt to any possible screen size.
+We provide the following helpers to make the UI responsive:
 
-### Breakpoints
+- [Grid](/layout/grid):
+The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 
-For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints.
-Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
+- [Hidden](/layout/hidden):
+The hidden component can be used to change the visibility of the elements.
 
-Each breakpoint matches with a *fixed* screen width:
-- **xs**, extra-small: 0px or larger
-- **sm**, small: 600px or larger
-- **md**, medium: 960px or larger
-- **lg**, large: 1280px or larger
-- **xl**, xlarge: 1920px or larger
-
-These values can always be customized.
-You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme?expend-path=$.breakpoints.values) object.
-
-The breakpoints are used internally in various components to make them responsive,
-but you can also take advantage of them
-for controlling the layout of your application through the [Grid](/layout/grid) and
-[Hidden](/layout/hidden) components.
+- [Breakpoints](/layout/breakpoints):
+We provide a low-level API for using the breakpoints in a wide variery of context.
 
 ## z-index
 

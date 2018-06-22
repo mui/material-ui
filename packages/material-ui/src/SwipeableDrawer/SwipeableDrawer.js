@@ -24,7 +24,14 @@ export function reset() {
   nodeThatClaimedTheSwipe = null;
 }
 
+/* istanbul ignore if */
+if (process.env.NODE_ENV !== 'production' && !React.createContext) {
+  throw new Error('Material-UI: react@16.3.0 or greater is required.');
+}
+
 class SwipeableDrawer extends React.Component {
+  state = {};
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (typeof prevState.maybeSwiping === 'undefined') {
       return {
@@ -44,8 +51,6 @@ class SwipeableDrawer extends React.Component {
       open: nextProps.open,
     };
   }
-
-  state = {};
 
   componentDidMount() {
     if (this.props.variant === 'temporary') {
@@ -329,7 +334,7 @@ class SwipeableDrawer extends React.Component {
       ModalProps: { BackdropProps, ...ModalPropsProp } = {},
       onOpen,
       open,
-      PaperProps,
+      PaperProps = {},
       swipeAreaWidth,
       variant,
       ...other
@@ -350,7 +355,10 @@ class SwipeableDrawer extends React.Component {
           }}
           PaperProps={{
             ...PaperProps,
-            style: { pointerEvents: variant === 'temporary' && !open ? 'none' : '' },
+            style: {
+              pointerEvents: variant === 'temporary' && !open ? 'none' : '',
+              ...PaperProps.style,
+            },
             ref: this.handlePaperRef,
           }}
           {...other}

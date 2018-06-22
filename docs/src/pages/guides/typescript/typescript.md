@@ -120,7 +120,7 @@ interface Props extends WithStyles<typeof styles> {
 
 ### Decorating components
 
-Applying the `withStyles(styles)` decorator as a function works as expected:
+Applying `withStyles(styles)` as a function works as expected:
 
 ```tsx
 const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
@@ -143,7 +143,7 @@ const DecoratedClass = withStyles(styles)(
 );
 ```
 
-Unfortunately due to a [current limitation of TypeScript decorators](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles` can't be used as a decorator in TypeScript.
+Unfortunately due to a [current limitation of TypeScript decorators](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles(styles)` can't be used as a decorator in TypeScript.
 
 ### Union props
 

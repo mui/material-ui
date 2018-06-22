@@ -10,6 +10,7 @@ import { isFilled } from '../Input/Input';
  */
 class SelectInput extends React.Component {
   state = {
+    menuMinWidth: null,
     open: false,
   };
 
@@ -27,23 +28,9 @@ class SelectInput extends React.Component {
     }
   }
 
-  shouldComponentUpdate() {
-    this.updateDisplayWidth();
-
-    return true;
-  }
-
   ignoreNextBlur = false;
   displayNode = null;
-  displayWidth = null;
   isOpenControlled = this.props.open !== undefined;
-
-  updateDisplayWidth = () => {
-    // Perfom the layout computation outside of the render method.
-    if (this.displayNode) {
-      this.displayWidth = this.displayNode.clientWidth;
-    }
-  };
 
   update = this.isOpenControlled
     ? ({ event, open }) => {
@@ -53,7 +40,13 @@ class SelectInput extends React.Component {
           this.props.onClose(event);
         }
       }
-    : ({ open }) => this.setState({ open });
+    : ({ open }) => {
+        this.setState({
+          // Perfom the layout computation outside of the render method.
+          menuMinWidth: this.props.autoWidth ? null : this.displayNode.clientWidth,
+          open,
+        });
+      };
 
   handleClick = event => {
     // Opening the menu is going to blur the. It will be focused back when closed.
@@ -139,19 +132,26 @@ class SelectInput extends React.Component {
 
   handleDisplayRef = node => {
     this.displayNode = node;
-    this.updateDisplayWidth();
   };
 
-  handleSelectRef = node => {
-    if (!this.props.inputRef) {
+  handleInputRef = node => {
+    const { inputRef } = this.props;
+
+    if (!inputRef) {
       return;
     }
 
-    this.props.inputRef({
+    const nodeProxy = {
       node,
       // By pass the native input as we expose a rich object (array).
       value: this.props.value,
-    });
+    };
+
+    if (typeof inputRef === 'function') {
+      inputRef(nodeProxy);
+    } else {
+      inputRef.current = nodeProxy;
+    }
   };
 
   render() {
@@ -235,7 +235,12 @@ class SelectInput extends React.Component {
       display = multiple ? displayMultiple.join(', ') : displaySingle;
     }
 
-    const MenuMinWidth = this.displayNode && !autoWidth ? this.displayWidth : undefined;
+    // Avoid performing a layout computation in the render method.
+    let menuMinWidth = this.state.menuMinWidth;
+
+    if (!autoWidth && this.isOpenControlled && this.displayNode) {
+      menuMinWidth = this.displayNode.clientWidth;
+    }
 
     let tabIndex;
     if (typeof tabIndexProp !== 'undefined') {
@@ -270,13 +275,13 @@ class SelectInput extends React.Component {
         >
           {/* So the vertical align positioning algorithm quicks in. */}
           {/* eslint-disable-next-line react/no-danger */}
-          {display || <span dangerouslySetInnerHTML={{ __html: '&#8203' }} />}
+          {display || <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
         </div>
         <input
           value={Array.isArray(value) ? value.join(',') : value}
           name={name}
           readOnly={readOnly}
-          ref={this.handleSelectRef}
+          ref={this.handleInputRef}
           type={type}
           {...other}
         />
@@ -294,7 +299,7 @@ class SelectInput extends React.Component {
           PaperProps={{
             ...MenuProps.PaperProps,
             style: {
-              minWidth: MenuMinWidth,
+              minWidth: menuMinWidth,
               ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
             },
           }}
@@ -341,11 +346,11 @@ SelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Use that property to pass a ref callback to the native select element.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the `Menu` element.
    */

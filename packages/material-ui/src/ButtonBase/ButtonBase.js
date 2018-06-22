@@ -44,12 +44,19 @@ export const styles = {
   focusVisible: {},
 };
 
+/* istanbul ignore if */
+if (process.env.NODE_ENV !== 'production' && !React.createContext) {
+  throw new Error('Material-UI: react@16.3.0 or greater is required.');
+}
+
 /**
  * `ButtonBase` contains as few styles as possible.
  * It aims to be a simple building block for creating a button.
  * It contains a load of style reset and some focus/ripple logic.
  */
 class ButtonBase extends React.Component {
+  state = {};
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (typeof prevState.focusVisible === 'undefined') {
       return {
@@ -71,8 +78,6 @@ class ButtonBase extends React.Component {
       lastDisabled: nextProps.disabled,
     };
   }
-
-  state = {};
 
   componentDidMount() {
     this.button = ReactDOM.findDOMNode(this);
@@ -233,6 +238,7 @@ class ButtonBase extends React.Component {
       component,
       disabled,
       disableRipple,
+      disableTouchRipple,
       focusRipple,
       focusVisibleClassName,
       onBlur,
@@ -340,7 +346,7 @@ ButtonBase.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, the base button will be disabled.
    */
@@ -349,6 +355,10 @@ ButtonBase.propTypes = {
    * If `true`, the ripple effect will be disabled.
    */
   disableRipple: PropTypes.bool,
+  /**
+   * If `true`, the touch ripple effect will be disabled.
+   */
+  disableTouchRipple: PropTypes.bool,
   /**
    * If `true`, the base button will have a keyboard focus ripple.
    * `disableRipple` must also be `false`.
@@ -423,7 +433,9 @@ ButtonBase.propTypes = {
    */
   TouchRippleProps: PropTypes.object,
   /**
-   * @ignore
+   * Used to control the button's purpose.
+   * This property passes the value to the `type` attribute of the native button component.
+   * Valid property values include `button`, `submit`, and `reset`.
    */
   type: PropTypes.string,
 };
@@ -432,6 +444,7 @@ ButtonBase.defaultProps = {
   centerRipple: false,
   component: 'button',
   disableRipple: false,
+  disableTouchRipple: false,
   focusRipple: false,
   tabIndex: '0',
   type: 'button',

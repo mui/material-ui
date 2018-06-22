@@ -18,10 +18,10 @@ export const styles = theme => ({
   paper: {
     display: 'flex',
     margin: theme.spacing.unit * 4,
+    maxHeight: `calc(100% - ${theme.spacing.unit * 8}px)`,
     flexDirection: 'column',
     flex: '0 1 auto',
     position: 'relative',
-    maxHeight: '90vh',
     overflowY: 'auto', // Fix IE11 issue, to remove at some point.
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
@@ -108,7 +108,6 @@ function Dialog(props) {
         {...TransitionProps}
       >
         <Paper
-          data-mui-test="Dialog"
           elevation={24}
           className={classNames(classes.paper, {
             [classes[`paperWidth${maxWidth ? capitalize(maxWidth) : ''}`]]: maxWidth,
@@ -215,7 +214,7 @@ Dialog.propTypes = {
   /**
    * Transition component.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

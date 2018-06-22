@@ -72,6 +72,6 @@ Portal.propTypes = {
   onRendered: PropTypes.func,
 };
 
-Portal.propTypes = exactProp(Portal.propTypes, 'Portal');
+Portal.propTypes = exactProp(Portal.propTypes);
 
 export default Portal;

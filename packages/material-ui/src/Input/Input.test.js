@@ -264,19 +264,22 @@ describe('<Input />', () => {
     });
 
     describe('callbacks', () => {
-      let handleFilled;
-      let handleEmpty;
-
       beforeEach(() => {
-        handleFilled = spy();
-        handleEmpty = spy();
-        // Mock the input ref
-        wrapper.setProps({ onFilled: handleFilled, onEmpty: handleEmpty });
         wrapper.instance().input = { value: '' };
-        setFormControlContext({ onFilled: spy(), onEmpty: spy() });
+        setFormControlContext({
+          onFilled: spy(),
+          onEmpty: spy(),
+          onFocus: spy(),
+          onBlur: spy(),
+        });
       });
 
       it('should fire the onFilled muiFormControl and props callback when dirtied', () => {
+        const handleFilled = spy();
+        wrapper.setProps({
+          onFilled: handleFilled,
+        });
+
         wrapper.instance().input.value = 'hello';
         wrapper.find('input').simulate('change');
         assert.strictEqual(handleFilled.callCount, 1, 'should have called the onFilled props cb');
@@ -288,6 +291,11 @@ describe('<Input />', () => {
       });
 
       it('should fire the onEmpty muiFormControl and props callback when cleaned', () => {
+        const handleEmpty = spy();
+        wrapper.setProps({
+          onEmpty: handleEmpty,
+        });
+
         wrapper.instance().input.value = '';
         wrapper.find('input').simulate('change');
         assert.strictEqual(handleEmpty.callCount, 1, 'should have called the onEmpty props cb');
@@ -296,6 +304,28 @@ describe('<Input />', () => {
           1,
           'should have called the onEmpty muiFormControl cb',
         );
+      });
+
+      it('should fire the onFocus muiFormControl', () => {
+        const handleFocus = spy();
+        wrapper.setProps({
+          onFocus: handleFocus,
+        });
+
+        wrapper.find('input').simulate('focus');
+        assert.strictEqual(handleFocus.callCount, 1);
+        assert.strictEqual(muiFormControl.onFocus.callCount, 1);
+      });
+
+      it('should fire the onBlur muiFormControl', () => {
+        const handleBlur = spy();
+        wrapper.setProps({
+          onBlur: handleBlur,
+        });
+
+        wrapper.find('input').simulate('blur');
+        assert.strictEqual(handleBlur.callCount, 1);
+        assert.strictEqual(muiFormControl.onBlur.callCount, 1);
       });
     });
 
@@ -469,6 +499,20 @@ describe('<Input />', () => {
       );
 
       assert.strictEqual(wrapper.childAt(1).type(), InputAdornment);
+    });
+  });
+
+  describe('prop: inputRef', () => {
+    it('should be able to return the input node via a ref object', () => {
+      const ref = React.createRef();
+      mount(<Input inputRef={ref} />);
+      assert.strictEqual(ref.current.tagName, 'INPUT');
+    });
+
+    it('should be able to return the textarea node via a ref object', () => {
+      const ref = React.createRef();
+      mount(<Input multiline inputRef={ref} />);
+      assert.strictEqual(ref.current.tagName, 'TEXTAREA');
     });
   });
 });

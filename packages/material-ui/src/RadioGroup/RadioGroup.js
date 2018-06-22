@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FormGroup from '../FormGroup';
-import { find } from '../utils/helpers';
+import { createChainedFunction, find } from '../utils/helpers';
 
 class RadioGroup extends React.Component {
   radios = [];
@@ -41,7 +41,7 @@ class RadioGroup extends React.Component {
     this.radios = [];
 
     return (
-      <FormGroup data-mui-test="RadioGroup" role="radiogroup" {...other}>
+      <FormGroup role="radiogroup" {...other}>
         {React.Children.map(children, (child, index) => {
           if (!React.isValidElement(child)) {
             return null;
@@ -56,7 +56,7 @@ class RadioGroup extends React.Component {
               }
             },
             checked: value === child.props.value,
-            onChange: this.handleRadioChange,
+            onChange: createChainedFunction(child.props.onChange, this.handleRadioChange),
           });
         })}
       </FormGroup>

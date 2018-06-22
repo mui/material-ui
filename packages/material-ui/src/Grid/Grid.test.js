@@ -8,14 +8,8 @@ describe('<Grid />', () => {
   let classes;
 
   before(() => {
-    const shallowInner = createShallow({ dive: true });
-    // Render deeper to bypass the GridWrapper.
-    shallow = node => {
-      return shallowInner(node)
-        .find('Grid')
-        .shallow({ context: shallowInner.context });
-    };
-    classes = getClasses(<Grid.Naked />);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<Grid />);
   });
 
   it('should render', () => {
@@ -48,12 +42,17 @@ describe('<Grid />', () => {
   describe('prop: xs', () => {
     it('should apply the flex-grow class', () => {
       const wrapper = shallow(<Grid item xs />);
-      assert.strictEqual(wrapper.hasClass(classes['grid-xs']), true);
+      assert.strictEqual(wrapper.hasClass(classes['grid-xs-true']), true);
     });
 
     it('should apply the flex size class', () => {
       const wrapper = shallow(<Grid item xs={3} />);
       assert.strictEqual(wrapper.hasClass(classes['grid-xs-3']), true);
+    });
+
+    it('should apply the flex auto class', () => {
+      const wrapper = shallow(<Grid item xs="auto" />);
+      assert.strictEqual(wrapper.hasClass(classes['grid-xs-auto']), true);
     });
   });
 

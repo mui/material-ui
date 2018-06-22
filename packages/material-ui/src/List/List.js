@@ -78,7 +78,7 @@ List.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
    * the list and list items. The property is available to descendant components as the

@@ -155,7 +155,6 @@ class SpeedDial extends React.Component {
             ref={node => {
               this.fab = node;
             }}
-            data-mui-test="SpeedDial"
             {...ButtonProps}
           >
             {icon()}

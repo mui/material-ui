@@ -178,4 +178,6 @@ Grow.defaultProps = {
   timeout: 'auto',
 };
 
+Grow.muiSupportAuto = true;
+
 export default withTheme()(Grow);

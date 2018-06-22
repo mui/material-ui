@@ -289,7 +289,7 @@ class Input extends React.Component {
   input = null; // Holds the input reference
 
   handleFocus = event => {
-    // Fix an bug with IE11 where the focus/blur events are triggered
+    // Fix a bug with IE11 where the focus/blur events are triggered
     // while the input is disabled.
     if (formControlState(this.props, this.context).disabled) {
       event.stopPropagation();
@@ -300,12 +300,22 @@ class Input extends React.Component {
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
+
+    const { muiFormControl } = this.context;
+    if (muiFormControl && muiFormControl.onFocus) {
+      muiFormControl.onFocus(event);
+    }
   };
 
   handleBlur = event => {
     this.setState({ focused: false });
     if (this.props.onBlur) {
       this.props.onBlur(event);
+    }
+
+    const { muiFormControl } = this.context;
+    if (muiFormControl && muiFormControl.onBlur) {
+      muiFormControl.onBlur(event);
     }
   };
 
@@ -323,10 +333,20 @@ class Input extends React.Component {
   handleRefInput = node => {
     this.input = node;
 
+    let ref;
+
     if (this.props.inputRef) {
-      this.props.inputRef(node);
+      ref = this.props.inputRef;
     } else if (this.props.inputProps && this.props.inputProps.ref) {
-      this.props.inputProps.ref(node);
+      ref = this.props.inputProps.ref;
+    }
+
+    if (ref) {
+      if (typeof ref === 'function') {
+        ref(node);
+      } else {
+        ref.current = node;
+      }
     }
   };
 
@@ -533,15 +553,15 @@ Input.propTypes = {
    * The component used for the native input.
    * Either a string to use a DOM element or a component.
    */
-  inputComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  inputComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the `input` element.
+   * Attributes applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.

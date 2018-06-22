@@ -5,6 +5,158 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.2.3
+###### *Jun 20, 2018*
+
+Big thanks to the 6 contributors who made this release possible.
+
+This release fixes some important regressions.
+We are making it outside of the normal schedule.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [ButtonBase] Fix exception (#11905) @oliviertassinari
+- [NoSSR] Add a fallback property (#11907) @oliviertassinari
+- [Dialog] Add max-height back (#11914) @oliviertassinari
+- [Tooltip] Revert update react-popper (#11920) @oliviertassinari
+- [Select] Fix classes merge issue (#11904) @C-Rodg
+
+#### Docs
+
+- [docs] Document jss-nested rule reference feature (#11901) @i8ramin
+- [docs] Correct markdown example from svg icon (#11922) @GabrielDuarteM
+- [docs] TS decorating reword (#11923) @swpease
+
+#### Core
+
+N/A
+
+#### Lab
+
+- [Slider] Add TypeScript definitions (#11747) @epodivilov
+
+## 1.2.2
+###### *Jun 18, 2018*
+
+Big thanks to the 16 contributors who made this release possible.
+
+Here are some highlights ✨:
+- 📝 Document the dynamic override alternatives (#11782) @adeelibr
+- 📝 Document the ClickAwayListener component (#11801).
+- And many more bug fixes 🐛 and documentation improvements.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [ClickAwayListener] Add a demo (#11801) @oliviertassinari
+- [Grid] Add support a auto value (#11804) @oliviertassinari
+- [StepButton] Fix IE 11 flexbox (#11814) @paulnta
+- [styles] Re-add default parameter of string for WithStyles (#11808) @pelotom
+- [SwipeableDrawer] Allow custom style (#11805) @Johann-S
+- [ButtonBase] Corrected the type definitions for the TouchRipple classes (#11818) @C-Rodg
+- [RootRef] Updated main index.js to include RootRef export (#11817) @C-Rodg
+- [typography] Add a `allVariants` key in the theme (#11802) @oliviertassinari
+- [ButtonBase] Add a disableTouchRipple property (#11820) @oliviertassinari
+- [Tabs] Fix calculating tab indicator position (#11825) @ljani
+- [Tabs] Fix IE11 support (#11832) @oliviertassinari
+- [withWidth] Reading initialWidth from the theme (#11831) @kleyson
+- [Tabs] Add support for a `component` property (#11844) @C-Rodg
+- [ListItemText] Detect and avoid re-wrapping Typography (#11849) @jedwards1211
+- [ListItemText] Add primaryTypographyProps and secondaryTypographyProps (#11858) @jedwards1211
+- [Tooltip] Update react-popper (#11862) @oliviertassinari
+- [TableCell] Fix property name (#11870) @marutanm
+- [Modal] Fix removeEventListener (#11875) @DominikSerafin
+- [CircularProgress] Fix wobble (#11886) @oliviertassinari
+- [CircularProgress] End of line shape: use butt (#11888) @Modestas
+- [Select] Fix reflow in render (#11891) @oliviertassinari
+
+#### Docs
+
+- [docs] Add structured data (#11798) @oliviertassinari
+- [docs] Add a link to a CSS-in-JS egghead.io course (98168a2c749d8da2376d6a997145e3622df71bff) @kof
+- [Table] Derive sorted rows from state at render time in demo (#11828) @charlax
+- [docs] Document the dynamic override alternatives (#11782) @adeelibr
+- [docs] Add a Select required example (#11838) @oliviertassinari
+- [docs] Better class names conflict FAQ (#11846) @oliviertassinari
+- [docs] Add a link toward dx-react-chart-material-ui (#11859) @Krijovnick
+- [docs] Fix the Gatsby example (d7fe8c79dc097105fd1c6035b76a4d30666e9080) @oliviertassinari
+- [docs] Update npm downloads badge to point to @material-ui/core (#11590) @davidcalhoun
+- [examples] Add Server Rendering implementation (#11880) @oliviertassinari
+- [docs] Update react-swipeable-views to fix a warning (#11890) @oliviertassinari
+
+#### Core
+
+- [core] Misc (#11797) @oliviertassinari
+- [core] Better `component` prop types (#11863) @jedwards1211
+- [core] Remove some unneeded code (#11873) @oliviertassinari
+- [core] Fix the UMD release (#11878) @oliviertassinari
+- [core] Document the non supported children properties (#11879) @oliviertassinari
+
+#### Labs
+
+N/A
+
+## 1.2.1
+###### *Jun 10, 2018*
+
+Big thanks to the 15 contributors who made this release possible.
+
+Here are some highlights ✨:
+- A lot of bug fixes 🐛!
+- Add full `React.createRef` support ⚛️ (#11757) @t49tran.
+- Document the `withWidth()` helper
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Select] Add a placeholder demo (#11706) @oliviertassinari
+- [RootRef] Update RootRef.d.ts (#11708) @franklixuefei
+- [ButtonBase] Document the `type` property (#11728) @C-Rodg
+- [Popover] Fix default value (#11729) @oliviertassinari
+- [withWidth] Second iteration on the component (#11730) @oliviertassinari
+- [transition] Fix IE11 issue in dev mode (#11743) @adeelibr
+- [Tabs] Better flex layout (#11748) @adeelibr
+- [core] Add React.createRef support (#11757) @t49tran
+- [Grid] Improve the dev warnings (#11765) @oliviertassinari
+- [CircularProgress] Fix centering (#11781) @adeelibr
+- [TextField] Bind the focus/blur explicitly (#11789) @oliviertassinari
+- [RadioGroup] Fix onChange chaining (#11793) @oliviertassinari
+
+#### Docs
+
+- [docs] Property !== attribute (#11694) @adeelibr
+- [docs] Add Trafikito.com to showcase (#11716) @liesislukas
+- [docs] Update meetingku image (#11724) @liganok
+- [docs] Improve docs:dev init by ~2 s and HMR by ~200 ms (#11752) @tal952
+- [docs] Change app bar to button on the getting started (#11756) @Simperfit
+- [docs] Add React Most Wanted to related projects (#11753) @TarikHuber
+- [docs] Error in example in Migration From v0.x Guide (#11771) @AkselsLedins
+- [docs] Simple Grammar Fix (#11785) @jeff-kilbride
+- [docs] Fix typo (#11787) @BenDiuguid
+- [docs] Better troubleshooting action for the hydration mismatch (#11792) @oliviertassinari
+
+#### Core
+
+- [core] Remove parser specification to fix JSON issue (#11763) @ryanpcmcquen
+- [core] Throw if react >= 16.3.0 requirement isn't matched (#11779) @oliviertassinari
+- [core] Better warnings for class names duplicates (#11788) @oliviertassinari
+- [core] Remove dead code (#11791) @oliviertassinari
+
+#### Labs
+
+- [Slider] Fix for IE11 (#11727) @epodivilov
+- [Slider] Value can still be updated while disabled (#11744) @epodivilov
+
 ## 1.2.0
 ###### *Jun 3, 2018*
 

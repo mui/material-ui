@@ -1,0 +1,25 @@
+{
+  "name": "ssr",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "latest",
+    "@babel/node": "latest",
+    "@babel/plugin-proposal-class-properties": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-react": "latest",
+    "@material-ui/core": "latest",
+    "babel-loader": "next",
+    "express": "latest",
+    "nodemon": "latest",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-jss": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest"
+  },
+  "scripts": {
+    "start": "webpack -w --mode=development & nodemon --exec yarn babel-node -- server.js"
+  }
+}

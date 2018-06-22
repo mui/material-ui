@@ -96,14 +96,13 @@ NativeSelect.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
   input: PropTypes.element,
   /**
-   * Properties applied to the `input` element.
-   * The properties are applied on the `select` element.
+   * Attributes applied to the `select` element.
    */
   inputProps: PropTypes.object,
   /**

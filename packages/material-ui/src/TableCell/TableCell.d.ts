@@ -15,7 +15,7 @@ export interface TableCellProps<C = {}>
   numeric?: boolean;
   padding?: Padding;
   sortDirection?: SortDirection;
-  type?: Type;
+  variant?: 'head' | 'body' | 'footer';
 }
 
 export type TableCellBaseProps<C> = React.ThHTMLAttributes<C & HTMLTableHeaderCellElement> &
@@ -24,8 +24,6 @@ export type TableCellBaseProps<C> = React.ThHTMLAttributes<C & HTMLTableHeaderCe
 export type Padding = 'default' | 'checkbox' | 'dense' | 'none';
 
 export type SortDirection = 'asc' | 'desc' | false;
-
-export type Type = 'head' | 'body' | 'footer';
 
 export type TableCellClassKey =
   | 'root'

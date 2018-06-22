@@ -826,4 +826,25 @@ describe('<Popover />', () => {
       popoverActions.updatePosition();
     });
   });
+
+  describe('prop: transitionDuration', () => {
+    it('should apply the auto property if supported', () => {
+      const wrapper = shallow(
+        <Popover {...defaultProps}>
+          <div />
+        </Popover>,
+      );
+      assert.strictEqual(wrapper.find(Grow).props().timeout, 'auto');
+    });
+
+    it('should not apply the auto property if not supported', () => {
+      const TransitionComponent = props => <div {...props} />;
+      const wrapper = shallow(
+        <Popover {...defaultProps} TransitionComponent={TransitionComponent}>
+          <div />
+        </Popover>,
+      );
+      assert.strictEqual(wrapper.find(TransitionComponent).props().timeout, undefined);
+    });
+  });
 });

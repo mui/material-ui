@@ -42,18 +42,21 @@ function ListItemText(props, context) {
     disableTypography,
     inset,
     primary: primaryProp,
+    primaryTypographyProps,
     secondary: secondaryProp,
+    secondaryTypographyProps,
     ...other
   } = props;
   const { dense } = context;
 
   let primary = primaryProp != null ? primaryProp : children;
-  if (primary != null && !disableTypography) {
+  if (primary != null && primary.type !== Typography && !disableTypography) {
     primary = (
       <Typography
         variant="subheading"
         className={classNames(classes.primary, { [classes.textDense]: dense })}
         component="span"
+        {...primaryTypographyProps}
       >
         {primary}
       </Typography>
@@ -61,7 +64,7 @@ function ListItemText(props, context) {
   }
 
   let secondary = secondaryProp;
-  if (secondary != null && !disableTypography) {
+  if (secondary != null && secondary.type !== Typography && !disableTypography) {
     secondary = (
       <Typography
         variant="body1"
@@ -69,6 +72,7 @@ function ListItemText(props, context) {
           [classes.textDense]: dense,
         })}
         color="textSecondary"
+        {...secondaryTypographyProps}
       >
         {secondary}
       </Typography>
@@ -124,9 +128,19 @@ ListItemText.propTypes = {
    */
   primary: PropTypes.node,
   /**
+   * These props will be forwarded to the primary typography component
+   * (as long as disableTypography is not `true`).
+   */
+  primaryTypographyProps: PropTypes.object,
+  /**
    * The secondary content element.
    */
   secondary: PropTypes.node,
+  /**
+   * These props will be forwarded to the secondary typography component
+   * (as long as disableTypography is not `true`).
+   */
+  secondaryTypographyProps: PropTypes.object,
 };
 
 ListItemText.defaultProps = {

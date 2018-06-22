@@ -21,3 +21,9 @@ You can start using Material-UI with minimal Front-end infrastructure,
 which is great for prototyping. Don't use this approach in production though -
 the client has to download the entire library, regardless of which components are actually used,
 affecting performance and bandwidth utilisation.
+
+## UMD releases
+
+We are providing two Universal Module Definition (UMD) files:
+- one for development: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
+- one for production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js

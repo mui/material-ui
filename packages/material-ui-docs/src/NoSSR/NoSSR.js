@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DefaultOnSSR = () => null;
+const Fallback = () => null;
 
 /**
  * Only render the component on the client.
@@ -21,12 +21,19 @@ class NoSSR extends React.Component {
   }
 
   render() {
-    return this.state.mounted ? this.props.children : <DefaultOnSSR />;
+    const { children, fallback } = this.props;
+
+    return this.state.mounted ? children : fallback;
   }
 }
 
 NoSSR.propTypes = {
   children: PropTypes.node.isRequired,
+  fallback: PropTypes.node,
+};
+
+NoSSR.defaultProps = {
+  fallback: <Fallback />,
 };
 
 export default NoSSR;

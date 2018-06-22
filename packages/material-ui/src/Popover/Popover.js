@@ -291,10 +291,16 @@ class Popover extends React.Component {
       role,
       transformOrigin,
       TransitionComponent,
-      transitionDuration,
+      transitionDuration: transitionDurationProp,
       TransitionProps,
       ...other
     } = this.props;
+
+    let transitionDuration = transitionDurationProp;
+
+    if (transitionDurationProp === 'auto' && !TransitionComponent.muiSupportAuto) {
+      transitionDuration = undefined;
+    }
 
     // If the container prop is provided, use that
     // If the anchorEl prop is provided, use its parent body element as the container
@@ -474,7 +480,7 @@ Popover.propTypes = {
   /**
    * Transition component.
    */
-  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  TransitionComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */

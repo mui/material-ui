@@ -130,7 +130,6 @@ class MenuList extends React.Component {
 
     return (
       <List
-        data-mui-test="MenuList"
         role="menu"
         ref={node => {
           this.list = node;

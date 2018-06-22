@@ -28,6 +28,8 @@ function uiThemeSideEffect(uiTheme) {
 }
 
 class AppWrapper extends React.Component {
+  state = {};
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (typeof prevState.pageContext === 'undefined') {
       return {
@@ -50,8 +52,6 @@ class AppWrapper extends React.Component {
 
     return null;
   }
-
-  state = {};
 
   componentDidMount() {
     uiThemeSideEffect(this.props.uiTheme);

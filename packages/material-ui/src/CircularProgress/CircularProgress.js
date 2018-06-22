@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
-const SIZE = 50;
+const SIZE = 44;
 
 function getRelativeValue(value, min, max) {
   const clampedValue = Math.min(Math.max(min, value), max);
@@ -25,6 +25,7 @@ function easeIn(t) {
 export const styles = theme => ({
   root: {
     display: 'inline-block',
+    lineHeight: 1, // Keep the progress centered
   },
   static: {
     transition: theme.transitions.create('transform'),
@@ -41,7 +42,8 @@ export const styles = theme => ({
   svg: {},
   circle: {
     stroke: 'currentColor',
-    strokeLinecap: 'round',
+    // Use butt to follow the specification, by chance, it's already the default CSS value.
+    // strokeLinecap: 'butt',
   },
   circleStatic: {
     transition: theme.transitions.create('stroke-dashoffset'),
@@ -88,7 +90,7 @@ function CircularProgress(props) {
   const rootProps = {};
 
   if (variant === 'determinate' || variant === 'static') {
-    const circumference = 2 * Math.PI * (SIZE / 2 - 5);
+    const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
     circleStyle.strokeDasharray = circumference.toFixed(3);
     rootProps['aria-valuenow'] = Math.round(value);
 
@@ -119,16 +121,16 @@ function CircularProgress(props) {
       {...rootProps}
       {...other}
     >
-      <svg className={classes.svg} viewBox={`0 0 ${SIZE} ${SIZE}`}>
+      <svg className={classes.svg} viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}>
         <circle
           className={classNames(classes.circle, {
             [classes.circleIndeterminate]: variant === 'indeterminate',
             [classes.circleStatic]: variant === 'static',
           })}
           style={circleStyle}
-          cx={SIZE / 2}
-          cy={SIZE / 2}
-          r={SIZE / 2 - 5}
+          cx={SIZE}
+          cy={SIZE}
+          r={(SIZE - thickness) / 2}
           fill="none"
           strokeWidth={thickness}
         />

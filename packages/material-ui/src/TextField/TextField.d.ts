@@ -22,7 +22,7 @@ export interface TextFieldProps<C>
   InputLabelProps?: Partial<C & InputLabelProps<C>>;
   InputProps?: Partial<InputProps>;
   inputProps?: InputProps['inputProps'];
-  inputRef?: React.Ref<any>;
+  inputRef?: React.Ref<any> | React.RefObject<any>;
   label?: React.ReactNode;
   margin?: PropTypes.Margin;
   multiline?: boolean;

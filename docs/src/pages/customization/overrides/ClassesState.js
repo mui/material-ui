@@ -11,7 +11,7 @@ const styles = {
     color: 'white',
     height: 48,
     padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     // $disabled is a reference to the local disabled
     // rule within the same style sheet.
     // By using &, we increase the specificity.

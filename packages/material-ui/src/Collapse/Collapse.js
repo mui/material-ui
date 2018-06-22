@@ -202,7 +202,7 @@ Collapse.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * If `true`, the component will transition in.
    */
@@ -253,6 +253,8 @@ Collapse.defaultProps = {
   component: 'div',
   timeout: duration.standard,
 };
+
+Collapse.muiSupportAuto = true;
 
 export default withStyles(styles, {
   withTheme: true,

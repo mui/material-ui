@@ -12,6 +12,7 @@ export interface ButtonBaseProps<C = {}>
   centerRipple?: boolean;
   component?: React.ReactType<C>;
   disableRipple?: boolean;
+  disableTouchRipple?: boolean;
   focusRipple?: boolean;
   focusVisibleClassName?: string;
   onFocusVisible?: React.FocusEventHandler<any>;

@@ -20,7 +20,7 @@ We cover the following libraries:
 ## Material-UI
 
 ![stars](https://img.shields.io/github/stars/mui-org/material-ui.svg?style=social&label=Stars)
-![npm](https://img.shields.io/npm/dm/material-ui.svg)
+![npm downloads](https://img.shields.io/npm/dm/@material-ui/core.svg)
 
 We'll try very hard to avoid bias, although as the core team, we obviously like Material-UI a lot ❤️.
 There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it 😄.
@@ -30,7 +30,7 @@ We do want to be fair and accurate though, so where other libraries offer signif
 ## Material Design Lite (MDL)
 
 ![stars](https://img.shields.io/github/stars/google/material-design-lite.svg?style=social&label=Stars)
-![npm](https://img.shields.io/npm/dm/material-design-lite.svg)
+![npm downloads](https://img.shields.io/npm/dm/material-design-lite.svg)
 
 Material Design Lite, while a very well-thought-out Material Design implementation,
 was primarily maintained by Developer Relations at Google.
@@ -44,7 +44,7 @@ and towards the goal of a canonical Material Design implementation for the entir
 ## Material Components Web (MDC-web)
 
 ![stars](https://img.shields.io/github/stars/material-components/material-components-web.svg?style=social&label=Stars)
-![npm](https://img.shields.io/npm/dm/material-components-web.svg)
+![npm downloads](https://img.shields.io/npm/dm/material-components-web.svg)
 
 We are very happy to see this project supported by Google and its design team.
 It sends a clear signal that the [Material Design specification](https://material.io/design/) is
@@ -112,7 +112,7 @@ The **less** time you spend on a single contribution, the **more** contributions
 ## Materialize
 
 ![stars](https://img.shields.io/github/stars/Dogfalo/materialize.svg?style=social&label=Stars)
-![npm](https://img.shields.io/npm/dm/materialize-css.svg)
+![npm downloads](https://img.shields.io/npm/dm/materialize-css.svg)
 
 ### Browser support
 
@@ -129,7 +129,7 @@ We explain why in the [MDC-web section](#styling-solution) above.
 ## React Toolbox
 
 ![stars](https://img.shields.io/github/stars/react-toolbox/react-toolbox.svg?style=social&label=Stars)
-![npm](https://img.shields.io/npm/dm/react-toolbox.svg)
+![npm downloads](https://img.shields.io/npm/dm/react-toolbox.svg)
 
 ### Styling solution
 

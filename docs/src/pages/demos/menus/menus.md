@@ -1,5 +1,5 @@
 ---
-components: Menu, MenuItem, MenuList
+components: Menu, MenuItem, MenuList, ClickAwayListener
 ---
 
 # Menus

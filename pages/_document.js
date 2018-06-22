@@ -1,12 +1,7 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import postcss from 'postcss';
-import autoprefixer from 'autoprefixer';
-import CleanCSS from 'clean-css';
 import getPageContext from 'docs/src/modules/styles/getPageContext';
 import config from 'docs/src/config';
-
-const cleanCSS = new CleanCSS();
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -15,7 +10,16 @@ const cleanCSS = new CleanCSS();
 // 4% slower but 12% smaller output than doing it in a single step.
 //
 // It's using .browserslistrc
-const prefixer = postcss([autoprefixer]);
+let prefixer;
+let cleanCSS;
+if (process.env.NODE_ENV === 'production') {
+  const postcss = require('postcss');
+  const autoprefixer = require('autoprefixer');
+  const CleanCSS = require('clean-css');
+
+  prefixer = postcss([autoprefixer]);
+  cleanCSS = new CleanCSS();
+}
 
 class MyDocument extends Document {
   render() {

@@ -119,7 +119,7 @@ Bronze Sponsors are those who have pledged $100/month to $250/month to Material-
 | Ashwin Hegde | Eric Schultz | Conor Dunk | Jerome Wilson | Greenlink |
 | Jolse Maginnis | asmeikal | David Auffret | Naresh Bhatia | Henk van Hest |
 | Avétis KAZARIAN | Withinpixels | SIM KIM SIA | Renaud Bompuis | Yaron Malin |
-| Arvanitis Panagiotis |
+| Arvanitis Panagiotis | Jesse Weigel | Bogdan Mihai Nicolae |
 
 #### via [OpenCollective](https://opencollective.com/material-ui)
 

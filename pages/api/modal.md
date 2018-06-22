@@ -12,7 +12,7 @@ filename: /packages/material-ui/src/Modal/Modal.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">BackdropComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">Backdrop</span> | A backdrop component. This property enables custom backdrop rendering. |
+| <span class="prop-name">BackdropComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">Backdrop</span> | A backdrop component. This property enables custom backdrop rendering. |
 | <span class="prop-name">BackdropProps</span> | <span class="prop-type">object |   | Properties applied to the `Backdrop` element. |
 | <span class="prop-name">children</span> | <span class="prop-type">element |   | A single child content element. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
