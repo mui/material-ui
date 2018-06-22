@@ -30,6 +30,17 @@ const styles = theme => ({
 
 const appList = [
   {
+    title: 'Posters Galore',
+    description:
+      'The admin of an imaginary poster shop, used as a demo for the react-admin framework. ' +
+      'Uses many material-ui components, including tables, forms, snackbars, buttons, and ' +
+      'theming. The UI is responsive. The code is open-source!',
+    image: '/static/images/showcase/posters-galore.jpg',
+    link: 'https://marmelab.com/react-admin-demo/',
+    source:
+      'https://github.com/marmelab/react-admin/tree/be23a1a8ebc4e2293b57898adcb2f359e836f0fd/examples/demo',
+  },
+  {
     title: 'Trafikito',
     description:
       'Free servers monitoring solution which can track any output of any command and do ' +
