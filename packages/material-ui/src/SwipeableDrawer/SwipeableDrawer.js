@@ -53,7 +53,7 @@ class SwipeableDrawer extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.variant === 'temporary') {
+    if (this.props.variant === 'temporary' && this.props.open) {
       this.listenTouchStart();
     }
   }
@@ -62,12 +62,10 @@ class SwipeableDrawer extends React.Component {
     const variant = this.props.variant;
     const prevVariant = prevProps.variant;
 
-    if (variant !== prevVariant) {
-      if (variant === 'temporary') {
-        this.listenTouchStart();
-      } else if (prevVariant === 'temporary') {
-        this.removeTouchStart();
-      }
+    if (variant === 'temporary' && this.props.open) {
+      this.listenTouchStart();
+    } else {
+      this.removeTouchStart();
     }
   }
 
@@ -93,9 +91,7 @@ class SwipeableDrawer extends React.Component {
     );
   }
 
-  setPosition(translate, options = {}) {
-    const { mode = null, changeTransition = true } = options;
-
+  setPosition(translate, mode = null) {
     const anchor = getAnchor(this.props);
     const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(anchor) !== -1 ? 1 : -1;
     const transform = isHorizontal(this.props)
@@ -121,23 +117,18 @@ class SwipeableDrawer extends React.Component {
       );
     }
 
-    if (changeTransition) {
-      drawerStyle.webkitTransition = transition;
-      drawerStyle.transition = transition;
-    }
+    drawerStyle.webkitTransition = transition;
+    drawerStyle.transition = transition;
 
     if (!this.props.disableBackdropTransition) {
       const backdropStyle = this.backdrop.style;
       backdropStyle.opacity = 1 - translate / this.getMaxTranslate();
-
-      if (changeTransition) {
-        backdropStyle.webkitTransition = transition;
-        backdropStyle.transition = transition;
-      }
+      backdropStyle.webkitTransition = transition;
+      backdropStyle.transition = transition;
     }
   }
 
-  handleBodyTouchStart = event => {
+  handleTouchStart = event => {
     // We are not supposed to hanlde this touch move.
     if (nodeThatClaimedTheSwipe !== null && nodeThatClaimedTheSwipe !== this) {
       return;
@@ -154,30 +145,23 @@ class SwipeableDrawer extends React.Component {
         ? window.innerHeight - event.touches[0].clientY
         : event.touches[0].clientY;
 
-    if (!open) {
-      if (disableSwipeToOpen) {
-        return;
-      }
-      if (isHorizontal(this.props)) {
-        if (currentX > swipeAreaWidth) {
-          return;
-        }
-      } else if (currentY > swipeAreaWidth) {
-        return;
-      }
+    if (!open && disableSwipeToOpen) {
+      return;
     }
 
     nodeThatClaimedTheSwipe = this;
     this.startX = currentX;
     this.startY = currentY;
 
-    this.setState({ maybeSwiping: true });
+    // the ref may be null when a parent component updates while swiping
     if (!open && this.paper) {
-      // the ref may be null when a parent component updates while swiping
-      this.setPosition(this.getMaxTranslate() + (disableDiscovery ? 20 : -swipeAreaWidth), {
-        changeTransition: false,
-      });
+      // setting the position twice ensures that the drawer animates correctly for discovery
+      this.setPosition(this.getMaxTranslate() + 20);
+      if (!disableDiscovery) {
+        this.setPosition(this.getMaxTranslate() - swipeAreaWidth, 'enter');
+      }
     }
+    this.setState({ maybeSwiping: true });
 
     document.body.addEventListener('touchmove', this.handleBodyTouchMove, { passive: false });
     document.body.addEventListener('touchend', this.handleBodyTouchEnd);
@@ -252,10 +236,10 @@ class SwipeableDrawer extends React.Component {
   handleBodyTouchEnd = event => {
     nodeThatClaimedTheSwipe = null;
     this.removeBodyTouchListeners();
-    this.setState({ maybeSwiping: false });
 
     // The swipe wasn't started.
     if (!this.isSwiping) {
+      this.setState({ maybeSwiping: false });
       this.isSwiping = null;
       return;
     }
@@ -280,23 +264,27 @@ class SwipeableDrawer extends React.Component {
     if (translateRatio > 0.5) {
       if (this.isSwiping && !this.props.open) {
         // Reset the position, the swipe was aborted.
-        this.setPosition(this.getMaxTranslate(), {
-          mode: 'enter',
-        });
+        this.setPosition(this.getMaxTranslate(), 'exit');
       } else {
+        this.setPosition(this.getMaxTranslate(), 'exit');
         this.props.onClose();
       }
     } else if (this.isSwiping && !this.props.open) {
+      this.setPosition(0, 'enter');
       this.props.onOpen();
     } else {
       // Reset the position, the swipe was aborted.
-      this.setPosition(0, {
-        mode: 'exit',
-      });
+      this.setPosition(0, 'enter');
     }
+    this.setState({ maybeSwiping: false });
 
     this.isSwiping = null;
   };
+
+  handleBackdropClick = () => {
+    this.setPosition(this.getMaxTranslate(), 'exit');
+    this.props.onClose();
+  }
 
   backdrop = null;
   paper = null;
@@ -305,11 +293,11 @@ class SwipeableDrawer extends React.Component {
   startY = null;
 
   listenTouchStart() {
-    document.body.addEventListener('touchstart', this.handleBodyTouchStart);
+    document.body.addEventListener('touchstart', this.handleTouchStart);
   }
 
   removeTouchStart() {
-    document.body.removeEventListener('touchstart', this.handleBodyTouchStart);
+    document.body.removeEventListener('touchstart', this.handleTouchStart);
   }
 
   removeBodyTouchListeners() {
@@ -344,13 +332,16 @@ class SwipeableDrawer extends React.Component {
     return (
       <React.Fragment>
         <Drawer
-          open={variant === 'temporary' && maybeSwiping ? true : open}
+          open={variant === 'temporary' ? open || maybeSwiping : open}
           variant={variant}
           ModalProps={{
             BackdropProps: {
+              open: true,
               ...BackdropProps,
               ref: this.handleBackdropRef,
             },
+            keepMounted: true,
+            onBackdropClick: this.handleBackdropClick,
             ...ModalPropsProp,
           }}
           PaperProps={{
@@ -361,12 +352,16 @@ class SwipeableDrawer extends React.Component {
             },
             ref: this.handlePaperRef,
           }}
+          disableSlide
           {...other}
         />
-        {!disableDiscovery &&
-          !disableSwipeToOpen &&
+        {!disableSwipeToOpen &&
           variant === 'temporary' && (
-            <SwipeArea anchor={other.anchor} swipeAreaWidth={swipeAreaWidth} />
+            <SwipeArea
+              anchor={other.anchor}
+              width={swipeAreaWidth}
+              onTouchStart={this.handleTouchStart}
+            />
           )}
       </React.Fragment>
     );
