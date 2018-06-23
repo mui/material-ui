@@ -1,6 +1,6 @@
 import css from 'dom-helpers/style';
-import ownerDocument from 'dom-helpers/ownerDocument';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import ownerDocument from '../utils/ownerDocument';
 import isOverflowing from './isOverflowing';
 import { ariaHidden, hideSiblings, showSiblings } from './manageAriaHidden';
 

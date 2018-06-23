@@ -4,7 +4,6 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import keycode from 'keycode';
-import contains from 'dom-helpers/query/contains';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Fade from '../Fade';
@@ -178,8 +177,8 @@ describe('<Modal />', () => {
         'should have the element in the DOM',
       );
       assert.strictEqual(heading.tagName.toLowerCase(), 'h1', 'should have the element in the DOM');
-      assert.strictEqual(contains(portalLayer, container), true, 'should be in the portal');
-      assert.strictEqual(contains(portalLayer, heading), true, 'should be in the portal');
+      assert.strictEqual(portalLayer.contains(container), true, 'should be in the portal');
+      assert.strictEqual(portalLayer.contains(heading), true, 'should be in the portal');
 
       const container2 = document.getElementById('container');
 
