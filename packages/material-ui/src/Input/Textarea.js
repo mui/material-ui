@@ -42,6 +42,18 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
+  shadow = null;
+
+  singlelineShadow = null;
+
+  input = null;
+
+  value = null;
+
+  handleResize = debounce(() => {
+    this.syncHeightWithShadow();
+  }, 166); // Corresponds to 10 frames at 60 Hz.
+
   constructor(props) {
     super(props);
 
@@ -67,50 +79,6 @@ class Textarea extends React.Component {
 
   componentWillUnmount() {
     this.handleResize.clear();
-  }
-
-  shadow = null;
-  singlelineShadow = null;
-  input = null;
-  value = null;
-
-  handleResize = debounce(() => {
-    this.syncHeightWithShadow();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
-
-  syncHeightWithShadow() {
-    const props = this.props;
-    if (!this.shadow || !this.singlelineShadow) {
-      return;
-    }
-
-    // The component is controlled, we need to update the shallow value.
-    if (typeof props.value !== 'undefined') {
-      this.shadow.value = props.value == null ? '' : String(props.value);
-    }
-
-    const lineHeight = this.singlelineShadow.scrollHeight;
-    let newHeight = this.shadow.scrollHeight;
-
-    // Guarding for jsdom, where scrollHeight isn't present.
-    // See https://github.com/tmpvar/jsdom/issues/1013
-    if (newHeight === undefined) {
-      return;
-    }
-
-    if (Number(props.rowsMax) >= Number(props.rows)) {
-      newHeight = Math.min(Number(props.rowsMax) * lineHeight, newHeight);
-    }
-
-    newHeight = Math.max(newHeight, lineHeight);
-
-    // Need a large enough different to update the height.
-    // This prevents infinite rendering loop.
-    if (Math.abs(this.state.height - newHeight) > 1) {
-      this.setState({
-        height: newHeight,
-      });
-    }
   }
 
   handleRefInput = node => {
@@ -147,6 +115,41 @@ class Textarea extends React.Component {
       this.props.onChange(event);
     }
   };
+
+  syncHeightWithShadow() {
+    const props = this.props;
+    if (!this.shadow || !this.singlelineShadow) {
+      return;
+    }
+
+    // The component is controlled, we need to update the shallow value.
+    if (typeof props.value !== 'undefined') {
+      this.shadow.value = props.value == null ? '' : String(props.value);
+    }
+
+    const lineHeight = this.singlelineShadow.scrollHeight;
+    let newHeight = this.shadow.scrollHeight;
+
+    // Guarding for jsdom, where scrollHeight isn't present.
+    // See https://github.com/tmpvar/jsdom/issues/1013
+    if (newHeight === undefined) {
+      return;
+    }
+
+    if (Number(props.rowsMax) >= Number(props.rows)) {
+      newHeight = Math.min(Number(props.rowsMax) * lineHeight, newHeight);
+    }
+
+    newHeight = Math.max(newHeight, lineHeight);
+
+    // Need a large enough different to update the height.
+    // This prevents infinite rendering loop.
+    if (Math.abs(this.state.height - newHeight) > 1) {
+      this.setState({
+        height: newHeight,
+      });
+    }
+  }
 
   render() {
     const {

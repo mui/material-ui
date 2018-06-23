@@ -2,6 +2,8 @@ import React from 'react';
 import config from 'docs/src/config';
 
 class GoogleTag extends React.Component {
+  googleTimer = null;
+
   componentDidMount() {
     // Wait for the title to be updated.
     this.googleTimer = setTimeout(() => {
@@ -14,8 +16,6 @@ class GoogleTag extends React.Component {
   componentWillUnmount() {
     clearTimeout(this.googleTimer);
   }
-
-  googleTimer = null;
 
   render() {
     return null;

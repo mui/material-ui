@@ -97,6 +97,28 @@ function flipPlacement(placement) {
 }
 
 class Tooltip extends React.Component {
+  enterTimer = null;
+
+  leaveTimer = null;
+
+  touchTimer = null;
+
+  closeTimer = null;
+
+  isControlled = null;
+
+  popper = null;
+
+  children = null;
+
+  ignoreNonTouchEvents = false;
+
+  handleResize = debounce(() => {
+    if (this.popper) {
+      this.popper._popper.scheduleUpdate();
+    }
+  }, 166); // Corresponds to 10 frames at 60 Hz.
+
   constructor(props) {
     super(props);
 
@@ -131,21 +153,6 @@ class Tooltip extends React.Component {
     clearTimeout(this.closeTimer);
     this.handleResize.clear();
   }
-
-  enterTimer = null;
-  leaveTimer = null;
-  touchTimer = null;
-  closeTimer = null;
-  isControlled = null;
-  popper = null;
-  children = null;
-  ignoreNonTouchEvents = false;
-
-  handleResize = debounce(() => {
-    if (this.popper) {
-      this.popper._popper.scheduleUpdate();
-    }
-  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   handleEnter = event => {
     const { children, enterDelay } = this.props;

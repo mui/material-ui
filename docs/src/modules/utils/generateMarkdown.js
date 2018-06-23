@@ -1,3 +1,5 @@
+/* eslint-disable react/forbid-foreign-prop-types */
+
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
 import { pageToTitle } from './helpers';

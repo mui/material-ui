@@ -2,9 +2,9 @@
 
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import createPalette, { dark, light } from './createPalette';
 import { indigo, pink, deepOrange, green, red } from '../colors';
-import { lighten, darken } from '../styles/colorManipulator';
+import { lighten, darken } from './colorManipulator';
+import createPalette, { dark, light } from './createPalette';
 
 describe('createPalette()', () => {
   before(() => {

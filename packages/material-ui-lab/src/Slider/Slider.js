@@ -207,18 +207,6 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 class Slider extends React.Component {
   state = { currentState: 'initial' };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.disabled) {
-      return { currentState: 'disabled' };
-    }
-
-    if (!nextProps.disabled && prevState.currentState === 'disabled') {
-      return { currentState: 'normal' };
-    }
-
-    return null;
-  }
-
   componentDidMount() {
     if (this.container) {
       this.container.addEventListener('touchstart', preventPageScrolling, { passive: false });
@@ -229,51 +217,16 @@ class Slider extends React.Component {
     this.container.removeEventListener('touchstart', preventPageScrolling, { passive: false });
   }
 
-  emitChange(event, rawValue, callback) {
-    const { step, value: previousValue, onChange, disabled } = this.props;
-    let value = rawValue;
-
-    if (disabled) {
-      return;
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.disabled) {
+      return { currentState: 'disabled' };
     }
 
-    if (step) {
-      value = roundToStep(rawValue, step);
-    } else {
-      value = Number(rawValue.toFixed(3));
+    if (!nextProps.disabled && prevState.currentState === 'disabled') {
+      return { currentState: 'normal' };
     }
 
-    if (typeof onChange === 'function' && value !== previousValue) {
-      onChange(event, value);
-
-      if (typeof callback === 'function') {
-        callback();
-      }
-    }
-  }
-
-  calculateTrackAfterStyles(percent) {
-    const { currentState } = this.state;
-
-    switch (currentState) {
-      case 'activated':
-        return `calc(100% - ${percent === 0 ? 7 : 5}px)`;
-      case 'disabled':
-        return `calc(${100 - percent}% - 6px)`;
-      default:
-        return 'calc(100% - 5px)';
-    }
-  }
-
-  calculateTrackBeforeStyles(percent) {
-    const { currentState } = this.state;
-
-    switch (currentState) {
-      case 'disabled':
-        return `calc(${percent}% - 6px)`;
-      default:
-        return `${percent}%`;
-    }
+    return null;
   }
 
   handleKeyDown = event => {
@@ -377,6 +330,53 @@ class Slider extends React.Component {
 
     this.emitChange(event, value);
   };
+
+  emitChange(event, rawValue, callback) {
+    const { step, value: previousValue, onChange, disabled } = this.props;
+    let value = rawValue;
+
+    if (disabled) {
+      return;
+    }
+
+    if (step) {
+      value = roundToStep(rawValue, step);
+    } else {
+      value = Number(rawValue.toFixed(3));
+    }
+
+    if (typeof onChange === 'function' && value !== previousValue) {
+      onChange(event, value);
+
+      if (typeof callback === 'function') {
+        callback();
+      }
+    }
+  }
+
+  calculateTrackAfterStyles(percent) {
+    const { currentState } = this.state;
+
+    switch (currentState) {
+      case 'activated':
+        return `calc(100% - ${percent === 0 ? 7 : 5}px)`;
+      case 'disabled':
+        return `calc(${100 - percent}% - 6px)`;
+      default:
+        return 'calc(100% - 5px)';
+    }
+  }
+
+  calculateTrackBeforeStyles(percent) {
+    const { currentState } = this.state;
+
+    switch (currentState) {
+      case 'disabled':
+        return `calc(${percent}% - 6px)`;
+      default:
+        return `${percent}%`;
+    }
+  }
 
   playJumpAnimation() {
     this.setState({ currentState: 'jumped' }, () => {

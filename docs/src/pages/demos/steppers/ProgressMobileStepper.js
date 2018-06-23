@@ -19,15 +19,15 @@ class ProgressMobileStepper extends React.Component {
   };
 
   handleNext = () => {
-    this.setState({
-      activeStep: this.state.activeStep + 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep + 1,
+    }));
   };
 
   handleBack = () => {
-    this.setState({
-      activeStep: this.state.activeStep - 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep - 1,
+    }));
   };
 
   render() {

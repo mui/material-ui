@@ -8,8 +8,14 @@ import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 
 class MenuList extends React.Component {
+  list = null;
+
+  selectedItem = null;
+
+  blurTimer = null;
+
   state = {
-    currentTabIndex: undefined,
+    currentTabIndex: null,
   };
 
   componentDidMount() {
@@ -23,10 +29,6 @@ class MenuList extends React.Component {
   setTabIndex(index) {
     this.setState({ currentTabIndex: index });
   }
-
-  list = undefined;
-  selectedItem = undefined;
-  blurTimer = undefined;
 
   handleBlur = event => {
     this.blurTimer = setTimeout(() => {

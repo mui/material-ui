@@ -7,9 +7,9 @@ import Select from '../Select';
 import IconButton from '../IconButton';
 import TableFooter from '../TableFooter';
 import TableCell from '../TableCell';
-import TablePagination from '../TablePagination';
 import Typography from '../Typography';
 import TableRow from '../TableRow';
+import TablePagination from './TablePagination';
 
 describe('<TablePagination />', () => {
   const noop = () => {};

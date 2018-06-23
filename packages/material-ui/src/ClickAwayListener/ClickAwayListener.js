@@ -11,6 +11,10 @@ import ownerDocument from '../utils/ownerDocument';
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  */
 class ClickAwayListener extends React.Component {
+  node = null;
+
+  mounted = null;
+
   componentDidMount() {
     this.node = ReactDOM.findDOMNode(this);
     this.mounted = true;
@@ -19,9 +23,6 @@ class ClickAwayListener extends React.Component {
   componentWillUnmount() {
     this.mounted = false;
   }
-
-  node = null;
-  mounted = null;
 
   handleClickAway = event => {
     // Ignore events that have been `event.preventDefault()` marked.

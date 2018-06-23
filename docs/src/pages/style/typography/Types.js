@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import withTheme from '@material-ui/core/styles/withTheme';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -10,9 +10,11 @@ const styles = {
   },
 };
 
-function Types() {
+function Types(props) {
+  const { classes } = props;
+
   return (
-    <div style={styles.root}>
+    <div className={classes.root}>
       <Typography variant="display4" gutterBottom>
         Display 4
       </Typography>
@@ -57,7 +59,7 @@ function Types() {
 }
 
 Types.propTypes = {
-  theme: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default withTheme()(Types);
+export default withStyles(styles)(Types);

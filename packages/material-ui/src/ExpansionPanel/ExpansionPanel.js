@@ -77,6 +77,8 @@ export const styles = theme => {
 };
 
 class ExpansionPanel extends React.Component {
+  isControlled = null;
+
   constructor(props) {
     super(props);
 
@@ -88,8 +90,6 @@ class ExpansionPanel extends React.Component {
   }
 
   state = {};
-
-  isControlled = null;
 
   handleChange = event => {
     const expanded = this.isControlled ? this.props.expanded : this.state.expanded;

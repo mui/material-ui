@@ -92,23 +92,9 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class Snackbar extends React.Component {
+  timerAutoHide = null;
+
   state = {};
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.exited === 'undefined') {
-      return {
-        exited: !nextProps.open,
-      };
-    }
-
-    if (nextProps.open) {
-      return {
-        exited: false,
-      };
-    }
-
-    return null;
-  }
 
   componentDidMount() {
     if (this.props.open) {
@@ -130,6 +116,22 @@ class Snackbar extends React.Component {
     clearTimeout(this.timerAutoHide);
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof prevState.exited === 'undefined') {
+      return {
+        exited: !nextProps.open,
+      };
+    }
+
+    if (nextProps.open) {
+      return {
+        exited: false,
+      };
+    }
+
+    return null;
+  }
+
   // Timer that controls delay before snackbar auto hides
   setAutoHideTimer(autoHideDuration = null) {
     if (!this.props.onClose || this.props.autoHideDuration == null) {
@@ -145,8 +147,6 @@ class Snackbar extends React.Component {
       this.props.onClose(null, 'timeout');
     }, autoHideDuration || this.props.autoHideDuration || 0);
   }
-
-  timerAutoHide = null;
 
   handleMouseEnter = event => {
     if (this.props.onMouseEnter) {

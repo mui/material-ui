@@ -262,6 +262,8 @@ function findActivePage(currentPages, router) {
 
 function withRoot(Component) {
   class WithRoot extends React.Component {
+    redux = null;
+
     constructor(props) {
       super(props);
 
@@ -283,8 +285,6 @@ function withRoot(Component) {
         activePage: findActivePage(pages, { ...router, pathname }),
       };
     }
-
-    redux = null;
 
     render() {
       const { pageContext, ...other } = this.props;

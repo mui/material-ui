@@ -55,29 +55,47 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
  * It contains a load of style reset and some focus/ripple logic.
  */
 class ButtonBase extends React.Component {
+  ripple = null;
+
+  keyDown = false; // Used to help track keyboard activation keyDown
+
+  button = null;
+
+  focusVisibleTimeout = null;
+
+  focusVisibleCheckTime = 50;
+
+  focusVisibleMaxCheckTimes = 5;
+
+  handleMouseDown = createRippleHandler(this, 'MouseDown', 'start', () => {
+    clearTimeout(this.focusVisibleTimeout);
+    if (this.state.focusVisible) {
+      this.setState({ focusVisible: false });
+    }
+  });
+
+  handleMouseUp = createRippleHandler(this, 'MouseUp', 'stop');
+
+  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop', event => {
+    if (this.state.focusVisible) {
+      event.preventDefault();
+    }
+  });
+
+  handleTouchStart = createRippleHandler(this, 'TouchStart', 'start');
+
+  handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
+
+  handleTouchMove = createRippleHandler(this, 'TouchMove', 'stop');
+
+  handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
+    clearTimeout(this.focusVisibleTimeout);
+    if (this.state.focusVisible) {
+      this.setState({ focusVisible: false });
+    }
+  });
+
   state = {};
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.focusVisible === 'undefined') {
-      return {
-        focusVisible: false,
-        lastDisabled: nextProps.disabled,
-      };
-    }
-
-    // The blur won't fire when the disabled state is set on a focused input.
-    // We need to book keep the focused state manually.
-    if (!prevState.prevState && nextProps.disabled && prevState.focusVisible) {
-      return {
-        focusVisible: false,
-        lastDisabled: nextProps.disabled,
-      };
-    }
-
-    return {
-      lastDisabled: nextProps.disabled,
-    };
-  }
 
   componentDidMount() {
     this.button = ReactDOM.findDOMNode(this);
@@ -109,6 +127,10 @@ class ButtonBase extends React.Component {
     clearTimeout(this.focusVisibleTimeout);
   }
 
+  onRippleRef = node => {
+    this.ripple = node;
+  };
+
   onFocusVisibleHandler = event => {
     this.keyDown = false;
     this.setState({ focusVisible: true });
@@ -118,16 +140,27 @@ class ButtonBase extends React.Component {
     }
   };
 
-  onRippleRef = node => {
-    this.ripple = node;
-  };
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof prevState.focusVisible === 'undefined') {
+      return {
+        focusVisible: false,
+        lastDisabled: nextProps.disabled,
+      };
+    }
 
-  ripple = null;
-  keyDown = false; // Used to help track keyboard activation keyDown
-  button = null;
-  focusVisibleTimeout = null;
-  focusVisibleCheckTime = 50;
-  focusVisibleMaxCheckTimes = 5;
+    // The blur won't fire when the disabled state is set on a focused input.
+    // We need to book keep the focused state manually.
+    if (!prevState.prevState && nextProps.disabled && prevState.focusVisible) {
+      return {
+        focusVisible: false,
+        lastDisabled: nextProps.disabled,
+      };
+    }
+
+    return {
+      lastDisabled: nextProps.disabled,
+    };
+  }
 
   handleKeyDown = event => {
     const { component, focusRipple, onKeyDown, onClick } = this.props;
@@ -178,34 +211,6 @@ class ButtonBase extends React.Component {
       this.props.onKeyUp(event);
     }
   };
-
-  handleMouseDown = createRippleHandler(this, 'MouseDown', 'start', () => {
-    clearTimeout(this.focusVisibleTimeout);
-    if (this.state.focusVisible) {
-      this.setState({ focusVisible: false });
-    }
-  });
-
-  handleMouseUp = createRippleHandler(this, 'MouseUp', 'stop');
-
-  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop', event => {
-    if (this.state.focusVisible) {
-      event.preventDefault();
-    }
-  });
-
-  handleTouchStart = createRippleHandler(this, 'TouchStart', 'start');
-
-  handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
-
-  handleTouchMove = createRippleHandler(this, 'TouchMove', 'stop');
-
-  handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
-    clearTimeout(this.focusVisibleTimeout);
-    if (this.state.focusVisible) {
-      this.setState({ focusVisible: false });
-    }
-  });
 
   handleFocus = event => {
     if (this.props.disabled) {

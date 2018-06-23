@@ -32,7 +32,9 @@ const options = [
   'Umbriel',
 ];
 
-class ConfirmationDialog extends React.Component {
+class ConfirmationDialogRaw extends React.Component {
+  radioGroup = null;
+
   constructor(props) {
     super(props);
 
@@ -47,8 +49,6 @@ class ConfirmationDialog extends React.Component {
       this.setState({ value: nextProps.value });
     }
   }
-
-  radioGroup = null;
 
   handleEntering = () => {
     this.radioGroup.focus();
@@ -107,7 +107,7 @@ class ConfirmationDialog extends React.Component {
   }
 }
 
-ConfirmationDialog.propTypes = {
+ConfirmationDialogRaw.propTypes = {
   onClose: PropTypes.func,
   value: PropTypes.string,
 };
@@ -118,19 +118,19 @@ const styles = theme => ({
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
-  dialog: {
+  paper: {
     width: '80%',
     maxHeight: 435,
   },
 });
 
-class ConfirmationDialogDemo extends React.Component {
+class ConfirmationDialog extends React.Component {
+  button = null;
+
   state = {
     open: false,
     value: 'Dione',
   };
-
-  button = undefined;
 
   handleClickListItem = () => {
     this.setState({ open: true });
@@ -161,9 +161,9 @@ class ConfirmationDialogDemo extends React.Component {
           <ListItem button divider disabled>
             <ListItemText primary="Default notification ringtone" secondary="Tethys" />
           </ListItem>
-          <ConfirmationDialog
+          <ConfirmationDialogRaw
             classes={{
-              paper: classes.dialog,
+              paper: classes.paper,
             }}
             open={this.state.open}
             onClose={this.handleClose}
@@ -175,8 +175,8 @@ class ConfirmationDialogDemo extends React.Component {
   }
 }
 
-ConfirmationDialogDemo.propTypes = {
+ConfirmationDialog.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ConfirmationDialogDemo);
+export default withStyles(styles)(ConfirmationDialog);

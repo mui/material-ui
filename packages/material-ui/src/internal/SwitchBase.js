@@ -32,6 +32,10 @@ export const styles = {
 };
 
 class SwitchBase extends React.Component {
+  input = null;
+
+  isControlled = null;
+
   constructor(props) {
     super(props);
 
@@ -43,9 +47,6 @@ class SwitchBase extends React.Component {
   }
 
   state = {};
-
-  input = null;
-  isControlled = null;
 
   handleFocus = event => {
     if (this.props.onFocus) {

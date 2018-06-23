@@ -89,6 +89,8 @@ const styles = theme => ({
 });
 
 class Carbon extends React.Component {
+  timerAdblock = null;
+
   state = {
     adblock: null,
   };
@@ -113,8 +115,6 @@ class Carbon extends React.Component {
   componentWillUnmount() {
     clearTimeout(this.timerAdblock);
   }
-
-  timerAdblock = null;
 
   checkAdblock = (attempt = 1) => {
     if (document.querySelector('#carbonads')) {

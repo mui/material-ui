@@ -15,15 +15,15 @@ const styles = theme => ({
 });
 
 class SimplePortal extends React.Component {
+  container = null;
+
   state = {
     show: false,
   };
 
   handleClick = () => {
-    this.setState({ show: !this.state.show });
+    this.setState(state => ({ show: !state.show }));
   };
-
-  container = null;
 
   render() {
     const { classes } = this.props;

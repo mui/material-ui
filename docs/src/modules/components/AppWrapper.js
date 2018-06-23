@@ -30,6 +30,28 @@ function uiThemeSideEffect(uiTheme) {
 class AppWrapper extends React.Component {
   state = {};
 
+  componentDidMount() {
+    uiThemeSideEffect(this.props.uiTheme);
+
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles && jssStyles.parentNode) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
+
+    if (
+      'serviceWorker' in navigator &&
+      process.env.NODE_ENV === 'production' &&
+      window.location.host === 'material-ui.com'
+    ) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  }
+
+  componentDidUpdate() {
+    uiThemeSideEffect(this.props.uiTheme);
+  }
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (typeof prevState.pageContext === 'undefined') {
       return {
@@ -51,28 +73,6 @@ class AppWrapper extends React.Component {
     }
 
     return null;
-  }
-
-  componentDidMount() {
-    uiThemeSideEffect(this.props.uiTheme);
-
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles);
-    }
-
-    if (
-      'serviceWorker' in navigator &&
-      process.env.NODE_ENV === 'production' &&
-      window.location.host === 'material-ui.com'
-    ) {
-      navigator.serviceWorker.register('/sw.js');
-    }
-  }
-
-  componentDidUpdate() {
-    uiThemeSideEffect(this.props.uiTheme);
   }
 
   render() {
@@ -97,6 +97,7 @@ class AppWrapper extends React.Component {
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
   pageContext: PropTypes.object,
   uiTheme: PropTypes.object.isRequired,
 };

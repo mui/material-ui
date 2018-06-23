@@ -140,7 +140,7 @@ describe('<Tooltip />', () => {
   it('should respond to external events', () => {
     const wrapper = shallow(
       <Tooltip placement="top" title="Hello World">
-        <button>Hello World</button>
+        <button type="submit">Hello World</button>
       </Tooltip>,
     );
     const children = getTargetChildren(wrapper);
@@ -163,7 +163,7 @@ describe('<Tooltip />', () => {
         onOpen={handleRequestOpen}
         onClose={handleClose}
       >
-        <button>Hello World</button>
+        <button type="submit">Hello World</button>
       </Tooltip>,
     );
     const children = getTargetChildren(wrapper);
@@ -191,7 +191,7 @@ describe('<Tooltip />', () => {
     it('should not respond to quick events', () => {
       const wrapper = shallow(
         <Tooltip title="Hello World">
-          <button>Hello World</button>
+          <button type="submit">Hello World</button>
         </Tooltip>,
       );
       const children = getTargetChildren(wrapper);
@@ -205,7 +205,7 @@ describe('<Tooltip />', () => {
     it('should open on long press', () => {
       const wrapper = shallow(
         <Tooltip title="Hello World">
-          <button>Hello World</button>
+          <button type="submit">Hello World</button>
         </Tooltip>,
       );
       const children = getTargetChildren(wrapper);
@@ -224,7 +224,7 @@ describe('<Tooltip />', () => {
     it('should mount without any issue', () => {
       mount(
         <Tooltip title="Hello World" PopperProps={{ component: Hack }}>
-          <button>Hello World</button>
+          <button type="submit">Hello World</button>
         </Tooltip>,
       );
     });
@@ -244,7 +244,7 @@ describe('<Tooltip />', () => {
     it('should take the enterDelay into account', () => {
       const wrapper = shallow(
         <Tooltip enterDelay={111} title="Hello World">
-          <button>Hello World</button>
+          <button type="submit">Hello World</button>
         </Tooltip>,
       );
       const children = getTargetChildren(wrapper);
@@ -257,7 +257,7 @@ describe('<Tooltip />', () => {
     it('should take the leaveDelay into account', () => {
       const wrapper = shallow(
         <Tooltip leaveDelay={111} title="Hello World">
-          <button>Hello World</button>
+          <button type="submit">Hello World</button>
         </Tooltip>,
       );
       const children = getTargetChildren(wrapper);
@@ -277,7 +277,9 @@ describe('<Tooltip />', () => {
           const handler = spy();
           const wrapper = shallow(
             <Tooltip title="Hello World">
-              <button {...{ [name]: handler }}>Hello World</button>
+              <button type="submit" {...{ [name]: handler }}>
+                Hello World
+              </button>
             </Tooltip>,
           );
           const children = getTargetChildren(wrapper);
@@ -329,7 +331,9 @@ describe('<Tooltip />', () => {
     it('should raise a warning when we can listen to events', () => {
       mount(
         <Tooltip title="Hello World">
-          <button disabled>Hello World</button>
+          <button type="submit" disabled>
+            Hello World
+          </button>
         </Tooltip>,
       );
       assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
