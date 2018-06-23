@@ -66,5 +66,6 @@ you need to use the following style sheet name: `MuiPaper`.
 ## Demos
 
 - [Autocomplete](/demos/autocomplete)
+- [Cards](/demos/cards)
 - [Paper](/demos/paper)
 

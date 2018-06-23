@@ -24,7 +24,7 @@ export const styles = theme => {
       [theme.breakpoints.up('md')]: {
         minWidth: 288,
         maxWidth: 568,
-        borderRadius: 2,
+        borderRadius: theme.shape.borderRadius,
       },
       [theme.breakpoints.down('sm')]: {
         flexGrow: 1,

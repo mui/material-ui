@@ -2,23 +2,23 @@
 
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import warning from 'warning';
-import createTypography from './createTypography';
 import createBreakpoints from './createBreakpoints';
-import createPalette from './createPalette';
 import createMixins from './createMixins';
+import createPalette from './createPalette';
+import createTypography from './createTypography';
 import shadows from './shadows';
+import shape from './shape';
+import spacing from './spacing';
 import transitions from './transitions';
 import zIndex from './zIndex';
-import spacing from './spacing';
-import borderRadius from './borderRadius';
 
 function createMuiTheme(options: Object = {}) {
   const {
-    palette: paletteInput = {},
     breakpoints: breakpointsInput = {},
     mixins: mixinsInput = {},
-    typography: typographyInput = {},
+    palette: paletteInput = {},
     shadows: shadowsInput,
+    typography: typographyInput = {},
     ...other
   } = options;
 
@@ -26,7 +26,6 @@ function createMuiTheme(options: Object = {}) {
   const breakpoints = createBreakpoints(breakpointsInput);
 
   const muiTheme = {
-    borderRadius,
     breakpoints,
     direction: 'ltr',
     mixins: createMixins(breakpoints, spacing, mixinsInput),
@@ -34,6 +33,7 @@ function createMuiTheme(options: Object = {}) {
     palette,
     props: {}, // Inject custom properties
     shadows: shadowsInput || shadows,
+    shape,
     typography: createTypography(palette, typographyInput),
     ...deepmerge(
       {

@@ -90,7 +90,7 @@ const styles = theme => ({
       margin: `${theme.spacing.unit * 3}px 0`,
       padding: '12px 18px',
       backgroundColor: theme.palette.background.paper,
-      borderRadius: 3,
+      borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     },

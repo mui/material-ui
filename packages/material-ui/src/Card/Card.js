@@ -16,7 +16,7 @@ function Card(props) {
   const { classes, className, raised, ...other } = props;
 
   return (
-    <Paper className={classNames(classes.root, className)} elevation={raised ? 8 : 2} {...other} />
+    <Paper className={classNames(classes.root, className)} elevation={raised ? 8 : 1} {...other} />
   );
 }
 
