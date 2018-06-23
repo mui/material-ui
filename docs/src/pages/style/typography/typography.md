@@ -4,6 +4,8 @@ components: Typography
 
 # Typography
 
+Use typography to present your design and content as clearly and efficiently as possible.
+
 Too many type sizes and styles at once can spoil any layout.
 A [typographic scale](https://material.io/design/typography/#type-scale) has a limited set of type sizes that work well together along with the layout grid.
 
@@ -42,7 +44,7 @@ Material-UI default typography configuration only relies on 300, 400 and 500 fon
 
 {{"demo": "pages/style/typography/Types.js"}}
 
-## CSS in JS
+## Theme
 
 In some situation you might not be able to use the `Typography` component.
 Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme?expend-path=$.typography) keys of the theme.
