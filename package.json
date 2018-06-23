@@ -75,7 +75,7 @@
     "babel-loader": "8.0.0-beta.2",
     "babel-plugin-istanbul": "^4.1.5",
     "babel-plugin-module-resolver": "^3.0.0",
-    "babel-plugin-preval": "^1.6.4",
+    "babel-plugin-preval": "^2.0.0",
     "babel-plugin-react-remove-properties": "^0.2.5",
     "babel-plugin-transform-dev-warning": "^0.1.0",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
