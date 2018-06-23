@@ -120,7 +120,7 @@
     "karma-webpack": "^3.0.0",
     "lz-string": "^1.4.4",
     "mocha": "^5.0.0",
-    "next": "^6.0.1",
+    "next": "^6.0.4-canary.8",
     "nyc": "^12.0.1",
     "postcss": "^6.0.16",
     "prettier": "^1.8.2",
