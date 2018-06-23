@@ -88,7 +88,18 @@ export const styles = theme => ({
 });
 
 class TouchRipple extends React.PureComponent {
+  // Used to filter out mouse emulated events on mobile.
+  ignoringMouseDown = false;
+
+  // We use a timer in order to only show the ripples for touch "click" like events.
+  // We don't want to display the ripple for touch scroll events.
+  startTimer = null;
+
+  // This is the hook called once the previous timeout is ready.
+  startTimerCommit = null;
+
   state = {
+    // eslint-disable-next-line react/no-unused-state
     nextKey: 0,
     ripples: [],
   };
@@ -96,14 +107,6 @@ class TouchRipple extends React.PureComponent {
   componentWillUnmount() {
     clearTimeout(this.startTimer);
   }
-
-  // Used to filter out mouse emulated events on mobile.
-  ignoringMouseDown = false;
-  // We use a timer in order to only show the ripples for touch "click" like events.
-  // We don't want to display the ripple for touch scroll events.
-  startTimer = null;
-  // This is the hook called once the previous timeout is ready.
-  startTimerCommit = null;
 
   pulsate = () => {
     this.start({}, { pulsate: true });
@@ -155,7 +158,7 @@ class TouchRipple extends React.PureComponent {
     }
 
     if (center) {
-      rippleSize = Math.sqrt((2 * Math.pow(rect.width, 2) + Math.pow(rect.height, 2)) / 3);
+      rippleSize = Math.sqrt((2 * rect.width ** 2 + rect.height ** 2) / 3);
 
       // For some reason the animation is broken on Mobile Chrome if the size if even.
       if (rippleSize % 2 === 0) {
@@ -166,7 +169,7 @@ class TouchRipple extends React.PureComponent {
         Math.max(Math.abs((element ? element.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
       const sizeY =
         Math.max(Math.abs((element ? element.clientHeight : 0) - rippleY), rippleY) * 2 + 2;
-      rippleSize = Math.sqrt(Math.pow(sizeX, 2) + Math.pow(sizeY, 2));
+      rippleSize = Math.sqrt(sizeX ** 2 + sizeY ** 2);
     }
 
     // Touche devices
@@ -189,32 +192,27 @@ class TouchRipple extends React.PureComponent {
 
   startCommit = params => {
     const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
-    let ripples = this.state.ripples;
 
-    // Add a ripple to the ripples array.
-    ripples = [
-      ...ripples,
-      <Ripple
-        key={this.state.nextKey}
-        classes={this.props.classes}
-        timeout={{
-          exit: DURATION,
-          enter: DURATION,
-        }}
-        pulsate={pulsate}
-        rippleX={rippleX}
-        rippleY={rippleY}
-        rippleSize={rippleSize}
-      />,
-    ];
-
-    this.setState(
-      {
-        nextKey: this.state.nextKey + 1,
-        ripples,
-      },
-      cb,
-    );
+    this.setState(state => {
+      return {
+        nextKey: state.nextKey + 1,
+        ripples: [
+          ...state.ripples,
+          <Ripple
+            key={state.nextKey}
+            classes={this.props.classes}
+            timeout={{
+              exit: DURATION,
+              enter: DURATION,
+            }}
+            pulsate={pulsate}
+            rippleX={rippleX}
+            rippleY={rippleY}
+            rippleSize={rippleSize}
+          />,
+        ],
+      };
+    }, cb);
   };
 
   stop = (event, cb) => {

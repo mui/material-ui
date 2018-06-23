@@ -222,7 +222,7 @@ class EnhancedTable extends React.Component {
 
   handleSelectAllClick = (event, checked) => {
     if (checked) {
-      this.setState({ selected: this.state.data.map(n => n.id) });
+      this.setState(state => ({ selected: state.data.map(n => n.id) }));
       return;
     }
     this.setState({ selected: [] });

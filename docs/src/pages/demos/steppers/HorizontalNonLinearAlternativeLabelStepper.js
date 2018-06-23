@@ -54,29 +54,9 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
     return getSteps().length;
   };
 
-  isStepComplete(step) {
-    return this.state.completed.has(step);
-  }
-
-  completedSteps() {
-    return this.state.completed.size;
-  }
-
-  allStepsCompleted() {
-    return this.completedSteps() === this.totalSteps() - this.skippedSteps();
-  }
-
-  isLastStep() {
-    return this.state.activeStep === this.totalSteps() - 1;
-  }
-
   isStepOptional = step => {
     return step === 1;
   };
-
-  isStepSkipped(step) {
-    return this.state.skipped.has(step);
-  }
 
   handleSkip = () => {
     const { activeStep } = this.state;
@@ -85,17 +65,16 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
       // it should never occur unless someone's actively trying to break something.
       throw new Error("You can't skip a step that isn't optional.");
     }
-    const skipped = new Set(this.state.skipped);
-    skipped.add(activeStep);
-    this.setState({
-      activeStep: this.state.activeStep + 1,
-      skipped,
+
+    this.setState(state => {
+      const skipped = new Set(state.skipped.values());
+      skipped.add(activeStep);
+      return {
+        activeStep: state.activeStep + 1,
+        skipped,
+      };
     });
   };
-
-  skippedSteps() {
-    return this.state.skipped.size;
-  }
 
   handleNext = () => {
     let activeStep;
@@ -114,9 +93,9 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
   };
 
   handleBack = () => {
-    this.setState({
-      activeStep: this.state.activeStep - 1,
-    });
+    this.setState(state => ({
+      activeStep: state.activeStep - 1,
+    }));
   };
 
   handleStep = step => () => {
@@ -126,11 +105,13 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
   };
 
   handleComplete = () => {
+    // eslint-disable-next-line react/no-access-state-in-setstate
     const completed = new Set(this.state.completed);
     completed.add(this.state.activeStep);
     this.setState({
       completed,
     });
+
     /**
      * Sigh... it would be much nicer to replace the following if conditional with
      * `if (!this.allStepsComplete())` however state is not set when we do this,
@@ -148,6 +129,30 @@ class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
       skipped: new Set(),
     });
   };
+
+  skippedSteps() {
+    return this.state.skipped.size;
+  }
+
+  isStepSkipped(step) {
+    return this.state.skipped.has(step);
+  }
+
+  isStepComplete(step) {
+    return this.state.completed.has(step);
+  }
+
+  completedSteps() {
+    return this.state.completed.size;
+  }
+
+  allStepsCompleted() {
+    return this.completedSteps() === this.totalSteps() - this.skippedSteps();
+  }
+
+  isLastStep() {
+    return this.state.activeStep === this.totalSteps() - 1;
+  }
 
   render() {
     const { classes } = this.props;

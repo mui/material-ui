@@ -35,10 +35,12 @@ class ChipsArray extends React.Component {
       return;
     }
 
-    const chipData = [...this.state.chipData];
-    const chipToDelete = chipData.indexOf(data);
-    chipData.splice(chipToDelete, 1);
-    this.setState({ chipData });
+    this.setState(state => {
+      const chipData = [...state.chipData];
+      const chipToDelete = chipData.indexOf(data);
+      chipData.splice(chipToDelete, 1);
+      return { chipData };
+    });
   };
 
   render() {

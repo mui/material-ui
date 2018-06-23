@@ -39,7 +39,9 @@ describe('<ExpansionPanelActions />', () => {
   it('should render children with the button class wrapped in a div with the action class', () => {
     const wrapper = shallow(
       <ExpansionPanelActions>
-        <button className="woofExpansionPanelActions">Hello</button>
+        <button type="submit" className="woofExpansionPanelActions">
+          Hello
+        </button>
       </ExpansionPanelActions>,
     );
     const button = wrapper.childAt(0);
@@ -55,7 +57,7 @@ describe('<ExpansionPanelActions />', () => {
   it('should render a valid children', () => {
     const wrapper = shallow(
       <ExpansionPanelActions>
-        <button>Hello</button>
+        <button type="submit">Hello</button>
         {null}
       </ExpansionPanelActions>,
     );

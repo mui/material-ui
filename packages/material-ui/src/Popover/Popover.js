@@ -82,6 +82,17 @@ export const styles = {
 };
 
 class Popover extends React.Component {
+  transitionEl = null;
+
+  handleGetOffsetTop = getOffsetTop;
+
+  handleGetOffsetLeft = getOffsetLeft;
+
+  handleResize = debounce(() => {
+    const element = ReactDOM.findDOMNode(this.transitionEl);
+    this.setPositioningStyles(element);
+  }, 166); // Corresponds to 10 frames at 60 Hz.
+
   componentDidMount() {
     if (this.props.action) {
       this.props.action({
@@ -247,12 +258,6 @@ class Popover extends React.Component {
     };
   }
 
-  transitionEl = undefined;
-
-  handleGetOffsetTop = getOffsetTop;
-
-  handleGetOffsetLeft = getOffsetLeft;
-
   handleEnter = element => {
     if (this.props.onEnter) {
       this.props.onEnter(element);
@@ -260,11 +265,6 @@ class Popover extends React.Component {
 
     this.setPositioningStyles(element);
   };
-
-  handleResize = debounce(() => {
-    const element = ReactDOM.findDOMNode(this.transitionEl);
-    this.setPositioningStyles(element);
-  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   render() {
     const {
@@ -378,8 +378,8 @@ Popover.propTypes = {
    * the application's client area.
    */
   anchorPosition: PropTypes.shape({
-    top: PropTypes.number,
     left: PropTypes.number,
+    top: PropTypes.number,
   }),
   /*
    * This determines which anchor prop to refer to to set

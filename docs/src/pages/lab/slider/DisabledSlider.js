@@ -4,14 +4,16 @@ import { withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/lab/Slider';
 
 const styles = {
-  container: {
+  root: {
     width: 300,
   },
 };
 
-function DisabledSlider({ classes }) {
+function DisabledSlider(props) {
+  const { classes } = props;
+
   return (
-    <div className={classes.container}>
+    <div className={classes.root}>
       <Slider value={0} disabled />
       <Slider value={50} disabled />
       <Slider value={100} disabled />

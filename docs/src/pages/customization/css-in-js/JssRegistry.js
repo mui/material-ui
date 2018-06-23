@@ -8,6 +8,8 @@ const sheetsRegistry = new SheetsRegistry();
 const theme = createMuiTheme();
 
 class JssRegistry extends React.Component {
+  timer = null;
+
   state = {
     length: 0,
   };
@@ -23,8 +25,6 @@ class JssRegistry extends React.Component {
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
-
-  timer = null;
 
   update() {
     if (this.state.length !== sheetsRegistry.registry.length) {

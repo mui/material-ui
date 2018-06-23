@@ -153,6 +153,8 @@ const styles = theme => ({
 });
 
 class AppSearch extends React.Component {
+  input = null;
+
   handleKeyDown = event => {
     if (
       ['/', 's'].indexOf(keycode(event)) !== -1 &&
@@ -163,8 +165,6 @@ class AppSearch extends React.Component {
       this.input.focus();
     }
   };
-
-  input = null;
 
   render() {
     const { classes, width } = this.props;

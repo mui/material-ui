@@ -1,6 +1,6 @@
 // @flow
 
-import ownerDocument from '../utils/ownerDocument';
+import ownerDocument from './ownerDocument';
 
 function ownerWindow(node: Node, fallback: window = window) {
   const doc: Document = ownerDocument(node);

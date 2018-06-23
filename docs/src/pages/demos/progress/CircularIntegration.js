@@ -41,6 +41,8 @@ const styles = theme => ({
 });
 
 class CircularIntegration extends React.Component {
+  timer = null;
+
   state = {
     loading: false,
     success: false,
@@ -68,8 +70,6 @@ class CircularIntegration extends React.Component {
       );
     }
   };
-
-  timer = undefined;
 
   render() {
     const { loading, success } = this.state;

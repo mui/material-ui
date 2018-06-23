@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { isMuiComponent, isMuiElement } from './reactHelpers';
-import { Input, ListItemAvatar, ListItemSecondaryAction, SvgIcon } from '../';
+import { Input, ListItemAvatar, ListItemSecondaryAction, SvgIcon } from '..';
 
 describe('utils/reactHelpers.js', () => {
   describe('isMuiElement', () => {

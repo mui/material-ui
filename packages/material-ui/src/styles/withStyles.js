@@ -69,6 +69,20 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
   );
 
   class WithStyles extends React.Component {
+    disableStylesGeneration = false;
+
+    jss = null;
+
+    sheetOptions = null;
+
+    sheetsManager = sheetsManager;
+
+    stylesCreatorSaved = null;
+
+    theme = null;
+
+    unsubscribeId = null;
+
     constructor(props, context) {
       super(props, context);
 
@@ -258,14 +272,6 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         }
       }
     }
-
-    disableStylesGeneration = false;
-    jss = null;
-    sheetOptions = null;
-    sheetsManager = sheetsManager;
-    stylesCreatorSaved = null;
-    theme = null;
-    unsubscribeId = null;
 
     render() {
       const { classes, innerRef, ...other } = this.props;

@@ -7,7 +7,7 @@ import withTheme from '../styles/withTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 
 function getScale(value) {
-  return `scale(${value}, ${Math.pow(value, 2)})`;
+  return `scale(${value}, ${value ** 2})`;
 }
 
 const styles = {
@@ -26,12 +26,13 @@ const styles = {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Grow extends React.Component {
+  autoTimeout = null;
+
+  timer = null;
+
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
-
-  autoTimeout = undefined;
-  timer = null;
 
   handleEnter = node => {
     const { theme, timeout } = this.props;

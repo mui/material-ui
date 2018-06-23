@@ -137,10 +137,11 @@ class DownshiftMultiple extends React.Component {
   };
 
   handleDelete = item => () => {
-    const selectedItem = [...this.state.selectedItem];
-    selectedItem.splice(selectedItem.indexOf(item), 1);
-
-    this.setState({ selectedItem });
+    this.setState(state => {
+      const selectedItem = [...state.selectedItem];
+      selectedItem.splice(selectedItem.indexOf(item), 1);
+      return { selectedItem };
+    });
   };
 
   render() {

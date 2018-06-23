@@ -14,12 +14,12 @@ const styles = theme => ({
 });
 
 class ConsecutiveSnackbars extends React.Component {
+  queue = [];
+
   state = {
     open: false,
     messageInfo: {},
   };
-
-  queue = [];
 
   handleClick = message => () => {
     this.queue.push({

@@ -9,6 +9,12 @@ import { isFilled } from '../Input/Input';
  * @ignore - internal component.
  */
 class SelectInput extends React.Component {
+  ignoreNextBlur = false;
+
+  displayNode = null;
+
+  isOpenControlled = this.props.open !== undefined;
+
   state = {
     menuMinWidth: null,
     open: false,
@@ -28,25 +34,22 @@ class SelectInput extends React.Component {
     }
   }
 
-  ignoreNextBlur = false;
-  displayNode = null;
-  isOpenControlled = this.props.open !== undefined;
-
-  update = this.isOpenControlled
-    ? ({ event, open }) => {
-        if (open) {
-          this.props.onOpen(event);
-        } else {
-          this.props.onClose(event);
-        }
+  update = ({ event, open }) => {
+    if (this.isOpenControlled) {
+      if (open) {
+        this.props.onOpen(event);
+      } else {
+        this.props.onClose(event);
       }
-    : ({ open }) => {
-        this.setState({
-          // Perfom the layout computation outside of the render method.
-          menuMinWidth: this.props.autoWidth ? null : this.displayNode.clientWidth,
-          open,
-        });
-      };
+      return;
+    }
+
+    this.setState({
+      // Perfom the layout computation outside of the render method.
+      menuMinWidth: this.props.autoWidth ? null : this.displayNode.clientWidth,
+      open,
+    });
+  };
 
   handleClick = event => {
     // Opening the menu is going to blur the. It will be focused back when closed.

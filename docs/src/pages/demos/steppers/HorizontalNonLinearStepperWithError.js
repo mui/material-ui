@@ -38,10 +38,6 @@ function getStepContent(step) {
 }
 
 class HorizontalNonLinearStepperWithError extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object,
-  };
-
   state = {
     activeStep: 0,
     skipped: new Set(),
@@ -50,10 +46,6 @@ class HorizontalNonLinearStepperWithError extends React.Component {
   isStepOptional = step => {
     return step === 1;
   };
-
-  isStepSkipped(step) {
-    return this.state.skipped.has(step);
-  }
 
   isStepFailed = step => {
     return step === 1;
@@ -86,11 +78,14 @@ class HorizontalNonLinearStepperWithError extends React.Component {
       // it should never occur unless someone's actively trying to break something.
       throw new Error("You can't skip a step that isn't optional.");
     }
-    const skipped = new Set(this.state.skipped.values());
-    skipped.add(activeStep);
-    this.setState({
-      activeStep: this.state.activeStep + 1,
-      skipped,
+
+    this.setState(state => {
+      const skipped = new Set(state.skipped.values());
+      skipped.add(activeStep);
+      return {
+        activeStep: state.activeStep + 1,
+        skipped,
+      };
     });
   };
 
@@ -99,6 +94,10 @@ class HorizontalNonLinearStepperWithError extends React.Component {
       activeStep: 0,
     });
   };
+
+  isStepSkipped(step) {
+    return this.state.skipped.has(step);
+  }
 
   render() {
     const { classes } = this.props;
@@ -178,5 +177,9 @@ class HorizontalNonLinearStepperWithError extends React.Component {
     );
   }
 }
+
+HorizontalNonLinearStepperWithError.propTypes = {
+  classes: PropTypes.object,
+};
 
 export default withStyles(styles)(HorizontalNonLinearStepperWithError);

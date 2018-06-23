@@ -3,8 +3,8 @@ import { assert } from 'chai';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import { createShallow, createMount } from '../test-utils';
-import StepIcon from '../StepIcon';
 import StepPositionIcon from './StepPositionIcon';
+import StepIcon from './StepIcon';
 
 describe('<StepIcon />', () => {
   let shallow;

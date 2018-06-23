@@ -37,16 +37,16 @@ class SpeedDials extends React.Component {
   };
 
   handleVisibility = () => {
-    this.setState({
+    this.setState(state => ({
       open: false,
-      hidden: !this.state.hidden,
-    });
+      hidden: !state.hidden,
+    }));
   };
 
   handleClick = () => {
-    this.setState({
-      open: !this.state.open,
-    });
+    this.setState(state => ({
+      open: !state.open,
+    }));
   };
 
   handleOpen = () => {

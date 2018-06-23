@@ -44,27 +44,18 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class Modal extends React.Component {
+  dialogElement = null;
+
+  mounted = false;
+
+  mountNode = null;
+
   constructor(props) {
     super(props);
 
     this.state = {
       exited: !this.props.open,
     };
-  }
-
-  static getDerivedStateFromProps(nextProps) {
-    if (nextProps.open) {
-      return {
-        exited: false,
-      };
-    } else if (!getHasTransition(nextProps)) {
-      // Otherwise let handleExited take care of marking exited.
-      return {
-        exited: true,
-      };
-    }
-
-    return null;
   }
 
   componentDidMount() {
@@ -95,9 +86,22 @@ class Modal extends React.Component {
     }
   }
 
-  dialogElement = null;
-  mounted = false;
-  mountNode = null;
+  static getDerivedStateFromProps(nextProps) {
+    if (nextProps.open) {
+      return {
+        exited: false,
+      };
+    }
+
+    if (!getHasTransition(nextProps)) {
+      // Otherwise let handleExited take care of marking exited.
+      return {
+        exited: true,
+      };
+    }
+
+    return null;
+  }
 
   handleRendered = () => {
     this.autoFocus();
@@ -161,6 +165,18 @@ class Modal extends React.Component {
     this.lastFocus = ownerDocument(this.mountNode).activeElement;
   };
 
+  enforceFocus = () => {
+    if (this.props.disableEnforceFocus || !this.mounted || !this.isTopModal()) {
+      return;
+    }
+
+    const currentActiveElement = ownerDocument(this.mountNode).activeElement;
+
+    if (this.dialogElement && !this.dialogElement.contains(currentActiveElement)) {
+      this.dialogElement.focus();
+    }
+  };
+
   autoFocus() {
     if (this.props.disableAutoFocus) {
       return;
@@ -203,18 +219,6 @@ class Modal extends React.Component {
       this.lastFocus = null;
     }
   }
-
-  enforceFocus = () => {
-    if (this.props.disableEnforceFocus || !this.mounted || !this.isTopModal()) {
-      return;
-    }
-
-    const currentActiveElement = ownerDocument(this.mountNode).activeElement;
-
-    if (this.dialogElement && !this.dialogElement.contains(currentActiveElement)) {
-      this.dialogElement.focus();
-    }
-  };
 
   isTopModal() {
     return this.props.manager.isTopModal(this);

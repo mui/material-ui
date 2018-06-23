@@ -62,7 +62,9 @@ const pathBasePackage = ['material-ui/lib/', 'material-ui/'];
 function getPathsBase(path) {
   if (path.indexOf(pathBaseSource[0]) === 0) {
     return pathBaseSource;
-  } else if (path.indexOf(pathBasePackage[0]) === 0) {
+  }
+
+  if (path.indexOf(pathBasePackage[0]) === 0) {
     return pathBasePackage;
   }
 

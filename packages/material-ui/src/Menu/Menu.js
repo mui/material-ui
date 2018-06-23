@@ -30,6 +30,8 @@ export const styles = {
 };
 
 class Menu extends React.Component {
+  menuList = null;
+
   componentDidMount() {
     if (this.props.open) {
       this.focus();
@@ -43,8 +45,6 @@ class Menu extends React.Component {
 
     return ReactDOM.findDOMNode(this.menuList.selectedItem);
   };
-
-  menuList = undefined;
 
   focus = () => {
     if (this.menuList && this.menuList.selectedItem) {

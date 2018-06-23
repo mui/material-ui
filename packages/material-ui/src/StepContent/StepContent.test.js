@@ -1,8 +1,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount } from '../test-utils';
-import StepContent from '../StepContent';
 import Collapse from '../Collapse';
+import StepContent from './StepContent';
 
 describe('<StepContent />', () => {
   let shallow;

@@ -133,9 +133,9 @@ class Demo extends React.Component {
   };
 
   handleClickCodeOpen = () => {
-    this.setState({
-      codeOpen: !this.state.codeOpen,
-    });
+    this.setState(state => ({
+      codeOpen: !state.codeOpen,
+    }));
   };
 
   handleClickCodeSandbox = () => {
