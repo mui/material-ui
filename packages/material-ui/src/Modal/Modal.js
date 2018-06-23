@@ -6,10 +6,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import keycode from 'keycode';
-import activeElement from 'dom-helpers/activeElement';
-import contains from 'dom-helpers/query/contains';
-import inDOM from 'dom-helpers/util/inDOM';
-import ownerDocument from 'dom-helpers/ownerDocument';
+import ownerDocument from '../utils/ownerDocument';
 import RootRef from '../RootRef';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
@@ -161,9 +158,7 @@ class Modal extends React.Component {
   };
 
   checkForFocus = () => {
-    if (inDOM) {
-      this.lastFocus = activeElement();
-    }
+    this.lastFocus = ownerDocument(this.mountNode).activeElement;
   };
 
   autoFocus() {
@@ -171,9 +166,9 @@ class Modal extends React.Component {
       return;
     }
 
-    const currentActiveElement = activeElement(ownerDocument(this.mountNode));
+    const currentActiveElement = ownerDocument(this.mountNode).activeElement;
 
-    if (this.dialogElement && !contains(this.dialogElement, currentActiveElement)) {
+    if (this.dialogElement && !this.dialogElement.contains(currentActiveElement)) {
       this.lastFocus = currentActiveElement;
 
       if (!this.dialogElement.hasAttribute('tabIndex')) {
@@ -214,9 +209,9 @@ class Modal extends React.Component {
       return;
     }
 
-    const currentActiveElement = activeElement(ownerDocument(this.mountNode));
+    const currentActiveElement = ownerDocument(this.mountNode).activeElement;
 
-    if (this.dialogElement && !contains(this.dialogElement, currentActiveElement)) {
+    if (this.dialogElement && !this.dialogElement.contains(currentActiveElement)) {
       this.dialogElement.focus();
     }
   };

@@ -1,18 +1,10 @@
 // @inheritedComponent EventListener
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
-import ownerDocument from 'dom-helpers/ownerDocument';
-
-function isDescendant(el, target) {
-  if (target !== null && target.parentNode) {
-    return el === target || isDescendant(el, target.parentNode);
-  }
-
-  return false;
-}
+import ownerDocument from '../utils/ownerDocument';
 
 /**
  * Listen for click events that occur somewhere in the document, outside of the element itself.
@@ -20,6 +12,7 @@ function isDescendant(el, target) {
  */
 class ClickAwayListener extends React.Component {
   componentDidMount() {
+    this.node = ReactDOM.findDOMNode(this);
     this.mounted = true;
   }
 
@@ -27,7 +20,8 @@ class ClickAwayListener extends React.Component {
     this.mounted = false;
   }
 
-  mounted = false;
+  node = null;
+  mounted = null;
 
   handleClickAway = event => {
     // Ignore events that have been `event.preventDefault()` marked.
@@ -40,13 +34,17 @@ class ClickAwayListener extends React.Component {
       return;
     }
 
-    const el = ReactDOM.findDOMNode(this);
-    const doc = ownerDocument(el);
+    // The child might render null.
+    if (!this.node) {
+      return;
+    }
+
+    const doc = ownerDocument(this.node);
 
     if (
       doc.documentElement &&
       doc.documentElement.contains(event.target) &&
-      !isDescendant(el, event.target)
+      !this.node.contains(event.target)
     ) {
       this.props.onClickAway(event);
     }

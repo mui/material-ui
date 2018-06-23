@@ -4,10 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
-import contains from 'dom-helpers/query/contains';
-import ownerDocument from 'dom-helpers/ownerDocument';
 import debounce from 'debounce';
 import EventListener from 'react-event-listener';
+import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
@@ -217,7 +216,7 @@ class Popover extends React.Component {
     if (getContentAnchorEl && anchorReference === 'anchorEl') {
       const contentAnchorEl = getContentAnchorEl(element);
 
-      if (contentAnchorEl && contains(element, contentAnchorEl)) {
+      if (contentAnchorEl && element.contains(contentAnchorEl)) {
         const scrollTop = getScrollParent(element, contentAnchorEl);
         contentAnchorOffset =
           contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 - scrollTop || 0;

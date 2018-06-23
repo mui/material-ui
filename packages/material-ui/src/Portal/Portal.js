@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import ownerDocument from 'dom-helpers/ownerDocument';
+import ownerDocument from '../utils/ownerDocument';
 import exactProp from '../utils/exactProp';
 
 function getContainer(container, defaultContainer) {

@@ -2,8 +2,7 @@
 
 import keycode from 'keycode';
 import warning from 'warning';
-import contains from 'dom-helpers/query/contains';
-import ownerDocument from 'dom-helpers/ownerDocument';
+import ownerDocument from '../utils/ownerDocument';
 
 const internal = {
   focusKeyPressed: false,
@@ -22,7 +21,7 @@ export function detectFocusVisible(instance, element, callback, attempt = 1) {
 
     if (
       internal.focusKeyPressed &&
-      (doc.activeElement === element || contains(element, doc.activeElement))
+      (doc.activeElement === element || element.contains(doc.activeElement))
     ) {
       callback();
     } else if (attempt < instance.focusVisibleMaxCheckTimes) {
