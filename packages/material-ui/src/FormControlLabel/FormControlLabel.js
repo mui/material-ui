@@ -21,6 +21,7 @@ export const styles = theme => ({
       cursor: 'default',
     },
   },
+  checked: {},
   disabled: {},
   label: {
     '&$disabled': {
@@ -67,6 +68,7 @@ function FormControlLabel(props, context) {
     classes.root,
     {
       [classes.disabled]: disabled,
+      [classes.checked]: checked,
     },
     classNameProp,
   );
