@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/List/List.js
+title: API of List
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # List
+
+<p class="description">The API documentation of the List React component.</p>
 
 
 

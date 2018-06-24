@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/StepLabel/StepLabel.js
+title: API of StepLabel
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # StepLabel
+
+<p class="description">The API documentation of the StepLabel React component.</p>
 
 
 

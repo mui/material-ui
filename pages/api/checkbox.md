@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Checkbox/Checkbox.js
+title: API of Checkbox
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Checkbox
+
+<p class="description">The API documentation of the Checkbox React component.</p>
 
 
 

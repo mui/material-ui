@@ -4,6 +4,8 @@ components: Icon, SvgIcon
 
 # Icons
 
+<p class="description">Guidance and suggestions for using icons with Material-UI.</p>
+
 ## System icons
 
 A [system icon](https://material.io/design/iconography/system-icons.html) or UI icon,
@@ -42,7 +44,7 @@ When importing an icon, keep in mind that the names of the icons are `PascalCase
 - [`alarm`](https://material.io/tools/icons/?icon=alarm&style=baseline) is exposed as `@material-ui/icons/Alarm`
 - [`alarm off`](https://material.io/tools/icons/?icon=alarm_off&style=baseline) is exposed as `@material-ui/icons/AlarmOff`
 
-There is one exception to this rule: 
+There is one exception to this rule:
 - [`3d_rotation`](https://material.io/tools/icons/?icon=3d_rotation&style=baseline) is exposed as `@material-ui/icons/ThreeDRotation`.
 
 {{"demo": "pages/style/icons/SvgMaterialIcons.js"}}

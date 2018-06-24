@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/ListItemIcon/ListItemIcon.js
+title: API of ListItemIcon
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # ListItemIcon
+
+<p class="description">The API documentation of the ListItemIcon React component.</p>
 
 A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
 

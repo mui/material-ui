@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/StepConnector/StepConnector.js
+title: API of StepConnector
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # StepConnector
+
+<p class="description">The API documentation of the StepConnector React component.</p>
 
 
 

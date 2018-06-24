@@ -1,5 +1,7 @@
 # Basics
 
+<p class="description">Material Design layouts encourage consistency across platforms, environments, and screen sizes by using uniform elements and spacing.</p>
+
 ## Responsive UI
 
 [Responsive layouts](https://material.io/design/layout/responsive-layout-grid.html) in Material Design adapt to any possible screen size.

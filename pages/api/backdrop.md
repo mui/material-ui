@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Backdrop/Backdrop.js
+title: API of Backdrop
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Backdrop
+
+<p class="description">The API documentation of the Backdrop React component.</p>
 
 
 

@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/ListItemSecondaryAction/ListItemSecondaryAction.js
+title: API of ListItemSecondaryAction
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # ListItemSecondaryAction
+
+<p class="description">The API documentation of the ListItemSecondaryAction React component.</p>
 
 
 

@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Card/Card.js
+title: API of Card
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Card
+
+<p class="description">The API documentation of the Card React component.</p>
 
 
 

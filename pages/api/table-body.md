@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/TableBody/TableBody.js
+title: API of TableBody
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # TableBody
+
+<p class="description">The API documentation of the TableBody React component.</p>
 
 
 

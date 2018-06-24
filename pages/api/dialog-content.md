@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/DialogContent/DialogContent.js
+title: API of DialogContent
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # DialogContent
+
+<p class="description">The API documentation of the DialogContent React component.</p>
 
 
 

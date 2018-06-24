@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Tab/Tab.js
+title: API of Tab
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Tab
+
+<p class="description">The API documentation of the Tab React component.</p>
 
 
 

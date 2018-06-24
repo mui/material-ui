@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui-lab/src/Slider/Slider.js
+title: API of Slider
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Slider
+
+<p class="description">The API documentation of the Slider React component.</p>
 
 
 

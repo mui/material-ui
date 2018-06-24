@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/LinearProgress/LinearProgress.js
+title: API of LinearProgress
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # LinearProgress
+
+<p class="description">The API documentation of the LinearProgress React component.</p>
 
 ## ARIA
 

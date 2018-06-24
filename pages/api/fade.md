@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Fade/Fade.js
+title: API of Fade
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Fade
+
+<p class="description">The API documentation of the Fade React component.</p>
 
 The Fade transition is used by the [Modal](/utils/modals) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.

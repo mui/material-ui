@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/ExpansionPanelDetails/ExpansionPanelDetails.js
+title: API of ExpansionPanelDetails
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # ExpansionPanelDetails
+
+<p class="description">The API documentation of the ExpansionPanelDetails React component.</p>
 
 
 

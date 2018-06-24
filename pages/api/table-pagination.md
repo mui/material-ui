@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/TablePagination/TablePagination.js
+title: API of TablePagination
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # TablePagination
+
+<p class="description">The API documentation of the TablePagination React component.</p>
 
 A `TableCell` based component for placing inside `TableFooter` for pagination.
 

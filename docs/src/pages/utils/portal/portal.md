@@ -1,11 +1,12 @@
 ---
+title: Poral React component
 components: Portal
 ---
 
 # Portal
 
-The portal component renders its children into a new "subtree"
-outside of current component hierarchy.
+<p class="description">The portal component renders its children into a new "subtree" outside of current component hierarchy.</p>
+
 The children of the portal component will be appended to the `container` specified.
 
 The component is used internally by the [`Modal`](/utils/modals) component.

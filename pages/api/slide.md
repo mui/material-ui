@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Slide/Slide.js
+title: API of Slide
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Slide
+
+<p class="description">The API documentation of the Slide React component.</p>
 
 The Slide transition is used by the [Snackbar](/demos/snackbars) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.

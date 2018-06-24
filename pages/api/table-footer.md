@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/TableFooter/TableFooter.js
+title: API of TableFooter
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # TableFooter
+
+<p class="description">The API documentation of the TableFooter React component.</p>
 
 
 

@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Zoom/Zoom.js
+title: API of Zoom
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Zoom
+
+<p class="description">The API documentation of the Zoom React component.</p>
 
 The Zoom transition can be used for the floating variant of the
 [Button](https://material-ui.com/demos/buttons/#floating-action-buttons) component.

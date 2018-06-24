@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Hidden/Hidden.js
+title: API of Hidden
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Hidden
+
+<p class="description">The API documentation of the Hidden React component.</p>
 
 Responsively hides children based on the selected implementation.
 

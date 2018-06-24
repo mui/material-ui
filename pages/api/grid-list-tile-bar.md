@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/GridListTileBar/GridListTileBar.js
+title: API of GridListTileBar
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # GridListTileBar
+
+<p class="description">The API documentation of the GridListTileBar React component.</p>
 
 
 

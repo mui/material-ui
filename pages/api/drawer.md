@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Drawer/Drawer.js
+title: API of Drawer
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Drawer
+
+<p class="description">The API documentation of the Drawer React component.</p>
 
 The properties of the [Modal](/api/modal) component are available
 when `variant="temporary"` is set.

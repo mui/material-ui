@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/ListItem/ListItem.js
+title: API of ListItem
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # ListItem
+
+<p class="description">The API documentation of the ListItem React component.</p>
 
 
 

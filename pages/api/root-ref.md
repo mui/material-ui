@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/RootRef/RootRef.js
+title: API of RootRef
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # RootRef
+
+<p class="description">The API documentation of the RootRef React component.</p>
 
 Helper component to allow attaching a ref to a
 wrapped element to access the underlying DOM element.

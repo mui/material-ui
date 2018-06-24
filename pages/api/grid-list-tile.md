@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/GridListTile/GridListTile.js
+title: API of GridListTile
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # GridListTile
+
+<p class="description">The API documentation of the GridListTile React component.</p>
 
 
 

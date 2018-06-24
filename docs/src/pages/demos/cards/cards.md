@@ -1,14 +1,15 @@
 ---
+title: Cards React component
 components: Card, CardActions, CardContent, CardHeader, CardMedia, Collapse
 ---
 
 # Cards
 
-A [card](https://material.io/design/components/cards.html) is a sheet of material that serves as an entry point to more detailed information.
+<p class="description">Cards contain content and actions about a single subject.</p>
 
-Cards display content composed of different elements whose size or supported actions vary.
+[Cards](https://material.io/design/components/cards.html) are surfaces that display content and actions on a single topic.
 
-Cards are a convenient means of displaying content composed of different elements. They’re also well-suited for showcasing elements whose size or supported actions vary, like photos with captions of variable length.
+They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
 
 ## Simple Card
 

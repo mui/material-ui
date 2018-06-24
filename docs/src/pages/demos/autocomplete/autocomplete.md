@@ -1,10 +1,12 @@
 ---
+title: Autocomplete React component
 components: TextField, Paper, MenuItem
 ---
 
 # Autocomplete
 
-The autocomplete is a normal text input enhanced by a panel of suggested options.
+<p class="description">The autocomplete is a normal text input enhanced by a panel of suggested options.</p>
+
 Material-UI doesn't provide any high-level API for solving this problem.
 We encourage people relying on the solutions the React community has built.
 

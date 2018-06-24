@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Dialog/Dialog.js
+title: API of Dialog
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Dialog
+
+<p class="description">The API documentation of the Dialog React component.</p>
 
 Dialogs are overlaid modal paper based components with a backdrop.
 

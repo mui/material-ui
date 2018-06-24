@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/FormHelperText/FormHelperText.js
+title: API of FormHelperText
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # FormHelperText
+
+<p class="description">The API documentation of the FormHelperText React component.</p>
 
 
 

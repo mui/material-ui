@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/MenuList/MenuList.js
+title: API of MenuList
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # MenuList
+
+<p class="description">The API documentation of the MenuList React component.</p>
 
 
 

@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/SvgIcon/SvgIcon.js
+title: API of SvgIcon
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # SvgIcon
+
+<p class="description">The API documentation of the SvgIcon React component.</p>
 
 
 

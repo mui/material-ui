@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/styles/MuiThemeProvider.js
+title: API of MuiThemeProvider
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # MuiThemeProvider
+
+<p class="description">The API documentation of the MuiThemeProvider React component.</p>
 
 This component takes a `theme` property.
 It makes the `theme` available down the React tree thanks to React context.

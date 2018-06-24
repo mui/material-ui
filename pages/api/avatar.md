@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Avatar/Avatar.js
+title: API of Avatar
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Avatar
+
+<p class="description">The API documentation of the Avatar React component.</p>
 
 
 

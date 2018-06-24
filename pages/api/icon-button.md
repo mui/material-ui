@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/IconButton/IconButton.js
+title: API of IconButton
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # IconButton
+
+<p class="description">The API documentation of the IconButton React component.</p>
 
 Refer to the [Icons](/style/icons) section of the documentation
 regarding the available icon options.

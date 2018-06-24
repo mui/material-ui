@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/RadioGroup/RadioGroup.js
+title: API of RadioGroup
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # RadioGroup
+
+<p class="description">The API documentation of the RadioGroup React component.</p>
 
 
 

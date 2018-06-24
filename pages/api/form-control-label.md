@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/FormControlLabel/FormControlLabel.js
+title: API of FormControlLabel
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # FormControlLabel
+
+<p class="description">The API documentation of the FormControlLabel React component.</p>
 
 Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
 Use this component if you want to display an extra label.

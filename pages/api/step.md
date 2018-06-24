@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Step/Step.js
+title: API of Step
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Step
+
+<p class="description">The API documentation of the Step React component.</p>
 
 
 

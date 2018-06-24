@@ -1448,7 +1448,7 @@ We have documented our approach to solving the problem in #10023. Basically, we 
 This is what motivated the button breaking change. Unfortunately `type` has its own meaning in the HTML specification. You can use it on the following elements: `<button>, <input>, <command>, <embed>, <object>, <script>, <source>, <style>, <menu>`.
 We are using a more generic name to **avoid the confusion**: `variant`.
 
-Umbrella pull-request for: #10084, #10086, #10088.
+Umbrella pull request for: #10084, #10086, #10088.
 
 ```diff
 <Button
@@ -2185,7 +2185,7 @@ Big thanks to the 16 contributors who made this release possible.
 
 Here are some highlights ✨:
 - We have removed Flow from the core components in (#9453).
-You can learn more about the motivations in the pull-request.
+You can learn more about the motivations in the pull request.
 This changes two important things:
   - We have reduced the size of the bundle by ~8 kB gzipped.
   - The propTypes runtime checks are back. You might experience new warnings.
@@ -2384,7 +2384,7 @@ Here are some highlights ✨:
 ### Breaking change
 
 - [Select] Remove InputClasses (#9159) @oliviertassinari
-It's a revert. I have made the unwise call of adding the InputClasses property in an unrelated refactorization pull-request #8942. It was not taking the input classes property into account. It was a breaking change and not needed.
+It's a revert. I have made the unwise call of adding the InputClasses property in an unrelated refactorization pull request #8942. It was not taking the input classes property into account. It was a breaking change and not needed.
 - [core] Reduce bundle size by 2kB gzipped (#9129) @oliviertassinari
 We have removed some jss plugins from the default bundle:
   - [jss-expand](https://github.com/cssinjs/jss-expand) (1.3 kB)
@@ -2393,7 +2393,7 @@ We have removed some jss plugins from the default bundle:
   - [jss-template](https://github.com/cssinjs/jss-template) (330 B)
 
 It's a revert.
-I have made the unwise call of adding the InputClasses property in an unrelated refactorization pull-request #8942.
+I have made the unwise call of adding the InputClasses property in an unrelated refactorization pull request #8942.
 It was not taking the input classes property into account.
 It was a breaking change and not needed.
 

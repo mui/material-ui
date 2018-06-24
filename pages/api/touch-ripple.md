@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/ButtonBase/TouchRipple.js
+title: API of TouchRipple
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # TouchRipple
+
+<p class="description">The API documentation of the TouchRipple React component.</p>
 
 
 

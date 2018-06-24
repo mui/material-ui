@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js
+title: API of SwipeableDrawer
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # SwipeableDrawer
+
+<p class="description">The API documentation of the SwipeableDrawer React component.</p>
 
 
 

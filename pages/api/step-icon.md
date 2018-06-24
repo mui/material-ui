@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/StepIcon/StepIcon.js
+title: API of StepIcon
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # StepIcon
+
+<p class="description">The API documentation of the StepIcon React component.</p>
 
 
 

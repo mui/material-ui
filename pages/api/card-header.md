@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/CardHeader/CardHeader.js
+title: API of CardHeader
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # CardHeader
+
+<p class="description">The API documentation of the CardHeader React component.</p>
 
 
 

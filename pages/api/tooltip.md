@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Tooltip/Tooltip.js
+title: API of Tooltip
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Tooltip
+
+<p class="description">The API documentation of the Tooltip React component.</p>
 
 
 

@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Collapse/Collapse.js
+title: API of Collapse
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Collapse
+
+<p class="description">The API documentation of the Collapse React component.</p>
 
 The Collapse transition is used by the
 [Vertical Stepper](/demos/steppers#vertical-stepper) StepContent component.
