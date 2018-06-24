@@ -1,8 +1,11 @@
 ---
+title: Transitions React component
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
 
 # Transitions
+
+<p class="description">Transition helps make a UI expressive and easy to use.</p>
 
 Material-UI provides a number of transitions that can be used to introduce some basic
 [motion](https://material.io/design/motion/)

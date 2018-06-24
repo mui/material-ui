@@ -1,9 +1,9 @@
 # Comparison with other libraries
 
+<p class="description">You’re here because you want to know if Material-UI can solve your specific problems better. That’s what we hope to answer for you here.</p>
+
 This is definitely one of the most challenging pages in the guide to write, but we do feel it’s important.
 Odds are, you’ve had problems you tried to solve and you’ve used another library to solve them.
-You’re here because you want to know if Material-UI can solve your specific problems better.
-That’s what we hope to answer for you here.
 
 We’d like your help keeping this document up-to-date because the JavaScript world moves fast!
 If you notice an inaccuracy or something that doesn’t seem quite right, please let us know by

@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Icon/Icon.js
+title: API of Icon
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Icon
+
+<p class="description">The API documentation of the Icon React component.</p>
 
 
 

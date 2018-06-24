@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js
+title: API of SpeedDialAction
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # SpeedDialAction
+
+<p class="description">The API documentation of the SpeedDialAction React component.</p>
 
 
 

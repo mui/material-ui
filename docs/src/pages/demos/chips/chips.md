@@ -1,11 +1,13 @@
 ---
+title: Chip React component
 components: Chip
 ---
 
 # Chips
 
-[Chips](https://material.io/design/components/chips.html)
-represent complex entities in small blocks, such as a contact.
+<p class="description">Chips are compact elements that represent an input, attribute, or action.</p>
+
+[Chips](https://material.io/design/components/chips.html) allow users to enter information, make selections, filter content, or trigger actions.
 
 While included here as a standalone component, the most common use will
 be in some form of input, so some of the behaviour demonstrated here is

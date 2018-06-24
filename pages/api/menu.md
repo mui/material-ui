@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Menu/Menu.js
+title: API of Menu
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Menu
+
+<p class="description">The API documentation of the Menu React component.</p>
 
 
 

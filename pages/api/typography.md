@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Typography/Typography.js
+title: API of Typography
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Typography
+
+<p class="description">The API documentation of the Typography React component.</p>
 
 
 

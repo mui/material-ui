@@ -1,6 +1,6 @@
 # Roadmap
 
-The roadmap is a living document, and it is likely that priorities will change, but the list below should give some indication of our plans for the next major release, and for the future.
+<p class="description">The roadmap is a living document, and it is likely that priorities will change, but the list below should give some indication of our plans for the next major release, and for the future.</p>
 
 Our priorities:
 1. **Material Design**. The Google Design team has recently released a new iteration on the Material Design specification which is focused on *themability*. This is great news! We will do our best to keep up to date. It also validates that heavily investing in customizability for v1 was a good call. We will continue our efforts in this area.

@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/SnackbarContent/SnackbarContent.js
+title: API of SnackbarContent
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # SnackbarContent
+
+<p class="description">The API documentation of the SnackbarContent React component.</p>
 
 
 

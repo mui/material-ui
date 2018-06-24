@@ -1,7 +1,6 @@
 # Supported Components
 
-The following is a list of Material Design components & features.
-Those currently supported by Material-UI are **highlighted ✓**.
+<p class="description">The following is a list of Material Design components & features. Those currently supported by Material-UI are highlighted ✓.</p>
 
 While we strive to follow the guidelines where practical (applying
 common sense where guidelines contradict - a more common occurrence than
@@ -11,7 +10,7 @@ allow developers to create compelling user interfaces and experiences.
 
 If you wish to add support for a component or feature not highlighted
 here, please search for the relevant [GitHub Issue](https://github.com/mui-org/material-ui/issues), or create a new one
-to discuss the approach before submitting a PR.
+to discuss the approach before submitting a pull request.
 
 - App bars
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
@@ -84,7 +83,7 @@ to discuss the approach before submitting a PR.
      **([Lab](/lab/about))
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
   - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~** (WIP)
-- **[Snackbars](https://material.io/archive/guidelines/components/snackbars-toasts.html) ✓** (*Legacy Material v1*)
+- **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
 - **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*)
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - **[Grid](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**

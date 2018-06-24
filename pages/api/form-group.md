@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/FormGroup/FormGroup.js
+title: API of FormGroup
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # FormGroup
+
+<p class="description">The API documentation of the FormGroup React component.</p>
 
 `FormGroup` wraps controls such as `Checkbox` and `Switch`.
 It provides compact row layout.

@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Switch/Switch.js
+title: API of Switch
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Switch
+
+<p class="description">The API documentation of the Switch React component.</p>
 
 
 

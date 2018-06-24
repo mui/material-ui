@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/TableHead/TableHead.js
+title: API of TableHead
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # TableHead
+
+<p class="description">The API documentation of the TableHead React component.</p>
 
 
 

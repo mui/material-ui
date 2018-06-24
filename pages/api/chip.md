@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Chip/Chip.js
+title: API of Chip
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Chip
+
+<p class="description">The API documentation of the Chip React component.</p>
 
 Chips represent complex entities in small blocks, such as a contact.
 

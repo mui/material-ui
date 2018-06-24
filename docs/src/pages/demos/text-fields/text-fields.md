@@ -1,11 +1,13 @@
 ---
+title: Text Field React component
 components: FormControl, FormHelperText, Input, InputAdornment, InputLabel, TextField
 ---
 
 # Text Fields
 
-[Text fields](https://material.io/design/components/text-fields.html) allow users to input text and usually appear in forms.
-Users may enter text, numbers, or mixed-format types of input.
+<p class="description">Text fields let users enter and edit text.</p>
+
+[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
 
 ## TextField
 

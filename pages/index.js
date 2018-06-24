@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import Head from 'next/head';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -10,6 +9,7 @@ import HomeSteps from 'docs/src/modules/components/HomeSteps';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
 import Link from 'docs/src/modules/components/Link';
+import Head from 'docs/src/modules/components/Head';
 
 const styles = theme => ({
   root: {
@@ -105,9 +105,7 @@ class HomePage extends React.Component {
             `,
           }}
         />
-        <Head>
-          <title>Material-UI</title>
-        </Head>
+        <Head />
         <div className={classes.hero}>
           <div className={classes.content}>
             <img

@@ -1,6 +1,6 @@
 # Team
 
-An overview of the founding team and core contributors to Material-UI.
+<p class="description">An overview of the founding team and core contributors to Material-UI.</p>
 
 Material-UI is maintained by a small group of invaluable core contributors, with the massive support and involvement of our community.
 The development of the project and its ecosystem is guided by an international team, some of whom have chosen to be featured below.

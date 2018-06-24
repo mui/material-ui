@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Table/Table.js
+title: API of Table
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Table
+
+<p class="description">The API documentation of the Table React component.</p>
 
 
 

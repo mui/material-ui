@@ -1,14 +1,13 @@
 ---
+title: List React component
 components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader
 ---
 
 # Lists
 
-[Lists](https://material.io/design/components/lists.html) present multiple line items vertically as a single continuous element.
+<p class="description">Lists are continuous, vertical indexes of text or images.</p>
 
-Lists are made up of a continuous column of rows. Each row contains a tile. Primary actions fill the tile, and supplemental actions are represented by icons and text.
-
-Lists are best suited for similar data types.
+[Lists](https://material.io/design/components/lists.html) are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
 
 ### Simple List
 

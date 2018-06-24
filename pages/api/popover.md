@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Popover/Popover.js
+title: API of Popover
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Popover
+
+<p class="description">The API documentation of the Popover React component.</p>
 
 
 

@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js
+title: API of SpeedDialIcon
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # SpeedDialIcon
+
+<p class="description">The API documentation of the SpeedDialIcon React component.</p>
 
 
 

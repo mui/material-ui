@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Modal/Modal.js
+title: API of Modal
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Modal
+
+<p class="description">The API documentation of the Modal React component.</p>
 
 
 

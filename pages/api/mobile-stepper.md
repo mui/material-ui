@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/MobileStepper/MobileStepper.js
+title: API of MobileStepper
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # MobileStepper
+
+<p class="description">The API documentation of the MobileStepper React component.</p>
 
 
 

@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Button/Button.js
+title: API of Button
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Button
+
+<p class="description">The API documentation of the Button React component.</p>
 
 
 

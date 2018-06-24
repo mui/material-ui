@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Toolbar/Toolbar.js
+title: API of Toolbar
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Toolbar
+
+<p class="description">The API documentation of the Toolbar React component.</p>
 
 
 

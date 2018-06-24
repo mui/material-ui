@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/TableSortLabel/TableSortLabel.js
+title: API of TableSortLabel
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # TableSortLabel
+
+<p class="description">The API documentation of the TableSortLabel React component.</p>
 
 A button based label for placing inside `TableCell` for column sorting.
 

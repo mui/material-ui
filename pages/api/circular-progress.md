@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/CircularProgress/CircularProgress.js
+title: API of CircularProgress
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # CircularProgress
+
+<p class="description">The API documentation of the CircularProgress React component.</p>
 
 ## ARIA
 

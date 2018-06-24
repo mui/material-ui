@@ -9,7 +9,7 @@ export const styles = theme => ({
     left: 0,
     right: 0,
     height: 48,
-    background: 'rgba(0, 0, 0, 0.4)',
+    background: 'rgba(0, 0, 0, 0.5)',
     display: 'flex',
     alignItems: 'center',
     fontFamily: theme.typography.fontFamily,

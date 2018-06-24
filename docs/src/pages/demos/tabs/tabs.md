@@ -1,10 +1,13 @@
 ---
+title: Tab React component
 components: Tabs, Tab
 ---
 
 # Tabs
 
-[Tabs](https://material.io/design/components/tabs.html) make it easy to explore and switch between different views.
+<p class="description">Tabs make it easy to explore and switch between different views.</p>
+
+[Tabs](https://material.io/design/components/tabs.html) organize and allow navigation between groups of content that are related and at the same level of hierarchy.
 
 ## Simple Tabs
 

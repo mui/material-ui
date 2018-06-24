@@ -13,7 +13,12 @@ function normalizePath(path) {
 }
 
 function generateHeader(reactAPI) {
-  return ['---', `filename: ${normalizePath(reactAPI.filename)}`, '---'].join('\n');
+  return [
+    '---',
+    `filename: ${normalizePath(reactAPI.filename)}`,
+    `title: API of ${reactAPI.name}`,
+    '---',
+  ].join('\n');
 }
 
 function getDeprecatedInfo(type) {
@@ -311,6 +316,8 @@ export default function generateMarkdown(reactAPI) {
     '<!--- This documentation is automatically generated, do not try to edit it. -->',
     '',
     `# ${reactAPI.name}`,
+    '',
+    `<p class="description">The API documentation of the ${reactAPI.name} React component.</p>`,
     '',
     reactAPI.description,
     '',

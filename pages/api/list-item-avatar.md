@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/ListItemAvatar/ListItemAvatar.js
+title: API of ListItemAvatar
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # ListItemAvatar
+
+<p class="description">The API documentation of the ListItemAvatar React component.</p>
 
 It's a simple wrapper to apply the `dense` mode styles to `Avatar`.
 

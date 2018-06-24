@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/GridList/GridList.js
+title: API of GridList
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # GridList
+
+<p class="description">The API documentation of the GridList React component.</p>
 
 
 

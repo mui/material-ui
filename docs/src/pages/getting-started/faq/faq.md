@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-Stuck on a particular problem? Check some of these common gotchas first.
+<p class="description">Stuck on a particular problem? Check some of these common gotchas first.</p>
 
 If you still can't find what you're looking for, you can ask the community in [gitter](https://gitter.im/mui-org/material-ui).
 For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.

@@ -1,16 +1,13 @@
 ---
+title: Menu React component
 components: Menu, MenuItem, MenuList, ClickAwayListener
 ---
 
 # Menus
 
-[Menus](https://material.io/design/components/menus.html) display a list of choices on a transient sheet of material.
+<p class="description">Menus display a list of choices on temporary surfaces.</p>
 
-Menus appear upon interaction with a button, action, or other control. They display a list of choices, with one choice per line.
-
-Menu items may be disabled if not applicable to a certain context. Contextual menus dynamically change their available menu items based on the current state of the app.
-
-Menus should not be used as a primary method for navigation within an app.
+A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. They appear when users interact with a button, action, or other control.
 
 ## Simple Menu
 

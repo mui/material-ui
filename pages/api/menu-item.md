@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/MenuItem/MenuItem.js
+title: API of MenuItem
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # MenuItem
+
+<p class="description">The API documentation of the MenuItem React component.</p>
 
 
 

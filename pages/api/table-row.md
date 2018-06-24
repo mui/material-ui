@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/TableRow/TableRow.js
+title: API of TableRow
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # TableRow
+
+<p class="description">The API documentation of the TableRow React component.</p>
 
 Will automatically set dynamic row height
 based on the material table element parent (head, body, etc).

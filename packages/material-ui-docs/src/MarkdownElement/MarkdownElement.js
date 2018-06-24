@@ -110,22 +110,26 @@ const styles = theme => ({
     '& h1': {
       ...theme.typography.display2,
       color: theme.palette.text.secondary,
-      margin: '0.7em 0',
+      margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
+    },
+    '& .description': {
+      ...theme.typography.headline,
+      margin: `0 0 ${theme.spacing.unit * 5}px`,
     },
     '& h2': {
       ...theme.typography.display1,
       color: theme.palette.text.secondary,
-      margin: '1em 0 0.7em',
+      margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 3}px`,
     },
     '& h3': {
       ...theme.typography.headline,
       color: theme.palette.text.secondary,
-      margin: '1em 0 0.7em',
+      margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 3}px`,
     },
     '& h4': {
       ...theme.typography.title,
       color: theme.palette.text.secondary,
-      margin: '1em 0 0.7em',
+      margin: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 2}px`,
     },
     '& p, & ul, & ol': {
       lineHeight: 1.6,

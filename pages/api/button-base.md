@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/ButtonBase/ButtonBase.js
+title: API of ButtonBase
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # ButtonBase
+
+<p class="description">The API documentation of the ButtonBase React component.</p>
 
 `ButtonBase` contains as few styles as possible.
 It aims to be a simple building block for creating a button.

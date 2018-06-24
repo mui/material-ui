@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Input/Input.js
+title: API of Input
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Input
+
+<p class="description">The API documentation of the Input React component.</p>
 
 
 

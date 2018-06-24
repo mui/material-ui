@@ -1,6 +1,7 @@
 # Flow
 
-You can add static typing to JavaScript to improve developer productivity and code quality thanks to [Flow](https://github.com/facebook/flow).
+<p class="description">You can add static typing to JavaScript to improve developer productivity and code quality thanks to Flow.</p>
+
 Have a look at the [Create React App with Flow](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-flow) example.
 
 ## flow-typed

@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/TableCell/TableCell.js
+title: API of TableCell
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # TableCell
+
+<p class="description">The API documentation of the TableCell React component.</p>
 
 
 

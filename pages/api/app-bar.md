@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/AppBar/AppBar.js
+title: API of AppBar
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # AppBar
+
+<p class="description">The API documentation of the AppBar React component.</p>
 
 
 

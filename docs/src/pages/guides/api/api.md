@@ -1,7 +1,6 @@
 # API Design Approach
 
-We have learned a great deal regarding how Material-UI is used,
-and the 1.x.x rewrite allowed us to completely rethink the component API.
+<p class="description">We have learned a great deal regarding how Material-UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
 > API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
 
@@ -48,7 +47,7 @@ to make the classes structure as simple as possible, while sufficient to impleme
 - The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
 - The classes applied to non-root elements are prefixed with the name of the element, e.g. `paperWidthXs` in the Dialog component.
-- The variants applied by a boolean property **aren't** prefixed, e.g. the `rounded` class 
+- The variants applied by a boolean property **aren't** prefixed, e.g. the `rounded` class
 applied by the `rounded` property.
 - The variants applied by and enum property **are** prefixed, e.g. the `colorPrimary` class
 applied by the `color="primary"` property.
@@ -113,10 +112,10 @@ For example, let's take a button that has different types. Each option has its p
     fab: boolean;
   };
   ```
-  
+
    This API enabled the shorthand notation:
    `<Button>`, `<Button raised />`, `<Button fab />`.
-   
+
 - Option 2 *enum*:
 
   ```tsx
@@ -124,10 +123,10 @@ For example, let's take a button that has different types. Each option has its p
     variant: 'flat' | 'raised' | 'fab';
   }
   ```
-  
+
   This API is more verbose:
   `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
-  
+
    However it prevents an invalid combination from being used,
    bounds the number of properties exposed,
    and can easily support new values in the future.
