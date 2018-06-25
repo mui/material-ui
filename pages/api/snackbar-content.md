@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/SnackbarContent/SnackbarContent.js
-title: API of SnackbarContent
+title: SnackbarContent API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

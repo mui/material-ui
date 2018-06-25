@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Slide/Slide.js
-title: API of Slide
+title: Slide API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

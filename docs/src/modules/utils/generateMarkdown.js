@@ -16,7 +16,7 @@ function generateHeader(reactAPI) {
   return [
     '---',
     `filename: ${normalizePath(reactAPI.filename)}`,
-    `title: API of ${reactAPI.name}`,
+    `title: ${reactAPI.name} API`,
     '---',
   ].join('\n');
 }

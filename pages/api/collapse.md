@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Collapse/Collapse.js
-title: API of Collapse
+title: Collapse API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

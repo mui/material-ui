@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/StepContent/StepContent.js
-title: API of StepContent
+title: StepContent API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

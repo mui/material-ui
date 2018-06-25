@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/TablePagination/TablePagination.js
-title: API of TablePagination
+title: TablePagination API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

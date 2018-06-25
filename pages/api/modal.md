@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Modal/Modal.js
-title: API of Modal
+title: Modal API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Menu/Menu.js
-title: API of Menu
+title: Menu API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

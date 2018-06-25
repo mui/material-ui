@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/TableSortLabel/TableSortLabel.js
-title: API of TableSortLabel
+title: TableSortLabel API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

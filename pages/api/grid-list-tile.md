@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/GridListTile/GridListTile.js
-title: API of GridListTile
+title: GridListTile API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

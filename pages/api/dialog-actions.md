@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/DialogActions/DialogActions.js
-title: API of DialogActions
+title: DialogActions API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

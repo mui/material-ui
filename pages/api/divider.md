@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Divider/Divider.js
-title: API of Divider
+title: Divider API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

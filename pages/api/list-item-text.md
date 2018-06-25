@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/ListItemText/ListItemText.js
-title: API of ListItemText
+title: ListItemText API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

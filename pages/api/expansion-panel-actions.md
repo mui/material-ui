@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/ExpansionPanelActions/ExpansionPanelActions.js
-title: API of ExpansionPanelActions
+title: ExpansionPanelActions API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Stepper/Stepper.js
-title: API of Stepper
+title: Stepper API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/FormGroup/FormGroup.js
-title: API of FormGroup
+title: FormGroup API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/TableFooter/TableFooter.js
-title: API of TableFooter
+title: TableFooter API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

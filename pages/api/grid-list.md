@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/GridList/GridList.js
-title: API of GridList
+title: GridList API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/SvgIcon/SvgIcon.js
-title: API of SvgIcon
+title: SvgIcon API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

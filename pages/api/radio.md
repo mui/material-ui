@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Radio/Radio.js
-title: API of Radio
+title: Radio API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

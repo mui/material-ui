@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js
-title: API of SpeedDialAction
+title: SpeedDialAction API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

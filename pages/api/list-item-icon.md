@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/ListItemIcon/ListItemIcon.js
-title: API of ListItemIcon
+title: ListItemIcon API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Chip/Chip.js
-title: API of Chip
+title: Chip API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

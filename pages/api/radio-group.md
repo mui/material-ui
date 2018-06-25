@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/RadioGroup/RadioGroup.js
-title: API of RadioGroup
+title: RadioGroup API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

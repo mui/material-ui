@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/StepLabel/StepLabel.js
-title: API of StepLabel
+title: StepLabel API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

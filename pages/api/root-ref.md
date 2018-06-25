@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/RootRef/RootRef.js
-title: API of RootRef
+title: RootRef API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

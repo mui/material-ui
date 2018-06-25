@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Hidden/Hidden.js
-title: API of Hidden
+title: Hidden API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

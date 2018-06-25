@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Tab/Tab.js
-title: API of Tab
+title: Tab API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

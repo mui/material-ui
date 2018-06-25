@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Tooltip/Tooltip.js
-title: API of Tooltip
+title: Tooltip API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

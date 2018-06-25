@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/FormHelperText/FormHelperText.js
-title: API of FormHelperText
+title: FormHelperText API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

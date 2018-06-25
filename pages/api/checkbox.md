@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Checkbox/Checkbox.js
-title: API of Checkbox
+title: Checkbox API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

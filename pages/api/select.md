@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Select/Select.js
-title: API of Select
+title: Select API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
