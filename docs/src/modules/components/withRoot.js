@@ -203,6 +203,9 @@ const pages = [
       {
         pathname: '/lab/toggle-button',
       },
+      {
+        pathname: '/lab/backdrop',
+      },
       findPages[2].children[1],
     ],
   },
