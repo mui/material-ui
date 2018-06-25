@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/FormControlLabel/FormControlLabel.js
-title: API of FormControlLabel
+title: FormControlLabel API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

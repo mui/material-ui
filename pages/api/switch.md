@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Switch/Switch.js
-title: API of Switch
+title: Switch API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Fade/Fade.js
-title: API of Fade
+title: Fade API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

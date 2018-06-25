@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/AppBar/AppBar.js
-title: API of AppBar
+title: AppBar API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

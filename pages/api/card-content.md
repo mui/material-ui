@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/CardContent/CardContent.js
-title: API of CardContent
+title: CardContent API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

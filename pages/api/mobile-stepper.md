@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/MobileStepper/MobileStepper.js
-title: API of MobileStepper
+title: MobileStepper API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

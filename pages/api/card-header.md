@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/CardHeader/CardHeader.js
-title: API of CardHeader
+title: CardHeader API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

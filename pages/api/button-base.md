@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/ButtonBase/ButtonBase.js
-title: API of ButtonBase
+title: ButtonBase API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

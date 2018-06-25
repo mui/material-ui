@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/FormLabel/FormLabel.js
-title: API of FormLabel
+title: FormLabel API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

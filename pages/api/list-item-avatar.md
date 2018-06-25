@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/ListItemAvatar/ListItemAvatar.js
-title: API of ListItemAvatar
+title: ListItemAvatar API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

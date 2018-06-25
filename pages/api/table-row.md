@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/TableRow/TableRow.js
-title: API of TableRow
+title: TableRow API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

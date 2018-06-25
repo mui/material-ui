@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/CardMedia/CardMedia.js
-title: API of CardMedia
+title: CardMedia API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

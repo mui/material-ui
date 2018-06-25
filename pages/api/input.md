@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Input/Input.js
-title: API of Input
+title: Input API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

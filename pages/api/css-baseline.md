@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/CssBaseline/CssBaseline.js
-title: API of CssBaseline
+title: CssBaseline API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

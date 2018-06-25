@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/DialogContentText/DialogContentText.js
-title: API of DialogContentText
+title: DialogContentText API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

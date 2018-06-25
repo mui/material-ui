@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Zoom/Zoom.js
-title: API of Zoom
+title: Zoom API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

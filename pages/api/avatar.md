@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Avatar/Avatar.js
-title: API of Avatar
+title: Avatar API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

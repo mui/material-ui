@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Table/Table.js
-title: API of Table
+title: Table API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

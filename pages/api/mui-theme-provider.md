@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/styles/MuiThemeProvider.js
-title: API of MuiThemeProvider
+title: MuiThemeProvider API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Typography/Typography.js
-title: API of Typography
+title: Typography API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

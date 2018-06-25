@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/InputLabel/InputLabel.js
-title: API of InputLabel
+title: InputLabel API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

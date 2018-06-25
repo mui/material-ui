@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/TableHead/TableHead.js
-title: API of TableHead
+title: TableHead API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

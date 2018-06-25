@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/TableCell/TableCell.js
-title: API of TableCell
+title: TableCell API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

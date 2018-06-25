@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/StepButton/StepButton.js
-title: API of StepButton
+title: StepButton API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

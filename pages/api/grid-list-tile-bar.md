@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/GridListTileBar/GridListTileBar.js
-title: API of GridListTileBar
+title: GridListTileBar API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

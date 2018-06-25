@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Toolbar/Toolbar.js
-title: API of Toolbar
+title: Toolbar API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

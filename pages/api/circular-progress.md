@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/CircularProgress/CircularProgress.js
-title: API of CircularProgress
+title: CircularProgress API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

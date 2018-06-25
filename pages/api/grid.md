@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Grid/Grid.js
-title: API of Grid
+title: Grid API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

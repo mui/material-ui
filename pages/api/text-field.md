@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/TextField/TextField.js
-title: API of TextField
+title: TextField API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

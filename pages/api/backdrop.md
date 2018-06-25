@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Backdrop/Backdrop.js
-title: API of Backdrop
+title: Backdrop API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

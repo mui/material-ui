@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Step/Step.js
-title: API of Step
+title: Step API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Dialog/Dialog.js
-title: API of Dialog
+title: Dialog API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

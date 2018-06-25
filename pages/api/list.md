@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/List/List.js
-title: API of List
+title: List API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

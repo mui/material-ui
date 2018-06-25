@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/MenuList/MenuList.js
-title: API of MenuList
+title: MenuList API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

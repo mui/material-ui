@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/BottomNavigation/BottomNavigation.js
-title: API of BottomNavigation
+title: BottomNavigation API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

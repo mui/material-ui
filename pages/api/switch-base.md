@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/internal/SwitchBase.js
-title: API of SwitchBase
+title: SwitchBase API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

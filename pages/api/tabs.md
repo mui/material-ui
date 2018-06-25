@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Tabs/Tabs.js
-title: API of Tabs
+title: Tabs API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/ClickAwayListener/ClickAwayListener.js
-title: API of ClickAwayListener
+title: ClickAwayListener API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

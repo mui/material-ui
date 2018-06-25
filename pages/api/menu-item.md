@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/MenuItem/MenuItem.js
-title: API of MenuItem
+title: MenuItem API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

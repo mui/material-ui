@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Paper/Paper.js
-title: API of Paper
+title: Paper API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/FormControl/FormControl.js
-title: API of FormControl
+title: FormControl API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/ListSubheader/ListSubheader.js
-title: API of ListSubheader
+title: ListSubheader API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

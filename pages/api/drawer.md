@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Drawer/Drawer.js
-title: API of Drawer
+title: Drawer API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

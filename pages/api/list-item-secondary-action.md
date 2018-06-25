@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/ListItemSecondaryAction/ListItemSecondaryAction.js
-title: API of ListItemSecondaryAction
+title: ListItemSecondaryAction API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

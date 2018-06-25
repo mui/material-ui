@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/DialogTitle/DialogTitle.js
-title: API of DialogTitle
+title: DialogTitle API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

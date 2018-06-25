@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Card/Card.js
-title: API of Card
+title: Card API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Button/Button.js
-title: API of Button
+title: Button API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/InputAdornment/InputAdornment.js
-title: API of InputAdornment
+title: InputAdornment API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

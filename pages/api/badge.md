@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Badge/Badge.js
-title: API of Badge
+title: Badge API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->

@@ -1,6 +1,6 @@
 ---
 filename: /packages/material-ui/src/Portal/Portal.js
-title: API of Portal
+title: Portal API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
