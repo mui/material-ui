@@ -76,3 +76,9 @@ By default, an Icon will inherit the current text color.
 Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
 
 {{"demo": "pages/style/icons/Icons.js"}}
+
+### Dynamic Icons loading
+
+You can load icons dynamicly, using [React.createElement](https://reactjs.org/docs/react-api.html#createelement)
+
+{{"demo": "pages/style/icons/DynamicIcons.js"}}
