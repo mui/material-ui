@@ -3,31 +3,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
-import Paper from '../Paper';
+import withStyles from '@material-ui/core/styles/withStyles';
+import { capitalize } from '@material-ui/core/utils/helpers';
+import Paper from '@material-ui/core/Paper';
 
 export const styles = theme => {
-  const backgroundColorDefault =
-    theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
-
   return {
     root: {
-      flexDirection: 'column',
       position: 'absolute',
+      zIndex: 0,
+      display: 'flex',
+      flexFlow: 'column',
       width: '100%',
       height: '100%',
-      zIndex: 0,
     },
     backLayer: {
 
     },
     frontLayer: {
 
-    },
-    colorDefault: {
-      backgroundColor: backgroundColorDefault,
-      color: theme.palette.getContrastText(backgroundColorDefault),
     },
     colorPrimary: {
       backgroundColor: theme.palette.primary.main,
@@ -41,20 +35,18 @@ export const styles = theme => {
 };
 
 function Backdrop(props) {
-  const { children, classes, className: classNameProp, color, position, ...other } = props;
+  const { children, classes, className: classNameProp, color, ...other } = props;
 
   const className = classNames(
     classes.root,
-    classes[`position${capitalize(position)}`],
     {
       [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-      'mui-fixed': position === 'fixed', // Useful for the Dialog
     },
     classNameProp,
   );
 
   return (
-    <Paper square elevation={0} className={classes.root} {...other}>
+    <Paper square elevation={0} className={className} {...other}>
       {children}
     </Paper>
   );
@@ -77,18 +69,11 @@ Backdrop.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'default']),
-  /**
-   * The positioning type. The behavior of the different options is described
-   * [here](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
-   * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
-   */
-  position: PropTypes.oneOf(['fixed', 'absolute', 'sticky', 'static']),
+  color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
 };
 
 Backdrop.defaultProps = {
   color: 'primary',
-  position: 'fixed',
 };
 
 export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);

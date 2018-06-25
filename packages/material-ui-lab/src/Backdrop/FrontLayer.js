@@ -3,10 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Collapse from '../Collapse';
-import Paper from '../Paper';
-import withStyles from '../styles/withStyles';
-import { isMuiElement } from '../utils/reactHelpers';
+import Paper from '@material-ui/core/Paper';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 export const styles = theme => {
   const transition = {
@@ -17,6 +15,18 @@ export const styles = theme => {
     root: {
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
+      borderTopLeftRadius: 16,
+      borderTopRightRadius: 16,
+
+      // fill remaining space not taken by back layer content
+      flexGrow: 1,
+      flexShrink: 1,
+      flexBasis: 'auto',
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.getContrastText(theme.palette.background.paper),
+
+      paddingLeft: 15,
+      paddingRight: 15
     },
     disabled: { // scrim
       backgroundColor: theme.palette.action.disabledBackground,
@@ -36,7 +46,7 @@ function BackdropFront(props) {
     minimized,
     onChange: onChangeProp,
     ...other
-  } = this.props;
+  } = props;
   const onChange = onChangeProp ?
     event => onChange(event, !minimized) :
     null;
@@ -51,7 +61,7 @@ function BackdropFront(props) {
   );
 
   return (
-    <Paper className={className} elevation={1} square {...other} />
+    <Paper className={className} elevation={0} square {...other} />
   );
 }
 
