@@ -1,6 +1,6 @@
 ---
 title: Cards React component
-components: Card, CardActions, CardContent, CardHeader, CardMedia, Collapse
+components: Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
 # Cards

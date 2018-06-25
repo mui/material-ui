@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
-import debounce from 'debounce';
+import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import warning from 'warning';
 import classNames from 'classnames';
 import { Manager, Popper, Target } from 'react-popper';
@@ -24,7 +24,7 @@ export const styles = theme => ({
   open: {},
   tooltip: {
     backgroundColor: theme.palette.grey[700],
-    borderRadius: 2,
+    borderRadius: theme.shape.borderRadius,
     color: common.white,
     fontFamily: theme.typography.fontFamily,
     opacity: 0,
