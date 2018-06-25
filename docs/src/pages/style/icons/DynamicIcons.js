@@ -9,21 +9,19 @@ const menu = [
 ];
 
 function Menu(props) {
-  render() {
-    return (
-      <Paper>
-        <MenuList>
-          {menu.map((item, index) => (
-            <MenuItem key={index}>
-              <ListItemIcon >
-                {React.createElement(Icons[item.icon])}
-              </ListItemIcon>
-              <ListItemText inset primary={item.name} />
-            </MenuItem>
-          ))}
-        </MenuList>
-      </Paper>
-    )
-  }
+  return (
+    <Paper>
+      <MenuList>
+        {menu.map((item, index) => (
+          <MenuItem key={index}>
+            <ListItemIcon >
+              {React.createElement(Icons[item.icon])}
+            </ListItemIcon>
+            <ListItemText inset primary={item.name}/>
+          </MenuItem>
+        ))}
+      </MenuList>
+    </Paper>
+  )
 };
 export default Menu;
