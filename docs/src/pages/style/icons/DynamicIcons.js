@@ -8,22 +8,22 @@ const menu = [
   { name: 'Create Notification', icon: 'AddAlert' },
 ];
 
-class Menu extends React.Component {
-    render() {
-        return (
-            <Paper>
-      <MenuList>
-        {menu.map((item, index) => (
-            <MenuItem>
+function Menu(props) {
+  render() {
+    return (
+      <Paper>
+        <MenuList>
+          {menu.map((item, index) => (
+            <MenuItem key={index}>
               <ListItemIcon >
                 {React.createElement(Icons[item.icon])}
               </ListItemIcon>
               <ListItemText inset primary={item.name} />
             </MenuItem>
-        ))}
-      </MenuList>
-    </Paper>
-        )
-    }
+          ))}
+        </MenuList>
+      </Paper>
+    )
+  }
 };
 export default Menu;
