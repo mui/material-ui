@@ -29,6 +29,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/style/icons/SvgMaterialIcons'), 'utf8')
 `,
         },
+           'pages/style/icons/DynamicIcons.js': {
+          js: require('docs/src/pages/style/icons/DynamicIcons').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/style/icons/DynamicIcons'), 'utf8')
+`,
+        },
       }}
     />
   );
