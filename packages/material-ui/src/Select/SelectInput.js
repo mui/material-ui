@@ -178,6 +178,7 @@ class SelectInput extends React.Component {
       open: openProp,
       readOnly,
       renderValue,
+      required,
       SelectDisplayProps,
       tabIndex: tabIndexProp,
       type = 'hidden',
@@ -185,6 +186,8 @@ class SelectInput extends React.Component {
       ...other
     } = this.props;
     const open = this.isOpenControlled && this.displayNode ? openProp : this.state.open;
+
+    delete other['aria-invalid'];
 
     let display;
     let displaySingle = '';
@@ -283,7 +286,6 @@ class SelectInput extends React.Component {
         <input
           value={Array.isArray(value) ? value.join(',') : value}
           name={name}
-          readOnly={readOnly}
           ref={this.handleInputRef}
           type={type}
           {...other}
@@ -411,6 +413,10 @@ SelectInput.propTypes = {
    * @returns {ReactElement}
    */
   renderValue: PropTypes.func,
+  /**
+   * @ignore
+   */
+  required: PropTypes.bool,
   /**
    * Properties applied to the clickable div element.
    */

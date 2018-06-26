@@ -473,7 +473,6 @@ class Input extends React.Component {
         {startAdornment}
         <InputComponent
           aria-invalid={error}
-          aria-required={required}
           autoComplete={autoComplete}
           autoFocus={autoFocus}
           className={inputClassName}
