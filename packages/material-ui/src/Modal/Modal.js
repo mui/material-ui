@@ -25,11 +25,10 @@ function getHasTransition(props) {
 
 export const styles = theme => ({
   root: {
-    display: 'flex',
-    width: '100%',
-    height: '100%',
     position: 'fixed',
     zIndex: theme.zIndex.modal,
+    right: 0,
+    bottom: 0,
     top: 0,
     left: 0,
   },
