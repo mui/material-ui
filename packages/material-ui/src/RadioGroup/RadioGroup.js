@@ -42,13 +42,12 @@ class RadioGroup extends React.Component {
 
     return (
       <FormGroup role="radiogroup" {...other}>
-        {React.Children.map(children, (child, index) => {
+        {React.Children.map(children, child => {
           if (!React.isValidElement(child)) {
             return null;
           }
 
           return React.cloneElement(child, {
-            key: index,
             name,
             inputRef: node => {
               if (node) {

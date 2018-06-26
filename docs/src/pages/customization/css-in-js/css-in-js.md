@@ -387,6 +387,8 @@ const Styled = createStyled(theme => ({
 }));
 ```
 
+[@jedwards1211](https://github.com/jedwards1211) Has taken the time to move this module into a package: [material-ui-render-props-styles](https://github.com/jcoreio/material-ui-render-props-styles). Feel free to use it.
+
 ### styled-components API (+15 lines)
 
 styled-components's API removes the mapping between components and styles. Using components as a low-level styling construct can be simpler.
