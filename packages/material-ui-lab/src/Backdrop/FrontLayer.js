@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Fade from '@material-ui/core/Fade';
 
 export const styles = theme => {
   const transition = {
@@ -26,13 +27,23 @@ export const styles = theme => {
 
       paddingLeft: 15,
       paddingRight: 15,
-      overflow: 'scroll',
+      overflow: 'auto',
+      display: 'flex',
+      flexDirection: 'column'
     },
-    disabled: { // scrim
-      '& > *': {
-        opacity: 0.5,
-        transition: theme.transitions.create('opacity', transition),
-      } 
+    scrim: {
+      zIndex: -1,
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      height: '100%',
+      width: '100%',
+      borderTopLeftRadius: 16,
+      borderTopRightRadius: 16,
+      backgroundColor: 'rgba(255,255,255,0.5)'
+    },
+    scrimActive: {
+      zIndex: theme.zIndex.appBar - 1,
     },
     minimized: { // positioning
       backgroundColor: theme.palette.action.disabledBackground,
@@ -48,8 +59,10 @@ function BackdropFront(props) {
     disabled,
     minimized,
     onChange: onChangeProp,
+    children,
     ...other
   } = props;
+
   const onChange = onChangeProp ?
     event => onChange(event, !minimized) :
     null;
@@ -58,13 +71,17 @@ function BackdropFront(props) {
     classes.root,
     {
       [classes.minimized]: minimized,
-      [classes.disabled]: disabled,
     },
     classNameProp,
   );
 
   return (
-    <Paper className={className} elevation={0} square {...other} />
+    <Paper className={className} elevation={0} square {...other}>
+      <Fade in={disabled}>
+        <div className={classNames(classes.scrim, { [classes.scrimActive]: disabled })}/>
+      </Fade>
+      {children}
+    </Paper>
   );
 }
 

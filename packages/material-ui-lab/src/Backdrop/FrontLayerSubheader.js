@@ -6,11 +6,13 @@ import withStyles from '@material-ui/core/styles/withStyles';
 export const styles = theme => {
   return {
     root: {
-      zIndex: theme.zIndex.appBar - 1,
+      zIndex: theme.zIndex.appBar - 2,
       backgroundColor: theme.palette.background.paper,
       position: 'sticky',
       top: 0,
-      height: 56,
+      flexGrow: 0,
+      flexShrink: 0,
+      flexBasis: 56,
       width: '100%',
       display: 'flex',
       flexDirection: 'column',

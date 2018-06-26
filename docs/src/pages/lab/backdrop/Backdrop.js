@@ -7,6 +7,7 @@ import Back from '@material-ui/lab/Backdrop/BackLayer';
 import BackSection from '@material-ui/lab/Backdrop/BackLayerSection';
 import Front from '@material-ui/lab/Backdrop/FrontLayer';
 import Subheader from '@material-ui/lab/Backdrop/FrontLayerSubheader';
+import FrontContent from '@material-ui/lab/Backdrop/FrontLayerContent';
 import FadeSwitch from '@material-ui/lab/Backdrop/FadeSwitch';
 
 import Typography from '@material-ui/core/Typography';
@@ -101,11 +102,13 @@ class SimpleBackdrop extends React.Component {
                 Incredible Iguanas
               </Typography>
             </Subheader>
-            <List>
-              { new Array(5).fill(
-                <ListItem><SimpleMediaCard /></ListItem>
-              )}
-            </List>
+            <FrontContent>
+              <List>
+                { new Array(5).fill(
+                  <ListItem><SimpleMediaCard /></ListItem>
+                )}
+              </List>
+            </FrontContent>
           </Front>
         </Backdrop>
       </div>
