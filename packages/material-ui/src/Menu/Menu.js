@@ -33,7 +33,7 @@ class Menu extends React.Component {
   menuList = null;
 
   componentDidMount() {
-    if (this.props.open && this.props.disableAutoFocus !== true) {
+    if (this.props.open && this.props.disableAutoFocusSelectedItem !== true) {
       this.focus();
     }
   }
@@ -63,7 +63,7 @@ class Menu extends React.Component {
     const menuList = ReactDOM.findDOMNode(this.menuList);
 
     // Focus so the scroll computation of the Popover works as expected.
-    if (this.props.disableAutoFocus !== true) {
+    if (this.props.disableAutoFocusSelectedItem !== true) {
       this.focus();
     }
 
@@ -151,7 +151,7 @@ Menu.propTypes = {
   /**
    * If `true`, the first menu item will not be auto focused.
    */
-  disableAutoFocus: PropTypes.bool,
+  disableAutoFocusSelectedItem: PropTypes.bool,
   /**
    * Properties applied to the `MenuList` element.
    */
