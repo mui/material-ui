@@ -88,4 +88,15 @@ describe('<SvgIcon />', () => {
       );
     });
   });
+
+  describe('prop: fontSize', () => {
+    it('should be able to change the fontSize', () => {
+      const wrapper = shallow(<SvgIcon fontSize="inherit">{path}</SvgIcon>);
+      assert.strictEqual(
+        wrapper.hasClass(classes.fontSizeInherit),
+        true,
+        'should have fontSize "inherit',
+      );
+    });
+  });
 });

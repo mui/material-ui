@@ -66,4 +66,15 @@ describe('<Icon />', () => {
       );
     });
   });
+
+  describe('prop: fontSize', () => {
+    it('should be able to change the fontSize', () => {
+      const wrapper = shallow(<Icon fontSize="inherit">account_circle</Icon>);
+      assert.strictEqual(
+        wrapper.hasClass(classes.fontSizeInherit),
+        true,
+        'should have fontSize "inherit',
+      );
+    });
+  });
 });

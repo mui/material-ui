@@ -7,12 +7,12 @@ import { capitalize } from '../utils/helpers';
 export const styles = theme => ({
   root: {
     userSelect: 'none',
-    fontSize: 24,
     width: '1em',
     height: '1em',
     display: 'inline-block',
     fill: 'currentColor',
     flexShrink: 0,
+    fontSize: 24,
     transition: theme.transitions.create('fill', {
       duration: theme.transitions.duration.shorter,
     }),
@@ -32,6 +32,9 @@ export const styles = theme => ({
   colorDisabled: {
     color: theme.palette.action.disabled,
   },
+  fontSizeInherit: {
+    fontSize: 'inherit',
+  },
 });
 
 function SvgIcon(props) {
@@ -40,6 +43,7 @@ function SvgIcon(props) {
     classes,
     className: classNameProp,
     color,
+    fontSize,
     nativeColor,
     titleAccess,
     viewBox,
@@ -49,6 +53,7 @@ function SvgIcon(props) {
   const className = classNames(
     classes.root,
     {
+      [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default',
       [classes[`color${capitalize(color)}`]]: color !== 'inherit',
     },
     classNameProp,
@@ -89,6 +94,10 @@ SvgIcon.propTypes = {
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
   /**
+   * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
+   */
+  fontSize: PropTypes.oneOf(['inherit', 'default']),
+  /**
    * Applies a color attribute to the SVG element.
    */
   nativeColor: PropTypes.string,
@@ -110,6 +119,7 @@ SvgIcon.propTypes = {
 SvgIcon.defaultProps = {
   color: 'inherit',
   viewBox: '0 0 24 24',
+  fontSize: 'default',
 };
 
 SvgIcon.muiName = 'SvgIcon';
