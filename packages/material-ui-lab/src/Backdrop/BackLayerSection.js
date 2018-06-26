@@ -76,7 +76,7 @@ BackdropBackSection.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, expand to reveal contextual information.
+   * If `true`, expand to reveal section.
    */
   expanded: PropTypes.bool,
 };
