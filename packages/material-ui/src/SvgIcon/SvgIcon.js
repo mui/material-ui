@@ -32,10 +32,10 @@ export const styles = theme => ({
     color: theme.palette.action.disabled,
   },
   fontSizeDefault: {
-    fontSize: 24
+    fontSize: 24,
   },
   fontSizeInherit: {
-    fontSize: 'inherit'
+    fontSize: 'inherit',
   },
 });
 
@@ -121,7 +121,7 @@ SvgIcon.propTypes = {
 SvgIcon.defaultProps = {
   color: 'inherit',
   viewBox: '0 0 24 24',
-  fontSize: 'default'
+  fontSize: 'default',
 };
 
 SvgIcon.muiName = 'SvgIcon';
