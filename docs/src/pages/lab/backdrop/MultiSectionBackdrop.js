@@ -20,29 +20,51 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
 import Chip from '@material-ui/core/Chip';
-import MultiSectionMediaCard from '../../demos/cards/SimpleMediaCard'
+import MultiSectionMediaCard from '../../demos/cards/SimpleMediaCard';
 
 let tags = [
-  'chameleon', 'green anole', 'wing', 'gecko',
-  'water dragon', 'bearded dragon', 'uromastyx', 'skink',
-  'horned', 'rainbow', 'leopard gecko', 'basilisk',
-  'tegu', 'brown anole', 'geico', 'frilled',
-  'camouflage', 'lego', 'rainforest', 'tropical rainforest',
-  'blue', 'red', 'black', 'purple', 'yellow', 'small',
-  'godzilla', 'giant', 'monster', 'dwarf', 'cool',
-]
-
+  'chameleon',
+  'green anole',
+  'wing',
+  'gecko',
+  'water dragon',
+  'bearded dragon',
+  'uromastyx',
+  'skink',
+  'horned',
+  'rainbow',
+  'leopard gecko',
+  'basilisk',
+  'tegu',
+  'brown anole',
+  'geico',
+  'frilled',
+  'camouflage',
+  'lego',
+  'rainforest',
+  'tropical rainforest',
+  'blue',
+  'red',
+  'black',
+  'purple',
+  'yellow',
+  'small',
+  'godzilla',
+  'giant',
+  'monster',
+  'dwarf',
+  'cool',
+];
 
 const styles = theme => {
-  let transition = theme.transitions.create(
-    'backgroundColor',
-    { duration: theme.transitions.duration.shortest }
-  )
+  let transition = theme.transitions.create('backgroundColor', {
+    duration: theme.transitions.duration.shortest,
+  });
   return {
     root: {
       width: 360,
       height: 616,
-      position: 'relative'
+      position: 'relative',
     },
     flex: {
       flex: 1,
@@ -51,7 +73,7 @@ const styles = theme => {
       alignItems: 'center',
       justifyContent: 'space-between',
       width: '100%',
-      height: 48
+      height: 48,
     },
     menuButton: {
       marginLeft: -12,
@@ -61,21 +83,25 @@ const styles = theme => {
       margin: theme.spacing.unit,
       backgroundColor: theme.palette.primary[300],
       color: theme.palette.primary.contrastText,
-    }
+    },
   };
 };
 
 class MultiSectionBackdrop extends React.Component {
   state = {
     expanded: false,
-  }
+  };
   render() {
     const { classes } = this.props;
-    const { expanded } = this.state
+    const { expanded } = this.state;
 
     const Title = ({ className, ...props }) => (
-      <Typography variant="title" color="inherit"
-        className={classNames(classes.flex, className)} {...props} />
+      <Typography
+        variant="title"
+        color="inherit"
+        className={classNames(classes.flex, className)}
+        {...props}
+      />
     );
 
     return (
@@ -84,57 +110,57 @@ class MultiSectionBackdrop extends React.Component {
           <Back>
             <BackSection expanded>
               <Toolbar>
-                <IconButton className={classes.menuButton} color="inherit" aria-label="Menu"
-                  onClick={() => this.setState({ expanded: expanded ? false : 'nav' })}>
+                <IconButton
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="Menu"
+                  onClick={() => this.setState({ expanded: expanded ? false : 'nav' })}
+                >
                   <MenuIcon />
                 </IconButton>
-                <FadeSwitch selected={this.state.expanded}
+                <FadeSwitch
+                  selected={this.state.expanded}
                   options={{
                     false: <Title>Luxurious Lizards</Title>,
-                    'nav': (
+                    nav: (
                       <Title>
                         Nature's Nobility
-                        <IconButton color="inherit" aria-label="Filters"
+                        <IconButton
+                          color="inherit"
+                          aria-label="Filters"
                           className={classes.filter}
-                          onClick={() => this.setState({ expanded: 'filters' })}>
+                          onClick={() => this.setState({ expanded: 'filters' })}
+                        >
                           <FilterIcon />
                         </IconButton>
                       </Title>
                     ),
-                    'filters': <Title> Filter by tags </Title>
+                    filters: <Title> Filter by tags </Title>,
                   }}
                 />
               </Toolbar>
             </BackSection>
             <BackSection expanded={this.state.expanded === 'nav'}>
               <List>
-                <MenuItem selected={true}>
-                  Luxurious Lizards
-                </MenuItem>
-                <MenuItem>
-                  Glorious Geese
-                </MenuItem>
-                <MenuItem>
-                  Ecstatic Eggs
-                </MenuItem>
+                <MenuItem selected={true}>Luxurious Lizards</MenuItem>
+                <MenuItem>Glorious Geese</MenuItem>
+                <MenuItem>Ecstatic Eggs</MenuItem>
               </List>
             </BackSection>
             <BackSection expanded={this.state.expanded === 'filters'}>
-                { tags.map(label => (
-                    <Chip key={label} label={label} className={classes.chip} />
-                )) }
+              {tags.map(label => <Chip key={label} label={label} className={classes.chip} />)}
             </BackSection>
           </Back>
           <Front disabled={Boolean(this.state.expanded)}>
             <Subheader divider>
-              <Typography variant="subheading">
-                Incredible Iguanas
-              </Typography>
+              <Typography variant="subheading">Incredible Iguanas</Typography>
             </Subheader>
             <FrontContent>
               <List>
                 {new Array(5).fill(
-                  <ListItem><MultiSectionMediaCard /></ListItem>
+                  <ListItem>
+                    <MultiSectionMediaCard />
+                  </ListItem>,
                 )}
               </List>
             </FrontContent>

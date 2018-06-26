@@ -9,22 +9,15 @@ export const styles = {
     flexGrow: 0,
     flexShrink: 1,
     flexBasis: 'auto',
-  }
+  },
 };
 
 function BackdropBack(props) {
   const { children, classes, className: classNameProp, ...other } = props;
 
-  const className = classNames(
-    classes.root,
-    classNameProp,
-  );
+  const className = classNames(classes.root, classNameProp);
 
-  return (
-    <div className={className}>
-      {children}
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
 BackdropBack.propTypes = {

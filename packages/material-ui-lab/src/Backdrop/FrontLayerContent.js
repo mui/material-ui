@@ -6,25 +6,16 @@ import withStyles from '@material-ui/core/styles/withStyles';
 export const styles = {
   root: {
     flex: 1,
-    overflow: 'scroll'
+    overflow: 'scroll',
   },
 };
 
 function BackdropFrontContent(props) {
-  const {
-    classes,
-    className: classNameProp,
-    ...other
-  } = props;
+  const { classes, className: classNameProp, ...other } = props;
 
-  const className = classNames(
-    classes.root,
-    classNameProp,
-  );
+  const className = classNames(classes.root, classNameProp);
 
-  return (
-    <div className={className} {...other} />
-  );
+  return <div className={className} {...other} />;
 }
 
 BackdropFrontContent.propTypes = {
@@ -44,4 +35,3 @@ BackdropFrontContent.propTypes = {
 };
 
 export default withStyles(styles, { name: 'MuiBackdropFrontContent' })(BackdropFrontContent);
-

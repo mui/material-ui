@@ -18,18 +18,17 @@ import MenuIcon from '@material-ui/icons/Menu';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
-import SimpleMediaCard from '../../demos/cards/SimpleMediaCard'
+import SimpleMediaCard from '../../demos/cards/SimpleMediaCard';
 
 const styles = theme => {
-  let transition = theme.transitions.create(
-    'backgroundColor',
-    { duration: theme.transitions.duration.shortest }
-  )
+  let transition = theme.transitions.create('backgroundColor', {
+    duration: theme.transitions.duration.shortest,
+  });
   return {
     root: {
       width: 360,
       height: 616,
-      position: 'relative'
+      position: 'relative',
     },
     flex: {
       flex: 1,
@@ -44,14 +43,18 @@ const styles = theme => {
 class SimpleBackdrop extends React.Component {
   state = {
     expanded: false,
-  }
+  };
   render() {
     const { classes } = this.props;
-    const { expanded } = this.state
+    const { expanded } = this.state;
 
     const Title = ({ className, ...props }) => (
-      <Typography variant="title" color="inherit"
-        className={classNames(classes.flex, className)} {...props} />
+      <Typography
+        variant="title"
+        color="inherit"
+        className={classNames(classes.flex, className)}
+        {...props}
+      />
     );
 
     return (
@@ -60,42 +63,41 @@ class SimpleBackdrop extends React.Component {
           <Back>
             <BackSection expanded>
               <Toolbar>
-                <IconButton className={classes.menuButton} color="inherit" aria-label="Menu"
-                  onClick={() => this.setState({ expanded: !expanded })}>
+                <IconButton
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="Menu"
+                  onClick={() => this.setState({ expanded: !expanded })}
+                >
                   <MenuIcon />
                 </IconButton>
-                <FadeSwitch selected={this.state.expanded}
+                <FadeSwitch
+                  selected={this.state.expanded}
                   options={{
                     true: <Title>Nature's Nobility</Title>,
-                    false: <Title>Luxurious Lizards</Title>
+                    false: <Title>Luxurious Lizards</Title>,
                   }}
                 />
               </Toolbar>
             </BackSection>
             <BackSection expanded={this.state.expanded}>
               <List>
-                <MenuItem selected={true}>
-                  Luxurious Lizards
-                </MenuItem>
-                <MenuItem>
-                  Glorious Geese
-                </MenuItem>
-                <MenuItem>
-                  Ecstatic Eggs
-                </MenuItem>
+                <MenuItem selected={true}>Luxurious Lizards</MenuItem>
+                <MenuItem>Glorious Geese</MenuItem>
+                <MenuItem>Ecstatic Eggs</MenuItem>
               </List>
             </BackSection>
           </Back>
           <Front disabled={this.state.expanded}>
             <Subheader divider>
-              <Typography variant="subheading">
-                Incredible Iguanas
-              </Typography>
+              <Typography variant="subheading">Incredible Iguanas</Typography>
             </Subheader>
             <FrontContent>
               <List>
                 {new Array(5).fill(
-                  <ListItem><SimpleMediaCard /></ListItem>
+                  <ListItem>
+                    <SimpleMediaCard />
+                  </ListItem>,
                 )}
               </List>
             </FrontContent>

@@ -16,36 +16,22 @@ export const styles = theme => {
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     divided: {
       borderBottomStyle: 'solid',
       borderBottomWidth: 1,
-      borderBottomColor: theme.palette.divider
-    }
+      borderBottomColor: theme.palette.divider,
+    },
   };
 };
 
 function BackdropFrontSubheader(props) {
-  const {
-    classes,
-    className: classNameProp,
-    children,
-    divided,
-    ...other
-  } = props;
+  const { classes, className: classNameProp, children, divided, ...other } = props;
 
-  const className = classNames(
-    classes.root,
-    { [classes.divided]: divided },
-    classNameProp,
-  );
+  const className = classNames(classes.root, { [classes.divided]: divided }, classNameProp);
 
-  return (
-    <div className={className}>
-    { children }
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
 BackdropFrontSubheader.propTypes = {
@@ -69,7 +55,7 @@ BackdropFrontSubheader.propTypes = {
 };
 
 BackdropFrontSubheader.defaultProps = {
-  divided: true
+  divided: true,
 };
 
 export default withStyles(styles, { name: 'MuiBackdropFrontHeader' })(BackdropFrontSubheader);

@@ -4,12 +4,12 @@ import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Fade from '@material-ui/core/Fade';
 
-const SHORT_TRANSITION = 150
+const SHORT_TRANSITION = 150;
 
 export const styles = theme => {
   return {
     root: {
-      position: 'relative'
+      position: 'relative',
     },
     option: {
       position: 'relative',
@@ -18,9 +18,8 @@ export const styles = theme => {
       marginLeft: '-100%',
       float: 'left',
     },
-    selected: {
-    }
-  }
+    selected: {},
+  };
 };
 
 function FadeSwitch(props) {
@@ -33,25 +32,24 @@ function FadeSwitch(props) {
     ...other
   } = props;
 
-  const selected = `${selectedProp}`
+  const selected = `${selectedProp}`;
 
-  const className = classNames(
-    classes.root,
-    classNameProp,
-  );
+  const className = classNames(classes.root, classNameProp);
 
   const fadeProps = isSelected => ({
     className: classNames(classes.option, { [classes.selected]: isSelected }),
     in: isSelected,
     timeout: SHORT_TRANSITION,
-    style: isSelected ? {
-      transitionDelay: SHORT_TRANSITION,
-      zIndex: 1,
-    } : {
-      transitionDelay: 0,
-      zIndex: 0,
-    }
-  })
+    style: isSelected
+      ? {
+          transitionDelay: SHORT_TRANSITION,
+          zIndex: 1,
+        }
+      : {
+          transitionDelay: 0,
+          zIndex: 0,
+        },
+  });
 
   return (
     <div className={className} {...other}>

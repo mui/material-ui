@@ -6,9 +6,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import AnimateHeight from 'react-animate-height';
 import Fade from '@material-ui/core/Fade';
 
-const FADE_OUT = 150
-const EXPAND = 150
-const FADE_IN = 150
+const FADE_OUT = 150;
+const EXPAND = 150;
+const FADE_IN = 150;
 
 export const styles = theme => {
   return {
@@ -17,45 +17,39 @@ export const styles = theme => {
       paddingLeft: 7.5,
       paddingRight: 7.5,
       opacity: 0,
-      zIndex: 0
+      zIndex: 0,
     },
     expanded: {
       zIndex: 1,
       opacity: 0,
-    }
-  }
+    },
+  };
 };
 
 function BackdropBackSection(props) {
   const { children, classes, className: classNameProp, expanded, ...other } = props;
 
-  const className = classNames(
-    classes.root,
-    classNameProp,
-    { [classes.expanded]: expanded }
-  );
+  const className = classNames(classes.root, classNameProp, { [classes.expanded]: expanded });
 
   const animationProps = {
     delay: FADE_OUT,
     duration: EXPAND,
     height: 'auto',
     height: expanded ? 'auto' : 0,
-  }
+  };
 
   const fadeProps = {
     in: expanded,
     timeout: expanded ? FADE_IN : FADE_OUT,
     style: {
       transitionDelay: expanded ? EXPAND + FADE_OUT : 0,
-    }
-  }
+    },
+  };
 
   return (
     <AnimateHeight {...animationProps} {...other}>
       <Fade {...fadeProps}>
-        <div className={className}>
-          {children}
-        </div>
+        <div className={className}>{children}</div>
       </Fade>
     </AnimateHeight>
   );
@@ -82,7 +76,7 @@ BackdropBackSection.propTypes = {
 };
 
 BackdropBackSection.defaultProps = {
-  expanded: false
+  expanded: false,
 };
 
 export default withStyles(styles, { name: 'MuiBackdropBackSection' })(BackdropBackSection);

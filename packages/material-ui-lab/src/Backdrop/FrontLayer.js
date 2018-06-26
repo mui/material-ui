@@ -8,7 +8,6 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Fade from '@material-ui/core/Fade';
 
 export const styles = theme => {
-
   return {
     root: {
       position: 'relative',
@@ -26,7 +25,7 @@ export const styles = theme => {
       paddingRight: 15,
       overflow: 'auto',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
     },
     scrim: {
       zIndex: -1,
@@ -37,12 +36,13 @@ export const styles = theme => {
       width: '100%',
       borderTopLeftRadius: 16,
       borderTopRightRadius: 16,
-      backgroundColor: 'rgba(255,255,255,0.5)'
+      backgroundColor: 'rgba(255,255,255,0.5)',
     },
     scrimActive: {
       zIndex: theme.zIndex.appBar - 1,
     },
-    minimized: { // positioning
+    minimized: {
+      // positioning
       backgroundColor: theme.palette.action.disabledBackground,
     },
   };
@@ -60,9 +60,7 @@ function BackdropFront(props) {
     ...other
   } = props;
 
-  const onChange = onChangeProp ?
-    event => onChange(event, !minimized) :
-    null;
+  const onChange = onChangeProp ? event => onChange(event, !minimized) : null;
 
   const className = classNames(
     classes.root,
@@ -75,7 +73,7 @@ function BackdropFront(props) {
   return (
     <Paper className={className} elevation={0} square {...other}>
       <Fade in={disabled}>
-        <div className={classNames(classes.scrim, { [classes.scrimActive]: disabled })}/>
+        <div className={classNames(classes.scrim, { [classes.scrimActive]: disabled })} />
       </Fade>
       {children}
     </Paper>
@@ -118,7 +116,6 @@ BackdropFront.propTypes = {
   onChange: PropTypes.func,
 };
 
-BackdropFront.defaultProps = {
-};
+BackdropFront.defaultProps = {};
 
 export default withStyles(styles, { name: 'MuiBackdropFront' })(BackdropFront);
