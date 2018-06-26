@@ -5,6 +5,50 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.3.0
+###### *Jun 26, 2018*
+
+Big thanks to the 10 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Add extended Floating Action Button variant (#11941) @mbrookes.
+- Add scroll body handling for the dialog (#11974).
+- Work on SEO for the components (#11963).
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [FormControl] Correct minor typo in text (#11931) @FluentSynergyDW
+- [Grid] Add `auto` to TypeScript definitions (#11933) @woobianca
+- [styles] Safer prefix logic (#11943) @oliviertassinari
+- [Button] Add extended FAB variant (#11941) @mbrookes
+- [styles] Warn when the first argument is wrong (#11953) @oliviertassinari
+- [ClickAwayListener] Handle null child (#11955) @oliviertassinari
+- [theme] Add border-radius to the theme (#11847) @itelo
+- [Dialog] Add a scroll property (#11974) @oliviertassinari
+
+#### Docs
+
+- [Showcase] Add posters galore (react-admin) (#11939) @fzaninotto
+- [docs] Update ts example (#11949) @kevinhughes27
+- [docs] Add Outline docs (#11960) @tomasdev
+- [docs] Do SEO for the components (#11963) @oliviertassinari
+- [docs] Better API wording (#11973) @oliviertassinari
+- [docs] In Typescript doc, add missing `createStyles` to import (#11975) @Sylphony
+
+#### Core
+
+- [typescript] Fix Typings for disableTouchRipple and allVariants (#11944) @franklixuefei
+- [core] Upgrade the dev dependencies (#11954) @oliviertassinari
+- [core] Upgrade eslint (#11957) @oliviertassinari
+- [core] Upgrade preval (#11958) @oliviertassinari
+- [core] Use Chrome Headless for the tests over PhantomJS (#11961) @oliviertassinari
+
+#### Lab
+
 ## 1.2.3
 ###### *Jun 20, 2018*
 
