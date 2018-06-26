@@ -8,11 +8,18 @@ function Page() {
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/lab/backdrop/Backdrop.js': {
-          js: require('docs/src/pages/lab/backdrop/Backdrop').default,
+        'pages/lab/backdrop/SimpleBackdrop.js': {
+          js: require('docs/src/pages/lab/backdrop/SimpleBackdrop').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/lab/backdrop/Backdrop'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/lab/backdrop/SimpleBackdrop'), 'utf8')
+`,
+        },
+        'pages/lab/backdrop/MultiSectionBackdrop.js': {
+          js: require('docs/src/pages/lab/backdrop/MultiSectionBackdrop').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/lab/backdrop/MultiSectionBackdrop'), 'utf8')
 `,
         },
       }}

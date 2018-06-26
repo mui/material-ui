@@ -4,8 +4,11 @@ import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import AnimateHeight from 'react-animate-height';
+import Fade from '@material-ui/core/Fade';
 
-const SHORT_TRANSITION = 150
+const FADE_OUT = 150
+const EXPAND = 150
+const FADE_IN = 150
 
 export const styles = theme => {
   return {
@@ -13,10 +16,12 @@ export const styles = theme => {
       width: '100%',
       paddingLeft: 7.5,
       paddingRight: 7.5,
-    },
-    collapsed: {
+      opacity: 0,
+      zIndex: 0
     },
     expanded: {
+      zIndex: 1,
+      opacity: 0,
     }
   }
 };
@@ -24,28 +29,34 @@ export const styles = theme => {
 function BackdropBackSection(props) {
   const { children, classes, className: classNameProp, expanded, ...other } = props;
 
-  const animationStateClasses = {
-    animatingToHeightZero: classes.collapsed,
-    animatingToHeightAuto: classes.expanded,
-  };
-
   const className = classNames(
     classes.root,
     classNameProp,
+    { [classes.expanded]: expanded }
   );
 
   const animationProps = {
-    className,
-    animationStateClasses,
-    duration: SHORT_TRANSITION,
+    delay: FADE_OUT,
+    duration: EXPAND,
     height: 'auto',
-    animateOpacity: true,
     height: expanded ? 'auto' : 0,
+  }
+
+  const fadeProps = {
+    in: expanded,
+    timeout: expanded ? FADE_IN : FADE_OUT,
+    style: {
+      transitionDelay: expanded ? EXPAND + FADE_OUT : 0,
+    }
   }
 
   return (
     <AnimateHeight {...animationProps} {...other}>
-      {children}
+      <Fade {...fadeProps}>
+        <div className={className}>
+          {children}
+        </div>
+      </Fade>
     </AnimateHeight>
   );
 }

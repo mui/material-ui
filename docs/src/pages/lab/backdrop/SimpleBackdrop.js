@@ -9,6 +9,7 @@ import Front from '@material-ui/lab/Backdrop/FrontLayer';
 import Subheader from '@material-ui/lab/Backdrop/FrontLayerSubheader';
 import FrontContent from '@material-ui/lab/Backdrop/FrontLayerContent';
 import FadeSwitch from '@material-ui/lab/Backdrop/FadeSwitch';
+import MenuItem from '@material-ui/lab/Backdrop/BackdropMenuItem';
 
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -19,33 +20,26 @@ import ListItem from '@material-ui/core/ListItem';
 
 import SimpleMediaCard from '../../demos/cards/SimpleMediaCard'
 
-const styles = theme => ({
-  root: {
-    width: 360,
-    height: 616,
-    position: 'relative'
-  },
-  flex: {
-    flex: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-  subheading: {
-    height: 32,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-end'
-  },
-  menuItem: {
-    padding: 7.5,
-    borderRadius: 3,
-  },
-  menuSelected: {
-    background: theme.palette.primary[300]
-  },
-});
+const styles = theme => {
+  let transition = theme.transitions.create(
+    'backgroundColor',
+    { duration: theme.transitions.duration.shortest }
+  )
+  return {
+    root: {
+      width: 360,
+      height: 616,
+      position: 'relative'
+    },
+    flex: {
+      flex: 1,
+    },
+    menuButton: {
+      marginLeft: -12,
+      marginRight: 20,
+    },
+  };
+};
 
 class SimpleBackdrop extends React.Component {
   state = {
@@ -54,46 +48,42 @@ class SimpleBackdrop extends React.Component {
   render() {
     const { classes } = this.props;
     const { expanded } = this.state
+
     const Title = ({ className, ...props }) => (
       <Typography variant="title" color="inherit"
-        className={classNames(classes.flex, className)} {...props}/>
-    )
-    const MenuItem = ({ className, ...props }) => (
-      <Typography variant="body2" color="inherit"
-        className={classNames(classes.menuItem, className)} {...props}/>
-    )
+        className={classNames(classes.flex, className)} {...props} />
+    );
 
-    const menu = (
-      <Toolbar>
-        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu"
-            onClick={() => this.setState({ expanded: !expanded })}>
-          <MenuIcon />
-        </IconButton>
-        <FadeSwitch selected={this.state.expanded}
-          options={{
-            true: <Title>Nature's Nobility</Title>,
-            false: <Title>Luxurious Lizards</Title>
-          }}
-        />
-      </Toolbar>
-    )
     return (
       <div className={classes.root}>
         <Backdrop>
           <Back>
             <BackSection expanded>
-              {menu}
+              <Toolbar>
+                <IconButton className={classes.menuButton} color="inherit" aria-label="Menu"
+                  onClick={() => this.setState({ expanded: !expanded })}>
+                  <MenuIcon />
+                </IconButton>
+                <FadeSwitch selected={this.state.expanded}
+                  options={{
+                    true: <Title>Nature's Nobility</Title>,
+                    false: <Title>Luxurious Lizards</Title>
+                  }}
+                />
+              </Toolbar>
             </BackSection>
             <BackSection expanded={this.state.expanded}>
-              <MenuItem className={classes.menuSelected}>
-                Luxurious Lizards
-              </MenuItem>
-              <MenuItem>
-                Glorious Geese
-              </MenuItem>
-              <MenuItem>
-                Ecstatic Eggs
-              </MenuItem>
+              <List>
+                <MenuItem selected={true}>
+                  Luxurious Lizards
+                </MenuItem>
+                <MenuItem>
+                  Glorious Geese
+                </MenuItem>
+                <MenuItem>
+                  Ecstatic Eggs
+                </MenuItem>
+              </List>
             </BackSection>
           </Back>
           <Front disabled={this.state.expanded}>
@@ -104,7 +94,7 @@ class SimpleBackdrop extends React.Component {
             </Subheader>
             <FrontContent>
               <List>
-                { new Array(5).fill(
+                {new Array(5).fill(
                   <ListItem><SimpleMediaCard /></ListItem>
                 )}
               </List>

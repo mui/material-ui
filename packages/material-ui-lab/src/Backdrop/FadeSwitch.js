@@ -44,8 +44,12 @@ function FadeSwitch(props) {
     className: classNames(classes.option, { [classes.selected]: isSelected }),
     in: isSelected,
     timeout: SHORT_TRANSITION,
-    style: {
-      transitionDelay: isSelected ? SHORT_TRANSITION : 0
+    style: isSelected ? {
+      transitionDelay: SHORT_TRANSITION,
+      zIndex: 1,
+    } : {
+      transitionDelay: 0,
+      zIndex: 0,
     }
   })
 

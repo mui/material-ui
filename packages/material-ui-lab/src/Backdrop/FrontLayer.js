@@ -8,9 +8,6 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Fade from '@material-ui/core/Fade';
 
 export const styles = theme => {
-  const transition = {
-    duration: theme.transitions.duration.shortest,
-  };
 
   return {
     root: {
