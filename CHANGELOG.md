@@ -11,9 +11,9 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 Big thanks to the 10 contributors who made this release possible.
 
 Here are some highlights ✨:
-- Add extended Floating Action Button variant (#11941) @mbrookes.
-- Add scroll body handling for the dialog (#11974).
-- Work on SEO for the components (#11963).
+- 🔥 Add extended Floating Action Button variant (#11941) @mbrookes.
+- 🔥 Add scroll body handling for the dialog (#11974).
+- 📝 Work on SEO for the components (#11963).
 
 ### Breaking change
 
@@ -48,6 +48,8 @@ N/A
 - [core] Use Chrome Headless for the tests over PhantomJS (#11961) @oliviertassinari
 
 #### Lab
+
+N/A
 
 ## 1.2.3
 ###### *Jun 20, 2018*
