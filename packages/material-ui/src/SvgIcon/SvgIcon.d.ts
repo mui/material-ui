@@ -17,7 +17,6 @@ export type SvgIconClassKey =
   | 'colorDisabled'
   | 'colorError'
   | 'colorPrimary'
-  | 'fontSizeDefault'
   | 'fontSizeInherit';
 
 declare const SvgIcon: React.ComponentType<SvgIconProps>;

@@ -35,7 +35,6 @@ This property accepts the following keys:
 - `colorAction`
 - `colorError`
 - `colorDisabled`
-- `fontSizeDefault`
 - `fontSizeInherit`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

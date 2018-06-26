@@ -12,6 +12,7 @@ export const styles = theme => ({
     display: 'inline-block',
     fill: 'currentColor',
     flexShrink: 0,
+    fontSize: 24,
     transition: theme.transitions.create('fill', {
       duration: theme.transitions.duration.shorter,
     }),
@@ -30,9 +31,6 @@ export const styles = theme => ({
   },
   colorDisabled: {
     color: theme.palette.action.disabled,
-  },
-  fontSizeDefault: {
-    fontSize: 24,
   },
   fontSizeInherit: {
     fontSize: 'inherit',
@@ -54,8 +52,8 @@ function SvgIcon(props) {
 
   const className = classNames(
     classes.root,
-    classes[`fontSize${capitalize(fontSize)}`],
     {
+      [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default',
       [classes[`color${capitalize(color)}`]]: color !== 'inherit',
     },
     classNameProp,
