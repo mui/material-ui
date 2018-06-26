@@ -99,4 +99,18 @@ describe('<SvgIcon />', () => {
       );
     });
   });
+
+  describe('prop: defs', () => {
+    it('should render defs before path', () => {
+      path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="url(#gradient1)" />;
+      const defs = (
+        <linearGradient id="gradient1">
+          <stop offset="20%" stopColor="#39F" />
+          <stop offset="90%" stopColor="#F3F" />
+        </linearGradient>
+      );
+      const wrapper = shallow(<SvgIcon defs={defs}>{path}</SvgIcon>);
+      assert.strictEqual(wrapper.childAt(0).type(), 'defs');
+    });
+  });
 });

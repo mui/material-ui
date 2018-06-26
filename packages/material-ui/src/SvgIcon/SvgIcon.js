@@ -43,6 +43,7 @@ function SvgIcon(props) {
     classes,
     className: classNameProp,
     color,
+    defs,
     fontSize,
     nativeColor,
     titleAccess,
@@ -68,6 +69,7 @@ function SvgIcon(props) {
       aria-hidden={titleAccess ? 'false' : 'true'}
       {...other}
     >
+      {defs ? <defs>{defs}</defs> : null}
       {titleAccess ? <title>{titleAccess}</title> : null}
       {children}
     </svg>
@@ -94,9 +96,15 @@ SvgIcon.propTypes = {
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
   /**
+<<<<<<< HEAD
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
   fontSize: PropTypes.oneOf(['inherit', 'default']),
+=======
+   * Node passed into the top of the SVG element.
+   */
+  defs: PropTypes.node,
+>>>>>>> [SvgIcon] Add defs prop, test and demo to SvgIcon
   /**
    * Applies a color attribute to the SVG element.
    */
