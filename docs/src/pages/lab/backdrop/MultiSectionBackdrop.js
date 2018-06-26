@@ -20,7 +20,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
 import Chip from '@material-ui/core/Chip';
-import MultiSectionMediaCard from '../../demos/cards/SimpleMediaCard';
+import SimpleMediaCard from '../../demos/cards/SimpleMediaCard';
 
 let tags = [
   'chameleon',
@@ -157,11 +157,21 @@ class MultiSectionBackdrop extends React.Component {
             </Subheader>
             <FrontContent>
               <List>
-                {new Array(5).fill(
-                  <ListItem>
-                    <MultiSectionMediaCard />
-                  </ListItem>,
-                )}
+                <ListItem>
+                  <SimpleMediaCard />
+                </ListItem>
+                <ListItem>
+                  <SimpleMediaCard />
+                </ListItem>
+                <ListItem>
+                  <SimpleMediaCard />
+                </ListItem>
+                <ListItem>
+                  <SimpleMediaCard />
+                </ListItem>
+                <ListItem>
+                  <SimpleMediaCard />
+                </ListItem>
               </List>
             </FrontContent>
           </Front>

@@ -94,11 +94,21 @@ class SimpleBackdrop extends React.Component {
             </Subheader>
             <FrontContent>
               <List>
-                {new Array(5).fill(
-                  <ListItem>
-                    <SimpleMediaCard />
-                  </ListItem>,
-                )}
+                <ListItem>
+                  <SimpleMediaCard />
+                </ListItem>
+                <ListItem>
+                  <SimpleMediaCard />
+                </ListItem>
+                <ListItem>
+                  <SimpleMediaCard />
+                </ListItem>
+                <ListItem>
+                  <SimpleMediaCard />
+                </ListItem>
+                <ListItem>
+                  <SimpleMediaCard />
+                </ListItem>
               </List>
             </FrontContent>
           </Front>
