@@ -26,7 +26,8 @@ export const styles = theme => {
       color: theme.palette.getContrastText(theme.palette.background.paper),
 
       paddingLeft: 15,
-      paddingRight: 15
+      paddingRight: 15,
+      overflow: 'scroll',
     },
     disabled: { // scrim
       backgroundColor: theme.palette.action.disabledBackground,

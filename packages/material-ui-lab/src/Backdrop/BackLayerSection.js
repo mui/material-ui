@@ -8,17 +8,13 @@ import AnimateHeight from 'react-animate-height';
 const SHORT_TRANSITION = 150
 
 export const styles = theme => {
-  const transition = {
-    duration: SHORT_TRANSITION // theme.transitions.duration.shortest / 2,
-  };
   return {
     root: {
       width: '100%',
-      height: 0
+      paddingLeft: 7.5,
+      paddingRight: 7.5,
     },
     collapsed: {
-    //opacity: 0,
-    //transition: theme.transitions.create('opacity', transition)
     },
     expanded: {
     }
@@ -38,21 +34,17 @@ function BackdropBackSection(props) {
     classNameProp,
   );
 
-  // we delay for opacity animations
-  const animationProps = !expanded ? {
+  const animationProps = {
+    className,
+    animationStateClasses,
     duration: SHORT_TRANSITION,
-    //delay: SHORT_TRANSITION,
-    height: 0,
-    animateOpacity: true
-  } : {
-    duration: SHORT_TRANSITION,
-    //delay: SHORT_TRANSITION,
     height: 'auto',
-    animateOpacity: true
+    animateOpacity: true,
+    height: expanded ? 'auto' : 0,
   }
 
   return (
-    <AnimateHeight {...{ className, animationStateClasses }} {...animationProps} {...other}>
+    <AnimateHeight {...animationProps} {...other}>
       {children}
     </AnimateHeight>
   );
