@@ -14,7 +14,6 @@ export const styles = theme => {
   return {
     root: {
       position: 'relative',
-      transition: theme.transitions.create(['margin'], transition),
       borderTopLeftRadius: 16,
       borderTopRightRadius: 16,
 
@@ -30,7 +29,10 @@ export const styles = theme => {
       overflow: 'scroll',
     },
     disabled: { // scrim
-      backgroundColor: theme.palette.action.disabledBackground,
+      '& > *': {
+        opacity: 0.5,
+        transition: theme.transitions.create('opacity', transition),
+      } 
     },
     minimized: { // positioning
       backgroundColor: theme.palette.action.disabledBackground,

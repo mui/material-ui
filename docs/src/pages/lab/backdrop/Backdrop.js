@@ -70,8 +70,8 @@ class SimpleBackdrop extends React.Component {
         </IconButton>
         <FadeSwitch selected={this.state.expanded}
           options={{
-            true: <Title>App Title</Title>,
-            false: <Title>Page Title</Title>
+            true: <Title>Nature's Nobility</Title>,
+            false: <Title>Luxurious Lizards</Title>
           }}
         />
       </Toolbar>
@@ -85,20 +85,20 @@ class SimpleBackdrop extends React.Component {
             </BackSection>
             <BackSection expanded={this.state.expanded}>
               <MenuItem className={classes.menuSelected}>
-                Subtitle 1
+                Luxurious Lizards
               </MenuItem>
               <MenuItem>
-                Subtitle 2
+                Glorious Geese
               </MenuItem>
               <MenuItem>
-                Subtitle 3
+                Ecstatic Eggs
               </MenuItem>
             </BackSection>
           </Back>
-          <Front>
+          <Front disabled={this.state.expanded}>
             <Subheader divider>
               <Typography variant="subheading">
-                Subtitle 1
+                Incredible Iguanas
               </Typography>
             </Subheader>
             <List>
