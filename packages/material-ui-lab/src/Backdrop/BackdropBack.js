@@ -17,7 +17,11 @@ function BackdropBack(props) {
 
   const className = classNames(classes.root, classNameProp);
 
-  return <div className={className}>{children}</div>;
+  return (
+    <div className={className} {...other}>
+      {children}
+    </div>
+  );
 }
 
 BackdropBack.propTypes = {

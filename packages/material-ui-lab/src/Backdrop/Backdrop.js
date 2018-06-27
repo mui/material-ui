@@ -17,8 +17,6 @@ export const styles = theme => {
       width: '100%',
       height: '100%',
     },
-    backLayer: {},
-    frontLayer: {},
     colorPrimary: {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,

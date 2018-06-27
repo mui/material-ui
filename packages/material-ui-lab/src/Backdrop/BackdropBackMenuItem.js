@@ -8,9 +8,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { capitalize } from '@material-ui/core/utils/helpers';
 
 const styles = theme => {
-  let transition = theme.transitions.create('backgroundColor', {
+  const transition = theme.transitions.create('backgroundColor', {
     duration: theme.transitions.duration.shortest,
   });
+
   return {
     root: {
       ...theme.typography.body2,
@@ -52,6 +53,10 @@ BackdropMenuItem.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
+  /**
+   * Use to apply selected styling.
+   */
+  selected: PropTypes.bool,
 };
 
 BackdropMenuItem.defaultProps = {

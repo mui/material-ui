@@ -52,7 +52,6 @@ function BackdropFront(props) {
   const {
     classes,
     className: classNameProp,
-    defaultExpanded,
     disabled,
     minimized,
     onChange: onChangeProp,

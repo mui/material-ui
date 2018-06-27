@@ -27,11 +27,10 @@ export const styles = theme => {
 };
 
 function BackdropFrontSubheader(props) {
-  const { classes, className: classNameProp, children, divided, ...other } = props;
-
+  const { classes, className: classNameProp, divided, ...other } = props;
   const className = classNames(classes.root, { [classes.divided]: divided }, classNameProp);
 
-  return <div className={className}>{children}</div>;
+  return <div className={className} {...other} />;
 }
 
 BackdropFrontSubheader.propTypes = {

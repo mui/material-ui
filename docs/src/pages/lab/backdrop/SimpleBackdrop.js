@@ -3,47 +3,41 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Backdrop from '@material-ui/lab/Backdrop/Backdrop';
-import Back from '@material-ui/lab/Backdrop/BackLayer';
-import BackSection from '@material-ui/lab/Backdrop/BackLayerSection';
-import Front from '@material-ui/lab/Backdrop/FrontLayer';
-import Subheader from '@material-ui/lab/Backdrop/FrontLayerSubheader';
-import FrontContent from '@material-ui/lab/Backdrop/FrontLayerContent';
-import FadeSwitch from '@material-ui/lab/Backdrop/FadeSwitch';
-import MenuItem from '@material-ui/lab/Backdrop/BackdropMenuItem';
-
+import Back from '@material-ui/lab/Backdrop/BackdropBack';
+import BackSection from '@material-ui/lab/Backdrop/BackdropBackSection';
+import Front from '@material-ui/lab/Backdrop/BackdropFront';
+import Subheader from '@material-ui/lab/Backdrop/BackdropFrontSubheader';
+import FrontContent from '@material-ui/lab/Backdrop/BackdropFrontContent';
+import StackedFade from '@material-ui/lab/Backdrop/StackedFade';
+import MenuItem from '@material-ui/lab/Backdrop/BackdropBackMenuItem';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-
 import SimpleMediaCard from '../../demos/cards/SimpleMediaCard';
 
-const styles = theme => {
-  let transition = theme.transitions.create('backgroundColor', {
-    duration: theme.transitions.duration.shortest,
-  });
-  return {
-    root: {
-      width: 360,
-      height: 616,
-      position: 'relative',
-    },
-    flex: {
-      flex: 1,
-    },
-    menuButton: {
-      marginLeft: -12,
-      marginRight: 20,
-    },
-  };
+const styles = {
+  root: {
+    width: 360,
+    height: 616,
+    position: 'relative',
+  },
+  flex: {
+    flex: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
 };
 
 class SimpleBackdrop extends React.Component {
   state = {
     expanded: false,
   };
+
   render() {
     const { classes } = this.props;
     const { expanded } = this.state;
@@ -71,18 +65,19 @@ class SimpleBackdrop extends React.Component {
                 >
                   <MenuIcon />
                 </IconButton>
-                <FadeSwitch
-                  selected={this.state.expanded}
-                  options={{
-                    true: <Title>Nature's Nobility</Title>,
-                    false: <Title>Luxurious Lizards</Title>,
-                  }}
-                />
+                <Title>
+                  <StackedFade in={!expanded}>
+                    <span>Luxurious Lizards</span>
+                  </StackedFade>
+                  <StackedFade in={expanded}>
+                    <span>{"Nature's Nobility"}</span>
+                  </StackedFade>
+                </Title>
               </Toolbar>
             </BackSection>
             <BackSection expanded={this.state.expanded}>
               <List>
-                <MenuItem selected={true}>Luxurious Lizards</MenuItem>
+                <MenuItem selected>Luxurious Lizards</MenuItem>
                 <MenuItem>Glorious Geese</MenuItem>
                 <MenuItem>Ecstatic Eggs</MenuItem>
               </List>

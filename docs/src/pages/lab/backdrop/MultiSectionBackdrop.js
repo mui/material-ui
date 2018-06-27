@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Backdrop from '@material-ui/lab/Backdrop/Backdrop';
-import Back from '@material-ui/lab/Backdrop/BackLayer';
-import BackSection from '@material-ui/lab/Backdrop/BackLayerSection';
-import Front from '@material-ui/lab/Backdrop/FrontLayer';
-import Subheader from '@material-ui/lab/Backdrop/FrontLayerSubheader';
-import FrontContent from '@material-ui/lab/Backdrop/FrontLayerContent';
-import FadeSwitch from '@material-ui/lab/Backdrop/FadeSwitch';
-import MenuItem from '@material-ui/lab/Backdrop/BackdropMenuItem';
-
+import Back from '@material-ui/lab/Backdrop/BackdropBack';
+import BackSection from '@material-ui/lab/Backdrop/BackdropBackSection';
+import Front from '@material-ui/lab/Backdrop/BackdropFront';
+import Subheader from '@material-ui/lab/Backdrop/BackdropFrontSubheader';
+import FrontContent from '@material-ui/lab/Backdrop/BackdropFrontContent';
+import StackedFade from '@material-ui/lab/Backdrop/StackedFade';
+import MenuItem from '@material-ui/lab/Backdrop/BackdropBackMenuItem';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,11 +17,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import FilterIcon from '@material-ui/icons/FilterList';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-
 import Chip from '@material-ui/core/Chip';
 import SimpleMediaCard from '../../demos/cards/SimpleMediaCard';
 
-let tags = [
+const tags = [
   'chameleon',
   'green anole',
   'wing',
@@ -57,9 +55,6 @@ let tags = [
 ];
 
 const styles = theme => {
-  let transition = theme.transitions.create('backgroundColor', {
-    duration: theme.transitions.duration.shortest,
-  });
   return {
     root: {
       width: 360,
@@ -68,6 +63,8 @@ const styles = theme => {
     },
     flex: {
       flex: 1,
+    },
+    title: {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
@@ -91,6 +88,7 @@ class MultiSectionBackdrop extends React.Component {
   state = {
     expanded: false,
   };
+
   render() {
     const { classes } = this.props;
     const { expanded } = this.state;
@@ -99,7 +97,7 @@ class MultiSectionBackdrop extends React.Component {
       <Typography
         variant="title"
         color="inherit"
-        className={classNames(classes.flex, className)}
+        className={classNames(classes.title, className)}
         {...props}
       />
     );
@@ -118,31 +116,32 @@ class MultiSectionBackdrop extends React.Component {
                 >
                   <MenuIcon />
                 </IconButton>
-                <FadeSwitch
-                  selected={this.state.expanded}
-                  options={{
-                    false: <Title>Luxurious Lizards</Title>,
-                    nav: (
-                      <Title>
-                        Nature's Nobility
-                        <IconButton
-                          color="inherit"
-                          aria-label="Filters"
-                          className={classes.filter}
-                          onClick={() => this.setState({ expanded: 'filters' })}
-                        >
-                          <FilterIcon />
-                        </IconButton>
-                      </Title>
-                    ),
-                    filters: <Title> Filter by tags </Title>,
-                  }}
-                />
+                <div className={classes.flex}>
+                  <StackedFade in={!expanded}>
+                    <Title>Luxurious Lizards</Title>
+                  </StackedFade>
+                  <StackedFade in={expanded === 'nav'}>
+                    <Title>
+                      {"Nature's Nobility"}
+                      <IconButton
+                        color="inherit"
+                        aria-label="Filters"
+                        className={classes.filter}
+                        onClick={() => this.setState({ expanded: 'filters' })}
+                      >
+                        <FilterIcon />
+                      </IconButton>
+                    </Title>
+                  </StackedFade>
+                  <StackedFade in={expanded === 'filters'}>
+                    <Title> Filter by tags </Title>
+                  </StackedFade>
+                </div>
               </Toolbar>
             </BackSection>
             <BackSection expanded={this.state.expanded === 'nav'}>
               <List>
-                <MenuItem selected={true}>Luxurious Lizards</MenuItem>
+                <MenuItem selected>Luxurious Lizards</MenuItem>
                 <MenuItem>Glorious Geese</MenuItem>
                 <MenuItem>Ecstatic Eggs</MenuItem>
               </List>
