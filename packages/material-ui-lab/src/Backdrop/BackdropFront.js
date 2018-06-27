@@ -6,8 +6,14 @@ import classNames from 'classnames';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Fade from '@material-ui/core/Fade';
+import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 
 export const styles = theme => {
+  const transition = {
+    duration: theme.transitions.duration.shortest,
+    delay: theme.transitions.duration.shortest,
+  };
+
   return {
     root: {
       position: 'relative',
@@ -26,6 +32,8 @@ export const styles = theme => {
       overflow: 'auto',
       display: 'flex',
       flexDirection: 'column',
+
+      transition: theme.transitions.create(['flex-grow'], transition),
     },
     scrim: {
       zIndex: -1,
@@ -42,8 +50,7 @@ export const styles = theme => {
       zIndex: theme.zIndex.appBar - 1,
     },
     minimized: {
-      // positioning
-      backgroundColor: theme.palette.action.disabledBackground,
+      flexGrow: 0.0001,
     },
   };
 };
@@ -53,24 +60,32 @@ function BackdropFront(props) {
     classes,
     className: classNameProp,
     disabled,
-    minimized,
-    onChange: onChangeProp,
-    children,
+    expanded,
+    onExpand,
+    children: childrenProp,
     ...other
   } = props;
-
-  const onChange = onChangeProp ? event => onChange(event, !minimized) : null;
 
   const className = classNames(
     classes.root,
     {
-      [classes.minimized]: minimized,
+      [classes.minimized]: !expanded,
     },
     classNameProp,
   );
 
+  const onClick = !expanded && !disabled ? onExpand : null;
+
+  const children = React.Children.map(
+    childrenProp,
+    child =>
+      isMuiElement(child, ['BackdropFrontSubheader', 'BackdropFrontContent'])
+        ? React.cloneElement(child, { expanded })
+        : child,
+  );
+
   return (
-    <Paper className={className} elevation={0} square {...other}>
+    <Paper className={className} onClick={onClick} elevation={0} square {...other}>
       <Fade in={disabled}>
         <div className={classNames(classes.scrim, { [classes.scrimActive]: disabled })} />
       </Fade>
@@ -99,22 +114,19 @@ BackdropFront.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, minimize the panel.
+   * If `true`, expands the panel, otherwise collapse it to a minimized view.
    */
-  minimized: PropTypes.bool,
+  expanded: PropTypes.bool,
   /**
-   * The icon to display as the minimized indicator.
-   */
-  minimizedIcon: PropTypes.node,
-  /**
-   * Callback fired when the expand/collapse state is changed.
+   * Callback fired when minimized, non-disabled panel is clicked.
    *
    * @param {object} event The event source of the callback
-   * @param {boolean} minimized The `minimized` state of the panel
    */
-  onChange: PropTypes.func,
+  onExpand: PropTypes.func,
 };
 
-BackdropFront.defaultProps = {};
+BackdropFront.defaultProps = {
+  expanded: true,
+};
 
 export default withStyles(styles, { name: 'MuiBackdropFront' })(BackdropFront);

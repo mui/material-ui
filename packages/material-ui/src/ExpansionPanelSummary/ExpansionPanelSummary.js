@@ -11,6 +11,7 @@ export const styles = theme => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
+
   return {
     /* Styles applied to the root element. */
     root: {

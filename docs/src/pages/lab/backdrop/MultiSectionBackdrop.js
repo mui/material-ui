@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
 import Backdrop from '@material-ui/lab/Backdrop/Backdrop';
 import Back from '@material-ui/lab/Backdrop/BackdropBack';
 import BackSection from '@material-ui/lab/Backdrop/BackdropBackSection';
@@ -15,6 +16,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import FilterIcon from '@material-ui/icons/FilterList';
+import ExpandIcon from '@material-ui/icons/ExpandLess';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Chip from '@material-ui/core/Chip';
@@ -81,6 +83,10 @@ const styles = theme => {
       backgroundColor: theme.palette.primary[300],
       color: theme.palette.primary.contrastText,
     },
+    content: {
+      marginRight: -15,
+      overflowY: 'hidden',
+    },
   };
 };
 
@@ -139,22 +145,29 @@ class MultiSectionBackdrop extends React.Component {
                 </div>
               </Toolbar>
             </BackSection>
-            <BackSection expanded={this.state.expanded === 'nav'}>
+            <BackSection expanded={expanded === 'nav'}>
               <List>
                 <MenuItem selected>Luxurious Lizards</MenuItem>
                 <MenuItem>Glorious Geese</MenuItem>
                 <MenuItem>Ecstatic Eggs</MenuItem>
               </List>
             </BackSection>
-            <BackSection expanded={this.state.expanded === 'filters'}>
+            <BackSection expanded={expanded === 'filters'}>
               {tags.map(label => <Chip key={label} label={label} className={classes.chip} />)}
             </BackSection>
           </Back>
-          <Front disabled={Boolean(this.state.expanded)}>
+          <Front
+            disabled={expanded === 'nav'}
+            expanded={expanded !== 'filters'}
+            onExpand={() => this.setState({ expanded: false })}
+          >
             <Subheader divider>
               <Typography variant="subheading">Incredible Iguanas</Typography>
+              <Fade in={expanded === 'filters'}>
+                <ExpandIcon />
+              </Fade>
             </Subheader>
-            <FrontContent>
+            <FrontContent classes={{ root: classes.content }}>
               <List>
                 <ListItem>
                   <SimpleMediaCard />

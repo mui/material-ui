@@ -16,6 +16,7 @@ export const styles = theme => {
       flexFlow: 'column',
       width: '100%',
       height: '100%',
+      justifyContent: 'space-between',
     },
     colorPrimary: {
       backgroundColor: theme.palette.primary.main,

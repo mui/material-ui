@@ -31,6 +31,10 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
+  content: {
+    marginRight: -15,
+    overflowY: 'hidden',
+  },
 };
 
 class SimpleBackdrop extends React.Component {
@@ -87,7 +91,7 @@ class SimpleBackdrop extends React.Component {
             <Subheader divider>
               <Typography variant="subheading">Incredible Iguanas</Typography>
             </Subheader>
-            <FrontContent>
+            <FrontContent classes={{ root: classes.content }}>
               <List>
                 <ListItem>
                   <SimpleMediaCard />
