@@ -43,6 +43,7 @@ function SvgIcon(props) {
     classes,
     className: classNameProp,
     color,
+    component: Component,
     fontSize,
     nativeColor,
     titleAccess,
@@ -60,7 +61,7 @@ function SvgIcon(props) {
   );
 
   return (
-    <svg
+    <Component
       className={className}
       focusable="false"
       viewBox={viewBox}
@@ -68,9 +69,9 @@ function SvgIcon(props) {
       aria-hidden={titleAccess ? 'false' : 'true'}
       {...other}
     >
-      {titleAccess ? <title>{titleAccess}</title> : null}
       {children}
-    </svg>
+      {titleAccess ? <title>{titleAccess}</title> : null}
+    </Component>
   );
 }
 
@@ -93,6 +94,11 @@ SvgIcon.propTypes = {
    * You can use the `nativeColor` property to apply a color attribute to the SVG element.
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
@@ -118,8 +124,9 @@ SvgIcon.propTypes = {
 
 SvgIcon.defaultProps = {
   color: 'inherit',
-  viewBox: '0 0 24 24',
+  component: 'svg',
   fontSize: 'default',
+  viewBox: '0 0 24 24',
 };
 
 SvgIcon.muiName = 'SvgIcon';
