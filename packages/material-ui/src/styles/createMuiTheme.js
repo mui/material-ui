@@ -33,13 +33,13 @@ function createMuiTheme(options: Object = {}) {
     palette,
     props: {}, // Inject custom properties
     shadows: shadowsInput || shadows,
-    shape,
     typography: createTypography(palette, typographyInput),
     ...deepmerge(
       {
         transitions,
         spacing,
         zIndex,
+        shape
       },
       other,
     ),

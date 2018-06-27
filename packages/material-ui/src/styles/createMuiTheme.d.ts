@@ -3,7 +3,7 @@ import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { Typography, TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
-import { Shape } from './shape';
+import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './spacing';
 import { Transitions, TransitionsOptions } from './transitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
@@ -13,7 +13,7 @@ import { ComponentsProps } from './props';
 export type Direction = 'ltr' | 'rtl';
 
 export interface ThemeOptions {
-  shape?: Shape;
+  shape?: ShapeOptions;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
   mixins?: MixinsOptions;
