@@ -2,18 +2,24 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import SvgIcon from './SvgIcon';
 
 describe('<SvgIcon />', () => {
   let shallow;
+  let mount;
   let classes;
   let path;
 
   before(() => {
     shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(<SvgIcon>foo</SvgIcon>);
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('renders children by default', () => {
@@ -100,17 +106,26 @@ describe('<SvgIcon />', () => {
     });
   });
 
-  describe('prop: defs', () => {
-    it('should render defs before path', () => {
-      path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="url(#gradient1)" />;
-      const defs = (
-        <linearGradient id="gradient1">
-          <stop offset="20%" stopColor="#39F" />
-          <stop offset="90%" stopColor="#F3F" />
-        </linearGradient>
+  describe('prop: component', () => {
+    it('should render component before path', () => {
+      const wrapper = mount(
+        <SvgIcon
+          component={props => (
+            <svg {...props}>
+              <defs>
+                <linearGradient id="gradient1">
+                  <stop offset="20%" stopColor="#39F" />
+                  <stop offset="90%" stopColor="#F3F" />
+                </linearGradient>
+              </defs>
+              {props.children}
+            </svg>
+          )}
+        >
+          {path}
+        </SvgIcon>,
       );
-      const wrapper = shallow(<SvgIcon defs={defs}>{path}</SvgIcon>);
-      assert.strictEqual(wrapper.childAt(0).type(), 'defs');
+      assert.strictEqual(wrapper.find('defs').length, 1);
     });
   });
 });

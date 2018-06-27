@@ -25,14 +25,10 @@ const styles = theme => ({
 function HomeIcon(props) {
   return (
     <SvgIcon {...props}>
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill={props.fill || undefined} />
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
     </SvgIcon>
   );
 }
-
-HomeIcon.propTypes = {
-  fill: PropTypes.string,
-};
 
 function SvgIcons(props) {
   const { classes } = props;
@@ -48,13 +44,17 @@ function SvgIcons(props) {
         className={classes.icon}
         color="primary"
         style={{ fontSize: 36 }}
-        fill="url(#gradient1)"
-        defs={
-          <linearGradient id="gradient1">
-            <stop offset="20%" stopColor={blue[400]} />
-            <stop offset="90%" stopColor={red.A400} />
-          </linearGradient>
-        }
+        component={svgProps => (
+          <svg {...svgProps}>
+            <defs>
+              <linearGradient id="gradient1">
+                <stop offset="30%" stopColor={blue[400]} />
+                <stop offset="70%" stopColor={red[400]} />
+              </linearGradient>
+            </defs>
+            {React.cloneElement(svgProps.children[0], { fill: 'url(#gradient1)' })}
+          </svg>
+        )}
       />
     </div>
   );
