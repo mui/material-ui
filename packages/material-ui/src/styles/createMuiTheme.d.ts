@@ -25,7 +25,6 @@ export interface ThemeOptions {
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   zIndex?: ZIndexOptions;
-  [propName: string]: any;
 }
 
 export interface Theme {
@@ -41,7 +40,6 @@ export interface Theme {
   transitions: Transitions;
   typography: Typography;
   zIndex: ZIndex;
-  [propName: string]: any;
 }
 
 export default function createMuiTheme(options?: ThemeOptions): Theme;
