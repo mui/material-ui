@@ -39,7 +39,7 @@ function createMuiTheme(options: Object = {}) {
         transitions,
         spacing,
         zIndex,
-        shape
+        shape,
       },
       other,
     ),
