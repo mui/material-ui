@@ -77,6 +77,8 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: blue,
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
     common: {
       white: '#ffffff',
     },
