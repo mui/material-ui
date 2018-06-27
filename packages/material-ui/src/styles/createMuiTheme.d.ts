@@ -3,7 +3,7 @@ import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { Typography, TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
-import { Shape, ShapeOptions } from './shape';
+import { Shape } from './shape';
 import { Spacing, SpacingOptions } from './spacing';
 import { Transitions, TransitionsOptions } from './transitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
@@ -13,7 +13,7 @@ import { ComponentsProps } from './props';
 export type Direction = 'ltr' | 'rtl';
 
 export interface ThemeOptions {
-  shape?: ShapeOptions;
+  shape?: Shape;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
   mixins?: MixinsOptions;
@@ -25,6 +25,7 @@ export interface ThemeOptions {
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   zIndex?: ZIndexOptions;
+  status?: Record<string, string>;
 }
 
 export interface Theme {
@@ -40,6 +41,7 @@ export interface Theme {
   transitions: Transitions;
   typography: Typography;
   zIndex: ZIndex;
+  status?: Record<string, string>;
 }
 
 export default function createMuiTheme(options?: ThemeOptions): Theme;

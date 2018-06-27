@@ -21,6 +21,8 @@ interface TypeBackground {
   paper: string;
 }
 
+type TypeDivider = string;
+
 export type PaletteColorOptions = SimplePaletteColorOptions | Partial<Color>;
 
 export interface SimplePaletteColorOptions {
@@ -40,6 +42,7 @@ export interface PaletteColor {
 export interface TypeObject {
   text: TypeText;
   action: TypeAction;
+  divider: TypeDivider;
   background: TypeBackground;
 }
 
@@ -56,7 +59,7 @@ export interface Palette {
   error: PaletteColor;
   grey: Color;
   text: TypeText;
-  divider: string;
+  divider: TypeDivider;
   action: TypeAction;
   background: TypeBackground;
   getContrastText: (background: string) => string;
@@ -84,7 +87,5 @@ export interface PaletteOptions {
   background?: Partial<TypeBackground>;
   getContrastText?: (background: string) => string;
 }
-
-//export type PaletteOptions = DeepPartial<Palette>;
 
 export default function createPalette(palette: PaletteOptions): Palette;
