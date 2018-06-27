@@ -981,9 +981,21 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+<<<<<<< HEAD
 "@webassemblyjs/ast@1.5.13":
   version "1.5.13"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.5.13.tgz#81155a570bd5803a30ec31436bc2c9c0ede38f25"
+=======
+"@types/react@>=16":
+  version "16.4.2"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.2.tgz#f1a9cf1ee85221530def2ac26aee20f910a9dac8"
+  dependencies:
+    csstype "^2.2.0"
+
+"@webassemblyjs/ast@1.5.12":
+  version "1.5.12"
+  resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.5.12.tgz#a9acbcb3f25333c4edfa1fdf3186b1ccf64e6664"
+>>>>>>> fix yarn lock
   dependencies:
     "@webassemblyjs/helper-module-context" "1.5.13"
     "@webassemblyjs/helper-wasm-bytecode" "1.5.13"
@@ -7871,6 +7883,15 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-animate-height@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-animate-height/-/react-animate-height-2.0.1.tgz#6ec3f8d5126d0d90fed591afad0adf76b707ee2f"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+  optionalDependencies:
+    "@types/react" ">=16"
 
 react-autosuggest@^9.3.2:
   version "9.4.0"
