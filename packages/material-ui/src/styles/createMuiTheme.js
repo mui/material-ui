@@ -36,10 +36,10 @@ function createMuiTheme(options: Object = {}) {
     typography: createTypography(palette, typographyInput),
     ...deepmerge(
       {
-        transitions,
-        spacing,
-        zIndex,
         shape,
+        spacing,
+        transitions,
+        zIndex,
       },
       other,
     ),

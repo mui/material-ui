@@ -75,11 +75,13 @@ type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
 type ColorPartial = Partial<Color>;
 
 export interface PaletteOptions {
-  common?: Partial<CommonColors>;
-  type?: PaletteType;
   primary?: PaletteColorOptions;
   secondary?: PaletteColorOptions;
   error?: PaletteColorOptions;
+  type?: PaletteType;
+  tonalOffset?: number;
+  contrastThreshold?: number;
+  common?: Partial<CommonColors>;
   grey?: ColorPartial;
   text?: Partial<TypeText>;
   divider?: string;
