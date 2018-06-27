@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
@@ -8,10 +10,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Link from 'next/link'
+import Link from 'next/link';
 
-import styles from '../src/styles';
-
+const styles = theme => ({
+  root: {
+    textAlign: 'center',
+    paddingTop: theme.spacing.unit * 20,
+  },
+});
 
 class Index extends React.Component {
   state = {
@@ -53,14 +59,14 @@ class Index extends React.Component {
         <Typography variant="subheading" gutterBottom>
           example project
         </Typography>
+        <Typography gutterBottom>
+          <Link href="/about">
+            <a>Go to the about page</a>
+          </Link>
+        </Typography>
         <Button variant="contained" color="secondary" onClick={this.handleClick}>
           Super Secret Password
         </Button>
-        <div>
-          <Link href="/about">
-            <a>about page</a>
-          </Link>
-        </div>
       </div>
     );
   }
