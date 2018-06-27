@@ -8,14 +8,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import withRoot from '../src/withRoot';
+import Link from 'next/link'
 
-const styles = theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
-  },
-});
+import styles from '../src/styles';
+
 
 class Index extends React.Component {
   state = {
@@ -60,6 +56,11 @@ class Index extends React.Component {
         <Button variant="contained" color="secondary" onClick={this.handleClick}>
           Super Secret Password
         </Button>
+        <div>
+          <Link href="/about">
+            <a>about page</a>
+          </Link>
+        </div>
       </div>
     );
   }
@@ -69,4 +70,4 @@ Index.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(Index));
+export default withStyles(styles)(Index);

@@ -1,8 +1,7 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import JssProvider from 'react-jss/lib/JssProvider';
 import flush from 'styled-jsx/server';
-import getPageContext from '../src/getPageContext';
+
 
 class MyDocument extends Document {
   render() {
@@ -35,51 +34,55 @@ class MyDocument extends Document {
       </html>
     );
   }
-}
 
-MyDocument.getInitialProps = ctx => {
-  // Resolution order
-  //
-  // On the server:
-  // 1. page.getInitialProps
-  // 2. document.getInitialProps
-  // 3. page.render
-  // 4. document.render
-  //
-  // On the server with error:
-  // 2. document.getInitialProps
-  // 3. page.render
-  // 4. document.render
-  //
-  // On the client
-  // 1. page.getInitialProps
-  // 3. page.render
+  static getInitialProps(ctx) {
+    // Resolution order
+    //
+    // On the server:
+    // 1. app.getInitialProps
+    // 2. page.getInitialProps
+    // 3. document.getInitialProps
+    // 4. app.render
+    // 5. page.render
+    // 6. document.render
+    //
+    // On the server with error:
+    // 3. document.getInitialProps
+    // 4. app.render
+    // 5. page.render
+    // 6. document.render
+    //
+    // On the client
+    // 1. app.getInitialProps
+    // 2. page.getInitialProps
+    // 4. app.render
+    // 5. page.render
 
-  // Get the context of the page to collected side effects.
-  const pageContext = getPageContext();
-  const page = ctx.renderPage(Component => props => (
-    <JssProvider
-      registry={pageContext.sheetsRegistry}
-      generateClassName={pageContext.generateClassName}
-    >
-      <Component pageContext={pageContext} {...props} />
-    </JssProvider>
-  ));
+    // Render app and page and get the context of the page with collected side effects.
+    let pageContext;
+    const page = ctx.renderPage(Component => props => {
+      pageContext = props.pageContext;
+      return (
+        <Component {...props} />
+      );
+    });
 
-  return {
-    ...page,
-    pageContext,
-    styles: (
-      <React.Fragment>
-        <style
-          id="jss-server-side"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
-        />
-        {flush() || null}
-      </React.Fragment>
-    ),
-  };
+    return {
+      ...page,
+      pageContext,
+      // Styles fragment is rendered after the app and page rendering finish.
+      styles: (
+        <React.Fragment>
+          <style
+            id="jss-server-side"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
+          />
+          {flush() || null}
+        </React.Fragment>
+      ),
+    };
+  }
 };
 
 export default MyDocument;
