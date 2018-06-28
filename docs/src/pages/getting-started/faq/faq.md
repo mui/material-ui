@@ -90,7 +90,7 @@ export default withTheme()(withStyles(styles)(Modal));
 
 ## How can I access the DOM element?
 
-Wrap the component with the [`<RootRef>`](https://material-ui.com/api/root-ref) helper.
+Wrap the component with the [`<RootRef>`](/api/root-ref) helper.
 
 ## Why are the colors I am seeing different from what I see here?
 
