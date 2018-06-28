@@ -24,6 +24,8 @@ export const styles = {
     // height. This ensures a tappable area outside of the simple menu with which to dismiss
     // the menu.
     maxHeight: 'calc(100% - 96px)',
+    // Ensure it's up to the same level as other relative elements (ex. Tabs) to respect scrolling.
+    position: 'relative',
     // Add iOS momentum scrolling.
     WebkitOverflowScrolling: 'touch',
   },
