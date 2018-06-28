@@ -33,21 +33,21 @@ function GridList(props) {
       style={{ margin: -spacing / 2, ...style }}
       {...other}
     >
-      {React.Children.map(children, currentChild => {
-        if (!React.isValidElement(currentChild)) {
+      {React.Children.map(children, child => {
+        if (!React.isValidElement(child)) {
           return null;
         }
-        const childCols = currentChild.props.cols || 1;
-        const childRows = currentChild.props.rows || 1;
+        const childCols = child.props.cols || 1;
+        const childRows = child.props.rows || 1;
 
-        return React.cloneElement(currentChild, {
+        return React.cloneElement(child, {
           style: Object.assign(
             {
               width: `${(100 / cols) * childCols}%`,
               height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
               padding: spacing / 2,
             },
-            currentChild.props.style,
+            child.props.style,
           ),
         });
       })}
