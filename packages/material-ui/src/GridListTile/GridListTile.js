@@ -90,7 +90,11 @@ class GridListTile extends React.Component {
         <EventListener target="window" onResize={this.handleResize} />
         <div className={classes.tile}>
           {React.Children.map(children, child => {
-            if (child && child.type === 'img') {
+            if (!React.isValidElement(child)) {
+              return null;
+            }
+
+            if (child.type === 'img') {
               return React.cloneElement(child, {
                 ref: node => {
                   this.imgElement = node;
