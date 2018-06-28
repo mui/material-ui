@@ -26,6 +26,8 @@ export const styles = {
     maxHeight: 'calc(100% - 96px)',
     // Add iOS momentum scrolling.
     WebkitOverflowScrolling: 'touch',
+    // Fix a scrolling issue on Chrome.
+    transform: 'translateZ(0)',
   },
 };
 
