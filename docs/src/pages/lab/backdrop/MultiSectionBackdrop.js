@@ -84,7 +84,6 @@ const styles = theme => {
       color: theme.palette.primary.contrastText,
     },
     content: {
-      marginRight: -15,
       overflowY: 'hidden',
     },
   };

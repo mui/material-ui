@@ -32,7 +32,6 @@ const styles = {
     marginRight: 20,
   },
   content: {
-    marginRight: -15,
     overflowY: 'hidden',
   },
 };
