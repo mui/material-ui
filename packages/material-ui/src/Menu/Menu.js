@@ -25,7 +25,7 @@ export const styles = {
     // the menu.
     maxHeight: 'calc(100% - 96px)',
     // Ensure it's up to the same level as other relative elements (ex. Tabs) to respect scrolling.
-    position: 'relative',
+    transform: 'translate3d(0,0,0)',
     // Add iOS momentum scrolling.
     WebkitOverflowScrolling: 'touch',
   },
