@@ -133,19 +133,24 @@ class Snackbar extends React.Component {
   }
 
   // Timer that controls delay before snackbar auto hides
-  setAutoHideTimer(autoHideDuration = null) {
-    if (!this.props.onClose || this.props.autoHideDuration == null) {
+  setAutoHideTimer(autoHideDuration) {
+    const autoHideDurationBefore =
+      autoHideDuration != null ? autoHideDuration : this.props.autoHideDuration;
+
+    if (!this.props.onClose || autoHideDurationBefore == null) {
       return;
     }
 
     clearTimeout(this.timerAutoHide);
     this.timerAutoHide = setTimeout(() => {
-      if (!this.props.onClose || this.props.autoHideDuration == null) {
+      const autoHideDurationAfter =
+        autoHideDuration != null ? autoHideDuration : this.props.autoHideDuration;
+      if (!this.props.onClose || autoHideDurationAfter == null) {
         return;
       }
 
       this.props.onClose(null, 'timeout');
-    }, autoHideDuration || this.props.autoHideDuration || 0);
+    }, autoHideDurationBefore);
   }
 
   handleMouseEnter = event => {
@@ -178,11 +183,11 @@ class Snackbar extends React.Component {
   // or when the window is shown back.
   handleResume = () => {
     if (this.props.autoHideDuration != null) {
-      if (this.props.resumeHideDuration !== undefined) {
+      if (this.props.resumeHideDuration != null) {
         this.setAutoHideTimer(this.props.resumeHideDuration);
         return;
       }
-      this.setAutoHideTimer((this.props.autoHideDuration || 0) * 0.5);
+      this.setAutoHideTimer(this.props.autoHideDuration * 0.5);
     }
   };
 
