@@ -141,6 +141,7 @@ export class DateTextField extends PureComponent {
     disableOpenOnEnter: false,
     invalidDateMessage: 'Invalid Date Format',
     clearable: false,
+    onBlur: undefined,
     onClear: undefined,
     disablePast: false,
     disableFuture: false,
