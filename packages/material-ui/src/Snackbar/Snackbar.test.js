@@ -275,6 +275,31 @@ describe('<Snackbar />', () => {
       assert.strictEqual(handleClose.callCount, 1);
       assert.deepEqual(handleClose.args[0], [null, 'timeout']);
     });
+
+    it('should call onClose immediately after user interaction when 0', () => {
+      const handleClose = spy();
+      const autoHideDuration = 6000;
+      const resumeHideDuration = 0;
+      const wrapper = mount(
+        <Snackbar
+          open
+          onClose={handleClose}
+          message="message"
+          autoHideDuration={autoHideDuration}
+          resumeHideDuration={resumeHideDuration}
+        />,
+      );
+      wrapper.setProps({ open: true });
+      assert.strictEqual(handleClose.callCount, 0);
+      wrapper.simulate('mouseEnter');
+      clock.tick(100);
+      wrapper.simulate('mouseLeave');
+      clock.tick(100);
+      assert.strictEqual(handleClose.callCount, 1);
+      clock.tick(autoHideDuration);
+      assert.strictEqual(handleClose.callCount, 1);
+      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+    });
   });
 
   describe('prop: disableWindowBlurListener', () => {
