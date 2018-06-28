@@ -145,7 +145,7 @@ class Snackbar extends React.Component {
       }
 
       this.props.onClose(null, 'timeout');
-    }, autoHideDuration || this.props.autoHideDuration || 0);
+    }, autoHideDuration !== null ? autoHideDuration : this.props.autoHideDuration);
   }
 
   handleMouseEnter = event => {
