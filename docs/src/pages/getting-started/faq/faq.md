@@ -90,41 +90,7 @@ export default withTheme()(withStyles(styles)(Modal));
 
 ## How can I access the DOM element?
 
-You can use the `ref` property in conjunction with the [`findDOMNode()`](https://reactjs.org/docs/react-dom.html#finddomnode) React API. Or you can [use an abstraction](https://github.com/facebook/react/issues/11401#issuecomment-340543801):
-
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-
-class RootRef extends React.Component {
-  componentDidMount() {
-    this.props.rootRef(ReactDOM.findDOMNode(this))
-  }
-
-  componentWillUnmount() {
-    this.props.rootRef(null)
-  }
-
-  render() {
-    return this.props.children
-  }
-}
-
-RootRef.propTypes = {
-  children: PropTypes.element.isRequired,
-  rootRef: PropTypes.func.isRequired,
-};
-
-export default RootRef;
-```
-
-Usage:
-```jsx
-<RootRef rootRef={node => { console.log(node) }}>
-  <Paper />
-</RootRef>
-```
+Wrap the component with the [`<RootRef>`](/api/root-ref) helper.
 
 ## Why are the colors I am seeing different from what I see here?
 
