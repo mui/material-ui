@@ -89,6 +89,7 @@ export class DateTextField extends PureComponent {
     disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
     format: PropTypes.string,
+    onBlur: PropTypes.func,
     onChange: PropTypes.func.isRequired,
     onClear: PropTypes.func,
     onClick: PropTypes.func.isRequired,
@@ -214,6 +215,9 @@ export class DateTextField extends PureComponent {
       e.stopPropagation();
 
       this.commitUpdates(e.target.value);
+      if (this.props.onBlur) {
+        this.props.onBlur(e);
+      }
     }
   };
 
@@ -277,6 +281,7 @@ export class DateTextField extends PureComponent {
       maxDateMessage,
       minDate,
       minDateMessage,
+      onBlur,
       onClear,
       onClick,
       TextFieldComponent,
