@@ -278,7 +278,7 @@ describe('<Snackbar />', () => {
 
     it('should call onClose immediately after user interaction when 0', () => {
       const handleClose = spy();
-      const autoHideDuration = 6000;
+      const autoHideDuration = 6e3;
       const resumeHideDuration = 0;
       const wrapper = mount(
         <Snackbar
@@ -294,9 +294,7 @@ describe('<Snackbar />', () => {
       wrapper.simulate('mouseEnter');
       clock.tick(100);
       wrapper.simulate('mouseLeave');
-      clock.tick(100);
-      assert.strictEqual(handleClose.callCount, 1);
-      clock.tick(autoHideDuration);
+      clock.tick(resumeHideDuration);
       assert.strictEqual(handleClose.callCount, 1);
       assert.deepEqual(handleClose.args[0], [null, 'timeout']);
     });
