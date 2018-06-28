@@ -24,10 +24,10 @@ export const styles = {
     // height. This ensures a tappable area outside of the simple menu with which to dismiss
     // the menu.
     maxHeight: 'calc(100% - 96px)',
-    // Ensure it's up to the same level as other relative elements (ex. Tabs) to respect scrolling.
-    transform: 'translate3d(0,0,0)',
     // Add iOS momentum scrolling.
     WebkitOverflowScrolling: 'touch',
+    // Fix a scrolling issue on Chrome.
+    transform: 'translateZ(0)',
   },
 };
 
