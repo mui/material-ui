@@ -1,5 +1,5 @@
 ---
-title: ClickAwayListener React component
+title: Click away listener React component
 components: ClickAwayListener
 ---
 
