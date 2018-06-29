@@ -1,0 +1,22 @@
+import React from 'react';
+import createSvgIcon from './utils/createSvgIcon';
+
+export default createSvgIcon(
+  <g>
+<g id="Bounding_Boxes">
+	<g id="ui_x5F_spec_x5F_header_copy_3">
+	</g>
+	</g>
+<g id="Rounded">
+	<g id="ui_x5F_spec_x5F_header_copy_7">
+	</g>
+	<g>
+		<path d="M10.85,18.85C10.54,18.54,10,18.76,10,19.21V20H6c-0.55,0-1,0.45-1,1c0,0.55,0.45,1,1,1h4v0.79
+			c0,0.45,0.54,0.67,0.85,0.35l1.79-1.79c0.2-0.2,0.2-0.51,0-0.71L10.85,18.85z" />
+		<path d="M18,20h-3c-0.55,0-1,0.45-1,1c0,0.55,0.45,1,1,1h3c0.55,0,1-0.45,1-1C19,20.45,18.55,20,18,20z" />
+		<path d="M17,0H7C5.9,0,5,0.9,5,2v14c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V2C19,0.9,18.1,0,17,0z M12,6c-1.11,0-2-0.9-2-2
+			c0-1.1,0.89-2,1.99-2c1.1,0,2,0.9,2,2C14,5.1,13.1,6,12,6z" />
+	</g>
+</g>
+</g>
+, 'CameraRearRounded');

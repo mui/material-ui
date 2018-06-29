@@ -1,0 +1,22 @@
+import React from 'react';
+import createSvgIcon from './utils/createSvgIcon';
+
+export default createSvgIcon(
+  <g>
+<g id="Bounding_Boxes">
+	</g>
+<g id="Duotone">
+	<g id="ui_x5F_spec_x5F_header_copy_2">
+	</g>
+	<g>
+		<g>
+			<path d="M8.1,13.34l2.83-2.83L3.91,3.5c-1.56,1.56-1.56,4.09,0,5.66L8.1,13.34z" />
+		</g>
+		<g>
+			<path d="M20.15,10.15c1.91-1.91,2.28-4.65,0.81-6.12c-1.46-1.46-4.2-1.1-6.12,0.81c-1.59,1.59-2.09,3.74-1.38,5.27L3.7,19.87
+				l1.41,1.41L12,14.41l6.88,6.88l1.41-1.41L13.41,13l1.47-1.47C16.41,12.24,18.56,11.74,20.15,10.15z" />
+		</g>
+	</g>
+</g>
+</g>
+, 'RestaurantMenuTwoTone');

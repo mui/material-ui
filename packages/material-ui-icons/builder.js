@@ -43,14 +43,19 @@ function getJsxString(svgPath, destPath) {
   });
 
   // Extract the paths from the svg string
-  let paths = data.slice(data.indexOf('>') + 1);
-  paths = paths.slice(0, -6);
   // Clean xml paths
-  paths = paths.replace(/xlink:href="#a"/g, '');
-  paths = paths.replace(/xlink:href="#c"/g, '');
-  paths = paths.replace(/fill-opacity=/g, 'fillOpacity=');
-  paths = paths.replace(/\s?fill=".*?"/g, '');
-  paths = paths.replace(/"\/>/g, '" />');
+  const paths = data
+    .replace(/<!--.*-->/g, '')
+    .replace(/<\?xml[^>]*>\n/g, '')
+    .replace(/<svg[^>]*>\n/g, '')
+    .replace(/<\/svg>\n/g, '')
+    .replace(/xlink:href="#a"/g, '')
+    .replace(/xlink:href="#c"/g, '')
+    .replace(/fill-opacity=/g, 'fillOpacity=')
+    .replace(/\s?fill=".*?"/g, '')
+    .replace(/<path[^>]*0h24[^>]*>\n/g, '')
+    .replace(/<path[^>]*0H24[^>]*>\n/g, '')
+    .replace(/"\/>/g, '" />');
 
   return Mustache.render(template, {
     paths,

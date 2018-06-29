@@ -12,6 +12,14 @@ function myDestRewriter(pathObj: Object) {
     fileName = `ThreeD${fileName.slice(2)}`;
   }
 
+  if (fileName.indexOf('360') === 0) {
+    fileName = `ThreeSixty${fileName.slice(3)}`;
+  }
+
+  if (fileName.indexOf('4k') === 0) {
+    fileName = `FourK${fileName.slice(2)}`;
+  }
+
   return fileName;
 }
 
