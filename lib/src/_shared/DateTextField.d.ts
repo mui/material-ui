@@ -13,7 +13,6 @@ export interface DateTextFieldProps extends Omit<TextFieldProps, 'onChange' | 'v
     maxDate?: DateType;
     maxDateMessage?: React.ReactNode;
     mask?: any;
-    onBlur?: () => void;
     onChange: (date: MaterialUiPickersDate) => void;
     onClear?: () => void;
     keyboard?: boolean;
