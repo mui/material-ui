@@ -32,7 +32,7 @@ export const styles = theme => ({
   },
   paperScrollPaper: {
     flex: '0 1 auto',
-    maxHeight: `calc(100% - ${48 * 2}px)`,
+    maxHeight: 'calc(100% - 96px)',
   },
   paperScrollBody: {
     margin: '48px auto',

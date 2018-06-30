@@ -19,7 +19,7 @@ export const styles = theme => ({
     width: '100%',
   },
   inset: {
-    marginLeft: theme.spacing.unit * 9,
+    marginLeft: 72,
   },
   light: {
     backgroundColor: fade(theme.palette.divider, 0.08),

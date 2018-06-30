@@ -3,19 +3,16 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => {
-  const spacing = theme.spacing.unit * 3;
-  return {
-    root: {
-      flex: '1 1 auto',
-      overflowY: 'auto',
-      WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-      padding: `0 ${spacing}px ${spacing}px ${spacing}px`,
-      '&:first-child': {
-        paddingTop: spacing,
-      },
+export const styles = {
+  root: {
+    flex: '1 1 auto',
+    overflowY: 'auto',
+    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    padding: '0 24px 24px',
+    '&:first-child': {
+      paddingTop: 24,
     },
-  };
+  },
 };
 
 function DialogContent(props) {

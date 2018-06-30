@@ -15,7 +15,7 @@ export const styles = theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     background: theme.palette.background.default,
-    padding: theme.spacing.unit,
+    padding: 8,
   },
   positionBottom: {
     position: 'fixed',
@@ -39,8 +39,8 @@ export const styles = theme => ({
   dot: {
     backgroundColor: theme.palette.action.disabled,
     borderRadius: '50%',
-    width: theme.spacing.unit,
-    height: theme.spacing.unit,
+    width: 8,
+    height: 8,
     margin: '0 2px',
   },
   dotActive: {

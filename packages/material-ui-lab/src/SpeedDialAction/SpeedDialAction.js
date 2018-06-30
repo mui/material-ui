@@ -10,7 +10,7 @@ const styles = theme => ({
     position: 'relative',
   },
   button: {
-    margin: theme.spacing.unit,
+    margin: 8,
     color: theme.palette.text.secondary,
     transition: `${theme.transitions.create('transform', {
       duration: theme.transitions.duration.shorter,

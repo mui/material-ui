@@ -9,14 +9,14 @@ import ListItem from '../ListItem';
 export const styles = theme => ({
   root: {
     ...theme.typography.subheading,
-    height: theme.spacing.unit * 3,
+    height: 24,
     boxSizing: 'content-box',
     width: 'auto',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
+    paddingLeft: 16,
+    paddingRight: 16,
     '&$selected': {
       backgroundColor: theme.palette.action.selected,
     },

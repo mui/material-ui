@@ -8,14 +8,14 @@ export const styles = theme => ({
   root: {
     flex: '1 1 auto',
     minWidth: 0,
-    padding: `0 ${theme.spacing.unit * 2}px`,
+    padding: '0 16px',
     '&:first-child': {
       paddingLeft: 0,
     },
   },
   inset: {
     '&:first-child': {
-      paddingLeft: theme.spacing.unit * 7,
+      paddingLeft: 56,
     },
   },
   dense: {

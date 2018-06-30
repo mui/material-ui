@@ -10,7 +10,7 @@ import Slide from '../Slide';
 import SnackbarContent from '../SnackbarContent';
 
 export const styles = theme => {
-  const gutter = theme.spacing.unit * 3;
+  const gutter = 24;
   const top = { top: 0 };
   const bottom = { bottom: 0 };
   const right = { justifyContent: 'flex-end' };

@@ -35,14 +35,14 @@ export const styles = theme => ({
     },
     '&$alternativeLabel': {
       textAlign: 'center',
-      marginTop: theme.spacing.unit * 2,
+      marginTop: 16,
     },
     '&$error': {
       color: theme.palette.error.main,
     },
   },
   iconContainer: {
-    paddingRight: theme.spacing.unit,
+    paddingRight: 8,
     '&$alternativeLabel': {
       paddingRight: 0,
     },

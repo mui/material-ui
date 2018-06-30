@@ -21,7 +21,7 @@ export const styles = theme => ({
     color: 'inherit',
   },
   inset: {
-    paddingLeft: theme.spacing.unit * 9,
+    paddingLeft: 72,
   },
   sticky: {
     position: 'sticky',

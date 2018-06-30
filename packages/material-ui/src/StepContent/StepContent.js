@@ -7,10 +7,10 @@ import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit,
+    marginTop: 8,
     marginLeft: 12, // half icon
-    paddingLeft: theme.spacing.unit + 12, // margin + half icon
-    paddingRight: theme.spacing.unit,
+    paddingLeft: 8 + 12, // margin + half icon
+    paddingRight: 8,
     borderLeft: `1px solid ${
       theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
     }`,

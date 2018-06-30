@@ -9,7 +9,7 @@ export const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(12),
     textAlign: 'left',
-    marginTop: theme.spacing.unit,
+    marginTop: 8,
     lineHeight: '1em',
     minHeight: '1em',
     margin: 0,
@@ -23,7 +23,7 @@ export const styles = theme => ({
   error: {},
   disabled: {},
   marginDense: {
-    marginTop: theme.spacing.unit / 2,
+    marginTop: 4,
   },
 });
 

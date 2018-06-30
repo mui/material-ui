@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const styles = {
   root: {},
   horizontal: {
-    paddingLeft: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
+    paddingLeft: 8,
+    paddingRight: 8,
     '&:first-child': {
       paddingLeft: 0,
     },
@@ -21,7 +21,7 @@ export const styles = theme => ({
     flex: 1,
     position: 'relative',
   },
-});
+};
 
 function Step(props) {
   const {

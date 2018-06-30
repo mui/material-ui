@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const styles = {
   root: {
     display: 'flex',
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    padding: '8px 24px 24px',
   },
-});
+};
 
 function ExpansionPanelDetails(props) {
   const { classes, children, className, ...other } = props;

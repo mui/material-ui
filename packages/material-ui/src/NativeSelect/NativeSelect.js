@@ -18,9 +18,9 @@ export const styles = theme => ({
     // When interacting quickly, the text can end up selected.
     // Native select can't be selected either.
     userSelect: 'none',
-    paddingRight: theme.spacing.unit * 4,
-    width: `calc(100% - ${theme.spacing.unit * 4}px)`,
-    minWidth: theme.spacing.unit * 2, // So it doesn't collapse.
+    paddingRight: 32,
+    width: 'calc(100% - 32px)',
+    minWidth: 16, // So it doesn't collapse.
     cursor: 'pointer',
     '&:focus': {
       // Show that it's not an text input

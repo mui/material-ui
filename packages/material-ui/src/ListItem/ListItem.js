@@ -27,8 +27,8 @@ export const styles = theme => ({
     paddingBottom: 12,
   },
   dense: {
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
+    paddingTop: 8,
+    paddingBottom: 8,
   },
   disabled: {
     opacity: 0.5,
@@ -54,7 +54,7 @@ export const styles = theme => ({
   secondaryAction: {
     // Add some space to avoid collision as `ListItemSecondaryAction`
     // is absolutely positionned.
-    paddingRight: theme.spacing.unit * 4,
+    paddingRight: 32,
   },
 });
 

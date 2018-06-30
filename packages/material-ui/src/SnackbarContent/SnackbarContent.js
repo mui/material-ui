@@ -20,7 +20,7 @@ export const styles = theme => {
       display: 'flex',
       alignItems: 'center',
       flexWrap: 'wrap',
-      padding: `6px ${theme.spacing.unit * 3}px`,
+      padding: '6px 24px',
       [theme.breakpoints.up('md')]: {
         minWidth: 288,
         maxWidth: 568,
@@ -31,14 +31,14 @@ export const styles = theme => {
       },
     },
     message: {
-      padding: `${theme.spacing.unit}px 0`,
+      padding: '8px 0',
     },
     action: {
       display: 'flex',
       alignItems: 'center',
       marginLeft: 'auto',
-      paddingLeft: theme.spacing.unit * 3,
-      marginRight: -theme.spacing.unit,
+      paddingLeft: 24,
+      marginRight: -8,
     },
   };
 };
