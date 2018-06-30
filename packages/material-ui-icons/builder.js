@@ -78,6 +78,7 @@ function pascalCase(destPath) {
 
 function getJsxString(svgPath, destPath, absDestPath) {
   const className = pascalCase(destPath);
+  console.log(`  ${className}`);
 
   const data = fs.readFileSync(svgPath, {
     encoding: 'utf8',
@@ -95,6 +96,8 @@ function getJsxString(svgPath, destPath, absDestPath) {
       .replace(/<\?xml[^>]*>/g, '')
       .replace(/<svg[^>]*>/g, '')
       .replace(/<\/svg>/g, '')
+      .replace(/<g>/g, '')
+      .replace(/<\/g>/g, '')
       .replace(/xlink:href="#a"/g, '')
       .replace(/xlink:href="#c"/g, '')
       .replace(/xlink:href="#SVGID_[\d]*_"/g, '')
@@ -103,10 +106,6 @@ function getJsxString(svgPath, destPath, absDestPath) {
       .replace(/<path[^>]*0h24[^>]*>/g, '')
       .replace(/<path[^>]*0H24[^>]*>/g, '')
       .replace(/"\/>/g, '" />');
-
-    console.log(`  ${className}`);
-    console.log(paths);
-    console.log(template);
 
     const fileString = Mustache.render(template, {
       paths,
