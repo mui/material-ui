@@ -1,8 +1,5 @@
-/* eslint-disable no-console */
-/* eslint-disable no-await-in-loop */
-
 import fse from 'fs-extra';
-import fetch from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 
 const BASE_URL = 'https://material.io/tools/icons/static/icons';
 
@@ -40,56 +37,54 @@ const sizes = {
   },
 };
 
-function getIconList(callback) {
-  fetch('https://material.io/tools/icons/static/data.json')
-    .then(response => response.json())
-    .then(data => {
-      callback(data.categories);
-    })
-    .catch(error => console.error(error));
+function sleep(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
 }
 
-const downloadByCategory = async category => {
-  async function asyncForEach(array, callback) {
-    function sleep(ms) {
-      return new Promise(resolve => {
-        setTimeout(resolve, ms);
-      });
-    }
-
-    for (let index = 0; index < array.length; index += 1) {
-      await callback(array[index]);
-      await sleep(500);
-    }
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await callback(array[index]);
   }
+}
 
-  async function downloadFile(url, filePath) {
-    await fetch(url)
-      .then(response => response.text())
-      .then(data => {
-        fse.writeFile(filePath, data, err => {
-          if (err) {
-            return console.error(err);
-          }
-          return console.log(filePath);
-        });
-      });
-  }
+async function getCategories() {
+  const response = await fetch('https://material.io/tools/icons/static/data.json');
+  const data = await response.json();
+  return data.categories;
+}
 
+async function downloadFile(url, filePath) {
+  const response = await fetch(url);
+  const data = await response.text();
+  await fse.writeFile(filePath, data);
+
+  /* eslint-disable-next-line no-console */
+  console.log('downloadFile', filePath);
+}
+
+async function downloadByCategory(category) {
   await asyncForEach(category.icons, async icon => {
-    Object.keys(themeMap).forEach(theme => {
-      const size = sizes[icon.id] && sizes[icon.id][theme] ? sizes[icon.id][theme] : 24;
-      const url = `${BASE_URL}/${theme}-${icon.id}-${size}px.svg`;
-      const filePath = `./material-design-icons/ic_${icon.id}_${themeMap[theme]}_${size}px.svg`;
-      downloadFile(url, filePath);
-    });
+    await Promise.all(
+      Object.keys(themeMap).map(async theme => {
+        const size = sizes[icon.id] && sizes[icon.id][theme] ? sizes[icon.id][theme] : 24;
+        const url = `${BASE_URL}/${theme}-${icon.id}-${size}px.svg`;
+        const filePath = `./material-design-icons/ic_${icon.id}_${themeMap[theme]}_${size}px.svg`;
+        await downloadFile(url, filePath);
+      }),
+    );
+    await sleep(500);
   });
-};
+}
 
-fse.ensureDir('material-design-icons');
-
-getIconList(iconList => {
-  iconList.forEach(category => {
-    downloadByCategory(category);
+async function run() {
+  await fse.ensureDir('material-design-icons');
+  const categories = await getCategories();
+  await asyncForEach(categories, category => {
+    return downloadByCategory(category);
   });
-});
+}
+
+run();
