@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
+import warning from 'warning';
 import { withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import { duration } from '@material-ui/core/styles/transitions';
@@ -114,7 +115,18 @@ class SpeedDial extends React.Component {
 
     let validChildCount = 0;
     const children = React.Children.map(childrenProp, child => {
-      if (!React.isValidElement(child)) return null;
+      if (!React.isValidElement(child)) {
+        return null;
+      }
+
+      warning(
+        child.type !== React.Fragment,
+        [
+          "Material-UI: the SpeedDial component doesn't accept a Fragment as a child.",
+          'Consider providing an array instead.',
+        ].join('\n'),
+      );
+
       const delay = 30 * (open ? validChildCount : totalValidChildren - validChildCount);
       validChildCount += 1;
       return React.cloneElement(child, {

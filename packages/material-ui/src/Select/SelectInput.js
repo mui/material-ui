@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
+import warning from 'warning';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../Input/Input';
 
@@ -207,6 +208,15 @@ class SelectInput extends React.Component {
       if (!React.isValidElement(child)) {
         return null;
       }
+
+      warning(
+        child.type !== React.Fragment,
+        [
+          "Material-UI: the Select component doesn't accept a Fragment as a child.",
+          'Consider providing an array instead.',
+        ].join('\n'),
+      );
+
       let selected;
 
       if (multiple) {
