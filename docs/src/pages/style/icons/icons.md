@@ -44,8 +44,12 @@ When importing an icon, keep in mind that the names of the icons are `PascalCase
 - [`alarm`](https://material.io/tools/icons/?icon=alarm&style=baseline) is exposed as `@material-ui/icons/Alarm`
 - [`alarm off`](https://material.io/tools/icons/?icon=alarm_off&style=baseline) is exposed as `@material-ui/icons/AlarmOff`
 
-There is one exception to this rule:
-- [`3d_rotation`](https://material.io/tools/icons/?icon=3d_rotation&style=baseline) is exposed as `@material-ui/icons/ThreeDRotation`.
+There are three exceptions to this rule:
+- [`3d_rotation`](https://material.io/tools/icons/?icon=3d_rotation&style=baseline) is exposed as `@material-ui/icons/ThreeDRotation`
+- [`4k`](https://material.io/tools/icons/?icon=4k&style=baseline) is exposed as `@material-ui/icons/FourK`
+- [`360`](https://material.io/tools/icons/?icon=360&style=baseline) is exposed as `@material-ui/icons/ThreeSixty`
+
+For "themed" icons, append the theme name to the icon name, for example the Outlined [`build`](https://material.io/tools/icons/?icon=build&style=outline) icon is exposed as `@material-ui/icons/BuildOutlined`.
 
 {{"demo": "pages/style/icons/SvgMaterialIcons.js"}}
 

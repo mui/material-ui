@@ -25,12 +25,12 @@ yarn add @material-ui/core
 
 ## Usage
 
-The import path for each Material icon component includes the icon name in PascalCase. There are two versions provided: filled icon and outline icon. Append `Outline` to the icon name to use the outlined version of the icon (i.e., `@material-ui/icons/InfoOutline`) when available, as not all icons are provided with two versions.
+The import path for each Material icon component includes the icon name in PascalCase.
 
 For example to use the 'access alarm' icon component, import `@material-ui/icons/AccessAlarm`.
 For "themed" icons, append the theme name to the icon name, for example `AccessAlarmOutlined`.
 
-Note: There are three exceptions"
+Note, there are three exceptions:
 - '3d rotation' is named `ThreeDRotation`
 - '4k' is named `FourK`
 - '360' is named `ThreeSixty`
