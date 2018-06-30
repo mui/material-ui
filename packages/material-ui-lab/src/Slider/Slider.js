@@ -33,7 +33,7 @@ export const style = theme => {
     root: {
       position: 'relative',
       width: '100%',
-      padding: '20px 0',
+      padding: '16px 0',
       cursor: 'pointer',
       WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
@@ -41,7 +41,7 @@ export const style = theme => {
       },
       '&$vertical': {
         height: '100%',
-        padding: '0 20px',
+        padding: '0 16px',
       },
       '&$reverse': {
         transform: 'scaleX(-1)',
@@ -285,6 +285,7 @@ class Slider extends React.Component {
   };
 
   handleTouchStart = event => {
+    event.preventDefault();
     this.setState({ currentState: 'activated' });
 
     this.globalMouseUpListener = addEventListener(document, 'touchend', this.handleMouseUp);
@@ -295,6 +296,7 @@ class Slider extends React.Component {
   };
 
   handleMouseDown = event => {
+    event.preventDefault();
     this.setState({ currentState: 'activated' });
 
     this.globalMouseUpListener = addEventListener(document, 'mouseup', this.handleMouseUp);
