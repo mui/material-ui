@@ -2,19 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Sharp">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<g>
-		<polygon points="17,10 13.39,10 15.67,12.28 		" />
-		<polygon points="17,2 7,2 7,3.61 13.13,9.74 		" />
-		<polygon points="3.41,2.86 2,4.27 7,9.27 7,13 10,13 10,22 13.58,15.85 17.73,20 19.14,18.59 		" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M17 10h-3.61l2.28 2.28zM17 2H7v1.61l6.13 6.13zM3.41 2.86L2 4.27l5 5V13h3v9l3.58-6.15L17.73 20l1.41-1.41z" /></g></g>
 , 'FlashOffSharp');

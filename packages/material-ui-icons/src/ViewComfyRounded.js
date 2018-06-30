@@ -2,17 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	</g>
-<g id="Rounded">
-	<g id="ui_x5F_spec_x5F_header_copy_6">
-	</g>
-	<path d="M3,9h4V5H5C3.9,5,3,5.9,3,7V9z M3,14h4v-4H3V14z M8,14h4v-4H8V14z M13,14h4v-4h-4V14z M8,9h4V5H8V9z M13,5v4h4V5H13z
-		 M18,14h4v-4h-4V14z M5,19h2v-4H3v2C3,18.1,3.9,19,5,19z M8,19h4v-4H8V19z M13,19h4v-4h-4V19z M18,19h2c1.1,0,2-0.9,2-2v-2h-4V19z
-		 M18,5v4h4V7c0-1.1-0.9-2-2-2H18z" />
-</g>
-</g>
+  <g><g><path d="M3 9h4V5H5c-1.1 0-2 .9-2 2v2zm0 5h4v-4H3v4zm5 0h4v-4H8v4zm5 0h4v-4h-4v4zM8 9h4V5H8v4zm5-4v4h4V5h-4zm5 9h4v-4h-4v4zM5 19h2v-4H3v2c0 1.1.9 2 2 2zm3 0h4v-4H8v4zm5 0h4v-4h-4v4zm5 0h2c1.1 0 2-.9 2-2v-2h-4v4zm0-14v4h4V7c0-1.1-.9-2-2-2h-2z" /></g></g>
 , 'ViewComfyRounded');

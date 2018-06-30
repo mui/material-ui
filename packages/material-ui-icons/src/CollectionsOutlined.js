@@ -2,19 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Outline_1_">
-	<g id="ui_x5F_spec_x5F_header_copy_4">
-	</g>
-	<g>
-		<path d="M20,4v12H8V4H20 M20,2H8C6.9,2,6,2.9,6,4v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V4C22,2.9,21.1,2,20,2L20,2z" />
-		<polygon points="11.5,11.67 13.19,13.93 15.67,10.83 19,15 9,15 		" />
-		<path d="M2,6v14c0,1.1,0.9,2,2,2h14v-2H4V6H2z" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M20 4v12H8V4h12m0-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" /><path d="M11.5 11.67l1.69 2.26 2.48-3.1L19 15H9z" /><path d="M2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z" /></g></g>
 , 'CollectionsOutlined');

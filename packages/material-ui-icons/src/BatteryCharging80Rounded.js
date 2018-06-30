@@ -2,20 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Rounded">
-	<g id="ui_x5F_spec_x5F_header_copy_6">
-	</g>
-	<g>
-		<path fillOpacity="0.3" d="M15.67,4H14V3c0-0.55-0.45-1-1-1h-2c-0.55,0-1,0.45-1,1v1H8.33C7.6,4,7,4.6,7,5.33V9h4.93l0.13-0.24
-			C12.3,8.31,13,8.48,13,9h4V5.33C17,4.6,16.4,4,15.67,4z" />
-		<path d="M13,12.5h1.17c0.38,0,0.62,0.4,0.44,0.74l-2.67,5C11.7,18.69,11,18.52,11,18v-3.5H9.83c-0.38,0-0.62-0.4-0.44-0.74
-			L11.93,9H7v11.67C7,21.4,7.6,22,8.33,22h7.33C16.4,22,17,21.4,17,20.67V9h-4V12.5z" />
-	</g>
-</g>
-</g>
+  <g><g><path fillOpacity=".3" d="M15.67 4H14V3c0-.55-.45-1-1-1h-2c-.55 0-1 .45-1 1v1H8.33C7.6 4 7 4.6 7 5.33V9h4.93l.13-.24c.24-.45.94-.28.94.24h4V5.33C17 4.6 16.4 4 15.67 4z" /><path d="M13 12.5h1.17c.38 0 .62.4.44.74l-2.67 5c-.24.45-.94.28-.94-.24v-3.5H9.83a.5.5 0 0 1-.44-.74L11.93 9H7v11.67C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V9h-4v3.5z" /></g></g>
 , 'BatteryCharging80Rounded');

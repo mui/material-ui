@@ -2,22 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	<g>
-		<polygon points="11.88,3 3,11.88 3,14.71 14.71,3 		" />
-		<path d="M3,5v2l4-4H5C3.9,3,3,3.9,3,5z" />
-		<path d="M19.51,3.08L3.08,19.51c0.09,0.34,0.27,0.65,0.51,0.9c0.25,0.24,0.56,0.42,0.9,0.51L20.93,4.49
-			C20.74,3.8,20.2,3.26,19.51,3.08z" />
-		<polygon points="21,9.29 9.29,21 12.12,21 21,12.12 		" />
-		<path d="M20.41,20.41C20.78,20.05,21,19.55,21,19v-2l-4,4h2C19.55,21,20.05,20.78,20.41,20.41z" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M11.88 3L3 11.88v2.83L14.71 3zM3 5v2l4-4H5c-1.1 0-2 .9-2 2zM19.51 3.08L3.08 19.51c.09.34.27.65.51.9.25.24.56.42.9.51L20.93 4.49c-.19-.69-.73-1.23-1.42-1.41zM21 9.29L9.29 21h2.83L21 12.12zM20.41 20.41c.37-.36.59-.86.59-1.41v-2l-4 4h2c.55 0 1.05-.22 1.41-.59z" /></g></g>
 , 'TextureTwoTone');

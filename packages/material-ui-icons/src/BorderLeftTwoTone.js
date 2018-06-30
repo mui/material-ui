@@ -2,33 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<g>
-		<rect x="11" y="3" width="2" height="2" />
-		<rect x="3" y="3" width="2" height="18" />
-		<rect x="15" y="3" width="2" height="2" />
-		<rect x="11" y="19" width="2" height="2" />
-		<rect x="11" y="15" width="2" height="2" />
-		<rect x="15" y="19" width="2" height="2" />
-		<rect x="11" y="7" width="2" height="2" />
-		<rect x="11" y="11" width="2" height="2" />
-		<rect x="19" y="15" width="2" height="2" />
-		<rect x="19" y="19" width="2" height="2" />
-		<rect x="19" y="7" width="2" height="2" />
-		<rect x="19" y="11" width="2" height="2" />
-		<rect x="19" y="3" width="2" height="2" />
-		<rect x="15" y="11" width="2" height="2" />
-		<rect x="7" y="19" width="2" height="2" />
-		<rect x="7" y="11" width="2" height="2" />
-		<rect x="7" y="3" width="2" height="2" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M11 3h2v2h-2zM3 3h2v18H3zM15 3h2v2h-2zM11 19h2v2h-2zM11 15h2v2h-2zM15 19h2v2h-2zM11 7h2v2h-2zM11 11h2v2h-2zM19 15h2v2h-2zM19 19h2v2h-2zM19 7h2v2h-2zM19 11h2v2h-2zM19 3h2v2h-2zM15 11h2v2h-2zM7 19h2v2H7zM7 11h2v2H7zM7 3h2v2H7z" /></g></g>
 , 'BorderLeftTwoTone');

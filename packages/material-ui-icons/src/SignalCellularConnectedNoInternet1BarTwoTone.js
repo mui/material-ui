@@ -2,18 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<g>
-		<path fillOpacity="0.3" d="M22,8V2L2,22h16V8H22z" />
-		<path d="M20,10v8h2v-8H20z M12,22V12L2,22H12z M20,22h2v-2h-2V22z" />
-	</g>
-</g>
-</g>
+  <g><g><path fillOpacity=".3" d="M22 8V2L2 22h16V8h4z" /><path d="M20 10v8h2v-8h-2zm-8 12V12L2 22h10zm8 0h2v-2h-2v2z" /></g></g>
 , 'SignalCellularConnectedNoInternet1BarTwoTone');

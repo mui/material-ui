@@ -2,21 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	<rect width="24" height="24" />
-</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_5">
-	</g>
-	<g>
-		<path opacity="0.3" d="M19,19V5L5,19H19z M14.5,14.5v-2H16v2h2V16h-2v2h-1.5v-2h-2v-1.5H14.5z" />
-		<path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M6,7h5v1.5H6V7z M19,19H5L19,5V19z
-			" />
-		<polygon points="14.5,16 14.5,18 16,18 16,16 18,16 18,14.5 16,14.5 16,12.5 14.5,12.5 14.5,14.5 12.5,14.5 12.5,16 		" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M19 19V5L5 19h14zm-4.5-4.5v-2H16v2h2V16h-2v2h-1.5v-2h-2v-1.5h2z" opacity=".3" /><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM6 7h5v1.5H6V7zm13 12H5L19 5v14z" /><path d="M14.5 16v2H16v-2h2v-1.5h-2v-2h-1.5v2h-2V16z" /></g></g>
 , 'ExposureTwoTone');

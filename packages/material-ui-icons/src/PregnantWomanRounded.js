@@ -2,57 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Header_x2F_BG" display="none">
-	<rect x="-50" y="-270" display="inline" width="520" height="520" />
-</g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3" display="none">
-	</g>
-	<rect width="24" height="24" />
-</g>
-<g id="Rounded">
-	<g id="ui_x5F_spec_x5F_header_copy_5" display="none">
-	</g>
-	<g>
-		<path d="M9,4c0-1.11,0.89-2,2-2s2,0.89,2,2s-0.89,2-2,2S9,5.11,9,4z M16,13c-0.01-1.34-0.83-2.51-2-3c0-1.71-1.42-3.08-3.16-3
-			C9.22,7.09,8,8.54,8,10.16L8,16c0,0.55,0.45,1,1,1h1v3.5c0,0.83,0.67,1.5,1.5,1.5h0c0.83,0,1.5-0.67,1.5-1.5V17h2
-			c0.55,0,1-0.45,1-1V13z" />
-	</g>
-</g>
-<g id="Sharp" display="none">
-	<g id="ui_x5F_spec_x5F_header_copy_4">
-	</g>
-	<g display="inline">
-		<path d="M9,4c0-1.11,0.89-2,2-2s2,0.89,2,2s-0.89,2-2,2S9,5.11,9,4z M16,13c-0.01-1.34-0.83-2.51-2-3c0-1.66-1.34-3-3-3
-			s-3,1.34-3,3v7h2v5h3v-5h3V13z" />
-	</g>
-</g>
-<g id="Outline" display="none">
-	<g id="ui_x5F_spec_x5F_header">
-	</g>
-	<g display="inline">
-		<path d="M9,4c0-1.11,0.89-2,2-2s2,0.89,2,2s-0.89,2-2,2S9,5.11,9,4z M16,13c-0.01-1.34-0.83-2.51-2-3c0-1.66-1.34-3-3-3
-			s-3,1.34-3,3v7h2v5h3v-5h3V13z" />
-	</g>
-</g>
-<g id="Duotone" display="none">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<g display="inline">
-		<g>
-			<path d="M9,4c0-1.11,0.89-2,2-2s2,0.89,2,2s-0.89,2-2,2S9,5.11,9,4z M16,13c-0.01-1.34-0.83-2.51-2-3c0-1.66-1.34-3-3-3
-				s-3,1.34-3,3v7h2v5h3v-5h3V13z" />
-		</g>
-	</g>
-</g>
-<g id="Material" display="none">
-	<g id="ui_x5F_spec_x5F_header_copy">
-	</g>
-	<g display="inline">
-		<path d="M9,4c0-1.11,0.89-2,2-2s2,0.89,2,2s-0.89,2-2,2S9,5.11,9,4z M16,13c-0.01-1.34-0.83-2.51-2-3c0-1.66-1.34-3-3-3
-			s-3,1.34-3,3v7h2v5h3v-5h3V13z" />
-	</g>
-</g>
-</g>
+  <g><path d="M9 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm7 9a3.285 3.285 0 0 0-2-3c0-1.71-1.42-3.08-3.16-3C9.22 7.09 8 8.54 8 10.16V16c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V17h2c.55 0 1-.45 1-1v-3z" /></g>
 , 'PregnantWomanRounded');

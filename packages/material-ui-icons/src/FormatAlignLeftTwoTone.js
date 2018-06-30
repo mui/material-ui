@@ -2,21 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<g>
-		<rect x="3" y="19" width="18" height="2" />
-		<rect x="3" y="7" width="12" height="2" />
-		<rect x="3" y="3" width="18" height="2" />
-		<rect x="3" y="15" width="12" height="2" />
-		<rect x="3" y="11" width="18" height="2" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M3 19h18v2H3zM3 7h12v2H3zM3 3h18v2H3zM3 15h12v2H3zM3 11h18v2H3z" /></g></g>
 , 'FormatAlignLeftTwoTone');

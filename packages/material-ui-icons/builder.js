@@ -7,9 +7,55 @@ import rimraf from 'rimraf';
 import Mustache from 'mustache';
 import glob from 'glob';
 import mkdirp from 'mkdirp';
+import SVGO from 'svgo';
 
 const RENAME_FILTER_DEFAULT = './filters/rename/default';
 const RENAME_FILTER_MUI = './filters/rename/material-design-icons';
+
+const svgo = new SVGO({
+  plugins: [
+    { cleanupAttrs: true },
+    { removeDoctype: true },
+    { removeXMLProcInst: true },
+    { removeComments: true },
+    { removeMetadata: true },
+    { removeTitle: true },
+    { removeDesc: true },
+    { removeUselessDefs: true },
+    { removeXMLNS: true },
+    { removeEditorsNSData: true },
+    { removeEmptyAttrs: true },
+    { removeHiddenElems: true },
+    { removeEmptyText: true },
+    { removeEmptyContainers: true },
+    { removeViewBox: true },
+    { cleanupEnableBackground: true },
+    { minifyStyles: true },
+    { convertStyleToAttrs: true },
+    { convertColors: true },
+    { convertPathData: true },
+    { convertTransform: true },
+    { removeUnknownsAndDefaults: true },
+    { removeNonInheritableGroupAttrs: true },
+    { removeUselessStrokeAndFill: true },
+    { removeUnusedNS: true },
+    { cleanupIDs: true },
+    { cleanupNumericValues: true },
+    { cleanupListOfValues: true },
+    { moveElemsAttrsToGroup: true },
+    { moveGroupAttrsToElems: true },
+    { collapseGroups: true },
+    { removeRasterImages: true },
+    { mergePaths: true },
+    { convertShapeToPath: true },
+    { sortAttrs: true },
+    { removeDimensions: true },
+    { removeAttrs: true },
+    { removeElementsByAttr: true },
+    { removeStyleElement: true },
+    { removeScriptElement: true },
+  ],
+});
 
 /**
  * Return Pascal-Cased classname.
@@ -30,36 +76,44 @@ function pascalCase(destPath) {
   return className;
 }
 
-function getJsxString(svgPath, destPath) {
+function getJsxString(svgPath, destPath, absDestPath) {
   const className = pascalCase(destPath);
-
-  console.log(`  ${className}`);
 
   const data = fs.readFileSync(svgPath, {
     encoding: 'utf8',
   });
+
   const template = fs.readFileSync(path.join(__dirname, 'tpl/SvgIcon.js'), {
     encoding: 'utf8',
   });
 
-  // Extract the paths from the svg string
-  // Clean xml paths
-  const paths = data
-    .replace(/<!--.*-->/g, '')
-    .replace(/<\?xml[^>]*>\n/g, '')
-    .replace(/<svg[^>]*>\n/g, '')
-    .replace(/<\/svg>\n/g, '')
-    .replace(/xlink:href="#a"/g, '')
-    .replace(/xlink:href="#c"/g, '')
-    .replace(/fill-opacity=/g, 'fillOpacity=')
-    .replace(/\s?fill=".*?"/g, '')
-    .replace(/<path[^>]*0h24[^>]*>\n/g, '')
-    .replace(/<path[^>]*0H24[^>]*>\n/g, '')
-    .replace(/"\/>/g, '" />');
+  svgo.optimize(data).then(result => {
+    // Extract the paths from the svg string
+    // Clean xml paths
+    const paths = result.data
+      .replace(/<!--.*-->/g, '')
+      .replace(/<\?xml[^>]*>/g, '')
+      .replace(/<svg[^>]*>/g, '')
+      .replace(/<\/svg>/g, '')
+      .replace(/xlink:href="#a"/g, '')
+      .replace(/xlink:href="#c"/g, '')
+      .replace(/xlink:href="#SVGID_[\d]*_"/g, '')
+      .replace(/fill-opacity=/g, 'fillOpacity=')
+      .replace(/\s?fill=".*?"/g, '')
+      .replace(/<path[^>]*0h24[^>]*>/g, '')
+      .replace(/<path[^>]*0H24[^>]*>/g, '')
+      .replace(/"\/>/g, '" />');
 
-  return Mustache.render(template, {
-    paths,
-    className,
+    console.log(`  ${className}`);
+    console.log(paths);
+    console.log(template);
+
+    const fileString = Mustache.render(template, {
+      paths,
+      className,
+    });
+
+    fs.writeFileSync(absDestPath, fileString);
   });
 }
 
@@ -79,9 +133,8 @@ function processFile(svgPath, destPath, options) {
     console.log(`Making dir: ${outputFileDir}`);
     mkdirp.sync(outputFileDir);
   }
-  const fileString = getJsxString(svgPath, destPath);
   const absDestPath = path.join(options.outputDir, destPath);
-  fs.writeFileSync(absDestPath, fileString);
+  getJsxString(svgPath, destPath, absDestPath);
 }
 
 /**

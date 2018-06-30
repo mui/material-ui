@@ -2,11 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	</g>
-<g id="Sharp">
-	<path d="M13,3H6v18h4v-6h3c3.31,0,6-2.69,6-6S16.31,3,13,3z M13.2,11H10V7h3.2c1.1,0,2,0.9,2,2S14.3,11,13.2,11z" />
-</g>
-</g>
+  <g><path d="M13 3H6v18h4v-6h3c3.31 0 6-2.69 6-6s-2.69-6-6-6zm.2 8H10V7h3.2c1.1 0 2 .9 2 2s-.9 2-2 2z" /></g>
 , 'LocalParkingSharp');

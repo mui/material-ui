@@ -11,12 +11,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import MenuIcon from '@material-ui/icons/Menu';
-import LightbulbOutline from '@material-ui/icons/LightbulbOutline';
-import LightbublFull from '@material-ui/docs/svgIcons/LightbublFull';
+import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
+import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
 import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
-import Github from '@material-ui/docs/svgIcons/GitHub';
+import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
@@ -152,7 +152,7 @@ class AppFrame extends React.Component {
                 onClick={this.handleTogglePaletteType}
                 aria-labelledby="appbar-theme"
               >
-                {uiTheme.paletteType === 'light' ? <LightbulbOutline /> : <LightbublFull />}
+                {uiTheme.paletteType === 'light' ? <LightbulbOutlineIcon /> : <LightbulbFullIcon />}
               </IconButton>
             </Tooltip>
             <Tooltip
@@ -179,7 +179,7 @@ class AppFrame extends React.Component {
                 href="https://github.com/mui-org/material-ui"
                 aria-labelledby="appbar-github"
               >
-                <Github />
+                <GithubIcon />
               </IconButton>
             </Tooltip>
           </Toolbar>

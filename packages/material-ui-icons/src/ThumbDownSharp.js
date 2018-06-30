@@ -2,18 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-		</g>
-<g id="Sharp">
-	<g id="ui_x5F_spec_x5F_header_copy_4">
-	</g>
-	<g>
-		<polygon points="9.83,23 17,15.82 17,3 4.69,3 1,11.6 1,16 9.31,16 8.19,21.38 		" />
-		<rect x="19" y="3" width="4" height="12" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M9.83 23L17 15.82V3H4.69L1 11.6V16h8.31l-1.12 5.38zM19 3h4v12h-4z" /></g></g>
 , 'ThumbDownSharp');

@@ -2,15 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Sharp">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<path d="M20,4H4v16h16V4z M18,18H6V6h12V18z" />
-</g>
-</g>
+  <g><g><path d="M20 4H4v16h16V4zm-2 14H6V6h12v12z" /></g></g>
 , 'CropSquareSharp');

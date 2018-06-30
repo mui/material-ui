@@ -2,18 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	</g>
-<g id="Outline">
-	<g id="ui_x5F_spec_x5F_header">
-	</g>
-	<g>
-		<rect x="4" y="6" width="16" height="2" />
-		<rect x="6" y="2" width="12" height="2" />
-		<path d="M20,10H4c-1.1,0-2,0.9-2,2v8c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2v-8C22,10.9,21.1,10,20,10z M20,20H4v-8h16V20z" />
-		<polygon points="10,12.73 10,19.26 16,16 		" />
-	</g>
-</g>
-</g>
+  <g><path d="M4 6h16v2H4zM6 2h12v2H6zM20 10H4c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm0 10H4v-8h16v8z" /><path d="M10 12.73v6.53L16 16z" /></g>
 , 'SubscriptionsOutlined');

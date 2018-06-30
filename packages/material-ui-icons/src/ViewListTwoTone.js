@@ -2,23 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<g>
-		<rect x="5" y="11" opacity="0.3" width="2" height="2" />
-		<rect x="5" y="15" opacity="0.3" width="2" height="2" />
-		<rect x="5" y="7" opacity="0.3" width="2" height="2" />
-		<rect x="9" y="7" opacity="0.3" width="9" height="2" />
-		<rect x="9" y="15" opacity="0.3" width="9" height="2" />
-		<rect x="9" y="11" opacity="0.3" width="9" height="2" />
-		<path d="M3,5v14h17V5H3z M7,17H5v-2h2V17z M7,13H5v-2h2V13z M7,9H5V7h2V9z M18,17H9v-2h9V17z M18,13H9v-2h9V13z M18,9H9V7h9V9z" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M5 11h2v2H5zM5 15h2v2H5zM5 7h2v2H5zM9 7h9v2H9zM9 15h9v2H9zM9 11h9v2H9z" opacity=".3" /><path d="M3 5v14h17V5H3zm4 12H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V7h2v2zm11 8H9v-2h9v2zm0-4H9v-2h9v2zm0-4H9V7h9v2z" /></g></g>
 , 'ViewListTwoTone');

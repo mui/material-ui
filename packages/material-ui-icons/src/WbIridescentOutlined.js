@@ -2,23 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	</g>
-<g id="Outline">
-	<g id="ui_x5F_spec_x5F_header">
-	</g>
-	<g>
-		<path d="M5,15h14V9H5V15z M7,11h10v2H7V11z" />
-		<rect x="11" y="1" width="2" height="3" />
-		<polygon points="20.46,5.01 19.04,3.6 17.25,5.39 18.66,6.8 		" />
-		<rect x="11" y="20" width="2" height="3" />
-		<polygon points="17.24,18.71 19.03,20.51 20.45,19.09 18.65,17.3 		" />
-		<rect x="3.88" y="4.2" transform="matrix(0.7071 0.7071 -0.7071 0.7071 5.1855 -2.1185)" width="2.53" height="1.99" />
-		<polygon points="3.55,19.08 4.96,20.5 6.75,18.7 5.34,17.29 		" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M5 15h14V9H5v6zm2-4h10v2H7v-2zM11 1h2v3h-2zM20.46 5.01L19.04 3.6l-1.79 1.79 1.41 1.41zM11 20h2v3h-2zM17.24 18.71l1.79 1.8 1.42-1.42-1.8-1.79zM4.96 3.595l1.788 1.789L5.341 6.79 3.552 5.002zM3.55 19.08l1.41 1.42 1.79-1.8-1.41-1.41z" /></g></g>
 , 'WbIridescentOutlined');

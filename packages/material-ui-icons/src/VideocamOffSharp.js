@@ -2,14 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	</g>
-<g id="Sharp">
-	<g>
-		<polygon points="21,16.61 21,6.5 17,10.5 17,6 10.39,6 		" />
-		<polygon points="3.41,1.86 2,3.27 4.73,6 3,6 3,18 16.73,18 19.73,21 21.14,19.59 		" />
-	</g>
-</g>
-</g>
+  <g><path d="M21 16.61V6.5l-4 4V6h-6.61zM3.41 1.86L2 3.27 4.73 6H3v12h13.73l3 3 1.41-1.41z" /></g>
 , 'VideocamOffSharp');

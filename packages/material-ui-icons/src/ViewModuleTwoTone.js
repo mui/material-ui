@@ -2,26 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<g>
-		<g opacity="0.3">
-			<rect x="11" y="12.5" width="3" height="3.5" />
-			<rect x="11" y="7" width="3" height="3.5" />
-			<rect x="6" y="12.5" width="3" height="3.5" />
-			<rect x="6" y="7" width="3" height="3.5" />
-			<rect x="16" y="7" width="3" height="3.5" />
-			<rect x="16" y="12.5" width="3" height="3.5" />
-		</g>
-		<path d="M4,5v13h17V5H4z M9,16H6v-3.5h3V16z M9,10.5H6V7h3V10.5z M14,16h-3v-3.5h3V16z M14,10.5h-3V7h3V10.5z M19,16h-3v-3.5h3V16
-			z M19,10.5h-3V7h3V10.5z" />
-	</g>
-</g>
-</g>
+  <g><g><g opacity=".3"><path d="M11 12.5h3V16h-3zM11 7h3v3.5h-3zM6 12.5h3V16H6zM6 7h3v3.5H6zM16 7h3v3.5h-3zM16 12.5h3V16h-3z" /></g><path d="M4 5v13h17V5H4zm5 11H6v-3.5h3V16zm0-5.5H6V7h3v3.5zm5 5.5h-3v-3.5h3V16zm0-5.5h-3V7h3v3.5zm5 5.5h-3v-3.5h3V16zm0-5.5h-3V7h3v3.5z" /></g></g>
 , 'ViewModuleTwoTone');

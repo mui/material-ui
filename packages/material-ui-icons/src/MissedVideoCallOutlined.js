@@ -2,18 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	</g>
-<g id="Outline">
-	<g id="ui_x5F_spec_x5F_header">
-	</g>
-	<g>
-		<path d="M17,10.5V7c0-0.55-0.45-1-1-1H4C3.45,6,3,6.45,3,7v10c0,0.55,0.45,1,1,1h12c0.55,0,1-0.45,1-1v-3.5l4,4v-11L17,10.5z
-			 M15,8.67v4.83V16H5V8h10V8.67z" />
-		<polygon points="7.11,11.11 11,15 14.77,11.21 13.99,10.42 11,13.43 7.89,10.33 10.44,10.33 10.44,9.22 6,9.22 6,13.66 
-			7.11,13.66 		" />
-	</g>
-</g>
-</g>
+  <g><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zm-2-1.83V16H5V8h10v.67z" /><path d="M7.11 11.11L11 15l3.77-3.79-.78-.79L11 13.43l-3.11-3.1h2.55V9.22H6v4.44h1.11z" /></g>
 , 'MissedVideoCallOutlined');

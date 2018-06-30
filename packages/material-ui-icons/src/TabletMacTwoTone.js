@@ -2,19 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<g>
-		<rect x="4" y="3" opacity="0.3" width="15" height="16" />
-		<path d="M18.5,0h-14C3.12,0,2,1.12,2,2.5v19C2,22.88,3.12,24,4.5,24h14c1.38,0,2.5-1.12,2.5-2.5v-19C21,1.12,19.88,0,18.5,0z
-			 M11.5,23c-0.83,0-1.5-0.67-1.5-1.5c0-0.83,0.67-1.5,1.5-1.5s1.5,0.67,1.5,1.5C13,22.33,12.33,23,11.5,23z M19,19H4V3h15V19z" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M4 3h15v16H4z" opacity=".3" /><path d="M18.5 0h-14A2.5 2.5 0 0 0 2 2.5v19A2.5 2.5 0 0 0 4.5 24h14a2.5 2.5 0 0 0 2.5-2.5v-19A2.5 2.5 0 0 0 18.5 0zm-7 23c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm7.5-4H4V3h15v16z" /></g></g>
 , 'TabletMacTwoTone');

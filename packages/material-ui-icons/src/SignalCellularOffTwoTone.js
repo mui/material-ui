@@ -2,18 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<g>
-		<polygon points="21,1 12.69,9.31 21,17.61 		" />
-		<polygon points="4.91,4.36 3.5,5.77 9.86,12.14 1,21 18.73,21 20.73,23 22.14,21.59 		" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M21 1l-8.31 8.31 8.31 8.3zM4.91 4.36L3.5 5.77l6.36 6.37L1 21h17.73l2 2 1.41-1.41z" /></g></g>
 , 'SignalCellularOffTwoTone');

@@ -2,23 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	<g>
-		<g>
-			<path d="M1.41,1.69L0,3.1l2,2V21h15.9l3,3l1.41-1.41L1.41,1.69z M6,19H4v-2h2V19z M6,15H4v-2h2V15z M4,11V9h2v2H4z M10,19H8v-2h2
-				V19z M8,15v-2h2v2H8z M12,19v-2h1.9l2,2H12z" />
-			<polygon points="8,5 10,5 10,7 9.55,7 12,9.45 12,9 20,9 20,17.45 22,19.45 22,7 12,7 12,3 5.55,3 8,5.45 			" />
-			<rect x="16" y="11" width="2" height="2" />
-		</g>
-		<path opacity="0.3" d="M12,9v0.45l8,8V9H12z M18,13h-2v-2h2V13z" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M1.41 1.69L0 3.1l2 2V21h15.9l3 3 1.41-1.41-20.9-20.9zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm-2-4V9h2v2H4zm6 8H8v-2h2v2zm-2-4v-2h2v2H8zm4 4v-2h1.9l2 2H12zM8 5h2v2h-.45L12 9.45V9h8v8.45l2 2V7H12V3H5.55L8 5.45z" /><path d="M16 11h2v2h-2z" /><path d="M12 9v.45l8 8V9h-8zm6 4h-2v-2h2v2z" opacity=".3" /></g></g>
 , 'DomainDisabledTwoTone');

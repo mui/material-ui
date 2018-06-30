@@ -2,19 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	</g>
-<g id="Sharp">
-	<g id="ui_x5F_spec_x5F_header_copy_4">
-	</g>
-	<g>
-		<polygon points="14,9.61 14,7 18,7 18,3 12,3 12,7.61 		" />
-		<path d="M4.41,2.86L3,4.27l9,9v0.28c-0.94-0.54-2.1-0.75-3.33-0.32C7.33,13.71,6.3,14.9,6.06,16.3c-0.46,2.74,1.86,5.08,4.59,4.65
-			c1.96-0.31,3.35-2.11,3.35-4.1v-1.58L19.73,21l1.41-1.41L12,10.44L4.41,2.86z" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M14 9.61V7h4V3h-6v4.61zM4.41 2.86L3 4.27l9 9v.28c-.94-.54-2.1-.75-3.33-.32-1.34.48-2.37 1.67-2.61 3.07a4.007 4.007 0 0 0 4.59 4.65c1.96-.31 3.35-2.11 3.35-4.1v-1.58L19.73 21l1.41-1.41L12 10.44 4.41 2.86z" /></g></g>
 , 'MusicOffSharp');

@@ -2,18 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3" display="none">
-	</g>
-	</g>
-<g id="Sharp">
-	<g id="ui_x5F_spec_x5F_header_copy_4" display="none">
-	</g>
-	<g>
-		<polygon points="18,13 17.32,13 15.32,15 17.23,15 19,17 5,17 6.78,15 8.83,15 6.83,13 6,13 3,16 3,22 21,22 21,16 		" />
-		<path d="M19.81,7.96L13.45,1.6L5.68,9.36l6.36,6.36L19.81,7.96z M13.46,4.41L17,7.95l-4.95,4.95L8.51,9.36L13.46,4.41z" />
-	</g>
-</g>
-</g>
+  <g><path d="M18 13h-.68l-2 2h1.91L19 17H5l1.78-2h2.05l-2-2H6l-3 3v6h18v-6z" /><path d="M19.81 7.96L13.45 1.6 5.68 9.36l6.36 6.36 7.77-7.76zm-6.35-3.55L17 7.95l-4.95 4.95-3.54-3.54 4.95-4.95z" /></g>
 , 'HowToVoteSharp');

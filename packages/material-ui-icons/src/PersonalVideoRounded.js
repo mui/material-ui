@@ -2,14 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	</g>
-<g id="Rounded_1_">
-	<path d="M21,3H3C1.9,3,1,3.9,1,5v12c0,1.1,0.9,2,2,2h5v1c0,0.55,0.45,1,1,1h6c0.55,0,1-0.45,1-1v-1h5c1.1,0,1.99-0.9,1.99-2L23,5
-		C23,3.89,22.1,3,21,3z M20,17H4c-0.55,0-1-0.45-1-1V6c0-0.55,0.45-1,1-1h16c0.55,0,1,0.45,1,1v10C21,16.55,20.55,17,20,17z" />
-</g>
-</g>
+  <g><g><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v1c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-1h5c1.1 0 1.99-.9 1.99-2L23 5a2 2 0 0 0-2-2zm-1 14H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h16c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1z" /></g></g>
 , 'PersonalVideoRounded');

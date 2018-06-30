@@ -2,18 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	</g>
-<g id="Outline">
-	<g id="ui_x5F_spec_x5F_header">
-	</g>
-	<g>
-		<path d="M20,2H4C2.9,2,2.01,2.9,2.01,4L2,22l4-4h14c1.1,0,2-0.9,2-2V4C22,2.9,21.1,2,20,2z M20,16H6H5.17l-0.59,0.59L4,17.17V4h16
-			V16z" />
-		<polygon points="10.5,14 18,14 18,12 12.5,12 		" />
-		<path d="M14.36,8.13c0.2-0.2,0.2-0.51,0-0.71l-1.77-1.77c-0.2-0.2-0.51-0.2-0.71,0L6,11.53V14h2.47L14.36,8.13z" />
-	</g>
-</g>
-</g>
+  <g><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17l-.59.59-.58.58V4h16v12z" /><path d="M10.5 14H18v-2h-5.5zM14.36 8.13c.2-.2.2-.51 0-.71l-1.77-1.77c-.2-.2-.51-.2-.71 0L6 11.53V14h2.47l5.89-5.87z" /></g>
 , 'RateReviewOutlined');

@@ -2,20 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_5">
-	</g>
-	<g>
-		<path opacity="0.3" d="M5.04,19h14V5h-14V19z M9.04,7h2v4h2V7h2v10h-2v-4h-4V7z" />
-		<path d="M19.04,3h-14c-1.1,0-2,0.9-2,2v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21.04,3.9,20.14,3,19.04,3z M19.04,19h-14V5h14
-			V19z" />
-		<polygon points="13.04,17 15.04,17 15.04,7 13.04,7 13.04,11 11.04,11 11.04,7 9.04,7 9.04,13 13.04,13 		" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M5.04 19h14V5h-14v14zm4-12h2v4h2V7h2v10h-2v-4h-4V7z" opacity=".3" /><path d="M19.04 3h-14c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16h-14V5h14v14z" /><path d="M13.04 17h2V7h-2v4h-2V7h-2v6h4z" /></g></g>
 , 'Looks4TwoTone');

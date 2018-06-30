@@ -2,19 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	<g>
-		<circle opacity="0.3" cx="10.01" cy="17" r="2" />
-		<path d="M12,3l0.01,10.55c-0.59-0.34-1.27-0.55-2-0.55C7.79,13,6,14.79,6,17c0,2.21,1.79,4,4.01,4S14,19.21,14,17V7h4V3H12z
-			 M10.01,19c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C12.01,18.1,11.11,19,10.01,19z" />
-	</g>
-</g>
-</g>
+  <g><g><circle cx="10.01" cy="17" r="2" opacity=".3" /><path d="M12 3l.01 10.55c-.59-.34-1.27-.55-2-.55a4.001 4.001 0 1 0 0 8c2.22 0 3.99-1.79 3.99-4V7h4V3h-6zm-1.99 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" /></g></g>
 , 'MusicNoteTwoTone');

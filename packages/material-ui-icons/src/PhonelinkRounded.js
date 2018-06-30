@@ -2,17 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes" display="none">
-	<g id="ui_x5F_spec_x5F_header_copy_3" display="inline">
-	</g>
-	</g>
-<g id="Rounded">
-	<g id="ui_x5F_spec_x5F_header_copy_6">
-	</g>
-	<path d="M4,7c0-0.55,0.45-1,1-1h16c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H4C2.9,4,2,4.9,2,6v11H1.5C0.67,17,0,17.67,0,18.5v0
-		C0,19.33,0.67,20,1.5,20h11c0.83,0,1.5-0.67,1.5-1.5v0c0-0.83-0.67-1.5-1.5-1.5H4V7z M23,8h-6c-0.55,0-1,0.45-1,1v10
-		c0,0.55,0.45,1,1,1h6c0.55,0,1-0.45,1-1V9C24,8.45,23.55,8,23,8z M22,17h-4v-7h4V17z" />
-</g>
-</g>
+  <g><path d="M4 7c0-.55.45-1 1-1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-1.1 0-2 .9-2 2v11h-.5c-.83 0-1.5.67-1.5 1.5S.67 20 1.5 20h11c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5H4V7zm19 1h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z" /></g>
 , 'PhonelinkRounded');

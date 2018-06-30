@@ -2,15 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes" display="none">
-	<rect display="inline" width="24" height="24" />
-	<rect display="inline" width="24" height="24" />
-	<rect display="inline" width="24" height="24" />
-</g>
-<g id="Rounded">
-	<path d="M20,4H4C2.9,4,2.01,4.9,2.01,6L2,18c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V6C22,4.9,21.1,4,20,4z M4,9h10.5v3.5H4V9z M4,14.5
-		h10.5V18L5,18c-0.55,0-1-0.45-1-1V14.5z M19,18l-2.5,0V9H20v8C20,17.55,19.55,18,19,18z" />
-</g>
-</g>
+  <g><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 9h10.5v3.5H4V9zm0 5.5h10.5V18H5c-.55 0-1-.45-1-1v-2.5zM19 18h-2.5V9H20v8c0 .55-.45 1-1 1z" /></g>
 , 'WebRounded');

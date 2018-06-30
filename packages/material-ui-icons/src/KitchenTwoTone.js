@@ -2,22 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy" display="none">
-	</g>
-	<g>
-		<rect x="8" y="5" opacity="0.3" width="2" height="3" />
-		<rect x="8" y="12" opacity="0.3" width="2" height="5" />
-		<path opacity="0.3" d="M6,20h12v-9.02H6V20z M8,12h2v5H8V12z" />
-		<path opacity="0.3" d="M6,9h12V4H6V9z M8,5h2v3H8V5z" />
-		<path d="M18,2.01L6,2C4.9,2,4,2.89,4,4v16c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V4C20,2.89,19.1,2.01,18,2.01z M18,20H6v-9.02h12V20
-			z M18,9H6V4h12V9z" />
-		<rect x="8" y="5" width="2" height="3" />
-		<rect x="8" y="12" width="2" height="5" />
-	</g>
-</g>
-</g>
+  <g><path d="M8 5h2v3H8zM8 12h2v5H8z" opacity=".3" /><path d="M6 20h12v-9.02H6V20zm2-8h2v5H8v-5zM6 9h12V4H6v5zm2-4h2v3H8V5z" opacity=".3" /><path d="M18 2.01L6 2a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.11-.9-1.99-2-1.99zM18 20H6v-9.02h12V20zm0-11H6V4h12v5z" /><path d="M8 5h2v3H8zM8 12h2v5H8z" /></g>
 , 'KitchenTwoTone');

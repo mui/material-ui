@@ -2,18 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Sharp">
-	<g id="ui_x5F_spec_x5F_header_copy_4">
-	</g>
-	<g>
-		<polygon points="19,3 10,3 7.95,5.06 19,16.11 		" />
-		<polygon points="3.79,3.74 2.38,5.15 5,7.77 5,21 18.23,21 19.85,22.62 21.26,21.21 		" />
-	</g>
-</g>
-</g>
+  <g><g><path d="M19 3h-9L7.95 5.06 19 16.11zM3.79 3.74L2.38 5.15 5 7.77V21h13.23l1.62 1.62 1.41-1.41z" /></g></g>
 , 'SignalCellularNoSimSharp');

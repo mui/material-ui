@@ -2,15 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<polygon points="18,17 11,17 16,12 11,7 18,7 18,4 6,4 6,6 12.5,12 6,18 6,20 18,20 	" />
-</g>
-</g>
+  <g><g><path d="M18 17h-7l5-5-5-5h7V4H6v2l6.5 6L6 18v2h12z" /></g></g>
 , 'FunctionsTwoTone');

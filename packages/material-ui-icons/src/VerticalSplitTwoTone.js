@@ -2,24 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_2">
-	</g>
-	<g>
-		<rect x="15" y="7" opacity="0.3" width="4" height="10" />
-		<g>
-			<rect x="3" y="13" width="8" height="2" />
-			<rect x="3" y="17" width="8" height="2" />
-			<rect x="3" y="9" width="8" height="2" />
-			<rect x="3" y="5" width="8" height="2" />
-			<path d="M13,5v14h8V5H13z M19,17h-4V7h4V17z" />
-		</g>
-	</g>
-</g>
-</g>
+  <g><g><path d="M15 7h4v10h-4z" opacity=".3" /><path d="M3 13h8v2H3zM3 17h8v2H3zM3 9h8v2H3zM3 5h8v2H3zM13 5v14h8V5h-8zm6 12h-4V7h4v10z" /></g></g>
 , 'VerticalSplitTwoTone');

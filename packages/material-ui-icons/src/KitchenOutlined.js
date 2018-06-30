@@ -2,18 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	</g>
-<g id="Outline">
-	<g id="ui_x5F_spec_x5F_header" display="none">
-	</g>
-	<g>
-		<rect x="8" y="5" width="2" height="3" />
-		<rect x="8" y="12" width="2" height="5" />
-		<path d="M18,2.01L6,2C4.9,2,4,2.89,4,4v16c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V4C20,2.89,19.1,2.01,18,2.01z M18,20H6v-9.02h12V20
-			z M18,9H6V4h12V9z" />
-	</g>
-</g>
-</g>
+  <g><path d="M8 5h2v3H8zM8 12h2v5H8z" /><path d="M18 2.01L6 2a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.11-.9-1.99-2-1.99zM18 20H6v-9.02h12V20zm0-11H6V4h12v5z" /></g>
 , 'KitchenOutlined');

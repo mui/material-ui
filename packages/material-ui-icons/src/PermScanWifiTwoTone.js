@@ -2,24 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g>
-<g id="Bounding_Boxes">
-	<g id="ui_x5F_spec_x5F_header_copy_3" display="none">
-	</g>
-	</g>
-<g id="Duotone">
-	<g id="ui_x5F_spec_x5F_header_copy_2" display="none">
-	</g>
-	<g>
-		<path opacity="0.3" d="M12,5C8.74,5,5.8,5.85,2.92,7.65L12,18.83l9.08-11.16C18.18,5.85,15.25,5,12,5z M13,16h-2v-6h2V16z M11,8V6
-			h2v2H11z" />
-		<g>
-			<path d="M12,3C6.95,3,3.15,4.85,0,7.23L12,22L24,7.25C20.85,4.87,17.05,3,12,3z M2.92,7.65C5.8,5.85,8.74,5,12,5
-				c3.25,0,6.18,0.85,9.08,2.67L12,18.83L2.92,7.65z" />
-			<rect x="11" y="10" width="2" height="6" />
-			<rect x="11" y="6" width="2" height="2" />
-		</g>
-	</g>
-</g>
-</g>
+  <g><path d="M12 5c-3.26 0-6.2.85-9.08 2.65L12 18.83l9.08-11.16C18.18 5.85 15.25 5 12 5zm1 11h-2v-6h2v6zm-2-8V6h2v2h-2z" opacity=".3" /><path d="M12 3C6.95 3 3.15 4.85 0 7.23L12 22 24 7.25C20.85 4.87 17.05 3 12 3zM2.92 7.65C5.8 5.85 8.74 5 12 5c3.25 0 6.18.85 9.08 2.67L12 18.83 2.92 7.65z" /><path d="M11 10h2v6h-2zM11 6h2v2h-2z" /></g>
 , 'PermScanWifiTwoTone');
