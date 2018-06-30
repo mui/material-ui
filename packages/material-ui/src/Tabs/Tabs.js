@@ -324,6 +324,14 @@ class Tabs extends React.Component {
         return null;
       }
 
+      warning(
+        child.type !== React.Fragment,
+        [
+          "Material-UI: the Tabs component doesn't accept a Fragment as a child.",
+          'Consider providing an array instead.',
+        ].join('\n'),
+      );
+
       const childValue = child.props.value === undefined ? childIndex : child.props.value;
       this.valueToIndex.set(childValue, childIndex);
       const selected = childValue === value;

@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
+import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 
@@ -143,6 +144,14 @@ class MenuList extends React.Component {
           if (!React.isValidElement(child)) {
             return null;
           }
+
+          warning(
+            child.type !== React.Fragment,
+            [
+              "Material-UI: the MenuList component doesn't accept a Fragment as a child.",
+              'Consider providing an array instead.',
+            ].join('\n'),
+          );
 
           return React.cloneElement(child, {
             tabIndex: index === this.state.currentTabIndex ? 0 : -1,

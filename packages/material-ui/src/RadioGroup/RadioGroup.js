@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import warning from 'warning';
 import FormGroup from '../FormGroup';
 import { createChainedFunction, find } from '../utils/helpers';
 
@@ -46,6 +47,14 @@ class RadioGroup extends React.Component {
           if (!React.isValidElement(child)) {
             return null;
           }
+
+          warning(
+            child.type !== React.Fragment,
+            [
+              "Material-UI: the RadioGroup component doesn't accept a Fragment as a child.",
+              'Consider providing an array instead.',
+            ].join('\n'),
+          );
 
           return React.cloneElement(child, {
             name,

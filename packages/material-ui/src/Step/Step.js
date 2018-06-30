@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -49,8 +50,20 @@ function Step(props) {
 
   return (
     <div className={className} {...other}>
-      {React.Children.map(children, child =>
-        React.cloneElement(child, {
+      {React.Children.map(children, child => {
+        if (!React.isValidElement(child)) {
+          return null;
+        }
+
+        warning(
+          child.type !== React.Fragment,
+          [
+            "Material-UI: the Step component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+
+        return React.cloneElement(child, {
           active,
           alternativeLabel,
           completed,
@@ -59,8 +72,8 @@ function Step(props) {
           last,
           orientation,
           ...child.props,
-        }),
-      )}
+        });
+      })}
       {connector &&
         alternativeLabel &&
         !last &&
