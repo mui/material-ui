@@ -18,10 +18,9 @@ export const styles = theme => ({
         : darken(fade(theme.palette.divider, 1), 0.8)
     }`,
     textAlign: 'left',
-    padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 7}px ${theme.spacing.unit /
-      2}px ${theme.spacing.unit * 3}px`,
+    padding: '4px 56px 4px 24px',
     '&:last-child': {
-      paddingRight: theme.spacing.unit * 3,
+      paddingRight: 24,
     },
   },
   head: {
@@ -44,7 +43,7 @@ export const styles = theme => ({
     flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
   },
   paddingDense: {
-    paddingRight: theme.spacing.unit * 3,
+    paddingRight: 24,
   },
   paddingCheckbox: {
     padding: '0 12px',

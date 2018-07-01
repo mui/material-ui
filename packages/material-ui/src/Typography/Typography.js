@@ -41,7 +41,7 @@ export const styles = theme => ({
     marginBottom: '0.35em',
   },
   paragraph: {
-    marginBottom: theme.spacing.unit * 2,
+    marginBottom: 16,
   },
   colorInherit: {
     color: 'inherit',

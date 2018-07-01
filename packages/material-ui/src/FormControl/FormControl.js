@@ -6,7 +6,7 @@ import { isFilled, isAdornedStart } from '../Input/Input';
 import { capitalize } from '../utils/helpers';
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = theme => ({
+export const styles = {
   root: {
     display: 'inline-flex',
     flexDirection: 'column',
@@ -18,17 +18,17 @@ export const styles = theme => ({
     border: 0,
   },
   marginNormal: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit,
+    marginTop: 16,
+    marginBottom: 8,
   },
   marginDense: {
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit / 2,
+    marginTop: 8,
+    marginBottom: 4,
   },
   fullWidth: {
     width: '100%',
   },
-});
+};
 
 /**
  * Provides context such as filled/focused/error/required for form inputs.

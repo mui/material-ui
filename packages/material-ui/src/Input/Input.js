@@ -71,7 +71,7 @@ export const styles = theme => {
     },
     formControl: {
       'label + &': {
-        marginTop: theme.spacing.unit * 2,
+        marginTop: 16,
       },
     },
     focused: {},
@@ -121,7 +121,7 @@ export const styles = theme => {
     },
     error: {},
     multiline: {
-      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
+      padding: `${8 - 2}px 0 ${8 - 1}px`,
     },
     fullWidth: {
       width: '100%',
@@ -129,7 +129,7 @@ export const styles = theme => {
     input: {
       font: 'inherit',
       color: 'currentColor',
-      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
+      padding: `${8 - 2}px 0 ${8 - 1}px`,
       border: 0,
       boxSizing: 'content-box',
       verticalAlign: 'middle',
@@ -172,7 +172,7 @@ export const styles = theme => {
       },
     },
     inputMarginDense: {
-      paddingTop: theme.spacing.unit / 2 - 1,
+      paddingTop: 4 - 1,
     },
     inputMultiline: {
       resize: 'none',

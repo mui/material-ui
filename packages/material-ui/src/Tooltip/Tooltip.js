@@ -34,7 +34,7 @@ export const styles = theme => ({
       easing: theme.transitions.easing.easeIn,
     }),
     minHeight: 0,
-    padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit}px`,
+    padding: '4px 8px',
     fontSize: theme.typography.pxToRem(10),
     lineHeight: `${theme.typography.round(14 / 10)}em`,
     '&$open': {
@@ -47,34 +47,34 @@ export const styles = theme => ({
     },
   },
   touch: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    padding: '8px 16px',
     fontSize: theme.typography.pxToRem(14),
     lineHeight: `${theme.typography.round(16 / 14)}em`,
   },
   tooltipPlacementLeft: {
     transformOrigin: 'right center',
-    margin: `0 ${theme.spacing.unit * 3}px`,
+    margin: '0 24px',
     [theme.breakpoints.up('sm')]: {
       margin: '0 14px',
     },
   },
   tooltipPlacementRight: {
     transformOrigin: 'left center',
-    margin: `0 ${theme.spacing.unit * 3}px`,
+    margin: '0 24px',
     [theme.breakpoints.up('sm')]: {
       margin: '0 14px',
     },
   },
   tooltipPlacementTop: {
     transformOrigin: 'center bottom',
-    margin: `${theme.spacing.unit * 3}px 0`,
+    margin: '24px 0',
     [theme.breakpoints.up('sm')]: {
       margin: '14px 0',
     },
   },
   tooltipPlacementBottom: {
     transformOrigin: 'center top',
-    margin: `${theme.spacing.unit * 3}px 0`,
+    margin: '24px 0',
     [theme.breakpoints.up('sm')]: {
       margin: '14px 0',
     },

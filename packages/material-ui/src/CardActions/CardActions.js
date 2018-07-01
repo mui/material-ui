@@ -10,13 +10,13 @@ export const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     boxSizing: 'border-box',
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
+    padding: '8px 4px',
     [theme.breakpoints.up('sm')]: {
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 1.5}px`,
+      padding: '8px 12px',
     },
   },
   action: {
-    margin: `0 ${theme.spacing.unit / 2}px`,
+    margin: '0 4px',
   },
 });
 

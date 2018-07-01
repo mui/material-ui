@@ -10,7 +10,7 @@ import { duration } from '@material-ui/core/styles/transitions';
 import Button from '@material-ui/core/Button';
 import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 
-const styles = theme => ({
+const styles = {
   root: {
     zIndex: 1050,
     display: 'flex',
@@ -19,12 +19,12 @@ const styles = theme => ({
   actions: {
     display: 'flex',
     flexDirection: 'column-reverse', // Display the first action at the bottom.
-    marginBottom: theme.spacing.unit * 2,
+    marginBottom: 16,
   },
   actionsClosed: {
     transition: 'top 0s linear 0.2s',
   },
-});
+};
 
 class SpeedDial extends React.Component {
   state = {

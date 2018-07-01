@@ -8,11 +8,11 @@ import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import { isMuiElement } from '../utils/reactHelpers';
 
-export const styles = theme => ({
+export const styles = {
   root: {
     width: '100%',
-    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2}px`,
-    margin: `${-theme.spacing.unit * 3}px ${-theme.spacing.unit * 2}px`,
+    padding: '24px 16px',
+    margin: '-24px -16px',
     boxSizing: 'content-box',
   },
   vertical: {
@@ -21,7 +21,7 @@ export const styles = theme => ({
   touchRipple: {
     color: 'rgba(0, 0, 0, 0.3)',
   },
-});
+};
 
 function StepButton(props) {
   const {

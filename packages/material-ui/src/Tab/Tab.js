@@ -72,8 +72,8 @@ export const styles = theme => ({
     paddingLeft: 12,
     paddingRight: 12,
     [theme.breakpoints.up('md')]: {
-      paddingLeft: theme.spacing.unit * 3,
-      paddingRight: theme.spacing.unit * 3,
+      paddingLeft: 24,
+      paddingRight: 24,
     },
   },
   label: {

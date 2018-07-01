@@ -8,18 +8,18 @@ export const styles = theme => ({
   root: theme.mixins.gutters({
     display: 'flex',
     alignItems: 'center',
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+    paddingTop: 16,
+    paddingBottom: 16,
   }),
   avatar: {
     flex: '0 0 auto',
-    marginRight: theme.spacing.unit * 2,
+    marginRight: 16,
   },
   action: {
     flex: '0 0 auto',
     alignSelf: 'flex-start',
-    marginTop: theme.spacing.unit * -1,
-    marginRight: theme.spacing.unit * -2,
+    marginTop: -8,
+    marginRight: -16,
   },
   content: {
     flex: '1 1 auto',

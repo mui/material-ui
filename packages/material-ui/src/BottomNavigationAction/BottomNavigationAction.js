@@ -12,7 +12,7 @@ export const styles = theme => ({
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
     }),
-    paddingTop: theme.spacing.unit,
+    paddingTop: 8,
     paddingBottom: 10,
     paddingLeft: 12,
     paddingRight: 12,
@@ -21,7 +21,7 @@ export const styles = theme => ({
     color: theme.palette.text.secondary,
     flex: '1',
     '&$iconOnly': {
-      paddingTop: theme.spacing.unit * 2,
+      paddingTop: 16,
     },
     '&$selected': {
       paddingTop: 6,

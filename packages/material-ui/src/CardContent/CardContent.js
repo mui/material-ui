@@ -5,10 +5,10 @@ import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   root: theme.mixins.gutters({
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+    paddingTop: 16,
+    paddingBottom: 16,
     '&:last-child': {
-      paddingBottom: theme.spacing.unit * 3,
+      paddingBottom: 24,
     },
   }),
 });

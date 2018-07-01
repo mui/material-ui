@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const styles = {
   root: {
     listStyle: 'none',
     margin: 0,
@@ -11,17 +11,17 @@ export const styles = theme => ({
     position: 'relative',
   },
   padding: {
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
+    paddingTop: 8,
+    paddingBottom: 8,
   },
   dense: {
-    paddingTop: theme.spacing.unit / 2,
-    paddingBottom: theme.spacing.unit / 2,
+    paddingTop: 4,
+    paddingBottom: 4,
   },
   subheader: {
     paddingTop: 0,
   },
-});
+};
 
 class List extends React.Component {
   getChildContext() {

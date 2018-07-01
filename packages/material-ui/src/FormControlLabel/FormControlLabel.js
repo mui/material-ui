@@ -16,7 +16,7 @@ export const styles = theme => ({
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     marginLeft: -14,
-    marginRight: theme.spacing.unit * 2, // used for row presentation of radio/checkbox
+    marginRight: 16, // used for row presentation of radio/checkbox
     '&$disabled': {
       cursor: 'default',
     },

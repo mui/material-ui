@@ -60,7 +60,7 @@ export const styles = theme => {
       },
     },
     expanded: {
-      margin: `${theme.spacing.unit * 2}px 0`,
+      margin: '16px 0',
       '&:first-child': {
         marginTop: 0,
       },

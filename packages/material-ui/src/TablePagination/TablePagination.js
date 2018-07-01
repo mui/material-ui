@@ -36,13 +36,13 @@ export const styles = theme => ({
     flexShrink: 0,
   },
   selectRoot: {
-    marginRight: theme.spacing.unit * 4,
-    marginLeft: theme.spacing.unit,
+    marginRight: 32,
+    marginLeft: 8,
     color: theme.palette.text.secondary,
   },
   select: {
-    paddingLeft: theme.spacing.unit,
-    paddingRight: theme.spacing.unit * 2,
+    paddingLeft: 8,
+    paddingRight: 16,
   },
   selectIcon: {
     top: 1,
@@ -50,7 +50,7 @@ export const styles = theme => ({
   actions: {
     flexShrink: 0,
     color: theme.palette.text.secondary,
-    marginLeft: theme.spacing.unit * 2.5,
+    marginLeft: 20,
   },
 });
 
