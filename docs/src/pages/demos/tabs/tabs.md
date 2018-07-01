@@ -1,5 +1,5 @@
 ---
-title: Tab React component
+title: Tabs React component
 components: Tabs, Tab
 ---
 
