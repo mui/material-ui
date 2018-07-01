@@ -129,10 +129,10 @@ const ButtonTest = () => (
       Link
     </Button>
     <Button to="/open-collective">Link</Button>
-    <Button<LinkProps> component={Link} to="/open-collective">
+    <Button component={Link} to="/open-collective">
       Link
     </Button>
-    <Button<LinkProps> to="/open-collective">Link</Button>
+    <Button to="/open-collective">Link</Button>
   </div>
 );
 
