@@ -12,7 +12,7 @@
 /packages/material-ui-codemod/src/*/*.test.js
 /packages/material-ui-icons/src
 /packages/material-ui-icons/test/fixtures
-/packages/material-ui-icons/tpl
+/packages/material-ui-icons/templateSvgIcon.js
 /tmp
 build
 node_modules
