@@ -38,6 +38,8 @@ async function getMessages() {
 }
 
 class Notifications extends React.Component {
+  mounted = false;
+
   state = {
     open: false,
     message: {},
@@ -55,12 +57,6 @@ class Notifications extends React.Component {
     this.handleMessage();
   }
 
-  componentWillUnmout() {
-    this.mounted = false;
-  }
-
-  mounted = false;
-
   handleMessage = () => {
     const lastSeen = getLastSeenNotification();
     const unseenMessages = messages.filter(message => message.id > lastSeen);
@@ -73,6 +69,10 @@ class Notifications extends React.Component {
     this.setState({ open: false });
     document.cookie = `lastSeenNotification=${this.state.message.id};path=/;max-age=31536000`;
   };
+
+  componentWillUnmout() {
+    this.mounted = false;
+  }
 
   render() {
     const { message, open } = this.state;

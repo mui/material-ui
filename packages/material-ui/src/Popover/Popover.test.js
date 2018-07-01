@@ -791,7 +791,7 @@ describe('<Popover />', () => {
 
   describe('prop: getContentAnchorEl', () => {
     it('should position accordingly', () => {
-      const element = { scrollTop: 5 };
+      const element = { scrollTop: 5, contains: () => true };
       const child = { offsetTop: 40, clientHeight: 20, parentNode: element };
       const wrapper = shallow(
         <Popover {...defaultProps} getContentAnchorEl={() => child}>

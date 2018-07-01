@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/BottomNavigation/BottomNavigation.js
+title: BottomNavigation API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # BottomNavigation
+
+<p class="description">The API documentation of the BottomNavigation React component.</p>
 
 
 

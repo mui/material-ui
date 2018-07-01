@@ -1,7 +1,9 @@
 # CSS in JS
 
+<p class="description">You can leverage our styling solution, even if you are not using our components.</p>
+
 Material-UI aims to provide strong foundations for building dynamic UIs.
-For the sake of simplicity, **we expose the internal styling solution to users**.
+For the sake of simplicity, **we expose our styling solution to users**.
 You can use it, but you don't have to. This styling solution is [interoperable with](/guides/interoperability) all the other major solutions.
 
 ## Material-UI's styling solution
@@ -248,7 +250,7 @@ For instance, it can be used to defined a `getInitialProps()` static method (nex
 
 #### Arguments
 
-1. `styles` (*Function | Object*): A function generating the styles or an object.
+1. `styles` (*Function | Object*): A function generating the styles or a styles object.
 It will be linked to the component.
 Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `options` (*Object* [optional]):
@@ -384,6 +386,8 @@ const Styled = createStyled(theme => ({
   },
 }));
 ```
+
+[@jedwards1211](https://github.com/jedwards1211) Has taken the time to move this module into a package: [material-ui-render-props-styles](https://github.com/jcoreio/material-ui-render-props-styles). Feel free to use it.
 
 ### styled-components API (+15 lines)
 

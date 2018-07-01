@@ -1,9 +1,10 @@
 # Related projects
 
+<p class="description">We have built a carefully curated collection of libraries that worth giving a look.</p>
+
 Because the scope of problems Material-UI solves is limited, we try to play nicely with
 other libraries.
-We have built a carefully curated collection of libraries that worth giving a look.
-Feel free to submit a pull-request to add more projects; we will accept them if they match our criteria.
+Feel free to submit a pull request to add more projects; we will accept them if they match our criteria.
 
 ## Material-UI Specific Projects
 

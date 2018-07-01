@@ -1,10 +1,11 @@
 ---
+title: Popover React component
 components: Grow, Popover
 ---
 
 # Popovers
 
-A `Popover` can be used to display some content on top of another.
+<p class="description">A Popover can be used to display some content on top of another.</p>
 
 ## Simple Popover
 

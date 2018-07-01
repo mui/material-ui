@@ -4,10 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import warning from 'warning';
-import contains from 'dom-helpers/query/contains';
-import ownerDocument from 'dom-helpers/ownerDocument';
-import debounce from 'debounce';
+import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import EventListener from 'react-event-listener';
+import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import withStyles from '../styles/withStyles';
 import Modal from '../Modal';
@@ -83,6 +82,17 @@ export const styles = {
 };
 
 class Popover extends React.Component {
+  transitionEl = null;
+
+  handleGetOffsetTop = getOffsetTop;
+
+  handleGetOffsetLeft = getOffsetLeft;
+
+  handleResize = debounce(() => {
+    const element = ReactDOM.findDOMNode(this.transitionEl);
+    this.setPositioningStyles(element);
+  }, 166); // Corresponds to 10 frames at 60 Hz.
+
   componentDidMount() {
     if (this.props.action) {
       this.props.action({
@@ -217,7 +227,7 @@ class Popover extends React.Component {
     if (getContentAnchorEl && anchorReference === 'anchorEl') {
       const contentAnchorEl = getContentAnchorEl(element);
 
-      if (contentAnchorEl && contains(element, contentAnchorEl)) {
+      if (contentAnchorEl && element.contains(contentAnchorEl)) {
         const scrollTop = getScrollParent(element, contentAnchorEl);
         contentAnchorOffset =
           contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 - scrollTop || 0;
@@ -248,12 +258,6 @@ class Popover extends React.Component {
     };
   }
 
-  transitionEl = undefined;
-
-  handleGetOffsetTop = getOffsetTop;
-
-  handleGetOffsetLeft = getOffsetLeft;
-
   handleEnter = element => {
     if (this.props.onEnter) {
       this.props.onEnter(element);
@@ -261,11 +265,6 @@ class Popover extends React.Component {
 
     this.setPositioningStyles(element);
   };
-
-  handleResize = debounce(() => {
-    const element = ReactDOM.findDOMNode(this.transitionEl);
-    this.setPositioningStyles(element);
-  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   render() {
     const {
@@ -379,8 +378,8 @@ Popover.propTypes = {
    * the application's client area.
    */
   anchorPosition: PropTypes.shape({
-    top: PropTypes.number,
     left: PropTypes.number,
+    top: PropTypes.number,
   }),
   /*
    * This determines which anchor prop to refer to to set

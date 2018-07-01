@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Badge/Badge.js
+title: Badge API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Badge
+
+<p class="description">The API documentation of the Badge React component.</p>
 
 
 

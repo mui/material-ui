@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
+import warning from 'warning';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../Input/Input';
 
@@ -9,6 +10,12 @@ import { isFilled } from '../Input/Input';
  * @ignore - internal component.
  */
 class SelectInput extends React.Component {
+  ignoreNextBlur = false;
+
+  displayNode = null;
+
+  isOpenControlled = this.props.open !== undefined;
+
   state = {
     menuMinWidth: null,
     open: false,
@@ -28,25 +35,22 @@ class SelectInput extends React.Component {
     }
   }
 
-  ignoreNextBlur = false;
-  displayNode = null;
-  isOpenControlled = this.props.open !== undefined;
-
-  update = this.isOpenControlled
-    ? ({ event, open }) => {
-        if (open) {
-          this.props.onOpen(event);
-        } else {
-          this.props.onClose(event);
-        }
+  update = ({ event, open }) => {
+    if (this.isOpenControlled) {
+      if (open) {
+        this.props.onOpen(event);
+      } else {
+        this.props.onClose(event);
       }
-    : ({ open }) => {
-        this.setState({
-          // Perfom the layout computation outside of the render method.
-          menuMinWidth: this.props.autoWidth ? null : this.displayNode.clientWidth,
-          open,
-        });
-      };
+      return;
+    }
+
+    this.setState({
+      // Perfom the layout computation outside of the render method.
+      menuMinWidth: this.props.autoWidth ? null : this.displayNode.clientWidth,
+      open,
+    });
+  };
 
   handleClick = event => {
     // Opening the menu is going to blur the. It will be focused back when closed.
@@ -175,6 +179,7 @@ class SelectInput extends React.Component {
       open: openProp,
       readOnly,
       renderValue,
+      required,
       SelectDisplayProps,
       tabIndex: tabIndexProp,
       type = 'hidden',
@@ -182,6 +187,8 @@ class SelectInput extends React.Component {
       ...other
     } = this.props;
     const open = this.isOpenControlled && this.displayNode ? openProp : this.state.open;
+
+    delete other['aria-invalid'];
 
     let display;
     let displaySingle = '';
@@ -201,6 +208,15 @@ class SelectInput extends React.Component {
       if (!React.isValidElement(child)) {
         return null;
       }
+
+      warning(
+        child.type !== React.Fragment,
+        [
+          "Material-UI: the Select component doesn't accept a Fragment as a child.",
+          'Consider providing an array instead.',
+        ].join('\n'),
+      );
+
       let selected;
 
       if (multiple) {
@@ -280,7 +296,6 @@ class SelectInput extends React.Component {
         <input
           value={Array.isArray(value) ? value.join(',') : value}
           name={name}
-          readOnly={readOnly}
           ref={this.handleInputRef}
           type={type}
           {...other}
@@ -408,6 +423,10 @@ SelectInput.propTypes = {
    * @returns {ReactElement}
    */
   renderValue: PropTypes.func,
+  /**
+   * @ignore
+   */
+  required: PropTypes.bool,
   /**
    * Properties applied to the clickable div element.
    */

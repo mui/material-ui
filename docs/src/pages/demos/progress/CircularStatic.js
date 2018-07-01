@@ -10,6 +10,8 @@ const styles = theme => ({
 });
 
 class CircularStatic extends React.Component {
+  timer = null;
+
   state = {
     completed: 0,
   };
@@ -21,8 +23,6 @@ class CircularStatic extends React.Component {
   componentWillUnmount() {
     clearInterval(this.timer);
   }
-
-  timer;
 
   progress = () => {
     const { completed } = this.state;

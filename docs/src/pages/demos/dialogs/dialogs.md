@@ -1,14 +1,15 @@
 ---
+title: Dialog React component
 components: Dialog, DialogTitle, DialogContent, DialogActions, Slide
 ---
 
 # Dialogs
 
-[Dialogs](https://material.io/design/components/dialogs.html) inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.
+<p class="description">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>
 
-Dialogs contain text and UI controls.
-They retain focus until dismissed or a required action has been taken.
-Use dialogs sparingly because they are interruptive.
+A [Dialog](https://material.io/design/components/dialogs.html) is a type of [modal](/utils/modals) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
+
+Dialogs are purposefully interruptive, so they should be used sparingly.
 
 ## Simple Dialogs
 

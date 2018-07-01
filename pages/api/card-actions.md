@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/CardActions/CardActions.js
+title: CardActions API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # CardActions
+
+<p class="description">The API documentation of the CardActions React component.</p>
 
 
 

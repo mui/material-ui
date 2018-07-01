@@ -1,3 +1,5 @@
+/* eslint-disable react/forbid-foreign-prop-types */
+
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
 import { pageToTitle } from './helpers';
@@ -11,7 +13,12 @@ function normalizePath(path) {
 }
 
 function generateHeader(reactAPI) {
-  return ['---', `filename: ${normalizePath(reactAPI.filename)}`, '---'].join('\n');
+  return [
+    '---',
+    `filename: ${normalizePath(reactAPI.filename)}`,
+    `title: ${reactAPI.name} API`,
+    '---',
+  ].join('\n');
 }
 
 function getDeprecatedInfo(type) {
@@ -309,6 +316,8 @@ export default function generateMarkdown(reactAPI) {
     '<!--- This documentation is automatically generated, do not try to edit it. -->',
     '',
     `# ${reactAPI.name}`,
+    '',
+    `<p class="description">The API documentation of the ${reactAPI.name} React component.</p>`,
     '',
     reactAPI.description,
     '',

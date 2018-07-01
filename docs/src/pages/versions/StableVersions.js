@@ -82,7 +82,10 @@ class StableVersions extends React.Component {
               return (
                 <TableRow key={doc.version}>
                   <TableCell padding="dense">
-                    <Typography>{doc.version}</Typography>
+                    <Typography>
+                      {doc.version}
+                      {doc.version === `v${process.env.LIB_VERSION}` ? ' ✓' : ''}
+                    </Typography>
                   </TableCell>
                   <TableCell padding="dense">
                     <Typography

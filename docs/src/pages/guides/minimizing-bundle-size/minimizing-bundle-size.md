@@ -1,5 +1,7 @@
 # Minimizing Bundle Size
 
+<p class="description">Learn more about the tools you can leverage to reduce the bundle size.</p>
+
 ## Bundle size matters
 
 The bundle size of Material-UI is taken very seriously, so

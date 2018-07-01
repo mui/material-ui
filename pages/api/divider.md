@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Divider/Divider.js
+title: Divider API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Divider
+
+<p class="description">The API documentation of the Divider React component.</p>
 
 
 

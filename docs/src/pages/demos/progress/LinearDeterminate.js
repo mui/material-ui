@@ -10,6 +10,8 @@ const styles = {
 };
 
 class LinearDeterminate extends React.Component {
+  timer = null;
+
   state = {
     completed: 0,
   };
@@ -21,8 +23,6 @@ class LinearDeterminate extends React.Component {
   componentWillUnmount() {
     clearInterval(this.timer);
   }
-
-  timer = null;
 
   progress = () => {
     const { completed } = this.state;

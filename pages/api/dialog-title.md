@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/DialogTitle/DialogTitle.js
+title: DialogTitle API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # DialogTitle
+
+<p class="description">The API documentation of the DialogTitle React component.</p>
 
 
 

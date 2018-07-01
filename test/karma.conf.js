@@ -8,20 +8,19 @@ const browserStack = {
   build: `material-ui-${new Date().toISOString()}`,
 };
 
+process.env.CHROME_BIN = require('puppeteer').executablePath();
+
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
-    // phantomjs is no longer maintained, we should switch to chrome headless.
-    browsers: ['PhantomJS_Sized'],
-    // to avoid DISCONNECTED messages on travis
+    browsers: ['ChromeHeadless'],
     browserDisconnectTimeout: 120000, // default 2000
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 300000, // default 10000
     colors: true,
     frameworks: ['mocha'],
     files: [
-      'node_modules/babel-polyfill/dist/polyfill.js',
       {
         pattern: 'test/karma.tests.js',
         watched: true,
@@ -30,7 +29,7 @@ module.exports = function setKarmaConfig(config) {
       },
     ],
     plugins: [
-      'karma-phantomjs-launcher',
+      'karma-chrome-launcher',
       'karma-mocha',
       'karma-sourcemap-loader',
       'karma-webpack',
@@ -65,13 +64,6 @@ module.exports = function setKarmaConfig(config) {
             test: /\.js$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
-            query: {
-              cacheDirectory: true,
-            },
-          },
-          {
-            test: /\.json$/,
-            loader: 'json-loader',
           },
         ],
       },
@@ -83,18 +75,7 @@ module.exports = function setKarmaConfig(config) {
     webpackServer: {
       noInfo: true,
     },
-    customLaunchers: {
-      PhantomJS_Sized: {
-        base: 'PhantomJS',
-        options: {
-          viewportSize: {
-            // Matches jsdom size.
-            width: 1024,
-            height: 768,
-          },
-        },
-      },
-    },
+    customLaunchers: {},
   };
 
   let newConfig = baseConfig;

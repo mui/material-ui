@@ -1,6 +1,6 @@
 # Overrides
 
-As components can be used in different contexts, Material-UI supports four different types of customization requirements going from **the most specific** to **the most generic**:
+<p class="description">As components can be used in different contexts, Material-UI supports different types of customization requirements going from the most specific to the most generic.</p>
 
 1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
 1. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)

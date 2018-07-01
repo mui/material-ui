@@ -69,7 +69,7 @@ export const styles = theme => ({
     },
   },
   bar: {
-    borderRadius: 7,
+    borderRadius: 14 / 2,
     display: 'block',
     position: 'absolute',
     width: 34,

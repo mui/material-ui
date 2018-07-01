@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Radio/Radio.js
+title: Radio API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Radio
+
+<p class="description">The API documentation of the Radio React component.</p>
 
 
 

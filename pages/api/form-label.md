@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/FormLabel/FormLabel.js
+title: FormLabel API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # FormLabel
+
+<p class="description">The API documentation of the FormLabel React component.</p>
 
 
 

@@ -62,7 +62,7 @@ class InputAdornments extends React.Component {
   };
 
   handleClickShowPassword = () => {
-    this.setState({ showPassword: !this.state.showPassword });
+    this.setState(state => ({ showPassword: !state.showPassword }));
   };
 
   render() {

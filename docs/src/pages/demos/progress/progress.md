@@ -1,25 +1,28 @@
 ---
+title: Circular Progress, Linear Progress React component
 components: CircularProgress, LinearProgress
 ---
 
 # Progress
 
-[Progress and activity indicators](https://material.io/design/components/progress-indicators.html)
-are visual indications of an app loading content.
+<p class="description">Progress indicators express an unspecified wait time or display the length of a process.</p>
 
-A single visual indicator should be used to represent each type of operation.
-For example, a refresh operation should display either a refresh bar or an activity circle, but not both.
+[Progress indicators](https://material.io/design/components/progress-indicators.html) inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates. They communicate an app’s state and indicate available actions, such as whether users can navigate away from the current screen.
 
 **Determinate** indicators display how long an operation will take.
 
 **Indeterminate** indicators visualize an unspecified wait time.
 
+#### Progress as a group
+
+When displaying progress for a sequence of processes, indicate overall progress rather than the progress of each activity.
+
 ## Circular
 
 [Circular progress](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) support both determinate and indeterminate processes.
 
- - **Determinate** circular indicators fill the invisible, circular track with color, as the indicator moves from 0 to 360 degrees.  
- - **Indeterminate** circular indicators grow and shrink in size while moving along the invisible track.
+- **Determinate** circular indicators fill the invisible, circular track with color, as the indicator moves from 0 to 360 degrees.
+- **Indeterminate** circular indicators grow and shrink in size while moving along the invisible track.
 
 ### Circular Indeterminate
 
@@ -62,8 +65,8 @@ For example, a refresh operation should display either a refresh bar or an activ
 The progress components accept a value in the range 0 - 100. This simplifies things for screen-reader users, where these are the default min / max values. Sometimes, however, you might be working with a data source where the values fall outside this range. Here's how you can easily transform a value in any range to a scale of 0 - 100:
 
 ```jsx
-const MIN = x; // Minimum expected value
-const MAX = y; // Maximium expected value
+// MIN = Minimum expected value
+// MAX = Maximium expected value
 
 // Function to normalise the values (MIN / MAX could be integrated)
 const normalise = value => (value - MIN) * (MAX - MIN);

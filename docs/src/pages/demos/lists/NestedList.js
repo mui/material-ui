@@ -29,7 +29,7 @@ class NestedList extends React.Component {
   state = { open: true };
 
   handleClick = () => {
-    this.setState({ open: !this.state.open });
+    this.setState(state => ({ open: !state.open }));
   };
 
   render() {

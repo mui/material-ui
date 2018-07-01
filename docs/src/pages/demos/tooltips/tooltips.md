@@ -1,10 +1,13 @@
 ---
+title: Tooltip React component
 components: Tooltip
 ---
 
 # Tooltips
 
-[Tooltips](https://material.io/design/components/tooltips.html) are text labels that appear when the user hovers over, focuses on, or touches an element.
+<p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
+
+When activated, [Tooltips](https://material.io/design/components/tooltips.html) display a text label identifying an element, such as a description of its function.
 
 ## Simple Tooltips
 

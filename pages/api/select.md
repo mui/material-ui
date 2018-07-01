@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Select/Select.js
+title: Select API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Select
+
+<p class="description">The API documentation of the Select React component.</p>
 
 
 

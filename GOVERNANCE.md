@@ -1,5 +1,7 @@
 # Mui-Org Governance
 
+<p class="description">Material-UI is an open source project that depends on contributions from the community.</p>
+
 ## Overview
 
 Mui-Org houses projects related to [Material-UI](http://www.material-ui.com/), a set of [React](https://reactjs.org/) components

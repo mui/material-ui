@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Grid/Grid.js
+title: Grid API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Grid
+
+<p class="description">The API documentation of the Grid React component.</p>
 
 
 

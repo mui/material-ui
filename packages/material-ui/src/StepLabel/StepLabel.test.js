@@ -2,8 +2,8 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Typography from '../Typography';
-import StepLabel from '../StepLabel';
 import StepIcon from '../StepIcon';
+import StepLabel from './StepLabel';
 
 describe('<StepLabel />', () => {
   let shallow;

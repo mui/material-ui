@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/CardMedia/CardMedia.js
+title: CardMedia API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # CardMedia
+
+<p class="description">The API documentation of the CardMedia React component.</p>
 
 
 

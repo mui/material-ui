@@ -76,6 +76,7 @@ describe('<GridListTile />', () => {
           classes={{ imgFullWidth: 'imgFullWidth foo', imgFullHeight: 'imgFullHeight' }}
         >
           <img alt="test" />
+          {null}
         </GridListTileNaked>,
       );
       instance = wrapper.instance();

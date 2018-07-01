@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/NativeSelect/NativeSelect.js
+title: NativeSelect API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # NativeSelect
+
+<p class="description">The API documentation of the NativeSelect React component.</p>
 
 An alternative to `<Select native />` with a much smaller dependency graph.
 

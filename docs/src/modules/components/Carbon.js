@@ -56,7 +56,7 @@ const styles = theme => ({
   },
   ad: {
     zIndex: 1,
-    borderRadius: 4,
+    borderRadius: theme.shape.borderRadius,
     position: 'relative',
     [theme.breakpoints.up('sm')]: {
       margin: `${theme.spacing.unit * 2}px ${theme.spacing.unit}px ${theme.spacing.unit}px`,
@@ -89,6 +89,8 @@ const styles = theme => ({
 });
 
 class Carbon extends React.Component {
+  timerAdblock = null;
+
   state = {
     adblock: null,
   };
@@ -113,8 +115,6 @@ class Carbon extends React.Component {
   componentWillUnmount() {
     clearTimeout(this.timerAdblock);
   }
-
-  timerAdblock = null;
 
   checkAdblock = (attempt = 1) => {
     if (document.querySelector('#carbonads')) {

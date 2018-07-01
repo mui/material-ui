@@ -1,5 +1,7 @@
 # Themes
 
+<p class="description">Customize Material-UI with our theme.</p>
+
 The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 
 Themes let you apply a consistent tone to your app. It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.

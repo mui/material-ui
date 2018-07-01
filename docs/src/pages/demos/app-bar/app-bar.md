@@ -1,19 +1,24 @@
 ---
+title: App Bar React component
 components: AppBar, Toolbar
 ---
 
 # App Bar
 
-The [App bar](https://material.io/design/components/app-bars-top.html), formerly known as the action bar in Android, is a special kind of toolbar that’s used for branding, navigation, search, and actions.
+<p class="description">The App Bar displays information and actions relating to the current screen.</p>
 
-## Simple App bar
+The [top App Bar](https://material.io/design/components/app-bars-top.html) provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions.
+
+It can transform into a contextual action bar.
+
+## Simple App Bar
 
 {{"demo": "pages/demos/app-bar/SimpleAppBar.js"}}
 
-## App bar with buttons
+## App Bar with buttons
 
 {{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
 
-## App bar with menu
+## App Bar with menu
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}

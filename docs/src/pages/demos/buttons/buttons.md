@@ -1,14 +1,18 @@
 ---
+title: Button React component
 components: Button, IconButton, ButtonBase, Zoom
 ---
 
 # Buttons
 
-[Buttons](https://material.io/design/components/buttons.html) communicate the action that will occur when the user touches them.
+<p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
-Material buttons trigger an ink reaction on press.
-They may display text, imagery, or both.
-Text buttons and Contained buttons are the most commonly used types.
+[Buttons](https://material.io/design/components/buttons.html) communicate actions that users can take. They are typically placed throughout your UI, in places like:
+- Dialogs
+- Modal windows
+- Forms
+- Cards
+- Toolbars
 
 ## Text Buttons
 
@@ -45,7 +49,7 @@ They contain actions that are primary to your app.
 
 A [floating action button](https://material.io/design/components/buttons-floating-action-button.html)
 (FAB) performs the primary, or most common, action on a screen.
-It appears in front of all screen content, typically as a circular shape with an icon in its center. 
+It appears in front of all screen content, typically as a circular shape with an icon in its center.
 FABs come in three types: regular, mini, and extended.
 
 Only use a FAB if it is the most suitable way to present a screen’s primary action.

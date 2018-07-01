@@ -92,23 +92,9 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class Snackbar extends React.Component {
+  timerAutoHide = null;
+
   state = {};
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (typeof prevState.exited === 'undefined') {
-      return {
-        exited: !nextProps.open,
-      };
-    }
-
-    if (nextProps.open) {
-      return {
-        exited: false,
-      };
-    }
-
-    return null;
-  }
 
   componentDidMount() {
     if (this.props.open) {
@@ -130,23 +116,42 @@ class Snackbar extends React.Component {
     clearTimeout(this.timerAutoHide);
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (typeof prevState.exited === 'undefined') {
+      return {
+        exited: !nextProps.open,
+      };
+    }
+
+    if (nextProps.open) {
+      return {
+        exited: false,
+      };
+    }
+
+    return null;
+  }
+
   // Timer that controls delay before snackbar auto hides
-  setAutoHideTimer(autoHideDuration = null) {
-    if (!this.props.onClose || this.props.autoHideDuration == null) {
+  setAutoHideTimer(autoHideDuration) {
+    const autoHideDurationBefore =
+      autoHideDuration != null ? autoHideDuration : this.props.autoHideDuration;
+
+    if (!this.props.onClose || autoHideDurationBefore == null) {
       return;
     }
 
     clearTimeout(this.timerAutoHide);
     this.timerAutoHide = setTimeout(() => {
-      if (!this.props.onClose || this.props.autoHideDuration == null) {
+      const autoHideDurationAfter =
+        autoHideDuration != null ? autoHideDuration : this.props.autoHideDuration;
+      if (!this.props.onClose || autoHideDurationAfter == null) {
         return;
       }
 
       this.props.onClose(null, 'timeout');
-    }, autoHideDuration || this.props.autoHideDuration || 0);
+    }, autoHideDurationBefore);
   }
-
-  timerAutoHide = null;
 
   handleMouseEnter = event => {
     if (this.props.onMouseEnter) {
@@ -178,11 +183,11 @@ class Snackbar extends React.Component {
   // or when the window is shown back.
   handleResume = () => {
     if (this.props.autoHideDuration != null) {
-      if (this.props.resumeHideDuration !== undefined) {
+      if (this.props.resumeHideDuration != null) {
         this.setAutoHideTimer(this.props.resumeHideDuration);
         return;
       }
-      this.setAutoHideTimer((this.props.autoHideDuration || 0) * 0.5);
+      this.setAutoHideTimer(this.props.autoHideDuration * 0.5);
     }
   };
 

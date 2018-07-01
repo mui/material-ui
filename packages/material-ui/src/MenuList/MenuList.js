@@ -4,14 +4,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
-import contains from 'dom-helpers/query/contains';
-import activeElement from 'dom-helpers/activeElement';
-import ownerDocument from 'dom-helpers/ownerDocument';
+import warning from 'warning';
+import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 
 class MenuList extends React.Component {
+  list = null;
+
+  selectedItem = null;
+
+  blurTimer = null;
+
   state = {
-    currentTabIndex: undefined,
+    currentTabIndex: null,
   };
 
   componentDidMount() {
@@ -26,16 +31,12 @@ class MenuList extends React.Component {
     this.setState({ currentTabIndex: index });
   }
 
-  list = undefined;
-  selectedItem = undefined;
-  blurTimer = undefined;
-
   handleBlur = event => {
     this.blurTimer = setTimeout(() => {
       if (this.list) {
         const list = ReactDOM.findDOMNode(this.list);
-        const currentFocus = activeElement(ownerDocument(list));
-        if (!contains(list, currentFocus)) {
+        const currentFocus = ownerDocument(list).activeElement;
+        if (!list.contains(currentFocus)) {
           this.resetTabIndex();
         }
       }
@@ -49,11 +50,11 @@ class MenuList extends React.Component {
   handleKeyDown = event => {
     const list = ReactDOM.findDOMNode(this.list);
     const key = keycode(event);
-    const currentFocus = activeElement(ownerDocument(list));
+    const currentFocus = ownerDocument(list).activeElement;
 
     if (
       (key === 'up' || key === 'down') &&
-      (!currentFocus || (currentFocus && !contains(list, currentFocus)))
+      (!currentFocus || (currentFocus && !list.contains(currentFocus)))
     ) {
       if (this.selectedItem) {
         ReactDOM.findDOMNode(this.selectedItem).focus();
@@ -105,7 +106,7 @@ class MenuList extends React.Component {
 
   resetTabIndex() {
     const list = ReactDOM.findDOMNode(this.list);
-    const currentFocus = activeElement(ownerDocument(list));
+    const currentFocus = ownerDocument(list).activeElement;
 
     const items = [];
     for (let i = 0; i < list.children.length; i += 1) {
@@ -143,6 +144,14 @@ class MenuList extends React.Component {
           if (!React.isValidElement(child)) {
             return null;
           }
+
+          warning(
+            child.type !== React.Fragment,
+            [
+              "Material-UI: the MenuList component doesn't accept a Fragment as a child.",
+              'Consider providing an array instead.',
+            ].join('\n'),
+          );
 
           return React.cloneElement(child, {
             tabIndex: index === this.state.currentTabIndex ? 0 : -1,

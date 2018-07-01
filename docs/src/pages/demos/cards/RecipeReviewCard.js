@@ -47,7 +47,7 @@ class RecipeReviewCard extends React.Component {
   state = { expanded: false };
 
   handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded });
+    this.setState(state => ({ expanded: !state.expanded }));
   };
 
   render() {

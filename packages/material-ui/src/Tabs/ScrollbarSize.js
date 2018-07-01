@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
-import debounce from 'debounce';
+import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 
 const styles = {
   width: '100px',
@@ -18,6 +18,17 @@ const styles = {
  * It has been moved into the core in order to minimize the bundle size.
  */
 class ScrollbarSize extends React.Component {
+  handleResize = debounce(() => {
+    const { onChange } = this.props;
+
+    const prevHeight = this.scrollbarHeight;
+    const prevWidth = this.scrollbarWidth;
+    this.setMeasurements();
+    if (prevHeight !== this.scrollbarHeight || prevWidth !== this.scrollbarWidth) {
+      onChange({ scrollbarHeight: this.scrollbarHeight, scrollbarWidth: this.scrollbarWidth });
+    }
+  }, 166); // Corresponds to 10 frames at 60 Hz.
+
   componentDidMount() {
     this.setMeasurements();
     this.props.onLoad({
@@ -38,17 +49,6 @@ class ScrollbarSize extends React.Component {
     this.scrollbarHeight = this.node.offsetHeight - this.node.clientHeight;
     this.scrollbarWidth = this.node.offsetWidth - this.node.clientWidth;
   };
-
-  handleResize = debounce(() => {
-    const { onChange } = this.props;
-
-    const prevHeight = this.scrollbarHeight;
-    const prevWidth = this.scrollbarWidth;
-    this.setMeasurements();
-    if (prevHeight !== this.scrollbarHeight || prevWidth !== this.scrollbarWidth) {
-      onChange({ scrollbarHeight: this.scrollbarHeight, scrollbarWidth: this.scrollbarWidth });
-    }
-  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   render() {
     const { onChange } = this.props;

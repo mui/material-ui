@@ -14,7 +14,7 @@ import createGenerateClassName from './createGenerateClassName';
 import { createShallow, createMount, getClasses } from '../test-utils';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Empty extends React.Component<{ classes: Object, theme?: Object }> {
+class Empty extends React.Component<{}> {
   render() {
     return <div />;
   }

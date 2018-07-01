@@ -91,6 +91,8 @@ export const styles = theme => ({
 });
 
 class Tab extends React.Component {
+  label = null;
+
   state = {
     labelWrapped: false,
   };
@@ -121,8 +123,6 @@ class Tab extends React.Component {
       onClick(event);
     }
   };
-
-  label = undefined;
 
   checkTextWrap = () => {
     if (this.label) {

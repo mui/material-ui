@@ -28,10 +28,6 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          <meta
-            name="description"
-            content="React Components that Implement Google's Material Design."
-          />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
             name="viewport"
@@ -47,31 +43,13 @@ class MyDocument extends Document {
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          <link rel="shortcut icon" href="/static/favicon.ico" />
+          <link rel="canonical" href={canonical} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
           <style id="insertion-point-jss" />
-          {/* Twitter */}
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:site" content="@MaterialUI" />
-          <meta name="twitter:title" content="Material-UI" />
-          <meta
-            name="twitter:description"
-            content="React Components that Implement Google's Material Design."
-          />
-          <meta name="twitter:image" content="https://material-ui.com/static/brand.png" />
-          {/* Facebook */}
-          <meta property="og:type" content="website" />
-          <meta property="og:title" content="Material-UI" />
-          <meta
-            property="og:description"
-            content="React Components that Implement Google's Material Design."
-          />
-          <meta property="og:image" content="https://material-ui.com/static/brand.png" />
-          <meta property="og:locale" content="en_US" />
-          <link rel="shortcut icon" href="/static/favicon.ico" />
-          <link rel="canonical" href={canonical} />
         </Head>
         <body>
           <Main />

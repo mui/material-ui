@@ -102,8 +102,12 @@ describe('until', () => {
   // eslint-disable-next-line react/no-multi-comp
   class Bar extends React.Component<{}> {
     static childContextTypes = { quux: PropTypes.bool };
+
     getChildContext = () => ({ quux: true });
-    render = () => <Foo />;
+
+    render() {
+      return <Foo />;
+    }
   }
 
   it('context propagation passes down context from an intermediary component', () => {

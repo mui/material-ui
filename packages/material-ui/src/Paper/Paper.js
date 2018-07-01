@@ -17,7 +17,7 @@ export const styles = theme => {
       backgroundColor: theme.palette.background.paper,
     },
     rounded: {
-      borderRadius: 2,
+      borderRadius: theme.shape.borderRadius,
     },
     ...elevations,
   };

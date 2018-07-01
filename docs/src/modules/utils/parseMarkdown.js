@@ -1,5 +1,6 @@
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
+const descriptionRegExp = /<p class="description">(.*)<\/p>[\r\n]/;
 const headerKeyValueRegExp = /(.*): (.*)/g;
 const emptyRegExp = /^\s*$/;
 
@@ -41,5 +42,19 @@ export function getContents(markdown) {
 export function getTitle(markdown) {
   const matches = markdown.match(titleRegExp);
 
-  return matches ? matches[1] : 'Material-UI';
+  if (!matches || !matches[1]) {
+    throw new Error('Missing title in the page');
+  }
+
+  return matches[1];
+}
+
+export function getDescription(markdown) {
+  const matches = markdown.match(descriptionRegExp);
+
+  if (!matches || !matches[1]) {
+    throw new Error('Missing description in the page');
+  }
+
+  return matches[1];
 }

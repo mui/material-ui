@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/InputLabel/InputLabel.js
+title: InputLabel API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # InputLabel
+
+<p class="description">The API documentation of the InputLabel React component.</p>
 
 
 

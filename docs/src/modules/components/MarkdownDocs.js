@@ -2,14 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import warning from 'warning';
-import Head from 'next/head';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
+import Head from 'docs/src/modules/components/Head';
 import AppContent from 'docs/src/modules/components/AppContent';
 import Demo from 'docs/src/modules/components/Demo';
 import Carbon from 'docs/src/modules/components/Carbon';
-import { getHeaders, getContents, getTitle } from 'docs/src/modules/utils/parseMarkdown';
+import {
+  getHeaders,
+  getContents,
+  getTitle,
+  getDescription,
+} from 'docs/src/modules/utils/parseMarkdown';
 
 const styles = theme => ({
   root: {
@@ -53,9 +58,10 @@ function MarkdownDocs(props, context) {
 
   return (
     <AppContent className={classes.root}>
-      <Head>
-        <title>{`${getTitle(markdown)} - Material-UI`}</title>
-      </Head>
+      <Head
+        title={`${headers.title || getTitle(markdown)} - Material-UI`}
+        description={getDescription(markdown)}
+      />
       <div className={classes.header}>
         <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
           {'Edit this page'}

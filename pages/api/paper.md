@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/Paper/Paper.js
+title: Paper API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Paper
+
+<p class="description">The API documentation of the Paper React component.</p>
 
 
 
@@ -63,5 +66,6 @@ you need to use the following style sheet name: `MuiPaper`.
 ## Demos
 
 - [Autocomplete](/demos/autocomplete)
+- [Cards](/demos/cards)
 - [Paper](/demos/paper)
 

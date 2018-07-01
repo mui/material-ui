@@ -30,7 +30,7 @@
     },
     "docs-development": {
       "plugins": [
-        "./scripts/material-ui-babel-preval",
+        "babel-plugin-preval",
         [
           "module-resolver",
           {
@@ -48,7 +48,7 @@
     },
     "docs-production": {
       "plugins": [
-        "./scripts/material-ui-babel-preval",
+        "babel-plugin-preval",
         [
           "module-resolver",
           {

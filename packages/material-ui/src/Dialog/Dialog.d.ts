@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
@@ -11,6 +10,7 @@ export interface DialogProps<C = {}>
   fullWidth?: boolean;
   maxWidth?: 'xs' | 'sm' | 'md' | false;
   PaperProps?: Partial<C>;
+  scroll?: 'body' | 'paper';
   TransitionComponent?: React.ReactType;
   transitionDuration?: TransitionProps['timeout'];
   TransitionProps?: TransitionProps;
@@ -18,13 +18,17 @@ export interface DialogProps<C = {}>
 
 export type DialogClassKey =
   | 'root'
+  | 'scrollPaper'
+  | 'scrollBody'
   | 'paper'
+  | 'paperScrollPaper'
+  | 'paperScrollBody'
   | 'paperWidthXs'
   | 'paperWidthSm'
   | 'paperWidthMd'
   | 'paperFullWidth'
   | 'paperFullScreen';
 
-declare class Dialog<C> extends React.Component<C & DialogProps<C>> {}
+declare class Dialog<C> extends React.Component<C & DialogProps<C>> { }
 
 export default Dialog;

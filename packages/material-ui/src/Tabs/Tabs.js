@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
-import debounce from 'debounce';
+import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
 import scroll from 'scroll';
 import ScrollbarSize from './ScrollbarSize';
@@ -48,6 +48,19 @@ export const styles = theme => ({
 });
 
 class Tabs extends React.Component {
+  tabs = null;
+
+  valueToIndex = new Map();
+
+  handleResize = debounce(() => {
+    this.updateIndicatorState(this.props);
+    this.updateScrollButtonState();
+  }, 166); // Corresponds to 10 frames at 60 Hz.
+
+  handleTabsScroll = debounce(() => {
+    this.updateScrollButtonState();
+  }, 166); // Corresponds to 10 frames at 60 Hz.
+
   state = {
     indicatorStyle: {},
     scrollerStyle: {
@@ -153,14 +166,6 @@ class Tabs extends React.Component {
     return { tabsMeta, tabMeta };
   };
 
-  tabs = undefined;
-  valueToIndex = new Map();
-
-  handleResize = debounce(() => {
-    this.updateIndicatorState(this.props);
-    this.updateScrollButtonState();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
-
   handleLeftScrollClick = () => {
     if (this.tabs) {
       this.moveTabsScroll(-this.tabs.clientWidth);
@@ -181,10 +186,6 @@ class Tabs extends React.Component {
     });
   };
 
-  handleTabsScroll = debounce(() => {
-    this.updateScrollButtonState();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
-
   moveTabsScroll = delta => {
     const { theme } = this.props;
 
@@ -196,36 +197,6 @@ class Tabs extends React.Component {
       scroll.left(this.tabs, invert * nextScrollLeft);
     }
   };
-
-  updateIndicatorState(props) {
-    const { theme, value } = props;
-
-    const { tabsMeta, tabMeta } = this.getTabsMeta(value, theme.direction);
-    let left = 0;
-
-    if (tabMeta && tabsMeta) {
-      const correction =
-        theme.direction === 'rtl'
-          ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth
-          : tabsMeta.scrollLeft;
-      left = tabMeta.left - tabsMeta.left + correction;
-    }
-
-    const indicatorStyle = {
-      left,
-      // May be wrong until the font is loaded.
-      width: tabMeta ? tabMeta.width : 0,
-    };
-
-    if (
-      (indicatorStyle.left !== this.state.indicatorStyle.left ||
-        indicatorStyle.width !== this.state.indicatorStyle.width) &&
-      !isNaN(indicatorStyle.left) &&
-      !isNaN(indicatorStyle.width)
-    ) {
-      this.setState({ indicatorStyle });
-    }
-  }
 
   scrollSelectedIntoView = () => {
     const { theme, value } = this.props;
@@ -267,6 +238,36 @@ class Tabs extends React.Component {
       }
     }
   };
+
+  updateIndicatorState(props) {
+    const { theme, value } = props;
+
+    const { tabsMeta, tabMeta } = this.getTabsMeta(value, theme.direction);
+    let left = 0;
+
+    if (tabMeta && tabsMeta) {
+      const correction =
+        theme.direction === 'rtl'
+          ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth
+          : tabsMeta.scrollLeft;
+      left = tabMeta.left - tabsMeta.left + correction;
+    }
+
+    const indicatorStyle = {
+      left,
+      // May be wrong until the font is loaded.
+      width: tabMeta ? tabMeta.width : 0,
+    };
+
+    if (
+      (indicatorStyle.left !== this.state.indicatorStyle.left ||
+        indicatorStyle.width !== this.state.indicatorStyle.width) &&
+      !isNaN(indicatorStyle.left) &&
+      !isNaN(indicatorStyle.width)
+    ) {
+      this.setState({ indicatorStyle });
+    }
+  }
 
   render() {
     const {
@@ -322,6 +323,14 @@ class Tabs extends React.Component {
       if (!React.isValidElement(child)) {
         return null;
       }
+
+      warning(
+        child.type !== React.Fragment,
+        [
+          "Material-UI: the Tabs component doesn't accept a Fragment as a child.",
+          'Consider providing an array instead.',
+        ].join('\n'),
+      );
 
       const childValue = child.props.value === undefined ? childIndex : child.props.value;
       this.valueToIndex.set(childValue, childIndex);

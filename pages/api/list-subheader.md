@@ -1,10 +1,13 @@
 ---
 filename: /packages/material-ui/src/ListSubheader/ListSubheader.js
+title: ListSubheader API
 ---
 
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # ListSubheader
+
+<p class="description">The API documentation of the ListSubheader React component.</p>
 
 
 

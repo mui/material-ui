@@ -11,6 +11,13 @@ import exactProp from '../utils/exactProp';
  * This component should preferably be used at **the root of your component tree**.
  */
 class MuiThemeProvider extends React.Component {
+  broadcast = createBroadcast();
+
+  unsubscribeId = null;
+
+  // We are not using the React state in order to avoid unnecessary rerender.
+  outerTheme = null;
+
   constructor(props, context) {
     super(props, context);
 
@@ -59,11 +66,6 @@ class MuiThemeProvider extends React.Component {
       themeListener.unsubscribe(this.context, this.unsubscribeId);
     }
   }
-
-  broadcast = createBroadcast();
-  unsubscribeId = null;
-  // We are not using the React state in order to avoid unnecessary rerender.
-  outerTheme = null;
 
   // Simple merge between the outer theme and the local theme
   mergeOuterLocalTheme(localTheme) {
