@@ -57,6 +57,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/dialogs/ResponsiveDialog'), 'utf8')
 `,
         },
+        'pages/demos/dialogs/ScrollDialog.js': {
+          js: require('docs/src/pages/demos/dialogs/ScrollDialog').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/dialogs/ScrollDialog'), 'utf8')
+`,
+        },
       }}
     />
   );

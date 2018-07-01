@@ -1,6 +1,6 @@
 ---
 title: Dialog React component
-components: Dialog, DialogTitle, DialogContent, DialogActions, Slide
+components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
 # Dialogs
@@ -74,3 +74,13 @@ You may make a `Dialog` responsively full screen the dialog using `withMobileDia
 ## Accessibility
 
 Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Dialog`. Additionally, you may give a description of your modal dialog with the `aria-describedby="id..."` property on the `Dialog`.
+
+## Scrolling long content
+
+When dialogs become too long for the user’s viewport or device, they scroll.
+- `scroll=paper` the content of the dialog scrolls within the paper element.
+- `scroll=body` the content of the dialog scrolls within the body element.
+
+Try the demo below to see what we mean:
+
+{{"demo": "pages/demos/dialogs/ScrollDialog.js"}}
