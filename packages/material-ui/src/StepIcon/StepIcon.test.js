@@ -3,8 +3,8 @@ import { assert } from 'chai';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import { createShallow, createMount } from '../test-utils';
-import StepPositionIcon from './StepPositionIcon';
 import StepIcon from './StepIcon';
+import SvgIcon from '../SvgIcon';
 
 describe('<StepIcon />', () => {
   let shallow;
@@ -31,13 +31,14 @@ describe('<StepIcon />', () => {
     assert.strictEqual(warning.length, 1, 'should have an <Warning />');
   });
 
-  it('renders <StepPositionIcon> when not completed', () => {
-    const wrapper = shallow(<StepIcon icon={1} active />);
-    const checkCircle = wrapper.find(StepPositionIcon);
-    assert.strictEqual(checkCircle.length, 1, 'should have an <StepPositionIcon />');
-    const props = checkCircle.props();
-    assert.strictEqual(props.position, 1, 'should set position');
-    assert.include(props.className, 'active');
+  it('renders a <SvgIcon>', () => {
+    const wrapper = shallow(<StepIcon icon={1} />);
+    assert.strictEqual(wrapper.find(SvgIcon).length, 1);
+  });
+
+  it('contains text "3" when position is "3"', () => {
+    const wrapper = shallow(<StepIcon icon={3} />);
+    assert.strictEqual(wrapper.find('text').text(), '3');
   });
 
   it('renders the custom icon', () => {
