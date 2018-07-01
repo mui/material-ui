@@ -2,7 +2,7 @@
   "name": "@material-ui/icons",
   "private": false,
   "author": "Material-UI Team",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
   "main": "./src/index.js",
   "keywords": [
@@ -23,16 +23,17 @@
   "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-icons",
   "scripts": {
     "test": "yarn test:unit",
-    "test:unit": "cd ../../ && ./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/mocha packages/material-ui-icons/test/index.test.js",
+    "test:unit": "cd ../../ && ./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/mocha packages/material-ui-icons/{,**/}*.test.js",
     "test:watch": "yarn test:unit --watch",
+    "download": "../../node_modules/.bin/babel-node ./scripts/download.js",
+    "src:icons": "../../node_modules/.bin/babel-node ./builder.js --output-dir ./src --svg-dir ./material-design-icons --glob '/**/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
     "prebuild": "../../node_modules/.bin/rimraf build",
-    "src:icons": "../../node_modules/.bin/babel-node ./builder.js --output-dir ./src --svg-dir ../../node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
     "build:es2015": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./build",
     "build:es2015modules": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=modules ../../node_modules/.bin/babel ./src/index.js --out-file ./build/index.es.js",
     "build:es": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=es ../../node_modules/.bin/babel ./src --out-dir ./build/es",
     "build:copy-files": "../../node_modules/.bin/babel-node ./scripts/copy-files.js",
     "build:typings": "../../node_modules/.bin/babel-node ./scripts/create-typings.js",
-    "build": "yarn src:icons && yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:typings && yarn build:copy-files",
+    "build": "yarn download && yarn src:icons && yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:typings && yarn build:copy-files",
     "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
@@ -44,9 +45,10 @@
     "recompose": "^0.26.0 || ^0.27.0"
   },
   "devDependencies": {
-    "material-design-icons": "^3.0.0",
+    "fs-extra": "^6.0.1",
     "mkdirp": "^0.5.0",
     "mustache": "^2.0.0",
+    "svgo": "^1.0.5",
     "temp": "^0.8.3",
     "yargs": "^11.0.0"
   },

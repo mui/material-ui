@@ -1,6 +1,6 @@
 # @material-ui/icons
 
-This package provides the Google [Material icons](https://material.io/icons/) packaged as a set of [React](https://facebook.github.io/react/) components.
+This package provides the Google [Material icons](https://material.io/tools/icons/) packaged as a set of [React](https://facebook.github.io/react/) components.
 
 ## Installation
 
@@ -25,11 +25,15 @@ yarn add @material-ui/core
 
 ## Usage
 
-The import path for each Material icon component includes the icon name in PascalCase. There are two versions provided: filled icon and outline icon. Append `Outline` to the icon name to use the outlined version of the icon (i.e., `@material-ui/icons/InfoOutline`) when available, as not all icons are provided with two versions.
+The import path for each Material icon component includes the icon name in PascalCase.
 
 For example to use the 'access alarm' icon component, import `@material-ui/icons/AccessAlarm`.
+For "themed" icons, append the theme name to the icon name, for example `AccessAlarmOutlined`.
 
-Note: One exception is '3d rotation', which is named `ThreeDRotation`.
+Note, there are three exceptions:
+- '3d rotation' is named `ThreeDRotation`
+- '4k' is named `FourK`
+- '360' is named `ThreeSixty`
 
 ### Examples
 

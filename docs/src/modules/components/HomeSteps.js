@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import FileDownloadIcon from '@material-ui/icons/FileDownload';
+import FileDownloadIcon from '@material-ui/docs/svgIcons/FileDownload';
 import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';

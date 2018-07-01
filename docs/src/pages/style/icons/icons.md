@@ -33,19 +33,27 @@ Optionally, you can set the icon color using one of the theme color properties: 
 It's interesting to have the building blocks needed to implement custom icons, but what about presets?
 We provide a separate NPM package,
 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons),
-that includes the 900+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
+that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
 
 <a href="https://material.io/tools/icons/?icon=3d_rotation&style=baseline">
-  <img src="/static/images/icons/icons.png" style="width: 644px" />
+  <img src="/static/images/icons/icons.png" style="width: 566px" />
 </a>
 
 You can use [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon.
 When importing an icon, keep in mind that the names of the icons are `PascalCase`, for instance:
-- [`alarm`](https://material.io/tools/icons/?icon=alarm&style=baseline) is exposed as `@material-ui/icons/Alarm`
-- [`alarm off`](https://material.io/tools/icons/?icon=alarm_off&style=baseline) is exposed as `@material-ui/icons/AlarmOff`
+- [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) is exposed as `@material-ui/icons/Delete`
+- [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) is exposed as `@material-ui/icons/DeleteForever`
 
-There is one exception to this rule:
-- [`3d_rotation`](https://material.io/tools/icons/?icon=3d_rotation&style=baseline) is exposed as `@material-ui/icons/ThreeDRotation`.
+For *"themed"* icons, append the theme name to the icon name. For instance with the
+- The Outlined [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) icon is exposed as `@material-ui/icons/BuildOutlined`
+- The Rounded [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) icon is exposed as `@material-ui/icons/BuildRounded`
+- The Two Tone [`delete`](https://material.io/tools/icons/?icon=delete&style=twotone) icon is exposed as `@material-ui/icons/BuildTwoTone`
+- The Sharp [`delete`](https://material.io/tools/icons/?icon=delete&style=sharp) icon is exposed as `@material-ui/icons/BuildSharp`
+
+There are three exceptions to this rule:
+- [`3d_rotation`](https://material.io/tools/icons/?icon=3d_rotation&style=baseline) is exposed as `@material-ui/icons/ThreeDRotation`
+- [`4k`](https://material.io/tools/icons/?icon=4k&style=baseline) is exposed as `@material-ui/icons/FourK`
+- [`360`](https://material.io/tools/icons/?icon=360&style=baseline) is exposed as `@material-ui/icons/ThreeSixty`
 
 {{"demo": "pages/style/icons/SvgMaterialIcons.js"}}
 

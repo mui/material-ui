@@ -5,7 +5,7 @@ import path from 'path';
 /*
  * Return path to write file to inside outputDir.
  *
- * @param {object} pathObj
+ * @param {object} svgPathObj
  * path objects from path.parse
  *
  * @param {string} innerPath
@@ -17,8 +17,8 @@ import path from 'path';
  * @param {object} options
  * @return {string} output file dest relative to outputDir
  */
-function defaultDestRewriter(pathObj: Object, innerPath: string, options: Object) {
-  let fileName = pathObj.base;
+function defaultDestRewriter(svgPathObj: Object, innerPath: string, options: Object) {
+  let fileName = svgPathObj.base;
   if (options.fileSuffix) {
     fileName.replace(options.fileSuffix, '.svg');
   } else {

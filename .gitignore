@@ -12,6 +12,7 @@
 /coverage
 /docs/export
 /packages/material-ui-codemod/lib
+/packages/material-ui-icons/material-design-icons
 /test/regressions/screenshots
 /test/selenium-output
 /tmp

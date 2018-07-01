@@ -6,7 +6,7 @@ import copy from 'clipboard-copy';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
-import ModeEditIcon from '@material-ui/icons/ModeEdit';
+import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -226,7 +226,7 @@ class Demo extends React.Component {
                     onClick={this.handleClickCodeSandbox}
                     aria-labelledby={`demo-codesandbox-${index}`}
                   >
-                    <ModeEditIcon />
+                    <EditIcon />
                   </IconButton>
                 </Tooltip>
               )}
