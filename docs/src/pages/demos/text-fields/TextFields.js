@@ -97,6 +97,16 @@ class TextFields extends React.Component {
           margin="normal"
         />
         <TextField
+          id="read-only-input"
+          label="Read Only"
+          defaultValue="Hello World"
+          className={classes.textField}
+          margin="normal"
+          InputProps={{
+            readOnly: true,
+          }}
+        />
+        <TextField
           id="multiline-flexible"
           label="Multiline"
           multiline
