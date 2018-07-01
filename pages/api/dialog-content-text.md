@@ -39,3 +39,7 @@ you need to use the following style sheet name: `MuiDialogContentText`.
 The properties of the [Typography](/api/typography) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api#spread).
 
+## Demos
+
+- [Dialogs](/demos/dialogs)
+

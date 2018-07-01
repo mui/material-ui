@@ -43,11 +43,13 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class Modal extends React.Component {
-  dialogElement = null;
+  mountNode = null;
+
+  modalNode = null;
+
+  dialogNode = null;
 
   mounted = false;
-
-  mountNode = null;
 
   constructor(props) {
     super(props);
@@ -104,6 +106,9 @@ class Modal extends React.Component {
 
   handleRendered = () => {
     this.autoFocus();
+
+    // Fix a bug on Chrome where the scroll isn't initially 0.
+    this.modalNode.scrollTop = 0;
 
     if (this.props.onRendered) {
       this.props.onRendered();
@@ -171,8 +176,8 @@ class Modal extends React.Component {
 
     const currentActiveElement = ownerDocument(this.mountNode).activeElement;
 
-    if (this.dialogElement && !this.dialogElement.contains(currentActiveElement)) {
-      this.dialogElement.focus();
+    if (this.dialogNode && !this.dialogNode.contains(currentActiveElement)) {
+      this.dialogNode.focus();
     }
   };
 
@@ -183,10 +188,10 @@ class Modal extends React.Component {
 
     const currentActiveElement = ownerDocument(this.mountNode).activeElement;
 
-    if (this.dialogElement && !this.dialogElement.contains(currentActiveElement)) {
+    if (this.dialogNode && !this.dialogNode.contains(currentActiveElement)) {
       this.lastFocus = currentActiveElement;
 
-      if (!this.dialogElement.hasAttribute('tabIndex')) {
+      if (!this.dialogNode.hasAttribute('tabIndex')) {
         warning(
           false,
           [
@@ -195,10 +200,10 @@ class Modal extends React.Component {
               'the tabIndex of the node is being set to "-1".',
           ].join('\n'),
         );
-        this.dialogElement.setAttribute('tabIndex', -1);
+        this.dialogNode.setAttribute('tabIndex', -1);
       }
 
-      this.dialogElement.focus();
+      this.dialogNode.focus();
     }
   }
 
@@ -277,6 +282,9 @@ class Modal extends React.Component {
       >
         <div
           data-mui-test="Modal"
+          ref={node => {
+            this.modalNode = node;
+          }}
           className={classNames(classes.root, className, {
             [classes.hidden]: exited,
           })}
@@ -287,7 +295,7 @@ class Modal extends React.Component {
           )}
           <RootRef
             rootRef={node => {
-              this.dialogElement = node;
+              this.dialogNode = node;
             }}
           >
             {React.cloneElement(children, childProps)}
