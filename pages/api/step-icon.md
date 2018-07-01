@@ -28,6 +28,7 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
+- `text`
 - `active`
 - `completed`
 - `error`

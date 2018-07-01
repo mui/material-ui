@@ -4,11 +4,12 @@ import classNames from 'classnames';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
 import withStyles from '../styles/withStyles';
-import StepPositionIcon from './StepPositionIcon';
+import SvgIcon from '../SvgIcon';
 
 export const styles = theme => ({
   root: {
     display: 'block',
+    color: theme.palette.text.disabled,
     '&$active': {
       color: theme.palette.primary.main,
     },
@@ -18,6 +19,11 @@ export const styles = theme => ({
     '&$error': {
       color: theme.palette.error.main,
     },
+  },
+  text: {
+    fill: theme.palette.primary.contrastText,
+    fontSize: theme.typography.caption.fontSize,
+    fontFamily: theme.typography.fontFamily,
   },
   active: {},
   completed: {},
@@ -35,12 +41,16 @@ function StepIcon(props) {
       return <CheckCircle className={classNames(classes.root, classes.completed)} />;
     }
     return (
-      <StepPositionIcon
+      <SvgIcon
         className={classNames(classes.root, {
           [classes.active]: active,
         })}
-        position={icon}
-      />
+      >
+        <circle cx="12" cy="12" r="12" />
+        <text className={classes.text} x="12" y="16" textAnchor="middle">
+          {icon}
+        </text>
+      </SvgIcon>
     );
   }
 
