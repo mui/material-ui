@@ -99,6 +99,7 @@ class ExpansionPanelSummary extends React.Component {
       disabled,
       expanded,
       expandIcon,
+      IconButtonProps,
       onChange,
       ...other
     } = this.props;
@@ -137,6 +138,7 @@ class ExpansionPanelSummary extends React.Component {
             component="div"
             tabIndex={-1}
             aria-hidden="true"
+            {...IconButtonProps}
           >
             {expandIcon}
           </IconButton>
@@ -174,6 +176,10 @@ ExpansionPanelSummary.propTypes = {
    * The icon to display as the expand indicator.
    */
   expandIcon: PropTypes.node,
+  /**
+   * Properties applied to the `TouchRipple` element wrapping the expand icon.
+   */
+  IconButtonProps: PropTypes.object,
   /**
    * @ignore
    */
