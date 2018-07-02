@@ -56,7 +56,7 @@ function downloadIcon(icon, index) {
       );
       const SVG = await response.text();
       await fse.writeFile(
-        `./material-design-icons/ic_${icon.id}${themeMap[theme]}_${size}px.svg`,
+        `./material-design-icons/${icon.id}${themeMap[theme]}_${size}px.svg`,
         SVG,
       );
     }),
