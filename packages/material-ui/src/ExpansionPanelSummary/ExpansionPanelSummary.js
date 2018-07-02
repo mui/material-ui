@@ -99,6 +99,7 @@ class ExpansionPanelSummary extends React.Component {
       disabled,
       expanded,
       expandIcon,
+      expandIconProps,
       onChange,
       ...other
     } = this.props;
@@ -137,6 +138,7 @@ class ExpansionPanelSummary extends React.Component {
             component="div"
             tabIndex={-1}
             aria-hidden="true"
+            {...expandIconProps}
           >
             {expandIcon}
           </IconButton>
@@ -175,6 +177,10 @@ ExpansionPanelSummary.propTypes = {
    */
   expandIcon: PropTypes.node,
   /**
+   * Properties to pass to the underlying IconButton component wrapping the Expand Icon
+   */
+  expandIconProps: PropTypes.object,
+  /**
    * @ignore
    */
   onChange: PropTypes.func,
@@ -186,6 +192,7 @@ ExpansionPanelSummary.propTypes = {
 
 ExpansionPanelSummary.defaultProps = {
   disabled: false,
+  expandIconProps: {}
 };
 
 ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
