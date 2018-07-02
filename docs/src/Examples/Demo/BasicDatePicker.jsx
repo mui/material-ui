@@ -3,7 +3,7 @@ import { DatePicker } from 'material-ui-pickers';
 
 export default class BasicDatePicker extends PureComponent {
   state = {
-    selectedDate: new Date(),
+    selectedDate: '2018-01-01T00:00:00.000Z',
   }
 
   handleDateChange = (date) => {
