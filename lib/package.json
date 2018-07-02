@@ -44,13 +44,15 @@
     "luxon": "^1.0.0"
   },
   "dependencies": {
+    "codecov": "^3.0.2",
     "enzyme-react-adapter-future": "^1.1.3",
     "react-event-listener": "^0.6.1",
     "react-text-mask": "=5.4.1",
     "recompose": "^0.27.1"
   },
   "scripts": {
-    "test": "npm run test:moment && npm run test:date-fns && npm run test:luxon",
+    "test": "npm run test:date-fns && npm run test:luxon && npm run test:moment",
+    "codecov": "codecov --file='../coverage/Icov.info'",
     "all-tests": "jest && npm run typescript",
     "test:moment": "cross-env UTILS=moment npm run all-tests",
     "test:date-fns": "cross-env UTILS=date-fns npm run all-tests",
@@ -63,7 +65,7 @@
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
     "build": "npm run build:bundle && npm run build:es2015modules &&  npm run build:es2015 && npm run build:copy",
-    "ci": "npm run test && npm run lint && npm run build",
+    "ci": "npm run test && npm run codecov && npm run lint && npm run build",
     "prerelease": "npm run ci",
     "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
