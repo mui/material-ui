@@ -5,6 +5,54 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.3.1
+###### *Jul 2, 2018*
+
+Big thanks to the 13 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Document the scroll property of the Dialog (#12025).
+- Add a demo with Font Awesome (#12027).
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Select] Fix some W3C issues (#11983) @oliviertassinari
+- [Icon] Add a fontSize prop which accepts default and inherit (#11986) @sakulstra
+- [Menu] Add prop to disable auto focus (#11984) @th317erd
+- [SvgIcon] Add component property (#11987) @stephenway
+- [GridList] Clean the rendering logic (#11998) @oliviertassinari
+- [Snackbar] Add check for autoHideDuration if equals 0 (#12002) @C-Rodg
+- [Menu] Fix scrolling issue (#12003) @stephenway
+- [Stepper] Merge StepPositionIcon in StepIcon (#12026) @bousejin
+- [Input] Add read only demo (#12024) @oliviertassinari
+- [ExpansionPanelSummary] Add IconButtonProps property (#12035) @dakotamurphyucf
+- [Dialog] Document the scroll property (#12025) @oliviertassinari
+
+#### Docs
+
+- [docs] Use _app.js instead of wrapping every page by withRoot() (#11989) @NikitaVlaznev
+- [docs] Link RootRef in the FAQ (#12005) @scottastrophic
+- [docs] Add Core UI (#12015) @oliviertassinari
+- [docs] Switch autosuggest highlighting (#12019) @TheRusskiy
+- [docs] Small spelling fix (#12028) @danh293
+- [docs] Add a demo with Font Awesome (#12027) @oliviertassinari
+
+#### Core
+
+- [typescript] [createMuiTheme] Fix typings & deepmerge shape (#11993) @franklixuefei
+- [core] Warn about Children.map & Fragment (#12021) @oliviertassinari
+- [core] Remove usage of theme.spacing.unit (#12022) @oliviertassinari
+
+#### Lab
+
+N/A
+
+
 ## 1.3.0
 ###### *Jun 26, 2018*
 
