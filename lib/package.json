@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "react-text-mask": "=5.4.1",
-    "react-event-listener": "^0.6.1",ga 
+    "react-event-listener": "^0.6.1",
     "recompose": "^0.27.1"
   },
   "scripts": {
