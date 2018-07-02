@@ -8,7 +8,7 @@ export interface ExpansionPanelSummaryProps
   disabled?: boolean;
   expanded?: boolean;
   expandIcon?: React.ReactNode;
-  expandIconProps?: IconButtonProps;
+  IconButtonProps?: Partial<IconButtonProps>;
   onChange?: React.ReactEventHandler<{}>;
 }
 

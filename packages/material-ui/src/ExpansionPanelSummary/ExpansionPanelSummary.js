@@ -99,7 +99,7 @@ class ExpansionPanelSummary extends React.Component {
       disabled,
       expanded,
       expandIcon,
-      expandIconProps,
+      IconButtonProps,
       onChange,
       ...other
     } = this.props;
@@ -138,7 +138,7 @@ class ExpansionPanelSummary extends React.Component {
             component="div"
             tabIndex={-1}
             aria-hidden="true"
-            {...expandIconProps}
+            {...IconButtonProps}
           >
             {expandIcon}
           </IconButton>
@@ -177,10 +177,9 @@ ExpansionPanelSummary.propTypes = {
    */
   expandIcon: PropTypes.node,
   /**
-   * @ignore
-   * Properties to pass to the underlying IconButton component wrapping the Expand Icon
+   * Properties applied to the `TouchRipple` element wrapping the expand icon.
    */
-  expandIconProps: PropTypes.object,
+  IconButtonProps: PropTypes.object,
   /**
    * @ignore
    */
@@ -193,7 +192,6 @@ ExpansionPanelSummary.propTypes = {
 
 ExpansionPanelSummary.defaultProps = {
   disabled: false,
-  expandIconProps: {},
 };
 
 ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
