@@ -103,9 +103,9 @@ export class DateTextField extends PureComponent {
     minDateMessage: PropTypes.node,
     /** Error message, shown if date is more then maximal date */
     maxDateMessage: PropTypes.node,
-    /** Error message, shown if date is invalid */
+    /** Message displaying in text field, if date is invalid (doesn't work in keyboard mode) */
     invalidLabel: PropTypes.string,
-    /** Message displaying in text field, if null passed */
+    /** Message displaying in text field, if null passed (doesn't work in keyboard mode) */
     emptyLabel: PropTypes.string,
     /** Dynamic label generation function (date, invalidLabel) => string */
     labelFunc: PropTypes.func,
