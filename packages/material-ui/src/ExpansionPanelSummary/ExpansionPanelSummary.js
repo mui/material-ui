@@ -192,7 +192,7 @@ ExpansionPanelSummary.propTypes = {
 
 ExpansionPanelSummary.defaultProps = {
   disabled: false,
-  expandIconProps: {}
+  expandIconProps: {},
 };
 
 ExpansionPanelSummary.muiName = 'ExpansionPanelSummary';
