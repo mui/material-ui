@@ -153,7 +153,6 @@ export class DateTextField extends PureComponent {
     adornmentPosition: 'end',
   }
 
-
   state = DateTextField.updateState(this.props)
 
   componentDidUpdate(prevProps) {
