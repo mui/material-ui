@@ -177,6 +177,7 @@ ExpansionPanelSummary.propTypes = {
    */
   expandIcon: PropTypes.node,
   /**
+   * @ignore
    * Properties to pass to the underlying IconButton component wrapping the Expand Icon
    */
   expandIconProps: PropTypes.object,
