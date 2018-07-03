@@ -51,7 +51,7 @@
     "recompose": "^0.27.1"
   },
   "scripts": {
-    "test": "npm run test:date-fns && npm run test:luxon && npm run test:moment",
+    "test": "npm run test:date-fns && npm run test:moment",
     "codecov": "codecov --file='../coverage/Icov.info'",
     "all-tests": "jest && npm run typescript",
     "test:moment": "cross-env UTILS=moment npm run all-tests",
