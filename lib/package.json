@@ -44,8 +44,6 @@
     "luxon": "^1.0.0"
   },
   "dependencies": {
-    "codecov": "^3.0.2",
-    "enzyme-react-adapter-future": "^1.1.3",
     "react-event-listener": "^0.6.1",
     "react-text-mask": "=5.4.1",
     "recompose": "^0.27.1"
@@ -104,10 +102,12 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-latest": "^6.24.1",
     "classnames": "^2.2.5",
+    "codecov": "^3.0.2",
     "cross-env": "^5.2.0",
     "date-fns": "2.0.0-alpha.7",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-react-adapter-future": "^1.1.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-plugin-import": "^2.13.0",
