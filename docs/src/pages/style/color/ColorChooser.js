@@ -39,9 +39,7 @@ const shades = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 'A700', 'A400',
 export const styles = theme => ({
   root: {
     display: 'flex',
-  },
-  textField: {
-    marginRight: theme.spacing.unit * 2,
+    width: '100%',
   },
   radio: {
     width: 47,
@@ -66,9 +64,6 @@ export const styles = theme => ({
   sliderTypography: {
     marginTop: 5,
   },
-  slider: {
-    // width: 100,
-  },
   swatch: {
     width: 192,
     backgroundColor: theme.palette.common.white,
@@ -82,23 +77,59 @@ class ColorChooser extends React.Component {
   state = {
     primary: '#2196f3',
     secondary: '#f50057',
+    primaryText: '#2196f3',
+    secondaryText: '#f50057',
     primaryHue: 'blue',
     secondaryHue: 'pink',
     primaryShade: 4,
     secondaryShade: 11,
-    url: '',
   };
 
-  getUrlParams = url =>
-    url
-      .substring(url.indexOf('?') + 1)
-      .split('&')
-      .reduce((result, param) => {
-        const tuple = param.split('=');
-        const [key, value] = tuple; // Workaround for eslint bug
-        result[key] = value;
-        return result;
-      }, {});
+  hashPrefix = string => (string.charAt(0) === '#' ? string : `#${string}`);
+
+  isRgb = string => /#?([0-9a-f]{6})/i.test(string);
+
+  handleChangeColor = name => event => {
+    const {
+      target: { value: color },
+    } = event;
+
+    this.setState({
+      [`${name}Text`]: color,
+    });
+
+    if (this.isRgb(color)) {
+      this.setState({
+        [name]: color,
+      });
+    }
+  };
+
+  handleChangeHue = name => event => {
+    const {
+      target: { value: hue },
+    } = event;
+
+    this.setState(currentState => {
+      const color = colors[hue][shades[currentState[`${name}Shade`]]];
+      return {
+        [`${name}Hue`]: hue,
+        [name]: color,
+        [`${name}Text`]: color,
+      };
+    });
+  };
+
+  handleChangeShade = name => (event, shade) => {
+    this.setState(currentState => {
+      const color = colors[currentState[`${name}Hue`]][shades[shade]];
+      return {
+        [`${name}Shade`]: shade,
+        [name]: color,
+        [`${name}Text`]: color,
+      };
+    });
+  };
 
   handleChangeDocsColors = values => {
     const primaryMain = values.hasOwnProperty('primary') ? values.primary : this.state.primary;
@@ -117,43 +148,16 @@ class ColorChooser extends React.Component {
     });
   };
 
-  hashPrefix = string => (string.charAt(0) === '#' ? string : `#${string}`);
-
-  isRgb = string => /#?([0-9a-f]{6})/i.test(string);
-
-  handleChangeUrl = event => {
-    const url = event.target.value;
-    const urlParams = this.getUrlParams(url);
-
-    this.setState({
-      url,
-    });
-
-    if (urlParams.hasOwnProperty('primary.color') && urlParams.hasOwnProperty('secondary.color')) {
-      let { 'primary.color': primary, 'secondary.color': secondary } = urlParams;
-
-      primary = this.hashPrefix(primary);
-      secondary = this.hashPrefix(secondary);
-
-      if (this.isRgb(primary) && this.isRgb(secondary)) {
-        this.setState({
-          primary,
-          secondary,
-        });
-      }
-    }
-  };
-
-  handleChangeShade = prop => (event, shade) => {
-    // e.g  { primary: #ddeeff }
-    const value = { [prop]: colors[this.state[`${prop}Hue`]][shades[shade]] };
-    this.setState({ [`${prop}Shade`]: shade, ...value, url: '' });
-    // this.changeDocsColors(value);
-  };
-
   render() {
     const { classes } = this.props;
-    const { primary, secondary, primaryShade, secondaryShade, url } = this.state;
+    const {
+      primary,
+      secondary,
+      primaryText,
+      secondaryText,
+      primaryShade,
+      secondaryShade,
+    } = this.state;
 
     const getColorTile = (hue, colorIntent) => {
       const shade = colorIntent === 'primary' ? shades[primaryShade] : shades[secondaryShade];
@@ -185,66 +189,67 @@ class ColorChooser extends React.Component {
     const getSwatch = value => hues.map(hue => getColorTile(hue, value));
 
     return (
-      <div className={classes.root}>
-        <Grid container spacing={24}>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              id="primary"
-              label="Primary color"
-              value={primary}
-              onChange={this.handleChangeHue('primary')}
-              className={classes.textField}
+      <Grid container spacing={24} className={classes.root}>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            id="primary"
+            label="Primary color"
+            value={primaryText}
+            onChange={this.handleChangeColor('primary')}
+          />
+          <div className={classes.sliderContainer}>
+            <Typography className={classes.sliderTypography} id="primaryShadeSliderLabel">
+              Shade:
+            </Typography>
+            <Slider
+              value={primaryShade}
+              min={0}
+              max={13}
+              step={1}
+              onChange={this.handleChangeShade('primary')}
+              aria-labelledby="primaryShadeSliderLabel"
             />
-            <div className={classes.sliderContainer}>
-              <Typography className={classes.sliderTypography}>Shade:</Typography>
-              <Slider
-                value={primaryShade}
-                min={0}
-                max={13}
-                step={1}
-                onChange={this.handleChangeShade('primary')}
-                // className={classes.slider}
-              />
-              <Typography className={classes.sliderTypography}>{shades[primaryShade]}</Typography>
-            </div>
-            <div className={classes.swatch}>{getSwatch('primary')}</div>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              id="secondary"
-              label="Secondary color"
-              value={secondary}
-              onChange={this.handleChangeHue('secondary')}
+            <Typography className={classes.sliderTypography}>{shades[primaryShade]}</Typography>
+          </div>
+          <div className={classes.swatch}>{getSwatch('primary')}</div>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            id="secondary"
+            label="Secondary color"
+            value={secondaryText}
+            onChange={this.handleChangeColor('secondary')}
+          />
+          <div className={classes.sliderContainer}>
+            <Typography className={classes.sliderTypography} id="secondaryShadeSliderLabel">
+              Shade:
+            </Typography>
+            <Slider
+              value={secondaryShade}
+              min={0}
+              max={13}
+              step={1}
+              onChange={this.handleChangeShade('secondary')}
+              aria-labelledby="secondaryShadeSliderLabel"
             />
-            <div className={classes.sliderContainer}>
-              <Typography className={classes.sliderTypography}>Shade:</Typography>
-              <Slider
-                value={secondaryShade}
-                min={0}
-                max={13}
-                step={1}
-                onChange={this.handleChangeShade('secondary')}
-                variant="secondary"
-              />
-              <Typography className={classes.sliderTypography}>{shades[secondaryShade]}</Typography>
-            </div>
-            <div className={classes.swatch}>{getSwatch('secondary')}</div>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Grid container direction="column" alignItems="flex-end">
-              <ColorDemo primary={{ main: primary }} secondary={{ main: secondary }} />
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                onClick={this.handleChangeDocsColors}
-              >
-                Set Docs Colors
-              </Button>
-            </Grid>
+            <Typography className={classes.sliderTypography}>{shades[secondaryShade]}</Typography>
+          </div>
+          <div className={classes.swatch}>{getSwatch('secondary')}</div>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Grid container direction="column" alignItems="flex-end">
+            <ColorDemo primary={{ main: primary }} secondary={{ main: secondary }} />
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={this.handleChangeDocsColors}
+            >
+              Set Docs Colors
+            </Button>
           </Grid>
         </Grid>
-      </div>
+      </Grid>
     );
   }
 }

@@ -125,7 +125,7 @@ export default function createPalette(palette: Object) {
     return contrastText;
   }
 
-  function augmentColor(color, mainShade, lightShade, darkShade) {
+  function augmentColor(color, mainShade = 500, lightShade = 300, darkShade = 700) {
     if (!color.main && color[mainShade]) {
       color.main = color[mainShade];
     }
@@ -136,9 +136,9 @@ export default function createPalette(palette: Object) {
     }
   }
 
-  augmentColor(primary, 500, 300, 700);
+  augmentColor(primary);
   augmentColor(secondary, 'A400', 'A200', 'A700');
-  augmentColor(error, 500, 300, 700);
+  augmentColor(error);
 
   const types = { dark, light };
 

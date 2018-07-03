@@ -37,7 +37,8 @@ const styles = theme => ({
 
 const ColorDemo = props => {
   const { classes, primary, theme, secondary } = props;
-  theme.palette.augmentColor(primary, 500, 300, 700);
+  theme.palette.augmentColor(primary);
+  theme.palette.augmentColor(secondary);
 
   return (
     <div className={classes.root}>
@@ -53,6 +54,18 @@ const ColorDemo = props => {
             </Typography>
           </Toolbar>
         </AppBar>
+        <pre>
+          {`
+    palette: {
+      primary: {
+        main: '${primary.main}',
+      },
+      secondary: {
+        main: '${secondary.main}',
+      },
+    },
+        `}
+        </pre>
         <Button variant="fab" className={classes.fab} style={{ backgroundColor: secondary.main }}>
           <AddIcon nativeColor={secondary.contrastText} />
         </Button>
