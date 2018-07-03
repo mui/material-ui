@@ -67,4 +67,4 @@ No polyfills are included for ES2015 runtime features. IE11+ and evergreen brows
 necessary features. If you need support for other browsers, consider using
 [`@babel/polyfill`](https://npmjs.com/package/@babel/polyfill).
 
-⚠️ In order to minimize duplication of code is users' bundles, we **strongly discourage** library authors from using the `/es` folder.
+⚠️ In order to minimize duplication of code in users' bundles, we **strongly discourage** library authors from using the `/es` folder.
