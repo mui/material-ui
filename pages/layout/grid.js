@@ -9,52 +9,52 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/layout/grid/SpacingGrid.js': {
-          js: require('docs/src/pages/layout/grid/SpacingGrid').default,
+          js: require('../../docs/src/pages/layout/grid/SpacingGrid').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/SpacingGrid'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/grid/SpacingGrid'), 'utf8')
 `,
         },
         'pages/layout/grid/FullWidthGrid.js': {
-          js: require('docs/src/pages/layout/grid/FullWidthGrid').default,
+          js: require('../../docs/src/pages/layout/grid/FullWidthGrid').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/FullWidthGrid'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/grid/FullWidthGrid'), 'utf8')
 `,
         },
         'pages/layout/grid/CenteredGrid.js': {
-          js: require('docs/src/pages/layout/grid/CenteredGrid').default,
+          js: require('../../docs/src/pages/layout/grid/CenteredGrid').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/CenteredGrid'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/grid/CenteredGrid'), 'utf8')
 `,
         },
         'pages/layout/grid/InteractiveGrid.js': {
-          js: require('docs/src/pages/layout/grid/InteractiveGrid').default,
+          js: require('../../docs/src/pages/layout/grid/InteractiveGrid').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/InteractiveGrid'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/grid/InteractiveGrid'), 'utf8')
 `,
         },
         'pages/layout/grid/AutoGrid.js': {
-          js: require('docs/src/pages/layout/grid/AutoGrid').default,
+          js: require('../../docs/src/pages/layout/grid/AutoGrid').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/AutoGrid'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/grid/AutoGrid'), 'utf8')
 `,
         },
         'pages/layout/grid/CSSGrid.js': {
-          js: require('docs/src/pages/layout/grid/CSSGrid').default,
+          js: require('../../docs/src/pages/layout/grid/CSSGrid').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/CSSGrid'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/grid/CSSGrid'), 'utf8')
 `,
         },
         'pages/layout/grid/AutoGridNoWrap.js': {
-          js: require('docs/src/pages/layout/grid/AutoGridNoWrap').default,
+          js: require('../../docs/src/pages/layout/grid/AutoGridNoWrap').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/grid/AutoGridNoWrap'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/grid/AutoGridNoWrap'), 'utf8')
 `,
         },
       }}

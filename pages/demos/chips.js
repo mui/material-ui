@@ -9,17 +9,17 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/chips/Chips.js': {
-          js: require('docs/src/pages/demos/chips/Chips').default,
+          js: require('../../docs/src/pages/demos/chips/Chips').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/chips/Chips'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/chips/Chips'), 'utf8')
 `,
         },
         'pages/demos/chips/ChipsArray.js': {
-          js: require('docs/src/pages/demos/chips/ChipsArray').default,
+          js: require('../../docs/src/pages/demos/chips/ChipsArray').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/chips/ChipsArray'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/chips/ChipsArray'), 'utf8')
 `,
         },
       }}

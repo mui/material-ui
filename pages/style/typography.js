@@ -9,17 +9,17 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/style/typography/Types.js': {
-          js: require('docs/src/pages/style/typography/Types').default,
+          js: require('../../docs/src/pages/style/typography/Types').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/typography/Types'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/style/typography/Types'), 'utf8')
 `,
         },
         'pages/style/typography/TypographyTheme.js': {
-          js: require('docs/src/pages/style/typography/TypographyTheme').default,
+          js: require('../../docs/src/pages/style/typography/TypographyTheme').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/typography/TypographyTheme'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/style/typography/TypographyTheme'), 'utf8')
 `,
         },
       }}

@@ -10,17 +10,17 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/versions/LatestVersion.js': {
-          js: require('docs/src/pages/versions/LatestVersion').default,
+          js: require('../../docs/src/pages/versions/LatestVersion').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/versions/LatestVersion'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/versions/LatestVersion'), 'utf8')
 `,
         },
         'pages/versions/StableVersions.js': {
-          js: require('docs/src/pages/versions/StableVersions').default,
+          js: require('../../docs/src/pages/versions/StableVersions').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/versions/StableVersions'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/versions/StableVersions'), 'utf8')
 `,
         },
       }}

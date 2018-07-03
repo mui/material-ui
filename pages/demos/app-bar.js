@@ -9,24 +9,24 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/app-bar/SimpleAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/SimpleAppBar').default,
+          js: require('../../docs/src/pages/demos/app-bar/SimpleAppBar').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/SimpleAppBar'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/app-bar/SimpleAppBar'), 'utf8')
 `,
         },
         'pages/demos/app-bar/ButtonAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/ButtonAppBar').default,
+          js: require('../../docs/src/pages/demos/app-bar/ButtonAppBar').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/ButtonAppBar'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/app-bar/ButtonAppBar'), 'utf8')
 `,
         },
         'pages/demos/app-bar/MenuAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/MenuAppBar').default,
+          js: require('../../docs/src/pages/demos/app-bar/MenuAppBar').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/MenuAppBar'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/app-bar/MenuAppBar'), 'utf8')
 `,
         },
       }}

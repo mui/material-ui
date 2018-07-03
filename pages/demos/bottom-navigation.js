@@ -9,7 +9,8 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/bottom-navigation/SimpleBottomNavigation.js': {
-          js: require('docs/src/pages/demos/bottom-navigation/SimpleBottomNavigation').default,
+          js: require('../../docs/src/pages/demos/bottom-navigation/SimpleBottomNavigation')
+            .default,
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require
@@ -17,7 +18,7 @@ module.exports = require('fs')
 `,
         },
         'pages/demos/bottom-navigation/LabelBottomNavigation.js': {
-          js: require('docs/src/pages/demos/bottom-navigation/LabelBottomNavigation').default,
+          js: require('../../docs/src/pages/demos/bottom-navigation/LabelBottomNavigation').default,
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require

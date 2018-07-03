@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/badges/SimpleBadge.js': {
-          js: require('docs/src/pages/demos/badges/SimpleBadge').default,
+          js: require('../../docs/src/pages/demos/badges/SimpleBadge').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/badges/SimpleBadge'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/badges/SimpleBadge'), 'utf8')
 `,
         },
       }}

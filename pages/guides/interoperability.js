@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/guides/interoperability/ReactJss.js': {
-          js: require('docs/src/pages/guides/interoperability/ReactJss').default,
+          js: require('../../docs/src/pages/guides/interoperability/ReactJss').default,
           raw: preval`
 module.exports = require('fs')
-.readFileSync(require.resolve('docs/src/pages/guides/interoperability/ReactJss'), 'utf8')
+.readFileSync(require.resolve('../../docs/src/pages/guides/interoperability/ReactJss'), 'utf8')
 `,
         },
       }}

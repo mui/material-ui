@@ -10,10 +10,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/premium-themes/PremiumThemes.js': {
-          js: require('docs/src/pages/premium-themes/PremiumThemes').default,
+          js: require('../docs/src/pages/premium-themes/PremiumThemes').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/premium-themes/PremiumThemes'), 'utf8')
+  .readFileSync(require.resolve('../docs/src/pages/premium-themes/PremiumThemes'), 'utf8')
 `,
         },
       }}

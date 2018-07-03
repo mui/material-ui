@@ -9,24 +9,24 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/tooltips/SimpleTooltips.js': {
-          js: require('docs/src/pages/demos/tooltips/SimpleTooltips').default,
+          js: require('../../docs/src/pages/demos/tooltips/SimpleTooltips').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tooltips/SimpleTooltips'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/tooltips/SimpleTooltips'), 'utf8')
 `,
         },
         'pages/demos/tooltips/PositionedTooltips.js': {
-          js: require('docs/src/pages/demos/tooltips/PositionedTooltips').default,
+          js: require('../../docs/src/pages/demos/tooltips/PositionedTooltips').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tooltips/PositionedTooltips'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/tooltips/PositionedTooltips'), 'utf8')
 `,
         },
         'pages/demos/tooltips/ControlledTooltips.js': {
-          js: require('docs/src/pages/demos/tooltips/ControlledTooltips').default,
+          js: require('../../docs/src/pages/demos/tooltips/ControlledTooltips').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/tooltips/ControlledTooltips'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/tooltips/ControlledTooltips'), 'utf8')
 `,
         },
       }}

@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/utils/click-away-listener/ClickAway.js': {
-          js: require('docs/src/pages/utils/click-away-listener/ClickAway').default,
+          js: require('../../docs/src/pages/utils/click-away-listener/ClickAway').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/click-away-listener/ClickAway'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/utils/click-away-listener/ClickAway'), 'utf8')
 `,
         },
       }}
