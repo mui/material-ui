@@ -42,7 +42,7 @@ export class YearSelection extends PureComponent {
     const { animateYearScrolling } = this.props;
     const currentYearElement = findDOMNode(this.selectedYearRef);
 
-    if (currentYearElement) {
+    if (currentYearElement && currentYearElement.scrollIntoView) {
       currentYearElement.scrollIntoView({
         behavior: animateYearScrolling ? 'smooth' : 'auto',
       });

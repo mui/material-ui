@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const { Consumer, Provider } = React.createContext();
 export const MuiPickersContextConsumer = Consumer;
 
-export default class MuiPickersUtilsProvider extends PureComponent {
+export default class MuiPickersUtilsProvider extends Component {
   static propTypes = {
     /* eslint-disable react/no-unused-prop-types */
     utils: PropTypes.func.isRequired,
