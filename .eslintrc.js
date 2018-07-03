@@ -104,6 +104,6 @@ module.exports = {
     'flowtype/type-id-match': 'off',
     'flowtype/use-flow-type': 'error',
 
-    'prettier/prettier': ['error'],
+    'prettier/prettier': 'error',
   },
 };
