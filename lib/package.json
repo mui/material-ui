@@ -50,6 +50,12 @@
     "react-text-mask": "=5.4.1",
     "recompose": "^0.27.1"
   },
+  "size-limit": [
+    {
+      "path": "build/dist/material-ui-pickers.cjs.js",
+      "limit": "25 KB"
+    }
+  ],
   "scripts": {
     "test": "npm run test:date-fns && npm run test:luxon && npm run test:moment",
     "all-tests": "jest && npm run typescript",
@@ -64,7 +70,7 @@
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
     "build": "npm run build:bundle && npm run build:es2015modules &&  npm run build:es2015 && npm run build:copy",
-    "ci": "npm run test && npx codecov && npm run lint && npm run build",
+    "ci": "npm run test && codecov && npm run lint && npm run build && size-limit",
     "prerelease": "npm run ci",
     "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
@@ -122,6 +128,7 @@
     "rollup-plugin-commonjs": "^8.4.1",
     "rollup-plugin-filesize": "^1.5.0",
     "rollup-plugin-node-resolve": "^3.3.0",
+    "size-limit": "^0.18.3",
     "typescript": "^2.9.2"
   },
   "jest": {
