@@ -140,22 +140,8 @@ class ColorChooser extends React.Component {
           primary,
           secondary,
         });
-
-        // this.changeDocsColors({ primary, secondary });
       }
     }
-  };
-
-  handleChangeHue = prop => event => {
-    const {
-      target: { value: hue },
-    } = event;
-
-    // e.g  { primary: #ddeeff }
-    const value = { [prop]: colors[hue][shades[this.state[`${prop}Shade`]]] };
-    this.setState({ [`${prop}Hue`]: hue, ...value, url: '' });
-    // this.changeDocsColors(value);
-    // }
   };
 
   handleChangeShade = prop => (event, shade) => {
@@ -201,17 +187,6 @@ class ColorChooser extends React.Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <TextField
-              id="colors"
-              label="Color URL"
-              value={url}
-              onChange={this.handleChangeUrl}
-              fullWidth
-              helperText="Copy the URL from the Google color tool
-          and paste it here to update the docs colors"
-            />
-          </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               id="primary"
@@ -264,7 +239,7 @@ class ColorChooser extends React.Component {
                 className={classes.button}
                 onClick={this.handleChangeDocsColors}
               >
-                Set Docs Color
+                Set Docs Colors
               </Button>
             </Grid>
           </Grid>

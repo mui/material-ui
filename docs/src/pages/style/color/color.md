@@ -38,14 +38,12 @@ const accent2 = purple.A200; // #E040FB (alternative method)
 
 ## Color tool
 
-The Material Design team has built an awesome palette configuration tool: [material.io/tools/color](https://material.io/tools/color/).
-It will help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
-<a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336">
-  <img src="/static/images/color/colorTool.png" style="width: 574px" />
-</a>
+To test a [material.io/color](https://material.io/color) color scheme with the Material-UI
+documentation, simply select colors using the palette and slider.
+Alternatively, you can enter hex values in the Primary and Secondary TextFields.
 
-### In your project
+{{"demo": "pages/style/color/ColorChooser.js", "hideHeader": true}}
 
 The output can be fed directly to `createMuiTheme()` function:
 
@@ -55,29 +53,14 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: '#757ce8',
       main: '#3f50b5',
-      dark: '#002884',
-      contrastText: '#fff',
     },
     secondary: {
-      light: '#ff7961',
       main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
     },
   },
 });
 ```
-
-### In the documentation
-
-To test a [material.io/color](https://material.io/color) color sceme with the Material-UI
-documentation, simply copy the URL (there is an IconButton in the top right-hand corner of the page)
-and past it in the TextField below.
-Alternatively, you can enter hex values in the Primary and Secondary TextFields.
-
-{{"demo": "pages/style/color/ColorChooser.js", "hideHeader": true}}
 
 ## Color palette
 

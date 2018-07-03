@@ -38,15 +38,13 @@ const styles = theme => ({
 const ColorDemo = props => {
   const { classes, primary, theme, secondary } = props;
   theme.palette.augmentColor(primary, 500, 300, 700);
-  const primaryContrast = theme.palette.getContrastText(primary.main);
-  const secondaryContrast = theme.palette.getContrastText(secondary.main);
 
   return (
     <div className={classes.root}>
       <div className={classes.appFrame}>
         <div className={classes.statusBar} style={{ backgroundColor: primary.dark }} />
         <AppBar position="static" style={{ backgroundColor: primary.main }}>
-          <Toolbar style={{ color: primaryContrast }}>
+          <Toolbar style={{ color: primary.contrastText }}>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
@@ -56,7 +54,7 @@ const ColorDemo = props => {
           </Toolbar>
         </AppBar>
         <Button variant="fab" className={classes.fab} style={{ backgroundColor: secondary.main }}>
-          <AddIcon nativeColor={secondaryContrast} />
+          <AddIcon nativeColor={secondary.contrastText} />
         </Button>
       </div>
     </div>
