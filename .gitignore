@@ -13,7 +13,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # coverage
-/coverage
+coverage
 
 # Optional npm cache directory
 .npm

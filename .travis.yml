@@ -1,7 +1,6 @@
 language: node_js
 node_js:
-  - "8
-  "
+  - "8"
 
 script: 
   - cd lib && npm install --ignore-scripts && npm run ci
