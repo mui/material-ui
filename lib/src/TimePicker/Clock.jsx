@@ -30,8 +30,7 @@ export class Clock extends Component {
       offsetY = e.changedTouches[0].clientY - rect.top;
     }
 
-    const value = this.props.type === clockType.SECONDS
-      || this.props.type === clockType.MINUTES
+    const value = this.props.type === clockType.SECONDS || this.props.type === clockType.MINUTES
       ? getMinutes(offsetX, offsetY)
       : getHours(offsetX, offsetY, this.props.ampm);
 
@@ -43,16 +42,9 @@ export class Clock extends Component {
     this.setTime(e);
   }
 
-  handleMouseUp = (e) => {
-    if (this.isMoving) {
-      this.isMoving = false;
-    }
-    this.setTime(e.nativeEvent, true);
-  }
-
   handleTouchEnd = (e) => {
     if (this.isMoving) {
-      this.setTime(e.nativeEvent, true);
+      this.setTime(e, true);
       this.isMoving = false;
     }
   }
@@ -69,6 +61,14 @@ export class Clock extends Component {
       this.setTime(e.nativeEvent, false);
     }
   };
+
+  handleMouseUp = (e) => {
+    if (this.isMoving) {
+      this.isMoving = false;
+    }
+
+    this.setTime(e.nativeEvent, true);
+  }
 
   hasSelected = () => {
     const { type, value } = this.props;

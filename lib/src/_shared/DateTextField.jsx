@@ -89,6 +89,7 @@ export class DateTextField extends PureComponent {
     disablePast: PropTypes.bool,
     disableFuture: PropTypes.bool,
     format: PropTypes.string,
+    onBlur: PropTypes.func,
     onChange: PropTypes.func.isRequired,
     onClear: PropTypes.func,
     onClick: PropTypes.func.isRequired,
@@ -102,9 +103,9 @@ export class DateTextField extends PureComponent {
     minDateMessage: PropTypes.node,
     /** Error message, shown if date is more then maximal date */
     maxDateMessage: PropTypes.node,
-    /** Error message, shown if date is invalid */
+    /** Message displaying in text field, if date is invalid (doesn't work in keyboard mode) */
     invalidLabel: PropTypes.string,
-    /** Message displaying in text field, if null passed */
+    /** Message displaying in text field, if null passed (doesn't work in keyboard mode) */
     emptyLabel: PropTypes.string,
     /** Dynamic label generation function (date, invalidLabel) => string */
     labelFunc: PropTypes.func,
@@ -140,6 +141,7 @@ export class DateTextField extends PureComponent {
     disableOpenOnEnter: false,
     invalidDateMessage: 'Invalid Date Format',
     clearable: false,
+    onBlur: undefined,
     onClear: undefined,
     disablePast: false,
     disableFuture: false,
@@ -152,7 +154,6 @@ export class DateTextField extends PureComponent {
     InputAdornmentProps: {},
     adornmentPosition: 'end',
   }
-
 
   state = DateTextField.updateState(this.props)
 
@@ -214,6 +215,9 @@ export class DateTextField extends PureComponent {
       e.stopPropagation();
 
       this.commitUpdates(e.target.value);
+      if (this.props.onBlur) {
+        this.props.onBlur(e);
+      }
     }
   };
 
@@ -277,6 +281,7 @@ export class DateTextField extends PureComponent {
       maxDateMessage,
       minDate,
       minDateMessage,
+      onBlur,
       onClear,
       onClick,
       TextFieldComponent,

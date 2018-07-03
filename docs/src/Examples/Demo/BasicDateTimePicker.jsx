@@ -3,7 +3,7 @@ import { DateTimePicker } from 'material-ui-pickers';
 
 export default class BasicDateTimePicker extends PureComponent {
   state = {
-    selectedDate: new Date(),
+    selectedDate: new Date('2018-01-01T00:00:00.000Z'),
   }
 
   handleDateChange = (date) => {
@@ -18,7 +18,6 @@ export default class BasicDateTimePicker extends PureComponent {
         <div className="picker">
           <DateTimePicker
             value={selectedDate}
-            disablePast
             onChange={this.handleDateChange}
             label="DateTimePicker"
           />
