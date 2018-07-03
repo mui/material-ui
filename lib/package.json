@@ -52,7 +52,6 @@
   },
   "scripts": {
     "test": "npm run test:date-fns && npm run test:luxon && npm run test:moment",
-    "codecov": "codecov --file=../coverage/clover.xml",
     "all-tests": "jest && npm run typescript",
     "test:moment": "cross-env UTILS=moment npm run all-tests",
     "test:date-fns": "cross-env UTILS=date-fns npm run all-tests",
@@ -65,7 +64,7 @@
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
     "build": "npm run build:bundle && npm run build:es2015modules &&  npm run build:es2015 && npm run build:copy",
-    "ci": "npm run test && npm run codecov && npm run lint && npm run build",
+    "ci": "npm run test && npx codecov && npm run lint && npm run build",
     "prerelease": "npm run ci",
     "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
