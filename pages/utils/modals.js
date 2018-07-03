@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/utils/modals/SimpleModal.js': {
-          js: require('docs/src/pages/utils/modals/SimpleModal').default,
+          js: require('../../docs/src/pages/utils/modals/SimpleModal').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/modals/SimpleModal'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/utils/modals/SimpleModal'), 'utf8')
 `,
         },
       }}

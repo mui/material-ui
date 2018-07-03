@@ -9,7 +9,7 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/expansion-panels/DetailedExpansionPanel.js': {
-          js: require('docs/src/pages/demos/expansion-panels/DetailedExpansionPanel').default,
+          js: require('../../docs/src/pages/demos/expansion-panels/DetailedExpansionPanel').default,
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require
@@ -17,7 +17,7 @@ module.exports = require('fs')
 `,
         },
         'pages/demos/expansion-panels/SimpleExpansionPanel.js': {
-          js: require('docs/src/pages/demos/expansion-panels/SimpleExpansionPanel').default,
+          js: require('../../docs/src/pages/demos/expansion-panels/SimpleExpansionPanel').default,
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require
@@ -25,7 +25,8 @@ module.exports = require('fs')
 `,
         },
         'pages/demos/expansion-panels/ControlledExpansionPanels.js': {
-          js: require('docs/src/pages/demos/expansion-panels/ControlledExpansionPanels').default,
+          js: require('../../docs/src/pages/demos/expansion-panels/ControlledExpansionPanels')
+            .default,
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require

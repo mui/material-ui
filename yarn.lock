@@ -1903,9 +1903,9 @@ babel-plugin-module-resolver@^3.0.0:
     reselect "^3.0.1"
     resolve "^1.4.0"
 
-babel-plugin-preval@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-preval/-/babel-plugin-preval-2.0.1.tgz#76a552a1670bb21307f80b927b89fbeb37cf205c"
+babel-plugin-preval@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-preval/-/babel-plugin-preval-3.0.0.tgz#16fd31f5ac7869b0648211c21d93b34af7281a4f"
   dependencies:
     babel-plugin-macros "^2.2.2"
     require-from-string "^2.0.2"

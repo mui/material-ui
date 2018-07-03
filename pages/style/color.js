@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/style/color/Color.js': {
-          js: require('docs/src/pages/style/color/Color').default,
+          js: require('../../docs/src/pages/style/color/Color').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/color/Color'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/style/color/Color'), 'utf8')
 `,
         },
       }}

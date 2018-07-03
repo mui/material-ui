@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/utils/portal/SimplePortal.js': {
-          js: require('docs/src/pages/utils/portal/SimplePortal').default,
+          js: require('../../docs/src/pages/utils/portal/SimplePortal').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/portal/SimplePortal'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/utils/portal/SimplePortal'), 'utf8')
 `,
         },
       }}

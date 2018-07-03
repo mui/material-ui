@@ -9,17 +9,17 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/layout/breakpoints/MediaQuery.js': {
-          js: require('docs/src/pages/layout/breakpoints/MediaQuery').default,
+          js: require('../../docs/src/pages/layout/breakpoints/MediaQuery').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/breakpoints/MediaQuery'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/breakpoints/MediaQuery'), 'utf8')
 `,
         },
         'pages/layout/breakpoints/WithWidth.js': {
-          js: require('docs/src/pages/layout/breakpoints/WithWidth').default,
+          js: require('../../docs/src/pages/layout/breakpoints/WithWidth').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/breakpoints/WithWidth'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/breakpoints/WithWidth'), 'utf8')
 `,
         },
       }}

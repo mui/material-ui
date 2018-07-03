@@ -9,31 +9,31 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/layout/hidden/BreakpointUp.js': {
-          js: require('docs/src/pages/layout/hidden/BreakpointUp').default,
+          js: require('../../docs/src/pages/layout/hidden/BreakpointUp').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/hidden/BreakpointUp'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/hidden/BreakpointUp'), 'utf8')
 `,
         },
         'pages/layout/hidden/BreakpointDown.js': {
-          js: require('docs/src/pages/layout/hidden/BreakpointDown').default,
+          js: require('../../docs/src/pages/layout/hidden/BreakpointDown').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/hidden/BreakpointDown'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/hidden/BreakpointDown'), 'utf8')
 `,
         },
         'pages/layout/hidden/BreakpointOnly.js': {
-          js: require('docs/src/pages/layout/hidden/BreakpointOnly').default,
+          js: require('../../docs/src/pages/layout/hidden/BreakpointOnly').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/hidden/BreakpointOnly'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/hidden/BreakpointOnly'), 'utf8')
 `,
         },
         'pages/layout/hidden/GridIntegration.js': {
-          js: require('docs/src/pages/layout/hidden/GridIntegration').default,
+          js: require('../../docs/src/pages/layout/hidden/GridIntegration').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/layout/hidden/GridIntegration'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/layout/hidden/GridIntegration'), 'utf8')
 `,
         },
       }}

@@ -9,31 +9,31 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/cards/SimpleCard.js': {
-          js: require('docs/src/pages/demos/cards/SimpleCard').default,
+          js: require('../../docs/src/pages/demos/cards/SimpleCard').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/cards/SimpleCard'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/cards/SimpleCard'), 'utf8')
 `,
         },
         'pages/demos/cards/SimpleMediaCard.js': {
-          js: require('docs/src/pages/demos/cards/SimpleMediaCard').default,
+          js: require('../../docs/src/pages/demos/cards/SimpleMediaCard').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/cards/SimpleMediaCard'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/cards/SimpleMediaCard'), 'utf8')
 `,
         },
         'pages/demos/cards/MediaControlCard.js': {
-          js: require('docs/src/pages/demos/cards/MediaControlCard').default,
+          js: require('../../docs/src/pages/demos/cards/MediaControlCard').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/cards/MediaControlCard'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/cards/MediaControlCard'), 'utf8')
 `,
         },
         'pages/demos/cards/RecipeReviewCard.js': {
-          js: require('docs/src/pages/demos/cards/RecipeReviewCard').default,
+          js: require('../../docs/src/pages/demos/cards/RecipeReviewCard').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/cards/RecipeReviewCard'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/demos/cards/RecipeReviewCard'), 'utf8')
 `,
         },
       }}

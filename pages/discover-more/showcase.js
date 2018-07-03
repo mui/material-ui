@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/discover-more/showcase/Showcase.js': {
-          js: require('docs/src/pages/discover-more/showcase/Showcase').default,
+          js: require('../../docs/src/pages/discover-more/showcase/Showcase').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/discover-more/showcase/Showcase'), 'utf8')
+  .readFileSync(require.resolve('../../docs/src/pages/discover-more/showcase/Showcase'), 'utf8')
 `,
         },
       }}
