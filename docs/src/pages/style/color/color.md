@@ -43,7 +43,7 @@ To test a [material.io/color](https://material.io/color) color scheme with the M
 documentation, simply select colors using the palette and slider.
 Alternatively, you can enter hex values in the Primary and Secondary TextFields.
 
-{{"demo": "pages/style/color/ColorChooser.js", "hideHeader": true}}
+{{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
 
 The output can be fed directly to `createMuiTheme()` function:
 

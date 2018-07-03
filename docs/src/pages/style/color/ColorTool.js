@@ -73,7 +73,7 @@ export const styles = theme => ({
   },
 });
 
-class ColorChooser extends React.Component {
+class ColorTool extends React.Component {
   state = {
     primary: '#2196f3',
     secondary: '#f50057',
@@ -254,7 +254,7 @@ class ColorChooser extends React.Component {
   }
 }
 
-ColorChooser.propTypes = {
+ColorTool.propTypes = {
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
@@ -267,4 +267,4 @@ export default compose(
   connect(state => ({
     uiTheme: state.theme,
   })),
-)(ColorChooser);
+)(ColorTool);
