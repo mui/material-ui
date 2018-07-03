@@ -2,5 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g><path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z" /></g>
+  <React.Fragment><path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z" /></React.Fragment>
 , 'ArrowRightAlt');

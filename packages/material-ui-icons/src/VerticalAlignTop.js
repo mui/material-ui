@@ -2,5 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g><path d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z" /></g>
+  <React.Fragment><path d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z" /></React.Fragment>
 , 'VerticalAlignTop');

@@ -2,7 +2,7 @@
   "name": "@material-ui/icons",
   "private": false,
   "author": "Material-UI Team",
-  "version": "2.0.0",
+  "version": "2.0.0-beta.1",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
   "main": "./src/index.js",
   "keywords": [
@@ -27,13 +27,14 @@
     "test:watch": "yarn test:unit --watch",
     "download": "../../node_modules/.bin/babel-node ./scripts/download.js",
     "src:icons": "../../node_modules/.bin/babel-node ./builder.js --output-dir ./src --svg-dir ./material-design-icons --glob '/**/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
-    "prebuild": "../../node_modules/.bin/rimraf build",
+    "prebuild": "../../node_modules/.bin/rimraf material-design-icons && ../../node_modules/.bin/rimraf build",
     "build:es2015": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./build",
     "build:es2015modules": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=modules ../../node_modules/.bin/babel ./src/index.js --out-file ./build/index.es.js",
     "build:es": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=es ../../node_modules/.bin/babel ./src --out-dir ./build/es",
     "build:copy-files": "../../node_modules/.bin/babel-node ./scripts/copy-files.js",
     "build:typings": "../../node_modules/.bin/babel-node ./scripts/create-typings.js",
-    "build": "yarn download && yarn src:icons && yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:typings && yarn build:copy-files",
+    "build:all": "yarn src:icons && yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:typings && yarn build:copy-files",
+    "build": "yarn download && yarn build:all",
     "release": "yarn build && npm publish build"
   },
   "peerDependencies": {

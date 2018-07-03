@@ -2,5 +2,5 @@ import React from 'react';
 import createSvgIcon from './utils/createSvgIcon';
 
 export default createSvgIcon(
-  <g><path d="M22 2H2v16h16l4 4z" /></g>
+  <React.Fragment><path d="M22 2H2v16h16l4 4z" /></React.Fragment>
 , 'ModeCommentSharp');
