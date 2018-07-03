@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
 import Radio from '@material-ui/core/Radio';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
@@ -67,6 +67,10 @@ export const styles = theme => ({
   swatch: {
     width: 192,
     backgroundColor: theme.palette.common.white,
+  },
+  input: {
+    marginTop: 24,
+    width: 192,
   },
   button: {
     marginTop: 24,
@@ -159,7 +163,7 @@ class ColorTool extends React.Component {
       secondaryShade,
     } = this.state;
 
-    const getColorTile = (hue, colorIntent) => {
+    const ColorTile = (hue, colorIntent) => {
       const shade = colorIntent === 'primary' ? shades[primaryShade] : shades[secondaryShade];
       const backgroundColor = colors[hue][shade];
 
@@ -186,17 +190,12 @@ class ColorTool extends React.Component {
       );
     };
 
-    const getSwatch = value => hues.map(hue => getColorTile(hue, value));
+    const ColorSwatch = value => hues.map(hue => ColorTile(hue, value));
 
     return (
       <Grid container spacing={24} className={classes.root}>
-        <Grid item xs={12} sm={4}>
-          <TextField
-            id="primary"
-            label="Primary color"
-            value={primaryText}
-            onChange={this.handleChangeColor('primary')}
-          />
+        <Grid item xs={12} md={4}>
+          <Typography variant="title">Primary</Typography>
           <div className={classes.sliderContainer}>
             <Typography className={classes.sliderTypography} id="primaryShadeSliderLabel">
               Shade:
@@ -211,15 +210,19 @@ class ColorTool extends React.Component {
             />
             <Typography className={classes.sliderTypography}>{shades[primaryShade]}</Typography>
           </div>
-          <div className={classes.swatch}>{getSwatch('primary')}</div>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <TextField
-            id="secondary"
-            label="Secondary color"
-            value={secondaryText}
-            onChange={this.handleChangeColor('secondary')}
+          <div className={classes.swatch}>{ColorSwatch('primary')}</div>
+          <Input
+            id="primary"
+            value={primaryText}
+            onChange={this.handleChangeColor('primary')}
+            inputProps={{
+              'aria-label': 'Primary color',
+            }}
+            className={classes.input}
           />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Typography variant="title">Secondary</Typography>
           <div className={classes.sliderContainer}>
             <Typography className={classes.sliderTypography} id="secondaryShadeSliderLabel">
               Shade:
@@ -234,9 +237,18 @@ class ColorTool extends React.Component {
             />
             <Typography className={classes.sliderTypography}>{shades[secondaryShade]}</Typography>
           </div>
-          <div className={classes.swatch}>{getSwatch('secondary')}</div>
+          <div className={classes.swatch}>{ColorSwatch('secondary')}</div>
+          <Input
+            id="secondary"
+            value={secondaryText}
+            onChange={this.handleChangeColor('secondary')}
+            inputProps={{
+              'aria-label': 'Secondary color',
+            }}
+            className={classes.input}
+          />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} md={4}>
           <Grid container direction="column" alignItems="flex-end">
             <ColorDemo primary={{ main: primary }} secondary={{ main: secondary }} />
             <Button
