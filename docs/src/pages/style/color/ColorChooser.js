@@ -8,10 +8,12 @@ import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import * as colors from '@material-ui/core/colors';
 import Slider from '@material-ui/lab/Slider';
 import actionTypes from 'docs/src/modules/redux/actionTypes';
+import ColorDemo from './ColorDemo';
 
 const hues = [
   'red',
@@ -71,6 +73,9 @@ export const styles = theme => ({
     width: 192,
     backgroundColor: theme.palette.common.white,
   },
+  button: {
+    marginTop: 24,
+  },
 });
 
 class ColorChooser extends React.Component {
@@ -95,7 +100,7 @@ class ColorChooser extends React.Component {
         return result;
       }, {});
 
-  changeColors = values => {
+  handleChangeDocsColors = values => {
     const primaryMain = values.hasOwnProperty('primary') ? values.primary : this.state.primary;
     const secondaryMain = values.hasOwnProperty('secondary')
       ? values.secondary
@@ -136,7 +141,7 @@ class ColorChooser extends React.Component {
           secondary,
         });
 
-        this.changeColors({ primary, secondary });
+        // this.changeDocsColors({ primary, secondary });
       }
     }
   };
@@ -149,7 +154,7 @@ class ColorChooser extends React.Component {
     // e.g  { primary: #ddeeff }
     const value = { [prop]: colors[hue][shades[this.state[`${prop}Shade`]]] };
     this.setState({ [`${prop}Hue`]: hue, ...value, url: '' });
-    this.changeColors(value);
+    // this.changeDocsColors(value);
     // }
   };
 
@@ -157,7 +162,7 @@ class ColorChooser extends React.Component {
     // e.g  { primary: #ddeeff }
     const value = { [prop]: colors[this.state[`${prop}Hue`]][shades[shade]] };
     this.setState({ [`${prop}Shade`]: shade, ...value, url: '' });
-    this.changeColors(value);
+    // this.changeDocsColors(value);
   };
 
   render() {
@@ -207,7 +212,7 @@ class ColorChooser extends React.Component {
           and paste it here to update the docs colors"
             />
           </Grid>
-          <Grid item xs={6} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
               id="primary"
               label="Primary color"
@@ -229,7 +234,7 @@ class ColorChooser extends React.Component {
             </div>
             <div className={classes.swatch}>{getSwatch('primary')}</div>
           </Grid>
-          <Grid item xs={6} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
               id="secondary"
               label="Secondary color"
@@ -250,6 +255,19 @@ class ColorChooser extends React.Component {
             </div>
             <div className={classes.swatch}>{getSwatch('secondary')}</div>
           </Grid>
+          <Grid item xs={12} sm={4}>
+            <Grid container direction="column" alignItems="flex-end">
+              <ColorDemo primary={{ main: primary }} secondary={{ main: secondary }} />
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={this.handleChangeDocsColors}
+              >
+                Set Docs Color
+              </Button>
+            </Grid>
+          </Grid>
         </Grid>
       </div>
     );
@@ -259,8 +277,6 @@ class ColorChooser extends React.Component {
 ColorChooser.propTypes = {
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired,
-  uiTheme: PropTypes.object.isRequired,
 };
 
 export default compose(
