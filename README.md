@@ -73,7 +73,7 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
   <tbody>
     <tr>
       <td align="center" valign="middle">
-        <a href="https://www.creative-tim.com?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank">
+        <a href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank">
           <img
             width="126"
             src="https://avatars1.githubusercontent.com/u/20172349?s=378"
@@ -89,6 +89,16 @@ Gold Sponsors are those who have pledged $500/month and more to Material-UI.
             src="https://avatars1.githubusercontent.com/u/24789812?s=180"
             alt="1"
             title="The fastest way to share code"
+          >
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://coreui.io/?utm_source=material-ui&utm_medium=logo&utm_campaign=homepage" rel="noopener" target="_blank">
+          <img
+            width="80"
+            src="https://avatars1.githubusercontent.com/u/36859861?s=180"
+            alt="1"
+            title="The fastest way to build modern dashboard"
           >
         </a>
       </td>
