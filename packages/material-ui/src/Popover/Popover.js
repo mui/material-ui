@@ -82,14 +82,14 @@ export const styles = {
 };
 
 class Popover extends React.Component {
-  transitionEl = null;
+  paperRef = null;
 
   handleGetOffsetTop = getOffsetTop;
 
   handleGetOffsetLeft = getOffsetLeft;
 
   handleResize = debounce(() => {
-    const element = ReactDOM.findDOMNode(this.transitionEl);
+    const element = ReactDOM.findDOMNode(this.paperRef);
     this.setPositioningStyles(element);
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
@@ -209,7 +209,7 @@ class Popover extends React.Component {
 
     // If an anchor element wasn't provided, just use the parent body element of this Popover
     const anchorElement =
-      getAnchorEl(anchorEl) || ownerDocument(ReactDOM.findDOMNode(this.transitionEl)).body;
+      getAnchorEl(anchorEl) || ownerDocument(ReactDOM.findDOMNode(this.paperRef)).body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
@@ -319,9 +319,6 @@ class Popover extends React.Component {
           onExited={onExited}
           onExiting={onExiting}
           role={role}
-          ref={node => {
-            this.transitionEl = node;
-          }}
           timeout={transitionDuration}
           {...TransitionProps}
         >
@@ -329,6 +326,9 @@ class Popover extends React.Component {
             className={classes.paper}
             data-mui-test="Popover"
             elevation={elevation}
+            ref={node => {
+              this.paperRef = node;
+            }}
             {...PaperProps}
           >
             <EventListener target="window" onResize={this.handleResize} />
@@ -454,7 +454,7 @@ Popover.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * Properties applied to the `Paper` element.
+   * Properties applied to the [`Paper`](/api/paper) element.
    */
   PaperProps: PropTypes.object,
   /**

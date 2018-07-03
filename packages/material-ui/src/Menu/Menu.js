@@ -123,7 +123,6 @@ class Menu extends React.Component {
       >
         <MenuList
           data-mui-test="Menu"
-          role="menu"
           onKeyDown={this.handleListKeyDown}
           {...MenuListProps}
           ref={node => {
@@ -141,7 +140,7 @@ Menu.propTypes = {
   /**
    * The DOM element used to set the position of the menu.
    */
-  anchorEl: PropTypes.object,
+  anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**
    * Menu contents, normally `MenuItem`s.
    */
@@ -156,7 +155,7 @@ Menu.propTypes = {
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
-   * Properties applied to the `MenuList` element.
+   * Properties applied to the [`MenuList`](/api/menu-list) element.
    */
   MenuListProps: PropTypes.object,
   /**

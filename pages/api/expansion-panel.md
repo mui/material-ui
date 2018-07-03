@@ -17,7 +17,7 @@ title: ExpansionPanel API
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children *</span> | <span class="prop-type">node |   | The content of the expansion panel. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">CollapseProps</span> | <span class="prop-type">object |   | Properties applied to the `Collapse` element. |
+| <span class="prop-name">CollapseProps</span> | <span class="prop-type">object |   | Properties applied to the [`Collapse`](/api/collapse) element. |
 | <span class="prop-name">defaultExpanded</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, expands the panel by default. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the panel will be displayed in a disabled state. |
 | <span class="prop-name">expanded</span> | <span class="prop-type">bool |   | If `true`, expands the panel, otherwise collapse it. Setting this prop enables control over the panel. |

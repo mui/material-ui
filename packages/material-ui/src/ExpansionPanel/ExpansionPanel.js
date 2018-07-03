@@ -186,7 +186,7 @@ ExpansionPanel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Properties applied to the `Collapse` element.
+   * Properties applied to the [`Collapse`](/api/collapse) element.
    */
   CollapseProps: PropTypes.object,
   /**

@@ -173,7 +173,7 @@ StepLabel.propTypes = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * Properties applied to the `StepIcon` element.
+   * Properties applied to the [`StepIcon`](/api/step-icon) element.
    */
   StepIconProps: PropTypes.object,
 };

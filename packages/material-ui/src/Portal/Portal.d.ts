@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { PortalProps } from '../Portal';
 
 export interface PortalProps {
   children: React.ReactElement<any>;
   container?: React.ReactInstance | (() => React.ReactInstance);
+  disablePortal?: boolean;
   onRendered?: () => void;
 }
 

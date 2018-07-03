@@ -29,6 +29,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Popovers](/utils/popovers)
+- [Popover](/utils/popover)
 - [Transitions](/utils/transitions)
 

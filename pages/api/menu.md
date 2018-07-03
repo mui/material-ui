@@ -15,11 +15,11 @@ title: Menu API
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">anchorEl</span> | <span class="prop-type">object |   | The DOM element used to set the position of the menu. |
+| <span class="prop-name">anchorEl</span> | <span class="prop-type">union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br> |   | The DOM element used to set the position of the menu. |
 | <span class="prop-name">children</span> | <span class="prop-type">node |   | Menu contents, normally `MenuItem`s. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">disableAutoFocusItem</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the selected / first menu item will not be auto focused. |
-| <span class="prop-name">MenuListProps</span> | <span class="prop-type">object |   | Properties applied to the `MenuList` element. |
+| <span class="prop-name">MenuListProps</span> | <span class="prop-type">object |   | Properties applied to the [`MenuList`](/api/menu-list) element. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func |   | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span class="prop-name">onEnter</span> | <span class="prop-type">func |   | Callback fired before the Menu enters. |
 | <span class="prop-name">onEntered</span> | <span class="prop-type">func |   | Callback fired when the Menu has entered. |

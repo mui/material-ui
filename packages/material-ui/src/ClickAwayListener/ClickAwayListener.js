@@ -16,6 +16,8 @@ class ClickAwayListener extends React.Component {
   mounted = null;
 
   componentDidMount() {
+    // Finds the first child when a component returns a fragment.
+    // https://github.com/facebook/react/blob/036ae3c6e2f056adffc31dfb78d1b6f0c63272f0/packages/react-dom/src/__tests__/ReactDOMFiber-test.js#L105
     this.node = ReactDOM.findDOMNode(this);
     this.mounted = true;
   }
@@ -70,9 +72,21 @@ class ClickAwayListener extends React.Component {
 }
 
 ClickAwayListener.propTypes = {
-  children: PropTypes.node.isRequired,
+  /**
+   * The wrapped element.
+   */
+  children: PropTypes.element.isRequired,
+  /**
+   * The mouse event to listen to. You can disable the listener by providing `false`.
+   */
   mouseEvent: PropTypes.oneOf(['onClick', 'onMouseDown', 'onMouseUp', false]),
+  /**
+   * Callback fired when a "click away" event is detected.
+   */
   onClickAway: PropTypes.func.isRequired,
+  /**
+   * The touch event to listen to. You can disable the listener by providing `false`.
+   */
   touchEvent: PropTypes.oneOf(['onTouchStart', 'onTouchEnd', false]),
 };
 

@@ -45,7 +45,7 @@ custom actions.
 
 {{"demo": "pages/demos/tables/CustomPaginationActionsTable.js"}}
 
-## Customized tables
+## Customized Tables
 
 You can customize the look and feel of the table by overriding the styles of the `TableCell` component.
 

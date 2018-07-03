@@ -37,7 +37,7 @@ class RadioButtonsGroup extends React.Component {
         <FormControl component="fieldset" required className={classes.formControl}>
           <FormLabel component="legend">Gender</FormLabel>
           <RadioGroup
-            aria-label="gender"
+            aria-label="Gender"
             name="gender1"
             className={classes.group}
             value={this.state.value}

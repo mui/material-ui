@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { IPopperProps } from 'react-popper';
 import { StandardProps } from '..';
+import { TransitionProps } from '../transitions/transition';
+import { PortalProps } from '../Portal';
 
 export interface TooltipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
@@ -29,23 +30,20 @@ export interface TooltipProps
     | 'top-end'
     | 'top-start'
     | 'top';
-  PopperProps?: Partial<PopperProps>;
+  PopperProps?: Object;
   title: React.ReactNode;
+  TransitionComponent?: React.ReactType;
+  TransitionProps?: TransitionProps;
 }
 
 export type TooltipClassKey =
-  | 'root'
   | 'popper'
-  | 'open'
   | 'tooltip'
+  | 'touch'
   | 'tooltipPlacementLeft'
   | 'tooltipPlacementRight'
   | 'tooltipPlacementTop'
   | 'tooltipPlacementBottom';
-
-interface PopperProps extends IPopperProps {
-  PopperClassName: string;
-}
 
 declare const Tooltip: React.ComponentType<TooltipProps>;
 

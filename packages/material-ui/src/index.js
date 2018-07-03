@@ -76,6 +76,7 @@ export { default as Modal, ModalManager } from './Modal';
 export { default as NativeSelect } from './NativeSelect';
 export { default as Paper } from './Paper';
 export { default as Popover } from './Popover';
+export { default as Popper } from './Popper';
 export { default as Portal } from './Portal';
 export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';

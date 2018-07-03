@@ -1,18 +1,18 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/utils/modals/modals.md';
+import markdown from 'docs/src/pages/utils/modal/modal.md';
 
 function Page() {
   return (
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/utils/modals/SimpleModal.js': {
-          js: require('docs/src/pages/utils/modals/SimpleModal').default,
+        'pages/utils/modal/SimpleModal.js': {
+          js: require('docs/src/pages/utils/modal/SimpleModal').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/modals/SimpleModal'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/utils/modal/SimpleModal'), 'utf8')
 `,
         },
       }}

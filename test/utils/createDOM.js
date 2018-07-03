@@ -7,7 +7,7 @@ const Node = require('jsdom/lib/jsdom/living/node-document-position');
 const KEYS = ['HTMLElement', 'Performance'];
 
 function createDOM() {
-  const dom = new JSDOM('');
+  const dom = new JSDOM('', { pretendToBeVisual: true });
   global.window = dom.window;
   global.document = undefined;
   global.Node = Node;
@@ -35,9 +35,6 @@ function createDOM() {
   KEYS.forEach(key => {
     global[key] = window[key];
   });
-
-  global.requestAnimationFrame = setTimeout;
-  global.window.cancelAnimationFrame = () => {};
 }
 
 module.exports = createDOM;

@@ -52,7 +52,7 @@ class TablePaginationActions extends React.Component {
 
 TablePaginationActions.propTypes = {
   /**
-   * Properties applied to the back arrow `IconButton` element.
+   * Properties applied to the back arrow [`IconButton`](/api/icon-button) element.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -60,7 +60,7 @@ TablePaginationActions.propTypes = {
    */
   count: PropTypes.number.isRequired,
   /**
-   * Properties applied to the next arrow `IconButton` element.
+   * Properties applied to the next arrow [`IconButton`](/api/icon-button) element.
    */
   nextIconButtonProps: PropTypes.object,
   /**

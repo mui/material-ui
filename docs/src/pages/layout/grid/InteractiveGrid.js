@@ -73,7 +73,7 @@ class InteractiveGrid extends React.Component {
                   <FormLabel>direction</FormLabel>
                   <RadioGroup
                     name="direction"
-                    aria-label="direction"
+                    aria-label="Direction"
                     value={direction}
                     onChange={this.handleChange('direction')}
                   >
@@ -93,7 +93,7 @@ class InteractiveGrid extends React.Component {
                   <FormLabel>justify</FormLabel>
                   <RadioGroup
                     name="justify"
-                    aria-label="justify"
+                    aria-label="Justify"
                     value={justify}
                     onChange={this.handleChange('justify')}
                   >
@@ -118,7 +118,7 @@ class InteractiveGrid extends React.Component {
                   <FormLabel>alignItems</FormLabel>
                   <RadioGroup
                     name="alignItems"
-                    aria-label="alignItems"
+                    aria-label="Align items"
                     value={alignItems}
                     onChange={this.handleChange('alignItems')}
                   >

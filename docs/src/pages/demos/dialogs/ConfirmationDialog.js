@@ -84,7 +84,7 @@ class ConfirmationDialogRaw extends React.Component {
             ref={node => {
               this.radioGroup = node;
             }}
-            aria-label="ringtone"
+            aria-label="Ringtone"
             name="ringtone"
             value={this.state.value}
             onChange={this.handleChange}

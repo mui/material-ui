@@ -156,7 +156,7 @@ TablePagination.propTypes = {
    */
   ActionsComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the back arrow `IconButton` component.
+   * Properties applied to the back arrow [`IconButton`](/api/icon-button) component.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -187,7 +187,7 @@ TablePagination.propTypes = {
    */
   labelRowsPerPage: PropTypes.node,
   /**
-   * Properties applied to the next arrow `IconButton` element.
+   * Properties applied to the next arrow [`IconButton`](/api/icon-button) element.
    */
   nextIconButtonProps: PropTypes.object,
   /**
@@ -217,7 +217,7 @@ TablePagination.propTypes = {
    */
   rowsPerPageOptions: PropTypes.array,
   /**
-   * Properties applied to the rows per page `Select` element.
+   * Properties applied to the rows per page [`Select`](/api/select) element.
    */
   SelectProps: PropTypes.object,
 };

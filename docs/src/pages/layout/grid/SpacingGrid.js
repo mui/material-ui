@@ -54,7 +54,7 @@ class GuttersGrid extends React.Component {
                 <FormLabel>spacing</FormLabel>
                 <RadioGroup
                   name="spacing"
-                  aria-label="spacing"
+                  aria-label="Spacing"
                   value={spacing}
                   onChange={this.handleChange('spacing')}
                   row

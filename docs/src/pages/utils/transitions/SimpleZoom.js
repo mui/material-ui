@@ -41,7 +41,7 @@ class SimpleZoom extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Switch checked={checked} onChange={this.handleChange} aria-label="collapse" />
+        <Switch checked={checked} onChange={this.handleChange} aria-label="Collapse" />
         <div className={classes.container}>
           <Zoom in={checked}>
             <Paper elevation={4} className={classes.paper}>

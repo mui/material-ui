@@ -106,7 +106,7 @@ class MiniDrawer extends React.Component {
           <Toolbar disableGutters={!this.state.open}>
             <IconButton
               color="inherit"
-              aria-label="open drawer"
+              aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
               className={classNames(classes.menuButton, this.state.open && classes.hide)}
             >

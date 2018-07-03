@@ -81,7 +81,7 @@ class SpeedDialAction extends React.Component {
 
 SpeedDialAction.propTypes = {
   /**
-   * Properties applied to the `Button` component.
+   * Properties applied to the [`Button`](/api/button) component.
    */
   ButtonProps: PropTypes.object,
   /**
