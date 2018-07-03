@@ -287,7 +287,7 @@ export default StyledComponentsButton;
 ![stars](https://img.shields.io/github/stars/paypal/glamorous.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/glamorous.svg?)
 
-A clean way to apply styles to Material-UI components with glamorous It's just passing our component as a glamorous param. We're going to take the [raised button example](/demos/buttons/#raised-buttons) from Material-UI documentation and use glamorous to style it:
+A clean way to apply styles to Material-UI components with glamorous is just passing our component as a glamorous param. We're going to take the [raised button example](/demos/buttons/#raised-buttons) from Material-UI documentation and use glamorous to style it:
 
 ```jsx
 import React from 'react';
