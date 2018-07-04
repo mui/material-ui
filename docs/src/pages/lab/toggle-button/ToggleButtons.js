@@ -33,6 +33,7 @@ class ToggleButtons extends React.Component {
   };
 
   handleFormat = formats => this.setState({ formats });
+
   handleAlignment = alignment => this.setState({ alignment });
 
   render() {
