@@ -2,6 +2,16 @@ import * as React from 'react';
 import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
 
+export type AnyComponent = React.ReactType;
+
+export type PassthruProps<C extends AnyComponent, D extends AnyComponent> =
+  InferredProps<AnyComponent extends C ? D : C>;
+
+export type InferredProps<C extends AnyComponent> =
+  C extends React.ComponentType<infer P> ? P :
+  C extends keyof JSX.IntrinsicElements ? JSX.IntrinsicElements[C] :
+  {};
+
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
  * certain `classes`, on which one can also set a top-level `className` and inline
