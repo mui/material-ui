@@ -1,0 +1,189 @@
+// @inheritedComponent ButtonBase
+
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import ButtonBase from '@material-ui/core/ButtonBase';
+
+export const styles = theme => ({
+  root: {
+    ...theme.typography.button,
+    height: 32,
+    minWidth: 48,
+    margin: 0,
+    padding: `${theme.spacing.unit - 4}px ${theme.spacing.unit * 1.5}px`,
+    borderRadius: 2,
+    willChange: 'opacity',
+    color: fade(theme.palette.action.active, 0.38),
+    '&:hover': {
+      textDecoration: 'none',
+      // Reset on mouse devices
+      backgroundColor: fade(theme.palette.text.primary, 0.12),
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+      '&$disabled': {
+        backgroundColor: 'transparent',
+      },
+    },
+
+    '&:not(:first-child)': {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+
+    '&:not(:last-child)': {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+  },
+  label: {
+    width: '100%',
+    display: 'inherit',
+    alignItems: 'inherit',
+    justifyContent: 'inherit',
+  },
+  disabled: {
+    color: fade(theme.palette.action.disabled, 0.12),
+  },
+  selected: {
+    color: theme.palette.action.active,
+    '&:after': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      overflow: 'hidden',
+      borderRadius: 'inherit',
+      width: '100%',
+      height: '100%',
+      left: 0,
+      top: 0,
+      pointerEvents: 'none',
+      zIndex: 0,
+      backgroundColor: 'currentColor',
+      opacity: 0.38,
+    },
+
+    '& + &:before': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      overflow: 'hidden',
+      width: 1,
+      height: '100%',
+      left: 0,
+      top: 0,
+      pointerEvents: 'none',
+      zIndex: 0,
+      backgroundColor: 'currentColor',
+      opacity: 0.12,
+    },
+  },
+});
+
+class ToggleButton extends React.Component {
+  handleChange = event => {
+    const { onChange, onClick, value } = this.props;
+
+    if (onClick) {
+      onClick(event);
+      if (event.isDefaultPrevented()) {
+        return;
+      }
+    }
+
+    if (onChange) {
+      onChange(value);
+    }
+  };
+
+  render() {
+    const {
+      children,
+      className: classNameProp,
+      classes,
+      disableFocusRipple,
+      disabled,
+      selected,
+      ...other
+    } = this.props;
+
+    const className = classNames(
+      classes.root,
+      {
+        [classes.disabled]: disabled,
+        [classes.selected]: selected,
+      },
+      classNameProp,
+    );
+
+    return (
+      <ButtonBase
+        className={className}
+        disabled={disabled}
+        focusRipple={!disableFocusRipple}
+        onClick={this.handleChange}
+        {...other}
+      >
+        <span className={classes.label}>{children}</span>
+      </ButtonBase>
+    );
+  }
+}
+
+ToggleButton.propTypes = {
+  /**
+   * The content of the button.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the button will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the  keyboard focus ripple will be disabled.
+   * `disableRipple` must also be true.
+   */
+  disableFocusRipple: PropTypes.bool,
+  /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * If `true`, the button will be rendered in an active state.
+   */
+  selected: PropTypes.bool,
+  /**
+   * The value to associate with the button when selected in a
+   * ToggleButtonGroup.
+   */
+  value: PropTypes.any.isRequired,
+};
+
+ToggleButton.defaultProps = {
+  disabled: false,
+  disableFocusRipple: false,
+  disableRipple: false,
+};
+
+ToggleButton.muiName = 'ToggleButton';
+
+export default withStyles(styles, { name: 'MuiToggleButton' })(ToggleButton);
