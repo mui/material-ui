@@ -11,18 +11,24 @@ describe('<Slider />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<Slider />);
+    classes = getClasses(<Slider value={0} />);
     mount = createMount();
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<Slider />);
+    const wrapper = shallow(<Slider value={0} />);
     assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render with the default classes', () => {
-    const wrapper = shallow(<Slider />);
-    assert.strictEqual(wrapper.hasClass(classes.container), true);
+    const wrapper = shallow(<Slider value={0} />);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+  });
+
+  it('should render with the default and user classes', () => {
+    const wrapper = shallow(<Slider value={0} className="mySliderClass" />);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass('mySliderClass'), true);
   });
 
   it('should call handlers', () => {
@@ -31,7 +37,12 @@ describe('<Slider />', () => {
     const handleDragEnd = spy();
 
     const wrapper = mount(
-      <Slider onChange={handleChange} onDragStart={handleDragStart} onDragEnd={handleDragEnd} />,
+      <Slider
+        onChange={handleChange}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        value={0}
+      />,
     );
     const button = wrapper.find('button');
 
@@ -46,24 +57,24 @@ describe('<Slider />', () => {
 
   describe('prop: vertical', () => {
     it('should render with the default and vertical classes', () => {
-      const wrapper = shallow(<Slider vertical />);
-      assert.strictEqual(wrapper.hasClass(classes.container), true);
+      const wrapper = shallow(<Slider vertical value={0} />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass(classes.vertical), true);
     });
   });
 
   describe('prop: reverse', () => {
     it('should render with the default and reverse classes', () => {
-      const wrapper = shallow(<Slider reverse />);
-      assert.strictEqual(wrapper.hasClass(classes.container), true);
+      const wrapper = shallow(<Slider reverse value={0} />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass(classes.reverse), true);
     });
   });
 
   describe('props: vertical & reverse', () => {
     it('should render with the default, reverse and vertical classes', () => {
-      const wrapper = shallow(<Slider reverse vertical />);
-      assert.strictEqual(wrapper.hasClass(classes.container), true);
+      const wrapper = shallow(<Slider reverse vertical value={0} />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass(classes.reverse), true);
       assert.strictEqual(wrapper.hasClass(classes.vertical), true);
     });
@@ -74,7 +85,7 @@ describe('<Slider />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = mount(<Slider onChange={handleChange} disabled />);
+      wrapper = mount(<Slider onChange={handleChange} disabled value={0} />);
     });
 
     it('should render thumb with the disabled classes', () => {
@@ -121,12 +132,12 @@ describe('<Slider />', () => {
       const trackBefore = tracks.at(0);
       const trackAfter = tracks.at(1);
 
-      assert.strictEqual(trackBefore.prop('style').width, 'calc(0% - 0px)');
+      assert.strictEqual(trackBefore.prop('style').width, '0%');
       assert.strictEqual(trackAfter.prop('style').width, 'calc(100% - 5px)');
     });
 
     it('after change value should change position of thumb', () => {
-      wrapper.setProps({ value: 0.5 });
+      wrapper.setProps({ value: 50 });
 
       clock.tick(transitionComplexDuration);
 
@@ -139,8 +150,8 @@ describe('<Slider />', () => {
       const trackBefore = tracks.at(0);
       const trackAfter = tracks.at(1);
 
-      assert.strictEqual(trackBefore.prop('style').width, 'calc(50% - 0px)');
-      assert.strictEqual(trackAfter.prop('style').width, 'calc(50% - 7px)');
+      assert.strictEqual(trackBefore.prop('style').width, '50%');
+      assert.strictEqual(trackAfter.prop('style').width, 'calc(100% - 5px)');
     });
   });
 });
