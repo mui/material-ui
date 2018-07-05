@@ -90,3 +90,10 @@ Normally, no special feedback is necessary during delays of more than 0.1 but le
 After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
 
 {{"demo": "pages/demos/progress/DelayingAppearance.js"}}
+
+## Limitations / Known issues
+
+Under heavy load, you might lose the stroke dash animation or see random CircularProgress ring widths.
+You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
+
+See https://github.com/mui-org/material-ui/issues/10327
