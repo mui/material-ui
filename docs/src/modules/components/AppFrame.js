@@ -11,6 +11,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import MenuIcon from '@material-ui/icons/Menu';
+import ColorsIcon from '@material-ui/icons/InvertColors';
 import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
 import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
 import NProgressBar from '@material-ui/docs/NProgressBar';
@@ -146,6 +147,15 @@ class AppFrame extends React.Component {
             )}
             <div className={classes.grow} />
             <AppSearch />
+            <Tooltip title="Edit docs colors" enterDelay={300}>
+              <IconButton
+                color="inherit"
+                href="/style/color/#color-tool"
+                aria-labelledby="appbar-color"
+              >
+                <ColorsIcon />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton
                 color="inherit"
