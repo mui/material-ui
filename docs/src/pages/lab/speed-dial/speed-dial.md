@@ -5,7 +5,7 @@ components: SpeedDial, SpeedDialAction, SpeedDialIcon
 
 # Speed Dial
 
-<p class="description">When pressed, a floating acion button can display three to six related actions in the form of a speed dial.</p>
+<p class="description">When pressed, a floating action button can display three to six related actions in the form of a speed dial.</p>
 
 If more than six actions are needed, something other than a FAB should be used to present them.
 
