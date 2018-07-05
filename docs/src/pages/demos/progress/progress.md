@@ -93,7 +93,7 @@ After 1.0 second, you can display a loader to keep user's flow of thought uninte
 
 ## Limitations / Known issues
 
-Under heavy load/rendering, you might lose the stroke dash animation or see random CircularProgress ring widths.
-You should run scripting intensive operations in a web worker or by batch in order not to block the main rendering thread.
+Under heavy load, you might lose the stroke dash animation or see random CircularProgress ring widths.
+You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
 
 See https://github.com/mui-org/material-ui/issues/10327
