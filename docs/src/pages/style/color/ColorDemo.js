@@ -56,14 +56,16 @@ const ColorDemo = props => {
         </AppBar>
         <pre>
           {`
-    palette: {
-      primary: {
-        main: '${primary.main}',
+    {
+      palette: {
+        primary: {
+          main: '${primary.main}',
+        },
+        secondary: {
+          main: '${secondary.main}',
+        },
       },
-      secondary: {
-        main: '${secondary.main}',
-      },
-    },
+    }
         `}
         </pre>
         <Button variant="fab" className={classes.fab} style={{ backgroundColor: secondary.main }}>
@@ -76,8 +78,8 @@ const ColorDemo = props => {
 
 ColorDemo.propTypes = {
   classes: PropTypes.object.isRequired,
-  primary: PropTypes.string.isRequired,
-  secondary: PropTypes.string.isRequired,
+  primary: PropTypes.object.isRequired,
+  secondary: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 

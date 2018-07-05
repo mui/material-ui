@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
+import * as colors from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import Radio from '@material-ui/core/Radio';
@@ -10,33 +11,14 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
-import * as colors from '@material-ui/core/colors';
 import Slider from '@material-ui/lab/Slider';
 import actionTypes from 'docs/src/modules/redux/actionTypes';
 import ColorDemo from './ColorDemo';
 
-const hues = [
-  'red',
-  'pink',
-  'purple',
-  'deepPurple',
-  'indigo',
-  'blue',
-  'lightBlue',
-  'cyan',
-  'teal',
-  'green',
-  'lightGreen',
-  'lime',
-  'yellow',
-  'amber',
-  'orange',
-  'deepOrange',
-];
-
+const hues = Object.keys(colors).slice(1, 17);
 const shades = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 'A700', 'A400', 'A200', 'A100'];
 
-export const styles = theme => ({
+const styles = theme => ({
   root: {
     display: 'flex',
     width: '100%',
@@ -81,28 +63,26 @@ class ColorTool extends React.Component {
   state = {
     primary: '#2196f3',
     secondary: '#f50057',
-    primaryText: '#2196f3',
-    secondaryText: '#f50057',
+    primaryTextField: '#2196f3',
+    secondaryTextField: '#f50057',
     primaryHue: 'blue',
     secondaryHue: 'pink',
     primaryShade: 4,
     secondaryShade: 11,
   };
 
-  hashPrefix = string => (string.charAt(0) === '#' ? string : `#${string}`);
-
-  isRgb = string => /#?([0-9a-f]{6})/i.test(string);
-
   handleChangeColor = name => event => {
+    const isRgb = string => /#?([0-9a-f]{6})/i.test(string);
+
     const {
       target: { value: color },
     } = event;
 
     this.setState({
-      [`${name}Text`]: color,
+      [`${name}TextField`]: color,
     });
 
-    if (this.isRgb(color)) {
+    if (isRgb(color)) {
       this.setState({
         [name]: color,
       });
@@ -135,18 +115,13 @@ class ColorTool extends React.Component {
     });
   };
 
-  handleChangeDocsColors = values => {
-    const primaryMain = values.hasOwnProperty('primary') ? values.primary : this.state.primary;
-    const secondaryMain = values.hasOwnProperty('secondary')
-      ? values.secondary
-      : this.state.secondary;
-
+  handleChangeDocsColors = () => {
     this.props.dispatch({
       type: actionTypes.THEME_CHANGE_PALETTE_COLORS,
       payload: {
         paletteColors: {
-          primary: { main: primaryMain },
-          secondary: { main: secondaryMain },
+          primary: { main: this.state.primary },
+          secondary: { main: this.state.secondary },
         },
       },
     });
@@ -157,13 +132,13 @@ class ColorTool extends React.Component {
     const {
       primary,
       secondary,
-      primaryText,
-      secondaryText,
+      primaryTextField,
+      secondaryTextField,
       primaryShade,
       secondaryShade,
     } = this.state;
 
-    const ColorTile = (hue, colorIntent) => {
+    const colorTile = (hue, colorIntent) => {
       const shade = colorIntent === 'primary' ? shades[primaryShade] : shades[secondaryShade];
       const backgroundColor = colors[hue][shade];
 
@@ -176,7 +151,7 @@ class ColorTool extends React.Component {
       );
 
       return (
-        <Tooltip placement="right-start" id={`tooltip-${colorIntent}-${hue}`} title={hue}>
+        <Tooltip placement="right-start" id={`tooltip-${colorIntent}-${hue}`} title={hue} key={hue}>
           <Radio
             checked={this.state[colorIntent] === backgroundColor}
             onChange={this.handleChangeHue(colorIntent)}
@@ -190,7 +165,7 @@ class ColorTool extends React.Component {
       );
     };
 
-    const ColorSwatch = value => hues.map(hue => ColorTile(hue, value));
+    const colorSwatch = value => hues.map(hue => colorTile(hue, value));
 
     return (
       <Grid container spacing={24} className={classes.root}>
@@ -210,10 +185,10 @@ class ColorTool extends React.Component {
             />
             <Typography className={classes.sliderTypography}>{shades[primaryShade]}</Typography>
           </div>
-          <div className={classes.swatch}>{ColorSwatch('primary')}</div>
+          <div className={classes.swatch}>{colorSwatch('primary')}</div>
           <Input
             id="primary"
-            value={primaryText}
+            value={primaryTextField}
             onChange={this.handleChangeColor('primary')}
             inputProps={{
               'aria-label': 'Primary color',
@@ -237,10 +212,10 @@ class ColorTool extends React.Component {
             />
             <Typography className={classes.sliderTypography}>{shades[secondaryShade]}</Typography>
           </div>
-          <div className={classes.swatch}>{ColorSwatch('secondary')}</div>
+          <div className={classes.swatch}>{colorSwatch('secondary')}</div>
           <Input
             id="secondary"
-            value={secondaryText}
+            value={secondaryTextField}
             onChange={this.handleChangeColor('secondary')}
             inputProps={{
               'aria-label': 'Secondary color',
@@ -272,10 +247,7 @@ ColorTool.propTypes = {
 };
 
 export default compose(
-  withStyles(styles, {
-    name: 'ColorChooser',
-    withTheme: true,
-  }),
+  withStyles(styles),
   connect(state => ({
     uiTheme: state.theme,
   })),
