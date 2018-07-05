@@ -69,7 +69,7 @@ The progress components accept a value in the range 0 - 100. This simplifies thi
 // MAX = Maximium expected value
 
 // Function to normalise the values (MIN / MAX could be integrated)
-const normalise = value => (value - MIN) * (MAX - MIN);
+const normalise = value => (value - MIN) * 100 / (MAX - MIN);
 
 // Example component that utilizes the `normalise` function at the point of render.
 function Progress(props) {
