@@ -53,7 +53,7 @@ Toolbar.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, condenses toolbar. Intended for desktop or denser layouts
+   * If `true`, condenses toolbar. Useful for desktop or denser layouts.
    */
   dense: PropTypes.bool,
   /**
