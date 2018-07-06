@@ -35,4 +35,10 @@ describe('<Toolbar />', () => {
       'should not have the gutters class',
     );
   });
+
+  it('should condense itself', () => {
+    const wrapper = shallow(<Toolbar dense>foo</Toolbar>);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.dense), true, 'should have the dense class');
+  });
 });

@@ -18,6 +18,7 @@ title: Toolbar API
 | <span class="prop-name">children</span> | <span class="prop-type">node |   | Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, disables gutter padding. |
+| <span class="prop-name">dense</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, condenses toolbar. Useful for desktop or denser layouts. |
 
 Any other properties supplied will be spread to the root element (native element).
 

@@ -11,15 +11,22 @@ export const styles = theme => ({
     alignItems: 'center',
   },
   gutters: theme.mixins.gutters(),
+  dense: {
+    minHeight: 48,
+    height: 48,
+  },
 });
 
 function Toolbar(props) {
-  const { children, classes, className: classNameProp, disableGutters, ...other } = props;
+  const { children, classes, className: classNameProp, dense, disableGutters, ...other } = props;
 
   const className = classNames(
     classes.root,
     {
       [classes.gutters]: !disableGutters,
+    },
+    {
+      [classes.dense]: dense,
     },
     classNameProp,
   );
@@ -46,12 +53,17 @@ Toolbar.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, condenses toolbar. Intended for desktop or denser layouts
+   */
+  dense: PropTypes.bool,
+  /**
    * If `true`, disables gutter padding.
    */
   disableGutters: PropTypes.bool,
 };
 
 Toolbar.defaultProps = {
+  dense: false,
   disableGutters: false,
 };
 
