@@ -33,8 +33,7 @@ export const style = theme => {
     root: {
       position: 'relative',
       width: '100%',
-      margin: '10px 0',
-      padding: '6px 0',
+      padding: '16px 8px',
       cursor: 'pointer',
       WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
@@ -42,14 +41,19 @@ export const style = theme => {
       },
       '&$vertical': {
         height: '100%',
-        margin: '0 10px',
-        padding: '0 6px',
+        padding: '8px 16px',
       },
       '&$reverse': {
         transform: 'scaleX(-1)',
       },
       '&$vertical$reverse': {
         transform: 'scaleY(-1)',
+      },
+    },
+    container: {
+      position: 'relative',
+      '&$vertical': {
+        height: '100%',
       },
     },
     /* Tracks styles */
@@ -287,6 +291,7 @@ class Slider extends React.Component {
   };
 
   handleTouchStart = event => {
+    event.preventDefault();
     this.setState({ currentState: 'activated' });
 
     this.globalMouseUpListener = addEventListener(document, 'touchend', this.handleMouseUp);
@@ -297,6 +302,7 @@ class Slider extends React.Component {
   };
 
   handleMouseDown = event => {
+    event.preventDefault();
     this.setState({ currentState: 'activated' });
 
     this.globalMouseUpListener = addEventListener(document, 'mouseup', this.handleMouseUp);
@@ -392,12 +398,13 @@ class Slider extends React.Component {
       component: Component,
       classes,
       className: classNameProp,
-      value,
-      min,
-      max,
-      vertical,
-      reverse,
       disabled,
+      max,
+      min,
+      reverse,
+      theme,
+      value,
+      vertical,
       ...other
     } = this.props;
 
@@ -410,12 +417,23 @@ class Slider extends React.Component {
       [classes.activated]: !disabled && currentState === 'activated',
     };
 
-    const rootClasses = classNames(classes.root, {
-      [classes.vertical]: vertical,
-      [classes.reverse]: reverse,
-      [classes.disabled]: disabled,
+    const rootClasses = classNames(
+      classes.root,
+      {
+        [classes.vertical]: vertical,
+        [classes.reverse]: reverse,
+        [classes.disabled]: disabled,
+      },
       classNameProp,
-    });
+    );
+
+    const containerClasses = classNames(
+      classes.container,
+      {
+        [classes.vertical]: vertical,
+      },
+      classNameProp,
+    );
 
     const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses, {
       [classes.vertical]: vertical,
@@ -444,24 +462,29 @@ class Slider extends React.Component {
         aria-valuemax={max}
         aria-orientation={vertical ? 'vertical' : 'horizontal'}
         onClick={this.handleClick}
+        onMouseDown={this.handleMouseDown}
+        onTouchStartCapture={this.handleTouchStart}
+        onTouchMove={this.handleMouseMove}
         ref={node => {
           this.container = findDOMNode(node);
         }}
         {...other}
       >
-        <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
-        <ButtonBase
-          className={thumbClasses}
-          disableRipple
-          style={inlineThumbStyles}
-          onBlur={this.handleBlur}
-          onKeyDown={this.handleKeyDown}
-          onMouseDown={this.handleMouseDown}
-          onTouchStartCapture={this.handleTouchStart}
-          onTouchMove={this.handleMouseMove}
-          onFocusVisible={this.handleFocus}
-        />
-        <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
+        <div className={containerClasses}>
+          <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
+          <ButtonBase
+            className={thumbClasses}
+            disableRipple
+            style={inlineThumbStyles}
+            onBlur={this.handleBlur}
+            onKeyDown={this.handleKeyDown}
+            onMouseDown={this.handleMouseDown}
+            onTouchStartCapture={this.handleTouchStart}
+            onTouchMove={this.handleMouseMove}
+            onFocusVisible={this.handleFocus}
+          />
+          <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
+        </div>
       </Component>
     );
   }
