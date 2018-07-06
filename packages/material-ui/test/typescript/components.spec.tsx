@@ -87,7 +87,20 @@ const AppBarTest = () => (
   </AppBar>
 );
 
-const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
+const AvatarTest = () => (
+  <div>
+    <Avatar onClick={e => log(e)} alt="Image Alt" src="example.jpg" />
+    <Avatar onClick={e => log(e)} component="button" alt="Image Alt" src="example.jpg" />
+    <Avatar
+      component={(props: { x: number }) => <div />}
+      x={3}
+      // Should NOT be allowed:
+      // onClick={e => log(e)}
+      alt="Image Alt"
+      src="example.jpg"
+    />
+  </div>
+);
 
 const AvaterClassName = () => <Avatar className="foo" />;
 
