@@ -42,6 +42,21 @@ export const styles = theme => ({
     '&$disabled': {
       cursor: 'default',
     },
+    '&$filled': {
+      borderTopLeftRadius: theme.shape.borderRadius,
+      borderTopRightRadius: theme.shape.borderRadius,
+
+      width: 'calc(100% - 44px)',
+
+      '&:focus': {
+        background: 'none',
+      },
+    },
+    '&$outlined': {
+      borderRadius: theme.shape.borderRadius,
+
+      width: 'calc(100% - 46px)',
+    },
   },
   /* Styles applied to the `Input` component `selectMenu` class. */
   selectMenu: {
@@ -53,6 +68,10 @@ export const styles = theme => ({
   },
   /* Styles applied to the `Input` component `disabled` class. */
   disabled: {},
+  /* Styles applied to the `Input` component `filled` class. */
+  filled: {},
+  /* Styles applied to the `Input` component `outlined` class. */
+  outlined: {},
   /* Styles applied to the `Input` component `icon` class. */
   icon: {
     // We use a position absolute over a flexbox in order to forward the pointer events
@@ -121,6 +140,11 @@ NativeSelect.propTypes = {
    * The input value.
    */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  /**
+   * The type of `input`. This is normally obtained via context from
+   * `FormControl`.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 NativeSelect.defaultProps = {

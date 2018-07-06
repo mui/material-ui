@@ -3,8 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import warning from 'warning';
 import withStyles from '../styles/withStyles';
 import Textarea from './Textarea';
+import NotchedOutline from '../NotchedOutline';
 import { isFilled } from './utils';
 
 export const styles = theme => {
@@ -37,17 +39,100 @@ export const styles = theme => {
       '&$disabled': {
         color: theme.palette.text.disabled,
       },
+      '&:hover:not($focused):not($disabled):not($error) $outline': {
+        borderColor: theme.palette.text.primary,
+      },
     },
     /* Styles applied to the root element if the component is a descendant of `FormControl`. */
     formControl: {
       'label + &': {
         marginTop: 16,
+
+        '&$contained': {
+          marginTop: 0,
+        },
       },
     },
     /* Styles applied to the root element if the component is focused. */
     focused: {},
     /* Styles applied to the root element if `disabled={true}`. */
     disabled: {},
+    /* Styles applied to the root element if `startAdornment` is provided. */
+    adornedStart: {},
+    /* Styles applied to the root element if `endAdornment` is provided. */
+    adornedEnd: {},
+    /* Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
+    contained: {
+      width: 280,
+      height: 56,
+      alignItems: 'center',
+      cursor: 'text',
+
+      '&$marginDense': {
+        height: 49,
+      },
+      '&$multiline': {
+        height: 'auto',
+        overflow: 'hidden',
+      },
+    },
+    /* Styles applied to the root element if `variant="filled"`. */
+    filled: {
+      background: light ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.09)',
+
+      borderTopLeftRadius: theme.shape.borderRadius,
+      borderTopRightRadius: theme.shape.borderRadius,
+
+      transition: theme.transitions.create('background', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
+      }),
+
+      '&:hover:not($disabled):not($focused):not($error)': {
+        background: light ? 'rgba(0, 0, 0, 0.13)' : 'rgba(255, 255, 255, 0.13)',
+      },
+      '&$adornedStart': {
+        paddingLeft: 12,
+      },
+      '&$adornedEnd': {
+        paddingRight: 12,
+      },
+
+      '&$underline': {
+        '&:after:not($focused)': {
+          borderBottom: 'none',
+        },
+        '&:hover:not($disabled):not($focused):not($error):before': {
+          borderBottomWidth: '1px',
+        },
+      },
+      '&$multiline': {
+        // These values are needed to prevent us from
+        // overrunning the notched outline (including label)
+        paddingTop: 27,
+        paddingBottom: 10,
+      },
+      '&$focused': {
+        background: light ? 'rgba(0, 0, 0, 0.18)' : 'rgba(255, 255, 255, 0.18)',
+      },
+      '&$disabled': {
+        background: light ? 'rgba(0, 0, 0, 0.14)' : 'rgba(255, 255, 255, 0.14)',
+      },
+    },
+    /* Styles applied to the root element if `variant="outlined"`. */
+    outlined: {
+      '&$multiline': {
+        // These values are needed to prevent us from
+        // overrunning the notched outline (including label)
+        paddingBottom: 10,
+      },
+      '&$adornedStart': {
+        paddingLeft: 14,
+      },
+      '&$adornedEnd': {
+        paddingRight: 8,
+      },
+    },
     /* Styles applied to the root element if `disableUnderline={false}`. */
     underline: {
       '&:after': {
@@ -94,6 +179,7 @@ export const styles = theme => {
     },
     /* Styles applied to the root element if `error={true}`. */
     error: {},
+    marginDense: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: `${8 - 2}px 0 ${8 - 1}px`,
@@ -168,14 +254,91 @@ export const styles = theme => {
       '-moz-appearance': 'textfield',
       '-webkit-appearance': 'textfield',
     },
+    /* Styles applied to the `input` element if `startAdornment` is provided. */
+    inputAdornedStart: {},
+    /* Styles applied to the `input` element if `endAdornment` is provided. */
+    inputAdornedEnd: {},
+    inputContained: {
+      // padding accounts for height of 56px with content height of 19px
+      width: '100%',
+
+      '&$inputMultiline': {
+        height: 'auto',
+      },
+      '&$inputAdornedStart': {
+        paddingLeft: 0,
+      },
+      '&$inputAdornedEnd': {
+        paddingRight: 0,
+      },
+    },
+    /* Styles applied to the `input` element if `variant="filled"`. */
+    inputFilled: {
+      padding: '27px 12px 10px 12px',
+
+      '&$inputMarginDense': {
+        paddingTop: 24,
+        paddingBottom: 6,
+      },
+      '&$inputMultiline': {
+        // Adjust input padding to account for outer padding
+        paddingTop: 0,
+        paddingBottom: 0,
+
+        width: 'calc(100% - 24px)',
+      },
+    },
+    /* Styles applied to the `input` element if `variant="outlined"`. */
+    inputOutlined: {
+      padding: '18.5px 8px 18.5px 14px',
+
+      '&$inputMarginDense': {
+        paddingTop: 14,
+        paddingBottom: 14,
+      },
+      '&$inputMultiline': {
+        // Adjust input padding to account for outer padding
+        paddingTop: 12.5,
+        paddingBottom: 8.5,
+
+        // Account for scroller
+        paddingRight: 14,
+
+        width: 'calc(100% - 28px)',
+      },
+    },
+    /* Styles applied to the [`NotchedOutline`](/api/notched-outline) element. */
+    outline: {},
   };
 };
+
+function attachAdornmentVariant(elements, variant) {
+  return React.Children.map(elements, element => {
+    if (!React.isValidElement(element)) {
+      return null;
+    }
+
+    warning(
+      element.type !== React.Fragment,
+      [
+        "Material-UI: the Input component doesn't accept a Fragment as an adornment.",
+        'Consider providing an array instead.',
+      ].join('\n'),
+    );
+
+    return React.cloneElement(element, {
+      variant,
+    });
+  });
+}
 
 function formControlState(props, context) {
   let disabled = props.disabled;
   let error = props.error;
+  let filled;
   let margin = props.margin;
   let required = props.required;
+  let variant = props.variant;
 
   if (context && context.muiFormControl) {
     if (typeof disabled === 'undefined') {
@@ -184,19 +347,27 @@ function formControlState(props, context) {
     if (typeof error === 'undefined') {
       error = context.muiFormControl.error;
     }
+    if (typeof filled === 'undefined') {
+      filled = context.muiFormControl.filled;
+    }
     if (typeof margin === 'undefined') {
       margin = context.muiFormControl.margin;
     }
     if (typeof required === 'undefined') {
       required = context.muiFormControl.required;
     }
+    if (typeof variant === 'undefined') {
+      variant = context.muiFormControl.variant;
+    }
   }
 
   return {
     disabled,
     error,
+    filled,
     margin,
     required,
+    variant,
   };
 }
 
@@ -312,6 +483,16 @@ class Input extends React.Component {
     }
   };
 
+  handleClick = event => {
+    if (this.inputRef && this.inputRef.focus) {
+      this.inputRef.focus();
+    }
+
+    if (this.props.onClick) {
+      this.props.onClick(event);
+    }
+  };
+
   handleRefInput = ref => {
     this.inputRef = ref;
 
@@ -362,7 +543,7 @@ class Input extends React.Component {
       defaultValue,
       disabled: disabledProp,
       disableUnderline,
-      endAdornment,
+      endAdornment: endAdornmentProp,
       error: errorProp,
       fullWidth,
       id,
@@ -379,18 +560,27 @@ class Input extends React.Component {
       onFocus,
       onKeyDown,
       onKeyUp,
+      OutlineProps,
       placeholder,
       readOnly,
       rows,
       rowsMax,
-      startAdornment,
+      startAdornment: startAdornmentProp,
       type,
       value,
+      variant: variantProp,
       ...other
     } = this.props;
 
     const { muiFormControl } = this.context;
-    const { disabled, error, margin, required } = formControlState(this.props, this.context);
+    const { disabled, error, filled, margin, required, variant } = formControlState(
+      this.props,
+      this.context,
+    );
+
+    const endAdornment = endAdornmentProp && attachAdornmentVariant(endAdornmentProp, variant);
+    const startAdornment =
+      startAdornmentProp && attachAdornmentVariant(startAdornmentProp, variant);
 
     const className = classNames(
       classes.root,
@@ -400,8 +590,14 @@ class Input extends React.Component {
         [classes.fullWidth]: fullWidth,
         [classes.focused]: this.state.focused,
         [classes.formControl]: muiFormControl,
+        [classes.marginDense]: margin === 'dense',
         [classes.multiline]: multiline,
-        [classes.underline]: !disableUnderline,
+        [classes.underline]: !disableUnderline && variant !== 'outlined',
+        [classes.contained]: variant === 'filled' || variant === 'outlined',
+        [classes.filled]: variant === 'filled',
+        [classes.outlined]: variant === 'outlined',
+        [classes.adornedStart]: startAdornment,
+        [classes.adornedEnd]: endAdornment,
       },
       classNameProp,
     );
@@ -409,11 +605,17 @@ class Input extends React.Component {
     const inputClassName = classNames(
       classes.input,
       {
+        [classes.focused]: this.state.focused,
         [classes.disabled]: disabled,
         [classes.inputType]: type !== 'text',
         [classes.inputTypeSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
         [classes.inputMarginDense]: margin === 'dense',
+        [classes.inputContained]: variant === 'filled' || variant === 'outlined',
+        [classes.inputFilled]: variant === 'filled',
+        [classes.inputOutlined]: variant === 'outlined',
+        [classes.inputAdornedStart]: startAdornment,
+        [classes.inputAdornedEnd]: endAdornment,
       },
       inputPropsClassName,
     );
@@ -447,7 +649,18 @@ class Input extends React.Component {
     }
 
     return (
-      <div className={className} {...other}>
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+      <div className={className} {...other} role="presentation" onClick={this.handleClick}>
+        {variant === 'outlined' && (
+          <NotchedOutline
+            disabled={disabled}
+            error={error}
+            focused={this.state.focused}
+            {...OutlineProps}
+            notched={OutlineProps.notched || !!startAdornment || filled || this.state.focused}
+            className={classes.outline}
+          />
+        )}
         {startAdornment}
         <InputComponent
           aria-invalid={error}
@@ -469,6 +682,7 @@ class Input extends React.Component {
           rows={rows}
           type={type}
           value={value}
+          variant={variant}
           {...inputProps}
         />
         {endAdornment}
@@ -585,6 +799,10 @@ Input.propTypes = {
    */
   onKeyUp: PropTypes.func,
   /**
+   * Props applied to the [`NotchedOutline`](/api/notched-outline) element.
+   */
+  OutlineProps: PropTypes.object,
+  /**
    * The short hint displayed in the input before the user enters a value.
    */
   placeholder: PropTypes.string,
@@ -622,6 +840,11 @@ Input.propTypes = {
     PropTypes.bool,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]),
+  /**
+   * The type of `input`. This is normally obtained via context from
+   * `FormControl`.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 Input.muiName = 'Input';
@@ -631,6 +854,7 @@ Input.defaultProps = {
   fullWidth: false,
   inputComponent: 'input',
   multiline: false,
+  OutlineProps: {},
   type: 'text',
 };
 

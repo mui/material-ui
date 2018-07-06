@@ -35,6 +35,10 @@ export const styles = theme => ({
   filled: {},
   /* Styles applied to the root element if `required={true}`. */
   required: {},
+  /* Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
+  contained: {
+    margin: '8px 12px',
+  },
 });
 
 function FormHelperText(props, context) {
@@ -48,6 +52,7 @@ function FormHelperText(props, context) {
     focused: focusedProp,
     margin: marginProp,
     required: requiredProp,
+    variant: variantProp,
     ...other
   } = props;
   const { muiFormControl } = context;
@@ -58,6 +63,7 @@ function FormHelperText(props, context) {
   let focused = focusedProp;
   let margin = marginProp;
   let required = requiredProp;
+  let variant = variantProp;
 
   if (muiFormControl) {
     if (typeof disabled === 'undefined') {
@@ -78,6 +84,9 @@ function FormHelperText(props, context) {
     if (typeof filled === 'undefined') {
       filled = muiFormControl.filled;
     }
+    if (typeof variant === 'undefined') {
+      variant = muiFormControl.variant;
+    }
   }
 
   const className = classNames(
@@ -89,6 +98,7 @@ function FormHelperText(props, context) {
       [classes.focused]: focused,
       [classes.marginDense]: margin === 'dense',
       [classes.required]: required,
+      [classes.contained]: variant === 'filled' || variant === 'outlined',
     },
     classNameProp,
   );
@@ -140,6 +150,11 @@ FormHelperText.propTypes = {
    * If `true`, the helper text should use required classes key.
    */
   required: PropTypes.bool,
+  /**
+   * The type of `input`. This is normally obtained via context from
+   * `FormControl`.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 FormHelperText.defaultProps = {

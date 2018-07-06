@@ -6,6 +6,7 @@ import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import InputAdornment from '../InputAdornment';
 import Textarea from './Textarea';
 import Input from './Input';
+import NotchedOutline from '../NotchedOutline';
 
 describe('<Input />', () => {
   let shallow;
@@ -57,6 +58,117 @@ describe('<Input />', () => {
     it('should forward the value to the Textarea', () => {
       const wrapper = shallow(<Input multiline rowsMax="4" value="" />);
       assert.strictEqual(wrapper.find(Textarea).props().value, '');
+    });
+  });
+
+  describe('filled variant', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<Input variant="filled" />);
+    });
+
+    it('should render', () => {
+      assert.isTrue(wrapper.hasClass(classes.filled));
+      assert.isTrue(wrapper.hasClass(classes.contained));
+      assert.isTrue(wrapper.hasClass(classes.underline));
+
+      const input = wrapper.find('input');
+      assert.isTrue(input.hasClass(classes.inputContained));
+      assert.isTrue(input.hasClass(classes.inputFilled));
+    });
+  });
+
+  describe('outlined variant', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<Input variant="outlined" />);
+    });
+
+    it('should render an outline', () => {
+      const outline = wrapper.find(NotchedOutline);
+
+      assert.isTrue(wrapper.hasClass(classes.outlined));
+      assert.isTrue(wrapper.hasClass(classes.contained));
+      assert.isFalse(wrapper.hasClass(classes.underline));
+
+      const input = wrapper.find('input');
+      assert.isTrue(input.hasClass(classes.inputContained));
+      assert.isTrue(input.hasClass(classes.inputOutlined));
+
+      assert.isFalse(outline.props().notched);
+      assert.strictEqual(outline.props().disabled, undefined);
+      assert.strictEqual(outline.props().error, undefined);
+      assert.isFalse(outline.props().focused);
+    });
+
+    it('should notch outline on start adornment', () => {
+      wrapper.setProps({
+        startAdornment: 'Kg',
+      });
+
+      const outline = wrapper.find(NotchedOutline);
+      assert.isTrue(!!outline.props().notched);
+    });
+
+    it('should notch outline on form control filled', () => {
+      wrapper.setContext({
+        muiFormControl: {
+          filled: true,
+        },
+      });
+
+      const outline = wrapper.find(NotchedOutline);
+      assert.isTrue(outline.props().notched);
+    });
+
+    it('should provide focused state as prop', () => {
+      wrapper.setState({
+        focused: true,
+      });
+
+      const outline = wrapper.find(NotchedOutline);
+      assert.isTrue(outline.props().focused);
+    });
+
+    it('should notch outline on focused', () => {
+      wrapper.setState({
+        focused: true,
+      });
+
+      const outline = wrapper.find(NotchedOutline);
+      assert.isTrue(outline.props().notched);
+    });
+
+    it('should provide error as prop', () => {
+      wrapper.setProps({
+        error: true,
+      });
+
+      const outline = wrapper.find(NotchedOutline);
+      assert.isTrue(outline.props().error);
+    });
+
+    it('should provide disabled as prop', () => {
+      wrapper.setProps({
+        disabled: true,
+      });
+
+      const outline = wrapper.find(NotchedOutline);
+      assert.isTrue(outline.props().disabled);
+    });
+
+    it('should pass OutlineProps to outline', () => {
+      assert.strictEqual(wrapper.find(NotchedOutline).props().notched, false);
+
+      wrapper.setProps({
+        OutlineProps: {
+          notched: true,
+        },
+      });
+
+      assert.isTrue(wrapper.find(NotchedOutline).props().notched);
     });
   });
 
@@ -264,8 +376,11 @@ describe('<Input />', () => {
     });
 
     describe('callbacks', () => {
+      let focus;
+
       beforeEach(() => {
-        wrapper.instance().inputRef = { value: '' };
+        focus = spy();
+        wrapper.instance().inputRef = { value: '', focus };
         setFormControlContext({
           onFilled: spy(),
           onEmpty: spy(),
@@ -326,6 +441,21 @@ describe('<Input />', () => {
         wrapper.find('input').simulate('blur');
         assert.strictEqual(handleBlur.callCount, 1);
         assert.strictEqual(muiFormControl.onBlur.callCount, 1);
+      });
+
+      it('should focus and fire the onClick prop', () => {
+        const handleClick = spy();
+        wrapper.setProps({
+          onClick: handleClick,
+        });
+
+        wrapper.find('div').simulate('click');
+        assert.strictEqual(handleClick.callCount, 1);
+      });
+
+      it('should focus on root onClick', () => {
+        wrapper.find('div').simulate('click');
+        assert.strictEqual(focus.callCount, 1);
       });
     });
 
@@ -458,12 +588,34 @@ describe('<Input />', () => {
       assert.strictEqual(wrapper.childAt(0).type(), InputAdornment);
     });
 
+    it('should apply variant to startAdornment', () => {
+      const wrapper = shallow(
+        <Input
+          variant="filled"
+          startAdornment={<InputAdornment position="start">$</InputAdornment>}
+        />,
+      );
+
+      assert.strictEqual(wrapper.find(InputAdornment).props().variant, 'filled');
+    });
+
     it('should render adornment after input', () => {
       const wrapper = shallow(
         <Input endAdornment={<InputAdornment position="end">$</InputAdornment>} />,
       );
 
       assert.strictEqual(wrapper.childAt(1).type(), InputAdornment);
+    });
+
+    it('should apply variant to endAdornment', () => {
+      const wrapper = shallow(
+        <Input
+          variant="filled"
+          endAdornment={<InputAdornment position="start">$</InputAdornment>}
+        />,
+      );
+
+      assert.strictEqual(wrapper.find(InputAdornment).props().variant, 'filled');
     });
   });
 

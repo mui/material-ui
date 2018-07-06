@@ -5,6 +5,7 @@ import { FormHelperTextProps } from '../FormHelperText';
 import { InputProps } from '../Input';
 import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
+import { NotchedOutlineProps } from '../NotchedOutline';
 
 export interface TextFieldProps
   extends StandardProps<FormControlProps, TextFieldClassKey, 'onChange' | 'defaultValue'> {
@@ -27,6 +28,7 @@ export interface TextFieldProps
   multiline?: boolean;
   name?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
+  OutlineProps?: NotchedOutlineProps;
   placeholder?: string;
   required?: boolean;
   rows?: string | number;
@@ -35,6 +37,7 @@ export interface TextFieldProps
   SelectProps?: Partial<SelectProps>;
   type?: string;
   value?: Array<string | number | boolean> | string | number | boolean;
+  variant?: 'standard';
 }
 
 export type TextFieldClassKey = FormControlClassKey;

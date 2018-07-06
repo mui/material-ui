@@ -44,6 +44,17 @@ describe('<InputAdornment />', () => {
     assert.strictEqual(wrapper.hasClass(classes.positionEnd), true);
   });
 
+  it('should have the filled root and class when variant is filled', () => {
+    const wrapper = shallow(
+      <InputAdornment variant="filled" position="start">
+        foo
+      </InputAdornment>,
+    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.positionStart), true);
+    assert.strictEqual(wrapper.hasClass(classes.filled), true);
+  });
+
   it('should not wrap text children in a Typography when disableTypography true', () => {
     const wrapper = shallow(
       <InputAdornment disableTypography position="start">

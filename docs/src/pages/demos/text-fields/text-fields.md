@@ -15,6 +15,18 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 {{"demo": "pages/demos/text-fields/TextFields.js"}}
 
+## Filled
+
+`TextField` supports filled styling.
+
+{{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
+
+## Outlined
+
+`TextField` supports outlined styling.
+
+{{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
+
 ## Components
 
 `TextField` is composed of smaller components ([`FormControl`](/api/form-control), [`InputLabel`](/api/input-label), [`Input`](/api/input), and [`FormHelperText`](/api/form-helper-text)) that you can leverage directly to significantly customize your form inputs.
@@ -40,6 +52,14 @@ These can be used to add a prefix, a suffix or an action to an input.
 For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "pages/demos/text-fields/InputAdornments.js"}}
+
+## Filled Input Adornments
+
+{{"demo": "pages/demos/text-fields/FilledInputAdornments.js"}}
+
+## Outlined Input Adornments
+
+{{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
 
 ## Inputs
 

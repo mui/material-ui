@@ -181,9 +181,19 @@ class SelectInput extends React.Component {
       tabIndex: tabIndexProp,
       type = 'hidden',
       value,
+      variant: variantProp,
       ...other
     } = this.props;
     const open = this.isOpenControlled && this.displayRef ? openProp : this.state.open;
+
+    const { muiFormControl } = this.context;
+    let variant = variantProp;
+
+    if (muiFormControl) {
+      if (typeof variant === 'undefined') {
+        variant = muiFormControl.variant;
+      }
+    }
 
     delete other['aria-invalid'];
 
@@ -270,6 +280,8 @@ class SelectInput extends React.Component {
             classes.selectMenu,
             {
               [classes.disabled]: disabled,
+              [classes.filled]: variant === 'filled',
+              [classes.outlined]: variant === 'outlined',
             },
             className,
           )}
@@ -445,6 +457,15 @@ SelectInput.propTypes = {
     PropTypes.bool,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]).isRequired,
+  /**
+   * The type of `input`. This is normally obtained via context from
+   * `FormControl`.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
+};
+
+SelectInput.contextTypes = {
+  muiFormControl: PropTypes.object,
 };
 
 export default SelectInput;

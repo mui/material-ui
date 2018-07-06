@@ -37,6 +37,7 @@ import Input from '@material-ui/core/Input';
 | <span class="prop-name">multiline</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, a textarea element will be rendered. |
 | <span class="prop-name">name</span> | <span class="prop-type">string |   | Name attribute of the `input` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback fired when the value is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`. |
+| <span class="prop-name">OutlineProps</span> | <span class="prop-type">object | <span class="prop-default">{}</span> | Props applied to the [`NotchedOutline`](/api/notched-outline) element. |
 | <span class="prop-name">placeholder</span> | <span class="prop-type">string |   | The short hint displayed in the input before the user enters a value. |
 | <span class="prop-name">readOnly</span> | <span class="prop-type">bool |   | It prevents the user from changing the value of the field (not from interacting with the field). |
 | <span class="prop-name">required</span> | <span class="prop-type">bool |   | If `true`, the input will be required. |
@@ -45,6 +46,7 @@ import Input from '@material-ui/core/Input';
 | <span class="prop-name">startAdornment</span> | <span class="prop-type">node |   | Start `InputAdornment` for this component. |
 | <span class="prop-name">type</span> | <span class="prop-type">string | <span class="prop-default">'text'</span> | Type of the input element. It should be a valid HTML5 input type. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool&nbsp;&#124;<br>&nbsp;arrayOf<br> |   | The input value, required for a controlled component. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br> |   | The type of `input`. This is normally obtained via context from `FormControl`. |
 
 Any other properties supplied will be spread to the root element (native element).
 
@@ -60,8 +62,14 @@ This property accepts the following keys:
 | <span class="prop-name">formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
 | <span class="prop-name">focused</span> | Styles applied to the root element if the component is focused.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
+| <span class="prop-name">adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
+| <span class="prop-name">contained</span> | Styles applied to the root element if `variant="filled"` or `variant="outlined"`.
+| <span class="prop-name">filled</span> | Styles applied to the root element if `variant="filled"`.
+| <span class="prop-name">outlined</span> | Styles applied to the root element if `variant="outlined"`.
 | <span class="prop-name">underline</span> | Styles applied to the root element if `disableUnderline={false}`.
 | <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">marginDense</span> | 
 | <span class="prop-name">multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 | <span class="prop-name">input</span> | Styles applied to the `input` element.
@@ -69,6 +77,12 @@ This property accepts the following keys:
 | <span class="prop-name">inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
 | <span class="prop-name">inputType</span> | Styles applied to the `input` element if `type` is not "text"`.
 | <span class="prop-name">inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
+| <span class="prop-name">inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
+| <span class="prop-name">inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.
+| <span class="prop-name">inputContained</span> | 
+| <span class="prop-name">inputFilled</span> | Styles applied to the `input` element if `variant="filled"`.
+| <span class="prop-name">inputOutlined</span> | Styles applied to the `input` element if `variant="outlined"`.
+| <span class="prop-name">outline</span> | Styles applied to the [`NotchedOutline`](/api/notched-outline) element.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Input/Input.js)

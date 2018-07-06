@@ -355,4 +355,21 @@ describe('<SelectInput />', () => {
       assert.strictEqual(ref.current.node.tagName, 'INPUT');
     });
   });
+
+  describe('with muiFormControl context', () => {
+    it('should use muiFormControl variant outlined', () => {
+      const outlined = 'class for outlined variant';
+      const wrapper = shallow(
+        <SelectInput {...defaultProps} classes={{ ...defaultProps.classes, outlined }} />,
+      );
+
+      assert.isFalse(wrapper.find(`.${defaultProps.classes.select}`).hasClass(outlined));
+
+      wrapper.setContext({
+        muiFormControl: { variant: 'outlined' },
+      });
+
+      assert.isTrue(wrapper.find(`.${defaultProps.classes.select}`).hasClass(outlined));
+    });
+  });
 });

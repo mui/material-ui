@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
+import { NotchedOutlineProps } from '../NotchedOutline';
 
 export interface InputProps
   extends StandardProps<
@@ -22,6 +23,7 @@ export interface InputProps
   margin?: 'dense';
   multiline?: boolean;
   name?: string;
+  OutlineProps?: NotchedOutlineProps;
   placeholder?: string;
   readOnly?: boolean;
   required?: boolean;
@@ -30,6 +32,7 @@ export interface InputProps
   startAdornment?: React.ReactNode;
   type?: string;
   value?: Array<string | number | boolean> | string | number | boolean;
+  variant?: 'standard';
   /**
    * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
    * which by default is an input or textarea. Since these handlers differ from the
@@ -53,16 +56,27 @@ export type InputClassKey =
   | 'formControl'
   | 'focused'
   | 'disabled'
+  | 'adornedStart'
+  | 'adornedEnd'
+  | 'contained'
+  | 'filled'
+  | 'outlined'
   | 'underline'
   | 'error'
+  | 'marginDense'
   | 'multiline'
   | 'fullWidth'
   | 'input'
   | 'inputMarginDense'
-  | 'inputDisabled'
   | 'inputMultiline'
   | 'inputType'
-  | 'inputTypeSearch';
+  | 'inputTypeSearch'
+  | 'inputAdornedStart'
+  | 'inputAdornedEnd'
+  | 'inputContained'
+  | 'inputFilled'
+  | 'inputOutlined'
+  | 'outline';
 
 declare const Input: React.ComponentType<InputProps>;
 

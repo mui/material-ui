@@ -26,6 +26,7 @@ An alternative to `<Select native />` with a much smaller dependency graph.
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object |   | Attributes applied to the `select` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback function fired when a menu item is selected.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool<br> |   | The input value. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br> |   | The type of `input`. This is normally obtained via context from `FormControl`. |
 
 Any other properties supplied will be spread to the root element ([Input](/api/input)).
 
@@ -41,6 +42,8 @@ This property accepts the following keys:
 | <span class="prop-name">select</span> | Styles applied to the `Input` component `select` class.
 | <span class="prop-name">selectMenu</span> | Styles applied to the `Input` component `selectMenu` class.
 | <span class="prop-name">disabled</span> | Styles applied to the `Input` component `disabled` class.
+| <span class="prop-name">filled</span> | Styles applied to the `Input` component `filled` class.
+| <span class="prop-name">outlined</span> | Styles applied to the `Input` component `outlined` class.
 | <span class="prop-name">icon</span> | Styles applied to the `Input` component `icon` class.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

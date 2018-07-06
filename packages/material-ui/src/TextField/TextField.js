@@ -1,6 +1,7 @@
 // @inheritedComponent FormControl
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import warning from 'warning';
 import PropTypes from 'prop-types';
 import Input from '../Input';
@@ -37,96 +38,118 @@ import Select from '../Select';
  * - using the upper case props for passing values directly to the components
  * - using the underlying components directly as shown in the demos
  */
-function TextField(props) {
-  const {
-    autoComplete,
-    autoFocus,
-    children,
-    className,
-    defaultValue,
-    error,
-    FormHelperTextProps,
-    fullWidth,
-    helperText,
-    id,
-    InputLabelProps,
-    inputProps,
-    InputProps,
-    inputRef,
-    label,
-    multiline,
-    name,
-    onBlur,
-    onChange,
-    onFocus,
-    placeholder,
-    required,
-    rows,
-    rowsMax,
-    select,
-    SelectProps,
-    type,
-    value,
-    ...other
-  } = props;
+class TextField extends React.Component {
+  constructor(props) {
+    super(props);
 
-  warning(
-    !select || Boolean(children),
-    'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
-  );
+    this.inputLabelRef = React.createRef();
+  }
 
-  const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
-  const InputElement = (
-    <Input
-      autoComplete={autoComplete}
-      autoFocus={autoFocus}
-      defaultValue={defaultValue}
-      fullWidth={fullWidth}
-      multiline={multiline}
-      name={name}
-      rows={rows}
-      rowsMax={rowsMax}
-      type={type}
-      value={value}
-      id={id}
-      inputRef={inputRef}
-      onBlur={onBlur}
-      onChange={onChange}
-      onFocus={onFocus}
-      placeholder={placeholder}
-      inputProps={inputProps}
-      {...InputProps}
-    />
-  );
+  componentDidMount() {
+    this.inputLabelNode = ReactDOM.findDOMNode(this.inputLabelRef.current);
 
-  return (
-    <FormControl
-      aria-describedby={helperTextId}
-      className={className}
-      error={error}
-      fullWidth={fullWidth}
-      required={required}
-      {...other}
-    >
-      {label && (
-        <InputLabel htmlFor={id} {...InputLabelProps}>
-          {label}
-        </InputLabel>
-      )}
-      {select ? (
-        <Select value={value} input={InputElement} {...SelectProps}>
-          {children}
-        </Select>
-      ) : (
-        InputElement
-      )}
-      {helperText && (
-        <FormHelperText id={helperTextId} {...FormHelperTextProps}>
-          {helperText}
-        </FormHelperText>
-      )}
-    </FormControl>
-  );
+    this.forceUpdate();
+  }
+
+  render() {
+    const {
+      autoComplete,
+      autoFocus,
+      children,
+      className,
+      defaultValue,
+      error,
+      FormHelperTextProps,
+      fullWidth,
+      helperText,
+      id,
+      InputLabelProps,
+      inputProps,
+      InputProps,
+      inputRef,
+      label,
+      multiline,
+      name,
+      onBlur,
+      onChange,
+      onFocus,
+      OutlineProps,
+      placeholder,
+      required,
+      rows,
+      rowsMax,
+      select,
+      SelectProps,
+      type,
+      value,
+      variant,
+      ...other
+    } = this.props;
+
+    warning(
+      !select || Boolean(children),
+      'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
+    );
+
+    const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
+    const InputElement = (
+      <Input
+        autoComplete={autoComplete}
+        autoFocus={autoFocus}
+        defaultValue={defaultValue}
+        fullWidth={fullWidth}
+        multiline={multiline}
+        name={name}
+        OutlineProps={{
+          notched: InputLabelProps && InputLabelProps.shrink,
+          notchWidth: this.inputLabelNode ? this.inputLabelNode.offsetWidth * 0.75 + 8 : 0,
+          ...OutlineProps,
+        }}
+        rows={rows}
+        rowsMax={rowsMax}
+        type={type}
+        value={value}
+        id={id}
+        inputRef={inputRef}
+        onBlur={onBlur}
+        onChange={onChange}
+        onFocus={onFocus}
+        placeholder={placeholder}
+        inputProps={inputProps}
+        {...InputProps}
+      />
+    );
+
+    return (
+      <FormControl
+        aria-describedby={helperTextId}
+        className={className}
+        error={error}
+        fullWidth={fullWidth}
+        required={required}
+        variant={variant}
+        {...other}
+      >
+        {label && (
+          <InputLabel htmlFor={id} innerRef={this.inputLabelRef} {...InputLabelProps}>
+            {label}
+          </InputLabel>
+        )}
+        {select ? (
+          <Select value={value} input={InputElement} {...SelectProps}>
+            {children}
+          </Select>
+        ) : (
+          InputElement
+        )}
+        {helperText && (
+          <FormHelperText id={helperTextId} {...FormHelperTextProps}>
+            {helperText}
+          </FormHelperText>
+        )}
+      </FormControl>
+    );
+  }
 }
 
 TextField.propTypes = {
@@ -226,6 +249,10 @@ TextField.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
+   * Props applied to the [`NotchedOutline`](/api/notched-outline) element.
+   */
+  OutlineProps: PropTypes.object,
+  /**
    * The short hint displayed in the input before the user enters a value.
    */
   placeholder: PropTypes.string,
@@ -263,6 +290,10 @@ TextField.propTypes = {
     PropTypes.bool,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]),
+  /**
+   * The type of `input` within the `FormControl`.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 TextField.defaultProps = {

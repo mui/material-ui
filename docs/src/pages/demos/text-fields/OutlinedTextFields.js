@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
@@ -12,10 +13,12 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+  },
+  dense: {
+    marginTop: '21px',
   },
   menu: {
-    width: 200,
+    width: 280,
   },
 });
 
@@ -38,7 +41,7 @@ const currencies = [
   },
 ];
 
-class TextFields extends React.Component {
+class OutlinedTextFields extends React.Component {
   state = {
     name: 'Cat in the Hat',
     age: '',
@@ -58,54 +61,70 @@ class TextFields extends React.Component {
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
-          id="name"
+          id="name-outlined"
           label="Name"
           className={classes.textField}
           value={this.state.name}
           onChange={this.handleChange('name')}
           margin="normal"
+          variant="outlined"
         />
         <TextField
-          id="uncontrolled"
+          id="uncontrolled-outlined"
           label="Uncontrolled"
           defaultValue="foo"
           className={classes.textField}
           margin="normal"
+          variant="outlined"
         />
         <TextField
           required
-          id="required"
+          id="required-outlined"
           label="Required"
           defaultValue="Hello World"
           className={classes.textField}
           margin="normal"
+          variant="outlined"
         />
         <TextField
           error
-          id="error"
+          id="error-outlined"
           label="Error"
           defaultValue="Hello World"
           className={classes.textField}
           margin="normal"
+          variant="outlined"
         />
         <TextField
           disabled
-          id="disabled"
+          id="disabled-outlined"
           label="Disabled"
           defaultValue="Hello World"
           className={classes.textField}
           margin="normal"
+          variant="outlined"
         />
         <TextField
-          id="password-input"
+          id="email-input-outlined"
+          label="Email"
+          className={classes.textField}
+          type="email"
+          name="email"
+          autoComplete="email"
+          margin="normal"
+          variant="outlined"
+        />
+        <TextField
+          id="password-input-outlined"
           label="Password"
           className={classes.textField}
           type="password"
           autoComplete="current-password"
           margin="normal"
+          variant="outlined"
         />
         <TextField
-          id="read-only-input"
+          id="read-only-input-outlined"
           label="Read Only"
           defaultValue="Hello World"
           className={classes.textField}
@@ -113,9 +132,17 @@ class TextFields extends React.Component {
           InputProps={{
             readOnly: true,
           }}
+          variant="outlined"
         />
         <TextField
-          id="multiline-flexible"
+          id="dense-outlined"
+          label="Dense"
+          className={classNames(classes.textField, classes.dense)}
+          margin="dense"
+          variant="outlined"
+        />
+        <TextField
+          id="multiline-flexible-outlined"
           label="Multiline"
           multiline
           rowsMax="4"
@@ -123,41 +150,57 @@ class TextFields extends React.Component {
           onChange={this.handleChange('multiline')}
           className={classes.textField}
           margin="normal"
+          helperText="hello"
+          variant="outlined"
         />
         <TextField
-          id="multiline-static"
+          id="multiline-static-outlined"
           label="Multiline"
           multiline
           rows="4"
           defaultValue="Default Value"
           className={classes.textField}
           margin="normal"
+          variant="outlined"
         />
         <TextField
-          id="helperText"
+          id="multiline-static-outlined-dense"
+          label="Multiline"
+          multiline
+          rows="4"
+          defaultValue="Default Value"
+          className={classes.textField}
+          margin="dense"
+          variant="outlined"
+        />
+        <TextField
+          id="helperText-outlined"
           label="Helper text"
           defaultValue="Default Value"
           className={classes.textField}
           helperText="Some important text"
           margin="normal"
+          variant="outlined"
         />
         <TextField
-          id="with-placeholder"
+          id="with-placeholder-outlined"
           label="With placeholder"
           placeholder="Placeholder"
           className={classes.textField}
           margin="normal"
+          variant="outlined"
         />
         <TextField
-          id="textarea"
-          label="With placeholder multiline"
+          id="textarea-outlined"
+          label="Multiline Placeholder"
           placeholder="Placeholder"
           multiline
           className={classes.textField}
           margin="normal"
+          variant="outlined"
         />
         <TextField
-          id="number"
+          id="number-outlined"
           label="Number"
           value={this.state.age}
           onChange={this.handleChange('age')}
@@ -167,16 +210,18 @@ class TextFields extends React.Component {
             shrink: true,
           }}
           margin="normal"
+          variant="outlined"
         />
         <TextField
-          id="search"
+          id="search-outlined"
           label="Search field"
           type="search"
           className={classes.textField}
           margin="normal"
+          variant="outlined"
         />
         <TextField
-          id="select-currency"
+          id="select-currency-outlined"
           select
           label="Select"
           className={classes.textField}
@@ -189,6 +234,7 @@ class TextFields extends React.Component {
           }}
           helperText="Please select your currency"
           margin="normal"
+          variant="outlined"
         >
           {currencies.map(option => (
             <MenuItem key={option.value} value={option.value}>
@@ -197,7 +243,7 @@ class TextFields extends React.Component {
           ))}
         </TextField>
         <TextField
-          id="select-currency-native"
+          id="select-currency-native-outlined"
           select
           label="Native select"
           className={classes.textField}
@@ -211,6 +257,7 @@ class TextFields extends React.Component {
           }}
           helperText="Please select your currency"
           margin="normal"
+          variant="outlined"
         >
           {currencies.map(option => (
             <option key={option.value} value={option.value}>
@@ -219,7 +266,7 @@ class TextFields extends React.Component {
           ))}
         </TextField>
         <TextField
-          id="full-width"
+          id="full-width-outlined"
           label="Label"
           InputLabelProps={{
             shrink: true,
@@ -228,14 +275,15 @@ class TextFields extends React.Component {
           helperText="Full width!"
           fullWidth
           margin="normal"
+          variant="outlined"
         />
       </form>
     );
   }
 }
 
-TextFields.propTypes = {
+OutlinedTextFields.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TextFields);
+export default withStyles(styles)(OutlinedTextFields);

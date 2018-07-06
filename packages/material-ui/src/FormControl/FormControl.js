@@ -76,7 +76,7 @@ class FormControl extends React.Component {
   };
 
   getChildContext() {
-    const { disabled, error, required, margin } = this.props;
+    const { disabled, error, required, margin, variant } = this.props;
     const { adornedStart, filled, focused } = this.state;
 
     return {
@@ -92,6 +92,7 @@ class FormControl extends React.Component {
         onFilled: this.handleDirty,
         onFocus: this.handleFocus,
         required,
+        variant,
       },
     };
   }
@@ -184,6 +185,10 @@ FormControl.propTypes = {
    * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
+  /**
+   * The type of `input` within the `FormControl`.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 FormControl.defaultProps = {
@@ -193,6 +198,7 @@ FormControl.defaultProps = {
   fullWidth: false,
   margin: 'none',
   required: false,
+  variant: 'standard',
 };
 
 FormControl.childContextTypes = {
