@@ -2734,6 +2734,17 @@
             "computed": true
           }
         },
+        "onBlur": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
         "onChange": {
           "type": {
             "name": "func"
@@ -2839,7 +2850,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "Error message, shown if date is invalid",
+          "description": "Message displaying in text field, if date is invalid (doesn't work in keyboard mode)",
           "defaultValue": {
             "value": "'Unknown'",
             "computed": false
@@ -2850,7 +2861,7 @@
             "name": "string"
           },
           "required": false,
-          "description": "Message displaying in text field, if null passed",
+          "description": "Message displaying in text field, if null passed (doesn't work in keyboard mode)",
           "defaultValue": {
             "value": "''",
             "computed": false
