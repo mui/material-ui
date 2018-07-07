@@ -1,23 +1,23 @@
 import * as React from 'react';
-import { PopoverProps, PopoverClassKey } from '../Popover';
+import { StandardProps } from '..';
 import { MenuListProps } from '../MenuList';
 import { PaperProps } from '../Paper';
-import { StandardProps } from '..';
-import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
+import { PopoverClassKey, PopoverProps } from '../Popover';
 import { ClassNameMap } from '../styles/withStyles';
+import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
-export interface MenuProps
-  extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>, MenuClassKey> {
+export interface MenuProps<C = {}>
+  extends StandardProps<PopoverProps<C> & Partial<TransitionHandlerProps>, MenuClassKey> {
   anchorEl?: HTMLElement;
   disableAutoFocusItem?: boolean;
-  MenuListProps?: Partial<MenuListProps>;
-  PaperProps?: Partial<PaperProps>;
+  MenuListProps?: Partial<C & MenuListProps<C>>;
+  PaperProps?: Partial<C & PaperProps>;
   PopoverClasses?: Partial<ClassNameMap<PopoverClassKey>>;
   transitionDuration?: TransitionProps['timeout'] | 'auto';
 }
 
 export type MenuClassKey = 'paper';
 
-declare const Menu: React.ComponentType<MenuProps>;
+declare class Menu<C> extends React.Component<MenuProps<C>> { }
 
 export default Menu;

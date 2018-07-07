@@ -3,7 +3,8 @@ import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ButtonProps } from '../Button';
 
-export interface MobileStepperProps extends StandardProps<PaperProps, MobileStepperClassKey> {
+export interface MobileStepperProps<C = {}>
+  extends StandardProps<PaperProps<C>, MobileStepperClassKey> {
   activeStep?: number;
   backButton: React.ReactElement<any>;
   nextButton: React.ReactElement<any>;
@@ -22,6 +23,6 @@ export type MobileStepperClassKey =
   | 'dotActive'
   | 'progress';
 
-declare const MobileStepper: React.ComponentType<MobileStepperProps>;
+declare class MobileStepper<C> extends React.Component<C & MobileStepperProps<C>> {}
 
 export default MobileStepper;

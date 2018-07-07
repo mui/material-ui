@@ -6,7 +6,7 @@ import { PaperProps } from '../Paper';
 import { Theme } from '../styles/createMuiTheme';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
-export interface DrawerProps
+export interface DrawerProps<C = {}>
   extends StandardProps<
       ModalProps & Partial<TransitionHandlerProps>,
       DrawerClassKey,
@@ -17,7 +17,7 @@ export interface DrawerProps
   elevation?: number;
   ModalProps?: Partial<ModalProps>;
   open?: boolean;
-  PaperProps?: Partial<PaperProps>;
+  PaperProps?: Partial<PaperProps<C>>;
   SlideProps?: Partial<SlideProps>;
   theme?: Theme;
   transitionDuration?: TransitionProps['timeout'];
@@ -37,6 +37,6 @@ export type DrawerClassKey =
   | 'paperAnchorDockedBottom'
   | 'modal';
 
-declare const Drawer: React.ComponentType<DrawerProps>;
+declare class Drawer<C> extends React.Component<DrawerProps<C>> {}
 
 export default Drawer;

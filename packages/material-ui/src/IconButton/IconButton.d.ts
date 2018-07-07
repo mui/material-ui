@@ -2,7 +2,8 @@ import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface IconButtonProps extends StandardProps<ButtonBaseProps, IconButtonClassKey> {
+export interface IconButtonProps<C = {}>
+  extends StandardProps<ButtonBaseProps<C>, IconButtonClassKey> {
   color?: PropTypes.Color;
   disabled?: boolean;
   disableRipple?: boolean;
@@ -16,6 +17,6 @@ export type IconButtonClassKey =
   | 'disabled'
   | 'label';
 
-declare const IconButton: React.ComponentType<IconButtonProps>;
+declare class IconButton<C> extends React.Component<C & IconButtonProps<C>> {}
 
 export default IconButton;

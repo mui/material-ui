@@ -2,9 +2,10 @@ import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassKey, 'component'> {
+export interface ButtonProps<C = {}>
+  extends StandardProps<ButtonBaseProps<C>, ButtonClassKey, 'component'> {
   color?: PropTypes.Color;
-  component?: React.ReactType<ButtonProps>;
+  component?: React.ReactType<C>;
   disabled?: boolean;
   disableFocusRipple?: boolean;
   disableRipple?: boolean;
@@ -41,6 +42,6 @@ export type ButtonClassKey =
   | 'sizeLarge'
   | 'fullWidth';
 
-declare const Button: React.ComponentType<ButtonProps>;
+declare class Button<C> extends React.Component<C & ButtonProps<C>> {}
 
 export default Button;

@@ -2,8 +2,8 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
-export interface CheckboxProps
-  extends StandardProps<SwitchBaseProps, CheckboxClassKey, 'checkedIcon' | 'color' | 'icon'> {
+export interface CheckboxProps<C = {}>
+  extends StandardProps<SwitchBaseProps<C>, CheckboxClassKey, 'checkedIcon' | 'color' | 'icon'> {
   checkedIcon?: React.ReactNode;
   color?: 'primary' | 'secondary' | 'default';
   icon?: React.ReactNode;
@@ -11,6 +11,6 @@ export interface CheckboxProps
 
 export type CheckboxClassKey = SwitchBaseClassKey | 'colorPrimary' | 'colorSecondary';
 
-declare const Checkbox: React.ComponentType<CheckboxProps>;
+declare class Checkbox<C> extends React.Component<C & CheckboxProps<C>> {}
 
 export default Checkbox;

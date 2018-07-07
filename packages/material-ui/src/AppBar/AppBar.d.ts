@@ -1,7 +1,8 @@
+import * as React from 'react';
 import { PropTypes, StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
-export interface AppBarProps extends StandardProps<PaperProps, AppBarClassKey> {
+export interface AppBarProps<C = {}> extends StandardProps<PaperProps<C>, AppBarClassKey> {
   color?: PropTypes.Color;
   position?: 'fixed' | 'absolute' | 'sticky' | 'static';
 }
@@ -16,6 +17,6 @@ export type AppBarClassKey =
   | 'colorPrimary'
   | 'colorSecondary';
 
-declare const AppBar: React.ComponentType<AppBarProps>;
+declare class AppBar<C> extends React.Component<C & AppBarProps<C>> {}
 
 export default AppBar;

@@ -62,6 +62,9 @@
     "scroll": "^2.0.3",
     "warning": "^4.0.1"
   },
+  "devDependencies": {
+    "@types/react-router-dom": "^4.2.7"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"

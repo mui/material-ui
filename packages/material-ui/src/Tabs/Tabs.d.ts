@@ -3,12 +3,12 @@ import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase/ButtonBase';
 import { TabIndicatorProps } from './TabIndicator';
 
-export interface TabsProps
-  extends StandardProps<ButtonBaseProps, TabsClassKey, 'onChange' | 'action' | 'component'> {
+export interface TabsProps<C = {}>
+  extends StandardProps<ButtonBaseProps<C>, TabsClassKey, 'onChange' | 'action' | 'component'> {
   action?: (actions: TabsActions) => void;
   centered?: boolean;
   children?: React.ReactNode;
-  component?: React.ReactType<TabsProps>;
+  component?: React.ReactType<TabsProps<C>>;
   fullWidth?: boolean;
   indicatorColor?: 'secondary' | 'primary' | string;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
@@ -36,6 +36,6 @@ export interface TabsActions {
   updateIndicator(): void;
 }
 
-declare const Tabs: React.ComponentType<TabsProps>;
+declare class Tabs<C> extends React.Component<C & TabsProps<C>> {}
 
 export default Tabs;

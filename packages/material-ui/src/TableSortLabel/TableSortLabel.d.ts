@@ -2,8 +2,8 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface TableSortLabelProps
-  extends StandardProps<ButtonBaseProps, TableSortLabelClassKey> {
+export interface TableSortLabelProps<C = {}>
+  extends StandardProps<ButtonBaseProps<C>, TableSortLabelClassKey> {
   active?: boolean;
   direction?: 'asc' | 'desc';
 }
@@ -15,6 +15,6 @@ export type TableSortLabelClassKey =
   | 'iconDirectionDesc'
   | 'iconDirectionAsc';
 
-declare const TableSortLabel: React.ComponentType<TableSortLabelProps>;
+declare class TableSortLabel<C> extends React.Component<C & TableSortLabelProps<C>> {}
 
 export default TableSortLabel;

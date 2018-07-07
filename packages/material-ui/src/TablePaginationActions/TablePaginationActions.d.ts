@@ -2,15 +2,15 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { IconButtonProps } from '../IconButton/IconButton';
 
-export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDivElement> {
-  backIconButtonProps?: Partial<IconButtonProps>;
+export interface TablePaginationActionsProps<C> extends React.HTMLAttributes<HTMLDivElement> {
+  backIconButtonProps?: Partial<C & IconButtonProps<C>>;
   count: number;
-  nextIconButtonProps?: Partial<IconButtonProps>;
+  nextIconButtonProps?: Partial<C & IconButtonProps<C>>;
   onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   page: number;
   rowsPerPage: number;
 }
 
-declare const TablePaginationActions: React.ComponentType<TablePaginationActionsProps>;
+declare class TablePaginationActions<C> extends React.Component<TablePaginationActionsProps<C>> {}
 
 export default TablePaginationActions;

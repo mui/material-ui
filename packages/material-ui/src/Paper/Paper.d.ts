@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface PaperProps
+export interface PaperProps<C = {}>
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, PaperClassKey> {
-  component?: React.ReactType<PaperProps>;
+  component?: React.ReactType<C>;
   elevation?: number;
   square?: boolean;
 }
@@ -37,6 +37,6 @@ export type PaperClassKey =
   | 'elevation23'
   | 'elevation24';
 
-declare const Paper: React.ComponentType<PaperProps>;
+declare class Paper<C> extends React.Component<C & PaperProps<C>> {}
 
 export default Paper;
