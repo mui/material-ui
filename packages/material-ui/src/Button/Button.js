@@ -13,7 +13,7 @@ export const styles = theme => ({
     ...theme.typography.button,
     lineHeight: '1.4em', // Improve readability for multiline button.
     boxSizing: 'border-box',
-    minWidth: theme.spacing.unit * 8,
+    minWidth: 64,
     minHeight: 36,
     padding: '8px 16px',
     borderRadius: theme.shape.borderRadius,
