@@ -20,6 +20,6 @@
     "webpack-cli": "latest"
   },
   "scripts": {
-    "start": "webpack -w --mode=development & nodemon --exec yarn babel-node -- server.js"
+    "start": "webpack -w & nodemon --exec yarn babel-node -- server.js"
   }
 }
