@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
+import MarkdownElement from '@material-ui/docs/MarkdownElement';
 
 const styles = theme => ({
   root: {
@@ -28,6 +29,9 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
+  code: {
+    marginTop: -32,
+  },
   fab: {
     position: 'absolute',
     bottom: theme.spacing.unit * 2,
@@ -45,16 +49,24 @@ const ColorDemo = props => {
 
   primary.output =
     data.primaryShade === 4
-      ? `'${data.primaryHue}'`
+      ? `${data.primaryHue}`
       : `{ 
-          main: ${primary.main}
-        }`;
+      main: '${primary.main}',
+    }`;
   secondary.output =
     data.secondaryShade === 11
-      ? `'${data.secondaryHue}'`
+      ? `${data.secondaryHue}`
       : `{ 
-          main: ${secondary.main}
-        }`;
+      main: '${secondary.main}',
+    }`;
+
+  const raw = `
+{
+  palette: {
+    primary: ${primary.output},
+    secondary: ${secondary.output},
+  },
+}`;
 
   return (
     <div className={classes.root}>
@@ -70,16 +82,7 @@ const ColorDemo = props => {
             </Typography>
           </Toolbar>
         </AppBar>
-        <pre>
-          {`
-    {
-      palette: {
-        primary: ${primary.output},
-        secondary: '${secondary.output}',
-      },
-    }
-        `}
-        </pre>
+        <MarkdownElement dir="ltr" className={classes.code} text={`\`\`\`jsx\n${raw}\n\`\`\``} />
         <Button variant="fab" className={classes.fab} style={{ backgroundColor: secondary.main }}>
           <AddIcon nativeColor={secondary.contrastText} />
         </Button>

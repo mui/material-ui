@@ -48,12 +48,11 @@ The output shown in the color sample can be pasted directly into a [`createMuiTh
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
 
 const theme = createMuiTheme({
   palette: {
-    primary: {
-      main: '#3f50b5',
-    },
+    primary: purple,
     secondary: {
       main: '#f44336',
     },
@@ -62,6 +61,8 @@ const theme = createMuiTheme({
 ```
 
 Only the `main` shades need be provided (unless you wish to further customise `light`, `dark` or `contrastText`), as the other colors will be calculated by `createMuiTheme()`, as described in the [Theme customization](/customization/themes#palette) section.
+
+If you are using the default primary and / or secondary shades then by providing the color object, `createMuiTheme()` will use the appropriate shades from the material color for main, light and dark.
 
 ### Material color tool
 
