@@ -50,8 +50,16 @@ const styles = theme => ({
     width: 192,
     backgroundColor: theme.palette.common.white,
   },
+  colorBar: {
+    marginTop: theme.spacing.unit * 2,
+  },
+  colorSquare: {
+    width: 64,
+    height: 64,
+    border: '1px solid white',
+  },
   input: {
-    marginTop: 24,
+    marginTop: theme.spacing.unit,
     width: 192,
   },
   button: {
@@ -63,8 +71,8 @@ class ColorTool extends React.Component {
   state = {
     primary: '#2196f3',
     secondary: '#f50057',
-    primaryTextField: '#2196f3',
-    secondaryTextField: '#f50057',
+    primaryInput: '#2196f3',
+    secondaryInput: '#f50057',
     primaryHue: 'blue',
     secondaryHue: 'pink',
     primaryShade: 4,
@@ -79,7 +87,7 @@ class ColorTool extends React.Component {
     } = event;
 
     this.setState({
-      [`${name}TextField`]: color,
+      [`${name}Input`]: color,
     });
 
     if (isRgb(color)) {
@@ -99,7 +107,7 @@ class ColorTool extends React.Component {
       return {
         [`${name}Hue`]: hue,
         [name]: color,
-        [`${name}Text`]: color,
+        [`${name}Input`]: color,
       };
     });
   };
@@ -110,7 +118,7 @@ class ColorTool extends React.Component {
       return {
         [`${name}Shade`]: shade,
         [name]: color,
-        [`${name}Text`]: color,
+        [`${name}Input`]: color,
       };
     });
   };
@@ -128,8 +136,15 @@ class ColorTool extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { primaryTextField, secondaryTextField, primaryShade, secondaryShade } = this.state;
+    const { classes, theme } = this.props;
+    const {
+      primary,
+      secondary,
+      primaryInput,
+      secondaryInput,
+      primaryShade,
+      secondaryShade,
+    } = this.state;
 
     const colorTile = (hue, colorIntent) => {
       const shade = colorIntent === 'primary' ? shades[primaryShade] : shades[secondaryShade];
@@ -160,10 +175,32 @@ class ColorTool extends React.Component {
 
     const colorSwatch = value => hues.map(hue => colorTile(hue, value));
 
+    const colorBar = color => {
+      const background = { main: color };
+      theme.palette.augmentColor(background);
+
+      return (
+        <Grid container className={classes.colorBar}>
+          <div className={classes.colorSquare} style={{ backgroundColor: background.dark }} />
+          <div className={classes.colorSquare} style={{ backgroundColor: background.main }} />
+          <div className={classes.colorSquare} style={{ backgroundColor: background.light }} />
+        </Grid>
+      );
+    };
+
     return (
       <Grid container spacing={24} className={classes.root}>
         <Grid item xs={12} md={4}>
           <Typography variant="title">Primary</Typography>
+          <Input
+            id="primary"
+            value={primaryInput}
+            onChange={this.handleChangeColor('primary')}
+            inputProps={{
+              'aria-label': 'Primary color',
+            }}
+            className={classes.input}
+          />
           <div className={classes.sliderContainer}>
             <Typography className={classes.sliderTypography} id="primaryShadeSliderLabel">
               Shade:
@@ -179,18 +216,19 @@ class ColorTool extends React.Component {
             <Typography className={classes.sliderTypography}>{shades[primaryShade]}</Typography>
           </div>
           <div className={classes.swatch}>{colorSwatch('primary')}</div>
-          <Input
-            id="primary"
-            value={primaryTextField}
-            onChange={this.handleChangeColor('primary')}
-            inputProps={{
-              'aria-label': 'Primary color',
-            }}
-            className={classes.input}
-          />
+          {colorBar(primary)}
         </Grid>
         <Grid item xs={12} md={4}>
           <Typography variant="title">Secondary</Typography>
+          <Input
+            id="secondary"
+            value={secondaryInput}
+            onChange={this.handleChangeColor('secondary')}
+            inputProps={{
+              'aria-label': 'Secondary color',
+            }}
+            className={classes.input}
+          />
           <div className={classes.sliderContainer}>
             <Typography className={classes.sliderTypography} id="secondaryShadeSliderLabel">
               Shade:
@@ -206,15 +244,7 @@ class ColorTool extends React.Component {
             <Typography className={classes.sliderTypography}>{shades[secondaryShade]}</Typography>
           </div>
           <div className={classes.swatch}>{colorSwatch('secondary')}</div>
-          <Input
-            id="secondary"
-            value={secondaryTextField}
-            onChange={this.handleChangeColor('secondary')}
-            inputProps={{
-              'aria-label': 'Secondary color',
-            }}
-            className={classes.input}
-          />
+          {colorBar(secondary)}
         </Grid>
         <Grid item xs={12} md={4}>
           <Grid container direction="column" alignItems="flex-end">
@@ -237,10 +267,11 @@ class ColorTool extends React.Component {
 ColorTool.propTypes = {
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default compose(
-  withStyles(styles),
+  withStyles(styles, { withTheme: true }),
   connect(state => ({
     uiTheme: state.theme,
   })),
