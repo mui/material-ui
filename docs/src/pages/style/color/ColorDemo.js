@@ -36,9 +36,25 @@ const styles = theme => ({
 });
 
 const ColorDemo = props => {
-  const { classes, primary, theme, secondary } = props;
+  const { classes, data, theme } = props;
+  const primary = { main: data.primary };
+  const secondary = { main: data.secondary };
+
   theme.palette.augmentColor(primary);
   theme.palette.augmentColor(secondary);
+
+  primary.output =
+    data.primaryShade === 4
+      ? `'${data.primaryHue}'`
+      : `{ 
+          main: ${primary.main}
+        }`;
+  secondary.output =
+    data.secondaryShade === 11
+      ? `'${data.secondaryHue}'`
+      : `{ 
+          main: ${secondary.main}
+        }`;
 
   return (
     <div className={classes.root}>
@@ -58,12 +74,8 @@ const ColorDemo = props => {
           {`
     {
       palette: {
-        primary: {
-          main: '${primary.main}',
-        },
-        secondary: {
-          main: '${secondary.main}',
-        },
+        primary: ${primary.output},
+        secondary: '${secondary.output}',
       },
     }
         `}
@@ -78,8 +90,7 @@ const ColorDemo = props => {
 
 ColorDemo.propTypes = {
   classes: PropTypes.object.isRequired,
-  primary: PropTypes.object.isRequired,
-  secondary: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
 

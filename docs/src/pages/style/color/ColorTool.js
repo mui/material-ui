@@ -129,14 +129,7 @@ class ColorTool extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const {
-      primary,
-      secondary,
-      primaryTextField,
-      secondaryTextField,
-      primaryShade,
-      secondaryShade,
-    } = this.state;
+    const { primaryTextField, secondaryTextField, primaryShade, secondaryShade } = this.state;
 
     const colorTile = (hue, colorIntent) => {
       const shade = colorIntent === 'primary' ? shades[primaryShade] : shades[secondaryShade];
@@ -225,7 +218,7 @@ class ColorTool extends React.Component {
         </Grid>
         <Grid item xs={12} md={4}>
           <Grid container direction="column" alignItems="flex-end">
-            <ColorDemo primary={{ main: primary }} secondary={{ main: secondary }} />
+            <ColorDemo data={this.state} />
             <Button
               variant="contained"
               color="primary"

@@ -44,7 +44,7 @@ Alternatively, you can enter hex values in the Primary and Secondary text fields
 
 {{"demo": "pages/style/color/ColorTool.js", "hideHeader": true}}
 
-The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/themes#createmuitheme-options-theme) function (to be used in [`MuiThemeProvider`](/customization//themes#theme-provider)):
+The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/themes#createmuitheme-options-theme) function (to be used with [`MuiThemeProvider`](/customization/themes#theme-provider)):
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';
