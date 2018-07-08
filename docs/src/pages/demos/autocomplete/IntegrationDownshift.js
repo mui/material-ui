@@ -4,6 +4,7 @@ import keycode from 'keycode';
 import Downshift from 'downshift';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Chip from '@material-ui/core/Chip';
@@ -226,6 +227,8 @@ const styles = theme => ({
   },
 });
 
+let popperNode;
+
 function IntegrationDownshift(props) {
   const { classes } = props;
 
@@ -259,6 +262,36 @@ function IntegrationDownshift(props) {
         )}
       </Downshift>
       <DownshiftMultiple classes={classes} />
+      <Downshift>
+        {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
+          <div className={classes.container}>
+            {renderInput({
+              fullWidth: true,
+              classes,
+              InputProps: getInputProps({
+                placeholder: 'With Popper',
+                id: 'integration-downshift-popper',
+              }),
+              ref: node => {
+                popperNode = node;
+              },
+            })}
+            <Popper open={isOpen} anchorEl={popperNode}>
+              <Paper square style={{ width: popperNode ? popperNode.clientWidth : null }}>
+                {getSuggestions(inputValue).map((suggestion, index) =>
+                  renderSuggestion({
+                    suggestion,
+                    index,
+                    itemProps: getItemProps({ item: suggestion.label }),
+                    highlightedIndex,
+                    selectedItem,
+                  }),
+                )}
+              </Paper>
+            </Popper>
+          </div>
+        )}
+      </Downshift>
     </div>
   );
 }

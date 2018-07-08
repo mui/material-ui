@@ -33,9 +33,9 @@ class ClickAway extends React.Component {
   };
 
   handleClick = () => {
-    this.setState({
-      open: true,
-    });
+    this.setState(state => ({
+      open: !state.open,
+    }));
   };
 
   handleClickAway = () => {
@@ -51,18 +51,20 @@ class ClickAway extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Button onClick={this.handleClick}>open menu</Button>
-        {open ? (
-          <ClickAwayListener onClickAway={this.handleClickAway}>
-            <Paper className={classes.paper}>
-              {fake}
-              {fake}
-              {fake}
-              {fake}
-              {fake}
-            </Paper>
-          </ClickAwayListener>
-        ) : null}
+        <ClickAwayListener onClickAway={this.handleClickAway}>
+          <div>
+            <Button onClick={this.handleClick}>Open menu</Button>
+            {open ? (
+              <Paper className={classes.paper}>
+                {fake}
+                {fake}
+                {fake}
+                {fake}
+                {fake}
+              </Paper>
+            ) : null}
+          </div>
+        </ClickAwayListener>
       </div>
     );
   }

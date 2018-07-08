@@ -16,7 +16,7 @@ title: SpeedDial API
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">ariaLabel *</span> | <span class="prop-type">string |   | The aria-label of the `Button` element. Also used to provide the `id` for the `SpeedDial` element and its children. |
-| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object |   | Properties applied to the `Button` element. |
+| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object |   | Properties applied to the [`Button`](/api/button) element. |
 | <span class="prop-name required">children *</span> | <span class="prop-type">node |   | SpeedDialActions to display when the SpeedDial is `open`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">hidden</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the SpeedDial will be hidden. |

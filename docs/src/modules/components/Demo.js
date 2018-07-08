@@ -97,7 +97,6 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
       flip: false,
-      zIndex: 10,
       position: 'absolute',
       top: 0,
       right: theme.spacing.unit,
@@ -207,37 +206,22 @@ class Demo extends React.Component {
         {demoOptions.hideHeader ? null : (
           <div>
             <div className={classes.header}>
-              <Tooltip id={`demo-github-${index}`} title="See the source on GitHub" placement="top">
-                <IconButton
-                  href={githubLocation}
-                  target="_blank"
-                  aria-labelledby={`demo-github-${index}`}
-                >
+              <Tooltip title="See the source on GitHub" placement="top">
+                <IconButton href={githubLocation} target="_blank" aria-label="GitHub">
                   <Github />
                 </IconButton>
               </Tooltip>
               {demoOptions.hideEditButton ? null : (
-                <Tooltip
-                  id={`demo-codesandbox-${index}`}
-                  title="Edit in CodeSandbox"
-                  placement="top"
-                >
-                  <IconButton
-                    onClick={this.handleClickCodeSandbox}
-                    aria-labelledby={`demo-codesandbox-${index}`}
-                  >
+                <Tooltip title="Edit in CodeSandbox" placement="top">
+                  <IconButton onClick={this.handleClickCodeSandbox} aria-label="CodeSandbox">
                     <EditIcon />
                   </IconButton>
                 </Tooltip>
               )}
-              <Tooltip
-                id={`demo-source-${index}`}
-                title={codeOpen ? 'Hide the source' : 'Show the source'}
-                placement="top"
-              >
+              <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
                 <IconButton
                   onClick={this.handleClickCodeOpen}
-                  aria-labelledby={`demo-source-${index}`}
+                  aria-label={`Source of demo n°${index}`}
                 >
                   <CodeIcon />
                 </IconButton>

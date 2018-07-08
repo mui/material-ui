@@ -29,6 +29,34 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tooltips/ControlledTooltips'), 'utf8')
 `,
         },
+        'pages/demos/tooltips/TriggersTooltips.js': {
+          js: require('docs/src/pages/demos/tooltips/TriggersTooltips').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tooltips/TriggersTooltips'), 'utf8')
+`,
+        },
+        'pages/demos/tooltips/TransitionsTooltips.js': {
+          js: require('docs/src/pages/demos/tooltips/TransitionsTooltips').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tooltips/TransitionsTooltips'), 'utf8')
+`,
+        },
+        'pages/demos/tooltips/DelayTooltips.js': {
+          js: require('docs/src/pages/demos/tooltips/DelayTooltips').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tooltips/DelayTooltips'), 'utf8')
+`,
+        },
+        'pages/demos/tooltips/CustomizedTooltips.js': {
+          js: require('docs/src/pages/demos/tooltips/CustomizedTooltips').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tooltips/CustomizedTooltips'), 'utf8')
+`,
+        },
       }}
     />
   );

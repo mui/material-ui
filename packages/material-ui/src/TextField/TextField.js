@@ -164,7 +164,7 @@ TextField.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Properties applied to the `FormHelperText` element.
+   * Properties applied to the [`FormHelperText`](/api/form-helper-text) element.
    */
   FormHelperTextProps: PropTypes.object,
   /**
@@ -181,7 +181,7 @@ TextField.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the `InputLabel` element.
+   * Properties applied to the [`InputLabel`](/api/input-label) element.
    */
   InputLabelProps: PropTypes.object,
   /**
@@ -249,7 +249,7 @@ TextField.propTypes = {
    */
   select: PropTypes.bool,
   /**
-   * Properties applied to the `Select` element.
+   * Properties applied to the [`Select`](/api/select) element.
    */
   SelectProps: PropTypes.object,
   /**

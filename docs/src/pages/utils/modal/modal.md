@@ -3,7 +3,7 @@ title: Modal React component
 components: Modal
 ---
 
-# Modals
+# Modal
 
 <p class="description">The modal component provides a solid foundation for creating dialogs, popovers, lightboxes, or whatever else.</p>
 
@@ -22,4 +22,4 @@ This component shares many concepts with [react-overlays](https://react-bootstra
 
 ## Simple modal
 
-{{"demo": "pages/utils/modals/SimpleModal.js"}}
+{{"demo": "pages/utils/modal/SimpleModal.js"}}

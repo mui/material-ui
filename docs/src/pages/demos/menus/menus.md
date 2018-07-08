@@ -1,6 +1,6 @@
 ---
 title: Menu React component
-components: Menu, MenuItem, MenuList, ClickAwayListener
+components: Menu, MenuItem, MenuList, ClickAwayListener, Popper
 ---
 
 # Menus
@@ -37,13 +37,13 @@ If the height of a menu prevents all menu items from being displayed, the menu c
 
 The `Menu` component uses the `Popover` component internally.
 However, you might want to use a different positioning strategy, or not blocking the scroll.
-For answering those needs, we expose a `MenuList` component that you can compose, with [react-popper](https://github.com/FezVrasta/react-popper) in this example.
+For answering those needs, we expose a `MenuList` component that you can compose, with `Popper` in this example.
 
 The primary responsibility of the `MenuList` component is to handle the focus.
 
 {{"demo": "pages/demos/menus/MenuListComposition.js"}}
 
-## MenuItem composition
+## Customized MenuItem
 
 The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:

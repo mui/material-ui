@@ -303,7 +303,7 @@ Snackbar.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Properties applied to the `SnackbarContent` element.
+   * Properties applied to the [`SnackbarContent`](/api/snackbar-content) element.
    */
   ContentProps: PropTypes.object,
   /**

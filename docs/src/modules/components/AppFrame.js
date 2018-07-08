@@ -133,7 +133,7 @@ class AppFrame extends React.Component {
           <Toolbar>
             <IconButton
               color="inherit"
-              aria-label="open drawer"
+              aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
               className={navIconClassName}
             >
@@ -146,24 +146,20 @@ class AppFrame extends React.Component {
             )}
             <div className={classes.grow} />
             <AppSearch />
-            <Tooltip id="appbar-theme" title="Toggle light/dark theme" enterDelay={300}>
+            <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton
                 color="inherit"
                 onClick={this.handleTogglePaletteType}
-                aria-labelledby="appbar-theme"
+                aria-label="Toggle light/dark theme"
               >
                 {uiTheme.paletteType === 'light' ? <LightbulbOutlineIcon /> : <LightbulbFullIcon />}
               </IconButton>
             </Tooltip>
-            <Tooltip
-              id="appbar-direction"
-              title="Toggle right-to-left/left-to-right"
-              enterDelay={300}
-            >
+            <Tooltip title="Toggle right-to-left/left-to-right" enterDelay={300}>
               <IconButton
                 color="inherit"
                 onClick={this.handleToggleDirection}
-                aria-labelledby="appbar-direction"
+                aria-label="Toggle right-to-left/left-to-right"
               >
                 {uiTheme.direction === 'rtl' ? (
                   <FormatTextdirectionLToR />
@@ -172,12 +168,12 @@ class AppFrame extends React.Component {
                 )}
               </IconButton>
             </Tooltip>
-            <Tooltip id="appbar-github" title="GitHub repository" enterDelay={300}>
+            <Tooltip title="GitHub repository" enterDelay={300}>
               <IconButton
                 component="a"
                 color="inherit"
                 href="https://github.com/mui-org/material-ui"
-                aria-labelledby="appbar-github"
+                aria-label="GitHub repository"
               >
                 <GithubIcon />
               </IconButton>

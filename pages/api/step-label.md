@@ -21,7 +21,7 @@ title: StepLabel API
 | <span class="prop-name">error</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Mark the step as failed. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node |   | Override the default icon. |
 | <span class="prop-name">optional</span> | <span class="prop-type">node |   | The optional node to display. |
-| <span class="prop-name">StepIconProps</span> | <span class="prop-type">object |   | Properties applied to the `StepIcon` element. |
+| <span class="prop-name">StepIconProps</span> | <span class="prop-type">object |   | Properties applied to the [`StepIcon`](/api/step-icon) element. |
 
 Any other properties supplied will be spread to the root element (native element).
 

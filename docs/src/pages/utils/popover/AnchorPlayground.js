@@ -189,7 +189,7 @@ class AnchorPlayground extends React.Component {
                 row
                 aria-label="anchorReference"
                 name="anchorReference"
-                value={this.state.anchorReference}
+                value={anchorReference}
                 onChange={this.handleChange('anchorReference')}
               >
                 <FormControlLabel value="anchorEl" control={<Radio />} label="anchorEl" />
@@ -207,7 +207,7 @@ class AnchorPlayground extends React.Component {
               <Input
                 id="position-top"
                 type="number"
-                value={this.state.positionTop}
+                value={positionTop}
                 onChange={this.handleNumberInputChange('positionTop')}
               />
             </FormControl>
@@ -217,7 +217,7 @@ class AnchorPlayground extends React.Component {
               <Input
                 id="position-left"
                 type="number"
-                value={this.state.positionLeft}
+                value={positionLeft}
                 onChange={this.handleNumberInputChange('positionLeft')}
               />
             </FormControl>
@@ -228,7 +228,7 @@ class AnchorPlayground extends React.Component {
               <RadioGroup
                 aria-label="anchorOriginVertical"
                 name="anchorOriginVertical"
-                value={this.state.anchorOriginVertical}
+                value={anchorOriginVertical}
                 onChange={this.handleChange('anchorOriginVertical')}
               >
                 <FormControlLabel
@@ -255,7 +255,7 @@ class AnchorPlayground extends React.Component {
               <RadioGroup
                 aria-label="transformOriginVertical"
                 name="transformOriginVertical"
-                value={this.state.transformOriginVertical}
+                value={transformOriginVertical}
                 onChange={this.handleChange('transformOriginVertical')}
               >
                 <FormControlLabel value="top" control={<Radio color="primary" />} label="Top" />
@@ -279,7 +279,7 @@ class AnchorPlayground extends React.Component {
                 row
                 aria-label="anchorOriginHorizontal"
                 name="anchorOriginHorizontal"
-                value={this.state.anchorOriginHorizontal}
+                value={anchorOriginHorizontal}
                 onChange={this.handleChange('anchorOriginHorizontal')}
               >
                 <FormControlLabel
@@ -307,7 +307,7 @@ class AnchorPlayground extends React.Component {
                 row
                 aria-label="transformOriginHorizontal"
                 name="transformOriginHorizontal"
-                value={this.state.transformOriginHorizontal}
+                value={transformOriginHorizontal}
                 onChange={this.handleChange('transformOriginHorizontal')}
               >
                 <FormControlLabel value="left" control={<Radio color="primary" />} label="Left" />

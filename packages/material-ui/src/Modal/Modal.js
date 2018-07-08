@@ -1,5 +1,3 @@
-// @inheritedComponent Portal
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -45,9 +43,9 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 class Modal extends React.Component {
   mountNode = null;
 
-  modalNode = null;
+  modalRef = null;
 
-  dialogNode = null;
+  dialogRef = null;
 
   mounted = false;
 
@@ -108,7 +106,7 @@ class Modal extends React.Component {
     this.autoFocus();
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
-    this.modalNode.scrollTop = 0;
+    this.modalRef.scrollTop = 0;
 
     if (this.props.onRendered) {
       this.props.onRendered();
@@ -176,8 +174,8 @@ class Modal extends React.Component {
 
     const currentActiveElement = ownerDocument(this.mountNode).activeElement;
 
-    if (this.dialogNode && !this.dialogNode.contains(currentActiveElement)) {
-      this.dialogNode.focus();
+    if (this.dialogRef && !this.dialogRef.contains(currentActiveElement)) {
+      this.dialogRef.focus();
     }
   };
 
@@ -188,10 +186,10 @@ class Modal extends React.Component {
 
     const currentActiveElement = ownerDocument(this.mountNode).activeElement;
 
-    if (this.dialogNode && !this.dialogNode.contains(currentActiveElement)) {
+    if (this.dialogRef && !this.dialogRef.contains(currentActiveElement)) {
       this.lastFocus = currentActiveElement;
 
-      if (!this.dialogNode.hasAttribute('tabIndex')) {
+      if (!this.dialogRef.hasAttribute('tabIndex')) {
         warning(
           false,
           [
@@ -200,10 +198,10 @@ class Modal extends React.Component {
               'the tabIndex of the node is being set to "-1".',
           ].join('\n'),
         );
-        this.dialogNode.setAttribute('tabIndex', -1);
+        this.dialogRef.setAttribute('tabIndex', -1);
       }
 
-      this.dialogNode.focus();
+      this.dialogRef.focus();
     }
   }
 
@@ -240,15 +238,16 @@ class Modal extends React.Component {
       disableBackdropClick,
       disableEnforceFocus,
       disableEscapeKeyDown,
+      disablePortal,
       disableRestoreFocus,
       hideBackdrop,
       keepMounted,
+      manager,
       onBackdropClick,
       onClose,
       onEscapeKeyDown,
       onRendered,
       open,
-      manager,
       ...other
     } = this.props;
     const { exited } = this.state;
@@ -278,12 +277,13 @@ class Modal extends React.Component {
           this.mountNode = node ? node.getMountNode() : node;
         }}
         container={container}
+        disablePortal={disablePortal}
         onRendered={this.handleRendered}
       >
         <div
           data-mui-test="Modal"
           ref={node => {
-            this.modalNode = node;
+            this.modalRef = node;
           }}
           className={classNames(classes.root, className, {
             [classes.hidden]: exited,
@@ -295,7 +295,7 @@ class Modal extends React.Component {
           )}
           <RootRef
             rootRef={node => {
-              this.dialogNode = node;
+              this.dialogRef = node;
             }}
           >
             {React.cloneElement(children, childProps)}
@@ -312,7 +312,7 @@ Modal.propTypes = {
    */
   BackdropComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
-   * Properties applied to the `Backdrop` element.
+   * Properties applied to the [`Backdrop`](/api/backdrop) element.
    */
   BackdropProps: PropTypes.object,
   /**
@@ -357,6 +357,11 @@ Modal.propTypes = {
    * If `true`, hitting escape will not fire any callback.
    */
   disableEscapeKeyDown: PropTypes.bool,
+  /**
+   * Disable the portal behavior.
+   * The children stay within it's parent DOM hierarchy.
+   */
+  disablePortal: PropTypes.bool,
   /**
    * If `true`, the modal will not restore focus to previously focused element once
    * modal is hidden.
@@ -410,6 +415,7 @@ Modal.defaultProps = {
   disableBackdropClick: false,
   disableEnforceFocus: false,
   disableEscapeKeyDown: false,
+  disablePortal: false,
   disableRestoreFocus: false,
   hideBackdrop: false,
   keepMounted: false,

@@ -1,6 +1,6 @@
 ---
 title: Autocomplete React component
-components: TextField, Paper, MenuItem
+components: TextField, Paper, MenuItem, Popper
 ---
 
 # Autocomplete

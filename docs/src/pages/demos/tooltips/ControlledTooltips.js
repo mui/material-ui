@@ -1,6 +1,5 @@
 import React from 'react';
-import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
 class ControlledTooltips extends React.Component {
@@ -19,18 +18,12 @@ class ControlledTooltips extends React.Component {
   render() {
     return (
       <Tooltip
-        enterDelay={300}
-        id="tooltip-controlled"
-        leaveDelay={300}
         onClose={this.handleTooltipClose}
         onOpen={this.handleTooltipOpen}
         open={this.state.open}
-        placement="bottom"
-        title="Delete"
+        title="Add"
       >
-        <IconButton aria-label="Delete">
-          <DeleteIcon />
-        </IconButton>
+        <Button>Controlled</Button>
       </Tooltip>
     );
   }

@@ -44,7 +44,7 @@ class SimpleSlide extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.wrapper}>
-          <Switch checked={checked} onChange={this.handleChange} aria-label="collapse" />
+          <Switch checked={checked} onChange={this.handleChange} aria-label="Collapse" />
           <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
             <Paper elevation={4} className={classes.paper}>
               <svg className={classes.svg}>

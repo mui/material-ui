@@ -14,21 +14,30 @@ function getOwnerDocument(element) {
 }
 
 /**
- * This component shares many concepts with
- * [react-overlays](https://react-bootstrap.github.io/react-overlays/#portals)
- * But has been forked in order to fix some bugs, reduce the number of dependencies
- * and take the control of our destiny.
+ * Portals provide a first-class way to render children into a DOM node
+ * that exists outside the DOM hierarchy of the parent component.
  */
 class Portal extends React.Component {
   componentDidMount() {
-    this.setContainer(this.props.container);
-    this.forceUpdate(this.props.onRendered);
+    this.setMountNode(this.props.container);
+
+    // Only rerender if needed
+    if (!this.props.disablePortal) {
+      this.forceUpdate(this.props.onRendered);
+    }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.container !== this.props.container) {
-      this.setContainer(this.props.container);
-      this.forceUpdate();
+    if (
+      prevProps.container !== this.props.container ||
+      prevProps.disablePortal !== this.props.disablePortal
+    ) {
+      this.setMountNode(this.props.container);
+
+      // Only rerender if needed
+      if (!this.props.disablePortal) {
+        this.forceUpdate(this.props.onRendered);
+      }
     }
   }
 
@@ -36,7 +45,12 @@ class Portal extends React.Component {
     this.mountNode = null;
   }
 
-  setContainer(container) {
+  setMountNode(container) {
+    if (this.props.disablePortal) {
+      this.mountNode = ReactDOM.findDOMNode(this).parentElement;
+      return;
+    }
+
     this.mountNode = getContainer(container, getOwnerDocument(this).body);
   }
 
@@ -48,7 +62,11 @@ class Portal extends React.Component {
   };
 
   render() {
-    const { children } = this.props;
+    const { children, disablePortal } = this.props;
+
+    if (disablePortal) {
+      return children;
+    }
 
     return this.mountNode ? ReactDOM.createPortal(children, this.mountNode) : null;
   }
@@ -67,9 +85,18 @@ Portal.propTypes = {
    */
   container: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**
+   * Disable the portal behavior.
+   * The children stay within it's parent DOM hierarchy.
+   */
+  disablePortal: PropTypes.bool,
+  /**
    * Callback fired once the children has been mounted into the `container`.
    */
   onRendered: PropTypes.func,
+};
+
+Portal.defaultProps = {
+  disablePortal: false,
 };
 
 Portal.propTypes = exactProp(Portal.propTypes);

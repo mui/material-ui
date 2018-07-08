@@ -15,7 +15,7 @@ title: SpeedDialAction API
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object |   | Properties applied to the `Button` component. |
+| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object |   | Properties applied to the [`Button`](/api/button) component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Useful to extend the style applied to components. |
 | <span class="prop-name">delay</span> | <span class="prop-type">number | <span class="prop-default">0</span> | Adds a transition delay, to allow a series of SpeedDialActions to be animated. |
 | <span class="prop-name required">icon *</span> | <span class="prop-type">node |   | The Icon to display in the SpeedDial Floating Action Button. |

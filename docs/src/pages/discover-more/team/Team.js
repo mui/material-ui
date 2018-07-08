@@ -133,7 +133,7 @@ function Team(props) {
                   <div className={classes.controls}>
                     {member.github && (
                       <IconButton
-                        aria-label="github"
+                        aria-label="GitHub"
                         component="a"
                         href={`https://github.com/${member.github}`}
                         className={classes.icon}
@@ -143,7 +143,7 @@ function Team(props) {
                     )}
                     {member.twitter && (
                       <IconButton
-                        aria-label="twitter"
+                        aria-label="Twitter"
                         component="a"
                         href={`https://twitter.com/${member.twitter}`}
                         className={classes.icon}
