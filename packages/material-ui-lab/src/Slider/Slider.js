@@ -29,6 +29,52 @@ export const style = theme => {
   };
 
   return {
+    // /* Styles for native input implementation */
+    native: {
+      WebkitAppearance: 'none',
+      position: 'relative',
+      width: '100%',
+      margin: '10px 0',
+      padding: '6px 0',
+      background: 'transparent',
+      '&$disabled': {
+        cursor: 'no-drop',
+      },
+      '&$vertical': {
+        WebkitAppearance: 'slider-vertical', // WebKit
+        writingMode: 'gt-lr', // IE
+        height: '100%',
+        margin: '0 10px',
+        padding: '0 6px',
+      },
+      '&$reverse': {
+        transform: 'scaleX(-1)',
+      },
+      '&$vertical$reverse': {
+        transform: 'scaleY(-1)',
+      },
+      '&::-webkit-slider-thumb': {
+        WebkitAppearance: 'none',
+        zIndex: 2,
+        width: 12,
+        height: 12,
+        borderRadius: '50%',
+        transition: commonTransitions,
+        backgroundColor: colors.primary,
+      },
+      '&::-ms-thumb': {
+        // same as for webkit i guess
+      },
+      '&::-moz-range-thumb': {
+        // same as for webkit i guess
+      },
+      '&::-ms-track': {
+        background: 'transparent',
+      },
+      '&:focus': {
+        outline: 'none',
+      },
+    },
     // /* Styles for root node */
     root: {
       position: 'relative',
@@ -204,6 +250,14 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
   throw new Error('Material-UI: react@16.3.0 or greater is required.');
 }
 
+/**
+ * native implementation research:
+ * https://caniuse.com/#search=range matches https://material-ui.com/getting-started/supported-platforms/
+ * reverse: should be possible via css
+ * vertical: spec != browsersupport https://www.w3.org/TR/html5/sec-forms.html#range-state-typerange
+ * https://stackoverflow.com/questions/15935837/how-to-display-a-range-input-slider-vertically
+ * ticks via datalist https://caniuse.com/#search=datalist
+ */
 class Slider extends React.Component {
   state = { currentState: 'initial' };
 
@@ -286,6 +340,10 @@ class Slider extends React.Component {
     });
   };
 
+  handleChange = e => {
+    this.nativeEmitChange(e);
+  }
+
   handleTouchStart = event => {
     this.setState({ currentState: 'activated' });
 
@@ -330,6 +388,11 @@ class Slider extends React.Component {
 
     this.emitChange(event, value);
   };
+
+  nativeEmitChange(event) {
+    const { onChange } = this.props;
+    onChange(event, event.target.value);
+  }
 
   emitChange(event, rawValue, callback) {
     const { step, value: previousValue, onChange, disabled } = this.props;
@@ -398,6 +461,7 @@ class Slider extends React.Component {
       vertical,
       reverse,
       disabled,
+      step,
       ...other
     } = this.props;
 
@@ -411,6 +475,13 @@ class Slider extends React.Component {
     };
 
     const rootClasses = classNames(classes.root, {
+      [classes.vertical]: vertical,
+      [classes.reverse]: reverse,
+      [classes.disabled]: disabled,
+      classNameProp,
+    });
+
+    const nativeClasses = classNames(classes.native, {
       [classes.vertical]: vertical,
       [classes.reverse]: reverse,
       [classes.disabled]: disabled,
@@ -435,8 +506,9 @@ class Slider extends React.Component {
     const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
 
-    return (
+    return [
       <Component
+        key="custom"
         role="slider"
         className={rootClasses}
         aria-valuenow={value}
@@ -462,8 +534,24 @@ class Slider extends React.Component {
           onFocusVisible={this.handleFocus}
         />
         <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
-      </Component>
-    );
+      </Component>,
+      <input
+        key="native"
+        type="range"
+        className={nativeClasses}
+        aria-valuenow={value}
+        aria-valuemin={min}
+        aria-valuemax={max}
+        aria-orientation={vertical ? 'vertical' : 'horizontal'}
+        value={value}
+        min={min}
+        max={max}
+        step={step}
+        disabled={disabled}
+        orient={vertical ? 'vertical' : undefined /* Firefox */}
+        onChange={this.handleChange}
+      />,
+    ];
   }
 }
 
