@@ -3,9 +3,9 @@ import { StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
-export type SnackBarOrigin = {
-  horizontal?: 'left' | 'center' | 'right' | number;
-  vertical?: 'top' | 'center' | 'bottom' | number;
+export type SnackbarOrigin = {
+  horizontal: 'left' | 'center' | 'right' | number;
+  vertical: 'top' | 'center' | 'bottom' | number;
 };
 
 export interface SnackbarProps
@@ -14,7 +14,7 @@ export interface SnackbarProps
       SnackbarClassKey
     > {
   action?: React.ReactElement<any> | React.ReactElement<any>[];
-  anchorOrigin?: SnackBarOrigin;
+  anchorOrigin?: SnackbarOrigin;
   autoHideDuration?: number;
   ContentProps?: Partial<SnackbarContentProps>;
   disableWindowBlurListener?: boolean;
