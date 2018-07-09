@@ -130,11 +130,12 @@ function generatePropType(type) {
     }
 
     case 'shape':
-      return `{${Object.keys(type.value)
+      return `{ ${Object.keys(type.value)
         .map(subValue => {
-          return `${subValue}?: ${generatePropType(type.value[subValue])}`;
+          const subType = type.value[subValue];
+          return `${subValue}${subType.required ? '' : '?'}: ${generatePropType(subType)}`;
         })
-        .join(', ')}}`;
+        .join(', ')} }`;
 
     case 'union':
     case 'enum': {

@@ -25,7 +25,7 @@ when `variant="temporary"` is set.
 | <span class="prop-name">open</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the drawer is open. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">object |   | Properties applied to the [`Paper`](/api/paper) element. |
 | <span class="prop-name">SlideProps</span> | <span class="prop-type">object |   | Properties applied to the [`Slide`](/api/slide) element. |
-| <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'permanent'&nbsp;&#124;<br>&nbsp;'persistent'&nbsp;&#124;<br>&nbsp;'temporary'<br> | <span class="prop-default">'temporary'</span> | The variant of drawer. |
 
 Any other properties supplied will be spread to the root element (native element).

@@ -368,8 +368,9 @@ Popover.propTypes = {
     horizontal: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.oneOf(['left', 'center', 'right']),
-    ]),
-    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
+    ]).isRequired,
+    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])])
+      .isRequired,
   }),
   /**
    * This is the position that may be used
@@ -378,8 +379,8 @@ Popover.propTypes = {
    * the application's client area.
    */
   anchorPosition: PropTypes.shape({
-    left: PropTypes.number,
-    top: PropTypes.number,
+    left: PropTypes.number.isRequired,
+    top: PropTypes.number.isRequired,
   }),
   /*
    * This determines which anchor prop to refer to to set
@@ -473,8 +474,9 @@ Popover.propTypes = {
     horizontal: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.oneOf(['left', 'center', 'right']),
-    ]),
-    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
+    ]).isRequired,
+    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])])
+      .isRequired,
   }),
   /**
    * Transition component.

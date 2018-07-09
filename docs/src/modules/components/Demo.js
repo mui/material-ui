@@ -241,9 +241,11 @@ class Demo extends React.Component {
                 onClose={this.handleCloseMore}
                 getContentAnchorEl={null}
                 anchorOrigin={{
+                  vertical: 'top',
                   horizontal: 'right',
                 }}
                 transformOrigin={{
+                  vertical: 'top',
                   horizontal: 'right',
                 }}
               >
