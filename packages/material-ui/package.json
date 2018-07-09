@@ -44,6 +44,7 @@
     "deepmerge": "^2.0.1",
     "dom-helpers": "^3.2.1",
     "hoist-non-react-statics": "^2.5.0",
+    "is-plain-object": "^2.0.4",
     "jss": "^9.3.3",
     "jss-camel-case": "^6.0.0",
     "jss-default-unit": "^8.0.2",

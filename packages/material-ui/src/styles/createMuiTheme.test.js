@@ -77,6 +77,9 @@ describe('createMuiTheme', () => {
         MuiButtonBase: {
           disableRipple: true,
         },
+        MuiPopover: {
+          container: document.createElement('div'),
+        },
       };
       const muiTheme = createMuiTheme({ props });
       assert.deepEqual(muiTheme.props, props);
