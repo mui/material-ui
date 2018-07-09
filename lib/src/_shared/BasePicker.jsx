@@ -31,7 +31,7 @@ export const BasePickerHoc = compose(
     handleSetTodayDate: ({ changeDate, utils }) => () => changeDate(utils.date()),
     handleTextFieldChange: ({ changeDate, onChange }) => (date) => {
       if (date === null) {
-        this.handleClear();
+        onChange(null);
       } else {
         changeDate(date, () => onChange(date));
       }
