@@ -10,6 +10,7 @@ export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassK
   disableRipple?: boolean;
   fullWidth?: boolean;
   href?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top' | string;
   mini?: boolean;
   size?: 'small' | 'medium' | 'large';
   type?: string;
