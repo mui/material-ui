@@ -54,15 +54,13 @@ const theme3 = outerTheme => ({
 function Nested() {
   return (
     <MuiThemeProvider theme={theme1}>
-      <div>
+      <NestedCheckbox />
+      <MuiThemeProvider theme={theme2}>
         <NestedCheckbox />
-        <MuiThemeProvider theme={theme2}>
-          <NestedCheckbox />
-        </MuiThemeProvider>
-        <MuiThemeProvider theme={theme3}>
-          <NestedCheckbox />
-        </MuiThemeProvider>
-      </div>
+      </MuiThemeProvider>
+      <MuiThemeProvider theme={theme3}>
+        <NestedCheckbox />
+      </MuiThemeProvider>
     </MuiThemeProvider>
   );
 }

@@ -1,9 +1,11 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import blue from '@material-ui/core/colors/blue';
 import Switch from '@material-ui/core/Switch';
+
+const defaultTheme = createMuiTheme();
 
 class DynamicThemeNesting extends React.Component {
   state = {
@@ -29,21 +31,19 @@ class DynamicThemeNesting extends React.Component {
           label="Blue"
         />
         <MuiThemeProvider
-          theme={theme =>
+          theme={
             this.state.color === 'blue'
               ? {
-                  ...theme,
+                  ...defaultTheme,
                   palette: {
-                    ...theme.palette,
+                    ...defaultTheme.palette,
                     secondary: {
-                      light: blue[300],
                       main: blue[500],
-                      dark: blue[700],
                       contrastText: '#fff',
                     },
                   },
                 }
-              : theme
+              : defaultTheme
           }
         >
           <Button variant="raised" color="secondary">
