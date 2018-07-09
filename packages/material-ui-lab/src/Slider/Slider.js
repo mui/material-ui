@@ -1,10 +1,7 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
-import keycode from 'keycode';
 import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import clamp from '../utils/clamp';
 
@@ -31,6 +28,7 @@ export const style = theme => {
   return {
     // /* Styles for native input implementation */
     native: {
+      zIndex: 10,
       WebkitAppearance: 'none',
       position: 'relative',
       width: '100%',
@@ -55,21 +53,8 @@ export const style = theme => {
       },
       '&::-webkit-slider-thumb': {
         WebkitAppearance: 'none',
-        zIndex: 2,
         width: 12,
         height: 12,
-        borderRadius: '50%',
-        transition: commonTransitions,
-        backgroundColor: colors.primary,
-      },
-      '&::-ms-thumb': {
-        // same as for webkit i guess
-      },
-      '&::-moz-range-thumb': {
-        // same as for webkit i guess
-      },
-      '&::-ms-track': {
-        background: 'transparent',
       },
       '&:focus': {
         outline: 'none',
@@ -141,6 +126,8 @@ export const style = theme => {
     /* Thumb styles  */
     thumb: {
       position: 'absolute',
+      top: '50%',
+      left: '50%',
       zIndex: 2,
       transform: 'translate(-50%, -50%)',
       width: 12,
@@ -189,62 +176,6 @@ export const style = theme => {
   };
 };
 
-function addEventListener(node, event, handler, capture) {
-  node.addEventListener(event, handler, capture);
-  return {
-    remove: function remove() {
-      node.removeEventListener(event, handler, capture);
-    },
-  };
-}
-
-function percentToValue(percent, min, max) {
-  return ((max - min) * percent) / 100 + min;
-}
-
-function roundToStep(number, step) {
-  return Math.round(number / step) * step;
-}
-
-function getOffset(node) {
-  const { pageYOffset, pageXOffset } = global;
-  const { left, top } = node.getBoundingClientRect();
-
-  return {
-    top: top + pageYOffset,
-    left: left + pageXOffset,
-  };
-}
-
-function getMousePosition(event) {
-  if (event.changedTouches && event.changedTouches[0]) {
-    return {
-      x: event.changedTouches[0].pageX,
-      y: event.changedTouches[0].pageY,
-    };
-  }
-
-  return {
-    x: event.pageX,
-    y: event.pageY,
-  };
-}
-
-function calculatePercent(node, event, isVertical, isReverted) {
-  const { width, height } = node.getBoundingClientRect();
-  const { top, left } = getOffset(node);
-  const { x, y } = getMousePosition(event);
-
-  const value = isVertical ? y - top : x - left;
-  const onePercent = (isVertical ? height : width) / 100;
-
-  return isReverted ? 100 - clamp(value / onePercent) : clamp(value / onePercent);
-}
-
-function preventPageScrolling(event) {
-  event.preventDefault();
-}
-
 /* istanbul ignore if */
 if (process.env.NODE_ENV !== 'production' && !React.createContext) {
   throw new Error('Material-UI: react@16.3.0 or greater is required.');
@@ -261,16 +192,6 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 class Slider extends React.Component {
   state = { currentState: 'initial' };
 
-  componentDidMount() {
-    if (this.container) {
-      this.container.addEventListener('touchstart', preventPageScrolling, { passive: false });
-    }
-  }
-
-  componentWillUnmount() {
-    this.container.removeEventListener('touchstart', preventPageScrolling, { passive: false });
-  }
-
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.disabled) {
       return { currentState: 'disabled' };
@@ -283,45 +204,6 @@ class Slider extends React.Component {
     return null;
   }
 
-  handleKeyDown = event => {
-    const { min, max, value: currentValue } = this.props;
-
-    const onePercent = Math.abs((max - min) / 100);
-    const step = this.props.step || onePercent;
-    let value;
-
-    switch (keycode(event)) {
-      case 'home':
-        value = min;
-        break;
-      case 'end':
-        value = max;
-        break;
-      case 'page up':
-        value = currentValue + onePercent * 10;
-        break;
-      case 'page down':
-        value = currentValue - onePercent * 10;
-        break;
-      case 'right':
-      case 'up':
-        value = currentValue + step;
-        break;
-      case 'left':
-      case 'down':
-        value = currentValue - step;
-        break;
-      default:
-        return;
-    }
-
-    event.preventDefault();
-
-    value = clamp(value, min, max);
-
-    this.emitChange(event, value);
-  };
-
   handleFocus = () => {
     this.setState({ currentState: 'focused' });
   };
@@ -330,91 +212,9 @@ class Slider extends React.Component {
     this.setState({ currentState: 'normal' });
   };
 
-  handleClick = event => {
-    const { min, max, vertical, reverse } = this.props;
-    const percent = calculatePercent(this.container, event, vertical, reverse);
-    const value = percentToValue(percent, min, max);
-
-    this.emitChange(event, value, () => {
-      this.playJumpAnimation();
-    });
-  };
-
-  handleChange = e => {
-    this.nativeEmitChange(e);
-  }
-
-  handleTouchStart = event => {
-    this.setState({ currentState: 'activated' });
-
-    this.globalMouseUpListener = addEventListener(document, 'touchend', this.handleMouseUp);
-
-    if (typeof this.props.onDragStart === 'function') {
-      this.props.onDragStart(event);
-    }
-  };
-
-  handleMouseDown = event => {
-    this.setState({ currentState: 'activated' });
-
-    this.globalMouseUpListener = addEventListener(document, 'mouseup', this.handleMouseUp);
-    this.globalMouseMoveListener = addEventListener(document, 'mousemove', this.handleMouseMove);
-
-    if (typeof this.props.onDragStart === 'function') {
-      this.props.onDragStart(event);
-    }
-  };
-
-  handleMouseUp = event => {
-    this.setState({ currentState: 'normal' });
-
-    if (this.globalMouseUpListener) {
-      this.globalMouseUpListener.remove();
-    }
-
-    if (this.globalMouseMoveListener) {
-      this.globalMouseMoveListener.remove();
-    }
-
-    if (typeof this.props.onDragEnd === 'function') {
-      this.props.onDragEnd(event);
-    }
-  };
-
-  handleMouseMove = event => {
-    const { min, max, vertical, reverse } = this.props;
-    const percent = calculatePercent(this.container, event, vertical, reverse);
-    const value = percentToValue(percent, min, max);
-
-    this.emitChange(event, value);
-  };
-
-  nativeEmitChange(event) {
+  handleChange = event => {
     const { onChange } = this.props;
     onChange(event, event.target.value);
-  }
-
-  emitChange(event, rawValue, callback) {
-    const { step, value: previousValue, onChange, disabled } = this.props;
-    let value = rawValue;
-
-    if (disabled) {
-      return;
-    }
-
-    if (step) {
-      value = roundToStep(rawValue, step);
-    } else {
-      value = Number(rawValue.toFixed(3));
-    }
-
-    if (typeof onChange === 'function' && value !== previousValue) {
-      onChange(event, value);
-
-      if (typeof callback === 'function') {
-        callback();
-      }
-    }
   }
 
   calculateTrackAfterStyles(percent) {
@@ -506,52 +306,30 @@ class Slider extends React.Component {
     const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
 
-    return [
-      <Component
-        key="custom"
-        role="slider"
-        className={rootClasses}
-        aria-valuenow={value}
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-orientation={vertical ? 'vertical' : 'horizontal'}
-        onClick={this.handleClick}
-        ref={node => {
-          this.container = findDOMNode(node);
-        }}
-        {...other}
-      >
+    return (
+      <Component className={rootClasses}>
         <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
-        <ButtonBase
-          className={thumbClasses}
-          disableRipple
-          style={inlineThumbStyles}
+        <input
+          type="range"
+          className={nativeClasses}
+          aria-valuenow={value}
+          aria-valuemin={min}
+          aria-valuemax={max}
+          aria-orientation={vertical ? 'vertical' : 'horizontal'}
+          value={value}
+          min={min}
+          max={max}
+          step={step}
+          disabled={disabled}
+          orient={vertical ? 'vertical' : undefined /* Firefox */}
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
           onBlur={this.handleBlur}
-          onKeyDown={this.handleKeyDown}
-          onMouseDown={this.handleMouseDown}
-          onTouchStartCapture={this.handleTouchStart}
-          onTouchMove={this.handleMouseMove}
-          onFocusVisible={this.handleFocus}
         />
+        <div className={thumbClasses} style={inlineThumbStyles} />
         <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
-      </Component>,
-      <input
-        key="native"
-        type="range"
-        className={nativeClasses}
-        aria-valuenow={value}
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-orientation={vertical ? 'vertical' : 'horizontal'}
-        value={value}
-        min={min}
-        max={max}
-        step={step}
-        disabled={disabled}
-        orient={vertical ? 'vertical' : undefined /* Firefox */}
-        onChange={this.handleChange}
-      />,
-    ];
+      </Component>
+    );
   }
 }
 
