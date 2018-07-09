@@ -77,7 +77,6 @@ class MuiThemeProvider extends React.Component {
           'Material-UI: you are providing a theme function property ' +
             'to the MuiThemeProvider component:',
           '<MuiThemeProvider theme={outerTheme => outerTheme} />',
-          '',
           'However, no outer theme is present.',
           'Make sure a theme is already injected higher in the React tree ' +
             'or provide a theme object.',
