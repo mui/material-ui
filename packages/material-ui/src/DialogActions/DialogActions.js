@@ -15,7 +15,6 @@ export const styles = {
   },
   action: {
     margin: '0 4px',
-    minWidth: 64,
   },
 };
 
