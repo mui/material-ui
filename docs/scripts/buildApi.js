@@ -104,14 +104,14 @@ function buildDocs(options) {
     throw err;
   }
 
-  // if (reactAPI.name !== 'Select') {
-  //   return;
-  // }
-
   reactAPI.name = path.parse(componentObject.filename).name;
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
+
+  // if (reactAPI.name !== 'Snackbar') {
+  //   return;
+  // }
 
   // Relative location in the file system.
   reactAPI.filename = componentObject.filename.replace(rootDirectory, '');

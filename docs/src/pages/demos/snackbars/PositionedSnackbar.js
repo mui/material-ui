@@ -5,8 +5,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 class PositionedSnackbar extends React.Component {
   state = {
     open: false,
-    vertical: null,
-    horizontal: null,
+    vertical: 'top',
+    horizontal: 'center',
   };
 
   handleClick = state => () => {

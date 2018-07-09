@@ -278,8 +278,9 @@ Snackbar.propTypes = {
     horizontal: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.oneOf(['left', 'center', 'right']),
-    ]),
-    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])]),
+    ]).isRequired,
+    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])])
+      .isRequired,
   }),
   /**
    * The number of milliseconds to wait before automatically calling the
