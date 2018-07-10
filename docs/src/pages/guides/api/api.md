@@ -101,7 +101,7 @@ however, the `open` / `onClose` / `onOpen` combination is used for display relat
 
 ### boolean vs enum
 
-There are a couple of way to the variants of a component: with a *boolean*; or with an *enum*.
+There are two options to design the API for the variations of a component: with a *boolean*; or with an *enum*.
 For example, let's take a button that has different types. Each option has its pros and cons:
 
 - Option 1 *boolean*:

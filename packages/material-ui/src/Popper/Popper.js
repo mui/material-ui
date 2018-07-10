@@ -28,6 +28,9 @@ function getAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
+/**
+ * Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
+ */
 class Popper extends React.Component {
   popper = null;
 
