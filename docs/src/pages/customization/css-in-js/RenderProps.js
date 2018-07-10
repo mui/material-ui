@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 function createStyled(styles, options) {
   function Styled(props) {
     const { children, ...other } = props;
-    return props.children(other);
+    return children(other);
   }
   Styled.propTypes = {
     children: PropTypes.func.isRequired,
