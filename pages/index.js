@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import withRoot from 'docs/src/modules/components/withRoot';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
+import Tidelift from 'docs/src/modules/components/Tidelift';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
 import Link from 'docs/src/modules/components/Link';
@@ -106,6 +107,7 @@ class HomePage extends React.Component {
           }}
         />
         <Head />
+        <Tidelift />
         <div className={classes.hero}>
           <div className={classes.content}>
             <img
