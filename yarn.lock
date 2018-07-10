@@ -4337,6 +4337,9 @@ eslint-plugin-jsx-a11y@6.0.3:
     emoji-regex "^6.1.0"
     jsx-ast-utils "^2.0.0"
 
+"eslint-plugin-material-ui@file:packages/eslint-plugin-material-ui":
+  version "1.0.0-beta.35"
+
 eslint-plugin-mocha@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-mocha/-/eslint-plugin-mocha-5.0.0.tgz#43946a7ecaf39039eb3ee20635ebd4cc19baf6dd"
