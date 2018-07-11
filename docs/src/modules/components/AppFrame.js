@@ -18,6 +18,7 @@ import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
+import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
@@ -150,8 +151,9 @@ class AppFrame extends React.Component {
             <Tooltip title="Edit docs colors" enterDelay={300}>
               <IconButton
                 color="inherit"
-                href="/style/color/#color-tool"
                 aria-labelledby="appbar-color"
+                component={Link}
+                href="/style/color#color-tool"
               >
                 <ColorsIcon />
               </IconButton>

@@ -17,7 +17,6 @@ const styles = theme => ({
   },
   appFrame: {
     position: 'relative',
-    width: 260,
     height: 360,
     backgroundColor: theme.palette.background.paper,
   },
@@ -30,7 +29,7 @@ const styles = theme => ({
     marginRight: 20,
   },
   code: {
-    marginTop: 8,
+    marginTop: theme.spacing.unit,
     '& pre': {
       margin: '0px !important',
     },
@@ -44,31 +43,27 @@ const styles = theme => ({
 
 function ColorDemo(props) {
   const { classes, data, theme } = props;
-  const primary = { main: data.primary };
-  const secondary = { main: data.secondary };
+  const primary = {
+    main: data.primary,
+    output:
+      data.primaryShade === 4
+        ? `${data.primaryHue}`
+        : `{
+      main: '${data.primary}',
+    }`,
+  };
+  const secondary = {
+    main: data.secondary,
+    output:
+      data.secondaryShade === 11
+        ? `${data.secondaryHue}`
+        : `{
+      main: '${data.secondary}',
+    }`,
+  };
 
   theme.palette.augmentColor(primary);
   theme.palette.augmentColor(secondary);
-
-  primary.output =
-    data.primaryShade === 4
-      ? `${data.primaryHue}`
-      : `{ 
-      main: '${primary.main}',
-    }`;
-  secondary.output =
-    data.secondaryShade === 11
-      ? `${data.secondaryHue}`
-      : `{ 
-      main: '${secondary.main}',
-    }`;
-
-  const raw = `{
-  palette: {
-    primary: ${primary.output},
-    secondary: ${secondary.output},
-  },
-}`;
 
   return (
     <div className={classes.root}>
@@ -84,7 +79,18 @@ function ColorDemo(props) {
             </Typography>
           </Toolbar>
         </AppBar>
-        <MarkdownElement dir="ltr" className={classes.code} text={`\`\`\`jsx\n${raw}\n\`\`\``} />
+        <MarkdownElement
+          dir="ltr"
+          className={classes.code}
+          text={`\`\`\`jsx
+{
+  palette: {
+    primary: ${primary.output},
+    secondary: ${secondary.output},
+  },
+}
+\`\`\``}
+        />
         <Button variant="fab" className={classes.fab} style={{ backgroundColor: secondary.main }}>
           <AddIcon nativeColor={secondary.contrastText} />
         </Button>

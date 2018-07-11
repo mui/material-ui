@@ -21,17 +21,13 @@ const hues = Object.keys(colors).slice(1, 17);
 const shades = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 'A700', 'A400', 'A200', 'A100'];
 
 const styles = theme => ({
-  root: {
-    display: 'flex',
-    width: '100%',
-  },
   radio: {
-    width: 47,
-    height: 47,
+    width: 48,
+    height: 48,
   },
   radioSelected: {
-    width: 47,
-    height: 47,
+    width: 48,
+    height: 48,
     border: '1px solid white',
     color: theme.palette.common.white,
     display: 'flex',
@@ -40,38 +36,22 @@ const styles = theme => ({
   },
   sliderContainer: {
     display: 'flex',
-    justifyContent: 'space-between',
-    width: 192,
-    marginTop: 16,
+    alignItems: 'center',
+    marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit,
   },
-  sliderTypography: {
-    marginTop: 5,
-  },
-  swatch: {
-    width: 192,
-    backgroundColor: theme.palette.common.white,
+  slider: {
+    width: 'calc(100% - 80px)',
   },
   colorBar: {
-    marginTop: 16,
+    marginTop: theme.spacing.unit * 2,
   },
   colorSquare: {
     width: 64,
     height: 64,
-    border: '1px solid white',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  input: {
-    marginTop: theme.spacing.unit,
-    width: 192,
-  },
-  demoContainer: {
-    width: 260,
-  },
-  button: {
-    marginTop: 24,
   },
 });
 
@@ -110,8 +90,8 @@ class ColorTool extends React.Component {
       target: { value: hue },
     } = event;
 
-    this.setState(currentState => {
-      const color = colors[hue][shades[currentState[`${name}Shade`]]];
+    this.setState(state => {
+      const color = colors[hue][shades[state[`${name}Shade`]]];
       return {
         [`${name}Hue`]: hue,
         [name]: color,
@@ -121,8 +101,8 @@ class ColorTool extends React.Component {
   };
 
   handleChangeShade = name => (event, shade) => {
-    this.setState(currentState => {
-      const color = colors[currentState[`${name}Hue`]][shades[shade]];
+    this.setState(state => {
+      const color = colors[state[`${name}Hue`]][shades[shade]];
       return {
         [`${name}Shade`]: shade,
         [name]: color,
@@ -147,32 +127,25 @@ class ColorTool extends React.Component {
     const { classes, theme } = this.props;
     const { primaryShade, secondaryShade } = this.state;
 
-    const {
-      palette: { getContrastText },
-    } = theme;
-
     const colorTile = (hue, colorIntent) => {
       const shade = colorIntent === 'primary' ? shades[primaryShade] : shades[secondaryShade];
       const backgroundColor = colors[hue][shade];
 
-      const icon = <div className={classes.radio} style={{ backgroundColor }} />;
-
-      const checkedIcon = (
-        <div className={classes.radioSelected} style={{ backgroundColor }}>
-          <CheckIcon style={{ fontSize: 30 }} />
-        </div>
-      );
-
       return (
-        <Tooltip placement="right-start" id={`tooltip-${colorIntent}-${hue}`} title={hue} key={hue}>
+        <Tooltip placement="right" id={`tooltip-${colorIntent}-${hue}`} title={hue} key={hue}>
           <Radio
+            color="default"
             checked={this.state[colorIntent] === backgroundColor}
             onChange={this.handleChangeHue(colorIntent)}
             value={hue}
             name={colorIntent}
             aria-labelledby={`tooltip-${colorIntent}-${hue}`}
-            icon={icon}
-            checkedIcon={checkedIcon}
+            icon={<div className={classes.radio} style={{ backgroundColor }} />}
+            checkedIcon={
+              <div className={classes.radioSelected} style={{ backgroundColor }}>
+                <CheckIcon style={{ fontSize: 30 }} />
+              </div>
+            }
           />
         </Tooltip>
       );
@@ -184,17 +157,18 @@ class ColorTool extends React.Component {
       const background = { main: color };
       theme.palette.augmentColor(background);
 
-      const keys = ['dark', 'main', 'light'];
-
       return (
         <Grid container className={classes.colorBar}>
-          {keys.map(key => (
+          {['dark', 'main', 'light'].map(key => (
             <div
               className={classes.colorSquare}
               style={{ backgroundColor: background[key] }}
               key={key}
             >
-              <Typography variant="caption" style={{ color: getContrastText(background[key]) }}>
+              <Typography
+                variant="caption"
+                style={{ color: theme.palette.getContrastText(background[key]) }}
+              >
                 {rgbToHex(background[key])}
               </Typography>
             </div>
@@ -209,8 +183,10 @@ class ColorTool extends React.Component {
       const color = this.state[`${intent}`];
 
       return (
-        <Grid item xs={12} md={4}>
-          <Typography variant="title">{capitalize(intent)}</Typography>
+        <Grid item xs={12} sm={6} md={4}>
+          <Typography gutterBottom variant="title">
+            {capitalize(intent)}
+          </Typography>
           <Input
             id={intent}
             value={intentInput}
@@ -218,13 +194,12 @@ class ColorTool extends React.Component {
             inputProps={{
               'aria-label': `${capitalize(intent)} color`,
             }}
-            className={classes.input}
+            fullWidth
           />
           <div className={classes.sliderContainer}>
-            <Typography className={classes.sliderTypography} id={`${intent}ShadeSliderLabel`}>
-              Shade:
-            </Typography>
+            <Typography id={`${intent}ShadeSliderLabel`}>Shade:</Typography>
             <Slider
+              className={classes.slider}
               value={intentShade}
               min={0}
               max={13}
@@ -232,35 +207,25 @@ class ColorTool extends React.Component {
               onChange={this.handleChangeShade(intent)}
               aria-labelledby={`${intent}ShadeSliderLabel`}
             />
-            <Typography className={classes.sliderTypography}>{shades[intentShade]}</Typography>
+            <Typography>{shades[intentShade]}</Typography>
           </div>
-          <div className={classes.swatch}>{colorSwatch(intent)}</div>
+          <div>{colorSwatch(intent)}</div>
           {colorBar(color)}
         </Grid>
       );
     };
 
     return (
-      <Grid container spacing={24} className={classes.root}>
+      <Grid container spacing={40} className={classes.root}>
         {colorPicker('primary')}
         {colorPicker('secondary')}
-        <Grid item xs={12} md={4}>
-          <Grid
-            container
-            direction="column"
-            alignItems="flex-end"
-            className={classes.demoContainer}
-          >
-            <ColorDemo data={this.state} />
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              onClick={this.handleChangeDocsColors}
-            >
-              Set Docs Colors
-            </Button>
-          </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <ColorDemo data={this.state} />
+        </Grid>
+        <Grid item xs={12}>
+          <Button variant="contained" color="primary" onClick={this.handleChangeDocsColors}>
+            Set Docs Colors
+          </Button>
         </Grid>
       </Grid>
     );
