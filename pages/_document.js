@@ -28,12 +28,6 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          {/*
-            Preconnect allows the browser to setup early connections before an HTTP request
-            is actually sent to the server.
-            This includes DNS lookups, TLS negotiations, TCP handshakes.
-          */}
-          <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="true" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
             name="viewport"
@@ -55,6 +49,12 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
+          {/*
+            Preconnect allows the browser to setup early connections before an HTTP request
+            is actually sent to the server.
+            This includes DNS lookups, TLS negotiations, TCP handshakes.
+          */}
+          <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="true" />
           <style id="insertion-point-jss" />
         </Head>
         <body>
