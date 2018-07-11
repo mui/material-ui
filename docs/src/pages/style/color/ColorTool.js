@@ -34,6 +34,9 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  swatch: {
+    width: 192,
+  },
   sliderContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -127,32 +130,6 @@ class ColorTool extends React.Component {
     const { classes, theme } = this.props;
     const { primaryShade, secondaryShade } = this.state;
 
-    const colorTile = (hue, colorIntent) => {
-      const shade = colorIntent === 'primary' ? shades[primaryShade] : shades[secondaryShade];
-      const backgroundColor = colors[hue][shade];
-
-      return (
-        <Tooltip placement="right" id={`tooltip-${colorIntent}-${hue}`} title={hue} key={hue}>
-          <Radio
-            color="default"
-            checked={this.state[colorIntent] === backgroundColor}
-            onChange={this.handleChangeHue(colorIntent)}
-            value={hue}
-            name={colorIntent}
-            aria-labelledby={`tooltip-${colorIntent}-${hue}`}
-            icon={<div className={classes.radio} style={{ backgroundColor }} />}
-            checkedIcon={
-              <div className={classes.radioSelected} style={{ backgroundColor }}>
-                <CheckIcon style={{ fontSize: 30 }} />
-              </div>
-            }
-          />
-        </Tooltip>
-      );
-    };
-
-    const colorSwatch = value => hues.map(hue => colorTile(hue, value));
-
     const colorBar = color => {
       const background = { main: color };
       theme.palette.augmentColor(background);
@@ -209,7 +186,31 @@ class ColorTool extends React.Component {
             />
             <Typography>{shades[intentShade]}</Typography>
           </div>
-          <div>{colorSwatch(intent)}</div>
+          <div className={classes.swatch}>
+            {hues.map(hue => {
+              const shade = intent === 'primary' ? shades[primaryShade] : shades[secondaryShade];
+              const backgroundColor = colors[hue][shade];
+
+              return (
+                <Tooltip placement="right" title={hue} key={hue}>
+                  <Radio
+                    color="default"
+                    checked={this.state[intent] === backgroundColor}
+                    onChange={this.handleChangeHue(intent)}
+                    value={hue}
+                    name={intent}
+                    aria-labelledby={`tooltip-${intent}-${hue}`}
+                    icon={<div className={classes.radio} style={{ backgroundColor }} />}
+                    checkedIcon={
+                      <div className={classes.radioSelected} style={{ backgroundColor }}>
+                        <CheckIcon style={{ fontSize: 30 }} />
+                      </div>
+                    }
+                  />
+                </Tooltip>
+              );
+            })}
+          </div>
           {colorBar(color)}
         </Grid>
       );

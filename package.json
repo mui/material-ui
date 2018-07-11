@@ -84,6 +84,7 @@
     "clean-css": "^4.1.11",
     "clipboard-copy": "^2.0.0",
     "cross-env": "^5.1.1",
+    "css-loader": "^1.0.0",
     "doctrine": "^2.0.0",
     "downshift": "^2.0.0",
     "enzyme": "^3.2.0",
