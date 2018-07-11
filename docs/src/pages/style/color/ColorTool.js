@@ -41,7 +41,7 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'spece-between',
     width: 192,
-    marginTop: theme.spacing.unit * 2,
+    marginTop: 16,
     marginBottom: theme.spacing.unit,
   },
   sliderTypography: {
@@ -52,7 +52,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.common.white,
   },
   colorBar: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: 16,
   },
   colorSquare: {
     width: 64,

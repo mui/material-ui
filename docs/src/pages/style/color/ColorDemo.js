@@ -30,7 +30,10 @@ const styles = theme => ({
     marginRight: 20,
   },
   code: {
-    marginTop: -32,
+    marginTop: 8,
+    '& pre': {
+      margin: '0px !important',
+    },
   },
   fab: {
     position: 'absolute',
@@ -60,8 +63,7 @@ function ColorDemo(props) {
       main: '${secondary.main}',
     }`;
 
-  const raw = `
-{
+  const raw = `{
   palette: {
     primary: ${primary.output},
     secondary: ${secondary.output},
