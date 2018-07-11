@@ -40,7 +40,7 @@ const styles = theme => ({
   },
   sliderContainer: {
     display: 'flex',
-    justifyContent: 'spece-between',
+    justifyContent: 'space-between',
     width: 192,
     marginTop: 16,
     marginBottom: theme.spacing.unit,
@@ -66,6 +66,9 @@ const styles = theme => ({
   input: {
     marginTop: theme.spacing.unit,
     width: 192,
+  },
+  demoContainer: {
+    width: 260,
   },
   button: {
     marginTop: 24,
@@ -242,7 +245,12 @@ class ColorTool extends React.Component {
         {colorPicker('primary')}
         {colorPicker('secondary')}
         <Grid item xs={12} md={4}>
-          <Grid container direction="column" alignItems="flex-end">
+          <Grid
+            container
+            direction="column"
+            alignItems="flex-end"
+            className={classes.demoContainer}
+          >
             <ColorDemo data={this.state} />
             <Button
               variant="contained"
