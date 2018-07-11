@@ -159,18 +159,17 @@ class AnchorPlayground extends React.Component {
 <Popper
   placement="${placement}"
   disablePortal={${disablePortal}}
-  popperOptions={{
-    modifiers: {
-      flip: {
-        enabled: ${flip},
-      },
-      preventOverflow: {
-        enabled: ${preventOverflow !== 'disabled'},
-        boundariesElement: '${preventOverflow === 'disabled' ? 'scrollParent' : preventOverflow}',
-      },
-      arrow: {
-        enabled: ${arrow},
-      },
+  modifiers={{
+    flip: {
+      enabled: ${flip},
+    },
+    preventOverflow: {
+      enabled: ${preventOverflow !== 'disabled'},
+      boundariesElement: '${preventOverflow === 'disabled' ? 'scrollParent' : preventOverflow}',
+    },
+    arrow: {
+      enabled: ${arrow},
+      element: arrowRef,
     },
   }}
 >
@@ -202,20 +201,18 @@ class AnchorPlayground extends React.Component {
                   placement={placement}
                   disablePortal={disablePortal}
                   className={classes.popper}
-                  popperOptions={{
-                    modifiers: {
-                      flip: {
-                        enabled: flip,
-                      },
-                      arrow: {
-                        enabled: arrow,
-                        element: arrowRef,
-                      },
-                      preventOverflow: {
-                        enabled: preventOverflow !== 'disabled',
-                        boundariesElement:
-                          preventOverflow === 'disabled' ? 'scrollParent' : preventOverflow,
-                      },
+                  modifiers={{
+                    flip: {
+                      enabled: flip,
+                    },
+                    arrow: {
+                      enabled: arrow,
+                      element: arrowRef,
+                    },
+                    preventOverflow: {
+                      enabled: preventOverflow !== 'disabled',
+                      boundariesElement:
+                        preventOverflow === 'disabled' ? 'scrollParent' : preventOverflow,
                     },
                   }}
                 >
