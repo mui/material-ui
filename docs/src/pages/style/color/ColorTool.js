@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import Slider from '@material-ui/lab/Slider';
+import { rgbToHex } from '@material-ui/core/styles/colorManipulator';
 import actionTypes from 'docs/src/modules/redux/actionTypes';
 import ColorDemo from './ColorDemo';
 
@@ -57,6 +58,9 @@ const styles = theme => ({
     width: 64,
     height: 64,
     border: '1px solid white',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   input: {
     marginTop: theme.spacing.unit,
@@ -146,6 +150,10 @@ class ColorTool extends React.Component {
       secondaryShade,
     } = this.state;
 
+    const {
+      palette: { getContrastText },
+    } = theme;
+
     const colorTile = (hue, colorIntent) => {
       const shade = colorIntent === 'primary' ? shades[primaryShade] : shades[secondaryShade];
       const backgroundColor = colors[hue][shade];
@@ -179,11 +187,21 @@ class ColorTool extends React.Component {
       const background = { main: color };
       theme.palette.augmentColor(background);
 
+      const keys = ['dark', 'main', 'light'];
+
       return (
         <Grid container className={classes.colorBar}>
-          <div className={classes.colorSquare} style={{ backgroundColor: background.dark }} />
-          <div className={classes.colorSquare} style={{ backgroundColor: background.main }} />
-          <div className={classes.colorSquare} style={{ backgroundColor: background.light }} />
+          {keys.map(key => (
+            <div
+              className={classes.colorSquare}
+              style={{ backgroundColor: background[key] }}
+              key={key}
+            >
+              <Typography variant="caption" style={{ color: getContrastText(background[key]) }}>
+                {rgbToHex(background[key])}
+              </Typography>
+            </div>
+          ))}
         </Grid>
       );
     };

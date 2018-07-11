@@ -39,7 +39,7 @@ const styles = theme => ({
   },
 });
 
-const ColorDemo = props => {
+function ColorDemo(props) {
   const { classes, data, theme } = props;
   const primary = { main: data.primary };
   const secondary = { main: data.secondary };
@@ -89,7 +89,7 @@ const ColorDemo = props => {
       </div>
     </div>
   );
-};
+}
 
 ColorDemo.propTypes = {
   classes: PropTypes.object.isRequired,
