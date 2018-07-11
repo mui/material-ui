@@ -122,6 +122,7 @@ async function worker({ svgPath, options, renameFilter, template }) {
     .replace(/xlink:href="#a"/g, '')
     .replace(/xlink:href="#c"/g, '')
     .replace(/xlink:href="#SVGID_[\d]*_"/g, '')
+    .replace(/fill="#010101" /g, '')
     .replace(/fill-opacity=/g, 'fillOpacity=')
     .replace(/<path[^>]*0h24[^>]*>/g, '')
     .replace(/<path[^>]*0H24[^>]*>/g, '')
