@@ -17,7 +17,7 @@ const styles = theme => ({
   },
   appFrame: {
     position: 'relative',
-    height: 360,
+    height: 390,
     backgroundColor: theme.palette.background.paper,
   },
   statusBar: {
