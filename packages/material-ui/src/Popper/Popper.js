@@ -52,6 +52,7 @@ class Popper extends React.Component {
     if (
       prevProps.anchorEl !== this.props.anchorEl ||
       prevProps.popperOptions !== this.props.popperOptions ||
+      prevProps.modifiers !== this.props.modifiers ||
       prevProps.disablePortal !== this.props.disablePortal ||
       prevProps.placement !== this.props.placement
     ) {
@@ -81,7 +82,15 @@ class Popper extends React.Component {
   }
 
   handleRendered = () => {
-    const { anchorEl, open, placement, popperOptions = {}, theme, disablePortal } = this.props;
+    const {
+      anchorEl,
+      modifiers,
+      open,
+      placement,
+      popperOptions = {},
+      theme,
+      disablePortal,
+    } = this.props;
     const popperNode = ReactDOM.findDOMNode(this);
 
     if (this.popper) {
@@ -105,6 +114,7 @@ class Popper extends React.Component {
                 boundariesElement: 'viewport',
               },
             }),
+        ...modifiers,
         ...popperOptions.modifiers,
       },
       // We could have been using a custom modifier like react-popper is doing.
@@ -193,7 +203,7 @@ Popper.propTypes = {
   /**
    * Popper render function or node.
    */
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   /**
    * A node, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
@@ -212,6 +222,16 @@ Popper.propTypes = {
    * when you want to maximize the responsiveness of the Popper.
    */
   keepMounted: PropTypes.bool,
+  /**
+   * Popper.js is based on a "plugin-like" architecture,
+   * most of its features are fully encapsulated "modifiers".
+   *
+   * A modifier is a function that is called each time Popper.js needs to
+   * compute the position of the popper.
+   * For this reason, modifiers should be very performant to avoid bottlenecks.
+   * To learn how to create a modifier, [read the modifiers documentation](https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md#modifiers--object).
+   */
+  modifiers: PropTypes.object,
   /**
    * If `true`, the popper is visible.
    */
