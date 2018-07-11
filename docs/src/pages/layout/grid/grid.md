@@ -27,15 +27,21 @@ Spacing can be 8, 16, 24, 32 or 40dp wide.
 
 {{"demo": "pages/layout/grid/SpacingGrid.js"}}
 
-## Full-width vs Centered
+## Fluid grids
 
-**Full-width grids**: use fluid columns and breakpoints to determine when a layout needs to change.
+Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
 
-{{"demo": "pages/layout/grid/FullWidthGrid.js"}}
+### Basic grid
 
-**Centered grids**: use fixed columns and re-flow the layout when all columns (plus a defined margin) no longer fit on the screen.
+The column widths apply at all breakpoints (i.e. `xs` and up).
 
 {{"demo": "pages/layout/grid/CenteredGrid.js"}}
+
+### Grid with breakpoints
+
+Some columns have multiple widths defined, causing the layout to change at the defined breakpoint.
+
+{{"demo": "pages/layout/grid/FullWidthGrid.js"}}
 
 ## Interactive
 
