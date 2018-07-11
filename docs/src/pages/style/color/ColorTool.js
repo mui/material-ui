@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import Slider from '@material-ui/lab/Slider';
 import { rgbToHex } from '@material-ui/core/styles/colorManipulator';
+import { capitalize } from '@material-ui/core/utils/helpers';
 import actionTypes from 'docs/src/modules/redux/actionTypes';
 import ColorDemo from './ColorDemo';
 
@@ -141,14 +142,7 @@ class ColorTool extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
-    const {
-      primary,
-      secondary,
-      primaryInput,
-      secondaryInput,
-      primaryShade,
-      secondaryShade,
-    } = this.state;
+    const { primaryShade, secondaryShade } = this.state;
 
     const {
       palette: { getContrastText },
@@ -206,64 +200,47 @@ class ColorTool extends React.Component {
       );
     };
 
+    const colorPicker = intent => {
+      const intentInput = this.state[`${intent}Input`];
+      const intentShade = this.state[`${intent}Shade`];
+      const color = this.state[`${intent}`];
+
+      return (
+        <Grid item xs={12} md={4}>
+          <Typography variant="title">{capitalize(intent)}</Typography>
+          <Input
+            id={intent}
+            value={intentInput}
+            onChange={this.handleChangeColor(intent)}
+            inputProps={{
+              'aria-label': `${capitalize(intent)} color`,
+            }}
+            className={classes.input}
+          />
+          <div className={classes.sliderContainer}>
+            <Typography className={classes.sliderTypography} id={`${intent}ShadeSliderLabel`}>
+              Shade:
+            </Typography>
+            <Slider
+              value={intentShade}
+              min={0}
+              max={13}
+              step={1}
+              onChange={this.handleChangeShade(intent)}
+              aria-labelledby={`${intent}ShadeSliderLabel`}
+            />
+            <Typography className={classes.sliderTypography}>{shades[intentShade]}</Typography>
+          </div>
+          <div className={classes.swatch}>{colorSwatch(intent)}</div>
+          {colorBar(color)}
+        </Grid>
+      );
+    };
+
     return (
       <Grid container spacing={24} className={classes.root}>
-        <Grid item xs={12} md={4}>
-          <Typography variant="title">Primary</Typography>
-          <Input
-            id="primary"
-            value={primaryInput}
-            onChange={this.handleChangeColor('primary')}
-            inputProps={{
-              'aria-label': 'Primary color',
-            }}
-            className={classes.input}
-          />
-          <div className={classes.sliderContainer}>
-            <Typography className={classes.sliderTypography} id="primaryShadeSliderLabel">
-              Shade:
-            </Typography>
-            <Slider
-              value={primaryShade}
-              min={0}
-              max={13}
-              step={1}
-              onChange={this.handleChangeShade('primary')}
-              aria-labelledby="primaryShadeSliderLabel"
-            />
-            <Typography className={classes.sliderTypography}>{shades[primaryShade]}</Typography>
-          </div>
-          <div className={classes.swatch}>{colorSwatch('primary')}</div>
-          {colorBar(primary)}
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography variant="title">Secondary</Typography>
-          <Input
-            id="secondary"
-            value={secondaryInput}
-            onChange={this.handleChangeColor('secondary')}
-            inputProps={{
-              'aria-label': 'Secondary color',
-            }}
-            className={classes.input}
-          />
-          <div className={classes.sliderContainer}>
-            <Typography className={classes.sliderTypography} id="secondaryShadeSliderLabel">
-              Shade:
-            </Typography>
-            <Slider
-              value={secondaryShade}
-              min={0}
-              max={13}
-              step={1}
-              onChange={this.handleChangeShade('secondary')}
-              aria-labelledby="secondaryShadeSliderLabel"
-            />
-            <Typography className={classes.sliderTypography}>{shades[secondaryShade]}</Typography>
-          </div>
-          <div className={classes.swatch}>{colorSwatch('secondary')}</div>
-          {colorBar(secondary)}
-        </Grid>
+        {colorPicker('primary')}
+        {colorPicker('secondary')}
         <Grid item xs={12} md={4}>
           <Grid container direction="column" alignItems="flex-end">
             <ColorDemo data={this.state} />
