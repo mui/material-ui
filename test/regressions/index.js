@@ -37,13 +37,13 @@ const blacklistSuite = [
   'docs-guides',
   'docs-premium-themes',
   'docs-discover-more-showcase',
+  'docs-style-color', // non important demo
 ];
 
 const blacklistFilename = [
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
   'docs-demos-drawers/tileData.png', // no component
   'docs-demos-grid-list/tileData.png', // no component
-  'docs-style-color/Color.png', // non important demo
 ];
 
 // Also use some of the demos to avoid code duplication.

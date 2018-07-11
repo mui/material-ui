@@ -427,13 +427,9 @@ class Slider extends React.Component {
       classNameProp,
     );
 
-    const containerClasses = classNames(
-      classes.container,
-      {
-        [classes.vertical]: vertical,
-      },
-      classNameProp,
-    );
+    const containerClasses = classNames(classes.container, {
+      [classes.vertical]: vertical,
+    });
 
     const trackBeforeClasses = classNames(classes.track, classes.trackBefore, commonClasses, {
       [classes.vertical]: vertical,

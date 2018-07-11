@@ -13,14 +13,7 @@ function getTheme(uiTheme) {
     nprogress: {
       color: uiTheme.paletteType === 'light' ? '#000' : '#fff',
     },
-    palette: {
-      primary: blue,
-      secondary: {
-        // Darken so we reach the AA contrast ratio level.
-        main: darken(pink.A400, 0.08),
-      },
-      type: uiTheme.paletteType,
-    },
+    palette: { ...uiTheme.paletteColors, type: uiTheme.paletteType },
   });
 
   // Expose the theme as a global variable so people can play with it.
@@ -34,6 +27,13 @@ function getTheme(uiTheme) {
 const theme = getTheme({
   direction: 'ltr',
   paletteType: 'light',
+  paletteColors: {
+    primary: blue,
+    secondary: {
+      // Darken so we reach the AA contrast ratio level.
+      main: darken(pink.A400, 0.08),
+    },
+  },
 });
 
 // Configure JSS

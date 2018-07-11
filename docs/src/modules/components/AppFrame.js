@@ -11,12 +11,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import MenuIcon from '@material-ui/icons/Menu';
+import ColorsIcon from '@material-ui/icons/InvertColors';
 import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
 import LightbulbFullIcon from '@material-ui/docs/svgIcons/LightbulbFull';
 import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
+import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
@@ -146,6 +148,16 @@ class AppFrame extends React.Component {
             )}
             <div className={classes.grow} />
             <AppSearch />
+            <Tooltip title="Edit docs colors" enterDelay={300}>
+              <IconButton
+                color="inherit"
+                aria-labelledby="appbar-color"
+                component={Link}
+                href="/style/color#color-tool"
+              >
+                <ColorsIcon />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton
                 color="inherit"

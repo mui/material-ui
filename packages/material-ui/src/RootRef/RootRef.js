@@ -7,7 +7,7 @@ import exactProp from '../utils/exactProp';
  * Helper component to allow attaching a ref to a
  * wrapped element to access the underlying DOM element.
  *
- * It's higly inspired by https://github.com/facebook/react/issues/11401#issuecomment-340543801.
+ * It's highly inspired by https://github.com/facebook/react/issues/11401#issuecomment-340543801.
  * For example:
  * ```jsx
  * import React from 'react';

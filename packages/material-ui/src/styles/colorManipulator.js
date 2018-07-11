@@ -46,6 +46,28 @@ export function convertHexToRGB(color: string) {
 }
 
 /**
+ * Converts a color from CSS rgb format to CSS hex format.
+ *
+ * @param {string} color - RGB color, i.e. rgb(n, n, n)
+ * @returns {string} A CSS rgb color string, i.e. #nnnnnn
+ */
+export function rgbToHex(color) {
+  // Pass hex straight through
+  if (color.indexOf('#') === 0) {
+    return color;
+  }
+  function intToHex(c) {
+    const hex = c.toString(16);
+    return hex.length === 1 ? `0${hex}` : hex;
+  }
+
+  let { values } = decomposeColor(color);
+  values = values.map(n => intToHex(n));
+
+  return `#${values.join('')}`;
+}
+
+/**
  * Returns an object with the type and values of a color.
  *
  * Note: Does not support rgb % values.
