@@ -240,7 +240,7 @@ class Popover extends React.Component {
           'Material-UI: you can not change the default `anchorOrigin.vertical` value ',
           'when also providing the `getContentAnchorEl` property to the popover component.',
           'Only use one of the two properties.',
-          'Set `getContentAnchorEl` to null or left `anchorOrigin.vertical` unchanged.',
+          'Set `getContentAnchorEl` to null or leave `anchorOrigin.vertical` unchanged.',
         ].join('\n'),
       );
     }
