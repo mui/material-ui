@@ -135,7 +135,7 @@ export const styles = theme => ({
   extendedFab: {
     borderRadius: 48 / 2,
     padding: '0 16px',
-    width: 'initial',
+    width: 'auto',
     minWidth: 48,
     height: 48,
   },

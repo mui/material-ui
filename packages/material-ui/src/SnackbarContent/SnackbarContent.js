@@ -14,7 +14,7 @@ export const styles = theme => {
 
   return {
     root: {
-      pointerEvents: 'initial',
+      pointerEvents: 'auto',
       color: theme.palette.getContrastText(backgroundColor),
       backgroundColor,
       display: 'flex',
