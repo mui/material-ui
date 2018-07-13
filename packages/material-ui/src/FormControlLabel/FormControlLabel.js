@@ -47,40 +47,37 @@ function FormControlLabel(props, context) {
     value,
     ...other
   } = props;
-
   const { muiFormControl } = context;
+
   let disabled = disabledProp;
-
-  if (typeof control.props.disabled !== 'undefined') {
-    if (typeof disabled === 'undefined') {
-      disabled = control.props.disabled;
-    }
+  if (typeof disabled === 'undefined' && typeof control.props.disabled !== 'undefined') {
+    disabled = control.props.disabled;
+  }
+  if (typeof disabled === 'undefined' && muiFormControl) {
+    disabled = muiFormControl.disabled;
   }
 
-  if (muiFormControl) {
-    if (typeof disabled === 'undefined') {
-      disabled = muiFormControl.disabled;
+  const controlProps = {
+    disabled,
+  };
+  ['checked', 'name', 'onChange', 'value', 'inputRef'].forEach(key => {
+    if (typeof control.props[key] === 'undefined' && typeof props[key] !== 'undefined') {
+      controlProps[key] = props[key];
     }
-  }
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.disabled]: disabled,
-    },
-    classNameProp,
-  );
+  });
 
   return (
-    <label className={className} {...other}>
-      {React.cloneElement(control, {
-        disabled,
-        checked: typeof control.props.checked === 'undefined' ? checked : control.props.checked,
-        name: control.props.name || name,
-        onChange: control.props.onChange || onChange,
-        value: control.props.value || value,
-        inputRef: control.props.inputRef || inputRef,
-      })}
+    <label
+      className={classNames(
+        classes.root,
+        {
+          [classes.disabled]: disabled,
+        },
+        classNameProp,
+      )}
+      {...other}
+    >
+      {React.cloneElement(control, controlProps)}
       <Typography
         component="span"
         className={classNames(classes.label, { [classes.disabled]: disabled })}
