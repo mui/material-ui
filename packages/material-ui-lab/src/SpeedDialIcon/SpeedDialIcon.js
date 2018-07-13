@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '../internal/svg-icons/Add';
 
 const styles = theme => ({
   root: {
