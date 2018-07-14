@@ -5,6 +5,72 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.4.0
+###### *Jul 14, 2018*
+
+Big thanks to the 21 contributors who made this release possible.
+Here are some highlights ✨:
+- Rework the Tooltip implementation (#12085)
+  The component is -1kB gzipped smaller and much faster.
+  You can render 100 of them on a page with no issue.
+- Add color selector (#12053) @mbrookes
+  People can now dynamically change the theme of the whole documentation.
+- Add a new toggle buttons component (#10144) @phallguy
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Icons] Misc fixes and optimizations (#12036) @mbrookes
+- [Tooltip] Rework the implementation (#12085) @oliviertassinari
+- [Snackbar] Fix SnackbarOrigin TypeScript definition (#12083) @tzfrs
+- [Dialog] Fix action width issue (#12081) @mim-Armand
+- [theme] Use `isPlainObject` to avoid dropping prototypes (#12100) @kivlor
+- [Popper] Add a modifiers property (#12108) @oliviertassinari
+- [Button] Fix IE11 support of CSS 'width:initial' (#12119) @koshea
+- [FormControlLabel] Add a failing test case and fix it (#12141) @oliviertassinari
+- [Toolbar] Add dense variant (#12075) @srilman
+- [Typography] Fix display2 cuts off the bottom of a 'g' (#12146) @Skaronator
+
+#### Docs
+
+- [docs] Fix typo (#12046) @AlexanderLukin
+- [docs] Fix wrong icon names (#12042) @AlexanderLukin
+- [docs] Fix typo (#12050) @AlexanderLukin
+- [docs] Fix Typo (#12064) @johnjacobkenny
+- [docs] Add known issues/limitations for progress animations (#12062) @HRK44
+- [docs] Correct the normalize-function (#12066) @fauskanger
+- [docs] Add react-media-material-ui in the related projects (#12068) @jedwards1211
+- [docs] Fix SSR example to support production mode (#12080)
+- [docs] Fix Theme nesting demo in codesandbox (#12097) @oliviertassinari
+- [docs] Use the de-structured "children" variable (#12104) @jzhang729
+- [docs] Add Tidelift banner (#12099) @oliviertassinari
+- [docs] Fix some broken links (#12107) @oliviertassinari
+- [docs] Preconnect to load the fonts (#12113) @oliviertassinari
+- [docs] Improve grid demo descriptions (#12112) @mbrookes
+- [docs] Add color selector (#12053) @mbrookes
+- [docs] Add Tentu in the showcase (#12122) @urkopineda
+- [docs] Add Subheader to v0.x migration guide (#12144) @shabareesh
+- [docs] Add a comment that React 16.3.0 is a peer dependency (#12145) @chenop
+- [Table] Document the CSS API (#12147) @chenop
+
+#### Core
+
+- [core] Upgrade the dev dependencies (#12049) @oliviertassinari
+- [core] Improve the prop-types of shape (#12098) @oliviertassinari
+- [core] Upgrade dev dependencies (#12117) @oliviertassinari
+- [core] Error typo fix (#12118) @TheRusskiy
+- [test] Fix Argos-CI flakyness (#12142) @oliviertassinari
+
+#### Lab
+
+- [ToggleButtons] Add toggle buttons (#10144) @phallguy
+- [Slider] Make interaction easier, fix thumb overflow (#11889) @ValentinH
+- [SpeedDial] Inline the Add icon (#12128) @mbrookes
+
 ## 1.3.1
 ###### *Jul 2, 2018*
 
