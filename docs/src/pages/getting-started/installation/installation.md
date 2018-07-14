@@ -10,8 +10,10 @@ To install and save in your `package.json` dependencies, run:
 
 ```sh
 npm install @material-ui/core
+
 ```
 
+Please note React >= 16.3.0 is a peer dependency.
 ## Roboto Font
 
 Material-UI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto)
