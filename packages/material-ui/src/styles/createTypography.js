@@ -61,7 +61,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontSize: pxToRem(45),
         fontWeight: fontWeightRegular,
         fontFamily,
-        lineHeight: `${round(48 / 45)}em`,
+        lineHeight: `${round(51 / 45)}em`,
         marginLeft: '-.02em',
         color: palette.text.secondary,
         ...allVariants,
