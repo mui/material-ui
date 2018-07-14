@@ -11,10 +11,15 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 Big thanks to the 21 contributors who made this release possible.
 Here are some highlights ✨:
 - Rework the Tooltip implementation (#12085)
-  The component is -1kB gzipped smaller and much faster.
-  You can render 100 of them on a page with no issue.
+
+The component is -1kB gzipped smaller and much faster.
+You can render 100 of them on a page with no issue.
+It's also introducing a new component: Popper, an abstraction on top of [Popper.js](https://github.com/FezVrasta/popper.js).
+
 - Add color selector (#12053) @mbrookes
-  People can now dynamically change the theme of the whole documentation.
+
+People can now dynamically change the theme of the whole documentation.
+
 - Add a new toggle buttons component (#10144) @phallguy
 - And many more bug fixes and documentation improvements.
 
