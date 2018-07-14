@@ -37,6 +37,8 @@ function CardHeader(props) {
     component: Component,
     subheader,
     title,
+    primaryTypographyProps,
+    secondaryTypographyProps,
     ...other
   } = props;
 
@@ -48,6 +50,7 @@ function CardHeader(props) {
           variant={avatar ? 'body2' : 'headline'}
           component="span"
           className={classes.title}
+          {...primaryTypographyProps}
         >
           {title}
         </Typography>
@@ -57,6 +60,7 @@ function CardHeader(props) {
             component="span"
             color="textSecondary"
             className={classes.subheader}
+            {...secondaryTypographyProps}
           >
             {subheader}
           </Typography>
@@ -98,6 +102,16 @@ CardHeader.propTypes = {
    * The content of the Card Title.
    */
   title: PropTypes.node,
+  /**
+   * These props will be forwarded to the title
+   * (as long as disableTypography is not `true`).
+   */
+  primaryTypographyProps: PropTypes.object,
+  /**
+   * These props will be forwarded to the subheader
+   * (as long as disableTypography is not `true`).
+   */
+  secondaryTypographyProps: PropTypes.object,
 };
 
 CardHeader.defaultProps = {
