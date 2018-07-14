@@ -239,8 +239,8 @@ LinearProgress.propTypes = {
    */
   valueBuffer: PropTypes.number,
   /**
-   * The variant of progress indicator. Use indeterminate or query
-   * when there is no progress value.
+   * The variant to use.
+   * Use indeterminate or query when there is no progress value.
    */
   variant: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
 };

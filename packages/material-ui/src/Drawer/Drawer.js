@@ -234,7 +234,7 @@ Drawer.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
   /**
-   * The variant of drawer.
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 };

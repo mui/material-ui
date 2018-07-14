@@ -29,6 +29,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/app-bar/MenuAppBar'), 'utf8')
 `,
         },
+        'pages/demos/app-bar/DenseAppBar.js': {
+          js: require('docs/src/pages/demos/app-bar/DenseAppBar').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/DenseAppBar'), 'utf8')
+`,
+        },
       }}
     />
   );

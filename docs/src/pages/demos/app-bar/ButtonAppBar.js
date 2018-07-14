@@ -13,7 +13,7 @@ const styles = {
     flexGrow: 1,
   },
   flex: {
-    flex: 1,
+    flexGrow: 1,
   },
   menuButton: {
     marginLeft: -12,
@@ -31,7 +31,7 @@ function ButtonAppBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
-            Title
+            News
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>

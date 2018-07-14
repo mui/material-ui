@@ -287,7 +287,7 @@ Button.propTypes = {
    */
   type: PropTypes.string,
   /**
-   * The type of button.
+   * The variant to use.
    */
   variant: PropTypes.oneOf([
     'text',

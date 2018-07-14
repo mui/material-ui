@@ -5,19 +5,23 @@ import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
   root: {
-    ...theme.mixins.toolbar,
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
   },
   gutters: theme.mixins.gutters(),
+  regular: theme.mixins.toolbar,
+  dense: {
+    minHeight: 48,
+  },
 });
 
 function Toolbar(props) {
-  const { children, classes, className: classNameProp, disableGutters, ...other } = props;
+  const { children, classes, className: classNameProp, disableGutters, variant, ...other } = props;
 
   const className = classNames(
     classes.root,
+    classes[variant],
     {
       [classes.gutters]: !disableGutters,
     },
@@ -49,10 +53,15 @@ Toolbar.propTypes = {
    * If `true`, disables gutter padding.
    */
   disableGutters: PropTypes.bool,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['regular', 'dense']),
 };
 
 Toolbar.defaultProps = {
   disableGutters: false,
+  variant: 'regular',
 };
 
 export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);
