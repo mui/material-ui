@@ -119,14 +119,14 @@ This will apply a change such as the following:
 +<Button variant="contained" />
 ```
 
-### SubHeader
+### Subheader
 
 ```diff
 -import Subheader from 'material-ui/Subheader';
-+import Typography from '@material-ui/core/Typography';
++import ListSubheader from '@material-ui/core/ListSubheader';
 
 -<Subheader>Sub Heading</Subheader>
-+<Typography variant="subheading">Sub Heading</Typography>
++<ListSubheader>Sub Heading</ListSubheader>
 ```
 
 ### To be continued…
