@@ -155,6 +155,16 @@ This will apply a change such as the following:
 +<MenuItem>Profile</MenuItem>
 ```
 
+### Font Icon
+
+```diff
+-import FontIcon from 'material-ui/FontIcon';
++import Icon from '@material-ui/core/Icon';
+
+-<FontIcon>home</FontIcon>
++<Icon>home</Icon>
+```
+
 ### To be continued…
 
 Have you successfully migrated your app, and wish to help the community?
