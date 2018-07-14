@@ -129,19 +129,19 @@ This will apply a change such as the following:
 +<ListSubheader>Sub Heading</ListSubheader>
 ```
 
-#Toggle
+### Toggle
 
 ```diff
 -import Toggle from 'material-ui/Toggle';
 +import Switch from '@material-ui/core/Switch';
 
 -<Toggle
--   toggled={this.state.checkedA}
--   onToggle={this.handleToggle}
+-  toggled={this.state.checkedA}
+-  onToggle={this.handleToggle}
 -/>
 +<Switch
-+   checked={this.state.checkedA}
-+   onChange={this.handleSwitch()}
++  checked={this.state.checkedA}
++  onChange={this.handleSwitch()}
 +/>
 ```
 
