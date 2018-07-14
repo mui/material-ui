@@ -3,7 +3,7 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 
-const style = {
+export const style = {
   margin: 15,
   padding: 30,
 };
