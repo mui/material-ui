@@ -145,6 +145,16 @@ This will apply a change such as the following:
 +/>
 ```
 
+### Menu Item
+
+```diff
+-import MenuItem from 'material-ui/MenuItem';
++import MenuItem from '@material-ui/core/MenuItem';
+
+-<MenuItem primaryText="Profile" />
++<MenuItem>Profile</MenuItem>
+```
+
 ### To be continued…
 
 Have you successfully migrated your app, and wish to help the community?
