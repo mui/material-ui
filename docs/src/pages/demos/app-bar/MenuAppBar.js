@@ -18,7 +18,7 @@ const styles = {
     flexGrow: 1,
   },
   flex: {
-    flex: 1,
+    flexGrow: 1,
   },
   menuButton: {
     marginLeft: -12,
@@ -65,7 +65,7 @@ class MenuAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" className={classes.flex}>
-              Title
+              Photos
             </Typography>
             {auth && (
               <div>

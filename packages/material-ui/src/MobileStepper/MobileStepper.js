@@ -128,7 +128,7 @@ MobileStepper.propTypes = {
    */
   steps: PropTypes.number.isRequired,
   /**
-   * The type of mobile stepper to use.
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['text', 'dots', 'progress']),
 };

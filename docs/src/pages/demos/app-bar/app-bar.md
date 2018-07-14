@@ -22,3 +22,7 @@ It can transform into a contextual action bar.
 ## App Bar with menu
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
+
+## Dense (desktop only)
+
+{{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
