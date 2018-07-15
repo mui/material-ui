@@ -54,7 +54,7 @@ class MyDocument extends Document {
             is actually sent to the server.
             This includes DNS lookups, TLS negotiations, TCP handshakes.
           */}
-          <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="true" />
+          <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
           <style id="insertion-point-jss" />
         </Head>
         <body>

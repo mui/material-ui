@@ -1,6 +1,6 @@
 # Themes
 
-<p class="description">Customize Material-UI with our theme.</p>
+<p class="description">Customize Material-UI with our theme. You can change the colors, the typography and much more.</p>
 
 The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 

@@ -1,6 +1,6 @@
 # Migration From v0.x
 
-<p class="description">Yeah, v1 has been released!</p>
+<p class="description">Yeah, v1 has been released! Take advantage of 2 years worth of effort.</p>
 
 ## FAQ
 
