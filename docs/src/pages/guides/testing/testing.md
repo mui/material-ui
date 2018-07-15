@@ -34,7 +34,7 @@ Aside from wrapping the enzyme API, it provides a `cleanUp` function.
 Rendering to a string is useful to test the behavior of the components that are used on the server.
 You can take advantage of this to assert the generated HTML string.
 
-The `createRender()` function is ideal for this. This is just an alias for the enzyme API, which is only exposed for consitency.
+The `createRender()` function is ideal for this. This is just an alias for the enzyme API, which is only exposed for consistency.
 
 ## API
 
