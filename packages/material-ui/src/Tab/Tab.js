@@ -11,7 +11,6 @@ import unsupportedProp from '../utils/unsupportedProp';
 export const styles = theme => ({
   root: {
     ...theme.typography.button,
-    maxWidth: 264,
     position: 'relative',
     minWidth: 72,
     padding: 0,
