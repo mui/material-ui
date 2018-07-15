@@ -115,7 +115,7 @@ class FloatingActionButtonZoom extends React.Component {
             in={this.state.value === index}
             timeout={transitionDuration}
             style={{
-              transitionDelay: this.state.value === index ? transitionDuration.exit : 0,
+              transitionDelay: `${this.state.value === index ? transitionDuration.exit : 0}ms`,
             }}
             unmountOnExit
           >

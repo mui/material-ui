@@ -1,6 +1,6 @@
 # Testing
 
-<p class="description">Write tests to prevent regressions.</p>
+<p class="description">Write tests to prevent regressions and write better code.</p>
 
 ## Internal
 

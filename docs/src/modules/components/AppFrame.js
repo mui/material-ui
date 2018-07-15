@@ -151,7 +151,7 @@ class AppFrame extends React.Component {
             <Tooltip title="Edit docs colors" enterDelay={300}>
               <IconButton
                 color="inherit"
-                aria-labelledby="appbar-color"
+                aria-label="Edit docs colors"
                 component={Link}
                 href="/style/color#color-tool"
               >

@@ -1,6 +1,6 @@
 # Sponsors & Backers
 
-<p class="description">Support Material-UI’s development.</p>
+<p class="description">Support Material-UI’s development through donations.</p>
 
 Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome backers. If you'd like to join them, please consider:
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).

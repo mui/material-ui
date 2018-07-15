@@ -5,7 +5,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 # Tables
 
-<p class="description">Data tables display sets of data.</p>
+<p class="description">Data tables display sets of data. They can be fully customized.</p>
 
 [Data tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.
 
