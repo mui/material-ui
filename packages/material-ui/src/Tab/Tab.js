@@ -11,6 +11,7 @@ import unsupportedProp from '../utils/unsupportedProp';
 export const styles = theme => ({
   root: {
     ...theme.typography.button,
+    maxWidth: 264,
     position: 'relative',
     minWidth: 72,
     padding: 0,
@@ -57,6 +58,7 @@ export const styles = theme => ({
   fullWidth: {
     flexShrink: 1,
     flexGrow: 1,
+    maxWidth: 'auto',
   },
   wrapper: {
     display: 'inline-flex',
