@@ -58,6 +58,7 @@ export const styles = theme => ({
   fullWidth: {
     flexShrink: 1,
     flexGrow: 1,
+    maxWidth: 'auto',
   },
   wrapper: {
     display: 'inline-flex',
