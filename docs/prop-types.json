@@ -614,6 +614,18 @@
             "computed": false
           }
         },
+        "initialFocusedDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "Initial focused date when calendar opens, if no value is provided",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
         "format": {
           "type": {
             "name": "string"
@@ -1684,6 +1696,18 @@
           "defaultValue": {
             "value": "'2100-01-01'",
             "computed": false
+          }
+        },
+        "initialFocusedDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "Initial focused date when calendar opens, if no value is provided",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
           }
         },
         "showTabs": {

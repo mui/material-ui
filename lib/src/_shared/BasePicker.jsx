@@ -7,21 +7,22 @@ import withState from 'recompose/withState';
 
 import withUtils from '../_shared/WithUtils';
 
-const getValidDateOrCurrent = ({ utils, value }) => {
-  const date = utils.date(value);
+const getInitialDate = ({ utils, value, initialFocusedDate }) => {
+  const initialDate = value || initialFocusedDate || utils.date();
+  const date = utils.date(initialDate);
 
-  return utils.isValid(date) && value !== null ? date : utils.date();
+  return utils.isValid(date) ? date : utils.date();
 };
 
 export const BasePickerHoc = compose(
   withUtils(),
   setDisplayName('BasePicker'),
-  withState('date', 'changeDate', getValidDateOrCurrent),
+  withState('date', 'changeDate', getInitialDate),
   withState('isAccepted', 'handleAcceptedChange', false),
   lifecycle({
     componentDidUpdate(prevProps) {
       if (prevProps.value !== this.props.value) {
-        this.props.changeDate(getValidDateOrCurrent(this.props));
+        this.props.changeDate(getInitialDate(this.props));
       }
     },
   }),

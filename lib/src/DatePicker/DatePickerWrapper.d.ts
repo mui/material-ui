@@ -10,6 +10,7 @@ import { Omit } from '@material-ui/core'
 export interface DatePickerWrapperProps extends BasePickerProps, Omit<ModalWrapperProps, 'onChange' | 'value'> {
   minDate?: DateType;
   maxDate?: DateType;
+  initialFocusedDate?: DateType;
   disablePast?: boolean;
   disableFuture?: boolean;
   animateYearScrolling?: boolean;
