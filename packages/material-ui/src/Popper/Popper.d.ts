@@ -1,27 +1,36 @@
 import * as React from 'react';
 import { PortalProps } from '../Portal';
+import { TransitionProps } from '../transitions/transition';
+
+export type PopperPlacementType =
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'bottom'
+  | 'left-end'
+  | 'left-start'
+  | 'left'
+  | 'right-end'
+  | 'right-start'
+  | 'right'
+  | 'top-end'
+  | 'top-start'
+  | 'top';
 
 export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
-  anchorEl?: HTMLElement | ((element: HTMLElement) => HTMLElement);
-  children: () => React.ReactElement<any> | React.ReactElement<any>;
+  transition?: boolean;
+  anchorEl?: null | HTMLElement | ((element: HTMLElement) => HTMLElement);
+  children: (
+    props: {
+      placement: PopperPlacementType;
+      TransitionProps?: TransitionProps;
+    },
+  ) => React.ReactElement<any>;
   container?: PortalProps['container'];
   disablePortal?: PortalProps['disablePortal'];
   keepMounted?: boolean;
   modifiers?: Object;
   open: boolean;
-  placement?:
-    | 'bottom-end'
-    | 'bottom-start'
-    | 'bottom'
-    | 'left-end'
-    | 'left-start'
-    | 'left'
-    | 'right-end'
-    | 'right-start'
-    | 'right'
-    | 'top-end'
-    | 'top-start'
-    | 'top';
+  placement?: PopperPlacementType;
   popperOptions?: Object;
 }
 
