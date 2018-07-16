@@ -75,6 +75,11 @@ class Tooltip extends React.Component {
 
   defaultId = null;
 
+  internalState = {
+    hover: false,
+    focus: false,
+  };
+
   constructor(props) {
     super(props);
 
@@ -91,9 +96,7 @@ class Tooltip extends React.Component {
 
   componentDidMount() {
     warning(
-      !this.childrenRef ||
-        !this.childrenRef.disabled ||
-        !this.childrenRef.tagName.toLowerCase() === 'button',
+      !this.childrenRef.disabled || !this.childrenRef.tagName.toLowerCase() === 'button',
       [
         'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
         'A disabled element does not fire events.',
@@ -125,17 +128,30 @@ class Tooltip extends React.Component {
     const { children, enterDelay } = this.props;
     const childrenProps = children.props;
 
-    if (event.type === 'focus' && childrenProps.onFocus) {
-      childrenProps.onFocus(event);
+    if (event.type === 'focus') {
+      this.internalState.focus = true;
+
+      if (childrenProps.onFocus) {
+        childrenProps.onFocus(event);
+      }
     }
 
-    if (event.type === 'mouseenter' && childrenProps.onMouseEnter) {
-      childrenProps.onMouseEnter(event);
+    if (event.type === 'mouseenter') {
+      this.internalState.hover = true;
+
+      if (childrenProps.onMouseEnter) {
+        childrenProps.onMouseEnter(event);
+      }
     }
 
     if (this.ignoreNonTouchEvents && event.type !== 'touchstart') {
       return;
     }
+
+    // Remove the title ahead of time.
+    // We don't want to wait for the next render commit.
+    // We would risk displaying two tooltips at the same time (native + this one).
+    this.childrenRef.setAttribute('title', '');
 
     clearTimeout(this.enterTimer);
     clearTimeout(this.leaveTimer);
@@ -163,12 +179,20 @@ class Tooltip extends React.Component {
     const { children, leaveDelay } = this.props;
     const childrenProps = children.props;
 
-    if (event.type === 'blur' && childrenProps.onBlur) {
-      childrenProps.onBlur(event);
+    if (event.type === 'blur') {
+      this.internalState.focus = false;
+
+      if (childrenProps.onBlur) {
+        childrenProps.onBlur(event);
+      }
     }
 
-    if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
-      childrenProps.onMouseLeave(event);
+    if (event.type === 'mouseleave') {
+      this.internalState.hover = false;
+
+      if (childrenProps.onMouseLeave) {
+        childrenProps.onMouseLeave(event);
+      }
     }
 
     clearTimeout(this.enterTimer);
@@ -184,6 +208,10 @@ class Tooltip extends React.Component {
   };
 
   handleClose = event => {
+    if (this.internalState.focus || this.internalState.hover) {
+      return;
+    }
+
     if (!this.isControlled) {
       this.setState({ open: false });
     }

@@ -111,7 +111,7 @@ class Popper extends React.Component {
           : {
               // It's using scrollParent by default, we can use the viewport when using a portal.
               preventOverflow: {
-                boundariesElement: 'viewport',
+                boundariesElement: 'window',
               },
             }),
         ...modifiers,
