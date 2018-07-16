@@ -37,34 +37,49 @@ function CardHeader(props) {
     component: Component,
     subheader,
     title,
-    primaryTypographyProps,
-    secondaryTypographyProps,
+    disableTypography,
+    titleTypographyProps,
+    subHeaderTypographyProps,
     ...other
   } = props;
+
+  let titleComponent = title;
+  if (!disableTypography && !!title) {
+    titleComponent = (<Typography
+      variant={avatar ? 'body2' : 'headline'}
+      component="span"
+      className={classes.title}
+      {...titleTypographyProps}
+    >
+      {title}
+    </Typography>);
+  }
+
+  let subHeaderComponent = subheader;
+  if (!disableTypography && !!subheader) {
+    subHeaderComponent = (
+      <Typography
+        variant={avatar ? 'body2' : 'body1'}
+        component="span"
+        color="textSecondary"
+        className={classes.subheader}
+        {...subHeaderTypographyProps}
+      >
+        {subheader}
+      </Typography>
+    )
+  }
 
   return (
     <Component className={classNames(classes.root, classNameProp)} {...other}>
       {avatar && <div className={classes.avatar}>{avatar}</div>}
       <div className={classes.content}>
-        <Typography
-          variant={avatar ? 'body2' : 'headline'}
-          component="span"
-          className={classes.title}
-          {...primaryTypographyProps}
-        >
-          {title}
-        </Typography>
-        {subheader && (
-          <Typography
-            variant={avatar ? 'body2' : 'body1'}
-            component="span"
-            color="textSecondary"
-            className={classes.subheader}
-            {...secondaryTypographyProps}
-          >
-            {subheader}
-          </Typography>
-        )}
+        {title &&
+          {titleComponent}
+        }
+        {subheader &&
+          {subHeaderComponent}
+        }
       </div>
       {action && <div className={classes.action}>{action}</div>}
     </Component>
@@ -103,18 +118,26 @@ CardHeader.propTypes = {
    */
   title: PropTypes.node,
   /**
+   * If `true`, the children won't be wrapped by a Typography component.
+   * This can be useful to render an alternative Typography variant by wrapping
+   * the `children` (or `title`) text, and optional `subheader` text
+   * with the Typography component.
+   */
+  disableTypography: PropTypes.bool,
+  /**
    * These props will be forwarded to the title
    * (as long as disableTypography is not `true`).
    */
-  primaryTypographyProps: PropTypes.object,
+  titleTypographyProps: PropTypes.object,
   /**
-   * These props will be forwarded to the subheader
+   * These props will be forwarded to the subHeader
    * (as long as disableTypography is not `true`).
    */
-  secondaryTypographyProps: PropTypes.object,
+  subHeaderTypographyProps: PropTypes.object,
 };
 
 CardHeader.defaultProps = {
+  disableTypography: false,
   component: 'div',
 };
 
