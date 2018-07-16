@@ -21,7 +21,7 @@ export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
   anchorEl?: null | HTMLElement | ((element: HTMLElement) => HTMLElement);
   children: (
     props: {
-      placement: PlacementType;
+      placement: PopperPlacementType;
       TransitionProps?: TransitionProps;
     },
   ) => React.ReactElement<any>;
@@ -30,7 +30,7 @@ export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
   keepMounted?: boolean;
   modifiers?: Object;
   open: boolean;
-  placement?: PlacementType;
+  placement?: PopperPlacementType;
   popperOptions?: Object;
 }
 
