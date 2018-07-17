@@ -26,7 +26,16 @@
       ]
     },
     "development": {
-      "sourceMaps": "both"
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "modules": "./modules",
+            }
+          }
+        ]
+      ]
     },
     "docs-development": {
       "plugins": [
@@ -40,6 +49,7 @@
               "@material-ui/icons": "./packages/material-ui-icons/src",
               "@material-ui/lab": "./packages/material-ui-lab/src",
               "docs": "./docs",
+              "modules": "./modules",
               "pages": "./pages"
             }
           }
@@ -58,6 +68,7 @@
               "@material-ui/icons": "./packages/material-ui-icons/src",
               "@material-ui/lab": "./packages/material-ui-lab/src",
               "docs": "./docs",
+              "modules": "./modules",
               "pages": "./pages"
             }
           }

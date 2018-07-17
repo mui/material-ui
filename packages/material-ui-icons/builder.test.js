@@ -11,19 +11,13 @@ const DISABLE_LOG = true;
 
 // To cut down on test time, use fixtures instead of node_modules
 // const MUI_ICONS_ROOT = path.join(__dirname, '../node_modules/material-design-icons/');
-const MUI_ICONS_ROOT = path.join(__dirname, './test/fixtures/material-design-icons/');
+const MUI_ICONS_ROOT = path.join(__dirname, './fixtures/material-design-icons/');
 const MUI_ICONS_SVG_DIR = path.join(MUI_ICONS_ROOT, 'svg');
 
-const GAME_ICONS_ROOT = path.join(__dirname, './test/fixtures/game-icons/');
+const GAME_ICONS_ROOT = path.join(__dirname, './fixtures/game-icons/');
 const GAME_ICONS_SVG_DIR = path.join(GAME_ICONS_ROOT, 'svg/icons/');
 
 describe('builder', () => {
-  describe('material-design-icons', () => {
-    it('should have icons to test with', () => {
-      assert.strictEqual(fs.lstatSync(MUI_ICONS_SVG_DIR).isDirectory(), true);
-    });
-  });
-
   describe('#getComponentName', () => {
     it('should be a function', () => {
       assert.strictEqual(builder.hasOwnProperty('getComponentName'), true);
@@ -39,32 +33,13 @@ describe('builder', () => {
     });
   });
 
-  describe('#main', () => {
-    it('should have main', () => {
-      assert.strictEqual(builder.hasOwnProperty('main'), true);
-      assert.isFunction(builder.main);
-    });
+  it('should have icons to test with', () => {
+    assert.strictEqual(fs.lstatSync(MUI_ICONS_SVG_DIR).isDirectory(), true);
   });
 
-  describe('#getJsxString', () => {
-    it('should have getJsxString', () => {
-      assert.strictEqual(builder.hasOwnProperty('getJsxString'), true);
-      assert.strictEqual(typeof builder.getJsxString === 'function', true);
-    });
-  });
-
-  describe('#processFile', () => {
-    it('should be a function', () => {
-      assert.strictEqual(builder.hasOwnProperty('processFile'), true);
-      assert.isFunction(builder.processFile);
-    });
-  });
-
-  describe('#processIndex', () => {
-    it('should be a function', () => {
-      assert.strictEqual(builder.hasOwnProperty('processIndex'), true);
-      assert.isFunction(builder.processIndex);
-    });
+  it('should have main', () => {
+    assert.strictEqual(builder.hasOwnProperty('main'), true);
+    assert.isFunction(builder.main);
   });
 
   describe('--output-dir', () => {

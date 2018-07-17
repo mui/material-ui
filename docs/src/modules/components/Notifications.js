@@ -4,6 +4,7 @@ import 'isomorphic-fetch';
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+import sleep from 'modules/waterfall/sleep';
 
 function getLastSeenNotification() {
   const seen = document.cookie.replace(
@@ -13,18 +14,12 @@ function getLastSeenNotification() {
   return seen === '' ? 0 : parseInt(seen, 10);
 }
 
-function pause(timeout) {
-  return new Promise(accept => {
-    setTimeout(accept, timeout);
-  });
-}
-
 let messages = null;
 
 async function getMessages() {
   try {
     if (!messages) {
-      await pause(1e3); // Soften the pressure on the main thread.
+      await sleep(1e3); // Soften the pressure on the main thread.
       const result = await fetch(
         'https://raw.githubusercontent.com/mui-org/material-ui/master/docs/notifications.json',
       );
