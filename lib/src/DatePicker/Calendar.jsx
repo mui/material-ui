@@ -91,7 +91,7 @@ export class Calendar extends Component {
     this.setState({ currentMonth: newMonth, slideDirection });
   };
 
-  throttledHandleChangeMonth = throttle(this.handleChangeMonth, 300)
+  throttledHandleChangeMonth = throttle(this.handleChangeMonth, 350)
 
   validateMinMaxDate = (day) => {
     const { minDate, maxDate, utils } = this.props;
@@ -239,6 +239,7 @@ export class Calendar extends Component {
         }
 
         <CalendarHeader
+          slideDirection={slideDirection}
           currentMonth={currentMonth}
           onMonthChange={this.throttledHandleChangeMonth}
           leftArrowIcon={this.props.leftArrowIcon}
@@ -253,10 +254,9 @@ export class Calendar extends Component {
           className={classes.transitionContainer}
         >
           <div
-            key={currentMonth}
             /* eslint-disable-next-line */
             autoFocus // Autofocus required for getting work keyboard navigation feature
-            className={classes.calendar}
+            key={currentMonth}
           >
             {this.renderWeeks()}
           </div>
@@ -268,17 +268,8 @@ export class Calendar extends Component {
 
 const styles = theme => ({
   transitionContainer: {
-    display: 'block',
-    position: 'relative',
     minHeight: 36 * 6,
     marginTop: theme.spacing.unit * 1.5,
-  },
-  calendar: {
-    height: 36 * 6,
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    left: 0,
   },
   week: {
     display: 'flex',
