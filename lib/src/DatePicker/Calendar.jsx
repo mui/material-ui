@@ -1,15 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-
-import EventListener from 'react-event-listener';
 import keycode from 'keycode';
-import CalendarHeader from './CalendarHeader';
-import DomainPropTypes from '../constants/prop-types';
-import DayWrapper from './DayWrapper';
-import Day from './Day';
-import withUtils from '../_shared/WithUtils';
+import withStyles from '@material-ui/core/styles/withStyles';
+import EventListener from 'react-event-listener';
+
 import { findClosestEnabledDate } from '../_helpers/date-utils';
+import CalendarHeader from './CalendarHeader';
+import Day from './Day';
+import DayWrapper from './DayWrapper';
+import DomainPropTypes from '../constants/prop-types';
+import SlideTransition from './SlideTransition';
+import withUtils from '../_shared/WithUtils';
 
 /* eslint-disable no-unused-expressions */
 export class Calendar extends Component {
@@ -43,6 +44,7 @@ export class Calendar extends Component {
   };
 
   state = {
+    slideDirection: 'left',
     currentMonth: this.props.utils.getStartOfMonth(this.props.date),
   };
 
@@ -84,8 +86,8 @@ export class Calendar extends Component {
     this.props.onChange(withMinutes, isFinish);
   };
 
-  handleChangeMonth = (newMonth) => {
-    this.setState({ currentMonth: newMonth });
+  handleChangeMonth = (newMonth, slideDirection) => {
+    this.setState({ currentMonth: newMonth, slideDirection });
   };
 
   validateMinMaxDate = (day) => {
@@ -223,7 +225,7 @@ export class Calendar extends Component {
   };
 
   render() {
-    const { currentMonth } = this.state;
+    const { currentMonth, slideDirection } = this.state;
     const { classes, utils, allowKeyboardControl } = this.props;
 
     return (
@@ -243,21 +245,37 @@ export class Calendar extends Component {
           utils={utils}
         />
 
-        <div
-          autoFocus /* eslint-disable-line */ // Autofocus required for getting work keyboard navigation feature
-          className={classes.calendar}
+        <SlideTransition
+          slideDirection={slideDirection}
+          className={classes.transitionContainer}
         >
-          {this.renderWeeks()}
-        </div>
+          <div
+            key={currentMonth}
+            /* eslint-disable-next-line */
+            autoFocus // Autofocus required for getting work keyboard navigation feature
+            className={classes.calendar}
+          >
+            {this.renderWeeks()}
+          </div>
+        </SlideTransition>
       </Fragment>
     );
   }
 }
 
 const styles = theme => ({
+  transitionContainer: {
+    display: 'block',
+    position: 'relative',
+    minHeight: 36 * 6,
+    marginTop: theme.spacing.unit * 1.5,
+  },
   calendar: {
     height: 36 * 6,
-    marginTop: theme.spacing.unit * 1.5,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
   },
   week: {
     display: 'flex',

@@ -21,8 +21,8 @@ export const CalendarHeader = (props) => {
 
   const rtl = theme.direction === 'rtl';
 
-  const selectNextMonth = () => onMonthChange(utils.getNextMonth(currentMonth));
-  const selectPreviousMonth = () => onMonthChange(utils.getPreviousMonth(currentMonth));
+  const selectNextMonth = () => onMonthChange(utils.getNextMonth(currentMonth), 'left');
+  const selectPreviousMonth = () => onMonthChange(utils.getPreviousMonth(currentMonth), 'right');
 
   return (
     <div>
