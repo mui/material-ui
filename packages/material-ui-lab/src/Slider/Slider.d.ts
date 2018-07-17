@@ -4,7 +4,8 @@ import { ButtonProps } from '@material-ui/core/Button';
 import { TransitionProps } from 'react-transition-group/Transition';
 import { TransitionHandlerProps } from '@material-ui/core/transitions/transition';
 
-export interface SliderProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface SliderProps
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, SliderClassKey, 'onChange'> {
   disabled?: boolean;
   reverse?: boolean;
   vertical?: boolean;
@@ -16,6 +17,21 @@ export interface SliderProps extends StandardProps<React.HTMLAttributes<HTMLDivE
   onDragEnd?: (event: React.ChangeEvent<{}>) => void;
   onDragStart?: (event: React.ChangeEvent<{}>) => void;
 }
+
+export type SliderClassKey =
+  | 'root'
+  | 'container'
+  | 'track'
+  | 'trackBefore'
+  | 'trackAfter'
+  | 'thumb'
+  | 'focused'
+  | 'activated'
+  | 'disabled'
+  | 'zero'
+  | 'vertical'
+  | 'reverse'
+  | 'jumped';
 
 declare const Slider: React.ComponentType<SliderProps>;
 
