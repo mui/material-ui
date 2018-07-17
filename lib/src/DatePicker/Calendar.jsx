@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import withStyles from '@material-ui/core/styles/withStyles';
 import EventListener from 'react-event-listener';
+import throttle from 'lodash.throttle';
 
 import { findClosestEnabledDate } from '../_helpers/date-utils';
 import CalendarHeader from './CalendarHeader';
@@ -89,6 +90,8 @@ export class Calendar extends Component {
   handleChangeMonth = (newMonth, slideDirection) => {
     this.setState({ currentMonth: newMonth, slideDirection });
   };
+
+  throttledHandleChangeMonth = throttle(this.handleChangeMonth, 300)
 
   validateMinMaxDate = (day) => {
     const { minDate, maxDate, utils } = this.props;
@@ -237,7 +240,7 @@ export class Calendar extends Component {
 
         <CalendarHeader
           currentMonth={currentMonth}
-          onMonthChange={this.handleChangeMonth}
+          onMonthChange={this.throttledHandleChangeMonth}
           leftArrowIcon={this.props.leftArrowIcon}
           rightArrowIcon={this.props.rightArrowIcon}
           disablePrevMonth={this.shouldDisablePrevMonth()}

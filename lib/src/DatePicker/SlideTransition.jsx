@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-const animationDuration = 400;
+const animationDuration = 300;
 
 const SlideTransition = ({
   classes, children, slideDirection, ...other
 }) => (
   <ReactCSSTransitionGroup
     transitionEnterTimeout={animationDuration}
-    transitionLeaveTimeout={300}
+    transitionLeaveTimeout={animationDuration}
     transitionName={{
       enter: classes[`slideEnter-${slideDirection}`],
       enterActive: classes.slideEnterActive,

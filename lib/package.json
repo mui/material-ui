@@ -46,6 +46,7 @@
   "dependencies": {
     "codecov": "^3.0.2",
     "enzyme-react-adapter-future": "^1.1.3",
+    "lodash.throttle": "^4.1.1",
     "react-addons-css-transition-group": "^15.6.2",
     "react-event-listener": "^0.6.1",
     "react-text-mask": "=5.4.1",
