@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ClockPointer from './ClockPointer';
 import * as clockType from '../constants/clock-types';
@@ -105,12 +106,24 @@ export class Clock extends Component {
 
           <div className={classes.pin} />
 
-          <ClockPointer
-            max={max}
-            value={value}
-            isInner={isPointerInner}
-            hasSelected={this.hasSelected()}
-          />
+          <ReactCSSTransitionGroup
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}
+            transitionName={{
+              enter: classes.transitionEnter,
+              enterActive: '',
+              leave: '',
+              leaveActive: '',
+            }}
+          >
+            <ClockPointer
+              // key={type}
+              max={max}
+              value={value}
+              isInner={isPointerInner}
+              hasSelected={this.hasSelected()}
+            />
+          </ReactCSSTransitionGroup>
 
           { children }
         </div>
@@ -156,6 +169,10 @@ const styles = theme => ({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+  },
+  transitionEnter: {
+    willChange: 'transform',
+    transition: theme.transitions.create('transform', { duration: 300 }),
   },
 });
 
