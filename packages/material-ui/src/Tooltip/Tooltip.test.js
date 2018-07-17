@@ -20,7 +20,7 @@ describe('<Tooltip />', () => {
   };
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     mount = createMount();
     classes = getClasses(<Tooltip {...defaultProps} />);
   });
@@ -58,11 +58,12 @@ describe('<Tooltip />', () => {
 
   it('should respond to external events', () => {
     const wrapper = shallow(<Tooltip {...defaultProps} />);
+    wrapper.instance().childrenRef = document.createElement('div');
     const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(wrapper.state().open, false);
-    children.simulate('mouseEnter', {});
+    children.simulate('mouseEnter', { type: 'mouseenter' });
     assert.strictEqual(wrapper.state().open, true);
-    children.simulate('blur', {});
+    children.simulate('mouseLeave', { type: 'mouseleave' });
     assert.strictEqual(wrapper.state().open, false);
   });
 
@@ -73,15 +74,30 @@ describe('<Tooltip />', () => {
     const wrapper = shallow(
       <Tooltip {...defaultProps} open onOpen={handleRequestOpen} onClose={handleClose} />,
     );
+    wrapper.instance().childrenRef = document.createElement('div');
     const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(handleRequestOpen.callCount, 0);
     assert.strictEqual(handleClose.callCount, 0);
-    children.simulate('mouseEnter', { type: 'mouseover' });
+    children.simulate('mouseEnter', { type: 'mouseenter' });
     assert.strictEqual(handleRequestOpen.callCount, 1);
     assert.strictEqual(handleClose.callCount, 0);
-    children.simulate('blur', { type: 'blur' });
+    children.simulate('mouseLeave', { type: 'mouseleave' });
     assert.strictEqual(handleRequestOpen.callCount, 1);
     assert.strictEqual(handleClose.callCount, 1);
+  });
+
+  it('should close when the interaction is over', () => {
+    const wrapper = shallow(<Tooltip {...defaultProps} />);
+    wrapper.instance().childrenRef = document.createElement('div');
+    const children = wrapper.childAt(0).childAt(0);
+    assert.strictEqual(wrapper.state().open, false);
+    children.simulate('mouseEnter', { type: 'mouseenter' });
+    children.simulate('focus', { type: 'focus' });
+    assert.strictEqual(wrapper.state().open, true);
+    children.simulate('mouseLeave', { type: 'mouseleave' });
+    assert.strictEqual(wrapper.state().open, true);
+    children.simulate('blur', { type: 'blur' });
+    assert.strictEqual(wrapper.state().open, false);
   });
 
   describe('touch screen', () => {
@@ -97,6 +113,7 @@ describe('<Tooltip />', () => {
 
     it('should not respond to quick events', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} />);
+      wrapper.instance().childrenRef = document.createElement('div');
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('touchStart', { type: 'touchstart', persist });
       children.simulate('touchEnd', { type: 'touchend', persist });
@@ -107,6 +124,7 @@ describe('<Tooltip />', () => {
 
     it('should open on long press', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} />);
+      wrapper.instance().childrenRef = document.createElement('div');
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('touchStart', { type: 'touchstart', persist });
       children.simulate('focus', { type: 'focus' });
@@ -114,6 +132,7 @@ describe('<Tooltip />', () => {
       clock.tick(1e3);
       assert.strictEqual(wrapper.state().open, true);
       children.simulate('touchEnd', { type: 'touchend', persist });
+      children.simulate('blur', { type: 'blur' });
       clock.tick(1500);
       assert.strictEqual(wrapper.state().open, false);
     });
@@ -138,6 +157,7 @@ describe('<Tooltip />', () => {
 
     it('should take the enterDelay into account', () => {
       const wrapper = shallow(<Tooltip enterDelay={111} {...defaultProps} />);
+      wrapper.instance().childrenRef = document.createElement('div');
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('focus', { type: 'focus', persist });
       assert.strictEqual(wrapper.state().open, false);
@@ -147,6 +167,7 @@ describe('<Tooltip />', () => {
 
     it('should take the leaveDelay into account', () => {
       const wrapper = shallow(<Tooltip leaveDelay={111} {...defaultProps} />);
+      wrapper.instance().childrenRef = document.createElement('div');
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('focus', { type: 'focus' });
       assert.strictEqual(wrapper.state().open, true);
@@ -169,6 +190,7 @@ describe('<Tooltip />', () => {
               </button>
             </Tooltip>,
           );
+          wrapper.instance().childrenRef = document.createElement('div');
           const children = wrapper.childAt(0).childAt(0);
           const type = name.slice(2).toLowerCase();
           children.simulate(type, { type, persist });
