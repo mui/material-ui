@@ -12,6 +12,7 @@ export const styles = theme => {
     duration: theme.transitions.duration.shortest,
   };
   return {
+    /* Styles applied to the root element. */
     root: {
       display: 'flex',
       minHeight: 8 * 6,
@@ -30,9 +31,13 @@ export const styles = theme => {
         opacity: 0.38,
       },
     },
+    /* Styles applied to the root element if `expanded={true}`. */
     expanded: {},
+    /* Styles applied to the root and children wrapper elements when focused. */
     focused: {},
+    /* Styles applied to the root element if `disabled={true}`. */
     disabled: {},
+    /* Styles applied to the children wrapper element. */
     content: {
       display: 'flex',
       flexGrow: 1,
@@ -45,6 +50,7 @@ export const styles = theme => {
         margin: '20px 0',
       },
     },
+    /* Styles applied to the `IconButton` component when `expandIcon` is supplied. */
     expandIcon: {
       position: 'absolute',
       top: '50%',

@@ -5,6 +5,7 @@ import withStyles from '../styles/withStyles';
 import Fade from '../Fade';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     zIndex: -1,
     width: '100%',
@@ -16,6 +17,7 @@ export const styles = {
     WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
+  /* Styles applied to the root element if `invisible={true}`. */
   invisible: {
     backgroundColor: 'transparent',
   },

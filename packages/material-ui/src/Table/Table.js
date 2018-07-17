@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'table',
     fontFamily: theme.typography.fontFamily,

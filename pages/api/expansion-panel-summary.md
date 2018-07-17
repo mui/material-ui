@@ -26,12 +26,16 @@ Any other properties supplied will be spread to the root element ([ButtonBase](/
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `expanded`
-- `focused`
-- `disabled`
-- `content`
-- `expandIcon`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">expanded</span> | Styles applied to the root element if `expanded={true}`.
+| <span class="prop-name">focused</span> | Styles applied to the root and children wrapper elements when focused.
+| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">content</span> | Styles applied to the children wrapper element.
+| <span class="prop-name">expandIcon</span> | Styles applied to the `IconButton` component when `expandIcon` is supplied.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/ExpansionPanelSummary/ExpansionPanelSummary.js)

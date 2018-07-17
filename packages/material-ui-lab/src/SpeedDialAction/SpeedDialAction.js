@@ -5,10 +5,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const styles = theme => ({
+export const styles = theme => ({
+  /* Styles applied to the root (`Tooltip`) component. */
   root: {
     position: 'relative',
   },
+  /* Styles applied to the `Button` component. */
   button: {
     margin: 8,
     color: theme.palette.text.secondary,
@@ -17,6 +19,7 @@ const styles = theme => ({
     })}, opacity 0.8s`,
     opacity: 1,
   },
+  /* Styles applied to the `Button` component if `open={false}`. */
   buttonClosed: {
     opacity: 0,
     transform: 'scale(0)',
@@ -127,4 +130,4 @@ SpeedDialAction.defaultProps = {
   open: false,
 };
 
-export default withStyles(styles)(SpeedDialAction);
+export default withStyles(styles, { name: 'MuiSpeedDialAction' })(SpeedDialAction);

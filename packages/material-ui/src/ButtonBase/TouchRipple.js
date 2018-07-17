@@ -10,6 +10,7 @@ const DURATION = 550;
 export const DELAY_RIPPLE = 80;
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'block',
     position: 'absolute',
@@ -22,6 +23,7 @@ export const styles = theme => ({
     pointerEvents: 'none',
     zIndex: 0,
   },
+  /* Styles applied to the internal `Ripple` components `ripple` class. */
   ripple: {
     width: 50,
     height: 50,
@@ -30,14 +32,17 @@ export const styles = theme => ({
     opacity: 0,
     position: 'absolute',
   },
+  /* Styles applied to the internal `Ripple` components `rippleVisible` class. */
   rippleVisible: {
     opacity: 0.3,
     transform: 'scale(1)',
     animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
+  /* Styles applied to the internal `Ripple` components `ripplePulsate` class. */
   ripplePulsate: {
     animationDuration: `${theme.transitions.duration.shorter}ms`,
   },
+  /* Styles applied to the internal `Ripple` components `child` class. */
   child: {
     opacity: 1,
     display: 'block',
@@ -46,10 +51,12 @@ export const styles = theme => ({
     borderRadius: '50%',
     backgroundColor: 'currentColor',
   },
+  /* Styles applied to the internal `Ripple` components `childLeaving` class. */
   childLeaving: {
     opacity: 0,
     animation: `mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
+  /* Styles applied to the internal `Ripple` components `childPulsate` class. */
   childPulsate: {
     position: 'absolute',
     left: 0,
@@ -219,7 +226,7 @@ class TouchRipple extends React.PureComponent {
     clearTimeout(this.startTimer);
     const { ripples } = this.state;
 
-    // The touch interaction occures to quickly.
+    // The touch interaction occurs too quickly.
     // We still want to show ripple effect.
     if (event.type === 'touchend' && this.startTimerCommit) {
       event.persist();

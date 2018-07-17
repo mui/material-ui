@@ -36,16 +36,20 @@ Any other properties supplied will be spread to the root element ([TableCell](/a
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `toolbar`
-- `spacer`
-- `menuItem`
-- `caption`
-- `input`
-- `selectRoot`
-- `select`
-- `selectIcon`
-- `actions`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">toolbar</span> | Styles applied to the Toolbar component.
+| <span class="prop-name">spacer</span> | Styles applied to the spacer element.
+| <span class="prop-name">caption</span> | Styles applied to the caption Typography components if `variant="caption"`.
+| <span class="prop-name">selectRoot</span> | Styles applied to the Select component `root` class.
+| <span class="prop-name">select</span> | Styles applied to the Select component `select` class.
+| <span class="prop-name">selectIcon</span> | Styles applied to the Select component `icon` class.
+| <span class="prop-name">input</span> | Styles applied to the Input component.
+| <span class="prop-name">menuItem</span> | Styles applied to the MenuItem component.
+| <span class="prop-name">actions</span> | Styles applied to the internal `TablePaginationActions` component.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/TablePagination/TablePagination.js)

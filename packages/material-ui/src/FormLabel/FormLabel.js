@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     fontFamily: theme.typography.fontFamily,
     color: theme.palette.text.secondary,
@@ -20,8 +21,11 @@ export const styles = theme => ({
       color: theme.palette.error.main,
     },
   },
+  /* Styles applied to the root element if `focused={true}`. */
   focused: {},
+  /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `error={true}`. */
   error: {},
   asterisk: {
     '&$error': {

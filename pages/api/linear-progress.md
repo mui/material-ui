@@ -31,22 +31,27 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `colorPrimary`
-- `colorSecondary`
-- `buffer`
-- `query`
-- `dashed`
-- `dashedColorPrimary`
-- `dashedColorSecondary`
-- `bar`
-- `barColorPrimary`
-- `barColorSecondary`
-- `bar1Indeterminate`
-- `bar2Indeterminate`
-- `bar1Determinate`
-- `bar1Buffer`
-- `bar2Buffer`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">colorPrimary</span> | Styles applied to the root & bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
+| <span class="prop-name">colorSecondary</span> | Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if variant="buffer".
+| <span class="prop-name">buffer</span> | Styles applied to the root element if `variant="buffer"`.
+| <span class="prop-name">query</span> | Styles applied to the root element if `variant="query"`.
+| <span class="prop-name">dashed</span> | Styles applied to the additional bar element if `variant="buffer"`.
+| <span class="prop-name">dashedColorPrimary</span> | Styles applied to the additional bar element if `variant="buffer"` & `color="primary"`.
+| <span class="prop-name">dashedColorSecondary</span> | Styles applied to the additional bar element if `variant="buffer"` & `color="secondary"`.
+| <span class="prop-name">bar</span> | Styles applied to the layered bar1 & bar2 elements.
+| <span class="prop-name">barColorPrimary</span> | Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer".
+| <span class="prop-name">barColorSecondary</span> | Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer".
+| <span class="prop-name">bar1Indeterminate</span> | Styles applied to the bar1 element if `variant="indeterminate or query"`.
+| <span class="prop-name">bar1Determinate</span> | Styles applied to the bar1 element if `variant="determinate"`.
+| <span class="prop-name">bar1Buffer</span> | Styles applied to the bar1 element if `variant="buffer"`.
+| <span class="prop-name">bar2Indeterminate</span> | Styles applied to the bar2 element if `variant="indeterminate or query"`.
+| <span class="prop-name">bar2Determinate</span> | Styles applied to the bar2 element if `variant="determinate"`.
+| <span class="prop-name">bar2Buffer</span> | Styles applied to the bar2 element if `variant="buffer"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/LinearProgress/LinearProgress.js)

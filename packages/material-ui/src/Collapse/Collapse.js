@@ -9,18 +9,22 @@ import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
 
 export const styles = theme => ({
+  /* Styles applied to the container element. */
   container: {
     height: 0,
     overflow: 'hidden',
     transition: theme.transitions.create('height'),
   },
+  /* Styles applied to the container element when the transition has entered. */
   entered: {
     height: 'auto',
   },
+  /* Styles applied to the outer wrapper element. */
   wrapper: {
     // Hack to get children with a negative margin to not falsify the height computation.
     display: 'flex',
   },
+  /* Styles applied to the outer wrapper element. */
   wrapperInner: {
     width: '100%',
   },

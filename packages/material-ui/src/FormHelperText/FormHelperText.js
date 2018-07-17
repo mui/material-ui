@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.secondary,
     fontFamily: theme.typography.fontFamily,
@@ -20,8 +21,11 @@ export const styles = theme => ({
       color: theme.palette.text.disabled,
     },
   },
+  /* Styles applied to the root element if `error={true}`. */
   error: {},
+  /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `margin="dense"`. */
   marginDense: {
     marginTop: 4,
   },

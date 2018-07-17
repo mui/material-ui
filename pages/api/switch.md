@@ -35,15 +35,19 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `icon`
-- `iconChecked`
-- `switchBase`
-- `checked`
-- `colorPrimary`
-- `colorSecondary`
-- `disabled`
-- `bar`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">icon</span> | Styles used to create the `icon` passed to the internal `SwitchBase` component `icon` prop.
+| <span class="prop-name">iconChecked</span> | Styles applied the icon element component if `checked={true}`.
+| <span class="prop-name">switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
+| <span class="prop-name">checked</span> | Styles applied to the internal `SwitchBase` component's `checked` class.
+| <span class="prop-name">colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
+| <span class="prop-name">disabled</span> | Styles applied to the internal SwitchBase component's disabled class.
+| <span class="prop-name">bar</span> | Styles applied to the bar element.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Switch/Switch.js)

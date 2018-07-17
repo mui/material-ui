@@ -5,6 +5,7 @@ import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: theme.mixins.gutters({
     boxSizing: 'border-box',
     lineHeight: '48px',
@@ -14,15 +15,19 @@ export const styles = theme => ({
     fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.pxToRem(14),
   }),
+  /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     color: theme.palette.primary.main,
   },
+  /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
     color: 'inherit',
   },
+  /* Styles applied to the root element if `inset={true}`. */
   inset: {
     paddingLeft: 72,
   },
+  /* Styles applied to the root element if `disableSticky={false}`. */
   sticky: {
     position: 'sticky',
     top: 0,

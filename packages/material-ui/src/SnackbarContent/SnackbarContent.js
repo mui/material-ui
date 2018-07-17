@@ -13,6 +13,7 @@ export const styles = theme => {
   const backgroundColor = emphasize(theme.palette.background.default, emphasis);
 
   return {
+    /* Styles applied to the root element. */
     root: {
       color: theme.palette.getContrastText(backgroundColor),
       backgroundColor,
@@ -29,9 +30,11 @@ export const styles = theme => {
         flexGrow: 1,
       },
     },
+    /* Styles applied to the message wrapper element. */
     message: {
       padding: '8px 0',
     },
+    /* Styles applied to the action wrapper element if `action` is provided. */
     action: {
       display: 'flex',
       alignItems: 'center',

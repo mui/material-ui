@@ -31,16 +31,20 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `container`
-- `focusVisible`
-- `default`
-- `dense`
-- `disabled`
-- `divider`
-- `gutters`
-- `button`
-- `secondaryAction`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
+| <span class="prop-name">container</span> | Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`.
+| <span class="prop-name">focusVisible</span> | Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`.
+| <span class="prop-name">default</span> | Legacy styles applied to the root element. Use `root` instead.
+| <span class="prop-name">dense</span> | Styles applied to the `component` element if `dense={true}` or `children` includes `Avatar`.
+| <span class="prop-name">disabled</span> | Styles applied to the inner `component` element if `dense={true}`.
+| <span class="prop-name">divider</span> | Styles applied to the inner `component` element if `divider={true}`.
+| <span class="prop-name">gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
+| <span class="prop-name">button</span> | Styles applied to the inner `component` element if `button={true}`.
+| <span class="prop-name">secondaryAction</span> | Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/ListItem/ListItem.js)

@@ -86,6 +86,7 @@ function buildDocs(options) {
   const styles = {
     classes: [],
     name: null,
+    descriptions: {},
   };
 
   if (component.styles && component.default.options) {
@@ -94,6 +95,16 @@ function buildDocs(options) {
       className => !className.match(/^(@media|@keyframes)/),
     );
     styles.name = component.default.options.name;
+
+    // Collect classes comments from the source
+    const stylesRegexp = /export const styles.*\n(.*\n)*};\n\n/;
+    const styleRegexp = /\/\* (.*) \*\/\n\s*(\w*)/g;
+    const stylesSrc = stylesRegexp.exec(src);
+    if (stylesSrc) {
+      stylesSrc[0].replace(styleRegexp, (match, desc, key) => {
+        styles.descriptions[key] = desc;
+      });
+    }
   }
 
   let reactAPI;
@@ -147,7 +158,7 @@ export default withRoot(Page);
 `,
     );
 
-    console.log('Built markdown docs for', componentObject.filename);
+    console.log('Built markdown docs for', reactAPI.name);
   });
 }
 

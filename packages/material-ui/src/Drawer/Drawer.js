@@ -26,9 +26,11 @@ export function getAnchor(props) {
 }
 
 export const styles = theme => ({
+  /* Styles applied to the root element if `variant="permanent or persistent"`. */
   docked: {
     flex: '0 0 auto',
   },
+  /* Styles applied to the `Paper` component. */
   paper: {
     overflowY: 'auto',
     display: 'flex',
@@ -45,14 +47,17 @@ export const styles = theme => ({
     // :focus-ring CSS pseudo-class will help.
     outline: 'none',
   },
+  /* Styles applied to the `Paper` component if `anchor="left"`. */
   paperAnchorLeft: {
     left: 0,
     right: 'auto',
   },
+  /* Styles applied to the `Paper` component if `anchor="right"`. */
   paperAnchorRight: {
     left: 'auto',
     right: 0,
   },
+  /* Styles applied to the `Paper` component if `anchor="top"`. */
   paperAnchorTop: {
     top: 0,
     left: 0,
@@ -61,6 +66,7 @@ export const styles = theme => ({
     height: 'auto',
     maxHeight: '100vh',
   },
+  /* Styles applied to the `Paper` component if `anchor="bottom"`. */
   paperAnchorBottom: {
     top: 'auto',
     left: 0,
@@ -69,19 +75,24 @@ export const styles = theme => ({
     height: 'auto',
     maxHeight: '100vh',
   },
+  /* Styles applied to the `Paper` component if `anchor="left"` & `variant` is not "temporary". */
   paperAnchorDockedLeft: {
     borderRight: `1px solid ${theme.palette.divider}`,
   },
+  /* Styles applied to the `Paper` component if `anchor="top"` & `variant` is not "temporary". */
   paperAnchorDockedTop: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
+  /* Styles applied to the `Paper` component if `anchor="right"` & `variant` is not "temporary". */
   paperAnchorDockedRight: {
     borderLeft: `1px solid ${theme.palette.divider}`,
   },
+  /* Styles applied to the `Paper` component if `anchor="bottom"` & `variant` is not "temporary". */
   paperAnchorDockedBottom: {
     borderTop: `1px solid ${theme.palette.divider}`,
   },
-  modal: {}, // Just here so people can override the style.
+  /* Styles applied to the `Modal` component. */
+  modal: {},
 });
 
 /**

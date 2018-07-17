@@ -7,6 +7,7 @@ import { capitalize } from '../utils/helpers';
 import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
     flexDirection: 'column',
@@ -17,14 +18,17 @@ export const styles = {
     margin: 0,
     border: 0,
   },
+  /* Styles applied to the root element if `margin="normal"`. */
   marginNormal: {
     marginTop: 16,
     marginBottom: 8,
   },
+  /* Styles applied to the root element if `margin="dense"`. */
   marginDense: {
     marginTop: 8,
     marginBottom: 4,
   },
+  /* Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: {
     width: '100%',
   },

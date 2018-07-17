@@ -8,6 +8,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
     height: 32,
@@ -28,26 +29,20 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
-
     '&:not(:first-child)': {
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
     },
-
     '&:not(:last-child)': {
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     },
   },
-  label: {
-    width: '100%',
-    display: 'inherit',
-    alignItems: 'inherit',
-    justifyContent: 'inherit',
-  },
+  /* Styles applied to the root element if `disabled={true}`. */
   disabled: {
     color: fade(theme.palette.action.disabled, 0.12),
   },
+  /* Styles applied to the root element if `selected={true}`. */
   selected: {
     color: theme.palette.action.active,
     '&:after': {
@@ -65,7 +60,6 @@ export const styles = theme => ({
       backgroundColor: 'currentColor',
       opacity: 0.38,
     },
-
     '& + &:before': {
       content: '""',
       display: 'block',
@@ -80,6 +74,13 @@ export const styles = theme => ({
       backgroundColor: 'currentColor',
       opacity: 0.12,
     },
+  },
+  /* Styles applied to the `label` wrapper element. */
+  label: {
+    width: '100%',
+    display: 'inherit',
+    alignItems: 'inherit',
+    justifyContent: 'inherit',
   },
 });
 

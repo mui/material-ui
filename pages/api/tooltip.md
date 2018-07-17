@@ -40,13 +40,17 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `popper`
-- `tooltip`
-- `touch`
-- `tooltipPlacementLeft`
-- `tooltipPlacementRight`
-- `tooltipPlacementTop`
-- `tooltipPlacementBottom`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">popper</span> | Styles applied to the Popper component.
+| <span class="prop-name">tooltip</span> | Styles applied to the tooltip (label wrapper) element.
+| <span class="prop-name">touch</span> | Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.
+| <span class="prop-name">tooltipPlacementLeft</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "left".
+| <span class="prop-name">tooltipPlacementRight</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "right".
+| <span class="prop-name">tooltipPlacementTop</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "top".
+| <span class="prop-name">tooltipPlacementBottom</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Tooltip/Tooltip.js)

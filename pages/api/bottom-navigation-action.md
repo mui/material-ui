@@ -28,11 +28,15 @@ Any other properties supplied will be spread to the root element ([ButtonBase](/
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `selected`
-- `iconOnly`
-- `wrapper`
-- `label`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">selected</span> | Styles applied to the root element if selected.
+| <span class="prop-name">iconOnly</span> | Styles applied to the root element if `showLabel={false}` and not selected.
+| <span class="prop-name">wrapper</span> | Styles applied to the span element that wraps the icon and label.
+| <span class="prop-name">label</span> | Styles applied to the label's span element.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/BottomNavigationAction/BottomNavigationAction.js)

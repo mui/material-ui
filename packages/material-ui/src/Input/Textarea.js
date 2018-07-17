@@ -8,6 +8,7 @@ import withStyles from '../styles/withStyles';
 const ROWS_HEIGHT = 19;
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     position: 'relative', // because the shadow has position: 'absolute',
     width: '100%',

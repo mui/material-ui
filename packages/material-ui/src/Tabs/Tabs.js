@@ -14,36 +14,45 @@ import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     overflow: 'hidden',
     minHeight: 48,
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   },
+  /* Styles applied to the flex container element. */
   flexContainer: {
     display: 'flex',
   },
+  /* Styles applied to the flex container element if `centered={true}` & `scrollable={false}`. */
+  centered: {
+    justifyContent: 'center',
+  },
+  /* Styles applied to the tablist element. */
   scroller: {
     position: 'relative',
     display: 'inline-block',
     flex: '1 1 auto',
     whiteSpace: 'nowrap',
   },
+  /* Styles applied to the tablist element if `scrollable={false}`. */
   fixed: {
     overflowX: 'hidden',
     width: '100%',
   },
+  /* Styles applied to the tablist element if `scrollable={true}`. */
   scrollable: {
     overflowX: 'scroll',
   },
-  centered: {
-    justifyContent: 'center',
-  },
+  /* Styles applied to the `ScrollButtonComponent` component. */
   scrollButtons: {},
+  /* Styles applied to the `ScrollButtonComponent` component if `sscrollButtons="auto"`. */
   scrollButtonsAuto: {
     [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
   },
+  /* Styles applied to the `TabIndicator` component. */
   indicator: {},
 });
 
@@ -297,12 +306,12 @@ class Tabs extends React.Component {
     );
 
     const className = classNames(classes.root, classNameProp);
+    const flexContainerClassName = classNames(classes.flexContainer, {
+      [classes.centered]: centered && !scrollable,
+    });
     const scrollerClassName = classNames(classes.scroller, {
       [classes.fixed]: !scrollable,
       [classes.scrollable]: scrollable,
-    });
-    const flexContainerClassName = classNames(classes.flexContainer, {
-      [classes.centered]: centered && !scrollable,
     });
 
     const indicator = (

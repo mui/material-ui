@@ -5,14 +5,17 @@ import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     display: 'flex',
     maxHeight: '2em',
     alignItems: 'center',
   },
+  /* Styles applied to the root element if `position="start"`. */
   positionStart: {
     marginRight: 8,
   },
+  /* Styles applied to the root element if `position="end"`. */
   positionEnd: {
     marginLeft: 8,
   },

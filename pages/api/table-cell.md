@@ -30,14 +30,18 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `head`
-- `body`
-- `footer`
-- `numeric`
-- `paddingDense`
-- `paddingCheckbox`
-- `paddingNone`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">head</span> | Styles applied to the root element if `variant="head"` or `context.table.head`.
+| <span class="prop-name">body</span> | Styles applied to the root element if `variant="body"` or `context.table.body`.
+| <span class="prop-name">footer</span> | Styles applied to the root element if `variant="footer"` or `context.table.footer`.
+| <span class="prop-name">numeric</span> | Styles applied to the root element if `numeric={true}`.
+| <span class="prop-name">paddingDense</span> | Styles applied to the root element if `padding="dense"`.
+| <span class="prop-name">paddingCheckbox</span> | Styles applied to the root element if `padding="checkbox"`.
+| <span class="prop-name">paddingNone</span> | Styles applied to the root element if `padding="none"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/TableCell/TableCell.js)

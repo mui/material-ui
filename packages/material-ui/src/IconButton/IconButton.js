@@ -9,6 +9,7 @@ import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     textAlign: 'center',
     flex: '0 0 auto',
@@ -35,9 +36,11 @@ export const styles = theme => ({
       color: theme.palette.action.disabled,
     },
   },
+  /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
     color: 'inherit',
   },
+  /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     color: theme.palette.primary.main,
     '&:hover': {
@@ -48,6 +51,7 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element if `color="secondary"`. */
   colorSecondary: {
     color: theme.palette.secondary.main,
     '&:hover': {
@@ -58,7 +62,9 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the children container element. */
   label: {
     width: '100%',
     display: 'flex',

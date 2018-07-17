@@ -37,7 +37,11 @@ Any other properties supplied will be spread to the root element ([Popover](/api
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `paper`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Menu/Menu.js)

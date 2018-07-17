@@ -7,6 +7,7 @@ import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -21,7 +22,9 @@ export const styles = theme => ({
       cursor: 'default',
     },
   },
+  /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the label's Typography component. */
   label: {
     '&$disabled': {
       color: theme.palette.text.disabled,

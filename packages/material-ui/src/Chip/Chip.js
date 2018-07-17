@@ -15,6 +15,7 @@ export const styles = theme => {
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
 
   return {
+    /* Styles applied to the root element. */
     root: {
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.typography.pxToRem(13),
@@ -35,6 +36,7 @@ export const styles = theme => {
       border: 'none', // Remove `button` border
       padding: 0, // Remove `button` padding
     },
+    /* Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
     clickable: {
       // Remove grey highlight
       WebkitTapHighlightColor: 'transparent',
@@ -47,11 +49,13 @@ export const styles = theme => {
         backgroundColor: emphasize(backgroundColor, 0.12),
       },
     },
+    /* Styles applied to the root element if `onDelete` is defined. */
     deletable: {
       '&:focus': {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
     },
+    /* Styles applied to the `avatar` element if `checked={true}`. */
     avatar: {
       marginRight: -4,
       width: height,
@@ -59,10 +63,12 @@ export const styles = theme => {
       color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
       fontSize: theme.typography.pxToRem(16),
     },
+    /* Styles applied to the `avartar` elements children. */
     avatarChildren: {
       width: 19,
       height: 19,
     },
+    /* Styles applied to the label `span` element`. */
     label: {
       display: 'flex',
       alignItems: 'center',
@@ -72,6 +78,7 @@ export const styles = theme => {
       whiteSpace: 'nowrap',
       cursor: 'inherit',
     },
+    /* Styles applied to the `deleteIcon` element. */
     deleteIcon: {
       // Remove grey highlight
       WebkitTapHighlightColor: 'transparent',

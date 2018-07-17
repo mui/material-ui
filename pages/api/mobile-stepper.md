@@ -29,14 +29,18 @@ Any other properties supplied will be spread to the root element ([Paper](/api/p
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `positionBottom`
-- `positionTop`
-- `positionStatic`
-- `dots`
-- `dot`
-- `dotActive`
-- `progress`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">positionBottom</span> | Styles applied to the root element if `position="bottom"`.
+| <span class="prop-name">positionTop</span> | Styles applied to the root element if `position="top"`.
+| <span class="prop-name">positionStatic</span> | Styles applied to the root element if `position="static"`.
+| <span class="prop-name">dots</span> | Styles applied to the dots container if `variant="dots"`.
+| <span class="prop-name">dot</span> | Styles applied to each dot if `variant="dots"`.
+| <span class="prop-name">dotActive</span> | Styles applied to a dot if `variant="dots"` and this is the active step.
+| <span class="prop-name">progress</span> | Styles applied to the Linear Progress component if `variant="progress"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/MobileStepper/MobileStepper.js)

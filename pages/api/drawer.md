@@ -34,17 +34,21 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `docked`
-- `paper`
-- `paperAnchorLeft`
-- `paperAnchorRight`
-- `paperAnchorTop`
-- `paperAnchorBottom`
-- `paperAnchorDockedLeft`
-- `paperAnchorDockedTop`
-- `paperAnchorDockedRight`
-- `paperAnchorDockedBottom`
-- `modal`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">docked</span> | Styles applied to the root element if `variant="permanent or persistent"`.
+| <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
+| <span class="prop-name">paperAnchorLeft</span> | Styles applied to the `Paper` component if `anchor="left"`.
+| <span class="prop-name">paperAnchorRight</span> | Styles applied to the `Paper` component if `anchor="right"`.
+| <span class="prop-name">paperAnchorTop</span> | Styles applied to the `Paper` component if `anchor="top"`.
+| <span class="prop-name">paperAnchorBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"`.
+| <span class="prop-name">paperAnchorDockedLeft</span> | Styles applied to the `Paper` component if `anchor="left"` & `variant` is not "temporary".
+| <span class="prop-name">paperAnchorDockedTop</span> | Styles applied to the `Paper` component if `anchor="top"` & `variant` is not "temporary".
+| <span class="prop-name">paperAnchorDockedRight</span> | Styles applied to the `Paper` component if `anchor="right"` & `variant` is not "temporary".
+| <span class="prop-name">paperAnchorDockedBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"` & `variant` is not "temporary".
+| <span class="prop-name">modal</span> | Styles applied to the `Modal` component.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Drawer/Drawer.js)

@@ -6,6 +6,7 @@ import { capitalize } from '../utils/helpers';
 import { isHorizontal } from '../Drawer/Drawer';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     position: 'fixed',
     top: 0,

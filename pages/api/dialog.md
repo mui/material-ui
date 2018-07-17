@@ -44,17 +44,21 @@ Any other properties supplied will be spread to the root element ([Modal](/api/m
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `scrollPaper`
-- `scrollBody`
-- `paper`
-- `paperScrollPaper`
-- `paperScrollBody`
-- `paperWidthXs`
-- `paperWidthSm`
-- `paperWidthMd`
-- `paperFullWidth`
-- `paperFullScreen`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">scrollPaper</span> | Styles applied to the root element if `scroll="paper"`.
+| <span class="prop-name">scrollBody</span> | Styles applied to the root element if `scroll="bodyr"`.
+| <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
+| <span class="prop-name">paperScrollPaper</span> | Styles applied to the `Paper` component if `scroll="paper"`.
+| <span class="prop-name">paperScrollBody</span> | Styles applied to the `Paper` component if `scroll="body"`.
+| <span class="prop-name">paperWidthXs</span> | Styles applied to the `Paper` component if `maxWidth="xs"`.
+| <span class="prop-name">paperWidthSm</span> | Styles applied to the `Paper` component if `maxWidth="sm"`.
+| <span class="prop-name">paperWidthMd</span> | Styles applied to the `Paper` component if `maxWidth="md"`.
+| <span class="prop-name">paperFullWidth</span> | Styles applied to the `Paper` component if `fullWidth={true}`.
+| <span class="prop-name">paperFullScreen</span> | Styles applied to the `Paper` component if `fullScreen={true}`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Dialog/Dialog.js)

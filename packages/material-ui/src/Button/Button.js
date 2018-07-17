@@ -9,6 +9,7 @@ import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
     lineHeight: '1.4em', // Improve readability for multiline button.
@@ -36,12 +37,15 @@ export const styles = theme => ({
       color: theme.palette.action.disabled,
     },
   },
+  /* Styles applied to the span element that wraps the children. */
   label: {
     display: 'inherit',
     alignItems: 'inherit',
     justifyContent: 'inherit',
   },
+  /* Styles applied to the root element if `variant="text"`. */
   text: {},
+  /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
   textPrimary: {
     color: theme.palette.primary.main,
     '&:hover': {
@@ -52,6 +56,7 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element if `variant="text"` and `color="secondary"`. */
   textSecondary: {
     color: theme.palette.secondary.main,
     '&:hover': {
@@ -62,14 +67,19 @@ export const styles = theme => ({
       },
     },
   },
-  flat: {}, // legacy
-  flatPrimary: {}, // legacy
-  flatSecondary: {}, // legacy
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
+  flat: {},
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
+  flatPrimary: {},
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
+  flatSecondary: {},
+  /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
   },
+  /* Styles applied to the root element if `variant="contained"`. */
   contained: {
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
@@ -96,6 +106,7 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element if `variant="contained"` and `color="primary"`. */
   containedPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
@@ -107,6 +118,7 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element if `variant="contained"` and `color="secondary"`. */
   containedSecondary: {
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.main,
@@ -118,9 +130,13 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
   raised: {}, // legacy
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
   raisedPrimary: {}, // legacy
+  /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
   raisedSecondary: {}, // legacy
+  /* Styles applied to the root element if `variant="fab"`. */
   fab: {
     borderRadius: '50%',
     padding: 0,
@@ -132,6 +148,7 @@ export const styles = theme => ({
       boxShadow: theme.shadows[12],
     },
   },
+  /* Styles applied to the root element if `variant="extendedFab"`. */
   extendedFab: {
     borderRadius: 48 / 2,
     padding: '0 16px',
@@ -139,27 +156,34 @@ export const styles = theme => ({
     minWidth: 48,
     height: 48,
   },
+  /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},
+  /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
     color: 'inherit',
   },
+  /* Styles applied to the root element if `size="mini"`. */
   mini: {
     width: 40,
     height: 40,
   },
+  /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     padding: '7px 8px',
     minWidth: 64,
     minHeight: 32,
     fontSize: theme.typography.pxToRem(13),
   },
+  /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     padding: '8px 24px',
     minWidth: 112,
     minHeight: 40,
     fontSize: theme.typography.pxToRem(15),
   },
+  /* Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: {
     width: '100%',
   },

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: theme.mixins.gutters({
     paddingTop: 16,
     paddingBottom: 16,

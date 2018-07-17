@@ -239,11 +239,29 @@ function generateClasses(reactAPI) {
     throw new Error(`Missing styles name on ${reactAPI.name} component`);
   }
 
+  let text = '';
+  if (Object.keys(reactAPI.styles.descriptions).length) {
+    text = `
+| Name | Description |
+|:-----|:------------|\n`;
+    text += reactAPI.styles.classes
+      .map(
+        className =>
+          `| <span class="prop-name">${className}</span> | ${
+            reactAPI.styles.descriptions[className] ? reactAPI.styles.descriptions[className] : ''
+          }`,
+      )
+      .join('\n');
+  } else {
+    text = reactAPI.styles.classes.map(className => `- \`${className}\``).join('\n');
+  }
+
   return `## CSS API
 
 You can override all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:
-${reactAPI.styles.classes.map(className => `- \`${className}\``).join('\n')}
+
+${text}
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(

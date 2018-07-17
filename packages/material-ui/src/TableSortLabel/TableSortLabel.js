@@ -9,6 +9,7 @@ import ButtonBase from '../ButtonBase';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     cursor: 'pointer',
     display: 'inline-flex',
@@ -22,12 +23,14 @@ export const styles = theme => ({
       color: theme.palette.text.primary,
     },
   },
+  /* Styles applied to the root element if `active={true}`. */
   active: {
     color: theme.palette.text.primary,
     '& $icon': {
       opacity: 1,
     },
   },
+  /* Styles applied to the icon component. */
   icon: {
     height: 16,
     marginRight: 4,
@@ -39,9 +42,11 @@ export const styles = theme => ({
     userSelect: 'none',
     width: 16,
   },
+  /* Styles applied to the icon component if `direction="desc"`. */
   iconDirectionDesc: {
     transform: 'rotate(0deg)',
   },
+  /* Styles applied to the icon component if `direction="asc"`. */
   iconDirectionAsc: {
     transform: 'rotate(180deg)',
   },

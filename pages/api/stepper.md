@@ -29,10 +29,14 @@ Any other properties supplied will be spread to the root element ([Paper](/api/p
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `horizontal`
-- `vertical`
-- `alternativeLabel`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
+| <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Stepper/Stepper.js)

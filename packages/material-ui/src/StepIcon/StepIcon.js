@@ -7,6 +7,7 @@ import withStyles from '../styles/withStyles';
 import SvgIcon from '../SvgIcon';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'block',
     color: theme.palette.text.disabled,
@@ -20,13 +21,17 @@ export const styles = theme => ({
       color: theme.palette.error.main,
     },
   },
+  /* Styles applied to the SVG text element. */
   text: {
     fill: theme.palette.primary.contrastText,
     fontSize: theme.typography.caption.fontSize,
     fontFamily: theme.typography.fontFamily,
   },
+  /* Styles applied to the root element if `active={true}`. */
   active: {},
+  /* Styles applied to the root element if `completed={true}`. */
   completed: {},
+  /* Styles applied to the root element if `error={true}`. */
   error: {},
 });
 

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     flex: '1 1 auto',
     overflowY: 'auto',
