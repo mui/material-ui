@@ -64,6 +64,37 @@ jobs:
       - run:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash)
+  test_material-ui-x:
+    <<: *defaults
+    steps:
+      - *restore_repo
+      - run:
+          name: material-ui-icons
+          command: |
+            if [[ ((`git diff --raw master | grep packages/material-ui-icons` > 0))]]; then
+              echo "changes, let's run the tests"
+              cd packages/material-ui-icons && yarn test
+            else
+              echo "no changes "
+            fi
+      - run:
+          name: material-ui-codemod
+          command: |
+            if [[ ((`git diff --raw master | grep packages/material-ui-codemod` > 0))]]; then
+              echo "changes, let's run the tests"
+              cd packages/material-ui-codemod && yarn test
+            else
+              echo "no changes "
+            fi
+      - run:
+          name: eslint-plugin-material-ui
+          command: |
+            if [[ ((`git diff --raw master | grep packages/eslint-plugin-material-ui` > 0))]]; then
+              echo "changes, let's run the tests"
+              cd packages/eslint-plugin-material-ui && yarn test
+            else
+              echo "no changes "
+            fi
   test_build:
     <<: *defaults
     # This isn't user facing code.
@@ -118,6 +149,9 @@ workflows:
       - test_unit:
           requires:
             - checkout
+      - test_material-ui-x:
+          requires:
+            - checkout
       - test_browser:
           requires:
             - checkout
@@ -126,6 +160,7 @@ workflows:
             - checkout
       - test_regressions:
           requires:
+            - test_material-ui-x
             - test_unit
             - test_browser
             - test_build
