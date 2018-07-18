@@ -140,13 +140,20 @@ export const styles = theme => {
         height: 17,
       },
     },
-    focused: {},
-    activated: {},
-    disabled: {},
-    zero: {},
-    vertical: {},
+    /* Class applied to the root element to trigger JSS nested styles if `reverse={true}` . */
     reverse: {},
+    /* Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`. */
+    disabled: {},
+    /* Class applied to the track and thumb elements to trigger JSS nested styles if `jumped`. */
     jumped: {},
+    /* Class applied to the track and thumb elements to trigger JSS nested styles if `focused`. */
+    focused: {},
+    /* Class applied to the track and thumb elements to trigger JSS nested styles if `activated`. */
+    activated: {},
+    /* Class applied to the root, track and container to trigger JSS nested styles if `vertical`. */
+    vertical: {},
+    /* Class applied to the thumb to trigger nested styles if `value` = `min` . */
+    zero: {},
   };
 };
 
