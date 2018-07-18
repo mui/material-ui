@@ -22,6 +22,14 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/style/icons/SvgMaterialIcons'), 'utf8')
 `,
         },
+        //         'pages/style/icons/SvgMaterialIconsAll.js': {
+        //           js: require('docs/src/pages/style/icons/SvgMaterialIconsAll').default,
+        //           raw: preval`
+        // module.exports = require('fs')
+        //   .readFileSync(require.resolve('docs/src/pages/style/icons/SvgMaterialIconsAll'),
+        //      'utf8')
+        // `,
+        //         },
         'pages/style/icons/Icons.js': {
           js: require('docs/src/pages/style/icons/Icons').default,
           raw: preval`
