@@ -39,6 +39,6 @@ module.exports = [
     name: 'The home page of the docs',
     webpack: false,
     path: '.next/bundles/pages/index.js',
-    limit: '5.8 KB',
+    limit: '5.9 KB',
   },
 ];

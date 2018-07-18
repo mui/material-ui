@@ -110,23 +110,25 @@ async function worker({ svgPath, options, renameFilter, template }) {
   }
 
   const data = await fse.readFile(svgPath, { encoding: 'utf8' });
-  const result = await svgo.optimize(data);
 
+  // Remove hardcoded color fill before optimizing so that empty groups are removed
+  const input = data
+    .replace(/ fill="#010101"/g, '')
+    .replace(/<rect fill="none" width="24" height="24"\/>/g, '')
+    .replace(/<rect id="SVGID_1_" width="24" height="24"\/>/g, '');
+
+  const result = await svgo.optimize(input);
   // Extract the paths from the svg string
   // Clean xml paths
   const paths = result.data
-    .replace(/<!--.*-->/g, '')
-    .replace(/<\?xml[^>]*>/g, '')
     .replace(/<svg[^>]*>/g, '')
     .replace(/<\/svg>/g, '')
-    .replace(/xlink:href="#a"/g, '')
-    .replace(/xlink:href="#c"/g, '')
-    .replace(/xlink:href="#SVGID_[\d]*_"/g, '')
+    .replace(/"\/>/g, '" />')
     .replace(/fill-opacity=/g, 'fillOpacity=')
-    .replace(/<path[^>]*0h24[^>]*>/g, '')
-    .replace(/<path[^>]*0H24[^>]*>/g, '')
-    .replace(/<defs><\/defs>/g, '')
-    .replace(/"\/>/g, '" />');
+    .replace(/xlink:href=/g, 'xlinkHref=')
+    .replace(/clip-path=/g, 'clipPath=')
+    .replace(/clip-rule=/g, 'clipRule=')
+    .replace(/fill-rule=/g, 'fillRule=');
 
   const fileString = Mustache.render(template, {
     paths,
