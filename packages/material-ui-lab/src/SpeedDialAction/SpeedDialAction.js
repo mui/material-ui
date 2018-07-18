@@ -46,7 +46,7 @@ class SpeedDialAction extends React.Component {
       id,
       onClick,
       open,
-      tooltipAlwaysOpen,
+      tooltipOpen,
       tooltipTitle,
       ...other
     } = this.props;
@@ -59,7 +59,7 @@ class SpeedDialAction extends React.Component {
         placement="left"
         onClose={this.handleTooltipClose}
         onOpen={this.handleTooltipOpen}
-        open={open && (tooltipAlwaysOpen || this.state.tooltipOpen)}
+        open={open && (tooltipOpen || this.state.tooltipOpen)}
         {...other}
       >
         <Button
@@ -120,7 +120,7 @@ SpeedDialAction.propTypes = {
   /**
    * Make the tooltip always visible.
    */
-  tooltipAlwaysOpen: PropTypes.bool,
+  tooltipOpen: PropTypes.bool,
   /**
    * Label to display in the tooltip.
    */
@@ -130,7 +130,7 @@ SpeedDialAction.propTypes = {
 SpeedDialAction.defaultProps = {
   delay: 0,
   open: false,
-  tooltipAlwaysOpen: false,
+  tooltipOpen: false,
 };
 
 export default withStyles(styles)(SpeedDialAction);

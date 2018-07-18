@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import ContentCopyIcon from '@material-ui/icons/ContentCopy';
+import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 import SaveIcon from '@material-ui/icons/Save';
 import PrintIcon from '@material-ui/icons/Print';
 import ShareIcon from '@material-ui/icons/Share';
@@ -23,7 +23,7 @@ const styles = theme => ({
 });
 
 const actions = [
-  { icon: <ContentCopyIcon />, name: 'Copy' },
+  { icon: <FileCopyIcon />, name: 'Copy' },
   { icon: <SaveIcon />, name: 'Save' },
   { icon: <PrintIcon />, name: 'Print' },
   { icon: <ShareIcon />, name: 'Share' },
@@ -37,16 +37,16 @@ class SpeedDialTooltipOpen extends React.Component {
   };
 
   handleVisibility = () => {
-    this.setState({
+    this.setState(state => ({
       open: false,
-      hidden: !this.state.hidden,
-    });
+      hidden: !state.hidden,
+    }));
   };
 
   handleClick = () => {
-    this.setState({
-      open: !this.state.open,
-    });
+    this.setState(state => ({
+      open: !state.open,
+    }));
   };
 
   handleOpen = () => {
@@ -93,7 +93,7 @@ class SpeedDialTooltipOpen extends React.Component {
               key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
-              tooltipAlwaysOpen
+              tooltipOpen
               onClick={this.handleClick}
             />
           ))}

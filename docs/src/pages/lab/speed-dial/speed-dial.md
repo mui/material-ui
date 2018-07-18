@@ -22,6 +22,10 @@ of the `SpeedDialIcon` component.
 
 {{"demo": "pages/lab/speed-dial/OpenIconSpeedDial.js"}}
 
-Actions tooltip can be set to always visible to prevent long press on mobile platform.
+## Persistant action tooltips
+
+The SpeedDialActions tooltips can be be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
+
+It is enabled here across all devices for demo purposes, but in production could use the isTouch logic to conditionally set the property.
 
 {{"demo": "pages/lab/speed-dial/SpeedDialTooltipOpen.js"}}
