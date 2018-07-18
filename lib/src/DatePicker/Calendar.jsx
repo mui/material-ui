@@ -77,11 +77,7 @@ export class Calendar extends Component {
 
   onDateSelect = (day, isFinish = true) => {
     const { date, utils } = this.props;
-
-    const withHours = utils.setHours(day, utils.getHours(date));
-    const withMinutes = utils.setMinutes(withHours, utils.getMinutes(date));
-
-    this.props.onChange(withMinutes, isFinish);
+    this.props.onChange(utils.mergeDateAndTime(day, date), isFinish);
   };
 
   handleChangeMonth = (newMonth) => {

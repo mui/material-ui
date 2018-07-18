@@ -35,6 +35,7 @@ export class Utils<TDate> {
   getMonth(value: TDate): number;
   getYear(value: TDate): number;
   setYear(value: TDate, count: number): TDate;
+  mergeDateAndTime(date: TDate, time: TDate): TDate;
 
   getStartOfMonth(value: TDate): TDate;
   getNextMonth(value: TDate): TDate;
