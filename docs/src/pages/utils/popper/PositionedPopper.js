@@ -20,21 +20,22 @@ const styles = theme => ({
 class PositionedPopper extends React.Component {
   state = {
     anchorEl: null,
+    open: false,
     placement: null,
   };
 
   handleClick = placement => event => {
     const { currentTarget } = event;
     this.setState(state => ({
-      anchorEl: state.placement === placement && state.anchorEl ? null : currentTarget,
+      anchorEl: currentTarget,
+      open: !state.placement === placement || !state.open,
       placement,
     }));
   };
 
   render() {
     const { classes } = this.props;
-    const { anchorEl, placement } = this.state;
-    const open = Boolean(anchorEl);
+    const { anchorEl, open, placement } = this.state;
 
     return (
       <div className={classes.root}>
