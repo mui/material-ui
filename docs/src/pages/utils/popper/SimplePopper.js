@@ -16,19 +16,20 @@ const styles = theme => ({
 class SimplePopper extends React.Component {
   state = {
     anchorEl: null,
+    open: false,
   };
 
   handleClick = event => {
     const { currentTarget } = event;
     this.setState(state => ({
-      anchorEl: state.anchorEl ? null : currentTarget,
+      anchorEl: currentTarget,
+      open: !state.open,
     }));
   };
 
   render() {
     const { classes } = this.props;
-    const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
+    const { anchorEl, open } = this.state;
     const id = open ? 'simple-popper' : null;
 
     return (
