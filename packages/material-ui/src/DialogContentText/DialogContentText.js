@@ -7,6 +7,7 @@ import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     color: theme.palette.text.secondary,
   },

@@ -7,9 +7,11 @@ import withStyles from '../styles/withStyles';
 import FormLabel from '../FormLabel';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     transformOrigin: 'top left',
   },
+  /* Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: {
     position: 'absolute',
     left: 0,
@@ -17,14 +19,17 @@ export const styles = theme => ({
     // slight alteration to spec spacing to match visual spec result
     transform: 'translate(0, 24px) scale(1)',
   },
+  /* Styles applied to the root element if `margin="dense"`. */
   marginDense: {
     // Compensation for the `Input.inputDense` style.
     transform: 'translate(0, 21px) scale(1)',
   },
+  /* Styles applied to the `input` element if `shrink={true}`. */
   shrink: {
     transform: 'translate(0, 1.5px) scale(0.75)',
     transformOrigin: 'top left',
   },
+  /* Styles applied to the `input` element if `disableAnimation={false}`. */
   animated: {
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shorter,

@@ -7,6 +7,7 @@ import withStyles from '../styles/withStyles';
 import ListItem from '../ListItem';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     ...theme.typography.subheading,
     height: 24,
@@ -21,6 +22,7 @@ export const styles = theme => ({
       backgroundColor: theme.palette.action.selected,
     },
   },
+  /* Styles applied to the root element if `selected={true}`. */
   selected: {},
 });
 

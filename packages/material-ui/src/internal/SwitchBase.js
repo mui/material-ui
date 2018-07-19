@@ -31,6 +31,9 @@ export const styles = {
   },
 };
 
+/**
+ * @ignore - internal component.
+ */
 class SwitchBase extends React.Component {
   input = null;
 

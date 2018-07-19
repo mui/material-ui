@@ -11,16 +11,20 @@ import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {},
+  /* Styles applied to the root element if `scroll="paper"`. */
   scrollPaper: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  /* Styles applied to the root element if `scroll="bodyr"`. */
   scrollBody: {
     overflowY: 'auto',
     overflowX: 'hidden',
   },
+  /* Styles applied to the `Paper` component. */
   paper: {
     display: 'flex',
     flexDirection: 'column',
@@ -30,13 +34,16 @@ export const styles = theme => ({
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 'none',
   },
+  /* Styles applied to the `Paper` component if `scroll="paper"`. */
   paperScrollPaper: {
     flex: '0 1 auto',
     maxHeight: 'calc(100% - 96px)',
   },
+  /* Styles applied to the `Paper` component if `scroll="body"`. */
   paperScrollBody: {
     margin: '48px auto',
   },
+  /* Styles applied to the `Paper` component if `maxWidth="xs"`. */
   paperWidthXs: {
     maxWidth: Math.max(theme.breakpoints.values.xs, 360),
     '&$paperScrollBody': {
@@ -45,6 +52,7 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the `Paper` component if `maxWidth="sm"`. */
   paperWidthSm: {
     maxWidth: theme.breakpoints.values.sm,
     '&$paperScrollBody': {
@@ -53,6 +61,7 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the `Paper` component if `maxWidth="md"`. */
   paperWidthMd: {
     maxWidth: theme.breakpoints.values.md,
     '&$paperScrollBody': {
@@ -61,9 +70,11 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the `Paper` component if `fullWidth={true}`. */
   paperFullWidth: {
     width: '100%',
   },
+  /* Styles applied to the `Paper` component if `fullScreen={true}`. */
   paperFullScreen: {
     margin: 0,
     width: '100%',

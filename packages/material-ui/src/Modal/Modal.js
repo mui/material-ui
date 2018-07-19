@@ -22,6 +22,7 @@ function getHasTransition(props) {
 }
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     position: 'fixed',
     zIndex: theme.zIndex.modal,
@@ -30,6 +31,7 @@ export const styles = theme => ({
     top: 0,
     left: 0,
   },
+  /* Styles applied to the root element if the `Modal` has exited. */
   hidden: {
     visibility: 'hidden',
   },

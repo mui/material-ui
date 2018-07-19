@@ -6,6 +6,7 @@ import ButtonBase from '../ButtonBase';
 import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = theme => ({
+  /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
   root: {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -15,29 +16,37 @@ export const styles = theme => ({
     width: '100%',
     boxSizing: 'border-box',
     textAlign: 'left',
-  },
-  container: {
-    position: 'relative',
-  },
-  focusVisible: {
-    backgroundColor: theme.palette.action.hover,
-  },
-  default: {
     paddingTop: 12,
     paddingBottom: 12,
   },
+  /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
+  container: {
+    position: 'relative',
+  },
+  // TODO: Sanity check this - why is focusVisibleClassName prop apparently applied to a div?
+  /* Styles applied to the `component`'s `focusVisibleClassName` property if `button={true}`. */
+  focusVisible: {
+    backgroundColor: theme.palette.action.hover,
+  },
+  /* Legacy styles applied to the root element. Use `root` instead. */
+  default: {},
+  /* Styles applied to the `component` element if `dense={true}` or `children` includes `Avatar`. */
   dense: {
     paddingTop: 8,
     paddingBottom: 8,
   },
+  /* Styles applied to the inner `component` element if `dense={true}`. */
   disabled: {
     opacity: 0.5,
   },
+  /* Styles applied to the inner `component` element if `divider={true}`. */
   divider: {
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   },
+  /* Styles applied to the inner `component` element if `disableGutters={false}`. */
   gutters: theme.mixins.gutters(),
+  /* Styles applied to the inner `component` element if `button={true}`. */
   button: {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
@@ -51,6 +60,7 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`. */
   secondaryAction: {
     // Add some space to avoid collision as `ListItemSecondaryAction`
     // is absolutely positionned.
@@ -90,8 +100,9 @@ class ListItem extends React.Component {
 
     const className = classNames(
       classes.root,
-      isDense || hasAvatar ? classes.dense : classes.default,
+      classes.default,
       {
+        [classes.dense]: isDense || hasAvatar,
         [classes.gutters]: !disableGutters,
         [classes.divider]: divider,
         [classes.disabled]: disabled,

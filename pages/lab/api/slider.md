@@ -30,6 +30,36 @@ title: Slider API
 
 Any other properties supplied will be spread to the root element (native element).
 
+## CSS API
+
+You can override all the class names injected by Material-UI thanks to the `classes` property.
+This property accepts the following keys:
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">container</span> | Styles applied to the container element.
+| <span class="prop-name">track</span> | Styles applied to the track elements.
+| <span class="prop-name">trackBefore</span> | Styles applied to the track element before the thumb.
+| <span class="prop-name">trackAfter</span> | Styles applied to the track element after the thumb.
+| <span class="prop-name">thumb</span> | Styles applied to the thumb element.
+| <span class="prop-name">reverse</span> | Class applied to the root element to trigger JSS nested styles if `reverse={true}` .
+| <span class="prop-name">disabled</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`.
+| <span class="prop-name">jumped</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `jumped`.
+| <span class="prop-name">focused</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `focused`.
+| <span class="prop-name">activated</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `activated`.
+| <span class="prop-name">vertical</span> | Class applied to the root, track and container to trigger JSS nested styles if `vertical`.
+| <span class="prop-name">zero</span> | Class applied to the thumb to trigger nested styles if `value` = `min` .
+
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/Slider/Slider.js)
+for more detail.
+
+If using the `overrides` key of the theme as documented
+[here](/customization/themes#customizing-all-instances-of-a-component-type),
+you need to use the following style sheet name: `MuiSlider`.
+
 ## Demos
 
 - [Slider](/lab/slider)

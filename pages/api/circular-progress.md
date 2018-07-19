@@ -32,15 +32,19 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `static`
-- `indeterminate`
-- `colorPrimary`
-- `colorSecondary`
-- `svg`
-- `circle`
-- `circleStatic`
-- `circleIndeterminate`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">static</span> | Styles applied to the root element if `variant="static"`.
+| <span class="prop-name">indeterminate</span> | Styles applied to the root element if `variant="indeterminate"`.
+| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">svg</span> | Styles applied to the `svg` element.
+| <span class="prop-name">circle</span> | Styles applied to the `circle` svg path.
+| <span class="prop-name">circleStatic</span> | Styles applied to the `circle` svg path if `variant="static"`.
+| <span class="prop-name">circleIndeterminate</span> | Styles applied to the `circle` svg path if `variant="indeterminate"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/CircularProgress/CircularProgress.js)

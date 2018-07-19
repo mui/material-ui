@@ -7,6 +7,7 @@ import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     overflow: 'hidden',
   },

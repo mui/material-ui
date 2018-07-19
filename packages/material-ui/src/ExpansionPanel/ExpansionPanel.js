@@ -27,6 +27,7 @@ export const styles = theme => {
   };
 
   return {
+    /* Styles applied to the root element. */
     root: {
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
@@ -59,6 +60,7 @@ export const styles = theme => {
         },
       },
     },
+    /* Styles applied to the root element if `expanded={true}`. */
     expanded: {
       margin: '16px 0',
       '&:first-child': {
@@ -71,6 +73,7 @@ export const styles = theme => {
         opacity: 0,
       },
     },
+    /* Styles applied to the root element if `disabled={true}`. */
     disabled: {
       backgroundColor: theme.palette.action.disabledBackground,
     },

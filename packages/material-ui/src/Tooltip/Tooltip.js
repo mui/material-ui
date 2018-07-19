@@ -10,10 +10,12 @@ import Grow from '../Grow';
 import Popper from '../Popper';
 
 export const styles = theme => ({
+  /* Styles applied to the Popper component. */
   popper: {
     zIndex: theme.zIndex.tooltip,
     opacity: 0.9,
   },
+  /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
     backgroundColor: theme.palette.grey[700],
     borderRadius: theme.shape.borderRadius,
@@ -23,11 +25,13 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(10),
     lineHeight: `${theme.typography.round(14 / 10)}em`,
   },
+  /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   touch: {
     padding: '8px 16px',
     fontSize: theme.typography.pxToRem(14),
     lineHeight: `${theme.typography.round(16 / 14)}em`,
   },
+  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
   tooltipPlacementLeft: {
     transformOrigin: 'right center',
     margin: '0 24px ',
@@ -35,6 +39,7 @@ export const styles = theme => ({
       margin: '0 14px',
     },
   },
+  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
   tooltipPlacementRight: {
     transformOrigin: 'left center',
     margin: '0 24px',
@@ -42,6 +47,7 @@ export const styles = theme => ({
       margin: '0 14px',
     },
   },
+  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "top". */
   tooltipPlacementTop: {
     transformOrigin: 'center bottom',
     margin: '24px 0',
@@ -49,6 +55,7 @@ export const styles = theme => ({
       margin: '14px 0',
     },
   },
+  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom". */
   tooltipPlacementBottom: {
     transformOrigin: 'center top',
     margin: '24px 0',
@@ -305,7 +312,7 @@ class Tooltip extends React.Component {
     warning(
       !children.props.title,
       [
-        'Material-UI: you have been providing a `title` property to the child of <Tooltip />.',
+        'Material-UI: you have provided a `title` property to the child of <Tooltip />.',
         `Remove this title property \`${children.props.title}\` or the Tooltip component.`,
       ].join('\n'),
     );

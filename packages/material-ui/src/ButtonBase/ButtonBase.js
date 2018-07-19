@@ -10,6 +10,7 @@ import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -40,7 +41,9 @@ export const styles = {
       cursor: 'default',
     },
   },
+  /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if keyboard focused. */
   focusVisible: {},
 };
 
@@ -371,7 +374,7 @@ ButtonBase.propTypes = {
   focusRipple: PropTypes.bool,
   /**
    * This property can help a person know which element has the keyboard focus.
-   * The class name will be applied when the element gain the focus throught a keyboard interaction.
+   * The class name will be applied when the element gain the focus through a keyboard interaction.
    * It's a polyfill for the [CSS :focus-visible feature](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
    * The rational for using this feature [is explain here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
    */

@@ -28,17 +28,21 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `titlePositionBottom`
-- `titlePositionTop`
-- `rootSubtitle`
-- `titleWrap`
-- `titleWrapActionPosLeft`
-- `titleWrapActionPosRight`
-- `title`
-- `subtitle`
-- `actionIcon`
-- `actionIconActionPosLeft`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">titlePositionBottom</span> | Styles applied to the root element if `titlePosition="bottom"`.
+| <span class="prop-name">titlePositionTop</span> | Styles applied to the root element if `titlePosition="top"`.
+| <span class="prop-name">rootSubtitle</span> | Styles applied to the root element if a `subtitle` is provided.
+| <span class="prop-name">titleWrap</span> | Styles applied to the title and subtitle container element.
+| <span class="prop-name">titleWrapActionPosLeft</span> | Styles applied to the container element if `actionPosition="left"`.
+| <span class="prop-name">titleWrapActionPosRight</span> | Styles applied to the container element if `actionPosition="right"`.
+| <span class="prop-name">title</span> | Styles applied to the title container element.
+| <span class="prop-name">subtitle</span> | Styles applied to the subtitle container element.
+| <span class="prop-name">actionIcon</span> | Styles applied to the actionIcon if supplied.
+| <span class="prop-name">actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left".
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/GridListTileBar/GridListTileBar.js)

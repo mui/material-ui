@@ -26,6 +26,7 @@ export const styles = theme => {
   };
 
   return {
+    /* Styles applied to the root element. */
     root: {
       zIndex: theme.zIndex.snackbar,
       position: 'fixed',
@@ -35,18 +36,21 @@ export const styles = theme => {
       justifyContent: 'center',
       alignItems: 'center',
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`. */
     anchorOriginTopCenter: {
       ...top,
       [theme.breakpoints.up('md')]: {
         ...center,
       },
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`. */
     anchorOriginBottomCenter: {
       ...bottom,
       [theme.breakpoints.up('md')]: {
         ...center,
       },
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`. */
     anchorOriginTopRight: {
       ...top,
       ...right,
@@ -56,6 +60,7 @@ export const styles = theme => {
         ...rightSpace,
       },
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`. */
     anchorOriginBottomRight: {
       ...bottom,
       ...right,
@@ -65,6 +70,7 @@ export const styles = theme => {
         ...rightSpace,
       },
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`. */
     anchorOriginTopLeft: {
       ...top,
       ...left,
@@ -74,6 +80,7 @@ export const styles = theme => {
         ...leftSpace,
       },
     },
+    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`. */
     anchorOriginBottomLeft: {
       ...bottom,
       ...left,

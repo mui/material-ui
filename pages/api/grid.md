@@ -39,46 +39,50 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `container`
-- `item`
-- `zeroMinWidth`
-- `direction-xs-column`
-- `direction-xs-column-reverse`
-- `direction-xs-row-reverse`
-- `wrap-xs-nowrap`
-- `wrap-xs-wrap-reverse`
-- `align-items-xs-center`
-- `align-items-xs-flex-start`
-- `align-items-xs-flex-end`
-- `align-items-xs-baseline`
-- `align-content-xs-center`
-- `align-content-xs-flex-start`
-- `align-content-xs-flex-end`
-- `align-content-xs-space-between`
-- `align-content-xs-space-around`
-- `justify-xs-center`
-- `justify-xs-flex-end`
-- `justify-xs-space-between`
-- `justify-xs-space-around`
-- `spacing-xs-8`
-- `spacing-xs-16`
-- `spacing-xs-24`
-- `spacing-xs-32`
-- `spacing-xs-40`
-- `grid-xs-auto`
-- `grid-xs-true`
-- `grid-xs-1`
-- `grid-xs-2`
-- `grid-xs-3`
-- `grid-xs-4`
-- `grid-xs-5`
-- `grid-xs-6`
-- `grid-xs-7`
-- `grid-xs-8`
-- `grid-xs-9`
-- `grid-xs-10`
-- `grid-xs-11`
-- `grid-xs-12`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">container</span> | Styles applied to the root element if `container={true}`.
+| <span class="prop-name">item</span> | Styles applied to the root element if `item={true}`.
+| <span class="prop-name">zeroMinWidth</span> | Styles applied to the root element if `zeroMinWidth={true}`.
+| <span class="prop-name">direction-xs-column</span> | 
+| <span class="prop-name">direction-xs-column-reverse</span> | 
+| <span class="prop-name">direction-xs-row-reverse</span> | 
+| <span class="prop-name">wrap-xs-nowrap</span> | 
+| <span class="prop-name">wrap-xs-wrap-reverse</span> | 
+| <span class="prop-name">align-items-xs-center</span> | 
+| <span class="prop-name">align-items-xs-flex-start</span> | 
+| <span class="prop-name">align-items-xs-flex-end</span> | 
+| <span class="prop-name">align-items-xs-baseline</span> | 
+| <span class="prop-name">align-content-xs-center</span> | 
+| <span class="prop-name">align-content-xs-flex-start</span> | 
+| <span class="prop-name">align-content-xs-flex-end</span> | 
+| <span class="prop-name">align-content-xs-space-between</span> | 
+| <span class="prop-name">align-content-xs-space-around</span> | 
+| <span class="prop-name">justify-xs-center</span> | 
+| <span class="prop-name">justify-xs-flex-end</span> | 
+| <span class="prop-name">justify-xs-space-between</span> | 
+| <span class="prop-name">justify-xs-space-around</span> | 
+| <span class="prop-name">spacing-xs-8</span> | 
+| <span class="prop-name">spacing-xs-16</span> | 
+| <span class="prop-name">spacing-xs-24</span> | 
+| <span class="prop-name">spacing-xs-32</span> | 
+| <span class="prop-name">spacing-xs-40</span> | 
+| <span class="prop-name">grid-xs-auto</span> | 
+| <span class="prop-name">grid-xs-true</span> | 
+| <span class="prop-name">grid-xs-1</span> | 
+| <span class="prop-name">grid-xs-2</span> | 
+| <span class="prop-name">grid-xs-3</span> | 
+| <span class="prop-name">grid-xs-4</span> | 
+| <span class="prop-name">grid-xs-5</span> | 
+| <span class="prop-name">grid-xs-6</span> | 
+| <span class="prop-name">grid-xs-7</span> | 
+| <span class="prop-name">grid-xs-8</span> | 
+| <span class="prop-name">grid-xs-9</span> | 
+| <span class="prop-name">grid-xs-10</span> | 
+| <span class="prop-name">grid-xs-11</span> | 
+| <span class="prop-name">grid-xs-12</span> | 
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Grid/Grid.js)

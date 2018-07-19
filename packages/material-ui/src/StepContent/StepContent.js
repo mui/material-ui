@@ -6,6 +6,7 @@ import Collapse from '../Collapse';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     marginTop: 8,
     marginLeft: 12, // half icon
@@ -15,9 +16,11 @@ export const styles = theme => ({
       theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
     }`,
   },
+  /* Styles applied to the root element if `last={true}` (controlled by `Step`). */
   last: {
     borderLeft: 'none',
   },
+  /* Styles applied to the Transition component. */
   transition: {},
 });
 

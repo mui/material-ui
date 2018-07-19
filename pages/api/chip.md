@@ -30,13 +30,17 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `clickable`
-- `deletable`
-- `avatar`
-- `avatarChildren`
-- `label`
-- `deleteIcon`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">clickable</span> | Styles applied to the root element if `onClick` is defined or `clickable={true}`.
+| <span class="prop-name">deletable</span> | Styles applied to the root element if `onDelete` is defined.
+| <span class="prop-name">avatar</span> | Styles applied to the `avatar` element if `checked={true}`.
+| <span class="prop-name">avatarChildren</span> | Styles applied to the `avartar` elements children.
+| <span class="prop-name">label</span> | Styles applied to the label `span` element`.
+| <span class="prop-name">deleteIcon</span> | Styles applied to the `deleteIcon` element.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Chip/Chip.js)

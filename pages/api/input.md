@@ -46,19 +46,23 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `formControl`
-- `focused`
-- `disabled`
-- `underline`
-- `error`
-- `multiline`
-- `fullWidth`
-- `input`
-- `inputMarginDense`
-- `inputMultiline`
-- `inputType`
-- `inputTypeSearch`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
+| <span class="prop-name">focused</span> | Styles applied to the root element if the component is focused.
+| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">underline</span> | Styles applied to the root element if `disabledUnderline={false}`.
+| <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">multiline</span> | Styles applied to the root element if `multiline={true}`.
+| <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+| <span class="prop-name">input</span> | Styles applied to the `input` element.
+| <span class="prop-name">inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
+| <span class="prop-name">inputType</span> | Styles applied to the `input` element if `type` is not "text"`.
+| <span class="prop-name">inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Input/Input.js)

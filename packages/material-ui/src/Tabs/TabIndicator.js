@@ -5,6 +5,7 @@ import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     position: 'absolute',
     height: 2,
@@ -13,9 +14,11 @@ export const styles = theme => ({
     transition: theme.transitions.create(),
     willChange: 'left, width',
   },
+  /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     backgroundColor: theme.palette.primary.main,
   },
+  /* Styles applied to the root element if `color="secondary"`. */
   colorSecondary: {
     backgroundColor: theme.palette.secondary.main,
   },

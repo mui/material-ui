@@ -19,7 +19,7 @@ title: Avatar API
 | <span class="prop-name">children</span> | <span class="prop-type">node |   | Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.<br>This can be an element, or just a string. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">imgProps</span> | <span class="prop-type">object |   | Attributes applied to the `img` element when the component is used to display an image. |
+| <span class="prop-name">imgProps</span> | <span class="prop-type">object |   | Attributes applied to the `img` element if the component is used to display an image. |
 | <span class="prop-name">sizes</span> | <span class="prop-type">string |   | The `sizes` attribute for the `img` element. |
 | <span class="prop-name">src</span> | <span class="prop-type">string |   | The `src` attribute for the `img` element. |
 | <span class="prop-name">srcSet</span> | <span class="prop-type">string |   | The `srcSet` attribute for the `img` element. |
@@ -30,9 +30,13 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `colorDefault`
-- `img`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">colorDefault</span> | Styles applied to the root element if `color="default"`.
+| <span class="prop-name">img</span> | Styles applied to the img element if either `src` or `srcSet` is defined.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Avatar/Avatar.js)

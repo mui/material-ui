@@ -10,17 +10,20 @@ import { duration } from '@material-ui/core/styles/transitions';
 import Button from '@material-ui/core/Button';
 import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 
-const styles = {
+export const styles = {
+  /* Styles applied to the root element. */
   root: {
     zIndex: 1050,
     display: 'flex',
     flexDirection: 'column-reverse', // Place the Actions above the FAB.
   },
+  /* Styles applied to the actions (`children` wrapper) element. */
   actions: {
     display: 'flex',
     flexDirection: 'column-reverse', // Display the first action at the bottom.
     marginBottom: 16,
   },
+  /* Styles applied to the actions (`children` wrapper) element if `open={false}`. */
   actionsClosed: {
     transition: 'top 0s linear 0.2s',
   },
@@ -51,8 +54,9 @@ class SpeedDial extends React.Component {
         actions.firstChild.firstChild.focus();
 
         // This determines which key focuses the next / previous action.
-        // For example, if a visually impaired user presses down to select the first action
-        // (i.e. following DOM ordering), down will select the next action, and up the previous.
+        // For example, if a user presses down to select the first action
+        // (i.e. following DOM ordering rather than visual ordering),
+        // down will select the next action, and up the previous.
         if (nextKey == null) {
           this.setState({ nextKey: key });
           this.setState({ prevKey: key === 'up' ? 'down' : 'up' });
@@ -268,4 +272,4 @@ SpeedDial.defaultProps = {
   },
 };
 
-export default withStyles(styles)(SpeedDial);
+export default withStyles(styles, { name: 'MuiSpeedDial' })(SpeedDial);

@@ -6,13 +6,14 @@ import hasValue from './hasValue';
 import isValueSelected from './isValueSelected';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     transition: theme.transitions.create('background,box-shadow'),
     background: 'transparent',
     borderRadius: 2,
     overflow: 'hidden',
   },
-
+  /* Styles applied to the root element if `selected={true}` or `selected="auto" and `value` set. */
   selected: {
     background: theme.palette.background.paper,
     boxShadow: theme.shadows[2],

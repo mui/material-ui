@@ -4,20 +4,24 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     listStyle: 'none',
     margin: 0,
     padding: 0,
     position: 'relative',
   },
+  /* Styles applied to the root element if `disablePddding={false}`. */
   padding: {
     paddingTop: 8,
     paddingBottom: 8,
   },
+  /* Styles applied to the root element if `dense={true}` & `disablePddding={false}`. */
   dense: {
     paddingTop: 4,
     paddingBottom: 4,
   },
+  /* Styles applied to the root element if a `subheader` is provided. */
   subheader: {
     paddingTop: 0,
   },

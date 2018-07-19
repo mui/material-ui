@@ -26,14 +26,18 @@ Any other properties supplied will be spread to the root element ([Paper](/api/p
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `positionFixed`
-- `positionAbsolute`
-- `positionSticky`
-- `positionStatic`
-- `colorDefault`
-- `colorPrimary`
-- `colorSecondary`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">positionFixed</span> | Styles applied to the root element if `position="fixed"`.
+| <span class="prop-name">positionAbsolute</span> | Styles applied to the root element if `position="absolute"`.
+| <span class="prop-name">positionSticky</span> | Styles applied to the root element if `position="sticky"`.
+| <span class="prop-name">positionStatic</span> | Styles applied to the root element if `position="static"`.
+| <span class="prop-name">colorDefault</span> | Styles applied to the root element if `color="default"`.
+| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/AppBar/AppBar.js)

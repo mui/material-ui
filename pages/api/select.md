@@ -39,11 +39,15 @@ Any other properties supplied will be spread to the root element ([Input](/api/i
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `select`
-- `selectMenu`
-- `disabled`
-- `icon`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the `Input` component `root` class.
+| <span class="prop-name">select</span> | Styles applied to the `Input` component `select` class.
+| <span class="prop-name">selectMenu</span> | Styles applied to the `Input` component `selectMenu` class.
+| <span class="prop-name">disabled</span> | Styles applied to the `Input` component `disabled` class.
+| <span class="prop-name">icon</span> | Styles applied to the `Input` component `icon` class.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Select/Select.js)

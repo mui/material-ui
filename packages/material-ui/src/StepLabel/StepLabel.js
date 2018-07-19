@@ -6,6 +6,7 @@ import Typography from '../Typography';
 import StepIcon from '../StepIcon';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -16,13 +17,11 @@ export const styles = theme => ({
       cursor: 'default',
     },
   },
+  /* Styles applied to the root element if `orientation="horiizontal". */
   horizontal: {},
+  /* Styles applied to the root element if `orientation="vertical". */
   vertical: {},
-  active: {},
-  completed: {},
-  alternativeLabel: {},
-  error: {},
-  disabled: {},
+  /* Styles applied to the `Typography` component which wraps `children`. */
   label: {
     color: theme.palette.text.secondary,
     '&$active': {
@@ -41,12 +40,24 @@ export const styles = theme => ({
       color: theme.palette.error.main,
     },
   },
+  /* Styles applied to the `Typography` component if `active={true}`. */
+  active: {},
+  /* Styles applied to the `Typography` component if `completed={true}`. */
+  completed: {},
+  /* Styles applied to the root element and `Typography` component if `error={true}`. */
+  error: {},
+  /* Styles applied to the root element and `Typography` component if `disabled={true}`. */
+  disabled: {},
+  /* Styles applied to the `icon` container element. */
   iconContainer: {
     paddingRight: 8,
     '&$alternativeLabel': {
       paddingRight: 0,
     },
   },
+  /* Styles applied to the root & icon container and `Typography` if `alternativeLabel={true}`. */
+  alternativeLabel: {},
+  /* Styles applied to the container element which wraps `Typography` and `optional`. */
   labelContainer: {
     width: '100%',
   },

@@ -28,12 +28,16 @@ Any other properties supplied will be spread to the root element ([ButtonBase](/
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `colorInherit`
-- `colorPrimary`
-- `colorSecondary`
-- `disabled`
-- `label`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">label</span> | Styles applied to the children container element.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/IconButton/IconButton.js)

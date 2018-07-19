@@ -36,15 +36,19 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `flexContainer`
-- `scroller`
-- `fixed`
-- `scrollable`
-- `centered`
-- `scrollButtons`
-- `scrollButtonsAuto`
-- `indicator`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">flexContainer</span> | Styles applied to the flex container element.
+| <span class="prop-name">centered</span> | Styles applied to the flex container element if `centered={true}` & `scrollable={false}`.
+| <span class="prop-name">scroller</span> | Styles applied to the tablist element.
+| <span class="prop-name">fixed</span> | Styles applied to the tablist element if `scrollable={false}`.
+| <span class="prop-name">scrollable</span> | Styles applied to the tablist element if `scrollable={true}`.
+| <span class="prop-name">scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
+| <span class="prop-name">scrollButtonsAuto</span> | Styles applied to the `ScrollButtonComponent` component if `sscrollButtons="auto"`.
+| <span class="prop-name">indicator</span> | Styles applied to the `TabIndicator` component.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Tabs/Tabs.js)

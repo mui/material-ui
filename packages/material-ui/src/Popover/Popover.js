@@ -66,6 +66,7 @@ function getAnchorEl(anchorEl) {
 }
 
 export const styles = {
+  /* Styles applied to the `Paper` component. */
   paper: {
     position: 'absolute',
     overflowY: 'auto',

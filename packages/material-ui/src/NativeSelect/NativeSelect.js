@@ -8,10 +8,12 @@ import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 
 export const styles = theme => ({
+  /* Styles applied to the `Input` component `root` class. */
   root: {
     position: 'relative',
     width: '100%',
   },
+  /* Styles applied to the `Input` component `select` class. */
   select: {
     '-moz-appearance': 'none', // Reset
     '-webkit-appearance': 'none', // Reset
@@ -41,6 +43,7 @@ export const styles = theme => ({
       cursor: 'default',
     },
   },
+  /* Styles applied to the `Input` component `selectMenu` class. */
   selectMenu: {
     width: 'auto', // Fix Safari textOverflow
     textOverflow: 'ellipsis',
@@ -48,7 +51,9 @@ export const styles = theme => ({
     overflow: 'hidden',
     minHeight: '1.1875em', // Reset (19px), match the native input line-height
   },
+  /* Styles applied to the `Input` component `disabled` class. */
   disabled: {},
+  /* Styles applied to the `Input` component `icon` class. */
   icon: {
     // We use a position absolute over a flexbox in order to forward the pointer events
     // to the input.

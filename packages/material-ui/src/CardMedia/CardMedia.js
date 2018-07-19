@@ -5,12 +5,14 @@ import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     display: 'block',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
   },
+  /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
   media: {
     width: '100%',
   },

@@ -5,6 +5,7 @@ import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
 export const styles = {
+  /* Styles applied to the root element. */
   root: {
     margin: 0,
     padding: '24px 24px 20px',

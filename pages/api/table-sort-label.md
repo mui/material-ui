@@ -26,11 +26,15 @@ Any other properties supplied will be spread to the root element ([ButtonBase](/
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `active`
-- `icon`
-- `iconDirectionDesc`
-- `iconDirectionAsc`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">active</span> | Styles applied to the root element if `active={true}`.
+| <span class="prop-name">icon</span> | Styles applied to the icon component.
+| <span class="prop-name">iconDirectionDesc</span> | Styles applied to the icon component if `direction="desc"`.
+| <span class="prop-name">iconDirectionAsc</span> | Styles applied to the icon component if `direction="asc"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/TableSortLabel/TableSortLabel.js)

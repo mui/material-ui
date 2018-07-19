@@ -28,11 +28,15 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `selected`
-- `hover`
-- `head`
-- `footer`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">selected</span> | Styles applied to the root element if `context.table` & `selected={true}`.
+| <span class="prop-name">hover</span> | Styles applied to the root element if `context.table` & `hover={true}`.
+| <span class="prop-name">head</span> | Styles applied to the root element if `context.table.head`.
+| <span class="prop-name">footer</span> | Styles applied to the root element if `context.table.footer`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/TableRow/TableRow.js)

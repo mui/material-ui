@@ -28,10 +28,14 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `padding`
-- `dense`
-- `subheader`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">padding</span> | Styles applied to the root element if `disablePddding={false}`.
+| <span class="prop-name">dense</span> | Styles applied to the root element if `dense={true}` & `disablePddding={false}`.
+| <span class="prop-name">subheader</span> | Styles applied to the root element if a `subheader` is provided.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/List/List.js)

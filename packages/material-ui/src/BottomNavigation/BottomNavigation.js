@@ -5,6 +5,7 @@ import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     display: 'flex',
     justifyContent: 'center',

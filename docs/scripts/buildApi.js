@@ -83,9 +83,11 @@ function buildDocs(options) {
 
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const component = require(componentObject.filename);
+  const name = path.parse(componentObject.filename).name;
   const styles = {
     classes: [],
     name: null,
+    descriptions: {},
   };
 
   if (component.styles && component.default.options) {
@@ -94,6 +96,29 @@ function buildDocs(options) {
       className => !className.match(/^(@media|@keyframes)/),
     );
     styles.name = component.default.options.name;
+
+    let styleSrc = src;
+    // Exception for Select where the classes are imported from NativeSelect
+    if (name === 'Select') {
+      styleSrc = readFileSync(
+        componentObject.filename.replace('Select/Select', 'NativeSelect/NativeSelect'),
+        'utf8',
+      );
+    }
+
+    /**
+     * Collect classes comments from the source
+     */
+    const stylesRegexp = /export const styles.*\n(.*\n)*};\n\n/;
+    const styleRegexp = /\/\* (.*) \*\/\n\s*(\w*)/g;
+    // Extract the styles section from the source
+    const stylesSrc = stylesRegexp.exec(styleSrc);
+    if (stylesSrc) {
+      // Extract individual classes and descriptions
+      stylesSrc[0].replace(styleRegexp, (match, desc, key) => {
+        styles.descriptions[key] = desc;
+      });
+    }
   }
 
   let reactAPI;
@@ -104,7 +129,7 @@ function buildDocs(options) {
     throw err;
   }
 
-  reactAPI.name = path.parse(componentObject.filename).name;
+  reactAPI.name = name;
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
@@ -147,7 +172,7 @@ export default withRoot(Page);
 `,
     );
 
-    console.log('Built markdown docs for', componentObject.filename);
+    console.log('Built markdown docs for', reactAPI.name);
   });
 }
 

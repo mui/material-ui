@@ -5,6 +5,7 @@ import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     flex: '1 1 auto',
     minWidth: 0,
@@ -13,24 +14,29 @@ export const styles = theme => ({
       paddingLeft: 0,
     },
   },
+  /* Styles applied to the root element if `inset={true}`. */
   inset: {
     '&:first-child': {
       paddingLeft: 56,
     },
   },
+  /* Styles applied to the root element if `context.dense` is `true`. */
   dense: {
     fontSize: theme.typography.pxToRem(13),
   },
+  /* Styles applied to the primary `Typography` component. */
   primary: {
     '&$textDense': {
       fontSize: 'inherit',
     },
   },
+  /* Styles applied to the secondary `Typography` component. */
   secondary: {
     '&$textDense': {
       fontSize: 'inherit',
     },
   },
+  /* Styles applied to the `Typography` components if `context.dense` is `true`. */
   textDense: {},
 });
 

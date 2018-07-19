@@ -27,33 +27,37 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
-- `rounded`
-- `elevation0`
-- `elevation1`
-- `elevation2`
-- `elevation3`
-- `elevation4`
-- `elevation5`
-- `elevation6`
-- `elevation7`
-- `elevation8`
-- `elevation9`
-- `elevation10`
-- `elevation11`
-- `elevation12`
-- `elevation13`
-- `elevation14`
-- `elevation15`
-- `elevation16`
-- `elevation17`
-- `elevation18`
-- `elevation19`
-- `elevation20`
-- `elevation21`
-- `elevation22`
-- `elevation23`
-- `elevation24`
+
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">rounded</span> | Styles applied to the root element if `square={false}`.
+| <span class="prop-name">elevation0</span> | 
+| <span class="prop-name">elevation1</span> | 
+| <span class="prop-name">elevation2</span> | 
+| <span class="prop-name">elevation3</span> | 
+| <span class="prop-name">elevation4</span> | 
+| <span class="prop-name">elevation5</span> | 
+| <span class="prop-name">elevation6</span> | 
+| <span class="prop-name">elevation7</span> | 
+| <span class="prop-name">elevation8</span> | 
+| <span class="prop-name">elevation9</span> | 
+| <span class="prop-name">elevation10</span> | 
+| <span class="prop-name">elevation11</span> | 
+| <span class="prop-name">elevation12</span> | 
+| <span class="prop-name">elevation13</span> | 
+| <span class="prop-name">elevation14</span> | 
+| <span class="prop-name">elevation15</span> | 
+| <span class="prop-name">elevation16</span> | 
+| <span class="prop-name">elevation17</span> | 
+| <span class="prop-name">elevation18</span> | 
+| <span class="prop-name">elevation19</span> | 
+| <span class="prop-name">elevation20</span> | 
+| <span class="prop-name">elevation21</span> | 
+| <span class="prop-name">elevation22</span> | 
+| <span class="prop-name">elevation23</span> | 
+| <span class="prop-name">elevation24</span> | 
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Paper/Paper.js)

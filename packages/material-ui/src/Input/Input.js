@@ -57,6 +57,7 @@ export const styles = theme => {
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
 
   return {
+    /* Styles applied to the root element. */
     root: {
       // Mimics the default input display property used by browsers for an input.
       display: 'inline-flex',
@@ -69,13 +70,17 @@ export const styles = theme => {
         color: theme.palette.text.disabled,
       },
     },
+    /* Styles applied to the root element if the component is a descendant of `FormControl`. */
     formControl: {
       'label + &': {
         marginTop: 16,
       },
     },
+    /* Styles applied to the root element if the component is focused. */
     focused: {},
+    /* Styles applied to the root element if `disabled={true}`. */
     disabled: {},
+    /* Styles applied to the root element if `disabledUnderline={false}`. */
     underline: {
       '&:after': {
         borderBottom: `2px solid ${theme.palette.primary[light ? 'dark' : 'light']}`,
@@ -119,13 +124,17 @@ export const styles = theme => {
         borderBottom: `1px dotted ${bottomLineColor}`,
       },
     },
+    /* Styles applied to the root element if `error={true}`. */
     error: {},
+    /* Styles applied to the root element if `multiline={true}`. */
     multiline: {
       padding: `${8 - 2}px 0 ${8 - 1}px`,
     },
+    /* Styles applied to the root element if `fullWidth={true}`. */
     fullWidth: {
       width: '100%',
     },
+    /* Styles applied to the `input` element. */
     input: {
       font: 'inherit',
       color: 'currentColor',
@@ -171,17 +180,21 @@ export const styles = theme => {
         opacity: 1, // Reset iOS opacity
       },
     },
+    /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
       paddingTop: 4 - 1,
     },
+    /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
       resize: 'none',
       padding: 0,
     },
+    /* Styles applied to the `input` element if `type` is not "text"`. */
     inputType: {
       // type="date" or type="time", etc. have specific styles we need to reset.
       height: '1.1875em', // Reset (19px), match the native input line-height
     },
+    /* Styles applied to the `input` element if `type="search"`. */
     inputTypeSearch: {
       // Improve type search style.
       '-moz-appearance': 'textfield',
