@@ -17,7 +17,7 @@ const styles = {
   },
   entered: {
     opacity: 1,
-    transform: getScale(1),
+    transform: `${getScale(1)} translateZ(0)`,
   },
 };
 
