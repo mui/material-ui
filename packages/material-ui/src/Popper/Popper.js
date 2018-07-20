@@ -43,20 +43,21 @@ class Popper extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.open && !this.props.open && !this.props.transition) {
+    if (prevProps.open !== this.props.open && !this.props.open && !this.props.transition) {
       // Otherwise handleExited will call this.
       this.handleClose();
     }
 
     // Let's update the popper position.
     if (
+      prevProps.open !== this.props.open ||
       prevProps.anchorEl !== this.props.anchorEl ||
       prevProps.popperOptions !== this.props.popperOptions ||
       prevProps.modifiers !== this.props.modifiers ||
       prevProps.disablePortal !== this.props.disablePortal ||
       prevProps.placement !== this.props.placement
     ) {
-      this.handleRendered();
+      this.handleOpen();
     }
   }
 
@@ -81,7 +82,7 @@ class Popper extends React.Component {
     return null;
   }
 
-  handleRendered = () => {
+  handleOpen = () => {
     const {
       anchorEl,
       modifiers,
@@ -93,13 +94,13 @@ class Popper extends React.Component {
     } = this.props;
     const popperNode = ReactDOM.findDOMNode(this);
 
+    if (!popperNode || !anchorEl || !open) {
+      return;
+    }
+
     if (this.popper) {
       this.popper.destroy();
       this.popper = null;
-    }
-
-    if (!popperNode || !anchorEl || !open) {
-      return;
     }
 
     this.popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
@@ -178,7 +179,7 @@ class Popper extends React.Component {
     }
 
     return (
-      <Portal onRendered={this.handleRendered} disablePortal={disablePortal} container={container}>
+      <Portal onRendered={this.handleOpen} disablePortal={disablePortal} container={container}>
         <div
           role="tooltip"
           style={{
