@@ -77,6 +77,13 @@ describe('<Grid />', () => {
     });
   });
 
+  describe('prop: justify', () => {
+    it('should apply the justify class', () => {
+      const wrapper = shallow(<Grid justify="space-evenly" container />);
+      assert.strictEqual(wrapper.hasClass(classes['justify-xs-space-evenly']), true);
+    });
+  });
+
   describe('prop: other', () => {
     it('should spread the other properties to the root element', () => {
       const handleClick = () => {};
