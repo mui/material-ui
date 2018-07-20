@@ -104,7 +104,11 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-latest": "^6.24.1",
     "classnames": "^2.2.5",
+<<<<<<< HEAD
     "codecov": "^3.0.4",
+=======
+    "codecov": "^3.0.2",
+>>>>>>> develop
     "cross-env": "^5.2.0",
     "date-fns": "2.0.0-alpha.7",
     "enzyme": "^3.3.0",
