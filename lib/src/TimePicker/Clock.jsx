@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ClockPointer from './ClockPointer';
 import * as clockType from '../constants/clock-types';
@@ -86,7 +85,6 @@ export class Clock extends Component {
       classes, value, children, type, ampm,
     } = this.props;
 
-    const max = type === clockType.HOURS ? 12 : 60;
     const isPointerInner = !ampm && type === clockType.HOURS && (value < 1 || value > 12);
 
     return (
@@ -106,24 +104,12 @@ export class Clock extends Component {
 
           <div className={classes.pin} />
 
-          <ReactCSSTransitionGroup
-            transitionEnterTimeout={300}
-            transitionLeaveTimeout={300}
-            transitionName={{
-              enter: classes.transitionEnter,
-              enterActive: '',
-              leave: '',
-              leaveActive: '',
-            }}
-          >
-            <ClockPointer
-              // key={type}
-              max={max}
-              value={value}
-              isInner={isPointerInner}
-              hasSelected={this.hasSelected()}
-            />
-          </ReactCSSTransitionGroup>
+          <ClockPointer
+            type={type}
+            value={value}
+            isInner={isPointerInner}
+            hasSelected={this.hasSelected()}
+          />
 
           { children }
         </div>
@@ -172,6 +158,15 @@ const styles = theme => ({
   },
   transitionEnter: {
     willChange: 'transform',
+    transition: theme.transitions.create('transform', { duration: 300 }),
+  },
+  transitionEnterActive: {
+    transition: theme.transitions.create('transform', { duration: 300 }),
+  },
+  transitionLeave: {
+    transition: 'unset',
+  },
+  transitionLeaveActive: {
     transition: theme.transitions.create('transform', { duration: 300 }),
   },
 });

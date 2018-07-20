@@ -5,8 +5,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import View from './DateTimePickerView';
 import YearSelection from '../DatePicker/YearSelection';
 import Calendar from '../DatePicker/Calendar';
-import HourView from '../TimePicker/HourView';
-import MinutesView from '../TimePicker/MinutesView';
+import TimePickerView from '../TimePicker/TimePickerView';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import DatetimePickerHeader from './DateTimePickerHeader';
 import { convertToMeridiem } from '../_helpers/time-utils';
@@ -183,25 +182,7 @@ export class DateTimePicker extends Component {
             view={viewType.HOUR}
             selected={openView}
           >
-            <HourView
-              date={date}
-              meridiemMode={meridiemMode}
-              onChange={this.handleHourChange}
-              utils={utils}
-              ampm={ampm}
-            />
-          </View>
-
-          <View
-            timeout={fadeTimeout}
-            view={viewType.MINUTES}
-            selected={openView}
-          >
-            <MinutesView
-              date={date}
-              onChange={this.handleChange}
-              utils={utils}
-            />
+            <TimePickerView onChange={this.handleChange} />
           </View>
         </div>
       </Fragment>
