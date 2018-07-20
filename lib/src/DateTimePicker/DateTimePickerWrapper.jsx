@@ -16,6 +16,7 @@ export const DateTimePickerWrapper = (props) => {
     classes,
     minDate,
     maxDate,
+    initialFocusedDate,
     showTabs,
     autoSubmit,
     disablePast,
@@ -85,7 +86,7 @@ export const DateTimePickerWrapper = (props) => {
               timeIcon={timeIcon}
             />
           </ModalWrapper>
-        )
+          )
       }
     </BasePicker>
   );
@@ -111,6 +112,8 @@ DateTimePickerWrapper.propTypes = {
   minDate: DomainPropTypes.date,
   /** Max selectable date */
   maxDate: DomainPropTypes.date,
+  /** Initial focused date when calendar opens, if no value is provided */
+  initialFocusedDate: DomainPropTypes.date,
   /** Show date/time tabs */
   showTabs: PropTypes.bool,
   /** Left arrow icon */
@@ -146,6 +149,7 @@ DateTimePickerWrapper.defaultProps = {
   disablePast: false,
   minDate: '1900-01-01',
   maxDate: '2100-01-01',
+  initialFocusedDate: undefined,
   showTabs: true,
   leftArrowIcon: 'keyboard_arrow_left',
   rightArrowIcon: 'keyboard_arrow_right',

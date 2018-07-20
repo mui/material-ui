@@ -19,6 +19,7 @@ export const DatePickerWrapper = (props) => {
     leftArrowIcon,
     maxDate,
     minDate,
+    initialFocusedDate,
     onChange,
     openToYearSelection,
     renderDay,
@@ -74,7 +75,7 @@ export const DatePickerWrapper = (props) => {
               shouldDisableDate={shouldDisableDate}
             />
           </ModalWrapper>
-        )
+          )
       }
     </BasePicker>
   );
@@ -87,6 +88,8 @@ DatePickerWrapper.propTypes = {
   minDate: DomainPropTypes.date,
   /** Max selectable date */
   maxDate: DomainPropTypes.date,
+  /** Initial focused date when calendar opens, if no value is provided */
+  initialFocusedDate: DomainPropTypes.date,
   /** Date format string for input */
   format: PropTypes.string,
   /** Callback firing when date accepted */
@@ -122,6 +125,7 @@ DatePickerWrapper.defaultProps = {
   autoOk: false,
   minDate: '1900-01-01',
   maxDate: '2100-01-01',
+  initialFocusedDate: undefined,
   disableFuture: false,
   disablePast: false,
   animateYearScrolling: false,
