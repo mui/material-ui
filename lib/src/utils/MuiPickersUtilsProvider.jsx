@@ -32,6 +32,6 @@ export default class MuiPickersUtilsProvider extends Component {
   }
 
   render() {
-    return <Provider value={this.state.utils}> {this.props.children} </Provider>;
+    return <Provider value={this.state.utils}>{this.props.children}</Provider>;
   }
 }
