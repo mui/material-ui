@@ -159,6 +159,11 @@ class Modal extends React.Component {
       return;
     }
 
+    // Ignore events that have been `event.preventDefault()` marked.
+    if (event.defaultPrevented) {
+      return;
+    }
+
     if (this.props.onEscapeKeyDown) {
       this.props.onEscapeKeyDown(event);
     }
