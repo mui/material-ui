@@ -9,7 +9,8 @@
     "no-param-reassign": 0,
     "import/no-named-as-default": 0,
     "import/no-extraneous-dependencies": 0,
-    "no-case-declarations": 0
+    "no-case-declarations": 0,
+    "class-methods-use-this": 0
   },
   "globals": {
     "document": true
