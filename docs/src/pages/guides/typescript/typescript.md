@@ -209,6 +209,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 
 And a custom theme factory with additional defaulted options:
 
+**./styles/createMyTheme**:
 ```ts
 import createMuiTheme, { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 
