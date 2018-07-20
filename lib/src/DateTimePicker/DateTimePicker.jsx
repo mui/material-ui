@@ -25,7 +25,6 @@ export class DateTimePicker extends Component {
     dateRangeIcon: PropTypes.node,
     disableFuture: PropTypes.bool,
     disablePast: PropTypes.bool,
-    fadeTimeout: PropTypes.number.isRequired,
     leftArrowIcon: PropTypes.node,
     maxDate: DomainPropTypes.date.isRequired,
     minDate: DomainPropTypes.date.isRequired,
@@ -119,7 +118,6 @@ export class DateTimePicker extends Component {
       ampm,
       shouldDisableDate,
       animateYearScrolling,
-      fadeTimeout,
       classes,
       allowKeyboardControl,
     } = this.props;
@@ -147,7 +145,7 @@ export class DateTimePicker extends Component {
         }
 
         <div className={classes.viewContainer}>
-          <View view={viewType.YEAR} selected={openView}>
+          <View selected={openView === viewType.YEAR}>
             <YearSelection
               date={date}
               minDate={minDate}
@@ -160,7 +158,7 @@ export class DateTimePicker extends Component {
             />
           </View>
 
-          <View view={viewType.DATE} selected={openView}>
+          <View selected={openView === viewType.DATE}>
             <Calendar
               allowKeyboardControl={allowKeyboardControl}
               date={date}
@@ -172,17 +170,18 @@ export class DateTimePicker extends Component {
               leftArrowIcon={leftArrowIcon}
               rightArrowIcon={rightArrowIcon}
               renderDay={renderDay}
-              utils={utils}
               shouldDisableDate={shouldDisableDate}
             />
           </View>
 
-          <View
-            timeout={fadeTimeout}
-            view={viewType.HOUR}
-            selected={openView}
-          >
-            <TimePickerView onChange={this.handleChange} />
+          <View selected={openView === viewType.HOUR || openView === viewType.MINUTES}>
+            <TimePickerView
+              date={date}
+              type={openView}
+              onHourChange={this.handleHourChange}
+              onMinutesChange={this.handleChange}
+              onSecondsChange={this.handleChange}
+            />
           </View>
         </div>
       </Fragment>

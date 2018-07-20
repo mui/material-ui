@@ -5,7 +5,7 @@ import * as clockType from '../constants/clock-types';
 import withUtils from '../_shared/WithUtils';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
 
-export class HourView extends PureComponent {
+export class TimePickerView extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onHourChange: PropTypes.func.isRequired,
@@ -24,6 +24,7 @@ export class HourView extends PureComponent {
     const {
       type, ampm, date, utils,
     } = this.props;
+    console.log(type);
 
     switch (type) {
       case clockType.HOURS:
@@ -89,5 +90,5 @@ export class HourView extends PureComponent {
   }
 }
 
-export default withUtils()(HourView);
+export default withUtils()(TimePickerView);
 

@@ -38,8 +38,8 @@ export class ClockPointer extends Component {
     const max = type === clockType.HOURS ? 12 : 60;
     let angle = (360 / max) * value;
 
-    if (type === clockType.HOURS) {
-      angle -= 360; // round up angle to max 360 degrees.
+    if (type === clockType.HOURS && value > 12) {
+      angle -= 360; // round up angle to max 360 degrees
     }
 
     return {
@@ -53,10 +53,10 @@ export class ClockPointer extends Component {
 
     return (
       <div
+        style={this.getAngleStyle()}
         className={classnames(classes.pointer, {
           [classes.animateTransform]: this.state.toAnimateTransform,
         })}
-        style={this.getAngleStyle()}
       >
         <div className={classnames(classes.thumb, { [classes.noPoint]: hasSelected })} />
       </div>

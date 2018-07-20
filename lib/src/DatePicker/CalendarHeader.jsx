@@ -43,7 +43,6 @@ export const CalendarHeader = ({
             key={utils.getCalendarHeaderText(currentMonth)}
             align="center"
             variant="body1"
-            textAlign="center"
           >
             {utils.getCalendarHeaderText(currentMonth)}
           </Typography>
