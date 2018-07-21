@@ -27,33 +27,33 @@ class FakedReferencePopper extends React.Component {
       return;
     }
 
-    const boundingClientRect = selection.getRangeAt(0).getBoundingClientRect();
+    const getBoundingClientRect = () => selection.getRangeAt(0).getBoundingClientRect();
 
-    const virtualAnchorEl = {
-      clientWidth: boundingClientRect.width,
-      clientHeight: boundingClientRect.height,
-      getBoundingClientRect: () => boundingClientRect,
-    };
-
-    this.setState(state => ({
-      anchorEl: virtualAnchorEl,
-      open: !state.open,
-    }));
+    this.setState({
+      open: true,
+      anchorEl: {
+        clientWidth: getBoundingClientRect().width,
+        clientHeight: getBoundingClientRect().height,
+        getBoundingClientRect,
+      },
+    });
   };
 
   handleClose = () => {
+    if (!this.state.open) {
+      return;
+    }
+
     this.setState({ open: false });
   };
 
   render() {
     const { classes } = this.props;
     const { anchorEl, open } = this.state;
-    const id = open ? 'simple-popper' : null;
 
     return (
       <div onMouseLeave={this.handleClose}>
-        <Typography variant="caption">Highlight part of the text to see the popper</Typography>
-        <Typography variant="body1" onMouseUp={this.handleMouseUp}>
+        <Typography onMouseUp={this.handleMouseUp}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum purus, bibendum sit
           amet vulputate eget, porta semper ligula. Donec bibendum vulputate erat, ac fringilla mi
           finibus nec. Donec ac dolor sed dolor porttitor blandit vel vel purus. Fusce vel malesuada
@@ -62,7 +62,7 @@ class FakedReferencePopper extends React.Component {
           facilisis neque enim sed neque. Quisque accumsan metus vel maximus consequat. Suspendisse
           lacinia tellus a libero volutpat maximus.
         </Typography>
-        <Popper id={id} open={open} anchorEl={anchorEl} transition>
+        <Popper open={open} anchorEl={anchorEl} transition placement="bottom-start">
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>
               <Paper>
