@@ -80,6 +80,9 @@ function handleRender(req, res) {
   // Create a sheetsRegistry instance.
   const sheetsRegistry = new SheetsRegistry();
 
+  // Create a sheetsManager instance.
+  const sheetsManager = new Map();
+
   // Create a theme instance.
   const theme = createMuiTheme({
     palette: {
@@ -89,12 +92,13 @@ function handleRender(req, res) {
     },
   });
 
+  // Create a new class name generator.
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
   const html = renderToString(
     <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-      <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+      <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
         <App />
       </MuiThemeProvider>
     </JssProvider>
@@ -185,25 +189,58 @@ We host different reference implementations which you can find in the [GitHub re
 ## Troubleshooting
 
 If it doesn't work, in 99% of cases it's a configuration issue.
-A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [examples](https://github.com/mui-org/material-ui/tree/master/examples) (Next.js or Gatsby), bit by bit.
+A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [reference implementations](#reference-implementations), bit by bit.
+
+### CSS works only on first load then is missing
+
+The CSS is only generated on the first load of the page.
+Then, the CSS is missing on the server for consecutive requests.
+
+#### Action to Take
+
+We rely on a cache, the sheets manager, to only inject the CSS once per component type
+(if you use two buttons, you only need the CSS of the button one time).
+You need to provide **a new `sheetsManager` for each request**.
+
+You can learn more about [the sheets manager concept in the documentation](/customization/css-in-js/#sheets-manager).
+
+*example of fix:*
+```diff
+-// Create a sheetsManager instance.
+-const sheetsManager = new Map();
+
+function handleRender(req, res) {
++ // Create a sheetsManager instance.
++ const sheetsManager = new Map();
+
+  //…
+
+  // Render the component to a string.
+  const html = renderToString(
+```
 
 ### React class name hydration mismatch
 
-There is a class name mismatch between the client and the server.
+There is a class name mismatch between the client and the server (it might work for the first request).
 
 #### Action to Take
 
 The class names value relies on the concept of [class name generator](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
 The whole page needs to be rendered with **a single generator**.
 This generator needs to behave identically on the server and on the client.
+This has one important implication, you need to provide a new class name generator for each request.
 
-### CSS Works on only on first load
+*example of fix:*
+```diff
+-// Create a new class name generator.
+-const generateClassName = createGenerateClassName();
 
-The CSS is only generated on the first load of the page.
-It's missing on the server for consecutive requests.
+function handleRender(req, res) {
++ // Create a new class name generator.
++ const generateClassName = createGenerateClassName();
 
-#### Action to Take
+  //…
 
-We rely on a cache, the `sheetsManager`, to only inject the CSS once per component type.
-You can learn more about [this concept in the documentation](/customization/css-in-js/#sheets-manager).
-You need to provide **a new sheet manager cache for each request**.
+  // Render the component to a string.
+  const html = renderToString(
+```
