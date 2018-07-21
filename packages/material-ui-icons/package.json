@@ -46,7 +46,7 @@
     "recompose": "^0.27.0"
   },
   "devDependencies": {
-    "fs-extra": "^6.0.1",
+    "fs-extra": "^7.0.0",
     "mkdirp": "^0.5.0",
     "mustache": "^2.0.0",
     "svgo": "^1.0.5",
