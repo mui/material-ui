@@ -132,6 +132,7 @@ Bronze Sponsors are those who have pledged $100/month to $250/month to Material-
 | Jolse Maginnis | asmeikal | David Auffret | Naresh Bhatia | Henk van Hest |
 | Avétis KAZARIAN | Withinpixels | SIM KIM SIA | Renaud Bompuis | Yaron Malin |
 | Arvanitis Panagiotis | Jesse Weigel | Bogdan Mihai Nicolae | Dung Tran | Kyle Pennell |
+| Kai Mit Pansen |
 
 #### via [OpenCollective](https://opencollective.com/material-ui)
 
