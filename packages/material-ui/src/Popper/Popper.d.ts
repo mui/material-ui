@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ReferenceObject } from 'popper.js';
 import { PortalProps } from '../Portal';
 import { TransitionProps } from '../transitions/transition';
 
@@ -18,7 +19,7 @@ export type PopperPlacementType =
 
 export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
   transition?: boolean;
-  anchorEl?: null | HTMLElement | ((element: HTMLElement) => HTMLElement);
+  anchorEl?: null | HTMLElement | ReferenceObject | ((element: HTMLElement) => HTMLElement);
   children: (
     props: {
       placement: PopperPlacementType;

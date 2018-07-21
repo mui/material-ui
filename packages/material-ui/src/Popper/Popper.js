@@ -199,6 +199,8 @@ Popper.propTypes = {
   /**
    * This is the DOM element, or a function that returns the DOM element,
    * that may be used to set the position of the popover.
+   * The return value will passed as the reference object of the Popper
+   * instance.
    */
   anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**
