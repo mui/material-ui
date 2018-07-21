@@ -24,7 +24,6 @@ export class TimePickerView extends PureComponent {
     const {
       type, ampm, date, utils,
     } = this.props;
-    console.log(type);
 
     switch (type) {
       case clockType.HOURS:

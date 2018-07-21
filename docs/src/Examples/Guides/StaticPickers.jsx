@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import BasePicker from 'material-ui-pickers/_shared/BasePicker';
 import Calendar from 'material-ui-pickers/DatePicker/Calendar';
-
+import TimePickerView from 'material-ui-pickers/TimePicker/TimePickerView';
 
 /* eslint-disable no-unused-vars */
 class StaticPickers extends PureComponent {
@@ -33,9 +33,12 @@ class StaticPickers extends PureComponent {
               <div className="picker">
                 <Calendar date={date} onChange={handleChange} />
               </div>
-              {/* <div className="picker">
-                <HourView date={date} ampm={false} onChange={handleChange} type="hours" />
-              </div> */}
+              <TimePickerView
+                date={date}
+                ampm={false}
+                onHourChange={handleChange}
+                type="hours"
+              />
             </div>
           )
         }

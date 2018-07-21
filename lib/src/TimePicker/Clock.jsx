@@ -156,19 +156,6 @@ const styles = theme => ({
     left: '50%',
     transform: 'translate(-50%, -50%)',
   },
-  transitionEnter: {
-    willChange: 'transform',
-    transition: theme.transitions.create('transform', { duration: 300 }),
-  },
-  transitionEnterActive: {
-    transition: theme.transitions.create('transform', { duration: 300 }),
-  },
-  transitionLeave: {
-    transition: 'unset',
-  },
-  transitionLeaveActive: {
-    transition: theme.transitions.create('transform', { duration: 300 }),
-  },
 });
 
 export default withStyles(styles, { name: 'MuiPickersClock' })(Clock);
