@@ -32,6 +32,9 @@ function handleRender(req, res) {
   // Create a sheetsRegistry instance.
   const sheetsRegistry = new SheetsRegistry();
 
+  // Create a sheetsManager instance.
+  const sheetsManager = new Map();
+
   // Create a theme instance.
   const theme = createMuiTheme({
     palette: {
@@ -41,12 +44,13 @@ function handleRender(req, res) {
     },
   });
 
+  // Create a new class name generator.
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
   const html = renderToString(
     <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-      <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+      <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
         <App />
       </MuiThemeProvider>
     </JssProvider>,
