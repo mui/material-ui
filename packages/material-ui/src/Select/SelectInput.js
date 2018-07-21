@@ -80,11 +80,6 @@ class SelectInput extends React.Component {
 
     if (onChange) {
       let value;
-      let target;
-
-      if (event.target) {
-        target = event.target;
-      }
 
       if (this.props.multiple) {
         value = Array.isArray(this.props.value) ? [...this.props.value] : [];
@@ -99,8 +94,7 @@ class SelectInput extends React.Component {
       }
 
       event.persist();
-      event.target = { ...target, value, name };
-
+      event.target = { value, name };
       onChange(event, child);
     }
   };
