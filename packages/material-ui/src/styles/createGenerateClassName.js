@@ -10,7 +10,7 @@ const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
 
 function safePrefix(classNamePrefix) {
   const prefix = String(classNamePrefix);
-  warning(prefix.length < 100, `Material-UI: the class name prefix is too long: ${prefix}.`);
+  warning(prefix.length < 256, `Material-UI: the class name prefix is too long: ${prefix}.`);
   // Sanitize the string as will be used to prefix the generated class name.
   return prefix.replace(escapeRegex, '-');
 }
