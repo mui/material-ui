@@ -29,6 +29,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/utils/popper/NoTransitionPopper'), 'utf8')
 `,
         },
+        'pages/utils/popper/FakedReferencePopper.js': {
+          js: require('docs/src/pages/utils/popper/FakedReferencePopper').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/utils/popper/FakedReferencePopper'), 'utf8')
+`,
+        },
         'pages/utils/popper/ScrollPlayground.js': {
           js: require('docs/src/pages/utils/popper/ScrollPlayground').default,
           raw: preval`
