@@ -7,6 +7,7 @@ export interface WithWidthOptions {
 
 export interface WithWidthProps {
   width: Breakpoint;
+  innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
 export function isWidthDown(

@@ -98,7 +98,7 @@ const withWidth = (options = {}) => Component => {
     }
 
     render() {
-      const { initialWidth, theme, width, ...other } = this.props;
+      const { initialWidth, theme, width, innerRef, ...other } = this.props;
 
       const props = {
         width:
@@ -127,7 +127,7 @@ const withWidth = (options = {}) => Component => {
 
       return (
         <EventListener target="window" onResize={this.handleResize}>
-          <Component {...more} {...props} />
+          <Component {...more} {...props} ref={innerRef} />
         </EventListener>
       );
     }
@@ -144,6 +144,10 @@ const withWidth = (options = {}) => Component => {
      * http://caniuse.com/#search=client%20hint
      */
     initialWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    /**
+     * Use that property to pass a ref callback to the decorated component.
+     */
+    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     /**
      * @ignore
      */
