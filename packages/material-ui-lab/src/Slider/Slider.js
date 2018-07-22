@@ -114,18 +114,6 @@ export const styles = theme => {
         height: 9,
         backgroundColor: colors.disabled,
       },
-      '&$zero': {
-        border: `2px solid ${colors.disabled}`,
-        backgroundColor: 'transparent',
-      },
-      '&$focused$zero': {
-        border: `2px solid ${colors.primary}`,
-        backgroundColor: fade(colors.primary, 0.34),
-        boxShadow: `0px 0px 0px 9px ${fade(colors.primary, 0.34)}`,
-      },
-      '&$activated$zero': {
-        border: `2px solid ${colors.primary}`,
-      },
       '&$jumped': {
         width: 17,
         height: 17,
