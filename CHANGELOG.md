@@ -5,6 +5,85 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.4.1
+###### *Jul 22, 2018*
+
+Big thanks to the 15 contributors who made this release possible!
+
+Here are some highlights ✨:
+- The CSS API is now fully documented (#12174) @mbrookes.
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">label</span> | Styles applied to the span element that wraps the children.
+| … | …
+
+- After many iterations, we are happy to announce `@material-ui/icons` v2.0.0 💃.
+With this version, you can take advantage of all the icons recently released by Google:
+https://material.io/tools/icons/. There is more than 5,000 icons.
+(#12036, #12170, #12111, #12225)
+
+- The 1.4.0 release of Material-UI has introduced a new implementation of the Tooltip and Popper component.
+This release fixes a lot of issues following the rewrite (#12168, #12161, #12194, #12223, #12218).
+Thank you for reporting all these problems. Hopefully, it's very stable now.
+
+- Creative Tim has just completed [their second Material-UI theme](https://www.creative-tim.com/product/material-kit-pro-react?partner=104080).
+It's an important milestone for the themability of Material-UI.
+We are going to keep working on adding more themes to the list.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Tab] Fix maxWidth issue with fullWidth mode (#12158) @chenop
+- [Popper] Update TypeScript definitions (#12161) @Slessi
+- [CardHeader] Add typography/props controls like in ListItemText (#12166) @chenop
+- [Tooltip] Fix some new issues (#12168) @oliviertassinari
+- [icons] New iteration (#12170) @oliviertassinari
+- [icons] Remove fill attribute from some icons (#12111) @ChristiaanScheermeijer
+- [Popper] Fix the transition in the demos (#12194) @oliviertassinari
+- [Modal] Ignore if the event prevent default is called (#12202) @oliviertassinari
+- [Grid] Add "space-evenly" value for justify prop (#12213) @iain-b
+- [Grow] Fix scroll on entered (#12199) @stephenway
+- [Popper] Fix update logic (#12218) @oliviertassinari
+- [Badge] Increase readability (#12221) @oliviertassinari
+- [styles] Increase the class name lenght limit before raising (#12222) @oliviertassinari
+- [icons] Fix SVG path precision issue (#12225) @ChristiaanScheermeijer
+- [Popper] Typing and documentation (#12223) @dispix
+- [Select] Simpler onChange event.target logic (#12231) @oliviertassinari
+- [input] Forward required, readOnly and autoFocus (#12234) @sakulstra
+- [HOC] Add `innerRef` to withWidth and withTheme (#12236) @itelo
+- [Textarea] Simplification of the code (#12238) @oliviertassinari
+- [Tabs] Small changes investigating #11624 (#12239) @oliviertassinari
+
+#### Docs
+
+- [docs] Add Toggle Selection Control to 'Migration From v0.x' Document (#12149) @shabareesh
+- [docs] Add Menu Item to 'Migration From v0.x' Document (#12150) @shabareesh
+- [docs] New ISSUE_TEMPLATE (#12148) @oliviertassinari
+- [docs] Add Font Icon to 'Migration From v0.x' Document (#12151) @shabareesh
+- [docs] copyedit: typo in testing.md (#12155) @cldellow
+- [docs] Document the CSS API (#12174) @mbrookes
+- [docs] An iteration on the SSR Troubleshooting section (#12229) @oliviertassinari
+
+#### Core
+
+- [core] Upgrade dev dependencies (#12156) @oliviertassinari
+- [core] Add missing unwrap export to test-utils type definition (#12184) @kallebornemark
+- [test] Conditional tests (#12191) @oliviertassinari
+- [core] Fix babel plugin name (#12209) @oliviertassinari
+- [core] Upgrade the dev dependencies (#12220) @oliviertassinari
+- [core] Rename node to ref (#12235) @oliviertassinari
+
+#### Lab
+
+- [Slider] Fix typescript typings (#12173) @eps1lon
+- [SpeedDial] Fix SpeedDialAction dark theme (#12230) @mbrookes
+- [lab] Build and export fixes (#12233) @goto-bus-stop
+
 ## 1.4.0
 ###### *Jul 14, 2018*
 
