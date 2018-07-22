@@ -30,7 +30,7 @@ describe('<Tabs />', () => {
   };
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'Tabs' });
+    shallow = createShallow({ untilSelector: 'Tabs', disableLifecycleMethods: true });
     classes = getClasses(<Tabs onChange={noop} value={0} />);
     mount = createMount();
   });
@@ -627,6 +627,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
+      wrapper.setState({ mounted: true });
       assert.strictEqual(wrapper.find(TabIndicator).props().style.backgroundColor, 'green');
     });
   });

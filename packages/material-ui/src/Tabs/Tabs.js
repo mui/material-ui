@@ -7,6 +7,8 @@ import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
+// TODO: should we fork it?
+// https://github.com/michaelrhodes/scroll/issues/10
 import scroll from 'scroll';
 import ScrollbarSize from './ScrollbarSize';
 import withStyles from '../styles/withStyles';
@@ -94,11 +96,10 @@ class Tabs extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    this.updateScrollButtonState();
-
     // The index might have changed at the same time.
     // We need to check again the right indicator position.
     this.updateIndicatorState(this.props);
+    this.updateScrollButtonState();
 
     if (this.state.indicatorStyle !== prevState.indicatorStyle) {
       this.scrollSelectedIntoView();
@@ -176,15 +177,11 @@ class Tabs extends React.Component {
   };
 
   handleLeftScrollClick = () => {
-    if (this.tabsRef) {
-      this.moveTabsScroll(-this.tabsRef.clientWidth);
-    }
+    this.moveTabsScroll(-this.tabsRef.clientWidth);
   };
 
   handleRightScrollClick = () => {
-    if (this.tabsRef) {
-      this.moveTabsScroll(this.tabsRef.clientWidth);
-    }
+    this.moveTabsScroll(this.tabsRef.clientWidth);
   };
 
   handleScrollbarSizeChange = ({ scrollbarHeight }) => {
@@ -198,13 +195,11 @@ class Tabs extends React.Component {
   moveTabsScroll = delta => {
     const { theme } = this.props;
 
-    if (this.tabsRef) {
-      const multiplier = theme.direction === 'rtl' ? -1 : 1;
-      const nextScrollLeft = this.tabsRef.scrollLeft + delta * multiplier;
-      // Fix for Edge
-      const invert = theme.direction === 'rtl' && detectScrollType() === 'reverse' ? -1 : 1;
-      scroll.left(this.tabsRef, invert * nextScrollLeft);
-    }
+    const multiplier = theme.direction === 'rtl' ? -1 : 1;
+    const nextScrollLeft = this.tabsRef.scrollLeft + delta * multiplier;
+    // Fix for Edge
+    const invert = theme.direction === 'rtl' && detectScrollType() === 'reverse' ? -1 : 1;
+    scroll.left(this.tabsRef, invert * nextScrollLeft);
   };
 
   scrollSelectedIntoView = () => {
@@ -229,7 +224,7 @@ class Tabs extends React.Component {
   updateScrollButtonState = () => {
     const { scrollable, scrollButtons, theme } = this.props;
 
-    if (this.tabsRef && scrollable && scrollButtons !== 'off') {
+    if (scrollable && scrollButtons !== 'off') {
       const { scrollWidth, clientWidth } = this.tabsRef;
       const scrollLeft = getNormalizedScrollLeft(this.tabsRef, theme.direction);
 
