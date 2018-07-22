@@ -28,8 +28,9 @@
     "prebuild": "../../node_modules/.bin/rimraf build",
     "build:es2015": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./build --ignore *.test.js",
     "build:es2015modules": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=modules ../../node_modules/.bin/babel ./src/index.js --out-file ./build/index.es.js",
+    "build:es": "../../node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=es ../../node_modules/.bin/babel ./src --out-dir ./build/es --ignore *.test.js",
     "build:copy-files": "../../node_modules/.bin/babel-node ./scripts/copy-files.js",
-    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:copy-files",
+    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:copy-files",
     "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
