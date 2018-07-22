@@ -183,27 +183,27 @@ describe('<Menu />', () => {
     });
 
     it('should call menuList focus when no menuList', () => {
-      delete instance.menuList;
+      delete instance.menuListRef;
       instance.handleEnter(elementForHandleEnter);
       assert.strictEqual(selectedItemFocusSpy.callCount, 0);
       assert.strictEqual(menuListFocusSpy.callCount, 1);
     });
 
-    it('should call menuList focus when menuList but no menuList.selectedItem ', () => {
-      instance.menuList = {};
-      delete instance.menuList.selectedItem;
+    it('should call menuList focus when menuList but no menuList.selectedItemRef ', () => {
+      instance.menuListRef = {};
+      delete instance.menuListRef.selectedItemRef;
       instance.handleEnter(elementForHandleEnter);
       assert.strictEqual(selectedItemFocusSpy.callCount, 0);
       assert.strictEqual(menuListFocusSpy.callCount, 1);
     });
 
-    describe('menuList.selectedItem exists', () => {
+    describe('menuList.selectedItemRef exists', () => {
       before(() => {
-        instance.menuList = {};
-        instance.menuList.selectedItem = SELECTED_ITEM_KEY;
+        instance.menuListRef = {};
+        instance.menuListRef.selectedItemRef = SELECTED_ITEM_KEY;
       });
 
-      it('should call selectedItem focus when there is a menuList.selectedItem', () => {
+      it('should call selectedItem focus when there is a menuList.selectedItemRef', () => {
         instance.handleEnter(elementForHandleEnter);
         assert.strictEqual(selectedItemFocusSpy.callCount, 1);
         assert.strictEqual(menuListFocusSpy.callCount, 0);

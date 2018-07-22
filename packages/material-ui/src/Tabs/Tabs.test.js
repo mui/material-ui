@@ -374,7 +374,7 @@ describe('<Tabs />', () => {
 
     it('should response to scroll events', () => {
       const instance = wrapper.instance();
-      instance.tabs = { scrollLeft: 100, ...fakeTabs };
+      instance.tabsRef = { scrollLeft: 100, ...fakeTabs };
       spy(instance, 'updateScrollButtonState');
       const selector = `.${classes.scroller}.${classes.scrollable}`;
       wrapper.find(selector).simulate('scroll');
@@ -500,28 +500,28 @@ describe('<Tabs />', () => {
       });
 
       it('should set neither left nor right scroll button state', () => {
-        instance.tabs = { scrollLeft: 0, scrollWidth: 90, clientWidth: 100, ...fakeTabs };
+        instance.tabsRef = { scrollLeft: 0, scrollWidth: 90, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
         assert.strictEqual(wrapper.state().showRightScroll, false, 'right scroll should be false');
       });
 
       it('should set only left scroll button state', () => {
-        instance.tabs = { scrollLeft: 1, ...fakeTabs };
+        instance.tabsRef = { scrollLeft: 1, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
         assert.strictEqual(wrapper.state().showRightScroll, false, 'right scroll should be false');
       });
 
       it('should set only right scroll button state', () => {
-        instance.tabs = { scrollLeft: 0, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
+        instance.tabsRef = { scrollLeft: 0, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
         assert.strictEqual(wrapper.state().showRightScroll, true, 'right scroll should be true');
       });
 
       it('should set both left and right scroll button state', () => {
-        instance.tabs = { scrollLeft: 1, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
+        instance.tabsRef = { scrollLeft: 1, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
         assert.strictEqual(wrapper.state().showRightScroll, true, 'right scroll should be true');
@@ -542,7 +542,7 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       instance = wrapper.instance();
-      instance.tabs = dimensions;
+      instance.tabsRef = dimensions;
       scrollSpy = spy(instance, 'moveTabsScroll');
     });
 

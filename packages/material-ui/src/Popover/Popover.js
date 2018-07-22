@@ -90,8 +90,7 @@ class Popover extends React.Component {
   handleGetOffsetLeft = getOffsetLeft;
 
   handleResize = debounce(() => {
-    const element = ReactDOM.findDOMNode(this.paperRef);
-    this.setPositioningStyles(element);
+    this.setPositioningStyles(this.paperRef);
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
   componentDidMount() {
@@ -209,8 +208,7 @@ class Popover extends React.Component {
     }
 
     // If an anchor element wasn't provided, just use the parent body element of this Popover
-    const anchorElement =
-      getAnchorEl(anchorEl) || ownerDocument(ReactDOM.findDOMNode(this.paperRef)).body;
+    const anchorElement = getAnchorEl(anchorEl) || ownerDocument(this.paperRef).body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
@@ -327,8 +325,8 @@ class Popover extends React.Component {
             className={classes.paper}
             data-mui-test="Popover"
             elevation={elevation}
-            ref={node => {
-              this.paperRef = node;
+            ref={ref => {
+              this.paperRef = ReactDOM.findDOMNode(ref);
             }}
             {...PaperProps}
           >

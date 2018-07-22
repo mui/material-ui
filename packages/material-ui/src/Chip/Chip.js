@@ -192,8 +192,8 @@ class Chip extends React.Component {
         tabIndex={tabIndex}
         onClick={onClick}
         onKeyDown={this.handleKeyDown}
-        ref={node => {
-          this.chipRef = node;
+        ref={ref => {
+          this.chipRef = ref;
         }}
         {...other}
       >

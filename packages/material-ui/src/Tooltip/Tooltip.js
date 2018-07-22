@@ -320,8 +320,8 @@ class Tooltip extends React.Component {
     return (
       <React.Fragment>
         <RootRef
-          rootRef={node => {
-            this.childrenRef = node;
+          rootRef={ref => {
+            this.childrenRef = ref;
           }}
         >
           {React.cloneElement(children, childrenProps)}

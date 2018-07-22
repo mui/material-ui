@@ -138,8 +138,8 @@ class Tab extends React.Component {
   };
 
   checkTextWrap = () => {
-    if (this.label) {
-      const labelWrapped = this.label.getClientRects().length > 1;
+    if (this.labelRef) {
+      const labelWrapped = this.labelRef.getClientRects().length > 1;
       if (this.state.labelWrapped !== labelWrapped) {
         this.setState({ labelWrapped });
       }
@@ -171,8 +171,8 @@ class Tab extends React.Component {
             className={classNames(classes.label, {
               [classes.labelWrapped]: this.state.labelWrapped,
             })}
-            ref={node => {
-              this.label = node;
+            ref={ref => {
+              this.labelRef = ref;
             }}
           >
             {labelProp}

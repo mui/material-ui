@@ -145,11 +145,11 @@ describe('<Portal />', () => {
           return (
             <div>
               <div
-                ref={node => {
-                  this.container = node;
+                ref={ref => {
+                  this.containerRef = ref;
                 }}
               />
-              <Portal container={() => this.container}>
+              <Portal container={() => this.containerRef}>
                 <div id="test1" />
               </Portal>
             </div>
@@ -195,8 +195,8 @@ describe('<Portal />', () => {
           return (
             <div>
               <div
-                ref={node => {
-                  this.container = node;
+                ref={ref => {
+                  this.containerRef = ref;
                 }}
               />
               <Portal container={this.state.container}>
@@ -210,7 +210,7 @@ describe('<Portal />', () => {
       const wrapper = mount(<ContainerTest />);
 
       assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'BODY');
-      wrapper.setState({ container: wrapper.instance().container });
+      wrapper.setState({ container: wrapper.instance().containerRef });
       assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'DIV');
     });
 

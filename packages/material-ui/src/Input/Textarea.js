@@ -43,11 +43,11 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
-  shadow = null;
+  shadowRef = null;
 
-  singlelineShadow = null;
+  singlelineShadowRef = null;
 
-  input = null;
+  inputRef = null;
 
   value = null;
 
@@ -82,33 +82,33 @@ class Textarea extends React.Component {
     this.handleResize.clear();
   }
 
-  handleRefInput = node => {
-    this.input = node;
+  handleRefInput = ref => {
+    this.inputRef = ref;
 
     const { textareaRef } = this.props;
     if (textareaRef) {
       if (typeof textareaRef === 'function') {
-        textareaRef(node);
+        textareaRef(ref);
       } else {
-        textareaRef.current = node;
+        textareaRef.current = ref;
       }
     }
   };
 
-  handleRefSinglelineShadow = node => {
-    this.singlelineShadow = node;
+  handleRefSinglelineShadow = ref => {
+    this.singlelineShadowRef = ref;
   };
 
-  handleRefShadow = node => {
-    this.shadow = node;
+  handleRefShadow = ref => {
+    this.shadowRef = ref;
   };
 
   handleChange = event => {
     this.value = event.target.value;
 
-    if (typeof this.props.value === 'undefined' && this.shadow) {
+    if (typeof this.props.value === 'undefined' && this.shadowRef) {
       // The component is not controlled, we need to update the shallow value.
-      this.shadow.value = this.value;
+      this.shadowRef.value = this.value;
       this.syncHeightWithShadow();
     }
 
@@ -119,17 +119,17 @@ class Textarea extends React.Component {
 
   syncHeightWithShadow() {
     const props = this.props;
-    if (!this.shadow || !this.singlelineShadow) {
+    if (!this.shadowRef || !this.singlelineShadowRef) {
       return;
     }
 
     // The component is controlled, we need to update the shallow value.
     if (typeof props.value !== 'undefined') {
-      this.shadow.value = props.value == null ? '' : String(props.value);
+      this.shadowRef.value = props.value == null ? '' : String(props.value);
     }
 
-    const lineHeight = this.singlelineShadow.scrollHeight;
-    let newHeight = this.shadow.scrollHeight;
+    const lineHeight = this.singlelineShadowRef.scrollHeight;
+    let newHeight = this.shadowRef.scrollHeight;
 
     // Guarding for jsdom, where scrollHeight isn't present.
     // See https://github.com/tmpvar/jsdom/issues/1013

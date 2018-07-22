@@ -283,8 +283,8 @@ class Modal extends React.Component {
 
     return (
       <Portal
-        ref={node => {
-          this.mountNode = node ? node.getMountNode() : node;
+        ref={ref => {
+          this.mountNode = ref ? ref.getMountNode() : ref;
         }}
         container={container}
         disablePortal={disablePortal}
@@ -292,8 +292,8 @@ class Modal extends React.Component {
       >
         <div
           data-mui-test="Modal"
-          ref={node => {
-            this.modalRef = node;
+          ref={ref => {
+            this.modalRef = ref;
           }}
           className={classNames(classes.root, className, {
             [classes.hidden]: exited,
@@ -304,8 +304,8 @@ class Modal extends React.Component {
             <BackdropComponent open={open} onClick={this.handleBackdropClick} {...BackdropProps} />
           )}
           <RootRef
-            rootRef={node => {
-              this.dialogRef = node;
+            rootRef={ref => {
+              this.dialogRef = ref;
             }}
           >
             {React.cloneElement(children, childProps)}

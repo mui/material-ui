@@ -222,13 +222,13 @@ class Slider extends React.Component {
   state = { currentState: 'initial' };
 
   componentDidMount() {
-    if (this.container) {
-      this.container.addEventListener('touchstart', preventPageScrolling, { passive: false });
+    if (this.containerRef) {
+      this.containerRef.addEventListener('touchstart', preventPageScrolling, { passive: false });
     }
   }
 
   componentWillUnmount() {
-    this.container.removeEventListener('touchstart', preventPageScrolling, { passive: false });
+    this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -292,7 +292,7 @@ class Slider extends React.Component {
 
   handleClick = event => {
     const { min, max, vertical, reverse } = this.props;
-    const percent = calculatePercent(this.container, event, vertical, reverse);
+    const percent = calculatePercent(this.containerRef, event, vertical, reverse);
     const value = percentToValue(percent, min, max);
 
     this.emitChange(event, value, () => {
@@ -341,7 +341,7 @@ class Slider extends React.Component {
 
   handleMouseMove = event => {
     const { min, max, vertical, reverse } = this.props;
-    const percent = calculatePercent(this.container, event, vertical, reverse);
+    const percent = calculatePercent(this.containerRef, event, vertical, reverse);
     const value = percentToValue(percent, min, max);
 
     this.emitChange(event, value);
@@ -471,8 +471,8 @@ class Slider extends React.Component {
         onMouseDown={this.handleMouseDown}
         onTouchStartCapture={this.handleTouchStart}
         onTouchMove={this.handleMouseMove}
-        ref={node => {
-          this.container = findDOMNode(node);
+        ref={ref => {
+          this.containerRef = findDOMNode(ref);
         }}
         {...other}
       >

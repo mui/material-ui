@@ -7,17 +7,17 @@ import Textarea from './Textarea';
 function assignRefs(wrapper) {
   // refs don't work with shallow renders in enzyme so here we directly define
   // 'this.input', 'this.shadow', etc. for this Textarea via wrapper.instance()
-  const input = wrapper.find('textarea').last();
-  wrapper.instance().input = input;
-  const textareaShadow = wrapper.find('textarea').at(2);
-  wrapper.instance().shadow = textareaShadow;
-  const singlelineShadow = wrapper.find('textarea').first();
-  wrapper.instance().singlelineShadow = singlelineShadow;
+  const inputRef = wrapper.find('textarea').last();
+  wrapper.instance().inputRef = inputRef;
+  const textareaShadowRef = wrapper.find('textarea').at(2);
+  wrapper.instance().shadowRef = textareaShadowRef;
+  const singlelineShadowRef = wrapper.find('textarea').first();
+  wrapper.instance().singlelineShadowRef = singlelineShadowRef;
 
   return {
-    singlelineShadow,
-    textareaShadow,
-    input,
+    inputRef,
+    singlelineShadowRef,
+    textareaShadowRef,
   };
 }
 
@@ -47,15 +47,15 @@ describe('<Textarea />', () => {
 
     // jsdom doesn't support scroll height so we have to simulate it changing
     // which makes this not so great of a test :(
-    refs.textareaShadow.scrollHeight = 43;
-    refs.singlelineShadow.scrollHeight = 43;
+    refs.textareaShadowRef.scrollHeight = 43;
+    refs.singlelineShadowRef.scrollHeight = 43;
     // this is needed to trigger the resize
-    refs.input.simulate('change', { target: { value: 'x' } });
+    refs.inputRef.simulate('change', { target: { value: 'x' } });
     assert.strictEqual(wrapper.state().height, 43);
 
-    refs.textareaShadow.scrollHeight = 19;
-    refs.singlelineShadow.scrollHeight = 19;
-    refs.input.simulate('change', { target: { value: '' } });
+    refs.textareaShadowRef.scrollHeight = 19;
+    refs.singlelineShadowRef.scrollHeight = 19;
+    refs.inputRef.simulate('change', { target: { value: '' } });
     assert.strictEqual(wrapper.state().height, 19);
   });
 
@@ -73,11 +73,11 @@ describe('<Textarea />', () => {
 
     it('should update the height when the value change', () => {
       const instance = wrapper.instance();
-      instance.singlelineShadow = { scrollHeight: 19 };
-      instance.shadow = { scrollHeight: 19 };
+      instance.singlelineShadowRef = { scrollHeight: 19 };
+      instance.shadowRef = { scrollHeight: 19 };
       wrapper.setProps({ value: 'fo' });
       assert.strictEqual(wrapper.state().height, 19);
-      instance.shadow = { scrollHeight: 48 };
+      instance.shadowRef = { scrollHeight: 48 };
       wrapper.setProps({ value: 'foooooo' });
       assert.strictEqual(wrapper.state().height, 48);
     });
@@ -86,8 +86,8 @@ describe('<Textarea />', () => {
       const instance = wrapper.instance();
       const rowsMax = 4;
       const lineHeight = 19;
-      instance.singlelineShadow = { scrollHeight: lineHeight };
-      instance.shadow = { scrollHeight: lineHeight * 5 };
+      instance.singlelineShadowRef = { scrollHeight: lineHeight };
+      instance.shadowRef = { scrollHeight: lineHeight * 5 };
       wrapper.setProps({ rowsMax });
       assert.strictEqual(wrapper.state().height, lineHeight * rowsMax);
     });
@@ -99,10 +99,10 @@ describe('<Textarea />', () => {
 
     const refs = assignRefs(wrapper);
     // this is needed to trigger the resize
-    refs.input.simulate('change', { target: { value: 'x' } });
+    refs.inputRef.simulate('change', { target: { value: 'x' } });
     assert.strictEqual(wrapper.instance().value, 'x');
     // this is needed to trigger the resize
-    refs.input.simulate('change', { target: { value: '' } });
+    refs.inputRef.simulate('change', { target: { value: '' } });
     assert.strictEqual(wrapper.instance().value, '');
   });
 
@@ -122,7 +122,7 @@ describe('<Textarea />', () => {
 
       const refs = assignRefs(wrapper);
       const event = { target: { value: 'xx' } };
-      refs.input.simulate('change', event);
+      refs.inputRef.simulate('change', event);
       assert.strictEqual(wrapper.instance().value, 'xx');
       assert.strictEqual(handleChange.callCount, 1);
       assert.deepEqual(handleChange.args[0], [event]);
@@ -143,8 +143,8 @@ describe('<Textarea />', () => {
     it('should handle the resize event', () => {
       const wrapper = shallow(<Textarea />);
       const refs = assignRefs(wrapper);
-      refs.textareaShadow.scrollHeight = 43;
-      refs.singlelineShadow.scrollHeight = 43;
+      refs.textareaShadowRef.scrollHeight = 43;
+      refs.singlelineShadowRef.scrollHeight = 43;
       wrapper
         .find('EventListener')
         .at(0)

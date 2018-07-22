@@ -36,8 +36,8 @@ class SpeedDial extends React.Component {
   };
 
   handleKeyDown = event => {
-    const actions = ReactDOM.findDOMNode(this.actions);
-    const fab = ReactDOM.findDOMNode(this.fab);
+    const actions = ReactDOM.findDOMNode(this.actionsRef);
+    const fab = ReactDOM.findDOMNode(this.fabRef);
     const key = keycode(event);
     const currentFocus = document.activeElement;
     const { open, onClose, onKeyDown } = this.props;
@@ -68,7 +68,7 @@ class SpeedDial extends React.Component {
       if (currentFocus.parentElement.previousElementSibling) {
         currentFocus.parentElement.previousElementSibling.firstChild.focus();
       } else {
-        ReactDOM.findDOMNode(this.fab).focus();
+        fab.focus();
       }
       // Select the next action
     } else if (key === nextKey) {
@@ -168,8 +168,8 @@ class SpeedDial extends React.Component {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : 'false'}
             aria-controls={`${id}-actions`}
-            ref={node => {
-              this.fab = node;
+            ref={ref => {
+              this.fabRef = ref;
             }}
             {...ButtonProps}
           >
@@ -179,8 +179,8 @@ class SpeedDial extends React.Component {
         <div
           id={`${id}-actions`}
           className={classNames(classes.actions, { [classes.actionsClosed]: !open })}
-          ref={node => {
-            this.actions = node;
+          ref={ref => {
+            this.actionsRef = ref;
           }}
         >
           {children}

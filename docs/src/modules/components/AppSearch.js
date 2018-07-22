@@ -153,16 +153,16 @@ const styles = theme => ({
 });
 
 class AppSearch extends React.Component {
-  input = null;
+  inputRef = null;
 
   handleKeyDown = event => {
     if (
       ['/', 's'].indexOf(keycode(event)) !== -1 &&
       document.activeElement.nodeName.toLowerCase() === 'body' &&
-      document.activeElement !== this.input
+      document.activeElement !== this.inputRef
     ) {
       event.preventDefault();
-      this.input.focus();
+      this.inputRef.focus();
     }
   };
 
@@ -181,8 +181,8 @@ class AppSearch extends React.Component {
         </div>
         <input
           id="docsearch-input"
-          ref={node => {
-            this.input = node;
+          ref={ref => {
+            this.inputRef = ref;
           }}
           className={classes.input}
         />
