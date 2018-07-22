@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-autofocus */
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';

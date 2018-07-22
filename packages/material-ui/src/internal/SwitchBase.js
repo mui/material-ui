@@ -151,8 +151,8 @@ class SwitchBase extends React.Component {
           readOnly={readOnly}
           ref={inputRef}
           required={required}
-          type={type}
           tabIndex={tabIndex}
+          type={type}
           value={value}
           {...inputProps}
         />
@@ -165,7 +165,7 @@ class SwitchBase extends React.Component {
 // so that the API documentation is updated.
 SwitchBase.propTypes = {
   /**
-   * If `true` the component is focused.
+   * If `true`, the input will be focused during the first mount.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -242,11 +242,12 @@ SwitchBase.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
-   * If `true` the input will be non editable, but still be sent to the server by form events.
+   * It prevents the user from changing the value of the field
+   * (not from interacting with the field).
    */
   readOnly: PropTypes.bool,
   /**
-   * If `true` the input will be required.
+   * If `true`, the input will be required.
    */
   required: PropTypes.bool,
   /**
