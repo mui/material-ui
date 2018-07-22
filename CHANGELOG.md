@@ -21,14 +21,14 @@ Here are some highlights ✨:
 
 - After many iterations, we are happy to announce `@material-ui/icons` v2.0.0 💃.
 With this version, you can take advantage of all the icons recently released by Google:
-https://material.io/tools/icons/. There is more than 5,000 icons.
+https://material.io/tools/icons/. There are more than 5,000 icons.
 (#12036, #12170, #12111, #12225)
 
 - The 1.4.0 release of Material-UI has introduced a new implementation of the Tooltip and Popper component.
 This release fixes a lot of issues following the rewrite (#12168, #12161, #12194, #12223, #12218).
-Thank you for reporting all these problems. Hopefully, it's very stable now.
+Thank you for reporting all these problems 🐛. Hopefully, it's very stable now.
 
-- Creative Tim has just completed [their second Material-UI theme](https://www.creative-tim.com/product/material-kit-pro-react?partner=104080).
+- Creative Tim has just completed [their second Material-UI theme](https://www.creative-tim.com/product/material-kit-pro-react?partner=104080) 💅.
 It's an important milestone for the themability of Material-UI.
 We are going to keep working on adding more themes to the list.
 
