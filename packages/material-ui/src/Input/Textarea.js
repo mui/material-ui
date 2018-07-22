@@ -27,7 +27,6 @@ export const styles = {
     background: 'transparent',
   },
   shadow: {
-    resize: 'none',
     // Overflow also needed to here to remove the extra row
     // added to textareas in Firefox.
     overflow: 'hidden',
@@ -43,6 +42,8 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
+  isControlled = this.props.value != null;
+
   shadowRef = null;
 
   singlelineShadowRef = null;
@@ -106,7 +107,7 @@ class Textarea extends React.Component {
   handleChange = event => {
     this.value = event.target.value;
 
-    if (typeof this.props.value === 'undefined' && this.shadowRef) {
+    if (!this.isControlled) {
       // The component is not controlled, we need to update the shallow value.
       this.shadowRef.value = this.value;
       this.syncHeightWithShadow();
@@ -119,12 +120,9 @@ class Textarea extends React.Component {
 
   syncHeightWithShadow() {
     const props = this.props;
-    if (!this.shadowRef || !this.singlelineShadowRef) {
-      return;
-    }
 
-    // The component is controlled, we need to update the shallow value.
-    if (typeof props.value !== 'undefined') {
+    if (this.isControlled) {
+      // The component is controlled, we need to update the shallow value.
       this.shadowRef.value = props.value == null ? '' : String(props.value);
     }
 
@@ -169,22 +167,22 @@ class Textarea extends React.Component {
       <div className={classes.root} style={{ height: this.state.height }}>
         <EventListener target="window" onResize={this.handleResize} />
         <textarea
-          ref={this.handleRefSinglelineShadow}
-          className={classnames(classes.shadow, classes.textarea)}
-          tabIndex={-1}
-          rows="1"
-          readOnly
           aria-hidden="true"
+          className={classnames(classes.textarea, classes.shadow)}
+          readOnly
+          ref={this.handleRefSinglelineShadow}
+          rows="1"
+          tabIndex={-1}
           value=""
         />
         <textarea
-          ref={this.handleRefShadow}
-          className={classnames(classes.shadow, classes.textarea)}
-          tabIndex={-1}
-          rows={rows}
           aria-hidden="true"
-          readOnly
+          className={classnames(classes.textarea, classes.shadow)}
           defaultValue={defaultValue}
+          readOnly
+          ref={this.handleRefShadow}
+          rows={rows}
+          tabIndex={-1}
           value={value}
         />
         <textarea

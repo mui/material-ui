@@ -21,12 +21,14 @@ function assignRefs(wrapper) {
   };
 }
 
+const TextareaNaked = unwrap(Textarea);
+
 describe('<Textarea />', () => {
   let shallow;
   let mount;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ disableLifecycleMethods: true });
     mount = createMount();
   });
 
@@ -35,12 +37,12 @@ describe('<Textarea />', () => {
   });
 
   it('should render 3 textareas', () => {
-    const wrapper = shallow(<Textarea />);
+    const wrapper = shallow(<TextareaNaked classes={{}} />);
     assert.strictEqual(wrapper.find('textarea').length, 3);
   });
 
   it('should change its height when the height of its shadows changes', () => {
-    const wrapper = shallow(<Textarea />);
+    const wrapper = shallow(<TextareaNaked classes={{}} />);
     assert.strictEqual(wrapper.state().height, 19);
 
     const refs = assignRefs(wrapper);
@@ -63,7 +65,6 @@ describe('<Textarea />', () => {
     let wrapper;
 
     beforeEach(() => {
-      const TextareaNaked = unwrap(Textarea);
       wrapper = mount(<TextareaNaked classes={{}} value="f" />);
     });
 
@@ -94,7 +95,7 @@ describe('<Textarea />', () => {
   });
 
   it('should set filled', () => {
-    const wrapper = shallow(<Textarea />);
+    const wrapper = shallow(<TextareaNaked classes={{}} />);
     assert.strictEqual(wrapper.find('textarea').length, 3);
 
     const refs = assignRefs(wrapper);
@@ -117,7 +118,7 @@ describe('<Textarea />', () => {
   describe('prop: onChange', () => {
     it('should be call the callback', () => {
       const handleChange = spy();
-      const wrapper = shallow(<Textarea value="x" onChange={handleChange} />);
+      const wrapper = shallow(<TextareaNaked classes={{}} value="x" onChange={handleChange} />);
       assert.strictEqual(wrapper.find('textarea').length, 3);
 
       const refs = assignRefs(wrapper);
@@ -141,7 +142,7 @@ describe('<Textarea />', () => {
     });
 
     it('should handle the resize event', () => {
-      const wrapper = shallow(<Textarea />);
+      const wrapper = shallow(<TextareaNaked classes={{}} />);
       const refs = assignRefs(wrapper);
       refs.textareaShadowRef.scrollHeight = 43;
       refs.singlelineShadowRef.scrollHeight = 43;
