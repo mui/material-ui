@@ -140,14 +140,14 @@ class AnchorPlayground extends React.Component {
     });
   };
 
-  centerScroll = node => {
-    if (!node) {
+  centerScroll = ref => {
+    if (!ref) {
       return;
     }
 
-    const container = node.parentElement;
-    container.scrollTop = node.clientHeight / 4;
-    container.scrollLeft = node.clientWidth / 4;
+    const container = ref.parentElement;
+    container.scrollTop = ref.clientHeight / 4;
+    container.scrollLeft = ref.clientWidth / 4;
   };
 
   render() {

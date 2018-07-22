@@ -164,7 +164,7 @@ describe('<Collapse />', () => {
         });
 
         it('no wrapper', () => {
-          instance.wrapper = false;
+          instance.wrapperRef = false;
           instance.handleEntering(element);
           assert.strictEqual(
             element.style.transitionDuration,
@@ -174,7 +174,7 @@ describe('<Collapse />', () => {
 
         it('has wrapper', () => {
           const clientHeightMock = 10;
-          instance.wrapper = { clientHeight: clientHeightMock };
+          instance.wrapperRef = { clientHeight: clientHeightMock };
           instance.handleEntering(element);
           assert.strictEqual(
             element.style.transitionDuration,
@@ -232,7 +232,7 @@ describe('<Collapse />', () => {
     describe('handleExit()', () => {
       it('should set height to the wrapper height', () => {
         const element = { style: { height: 'auto' } };
-        instance.wrapper = { clientHeight: 666 };
+        instance.wrapperRef = { clientHeight: 666 };
         instance.handleExit(element);
         assert.strictEqual(element.style.height, '666px', 'should have 666px height');
       });
@@ -278,7 +278,7 @@ describe('<Collapse />', () => {
         });
 
         it('no wrapper', () => {
-          instance.wrapper = false;
+          instance.wrapperRef = false;
           instance.handleExiting(element);
           assert.strictEqual(
             element.style.transitionDuration,
@@ -288,7 +288,7 @@ describe('<Collapse />', () => {
 
         it('has wrapper', () => {
           const clientHeightMock = 10;
-          instance.wrapper = { clientHeight: clientHeightMock };
+          instance.wrapperRef = { clientHeight: clientHeightMock };
           instance.handleExiting(element);
           assert.strictEqual(
             element.style.transitionDuration,

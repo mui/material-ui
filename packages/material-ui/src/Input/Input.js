@@ -292,7 +292,7 @@ class Input extends React.Component {
 
   componentDidMount() {
     if (!this.isControlled) {
-      this.checkDirty(this.input);
+      this.checkDirty(this.inputRef);
     }
   }
 
@@ -335,7 +335,7 @@ class Input extends React.Component {
 
   handleChange = event => {
     if (!this.isControlled) {
-      this.checkDirty(this.input);
+      this.checkDirty(this.inputRef);
     }
 
     // Perform in the willUpdate
@@ -344,22 +344,22 @@ class Input extends React.Component {
     }
   };
 
-  handleRefInput = node => {
-    this.input = node;
+  handleRefInput = ref => {
+    this.inputRef = ref;
 
-    let ref;
+    let refProp;
 
     if (this.props.inputRef) {
-      ref = this.props.inputRef;
+      refProp = this.props.inputRef;
     } else if (this.props.inputProps && this.props.inputProps.ref) {
-      ref = this.props.inputProps.ref;
+      refProp = this.props.inputProps.ref;
     }
 
-    if (ref) {
-      if (typeof ref === 'function') {
-        ref(node);
+    if (refProp) {
+      if (typeof refProp === 'function') {
+        refProp(ref);
       } else {
-        ref.current = node;
+        refProp.current = ref;
       }
     }
   };

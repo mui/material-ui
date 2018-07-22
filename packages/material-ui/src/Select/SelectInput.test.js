@@ -244,7 +244,7 @@ describe('<SelectInput />', () => {
     it('should take the anchor width into account', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} />);
       const instance = wrapper.instance();
-      instance.displayNode = { clientWidth: 14 };
+      instance.displayRef = { clientWidth: 14 };
       instance.update({ open: true });
       wrapper.update();
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 14);
@@ -253,7 +253,7 @@ describe('<SelectInput />', () => {
     it('should not take the anchor width into account', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} autoWidth />);
       const instance = wrapper.instance();
-      instance.displayNode = { clientWidth: 14 };
+      instance.displayRef = { clientWidth: 14 };
       instance.update({ open: true });
       wrapper.update();
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, null);

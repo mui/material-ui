@@ -18,7 +18,7 @@ describe('<RootRef />', () => {
     const Fn = () => <div />;
     const results = [];
     const wrapper = mount(
-      <RootRef rootRef={node => results.push(node)}>
+      <RootRef rootRef={ref => results.push(ref)}>
         <Fn />
       </RootRef>,
     );

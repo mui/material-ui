@@ -83,9 +83,8 @@ class Slide extends React.Component {
       return;
     }
 
-    const node = ReactDOM.findDOMNode(this.transition);
-    if (node) {
-      setTranslateValue(this.props, node);
+    if (this.transitionRef) {
+      setTranslateValue(this.props, this.transitionRef);
     }
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
@@ -175,10 +174,9 @@ class Slide extends React.Component {
   };
 
   updatePosition() {
-    const node = ReactDOM.findDOMNode(this.transition);
-    if (node) {
-      node.style.visibility = 'inherit';
-      setTranslateValue(this.props, node);
+    if (this.transitionRef) {
+      this.transitionRef.style.visibility = 'inherit';
+      setTranslateValue(this.props, this.transitionRef);
     }
   }
 
@@ -218,8 +216,8 @@ class Slide extends React.Component {
           onExited={this.handleExited}
           appear
           style={style}
-          ref={node => {
-            this.transition = node;
+          ref={ref => {
+            this.transitionRef = ReactDOM.findDOMNode(ref);
           }}
           {...other}
         >

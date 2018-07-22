@@ -31,7 +31,7 @@ export const styles = {
 };
 
 class Menu extends React.Component {
-  menuList = null;
+  menuListRef = null;
 
   componentDidMount() {
     if (this.props.open && this.props.disableAutoFocusItem !== true) {
@@ -40,20 +40,20 @@ class Menu extends React.Component {
   }
 
   getContentAnchorEl = () => {
-    if (!this.menuList || !this.menuList.selectedItem) {
-      return ReactDOM.findDOMNode(this.menuList).firstChild;
+    if (!this.menuListRef || !this.menuListRef.selectedItemRef) {
+      return ReactDOM.findDOMNode(this.menuListRef).firstChild;
     }
 
-    return ReactDOM.findDOMNode(this.menuList.selectedItem);
+    return ReactDOM.findDOMNode(this.menuListRef.selectedItemRef);
   };
 
   focus = () => {
-    if (this.menuList && this.menuList.selectedItem) {
-      ReactDOM.findDOMNode(this.menuList.selectedItem).focus();
+    if (this.menuListRef && this.menuListRef.selectedItemRef) {
+      ReactDOM.findDOMNode(this.menuListRef.selectedItemRef).focus();
       return;
     }
 
-    const menuList = ReactDOM.findDOMNode(this.menuList);
+    const menuList = ReactDOM.findDOMNode(this.menuListRef);
     if (menuList && menuList.firstChild) {
       menuList.firstChild.focus();
     }
@@ -61,7 +61,7 @@ class Menu extends React.Component {
 
   handleEnter = element => {
     const { disableAutoFocusItem, theme } = this.props;
-    const menuList = ReactDOM.findDOMNode(this.menuList);
+    const menuList = ReactDOM.findDOMNode(this.menuListRef);
 
     // Focus so the scroll computation of the Popover works as expected.
     if (disableAutoFocusItem !== true) {
@@ -124,8 +124,8 @@ class Menu extends React.Component {
           data-mui-test="Menu"
           onKeyDown={this.handleListKeyDown}
           {...MenuListProps}
-          ref={node => {
-            this.menuList = node;
+          ref={ref => {
+            this.menuListRef = ref;
           }}
         >
           {children}

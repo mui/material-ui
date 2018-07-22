@@ -149,22 +149,22 @@ class Tabs extends React.Component {
 
   getTabsMeta = (value, direction) => {
     let tabsMeta;
-    if (this.tabs) {
-      const rect = this.tabs.getBoundingClientRect();
+    if (this.tabsRef) {
+      const rect = this.tabsRef.getBoundingClientRect();
       // create a new object with ClientRect class props + scrollLeft
       tabsMeta = {
-        clientWidth: this.tabs ? this.tabs.clientWidth : 0,
-        scrollLeft: this.tabs ? this.tabs.scrollLeft : 0,
-        scrollLeftNormalized: this.tabs ? getNormalizedScrollLeft(this.tabs, direction) : 0,
-        scrollWidth: this.tabs ? this.tabs.scrollWidth : 0,
+        clientWidth: this.tabsRef.clientWidth,
+        scrollLeft: this.tabsRef.scrollLeft,
+        scrollLeftNormalized: getNormalizedScrollLeft(this.tabsRef, direction),
+        scrollWidth: this.tabsRef.scrollWidth,
         left: rect.left,
         right: rect.right,
       };
     }
 
     let tabMeta;
-    if (this.tabs && value !== false) {
-      const children = this.tabs.children[0].children;
+    if (this.tabsRef && value !== false) {
+      const children = this.tabsRef.children[0].children;
 
       if (children.length > 0) {
         const tab = children[this.valueToIndex.get(value)];
@@ -176,14 +176,14 @@ class Tabs extends React.Component {
   };
 
   handleLeftScrollClick = () => {
-    if (this.tabs) {
-      this.moveTabsScroll(-this.tabs.clientWidth);
+    if (this.tabsRef) {
+      this.moveTabsScroll(-this.tabsRef.clientWidth);
     }
   };
 
   handleRightScrollClick = () => {
-    if (this.tabs) {
-      this.moveTabsScroll(this.tabs.clientWidth);
+    if (this.tabsRef) {
+      this.moveTabsScroll(this.tabsRef.clientWidth);
     }
   };
 
@@ -198,12 +198,12 @@ class Tabs extends React.Component {
   moveTabsScroll = delta => {
     const { theme } = this.props;
 
-    if (this.tabs) {
+    if (this.tabsRef) {
       const multiplier = theme.direction === 'rtl' ? -1 : 1;
-      const nextScrollLeft = this.tabs.scrollLeft + delta * multiplier;
+      const nextScrollLeft = this.tabsRef.scrollLeft + delta * multiplier;
       // Fix for Edge
       const invert = theme.direction === 'rtl' && detectScrollType() === 'reverse' ? -1 : 1;
-      scroll.left(this.tabs, invert * nextScrollLeft);
+      scroll.left(this.tabsRef, invert * nextScrollLeft);
     }
   };
 
@@ -218,20 +218,20 @@ class Tabs extends React.Component {
     if (tabMeta.left < tabsMeta.left) {
       // left side of button is out of view
       const nextScrollLeft = tabsMeta.scrollLeft + (tabMeta.left - tabsMeta.left);
-      scroll.left(this.tabs, nextScrollLeft);
+      scroll.left(this.tabsRef, nextScrollLeft);
     } else if (tabMeta.right > tabsMeta.right) {
       // right side of button is out of view
       const nextScrollLeft = tabsMeta.scrollLeft + (tabMeta.right - tabsMeta.right);
-      scroll.left(this.tabs, nextScrollLeft);
+      scroll.left(this.tabsRef, nextScrollLeft);
     }
   };
 
   updateScrollButtonState = () => {
     const { scrollable, scrollButtons, theme } = this.props;
 
-    if (this.tabs && scrollable && scrollButtons !== 'off') {
-      const { scrollWidth, clientWidth } = this.tabs;
-      const scrollLeft = getNormalizedScrollLeft(this.tabs, theme.direction);
+    if (this.tabsRef && scrollable && scrollButtons !== 'off') {
+      const { scrollWidth, clientWidth } = this.tabsRef;
+      const scrollLeft = getNormalizedScrollLeft(this.tabsRef, theme.direction);
 
       const showLeftScroll =
         theme.direction === 'rtl' ? scrollWidth > clientWidth + scrollLeft : scrollLeft > 0;
@@ -367,8 +367,8 @@ class Tabs extends React.Component {
           <div
             className={scrollerClassName}
             style={this.state.scrollerStyle}
-            ref={node => {
-              this.tabs = node;
+            ref={ref => {
+              this.tabsRef = ref;
             }}
             role="tablist"
             onScroll={this.handleTabsScroll}
