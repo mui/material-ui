@@ -207,18 +207,20 @@ function formControlState(props, context) {
   let disabled = props.disabled;
   let error = props.error;
   let margin = props.margin;
+  let required = props.required;
 
   if (context && context.muiFormControl) {
     if (typeof disabled === 'undefined') {
       disabled = context.muiFormControl.disabled;
     }
-
     if (typeof error === 'undefined') {
       error = context.muiFormControl.error;
     }
-
     if (typeof margin === 'undefined') {
       margin = context.muiFormControl.margin;
+    }
+    if (typeof required === 'undefined') {
+      required = context.muiFormControl.required;
     }
   }
 
@@ -226,6 +228,7 @@ function formControlState(props, context) {
     disabled,
     error,
     margin,
+    required,
   };
 }
 
@@ -422,7 +425,7 @@ class Input extends React.Component {
     } = this.props;
 
     const { muiFormControl } = this.context;
-    const { disabled, error, margin } = formControlState(this.props, this.context);
+    const { disabled, error, margin, required } = formControlState(this.props, this.context);
 
     const className = classNames(
       classes.root,
@@ -449,8 +452,6 @@ class Input extends React.Component {
       },
       inputPropsClassName,
     );
-
-    const required = muiFormControl && muiFormControl.required === true;
 
     let InputComponent = 'input';
     let inputProps = {
@@ -500,7 +501,7 @@ class Input extends React.Component {
           onKeyUp={onKeyUp}
           placeholder={placeholder}
           readOnly={readOnly}
-          required={required ? true : undefined}
+          required={required}
           rows={rows}
           type={type}
           value={value}
@@ -624,9 +625,14 @@ Input.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * @ignore
+   * It prevents the user from changing the value of the field
+   * (not from interacting with the field).
    */
   readOnly: PropTypes.bool,
+  /**
+   * If `true`, the input will be required.
+   */
+  required: PropTypes.bool,
   /**
    * Number of rows to display when multiline option is set to true.
    */
