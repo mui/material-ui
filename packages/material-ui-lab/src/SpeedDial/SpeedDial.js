@@ -16,16 +16,23 @@ export const styles = {
     zIndex: 1050,
     display: 'flex',
     flexDirection: 'column-reverse', // Place the Actions above the FAB.
+    pointerEvents: 'none',
+  },
+  /* Styles applied to the Button component. */
+  fab: {
+    pointerEvents: 'auto',
   },
   /* Styles applied to the actions (`children` wrapper) element. */
   actions: {
     display: 'flex',
     flexDirection: 'column-reverse', // Display the first action at the bottom.
-    marginBottom: 16,
+    paddingBottom: 16,
+    pointerEvents: 'auto',
   },
   /* Styles applied to the actions (`children` wrapper) element if `open={false}`. */
   actionsClosed: {
     transition: 'top 0s linear 0.2s',
+    pointerEvents: 'none',
   },
 };
 
@@ -171,6 +178,7 @@ class SpeedDial extends React.Component {
             ref={ref => {
               this.fabRef = ref;
             }}
+            className={classes.fab}
             {...ButtonProps}
           >
             {icon()}
