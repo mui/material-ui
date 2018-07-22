@@ -87,6 +87,7 @@ class SwitchBase extends React.Component {
 
   render() {
     const {
+      autoFocus,
       checked: checkedProp,
       checkedIcon,
       classes,
@@ -100,6 +101,8 @@ class SwitchBase extends React.Component {
       onBlur,
       onChange,
       onFocus,
+      readOnly,
+      required,
       tabIndex,
       type,
       value,
@@ -138,16 +141,19 @@ class SwitchBase extends React.Component {
       >
         {checked ? checkedIcon : icon}
         <input
-          id={hasLabelFor && id}
-          type={type}
-          name={name}
+          autoFocus={autoFocus}
           checked={checked}
-          onChange={this.handleInputChange}
           className={classes.input}
           disabled={disabled}
+          id={hasLabelFor && id}
+          name={name}
+          onChange={this.handleInputChange}
+          readOnly={readOnly}
+          ref={inputRef}
+          required={required}
+          type={type}
           tabIndex={tabIndex}
           value={value}
-          ref={inputRef}
           {...inputProps}
         />
       </IconButton>
@@ -158,6 +164,10 @@ class SwitchBase extends React.Component {
 // NB: If changed, please update Checkbox, Switch and Radio
 // so that the API documentation is updated.
 SwitchBase.propTypes = {
+  /**
+   * If `true` the component is focused.
+   */
+  autoFocus: PropTypes.bool,
   /**
    * If `true`, the component is checked.
    */
@@ -231,6 +241,14 @@ SwitchBase.propTypes = {
    * @ignore
    */
   onFocus: PropTypes.func,
+  /**
+   * If `true` the input will be non editable, but still be sent to the server by form events.
+   */
+  readOnly: PropTypes.bool,
+  /**
+   * If `true` the input will be required.
+   */
+  required: PropTypes.bool,
   /**
    * @ignore
    */
