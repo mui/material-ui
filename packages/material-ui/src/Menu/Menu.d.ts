@@ -8,7 +8,6 @@ import { ClassNameMap } from '../styles/withStyles';
 
 export interface MenuProps
   extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>, MenuClassKey> {
-  anchorEl?: HTMLElement | ((element: HTMLElement) => HTMLElement);
   disableAutoFocusItem?: boolean;
   MenuListProps?: Partial<MenuListProps>;
   PaperProps?: Partial<PaperProps>;
