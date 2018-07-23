@@ -38,7 +38,7 @@
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
   },
-  "externalDependencies": {
+  "optionalDependencies": {
     "moment": "^2.19.2",
     "date-fns": "2.0.0-alpha.7",
     "luxon": "^1.0.0"
