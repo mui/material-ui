@@ -1,20 +1,20 @@
 {
   "build/dist/material-ui-pickers.cjs.js": {
-    "bundled": 118308,
-    "minified": 66500,
-    "gzipped": 14226
+    "bundled": 118021,
+    "minified": 66237,
+    "gzipped": 14193
   },
   "build/dist/material-ui-pickers.esm.js": {
-    "bundled": 116179,
-    "minified": 64538,
-    "gzipped": 14096,
+    "bundled": 115892,
+    "minified": 64275,
+    "gzipped": 14065,
     "treeshaked": {
       "rollup": {
-        "code": 54958,
+        "code": 54687,
         "import_statements": 1201
       },
       "webpack": {
-        "code": 58449
+        "code": 58180
       }
     }
   }
