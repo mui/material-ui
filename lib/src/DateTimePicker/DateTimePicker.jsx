@@ -36,6 +36,8 @@ export class DateTimePicker extends Component {
     showTabs: PropTypes.bool,
     timeIcon: PropTypes.node,
     utils: PropTypes.object.isRequired,
+    ViewContainerComponent:
+      PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   }
 
   static defaultProps = {
@@ -52,6 +54,7 @@ export class DateTimePicker extends Component {
     shouldDisableDate: undefined,
     showTabs: true,
     timeIcon: undefined,
+    ViewContainerComponent: 'div',
   }
 
   state = {
@@ -120,7 +123,11 @@ export class DateTimePicker extends Component {
       animateYearScrolling,
       classes,
       allowKeyboardControl,
+      ViewContainerComponent,
     } = this.props;
+
+    const ViewContainerComponentProps = typeof ViewContainerComponent === 'string'
+      ? {} : { openView, onChange: this.onChange };
 
     return (
       <Fragment>
@@ -144,7 +151,7 @@ export class DateTimePicker extends Component {
             />
         }
 
-        <div className={classes.viewContainer}>
+        <ViewContainerComponent className={classes.viewContainer} {...ViewContainerComponentProps}>
           <View selected={openView === viewType.YEAR}>
             <YearSelection
               date={date}
@@ -183,7 +190,7 @@ export class DateTimePicker extends Component {
               onSecondsChange={this.handleChange}
             />
           </View>
-        </div>
+        </ViewContainerComponent>
       </Fragment>
     );
   }
