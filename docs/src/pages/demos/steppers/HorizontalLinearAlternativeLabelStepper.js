@@ -82,7 +82,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
           {this.state.activeStep === steps.length ? (
             <div>
               <Typography className={classes.instructions}>
-                All steps completed - you&quot;re finished
+                All steps completed
               </Typography>
               <Button onClick={this.handleReset}>Reset</Button>
             </div>
