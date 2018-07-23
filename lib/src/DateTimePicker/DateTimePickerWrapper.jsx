@@ -29,7 +29,6 @@ export const DateTimePickerWrapper = (props) => {
     ampm,
     shouldDisableDate,
     animateYearScrolling,
-    fadeTimeout,
     forwardedRef,
     allowKeyboardControl,
     ...other
@@ -75,7 +74,6 @@ export const DateTimePickerWrapper = (props) => {
               dateRangeIcon={dateRangeIcon}
               disableFuture={disableFuture}
               disablePast={disablePast}
-              fadeTimeout={fadeTimeout}
               leftArrowIcon={leftArrowIcon}
               maxDate={maxDate}
               minDate={minDate}
@@ -136,8 +134,6 @@ DateTimePickerWrapper.propTypes = {
   animateYearScrolling: PropTypes.bool,
   /** Open directly to particular view */
   openTo: PropTypes.oneOf(['year', 'date', 'hour', 'minutes']),
-  /** Switching hour/minutes animation timeout in milliseconds (set 0 to disable) */
-  fadeTimeout: PropTypes.number,
   /** Enables keyboard listener for moving between days in calendar */
   allowKeyboardControl: PropTypes.bool,
   forwardedRef: PropTypes.func,
@@ -163,7 +159,6 @@ DateTimePickerWrapper.defaultProps = {
   ampm: true,
   shouldDisableDate: undefined,
   animateYearScrolling: false,
-  fadeTimeout: 400,
   forwardedRef: undefined,
   allowKeyboardControl: true,
 };

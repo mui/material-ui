@@ -15,6 +15,7 @@ const styles = {
   },
   dialog: {
     width: dialogWidth,
+    overflow: 'hidden',
 
     '&:first-child': {
       padding: 0,

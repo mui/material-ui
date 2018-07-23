@@ -46,6 +46,10 @@
             {
               "name": "newMonth",
               "type": null
+            },
+            {
+              "name": "slideDirection",
+              "type": null
             }
           ],
           "returns": null
@@ -353,6 +357,23 @@
         "utils": {
           "type": {
             "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "slideDirection": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'right'",
+                "computed": false
+              },
+              {
+                "value": "'left'",
+                "computed": false
+              }
+            ]
           },
           "required": true,
           "description": ""
@@ -906,6 +927,58 @@
       }
     }
   ],
+  "../lib/src/DatePicker/SlideTransition.jsx": [
+    {
+      "description": "",
+      "displayName": "SlideTransition",
+      "methods": [],
+      "props": {
+        "classes": {
+          "type": {
+            "name": "shape",
+            "value": {}
+          },
+          "required": true,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "slideDirection": {
+          "type": {
+            "name": "enum",
+            "value": [
+              {
+                "value": "'left'",
+                "computed": false
+              },
+              {
+                "value": "'right'",
+                "computed": false
+              }
+            ]
+          },
+          "required": true,
+          "description": ""
+        }
+      }
+    }
+  ],
   "../lib/src/DatePicker/Year.jsx": [
     {
       "description": "",
@@ -1297,13 +1370,6 @@
             "computed": false
           }
         },
-        "fadeTimeout": {
-          "type": {
-            "name": "number"
-          },
-          "required": true,
-          "description": ""
-        },
         "leftArrowIcon": {
           "type": {
             "name": "node"
@@ -1545,27 +1611,9 @@
       "displayName": "DateTimePickerView",
       "methods": [],
       "props": {
-        "timeout": {
-          "type": {
-            "name": "number"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "view": {
-          "type": {
-            "name": "string"
-          },
-          "required": true,
-          "description": ""
-        },
         "selected": {
           "type": {
-            "name": "string"
+            "name": "bool"
           },
           "required": true,
           "description": ""
@@ -1838,17 +1886,6 @@
             "computed": false
           }
         },
-        "fadeTimeout": {
-          "type": {
-            "name": "number"
-          },
-          "required": false,
-          "description": "Switching hour/minutes animation timeout in milliseconds (set 0 to disable)",
-          "defaultValue": {
-            "value": "400",
-            "computed": false
-          }
-        },
         "allowKeyboardControl": {
           "type": {
             "name": "bool"
@@ -1908,18 +1945,6 @@
           "returns": null
         },
         {
-          "name": "handleMouseUp",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "e",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
           "name": "handleTouchEnd",
           "docblock": null,
           "modifiers": [],
@@ -1933,6 +1958,18 @@
         },
         {
           "name": "handleMove",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "e",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleMouseUp",
           "docblock": null,
           "modifiers": [],
           "params": [
@@ -2073,6 +2110,24 @@
       "displayName": "ClockPointer",
       "methods": [
         {
+          "name": "getDerivedStateFromProps",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "nextProps",
+              "type": null
+            },
+            {
+              "name": "state",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
           "name": "getAngleStyle",
           "docblock": null,
           "modifiers": [],
@@ -2109,168 +2164,11 @@
           "required": true,
           "description": ""
         },
-        "max": {
+        "type": {
           "type": {
-            "name": "number"
-          },
-          "required": true,
-          "description": ""
-        }
-      }
-    }
-  ],
-  "../lib/src/TimePicker/HourView.jsx": [
-    {
-      "description": "",
-      "displayName": "HourView",
-      "methods": [
-        {
-          "name": "getHourNumbers",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "handleChange",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "hours",
-              "type": null
-            },
-            {
-              "name": "isFinish",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
-      "props": {
-        "date": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "onChange": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": ""
-        },
-        "utils": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "ampm": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "true",
-            "computed": false
-          }
-        }
-      }
-    }
-  ],
-  "../lib/src/TimePicker/MinutesView.jsx": [
-    {
-      "description": "",
-      "displayName": "MinutesView",
-      "methods": [
-        {
-          "name": "handleChange",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "minutes",
-              "type": null
-            },
-            {
-              "name": "isFinish",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
-      "props": {
-        "date": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "onChange": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": ""
-        },
-        "utils": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        }
-      }
-    }
-  ],
-  "../lib/src/TimePicker/SecondsView.jsx": [
-    {
-      "description": "",
-      "displayName": "SecondsView",
-      "methods": [
-        {
-          "name": "handleChange",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "seconds",
-              "type": null
-            },
-            {
-              "name": "isFinish",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
-      "props": {
-        "date": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "onChange": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": ""
-        },
-        "utils": {
-          "type": {
-            "name": "object"
+            "name": "enum",
+            "computed": true,
+            "value": "Object.keys(clockType).map(key => clockType[key])"
           },
           "required": true,
           "description": ""
@@ -2435,13 +2333,6 @@
             "computed": false
           }
         },
-        "fadeTimeout": {
-          "type": {
-            "name": "number"
-          },
-          "required": true,
-          "description": ""
-        },
         "seconds": {
           "type": {
             "name": "bool"
@@ -2452,6 +2343,126 @@
             "value": "false",
             "computed": false
           }
+        }
+      }
+    }
+  ],
+  "../lib/src/TimePicker/TimePickerView.jsx": [
+    {
+      "description": "",
+      "displayName": "TimePickerView",
+      "methods": [
+        {
+          "name": "getViewProps",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleHourChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "hours",
+              "type": null
+            },
+            {
+              "name": "isFinish",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleMinutesChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "minutes",
+              "type": null
+            },
+            {
+              "name": "isFinish",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleSecondsChange",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "seconds",
+              "type": null
+            },
+            {
+              "name": "isFinish",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "date": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onHourChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onMinutesChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onSecondsChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "utils": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "ampm": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "type": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "Object.keys(clockType).map(key => clockType[key])"
+          },
+          "required": true,
+          "description": ""
         }
       }
     }
@@ -2511,17 +2522,6 @@
           "description": "12h/24h view for hour selection clock",
           "defaultValue": {
             "value": "true",
-            "computed": false
-          }
-        },
-        "fadeTimeout": {
-          "type": {
-            "name": "number"
-          },
-          "required": false,
-          "description": "Switching hour/minutes animation timeout in milliseconds (set 0 to disable)",
-          "defaultValue": {
-            "value": "400",
             "computed": false
           }
         },
