@@ -1,9 +1,8 @@
 import React from 'react';
-import Code from '_shared/Code';
+import SourcablePanel from '_shared/SourcablePanel';
 import { Typography } from '@material-ui/core';
 
 // eslint-disable-next-line
-import momentLocalizationCode from '!raw-loader!Examples/Localization/MomentLocalizationExample';
 
 const MomentLocalization = () => (
   <div>
@@ -16,7 +15,16 @@ const MomentLocalization = () => (
       Also pass selected locale as string to the provider
       to make pickers rerenders automatically on locale change.
     </Typography>
-    <Code withMargin text={momentLocalizationCode} />
+    <SourcablePanel
+      title="Localized example"
+      sourceFile="Localization/MomentLocalizationExample.jsx"
+      description={(
+        <Typography variant="body1" gutterBottom>
+          Note that pickers would be rerender automatically on locale change
+        </Typography>
+      )}
+    />
+
   </div>
 );
 

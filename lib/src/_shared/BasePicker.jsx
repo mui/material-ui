@@ -20,7 +20,7 @@ export const BasePickerHoc = compose(
   withState('isAccepted', 'handleAcceptedChange', false),
   lifecycle({
     componentDidUpdate(prevProps) {
-      if (prevProps.value !== this.props.value) {
+      if (prevProps.value !== this.props.value || prevProps.utils.locale !== this.props.utils.locale) {
         this.props.changeDate(getValidDateOrCurrent(this.props));
       }
     },
