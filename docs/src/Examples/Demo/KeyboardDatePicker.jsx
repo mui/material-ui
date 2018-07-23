@@ -23,6 +23,7 @@ export default class BasicUsage extends PureComponent {
             value={selectedDate}
             onChange={this.handleDateChange}
             animateYearScrolling={false}
+            onInputChange={e => console.log('Keyboard Input:', e.target.value)}
           />
         </div>
 
