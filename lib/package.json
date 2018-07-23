@@ -44,6 +44,8 @@
     "luxon": "^1.0.0"
   },
   "dependencies": {
+    "lodash.throttle": "^4.1.1",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-event-listener": "^0.6.1",
     "react-text-mask": "=5.4.1",
     "recompose": "^0.27.1"
@@ -51,7 +53,7 @@
   "size-limit": [
     {
       "path": "build/dist/material-ui-pickers.cjs.js",
-      "limit": "25 KB"
+      "limit": "30 KB"
     }
   ],
   "scripts": {
@@ -102,7 +104,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-latest": "^6.24.1",
     "classnames": "^2.2.5",
-    "codecov": "^3.0.2",
+    "codecov": "^3.0.4",
     "cross-env": "^5.2.0",
     "date-fns": "2.0.0-alpha.7",
     "enzyme": "^3.3.0",

@@ -1,15 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-
-import EventListener from 'react-event-listener';
 import keycode from 'keycode';
-import CalendarHeader from './CalendarHeader';
-import DomainPropTypes from '../constants/prop-types';
-import DayWrapper from './DayWrapper';
-import Day from './Day';
-import withUtils from '../_shared/WithUtils';
+import withStyles from '@material-ui/core/styles/withStyles';
+import EventListener from 'react-event-listener';
+import throttle from 'lodash.throttle';
+
 import { findClosestEnabledDate } from '../_helpers/date-utils';
+import CalendarHeader from './CalendarHeader';
+import Day from './Day';
+import DayWrapper from './DayWrapper';
+import DomainPropTypes from '../constants/prop-types';
+import SlideTransition from './SlideTransition';
+import withUtils from '../_shared/WithUtils';
 
 /* eslint-disable no-unused-expressions */
 export class Calendar extends Component {
@@ -43,6 +45,7 @@ export class Calendar extends Component {
   };
 
   state = {
+    slideDirection: 'left',
     currentMonth: this.props.utils.getStartOfMonth(this.props.date),
   };
 
@@ -80,9 +83,11 @@ export class Calendar extends Component {
     this.props.onChange(utils.mergeDateAndTime(day, date), isFinish);
   };
 
-  handleChangeMonth = (newMonth) => {
-    this.setState({ currentMonth: newMonth });
+  handleChangeMonth = (newMonth, slideDirection) => {
+    this.setState({ currentMonth: newMonth, slideDirection });
   };
+
+  throttledHandleChangeMonth = throttle(this.handleChangeMonth, 350)
 
   validateMinMaxDate = (day) => {
     const { minDate, maxDate, utils } = this.props;
@@ -219,7 +224,7 @@ export class Calendar extends Component {
   };
 
   render() {
-    const { currentMonth } = this.state;
+    const { currentMonth, slideDirection } = this.state;
     const { classes, utils, allowKeyboardControl } = this.props;
 
     return (
@@ -230,8 +235,9 @@ export class Calendar extends Component {
         }
 
         <CalendarHeader
+          slideDirection={slideDirection}
           currentMonth={currentMonth}
-          onMonthChange={this.handleChangeMonth}
+          onMonthChange={this.throttledHandleChangeMonth}
           leftArrowIcon={this.props.leftArrowIcon}
           rightArrowIcon={this.props.rightArrowIcon}
           disablePrevMonth={this.shouldDisablePrevMonth()}
@@ -239,20 +245,26 @@ export class Calendar extends Component {
           utils={utils}
         />
 
-        <div
-          autoFocus /* eslint-disable-line */ // Autofocus required for getting work keyboard navigation feature
-          className={classes.calendar}
+        <SlideTransition
+          slideDirection={slideDirection}
+          className={classes.transitionContainer}
         >
-          {this.renderWeeks()}
-        </div>
+          <div
+            /* eslint-disable-next-line */
+            autoFocus // Autofocus required for getting work keyboard navigation feature
+            key={currentMonth}
+          >
+            {this.renderWeeks()}
+          </div>
+        </SlideTransition>
       </Fragment>
     );
   }
 }
 
 const styles = theme => ({
-  calendar: {
-    height: 36 * 6,
+  transitionContainer: {
+    minHeight: 36 * 6,
     marginTop: theme.spacing.unit * 1.5,
   },
   week: {
