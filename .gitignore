@@ -32,3 +32,4 @@ coverage
 # editors
 .vs
 .vscode
+.DS_Store
