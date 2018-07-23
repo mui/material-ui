@@ -1,11 +1,11 @@
 {
   "presets": [
-    ["@babel/env", { "modules": false }],
+    ["@babel/env", { "modules": false, "loose": true }],
     "@babel/react"
   ],
   "plugins": [
-    "@babel/proposal-object-rest-spread",
-    "@babel/proposal-class-properties"
+    ["@babel/proposal-object-rest-spread", { "loose": true }],
+    ["@babel/proposal-class-properties", { "loose": true }]
   ],
   "env": {
     "test": {
