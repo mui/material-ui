@@ -25,5 +25,5 @@
         "@babel/transform-runtime"
       ]
     }
-  } 
+  }
 }
