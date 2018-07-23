@@ -125,6 +125,8 @@ export class DateTextField extends PureComponent {
     adornmentPosition: PropTypes.oneOf(['start', 'end']),
     /** Callback firing when date that applied in the keyboard is invalid  */
     onError: PropTypes.func,
+    /** Callback firing on change input in keyboard mode */
+    onInputChange: PropTypes.func,
   }
 
   static defaultProps = {
@@ -146,6 +148,7 @@ export class DateTextField extends PureComponent {
     disablePast: false,
     disableFuture: false,
     onError: undefined,
+    onInputChange: undefined,
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
     minDateMessage: 'Date should not be before minimal date',
@@ -222,8 +225,12 @@ export class DateTextField extends PureComponent {
   };
 
   handleChange = (e) => {
-    const { utils, format } = this.props;
+    const { utils, format, onInputChange } = this.props;
     const parsedValue = utils.parse(e.target.value, format);
+
+    if (onInputChange) {
+      onInputChange(e);
+    }
 
     this.setState({
       displayValue: e.target.value,
@@ -287,6 +294,7 @@ export class DateTextField extends PureComponent {
       TextFieldComponent,
       utils,
       value,
+      onInputChange,
       ...other
     } = this.props;
 
