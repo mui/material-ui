@@ -1,40 +1,28 @@
 {
+  "presets": [
+    ["@babel/env", { "modules": false }],
+    "@babel/react"
+  ],
+  "plugins": [
+    "@babel/proposal-object-rest-spread",
+    "@babel/proposal-class-properties"
+  ],
   "env": {
     "test": {
-      "presets": ["es2015"],
       "plugins": [
-        "transform-object-rest-spread",
-        "transform-react-jsx",
-        "transform-class-properties",
-        "transform-runtime",
+        "@babel/transform-runtime",
+        "@babel/transform-modules-commonjs"
       ]
     },
-    "development": {
-      "presets": [[ "es2015", { "modules": false } ]],
+    "cjs": {
       "plugins": [
-        "transform-object-rest-spread",
-        "transform-react-jsx",
-        "transform-class-properties",
-        "transform-runtime",
-        "transform-es2015-modules-commonjs"
+        "@babel/transform-runtime",
+        "@babel/transform-modules-commonjs"
       ]
     },
-    "production": {
-      "presets": [[ "es2015", { "modules": false } ]],
+    "esm": {
       "plugins": [
-        "transform-object-rest-spread",
-        "transform-react-jsx",
-        "transform-class-properties",
-        "transform-runtime",
-        "transform-es2015-modules-commonjs"
-      ]
-    },
-    "modules": {
-      "presets": [[ "es2015", { "modules": false } ]],
-      "plugins": [
-        "transform-object-rest-spread",
-        "transform-react-jsx",
-        "transform-class-properties"
+        "@babel/transform-runtime"
       ]
     }
   } 
