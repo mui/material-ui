@@ -23,8 +23,6 @@ export const styles = theme => {
 
   const colors = {
     primary: theme.palette.primary.main,
-    secondary: theme.palette.grey[400],
-    focused: theme.palette.grey[500],
     disabled: theme.palette.grey[400],
   };
 
@@ -63,12 +61,12 @@ export const styles = theme => {
       transform: 'translate(0, -50%)',
       top: '50%',
       height: 2,
+      backgroundColor: colors.primary,
       '&$focused, &$activated': {
         transition: 'none',
-        backgroundColor: colors.focused,
       },
       '&$disabled': {
-        backgroundColor: colors.secondary,
+        backgroundColor: colors.disabled,
       },
       '&$vertical': {
         transform: 'translate(-50%, 0)',
@@ -76,24 +74,17 @@ export const styles = theme => {
         top: 'initial',
         width: 2,
       },
-      '&$jumped': {
-        backgroundColor: colors.focused,
-      },
     },
     /* Styles applied to the track element before the thumb. */
     trackBefore: {
       zIndex: 1,
       left: 0,
-      backgroundColor: colors.primary,
       transition: commonTransitions,
-      '&$focused, &$activated, &$jumped': {
-        backgroundColor: colors.primary,
-      },
     },
     /* Styles applied to the track element after the thumb. */
     trackAfter: {
       right: 0,
-      backgroundColor: colors.secondary,
+      opacity: 0.24,
       transition: commonTransitions,
       '&$vertical': {
         bottom: 0,
@@ -128,12 +119,12 @@ export const styles = theme => {
         backgroundColor: 'transparent',
       },
       '&$focused$zero': {
-        border: `2px solid ${colors.focused}`,
-        backgroundColor: fade(colors.focused, 0.34),
-        boxShadow: `0px 0px 0px 9px ${fade(colors.focused, 0.34)}`,
+        border: `2px solid ${colors.primary}`,
+        backgroundColor: fade(colors.primary, 0.34),
+        boxShadow: `0px 0px 0px 9px ${fade(colors.primary, 0.34)}`,
       },
       '&$activated$zero': {
-        border: `2px solid ${colors.focused}`,
+        border: `2px solid ${colors.primary}`,
       },
       '&$jumped': {
         width: 17,
