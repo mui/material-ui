@@ -1,7 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import scroll from 'scroll';
 import { ShallowWrapper } from 'enzyme';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
@@ -574,7 +573,6 @@ describe('<Tabs />', () => {
     let metaStub;
 
     beforeEach(() => {
-      scrollStub = stub(scroll, 'left');
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable>
           <Tab />
@@ -582,11 +580,12 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       instance = wrapper.instance();
+      scrollStub = stub(instance, 'scroll');
       metaStub = stub(instance, 'getTabsMeta');
     });
 
     afterEach(() => {
-      scroll.left.restore();
+      instance.scroll.restore();
     });
 
     it('should scroll left tab into view', () => {
@@ -596,7 +595,7 @@ describe('<Tabs />', () => {
       });
 
       instance.scrollSelectedIntoView();
-      assert.strictEqual(scrollStub.args[0][1], 0, 'should scroll to 0 position');
+      assert.strictEqual(scrollStub.args[0][0], 0, 'should scroll to 0 position');
     });
 
     it('should scroll right tab into view', () => {
@@ -606,7 +605,7 @@ describe('<Tabs />', () => {
       });
 
       instance.scrollSelectedIntoView();
-      assert.strictEqual(scrollStub.args[0][1], 10, 'should scroll to 10 position');
+      assert.strictEqual(scrollStub.args[0][0], 10, 'should scroll to 10 position');
     });
 
     it('should support value=false', () => {
