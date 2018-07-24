@@ -248,7 +248,7 @@ function generateClasses(reactAPI) {
       .map(
         className =>
           `| <span class="prop-name">${className}</span> | ${
-            reactAPI.styles.descriptions[className] ? reactAPI.styles.descriptions[className] : ''
+            reactAPI.styles.descriptions[className] ? escapeCell(reactAPI.styles.descriptions[className]) : ''
           }`,
       )
       .join('\n');
