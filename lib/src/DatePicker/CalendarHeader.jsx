@@ -59,9 +59,9 @@ export const CalendarHeader = ({
 
       <div className={classes.daysHeader}>
         {
-          utils.getWeekdays().map(day => (
+          utils.getWeekdays().map((day, i) => (
             <Typography
-              key={day}
+              key={`${day}-${i}`}
               variant="caption"
               className={classes.dayLabel}
             >
