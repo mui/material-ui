@@ -23,7 +23,7 @@ export default class MomentLocalizationExample extends PureComponent {
   }
 
   handleDateChange = (date) => {
-    this.setState({ selectedDate: date });
+    this.setState({ selectedDate: date.toDate() });
   }
 
   handleMenuOpen = (event) => {
