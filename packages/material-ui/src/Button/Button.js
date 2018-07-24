@@ -106,7 +106,7 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element if `variant="[contained | fab|"` and `color="primary"`. */
+  /* Styles applied to the root element if `variant="[contained | fab]"` and `color="primary"`. */
   containedPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
