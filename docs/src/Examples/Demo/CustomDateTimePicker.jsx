@@ -29,7 +29,6 @@ export default class CustomDateTimePicker extends PureComponent {
             autoSubmit={false}
             allowKeyboardControl={false}
             disableFuture
-            fadeTimeout={0}
             value={selectedDate}
             onChange={this.handleDateChange}
             helperText="Hardcoded helper text"

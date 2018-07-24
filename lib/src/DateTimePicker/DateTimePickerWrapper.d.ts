@@ -11,6 +11,7 @@ import { Omit } from '@material-ui/core'
 export interface DateTimePickerWrapperProps extends BasePickerProps, Omit<ModalWrapperProps, 'onChange' | 'value'> {
   minDate?: DateType;
   maxDate?: DateType;
+  initialFocusedDate?: DateType;
   disablePast?: boolean;
   disableFuture?: boolean;
   autoSubmit?: boolean;
