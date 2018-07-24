@@ -63,7 +63,7 @@ module.exports = require('fs')
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tooltips/DisabledTooltips'), 'utf8')
 `,
-        }
+        },
       }}
     />
   );
