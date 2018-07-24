@@ -46,6 +46,12 @@ On mobile, the tooltip is displayed when the user longpresses the element and hi
 
 {{"demo": "pages/demos/tooltips/DelayTooltips.js"}}
 
+## Disabled Elements
+
+By default disabled elements like `Button` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accomodate disabled elements, add a simple wrapper element like a `span`.
+
+{{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
+
 ## Customized Tooltips
 
 {{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
