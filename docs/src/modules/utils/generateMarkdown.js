@@ -38,7 +38,7 @@ function getDeprecatedInfo(type) {
 
 function escapeCell(value) {
   // As the pipe is use for the table structure
-  return value.replace(/</g, '&lt;').replace(/\|/g, '&#124;');
+  return value.replace(/</g, '&lt;').replace(/\|/g, '\\|');
 }
 
 function generatePropDescription(description, type) {
@@ -248,7 +248,9 @@ function generateClasses(reactAPI) {
       .map(
         className =>
           `| <span class="prop-name">${className}</span> | ${
-            reactAPI.styles.descriptions[className] ? reactAPI.styles.descriptions[className] : ''
+            reactAPI.styles.descriptions[className]
+              ? escapeCell(reactAPI.styles.descriptions[className])
+              : ''
           }`,
       )
       .join('\n');
