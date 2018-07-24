@@ -57,6 +57,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tooltips/CustomizedTooltips'), 'utf8')
 `,
         },
+        'pages/demos/tooltips/DisabledTooltips.js': {
+          js: require('docs/src/pages/demos/tooltips/DisabledTooltips').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tooltips/DisabledTooltips'), 'utf8')
+`,
+        },
       }}
     />
   );
