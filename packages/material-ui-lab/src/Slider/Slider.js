@@ -166,7 +166,8 @@ function roundToStep(number, step) {
 }
 
 function getOffset(node) {
-  const { pageYOffset, pageXOffset } = global;
+  const Global = typeof window !== 'undefined' ? window : global;
+  const { pageYOffset, pageXOffset } = Global;
   const { left, top } = node.getBoundingClientRect();
 
   return {

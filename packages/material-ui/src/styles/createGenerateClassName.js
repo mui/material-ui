@@ -2,9 +2,11 @@
 
 import warning from 'warning';
 
+const Global = typeof window !== 'undefined' ? window : global;
+
 // People might bundle this classname generator twice.
 // We need to use a global.
-global.__MUI_GENERATOR_COUNTER__ = 0;
+Global.__MUI_GENERATOR_COUNTER__ = 0;
 
 const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
 
@@ -30,9 +32,9 @@ export default function createGenerateClassName(options = {}) {
   // - We expect a class name generator to be instantiated per new request on the server,
   // so the warning is only triggered client side.
   if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
-    global.__MUI_GENERATOR_COUNTER__ += 1;
+    Global.__MUI_GENERATOR_COUNTER__ += 1;
 
-    if (global.__MUI_GENERATOR_COUNTER__ > 2) {
+    if (Global.__MUI_GENERATOR_COUNTER__ > 2) {
       // eslint-disable-next-line no-console
       console.error(
         [
