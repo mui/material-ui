@@ -256,13 +256,13 @@ class Tabs extends React.Component {
         theme.direction === 'rtl'
           ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth
           : tabsMeta.scrollLeft;
-      left = tabMeta.left - tabsMeta.left + correction;
+      left = Math.round(tabMeta.left - tabsMeta.left + correction);
     }
 
     const indicatorStyle = {
       left,
       // May be wrong until the font is loaded.
-      width: tabMeta ? tabMeta.width : 0,
+      width: tabMeta ? Math.round(tabMeta.width) : 0,
     };
 
     if (
