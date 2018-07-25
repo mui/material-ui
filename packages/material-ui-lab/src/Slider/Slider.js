@@ -114,18 +114,6 @@ export const styles = theme => {
         height: 9,
         backgroundColor: colors.disabled,
       },
-      '&$zero': {
-        border: `2px solid ${colors.disabled}`,
-        backgroundColor: 'transparent',
-      },
-      '&$focused$zero': {
-        border: `2px solid ${colors.primary}`,
-        backgroundColor: fade(colors.primary, 0.34),
-        boxShadow: `0px 0px 0px 9px ${fade(colors.primary, 0.34)}`,
-      },
-      '&$activated$zero': {
-        border: `2px solid ${colors.primary}`,
-      },
       '&$jumped': {
         width: 17,
         height: 17,
@@ -143,8 +131,6 @@ export const styles = theme => {
     activated: {},
     /* Class applied to the root, track and container to trigger JSS nested styles if `vertical`. */
     vertical: {},
-    /* Class applied to the thumb to trigger nested styles if `value` = `min` . */
-    zero: {},
   };
 };
 
@@ -440,9 +426,7 @@ class Slider extends React.Component {
       [classes.vertical]: vertical,
     });
 
-    const thumbClasses = classNames(classes.thumb, commonClasses, {
-      [classes.zero]: percent === 0,
-    });
+    const thumbClasses = classNames(classes.thumb, commonClasses);
 
     const trackProperty = vertical ? 'height' : 'width';
     const thumbProperty = vertical ? 'top' : 'left';

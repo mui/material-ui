@@ -28,7 +28,6 @@ export type SliderClassKey =
   | 'focused'
   | 'activated'
   | 'disabled'
-  | 'zero'
   | 'vertical'
   | 'reverse'
   | 'jumped';
