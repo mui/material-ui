@@ -135,7 +135,7 @@
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-select": "^1.2.1",
+    "react-select": "^2.0.0",
     "react-swipeable-views": "^0.12.10",
     "react-test-renderer": "^16.1.1",
     "react-text-mask": "^5.0.2",
