@@ -20,6 +20,7 @@ Feel free to submit a pull request to add more projects; we will accept them if 
 
 ## Complementary Projects
 
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) Online tool for creating Material-UI themes via Material Design Color Tool
 - [react-admin](https://github.com/marmelab/react-admin) An admin framework combining material-ui with Redux, redux-form, redux-saga, and recompose
 - [react-autosuggest](https://github.com/moroshko/react-autosuggest) WAI-ARIA compliant React autosuggest component.
 - [react-final-form](https://github.com/final-form/react-final-form#material-ui-10) Subscription-based form state management for React.
