@@ -218,6 +218,14 @@ const appList = [
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
   },
+  {
+    title: 'Poller',
+    description:
+      'Public voting website allowing users represent themselves anonymously.',
+    image: '/static/images/showcase/poller.jpg',
+    link: 'https://poller-eefdf.firebaseapp.com/',
+    source: 'https://github.com/axelmichael11/poller-frontend',
+  },
 ];
 
 function Showcase(props) {
