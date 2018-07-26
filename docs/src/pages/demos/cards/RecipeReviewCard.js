@@ -34,6 +34,9 @@ const styles = theme => ({
       duration: theme.transitions.duration.shortest,
     }),
     marginLeft: 'auto',
+    [theme.breakpoints.up('sm')]: {
+      marginRight: -8,
+    },
   },
   expandOpen: {
     transform: 'rotate(180deg)',
