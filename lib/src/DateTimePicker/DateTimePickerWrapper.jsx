@@ -39,6 +39,7 @@ export const DateTimePickerWrapper = (props) => {
       {
         ({
           date,
+          utils,
           handleAccept,
           handleChange,
           handleClear,
@@ -53,7 +54,6 @@ export const DateTimePickerWrapper = (props) => {
             dialogContentClassName={classes.dialogContent}
             disableFuture={disableFuture}
             disablePast={disablePast}
-            format={pick12hOr24hFormat('MMMM Do hh:mm a', 'MMMM Do HH:mm')}
             maxDate={maxDate}
             minDate={minDate}
             onAccept={handleAccept}
@@ -63,6 +63,7 @@ export const DateTimePickerWrapper = (props) => {
             onSetToday={handleSetTodayDate}
             value={value}
             isAccepted={isAccepted}
+            format={pick12hOr24hFormat(utils.dateTime12hFormat, utils.dateTime24hFormat)}
             {...other}
           >
             <DateTimePicker

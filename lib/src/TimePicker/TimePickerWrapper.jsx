@@ -16,6 +16,7 @@ export const TimePickerWrapper = (props) => {
       {
         ({
           date,
+          utils,
           handleAccept,
           handleChange,
           handleClear,
@@ -28,13 +29,13 @@ export const TimePickerWrapper = (props) => {
           <ModalWrapper
             ref={forwardedRef}
             value={value}
-            format={pick12hOr24hFormat('hh:mm A', 'HH:mm')}
             onClear={handleClear}
             onAccept={handleAccept}
             onChange={handleTextFieldChange}
             onDismiss={handleDismiss}
             onSetToday={handleSetTodayDate}
             isAccepted={isAccepted}
+            format={pick12hOr24hFormat(utils.time12hFormat, utils.time24hFormat)}
             {...other}
           >
             <TimePicker
