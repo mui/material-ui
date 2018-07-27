@@ -55,6 +55,15 @@ describe('<FormControlLabel />', () => {
     });
   });
 
+  describe('prop: labelPlacement', () => {
+    it('should disable have the `start` class', () => {
+      const wrapper = shallow(
+        <FormControlLabel label="Pizza" labelPlacement="start" control={<div />} />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.start), true);
+    });
+  });
+
   it('should mount without issue', () => {
     const wrapper = mount(<FormControlLabel label="Pizza" control={<Checkbox />} />);
     assert.strictEqual(wrapper.type(), FormControlLabel);

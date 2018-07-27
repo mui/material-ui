@@ -34,7 +34,7 @@ class RadioButtonsGroup extends React.Component {
 
     return (
       <div className={classes.root}>
-        <FormControl component="fieldset" required className={classes.formControl}>
+        <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Gender</FormLabel>
           <RadioGroup
             aria-label="Gender"
@@ -54,7 +54,7 @@ class RadioButtonsGroup extends React.Component {
             />
           </RadioGroup>
         </FormControl>
-        <FormControl component="fieldset" required error className={classes.formControl}>
+        <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Gender</FormLabel>
           <RadioGroup
             aria-label="gender"
@@ -63,17 +63,33 @@ class RadioButtonsGroup extends React.Component {
             value={this.state.value}
             onChange={this.handleChange}
           >
-            <FormControlLabel value="female" control={<Radio color="primary" />} label="Female" />
-            <FormControlLabel value="male" control={<Radio color="primary" />} label="Male" />
-            <FormControlLabel value="other" control={<Radio color="primary" />} label="Other" />
+            <FormControlLabel
+              value="female"
+              control={<Radio color="primary" />}
+              label="Female"
+              labelPlacement="start"
+            />
+            <FormControlLabel
+              value="male"
+              control={<Radio color="primary" />}
+              label="Male"
+              labelPlacement="start"
+            />
+            <FormControlLabel
+              value="other"
+              control={<Radio color="primary" />}
+              label="Other"
+              labelPlacement="start"
+            />
             <FormControlLabel
               value="disabled"
               disabled
               control={<Radio />}
               label="(Disabled option)"
+              labelPlacement="start"
             />
           </RadioGroup>
-          <FormHelperText>You can display an error</FormHelperText>
+          <FormHelperText>labelPlacement start</FormHelperText>
         </FormControl>
       </div>
     );
