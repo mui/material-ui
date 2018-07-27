@@ -22,6 +22,10 @@ export const styles = theme => ({
       cursor: 'default',
     },
   },
+  /* Styles applied to the root element if `position="start"`. */
+  start: {
+    flexDirection: 'row-reverse',
+  },
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the label's Typography component. */
@@ -45,6 +49,7 @@ function FormControlLabel(props, context) {
     disabled: disabledProp,
     inputRef,
     label,
+    labelPlacement,
     name,
     onChange,
     value,
@@ -74,6 +79,7 @@ function FormControlLabel(props, context) {
       className={classNames(
         classes.root,
         {
+          [classes.start]: labelPlacement === 'start',
           [classes.disabled]: disabled,
         },
         classNameProp,
@@ -121,6 +127,10 @@ FormControlLabel.propTypes = {
    * The text to be used in an enclosing label element.
    */
   label: PropTypes.node,
+  /**
+   * The position of the label.
+   */
+  labelPlacement: PropTypes.oneOf(['end', 'start']),
   /*
    * @ignore
    */
@@ -137,6 +147,10 @@ FormControlLabel.propTypes = {
    * The value of the component.
    */
   value: PropTypes.string,
+};
+
+FormControlLabel.defaultProps = {
+  labelPlacement: 'end',
 };
 
 FormControlLabel.contextTypes = {
