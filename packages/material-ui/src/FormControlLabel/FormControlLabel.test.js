@@ -60,7 +60,7 @@ describe('<FormControlLabel />', () => {
       const wrapper = shallow(
         <FormControlLabel label="Pizza" labelPlacement="start" control={<div />} />,
       );
-      assert.strictEqual(wrapper.hasClass(classes.start), true);
+      assert.strictEqual(wrapper.hasClass(classes.labelPlacementStart), true);
     });
   });
 
