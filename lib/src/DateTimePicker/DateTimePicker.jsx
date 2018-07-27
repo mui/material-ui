@@ -5,8 +5,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import View from './DateTimePickerView';
 import YearSelection from '../DatePicker/YearSelection';
 import Calendar from '../DatePicker/Calendar';
-import HourView from '../TimePicker/HourView';
-import MinutesView from '../TimePicker/MinutesView';
+import TimePickerView from '../TimePicker/TimePickerView';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import DatetimePickerHeader from './DateTimePickerHeader';
 import { convertToMeridiem } from '../_helpers/time-utils';
@@ -26,7 +25,6 @@ export class DateTimePicker extends Component {
     dateRangeIcon: PropTypes.node,
     disableFuture: PropTypes.bool,
     disablePast: PropTypes.bool,
-    fadeTimeout: PropTypes.number.isRequired,
     leftArrowIcon: PropTypes.node,
     maxDate: DomainPropTypes.date.isRequired,
     minDate: DomainPropTypes.date.isRequired,
@@ -38,6 +36,8 @@ export class DateTimePicker extends Component {
     showTabs: PropTypes.bool,
     timeIcon: PropTypes.node,
     utils: PropTypes.object.isRequired,
+    ViewContainerComponent:
+      PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   }
 
   static defaultProps = {
@@ -54,6 +54,7 @@ export class DateTimePicker extends Component {
     shouldDisableDate: undefined,
     showTabs: true,
     timeIcon: undefined,
+    ViewContainerComponent: 'div',
   }
 
   state = {
@@ -120,10 +121,13 @@ export class DateTimePicker extends Component {
       ampm,
       shouldDisableDate,
       animateYearScrolling,
-      fadeTimeout,
       classes,
       allowKeyboardControl,
+      ViewContainerComponent,
     } = this.props;
+
+    const ViewContainerComponentProps = typeof ViewContainerComponent === 'string'
+      ? {} : { openView, onChange: this.onChange };
 
     return (
       <Fragment>
@@ -147,8 +151,8 @@ export class DateTimePicker extends Component {
             />
         }
 
-        <div className={classes.viewContainer}>
-          <View view={viewType.YEAR} selected={openView}>
+        <ViewContainerComponent className={classes.viewContainer} {...ViewContainerComponentProps}>
+          <View selected={openView === viewType.YEAR}>
             <YearSelection
               date={date}
               minDate={minDate}
@@ -161,7 +165,7 @@ export class DateTimePicker extends Component {
             />
           </View>
 
-          <View view={viewType.DATE} selected={openView}>
+          <View selected={openView === viewType.DATE}>
             <Calendar
               allowKeyboardControl={allowKeyboardControl}
               date={date}
@@ -173,37 +177,20 @@ export class DateTimePicker extends Component {
               leftArrowIcon={leftArrowIcon}
               rightArrowIcon={rightArrowIcon}
               renderDay={renderDay}
-              utils={utils}
               shouldDisableDate={shouldDisableDate}
             />
           </View>
 
-          <View
-            timeout={fadeTimeout}
-            view={viewType.HOUR}
-            selected={openView}
-          >
-            <HourView
+          <View selected={openView === viewType.HOUR || openView === viewType.MINUTES}>
+            <TimePickerView
               date={date}
-              meridiemMode={meridiemMode}
-              onChange={this.handleHourChange}
-              utils={utils}
-              ampm={ampm}
+              type={openView}
+              onHourChange={this.handleHourChange}
+              onMinutesChange={this.handleChange}
+              onSecondsChange={this.handleChange}
             />
           </View>
-
-          <View
-            timeout={fadeTimeout}
-            view={viewType.MINUTES}
-            selected={openView}
-          >
-            <MinutesView
-              date={date}
-              onChange={this.handleChange}
-              utils={utils}
-            />
-          </View>
-        </div>
+        </ViewContainerComponent>
       </Fragment>
     );
   }

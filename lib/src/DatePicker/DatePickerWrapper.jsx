@@ -19,6 +19,7 @@ export const DatePickerWrapper = (props) => {
     leftArrowIcon,
     maxDate,
     minDate,
+    initialFocusedDate,
     onChange,
     openToYearSelection,
     renderDay,
@@ -33,6 +34,7 @@ export const DatePickerWrapper = (props) => {
       {
         ({
           date,
+          utils,
           handleAccept,
           handleChange,
           handleClear,
@@ -44,7 +46,7 @@ export const DatePickerWrapper = (props) => {
           <ModalWrapper
             disableFuture={disableFuture}
             disablePast={disablePast}
-            format={format}
+            format={format || utils.dateFormat}
             labelFunc={labelFunc}
             maxDate={maxDate}
             minDate={minDate}
@@ -59,9 +61,9 @@ export const DatePickerWrapper = (props) => {
             {...other}
           >
             <DatePicker
+              date={date}
               allowKeyboardControl={allowKeyboardControl}
               animateYearScrolling={animateYearScrolling}
-              date={date}
               disableFuture={disableFuture}
               disablePast={disablePast}
               leftArrowIcon={leftArrowIcon}
@@ -74,7 +76,7 @@ export const DatePickerWrapper = (props) => {
               shouldDisableDate={shouldDisableDate}
             />
           </ModalWrapper>
-        )
+          )
       }
     </BasePicker>
   );
@@ -87,6 +89,8 @@ DatePickerWrapper.propTypes = {
   minDate: DomainPropTypes.date,
   /** Max selectable date */
   maxDate: DomainPropTypes.date,
+  /** Initial focused date when calendar opens, if no value is provided */
+  initialFocusedDate: DomainPropTypes.date,
   /** Date format string for input */
   format: PropTypes.string,
   /** Callback firing when date accepted */
@@ -118,10 +122,11 @@ DatePickerWrapper.propTypes = {
 
 DatePickerWrapper.defaultProps = {
   value: new Date(),
-  format: 'MMMM Do',
+  format: undefined,
   autoOk: false,
   minDate: '1900-01-01',
   maxDate: '2100-01-01',
+  initialFocusedDate: undefined,
   disableFuture: false,
   disablePast: false,
   animateYearScrolling: false,

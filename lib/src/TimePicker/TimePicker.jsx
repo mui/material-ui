@@ -2,15 +2,13 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Fade from '@material-ui/core/Fade';
 
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
-import HourView from './HourView';
-import MinutesView from './MinutesView';
-import SecondsView from './SecondsView';
 import { convertToMeridiem } from '../_helpers/time-utils';
 import withUtils from '../_shared/WithUtils';
+import TimePickerView from './TimePickerView';
+import * as clockType from '../constants/clock-types';
 
 export class TimePicker extends Component {
   static propTypes = {
@@ -21,7 +19,6 @@ export class TimePicker extends Component {
     children: PropTypes.node,
     utils: PropTypes.object.isRequired,
     ampm: PropTypes.bool,
-    fadeTimeout: PropTypes.number.isRequired,
     seconds: PropTypes.bool,
   }
 
@@ -32,8 +29,7 @@ export class TimePicker extends Component {
   }
 
   state = {
-    isHourViewShown: true,
-    isMinuteViewShown: false,
+    openView: clockType.HOURS,
     meridiemMode: this.props.utils.getHours(this.props.date) >= 12 ? 'pm' : 'am',
   }
 
@@ -105,23 +101,23 @@ export class TimePicker extends Component {
   }
 
   openSecondsView = () => {
-    this.setState({ isHourViewShown: false, isMinuteViewShown: false });
+    this.setState({ openView: clockType.SECONDS });
   }
 
   openMinutesView = () => {
-    this.setState({ isHourViewShown: false, isMinuteViewShown: true });
+    this.setState({ openView: clockType.MINUTES });
   }
 
   openHourView = () => {
-    this.setState({ isHourViewShown: true, isMinuteViewShown: false });
+    this.setState({ openView: clockType.HOURS });
   }
 
   render() {
     const {
-      classes, theme, date, utils, ampm, fadeTimeout, seconds,
+      classes, theme, date, utils, ampm, seconds,
     } = this.props;
 
-    const { isHourViewShown, isMinuteViewShown, meridiemMode } = this.state;
+    const { meridiemMode, openView } = this.state;
 
     const rtl = theme.direction === 'rtl';
     const hourMinuteClassName = rtl
@@ -140,7 +136,7 @@ export class TimePicker extends Component {
             <ToolbarButton
               variant="display3"
               onClick={this.openHourView}
-              selected={isHourViewShown}
+              selected={openView === clockType.HOURS}
               label={utils.getHourText(date, ampm)}
             />
 
@@ -154,7 +150,7 @@ export class TimePicker extends Component {
             <ToolbarButton
               variant="display3"
               onClick={this.openMinutesView}
-              selected={isMinuteViewShown}
+              selected={openView === clockType.MINUTES}
               label={utils.getMinuteText(date)}
             />
 
@@ -171,7 +167,7 @@ export class TimePicker extends Component {
                   <ToolbarButton
                     variant="display3"
                     onClick={this.openSecondsView}
-                    selected={!isHourViewShown && !isMinuteViewShown}
+                    selected={openView === clockType.SECONDS}
                     label={utils.getSecondText(date)}
                   />
                 </Fragment>
@@ -202,70 +198,20 @@ export class TimePicker extends Component {
 
         {this.props.children}
 
-        <div className={classes.viewContainer}>
-          <Fade
-            timeout={fadeTimeout}
-            in={isHourViewShown}
-            mountOnEnter
-            unmountOnExit
-          >
-            <div className={classes.viewRoot}>
-              <HourView
-                date={date}
-                meridiemMode={meridiemMode}
-                onChange={this.handleHourChange}
-                utils={utils}
-                ampm={ampm}
-              />
-            </div>
-          </Fade>
-
-          <Fade
-            timeout={fadeTimeout}
-            in={isMinuteViewShown}
-            mountOnEnter
-            unmountOnExit
-          >
-            <div className={classes.viewRoot}>
-              <MinutesView
-                date={date}
-                onChange={this.handleMinutesChange}
-                utils={utils}
-              />
-            </div>
-          </Fade>
-
-          <Fade
-            timeout={fadeTimeout}
-            in={!isHourViewShown && !isMinuteViewShown}
-            mountOnEnter
-            unmountOnExit
-          >
-            <div className={classes.viewRoot}>
-              <SecondsView
-                date={date}
-                onChange={this.handleSecondsChange}
-                utils={utils}
-              />
-            </div>
-          </Fade>
-        </div>
+        <TimePickerView
+          date={date}
+          type={this.state.openView}
+          ampm={ampm}
+          onHourChange={this.handleHourChange}
+          onMinutesChange={this.handleMinutesChange}
+          onSecondsChange={this.handleSecondsChange}
+        />
       </Fragment>
     );
   }
 }
 
 const styles = () => ({
-  viewContainer: {
-    position: 'relative',
-    minHeight: 300,
-    minWidth: 260,
-  },
-  viewRoot: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-  },
   toolbar: {
     flexDirection: 'row',
     alignItems: 'center',

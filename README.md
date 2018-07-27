@@ -9,17 +9,17 @@
 ### Installation
 Available as npm package.
 ```sh
-npm install material-ui-pickers -S
+npm i material-ui-pickers
 ```
 
 Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/) and [date-fns](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns, because it's much more lightweight and will be correctly tree-shaked from the bundle. Note, that we support only the 2.0.0-alpha.7 version of date-fns for now (see  #414). Stay tuned!
 
 ```sh
-npm i -s date-fns@2.0.0-alpha.7
+npm i date-fns@2.0.0-alpha.7
 // or
-npm i moment -s
+npm i moment
 // or
-npm i luxon -s
+npm i luxon
 ```
 
 Then teach pickers which library to use with `MuiPickerUtilsProvider`. This component takes a utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.

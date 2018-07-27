@@ -16,6 +16,7 @@ export const DateTimePickerWrapper = (props) => {
     classes,
     minDate,
     maxDate,
+    initialFocusedDate,
     showTabs,
     autoSubmit,
     disablePast,
@@ -28,7 +29,6 @@ export const DateTimePickerWrapper = (props) => {
     ampm,
     shouldDisableDate,
     animateYearScrolling,
-    fadeTimeout,
     forwardedRef,
     allowKeyboardControl,
     ...other
@@ -39,6 +39,7 @@ export const DateTimePickerWrapper = (props) => {
       {
         ({
           date,
+          utils,
           handleAccept,
           handleChange,
           handleClear,
@@ -53,7 +54,6 @@ export const DateTimePickerWrapper = (props) => {
             dialogContentClassName={classes.dialogContent}
             disableFuture={disableFuture}
             disablePast={disablePast}
-            format={pick12hOr24hFormat('MMMM Do hh:mm a', 'MMMM Do HH:mm')}
             maxDate={maxDate}
             minDate={minDate}
             onAccept={handleAccept}
@@ -63,6 +63,7 @@ export const DateTimePickerWrapper = (props) => {
             onSetToday={handleSetTodayDate}
             value={value}
             isAccepted={isAccepted}
+            format={pick12hOr24hFormat(utils.dateTime12hFormat, utils.dateTime24hFormat)}
             {...other}
           >
             <DateTimePicker
@@ -74,7 +75,6 @@ export const DateTimePickerWrapper = (props) => {
               dateRangeIcon={dateRangeIcon}
               disableFuture={disableFuture}
               disablePast={disablePast}
-              fadeTimeout={fadeTimeout}
               leftArrowIcon={leftArrowIcon}
               maxDate={maxDate}
               minDate={minDate}
@@ -87,7 +87,7 @@ export const DateTimePickerWrapper = (props) => {
               timeIcon={timeIcon}
             />
           </ModalWrapper>
-        )
+          )
       }
     </BasePicker>
   );
@@ -113,6 +113,8 @@ DateTimePickerWrapper.propTypes = {
   minDate: DomainPropTypes.date,
   /** Max selectable date */
   maxDate: DomainPropTypes.date,
+  /** Initial focused date when calendar opens, if no value is provided */
+  initialFocusedDate: DomainPropTypes.date,
   /** Show date/time tabs */
   showTabs: PropTypes.bool,
   /** Left arrow icon */
@@ -133,8 +135,6 @@ DateTimePickerWrapper.propTypes = {
   animateYearScrolling: PropTypes.bool,
   /** Open directly to particular view */
   openTo: PropTypes.oneOf(['year', 'date', 'hour', 'minutes']),
-  /** Switching hour/minutes animation timeout in milliseconds (set 0 to disable) */
-  fadeTimeout: PropTypes.number,
   /** Enables keyboard listener for moving between days in calendar */
   allowKeyboardControl: PropTypes.bool,
   forwardedRef: PropTypes.func,
@@ -150,6 +150,7 @@ DateTimePickerWrapper.defaultProps = {
   disablePast: false,
   minDate: '1900-01-01',
   maxDate: '2100-01-01',
+  initialFocusedDate: undefined,
   showTabs: true,
   leftArrowIcon: 'keyboard_arrow_left',
   rightArrowIcon: 'keyboard_arrow_right',
@@ -159,7 +160,6 @@ DateTimePickerWrapper.defaultProps = {
   ampm: true,
   shouldDisableDate: undefined,
   animateYearScrolling: false,
-  fadeTimeout: 400,
   forwardedRef: undefined,
   allowKeyboardControl: true,
 };

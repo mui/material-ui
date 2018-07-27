@@ -35,11 +35,12 @@ export class Utils<TDate> {
   getMonth(value: TDate): number;
   getYear(value: TDate): number;
   setYear(value: TDate, count: number): TDate;
+  mergeDateAndTime(date: TDate, time: TDate): TDate;
 
   getStartOfMonth(value: TDate): TDate;
   getNextMonth(value: TDate): TDate;
   getPreviousMonth(value: TDate): TDate;
- 
+
   getWeekdays(): string[];
   getWeekArray(date: TDate): TDate[];
   getYearRange(start: TDate, end: TDate): TDate[];
@@ -54,4 +55,12 @@ export class Utils<TDate> {
   getMinuteText(date: TDate): string;
   getSecondText(date: TDate): string;
   getYearText(date: TDate): string;
+
+  dateTimePicker12hFormat: string;
+  dateTimePicker24hFormat: string;
+
+  timePicker12hFormat: string;
+  timePicker24hFormat: string;
+
+  datePickerFormat: string;
 }

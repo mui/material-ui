@@ -8,7 +8,7 @@ import BasePicker from '../_shared/BasePicker';
 
 export const TimePickerWrapper = (props) => {
   const {
-    value, format, autoOk, onChange, ampm, fadeTimeout, forwardedRef, seconds, ...other
+    value, format, autoOk, onChange, ampm, forwardedRef, seconds, ...other
   } = props;
 
   return (
@@ -16,6 +16,7 @@ export const TimePickerWrapper = (props) => {
       {
         ({
           date,
+          utils,
           handleAccept,
           handleChange,
           handleClear,
@@ -28,20 +29,19 @@ export const TimePickerWrapper = (props) => {
           <ModalWrapper
             ref={forwardedRef}
             value={value}
-            format={pick12hOr24hFormat('hh:mm A', 'HH:mm')}
             onClear={handleClear}
             onAccept={handleAccept}
             onChange={handleTextFieldChange}
             onDismiss={handleDismiss}
             onSetToday={handleSetTodayDate}
             isAccepted={isAccepted}
+            format={pick12hOr24hFormat(utils.time12hFormat, utils.time24hFormat)}
             {...other}
           >
             <TimePicker
               date={date}
               onChange={handleChange}
               ampm={ampm}
-              fadeTimeout={fadeTimeout}
               seconds={seconds}
             />
           </ModalWrapper>
@@ -62,8 +62,6 @@ TimePickerWrapper.propTypes = {
   autoOk: PropTypes.bool,
   /** 12h/24h view for hour selection clock */
   ampm: PropTypes.bool,
-  /** Switching hour/minutes animation timeout in milliseconds (set 0 to disable) */
-  fadeTimeout: PropTypes.number,
   /** Show the seconds view */
   seconds: PropTypes.bool,
   forwardedRef: PropTypes.func,
@@ -74,7 +72,6 @@ TimePickerWrapper.defaultProps = {
   format: undefined,
   autoOk: false,
   ampm: true,
-  fadeTimeout: 400,
   forwardedRef: undefined,
   seconds: false,
 };
