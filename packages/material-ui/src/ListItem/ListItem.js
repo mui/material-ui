@@ -35,7 +35,7 @@ export const styles = theme => ({
     paddingTop: 8,
     paddingBottom: 8,
   },
-  /* Styles applied to the inner `component` element if `dense={true}`. */
+  /* Styles applied to the inner `component` element if `disabled={true}`. */
   disabled: {
     opacity: 0.5,
   },
