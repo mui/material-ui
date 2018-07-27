@@ -38,7 +38,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">start</span> | Styles applied to the root element if `position="start"`.
+| <span class="prop-name">labelPlacementStart</span> | Styles applied to the root element if `labelPlacement="start"`.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
 | <span class="prop-name">label</span> | Styles applied to the label's Typography component.
 

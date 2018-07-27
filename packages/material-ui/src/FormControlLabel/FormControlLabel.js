@@ -22,8 +22,8 @@ export const styles = theme => ({
       cursor: 'default',
     },
   },
-  /* Styles applied to the root element if `position="start"`. */
-  start: {
+  /* Styles applied to the root element if `labelPlacement="start"`. */
+  labelPlacementStart: {
     flexDirection: 'row-reverse',
   },
   /* Styles applied to the root element if `disabled={true}`. */
@@ -79,7 +79,7 @@ function FormControlLabel(props, context) {
       className={classNames(
         classes.root,
         {
-          [classes.start]: labelPlacement === 'start',
+          [classes.labelPlacementStart]: labelPlacement === 'start',
           [classes.disabled]: disabled,
         },
         classNameProp,
