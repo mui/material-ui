@@ -34,6 +34,7 @@ export const DatePickerWrapper = (props) => {
       {
         ({
           date,
+          utils,
           handleAccept,
           handleChange,
           handleClear,
@@ -45,7 +46,7 @@ export const DatePickerWrapper = (props) => {
           <ModalWrapper
             disableFuture={disableFuture}
             disablePast={disablePast}
-            format={format}
+            format={format || utils.dateFormat}
             labelFunc={labelFunc}
             maxDate={maxDate}
             minDate={minDate}
@@ -60,9 +61,9 @@ export const DatePickerWrapper = (props) => {
             {...other}
           >
             <DatePicker
+              date={date}
               allowKeyboardControl={allowKeyboardControl}
               animateYearScrolling={animateYearScrolling}
-              date={date}
               disableFuture={disableFuture}
               disablePast={disablePast}
               leftArrowIcon={leftArrowIcon}
@@ -121,7 +122,7 @@ DatePickerWrapper.propTypes = {
 
 DatePickerWrapper.defaultProps = {
   value: new Date(),
-  format: 'MMMM Do',
+  format: undefined,
   autoOk: false,
   minDate: '1900-01-01',
   maxDate: '2100-01-01',
