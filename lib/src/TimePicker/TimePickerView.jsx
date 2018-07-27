@@ -46,7 +46,7 @@ export class TimePickerView extends PureComponent {
         return {
           value: secondsValue,
           children: getMinutesNumbers({ value: secondsValue, utils }),
-          onChange: this.handleChange,
+          onChange: this.handleSecondsChange,
         };
 
       default:
