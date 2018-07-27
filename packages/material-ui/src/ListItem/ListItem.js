@@ -190,7 +190,7 @@ ListItem.propTypes = {
    */
   dense: PropTypes.bool,
   /**
-   * @ignore
+   * If `true`, the list item will be disabled.
    */
   disabled: PropTypes.bool,
   /**
