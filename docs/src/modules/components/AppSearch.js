@@ -180,7 +180,8 @@ class AppSearch extends React.Component {
           <SearchIcon />
         </div>
         <input
-          id="docsearch-input"
+        placeholder={'Search here'}
+          id="docsear'ch-input"
           ref={ref => {
             this.inputRef = ref;
           }}
