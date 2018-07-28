@@ -283,7 +283,7 @@ const DialogTest = () => {
         </List>
       </div>
       <DialogContent>
-        <DialogContentText variant='body2' color='primary'>
+        <DialogContentText variant="body2" color="primary">
           Some text
         </DialogContentText>
       </DialogContent>
