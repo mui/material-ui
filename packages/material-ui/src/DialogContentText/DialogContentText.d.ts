@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { TypographyProps } from '../Typography';
 
 export interface DialogContentTextProps
-extends StandardProps<TypographyProps, DialogContentTextClassKey> {}
+  extends StandardProps<TypographyProps, DialogContentTextClassKey> {}
 
 export type DialogContentTextClassKey = 'root';
 
