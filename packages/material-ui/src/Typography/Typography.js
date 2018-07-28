@@ -74,6 +74,10 @@ export const styles = theme => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
   },
+  /* Styles applied to the root element if `color="textPrimary"`. */
+  colorTextPrimary: {
+    color: theme.palette.text.primary,
+  },
   /* Styles applied to the root element if `color="textSecondary"`. */
   colorTextSecondary: {
     color: theme.palette.text.secondary,
@@ -89,8 +93,8 @@ function Typography(props) {
     align,
     classes,
     className: classNameProp,
-    component: componentProp,
     color,
+    component: componentProp,
     gutterBottom,
     headlineMapping,
     noWrap,
@@ -138,7 +142,15 @@ Typography.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'textSecondary', 'secondary', 'error', 'default']),
+  color: PropTypes.oneOf([
+    'default',
+    'error',
+    'inherit',
+    'primary',
+    'secondary',
+    'textPrimary',
+    'textSecondary',
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
