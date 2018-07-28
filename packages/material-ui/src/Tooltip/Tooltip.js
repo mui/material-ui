@@ -178,7 +178,7 @@ class Tooltip extends React.Component {
     }
 
     if (this.props.onOpen) {
-      this.props.onOpen(event, true);
+      this.props.onOpen(event);
     }
   };
 
@@ -224,7 +224,7 @@ class Tooltip extends React.Component {
     }
 
     if (this.props.onClose) {
-      this.props.onClose(event, false);
+      this.props.onClose(event);
     }
 
     clearTimeout(this.closeTimer);
