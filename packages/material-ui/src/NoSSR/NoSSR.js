@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import exactProp from '../utils/exactProp';
 
 const Fallback = () => null;
 
@@ -31,6 +32,8 @@ NoSSR.propTypes = {
   children: PropTypes.node.isRequired,
   fallback: PropTypes.node,
 };
+
+NoSSR.propTypes = exactProp(NoSSR.propTypes);
 
 NoSSR.defaultProps = {
   fallback: <Fallback />,

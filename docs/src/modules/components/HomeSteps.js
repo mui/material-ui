@@ -10,7 +10,7 @@ import FileDownloadIcon from '@material-ui/docs/svgIcons/FileDownload';
 import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
-import NoSSR from '@material-ui/docs/NoSSR';
+import NoSSR from '@material-ui/core/NoSSR';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({

@@ -118,7 +118,7 @@ function AppDrawer(props, context) {
 
   return (
     <div className={className}>
-      <Hidden lgUp={!disablePermanent}>
+      <Hidden lgUp={!disablePermanent} implementation="js">
         <SwipeableDrawer
           classes={{
             paper: classNames(classes.paper, 'algolia-drawer'),
