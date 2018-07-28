@@ -67,11 +67,12 @@ class InteractiveGrid extends React.Component {
         </Grid>
         <Grid item xs={12}>
           <Paper className={classes.control}>
-            <Grid container>
-              <Grid item xs={6} sm={4}>
+            <Grid container spacing={24}>
+              <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>direction</FormLabel>
                   <RadioGroup
+                    row
                     name="direction"
                     aria-label="Direction"
                     value={direction}
@@ -88,10 +89,11 @@ class InteractiveGrid extends React.Component {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              <Grid item xs={6} sm={4}>
+              <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>justify</FormLabel>
                   <RadioGroup
+                    row
                     name="justify"
                     aria-label="Justify"
                     value={justify}
@@ -110,13 +112,19 @@ class InteractiveGrid extends React.Component {
                       control={<Radio />}
                       label="space-around"
                     />
+                    <FormControlLabel
+                      value="space-evenly"
+                      control={<Radio />}
+                      label="space-evenly"
+                    />
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              <Grid item xs={6} sm={4}>
+              <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>alignItems</FormLabel>
                   <RadioGroup
+                    row
                     name="alignItems"
                     aria-label="Align items"
                     value={alignItems}
