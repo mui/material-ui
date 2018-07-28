@@ -131,6 +131,10 @@ class Tooltip extends React.Component {
     clearTimeout(this.closeTimer);
   }
 
+  onRootRef = ref => {
+    this.childrenRef = ref;
+  };
+
   handleEnter = event => {
     const { children, enterDelay } = this.props;
     const childrenProps = children.props;
@@ -319,13 +323,7 @@ class Tooltip extends React.Component {
 
     return (
       <React.Fragment>
-        <RootRef
-          rootRef={ref => {
-            this.childrenRef = ref;
-          }}
-        >
-          {React.cloneElement(children, childrenProps)}
-        </RootRef>
+        <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
         <Popper
           className={classes.popper}
           placement={placement}
