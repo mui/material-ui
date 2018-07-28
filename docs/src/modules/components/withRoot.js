@@ -102,6 +102,10 @@ const pages = [
         pathname: '/utils/portal',
       },
       {
+        pathname: '/utils/no-ssr',
+        title: 'No SSR',
+      },
+      {
         pathname: '/utils/click-away-listener',
       },
     ],

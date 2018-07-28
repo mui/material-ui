@@ -3,9 +3,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createMount, createShallow } from '../test-utils';
-import NoSSR from './NoSSR';
+import NoSsr from './NoSsr';
 
-describe('<NoSSR />', () => {
+describe('<NoSsr />', () => {
   let mount;
   let shallow;
 
@@ -21,9 +21,9 @@ describe('<NoSSR />', () => {
   describe('server side rendering', () => {
     it('should not render the children as the width is unknown', () => {
       const wrapper = shallow(
-        <NoSSR>
+        <NoSsr>
           <span>Hello</span>
-        </NoSSR>,
+        </NoSsr>,
       );
       assert.strictEqual(wrapper.name(), 'Fallback');
     });
@@ -32,9 +32,9 @@ describe('<NoSSR />', () => {
   describe('mounted', () => {
     it('should render the children', () => {
       const wrapper = mount(
-        <NoSSR>
+        <NoSsr>
           <span>Hello</span>
-        </NoSSR>,
+        </NoSsr>,
       );
       assert.strictEqual(wrapper.find('span').length, 1);
     });
@@ -43,9 +43,9 @@ describe('<NoSSR />', () => {
   describe('prop: fallback', () => {
     it('should render the fallback', () => {
       const wrapper = shallow(
-        <NoSSR fallback="fallback">
+        <NoSsr fallback="fallback">
           <span>Hello</span>
-        </NoSSR>,
+        </NoSsr>,
       );
       assert.strictEqual(wrapper.text(), 'fallback');
     });
