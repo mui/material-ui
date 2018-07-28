@@ -4,20 +4,15 @@ const { JSDOM } = require('jsdom');
 const Node = require('jsdom/lib/jsdom/living/node-document-position');
 
 // We can use jsdom-global at some point if maintaining that list turns out to be a burden.
-const KEYS = ['HTMLElement', 'Performance'];
+const whiteList = ['HTMLElement', 'Performance'];
+const blackList = ['sessionStorage', 'localStorage'];
 
 function createDOM() {
   const dom = new JSDOM('', { pretendToBeVisual: true });
   global.window = dom.window;
-  global.document = undefined;
   global.Node = Node;
-
-  Object.keys(dom.window).forEach(property => {
-    if (typeof global[property] === 'undefined') {
-      global[property] = dom.window[property];
-    }
-  });
-
+  global.document = dom.window.document;
+  // Not yet supported: https://github.com/jsdom/jsdom/issues/317
   global.document.createRange = () => ({
     setStart: () => {},
     setEnd: () => {},
@@ -26,15 +21,18 @@ function createDOM() {
       ownerDocument: document,
     },
   });
-
   global.navigator = {
     userAgent: 'node.js',
-    appVersion: global.navigator.appVersion,
   };
 
-  KEYS.forEach(key => {
-    global[key] = window[key];
-  });
+  Object.keys(dom.window)
+    .filter(key => !blackList.includes(key))
+    .concat(whiteList)
+    .forEach(key => {
+      if (typeof global[key] === 'undefined') {
+        global[key] = dom.window[key];
+      }
+    });
 }
 
 module.exports = createDOM;
