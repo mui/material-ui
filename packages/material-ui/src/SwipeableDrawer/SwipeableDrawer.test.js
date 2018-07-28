@@ -50,25 +50,14 @@ describe('<SwipeableDrawer />', () => {
         theme={createMuiTheme()}
       />,
     );
-    if (React.Fragment) {
-      assert.strictEqual(wrapper.childAt(0).type(), Drawer);
-      assert.strictEqual(wrapper.childAt(1).type(), SwipeArea);
-    } else {
-      assert.strictEqual(
-        wrapper
-          .childAt(0)
-          .childAt(0)
-          .type(),
-        Drawer,
-      );
-      assert.strictEqual(
-        wrapper
-          .childAt(0)
-          .childAt(1)
-          .type(),
-        SwipeArea,
-      );
-    }
+    assert.strictEqual(wrapper.childAt(0).type(), Drawer);
+    assert.strictEqual(
+      wrapper
+        .childAt(1)
+        .childAt(0)
+        .type(),
+      SwipeArea,
+    );
     wrapper.unmount();
   });
 

@@ -8,6 +8,7 @@ import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 import { getTransitionProps } from '../transitions/utils';
+import NoSSR from '../NoSSR';
 import SwipeArea from './SwipeArea';
 
 // This value is closed to what browsers are using internally to
@@ -332,6 +333,7 @@ class SwipeableDrawer extends React.Component {
 
   render() {
     const {
+      anchor,
       disableBackdropTransition,
       disableDiscovery,
       disableSwipeToOpen,
@@ -365,12 +367,15 @@ class SwipeableDrawer extends React.Component {
             },
             ref: this.handlePaperRef,
           }}
+          anchor={anchor}
           {...other}
         />
         {!disableDiscovery &&
           !disableSwipeToOpen &&
           variant === 'temporary' && (
-            <SwipeArea anchor={other.anchor} swipeAreaWidth={swipeAreaWidth} />
+            <NoSSR>
+              <SwipeArea anchor={anchor} width={swipeAreaWidth} />
+            </NoSSR>
           )}
       </React.Fragment>
     );
