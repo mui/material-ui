@@ -4,8 +4,8 @@ import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export type SnackbarOrigin = {
-  horizontal: 'left' | 'center' | 'right' | number;
-  vertical: 'top' | 'center' | 'bottom' | number;
+  horizontal: 'left' | 'center' | 'right';
+  vertical: 'top' | 'center' | 'bottom';
 };
 
 export interface SnackbarProps

@@ -282,12 +282,8 @@ Snackbar.propTypes = {
    * The anchor of the `Snackbar`.
    */
   anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.oneOf(['left', 'center', 'right']),
-    ]).isRequired,
-    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])])
-      .isRequired,
+    horizontal: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
+    vertical: PropTypes.oneOf(['top', 'center', 'bottom']).isRequired,
   }),
   /**
    * The number of milliseconds to wait before automatically calling the
