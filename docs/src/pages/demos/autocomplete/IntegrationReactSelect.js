@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import Select from 'react-select';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import NoSSR from '@material-ui/core/NoSSR';
+import NoSsr from '@material-ui/core/NoSsr';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -205,7 +205,7 @@ class IntegrationReactSelect extends React.Component {
 
     return (
       <div className={classes.root}>
-        <NoSSR>
+        <NoSsr>
           <Select
             classes={classes}
             options={suggestions}
@@ -223,7 +223,7 @@ class IntegrationReactSelect extends React.Component {
             placeholder="Select multiple countries"
             isMulti
           />
-        </NoSSR>
+        </NoSsr>
       </div>
     );
   }

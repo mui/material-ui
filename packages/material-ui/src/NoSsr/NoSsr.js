@@ -5,14 +5,15 @@ import exactProp from '../utils/exactProp';
 const Fallback = () => null;
 
 /**
- * Only render the component on the client.
- * It can be useful in a variety of situations:
- * - Reduce the rendering time on the server.
- * - Under too heavy server load, you can apply service degradation.
- * - Improve the time-to-first paint on the client by only rendering above the fold.
+ * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).
+ *
+ * This component can be useful in a variety of situations:
  * - Escape hatch for broken dependencies not supporting SSR.
+ * - Improve the time-to-first paint on the client by only rendering above the fold.
+ * - Reduce the rendering time on the server.
+ * - Under too heavy server load, you can turn on service degradation.
  */
-class NoSSR extends React.Component {
+class NoSsr extends React.Component {
   state = {
     mounted: false,
   };
@@ -28,15 +29,15 @@ class NoSSR extends React.Component {
   }
 }
 
-NoSSR.propTypes = {
+NoSsr.propTypes = {
   children: PropTypes.node.isRequired,
   fallback: PropTypes.node,
 };
 
-NoSSR.propTypes = exactProp(NoSSR.propTypes);
+NoSsr.propTypes = exactProp(NoSsr.propTypes);
 
-NoSSR.defaultProps = {
+NoSsr.defaultProps = {
   fallback: <Fallback />,
 };
 
-export default NoSSR;
+export default NoSsr;
