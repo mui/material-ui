@@ -37,6 +37,7 @@ other styles to meet the specification.
 
 `Input` allows the provision of `InputAdornment`.
 These can be used to add a prefix, a suffix or an action to an input.
+For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "pages/demos/text-fields/InputAdornments.js"}}
 
