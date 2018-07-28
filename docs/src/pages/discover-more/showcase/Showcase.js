@@ -218,6 +218,12 @@ const appList = [
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
   },
+  {
+    title: 'SubFire 2',
+    description: 'Progressive Web App clients for the Subsonic music streamer.',
+    image: '/static/images/showcase/subfire2.jpg',
+    link: 'https://subfiresuite.com/',
+  },
 ];
 
 function Showcase(props) {
