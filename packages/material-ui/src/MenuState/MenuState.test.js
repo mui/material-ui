@@ -1,18 +1,16 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { createShallow, createMount } from '../test-utils';
+import { createMount } from '../test-utils';
 import Button from '../Button';
 import Menu from '../Menu';
 import MenuItem from '../MenuItem';
 import MenuState from './MenuState';
 
 describe('<MenuState />', () => {
-  let shallow;
   let mount;
 
   before(() => {
-    shallow = createShallow();
     mount = createMount();
   });
 
@@ -20,49 +18,7 @@ describe('<MenuState />', () => {
     mount.cleanUp();
   });
 
-  it('initial render works with children function', () => {
-    const render = spy(({ close, bindTrigger, bindMenu }) => (
-      <React.Fragment>
-        <Button {...bindTrigger}>Open Menu</Button>
-        <Menu {...bindMenu}>
-          <MenuItem onClick={close}>Test</MenuItem>
-        </Menu>
-      </React.Fragment>
-    ));
-    const wrapper = shallow(<MenuState menuId="menu">{render}</MenuState>);
-    const button = wrapper.find(Button);
-    const menu = wrapper.find(Menu);
-    assert.strictEqual(render.args[0][0].isOpen, false);
-    assert.strictEqual(button.prop('aria-owns'), null);
-    assert.strictEqual(button.prop('aria-haspopup'), true);
-    assert.strictEqual(button.prop('onClick'), render.args[0][0].open);
-    assert.strictEqual(menu.prop('id'), 'menu');
-    assert.strictEqual(menu.prop('anchorEl'), null);
-    assert.strictEqual(menu.prop('open'), false);
-    assert.strictEqual(menu.prop('onClose'), render.args[0][0].close);
-  });
-  it('initial render works with render function', () => {
-    const render = spy(({ close, bindTrigger, bindMenu }) => (
-      <React.Fragment>
-        <Button {...bindTrigger}>Open Menu</Button>
-        <Menu {...bindMenu}>
-          <MenuItem onClick={close}>Test</MenuItem>
-        </Menu>
-      </React.Fragment>
-    ));
-    const wrapper = shallow(<MenuState menuId="menu" render={render} />);
-    const button = wrapper.find(Button);
-    const menu = wrapper.find(Menu);
-    assert.strictEqual(render.args[0][0].isOpen, false);
-    assert.strictEqual(button.prop('aria-owns'), null);
-    assert.strictEqual(button.prop('aria-haspopup'), true);
-    assert.strictEqual(button.prop('onClick'), render.args[0][0].open);
-    assert.strictEqual(menu.prop('id'), 'menu');
-    assert.strictEqual(menu.prop('anchorEl'), null);
-    assert.strictEqual(menu.prop('open'), false);
-    assert.strictEqual(menu.prop('onClose'), render.args[0][0].close);
-  });
-  it('open/close works', () => {
+  it('works', () => {
     let buttonRef;
     let button;
     let menu;
