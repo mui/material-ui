@@ -5,6 +5,72 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.4.2
+###### *Jul 29, 2018*
+
+Big thanks to the 22 contributors who made this release possible!
+I hope we will soon beat our previous record: 30 contributors in a single week.
+
+Here are some highlights ✨:
+- Upgrade the react-select demo to v2 (#12307) @oliviertassinari.
+- Document a new "No SSR" component (#12317) @oliviertassinari.
+- Add a label placement property for FormControlLabel (#12303) @mbrookes.
+- And many more bug fixes 🐛 and documentation improvements 📝.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Tabs] Reduce the bundle size (#12256) @oliviertassinari
+- [Menu] Add null as acceptable value of anchorEl (#12249) @LAITONEN
+- [Popper] Increase the minimal required version of popper.js (#12258) @Tuaniwan
+- [TablePagination] Add missing selectIcon ClassKey definition (#12267) @spallister
+- [Tooltip] Add some docs for disabled elements (#12265) @kamranayub
+- [Tabs] Prevent unwanted auto-move in scrolling tabs (#12276) @novascreen
+- [Button] Fix icon positioning on Safari iOS (#12278) @KevinAsher
+- [Modal] Add onRendered to ModalProps (#12284) @rynobax
+- [Card] Align icons with ListItem (#12292) @mbrookes
+- [TextField] Improve onChange type definition (#12294) @t49tran
+- [DialogContentText] Inherit TypographyProps in type definition (#12301) @charlieduong94
+- [FormControlLabel] Add labelPlacement prop (#12303) @mbrookes
+- [FormControlLabel] Correct the style description (#12304) @mbrookes
+- [Typography] Add color=textPrimary option (#12310) @oliviertassinari
+- [Tooltip] Remove an undocumented API (#12312) @oliviertassinari
+- [RootRef] Apply the same logic as React Ref (#12311) @oliviertassinari
+- [Grid] Document the nested capability (#12313) @oliviertassinari
+- [SwipeableDrawer] Fix SSR issue on iOS (#12314) @oliviertassinari
+- [Snackbar] Fix anchorOrigin types (#12316) @nmchaves
+- [LinearProgress] Fix wrong style rule usage (#12319) @agentmilindu
+- [Popper] Fix modifiers appearing as attribute of div (#12329) @skeithtan
+
+#### Docs
+
+- [docs] Fix typo (#12248) @johnjacobkenny
+- [docs] Add typekev.com to showcase page (#12243) @typekev
+- [docs] Fix escape "|" char (#12254) @TheRusskiy
+- [docs] Fix logo in the README (#12273) @antoinerousseau
+- [docs] Add an example with Popper and react-autosuggest (#12280) @oliviertassinari
+- [docs] Add Complementary Project - create-mui-theme (#12269) @UsulPro
+- [docs] Add a note on the name option and dangerouslyUseGlobalCSS (#12281) @oliviertassinari
+- [docs] Improve ListItem and BottomNavigationAction docs (#12295) @vkentta
+- [docs] Add placeholder for search bar (#12296) @DheenodaraRao
+- [docs] Upgrade react-select (#12307) @oliviertassinari
+- [docs] Use data to improve the ranking (#12315) @oliviertassinari
+- [docs] Document NoSsr (#12317) @oliviertassinari
+- [docs] Improve the docs to have matches (#12322) @oliviertassinari
+
+#### Core
+
+- [core] Upgrade dev dependencies (#12323) @oliviertassinari
+
+#### Lab
+
+- [Slider] Increase color specification conformance (#12245) @eps1lon
+- [SpeedDial] Prevent opening when hovering closed actions (#12241) @mbrookes
+- [Slider] Remove visual zero state from thumb (#12242) @eps1lon
+
 ## 1.4.1
 ###### *Jul 22, 2018*
 
@@ -291,7 +357,7 @@ Big thanks to the 16 contributors who made this release possible.
 Here are some highlights ✨:
 - 📝 Document the dynamic override alternatives (#11782) @adeelibr
 - 📝 Document the ClickAwayListener component (#11801).
-- And many more bug fixes 🐛 and documentation improvements.
+- And many more bug fixes 🐛 and documentation improvements 📝.
 
 ### Breaking change
 
