@@ -7,7 +7,8 @@ export default class MenuState extends React.Component {
 
   open = eventOrAnchorEl =>
     this.setState({
-      anchorEl: eventOrAnchorEl instanceof Event ? eventOrAnchorEl.target : eventOrAnchorEl,
+      anchorEl:
+        eventOrAnchorEl && eventOrAnchorEl.target ? eventOrAnchorEl.target : eventOrAnchorEl,
     });
 
   close = () => this.setState({ anchorEl: null });
