@@ -3,9 +3,9 @@
 const { JSDOM } = require('jsdom');
 const Node = require('jsdom/lib/jsdom/living/node-document-position');
 
-// We can use jsdom-global at some point if maintaining that list turns out to be a burden.
-const whiteList = ['HTMLElement', 'Performance'];
-const blackList = ['sessionStorage', 'localStorage'];
+// We can use jsdom-global at some point if maintaining these lists is a burden.
+const whitelist = ['HTMLElement', 'Performance'];
+const blacklist = ['sessionStorage', 'localStorage'];
 
 function createDOM() {
   const dom = new JSDOM('', { pretendToBeVisual: true });
@@ -26,8 +26,8 @@ function createDOM() {
   };
 
   Object.keys(dom.window)
-    .filter(key => !blackList.includes(key))
-    .concat(whiteList)
+    .filter(key => !blacklist.includes(key))
+    .concat(whitelist)
     .forEach(key => {
       if (typeof global[key] === 'undefined') {
         global[key] = dom.window[key];
