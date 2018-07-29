@@ -154,6 +154,7 @@ class Popper extends React.Component {
       container,
       disablePortal,
       keepMounted,
+      modifiers,
       open,
       placement: placementProps,
       popperOptions,
