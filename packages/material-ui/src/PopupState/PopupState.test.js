@@ -5,9 +5,9 @@ import { createMount } from '../test-utils';
 import Button from '../Button';
 import Menu from '../Menu';
 import MenuItem from '../MenuItem';
-import MenuState from './MenuState';
+import PopupState from './PopupState';
 
-describe('<MenuState />', () => {
+describe('<PopupState />', () => {
   let mount;
 
   before(() => {
@@ -22,7 +22,7 @@ describe('<MenuState />', () => {
     let buttonRef;
     let button;
     let menu;
-    const render = spy(({ close, bindTrigger, bindMenu }) => (
+    const render = spy(({ close, bindTrigger, bindPopup }) => (
       <React.Fragment>
         <Button
           buttonRef={c => {
@@ -32,12 +32,12 @@ describe('<MenuState />', () => {
         >
           Open Menu
         </Button>
-        <Menu {...bindMenu}>
+        <Menu {...bindPopup}>
           <MenuItem onClick={close}>Test</MenuItem>
         </Menu>
       </React.Fragment>
     ));
-    const wrapper = mount(<MenuState menuId="menu">{render}</MenuState>);
+    const wrapper = mount(<PopupState popupId="menu">{render}</PopupState>);
     button = wrapper.find(Button);
     menu = wrapper.find(Menu);
     assert.strictEqual(render.args[0][0].isOpen, false);
