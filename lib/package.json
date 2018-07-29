@@ -46,9 +46,9 @@
   "dependencies": {
     "@babel/runtime": "7.0.0-beta.54",
     "lodash.throttle": "^4.1.1",
-    "react-addons-css-transition-group": "^15.6.2",
     "react-event-listener": "^0.6.1",
     "react-text-mask": "=5.4.1",
+    "react-transition-group": "^2.4.0",
     "recompose": "^0.27.1"
   },
   "size-limit": [
