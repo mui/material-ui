@@ -298,14 +298,20 @@ function withRoot(Component) {
 
     render() {
       const { pageContext, ...other } = this.props;
+      let component;
+      if (this.props.router.pathname.indexOf('/full-page') === 0) {
+        component = <Component initialProps={other} />;
+      } else {
+        component = (
+          <AppWrapper pageContext={pageContext}>
+            <Component initialProps={other} />
+          </AppWrapper>
+        );
+      }
 
       return (
         <React.StrictMode>
-          <Provider store={this.redux}>
-            <AppWrapper pageContext={pageContext}>
-              <Component initialProps={other} />
-            </AppWrapper>
-          </Provider>
+          <Provider store={this.redux}>{component}</Provider>
         </React.StrictMode>
       );
     }
