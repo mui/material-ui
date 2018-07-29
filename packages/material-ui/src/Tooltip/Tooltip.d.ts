@@ -14,6 +14,7 @@ export interface TooltipProps
   id?: string;
   leaveDelay?: number;
   leaveTouchDelay?: number;
+  minWidth?: number;
   onClose?: (event: React.ChangeEvent<{}>) => void;
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
