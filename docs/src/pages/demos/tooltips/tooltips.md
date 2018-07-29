@@ -52,12 +52,12 @@ By default disabled elements like `Button` do not trigger user interactions so a
 
 {{"demo": "pages/demos/tooltips/DisabledTooltips.js"}}
 
+## Customized Tooltips
+
+{{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}
+
 ## Variable Width
 
 The `Tooltip` wraps long text by default to make it readable. Use the `maxWidth` property to customize the width or suppress it.
 
 {{"demo": "pages/demos/tooltips/VariableWidth.js"}}
-
-## Customized Tooltips
-
-{{"demo": "pages/demos/tooltips/CustomizedTooltips.js"}}

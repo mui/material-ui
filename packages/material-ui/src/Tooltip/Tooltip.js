@@ -409,8 +409,9 @@ Tooltip.propTypes = {
    */
   leaveTouchDelay: PropTypes.number,
   /**
-   * The maximum width of the tooltip. This allows long text to be wrapped into multiple lines
-   * for better readability.
+   * The maximum width of the tooltip.
+   * This allows long text to be wrapped into multiple lines for better readability.
+   * Specify `0` to suppress the width constraint.
    */
   maxWidth: PropTypes.number,
   /**
