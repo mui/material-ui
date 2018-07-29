@@ -15,7 +15,7 @@ const isFn = prop => typeof prop === 'function';
 const renderProps = ({ children, render }, ...props) => {
   if (process.env.NODE_ENV !== 'production') {
     warning(
-      isFn(children) && isFn(render),
+      !isFn(children) || !isFn(render),
       'You are using the children and render props together.\n' +
         'This is impossible, therefore, only the children will be used.',
     );
