@@ -10,16 +10,15 @@ const animationDuration = 350;
 const SlideTransition = ({
   classes, className, children, slideDirection, ...other
 }) => (
-  <TransitionGroup className={classnames(classes.transitionContainer, className)}>
+  <TransitionGroup className={classnames(classes.transitionContainer, className)} {...other}>
     <CSSTransition
-      classNames={classnames({
+      classNames={{
         enter: classes[`slideEnter-${slideDirection}`],
         enterActive: classes.slideEnterActive,
-        leave: classes.slideLeave,
-        leaveActive: classes[`slideLeaveActiveLeft-${slideDirection}`]
-      })}
+        exit: classes.slideExit,
+        exitActive: classes[`slideExitActiveLeft-${slideDirection}`]
+      }}
       timeout={animationDuration}
-      {...other}
     >
       {children}
     </CSSTransition>
@@ -66,15 +65,15 @@ const styles = (theme) => {
       transform: 'translate(0%)',
       transition: slideTransition,
     },
-    slideLeave: {
+    slideExit: {
       transform: 'translate(0%)',
     },
-    'slideLeaveActiveLeft-left': {
+    'slideExitActiveLeft-left': {
       willChange: 'transform',
       transform: 'translate(-100%)',
       transition: slideTransition,
     },
-    'slideLeaveActiveLeft-right': {
+    'slideExitActiveLeft-right': {
       willChange: 'transform',
       transform: 'translate(100%)',
       transition: slideTransition,
