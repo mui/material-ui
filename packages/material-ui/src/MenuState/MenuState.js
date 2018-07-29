@@ -4,35 +4,34 @@ import PropTypes from 'prop-types';
 export default class MenuState extends React.Component {
   state = { anchorEl: null };
 
-  open = eventOrAnchorEl =>
+  handleOpen = eventOrAnchorEl =>
     this.setState({
       anchorEl:
         eventOrAnchorEl && eventOrAnchorEl.target ? eventOrAnchorEl.target : eventOrAnchorEl,
     });
 
-  close = () => this.setState({ anchorEl: null });
+  handleClose = () => this.setState({ anchorEl: null });
 
   render() {
-    const { open, close } = this;
     const { menuId, children } = this.props;
     const { anchorEl } = this.state;
 
     const isOpen = Boolean(anchorEl);
 
     return children({
-      open,
-      close,
+      open: this.handleOpen,
+      close: this.handleClose,
       isOpen,
       bindTrigger: {
         'aria-owns': isOpen ? menuId : null,
         'aria-haspopup': true,
-        onClick: open,
+        onClick: this.handleOpen,
       },
       bindMenu: {
         id: menuId,
         anchorEl,
         open: isOpen,
-        onClose: close,
+        onClose: this.handleClose,
       },
     });
   }
