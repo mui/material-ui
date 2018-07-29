@@ -93,6 +93,9 @@ const pages = [
         pathname: '/utils/transitions',
       },
       {
+        pathname: '/utils/popup-state',
+      },
+      {
         pathname: '/utils/popover',
       },
       {
