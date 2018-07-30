@@ -51,13 +51,9 @@ function Layouts(props) {
               target="_blank"
             />
             <CardContent className={classes.cardContent}>
-              <Grid container alignItems="center">
-                <Grid item xs>
-                  <Typography gutterBottom variant="headline" align="left" component="h2">
-                    {theme.name}
-                  </Typography>
-                </Grid>
-              </Grid>
+              <Typography gutterBottom variant="headline" align="left" component="h2">
+                {theme.name}
+              </Typography>
               <Typography component="p">{theme.description}</Typography>
             </CardContent>
             <CardActions>

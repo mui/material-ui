@@ -127,6 +127,7 @@ class Dashboard extends React.Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
+
         <AppBar
           position="absolute"
           className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
@@ -153,6 +154,7 @@ class Dashboard extends React.Component {
             </Badge>
           </Toolbar>
         </AppBar>
+
         <Drawer
           variant="permanent"
           classes={{
@@ -170,6 +172,7 @@ class Dashboard extends React.Component {
           <Divider />
           <List>{secondaryListItems}</List>
         </Drawer>
+
         <main className={classes.content}>
           <div className={classes.filler} />
           <Typography variant="display1" gutterBottom>
