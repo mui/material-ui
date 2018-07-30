@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -42,6 +43,18 @@ class InteractiveGrid extends React.Component {
   render() {
     const { classes } = this.props;
     const { alignItems, direction, justify } = this.state;
+
+    const code = `
+\`\`\`jsx
+<Grid
+  container
+  direction="${direction}"
+  justify="${justify}"
+  alignItems="${alignItems}"
+>
+\`\`\`
+`;
+
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
@@ -140,6 +153,9 @@ class InteractiveGrid extends React.Component {
               </Grid>
             </Grid>
           </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <MarkdownElement text={code} />
         </Grid>
       </Grid>
     );
