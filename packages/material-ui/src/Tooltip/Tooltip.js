@@ -277,6 +277,7 @@ class Tooltip extends React.Component {
       disableHoverListener,
       disableTouchListener,
       id,
+      maxWidth,
       open: openProp,
       placement,
       PopperProps,
@@ -347,6 +348,9 @@ class Tooltip extends React.Component {
                   },
                   classes[`tooltipPlacement${capitalize(placementInner.split('-')[0])}`],
                 )}
+                style={{
+                  maxWidth: maxWidth > 0 ? maxWidth : undefined,
+                }}
               >
                 {title}
               </div>
@@ -404,6 +408,12 @@ Tooltip.propTypes = {
    * The number of milliseconds after the user stops touching an element before hiding the tooltip.
    */
   leaveTouchDelay: PropTypes.number,
+  /**
+   * The maximum width of the tooltip.
+   * This allows long text to be wrapped into multiple lines for better readability.
+   * Specify `0` to suppress the width constraint.
+   */
+  maxWidth: PropTypes.number,
   /**
    * Callback fired when the tooltip requests to be closed.
    *
@@ -469,6 +479,7 @@ Tooltip.defaultProps = {
   enterTouchDelay: 1000,
   leaveDelay: 0,
   leaveTouchDelay: 1500,
+  maxWidth: 300,
   placement: 'bottom',
   TransitionComponent: Grow,
 };

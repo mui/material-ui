@@ -38,7 +38,7 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: title', () => {
-    it('should display if the title is presetn', () => {
+    it('should display if the title is present', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} open />);
       assert.strictEqual(wrapper.find(Popper).props().open, true);
     });
@@ -53,6 +53,27 @@ describe('<Tooltip />', () => {
     it('should have top placement', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} placement="top" />);
       assert.strictEqual(wrapper.find(Popper).props().placement, 'top');
+    });
+  });
+
+  describe('prop: maxWidth', () => {
+    it('should pass the property as style', () => {
+      const customWidth = 400;
+      const wrapper = mount(<Tooltip {...defaultProps} maxWidth={customWidth} />);
+      const children = wrapper.find('span');
+      children.simulate('mouseEnter');
+      const style = wrapper.find(`.${classes.tooltip}`).props().style;
+      assert.strictEqual(style.maxWidth, customWidth);
+      children.simulate('mouseLeave');
+    });
+
+    it('should allow suppression of maxWidth', () => {
+      const wrapper = mount(<Tooltip {...defaultProps} maxWidth={0} />);
+      const children = wrapper.find('span');
+      children.simulate('mouseEnter');
+      const style = wrapper.find(`.${classes.tooltip}`).props().style;
+      assert.strictEqual(typeof style.maxWidth, 'undefined');
+      children.simulate('mouseLeave');
     });
   });
 
