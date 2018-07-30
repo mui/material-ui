@@ -27,10 +27,10 @@ const themes = [
   {
     name: 'Dashboard',
     description:
-      'A minimal dasboard with taskbar and mini variant draw and a table. ' +
-      'The chart is courtesy of Recharts, but it is trivial to substitute an alternative.',
+      'A minimal dasboard with taskbar and mini variant draw. ' +
+      'The chart is courtesy of Recharts, but it is simple to substitute an alternative.',
     src: '/static/images/layouts/dashboard.jpg',
-    href: '/full-page/dashboard',
+    href: '/layouts/dashboard',
     source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/dashboard',
   },
 ];

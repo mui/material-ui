@@ -6,4 +6,4 @@ function Page() {
   return <Dashboard />;
 }
 
-export default withRoot(Page);
+export default withRoot(Page, { fullScreen: true });

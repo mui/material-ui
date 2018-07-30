@@ -272,7 +272,7 @@ function findActivePage(currentPages, router) {
   return activePage;
 }
 
-function withRoot(Component) {
+function withRoot(Component, options = { fullScreen: false }) {
   class WithRoot extends React.Component {
     redux = null;
 
@@ -301,7 +301,7 @@ function withRoot(Component) {
     render() {
       const { pageContext, ...other } = this.props;
       let component;
-      if (this.props.router.pathname.indexOf('/full-page') === 0) {
+      if (options.fullScreen) {
         component = <Component initialProps={other} />;
       } else {
         component = (
