@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,10 +10,14 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
+import SimpleLineChart from './SimpleLineChart';
+import SimpleTable from './SimpleTable';
 
 const drawerWidth = 240;
 
@@ -23,6 +28,19 @@ const styles = theme => ({
     overflow: 'hidden',
     position: 'relative',
     display: 'flex',
+  },
+  toolbar: {
+    paddingRight: 24,
+  },
+  toolbarIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+  },
+  filler: {
+    ...theme.mixins.toolbar,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -43,8 +61,15 @@ const styles = theme => ({
     marginLeft: 12,
     marginRight: 36,
   },
-  hide: {
+  menuButtonHidden: {
     display: 'none',
+  },
+  title: {
+    flexGrow: 1,
+  },
+  badge: {
+    top: 2,
+    right: 2,
   },
   drawerPaper: {
     position: 'relative',
@@ -66,17 +91,19 @@ const styles = theme => ({
       width: theme.spacing.unit * 9,
     },
   },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
+  },
+  chartContainer: {
+    marginLeft: -22,
+    width: 'calc(100% + 22)',
+    height: 320,
+  },
+  tableContainer: {
+    width: '100%',
+    height: 320,
   },
 });
 
@@ -98,22 +125,31 @@ class Dashboard extends React.Component {
 
     return (
       <div className={classes.root}>
+        <CssBaseline />
         <AppBar
           position="absolute"
           className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
         >
-          <Toolbar disableGutters={!this.state.open}>
+          <Toolbar disableGutters={!this.state.open} className={classes.toolbar}>
             <IconButton
               color="inherit"
               aria-label="Open drawer"
               onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, this.state.open && classes.hide)}
+              className={classNames(
+                classes.menuButton,
+                this.state.open && classes.menuButtonHidden,
+              )}
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="title" color="inherit" noWrap className={classes.title}>
               Dashboard
             </Typography>
+            <Badge classes={{ badge: classes.badge }} badgeContent={4} color="secondary">
+              <IconButton color="inherit" className={classes.notifications}>
+                <NotificationsIcon />
+              </IconButton>
+            </Badge>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -123,7 +159,7 @@ class Dashboard extends React.Component {
           }}
           open={this.state.open}
         >
-          <div className={classes.toolbar}>
+          <div className={classes.toolbarIcon}>
             <IconButton onClick={this.handleDrawerClose}>
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
@@ -134,8 +170,19 @@ class Dashboard extends React.Component {
           <List>{secondaryListItems}</List>
         </Drawer>
         <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
+          <div className={classes.filler} />
+          <Typography variant="display1" gutterBottom>
+            Orders
+          </Typography>
+          <Typography component="div" className={classes.chartContainer}>
+            <SimpleLineChart />
+          </Typography>
+          <Typography variant="display1" gutterBottom>
+            Products
+          </Typography>
+          <div className={classes.tableContainer}>
+            <SimpleTable />
+          </div>
         </main>
       </div>
     );
