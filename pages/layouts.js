@@ -6,7 +6,6 @@ import markdown from 'docs/src/pages/layouts/layouts.md';
 function Page() {
   return (
     <MarkdownDocs
-      disableCarbon
       markdown={markdown}
       demos={{
         'pages/layouts/Layouts.js': {
