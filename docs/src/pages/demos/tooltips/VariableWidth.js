@@ -12,7 +12,7 @@ const styles = theme => ({
     maxWidth: 500,
   },
   noMaxWidth: {
-    maxWidth: 'inherit',
+    maxWidth: 'none',
   },
 });
 
