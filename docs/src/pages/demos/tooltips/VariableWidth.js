@@ -26,7 +26,7 @@ function VariableWidth({ classes }) {
   return (
     <div>
       <Tooltip title={longText}>
-        <Button className={classes.button}>Default Width</Button>
+        <Button className={classes.button}>Default Width [300px]</Button>
       </Tooltip>
       <Tooltip title={longText} classes={{ tooltip: classes.customWidth }}>
         <Button className={classes.button}>Custom Width [500px]</Button>
