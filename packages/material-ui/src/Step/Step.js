@@ -50,7 +50,7 @@ function Step(props) {
     classes[orientation],
     {
       [classes.alternativeLabel]: alternativeLabel,
-      [classes.completed]: completed
+      [classes.completed]: completed,
     },
     classNameProp,
   );
