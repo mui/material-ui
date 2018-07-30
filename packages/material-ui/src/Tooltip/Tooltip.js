@@ -24,6 +24,7 @@ export const styles = theme => ({
     padding: '4px 8px',
     fontSize: theme.typography.pxToRem(10),
     lineHeight: `${theme.typography.round(14 / 10)}em`,
+    maxWidth: 300,
   },
   /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   touch: {
