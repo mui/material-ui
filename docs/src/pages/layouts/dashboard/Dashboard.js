@@ -95,11 +95,12 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
+    height: '100vh',
+    overflow: 'scroll',
   },
   chartContainer: {
     marginLeft: -22,
     width: 'calc(100% + 22)',
-    height: 320,
   },
   tableContainer: {
     width: '100%',
