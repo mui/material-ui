@@ -22,6 +22,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/tooltips/PositionedTooltips'), 'utf8')
 `,
         },
+        'pages/demos/tooltips/VariableWidth.js': {
+          js: require('docs/src/pages/demos/tooltips/VariableWidth').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/tooltips/VariableWidth'), 'utf8')
+`,
+        },
         'pages/demos/tooltips/ControlledTooltips.js': {
           js: require('docs/src/pages/demos/tooltips/ControlledTooltips').default,
           raw: preval`
