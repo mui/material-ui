@@ -39,14 +39,31 @@ export default class PopupState extends React.Component {
 
 PopupState.propTypes = {
   /**
-   * The render function.  It will be called with a single object with the
-   * following properties:
-   * - `open(eventOrAnchorEl)` - calling this will open the popup
-   * - `close()` - calling this will close the popup
-   * - `isOpen` - `true`/`false` if the menu is open/clpopup
-   * - `bindTrigger` - a set of properties to pass to the popup trigger, including
-   *   an `onClick` property that will open the popup
-   * - `bindPopup` - a set of properties to pass to the popup component
+   * The render function.
+   *
+   * @param {object} props the properties injected by `PopupState`:
+   * <ul>
+   *   <li>`open(eventOrAnchorEl)`: opens the popup</li>
+   *   <li>`close()`: closes the popup</li>
+   *   <li>`isOpen`: `true`/`false` if the popup is open/closed</li>
+   *   <li>`bindTrigger`: properties to pass to the trigger component
+   *     <ul>
+   *       <li>`aria-owns`: the `popupId` you passed to `PopupState` (when the popup is open)</li>
+   *       <li>`aria-haspopup`: true</li>
+   *       <li>`onClick()`: opens the popup</li>
+   *     </ul>
+   *   </li>
+   *   <li>`bindPopup`: properties to pass to the popup component
+   *     <ul>
+   *       <li>`id`: the `popupId` you passed to `PopupState`</li>
+   *       <li>`anchorEl`: the trigger element (when the popup is open)</li>
+   *       <li>`open`: `true`/`false` if the popup is open/closed</li>
+   *       <li>`onClose()`: closes the popup</li>
+   *     </ul>
+   *   </li>
+   * </ul>
+   *
+   * @returns {React.Node} the content to display
    */
   children: PropTypes.func.isRequired,
   /**
