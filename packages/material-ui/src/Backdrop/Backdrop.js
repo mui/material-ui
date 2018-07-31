@@ -16,6 +16,8 @@ export const styles = {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
+    // Disable scroll capabilities.
+    touchAction: 'none',
   },
   /* Styles applied to the root element if `invisible={true}`. */
   invisible: {
