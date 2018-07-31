@@ -88,6 +88,27 @@ class SimpleSelect extends React.Component {
           </Select>
           <FormHelperText>Without label</FormHelperText>
         </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel shrink htmlFor="age-label-placeholder">
+            Age
+          </InputLabel>
+          <Select
+            value={this.state.age}
+            onChange={this.handleChange}
+            input={<Input name="age" id="age-label-placeholder" />}
+            displayEmpty
+            name="age"
+            className={classes.selectEmpty}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+          <FormHelperText>Label + placeholder</FormHelperText>
+        </FormControl>
         <FormControl className={classes.formControl} disabled>
           <InputLabel htmlFor="name-disabled">Name</InputLabel>
           <Select
