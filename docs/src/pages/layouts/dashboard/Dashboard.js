@@ -39,9 +39,6 @@ const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
   },
-  filler: {
-    ...theme.mixins.toolbar,
-  },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -90,6 +87,9 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing.unit * 9,
     },
+  },
+  appBarSpacer: {
+    ...theme.mixins.toolbar,
   },
   content: {
     flexGrow: 1,
@@ -174,7 +174,7 @@ class Dashboard extends React.Component {
         </Drawer>
 
         <main className={classes.content}>
-          <div className={classes.filler} />
+          <div className={classes.appBarSpacer} />
           <Typography variant="display1" gutterBottom>
             Orders
           </Typography>
