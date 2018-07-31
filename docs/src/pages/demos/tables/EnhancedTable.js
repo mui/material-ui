@@ -26,9 +26,9 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 function getSorting(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => (b[orderBy] < a[orderBy] ? -1 : 1)
-    : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1);
+      return order === 'desc'
+        ? (a, b) => (a[orderBy] === b[orderBy] ? 0 : (a[orderBy] > b[orderBy] ? 1 : -1))
+        : (a, b) => (a[orderBy] === b[orderBy] ? 0 : (a[orderBy] > b[orderBy] ? -1 : 1));
 }
 
 const columnData = [
