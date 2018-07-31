@@ -19,7 +19,8 @@ const styles = {
     flexGrow: 1,
   },
   media: {
-    height: 220,
+    height: 0,
+    paddingTop: '65%',
   },
 };
 
@@ -32,6 +33,13 @@ const themes = [
     src: '/static/images/layouts/dashboard.jpg',
     href: '/layouts/dashboard',
     source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/dashboard',
+  },
+  {
+    name: 'Albumn',
+    description: 'A reponsive albumn / gallery layout with a hero unit and footer.',
+    src: '/static/images/layouts/albumn.jpg',
+    href: '/layouts/albumn',
+    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/albumn',
   },
 ];
 
