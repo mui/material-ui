@@ -7,7 +7,7 @@ function Page() {
   return (
     <React.Fragment>
       <Head
-        title="Dashboard layout - Material-UI"
+        title="Albumn layout - Material-UI"
         description="An example layout for creating a dashboard."
       />
       <Dashboard />

@@ -145,7 +145,7 @@ class Dashboard extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap className={classes.title}>
-              Dashboard
+              Dashboard layout
             </Typography>
             <Badge classes={{ badge: classes.badge }} badgeContent={4} color="secondary">
               <IconButton color="inherit" className={classes.notifications}>
