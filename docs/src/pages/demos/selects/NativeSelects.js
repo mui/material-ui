@@ -82,6 +82,22 @@ class NativeSelects extends React.Component {
           </NativeSelect>
           <FormHelperText>Without label</FormHelperText>
         </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel shrink htmlFor="age-native-label-placeholder">
+            Age
+          </InputLabel>
+          <NativeSelect
+            value={this.state.age}
+            onChange={this.handleChange('age')}
+            input={<Input name="age" id="age-native-label-placeholder" />}
+          >
+            <option value="">None</option>
+            <option value={10}>Ten</option>
+            <option value={20}>Twenty</option>
+            <option value={30}>Thirty</option>
+          </NativeSelect>
+          <FormHelperText>Label + placeholder</FormHelperText>
+        </FormControl>
         <FormControl className={classes.formControl} disabled>
           <InputLabel htmlFor="name-native-disabled">Name</InputLabel>
           <NativeSelect
