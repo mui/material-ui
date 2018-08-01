@@ -34,11 +34,22 @@ function downloadIcon(icon) {
         throw new Error(`status ${response.status}`);
       }
       const SVG = await response.text();
+      if (icon.imageUrls && icon.imageUrls[theme]) {
+        if (size < 24) {
+          const translate = Math.floor((24 - size) / 2);
+          if (translate > 0) {
+            SVG.replace(/<path /g, `<path transform="translate(${translate}, ${translate})" `);
+          }
+        }
+        if (size > 24) {
+          const scale = Math.round((24 / size) * 100) / 100; // Keep a maximum of 2 decimals
+          if (scale < 1) {
+            SVG.replace(/<path /g, `<path transform="scale(${scale}, ${scale})" `);
+          }
+        }
+      }
       await fse.writeFile(
-        path.join(
-          __dirname,
-          `../material-io-tools-icons/ic_${icon.id}${themeMap[theme]}_${size}px.svg`,
-        ),
+        path.join(__dirname, `../material-io-tools-icons/ic_${icon.id}${themeMap[theme]}_24px.svg`),
         SVG,
       );
     }),
