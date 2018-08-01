@@ -39,7 +39,17 @@ const themes = [
     description: 'A reponsive albumn / gallery layout with a hero unit and footer.',
     src: '/static/images/layouts/albumn.jpg',
     href: '/layouts/albumn',
-    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/albumn',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/albumn/Albumn.js',
+  },
+  {
+    name: 'Pricing',
+    description:
+      'Quickly build an effective pricing table for your potential customers with this layout.',
+    src: '/static/images/layouts/pricing.png',
+    href: '/layouts/pricing',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/pricing/Pricing.js',
   },
 ];
 
@@ -48,7 +58,7 @@ function Layouts(props) {
   return (
     <Grid container spacing={16}>
       {themes.map(theme => (
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} md={4}>
           <Card key={theme.name} className={classes.card}>
             <CardMedia
               component="a"

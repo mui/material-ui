@@ -53,7 +53,7 @@ const styles = theme => ({
   heroButtonBrimary: {
     marginRight: theme.spacing.unit * 2,
   },
-  grid: {
+  cardGrid: {
     padding: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 12}px`,
     [theme.breakpoints.down('md')]: {
       padding: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 8}px`,
@@ -122,7 +122,7 @@ function Albumn(props) {
         </div>
         {/* End hero unit */}
 
-        <Grid container spacing={40} className={classes.grid}>
+        <Grid container spacing={40} className={classes.cardGrid}>
           {cards.map(card => (
             <Grid item key={card} lg={3} md={4} sm={6} xs={12}>
               <Card className={classes.card}>
