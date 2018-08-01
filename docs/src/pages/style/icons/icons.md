@@ -104,7 +104,9 @@ Optionally, you can set the icon color using one of the theme color properties: 
 
 {{"demo": "pages/style/icons/Icons.js"}}
 
-### [Font Awesome](https://fontawesome.com/icons)
+### Font Awesome
+
+[Font Awesome](https://fontawesome.com/icons) can be used with the `Icon` component as follow:
 
 {{"demo": "pages/style/icons/FontAwesome.js", "hideEditButton": true}}
 

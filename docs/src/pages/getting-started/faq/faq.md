@@ -69,13 +69,13 @@ You can use the same solution with them.
 
 There are a number of different options:
 
-### `withTheme` option:
+**`withTheme` option:**
 
 ```js
 export default withStyles(styles, { withTheme: true })(Modal);
 ```
 
-### `compose()` helper function:
+**`compose()` helper function:**
 
 ```js
 import { compose } from 'recompose';
@@ -86,7 +86,7 @@ export default compose(
 )(Modal);
 ```
 
-### raw function chaining:
+**raw function chaining:**
 
 ```js
 export default withTheme()(withStyles(styles)(Modal));

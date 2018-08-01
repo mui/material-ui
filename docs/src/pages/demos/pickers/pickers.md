@@ -22,7 +22,7 @@ Here are some components that are **promising**:
 
 ## Date pickers
 
-A native date picker example with `type="date"`:
+A native date picker example with `type="date"`, it can be used as a calendar too:
 
 {{"demo": "pages/demos/pickers/DatePickers.js"}}
 

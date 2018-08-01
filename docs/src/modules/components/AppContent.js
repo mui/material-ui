@@ -4,15 +4,22 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
-  root: theme.mixins.gutters({
+  root: {
     paddingTop: 80,
     flex: '1 1 100%',
     maxWidth: '100%',
     margin: '0 auto',
-  }),
-  [theme.breakpoints.up('md')]: {
-    root: {
-      maxWidth: theme.breakpoints.values.md,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing.unit * 4,
+      paddingRight: theme.spacing.unit * 4,
+      maxWidth: 'calc(100% - 160px)',
+    },
+    [theme.breakpoints.up('lg')]: {
+      paddingLeft: theme.spacing.unit * 5,
+      paddingRight: theme.spacing.unit * 9,
+      maxWidth: 'calc(100% - 240px - 160px)',
     },
   },
 });
@@ -20,7 +27,7 @@ const styles = theme => ({
 function AppContent(props) {
   const { className, classes, children } = props;
 
-  return <div className={classNames(classes.root, className)}>{children}</div>;
+  return <main className={classNames(classes.root, className)}>{children}</main>;
 }
 
 AppContent.propTypes = {
