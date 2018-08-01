@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
+import exactProp from '../utils/exactProp';
 
 export default class PopupState extends React.Component {
   state = { anchorEl: null };
@@ -112,3 +113,5 @@ PopupState.propTypes = {
    */
   variant: PropTypes.oneOf(['menu', 'popover', 'popper']).isRequired,
 };
+
+PopupState.propTypes = exactProp(PopupState.propTypes);
