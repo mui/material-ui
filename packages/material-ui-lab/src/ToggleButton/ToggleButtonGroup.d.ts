@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+
+import { StandardProps } from '@material-ui/core';
 
 export interface ToggleButtonGroupProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ToggleButtonGroupClassKey> {

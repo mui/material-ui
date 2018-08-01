@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
-import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
+
+import { PropTypes, StandardProps } from '@material-ui/core';
+import { ButtonBaseClassKey, ButtonBaseProps } from '@material-ui/core/ButtonBase';
 
 export interface ToggleButtonProps
   extends StandardProps<ButtonBaseProps, ToggleButtonClassKey, 'component'> {
