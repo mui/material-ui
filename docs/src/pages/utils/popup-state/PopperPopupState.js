@@ -15,7 +15,7 @@ const styles = theme => ({
 });
 
 const PopperPopupState = ({ classes }) => (
-  <PopupState variant="popper" popupId="demoPopper">
+  <PopupState popupId="demoPopper">
     {popupState => (
       <div>
         <Button variant="contained" {...bindToggle(popupState)}>
