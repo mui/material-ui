@@ -16,40 +16,18 @@ const themeMap = {
   sharp: '_sharp',
 };
 
-// Some icons have different sizes.
-const sizes = {
-  cast_for_education: {
-    baseline: 48,
-  },
-  domain: {
-    baseline: 48,
-  },
-  play_circle_filled_white: {
-    baseline: 48,
-  },
-  settings: {
-    baseline: 20,
-  },
-  star_rate: {
-    baseline: 18,
-    outline: 18,
-    round: 18,
-    twotone: 18,
-    sharp: 18,
-  },
-  weekend: {
-    baseline: 48,
-  },
-};
-
 function downloadIcon(icon) {
   console.log(`downloadIcon ${icon.index}: ${icon.id}`);
 
   return Promise.all(
     Object.keys(themeMap).map(async theme => {
-      const size = sizes[icon.id] && sizes[icon.id][theme] ? sizes[icon.id][theme] : 24;
+      const endUrl = (icon.imageUrls && icon.imageUrls[theme]) ? (
+        icon.imageUrls[theme]
+      ) : (
+        `${theme}-${icon.id}-${size}px.svg`
+      );
       const response = await fetch(
-        `https://material.io/tools/icons/static/icons/${theme}-${icon.id}-${size}px.svg`,
+        `https://material.io/tools/icons/static/icons/${endUrl}`,
       );
       if (response.status !== 200) {
         throw new Error(`status ${response.status}`);
