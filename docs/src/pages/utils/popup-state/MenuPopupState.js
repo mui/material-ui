@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import PopupState from '@material-ui/core/PopupState';
 
 const MenuPopupState = () => (
-  <PopupState popupId="menu">
+  <PopupState variant="menu" popupId="demoMenu">
     {({ close, bindTrigger, bindPopup }) => (
       <React.Fragment>
         <Button variant="contained" {...bindTrigger}>

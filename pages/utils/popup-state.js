@@ -22,6 +22,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/utils/popup-state/PopoverPopupState'), 'utf8')
 `,
         },
+        'pages/utils/popup-state/PopperPopupState.js': {
+          js: require('docs/src/pages/utils/popup-state/PopperPopupState').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/utils/popup-state/PopperPopupState'), 'utf8')
+`,
+        },
       }}
     />
   );

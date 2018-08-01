@@ -1,6 +1,6 @@
 ---
 title: PopupState React component
-components: PopupState, Menu, Popover
+components: PopupState, Menu, Popover, Popper
 ---
 
 # PopupState
@@ -17,3 +17,7 @@ popup component and a trigger component (like a `Button`).
 ## Popover
 
 {{"demo": "pages/utils/popup-state/PopoverPopupState.js"}}
+
+## Popper
+
+{{"demo": "pages/utils/popup-state/PopperPopupState.js"}}
