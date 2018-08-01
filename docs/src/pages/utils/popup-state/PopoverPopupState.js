@@ -13,7 +13,7 @@ const styles = theme => ({
 });
 
 const PopoverPopupState = ({ classes }) => (
-  <PopupState>
+  <PopupState variant="popover" popupId="demoPopover">
     {({ bindTrigger, bindPopup }) => (
       <div>
         <Button variant="contained" {...bindTrigger}>
