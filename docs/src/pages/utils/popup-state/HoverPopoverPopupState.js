@@ -2,25 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
-import PopupState, { bindTrigger, bindPopover } from '@material-ui/core/PopupState';
+import PopupState, { bindHover, bindPopover } from '@material-ui/core/PopupState';
 
 const styles = theme => ({
-  typography: {
-    margin: theme.spacing.unit * 2,
+  popover: {
+    pointerEvents: 'none',
+  },
+  paper: {
+    padding: theme.spacing.unit,
   },
 });
 
-const PopoverPopupState = ({ classes }) => (
+const HoverPopoverPopupState = ({ classes }) => (
   <PopupState popupId="demoPopover">
     {popupState => (
       <div>
-        <Button variant="contained" {...bindTrigger(popupState)}>
-          Open Popover
-        </Button>
+        <Typography {...bindHover(popupState)}>Hover with a Popover.</Typography>
         <Popover
           {...bindPopover(popupState)}
+          className={classes.popover}
+          classes={{
+            paper: classes.paper,
+          }}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'center',
@@ -29,16 +33,17 @@ const PopoverPopupState = ({ classes }) => (
             vertical: 'top',
             horizontal: 'center',
           }}
+          disableRestoreFocus
         >
-          <Typography className={classes.typography}>The content of the Popover.</Typography>
+          <Typography>The content of the Popover.</Typography>
         </Popover>
       </div>
     )}
   </PopupState>
 );
 
-PopoverPopupState.propTypes = {
+HoverPopoverPopupState.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PopoverPopupState);
+export default withStyles(styles)(HoverPopoverPopupState);

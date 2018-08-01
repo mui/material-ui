@@ -18,6 +18,10 @@ popup component and a trigger component (like a `Button`).
 
 {{"demo": "pages/utils/popup-state/PopoverPopupState.js"}}
 
+## Mouse over Interaction
+
+{{"demo": "pages/utils/popup-state/HoverPopoverPopupState.js"}}
+
 ## Popper
 
 {{"demo": "pages/utils/popup-state/PopperPopupState.js"}}

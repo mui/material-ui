@@ -3,6 +3,86 @@ import PropTypes from 'prop-types';
 import warning from 'warning';
 import exactProp from '../utils/exactProp';
 
+/**
+ * Creates props for a component that opens the popup when clicked.
+ *
+ * @param {object} popupState the argument passed to the child function of
+ * `PopupState`
+ */
+export function bindTrigger({ isOpen, open, popupId }) {
+  return {
+    'aria-owns': isOpen ? popupId : null,
+    'aria-haspopup': true,
+    onClick: open,
+  };
+}
+
+/**
+ * Creates props for a component that toggles the popup when clicked.
+ *
+ * @param {object} popupState the argument passed to the child function of
+ * `PopupState`
+ */
+export function bindToggle({ isOpen, toggle, popupId }) {
+  return {
+    'aria-owns': isOpen ? popupId : null,
+    'aria-haspopup': true,
+    onClick: toggle,
+  };
+}
+
+/**
+ * Creates props for a component that opens the popup while hovered.
+ *
+ * @param {object} popupState the argument passed to the child function of
+ * `PopupState`
+ */
+export function bindHover({ isOpen, open, close, popupId }) {
+  return {
+    'aria-owns': isOpen ? popupId : null,
+    'aria-haspopup': true,
+    onMouseEnter: open,
+    onMouseLeave: close,
+  };
+}
+
+/**
+ * Creates props for a `Popover` component.
+ *
+ * @param {object} popupState the argument passed to the child function of
+ * `PopupState`
+ */
+export function bindPopover({ isOpen, anchorEl, close, popupId }) {
+  return {
+    id: popupId,
+    anchorEl,
+    open: isOpen,
+    onClose: close,
+  };
+}
+
+/**
+ * Creates props for a `Menu` component.
+ *
+ * @param {object} popupState the argument passed to the child function of
+ * `PopupState`
+ */
+export const bindMenu = bindPopover;
+
+/**
+ * Creates props for a `Popper` component.
+ *
+ * @param {object} popupState the argument passed to the child function of
+ * `PopupState`
+ */
+export function bindPopper({ isOpen, anchorEl, popupId }) {
+  return {
+    id: popupId,
+    anchorEl,
+    open: isOpen,
+  };
+}
+
 export default class PopupState extends React.Component {
   state = { anchorEl: null };
 
@@ -27,17 +107,10 @@ export default class PopupState extends React.Component {
   };
 
   render() {
-    const { children, popupId, variant } = this.props;
+    const { children, popupId } = this.props;
     const { anchorEl } = this.state;
 
     const isOpen = Boolean(anchorEl);
-
-    const bindPopup = {
-      id: popupId,
-      anchorEl,
-      open: isOpen,
-    };
-    if (variant !== 'popper') bindPopup.onClose = this.handleClose;
 
     return children({
       open: this.handleOpen,
@@ -45,17 +118,8 @@ export default class PopupState extends React.Component {
       toggle: this.handleToggle,
       setOpen: this.handleSetOpen,
       isOpen,
-      bindTrigger: {
-        'aria-owns': isOpen ? popupId : null,
-        'aria-haspopup': true,
-        onClick: this.handleOpen,
-      },
-      bindToggle: {
-        'aria-owns': isOpen ? popupId : null,
-        'aria-haspopup': true,
-        onClick: this.handleToggle,
-      },
-      bindPopup,
+      anchorEl,
+      popupId,
     });
   }
 }
@@ -75,28 +139,8 @@ PopupState.propTypes = {
    *     `eventOrAnchorEl` is required if `open` is truthy.
    *   </li>
    *   <li>`isOpen`: `true`/`false` if the popup is open/closed</li>
-   *   <li>`bindTrigger`: properties to pass to a trigger component
-   *     <ul>
-   *       <li>`aria-owns`: the `popupId` you passed to `PopupState` (when the popup is open)</li>
-   *       <li>`aria-haspopup`: true</li>
-   *       <li>`onClick(event)`: opens the popup</li>
-   *     </ul>
-   *   </li>
-   *   <li>`bindToggle`: properties to pass to a toggle component
-   *     <ul>
-   *       <li>`aria-owns`: the `popupId` you passed to `PopupState` (when the popup is open)</li>
-   *       <li>`aria-haspopup`: true</li>
-   *       <li>`onClick(event)`: toggles the popup</li>
-   *     </ul>
-   *   </li>
-   *   <li>`bindPopup`: properties to pass to the popup component
-   *     <ul>
-   *       <li>`id`: the `popupId` you passed to `PopupState`</li>
-   *       <li>`anchorEl`: the trigger element (when the popup is open)</li>
-   *       <li>`open`: `true`/`false` if the popup is open/closed</li>
-   *       <li>`onClose()`: closes the popup (`"menu"` and `"popover"` variants only)</li>
-   *     </ul>
-   *   </li>
+   *   <li>`anchorEl`: the current anchor element (`null` the popup is closed)</li>
+   *   <li>`popupId`: the `popupId` prop you passed</li>
    * </ul>
    *
    * @returns {React.Node} the content to display
@@ -108,10 +152,6 @@ PopupState.propTypes = {
    * passed to the trigger component via `bindTrigger`.
    */
   popupId: PropTypes.string,
-  /**
-   * The type of popup you are controlling.
-   */
-  variant: PropTypes.oneOf(['menu', 'popover', 'popper']).isRequired,
 };
 
 PopupState.propTypes = exactProp(PopupState.propTypes);

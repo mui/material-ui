@@ -6,7 +6,9 @@ import Button from '../Button';
 import Popper from '../Popper';
 import Menu from '../Menu';
 import MenuItem from '../MenuItem';
-import PopupState from './PopupState';
+import PopupState, { bindMenu, bindPopper, bindTrigger, bindToggle } from './PopupState';
+
+/* eslint-disable react/jsx-handler-names */
 
 describe('<PopupState />', () => {
   let mount;
@@ -19,23 +21,23 @@ describe('<PopupState />', () => {
     mount.cleanUp();
   });
 
-  describe('variant="menu"', () => {
+  describe('bindMenu/bindTrigger', () => {
     let buttonRef;
     let button;
     let menu;
 
-    const render = spy(({ close, bindTrigger, bindPopup }) => (
+    const render = spy(popupState => (
       <React.Fragment>
         <Button
           buttonRef={c => {
             buttonRef = c;
           }}
-          {...bindTrigger}
+          {...bindTrigger(popupState)}
         >
           Open Menu
         </Button>
-        <Menu {...bindPopup}>
-          <MenuItem onClick={close}>Test</MenuItem>
+        <Menu {...bindMenu(popupState)}>
+          <MenuItem onClick={popupState.close}>Test</MenuItem>
         </Menu>
       </React.Fragment>
     ));
@@ -43,11 +45,7 @@ describe('<PopupState />', () => {
     beforeEach(() => render.resetHistory());
 
     it('passes correct props to bindTrigger/bindPopup', () => {
-      const wrapper = mount(
-        <PopupState variant="menu" popupId="menu">
-          {render}
-        </PopupState>,
-      );
+      const wrapper = mount(<PopupState popupId="menu">{render}</PopupState>);
       button = wrapper.find(Button);
       menu = wrapper.find(Menu);
       assert.strictEqual(render.args[0][0].isOpen, false);
@@ -86,11 +84,7 @@ describe('<PopupState />', () => {
       assert.strictEqual(menu.prop('onClose'), render.args[2][0].close);
     });
     it('open/close works', () => {
-      const wrapper = mount(
-        <PopupState variant="menu" popupId="menu">
-          {render}
-        </PopupState>,
-      );
+      const wrapper = mount(<PopupState popupId="menu">{render}</PopupState>);
 
       render.args[0][0].open(buttonRef);
       wrapper.update();
@@ -101,11 +95,7 @@ describe('<PopupState />', () => {
       assert.strictEqual(render.args[2][0].isOpen, false);
     });
     it('toggle works', () => {
-      const wrapper = mount(
-        <PopupState variant="menu" popupId="menu">
-          {render}
-        </PopupState>,
-      );
+      const wrapper = mount(<PopupState popupId="menu">{render}</PopupState>);
 
       render.args[0][0].toggle(buttonRef);
       wrapper.update();
@@ -116,11 +106,7 @@ describe('<PopupState />', () => {
       assert.strictEqual(render.args[2][0].isOpen, false);
     });
     it('setOpen works', () => {
-      const wrapper = mount(
-        <PopupState variant="menu" popupId="menu">
-          {render}
-        </PopupState>,
-      );
+      const wrapper = mount(<PopupState popupId="menu">{render}</PopupState>);
 
       render.args[0][0].setOpen(true, buttonRef);
       wrapper.update();
@@ -131,33 +117,29 @@ describe('<PopupState />', () => {
       assert.strictEqual(render.args[2][0].isOpen, false);
     });
   });
-  describe('variant="popper"', () => {
+  describe('bindToggle/bindPopper', () => {
     let buttonRef;
     let button;
     let popper;
 
-    const render = spy(({ bindToggle, bindPopup }) => (
+    const render = spy(popupState => (
       <React.Fragment>
         <Button
           buttonRef={c => {
             buttonRef = c;
           }}
-          {...bindToggle}
+          {...bindToggle(popupState)}
         >
           Open Menu
         </Button>
-        <Popper {...bindPopup}>The popper content</Popper>
+        <Popper {...bindPopper(popupState)}>The popper content</Popper>
       </React.Fragment>
     ));
 
     beforeEach(() => render.resetHistory());
 
     it('passes correct props to bindToggle/bindPopup', () => {
-      const wrapper = mount(
-        <PopupState variant="popper" popupId="popper">
-          {render}
-        </PopupState>,
-      );
+      const wrapper = mount(<PopupState popupId="popper">{render}</PopupState>);
       button = wrapper.find(Button);
       popper = wrapper.find(Popper);
       assert.strictEqual(render.args[0][0].isOpen, false);
