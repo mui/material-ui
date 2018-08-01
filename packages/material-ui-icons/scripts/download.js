@@ -21,11 +21,15 @@ function downloadIcon(icon) {
 
   return Promise.all(
     Object.keys(themeMap).map(async theme => {
-      const endUrl = icon.imageUrls && icon.imageUrls[theme] ? icon.imageUrls[theme] : `${theme}-${icon.id}-24px.svg`;
+      const endUrl = (() => {
+        if (icon.imageUrls && icon.imageUrls[theme]) {
+          return icon.imageUrls[theme];
+        }
+
+        return `${theme}-${icon.id}-24px.svg`;
+      })();
       const size = endUrl.match(/^.*-([0-9]+)px.svg$/)[1];
-      const response = await fetch(
-        `https://material.io/tools/icons/static/icons/${endUrl}`,
-      );
+      const response = await fetch(`https://material.io/tools/icons/static/icons/${endUrl}`);
       if (response.status !== 200) {
         throw new Error(`status ${response.status}`);
       }
