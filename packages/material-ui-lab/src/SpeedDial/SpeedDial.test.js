@@ -129,4 +129,26 @@ describe('<SpeedDial />', () => {
       assert.strictEqual(handleKeyDown.args[0][0], event);
     });
   });
+
+  describe('prop: direction', () => {
+    const testDirection = direction => {
+      const className = `direction${direction}`;
+      const wrapper = shallow(
+        <SpeedDial {...defaultProps} direction={direction.toLowerCase()} icon={icon}>
+          <SpeedDialAction icon={icon} />
+          <SpeedDialAction icon={icon} />
+        </SpeedDial>,
+      );
+      const actionsWrapper = wrapper.childAt(1);
+      assert.strictEqual(wrapper.hasClass(classes[className]), true);
+      assert.strictEqual(actionsWrapper.hasClass(classes[className]), true);
+    };
+
+    it('should place actions in correct position', () => {
+      testDirection('Up');
+      testDirection('Down');
+      testDirection('Left');
+      testDirection('Right');
+    });
+  });
 });
