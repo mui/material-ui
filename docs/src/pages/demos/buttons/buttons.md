@@ -27,11 +27,13 @@ In cards, text buttons help maintain an emphasis on card content.
 {{"demo": "pages/demos/buttons/TextButtons.js"}}
 
 ## Outlined Buttons
+
 [Outlined buttons](https://material.io/design/components/buttons.html#outlined-button)
 are medium-emphasis buttons. They contain actions that are important,
 but aren’t the primary action in an app.
 
 ### Alternatives
+
 Outlined buttons are also a lower emphasis alternative to contained buttons,
 or a higher emphasis alternative to text buttons.
 
@@ -42,6 +44,8 @@ or a higher emphasis alternative to text buttons.
 [Contained buttons](https://material.io/design/components/buttons.html#contained-button)
 are high-emphasis, distinguished by their use of elevation and fill.
 They contain actions that are primary to your app.
+
+The last example of this demo show how to use an upload button.
 
 {{"demo": "pages/demos/buttons/ContainedButtons.js"}}
 

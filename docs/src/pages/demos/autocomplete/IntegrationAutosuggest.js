@@ -6,6 +6,7 @@ import parse from 'autosuggest-highlight/parse';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
+import Popper from '@material-ui/core/Popper';
 import { withStyles } from '@material-ui/core/styles';
 
 const suggestions = [
@@ -45,14 +46,17 @@ const suggestions = [
   { label: 'Brunei Darussalam' },
 ];
 
-function renderInput(inputProps) {
-  const { classes, ref, ...other } = inputProps;
+function renderInputComponent(inputProps) {
+  const { classes, inputRef = () => {}, ref, ...other } = inputProps;
 
   return (
     <TextField
       fullWidth
       InputProps={{
-        inputRef: ref,
+        inputRef: node => {
+          ref(node);
+          inputRef(node);
+        },
         classes: {
           input: classes.input,
         },
@@ -85,20 +89,6 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
   );
 }
 
-function renderSuggestionsContainer(options) {
-  const { containerProps, children } = options;
-
-  return (
-    <Paper {...containerProps} square>
-      {children}
-    </Paper>
-  );
-}
-
-function getSuggestionValue(suggestion) {
-  return suggestion.label;
-}
-
 function getSuggestions(value) {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
@@ -118,11 +108,17 @@ function getSuggestions(value) {
       });
 }
 
+function getSuggestionValue(suggestion) {
+  return suggestion.label;
+}
+
 const styles = theme => ({
-  container: {
-    flexGrow: 1,
-    position: 'relative',
+  root: {
     height: 250,
+    flexGrow: 1,
+  },
+  container: {
+    position: 'relative',
   },
   suggestionsContainerOpen: {
     position: 'absolute',
@@ -142,8 +138,11 @@ const styles = theme => ({
 });
 
 class IntegrationAutosuggest extends React.Component {
+  popperNode = null;
+
   state = {
-    value: '',
+    single: '',
+    popper: '',
     suggestions: [],
   };
 
@@ -159,37 +158,74 @@ class IntegrationAutosuggest extends React.Component {
     });
   };
 
-  handleChange = (event, { newValue }) => {
+  handleChange = name => (event, { newValue }) => {
     this.setState({
-      value: newValue,
+      [name]: newValue,
     });
   };
 
   render() {
     const { classes } = this.props;
 
+    const autosuggestProps = {
+      renderInputComponent,
+      suggestions: this.state.suggestions,
+      onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
+      onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
+      getSuggestionValue,
+      renderSuggestion,
+    };
+
     return (
-      <Autosuggest
-        theme={{
-          container: classes.container,
-          suggestionsContainerOpen: classes.suggestionsContainerOpen,
-          suggestionsList: classes.suggestionsList,
-          suggestion: classes.suggestion,
-        }}
-        renderInputComponent={renderInput}
-        suggestions={this.state.suggestions}
-        onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
-        renderSuggestionsContainer={renderSuggestionsContainer}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={{
-          classes,
-          placeholder: 'Search a country (start with a)',
-          value: this.state.value,
-          onChange: this.handleChange,
-        }}
-      />
+      <div className={classes.root}>
+        <Autosuggest
+          {...autosuggestProps}
+          inputProps={{
+            classes,
+            placeholder: 'Search a country (start with a)',
+            value: this.state.single,
+            onChange: this.handleChange('single'),
+          }}
+          theme={{
+            container: classes.container,
+            suggestionsContainerOpen: classes.suggestionsContainerOpen,
+            suggestionsList: classes.suggestionsList,
+            suggestion: classes.suggestion,
+          }}
+          renderSuggestionsContainer={options => (
+            <Paper {...options.containerProps} square>
+              {options.children}
+            </Paper>
+          )}
+        />
+        <Autosuggest
+          {...autosuggestProps}
+          inputProps={{
+            classes,
+            placeholder: 'Popper',
+            value: this.state.popper,
+            onChange: this.handleChange('popper'),
+            inputRef: node => {
+              this.popperNode = node;
+            },
+          }}
+          theme={{
+            suggestionsList: classes.suggestionsList,
+            suggestion: classes.suggestion,
+          }}
+          renderSuggestionsContainer={options => (
+            <Popper anchorEl={this.popperNode} open={Boolean(options.children)}>
+              <Paper
+                square
+                {...options.containerProps}
+                style={{ width: this.popperNode ? this.popperNode.clientWidth : null }}
+              >
+                {options.children}
+              </Paper>
+            </Popper>
+          )}
+        />
+      </div>
     );
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
+import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -14,6 +15,10 @@ export const styles = theme => ({
   button: {
     margin: 8,
     color: theme.palette.text.secondary,
+    backgroundColor: emphasize(theme.palette.background.default, 0.12),
+    '&:hover': {
+      backgroundColor: emphasize(theme.palette.background.default, 0.15),
+    },
     transition: `${theme.transitions.create('transform', {
       duration: theme.transitions.duration.shorter,
     })}, opacity 0.8s`,

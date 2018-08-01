@@ -56,7 +56,7 @@ class Collapse extends React.Component {
 
   handleEntering = node => {
     const { timeout, theme } = this.props;
-    const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
+    const wrapperHeight = this.wrapperRef ? this.wrapperRef.clientHeight : 0;
 
     const { duration: transitionDuration } = getTransitionProps(this.props, {
       mode: 'enter',
@@ -87,7 +87,7 @@ class Collapse extends React.Component {
   };
 
   handleExit = node => {
-    const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
+    const wrapperHeight = this.wrapperRef ? this.wrapperRef.clientHeight : 0;
     node.style.height = `${wrapperHeight}px`;
 
     if (this.props.onExit) {
@@ -97,7 +97,7 @@ class Collapse extends React.Component {
 
   handleExiting = node => {
     const { timeout, theme } = this.props;
-    const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
+    const wrapperHeight = this.wrapperRef ? this.wrapperRef.clientHeight : 0;
 
     const { duration: transitionDuration } = getTransitionProps(this.props, {
       mode: 'exit',
@@ -172,8 +172,8 @@ class Collapse extends React.Component {
             >
               <div
                 className={classes.wrapper}
-                ref={node => {
-                  this.wrapper = node;
+                ref={ref => {
+                  this.wrapperRef = ref;
                 }}
               >
                 <div className={classes.wrapperInner}>{children}</div>

@@ -48,6 +48,14 @@ const themes = [
     category: 'Admin & Dashboard',
     href: 'https://www.creative-tim.com/product/material-dashboard-pro-react?partner=104080',
   },
+  {
+    name: 'Material Kit Pro',
+    description: 'A Badass Material-UI Kit based on Material Design.',
+    src: '/static/images/themes/creative-tim-kit.jpg',
+    price: '$89',
+    category: 'Components',
+    href: 'https://www.creative-tim.com/product/material-kit-pro-react?partner=104080',
+  },
 ];
 
 function PremiumThemes(props) {

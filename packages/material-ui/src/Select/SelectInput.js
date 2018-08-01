@@ -12,7 +12,7 @@ import { isFilled } from '../Input/Input';
 class SelectInput extends React.Component {
   ignoreNextBlur = false;
 
-  displayNode = null;
+  displayRef = null;
 
   isOpenControlled = this.props.open !== undefined;
 
@@ -25,13 +25,13 @@ class SelectInput extends React.Component {
     if (this.isOpenControlled && this.props.open) {
       // Focus the display node so the focus is restored on this element once
       // the menu is closed.
-      this.displayNode.focus();
-      // Rerender with the resolve `displayNode` reference.
+      this.displayRef.focus();
+      // Rerender with the resolve `displayRef` reference.
       this.forceUpdate();
     }
 
     if (this.props.autoFocus) {
-      this.displayNode.focus();
+      this.displayRef.focus();
     }
   }
 
@@ -47,7 +47,7 @@ class SelectInput extends React.Component {
 
     this.setState({
       // Perfom the layout computation outside of the render method.
-      menuMinWidth: this.props.autoWidth ? null : this.displayNode.clientWidth,
+      menuMinWidth: this.props.autoWidth ? null : this.displayRef.clientWidth,
       open,
     });
   };
@@ -80,11 +80,6 @@ class SelectInput extends React.Component {
 
     if (onChange) {
       let value;
-      let target;
-
-      if (event.target) {
-        target = event.target;
-      }
 
       if (this.props.multiple) {
         value = Array.isArray(this.props.value) ? [...this.props.value] : [];
@@ -99,8 +94,7 @@ class SelectInput extends React.Component {
       }
 
       event.persist();
-      event.target = { ...target, value, name };
-
+      event.target = { value, name };
       onChange(event, child);
     }
   };
@@ -134,11 +128,11 @@ class SelectInput extends React.Component {
     }
   };
 
-  handleDisplayRef = node => {
-    this.displayNode = node;
+  handleDisplayRef = ref => {
+    this.displayRef = ref;
   };
 
-  handleInputRef = node => {
+  handleInputRef = ref => {
     const { inputRef } = this.props;
 
     if (!inputRef) {
@@ -146,7 +140,7 @@ class SelectInput extends React.Component {
     }
 
     const nodeProxy = {
-      node,
+      node: ref,
       // By pass the native input as we expose a rich object (array).
       value: this.props.value,
     };
@@ -186,7 +180,7 @@ class SelectInput extends React.Component {
       value,
       ...other
     } = this.props;
-    const open = this.isOpenControlled && this.displayNode ? openProp : this.state.open;
+    const open = this.isOpenControlled && this.displayRef ? openProp : this.state.open;
 
     delete other['aria-invalid'];
 
@@ -254,8 +248,8 @@ class SelectInput extends React.Component {
     // Avoid performing a layout computation in the render method.
     let menuMinWidth = this.state.menuMinWidth;
 
-    if (!autoWidth && this.isOpenControlled && this.displayNode) {
-      menuMinWidth = this.displayNode.clientWidth;
+    if (!autoWidth && this.isOpenControlled && this.displayRef) {
+      menuMinWidth = this.displayRef.clientWidth;
     }
 
     let tabIndex;
@@ -303,7 +297,7 @@ class SelectInput extends React.Component {
         <IconComponent className={classes.icon} />
         <Menu
           id={`menu-${name || ''}`}
-          anchorEl={this.displayNode}
+          anchorEl={this.displayRef}
           open={open}
           onClose={this.handleClose}
           {...MenuProps}

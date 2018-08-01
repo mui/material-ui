@@ -52,17 +52,17 @@ const pages = [
     pathname: '/style',
     children: [
       {
-        pathname: '/style/css-baseline',
-        title: 'CSS Baseline',
+        pathname: '/style/icons',
       },
       {
         pathname: '/style/color',
       },
       {
-        pathname: '/style/icons',
+        pathname: '/style/typography',
       },
       {
-        pathname: '/style/typography',
+        pathname: '/style/css-baseline',
+        title: 'CSS Baseline',
       },
     ],
   },
@@ -76,10 +76,10 @@ const pages = [
         pathname: '/layout/grid',
       },
       {
-        pathname: '/layout/hidden',
+        pathname: '/layout/breakpoints',
       },
       {
-        pathname: '/layout/breakpoints',
+        pathname: '/layout/hidden',
       },
     ],
   },
@@ -88,6 +88,9 @@ const pages = [
     children: [
       {
         pathname: '/utils/modal',
+      },
+      {
+        pathname: '/utils/transitions',
       },
       {
         pathname: '/utils/popover',
@@ -99,7 +102,8 @@ const pages = [
         pathname: '/utils/portal',
       },
       {
-        pathname: '/utils/transitions',
+        pathname: '/utils/no-ssr',
+        title: 'No SSR',
       },
       {
         pathname: '/utils/click-away-listener',
@@ -118,18 +122,18 @@ const pages = [
     pathname: '/customization',
     children: [
       {
-        pathname: '/customization/overrides',
-      },
-      {
         pathname: '/customization/themes',
       },
       {
-        pathname: '/customization/default-theme',
-        title: 'Default Theme',
+        pathname: '/customization/overrides',
       },
       {
         pathname: '/customization/css-in-js',
         title: 'CSS in JS',
+      },
+      {
+        pathname: '/customization/default-theme',
+        title: 'Default Theme',
       },
     ],
   },
@@ -141,39 +145,39 @@ const pages = [
         title: 'API Design Approach',
       },
       {
-        pathname: '/guides/minimizing-bundle-size',
+        pathname: '/guides/typescript',
+        title: 'TypeScript',
       },
       {
         pathname: '/guides/interoperability',
         title: 'Style Library Interoperability',
       },
       {
-        pathname: '/guides/migration-v0x',
-        title: 'Migration From v0.x',
-      },
-      {
-        pathname: '/guides/server-rendering',
+        pathname: '/guides/minimizing-bundle-size',
       },
       {
         pathname: '/guides/composition',
       },
       {
-        pathname: '/guides/testing',
+        pathname: '/guides/server-rendering',
       },
       {
-        pathname: '/guides/typescript',
-        title: 'TypeScript',
+        pathname: '/guides/migration-v0x',
+        title: 'Migration From v0.x',
+      },
+      {
+        pathname: '/guides/testing',
       },
       {
         pathname: '/guides/flow',
       },
       {
-        pathname: '/guides/csp',
-        title: 'Content Security Policy',
-      },
-      {
         pathname: '/guides/right-to-left',
         title: 'Right-to-left',
+      },
+      {
+        pathname: '/guides/csp',
+        title: 'Content Security Policy',
       },
     ],
   },
@@ -204,29 +208,29 @@ const pages = [
     pathname: '/discover-more',
     children: [
       {
-        pathname: '/discover-more/vision',
+        pathname: '/discover-more/showcase',
+      },
+      {
+        pathname: '/discover-more/related-projects',
+      },
+      {
+        pathname: '/discover-more/roadmap',
       },
       {
         pathname: '/discover-more/backers',
         title: 'Sponsors & Backers',
       },
       {
-        pathname: '/discover-more/community',
-      },
-      {
-        pathname: '/discover-more/related-projects',
-      },
-      {
-        pathname: '/discover-more/showcase',
-      },
-      {
-        pathname: '/discover-more/roadmap',
-      },
-      {
-        pathname: '/discover-more/changelog',
+        pathname: '/discover-more/vision',
       },
       {
         pathname: '/discover-more/team',
+      },
+      {
+        pathname: '/discover-more/community',
+      },
+      {
+        pathname: '/discover-more/changelog',
       },
       {
         pathname: '/discover-more/governance',

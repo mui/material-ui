@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
-const RADIUS = 12;
+const RADIUS = 11;
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -27,7 +27,7 @@ export const styles = theme => ({
     right: -RADIUS,
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeight,
-    fontSize: theme.typography.pxToRem(RADIUS),
+    fontSize: theme.typography.pxToRem(12),
     width: RADIUS * 2,
     height: RADIUS * 2,
     borderRadius: '50%',

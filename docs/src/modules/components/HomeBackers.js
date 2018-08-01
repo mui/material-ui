@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import NoSSR from '@material-ui/docs/NoSSR';
+import NoSsr from '@material-ui/core/NoSsr';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 
 const styles = theme => ({
@@ -21,7 +21,7 @@ function HomeBackers(props) {
 
   return (
     <div className={classes.root}>
-      <NoSSR>
+      <NoSsr>
         <MarkdownElement
           className={classes.markdownElement}
           text={`
@@ -84,7 +84,7 @@ ${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
             .join('')}
 `}
         />
-      </NoSSR>
+      </NoSsr>
     </div>
   );
 }

@@ -16,6 +16,7 @@ const RENAME_FILTER_DEFAULT = './renameFilters/default';
 const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
 
 const svgo = new SVGO({
+  floatPrecision: 4,
   plugins: [
     { cleanupAttrs: true },
     { removeDoctype: true },

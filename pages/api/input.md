@@ -34,6 +34,8 @@ title: Input API
 | <span class="prop-name">name</span> | <span class="prop-type">string |   | Name attribute of the `input` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback fired when the value is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`. |
 | <span class="prop-name">placeholder</span> | <span class="prop-type">string |   | The short hint displayed in the input before the user enters a value. |
+| <span class="prop-name">readOnly</span> | <span class="prop-type">bool |   | It prevents the user from changing the value of the field (not from interacting with the field). |
+| <span class="prop-name">required</span> | <span class="prop-type">bool |   | If `true`, the input will be required. |
 | <span class="prop-name">rows</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |   | Number of rows to display when multiline option is set to true. |
 | <span class="prop-name">rowsMax</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |   | Maximum number of rows to display when multiline option is set to true. |
 | <span class="prop-name">startAdornment</span> | <span class="prop-type">node |   | Start `InputAdornment` for this component. |

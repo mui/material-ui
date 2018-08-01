@@ -1,7 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import scroll from 'scroll';
 import { ShallowWrapper } from 'enzyme';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
@@ -30,7 +29,7 @@ describe('<Tabs />', () => {
   };
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'Tabs' });
+    shallow = createShallow({ untilSelector: 'Tabs', disableLifecycleMethods: true });
     classes = getClasses(<Tabs onChange={noop} value={0} />);
     mount = createMount();
   });
@@ -374,7 +373,7 @@ describe('<Tabs />', () => {
 
     it('should response to scroll events', () => {
       const instance = wrapper.instance();
-      instance.tabs = { scrollLeft: 100, ...fakeTabs };
+      instance.tabsRef = { scrollLeft: 100, ...fakeTabs };
       spy(instance, 'updateScrollButtonState');
       const selector = `.${classes.scroller}.${classes.scrollable}`;
       wrapper.find(selector).simulate('scroll');
@@ -500,28 +499,28 @@ describe('<Tabs />', () => {
       });
 
       it('should set neither left nor right scroll button state', () => {
-        instance.tabs = { scrollLeft: 0, scrollWidth: 90, clientWidth: 100, ...fakeTabs };
+        instance.tabsRef = { scrollLeft: 0, scrollWidth: 90, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
         assert.strictEqual(wrapper.state().showRightScroll, false, 'right scroll should be false');
       });
 
       it('should set only left scroll button state', () => {
-        instance.tabs = { scrollLeft: 1, ...fakeTabs };
+        instance.tabsRef = { scrollLeft: 1, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
         assert.strictEqual(wrapper.state().showRightScroll, false, 'right scroll should be false');
       });
 
       it('should set only right scroll button state', () => {
-        instance.tabs = { scrollLeft: 0, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
+        instance.tabsRef = { scrollLeft: 0, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
         assert.strictEqual(wrapper.state().showRightScroll, true, 'right scroll should be true');
       });
 
       it('should set both left and right scroll button state', () => {
-        instance.tabs = { scrollLeft: 1, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
+        instance.tabsRef = { scrollLeft: 1, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
         assert.strictEqual(wrapper.state().showRightScroll, true, 'right scroll should be true');
@@ -542,7 +541,7 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       instance = wrapper.instance();
-      instance.tabs = dimensions;
+      instance.tabsRef = dimensions;
       scrollSpy = spy(instance, 'moveTabsScroll');
     });
 
@@ -574,7 +573,6 @@ describe('<Tabs />', () => {
     let metaStub;
 
     beforeEach(() => {
-      scrollStub = stub(scroll, 'left');
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable>
           <Tab />
@@ -582,11 +580,12 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       instance = wrapper.instance();
+      scrollStub = stub(instance, 'scroll');
       metaStub = stub(instance, 'getTabsMeta');
     });
 
     afterEach(() => {
-      scroll.left.restore();
+      instance.scroll.restore();
     });
 
     it('should scroll left tab into view', () => {
@@ -596,7 +595,7 @@ describe('<Tabs />', () => {
       });
 
       instance.scrollSelectedIntoView();
-      assert.strictEqual(scrollStub.args[0][1], 0, 'should scroll to 0 position');
+      assert.strictEqual(scrollStub.args[0][0], 0, 'should scroll to 0 position');
     });
 
     it('should scroll right tab into view', () => {
@@ -606,7 +605,7 @@ describe('<Tabs />', () => {
       });
 
       instance.scrollSelectedIntoView();
-      assert.strictEqual(scrollStub.args[0][1], 10, 'should scroll to 10 position');
+      assert.strictEqual(scrollStub.args[0][0], 10, 'should scroll to 10 position');
     });
 
     it('should support value=false', () => {
@@ -627,6 +626,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
+      wrapper.setState({ mounted: true });
       assert.strictEqual(wrapper.find(TabIndicator).props().style.backgroundColor, 'green');
     });
   });

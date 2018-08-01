@@ -27,7 +27,7 @@ export interface TextFieldProps
   margin?: PropTypes.Margin;
   multiline?: boolean;
   name?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
   placeholder?: string;
   required?: boolean;
   rows?: string | number;

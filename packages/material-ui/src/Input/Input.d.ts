@@ -23,6 +23,7 @@ export interface InputProps
   multiline?: boolean;
   name?: string;
   placeholder?: string;
+  required?: boolean;
   rows?: string | number;
   rowsMax?: string | number;
   startAdornment?: React.ReactNode;

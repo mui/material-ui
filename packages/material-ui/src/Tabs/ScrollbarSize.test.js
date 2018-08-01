@@ -53,7 +53,7 @@ describe('<ScrollbarSize />', () => {
       onChange = spy();
       wrapper = shallow(<ScrollbarSize {...defaultProps} onChange={onChange} />);
       const instance = wrapper.instance();
-      instance.node = {
+      instance.nodeRef = {
         offsetHeight: 17,
         clientHeight: 0,
         offsetWidth: 17,

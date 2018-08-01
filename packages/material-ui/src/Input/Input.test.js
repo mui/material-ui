@@ -231,7 +231,7 @@ describe('<Input />', () => {
 
     it('should fire the onFilled callback when dirtied', () => {
       assert.strictEqual(handleFilled.callCount, 1, 'should not have called the onFilled cb yet');
-      wrapper.instance().input.value = 'hello';
+      wrapper.instance().inputRef.value = 'hello';
       wrapper.find('input').simulate('change');
       assert.strictEqual(handleFilled.callCount, 2, 'should have called the onFilled cb');
     });
@@ -239,7 +239,7 @@ describe('<Input />', () => {
     it('should fire the onEmpty callback when cleaned', () => {
       // Because of shallow() this hasn't fired since there is no mounting
       assert.strictEqual(handleEmpty.callCount, 0, 'should not have called the onEmpty cb yet');
-      wrapper.instance().input.value = '';
+      wrapper.instance().inputRef.value = '';
       wrapper.find('input').simulate('change');
       assert.strictEqual(handleEmpty.callCount, 1, 'should have called the onEmpty cb');
     });
@@ -265,7 +265,7 @@ describe('<Input />', () => {
 
     describe('callbacks', () => {
       beforeEach(() => {
-        wrapper.instance().input = { value: '' };
+        wrapper.instance().inputRef = { value: '' };
         setFormControlContext({
           onFilled: spy(),
           onEmpty: spy(),
@@ -280,7 +280,7 @@ describe('<Input />', () => {
           onFilled: handleFilled,
         });
 
-        wrapper.instance().input.value = 'hello';
+        wrapper.instance().inputRef.value = 'hello';
         wrapper.find('input').simulate('change');
         assert.strictEqual(handleFilled.callCount, 1, 'should have called the onFilled props cb');
         assert.strictEqual(
@@ -296,7 +296,7 @@ describe('<Input />', () => {
           onEmpty: handleEmpty,
         });
 
-        wrapper.instance().input.value = '';
+        wrapper.instance().inputRef.value = '';
         wrapper.find('input').simulate('change');
         assert.strictEqual(handleEmpty.callCount, 1, 'should have called the onEmpty props cb');
         assert.strictEqual(
@@ -401,9 +401,9 @@ describe('<Input />', () => {
 
     it('should call checkDirty with input value', () => {
       instance.isControlled = false;
-      instance.input = 'woofinput';
+      instance.inputRef = 'woofinput';
       instance.componentDidMount();
-      assert.strictEqual(instance.checkDirty.calledWith(instance.input), true);
+      assert.strictEqual(instance.checkDirty.calledWith(instance.inputRef), true);
     });
 
     it('should call or not call checkDirty consistently', () => {

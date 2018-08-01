@@ -27,7 +27,6 @@ export const styles = {
     background: 'transparent',
   },
   shadow: {
-    resize: 'none',
     // Overflow also needed to here to remove the extra row
     // added to textareas in Firefox.
     overflow: 'hidden',
@@ -43,11 +42,13 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
-  shadow = null;
+  isControlled = this.props.value != null;
 
-  singlelineShadow = null;
+  shadowRef = null;
 
-  input = null;
+  singlelineShadowRef = null;
+
+  inputRef = null;
 
   value = null;
 
@@ -82,33 +83,33 @@ class Textarea extends React.Component {
     this.handleResize.clear();
   }
 
-  handleRefInput = node => {
-    this.input = node;
+  handleRefInput = ref => {
+    this.inputRef = ref;
 
     const { textareaRef } = this.props;
     if (textareaRef) {
       if (typeof textareaRef === 'function') {
-        textareaRef(node);
+        textareaRef(ref);
       } else {
-        textareaRef.current = node;
+        textareaRef.current = ref;
       }
     }
   };
 
-  handleRefSinglelineShadow = node => {
-    this.singlelineShadow = node;
+  handleRefSinglelineShadow = ref => {
+    this.singlelineShadowRef = ref;
   };
 
-  handleRefShadow = node => {
-    this.shadow = node;
+  handleRefShadow = ref => {
+    this.shadowRef = ref;
   };
 
   handleChange = event => {
     this.value = event.target.value;
 
-    if (typeof this.props.value === 'undefined' && this.shadow) {
+    if (!this.isControlled) {
       // The component is not controlled, we need to update the shallow value.
-      this.shadow.value = this.value;
+      this.shadowRef.value = this.value;
       this.syncHeightWithShadow();
     }
 
@@ -119,17 +120,14 @@ class Textarea extends React.Component {
 
   syncHeightWithShadow() {
     const props = this.props;
-    if (!this.shadow || !this.singlelineShadow) {
-      return;
+
+    if (this.isControlled) {
+      // The component is controlled, we need to update the shallow value.
+      this.shadowRef.value = props.value == null ? '' : String(props.value);
     }
 
-    // The component is controlled, we need to update the shallow value.
-    if (typeof props.value !== 'undefined') {
-      this.shadow.value = props.value == null ? '' : String(props.value);
-    }
-
-    const lineHeight = this.singlelineShadow.scrollHeight;
-    let newHeight = this.shadow.scrollHeight;
+    const lineHeight = this.singlelineShadowRef.scrollHeight;
+    let newHeight = this.shadowRef.scrollHeight;
 
     // Guarding for jsdom, where scrollHeight isn't present.
     // See https://github.com/tmpvar/jsdom/issues/1013
@@ -169,22 +167,22 @@ class Textarea extends React.Component {
       <div className={classes.root} style={{ height: this.state.height }}>
         <EventListener target="window" onResize={this.handleResize} />
         <textarea
-          ref={this.handleRefSinglelineShadow}
-          className={classnames(classes.shadow, classes.textarea)}
-          tabIndex={-1}
-          rows="1"
-          readOnly
           aria-hidden="true"
+          className={classnames(classes.textarea, classes.shadow)}
+          readOnly
+          ref={this.handleRefSinglelineShadow}
+          rows="1"
+          tabIndex={-1}
           value=""
         />
         <textarea
-          ref={this.handleRefShadow}
-          className={classnames(classes.shadow, classes.textarea)}
-          tabIndex={-1}
-          rows={rows}
           aria-hidden="true"
-          readOnly
+          className={classnames(classes.textarea, classes.shadow)}
           defaultValue={defaultValue}
+          readOnly
+          ref={this.handleRefShadow}
+          rows={rows}
+          tabIndex={-1}
           value={value}
         />
         <textarea

@@ -5,6 +5,151 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.4.2
+###### *Jul 29, 2018*
+
+Big thanks to the 22 contributors who made this release possible!
+I hope we will soon beat our previous record: 30 contributors in a single week.
+
+Here are some highlights ✨:
+- Upgrade the react-select demo to v2 (#12307) @oliviertassinari.
+- Document a new "No SSR" component (#12317) @oliviertassinari.
+- Add a label placement property for FormControlLabel (#12303) @mbrookes.
+- And many more bug fixes 🐛 and documentation improvements 📝.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Tabs] Reduce the bundle size (#12256) @oliviertassinari
+- [Menu] Add null as acceptable value of anchorEl (#12249) @LAITONEN
+- [Popper] Increase the minimal required version of popper.js (#12258) @Tuaniwan
+- [TablePagination] Add missing selectIcon ClassKey definition (#12267) @spallister
+- [Tooltip] Add some docs for disabled elements (#12265) @kamranayub
+- [Tabs] Prevent unwanted auto-move in scrolling tabs (#12276) @novascreen
+- [Button] Fix icon positioning on Safari iOS (#12278) @KevinAsher
+- [Modal] Add onRendered to ModalProps (#12284) @rynobax
+- [Card] Align icons with ListItem (#12292) @mbrookes
+- [TextField] Improve onChange type definition (#12294) @t49tran
+- [DialogContentText] Inherit TypographyProps in type definition (#12301) @charlieduong94
+- [FormControlLabel] Add labelPlacement prop (#12303) @mbrookes
+- [FormControlLabel] Correct the style description (#12304) @mbrookes
+- [Typography] Add color=textPrimary option (#12310) @oliviertassinari
+- [Tooltip] Remove an undocumented API (#12312) @oliviertassinari
+- [RootRef] Apply the same logic as React Ref (#12311) @oliviertassinari
+- [Grid] Document the nested capability (#12313) @oliviertassinari
+- [SwipeableDrawer] Fix SSR issue on iOS (#12314) @oliviertassinari
+- [Snackbar] Fix anchorOrigin types (#12316) @nmchaves
+- [LinearProgress] Fix wrong style rule usage (#12319) @agentmilindu
+- [Popper] Fix modifiers appearing as attribute of div (#12329) @skeithtan
+
+#### Docs
+
+- [docs] Fix typo (#12248) @johnjacobkenny
+- [docs] Add typekev.com to showcase page (#12243) @typekev
+- [docs] Fix escape "|" char (#12254) @TheRusskiy
+- [docs] Fix logo in the README (#12273) @antoinerousseau
+- [docs] Add an example with Popper and react-autosuggest (#12280) @oliviertassinari
+- [docs] Add Complementary Project - create-mui-theme (#12269) @UsulPro
+- [docs] Add a note on the name option and dangerouslyUseGlobalCSS (#12281) @oliviertassinari
+- [docs] Improve ListItem and BottomNavigationAction docs (#12295) @vkentta
+- [docs] Add placeholder for search bar (#12296) @DheenodaraRao
+- [docs] Upgrade react-select (#12307) @oliviertassinari
+- [docs] Use data to improve the ranking (#12315) @oliviertassinari
+- [docs] Document NoSsr (#12317) @oliviertassinari
+- [docs] Improve the docs to have matches (#12322) @oliviertassinari
+
+#### Core
+
+- [core] Upgrade dev dependencies (#12323) @oliviertassinari
+
+#### Lab
+
+- [Slider] Increase color specification conformance (#12245) @eps1lon
+- [SpeedDial] Prevent opening when hovering closed actions (#12241) @mbrookes
+- [Slider] Remove visual zero state from thumb (#12242) @eps1lon
+
+## 1.4.1
+###### *Jul 22, 2018*
+
+Big thanks to the 15 contributors who made this release possible!
+
+Here are some highlights ✨:
+- The CSS API is now fully documented (#12174) @mbrookes.
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">label</span> | Styles applied to the span element that wraps the children.
+| … | …
+
+- After many iterations, we are happy to announce `@material-ui/icons` v2.0.0 💃.
+With this version, you can take advantage of all the icons recently released by Google:
+https://material.io/tools/icons/. There are more than 5,000 icons.
+(#12016, #12036, #12170, #12111, #12225)
+
+- The 1.4.0 release of Material-UI has introduced a new implementation of the Tooltip and Popper component.
+This release fixes a lot of issues following the rewrite (#12168, #12161, #12194, #12223, #12218).
+Thank you for reporting all these problems 🐛. Hopefully, it's very stable now.
+
+- Creative Tim has just completed [their second Material-UI theme](https://www.creative-tim.com/product/material-kit-pro-react?partner=104080) 💅.
+It's an important milestone for the themability of Material-UI.
+We are going to keep working on adding more themes to the list.
+
+### Breaking change
+
+@material-ui/icons@2.0.0 allows React users to take advantage of the icons revamp the Material Design Team has been recently released. Some icons have been removed, ~150 new icons have been added, and some icons have been renamed. There are also currently some issues with the size of certain icons. Please refer to #12016 for further details.
+
+#### Component Fixes / Enhancements
+
+- [Tab] Fix maxWidth issue with fullWidth mode (#12158) @chenop
+- [Popper] Update TypeScript definitions (#12161) @Slessi
+- [CardHeader] Add typography/props controls like in ListItemText (#12166) @chenop
+- [Tooltip] Fix some new issues (#12168) @oliviertassinari
+- [icons] New iteration (#12170) @oliviertassinari
+- [icons] Remove fill attribute from some icons (#12111) @ChristiaanScheermeijer
+- [Popper] Fix the transition in the demos (#12194) @oliviertassinari
+- [Modal] Ignore if the event prevent default is called (#12202) @oliviertassinari
+- [Grid] Add "space-evenly" value for justify prop (#12213) @iain-b
+- [Grow] Fix scroll on entered (#12199) @stephenway
+- [Popper] Fix update logic (#12218) @oliviertassinari
+- [Badge] Increase readability (#12221) @oliviertassinari
+- [styles] Increase the class name lenght limit before raising (#12222) @oliviertassinari
+- [icons] Fix SVG path precision issue (#12225) @ChristiaanScheermeijer
+- [Popper] Typing and documentation (#12223) @dispix
+- [Select] Simpler onChange event.target logic (#12231) @oliviertassinari
+- [input] Forward required, readOnly and autoFocus (#12234) @sakulstra
+- [HOC] Add `innerRef` to withWidth and withTheme (#12236) @itelo
+- [Textarea] Simplification of the code (#12238) @oliviertassinari
+- [Tabs] Small changes investigating #11624 (#12239) @oliviertassinari
+
+#### Docs
+
+- [docs] Add Toggle Selection Control to 'Migration From v0.x' Document (#12149) @shabareesh
+- [docs] Add Menu Item to 'Migration From v0.x' Document (#12150) @shabareesh
+- [docs] New ISSUE_TEMPLATE (#12148) @oliviertassinari
+- [docs] Add Font Icon to 'Migration From v0.x' Document (#12151) @shabareesh
+- [docs] copyedit: typo in testing.md (#12155) @cldellow
+- [docs] Document the CSS API (#12174) @mbrookes
+- [docs] An iteration on the SSR Troubleshooting section (#12229) @oliviertassinari
+
+#### Core
+
+- [core] Upgrade dev dependencies (#12156) @oliviertassinari
+- [core] Add missing unwrap export to test-utils type definition (#12184) @kallebornemark
+- [test] Conditional tests (#12191) @oliviertassinari
+- [core] Fix babel plugin name (#12209) @oliviertassinari
+- [core] Upgrade the dev dependencies (#12220) @oliviertassinari
+- [core] Rename node to ref (#12235) @oliviertassinari
+
+#### Lab
+
+- [Slider] Fix typescript typings (#12173) @eps1lon
+- [SpeedDial] Fix SpeedDialAction dark theme (#12230) @mbrookes
+- [lab] Build and export fixes (#12233) @goto-bus-stop
+
 ## 1.4.0
 ###### *Jul 14, 2018*
 
@@ -212,7 +357,7 @@ Big thanks to the 16 contributors who made this release possible.
 Here are some highlights ✨:
 - 📝 Document the dynamic override alternatives (#11782) @adeelibr
 - 📝 Document the ClickAwayListener component (#11801).
-- And many more bug fixes 🐛 and documentation improvements.
+- And many more bug fixes 🐛 and documentation improvements 📝.
 
 ### Breaking change
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -42,6 +43,18 @@ class InteractiveGrid extends React.Component {
   render() {
     const { classes } = this.props;
     const { alignItems, direction, justify } = this.state;
+
+    const code = `
+\`\`\`jsx
+<Grid
+  container
+  direction="${direction}"
+  justify="${justify}"
+  alignItems="${alignItems}"
+>
+\`\`\`
+`;
+
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
@@ -67,11 +80,12 @@ class InteractiveGrid extends React.Component {
         </Grid>
         <Grid item xs={12}>
           <Paper className={classes.control}>
-            <Grid container>
-              <Grid item xs={6} sm={4}>
+            <Grid container spacing={24}>
+              <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>direction</FormLabel>
                   <RadioGroup
+                    row
                     name="direction"
                     aria-label="Direction"
                     value={direction}
@@ -88,10 +102,11 @@ class InteractiveGrid extends React.Component {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              <Grid item xs={6} sm={4}>
+              <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>justify</FormLabel>
                   <RadioGroup
+                    row
                     name="justify"
                     aria-label="Justify"
                     value={justify}
@@ -110,13 +125,19 @@ class InteractiveGrid extends React.Component {
                       control={<Radio />}
                       label="space-around"
                     />
+                    <FormControlLabel
+                      value="space-evenly"
+                      control={<Radio />}
+                      label="space-evenly"
+                    />
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              <Grid item xs={6} sm={4}>
+              <Grid item xs={12}>
                 <FormControl component="fieldset">
                   <FormLabel>alignItems</FormLabel>
                   <RadioGroup
+                    row
                     name="alignItems"
                     aria-label="Align items"
                     value={alignItems}
@@ -132,6 +153,9 @@ class InteractiveGrid extends React.Component {
               </Grid>
             </Grid>
           </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <MarkdownElement text={code} />
         </Grid>
       </Grid>
     );

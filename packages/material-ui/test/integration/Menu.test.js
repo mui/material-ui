@@ -123,7 +123,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(menuEl, null, 'should not render the menu to the DOM');
     });
 
-    it('should focus the selected item', () => {
+    it('should focus the 3rd selected item', () => {
       wrapper.setState({ open: true });
       const portalLayer = wrapper
         .find('Portal')
@@ -147,7 +147,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(wrapper.state().open, false, 'should have closed');
     });
 
-    it('should focus the selected item', () => {
+    it('should focus the 2nd selected item', () => {
       wrapper.setState({ open: true });
       const portalLayer = wrapper
         .find('Portal')

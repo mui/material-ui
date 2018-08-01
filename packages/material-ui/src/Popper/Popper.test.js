@@ -106,6 +106,22 @@ describe('<Popper />', () => {
       wrapper.setProps({ open: false });
       assert.strictEqual(wrapper.find('span').length, 0);
     });
+
+    it('should position the popper when opening', () => {
+      const wrapper = mount(<PopperNaked {...defaultProps} open={false} anchorEl={anchorEl} />);
+      const instance = wrapper.instance();
+      assert.strictEqual(instance.popper, null);
+      wrapper.setProps({ open: true });
+      assert.strictEqual(instance.popper !== null, true);
+    });
+
+    it('should not position the popper when closing', () => {
+      const wrapper = mount(<PopperNaked {...defaultProps} open anchorEl={anchorEl} />);
+      const instance = wrapper.instance();
+      assert.strictEqual(instance.popper !== null, true);
+      wrapper.setProps({ open: false });
+      assert.strictEqual(instance.popper, null);
+    });
   });
 
   describe('prop: transition', () => {
@@ -124,6 +140,12 @@ describe('<Popper />', () => {
       assert.strictEqual(wrapper.find('span').text(), 'Hello World');
       assert.strictEqual(instance.popper !== null, true);
       wrapper.setProps({ anchorEl: null });
+      assert.strictEqual(instance.popper !== null, true);
+      wrapper.setProps({ open: false });
+      wrapper
+        .find(Grow)
+        .props()
+        .onExited();
       assert.strictEqual(instance.popper, null);
     });
   });

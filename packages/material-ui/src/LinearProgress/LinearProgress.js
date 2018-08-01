@@ -192,7 +192,7 @@ function LinearProgress(props) {
     [classes.barColorSecondary]: color === 'secondary' && variant !== 'buffer',
     [classes.colorSecondary]: color === 'secondary' && variant === 'buffer',
     [classes.bar2Indeterminate]: variant === 'indeterminate' || variant === 'query',
-    [classes.bar1Determinate]: variant === 'determinate',
+    [classes.bar2Determinate]: variant === 'determinate',
     [classes.bar2Buffer]: variant === 'buffer',
   });
   const rootProps = {};

@@ -19,6 +19,8 @@ import {
   Collapse,
   Dialog,
   DialogTitle,
+  DialogContent,
+  DialogContentText,
   Divider,
   Drawer,
   ExpansionPanel,
@@ -280,6 +282,11 @@ const DialogTest = () => {
           </ListItem>
         </List>
       </div>
+      <DialogContent>
+        <DialogContentText variant="body2" color="primary">
+          Some text
+        </DialogContentText>
+      </DialogContent>
     </Dialog>
   );
 };

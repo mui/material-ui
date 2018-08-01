@@ -210,6 +210,14 @@ const appList = [
     link: 'https://tentu.eus/',
     image: '/static/images/showcase/tentu.jpg',
   },
+  {
+    title: 'Typekev',
+    description:
+      'The personal website of a React and Blockchain developer. The code is open-source.',
+    image: '/static/images/showcase/typekev.jpg',
+    link: 'https://typekev.com/',
+    source: 'https://github.com/typekev/typekev-site',
+  },
 ];
 
 function Showcase(props) {

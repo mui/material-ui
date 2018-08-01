@@ -10,7 +10,7 @@ import FileDownloadIcon from '@material-ui/docs/svgIcons/FileDownload';
 import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/no-unresolved
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
-import NoSSR from '@material-ui/docs/NoSSR';
+import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
@@ -181,9 +181,9 @@ function HomeSteps(props) {
               our official marketplace—all built on Material-UI.`}
           </Typography>
           <Link prefetch href="/premium-themes" className={classes.link}>
-            <NoSSR>
+            <NoSsr>
               <img className={classes.img} alt="themes" src="/static/images/themes.jpg" />
-            </NoSSR>
+            </NoSsr>
           </Link>
         </div>
         <Divider className={classes.divider} />

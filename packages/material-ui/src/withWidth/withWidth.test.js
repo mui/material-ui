@@ -1,12 +1,19 @@
 import React from 'react';
 import { assert } from 'chai';
-import { useFakeTimers } from 'sinon';
+import { useFakeTimers, spy } from 'sinon';
 import { createMount, createShallow } from '../test-utils';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import createBreakpoints from '../styles/createBreakpoints';
 import createMuiTheme from '../styles/createMuiTheme';
 
 const Empty = () => <div />;
+// eslint-disable-next-line react/prefer-stateless-function
+class EmptyClass extends React.Component<{}> {
+  render() {
+    return <div />;
+  }
+}
+const EmptyClassWithWidth = withWidth()(EmptyClass);
 const EmptyWithWidth = withWidth()(Empty);
 
 const breakpoints = createBreakpoints({});
@@ -28,7 +35,7 @@ describe('withWidth', () => {
   describe('server side rendering', () => {
     it('should not render the children as the width is unknown', () => {
       const wrapper = shallow(<EmptyWithWidth />);
-      assert.strictEqual(wrapper.type(), null, 'should render nothing');
+      assert.strictEqual(wrapper.type(), null);
     });
   });
 
@@ -36,6 +43,15 @@ describe('withWidth', () => {
     it('should be able to override it', () => {
       const wrapper = mount(<EmptyWithWidth width="xl" />);
       assert.strictEqual(wrapper.find(Empty).props().width, 'xl');
+    });
+  });
+
+  describe('prop: innerRef', () => {
+    it('should provide a ref on the inner component', () => {
+      const handleRef = spy();
+
+      mount(<EmptyClassWithWidth innerRef={handleRef} />);
+      assert.strictEqual(handleRef.callCount, 1);
     });
   });
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import createMuiTheme from './createMuiTheme';
@@ -44,9 +45,17 @@ const withTheme = () => Component => {
     }
 
     render() {
-      return <Component theme={this.state.theme} {...this.props} />;
+      const { innerRef, ...other } = this.props;
+      return <Component theme={this.state.theme} ref={innerRef} {...other} />;
     }
   }
+
+  WithTheme.propTypes = {
+    /**
+     * Use that property to pass a ref callback to the decorated component.
+     */
+    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  };
 
   WithTheme.contextTypes = themeListener.contextTypes;
 

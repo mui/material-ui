@@ -25,6 +25,8 @@ export const styles = {
     flex: 1,
     position: 'relative',
   },
+  /* Styles applied to the root element if `completed={true}`. */
+  completed: {},
 };
 
 function Step(props) {
@@ -48,6 +50,7 @@ function Step(props) {
     classes[orientation],
     {
       [classes.alternativeLabel]: alternativeLabel,
+      [classes.completed]: completed,
     },
     classNameProp,
   );

@@ -24,6 +24,7 @@ export const styles = theme => ({
     padding: '4px 8px',
     fontSize: theme.typography.pxToRem(10),
     lineHeight: `${theme.typography.round(14 / 10)}em`,
+    maxWidth: 300,
   },
   /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   touch: {
@@ -131,6 +132,10 @@ class Tooltip extends React.Component {
     clearTimeout(this.closeTimer);
   }
 
+  onRootRef = ref => {
+    this.childrenRef = ref;
+  };
+
   handleEnter = event => {
     const { children, enterDelay } = this.props;
     const childrenProps = children.props;
@@ -178,7 +183,7 @@ class Tooltip extends React.Component {
     }
 
     if (this.props.onOpen) {
-      this.props.onOpen(event, true);
+      this.props.onOpen(event);
     }
   };
 
@@ -224,7 +229,7 @@ class Tooltip extends React.Component {
     }
 
     if (this.props.onClose) {
-      this.props.onClose(event, false);
+      this.props.onClose(event);
     }
 
     clearTimeout(this.closeTimer);
@@ -319,13 +324,7 @@ class Tooltip extends React.Component {
 
     return (
       <React.Fragment>
-        <RootRef
-          rootRef={node => {
-            this.childrenRef = node;
-          }}
-        >
-          {React.cloneElement(children, childrenProps)}
-        </RootRef>
+        <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
         <Popper
           className={classes.popper}
           placement={placement}

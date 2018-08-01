@@ -54,6 +54,13 @@ You can now access the documentation site [locally](http://localhost:3000).
 
 Test coverage is limited at present, but where possible, please add tests for any changes you make. Tests can be run with `yarn test`.
 
+### Updating the component API documentation
+
+To update the component API documentation (auto generated from component PropTypes comments), run:
+```sh
+yarn docs:api
+```
+
 ### Coding style
 
 Please follow the coding style of the current code base. Material-UI uses eslint, so if possible, enable linting in your editor to get real-time feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with `yarn lint`.

@@ -2,7 +2,7 @@
   "name": "@material-ui/docs",
   "private": false,
   "author": "Material-UI Team",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "Material-UI Docs - Documentation building blocks.",
   "main": "./src/index.js",
   "keywords": [
