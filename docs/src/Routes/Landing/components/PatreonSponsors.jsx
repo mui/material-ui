@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import { withStyles, Avatar, List, ListItem, ListItemText } from '@material-ui/core';
 import patrons from '../../../../patrons.json';
@@ -21,17 +20,16 @@ class PatreonSponsors extends Component {
       <List className={classes.patronList}>
         {
           patrons.map(patron => (
-            <Link
+            <a
               key={patron.full_name}
-              to={patron.url}
-              target="_blank"
+              href={patron.url}
               rel="noopenner noreferrer"
             >
               <ListItem button>
                 <Avatar alt={patron.full_name} src={patron.image_url} />
                 <ListItemText primary={patron.full_name} secondary={patron.email} />
               </ListItem>
-            </Link>
+            </a>
           ))
         }
       </List>
