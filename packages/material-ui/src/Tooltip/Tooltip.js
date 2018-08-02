@@ -172,10 +172,6 @@ class Tooltip extends React.Component {
       return;
     }
 
-    if (!this.childrenRef) {
-      return;
-    }
-
     // Remove the title ahead of time.
     // We don't want to wait for the next render commit.
     // We would risk displaying two tooltips at the same time (native + this one).
