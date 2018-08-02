@@ -7,7 +7,14 @@ import Popper from '../Popper';
 import Popover from '../Popover';
 import Menu from '../Menu';
 import MenuItem from '../MenuItem';
-import PopupState, { bindMenu, bindPopover, bindPopper, bindTrigger, bindToggle, bindHover } from './PopupState';
+import PopupState, {
+  bindMenu,
+  bindPopover,
+  bindPopper,
+  bindTrigger,
+  bindToggle,
+  bindHover,
+} from './PopupState';
 
 /* eslint-disable react/jsx-handler-names */
 
