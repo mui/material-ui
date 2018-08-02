@@ -6,6 +6,7 @@
         "comment-format": [true, "check-space"],
         "expect": true,
         "file-name-casing": true,
+        "interface-name": [true, "never-prefix"],
         "member-access": [true, "no-public"],
         "no-unnecessary-callback-wrapper": true,
         "no-unnecessary-type-assertion": true,
