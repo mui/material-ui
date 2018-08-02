@@ -67,21 +67,23 @@ export const styles = theme => ({
 });
 
 class Tooltip extends React.Component {
+  childrenRef = null;
+
+  closeTimer = null;
+
+  defaultId = null;
+
   enterTimer = null;
+
+  focusTimer = null;
+
+  ignoreNonTouchEvents = false;
+
+  isControlled = null;
 
   leaveTimer = null;
 
   touchTimer = null;
-
-  closeTimer = null;
-
-  childrenRef = null;
-
-  isControlled = null;
-
-  ignoreNonTouchEvents = false;
-
-  defaultId = null;
 
   internalState = {
     hover: false,
@@ -126,14 +128,24 @@ class Tooltip extends React.Component {
   }
 
   componentWillUnmount() {
+    clearTimeout(this.closeTimer);
     clearTimeout(this.enterTimer);
+    clearTimeout(this.focusTimer);
     clearTimeout(this.leaveTimer);
     clearTimeout(this.touchTimer);
-    clearTimeout(this.closeTimer);
   }
 
   onRootRef = ref => {
     this.childrenRef = ref;
+  };
+
+  handleFocus = event => {
+    event.persist();
+    // The autoFocus of React might trigger the event before the componentDidMount.
+    // We need to account for this eventuality.
+    this.focusTimer = setTimeout(() => {
+      this.handleEnter(event);
+    });
   };
 
   handleEnter = event => {
@@ -310,7 +322,7 @@ class Tooltip extends React.Component {
     }
 
     if (!disableFocusListener) {
-      childrenProps.onFocus = this.handleEnter;
+      childrenProps.onFocus = this.handleFocus;
       childrenProps.onBlur = this.handleLeave;
     }
 
