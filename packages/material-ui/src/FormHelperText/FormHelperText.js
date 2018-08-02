@@ -29,6 +29,12 @@ export const styles = theme => ({
   marginDense: {
     marginTop: 4,
   },
+   /* Styles applied to the root element if `focused={true}`. */
+  focused: {},
+  /* Styles applied to the root element if `filled={true}`. */
+  filled: {},
+  /* Styles applied to the root element if `required={true}`. */
+  required: {},
 });
 
 function FormHelperText(props, context) {
@@ -39,6 +45,9 @@ function FormHelperText(props, context) {
     error: errorProp,
     margin: marginProp,
     component: Component,
+    focused: focusedProp,
+    required: requiredProp,
+    filled: filledProp,
     ...other
   } = props;
   const { muiFormControl } = context;
@@ -46,18 +55,28 @@ function FormHelperText(props, context) {
   let disabled = disabledProp;
   let error = errorProp;
   let margin = marginProp;
+  let required = requiredProp;
+  let focused = focusedProp;
+  let filled = filledProp;
 
   if (muiFormControl) {
     if (typeof disabled === 'undefined') {
       disabled = muiFormControl.disabled;
     }
-
     if (typeof error === 'undefined') {
       error = muiFormControl.error;
     }
-
     if (typeof margin === 'undefined') {
       margin = muiFormControl.margin;
+    }
+    if (typeof required === 'undefined') {
+      required = muiFormControl.required;
+    }
+    if (typeof focused === 'undefined') {
+      focused = muiFormControl.focused;
+    }
+    if (typeof filled === 'undefined') {
+      filled = muiFormControl.filled;
     }
   }
 
@@ -67,6 +86,9 @@ function FormHelperText(props, context) {
       [classes.disabled]: disabled,
       [classes.error]: error,
       [classes.marginDense]: margin === 'dense',
+      [classes.focused]: focused,
+      [classes.filled]: filled,
+      [classes.required]: required,
     },
     classNameProp,
   );

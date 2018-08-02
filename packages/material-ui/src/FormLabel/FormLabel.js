@@ -27,6 +27,10 @@ export const styles = theme => ({
   disabled: {},
   /* Styles applied to the root element if `error={true}`. */
   error: {},
+  /* Styles applied to the root element if `filled={true}`. */
+  filled: {},
+  /* Styles applied to the root element if `required={true}`. */
+  required: {},
   asterisk: {
     '&$error': {
       color: theme.palette.error.main,
@@ -44,6 +48,7 @@ function FormLabel(props, context) {
     error: errorProp,
     focused: focusedProp,
     required: requiredProp,
+    filled: filledProp,
     ...other
   } = props;
 
@@ -53,6 +58,7 @@ function FormLabel(props, context) {
   let focused = focusedProp;
   let disabled = disabledProp;
   let error = errorProp;
+  let filled = filledProp;
 
   if (muiFormControl) {
     if (typeof required === 'undefined') {
@@ -67,6 +73,9 @@ function FormLabel(props, context) {
     if (typeof error === 'undefined') {
       error = muiFormControl.error;
     }
+    if (typeof filled === 'undefined') {
+      filled = muiFormControl.filled;
+    }
   }
 
   const className = classNames(
@@ -75,6 +84,8 @@ function FormLabel(props, context) {
       [classes.focused]: focused,
       [classes.disabled]: disabled,
       [classes.error]: error,
+      [classes.filled]: filled,
+      [classes.required]: required,
     },
     classNameProp,
   );
