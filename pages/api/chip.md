@@ -39,19 +39,19 @@ This property accepts the following keys:
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 | <span class="prop-name">clickable</span> | Styles applied to the root element if `onClick` is defined or `clickable={true}`.
-| <span class="prop-name">clickablePrimary</span> | 
-| <span class="prop-name">clickableSecondary</span> | 
+| <span class="prop-name">clickableColorPrimary</span> | 
+| <span class="prop-name">clickableColorSecondary</span> | 
 | <span class="prop-name">deletable</span> | Styles applied to the root element if `onDelete` is defined.
-| <span class="prop-name">deletablePrimary</span> | Styles applied to the root element if `onDelete` and `color="primary"` is defined.
-| <span class="prop-name">deletableSecondary</span> | Styles applied to the root element if `onDelete` and `color="secondary"` is defined.
+| <span class="prop-name">deletableColorPrimary</span> | Styles applied to the root element if `onDelete` and `color="primary"` is defined.
+| <span class="prop-name">deletableColorSecondary</span> | Styles applied to the root element if `onDelete` and `color="secondary"` is defined.
 | <span class="prop-name">avatar</span> | Styles applied to the `avatar` element.
-| <span class="prop-name">avatarPrimary</span> | Styles applied to the `avatar` element if `checked={true}` and `color="primary"`
-| <span class="prop-name">avatarSecondary</span> | Styles applied to the `avatar` element if `checked={true}` and `color="secondary"`
+| <span class="prop-name">avatarColorPrimary</span> | Styles applied to the `avatar` element if `checked={true}` and `color="primary"`
+| <span class="prop-name">avatarColorSecondary</span> | Styles applied to the `avatar` element if `checked={true}` and `color="secondary"`
 | <span class="prop-name">avatarChildren</span> | Styles applied to the `avatar` elements children.
 | <span class="prop-name">label</span> | Styles applied to the label `span` element`.
 | <span class="prop-name">deleteIcon</span> | Styles applied to the `deleteIcon` element.
-| <span class="prop-name">deleteIconPrimary</span> | Styles applied to the deleteIcon element if `color="primary"`.
-| <span class="prop-name">deleteIconSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"`.
+| <span class="prop-name">deleteIconColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"`.
+| <span class="prop-name">deleteIconColorSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Chip/Chip.js)

@@ -47,7 +47,7 @@ class ChipsPlayground extends React.Component {
     const { classes } = this.props;
     const { color, onDelete, avatar } = this.state;
 
-    const colorToCode = color !== 'default' ? `color=${color}` : '';
+    const colorToCode = color !== 'default' ? `color=${color} ` : '';
 
     let onDeleteToCode;
     switch (onDelete) {
@@ -55,10 +55,10 @@ class ChipsPlayground extends React.Component {
         onDeleteToCode = '';
         break;
       case 'custom':
-        onDeleteToCode = 'deleteIcon={<DoneIcon />} onDelete={handleDelete}';
+        onDeleteToCode = 'deleteIcon={<DoneIcon />} onDelete={handleDelete} ';
         break;
       default:
-        onDeleteToCode = 'onDelete={handleDelete}';
+        onDeleteToCode = 'onDelete={handleDelete} ';
         break;
     }
 
@@ -69,15 +69,15 @@ class ChipsPlayground extends React.Component {
         avatarToCode = '';
         break;
       case 'img':
-        avatarToCode = 'avatar={<Avatar src="/static/images/uxceo-128.jpg" />}';
+        avatarToCode = 'avatar={<Avatar src="/static/images/uxceo-128.jpg" />} ';
         avatarToPlayground = <Avatar src="/static/images/uxceo-128.jpg" />;
         break;
       case 'letter':
-        avatarToCode = 'avatar={<Avatar>FH</Avatar>}';
+        avatarToCode = 'avatar={<Avatar>FH</Avatar>} ';
         avatarToPlayground = <Avatar>FH</Avatar>;
         break;
       default:
-        avatarToCode = 'avatar={<Avatar><FaceIcon /></Avatar>}';
+        avatarToCode = 'avatar={<Avatar><FaceIcon /></Avatar>} ';
         avatarToPlayground = (
           <Avatar>
             <FaceIcon />
@@ -88,7 +88,7 @@ class ChipsPlayground extends React.Component {
 
     const code = `
 \`\`\`jsx
-<Chip ${colorToCode} ${onDeleteToCode} ${avatarToCode} />
+<Chip ${colorToCode}${onDeleteToCode}${avatarToCode}/>
 \`\`\`
 `;
 
