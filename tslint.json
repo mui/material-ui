@@ -9,6 +9,7 @@
         "member-access": [true, "no-public"],
         "no-unnecessary-callback-wrapper": true,
         "no-unnecessary-type-assertion": true,
+        "semicolon": [true, "always", "ignore-bound-class-methods"],
         "space-within-parens": true
     },
     "rulesDirectory": [
