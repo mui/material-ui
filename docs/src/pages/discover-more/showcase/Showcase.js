@@ -226,7 +226,6 @@ const appList = [
     link: 'https://material-ui-admin.herokuapp.com/',
     source: 'https://github.com/goemen/react-material-ui-typescript',
   },
-  
 ];
 
 function Showcase(props) {
