@@ -29,7 +29,7 @@ export const styles = theme => ({
   marginDense: {
     marginTop: 4,
   },
-   /* Styles applied to the root element if `focused={true}`. */
+  /* Styles applied to the root element if `focused={true}`. */
   focused: {},
   /* Styles applied to the root element if `filled={true}`. */
   filled: {},
@@ -123,6 +123,22 @@ FormHelperText.propTypes = {
    * If `true`, helper text should be displayed in an error state.
    */
   error: PropTypes.bool,
+  /**
+   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+   * FormControl.
+   */
+  /**
+   * If `true`, the helper text should use focused classes key.
+   */
+  focused: PropTypes.bool,
+  /**
+   * If `true`, the helper text should use required classes key.
+   */
+  required: PropTypes.bool,
+  /**
+   * If `true`, the helper text should use filled classes key.
+   */
+  filled: PropTypes.bool,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
