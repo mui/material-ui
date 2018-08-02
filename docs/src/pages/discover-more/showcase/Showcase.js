@@ -218,6 +218,15 @@ const appList = [
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
   },
+  {
+    title: 'Tomahawk',
+    description:
+      'This is a boilerplate for React using Typescript, Material UI and Redux, React Router.',
+    image: '/static/images/showcase/tomahawk.png',
+    link: 'https://material-ui-admin.herokuapp.com/',
+    source: 'https://github.com/goemen/react-material-ui-typescript',
+  },
+  
 ];
 
 function Showcase(props) {
