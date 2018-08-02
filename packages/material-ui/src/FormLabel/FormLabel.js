@@ -135,6 +135,10 @@ FormLabel.propTypes = {
    */
   error: PropTypes.bool,
   /**
+   * If `true`, the label should use filled classes key.
+   */
+  filled: PropTypes.bool,
+  /**
    * If `true`, the input of this label is focused (used by `FormGroup` components).
    */
   focused: PropTypes.bool,
@@ -142,10 +146,6 @@ FormLabel.propTypes = {
    * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
-  /**
-   * If `true`, the label should use filled classes key.
-   */
-  filled: PropTypes.bool,
 };
 
 FormLabel.defaultProps = {

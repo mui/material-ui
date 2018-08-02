@@ -124,26 +124,22 @@ FormHelperText.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
-   * FormControl.
+   * If `true`, the helper text should use filled classes key.
    */
+  filled: PropTypes.bool,
   /**
    * If `true`, the helper text should use focused classes key.
    */
   focused: PropTypes.bool,
   /**
-   * If `true`, the helper text should use required classes key.
-   */
-  required: PropTypes.bool,
-  /**
-   * If `true`, the helper text should use filled classes key.
-   */
-  filled: PropTypes.bool,
-  /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
    */
   margin: PropTypes.oneOf(['dense']),
+  /**
+   * If `true`, the helper text should use required classes key.
+   */
+  required: PropTypes.bool,
 };
 
 FormHelperText.defaultProps = {
