@@ -37,8 +37,8 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">clickable</span> | Styles applied to the root element if `onClick` is defined or `clickable={true}`.
 | <span class="prop-name">deletable</span> | Styles applied to the root element if `onDelete` is defined.
-| <span class="prop-name">avatar</span> | Styles applied to the `avatar` element if `checked={true}`.
-| <span class="prop-name">avatarChildren</span> | Styles applied to the `avartar` elements children.
+| <span class="prop-name">avatar</span> | Styles applied to the `avatar` element.
+| <span class="prop-name">avatarChildren</span> | Styles applied to the `avatar` elements children.
 | <span class="prop-name">label</span> | Styles applied to the label `span` element`.
 | <span class="prop-name">deleteIcon</span> | Styles applied to the `deleteIcon` element.
 

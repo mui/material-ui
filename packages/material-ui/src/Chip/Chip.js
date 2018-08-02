@@ -55,7 +55,7 @@ export const styles = theme => {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
     },
-    /* Styles applied to the `avatar` element.*/
+    /* Styles applied to the `avatar` element. */
     avatar: {
       marginRight: -4,
       width: height,
