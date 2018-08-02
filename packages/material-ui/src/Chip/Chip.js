@@ -55,7 +55,7 @@ export const styles = theme => {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
     },
-    /* Styles applied to the `avatar` element if `checked={true}`. */
+    /* Styles applied to the `avatar` element. */
     avatar: {
       marginRight: -4,
       width: height,
@@ -63,7 +63,7 @@ export const styles = theme => {
       color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
       fontSize: theme.typography.pxToRem(16),
     },
-    /* Styles applied to the `avartar` elements children. */
+    /* Styles applied to the `avatar` elements children. */
     avatarChildren: {
       width: 19,
       height: 19,
