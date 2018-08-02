@@ -4,6 +4,7 @@
     "jsRules": {},
     "rules": {
         "expect": true,
+        "file-name-casing": true,
         "member-access": [true, "no-public"],
         "no-unnecessary-callback-wrapper": true,
         "no-unnecessary-type-assertion": true,
