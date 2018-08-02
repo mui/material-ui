@@ -24,25 +24,40 @@ describe('<Chip />', () => {
   });
 
   describe('text only', () => {
-    let wrapper;
-
-    before(() => {
-      wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" />);
-    });
-
     it('should render a div containing a span', () => {
+      const wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" />);
       assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
-    });
-
-    it('should merge user classes & spread custom props to the root node', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofChip');
+      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
+      assert.strictEqual(wrapper.props().tabIndex, -1);
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), false);
+      assert.strictEqual(wrapper.hasClass(classes.clickable), false);
+      assert.strictEqual(wrapper.hasClass(classes.clickableColorPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.clickableColorSecondary), false);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), false);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorPrimary), false);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorSecondary), false);
     });
 
-    it('should have a tabIndex prop with value -1', () => {
-      assert.strictEqual(wrapper.props().tabIndex, -1);
+    it('should render with the root and the primary class', () => {
+      const wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" color="primary" />);
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
+    });
+
+    it('should render with the root and the secondary class', () => {
+      const wrapper = shallow(
+        <Chip className="my-Chip" data-my-prop="woofChip" color="secondary" />,
+      );
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
     });
   });
 
@@ -77,6 +92,38 @@ describe('<Chip />', () => {
         <Chip onClick={() => {}} tabIndex={5} />,
       );
       assert.strictEqual(wrapper.props().tabIndex, 5);
+    });
+
+    it('should render with the root and clickable class', () => {
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
+    });
+
+    it('should render with the root and clickable primary class', () => {
+      wrapper = shallow(
+        <Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick} color="primary" />,
+      );
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickableColorPrimary), true);
+    });
+
+    it('should render with the root and clickable secondary class', () => {
+      wrapper = shallow(
+        <Chip
+          className="my-Chip"
+          data-my-prop="woofChip"
+          onClick={handleClick}
+          color="secondary"
+        />,
+      );
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickableColorSecondary), true);
     });
   });
 
@@ -136,11 +183,68 @@ describe('<Chip />', () => {
       wrapper.setProps({ onDelete: onDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: stopPropagationSpy });
-      assert.strictEqual(
-        stopPropagationSpy.callCount,
-        1,
-        'should have called the stopPropagation handler',
+      assert.strictEqual(stopPropagationSpy.callCount, 1);
+    });
+
+    it('should render with the root, deletable classes', () => {
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+
+      const avatarWrapper = wrapper.childAt(0);
+
+      assert.strictEqual(avatarWrapper.hasClass(classes.avatar), true);
+    });
+
+    it('should render with the root, deletable and avatar primary classes', () => {
+      wrapper = shallow(
+        <Chip
+          avatar={
+            <Avatar className="my-Avatar" data-my-prop="woofChip">
+              MB
+            </Avatar>
+          }
+          label="Text Avatar Chip"
+          onDelete={() => {}}
+          className="my-Chip"
+          data-my-prop="woofChip"
+          color="primary"
+        />,
       );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorPrimary), true);
+
+      const avatarWrapper = wrapper.childAt(0);
+
+      assert.strictEqual(avatarWrapper.hasClass(classes.avatar), true);
+      assert.strictEqual(avatarWrapper.hasClass(classes.avatarColorPrimary), true);
+    });
+
+    it('should render with the root, deletable and avatar secondary classes', () => {
+      wrapper = shallow(
+        <Chip
+          avatar={
+            <Avatar className="my-Avatar" data-my-prop="woofChip">
+              MB
+            </Avatar>
+          }
+          label="Text Avatar Chip"
+          onDelete={() => {}}
+          className="my-Chip"
+          data-my-prop="woofChip"
+          color="secondary"
+        />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorSecondary), true);
+
+      const avatarWrapper = wrapper.childAt(0);
+
+      assert.strictEqual(avatarWrapper.hasClass(classes.avatar), true);
+      assert.strictEqual(avatarWrapper.hasClass(classes.avatarColorSecondary), true);
     });
   });
 
@@ -159,6 +263,43 @@ describe('<Chip />', () => {
     it('should render a default icon', () => {
       const wrapper = mount(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
       assert.strictEqual(wrapper.find(CancelIcon).length, 1);
+    });
+
+    it('should render a default icon with the root, deletable and deleteIcon classes', () => {
+      const wrapper = shallow(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+
+      const iconWrapper = wrapper.find(CancelIcon);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
+    });
+
+    it('should render default icon with the root, deletable and deleteIcon primary class', () => {
+      const wrapper = shallow(
+        <Chip label="Custom delete icon Chip" onDelete={() => {}} color="primary" />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorPrimary), true);
+
+      const iconWrapper = wrapper.find(CancelIcon);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIconColorPrimary), true);
+    });
+
+    it('should render a default icon with the root, deletable, deleteIcon secondary class', () => {
+      const wrapper = shallow(
+        <Chip label="Custom delete icon Chip" onDelete={() => {}} color="secondary" />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+      assert.strictEqual(wrapper.hasClass(classes.deletableColorSecondary), true);
+
+      const iconWrapper = wrapper.find(CancelIcon);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIconColorSecondary), true);
     });
   });
 

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps, PropTypes } from '..';
 
 export interface ChipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ChipClassKey> {
+  color?: PropTypes.Color;
   avatar?: React.ReactElement<any>;
   clickable?: boolean;
   component?: React.ReactType<ChipProps>;
@@ -15,11 +16,19 @@ export interface ChipProps
 export type ChipClassKey =
   | 'root'
   | 'clickable'
+  | 'clickablePrimary'
+  | 'clickableSecondary'
   | 'deletable'
+  | 'deletablePrimary'
+  | 'deletableSecondary'
   | 'avatar'
+  | 'avatarPrimary'
+  | 'avatarSecondary'
   | 'avatarChildren'
   | 'label'
-  | 'deleteIcon';
+  | 'deleteIcon'
+  | 'deleteIconPrimary'
+  | 'deleteIconSecondary';
 
 declare const Chip: React.ComponentType<ChipProps>;
 
