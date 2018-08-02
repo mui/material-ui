@@ -44,6 +44,142 @@ describe('<Chip />', () => {
     it('should have a tabIndex prop with value -1', () => {
       assert.strictEqual(wrapper.props().tabIndex, -1);
     });
+
+    it('should render with the root classes but no others', () => {
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        false,
+        'should not have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        false,
+        'should not have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        false,
+        'should not have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        false,
+        'should not have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        false,
+        'should not have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        false,
+        'should not have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        false,
+        'should not have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        false,
+        'should not have the deletableSecondary class',
+      );
+    });
+
+    it('should render with the root and the primary class', () => {
+      wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" color="primary" />);
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        true,
+        'should have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        false,
+        'should not have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        false,
+        'should not have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        false,
+        'should not have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        false,
+        'should not have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        false,
+        'should not have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        false,
+        'should not have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        false,
+        'should not have the deletableSecondary class',
+      );
+    });
+
+    it('should render with the root and the secondary class', () => {
+      wrapper = shallow(<Chip className="my-Chip" data-my-prop="woofChip" color="secondary" />);
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        false,
+        'should not have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        true,
+        'should have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        false,
+        'should not have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        false,
+        'should not have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        false,
+        'should not have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        false,
+        'should not have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        false,
+        'should not have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        false,
+        'should not have the deletableSecondary class',
+      );
+    });
   });
 
   describe('clickable text chip', () => {
@@ -77,6 +213,151 @@ describe('<Chip />', () => {
         <Chip onClick={() => {}} tabIndex={5} />,
       );
       assert.strictEqual(wrapper.props().tabIndex, 5);
+    });
+
+    it('should render with the root and clickable class', () => {
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        false,
+        'should not have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        false,
+        'should not have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        true,
+        'should have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        false,
+        'should not have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        false,
+        'should not have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        false,
+        'should not have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        false,
+        'should not have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        false,
+        'should not have the deletableSecondary class',
+      );
+    });
+
+    it('should render with the root and clickable primary class', () => {
+      wrapper = shallow(
+        <Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick} color="primary" />,
+      );
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        true,
+        'should have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        false,
+        'should not have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        true,
+        'should have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        true,
+        'should have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        false,
+        'should not have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        false,
+        'should not have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        false,
+        'should not have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        false,
+        'should not have the deletableSecondary class',
+      );
+    });
+
+    it('should render with the root and clickable secondary class', () => {
+      wrapper = shallow(
+        <Chip
+          className="my-Chip"
+          data-my-prop="woofChip"
+          onClick={handleClick}
+          color="secondary"
+        />,
+      );
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        false,
+        'should not have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        true,
+        'should have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        true,
+        'should have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        false,
+        'should not have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        true,
+        'should have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        false,
+        'should not have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        false,
+        'should not have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        false,
+        'should not have the deletableSecondary class',
+      );
     });
   });
 
@@ -142,6 +423,220 @@ describe('<Chip />', () => {
         'should have called the stopPropagation handler',
       );
     });
+
+    it('should render with the root, deletable classes', () => {
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        false,
+        'should not have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        false,
+        'should not have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        false,
+        'should not have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        false,
+        'should not have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        false,
+        'should not have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        true,
+        'should have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        false,
+        'should not have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        false,
+        'should not have the deletableSecondary class',
+      );
+
+      const avatarWrapper = wrapper.childAt(0);
+
+      assert.strictEqual(
+        avatarWrapper.hasClass(classes.avatar),
+        true,
+        'should have the avatar class',
+      );
+      assert.strictEqual(
+        avatarWrapper.hasClass(classes.avatarPrimary),
+        false,
+        'should not have the avatarPrimary class',
+      );
+      assert.strictEqual(
+        avatarWrapper.hasClass(classes.avatarSecondary),
+        false,
+        'should not have the avatarSecondary class',
+      );
+    });
+
+    it('should render with the root, deletable and avatar primary classes', () => {
+      wrapper = shallow(
+        <Chip
+          avatar={
+            <Avatar className="my-Avatar" data-my-prop="woofChip">
+              MB
+            </Avatar>
+          }
+          label="Text Avatar Chip"
+          onDelete={() => {}}
+          className="my-Chip"
+          data-my-prop="woofChip"
+          color="primary"
+        />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        true,
+        'should have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        false,
+        'should not have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        false,
+        'should not have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        false,
+        'should not have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        false,
+        'should not have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        true,
+        'should not have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        true,
+        'should have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        false,
+        'should not have the deletableSecondary class',
+      );
+
+      const avatarWrapper = wrapper.childAt(0);
+
+      assert.strictEqual(
+        avatarWrapper.hasClass(classes.avatar),
+        true,
+        'should have the avatar class',
+      );
+      assert.strictEqual(
+        avatarWrapper.hasClass(classes.avatarPrimary),
+        true,
+        'should have the avatarPrimary class',
+      );
+      assert.strictEqual(
+        avatarWrapper.hasClass(classes.avatarSecondary),
+        false,
+        'should not have the avatarSecondary class',
+      );
+    });
+
+    it('should render with the root, deletable and avatar secondary classes', () => {
+      wrapper = shallow(
+        <Chip
+          avatar={
+            <Avatar className="my-Avatar" data-my-prop="woofChip">
+              MB
+            </Avatar>
+          }
+          label="Text Avatar Chip"
+          onDelete={() => {}}
+          className="my-Chip"
+          data-my-prop="woofChip"
+          color="secondary"
+        />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        false,
+        'should not have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        true,
+        'should have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        false,
+        'should not have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        false,
+        'should not have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        false,
+        'should not have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        true,
+        'should not have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        false,
+        'should not have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        true,
+        'should have the deletableSecondary class',
+      );
+
+      const avatarWrapper = wrapper.childAt(0);
+
+      assert.strictEqual(
+        avatarWrapper.hasClass(classes.avatar),
+        true,
+        'should have the avatar class',
+      );
+      assert.strictEqual(
+        avatarWrapper.hasClass(classes.avatarPrimary),
+        false,
+        'should not have the avatarPrimary class',
+      );
+      assert.strictEqual(
+        avatarWrapper.hasClass(classes.avatarSecondary),
+        true,
+        'should have the avatarSecondary class',
+      );
+    });
   });
 
   describe('prop: deleteIcon', () => {
@@ -159,6 +654,196 @@ describe('<Chip />', () => {
     it('should render a default icon', () => {
       const wrapper = mount(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
       assert.strictEqual(wrapper.find(CancelIcon).length, 1);
+    });
+
+    it('should render a default icon with the root, deletable and deleteIcon classes', () => {
+      const wrapper = shallow(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        false,
+        'should not have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        false,
+        'should not have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        false,
+        'should not have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        false,
+        'should not have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        false,
+        'should not have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        true,
+        'should have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        false,
+        'should not have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        false,
+        'should not have the deletableSecondary class',
+      );
+
+      const iconWrapper = wrapper.find(CancelIcon);
+      assert.strictEqual(
+        iconWrapper.hasClass(classes.deleteIcon),
+        true,
+        'should have the deleteIcon class',
+      );
+      assert.strictEqual(
+        iconWrapper.hasClass(classes.deleteIconPrimary),
+        false,
+        'should not have the deleteIcon class',
+      );
+      assert.strictEqual(
+        iconWrapper.hasClass(classes.deleteIconSecondary),
+        false,
+        'should not have the deleteIcon class',
+      );
+    });
+
+    it('should render default icon with the root, deletable and deleteIcon primary class', () => {
+      const wrapper = shallow(
+        <Chip label="Custom delete icon Chip" onDelete={() => {}} color="primary" />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        true,
+        'should have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        false,
+        'should not have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        false,
+        'should not have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        false,
+        'should not have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        false,
+        'should not have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        true,
+        'should have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        true,
+        'should have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        false,
+        'should not have the deletableSecondary class',
+      );
+
+      const iconWrapper = wrapper.find(CancelIcon);
+      assert.strictEqual(
+        iconWrapper.hasClass(classes.deleteIcon),
+        true,
+        'should have the deleteIcon class',
+      );
+      assert.strictEqual(
+        iconWrapper.hasClass(classes.deleteIconPrimary),
+        true,
+        'should have the deleteIconPrimary class',
+      );
+      assert.strictEqual(
+        iconWrapper.hasClass(classes.deleteIconSecondary),
+        false,
+        'should not have the deleteIconSecondary class',
+      );
+    });
+
+    it('should render a default icon with the root, deletable, deleteIcon secondary class', () => {
+      const wrapper = shallow(
+        <Chip label="Custom delete icon Chip" onDelete={() => {}} color="secondary" />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorPrimary),
+        false,
+        'should not have the colorPrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.colorSecondary),
+        true,
+        'should have the colorSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickable),
+        false,
+        'should not have the clickable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickablePrimary),
+        false,
+        'should not have the clickablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.clickableSecondary),
+        false,
+        'should not have the clickableSecondary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletable),
+        true,
+        'should have the deletable class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletablePrimary),
+        false,
+        'should not have the deletablePrimary class',
+      );
+      assert.strictEqual(
+        wrapper.hasClass(classes.deletableSecondary),
+        true,
+        'should have the deletableSecondary class',
+      );
+
+      const iconWrapper = wrapper.find(CancelIcon);
+      assert.strictEqual(
+        iconWrapper.hasClass(classes.deleteIcon),
+        true,
+        'should have the deleteIcon class',
+      );
+      assert.strictEqual(
+        iconWrapper.hasClass(classes.deleteIconPrimary),
+        false,
+        'should not have the deleteIconPrimary class',
+      );
+      assert.strictEqual(
+        iconWrapper.hasClass(classes.deleteIconSecondary),
+        true,
+        'should not have the deleteIconSecondary class',
+      );
     });
   });
 
