@@ -3,7 +3,8 @@
     "extends": [],
     "jsRules": {},
     "rules": {
-        "expect": true
+        "expect": true,
+        "no-unnecessary-type-assertion": true
     },
     "rulesDirectory": [
         "./node_modules/dtslint/bin/rules"
