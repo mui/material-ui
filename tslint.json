@@ -6,7 +6,8 @@
         "expect": true,
         "member-access": [true, "no-public"],
         "no-unnecessary-callback-wrapper": true,
-        "no-unnecessary-type-assertion": true
+        "no-unnecessary-type-assertion": true,
+        "space-within-parens": true
     },
     "rulesDirectory": [
         "./node_modules/dtslint/bin/rules"
