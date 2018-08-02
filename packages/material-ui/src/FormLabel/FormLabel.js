@@ -46,19 +46,19 @@ function FormLabel(props, context) {
     component: Component,
     disabled: disabledProp,
     error: errorProp,
+    filled: filledProp,
     focused: focusedProp,
     required: requiredProp,
-    filled: filledProp,
     ...other
   } = props;
 
   const { muiFormControl } = context;
 
-  let required = requiredProp;
-  let focused = focusedProp;
   let disabled = disabledProp;
   let error = errorProp;
   let filled = filledProp;
+  let focused = focusedProp;
+  let required = requiredProp;
 
   if (muiFormControl) {
     if (typeof required === 'undefined') {
@@ -81,10 +81,10 @@ function FormLabel(props, context) {
   const className = classNames(
     classes.root,
     {
-      [classes.focused]: focused,
       [classes.disabled]: disabled,
       [classes.error]: error,
       [classes.filled]: filled,
+      [classes.focused]: focused,
       [classes.required]: required,
     },
     classNameProp,

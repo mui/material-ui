@@ -41,23 +41,23 @@ function FormHelperText(props, context) {
   const {
     classes,
     className: classNameProp,
+    component: Component,
     disabled: disabledProp,
     error: errorProp,
-    margin: marginProp,
-    component: Component,
-    focused: focusedProp,
-    required: requiredProp,
     filled: filledProp,
+    focused: focusedProp,
+    margin: marginProp,
+    required: requiredProp,
     ...other
   } = props;
   const { muiFormControl } = context;
 
   let disabled = disabledProp;
   let error = errorProp;
+  let filled = filledProp;
+  let focused = focusedProp;
   let margin = marginProp;
   let required = requiredProp;
-  let focused = focusedProp;
-  let filled = filledProp;
 
   if (muiFormControl) {
     if (typeof disabled === 'undefined') {
@@ -85,9 +85,9 @@ function FormHelperText(props, context) {
     {
       [classes.disabled]: disabled,
       [classes.error]: error,
-      [classes.marginDense]: margin === 'dense',
-      [classes.focused]: focused,
       [classes.filled]: filled,
+      [classes.focused]: focused,
+      [classes.marginDense]: margin === 'dense',
       [classes.required]: required,
     },
     classNameProp,
