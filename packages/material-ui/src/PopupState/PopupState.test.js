@@ -4,9 +4,10 @@ import { assert } from 'chai';
 import { createMount } from '../test-utils';
 import Button from '../Button';
 import Popper from '../Popper';
+import Popover from '../Popover';
 import Menu from '../Menu';
 import MenuItem from '../MenuItem';
-import PopupState, { bindMenu, bindPopper, bindTrigger, bindToggle } from './PopupState';
+import PopupState, { bindMenu, bindPopover, bindPopper, bindTrigger, bindToggle, bindHover } from './PopupState';
 
 /* eslint-disable react/jsx-handler-names */
 
@@ -176,6 +177,70 @@ describe('<PopupState />', () => {
       assert.strictEqual(popper.prop('anchorEl'), null);
       assert.strictEqual(popper.prop('open'), false);
       assert.strictEqual(popper.prop('onClose'), undefined);
+    });
+  });
+  describe('bindHover/bindPopover', () => {
+    let buttonRef;
+    let button;
+    let popover;
+
+    const render = spy(popupState => (
+      <React.Fragment>
+        <Button
+          buttonRef={c => {
+            buttonRef = c;
+          }}
+          {...bindHover(popupState)}
+        >
+          Open Menu
+        </Button>
+        <Popover {...bindPopover(popupState)}>The popover content</Popover>
+      </React.Fragment>
+    ));
+
+    beforeEach(() => render.resetHistory());
+
+    it('passes correct props to bindHover/bindPopover', () => {
+      const wrapper = mount(<PopupState popupId="popover">{render}</PopupState>);
+      button = wrapper.find(Button);
+      popover = wrapper.find(Popover);
+      assert.strictEqual(render.args[0][0].isOpen, false);
+      assert.strictEqual(button.prop('aria-owns'), null);
+      assert.strictEqual(button.prop('aria-haspopup'), true);
+      assert.strictEqual(button.prop('onMouseEnter'), render.args[0][0].open);
+      assert.strictEqual(button.prop('onMouseLeave'), render.args[0][0].close);
+      assert.strictEqual(popover.prop('id'), 'popover');
+      assert.strictEqual(popover.prop('anchorEl'), null);
+      assert.strictEqual(popover.prop('open'), false);
+      assert.strictEqual(popover.prop('onClose'), render.args[0][0].close);
+
+      button.simulate('mouseenter');
+      wrapper.update();
+      button = wrapper.find(Button);
+      popover = wrapper.find(Popover);
+      assert.strictEqual(render.args[1][0].isOpen, true);
+      assert.strictEqual(button.prop('aria-owns'), 'popover');
+      assert.strictEqual(button.prop('aria-haspopup'), true);
+      assert.strictEqual(button.prop('onMouseEnter'), render.args[1][0].open);
+      assert.strictEqual(button.prop('onMouseLeave'), render.args[1][0].close);
+      assert.strictEqual(popover.prop('id'), 'popover');
+      assert.strictEqual(popover.prop('anchorEl'), buttonRef);
+      assert.strictEqual(popover.prop('open'), true);
+      assert.strictEqual(popover.prop('onClose'), render.args[1][0].close);
+
+      button.simulate('mouseleave');
+      wrapper.update();
+      button = wrapper.find(Button);
+      popover = wrapper.find(Popover);
+      assert.strictEqual(render.args[2][0].isOpen, false);
+      assert.strictEqual(button.prop('aria-owns'), null);
+      assert.strictEqual(button.prop('aria-haspopup'), true);
+      assert.strictEqual(button.prop('onMouseEnter'), render.args[2][0].open);
+      assert.strictEqual(button.prop('onMouseLeave'), render.args[2][0].close);
+      assert.strictEqual(popover.prop('id'), 'popover');
+      assert.strictEqual(popover.prop('anchorEl'), null);
+      assert.strictEqual(popover.prop('open'), false);
+      assert.strictEqual(popover.prop('onClose'), render.args[1][0].close);
     });
   });
 });
