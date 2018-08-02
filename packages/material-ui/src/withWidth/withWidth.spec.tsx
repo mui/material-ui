@@ -18,11 +18,11 @@ interface IHelloProps extends WithWidth, WithStyles<typeof styles> {
 }
 
 export class Hello extends React.Component<IHelloProps> {
-  public static defaultProps = {
+  static defaultProps = {
     name: 'Alex',
   };
 
-  public render() {
+  render() {
     return (
       <Grid
         className={this.props.classes.root}

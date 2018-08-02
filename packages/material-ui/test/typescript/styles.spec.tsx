@@ -309,7 +309,7 @@ withStyles(theme =>
   const StyledComponent = withStyles(styles)(Component);
 
   class App extends React.Component {
-    public render() {
+    render() {
       return (
         <div className="App">
           <StyledComponent caption="Developer" />
