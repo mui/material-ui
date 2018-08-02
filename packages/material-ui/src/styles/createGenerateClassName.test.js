@@ -58,12 +58,13 @@ describe('createGenerateClassName', () => {
           },
           {
             options: {
-              classNamePrefix: 'MuiButton',
+              name: 'Button',
+              classNamePrefix: 'Button2',
               jss: {},
             },
           },
         ),
-        'MuiButton-root',
+        'Button-root',
       );
       assert.strictEqual(
         generateClassName(
