@@ -4,6 +4,7 @@
     "jsRules": {},
     "rules": {
         "expect": true,
+        "no-unnecessary-callback-wrapper": true,
         "no-unnecessary-type-assertion": true
     },
     "rulesDirectory": [

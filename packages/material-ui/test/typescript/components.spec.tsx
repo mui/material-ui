@@ -102,7 +102,7 @@ const BottomNavigationTest = () => {
   const value = 123;
 
   return (
-    <BottomNavigation value={value} onChange={event => log(event)} showLabels>
+    <BottomNavigation value={value} onChange={log} showLabels>
       <BottomNavigationAction label="Recents" icon={<FakeIcon />} />
       <BottomNavigationAction label="Favorites" />
       <BottomNavigationAction label={<span>Nearby</span>} icon={<FakeIcon />} />
@@ -231,11 +231,11 @@ const CardMediaTest = () => (
 const ChipsTest = () => (
   <div>
     <Chip label="Basic Chip" />
-    <Chip avatar={<Avatar>MB</Avatar>} label="Clickable Chip" onClick={event => log(event)} />
+    <Chip avatar={<Avatar>MB</Avatar>} label="Clickable Chip" onClick={log} />
     <Chip
       avatar={<Avatar src={'image.bmp'} />}
       label="Deletable Chip"
-      onDelete={event => log(event)}
+      onDelete={log}
     />
     <Chip
       avatar={
@@ -244,8 +244,8 @@ const ChipsTest = () => (
         </Avatar>
       }
       label="Clickable Deletable Chip"
-      onClick={event => log(event)}
-      onDelete={event => log(event)}
+      onClick={log}
+      onDelete={log}
     />
   </div>
 );
@@ -253,12 +253,12 @@ const ChipsTest = () => (
 const DialogTest = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
   return (
-    <Dialog onClose={event => log(event)} open>
+    <Dialog onClose={log} open>
       <DialogTitle>Set backup account</DialogTitle>
       <div>
         <List>
           {emails.map(email => (
-            <ListItem button onClick={event => log(event)} key={email}>
+            <ListItem button onClick={log} key={email}>
               <ListItemAvatar>
                 <Avatar>
                   <FakeIcon />
@@ -267,7 +267,7 @@ const DialogTest = () => {
               <ListItemText primary={email} />
             </ListItem>
           ))}
-          <ListItem button onClick={event => log(event)}>
+          <ListItem button onClick={log}>
             <ListItemAvatar>
               <Avatar>
                 <FakeIcon />
@@ -311,8 +311,8 @@ const DrawerTest = () => {
       <Drawer
         variant="persistent"
         open={open.left}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
+        onClose={log}
+        onClick={log}
       >
         List
       </Drawer>
@@ -320,8 +320,8 @@ const DrawerTest = () => {
         variant="temporary"
         anchor="top"
         open={open.top}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
+        onClose={log}
+        onClick={log}
         ModalProps={{
           hideBackdrop: true,
         }}
@@ -332,8 +332,8 @@ const DrawerTest = () => {
         anchor="bottom"
         variant="temporary"
         open={open.bottom}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
+        onClose={log}
+        onClick={log}
       >
         List
       </Drawer>
@@ -341,8 +341,8 @@ const DrawerTest = () => {
         variant="persistent"
         anchor="right"
         open={open.right}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
+        onClose={log}
+        onClick={log}
       >
         List
       </Drawer>
@@ -361,18 +361,18 @@ const SwipeableDrawerTest = () => {
     <div>
       <SwipeableDrawer
         open={open.left}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
-        onOpen={event => log(event)}
+        onClose={log}
+        onClick={log}
+        onOpen={log}
       >
         List
       </SwipeableDrawer>
       <SwipeableDrawer
         anchor="top"
         open={open.top}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
-        onOpen={event => log(event)}
+        onClose={log}
+        onClick={log}
+        onOpen={log}
         ModalProps={{
           hideBackdrop: true,
         }}
@@ -382,9 +382,9 @@ const SwipeableDrawerTest = () => {
       <SwipeableDrawer
         anchor="bottom"
         open={open.bottom}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
-        onOpen={event => log(event)}
+        onClose={log}
+        onClick={log}
+        onOpen={log}
       >
         List
       </SwipeableDrawer>
@@ -392,9 +392,9 @@ const SwipeableDrawerTest = () => {
         variant="temporary"
         anchor="right"
         open={open.right}
-        onClose={event => log(event)}
-        onClick={event => log(event)}
-        onOpen={event => log(event)}
+        onClose={log}
+        onClick={log}
+        onOpen={log}
       >
         List
       </SwipeableDrawer>
@@ -404,7 +404,7 @@ const SwipeableDrawerTest = () => {
 
 const ExpansionPanelTest = () => (
   <div>
-    <ExpansionPanel onChange={(event, expanded) => log(event, expanded)} expanded disabled>
+    <ExpansionPanel onChange={log} expanded disabled>
       <ExpansionPanelSummary />
       <ExpansionPanelDetails />
     </ExpansionPanel>
@@ -440,8 +440,8 @@ const GridTest = () => (
 );
 
 const GridListTest = () => (
-  <GridList cellHeight={160} cols={3} onClick={event => log(event)}>
-    <GridListTile cols={1} rows={4} onClick={event => log(event)}>
+  <GridList cellHeight={160} cols={3} onClick={log}>
+    <GridListTile cols={1} rows={4} onClick={log}>
       <img src="img.png" alt="alt text" />
     </GridListTile>
     ,
@@ -451,7 +451,7 @@ const GridListTest = () => (
 const ListTest = () => (
   <List>
     {[0, 1, 2, 3].map(value => (
-      <ListItem dense button key={value} onClick={event => log(event)}>
+      <ListItem dense button key={value} onClick={log}>
         <Checkbox checked={true} tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
@@ -476,9 +476,9 @@ const MenuTest = () => {
   ];
 
   return (
-    <Menu id="lock-menu" anchorEl={anchorEl} open={true} onClose={event => log(event)}>
+    <Menu id="lock-menu" anchorEl={anchorEl} open={true} onClose={log}>
       {options.map((option, index) => (
-        <MenuItem key={option} selected={false} onClick={event => log(event)}>
+        <MenuItem key={option} selected={false} onClick={log}>
           {option}
         </MenuItem>
       ))}
@@ -575,7 +575,7 @@ const SwitchTest = () => {
 
 const SnackbarTest = () => (
   <div>
-    <Button onClick={event => log(event)}>Open simple snackbar</Button>
+    <Button onClick={log}>Open simple snackbar</Button>
     <Snackbar
       anchorOrigin={{
         vertical: 'bottom',
@@ -583,7 +583,7 @@ const SnackbarTest = () => (
       }}
       open={true}
       autoHideDuration={6e3}
-      onClose={event => log(event)}
+      onClose={log}
       ContentProps={
         {
           // 'aria-describedby': 'message-id',
@@ -592,10 +592,10 @@ const SnackbarTest = () => (
       }
       message={<span id="message-id">Note archived</span>}
       action={[
-        <Button key="undo" color="secondary" size="small" onClick={event => log(event)}>
+        <Button key="undo" color="secondary" size="small" onClick={log}>
           UNDO
         </Button>,
-        <IconButton key="close" aria-label="Close" color="inherit" onClick={event => log(event)}>
+        <IconButton key="close" aria-label="Close" color="inherit" onClick={log}>
           <FakeIcon />
         </IconButton>,
       ]}
