@@ -29,35 +29,54 @@ export const styles = theme => ({
   marginDense: {
     marginTop: 4,
   },
+  /* Styles applied to the root element if `focused={true}`. */
+  focused: {},
+  /* Styles applied to the root element if `filled={true}`. */
+  filled: {},
+  /* Styles applied to the root element if `required={true}`. */
+  required: {},
 });
 
 function FormHelperText(props, context) {
   const {
     classes,
     className: classNameProp,
+    component: Component,
     disabled: disabledProp,
     error: errorProp,
+    filled: filledProp,
+    focused: focusedProp,
     margin: marginProp,
-    component: Component,
+    required: requiredProp,
     ...other
   } = props;
   const { muiFormControl } = context;
 
   let disabled = disabledProp;
   let error = errorProp;
+  let filled = filledProp;
+  let focused = focusedProp;
   let margin = marginProp;
+  let required = requiredProp;
 
   if (muiFormControl) {
     if (typeof disabled === 'undefined') {
       disabled = muiFormControl.disabled;
     }
-
     if (typeof error === 'undefined') {
       error = muiFormControl.error;
     }
-
     if (typeof margin === 'undefined') {
       margin = muiFormControl.margin;
+    }
+    if (typeof required === 'undefined') {
+      required = muiFormControl.required;
+    }
+    if (typeof focused === 'undefined') {
+      focused = muiFormControl.focused;
+    }
+    if (typeof filled === 'undefined') {
+      filled = muiFormControl.filled;
     }
   }
 
@@ -66,7 +85,10 @@ function FormHelperText(props, context) {
     {
       [classes.disabled]: disabled,
       [classes.error]: error,
+      [classes.filled]: filled,
+      [classes.focused]: focused,
       [classes.marginDense]: margin === 'dense',
+      [classes.required]: required,
     },
     classNameProp,
   );
@@ -102,10 +124,22 @@ FormHelperText.propTypes = {
    */
   error: PropTypes.bool,
   /**
+   * If `true`, the helper text should use filled classes key.
+   */
+  filled: PropTypes.bool,
+  /**
+   * If `true`, the helper text should use focused classes key.
+   */
+  focused: PropTypes.bool,
+  /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
    */
   margin: PropTypes.oneOf(['dense']),
+  /**
+   * If `true`, the helper text should use required classes key.
+   */
+  required: PropTypes.bool,
 };
 
 FormHelperText.defaultProps = {

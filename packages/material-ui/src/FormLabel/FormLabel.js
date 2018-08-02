@@ -27,6 +27,10 @@ export const styles = theme => ({
   disabled: {},
   /* Styles applied to the root element if `error={true}`. */
   error: {},
+  /* Styles applied to the root element if `filled={true}`. */
+  filled: {},
+  /* Styles applied to the root element if `required={true}`. */
+  required: {},
   asterisk: {
     '&$error': {
       color: theme.palette.error.main,
@@ -42,6 +46,7 @@ function FormLabel(props, context) {
     component: Component,
     disabled: disabledProp,
     error: errorProp,
+    filled: filledProp,
     focused: focusedProp,
     required: requiredProp,
     ...other
@@ -49,10 +54,11 @@ function FormLabel(props, context) {
 
   const { muiFormControl } = context;
 
-  let required = requiredProp;
-  let focused = focusedProp;
   let disabled = disabledProp;
   let error = errorProp;
+  let filled = filledProp;
+  let focused = focusedProp;
+  let required = requiredProp;
 
   if (muiFormControl) {
     if (typeof required === 'undefined') {
@@ -67,14 +73,19 @@ function FormLabel(props, context) {
     if (typeof error === 'undefined') {
       error = muiFormControl.error;
     }
+    if (typeof filled === 'undefined') {
+      filled = muiFormControl.filled;
+    }
   }
 
   const className = classNames(
     classes.root,
     {
-      [classes.focused]: focused,
       [classes.disabled]: disabled,
       [classes.error]: error,
+      [classes.filled]: filled,
+      [classes.focused]: focused,
+      [classes.required]: required,
     },
     classNameProp,
   );
@@ -123,6 +134,10 @@ FormLabel.propTypes = {
    * If `true`, the label should be displayed in an error state.
    */
   error: PropTypes.bool,
+  /**
+   * If `true`, the label should use filled classes key.
+   */
+  filled: PropTypes.bool,
   /**
    * If `true`, the input of this label is focused (used by `FormGroup` components).
    */
