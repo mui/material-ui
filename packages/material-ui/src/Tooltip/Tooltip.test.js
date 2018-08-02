@@ -14,6 +14,7 @@ describe('<Tooltip />', () => {
   let shallow;
   let mount;
   let classes;
+  let clock;
   const defaultProps = {
     title: 'Hello World',
     children: <span>Hello World</span>,
@@ -23,9 +24,11 @@ describe('<Tooltip />', () => {
     shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     mount = createMount();
     classes = getClasses(<Tooltip {...defaultProps} />);
+    clock = useFakeTimers();
   });
 
   after(() => {
+    clock.restore();
     mount.cleanUp();
   });
 
@@ -92,7 +95,8 @@ describe('<Tooltip />', () => {
     const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(wrapper.state().open, false);
     children.simulate('mouseEnter', { type: 'mouseenter' });
-    children.simulate('focus', { type: 'focus' });
+    children.simulate('focus', { type: 'focus', persist });
+    clock.tick(0);
     assert.strictEqual(wrapper.state().open, true);
     children.simulate('mouseLeave', { type: 'mouseleave' });
     assert.strictEqual(wrapper.state().open, true);
@@ -101,23 +105,13 @@ describe('<Tooltip />', () => {
   });
 
   describe('touch screen', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
     it('should not respond to quick events', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} />);
       wrapper.instance().childrenRef = document.createElement('div');
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('touchStart', { type: 'touchstart', persist });
       children.simulate('touchEnd', { type: 'touchend', persist });
-      children.simulate('focus', { type: 'focus' });
+      children.simulate('focus', { type: 'focus', persist });
       children.simulate('mouseover', { type: 'mouseover' });
       assert.strictEqual(wrapper.state().open, false);
     });
@@ -127,7 +121,7 @@ describe('<Tooltip />', () => {
       wrapper.instance().childrenRef = document.createElement('div');
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('touchStart', { type: 'touchstart', persist });
-      children.simulate('focus', { type: 'focus' });
+      children.simulate('focus', { type: 'focus', persist });
       children.simulate('mouseover', { type: 'mouseover' });
       clock.tick(1e3);
       assert.strictEqual(wrapper.state().open, true);
@@ -145,16 +139,6 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: delay', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
     it('should take the enterDelay into account', () => {
       const wrapper = shallow(<Tooltip enterDelay={111} {...defaultProps} />);
       wrapper.instance().childrenRef = document.createElement('div');
@@ -169,7 +153,8 @@ describe('<Tooltip />', () => {
       const wrapper = shallow(<Tooltip leaveDelay={111} {...defaultProps} />);
       wrapper.instance().childrenRef = document.createElement('div');
       const children = wrapper.childAt(0).childAt(0);
-      children.simulate('focus', { type: 'focus' });
+      children.simulate('focus', { type: 'focus', persist });
+      clock.tick(0);
       assert.strictEqual(wrapper.state().open, true);
       children.simulate('blur', { type: 'blur', persist });
       assert.strictEqual(wrapper.state().open, true);
@@ -194,6 +179,7 @@ describe('<Tooltip />', () => {
           const children = wrapper.childAt(0).childAt(0);
           const type = name.slice(2).toLowerCase();
           children.simulate(type, { type, persist });
+          clock.tick(0);
           assert.strictEqual(handler.callCount, 1);
         });
       },
