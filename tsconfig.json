@@ -12,7 +12,11 @@
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,
     "noEmit": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": "./packages",
+    "paths": {
+      "@material-ui/core": ["./material-ui/src"],
+      "@material-ui/lab": ["./material-ui-lab/src"]
+    }
   },
-  "include": ["packages/material-ui/src/**/*", "packages/material-ui/test/typescript/*"]
 }

@@ -1,0 +1,11 @@
+{
+    "defaultSeverity": "error",
+    "extends": [],
+    "jsRules": {},
+    "rules": {
+        "expect": true
+    },
+    "rulesDirectory": [
+        "./node_modules/dtslint/bin/rules"
+    ]
+}

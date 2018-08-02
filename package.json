@@ -49,7 +49,8 @@
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha packages/material-ui/test/**/*.test.js packages/material-ui/src/{,**/}*.test.js && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
-    "typescript": "tsc -p tsconfig.json",
+    "typescript": "cd packages/material-ui && yarn run lint:typescript",
+    "flow": "flow --show-all-errors",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true"
   },
   "peerDependencies": {
@@ -89,6 +90,7 @@
     "css-loader": "^1.0.0",
     "doctrine": "^2.0.0",
     "downshift": "^2.0.0",
+    "dtslint": "^0.3.0",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^5.0.0",

@@ -77,9 +77,6 @@ jobs:
           name: Lint
           command: yarn lint
       - run:
-          name: TypeScript
-          command: yarn typescript
-      - run:
           name: Tests fake browser
           command: yarn test:coverage
       - run:
@@ -208,6 +205,15 @@ jobs:
           command: |
             DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
             yarn argos
+  test_types:
+    <<: *default
+    steps:
+      - run:
+          name: Flow
+          command: yarn flow
+      - run:
+          name: Typescript definitions
+          command: yarn typescript:definitions
 workflows:
   version: 2
   pipeline:
