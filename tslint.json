@@ -3,6 +3,7 @@
     "extends": [],
     "jsRules": {},
     "rules": {
+        "comment-format": [true, "check-space"],
         "expect": true,
         "file-name-casing": true,
         "member-access": [true, "no-public"],

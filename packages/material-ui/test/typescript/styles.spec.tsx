@@ -209,7 +209,7 @@ declare const themed: boolean;
 
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
-//@withStyles(styles)
+// @withStyles(styles)
 const DecoratedComponent = withStyles(styles)(
   class extends React.Component<ComponentProps & WithStyles<typeof styles>> {
     render() {
