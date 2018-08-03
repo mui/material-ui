@@ -88,9 +88,11 @@ import { TooltipClassKey } from '../Tooltip';
 import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
 
-export type Overrides = {
-  [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>
-};
+export type BaseOverrides<T extends { [key: string]: string } = {}> = {
+  [Name in keyof T]?: Partial<StyleRules<T[Name]>>
+}
+
+export type Overrides = BaseOverrides<ComponentNameToClassKey>
 
 type ComponentNameToClassKey = {
   MuiAppBar: AppBarClassKey;

@@ -7,17 +7,17 @@ import { Shape, ShapeOptions } from './shape';
 import { Spacing, SpacingOptions } from './spacing';
 import { Transitions, TransitionsOptions } from './transitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
-import { Overrides } from './overrides';
+import { Overrides, BaseOverrides } from './overrides';
 import { ComponentsProps } from './props';
 
 export type Direction = 'ltr' | 'rtl';
 
-export interface ThemeOptions {
+export interface ThemeOptions<T extends BaseOverrides = {}> {
   shape?: ShapeOptions;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
   mixins?: MixinsOptions;
-  overrides?: Overrides;
+  overrides?: Overrides & T;
   palette?: PaletteOptions;
   props?: ComponentsProps;
   shadows?: Shadows;
@@ -27,12 +27,12 @@ export interface ThemeOptions {
   zIndex?: ZIndexOptions;
 }
 
-export interface Theme {
+export interface Theme<T extends BaseOverrides = {}> {
   shape: Shape;
   breakpoints: Breakpoints;
   direction: Direction;
   mixins: Mixins;
-  overrides?: Overrides;
+  overrides?: Overrides & T;
   palette: Palette;
   props?: ComponentsProps;
   shadows: Shadows;
@@ -42,4 +42,4 @@ export interface Theme {
   zIndex: ZIndex;
 }
 
-export default function createMuiTheme(options?: ThemeOptions): Theme;
+export default function createMuiTheme<T extends BaseOverrides = {}>(options?: ThemeOptions<T>): Theme<T>;
