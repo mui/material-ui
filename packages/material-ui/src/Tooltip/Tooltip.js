@@ -160,11 +160,11 @@ class Tooltip extends React.Component {
       }
     }
 
-    if (event.type === 'mouseenter') {
+    if (event.type === 'mouseover') {
       this.internalState.hover = true;
 
-      if (childrenProps.onMouseEnter) {
-        childrenProps.onMouseEnter(event);
+      if (childrenProps.onMouseOver) {
+        childrenProps.onMouseOver(event);
       }
     }
 
@@ -190,7 +190,10 @@ class Tooltip extends React.Component {
   };
 
   handleOpen = event => {
-    if (!this.isControlled) {
+    // The mouseover event will trigger for every nested element in the tooltip.
+    // We can skip rerendering when the tooltip is already open.
+    // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
+    if (!this.isControlled && !this.state.open) {
       this.setState({ open: true });
     }
 
@@ -317,7 +320,7 @@ class Tooltip extends React.Component {
     }
 
     if (!disableHoverListener) {
-      childrenProps.onMouseEnter = this.handleEnter;
+      childrenProps.onMouseOver = this.handleEnter;
       childrenProps.onMouseLeave = this.handleLeave;
     }
 

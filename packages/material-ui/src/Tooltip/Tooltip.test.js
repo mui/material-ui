@@ -64,7 +64,7 @@ describe('<Tooltip />', () => {
     wrapper.instance().childrenRef = document.createElement('div');
     const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(wrapper.state().open, false);
-    children.simulate('mouseEnter', { type: 'mouseenter' });
+    children.simulate('mouseOver', { type: 'mouseover' });
     assert.strictEqual(wrapper.state().open, true);
     children.simulate('mouseLeave', { type: 'mouseleave' });
     assert.strictEqual(wrapper.state().open, false);
@@ -81,7 +81,7 @@ describe('<Tooltip />', () => {
     const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(handleRequestOpen.callCount, 0);
     assert.strictEqual(handleClose.callCount, 0);
-    children.simulate('mouseEnter', { type: 'mouseenter' });
+    children.simulate('mouseOver', { type: 'mouseover' });
     assert.strictEqual(handleRequestOpen.callCount, 1);
     assert.strictEqual(handleClose.callCount, 0);
     children.simulate('mouseLeave', { type: 'mouseleave' });
@@ -94,7 +94,7 @@ describe('<Tooltip />', () => {
     wrapper.instance().childrenRef = document.createElement('div');
     const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(wrapper.state().open, false);
-    children.simulate('mouseEnter', { type: 'mouseenter' });
+    children.simulate('mouseOver', { type: 'mouseover' });
     children.simulate('focus', { type: 'focus', persist });
     clock.tick(0);
     assert.strictEqual(wrapper.state().open, true);
@@ -112,7 +112,6 @@ describe('<Tooltip />', () => {
       children.simulate('touchStart', { type: 'touchstart', persist });
       children.simulate('touchEnd', { type: 'touchend', persist });
       children.simulate('focus', { type: 'focus', persist });
-      children.simulate('mouseover', { type: 'mouseover' });
       assert.strictEqual(wrapper.state().open, false);
     });
 
@@ -122,7 +121,6 @@ describe('<Tooltip />', () => {
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('touchStart', { type: 'touchstart', persist });
       children.simulate('focus', { type: 'focus', persist });
-      children.simulate('mouseover', { type: 'mouseover' });
       clock.tick(1e3);
       assert.strictEqual(wrapper.state().open, true);
       children.simulate('touchEnd', { type: 'touchend', persist });
@@ -164,26 +162,32 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: overrides', () => {
-    ['onTouchStart', 'onTouchEnd', 'onMouseEnter', 'onMouseLeave', 'onFocus', 'onBlur'].forEach(
-      name => {
-        it(`should be transparent for the ${name} event`, () => {
-          const handler = spy();
-          const wrapper = shallow(
-            <Tooltip title="Hello World">
-              <button type="submit" {...{ [name]: handler }}>
-                Hello World
-              </button>
-            </Tooltip>,
-          );
-          wrapper.instance().childrenRef = document.createElement('div');
-          const children = wrapper.childAt(0).childAt(0);
-          const type = name.slice(2).toLowerCase();
-          children.simulate(type, { type, persist });
-          clock.tick(0);
-          assert.strictEqual(handler.callCount, 1);
-        });
-      },
-    );
+    [
+      'onTouchStart',
+      'onTouchEnd',
+      'onMouseEnter',
+      'onMouseOver',
+      'onMouseLeave',
+      'onFocus',
+      'onBlur',
+    ].forEach(name => {
+      it(`should be transparent for the ${name} event`, () => {
+        const handler = spy();
+        const wrapper = shallow(
+          <Tooltip title="Hello World">
+            <button type="submit" {...{ [name]: handler }}>
+              Hello World
+            </button>
+          </Tooltip>,
+        );
+        wrapper.instance().childrenRef = document.createElement('div');
+        const children = wrapper.childAt(0).childAt(0);
+        const type = name.slice(2).toLowerCase();
+        children.simulate(type, { type, persist });
+        clock.tick(0);
+        assert.strictEqual(handler.callCount, 1);
+      });
+    });
   });
 
   describe('disabled button warning', () => {
