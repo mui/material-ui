@@ -65,6 +65,7 @@ function MobileStepper(props) {
     backButton,
     classes,
     className: classNameProp,
+    LinearProgressProps,
     nextButton,
     position,
     steps,
@@ -97,6 +98,7 @@ function MobileStepper(props) {
           className={classes.progress}
           variant="determinate"
           value={Math.ceil((activeStep / (steps - 1)) * 100)}
+          {...LinearProgressProps}
         />
       )}
       {nextButton}
@@ -123,6 +125,10 @@ MobileStepper.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Properties applied to the `LinearProgress` element.
+   */
+  LinearProgressProps: PropTypes.object,
   /**
    * A next button element. For instance, it can be be a `Button` or a `IconButton`.
    */
