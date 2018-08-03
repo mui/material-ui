@@ -361,4 +361,13 @@ describe('createPalette()', () => {
       /Material-UI: the palette type `foo` is not supported/,
     );
   });
+
+  describe('augmentColor', () => {
+    it('should throw when the input is invalid', () => {
+      const palette = createPalette({});
+      assert.throws(() => {
+        palette.augmentColor({});
+      }, /The color object needs to have a/);
+    });
+  });
 });
