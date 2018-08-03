@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Slide from '@material-ui/core/Slide';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
 const animationDuration = 350;
 
 const SlideTransition = ({
-  classes, className, children, slideDirection, ...other
+  classes, className, children, transKey, slideDirection, ...other
 }) => (
   <TransitionGroup className={classnames(classes.transitionContainer, className)} {...other}>
     <CSSTransition
+      key={transKey}
       classNames={{
         enter: classes[`slideEnter-${slideDirection}`],
         enterActive: classes.slideEnterActive,
@@ -20,6 +20,8 @@ const SlideTransition = ({
         exitActive: classes[`slideExitActiveLeft-${slideDirection}`]
       }}
       timeout={animationDuration}
+      mountOnEnter
+      unmountOnExit
     >
       {children}
     </CSSTransition>

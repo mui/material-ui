@@ -37,10 +37,10 @@ export const CalendarHeader = ({
 
         <SlideTransition
           slideDirection={slideDirection}
+          transKey={utils.getCalendarHeaderText(currentMonth)}
           className={classes.transitionContainer}
         >
           <Typography
-            key={utils.getCalendarHeaderText(currentMonth)}
             align="center"
             variant="body1"
           >
