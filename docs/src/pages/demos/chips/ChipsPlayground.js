@@ -47,7 +47,7 @@ class ChipsPlayground extends React.Component {
     const { classes } = this.props;
     const { color, onDelete, avatar } = this.state;
 
-    const colorToCode = color !== 'default' ? `color=${color} ` : '';
+    const colorToCode = color !== 'default' ? `color="${color}" ` : '';
 
     let onDeleteToCode;
     switch (onDelete) {
