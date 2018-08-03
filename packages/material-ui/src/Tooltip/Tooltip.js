@@ -160,11 +160,14 @@ class Tooltip extends React.Component {
       }
     }
 
-    if (event.type === 'mouseenter') {
+    if (event.type === 'mouseenter' || event.type === 'mouseover') {
       this.internalState.hover = true;
 
       if (childrenProps.onMouseEnter) {
         childrenProps.onMouseEnter(event);
+      }
+      else if (childrenProps.onMouseOver) {
+        childrenProps.onMouseOver(event);
       }
     }
 
@@ -317,6 +320,7 @@ class Tooltip extends React.Component {
     }
 
     if (!disableHoverListener) {
+      childrenProps.onMouseOver = this.handleEnter;
       childrenProps.onMouseEnter = this.handleEnter;
       childrenProps.onMouseLeave = this.handleLeave;
     }
