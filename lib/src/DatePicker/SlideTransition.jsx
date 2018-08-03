@@ -8,9 +8,9 @@ import CSSTransition from 'react-transition-group/CSSTransition';
 const animationDuration = 350;
 
 const SlideTransition = ({
-  classes, className, children, transKey, slideDirection, ...other
+  classes, className, children, transKey, slideDirection
 }) => (
-  <TransitionGroup className={classnames(classes.transitionContainer, className)} {...other}>
+  <TransitionGroup className={classnames(classes.transitionContainer, className)}>
     <CSSTransition
       key={transKey}
       classNames={{
