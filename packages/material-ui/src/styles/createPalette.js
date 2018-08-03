@@ -129,6 +129,16 @@ export default function createPalette(palette: Object) {
     if (!color.main && color[mainShade]) {
       color.main = color[mainShade];
     }
+
+    if (process.env.NODE_ENV !== 'production' && !color.main) {
+      throw new Error(
+        [
+          'Material-UI: the color provided to augmentColor(color) is invalid.',
+          `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
+        ].join('\n'),
+      );
+    }
+
     addLightOrDark(color, 'light', lightShade, tonalOffset);
     addLightOrDark(color, 'dark', darkShade, tonalOffset);
     if (!color.contrastText) {
