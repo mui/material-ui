@@ -166,7 +166,6 @@ class Tooltip extends React.Component {
       if (childrenProps.onMouseEnter) {
         childrenProps.onMouseEnter(event);
       }
-      
     }
 
     if (this.ignoreNonTouchEvents && event.type !== 'touchstart') {
@@ -318,7 +317,6 @@ class Tooltip extends React.Component {
     }
 
     if (!disableHoverListener) {
-      
       childrenProps.onMouseEnter = this.handleEnter;
       childrenProps.onMouseLeave = this.handleLeave;
     }
