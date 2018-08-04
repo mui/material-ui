@@ -31,14 +31,21 @@ class SimplePopover extends React.Component {
   render() {
     const { classes } = this.props;
     const { anchorEl } = this.state;
+    const open = Boolean(anchorEl);
 
     return (
       <div>
-        <Button variant="contained" onClick={this.handleClick}>
+        <Button
+          aria-owns={open ? 'simple-popper' : null}
+          aria-haspopup="true"
+          variant="contained"
+          onClick={this.handleClick}
+        >
           Open Popover
         </Button>
         <Popover
-          open={Boolean(anchorEl)}
+          id="simple-popper"
+          open={open}
           anchorEl={anchorEl}
           onClose={this.handleClose}
           anchorOrigin={{

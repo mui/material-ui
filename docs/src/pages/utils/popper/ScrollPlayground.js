@@ -175,6 +175,7 @@ class AnchorPlayground extends React.Component {
 >
 \`\`\`
 `;
+    const id = open ? 'scroll-playground' : null;
 
     return (
       <div className={classes.root}>
@@ -188,6 +189,7 @@ class AnchorPlayground extends React.Component {
                   }}
                   variant="contained"
                   onClick={this.handleClickButton}
+                  aria-describedby={id}
                 >
                   Toggle Popper
                 </Button>
@@ -196,6 +198,7 @@ class AnchorPlayground extends React.Component {
                   modifiers.
                 </Typography>
                 <Popper
+                  id={id}
                   open={open}
                   anchorEl={this.anchorEl}
                   placement={placement}

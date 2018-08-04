@@ -55,3 +55,10 @@ You can use the same list composition features with the `MenuItem` component:
 Use a different transition altogether.
 
 {{"demo": "pages/demos/menus/FadeMenu.js"}}
+
+## Render Props
+
+It is a [render props](https://reactjs.org/docs/render-props.html) demo that
+keeps track of the local state for a single menu.
+
+{{"demo": "pages/demos/menus/RenderPropsMenu.js"}}

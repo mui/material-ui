@@ -38,12 +38,13 @@ class LongMenu extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
+    const open = Boolean(anchorEl);
 
     return (
       <div>
         <IconButton
           aria-label="More"
-          aria-owns={anchorEl ? 'long-menu' : null}
+          aria-owns={open ? 'long-menu' : null}
           aria-haspopup="true"
           onClick={this.handleClick}
         >
@@ -52,7 +53,7 @@ class LongMenu extends React.Component {
         <Menu
           id="long-menu"
           anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
+          open={open}
           onClose={this.handleClose}
           PaperProps={{
             style: {
