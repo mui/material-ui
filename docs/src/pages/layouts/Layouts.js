@@ -39,7 +39,7 @@ const themes = [
   {
     name: 'Albumn',
     description: 'A reponsive albumn / gallery layout with a hero unit and footer.',
-    src: '/static/images/layouts/albumn.jpg',
+    src: '/static/images/layouts/albumn.png',
     href: '/layouts/albumn',
     source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/albumn',
   },
@@ -74,7 +74,7 @@ const themes = [
     description:
       'A minimal dasboard with taskbar and mini variant draw. ' +
       'The chart is courtesy of Recharts, but it is simple to substitute an alternative.',
-    src: '/static/images/layouts/dashboard.jpg',
+    src: '/static/images/layouts/dashboard.png',
     href: '/layouts/dashboard',
     source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/dashboard',
   },
