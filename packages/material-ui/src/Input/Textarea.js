@@ -121,6 +121,13 @@ class Textarea extends React.Component {
   syncHeightWithShadow() {
     const props = this.props;
 
+    // Guarding for **broken** shallow rendering method that call componentDidMount
+    // but doesn't handle refs correctly.
+    // To remove once the shallow rendering has been fixed.
+    if (!this.shadowRef) {
+      return;
+    }
+
     if (this.isControlled) {
       // The component is controlled, we need to update the shallow value.
       this.shadowRef.value = props.value == null ? '' : String(props.value);
