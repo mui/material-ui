@@ -33,7 +33,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    minWidth: 0, // So the Typography noWrap works
+    minWidth: 0, // So that Typography noWrap works
   },
   toolbar: theme.mixins.toolbar,
   toolbarTitle: {
@@ -43,7 +43,7 @@ const styles = theme => ({
     padding: `${theme.spacing.unit * 8}px 0`,
     backgroundColor: theme.palette.background.paper,
   },
-  hero: {
+  heroContent: {
     maxWidth: 600,
     margin: '0 auto',
     padding: `${theme.spacing.unit * 8}px ${theme.spacing.unit * 2}px 0`,
@@ -176,7 +176,7 @@ function Pricing(props) {
         <div className={classes.appBarSpacer} />
 
         {/* Hero unit */}
-        <div className={classes.hero}>
+        <div className={classes.heroContent}>
           <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
             Pricing layout
           </Typography>

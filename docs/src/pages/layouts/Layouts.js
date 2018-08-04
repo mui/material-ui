@@ -10,21 +10,65 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
+  item: {
+    flexGrow: 1,
+  },
   card: {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    flexGrow: 1,
   },
   cardContent: {
     flexGrow: 1,
   },
-  media: {
+  cardMedia: {
     height: 0,
     paddingTop: '65%',
   },
 };
 
 const themes = [
+  {
+    name: 'Sign-in',
+    description: 'A simple sign-in page.',
+    src: '/static/images/layouts/sign-in.png',
+    href: '/layouts/sign-in',
+    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/sign-in',
+  },
+  {
+    name: 'Albumn',
+    description: 'A reponsive albumn / gallery layout with a hero unit and footer.',
+    src: '/static/images/layouts/albumn.jpg',
+    href: '/layouts/albumn',
+    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/albumn',
+  },
+  {
+    name: 'Blog',
+    description:
+      'A sophisticated blog layout. Markdown support is courtesy of react-markdown, ' +
+      'but is easily repalced.',
+    src: '/static/images/layouts/blog.png',
+    href: '/layouts/blog',
+    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/blog',
+  },
+  {
+    name: 'Pricing',
+    description:
+      'Quickly build an effective pricing table for your potential customers with this layout.',
+    src: '/static/images/layouts/pricing.png',
+    href: '/layouts/pricing',
+    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/pricing',
+  },
+  {
+    name: 'Checkout',
+    description:
+      'A step-by-step checkout page layout. ' +
+      'Adapt the number of steps to suit your needs, or make steps optional.',
+    src: '/static/images/layouts/checkout.png',
+    href: '/layouts/checkout',
+    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/checkout',
+  },
   {
     name: 'Dashboard',
     description:
@@ -34,23 +78,6 @@ const themes = [
     href: '/layouts/dashboard',
     source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/dashboard',
   },
-  {
-    name: 'Albumn',
-    description: 'A reponsive albumn / gallery layout with a hero unit and footer.',
-    src: '/static/images/layouts/albumn.jpg',
-    href: '/layouts/albumn',
-    source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/albumn/Albumn.js',
-  },
-  {
-    name: 'Pricing',
-    description:
-      'Quickly build an effective pricing table for your potential customers with this layout.',
-    src: '/static/images/layouts/pricing.png',
-    href: '/layouts/pricing',
-    source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/pricing/Pricing.js',
-  },
 ];
 
 function Layouts(props) {
@@ -58,12 +85,12 @@ function Layouts(props) {
   return (
     <Grid container spacing={16}>
       {themes.map(theme => (
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item sm={6} md={4} className={classes.item}>
           <Card key={theme.name} className={classes.card}>
             <CardMedia
               component="a"
               href={theme.href}
-              className={classes.media}
+              className={classes.cardMedia}
               image={theme.src}
               title={theme.name}
               target="_blank"
