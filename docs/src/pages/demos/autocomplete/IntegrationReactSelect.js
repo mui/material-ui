@@ -60,7 +60,6 @@ const styles = theme => ({
   input: {
     display: 'flex',
     padding: 0,
-    overflow: 'hidden'
   },
   valueContainer: {
     display: 'flex',
