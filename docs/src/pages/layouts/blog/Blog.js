@@ -178,7 +178,7 @@ function Blog(props) {
 
         <Toolbar variant="dense" className={classes.toolbarSecondary}>
           {sections.map(section => (
-            <Typography color="inherit" noWrap>
+            <Typography color="inherit" noWrap key={section}>
               {section}
             </Typography>
           ))}
@@ -209,7 +209,7 @@ function Blog(props) {
           {/* Sub featured posts */}
           <Grid container spacing={40} className={classes.cardGrid}>
             {featuredPosts.map(post => (
-              <Grid item key={post} xs={12} md={6}>
+              <Grid item key={post.title} xs={12} md={6}>
                 <Card className={classes.card}>
                   <div className={classes.cardDetails}>
                     <CardContent className={classes.cardContent}>
@@ -236,7 +236,7 @@ function Blog(props) {
               </Grid>
             ))}
           </Grid>
-          {/* Sub featured posts */}
+          {/* End sub featured posts */}
 
           <Grid container spacing={40} className={classes.mainGrid}>
             {/* Main content */}
@@ -245,7 +245,11 @@ function Blog(props) {
                 From the Firehose
               </Typography>
               <Divider />
-              {posts.map(post => <Markdown className={classes.markdown}>{post}</Markdown>)}
+              {posts.map(post => (
+                <Markdown className={classes.markdown} key={post.substring(30, 40)}>
+                  {post}
+                </Markdown>
+              ))}
             </Grid>
             {/* End main content */}
 
@@ -262,12 +266,20 @@ function Blog(props) {
               <Typography variant="title" gutterBottom className={classes.sidebarSection}>
                 Archives
               </Typography>
-              {archives.map(archive => <Typography variant="subheading">{archive}</Typography>)}
+              {archives.map(archive => (
+                <Typography variant="subheading" key={archive}>
+                  {archive}
+                </Typography>
+              ))}
 
               <Typography variant="title" gutterBottom className={classes.sidebarSection}>
                 Social
               </Typography>
-              {social.map(network => <Typography variant="subheading">{network}</Typography>)}
+              {social.map(network => (
+                <Typography variant="subheading" key={network}>
+                  {network}
+                </Typography>
+              ))}
             </Grid>
             {/* End sidebar */}
           </Grid>

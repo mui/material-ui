@@ -210,7 +210,7 @@ function Pricing(props) {
                     </Typography>
                   </div>
                   {tier.description.map(line => (
-                    <Typography variant="subheading" align="center">
+                    <Typography variant="subheading" align="center" key={line}>
                       {line}
                     </Typography>
                   ))}

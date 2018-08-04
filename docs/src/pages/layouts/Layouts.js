@@ -47,7 +47,7 @@ const themes = [
     name: 'Blog',
     description:
       'A sophisticated blog layout. Markdown support is courtesy of react-markdown, ' +
-      'but is easily repalced.',
+      'but is easily replaced.',
     src: '/static/images/layouts/blog.png',
     href: '/layouts/blog',
     source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/blog',
@@ -85,8 +85,8 @@ function Layouts(props) {
   return (
     <Grid container spacing={16}>
       {themes.map(theme => (
-        <Grid item sm={6} md={4} className={classes.item}>
-          <Card key={theme.name} className={classes.card}>
+        <Grid item sm={6} md={4} className={classes.item} key={theme.name}>
+          <Card className={classes.card}>
             <CardMedia
               component="a"
               href={theme.href}
