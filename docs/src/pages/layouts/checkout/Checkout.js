@@ -26,10 +26,10 @@ const styles = theme => ({
     ...theme.mixins.toolbar,
   },
   paper: {
-    width: 500,
+    width: 600,
     margin: `${theme.spacing.unit * 6}px auto`,
     padding: theme.spacing.unit * 3,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       width: 'auto',
       margin: `${theme.spacing.unit * 6}px ${theme.spacing.unit}px`,
       padding: theme.spacing.unit * 2,
@@ -52,9 +52,7 @@ const styles = theme => ({
   },
 });
 
-function getSteps() {
-  return ['Shipping address', 'Payment details', 'Review your order'];
-}
+const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 function getStepContent(step) {
   switch (step) {
@@ -96,7 +94,6 @@ class Checkout extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const steps = getSteps();
     const { activeStep } = this.state;
 
     return (
