@@ -120,9 +120,11 @@ class Textarea extends React.Component {
 
   syncHeightWithShadow() {
     const props = this.props;
-    // Guarding for shallow rendering, where refs are always `null`.
-    // See https://github.com/mui-org/material-ui/issues/12247
-    if (!this.shadowRef || !this.singlelineShadowRef) {
+
+    // Guarding for **broken** shallow rendering method that call componentDidMount
+    // but doesn't handle refs correctly.
+    // To remove once the shallow rendering has been fixed.
+    if (!this.shadowRef) {
       return;
     }
 
