@@ -28,7 +28,7 @@ describe('<Textarea />', () => {
   let mount;
 
   before(() => {
-    shallow = createShallow({ disableLifecycleMethods: true });
+    shallow = createShallow();
     mount = createMount();
   });
 
