@@ -5,6 +5,49 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.4.3
+###### *Aug 4, 2018*
+
+Big thanks to the 15 contributors who made this release possible!
+This release focuses on bug fixes 🐛.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Tooltip] Add default css max-width and customization demo (#12338) @simoami
+- [Step] Add completed class to the root (#12339) @kylezinter
+- [Drawer] Add touchAction: 'none' on the Overlay to disable scrolling (#12350) @jlascoleassi
+- [Chip] Remove reference to checked prop in the docs (#12375) @DavidThorpe71
+- [styles] Improve the dangerouslyUseGlobalCSS story (#12389) @oliviertassinari
+- [Tooltip] Fix autoFocus issue (#12372) @Mangatt
+- [FormLabel] [FormHelperText] classes keys (#12373) @Mangatt
+- [Chip] Add color prop to chip component (#12378) @itelo
+- [Tooltip] Fix hover issues (#12394) @aseem191
+- [palette] Better defensive logic (#12402) @oliviertassinari
+- [MobileStepper] Add a LinearProgressProps property (#12404) @oliviertassinari
+- [Textarea] Add back defensive branch logic (#12406) @kanzelm3
+
+#### Docs
+
+- [docs] Add markdown code to Interactive Grid (#12333) @itelo
+- [docs] Document how to use the Select with a label and a placeholder (#12342) @oliviertassinari
+- [docs] Improve the Table sorting logic (#12348) @xkenmon
+- [docs] Fix contast => contrast typo (#12395) @chayeoi
+- [docs] Fix two typos in Lists.md (#12397) @adl
+- [docs] Fix ChipPlayground generated code (#12401) @mbrookes
+- [docs] Add Tomahawk boilerplate to the related projects (#12393) @goemen
+
+#### Core
+
+- [core] Upgrade the dependencies (#12409) @oliviertassinari
+
+#### Lab
+
+- [ToggleButton] Fix TypeScript definition (#12360) @itskibo
+
 ## 1.4.2
 ###### *Jul 29, 2018*
 
