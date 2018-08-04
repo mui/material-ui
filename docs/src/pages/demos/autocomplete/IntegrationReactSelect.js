@@ -60,9 +60,11 @@ const styles = theme => ({
   input: {
     display: 'flex',
     padding: 0,
+    overflow: 'hidden'
   },
   valueContainer: {
     display: 'flex',
+    flexWrap: 'wrap',
     flex: 1,
     alignItems: 'center',
   },
