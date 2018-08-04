@@ -63,6 +63,7 @@ const styles = theme => ({
   },
   valueContainer: {
     display: 'flex',
+    flexWrap: 'wrap',
     flex: 1,
     alignItems: 'center',
   },
