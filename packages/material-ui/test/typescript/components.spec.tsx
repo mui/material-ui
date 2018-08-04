@@ -158,7 +158,8 @@ const CardTest = () => (
       </Typography>
       <Typography variant="body1">adjective</Typography>
       <Typography component="p">
-        well meaning and kindly.<br />
+        well meaning and kindly.
+        <br />
         {'"a benevolent smile"'}
       </Typography>
     </CardContent>
@@ -442,7 +443,8 @@ const GridListTest = () => (
   <GridList cellHeight={160} cols={3} onClick={event => log(event)}>
     <GridListTile cols={1} rows={4} onClick={event => log(event)}>
       <img src="img.png" alt="alt text" />
-    </GridListTile>,
+    </GridListTile>
+    ,
   </GridList>
 );
 

@@ -34,7 +34,7 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.42",
+    "@babel/runtime": "7.0.0-beta.42",
     "@types/jss": "^9.5.3",
     "@types/react-transition-group": "^2.0.8",
     "brcast": "^3.0.1",
@@ -56,10 +56,10 @@
     "normalize-scroll-left": "^0.1.2",
     "popper.js": "^1.14.1",
     "prop-types": "^15.6.0",
-    "react-event-listener": "^0.6.0",
+    "react-event-listener": "^0.6.2",
     "react-jss": "^8.1.0",
     "react-transition-group": "^2.2.1",
-    "recompose": "^0.27.0",
+    "recompose": "^0.28.0",
     "warning": "^4.0.1"
   },
   "sideEffects": false,

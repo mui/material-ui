@@ -119,7 +119,9 @@ class MultipleSelect extends React.Component {
             input={<Input id="select-multiple-chip" />}
             renderValue={selected => (
               <div className={classes.chips}>
-                {selected.map(value => <Chip key={value} label={value} className={classes.chip} />)}
+                {selected.map(value => (
+                  <Chip key={value} label={value} className={classes.chip} />
+                ))}
               </div>
             )}
             MenuProps={MenuProps}

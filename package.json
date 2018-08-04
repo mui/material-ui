@@ -152,7 +152,7 @@
     "rollup-plugin-uglify": "^4.0.0",
     "sinon": "^6.0.0",
     "size-limit": "^0.19.0",
-    "typescript": "^2.8.0",
+    "typescript": "^3.0.0",
     "url-loader": "^1.0.1",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
