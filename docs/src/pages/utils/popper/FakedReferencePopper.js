@@ -50,10 +50,11 @@ class FakedReferencePopper extends React.Component {
   render() {
     const { classes } = this.props;
     const { anchorEl, open } = this.state;
+    const id = open ? 'faked-reference-popper' : null;
 
     return (
       <div onMouseLeave={this.handleClose}>
-        <Typography onMouseUp={this.handleMouseUp}>
+        <Typography aria-describedby={id} onMouseUp={this.handleMouseUp}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum purus, bibendum sit
           amet vulputate eget, porta semper ligula. Donec bibendum vulputate erat, ac fringilla mi
           finibus nec. Donec ac dolor sed dolor porttitor blandit vel vel purus. Fusce vel malesuada
@@ -62,7 +63,7 @@ class FakedReferencePopper extends React.Component {
           facilisis neque enim sed neque. Quisque accumsan metus vel maximus consequat. Suspendisse
           lacinia tellus a libero volutpat maximus.
         </Typography>
-        <Popper open={open} anchorEl={anchorEl} transition placement="bottom-start">
+        <Popper id={id} open={open} anchorEl={anchorEl} transition placement="bottom-start">
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={350}>
               <Paper>

@@ -40,3 +40,10 @@ You just need to create an object shaped like the [`ReferenceObject`](https://gi
 Highlight part of the text to see the popper:
 
 {{"demo": "pages/utils/popper/FakedReferencePopper.js"}}
+
+## Render Props
+
+It is a [render props](https://reactjs.org/docs/render-props.html) demo that
+keeps track of the local state for a single popper.
+
+{{"demo": "pages/utils/popper/RenderPropsPopper.js"}}

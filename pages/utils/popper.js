@@ -43,6 +43,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/utils/popper/ScrollPlayground'), 'utf8')
 `,
         },
+        'pages/utils/popper/RenderPropsPopper.js': {
+          js: require('docs/src/pages/utils/popper/RenderPropsPopper').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/utils/popper/RenderPropsPopper'), 'utf8')
+`,
+        },
       }}
     />
   );

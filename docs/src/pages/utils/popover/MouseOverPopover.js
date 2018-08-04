@@ -21,7 +21,7 @@ class MouseOverPopover extends React.Component {
   };
 
   handlePopoverOpen = event => {
-    this.setState({ anchorEl: event.target });
+    this.setState({ anchorEl: event.currentTarget });
   };
 
   handlePopoverClose = () => {
@@ -35,10 +35,16 @@ class MouseOverPopover extends React.Component {
 
     return (
       <div>
-        <Typography onMouseEnter={this.handlePopoverOpen} onMouseLeave={this.handlePopoverClose}>
+        <Typography
+          aria-owns={open ? 'mouse-over-popover' : null}
+          aria-haspopup="true"
+          onMouseEnter={this.handlePopoverOpen}
+          onMouseLeave={this.handlePopoverClose}
+        >
           Hover with a Popover.
         </Typography>
         <Popover
+          id="mouse-over-popover"
           className={classes.popover}
           classes={{
             paper: classes.paper,

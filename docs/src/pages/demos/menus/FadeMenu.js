@@ -19,11 +19,12 @@ class FadeMenu extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
+    const open = Boolean(anchorEl);
 
     return (
       <div>
         <Button
-          aria-owns={anchorEl ? 'fade-menu' : null}
+          aria-owns={open ? 'fade-menu' : null}
           aria-haspopup="true"
           onClick={this.handleClick}
         >
@@ -32,7 +33,7 @@ class FadeMenu extends React.Component {
         <Menu
           id="fade-menu"
           anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
+          open={open}
           onClose={this.handleClose}
           TransitionComponent={Fade}
         >

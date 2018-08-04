@@ -30,3 +30,10 @@ the position of the popover.
 We demonstrate how to use the `Popover` component to implement a popover behavior based on the mouse over event.
 
 {{"demo": "pages/utils/popover/MouseOverPopover.js"}}
+
+## Render Props
+
+It is a [render props](https://reactjs.org/docs/render-props.html) demo that
+keeps track of the local state for a single popover.
+
+{{"demo": "pages/utils/popover/RenderPropsPopover.js"}}
