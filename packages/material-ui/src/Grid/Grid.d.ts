@@ -39,6 +39,11 @@ export interface GridProps
   component?: string | React.ComponentType<Omit<GridProps, StrippedProps>>;
   container?: boolean;
   direction?: GridDirection;
+  xsDirection?: GridDirection;
+  smDirection?: GridDirection;
+  mdDirection?: GridDirection;
+  lgDirection?: GridDirection;
+  xlDirection?: GridDirection;
   item?: boolean;
   justify?: GridJustification;
   spacing?: GridSpacing;
@@ -50,8 +55,20 @@ export type GridClassKey =
   | 'container'
   | 'item'
   | 'direction-xs-column'
+  | 'direction-sm-column'
+  | 'direction-md-column'
+  | 'direction-lg-column'
+  | 'direction-xl-column'
   | 'direction-xs-column-reverse'
+  | 'direction-sm-column-reverse'
+  | 'direction-md-column-reverse'
+  | 'direction-lg-column-reverse'
+  | 'direction-xl-column-reverse'
   | 'direction-xs-row-reverse'
+  | 'direction-sm-row-reverse'
+  | 'direction-md-row-reverse'
+  | 'direction-lg-row-reverse'
+  | 'direction-xl-row-reverse'
   | 'wrap-xs-nowrap'
   | 'wrap-xs-wrap-reverse'
   | 'align-items-xs-center'
@@ -99,6 +116,11 @@ type StrippedProps =
   | 'alignContent'
   | 'alignItems'
   | 'direction'
+  | 'xsDirection'
+  | 'smDirection'
+  | 'mdDirection'
+  | 'lgDirection'
+  | 'xlDirection'
   | 'spacing'
   | 'hidden'
   | 'justify'

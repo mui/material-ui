@@ -64,6 +64,121 @@ function generateGrid(globalStyles, theme, breakpoint) {
   }
 }
 
+function generateContainer(globalStyles, theme, breakpoint) {
+  const containeStyles = {
+    /* Styles applied to the root element if `direction="column"`. */
+    [`direction-${breakpoint}-column`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        flexDirection: 'column',
+      },
+    },
+    /* Styles applied to the root element if `direction="column-reverse"`. */
+    [`direction-${breakpoint}-column-reverse`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        flexDirection: 'column-reverse',
+      },
+    },
+    /* Styles applied to the root element if `direction="rwo-reverse"`. */
+    [`direction-${breakpoint}-row-reverse`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        flexDirection: 'row-reverse',
+      },
+    },
+    /* Styles applied to the root element if `wrap="nowrap"`. */
+    [`wrap-${breakpoint}-nowrap`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        flexWrap: 'nowrap',
+      },
+    },
+    /* Styles applied to the root element if `wrap="reverse"`. */
+    [`wrap-${breakpoint}-wrap-reverse`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        flexWrap: 'wrap-reverse',
+      },
+    },
+    /* Styles applied to the root element if `alignItems="center"`. */
+    [`align-items-${breakpoint}-center`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        alignItems: 'center',
+      },
+    },
+    /* Styles applied to the root element if `alignItems="flex-start"`. */
+    [`align-items-${breakpoint}-flex-start`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        alignItems: 'flex-start',
+      },
+    },
+    /* Styles applied to the root element if `alignItems="flex-end"`. */
+    [`align-items-${breakpoint}-flex-end`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        alignItems: 'flex-end',
+      },
+    },
+    /* Styles applied to the root element if `alignItems="baseline"`. */
+    [`align-items-${breakpoint}-baseline`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        alignItems: 'baseline',
+      },
+    },
+    /* Styles applied to the root element if `alignContent="center"`. */
+    [`align-content-${breakpoint}-center`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        alignContent: 'center',
+      },
+    },
+    /* Styles applied to the root element if `alignContent="flex-start"`. */
+    [`align-content-${breakpoint}-flex-start`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        alignContent: 'flex-start',
+      },
+    },
+    /* Styles applied to the root element if `alignContent="flex-end"`. */
+    [`align-content-${breakpoint}-flex-end`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        alignContent: 'flex-end',
+      },
+    },
+    /* Styles applied to the root element if `alignContent="space-between"`. */
+    [`align-content-${breakpoint}-space-between`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        alignContent: 'space-between',
+      },
+    },
+    /* Styles applied to the root element if `alignContent="space-around"`. */
+    [`align-content-${breakpoint}-space-around`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        alignContent: 'space-around',
+      },
+    },
+    /* Styles applied to the root element if `justify="center"`. */
+    [`justify-${breakpoint}-center`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        justifyContent: 'center',
+      },
+    },
+    /* Styles applied to the root element if `justify="flex-end"`. */
+    [`justify-${breakpoint}-flex-end`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        justifyContent: 'flex-end',
+      },
+    },
+    /* Styles applied to the root element if `justify="space-between"`. */
+    [`justify-${breakpoint}-space-between`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        justifyContent: 'space-between',
+      },
+    },
+    /* Styles applied to the root element if `justify="space-around"`. */
+    [`justify-${breakpoint}-space-around`]: {
+      [theme.breakpoints.up(breakpoint)]: {
+        justifyContent: 'space-around',
+      },
+    },
+  };
+
+  Object.assign(globalStyles, containeStyles);
+}
+
 function generateGutter(theme, breakpoint) {
   const styles = {};
 
@@ -108,82 +223,14 @@ export const styles = theme => ({
   zeroMinWidth: {
     minWidth: 0,
   },
-  /* Styles applied to the root element if `direction="column"`. */
-  'direction-xs-column': {
-    flexDirection: 'column',
-  },
-  /* Styles applied to the root element if `direction="column-reverse"`. */
-  'direction-xs-column-reverse': {
-    flexDirection: 'column-reverse',
-  },
-  /* Styles applied to the root element if `direction="rwo-reverse"`. */
-  'direction-xs-row-reverse': {
-    flexDirection: 'row-reverse',
-  },
-  /* Styles applied to the root element if `wrap="nowrap"`. */
-  'wrap-xs-nowrap': {
-    flexWrap: 'nowrap',
-  },
-  /* Styles applied to the root element if `wrap="reverse"`. */
-  'wrap-xs-wrap-reverse': {
-    flexWrap: 'wrap-reverse',
-  },
-  /* Styles applied to the root element if `alignItems="center"`. */
-  'align-items-xs-center': {
-    alignItems: 'center',
-  },
-  /* Styles applied to the root element if `alignItems="flex-start"`. */
-  'align-items-xs-flex-start': {
-    alignItems: 'flex-start',
-  },
-  /* Styles applied to the root element if `alignItems="flex-end"`. */
-  'align-items-xs-flex-end': {
-    alignItems: 'flex-end',
-  },
-  /* Styles applied to the root element if `alignItems="baseline"`. */
-  'align-items-xs-baseline': {
-    alignItems: 'baseline',
-  },
-  /* Styles applied to the root element if `alignContent="center"`. */
-  'align-content-xs-center': {
-    alignContent: 'center',
-  },
-  /* Styles applied to the root element if `alignContent="flex-start"`. */
-  'align-content-xs-flex-start': {
-    alignContent: 'flex-start',
-  },
-  /* Styles applied to the root element if `alignContent="flex-end"`. */
-  'align-content-xs-flex-end': {
-    alignContent: 'flex-end',
-  },
-  /* Styles applied to the root element if `alignContent="space-between"`. */
-  'align-content-xs-space-between': {
-    alignContent: 'space-between',
-  },
-  /* Styles applied to the root element if `alignContent="space-around"`. */
-  'align-content-xs-space-around': {
-    alignContent: 'space-around',
-  },
-  /* Styles applied to the root element if `justify="center"`. */
-  'justify-xs-center': {
-    justifyContent: 'center',
-  },
-  /* Styles applied to the root element if `justify="flex-end"`. */
-  'justify-xs-flex-end': {
-    justifyContent: 'flex-end',
-  },
-  /* Styles applied to the root element if `justify="space-between"`. */
-  'justify-xs-space-between': {
-    justifyContent: 'space-between',
-  },
-  /* Styles applied to the root element if `justify="space-around"`. */
-  'justify-xs-space-around': {
-    justifyContent: 'space-around',
-  },
   /* Styles applied to the root element if `justify="space-evenly"`. */
   'justify-xs-space-evenly': {
     justifyContent: 'space-evenly',
   },
+  ...breakpointKeys.reduce((accumulator, key) => {
+    generateContainer(accumulator, theme, key);
+    return accumulator;
+  }, {}),
   ...generateGutter(theme, 'xs'),
   ...breakpointKeys.reduce((accumulator, key) => {
     // Use side effect over immutability for better performance.
@@ -213,14 +260,23 @@ function Grid(props) {
     zeroMinWidth,
     ...other
   } = props;
-
+  // [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
   const className = classNames(
     {
       [classes.container]: container,
       [classes.item]: item,
       [classes.zeroMinWidth]: zeroMinWidth,
       [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
-      [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
+      // key
+      ...breakpointKeys.reduce((accumulator, key) => {
+        // console.log(props[`${key}Direction`]);
+        const w = props[`${key}Direction`];
+        // key = 'xs';
+        accumulator[classes[`direction-${key}-${String(w)}`]] = !!w;
+        // generateClasses(accumulator, key, w);
+        // console.log(accumulator);
+        return accumulator;
+      }, {}),
       [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
       [classes[`align-items-xs-${String(alignItems)}`]]:
         alignItems !== Grid.defaultProps.alignItems,
@@ -286,6 +342,11 @@ Grid.propTypes = {
    */
   direction: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
   /**
+   * Defines the `flex-direction` style property.
+   * It is applied for all screen sizes.
+   */
+  xsDirection: PropTypes.oneOf([false, 'row', 'row-reverse', 'column', 'column-reverse']),
+  /**
    * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
    */
@@ -350,6 +411,7 @@ Grid.defaultProps = {
   component: 'div',
   container: false,
   direction: 'row',
+  xsDirection: 'row',
   item: false,
   justify: 'flex-start',
   lg: false,
@@ -371,6 +433,7 @@ if (process.env.NODE_ENV !== 'production') {
     alignContent: requireProp('container'),
     alignItems: requireProp('container'),
     direction: requireProp('container'),
+    xsDirection: requireProp('container'),
     justify: requireProp('container'),
     lg: requireProp('item'),
     md: requireProp('item'),
