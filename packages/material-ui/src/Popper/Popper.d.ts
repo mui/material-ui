@@ -20,12 +20,12 @@ export type PopperPlacementType =
 export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
   transition?: boolean;
   anchorEl?: null | HTMLElement | ReferenceObject | ((element: HTMLElement) => HTMLElement);
-  children: (
+  children: React.ReactElement<any> | ((
     props: {
       placement: PopperPlacementType;
       TransitionProps?: TransitionProps;
     },
-  ) => React.ReactElement<any>;
+  ) => React.ReactElement<any>);
   container?: PortalProps['container'];
   disablePortal?: PortalProps['disablePortal'];
   keepMounted?: boolean;
