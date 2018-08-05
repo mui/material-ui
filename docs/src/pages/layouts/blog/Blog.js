@@ -20,22 +20,14 @@ import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
 
 const styles = theme => ({
-  container: {
-    flexGrow: 1,
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    padding: `0 ${theme.spacing.unit * 20}px`,
-    [theme.breakpoints.down('md')]: {
-      padding: `0 ${theme.spacing.unit * 12}px`,
-    },
-    [theme.breakpoints.down('sm')]: {
-      padding: `0 ${theme.spacing.unit * 6}px`,
-    },
-    [theme.breakpoints.down('xs')]: {
-      padding: `0 ${theme.spacing.unit * 2}px`,
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+      width: 1100,
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
   },
   toolbarMain: {
@@ -47,13 +39,7 @@ const styles = theme => ({
   toolbarSecondary: {
     justifyContent: 'space-between',
   },
-  content: {
-    flexGrow: 1,
-    minWidth: 0, // So that Typography noWrap works
-    marginBottom: theme.spacing.unit * 4,
-  },
   mainFeaturedPost: {
-    // padding: `${theme.spacing.unit * 8}px 0`,
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginBottom: theme.spacing.unit * 4,
@@ -69,21 +55,12 @@ const styles = theme => ({
   },
   card: {
     display: 'flex',
-    // width: '100%',
   },
   cardDetails: {
-    display: 'flex',
-    flexDirection: 'column',
     flex: 1,
   },
-  cardContent: {
-    flex: '1 0 auto',
-  },
   cardMedia: {
-    // height: 0,
-    // paddingTop: '56.25%', // 16:9
     width: 160,
-    alignSelf: 'str etch',
   },
   markdown: {
     padding: `${theme.spacing.unit * 3}px 0`,
@@ -96,9 +73,9 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   footer: {
-    width: '100%',
     backgroundColor: theme.palette.background.paper,
-    padding: `${theme.spacing.unit * 4}px`,
+    marginTop: theme.spacing.unit * 8,
+    padding: `${theme.spacing.unit * 6}px 0`,
   },
 });
 
@@ -153,10 +130,9 @@ function Blog(props) {
   const { classes } = props;
 
   return (
-    <div>
-      <div className={classes.container}>
-        <CssBaseline />
-
+    <React.Fragment>
+      <CssBaseline />
+      <div className={classes.layout}>
         <Toolbar className={classes.toolbarMain}>
           <Button size="small">Subscribe</Button>
           <Typography
@@ -175,7 +151,6 @@ function Blog(props) {
             Sign up
           </Button>
         </Toolbar>
-
         <Toolbar variant="dense" className={classes.toolbarSecondary}>
           {sections.map(section => (
             <Typography color="inherit" noWrap key={section}>
@@ -183,8 +158,7 @@ function Blog(props) {
             </Typography>
           ))}
         </Toolbar>
-
-        <main className={classes.content}>
+        <main>
           {/* Main featured post */}
           <Paper className={classes.mainFeaturedPost}>
             <Grid container>
@@ -205,14 +179,13 @@ function Blog(props) {
             </Grid>
           </Paper>
           {/* End main featured post */}
-
           {/* Sub featured posts */}
           <Grid container spacing={40} className={classes.cardGrid}>
             {featuredPosts.map(post => (
               <Grid item key={post.title} xs={12} md={6}>
                 <Card className={classes.card}>
                   <div className={classes.cardDetails}>
-                    <CardContent className={classes.cardContent}>
+                    <CardContent>
                       <Typography variant="headline">{post.title}</Typography>
                       <Typography variant="subheading" color="textSecondary">
                         {post.date}
@@ -237,7 +210,6 @@ function Blog(props) {
             ))}
           </Grid>
           {/* End sub featured posts */}
-
           <Grid container spacing={40} className={classes.mainGrid}>
             {/* Main content */}
             <Grid item xs={12} md={8}>
@@ -246,57 +218,51 @@ function Blog(props) {
               </Typography>
               <Divider />
               {posts.map(post => (
-                <Markdown className={classes.markdown} key={post.substring(30, 40)}>
+                <Markdown className={classes.markdown} key={post.substring(0, 40)}>
                   {post}
                 </Markdown>
               ))}
             </Grid>
             {/* End main content */}
-
             {/* Sidebar */}
             <Grid item xs={12} md={4}>
               <Paper elevation={0} className={classes.sidebarAboutBox}>
-                <Typography variant="title">About</Typography>
+                <Typography variant="title" gutterBottom>
+                  About
+                </Typography>
                 <Typography>
                   Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit
                   amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
                 </Typography>
               </Paper>
-
               <Typography variant="title" gutterBottom className={classes.sidebarSection}>
                 Archives
               </Typography>
               {archives.map(archive => (
-                <Typography variant="subheading" key={archive}>
-                  {archive}
-                </Typography>
+                <Typography key={archive}>{archive}</Typography>
               ))}
-
               <Typography variant="title" gutterBottom className={classes.sidebarSection}>
                 Social
               </Typography>
               {social.map(network => (
-                <Typography variant="subheading" key={network}>
-                  {network}
-                </Typography>
+                <Typography key={network}>{network}</Typography>
               ))}
             </Grid>
             {/* End sidebar */}
           </Grid>
         </main>
       </div>
-
       {/* Footer */}
-      <div className={classes.footer}>
-        <Typography variant="title" color="textPrimary" align="center" gutterBottom>
+      <footer className={classes.footer}>
+        <Typography variant="title" align="center" gutterBottom>
           Footer
         </Typography>
-        <Typography variant="subheading" color="textSecondary" align="center" paragraph>
+        <Typography variant="subheading" align="center" color="textSecondary" component="p">
           Something here to give the footer a purpose!
         </Typography>
-      </div>
+      </footer>
       {/* End footer */}
-    </div>
+    </React.Fragment>
   );
 }
 

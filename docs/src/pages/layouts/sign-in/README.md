@@ -10,10 +10,10 @@ You can customise the layout to add some pizazz in keeping with your corporate t
 
 | File  | Purpose  |
 |---    |---       |
-| `SignIn.js`    | A simple sign-in layout in a single file. Duplicate and customise it to make your registration and password change forms. |
+| `SignIn.js` | A simple sign-in layout in a single file. Duplicate and customise it to make your registration and password change forms. |
 
 
 ## Dependencies
 
-`@material-ui/core@^1.0.0`
-`@material-ui/icons^2.0.0`
+- `@material-ui/core`
+- `@material-ui/icons`

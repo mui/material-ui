@@ -1,7 +1,6 @@
-
 # Sample blog post
 
-#### January 1, 2014 by Mark
+#### January 1, 2014 by Olivier
 
 This blog post shows a few different types of content that are supported and styled with
 Material styles. Basic typography, images, and code are all supported.
@@ -29,7 +28,7 @@ Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
 
 
     Example code block
-    Aenean lacinia bibendum nulla sed consectetur. 
+    Aenean lacinia bibendum nulla sed consectetur.
     Etiam porta sem malesuada magna mollis euismod.
     Fusce dapibus, tellus ac cursus commodo.
     Tortor mauris condimentum nibh, ut fermentum massa.

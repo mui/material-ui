@@ -13,7 +13,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import SimpleLineChart from './SimpleLineChart';
@@ -23,14 +22,7 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
     display: 'flex',
-  },
-  toolbar: {
-    paddingRight: 24,
   },
   toolbarIcon: {
     display: 'flex',
@@ -64,10 +56,6 @@ const styles = theme => ({
   title: {
     flexGrow: 1,
   },
-  badge: {
-    top: 2,
-    right: 2,
-  },
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
@@ -88,22 +76,17 @@ const styles = theme => ({
       width: theme.spacing.unit * 9,
     },
   },
-  appBarSpacer: {
-    ...theme.mixins.toolbar,
-  },
+  appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
     height: '100vh',
-    overflow: 'scroll',
+    overflow: 'auto',
   },
   chartContainer: {
     marginLeft: -22,
-    width: 'calc(100% + 22)',
   },
   tableContainer: {
-    width: '100%',
     height: 320,
   },
 });
@@ -122,80 +105,78 @@ class Dashboard extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <React.Fragment>
         <CssBaseline />
-
-        <AppBar
-          position="absolute"
-          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
-        >
-          <Toolbar disableGutters={!this.state.open} className={classes.toolbar}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(
-                classes.menuButton,
-                this.state.open && classes.menuButtonHidden,
-              )}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="title" color="inherit" noWrap className={classes.title}>
-              Dashboard layout
-            </Typography>
-            <Badge classes={{ badge: classes.badge }} badgeContent={4} color="secondary">
-              <IconButton color="inherit" className={classes.notifications}>
-                <NotificationsIcon />
+        <div className={classes.root}>
+          <AppBar
+            position="absolute"
+            className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+          >
+            <Toolbar disableGutters={!this.state.open}>
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.handleDrawerOpen}
+                className={classNames(
+                  classes.menuButton,
+                  this.state.open && classes.menuButtonHidden,
+                )}
+              >
+                <MenuIcon />
               </IconButton>
-            </Badge>
-          </Toolbar>
-        </AppBar>
-
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-          }}
-          open={this.state.open}
-        >
-          <div className={classes.toolbarIcon}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
-          </div>
-          <Divider />
-          <List>{mainListItems}</List>
-          <Divider />
-          <List>{secondaryListItems}</List>
-        </Drawer>
-
-        <main className={classes.content}>
-          <div className={classes.appBarSpacer} />
-          <Typography variant="display1" gutterBottom>
-            Orders
-          </Typography>
-          <Typography component="div" className={classes.chartContainer}>
-            <SimpleLineChart />
-          </Typography>
-          <Typography variant="display1" gutterBottom>
-            Products
-          </Typography>
-          <div className={classes.tableContainer}>
-            <SimpleTable />
-          </div>
-        </main>
-      </div>
+              <Typography variant="title" color="inherit" noWrap className={classes.title}>
+                Dashboard layout
+              </Typography>
+              <IconButton color="inherit">
+                <Badge badgeContent={4} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+            }}
+            open={this.state.open}
+          >
+            <div className={classes.toolbarIcon}>
+              <IconButton onClick={this.handleDrawerClose}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </div>
+            <Divider />
+            <List>{mainListItems}</List>
+            <Divider />
+            <List>{secondaryListItems}</List>
+          </Drawer>
+          <main className={classes.content}>
+            <div className={classes.appBarSpacer} />
+            <Typography variant="display1" gutterBottom>
+              Orders
+            </Typography>
+            <Typography component="div" className={classes.chartContainer}>
+              <SimpleLineChart />
+            </Typography>
+            <Typography variant="display1" gutterBottom>
+              Products
+            </Typography>
+            <div className={classes.tableContainer}>
+              <SimpleTable />
+            </div>
+          </main>
+        </div>
+      </React.Fragment>
     );
   }
 }
 
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Dashboard);
+export default withStyles(styles)(Dashboard);

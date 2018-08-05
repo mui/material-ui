@@ -1,28 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import green from '@material-ui/core/colors/green';
 
-const styles = {
-  checkbox: {
-    '&$checked': {
-      color: green[500],
-    },
-  },
-  checked: {},
-};
-
-function PaymentForm(props) {
-  const { classes } = props;
+function PaymentForm() {
   return (
     <React.Fragment>
-      <Typography variant="title">Payment method</Typography>
-      <Grid container spacing="24">
+      <Typography variant="title" gutterBottom>
+        Payment method
+      </Typography>
+      <Grid container spacing={24}>
         <Grid item xs={12} md={6}>
           <TextField required id="cardName" label="Name on card" fullWidth />
         </Grid>
@@ -43,15 +32,7 @@ function PaymentForm(props) {
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={
-              <Checkbox
-                value="checkedG"
-                classes={{
-                  root: classes.checkbox,
-                  checked: classes.checked,
-                }}
-              />
-            }
+            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="Remeber credit card details for next time"
           />
         </Grid>
@@ -60,8 +41,4 @@ function PaymentForm(props) {
   );
 }
 
-PaymentForm.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(PaymentForm);
+export default PaymentForm;

@@ -10,13 +10,13 @@ You can customise the sections, layout and charts to suot your specific business
 
 | File  | Purpose  |
 |---    |---       |
-| `Dashboard.js`    | Main file. Customise the layout by adding grid components and changing breakpoints. |
-| `listItems.js`  | The list items for the Drawer. |
+| `Dashboard.js` | Main file. Customise the layout by adding grid components and changing breakpoints. |
+| `listItems.js` | The list items for the Drawer. |
 | `SimpleLineChart.js` | The main chart component. Use as a basis for additional charts. |
-| SimpleTable.js`  | Use as is, customise, or replace with some other functionality. |
+| `SimpleTable.js` | Use as is, customise, or replace with some other functionality. |
 
 ## Dependencies
 
-`@material-ui/core@^1.0.0`
-`@material-ui/icons^2.0.0`
-`recharts@^1.0.0`
+- `@material-ui/core`
+- `@material-ui/icons`
+- `recharts`

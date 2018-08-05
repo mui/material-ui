@@ -36,7 +36,7 @@ const renderers = {
 
     return <Typography {...props} gutterBottom variant={variant} paragraph={paragraph} />;
   },
-  listItem: withStyles(styles)(({ classes, tight, ...props }) => (
+  listItem: withStyles(styles)(({ classes, tight, ordered, ...props }) => (
     <li className={classes.listItem}>
       <Typography component="span" {...props} />
     </li>

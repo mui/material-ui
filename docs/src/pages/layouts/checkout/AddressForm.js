@@ -1,64 +1,92 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import green from '@material-ui/core/colors/green';
 
-const styles = {
-  checkbox: {
-    '&$checked': {
-      color: green[500],
-    },
-  },
-  checked: {},
-};
-
-function AddressForm(props) {
-  const { classes } = props;
+function AddressForm() {
   return (
     <React.Fragment>
-      <Typography variant="title">Shipping address</Typography>
-      <Grid container spacing="24">
+      <Typography variant="title" gutterBottom>
+        Shipping address
+      </Typography>
+      <Grid container spacing={24}>
         <Grid item xs={12} sm={6}>
-          <TextField required id="firstName" label="First name" fullWidth />
+          <TextField
+            required
+            id="firstName"
+            name="firstName"
+            label="First name"
+            fullWidth
+            autoComplete="fname"
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField required id="lastName" label="Last name" fullWidth />
+          <TextField
+            required
+            id="lastName"
+            name="lastName"
+            label="Last name"
+            fullWidth
+            autoComplete="lname"
+          />
         </Grid>
         <Grid item xs={12}>
-          <TextField required id="address1" label="Address line 1" fullWidth />
+          <TextField
+            required
+            id="address1"
+            name="address1"
+            label="Address line 1"
+            fullWidth
+            autoComplete="billing address-line1"
+          />
         </Grid>
         <Grid item xs={12}>
-          <TextField id="addiress2" label="Address line 2" fullWidth />
+          <TextField
+            id="addiress2"
+            name="addiress2"
+            label="Address line 2"
+            fullWidth
+            autoComplete="billing address-line2"
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField required id="city" label="City" fullWidth />
+          <TextField
+            required
+            id="city"
+            name="city"
+            label="City"
+            fullWidth
+            autoComplete="billing address-level2"
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField id="state" label="State/Province/Region" fullWidth />
+          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField required id="zip" label="Zip / Postal code" fullWidth />
+          <TextField
+            required
+            id="zip"
+            name="zip"
+            label="Zip / Postal code"
+            fullWidth
+            autoComplete="billing postal-code"
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField required id="country" label="Country" fullWidth />
+          <TextField
+            required
+            id="country"
+            name="country"
+            label="Country"
+            fullWidth
+            autoComplete="billing country"
+          />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={
-              <Checkbox
-                value="checkedG"
-                checked
-                classes={{
-                  root: classes.checkbox,
-                  checked: classes.checked,
-                }}
-              />
-            }
+            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
             label="Use this address for payment details"
           />
         </Grid>
@@ -67,8 +95,4 @@ function AddressForm(props) {
   );
 }
 
-AddressForm.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(AddressForm);
+export default AddressForm;

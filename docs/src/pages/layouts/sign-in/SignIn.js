@@ -1,90 +1,86 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
-import LockIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import LockIcon from '@material-ui/icons/LockOutlined';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 const styles = theme => ({
-  container: {
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: theme.palette.grey[300],
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      width: 400,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
   },
-  paper: theme.mixins.gutters({
-    paddingTop: theme.spacing.unit * 3,
-    paddingBottom: theme.spacing.unit * 3,
+  paper: {
     marginTop: theme.spacing.unit * 8,
-    width: 300,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    alignSelf: 'flex-start',
-    [theme.breakpoints.down('xs')]: {
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2,
-      width: 'auto',
-    },
-  }),
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+  },
   avatar: {
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main,
   },
-  formControl: {
-    marginTop: theme.spacing.unit * 2,
+  form: {
+    marginTop: theme.spacing.unit,
   },
-  button: {
+  submit: {
     marginTop: theme.spacing.unit * 3,
   },
 });
 
-class SignIn extends React.Component {
-  state = { email: '', password: '' };
+function SignIn(props) {
+  const { classes } = props;
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.container}>
-        <CssBaseline />
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockIcon />
           </Avatar>
           <Typography variant="headline">Sign in</Typography>
-          <FormControl required fullWidth className={classes.formControl}>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input value={this.state.email} onChange={this.handleChange('email')} id="email" />
-          </FormControl>
-          <FormControl required fullWidth className={classes.formControl}>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input
-              value={this.state.password}
-              onChange={this.handleChange('password')}
-              type="password"
-              id="password"
-            />
-          </FormControl>
-          <Button fullWidth variant="raised" color="primary" className={classes.button}>
-            Sign in
-          </Button>
+          <form className={classes.form}>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <Input id="email" name="email" autoComplete="email" autoFocus />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Input
+                name="password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </FormControl>
+            <Button
+              type="submit"
+              fullWidth
+              variant="raised"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign in
+            </Button>
+          </form>
         </Paper>
-      </div>
-    );
-  }
+      </main>
+    </React.Fragment>
+  );
 }
 
 SignIn.propTypes = {

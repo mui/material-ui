@@ -1,14 +1,12 @@
 import React from 'react';
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from 'recharts';
+import ResponsiveContainer from 'recharts/lib/component/ResponsiveContainer';
+import LineChart from 'recharts/lib/chart/LineChart';
+import Line from 'recharts/lib/cartesian/Line';
+import XAxis from 'recharts/lib/cartesian/XAxis';
+import YAxis from 'recharts/lib/cartesian/YAxis';
+import CartesianGrid from 'recharts/lib/cartesian/CartesianGrid';
+import Tooltip from 'recharts/lib/component/Tooltip';
+import Legend from 'recharts/lib/component/Legend';
 
 const data = [
   { name: 'Mon', Visits: 2200, Orders: 3400 },
@@ -19,6 +17,7 @@ const data = [
   { name: 'Sat', Visits: 4390, Orders: 3800 },
   { name: 'Sun', Visits: 4490, Orders: 4300 },
 ];
+
 function SimpleLineChart() {
   return (
     // 99% per https://github.com/recharts/recharts/issues/172

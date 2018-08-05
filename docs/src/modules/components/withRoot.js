@@ -272,7 +272,7 @@ function findActivePage(currentPages, router) {
   return activePage;
 }
 
-function withRoot(Component, options = { fullScreen: false }) {
+function withRoot(Component) {
   class WithRoot extends React.Component {
     redux = null;
 
@@ -300,20 +300,13 @@ function withRoot(Component, options = { fullScreen: false }) {
 
     render() {
       const { pageContext, ...other } = this.props;
-      let component;
-      if (options.fullScreen) {
-        component = <Component initialProps={other} />;
-      } else {
-        component = (
-          <AppWrapper pageContext={pageContext}>
-            <Component initialProps={other} />
-          </AppWrapper>
-        );
-      }
-
       return (
         <React.StrictMode>
-          <Provider store={this.redux}>{component}</Provider>
+          <Provider store={this.redux}>
+            <AppWrapper pageContext={pageContext}>
+              <Component initialProps={other} />
+            </AppWrapper>
+          </Provider>
         </React.StrictMode>
       );
     }

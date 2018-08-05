@@ -10,9 +10,9 @@ function Page() {
         title="Dashboard layout - Material-UI"
         description="An example layout for creating an albumn."
       />
-      <Dashboard />;
+      <Dashboard />
     </React.Fragment>
   );
 }
 
-export default withRoot(Page, { fullScreen: true });
+export default withRoot(Page);

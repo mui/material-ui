@@ -10,12 +10,12 @@ You can easily customise the layout to suit your design, and substitute an alter
 
 | File  | Purpose  |
 |---    |---       |
-| `Blog.js`    | Main file. Customise the layout by adding grid components and changing breakpoints. |
-| `Markdown.js`  | Markdown renderer. It enhances react-markdown output to use the Ttypography |component. You can customise it or substitute an alternative.
+| `Blog.js` | Main file. Customise the layout by adding grid components and changing breakpoints. |
+| `Markdown.js` | Markdown renderer. It enhances react-markdown output to use the Ttypography |component. You can customise it or substitute an alternative.
 | `blog-post.x.md` | Sample blog posts to demonstrate the rendrer.|
 
 ## Dependencies
 
-`@material-ui/core@^1.0.0`
-`@material-ui/icons^2.0.0`
-`react-markdown@^3.4.0`
+- `@material-ui/core`
+- `@material-ui/icons`
+- `react-markdown`

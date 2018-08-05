@@ -1,69 +1,46 @@
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import StarIcon from '@material-ui/icons/StarBorder';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import CardHeader from '@material-ui/core/CardHeader';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import StarIcon from '@material-ui/icons/StarBorder';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.common.white,
+    },
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    position: 'relative',
   },
-  icon: {
-    marginRight: theme.spacing.unit * 2,
-  },
-  appBarSpacer: {
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    minWidth: 0, // So that Typography noWrap works
-  },
-  toolbar: theme.mixins.toolbar,
   toolbarTitle: {
     flex: 1,
   },
-  heroUnit: {
-    padding: `${theme.spacing.unit * 8}px 0`,
-    backgroundColor: theme.palette.background.paper,
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
+      width: 900,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
   },
   heroContent: {
     maxWidth: 600,
     margin: '0 auto',
-    padding: `${theme.spacing.unit * 8}px ${theme.spacing.unit * 2}px 0`,
+    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
   },
-  cardGrid: {
-    padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 24}px ${theme.spacing.unit * 8}px`,
-    [theme.breakpoints.down('md')]: {
-      paddingLeft: theme.spacing.unit * 14,
-      paddingRight: theme.spacing.unit * 14,
-    },
-    [theme.breakpoints.down('md')]: {
-      paddingLeft: theme.spacing.unit * 14,
-      paddingRight: theme.spacing.unit * 14,
-      paddingBottom: theme.spacing.unit * 4,
-    },
-    [theme.breakpoints.down('xs')]: {
-      padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 4}px`,
-    },
-  },
-  card: {},
   cardHeader: {
     backgroundColor: theme.palette.grey[200],
   },
@@ -71,29 +48,17 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'baseline',
-    margin: `0 auto ${theme.spacing.unit * 2}px`,
+    marginBottom: theme.spacing.unit * 2,
   },
   cardActions: {
-    paddingBottom: theme.spacing.unit * 2,
+    [theme.breakpoints.up('sm')]: {
+      paddingBottom: theme.spacing.unit * 2,
+    },
   },
   footer: {
-    minHeight: 200,
-    padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 24}px`,
-    [theme.breakpoints.down('md')]: {
-      padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 14}px`,
-    },
-    [theme.breakpoints.down('sm')]: {
-      padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 8}px`,
-    },
-    [theme.breakpoints.down('xs')]: {
-      padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 4}px`,
-    },
-  },
-  footerGrid: {
-    borderTop: `1px solid ${theme.palette.grey[300]}`,
-  },
-  footerGridItem: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 8,
+    borderTop: `1px solid ${theme.palette.divider}`,
+    padding: `${theme.spacing.unit * 6}px 0`,
   },
 });
 
@@ -131,7 +96,6 @@ const tiers = [
     buttonVariant: 'outlined',
   },
 ];
-
 const footers = [
   {
     title: 'Company',
@@ -155,10 +119,9 @@ function Pricing(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.root}>
+    <React.Fragment>
       <CssBaseline />
-
-      <AppBar position="absolute" color="default" className={classes.appBar}>
+      <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
             Company name
@@ -171,33 +134,29 @@ function Pricing(props) {
           </Button>
         </Toolbar>
       </AppBar>
-
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-
+      <main className={classes.layout}>
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
             Pricing layout
           </Typography>
-          <Typography variant="title" align="center" color="textSecondary" paragraph>
+          <Typography variant="title" align="center" color="textSecondary" component="p">
             Quickly build an effective pricing table for your potential customers with this layout.
             It&apos;s built with default Material-UI components with little customization.
           </Typography>
         </div>
         {/* End hero unit */}
-
-        <Grid container spacing={40} alignItems="flex-end" className={classes.cardGrid}>
+        <Grid container spacing={40} alignItems="flex-end">
           {tiers.map(tier => (
             // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
-              <Card className={classes.card}>
+              <Card>
                 <CardHeader
                   title={tier.title}
                   subheader={tier.subheader}
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : undefined}
+                  action={tier.title === 'Pro' ? <StarIcon /> : null}
                   className={classes.cardHeader}
                 />
                 <CardContent>
@@ -225,28 +184,25 @@ function Pricing(props) {
           ))}
         </Grid>
       </main>
-
-      {/* <hr /> */}
-
       {/* Footer */}
-      <div className={classes.footer}>
-        <Grid container spacing={32} justify="space-evenly" className={classes.footerGrid}>
+      <footer className={classNames(classes.footer, classes.layout)}>
+        <Grid container spacing={32} justify="space-evenly">
           {footers.map(footer => (
-            <Grid item xs key={footer.title} className={classes.footerGridItem}>
+            <Grid item xs key={footer.title}>
               <Typography variant="title" color="textPrimary" gutterBottom>
                 {footer.title}
               </Typography>
               {footer.description.map(item => (
-                <Typography variant="subheading" color="textSecondary">
+                <Typography key={item} variant="subheading" color="textSecondary">
                   {item}
                 </Typography>
               ))}
             </Grid>
           ))}
         </Grid>
-      </div>
+      </footer>
       {/* End footer */}
-    </div>
+    </React.Fragment>
   );
 }
 

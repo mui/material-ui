@@ -10,12 +10,12 @@ You can customise the Stepper logic and steps to suit your specific checkout wor
 
 | File  | Purpose  |
 |---    |---       |
-| `Checkout.js`    | Main file with Stepper logic. |
+| `Checkout.js` | Main file with Stepper logic. |
 | `AddressForm.js` | Capture the shipping address. Repeat this step to capture the Billing address. |
-| PaymentForm.js`  | Capture the payment details. You may have to embed your payment provider's form here. |
-| `ReviewForm.js`  | Final step to confirm the details provided before purchase. |
+| `PaymentForm.js` | Capture the payment details. You may have to embed your payment provider's form here. |
+| `ReviewForm.js` | Final step to confirm the details provided before purchase. |
 
 ## Dependencies
 
-`@material-ui/core^1.0.0`
-`@material-ui/icons^2.0.0`
+- `@material-ui/core`
+- `@material-ui/icons`

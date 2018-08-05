@@ -10,10 +10,10 @@ You can customise the layout to add some pizazz in keeping with your corporate t
 
 | File  | Purpose  |
 |---    |---       |
-| `Pricing.js`    | A simple pricing layout in a single file. |
+| `Pricing.js` | A simple pricing layout in a single file. |
 
 
 ## Dependencies
 
-`@material-ui/core@^1.0.0`
-`@material-ui/icons^2.0.0`
+- `@material-ui/core`
+- `@material-ui/icons`

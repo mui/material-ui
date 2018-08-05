@@ -15,4 +15,4 @@ function Page() {
   );
 }
 
-export default withRoot(Page, { fullScreen: true });
+export default withRoot(Page);

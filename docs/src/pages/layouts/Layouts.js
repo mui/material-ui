@@ -37,11 +37,11 @@ const themes = [
     source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/sign-in',
   },
   {
-    name: 'Albumn',
-    description: 'A reponsive albumn / gallery layout with a hero unit and footer.',
-    src: '/static/images/layouts/albumn.png',
-    href: '/layouts/albumn',
-    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/albumn',
+    name: 'Album',
+    description: 'A reponsive album / gallery layout with a hero unit and footer.',
+    src: '/static/images/layouts/album.png',
+    href: '/layouts/album',
+    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/album',
   },
   {
     name: 'Blog',
