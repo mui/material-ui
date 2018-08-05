@@ -9,6 +9,7 @@ import Head from 'docs/src/modules/components/Head';
 import AppContent from 'docs/src/modules/components/AppContent';
 import Demo from 'docs/src/modules/components/Demo';
 import Carbon from 'docs/src/modules/components/Carbon';
+import AppFrame from 'docs/src/modules/components/AppFrame';
 import {
   getHeaders,
   getContents,
@@ -57,57 +58,61 @@ function MarkdownDocs(props, context) {
   const section = markdownLocation.split('/')[4];
 
   return (
-    <AppContent className={classes.root}>
-      <Head
-        title={`${headers.title || getTitle(markdown)} - Material-UI`}
-        description={getDescription(markdown)}
-      />
-      <div className={classes.header}>
-        <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
-          {'Edit this page'}
-        </Button>
-      </div>
-      {disableCarbon ? null : <Carbon key={markdownLocation} />}
-      {contents.map((content, index) => {
-        const match = content.match(demoRegexp);
+    <AppFrame>
+      <AppContent className={classes.root}>
+        <Head
+          title={`${headers.title || getTitle(markdown)} - Material-UI`}
+          description={getDescription(markdown)}
+        />
+        <div className={classes.header}>
+          <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
+            {'Edit this page'}
+          </Button>
+        </div>
+        {disableCarbon ? null : <Carbon key={markdownLocation} />}
+        {contents.map((content, index) => {
+          const match = content.match(demoRegexp);
 
-        if (match && demos) {
-          const demoOptions = JSON.parse(`{${content}}`);
+          if (match && demos) {
+            const demoOptions = JSON.parse(`{${content}}`);
 
-          const name = demoOptions.demo;
-          warning(demos && demos[name], `Missing demo: ${name}.`);
+            const name = demoOptions.demo;
+            warning(demos && demos[name], `Missing demo: ${name}.`);
+            return (
+              <Demo
+                key={content}
+                js={demos[name].js}
+                raw={demos[name].raw}
+                index={index}
+                demoOptions={demoOptions}
+                githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
+              />
+            );
+          }
+
           return (
-            <Demo
-              key={content}
-              js={demos[name].js}
-              raw={demos[name].raw}
-              index={index}
-              demoOptions={demoOptions}
-              githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
-            />
+            <MarkdownElement className={classes.markdownElement} key={content} text={content} />
           );
-        }
-
-        return <MarkdownElement className={classes.markdownElement} key={content} text={content} />;
-      })}
-      {headers.components.length > 0 ? (
-        <MarkdownElement
-          className={classes.markdownElement}
-          text={`
+        })}
+        {headers.components.length > 0 ? (
+          <MarkdownElement
+            className={classes.markdownElement}
+            text={`
 ## API
 
 ${headers.components
-            .map(
-              component =>
-                `- [&lt;${component} /&gt;](${section === 'lab' ? '/lab/api' : '/api'}/${kebabCase(
-                  component,
-                )})`,
-            )
-            .join('\n')}
+              .map(
+                component =>
+                  `- [&lt;${component} /&gt;](${
+                    section === 'lab' ? '/lab/api' : '/api'
+                  }/${kebabCase(component)})`,
+              )
+              .join('\n')}
           `}
-        />
-      ) : null}
-    </AppContent>
+          />
+        ) : null}
+      </AppContent>
+    </AppFrame>
   );
 }
 

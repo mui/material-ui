@@ -62,7 +62,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth }) {
 
   if (page.children && page.children.length > 1) {
     const title = pageToTitle(page);
-    const openImmediately = activePage.pathname.indexOf(page.pathname) === 0;
+    const openImmediately = activePage.pathname.indexOf(`${page.pathname}/`) === 0;
 
     items.push(
       <AppDrawerNavItem depth={depth} key={title} openImmediately={openImmediately} title={title}>

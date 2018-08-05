@@ -182,8 +182,10 @@ const pages = [
     ],
   },
   {
+    pathname: '/layouts',
+  },
+  {
     pathname: '/premium-themes',
-    title: 'Premium Themes',
   },
   {
     pathname: '/lab',
@@ -251,7 +253,7 @@ const pages = [
 function findActivePage(currentPages, router) {
   const activePage = find(currentPages, page => {
     if (page.children) {
-      return router.pathname.indexOf(page.pathname) === 0;
+      return router.pathname.indexOf(`${page.pathname}/`) === 0;
     }
 
     // Should be an exact match if no children
@@ -298,7 +300,6 @@ function withRoot(Component) {
 
     render() {
       const { pageContext, ...other } = this.props;
-
       return (
         <React.StrictMode>
           <Provider store={this.redux}>
