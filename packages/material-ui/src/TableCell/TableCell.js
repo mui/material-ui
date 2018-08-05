@@ -80,6 +80,9 @@ function TableCell(props, context) {
     variant,
     ...other
   } = props;
+
+  let Padding = padding === 'default' ? context.padding : padding;
+
   const { table } = context;
   let Component;
   if (component) {
@@ -100,7 +103,7 @@ function TableCell(props, context) {
       [classes.body]: variant ? variant === 'body' : table && table.body,
       [classes.footer]: variant ? variant === 'footer' : table && table.footer,
       [classes.numeric]: numeric,
-      [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
+      [classes[`padding${capitalize(Padding)}`]]: Padding !== 'default',
     },
     classNameProp,
   );
@@ -166,6 +169,7 @@ TableCell.defaultProps = {
 
 TableCell.contextTypes = {
   table: PropTypes.object.isRequired,
+  padding: PropTypes.string
 };
 
 export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);
