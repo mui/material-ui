@@ -1,6 +1,6 @@
 # Sample blog post
 
-#### January 1, 2014 by Olivier
+#### April 1, 2020 by Olivier
 
 This blog post shows a few different types of content that are supported and styled with
 Material styles. Basic typography, images, and code are all supported.

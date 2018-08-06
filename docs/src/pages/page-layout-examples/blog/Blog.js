@@ -142,7 +142,7 @@ function Blog(props) {
             noWrap
             className={classes.toolbarTitle}
           >
-            Blog layout
+            Blog
           </Typography>
           <IconButton>
             <SearchIcon />

@@ -1,16 +1,16 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import Head from 'docs/src/modules/components/Head';
-import Dashboard from 'docs/src/pages/layouts/dashboard/Dashboard';
+import SignIn from 'docs/src/pages/page-layout-examples/sign-in/SignIn';
 
 function Page() {
   return (
     <React.Fragment>
       <Head
-        title="Dashboard layout - Material-UI"
-        description="An example layout for creating an albumn."
+        title="Sign-in page layout example - Material-UI"
+        description="An example layout for creating a sign-in page."
       />
-      <Dashboard />
+      <SignIn />
     </React.Fragment>
   );
 }
