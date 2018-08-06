@@ -84,7 +84,7 @@ NativeSelectInput.propTypes = {
   /**
    * The input value.
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
 export default NativeSelectInput;
