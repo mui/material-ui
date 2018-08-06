@@ -429,7 +429,8 @@ const theme = createMuiTheme({
 
 ### `withTheme()(Component) => Component`
 
-Provide the `theme` object as a property of the input component.
+Provide the `theme` object as a property of the input component so it can be used
+in the render method.
 
 #### Arguments
 
@@ -442,7 +443,11 @@ Provide the `theme` object as a property of the input component.
 #### Examples
 
 ```js
-import { withTheme } from '@material-ui/core/styles'
+import { withTheme } from '@material-ui/core/styles';
+
+function MyComponent(props) {
+  return <div>{props.theme.direction}</div>;
+}
 
 export default withTheme()(MyComponent);
 ```
