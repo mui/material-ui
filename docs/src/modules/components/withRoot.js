@@ -182,7 +182,7 @@ const pages = [
     ],
   },
   {
-    pathname: '/layouts',
+    pathname: '/page-layout-examples',
   },
   {
     pathname: '/premium-themes',

@@ -138,7 +138,7 @@ function Pricing(props) {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
-            Pricing layout
+            Pricing
           </Typography>
           <Typography variant="title" align="center" color="textSecondary" component="p">
             Quickly build an effective pricing table for your potential customers with this layout.

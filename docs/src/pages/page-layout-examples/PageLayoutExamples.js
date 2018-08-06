@@ -33,32 +33,37 @@ const themes = [
     name: 'Sign-in',
     description: 'A simple sign-in page.',
     src: '/static/images/layouts/sign-in.png',
-    href: '/layouts/sign-in',
-    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/sign-in',
+    href: '/page-layout-examples/sign-in',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/sign-in',
   },
   {
     name: 'Album',
-    description: 'A reponsive album / gallery layout with a hero unit and footer.',
+    description: 'A reponsive album / gallery page layout with a hero unit and footer.',
     src: '/static/images/layouts/album.png',
-    href: '/layouts/album',
-    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/album',
+    href: '/page-layout-examples/album',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/album',
   },
   {
     name: 'Blog',
     description:
-      'A sophisticated blog layout. Markdown support is courtesy of react-markdown, ' +
+      'A sophisticated blog page layout. Markdown support is courtesy of react-markdown, ' +
       'but is easily replaced.',
     src: '/static/images/layouts/blog.png',
-    href: '/layouts/blog',
-    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/blog',
+    href: '/page-layout-examples/blog',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/blog',
   },
   {
     name: 'Pricing',
     description:
-      'Quickly build an effective pricing table for your potential customers with this layout.',
+      'Quickly build an effective pricing table for your potential customers with this page ' +
+      'layout.',
     src: '/static/images/layouts/pricing.png',
-    href: '/layouts/pricing',
-    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/pricing',
+    href: '/page-layout-examples/pricing',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/pricing',
   },
   {
     name: 'Checkout',
@@ -66,8 +71,9 @@ const themes = [
       'A step-by-step checkout page layout. ' +
       'Adapt the number of steps to suit your needs, or make steps optional.',
     src: '/static/images/layouts/checkout.png',
-    href: '/layouts/checkout',
-    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/checkout',
+    href: '/page-layout-examples/checkout',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/checkout',
   },
   {
     name: 'Dashboard',
@@ -75,12 +81,13 @@ const themes = [
       'A minimal dasboard with taskbar and mini variant draw. ' +
       'The chart is courtesy of Recharts, but it is simple to substitute an alternative.',
     src: '/static/images/layouts/dashboard.png',
-    href: '/layouts/dashboard',
-    source: 'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/layouts/dashboard',
+    href: '/page-layout-examples/dashboard',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/dashboard',
   },
 ];
 
-function Layouts(props) {
+function PageLayoutExamples(props) {
   const { classes } = props;
   return (
     <Grid container spacing={16}>
@@ -113,8 +120,8 @@ function Layouts(props) {
   );
 }
 
-Layouts.propTypes = {
+PageLayoutExamples.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Layouts);
+export default withStyles(styles)(PageLayoutExamples);

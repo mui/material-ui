@@ -1,16 +1,16 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import Head from 'docs/src/modules/components/Head';
-import Pricing from 'docs/src/pages/layouts/pricing/Pricing';
+import Blog from 'docs/src/pages/page-layout-examples/blog/Blog';
 
 function Page() {
   return (
     <React.Fragment>
       <Head
-        title="Pricing layout - Material-UI"
-        description="An example layout for creating a pricing page."
+        title="Blog page layout example - Material-UI"
+        description="An example layout for creating a blog or newsletter."
       />
-      <Pricing />
+      <Blog />
     </React.Fragment>
   );
 }

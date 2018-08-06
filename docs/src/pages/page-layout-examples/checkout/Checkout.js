@@ -108,7 +108,7 @@ class Checkout extends React.Component {
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography variant="display1" align="center">
-              Checkout layout
+              Checkout
             </Typography>
             <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map(label => (
