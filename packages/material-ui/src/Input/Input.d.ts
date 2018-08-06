@@ -23,7 +23,7 @@ export interface InputProps
   multiline?: boolean;
   name?: string;
   placeholder?: string;
-  readOnly?:boolean;
+  readOnly?: boolean;
   required?: boolean;
   rows?: string | number;
   rowsMax?: string | number;
