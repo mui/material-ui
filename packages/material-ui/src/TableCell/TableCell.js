@@ -81,7 +81,8 @@ function TableCell(props, context) {
     ...other
   } = props;
 
-  const Padding = padding === 'default' ? context.padding : padding;
+  const contextPadding = context.padding ? context.padding : 'default';
+  const Padding = padding === 'default' ? contextPadding : padding;
 
   const { table } = context;
   let Component;
