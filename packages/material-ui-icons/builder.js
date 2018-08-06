@@ -119,9 +119,10 @@ async function worker({ svgPath, options, renameFilter, template }) {
     .replace(/<rect id="SVGID_1_" width="24" height="24"\/>/g, '');
 
   const result = await svgo.optimize(input);
+
   // Extract the paths from the svg string
   // Clean xml paths
-  const paths = result.data
+  let paths = result.data
     .replace(/<svg[^>]*>/g, '')
     .replace(/<\/svg>/g, '')
     .replace(/"\/>/g, '" />')
@@ -130,6 +131,14 @@ async function worker({ svgPath, options, renameFilter, template }) {
     .replace(/clip-path=/g, 'clipPath=')
     .replace(/clip-rule=/g, 'clipRule=')
     .replace(/fill-rule=/g, 'fillRule=');
+
+  const size = Number(svgPath.match(/^.*_([0-9]+)px.svg$/)[1]);
+
+  if (size !== 24) {
+    const scale = Math.round((24 / size) * 100) / 100; // Keep a maximum of 2 decimals
+    paths = paths.replace('clipPath="url(#b)" ', '');
+    paths = paths.replace(/<path /g, `<path transform="scale(${scale}, ${scale})" `);
+  }
 
   const fileString = Mustache.render(template, {
     paths,
@@ -141,61 +150,65 @@ async function worker({ svgPath, options, renameFilter, template }) {
 }
 
 async function main(options) {
-  let originalWrite;
+  try {
+    let originalWrite;
 
-  options.glob = options.glob || '/**/*.svg';
-  options.innerPath = options.innerPath || '';
-  options.renameFilter = options.renameFilter || RENAME_FILTER_DEFAULT;
-  options.disableLog = options.disableLog || false;
+    options.glob = options.glob || '/**/*.svg';
+    options.innerPath = options.innerPath || '';
+    options.renameFilter = options.renameFilter || RENAME_FILTER_DEFAULT;
+    options.disableLog = options.disableLog || false;
 
-  // Disable console.log opt, used for tests
-  if (options.disableLog) {
-    originalWrite = process.stdout.write;
-    process.stdout.write = () => {};
-  }
+    // Disable console.log opt, used for tests
+    if (options.disableLog) {
+      originalWrite = process.stdout.write;
+      process.stdout.write = () => {};
+    }
 
-  rimraf.sync(`${options.outputDir}/*.js`); // Clean old files
+    rimraf.sync(`${options.outputDir}/*.js`); // Clean old files
 
-  let renameFilter = options.renameFilter;
-  if (typeof renameFilter === 'string') {
-    /* eslint-disable-next-line global-require, import/no-dynamic-require */
-    renameFilter = require(renameFilter).default;
-  }
-  if (typeof renameFilter !== 'function') {
-    throw Error('renameFilter must be a function');
-  }
-  const exists1 = await fse.exists(options.outputDir);
-  if (!exists1) {
-    await fse.mkdir(options.outputDir);
-  }
+    let renameFilter = options.renameFilter;
+    if (typeof renameFilter === 'string') {
+      /* eslint-disable-next-line global-require, import/no-dynamic-require */
+      renameFilter = require(renameFilter).default;
+    }
+    if (typeof renameFilter !== 'function') {
+      throw Error('renameFilter must be a function');
+    }
+    const exists1 = await fse.exists(options.outputDir);
+    if (!exists1) {
+      await fse.mkdir(options.outputDir);
+    }
 
-  const [svgPaths, template] = await Promise.all([
-    globAsync(path.join(options.svgDir, options.glob)),
-    fse.readFile(path.join(__dirname, 'templateSvgIcon.js'), {
-      encoding: 'utf8',
-    }),
-  ]);
+    const [svgPaths, template] = await Promise.all([
+      globAsync(path.join(options.svgDir, options.glob)),
+      fse.readFile(path.join(__dirname, 'templateSvgIcon.js'), {
+        encoding: 'utf8',
+      }),
+    ]);
 
-  const queue = new Queue(
-    svgPath => {
-      return worker({
-        svgPath,
-        options,
-        renameFilter,
-        template,
-      });
-    },
-    { concurrency: 4 },
-  );
+    const queue = new Queue(
+      svgPath => {
+        return worker({
+          svgPath,
+          options,
+          renameFilter,
+          template,
+        });
+      },
+      { concurrency: 8 },
+    );
 
-  queue.push(svgPaths);
-  await queue.wait({ empty: true });
+    queue.push(svgPaths);
+    await queue.wait({ empty: true });
 
-  await generateIndex(options);
+    await generateIndex(options);
 
-  if (options.disableLog) {
-    // bring back stdout
-    process.stdout.write = originalWrite;
+    if (options.disableLog) {
+      // bring back stdout
+      process.stdout.write = originalWrite;
+    }
+  } catch (err) {
+    console.log(err);
   }
 }
 
