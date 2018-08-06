@@ -6,17 +6,15 @@ components: Icon, SvgIcon
 
 <p class="description">Guidance and suggestions for using icons with Material-UI.</p>
 
-## System icons
-
 A [system icon](https://material.io/design/iconography/system-icons.html) or UI icon,
 symbolizes a command, file, device, or directory.
 System icons are also used to represent common actions like trash, print, and save,
 and are commonly found in app bars, toolbars, buttons, and lists.
 Google has provided a set of [Material icons](https://material.io/tools/icons/?style=baseline) that follow these guidelines.
 
-Material-UI provides two components to render system icons: `Icon` for rendering font icons, and `SvgIcon` for rendering SVG paths.
+Material-UI provides two components to render system icons: `SvgIcon` for rendering SVG paths, and `Icon` for rendering font icons.
 
-### SVG Icons
+## SVG Icons
 
 The `SvgIcon` component takes an SVG `path` element as its child and converts it to a React component that displays the path,
 and allows the icon to be styled and respond to mouse events. SVG elements should be scaled for a 24x24px viewport.
@@ -28,7 +26,7 @@ Optionally, you can set the icon color using one of the theme color properties: 
 
 {{"demo": "pages/style/icons/SvgIcons.js"}}
 
-#### SVG Material icons
+### SVG Material icons
 
 It's interesting to have the building blocks needed to implement custom icons, but what about presets?
 We provide a separate NPM package,
@@ -38,6 +36,8 @@ that includes the 1,000+ official [Material icons](https://material.io/tools/ico
 <a href="https://material.io/tools/icons/?icon=3d_rotation&style=baseline">
   <img src="/static/images/icons/icons.png" style="width: 566px" />
 </a>
+
+#### Usage
 
 You can use [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon.
 When importing an icon, keep in mind that the names of the icons are `PascalCase`, for instance:
@@ -57,13 +57,29 @@ There are three exceptions to this rule:
 
 {{"demo": "pages/style/icons/SvgMaterialIcons.js"}}
 
-#### More SVG icons
+#### Imports
+
+- If your environment doesn't support tree-shaking, the **recommended** way to import the icons is the following:
+```jsx
+import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
+import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+```
+
+- If your environment support tree-shaking you can also import the icons this way:
+```jsx
+import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+```
+
+Note: Importing named exports in this way will result in the code for *every icon* being included in your project, so is not recommended unless you configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/). It may also impact Hot Module Reload performance.
+
+
+### More SVG icons
 
 Looking for even more SVG icons? There are a lot of projects out there,
 but [https://materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 official and community provided icons.
 [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) packages these icons as Material-UI SvgIcons in much the same way as [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) does for the official icons.
 
-### Font Icons
+## Font Icons
 
 The `Icon` component will display an icon from any icon font that supports ligatures.
 As a prerequisite, you must include one, such as the
@@ -84,10 +100,10 @@ for example:
 By default, an Icon will inherit the current text color.
 Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
 
-#### Font Material icons
+### Font Material icons
 
 {{"demo": "pages/style/icons/Icons.js"}}
 
-#### [Font Awesome](https://fontawesome.com/icons)
+### [Font Awesome](https://fontawesome.com/icons)
 
 {{"demo": "pages/style/icons/FontAwesome.js", "hideEditButton": true}}
