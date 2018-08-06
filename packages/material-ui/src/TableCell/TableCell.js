@@ -81,7 +81,7 @@ function TableCell(props, context) {
     ...other
   } = props;
 
-  let Padding = padding === 'default' ? context.padding : padding;
+  const Padding = padding === 'default' ? context.padding : padding;
 
   const { table } = context;
   let Component;
@@ -169,7 +169,7 @@ TableCell.defaultProps = {
 
 TableCell.contextTypes = {
   table: PropTypes.object.isRequired,
-  padding: PropTypes.string
+  padding: PropTypes.string,
 };
 
 export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);
