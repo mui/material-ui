@@ -24,6 +24,9 @@ const styles = theme => ({
   root: {
     display: 'flex',
   },
+  toolbar: {
+    paddingRight: 24, // keep right padding when drawer closed
+  },
   toolbarIcon: {
     display: 'flex',
     alignItems: 'center',
@@ -115,7 +118,7 @@ class Dashboard extends React.Component {
             position="absolute"
             className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
           >
-            <Toolbar disableGutters={!this.state.open}>
+            <Toolbar disableGutters={!this.state.open} className={classes.toolbar}>
               <IconButton
                 color="inherit"
                 aria-label="Open drawer"
