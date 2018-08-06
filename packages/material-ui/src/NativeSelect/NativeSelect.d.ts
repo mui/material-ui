@@ -9,7 +9,7 @@ export interface NativeSelectProps
     Pick<NativeSelectInputProps, 'onChange'> {
   IconComponent?: React.ReactType;
   input?: React.ReactNode;
-  value?: string | number;
+  value?: string | number | boolean;
 }
 
 export type NativeSelectClassKey = 'root' | 'select' | 'selectMenu' | 'disabled' | 'icon';

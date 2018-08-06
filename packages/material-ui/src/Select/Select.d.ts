@@ -19,7 +19,7 @@ export interface SelectProps
   open?: boolean;
   renderValue?: (value: SelectProps['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
-  value?: Array<string | number> | string | number;
+  value?: Array<string | number | boolean> | string | number | boolean;
 }
 
 export type SelectClassKey = 'root' | 'select' | 'selectMenu' | 'disabled' | 'icon';
