@@ -180,11 +180,11 @@ class DialogInline extends Component {
   };
 
   componentDidMount() {
-    this.positionDialog();
+    setTimeout(() => this.positionDialog(), 0);
   }
 
   componentDidUpdate() {
-    this.positionDialog();
+    setTimeout(() => this.positionDialog(), 0);
   }
 
   positionDialog() {
