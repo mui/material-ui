@@ -11,6 +11,7 @@ export interface SpeedDialProps
     > {
   ariaLabel: string;
   ButtonProps?: Partial<ButtonProps>;
+  direction?: 'up' | 'down' | 'left' | 'right';
   hidden?: boolean;
   icon: React.ReactNode;
   onClose?: React.ReactEventHandler<{}>;
