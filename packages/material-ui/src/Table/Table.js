@@ -18,8 +18,9 @@ class Table extends React.Component {
   getChildContext() {
     // eslint-disable-line class-methods-use-this
     return {
-      table: {},
-      padding: this.props.padding,
+      table: {
+        padding: this.props.padding,
+      },
     };
   }
 
@@ -52,7 +53,7 @@ Table.propTypes = {
   /**
    * Allows TableCells to inherit padding of the Table.
    */
-  padding: PropTypes.string,
+  padding: PropTypes.oneOf(['default', 'checkbox', 'dense', 'none']),
 };
 
 Table.defaultProps = {
@@ -62,7 +63,6 @@ Table.defaultProps = {
 
 Table.childContextTypes = {
   table: PropTypes.object,
-  padding: PropTypes.string,
 };
 
 export default withStyles(styles, { name: 'MuiTable' })(Table);
