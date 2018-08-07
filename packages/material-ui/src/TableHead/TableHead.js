@@ -14,8 +14,8 @@ class TableHead extends React.Component {
   getChildContext() {
     // eslint-disable-line class-methods-use-this
     return {
-      table: {
-        head: true,
+      tablelvl2: {
+        variant: 'head',
       },
     };
   }
@@ -53,7 +53,7 @@ TableHead.defaultProps = {
 };
 
 TableHead.childContextTypes = {
-  table: PropTypes.object,
+  tablelvl2: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTableHead' })(TableHead);

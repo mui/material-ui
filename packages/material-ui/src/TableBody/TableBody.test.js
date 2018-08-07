@@ -38,6 +38,6 @@ describe('<TableBody />', () => {
 
   it('should define table.body in the child context', () => {
     const wrapper = shallow(<TableBody>foo</TableBody>);
-    assert.strictEqual(wrapper.instance().getChildContext().table.body, true);
+    assert.strictEqual(wrapper.instance().getChildContext().tablelvl2.variant, 'body');
   });
 });

@@ -47,14 +47,14 @@ describe('<TableRow />', () => {
 
   it('should render with the head class when in the context of a table head', () => {
     const wrapper = shallow(<TableRow />);
-    wrapper.setContext({ table: { head: true } });
+    wrapper.setContext({ tablelvl2: { variant: 'head' } });
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
   });
 
   it('should render with the footer class when in the context of a table footer', () => {
     const wrapper = shallow(<TableRow />);
-    wrapper.setContext({ table: { footer: true } });
+    wrapper.setContext({ tablelvl2: { variant: 'footer' } });
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
   });
