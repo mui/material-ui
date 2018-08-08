@@ -9,6 +9,7 @@
 | React               |         |
 | Browser             |         |
 | Platform            |         |
+| Peer library        |         | <!-- date-fns, luxon or moment and version  -->
 
 ## Steps to reproduce
 1.
