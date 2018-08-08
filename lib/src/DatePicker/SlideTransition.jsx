@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import CSSTransition from 'react-transition-group/CSSTransition';
-import Slide from '@material-ui/core/Slide';
 
 const animationDuration = 350;
 
@@ -36,7 +35,7 @@ SlideTransition.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   slideDirection: PropTypes.oneOf(['left', 'right']).isRequired,
-  transKey: PropTypes.string,
+  transKey: PropTypes.string.isRequired,
 };
 
 SlideTransition.defaultProps = {
