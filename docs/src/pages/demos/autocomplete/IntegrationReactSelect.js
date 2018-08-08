@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 import MenuItem from '@material-ui/core/MenuItem';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
@@ -77,7 +78,6 @@ const styles = theme => ({
     ),
   },
   noOptionsMessage: {
-    fontSize: 16,
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
   },
   singleValue: {
@@ -87,6 +87,12 @@ const styles = theme => ({
     position: 'absolute',
     left: 2,
     fontSize: 16,
+  },
+  paper: {
+    marginTop: theme.spacing.unit,
+  },
+  divider: {
+    height: theme.spacing.unit * 2,
   },
 });
 
@@ -114,11 +120,12 @@ function Control(props) {
         inputComponent,
         inputProps: {
           className: props.selectProps.classes.input,
-          ref: props.innerRef,
+          inputRef: props.innerRef,
           children: props.children,
           ...props.innerProps,
         },
       }}
+      {...props.selectProps.textFieldProps}
     />
   );
 }
@@ -179,6 +186,14 @@ function MultiValue(props) {
   );
 }
 
+function Menu(props) {
+  return (
+    <Paper square className={props.selectProps.classes.paper} {...props.innerProps}>
+      {props.children}
+    </Paper>
+  );
+}
+
 const components = {
   Option,
   Control,
@@ -187,6 +202,7 @@ const components = {
   SingleValue,
   MultiValue,
   ValueContainer,
+  Menu,
 };
 
 class IntegrationReactSelect extends React.Component {
@@ -202,21 +218,37 @@ class IntegrationReactSelect extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
+
+    const selectStyles = {
+      input: base => ({
+        ...base,
+        color: theme.palette.text.primary,
+      }),
+    };
 
     return (
       <div className={classes.root}>
         <NoSsr>
           <Select
             classes={classes}
+            styles={selectStyles}
             options={suggestions}
             components={components}
             value={this.state.single}
             onChange={this.handleChange('single')}
             placeholder="Search a country (start with a)"
           />
+          <div className={classes.divider} />
           <Select
             classes={classes}
+            styles={selectStyles}
+            textFieldProps={{
+              label: 'Label',
+              InputLabelProps: {
+                shrink: true,
+              },
+            }}
             options={suggestions}
             components={components}
             value={this.state.multi}
@@ -232,6 +264,7 @@ class IntegrationReactSelect extends React.Component {
 
 IntegrationReactSelect.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(IntegrationReactSelect);
+export default withStyles(styles, { withTheme: true })(IntegrationReactSelect);

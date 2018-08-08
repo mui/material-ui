@@ -182,6 +182,7 @@ class DownshiftMultiple extends React.Component {
                 onKeyDown: this.handleKeyDown,
                 placeholder: 'Select multiple countries',
               }),
+              label: 'Label',
             })}
             {isOpen ? (
               <Paper className={classes.paper} square>
@@ -229,6 +230,9 @@ const styles = theme => ({
   inputRoot: {
     flexWrap: 'wrap',
   },
+  divider: {
+    height: theme.spacing.unit * 2,
+  },
 });
 
 let popperNode;
@@ -264,7 +268,9 @@ function IntegrationDownshift(props) {
           </div>
         )}
       </Downshift>
+      <div className={classes.divider} />
       <DownshiftMultiple classes={classes} />
+      <div className={classes.divider} />
       <Downshift id="downshift-popper">
         {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
           <div className={classes.container}>
