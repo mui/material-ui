@@ -5,6 +5,7 @@ import keycode from 'keycode';
 import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import Tooltip from '@material-ui/core/Tooltip';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import clamp from '../utils/clamp';
 
@@ -453,17 +454,19 @@ class Slider extends React.Component {
       >
         <div className={containerClasses}>
           <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
-          <ButtonBase
-            className={thumbClasses}
-            disableRipple
-            style={inlineThumbStyles}
-            onBlur={this.handleBlur}
-            onKeyDown={this.handleKeyDown}
-            onMouseDown={this.handleMouseDown}
-            onTouchStartCapture={this.handleTouchStart}
-            onTouchMove={this.handleMouseMove}
-            onFocusVisible={this.handleFocus}
-          />
+          <Tooltip title={value}>
+            <ButtonBase
+              className={thumbClasses}
+              disableRipple
+              style={inlineThumbStyles}
+              onBlur={this.handleBlur}
+              onKeyDown={this.handleKeyDown}
+              onMouseDown={this.handleMouseDown}
+              onTouchStartCapture={this.handleTouchStart}
+              onTouchMove={this.handleMouseMove}
+              onFocusVisible={this.handleFocus}
+            />
+          </Tooltip>
           <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
         </div>
       </Component>
