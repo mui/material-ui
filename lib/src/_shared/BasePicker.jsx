@@ -2,7 +2,7 @@ import compose from 'recompose/compose';
 import lifecycle from 'recompose/lifecycle';
 import setDisplayName from 'recompose/setDisplayName';
 import withHandlers from 'recompose/withHandlers';
-import withRenderProps from 'recompose/withRenderProps';
+import toRenderProps from 'recompose/toRenderProps';
 import withState from 'recompose/withState';
 
 import withUtils from '../_shared/WithUtils';
@@ -62,5 +62,5 @@ export const BasePickerHoc = compose(
   }),
 );
 
-export default withRenderProps(BasePickerHoc);
+export default toRenderProps(BasePickerHoc);
 
