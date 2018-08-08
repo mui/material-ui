@@ -60,8 +60,8 @@ function renderInputComponent(inputProps) {
         classes: {
           input: classes.input,
         },
-        ...other,
       }}
+      {...other}
     />
   );
 }
@@ -135,6 +135,9 @@ const styles = theme => ({
     padding: 0,
     listStyleType: 'none',
   },
+  divider: {
+    height: theme.spacing.unit * 2,
+  },
 });
 
 class IntegrationAutosuggest extends React.Component {
@@ -198,15 +201,20 @@ class IntegrationAutosuggest extends React.Component {
             </Paper>
           )}
         />
+        <div className={classes.divider} />
         <Autosuggest
           {...autosuggestProps}
           inputProps={{
             classes,
-            placeholder: 'Popper',
+            label: 'Label',
+            placeholder: 'With Popper',
             value: this.state.popper,
             onChange: this.handleChange('popper'),
             inputRef: node => {
               this.popperNode = node;
+            },
+            InputLabelProps: {
+              shrink: true,
             },
           }}
           theme={{
