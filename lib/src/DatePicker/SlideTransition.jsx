@@ -4,25 +4,28 @@ import classnames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import CSSTransition from 'react-transition-group/CSSTransition';
+import Slide from '@material-ui/core/Slide';
 
 const animationDuration = 350;
 
+const transitionFactory = props => child => React.cloneElement(child, props);
+
 const SlideTransition = ({
-  classes, className, children, transKey, slideDirection
+  classes, className, children, transKey, slideDirection,
 }) => (
-  <TransitionGroup className={classnames(classes.transitionContainer, className)}>
-    <CSSTransition
-      key={transKey}
-      classNames={{
-        enter: classes[`slideEnter-${slideDirection}`],
-        enterActive: classes.slideEnterActive,
-        exit: classes.slideExit,
-        exitActive: classes[`slideExitActiveLeft-${slideDirection}`]
-      }}
-      timeout={animationDuration}
-      mountOnEnter
-      unmountOnExit
-    >
+  <TransitionGroup
+    className={classnames(classes.transitionContainer, className)}
+    childFactory={transitionFactory({
+       classNames: {
+              enter: classes[`slideEnter-${slideDirection}`],
+              enterActive: classes.slideEnterActive,
+              exit: classes.slideExit,
+              exitActive: classes[`slideExitActiveLeft-${slideDirection}`],
+            },
+      })
+    }
+  >
+    <CSSTransition key={transKey} mountOnEnter unmountOnExit timeout={animationDuration}>
       {children}
     </CSSTransition>
   </TransitionGroup>
@@ -33,6 +36,7 @@ SlideTransition.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   slideDirection: PropTypes.oneOf(['left', 'right']).isRequired,
+  transKey: PropTypes.string,
 };
 
 SlideTransition.defaultProps = {

@@ -10,7 +10,6 @@ import CalendarHeader from './CalendarHeader';
 import Day from './Day';
 import DayWrapper from './DayWrapper';
 import DomainPropTypes from '../constants/prop-types';
-import Slide from '@material-ui/core/Slide';
 import withUtils from '../_shared/WithUtils';
 import SlideTransition from './SlideTransition';
 
