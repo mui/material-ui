@@ -24,8 +24,8 @@ Overall, it's simple to recover from this problem by wrapping each Material-UI a
 In a common module:
 
 ```js
-import JssProvider from "react-jss/lib/JssProvider";
-import { createGenerateClassName, jssPreset } from "@material-ui/core";
+import JssProvider from 'react-jss/lib/JssProvider';
+import { createGenerateClassName, jssPreset } from '@material-ui/core';
 
 export const generateClassName = createGenerateClassName();
 export const jss = create(jssPreset());
