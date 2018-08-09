@@ -8,4 +8,4 @@ import { CSSProperties, StyleRules } from './withStyles';
  * @param styles a set of style mappings
  * @returns the same styles that were passed in
  */
-export default function createStyles<S extends StyleRules>(styles: S): S;
+export default function createStyles<C extends string>(styles: StyleRules<C>): StyleRules<C>;
