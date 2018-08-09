@@ -11,6 +11,7 @@ interface TypeText {
 interface TypeAction {
   active: string;
   hover: string;
+  hoverOpacity: number;
   selected: string;
   disabled: string;
   disabledBackground: string;
