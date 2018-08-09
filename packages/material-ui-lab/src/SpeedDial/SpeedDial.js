@@ -158,7 +158,6 @@ class SpeedDial extends React.Component {
       return React.cloneElement(child, {
         delay,
         open,
-        onKeyDown: this.handleKeyDown,
         id: `${id}-item-${validChildCount}`,
       });
     });

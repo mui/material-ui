@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
@@ -16,6 +16,16 @@ describe('<SpeedDial />', () => {
     open: true,
     ariaLabel: 'mySpeedDial',
   };
+
+  let consoleErrorStub;
+
+  beforeEach(() => {
+    consoleErrorStub = stub(console, 'error');
+  });
+
+  afterEach(() => {
+    consoleErrorStub.restore();
+  });
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -78,6 +88,15 @@ describe('<SpeedDial />', () => {
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass('mySpeedDialClass'), true);
+  });
+
+  it('should render the actions with no warnings', () => {
+    shallow(
+      <SpeedDial {...defaultProps} className="mySpeedDial" icon={icon}>
+        <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction" />
+      </SpeedDial>,
+    );
+    assert.strictEqual(consoleErrorStub.callCount, 0, 'Wrong number of calls of warning()');
   });
 
   it('should render the actions with the actions class', () => {
