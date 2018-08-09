@@ -63,7 +63,7 @@ export const styles = theme => {
       display: 'inline-flex',
       position: 'relative',
       fontFamily: theme.typography.fontFamily,
-      color: light ? 'rgba(0, 0, 0, 0.87)' : theme.palette.common.white,
+      color: theme.palette.text.primary,
       fontSize: theme.typography.pxToRem(16),
       lineHeight: '1.1875em', // Reset (19px), match the native input line-height
       '&$disabled': {
