@@ -18,4 +18,4 @@
 //   );
 // }
 
-// export default withStyles(styles)(SvgMaterialIconsAll);
+// export default SvgMaterialIconsAll;
