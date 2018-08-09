@@ -307,7 +307,13 @@ class Popover extends React.Component {
       containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
     return (
-      <Modal container={container} open={open} BackdropProps={{ invisible: true }} {...other}>
+      <Modal
+        classes={classes.modal}
+        container={container}
+        open={open}
+        BackdropProps={{ invisible: true }}
+        {...other}
+      >
         <TransitionComponent
           appear
           in={open}

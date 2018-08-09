@@ -51,6 +51,7 @@ This property accepts the following keys:
 | Name | Description |
 |:-----|:------------|
 | <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
+| <span class="prop-name">modal</span> | Styles applied to the `Modal` component.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Popover/Popover.js)
