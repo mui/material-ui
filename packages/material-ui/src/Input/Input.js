@@ -80,7 +80,7 @@ export const styles = theme => {
     focused: {},
     /* Styles applied to the root element if `disabled={true}`. */
     disabled: {},
-    /* Styles applied to the root element if `disabledUnderline={false}`. */
+    /* Styles applied to the root element if `disableUnderline={false}`. */
     underline: {
       '&:after': {
         borderBottom: `2px solid ${theme.palette.primary[light ? 'dark' : 'light']}`,

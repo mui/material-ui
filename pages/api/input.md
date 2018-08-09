@@ -56,7 +56,7 @@ This property accepts the following keys:
 | <span class="prop-name">formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
 | <span class="prop-name">focused</span> | Styles applied to the root element if the component is focused.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
-| <span class="prop-name">underline</span> | Styles applied to the root element if `disabledUnderline={false}`.
+| <span class="prop-name">underline</span> | Styles applied to the root element if `disableUnderline={false}`.
 | <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
 | <span class="prop-name">multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
