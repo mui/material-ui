@@ -25,7 +25,7 @@ describe('<NoSsr />', () => {
           <span>Hello</span>
         </NoSsr>,
       );
-      assert.strictEqual(wrapper.name(), 'Fallback');
+      assert.strictEqual(wrapper.name(), null);
     });
   });
 
@@ -37,6 +37,7 @@ describe('<NoSsr />', () => {
         </NoSsr>,
       );
       assert.strictEqual(wrapper.find('span').length, 1);
+      assert.strictEqual(wrapper.text(), 'Hello');
     });
   });
 
@@ -48,6 +49,23 @@ describe('<NoSsr />', () => {
         </NoSsr>,
       );
       assert.strictEqual(wrapper.text(), 'fallback');
+    });
+  });
+
+  describe('prop: defer', () => {
+    it('should defer the rendering', done => {
+      const wrapper = mount(
+        <NoSsr defer>
+          <span>Hello</span>
+        </NoSsr>,
+      );
+      assert.strictEqual(wrapper.find('span').length, 0);
+      setTimeout(() => {
+        wrapper.update();
+        assert.strictEqual(wrapper.find('span').length, 1);
+        assert.strictEqual(wrapper.text(), 'Hello');
+        done();
+      }, 100);
     });
   });
 });
