@@ -44,6 +44,10 @@ class DatePicker extends Component {
      */
     dialogContainerStyle: PropTypes.object,
     /**
+     * Disables the day selection in the date picker.
+     */
+    disableDaySelection: PropTypes.bool,
+    /**
      * Disables the year selection in the date picker.
      */
     disableYearSelection: PropTypes.bool,
@@ -157,6 +161,7 @@ class DatePicker extends Component {
     autoOk: false,
     container: 'dialog',
     disabled: false,
+    disableDaySelection: false,
     disableYearSelection: false,
     firstDayOfWeek: 1,
     hideCalendarDate: false,
@@ -283,6 +288,7 @@ class DatePicker extends Component {
       defaultDate, // eslint-disable-line no-unused-vars
       dialogContainerStyle,
       disableYearSelection,
+      disableDaySelection,
       firstDayOfWeek,
       formatDate: formatDateProp,
       locale,
@@ -323,6 +329,7 @@ class DatePicker extends Component {
           container={container}
           containerStyle={dialogContainerStyle}
           disableYearSelection={disableYearSelection}
+          disableDaySelection={disableDaySelection}
           firstDayOfWeek={firstDayOfWeek}
           initialDate={this.state.dialogDate}
           locale={locale}

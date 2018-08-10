@@ -12,6 +12,12 @@ const DatePickerExampleSimple = () => (
     <DatePicker hintText="Landscape Dialog" mode="landscape" />
     <DatePicker hintText="Dialog Disabled" disabled={true} />
     <DatePicker hintText="Open to Year" openToYearSelection={true} />
+    <DatePicker
+      hintText="Month Picker"
+      autoOk={true}
+      disableDaySelection={true}
+      openToYearSelection={true}
+    />
   </div>
 );
 

@@ -4,6 +4,7 @@ import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
 import CalendarActionButtons from './CalendarActionButtons';
+import CalendarDay from './CalendarDay';
 import CalendarMonth from './CalendarMonth';
 import CalendarYear from './CalendarYear';
 import CalendarToolbar from './CalendarToolbar';
@@ -25,6 +26,7 @@ class Calendar extends Component {
     DateTimeFormat: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
+    disableDaySelection: PropTypes.bool,
     disableYearSelection: PropTypes.bool,
     firstDayOfWeek: PropTypes.number,
     hideCalendarDate: PropTypes.bool,
@@ -45,6 +47,7 @@ class Calendar extends Component {
 
   static defaultProps = {
     DateTimeFormat: dateTimeFormat,
+    disableDaySelection: false,
     disableYearSelection: false,
     initialDate: new Date(),
     locale: 'en-US',
@@ -174,6 +177,14 @@ class Calendar extends Component {
     this.handleClickDateDisplayMonthDay();
   };
 
+  handleClickMonth = (event, month) => {
+    const date = this.props.utils.cloneAsDate(this.state.selectedDate);
+    date.setDate(1);
+    date.setMonth(month);
+    this.setSelectedDate(date, event);
+    if (this.props.onClickDay) this.props.onClickDay(event, date);
+  };
+
   getToolbarInteractions() {
     return {
       prevMonth: this.props.utils.monthDiff(this.state.displayDate, this.getMinDate()) > 0,
@@ -294,6 +305,9 @@ class Calendar extends Component {
         overflow: 'hidden',
         width: 310,
       },
+      monthContainer: {
+        height: 272,
+      },
       weekTitle: {
         display: 'flex',
         flexDirection: 'row',
@@ -334,6 +348,7 @@ class Calendar extends Component {
         {!hideCalendarDate &&
           <DateDisplay
             DateTimeFormat={DateTimeFormat}
+            disableDaySelection={this.props.disableDaySelection}
             disableYearSelection={this.props.disableYearSelection}
             onClickMonthDay={this.handleClickDateDisplayMonthDay}
             onClickYear={this.handleClickDateDisplayYear}
@@ -344,7 +359,19 @@ class Calendar extends Component {
           />
         }
         <div style={prepareStyles(styles.calendar)}>
-          {this.state.displayMonthDay &&
+          {this.state.displayMonthDay && (this.props.disableDaySelection ?
+            <div style={prepareStyles(styles.yearContainer)}>
+              <CalendarMonth
+                DateTimeFormat={this.props.DateTimeFormat}
+                locale={this.props.locale}
+                onClickMonth={this.handleClickMonth}
+                selectedDate={this.state.selectedDate}
+                minDate={this.getMinDate()}
+                maxDate={this.getMaxDate()}
+                utils={this.props.utils}
+              />
+            </div> :
+
             <div style={prepareStyles(styles.calendarContainer)}>
               <CalendarToolbar
                 DateTimeFormat={DateTimeFormat}
@@ -362,7 +389,7 @@ class Calendar extends Component {
                 ))}
               </div>
               <SlideInTransitionGroup direction={this.state.transitionDirection} style={styles.transitionSlide}>
-                <CalendarMonth
+                <CalendarDay
                   DateTimeFormat={DateTimeFormat}
                   locale={locale}
                   displayDate={this.state.displayDate}
@@ -378,7 +405,7 @@ class Calendar extends Component {
                 />
               </SlideInTransitionGroup>
             </div>
-          }
+          )}
           {!this.state.displayMonthDay &&
             <div style={prepareStyles(styles.yearContainer)}>
               {this.yearSelector()}

@@ -99,6 +99,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       calendarTextColor: palette.textColor,
       selectColor: palette.primary2Color,
       selectTextColor: palette.alternateTextColor,
+      calendarMonthBackgroundColor: palette.canvasColor,
       calendarYearBackgroundColor: palette.canvasColor,
       headerColor: palette.pickerHeaderColor || palette.primary1Color,
     },
