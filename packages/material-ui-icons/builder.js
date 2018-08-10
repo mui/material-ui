@@ -130,7 +130,8 @@ async function worker({ svgPath, options, renameFilter, template }) {
     .replace(/xlink:href=/g, 'xlinkHref=')
     .replace(/clip-rule=/g, 'clipRule=')
     .replace(/fill-rule=/g, 'fillRule=')
-    .replace(/ clip-path=".+?"/g, ''); // Fix visibility issue and save some bytes.
+    .replace(/ clip-path=".+?"/g, '') // Fix visibility issue and save some bytes.
+    .replace(/<clipPath.+?<\/clipPath>/g, ''); // Remove unused definitions
 
   const size = Number(svgPath.match(/^.*_([0-9]+)px.svg$/)[1]);
 
