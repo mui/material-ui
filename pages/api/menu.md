@@ -28,7 +28,7 @@ title: Menu API
 | <span class="prop-name">onExited</span> | <span class="prop-type">func |   | Callback fired when the Menu has exited. |
 | <span class="prop-name">onExiting</span> | <span class="prop-type">func |   | Callback fired when the Menu is exiting. |
 | <span class="prop-name required">open *</span> | <span class="prop-type">bool |   | If `true`, the menu is visible. |
-| <span class="prop-name">PopoverClasses</span> | <span class="prop-type">object |   | `classes` property applied to the `Popover` element. |
+| <span class="prop-name">PopoverClasses</span> | <span class="prop-type">object |   | `classes` property applied to the [`Popover`](/api/popover) element. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }&nbsp;&#124;<br>&nbsp;enum:&nbsp;'auto'<br><br> | <span class="prop-default">'auto'</span> | The length of the transition in `ms`, or 'auto' |
 
 Any other properties supplied will be spread to the root element ([Popover](/api/popover)).
