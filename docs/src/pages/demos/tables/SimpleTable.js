@@ -73,3 +73,4 @@ SimpleTable.propTypes = {
 };
 
 export default withStyles(styles)(SimpleTable);
+
