@@ -233,12 +233,14 @@ function formControlState(props, context) {
 }
 
 class Input extends React.Component {
-  isControlled = this.props.value != null;
+  isControlled = null;
 
   input = null; // Holds the input reference
 
   constructor(props, context) {
     super(props, context);
+
+    this.isControlled = props.value != null;
 
     if (this.isControlled) {
       this.checkDirty(props);

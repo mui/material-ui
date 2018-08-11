@@ -40,8 +40,7 @@ class SwitchBase extends React.Component {
   isControlled = null;
 
   constructor(props) {
-    super(props);
-
+    super();
     this.isControlled = props.checked != null;
     if (!this.isControlled) {
       // not controlled, use internal state

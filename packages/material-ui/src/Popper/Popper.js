@@ -35,10 +35,9 @@ class Popper extends React.Component {
   popper = null;
 
   constructor(props) {
-    super(props);
-
+    super();
     this.state = {
-      exited: !this.props.open,
+      exited: !props.open,
     };
   }
 

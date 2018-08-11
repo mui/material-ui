@@ -19,8 +19,8 @@ import React from 'react';
 import RootRef from '@material-ui/core/RootRef';
 
 class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.domRef = React.createRef();
   }
 

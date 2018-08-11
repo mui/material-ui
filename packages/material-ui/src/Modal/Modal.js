@@ -55,10 +55,9 @@ class Modal extends React.Component {
   mounted = false;
 
   constructor(props) {
-    super(props);
-
+    super();
     this.state = {
-      exited: !this.props.open,
+      exited: !props.open,
     };
   }
 
