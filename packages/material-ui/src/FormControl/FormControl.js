@@ -46,11 +46,10 @@ export const styles = {
  */
 class FormControl extends React.Component {
   constructor(props) {
-    super(props);
-
+    super();
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.
-    const { children } = this.props;
+    const { children } = props;
     if (children) {
       React.Children.forEach(children, child => {
         if (!isMuiElement(child, ['Input', 'Select', 'NativeSelect'])) {

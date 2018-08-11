@@ -19,12 +19,11 @@ class MuiThemeProvider extends React.Component {
   outerTheme = null;
 
   constructor(props, context) {
-    super(props, context);
-
+    super();
     // Get the outer theme from the context, can be null
     this.outerTheme = themeListener.initial(context);
     // Propagate the theme so it can be accessed by the children
-    this.broadcast.setState(this.mergeOuterLocalTheme(this.props.theme));
+    this.broadcast.setState(this.mergeOuterLocalTheme(props.theme));
   }
 
   getChildContext() {

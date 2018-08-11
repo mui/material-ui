@@ -22,8 +22,7 @@ const withTheme = () => Component => {
     unsubscribeId = null;
 
     constructor(props, context) {
-      super(props, context);
-
+      super();
       this.state = {
         // We use || as the function call is lazy evaluated.
         theme: themeListener.initial(context) || getDefaultTheme(),

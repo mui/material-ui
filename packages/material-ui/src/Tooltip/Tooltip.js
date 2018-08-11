@@ -91,8 +91,7 @@ class Tooltip extends React.Component {
   };
 
   constructor(props) {
-    super(props);
-
+    super();
     this.isControlled = props.open != null;
     this.state = {
       open: null,
