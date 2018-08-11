@@ -117,7 +117,7 @@ class CustomPaginationActionsTable extends React.Component {
     super(props);
 
     this.state = {
-      data: [
+      rows: [
         createData('Cupcake', 305, 3.7),
         createData('Donut', 452, 25.0),
         createData('Eclair', 262, 16.0),
@@ -147,22 +147,22 @@ class CustomPaginationActionsTable extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { data, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+    const { rows, rowsPerPage, page } = this.state;
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
             <TableBody>
-              {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
+              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
                 return (
-                  <TableRow key={n.id}>
+                  <TableRow key={row.id}>
                     <TableCell component="th" scope="row">
-                      {n.name}
+                      {row.name}
                     </TableCell>
-                    <TableCell numeric>{n.calories}</TableCell>
-                    <TableCell numeric>{n.fat}</TableCell>
+                    <TableCell numeric>{row.calories}</TableCell>
+                    <TableCell numeric>{row.fat}</TableCell>
                   </TableRow>
                 );
               })}
@@ -176,7 +176,7 @@ class CustomPaginationActionsTable extends React.Component {
               <TableRow>
                 <TablePagination
                   colSpan={3}
-                  count={data.length}
+                  count={rows.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   onChangePage={this.handleChangePage}

@@ -29,7 +29,7 @@ function getSorting(order, orderBy) {
   return order === 'desc' ? (a, b) => b[orderBy] - a[orderBy] : (a, b) => a[orderBy] - b[orderBy];
 }
 
-const columnData = [
+const rows = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
   { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
   { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
@@ -55,25 +55,25 @@ class EnhancedTableHead extends React.Component {
               onChange={onSelectAllClick}
             />
           </TableCell>
-          {columnData.map(column => {
+          {rows.map(row => {
             return (
               <TableCell
-                key={column.id}
-                numeric={column.numeric}
-                padding={column.disablePadding ? 'none' : 'default'}
-                sortDirection={orderBy === column.id ? order : false}
+                key={row.id}
+                numeric={row.numeric}
+                padding={row.disablePadding ? 'none' : 'default'}
+                sortDirection={orderBy === row.id ? order : false}
               >
                 <Tooltip
                   title="Sort"
-                  placement={column.numeric ? 'bottom-end' : 'bottom-start'}
+                  placement={row.numeric ? 'bottom-end' : 'bottom-start'}
                   enterDelay={300}
                 >
                   <TableSortLabel
-                    active={orderBy === column.id}
+                    active={orderBy === row.id}
                     direction={order}
-                    onClick={this.createSortHandler(column.id)}
+                    onClick={this.createSortHandler(row.id)}
                   >
-                    {column.label}
+                    {row.label}
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
