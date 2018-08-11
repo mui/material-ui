@@ -108,6 +108,9 @@ class SelectInput extends React.Component {
     }
 
     if (this.props.onBlur) {
+      const { value, name } = this.props;
+      event.persist();
+      event.target = { value, name };
       this.props.onBlur(event);
     }
   };
