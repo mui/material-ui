@@ -76,7 +76,7 @@ export const styles = theme => ({
   flatSecondary: {},
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
-    border: `1px solid ${
+    border: `2px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
   },
@@ -130,6 +130,14 @@ export const styles = theme => ({
         backgroundColor: theme.palette.secondary.main,
       },
     },
+  },
+  /* Styles applied to the root element if `variant="[contained | fab]"` and `color="primary"`. */
+  outlinedPrimary: {
+    border: `2px solid ${theme.palette.primary.main}`,
+  },
+  /* Styles applied to the root element if `variant="[contained | fab]"` and `color="secondary"`. */
+  outlinedSecondary: {
+    border: `2px solid ${theme.palette.secondary.main}`,
   },
   /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
   raised: {}, // legacy
@@ -228,6 +236,8 @@ function Button(props) {
       [classes.raisedPrimary]: (contained || fab) && color === 'primary',
       [classes.raisedSecondary]: (contained || fab) && color === 'secondary',
       [classes.outlined]: variant === 'outlined',
+      [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
+      [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
