@@ -12,7 +12,14 @@ export interface FormLabelProps extends StandardProps<FormLabelBaseProps, FormLa
 
 export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 
-export type FormLabelClassKey = 'root' | 'focused' | 'disabled' | 'error' | 'filled' | 'required' | 'asterisk';
+export type FormLabelClassKey =
+  | 'root'
+  | 'focused'
+  | 'disabled'
+  | 'error'
+  | 'filled'
+  | 'required'
+  | 'asterisk';
 
 declare const FormLabel: React.ComponentType<FormLabelProps>;
 
