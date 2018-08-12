@@ -9,6 +9,7 @@ import EventListener from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
+import CodeFund from 'docs/src/modules/components/CodeFund';
 
 const renderer = new marked.Renderer();
 
@@ -39,7 +40,7 @@ renderer.heading = (text, level) => {
 const styles = theme => ({
   root: {
     top: 70,
-    width: 160,
+    width: 162,
     flexShrink: 0,
     order: 2,
     position: 'sticky',
@@ -52,6 +53,9 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
+  },
+  contents: {
+    marginTop: theme.spacing.unit * 2,
   },
   ul: {
     padding: 0,
@@ -67,7 +71,7 @@ const styles = theme => ({
 class AppTableOfContents extends React.Component {
   handleScroll = debounce(() => {
     this.findActiveIndex();
-  }, 166); // Corresponds to 10 frames at 60 Hz.
+  }, 83); // Corresponds to 5 frames at 60 Hz.
 
   constructor(props) {
     super(props);
@@ -122,14 +126,15 @@ class AppTableOfContents extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, disableAd } = this.props;
     const { active } = this.state;
 
     return (
       <nav className={classes.root}>
+        {disableAd ? null : <CodeFund />}
         {itemsServer.length > 0 ? (
           <React.Fragment>
-            <Typography variant="body2" gutterBottom>
+            <Typography variant="body2" gutterBottom className={classes.contents}>
               Contents
             </Typography>
             <EventListener target="window" onScroll={this.handleScroll} />
@@ -178,6 +183,7 @@ class AppTableOfContents extends React.Component {
 AppTableOfContents.propTypes = {
   classes: PropTypes.object.isRequired,
   contents: PropTypes.array.isRequired,
+  disableAd: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(AppTableOfContents);
