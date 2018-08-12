@@ -5,6 +5,70 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.5.0
+###### *Aug 12, 2018*
+
+Big thanks to the 23 contributors who made this release possible!
+This is a dense release!
+
+Here are some highlights ✨:
+- Introde a "page layout examples" documentation. Don't miss it! (#12410) @mbrookes.
+- Add a Table Of Contents for the documentation (#12368).
+- Improve the TypeScript autocomplete for CSS properties (#12456) @eps1lon.
+- And many more bug fixes 🐛 and documentation improvements 📝.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Select] Accept boolean (#12429) @oliviertassinari
+- [icons] Resize svg icons (#12356) @the-question
+- [Collapse] Add all class keys to the types (#12436) @stuharvey
+- [Table] Padding feature (#12415) @aseem191
+- [icons] Remove clip-path from all icons (#12452) @kevinnorris
+- [Input] Use the color from the theme (#12458) @adeelibr
+- [NoSrr] Add a defer property (#12462) @oliviertassinari
+- [icons] Remove unused clipPath definitions from icons (#12465) @kevinnorris
+- [Popover] Allow to pass repeated props to modal (#12459) @davibq
+- [SelectInput] Add "name" to event.target for onBlur callback (#12467) @hassan-zaheer
+- [Button] Make the outlined variant better leverage the color (#12473) @essuraj
+- [Tooltip] Hide the tooltip as soon as an exit event triggers (#12488) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix react-select multiselection wrapping (#12412) @henkvhest
+- [docs] Add some Render Props demos (#12366) @jedwards1211
+- [docs] Add example layouts (#12410) @mbrookes
+- [core] Fix some errors when porting demos to TypeScript (#12417) @PavelPZ
+- [docs] Standardise the wording between icon docs and readme (#12425) @mbrookes
+- [docs] Improve the withTheme example (#12428) @oliviertassinari
+- [docs] Rename layouts to page-layout-examples + minor fixes (#12430) @mbrookes
+- [docs] Ensure `inputRef` is wired up to react-number-format's input (#12444) @NMinhNguyen
+- [docs] Expand on the JSS and class name generator docs (#12447) @atrauzzi
+- [docs] Better autocomplete docs (#12451) @oliviertassinari
+- [docs] Fix typo (#12454) @metropt
+- [docs] Better descriptive Table demos (#12464) @bala121286
+- [README] New iteration on the backers (#12475) @oliviertassinari
+- [docs] Font vs SVG. Which approach to use? (#12466) @PolGuixe
+- [docs] Add a Table Of Contents (#12368) @oliviertassinari
+- [docs] Fix link to twitter account (#12482) @patcito
+- [docs] Try CodeFund over Carbon (#12484) @oliviertassinari
+
+#### Core
+
+- [typescript] Synced with PR #12373 (#12439) @franklixuefei
+- [core] Add hoverOpacity to TypeAction interface (#12455) @hassan-zaheer
+- [core] Save some bytes in the super() logic (#12476) @oliviertassinari
+- [core] Upgrade the dependencies (#12477) @oliviertassinari
+- [typescript] improve autocomplete for css properties in createStyles (#12456) @eps1lon
+
+#### Lab
+
+- [SpeedDialAction] Allow a tooltip placement prop (#12244) @seanchambo
+- [lab] Depend on @babel/runtime (#12470) @goto-bus-stop
+
 ## 1.4.3
 ###### *Aug 4, 2018*
 
