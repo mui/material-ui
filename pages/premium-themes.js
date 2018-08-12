@@ -6,7 +6,7 @@ import markdown from 'docs/src/pages/premium-themes/premium-themes.md';
 function Page() {
   return (
     <MarkdownDocs
-      disableCarbon
+      disableAd
       markdown={markdown}
       demos={{
         'pages/premium-themes/PremiumThemes.js': {
