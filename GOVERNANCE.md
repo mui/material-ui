@@ -19,7 +19,7 @@ Users are members of the community that are using Material-UI or one of Mui-Org'
 can be a user and we encourage users to participate in the community as much as possible in the
 following ways.
 - Evangelize Material-UI by [linking to our website](http://www.material-ui.com/),
-[following us on twitter](https://twitter.com/i/notifications), or just talking about us with your
+[following us on twitter](https://twitter.com/MaterialUI), or just talking about us with your
 friends.
 - Tell us what we're doing well or where we can improve.
 - Give us moral support. A "Thank You" always brightens our day!
