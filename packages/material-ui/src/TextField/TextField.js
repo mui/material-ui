@@ -82,7 +82,6 @@ function TextField(props) {
       autoComplete={autoComplete}
       autoFocus={autoFocus}
       defaultValue={defaultValue}
-      disabled={disabled}
       fullWidth={fullWidth}
       multiline={multiline}
       name={name}
@@ -105,6 +104,7 @@ function TextField(props) {
     <FormControl
       aria-describedby={helperTextId}
       className={className}
+      disabled={disabled}
       error={error}
       fullWidth={fullWidth}
       required={required}
