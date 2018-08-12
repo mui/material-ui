@@ -12,8 +12,8 @@ Big thanks to the 23 contributors who made this release possible!
 This is a dense release!
 
 Here are some highlights ✨:
-- Introde a "page layout examples" documentation. Don't miss it! (#12410) @mbrookes.
-- Add a Table Of Contents for the documentation (#12368).
+- Introduce a "page layout examples" section in the documentation. Don't miss it! (#12410) @mbrookes.
+- Add a Table Of Contents for each page of the documentation (#12368).
 - Improve the TypeScript autocomplete for CSS properties (#12456) @eps1lon.
 - And many more bug fixes 🐛 and documentation improvements 📝.
 
