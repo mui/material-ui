@@ -60,12 +60,13 @@ const styles = theme => ({
   },
   appBarShift: {
     [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 250px)',
+      width: 'calc(100% - 240px)',
     },
   },
   drawer: {
     [theme.breakpoints.up('lg')]: {
-      width: 250,
+      flexShrink: 0,
+      width: 240,
     },
   },
   navIconHide: {

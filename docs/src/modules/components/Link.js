@@ -47,7 +47,13 @@ function Link(props) {
   } = props;
 
   let ComponentRoot;
-  const className = classNames(classes.root, classes[variant], classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes[variant]]: variant !== 'inherit',
+    },
+    classNameProp,
+  );
   let RootProps;
   let children = childrenProp;
 
@@ -103,7 +109,7 @@ Link.propTypes = {
   router: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
-  variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'button']),
+  variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'button', 'inherit']),
 };
 
 export default compose(

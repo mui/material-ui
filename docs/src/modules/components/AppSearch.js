@@ -1,7 +1,6 @@
 import React from 'react';
 import keycode from 'keycode';
 import compose from 'recompose/compose';
-import pure from 'recompose/pure';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
@@ -196,5 +195,4 @@ AppSearch.propTypes = {
 export default compose(
   withStyles(styles),
   withWidth(),
-  pure,
 )(AppSearch);
