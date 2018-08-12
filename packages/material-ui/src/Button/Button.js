@@ -19,7 +19,7 @@ export const styles = theme => ({
     padding: '8px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
-    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
       duration: theme.transitions.duration.short,
     }),
     '&:hover': {
@@ -80,6 +80,20 @@ export const styles = theme => ({
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
   },
+  /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
+  outlinedPrimary: {
+    border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.primary.main}`,
+    },
+  },
+  /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
+  outlinedSecondary: {
+    border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.secondary.main}`,
+    },
+  },
   /* Styles applied to the root element if `variant="[contained | fab]"`. */
   contained: {
     color: theme.palette.getContrastText(theme.palette.grey[300]),
@@ -129,20 +143,6 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: theme.palette.secondary.main,
       },
-    },
-  },
-  /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
-  outlinedPrimary: {
-    border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
-    '&:hover': {
-      border: `1px solid ${theme.palette.primary.main}`,
-    },
-  },
-  /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
-  outlinedSecondary: {
-    border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
-    '&:hover': {
-      border: `1px solid ${theme.palette.secondary.main}`,
     },
   },
   /* Styles applied to the root element for backwards compatibility with legacy variant naming. */

@@ -47,6 +47,8 @@ This property accepts the following keys:
 | <span class="prop-name">flatPrimary</span> | Styles applied to the root element for backwards compatibility with legacy variant naming.
 | <span class="prop-name">flatSecondary</span> | Styles applied to the root element for backwards compatibility with legacy variant naming.
 | <span class="prop-name">outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <span class="prop-name">outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
+| <span class="prop-name">outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
 | <span class="prop-name">contained</span> | Styles applied to the root element if `variant="[contained \| fab]"`.
 | <span class="prop-name">containedPrimary</span> | Styles applied to the root element if `variant="[contained \| fab]"` and `color="primary"`.
 | <span class="prop-name">containedSecondary</span> | Styles applied to the root element if `variant="[contained \| fab]"` and `color="secondary"`.
