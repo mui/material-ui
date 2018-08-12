@@ -119,6 +119,15 @@ export const styles = theme => {
         height: 17,
       },
     },
+    thumbTransparent: {
+      backgroundColor: 'transparent',
+    },
+    thumbIcon: {
+      position: 'relative',
+      top: -6,
+      height: 26,
+      width: 'auto',
+    },
     /* Class applied to the root element to trigger JSS nested styles if `reverse={true}` . */
     reverse: {},
     /* Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`. */
@@ -375,6 +384,7 @@ class Slider extends React.Component {
     const { currentState } = this.state;
     const {
       component: Component,
+      thumb: Thumb,
       classes,
       className: classNameProp,
       disabled,
@@ -426,6 +436,16 @@ class Slider extends React.Component {
     const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
 
+    const Thumbnail = () => {
+      if (React.isValidElement(Thumb)) {
+        return React.cloneElement(Thumb, {
+          ...Thumb.props,
+          className: classes.thumbIcon,
+        });
+      }
+      return null;
+    };
+
     return (
       <Component
         role="slider"
@@ -446,7 +466,9 @@ class Slider extends React.Component {
         <div className={containerClasses}>
           <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
           <ButtonBase
-            className={thumbClasses}
+            className={
+              Thumbnail() ? classNames(thumbClasses, classes.thumbTransparent) : thumbClasses
+            }
             disableRipple
             style={inlineThumbStyles}
             onBlur={this.handleBlur}
@@ -454,7 +476,9 @@ class Slider extends React.Component {
             onTouchStartCapture={this.handleTouchStart}
             onTouchMove={this.handleMouseMove}
             onFocusVisible={this.handleFocus}
-          />
+          >
+            {Thumbnail()}
+          </ButtonBase>
           <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
         </div>
       </Component>
@@ -515,6 +539,7 @@ Slider.propTypes = {
    * @ignore
    */
   theme: PropTypes.object.isRequired,
+  thumb: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * The value of the slider.
    */
