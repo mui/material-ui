@@ -76,7 +76,7 @@ export const styles = theme => ({
   flatSecondary: {},
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
-    border: `2px solid ${
+    border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
   },
@@ -131,13 +131,19 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element if `variant="[contained | fab]"` and `color="primary"`. */
+  /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
   outlinedPrimary: {
-    border: `2px solid ${theme.palette.primary.main}`,
+    border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.primary.main}`,
+    },
   },
-  /* Styles applied to the root element if `variant="[contained | fab]"` and `color="secondary"`. */
+  /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
   outlinedSecondary: {
-    border: `2px solid ${theme.palette.secondary.main}`,
+    border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.secondary.main}`,
+    },
   },
   /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
   raised: {}, // legacy
