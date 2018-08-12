@@ -85,11 +85,6 @@ class Tooltip extends React.Component {
 
   touchTimer = null;
 
-  internalState = {
-    hover: false,
-    focus: false,
-  };
-
   constructor(props) {
     super();
     this.isControlled = props.open != null;
@@ -151,20 +146,12 @@ class Tooltip extends React.Component {
     const { children, enterDelay } = this.props;
     const childrenProps = children.props;
 
-    if (event.type === 'focus') {
-      this.internalState.focus = true;
-
-      if (childrenProps.onFocus) {
-        childrenProps.onFocus(event);
-      }
+    if (event.type === 'focus' && childrenProps.onFocus) {
+      childrenProps.onFocus(event);
     }
 
-    if (event.type === 'mouseover') {
-      this.internalState.hover = true;
-
-      if (childrenProps.onMouseOver) {
-        childrenProps.onMouseOver(event);
-      }
+    if (event.type === 'mouseover' && childrenProps.onMouseOver) {
+      childrenProps.onMouseOver(event);
     }
 
     if (this.ignoreNonTouchEvents && event.type !== 'touchstart') {
@@ -205,20 +192,12 @@ class Tooltip extends React.Component {
     const { children, leaveDelay } = this.props;
     const childrenProps = children.props;
 
-    if (event.type === 'blur') {
-      this.internalState.focus = false;
-
-      if (childrenProps.onBlur) {
-        childrenProps.onBlur(event);
-      }
+    if (event.type === 'blur' && childrenProps.onBlur) {
+      childrenProps.onBlur(event);
     }
 
-    if (event.type === 'mouseleave') {
-      this.internalState.hover = false;
-
-      if (childrenProps.onMouseLeave) {
-        childrenProps.onMouseLeave(event);
-      }
+    if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
+      childrenProps.onMouseLeave(event);
     }
 
     clearTimeout(this.enterTimer);
@@ -234,10 +213,6 @@ class Tooltip extends React.Component {
   };
 
   handleClose = event => {
-    if (this.internalState.focus || this.internalState.hover) {
-      return;
-    }
-
     if (!this.isControlled) {
       this.setState({ open: false });
     }
