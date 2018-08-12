@@ -99,7 +99,7 @@ describe('<Tooltip />', () => {
     clock.tick(0);
     assert.strictEqual(wrapper.state().open, true);
     children.simulate('mouseLeave', { type: 'mouseleave' });
-    assert.strictEqual(wrapper.state().open, true);
+    assert.strictEqual(wrapper.state().open, false);
     children.simulate('blur', { type: 'blur' });
     assert.strictEqual(wrapper.state().open, false);
   });
