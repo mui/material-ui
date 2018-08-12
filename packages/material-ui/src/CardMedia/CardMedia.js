@@ -16,6 +16,21 @@ export const styles = {
   media: {
     width: '100%',
   },
+  imageContainer: {
+    position: 'relative',
+    overflow: 'hidden',
+    width: '100%',
+  },
+  image: {
+    position: 'absolute',
+    top: -9999,
+    right: -9999,
+    bottom: -9999,
+    left: -9999,
+    margin: 'auto',
+    minWidth: '100%',
+    minHeight: '100%',
+  },
 };
 
 const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
@@ -27,6 +42,14 @@ function CardMedia(props) {
     Boolean(image || src),
     'Material-UI: either `image` or `src` property must be specified.',
   );
+
+  if (Component === 'img') {
+    return (
+      <div className={classNames(classes.imageContainer, className)}>
+        <Component className={classes.image} src={image || src} />
+      </div>
+    );
+  }
 
   const isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;
   const composedStyle =
