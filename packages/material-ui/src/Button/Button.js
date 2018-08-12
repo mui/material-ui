@@ -19,7 +19,7 @@ export const styles = theme => ({
     padding: '8px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
-    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
       duration: theme.transitions.duration.short,
     }),
     '&:hover': {
@@ -79,6 +79,20 @@ export const styles = theme => ({
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
+  },
+  /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
+  outlinedPrimary: {
+    border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.primary.main}`,
+    },
+  },
+  /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
+  outlinedSecondary: {
+    border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.secondary.main}`,
+    },
   },
   /* Styles applied to the root element if `variant="[contained | fab]"`. */
   contained: {
@@ -228,6 +242,8 @@ function Button(props) {
       [classes.raisedPrimary]: (contained || fab) && color === 'primary',
       [classes.raisedSecondary]: (contained || fab) && color === 'secondary',
       [classes.outlined]: variant === 'outlined',
+      [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
+      [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
