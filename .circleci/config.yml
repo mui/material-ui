@@ -71,29 +71,62 @@ jobs:
       - run:
           name: material-ui-icons
           command: |
-            if [[ ((`git diff --raw master | grep packages/material-ui-icons` > 0))]]; then
+            # latest commit
+            LATEST_COMMIT=$(git rev-parse HEAD)
+
+            # latest commit where packages/material-ui-icons was changed
+            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/material-ui-icons)
+
+            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
               cd packages/material-ui-icons && yarn test
             else
-              echo "no changes "
+              echo "no changes"
             fi
       - run:
           name: material-ui-codemod
           command: |
-            if [[ ((`git diff --raw master | grep packages/material-ui-codemod` > 0))]]; then
+            # latest commit
+            LATEST_COMMIT=$(git rev-parse HEAD)
+
+            # latest commit where packages/material-ui-codemod was changed
+            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/material-ui-codemod)
+
+            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
               cd packages/material-ui-codemod && yarn test
             else
-              echo "no changes "
+              echo "no changes"
+            fi
+      - run:
+          name: material-ui-lab
+          command: |
+            # latest commit
+            LATEST_COMMIT=$(git rev-parse HEAD)
+
+            # latest commit where packages/material-ui-lab was changed
+            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/material-ui-lab)
+
+            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
+              echo "changes, let's run the tests"
+              cd packages/material-ui-lab && yarn test
+            else
+              echo "no changes"
             fi
       - run:
           name: eslint-plugin-material-ui
           command: |
-            if [[ ((`git diff --raw master | grep packages/eslint-plugin-material-ui` > 0))]]; then
+            # latest commit
+            LATEST_COMMIT=$(git rev-parse HEAD)
+
+            # latest commit where packages/eslint-plugin-material-ui was changed
+            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/eslint-plugin-material-ui)
+
+            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
               cd packages/eslint-plugin-material-ui && yarn test
             else
-              echo "no changes "
+              echo "no changes"
             fi
   test_build:
     <<: *defaults
