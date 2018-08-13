@@ -18,6 +18,10 @@ export function dateTimeFormat(locale, options) {
       return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
     } else if (options.year === 'numeric' && options.month === 'long') {
       return `${monthLongList[date.getMonth()]} ${date.getFullYear()}`;
+    } else if (options.month === 'long') {
+      return monthLongList[date.getMonth()];
+    } else if (options.month === 'short') {
+      return monthList[date.getMonth()];
     } else if (options.weekday === 'narrow') {
       return dayAbbreviation[date.getDay()];
     } else if (options.year === 'numeric') {
@@ -37,6 +41,12 @@ export function getYear(d) {
 export function setYear(d, year) {
   const newDate = cloneDate(d);
   newDate.setFullYear(year);
+  return newDate;
+}
+
+export function setMonth(d, month) {
+  const newDate = cloneDate(d);
+  newDate.setMonth(month);
   return newDate;
 }
 
@@ -169,8 +179,11 @@ export function yearDiff(d1, d2) {
 }
 
 export const defaultUtils = {
+  cloneDate,
+  cloneAsDate,
   getYear,
   setYear,
+  setMonth,
   addDays,
   addMonths,
   addYears,

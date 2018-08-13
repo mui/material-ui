@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import YearButton from './YearButton';
+import Button from './Button';
 
 class CalendarYear extends Component {
   static propTypes = {
@@ -53,16 +53,16 @@ class CalendarYear extends Component {
       }).format(utils.setYear(selectedDate, year));
 
       const yearButton = (
-        <YearButton
+        <Button
           key={`yb${year}`}
           onClick={this.handleClickYear}
           selected={selected}
-          year={year}
-          utils={utils}
+          value={year}
+          current={year === utils.getYear(new Date())}
           {...selectedProps}
         >
           {yearFormated}
-        </YearButton>
+        </Button>
       );
 
       years.push(yearButton);

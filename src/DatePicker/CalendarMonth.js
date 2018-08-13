@@ -1,108 +1,85 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {isBetweenDates, isEqualDate} from './dateUtils';
-import DayButton from './DayButton';
-
-const styles = {
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    fontWeight: 400,
-    height: 228,
-    lineHeight: 2,
-    position: 'relative',
-    textAlign: 'center',
-    MozPaddingStart: 0,
-  },
-  week: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    height: 34,
-    marginBottom: 2,
-  },
-};
+import Button from './Button';
 
 class CalendarMonth extends Component {
   static propTypes = {
     DateTimeFormat: PropTypes.func.isRequired,
-    autoOk: PropTypes.bool,
-    displayDate: PropTypes.object.isRequired,
-    firstDayOfWeek: PropTypes.number,
     locale: PropTypes.string.isRequired,
-    maxDate: PropTypes.object,
-    minDate: PropTypes.object,
-    onClickDay: PropTypes.func,
+    maxDate: PropTypes.object.isRequired,
+    minDate: PropTypes.object.isRequired,
+    onClickMonth: PropTypes.func,
     selectedDate: PropTypes.object.isRequired,
-    shouldDisableDate: PropTypes.func,
     utils: PropTypes.object.isRequired,
+    wordings: PropTypes.object,
   };
 
-  isSelectedDateDisabled() {
-    return this.selectedDateDisabled;
-  }
-
-  handleClickDay = (event, date) => {
-    if (this.props.onClickDay) {
-      this.props.onClickDay(event, date);
-    }
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
   };
 
-  shouldDisableDate(day) {
-    if (day === null) return false;
-    let disabled = !isBetweenDates(day, this.props.minDate, this.props.maxDate);
-    if (!disabled && this.props.shouldDisableDate) disabled = this.props.shouldDisableDate(day);
-
-    return disabled;
-  }
-
-  getWeekElements() {
-    const weekArray = this.props.utils.getWeekArray(this.props.displayDate, this.props.firstDayOfWeek);
-
-    return weekArray.map((week, i) => {
-      return (
-        <div key={i} style={styles.week}>
-          {this.getDayElements(week, i)}
-        </div>
-      );
-    }, this);
-  }
-
-  getDayElements(week, i) {
+  getMonths() {
     const {
       DateTimeFormat,
       locale,
       selectedDate,
+      utils,
     } = this.props;
 
-    return week.map((day, j) => {
-      const isSameDate = isEqualDate(selectedDate, day);
-      const disabled = this.shouldDisableDate(day);
-      const selected = !disabled && isSameDate;
+    const months = [];
 
-      if (isSameDate) {
-        this.selectedDateDisabled = disabled;
-      }
+    for (let month = 0; month <= 11; month++) {
+      const monthFormated = new DateTimeFormat(locale, {
+        month: 'short',
+      }).format(utils.setMonth(selectedDate, month));
 
-      return (
-        <DayButton
-          DateTimeFormat={DateTimeFormat}
-          locale={locale}
-          date={day}
-          disabled={disabled}
-          key={`db${(i + j)}`}
-          onClick={this.handleClickDay}
-          selected={selected}
-        />
+      const monthButton = (
+        <Button
+          key={`mb${month}`}
+          onClick={this.handleClickMonth}
+          selected={selectedDate.getMonth() === month}
+          value={month}
+          current={month === (new Date()).getMonth()}
+          style={{flex: '1 0 33.33%', padding: '10'}}
+          increaseSelectedFont={false}
+        >
+          {monthFormated}
+        </Button>
       );
-    }, this);
+
+      months.push(monthButton);
+    }
+
+    return months;
   }
 
+  handleClickMonth = (event, month) => {
+    if (this.props.onClickMonth) {
+      this.props.onClickMonth(event, month);
+    }
+  };
+
   render() {
+    const {
+      prepareStyles,
+      datePicker: {
+        calendarMonthBackgroundColor,
+      },
+    } = this.context.muiTheme;
+
+    const styles = {
+      root: {
+        backgroundColor: calendarMonthBackgroundColor,
+        display: 'flex',
+        justifyContent: 'center',
+        minHeight: '100%',
+        flexWrap: 'wrap',
+      },
+    };
+
     return (
-      <div style={styles.root}>
-        {this.getWeekElements()}
+      <div style={prepareStyles(styles.root)}>
+        {this.getMonths()}
       </div>
     );
   }

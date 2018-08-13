@@ -59,6 +59,7 @@ function getStyles(props, context, state) {
 class DateDisplay extends Component {
   static propTypes = {
     DateTimeFormat: PropTypes.func.isRequired,
+    disableDaySelection: PropTypes.bool,
     disableYearSelection: PropTypes.bool,
     locale: PropTypes.string.isRequired,
     mode: PropTypes.oneOf(['portrait', 'landscape']),
@@ -70,6 +71,7 @@ class DateDisplay extends Component {
   };
 
   static defaultProps = {
+    disableDaySelection: false,
     disableYearSelection: false,
     monthDaySelected: true,
   };
@@ -125,6 +127,7 @@ class DateDisplay extends Component {
   render() {
     const {
       DateTimeFormat,
+      disableDaySelection, // eslint-disable-line no-unused-vars
       disableYearSelection, // eslint-disable-line no-unused-vars
       locale,
       mode, // eslint-disable-line no-unused-vars
@@ -143,7 +146,10 @@ class DateDisplay extends Component {
       year: 'numeric',
     }).format(selectedDate);
 
-    const dateTime = new DateTimeFormat(locale, {
+    const dateTime = new DateTimeFormat(locale, disableDaySelection ?
+    {
+      month: 'long',
+    } : {
       month: 'short',
       weekday: 'short',
       day: '2-digit',
