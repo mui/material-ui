@@ -44,7 +44,6 @@ function TextField(props) {
     children,
     className,
     defaultValue,
-    disabled,
     error,
     FormHelperTextProps,
     fullWidth,
@@ -104,7 +103,6 @@ function TextField(props) {
     <FormControl
       aria-describedby={helperTextId}
       className={className}
-      disabled={disabled}
       error={error}
       fullWidth={fullWidth}
       required={required}
