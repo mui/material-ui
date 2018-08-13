@@ -3,13 +3,13 @@ import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
 
 export type AnyComponent<P = any> =
-  | (new (p: P) => React.Component)
+  | (new (props: P) => React.Component)
   | ((props: P & { children?: React.ReactNode }) => React.ReactElement<P> | null)
   ;
 
 export type PropsOf<C extends AnyComponent> =
-  C extends new (p: infer P) => React.Component ? P :
-  C extends (p: infer P) => React.ReactElement<any> | null ? P :
+  C extends new (props: infer P) => React.Component ? P :
+  C extends (props: infer P) => React.ReactElement<any> | null ? P :
   never;
 
 
