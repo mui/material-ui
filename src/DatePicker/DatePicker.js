@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
+import IconButton from '../IconButton';
+import DateIcon from '../svg-icons/action/today';
 
 class DatePicker extends Component {
   static propTypes = {
@@ -48,6 +50,10 @@ class DatePicker extends Component {
      */
     disableDaySelection: PropTypes.bool,
     /**
+     * Disables text typing.
+     */
+    disableTextEdit: PropTypes.bool,
+    /**
      * Disables the year selection in the date picker.
      */
     disableYearSelection: PropTypes.bool,
@@ -70,6 +76,10 @@ class DatePicker extends Component {
      * @returns {any} The formatted date.
      */
     formatDate: PropTypes.func,
+    /**
+     * If true, the field receives the property width 100%.
+     */
+    fullWidth: PropTypes.bool,
     /**
      * Hide date display
      */
@@ -128,6 +138,10 @@ class DatePicker extends Component {
      */
     openToYearSelection: PropTypes.bool,
     /**
+     * Function to parse typed text as a Date.
+     */
+    parseText: PropTypes.func,
+    /**
      * Callback function used to determine if a day's entry should be disabled on the calendar.
      *
      * @param {object} day Date object of a day.
@@ -142,6 +156,10 @@ class DatePicker extends Component {
      * Override the inline-styles of DatePicker's TextField element.
      */
     textFieldStyle: PropTypes.object,
+    /**
+     * Function to transform typed text (useful for masks).
+     */
+    transformText: PropTypes.func,
     /**
      * This object should contain methods needed to build the calendar system.
      *
@@ -162,6 +180,7 @@ class DatePicker extends Component {
     container: 'dialog',
     disabled: false,
     disableDaySelection: false,
+    disableTextEdit: true,
     disableYearSelection: false,
     firstDayOfWeek: 1,
     hideCalendarDate: false,
@@ -175,11 +194,15 @@ class DatePicker extends Component {
 
   state = {
     date: undefined,
+    text: '',
   };
 
   componentWillMount() {
+    const date = this.isControlled() ? this.getControlledDate() : this.props.defaultDate;
+    const formatDate = this.props.formatDate || this.formatDate;
     this.setState({
-      date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
+      date,
+      text: date ? formatDate(date) : '',
     });
   }
 
@@ -187,8 +210,10 @@ class DatePicker extends Component {
     if (this.isControlled()) {
       const newDate = this.getControlledDate(nextProps);
       if (!isEqualDate(this.state.date, newDate)) {
+        const formatDate = this.props.formatDate || this.formatDate;
         this.setState({
           date: newDate,
+          text: newDate ? formatDate(newDate) : '',
         });
       }
     }
@@ -225,15 +250,43 @@ class DatePicker extends Component {
     this.openDialog();
   }
 
+  handleText = (e, text) => {
+    if (this.props.transformText) {
+      text = this.props.transformText(text, this.state.text);
+    }
+
+    let date;
+    if (this.props.parseText) {
+      date = this.props.parseText(text);
+    }
+
+    this.setState({
+      text,
+      date,
+    });
+  }
+
   handleAccept = (date) => {
     if (!this.isControlled()) {
+      const formatDate = this.props.formatDate || this.formatDate;
       this.setState({
         date: date,
+        text: formatDate(date),
       });
     }
     if (this.props.onChange) {
       this.props.onChange(null, date);
     }
+  };
+
+  handleBlur = () => {
+    if (this.props.disableTextEdit || this.state.date) {
+      return;
+    }
+
+    this.setState({
+      text: '',
+    });
   };
 
   handleFocus = (event) => {
@@ -288,9 +341,9 @@ class DatePicker extends Component {
       defaultDate, // eslint-disable-line no-unused-vars
       dialogContainerStyle,
       disableYearSelection,
+      disableTextEdit,
       disableDaySelection,
       firstDayOfWeek,
-      formatDate: formatDateProp,
       locale,
       maxDate,
       minDate,
@@ -306,22 +359,54 @@ class DatePicker extends Component {
       style,
       textFieldStyle,
       utils,
+      fullWidth, // eslint-disable-line no-unused-vars
+      transformText, // eslint-disable-line no-unused-vars
+      parseText, // eslint-disable-line no-unused-vars
+      formatDate, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const formatDate = formatDateProp || this.formatDate;
+
+    const {iconColor} = this.context.muiTheme.datePicker;
 
     return (
       <div className={className} style={prepareStyles(Object.assign({}, style))}>
-        <TextField
-          {...other}
-          onFocus={this.handleFocus}
-          onClick={this.handleClick}
-          ref="input"
-          style={textFieldStyle}
-          value={this.state.date ? formatDate(this.state.date) : ''}
-        />
+        <div
+          style={{
+            display: 'inline-block',
+            position: 'relative',
+            width: fullWidth ? '100%' : undefined,
+          }}
+        >
+          <TextField
+            {...other}
+            onChange={this.handleText}
+            fullWidth={fullWidth}
+            onBlur={this.handleBlur}
+            onFocus={disableTextEdit ? this.handleFocus : undefined}
+            onClick={disableTextEdit ? this.handleClick : undefined}
+            ref="input"
+            style={textFieldStyle}
+            value={this.state.text}
+          />
+          {!disableTextEdit &&
+            <IconButton
+              style={{
+                position: 'absolute',
+                right: 2,
+                top: 10,
+                padding: 0,
+                width: 28,
+                height: 28,
+              }}
+              onClick={this.handleClick}
+              tabIndex={-1}
+            >
+              <DateIcon color={iconColor} />
+            </IconButton>
+          }
+        </div>
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}
           autoOk={autoOk}

@@ -102,6 +102,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       calendarMonthBackgroundColor: palette.canvasColor,
       calendarYearBackgroundColor: palette.canvasColor,
       headerColor: palette.pickerHeaderColor || palette.primary1Color,
+      iconColor: grey600,
     },
     dialog: {
       titleFontSize: 22,
