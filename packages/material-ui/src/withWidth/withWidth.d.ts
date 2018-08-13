@@ -5,7 +5,7 @@ export interface WithWidthOptions {
   resizeInterval: number;
 }
 
-export interface WithWidthProps {
+export interface WithWidth {
   width: Breakpoint;
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
@@ -24,6 +24,6 @@ export function isWidthUp(
 
 export default function withWidth(
   options?: WithWidthOptions,
-): <P extends ConsistentWith<P, WithWidthProps>>(
-  component: React.ComponentType<P & WithWidthProps>,
-) => React.ComponentType<Overwrite<P, Partial<WithWidthProps>>>;
+): <P extends ConsistentWith<P, WithWidth>>(
+  component: React.ComponentType<P & WithWidth>,
+) => React.ComponentType<Overwrite<P, Partial<WithWidth>>>;
