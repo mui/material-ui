@@ -1,5 +1,5 @@
 import { Breakpoint } from '../styles/createBreakpoints';
-import { WithWidthProps } from '../withWidth';
+import { WithWidth } from '../withWidth';
 
 export interface WithMobileDialogOptions {
   breakpoint: Breakpoint;
@@ -12,5 +12,5 @@ export interface InjectedProps {
 export default function withMobileDialog<P = {}>(
   options?: WithMobileDialogOptions,
 ): (
-  component: React.ComponentType<P & InjectedProps & Partial<WithWidthProps>>,
-) => React.ComponentType<P & Partial<WithWidthProps>>;
+  component: React.ComponentType<P & InjectedProps & Partial<WithWidth>>,
+) => React.ComponentType<P & Partial<WithWidth>>;

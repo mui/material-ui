@@ -1,5 +1,5 @@
 import { Theme } from './createMuiTheme';
-import { ConsistentWith } from '..';
+import { AnyComponent, ConsistentWith, Overwrite } from '..';
 
 export interface WithTheme {
   theme: Theme;
@@ -7,7 +7,7 @@ export interface WithTheme {
 }
 
 declare const withTheme: () => <P extends ConsistentWith<P, WithTheme>>(
-  component: React.ComponentType<P & WithTheme>,
-) => React.ComponentClass<P>;
+  component: AnyComponent<P & WithTheme>,
+) => React.ComponentType<Overwrite<P, Partial<WithTheme>>>;
 
 export default withTheme;
