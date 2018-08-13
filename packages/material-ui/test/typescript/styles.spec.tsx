@@ -187,6 +187,22 @@ const AllTheComposition = withTheme()(
   <Foo />
 }
 
+declare const themed: boolean;
+{
+  // Test that withTheme: true guarantees the presence of the theme
+  const Foo = withStyles({}, { withTheme: true })(class extends React.Component<WithTheme> {
+    render() {
+      return <div style={{ margin: this.props.theme.spacing.unit }} />;
+    }
+  });
+  <Foo />;
+
+  const Bar = withStyles({}, { withTheme: true })(({ theme }) => (
+    <div style={{ margin: theme.spacing.unit }} />
+  ));
+  <Bar />;
+}
+
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
 //@withStyles(styles)
