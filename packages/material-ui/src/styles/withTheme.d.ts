@@ -8,6 +8,6 @@ export interface WithTheme {
 
 declare const withTheme: () => <P extends ConsistentWith<P, WithTheme>>(
   component: React.ComponentType<P & WithTheme>,
-) => React.ComponentClass<Overwrite<P, Partial<WithTheme>>>;
+) => React.ComponentType<Overwrite<P, Partial<WithTheme>>>;
 
 export default withTheme;

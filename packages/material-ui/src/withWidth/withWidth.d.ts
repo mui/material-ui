@@ -26,4 +26,4 @@ export default function withWidth(
   options?: WithWidthOptions,
 ): <P extends ConsistentWith<P, WithWidthProps>>(
   component: React.ComponentType<P & WithWidthProps>,
-) => React.ComponentClass<Overwrite<P, Partial<WithWidthProps>>>;
+) => React.ComponentType<Overwrite<P, Partial<WithWidthProps>>>;
