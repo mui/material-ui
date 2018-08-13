@@ -2,6 +2,17 @@ import * as React from 'react';
 import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
 
+export type AnyComponent<P = any> =
+  | (new (p: P) => React.Component)
+  | ((props: P & { children?: React.ReactNode }) => React.ReactElement<P> | null)
+  ;
+
+export type PropsOf<C extends AnyComponent> =
+  C extends new (p: infer P) => React.Component ? P :
+  C extends (p: infer P) => React.ReactElement<any> | null ? P :
+  never;
+
+
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
  * certain `classes`, on which one can also set a top-level `className` and inline

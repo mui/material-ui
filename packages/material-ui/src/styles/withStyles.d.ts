@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { WithTheme } from '../styles/withTheme';
-import { ConsistentWith, Overwrite } from '..';
+import { AnyComponent, ConsistentWith, Overwrite } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
@@ -58,6 +58,6 @@ export default function withStyles<ClassKey extends string>(
   options?: WithStylesOptions<ClassKey>,
 ): {
   <P extends ConsistentWith<P, StyledComponentProps<ClassKey>>>(
-    component: React.ComponentType<P & WithStyles<ClassKey>>,
+    component: AnyComponent<P & WithStyles<ClassKey>>,
   ): React.ComponentType<Overwrite<P, StyledComponentProps<ClassKey>>>;
 };

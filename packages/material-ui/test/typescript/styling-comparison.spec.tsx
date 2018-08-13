@@ -60,7 +60,7 @@ interface Painting {
 
 type ArtProps = Book | Painting;
 
-const DecoratedUnionProps = withStyles(styles)<ArtProps>( // <-- without the type argument, we'd get a compiler error!
+const DecoratedUnionProps = withStyles(styles)(
   class extends React.Component<ArtProps & WithStyles<typeof styles>> {
     render() {
       const props = this.props;
