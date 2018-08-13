@@ -177,6 +177,16 @@ const AllTheComposition = withTheme()(
 
 <AllTheComposition />;
 
+{
+  const Foo = withTheme()(class extends React.Component<WithTheme> {
+    render() {
+      return null;
+    }
+  });
+
+  <Foo />
+}
+
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
 //@withStyles(styles)
