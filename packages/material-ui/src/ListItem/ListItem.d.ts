@@ -1,23 +1,21 @@
 import * as React from 'react';
-import { StandardProps } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { MuiComponent, PropsOf, StandardProps } from '..';
+import ButtonBase, { ButtonBaseProps } from '../ButtonBase';
 
-export interface ListItemProps
-  extends StandardProps<
-      ButtonBaseProps & React.LiHTMLAttributes<HTMLElement>,
-      ListItemClassKey,
-      'component'
-    > {
-  button?: boolean;
-  component?: React.ReactType<ListItemProps>;
-  ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
-  ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
-  dense?: boolean;
-  disabled?: boolean;
-  disableGutters?: boolean;
-  divider?: boolean;
-  focusVisibleClassName?: string;
-}
+declare const ListItem: MuiComponent<{
+  outerProps: {
+    button?: boolean;
+    ContainerComponent?: React.ReactType<React.HTMLAttributes<HTMLDivElement>>;
+    ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
+    dense?: boolean;
+    disabled?: boolean;
+    disableGutters?: boolean;
+    divider?: boolean;
+    focusVisibleClassName?: string;
+  },
+  defaultRoot: typeof ButtonBase;
+  classKey: ListItemClassKey;
+}>;
 
 export type ListItemClassKey =
   | 'root'
@@ -31,6 +29,6 @@ export type ListItemClassKey =
   | 'button'
   | 'secondaryAction';
 
-declare const ListItem: React.ComponentType<ListItemProps>;
+export type ListItemProps = PropsOf<typeof ListItem>;
 
 export default ListItem;

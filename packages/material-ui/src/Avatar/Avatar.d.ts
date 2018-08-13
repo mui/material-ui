@@ -1,19 +1,21 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { MuiComponent, PropsOf, TypeMap } from '..';
 
-export interface AvatarProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, AvatarClassKey> {
-  alt?: string;
-  childrenClassName?: string;
-  component?: React.ReactType<AvatarProps>;
-  imgProps?: React.HtmlHTMLAttributes<HTMLImageElement>;
-  sizes?: string;
-  src?: string;
-  srcSet?: string;
-}
+declare const Avatar: MuiComponent<{
+  outerProps: {
+    alt?: string;
+    childrenClassName?: string;
+    imgProps?: React.HtmlHTMLAttributes<HTMLImageElement>;
+    sizes?: string;
+    src?: string;
+    srcSet?: string;
+  };
+  defaultRoot: 'div';
+  classKey: AvatarClassKey;
+}>;
 
 export type AvatarClassKey = 'root' | 'colorDefault' | 'img';
 
-declare const Avatar: React.ComponentType<AvatarProps>;
+export type AvatarProps = PropsOf<typeof Avatar>;
 
 export default Avatar;

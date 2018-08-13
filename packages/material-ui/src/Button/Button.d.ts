@@ -1,20 +1,25 @@
 import * as React from 'react';
-import { StandardProps, PropTypes } from '..';
+import { MuiComponent, PropsOf, PropTypes } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface ButtonProps extends StandardProps<ButtonBaseProps, ButtonClassKey, 'component'> {
-  color?: PropTypes.Color;
-  component?: React.ReactType<ButtonProps>;
-  disabled?: boolean;
-  disableFocusRipple?: boolean;
-  disableRipple?: boolean;
-  fullWidth?: boolean;
-  href?: string;
-  mini?: boolean;
-  size?: 'small' | 'medium' | 'large';
-  type?: string;
-  variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab' | 'extendedFab';
-}
+declare const Button: MuiComponent<{
+  outerProps: ButtonBaseProps & {
+    color?: PropTypes.Color;
+    disabled?: boolean;
+    disableFocusRipple?: boolean;
+    disableRipple?: boolean;
+    fullWidth?: boolean;
+    href?: string;
+    mini?: boolean;
+    size?: 'small' | 'medium' | 'large';
+    type?: string;
+    variant?: 'text' | 'flat' | 'outlined' | 'contained' | 'raised' | 'fab' | 'extendedFab';
+  };
+  defaultRoot: 'button' | 'a';
+  classKey: ButtonClassKey;
+}>;
+
+export type ButtonProps = PropsOf<typeof Button>;
 
 export type ButtonClassKey =
   | 'root'
@@ -42,7 +47,5 @@ export type ButtonClassKey =
   | 'sizeSmall'
   | 'sizeLarge'
   | 'fullWidth';
-
-declare const Button: React.ComponentType<ButtonProps>;
 
 export default Button;

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import {
   AppBar,
   Avatar,
@@ -88,7 +89,20 @@ const AppBarTest = () => (
   </AppBar>
 );
 
-const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
+const AvatarTest = () => (
+  <div>
+    <Avatar onClick={e => log(e)} alt="Image Alt" src="example.jpg" />
+    <Avatar onClick={(e: React.MouseEvent<HTMLButtonElement>) => log(e)} component="button" alt="Image Alt" src="example.jpg" />
+    <Avatar
+      component={(props: { x: number }) => <div />}
+      x={3}
+      // Should NOT be allowed:
+      // onClick={e => log(e)}
+      alt="Image Alt"
+      src="example.jpg"
+    />
+  </div>
+);
 
 const AvaterClassName = () => <Avatar className="foo" />;
 
@@ -126,6 +140,14 @@ const ButtonTest = () => (
     </Button>
     <Button component="a">Simple Link</Button>
     <Button component={props => <a {...props} />}>Complexe Link</Button>
+    <Button component={Link} to="/open-collective">
+      Link
+    </Button>
+    <Button href="/open-collective">Link</Button>
+    <Button component={Link} to="/open-collective">
+      Link
+    </Button>
+    <Button href="/open-collective">Link</Button>
   </div>
 );
 
@@ -765,17 +787,13 @@ const TabsTest = () => {
       value: 0,
     };
 
-    handleChange = (event: React.SyntheticEvent<any>, value: number) => {
-      this.setState({ value });
-    };
-
     render() {
       const classes = this.props.classes;
 
       return (
         <div className={classes.root}>
           <AppBar position="static">
-            <Tabs value={this.state.value} onChange={this.handleChange}>
+            <Tabs value={this.state.value} onChange={(event, value) => this.setState({ value })}>
               <Tab label="Item One" />
               <Tab label="Item Two" />
               <Tab label="Item Three" />
