@@ -66,7 +66,7 @@ export const styles = theme => ({
   fullWidth: {
     flexShrink: 1,
     flexGrow: 1,
-    maxWidth: 'auto',
+    maxWidth: 'none',
   },
   /* Styles applied to the `icon` and `label`'s wrapper element. */
   wrapper: {

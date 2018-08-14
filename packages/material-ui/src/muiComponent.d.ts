@@ -1,25 +1,11 @@
 import * as React from 'react';
-import { ConsistentWith, Omit } from './';
+import { AnyReactType, ConsistentWith, PropsOf, Omit } from './';
 import { StyledComponentProps } from './styles';
-
-/**
- * A more restricted version of React.ReactType.
- */
-type ReactType<P = any> = keyof JSX.IntrinsicElements | React.ComponentType<P>;
-
-/**
- * Extract the props type of any ReactType.
- */
-export type PropsOf<C extends ReactType> = (
-  C extends keyof JSX.IntrinsicElements ? JSX.IntrinsicElements[C] :
-  C extends React.ComponentType<infer P> ? P :
-  never
-);
 
 export interface TypeMap {
   outerProps: {};
   innerProps?: {};
-  defaultRoot: ReactType;
+  defaultRoot: AnyReactType;
   classKey: string;
 }
 
@@ -44,7 +30,7 @@ export type DefaultMuiProps<M extends TypeMap> =
 // prettier-ignore
 export type OverrideMuiProps<
   M extends TypeMap,
-  C extends ReactType
+  C extends AnyReactType
 > = (
   & BaseMuiProps<M>
   & { component: C }
@@ -52,6 +38,6 @@ export type OverrideMuiProps<
 );
 
 export interface MuiComponent<M extends TypeMap> {
-  <C extends ReactType>(props: OverrideMuiProps<M, C>): JSX.Element;
+  <C extends AnyReactType>(props: OverrideMuiProps<M, C>): JSX.Element;
   <C extends never>(props: DefaultMuiProps<M>): JSX.Element;
 }

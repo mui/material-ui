@@ -4,6 +4,18 @@ export { StyledComponentProps };
 
 export * from './muiComponent';
 
+export type AnyComponent<P = any> =
+  | (new (props: P) => React.Component)
+  | ((props: P & { children?: React.ReactNode }) => React.ReactElement<P> | null);
+
+export type AnyReactType<P = any> = keyof JSX.IntrinsicElements | React.ComponentType<P>;
+
+export type PropsOf<C extends AnyReactType> =
+  C extends keyof JSX.IntrinsicElements ? JSX.IntrinsicElements[C] :
+  C extends new (props: infer P) => React.Component ? P :
+  C extends (props: infer P) => React.ReactElement<any> | null ? P :
+  never;
+
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
  * certain `classes`, on which one can also set a top-level `className` and inline
@@ -41,7 +53,7 @@ export interface Color {
  *
  * @internal
  */
-export type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+export type Omit<T, K extends keyof any> = T extends any ? Pick<T, Exclude<keyof T, K>> : never;
 
 /**
  * `T extends ConsistentWith<T, U>` means that where `T` has overlapping properties with
@@ -56,7 +68,7 @@ export type ConsistentWith<T, U> = Pick<U, keyof T & keyof U>;
  *
  * @internal
  */
-export type Overwrite<T, U> = (U extends ConsistentWith<U, T> ? T : Omit<T, keyof U>) & U;
+export type Overwrite<T, U> = Omit<T, keyof U> & U;
 
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
