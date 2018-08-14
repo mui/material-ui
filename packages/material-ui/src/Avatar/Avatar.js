@@ -60,7 +60,7 @@ function Avatar(props) {
   );
   let children = null;
 
-  if (childrenProp) {
+  if (childrenProp || (Array.isArray(childrenProp) && childrenProp.length > 0)) {
     if (
       childrenClassNameProp &&
       typeof childrenProp !== 'string' &&
