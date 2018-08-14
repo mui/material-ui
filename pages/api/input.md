@@ -40,7 +40,7 @@ title: Input API
 | <span class="prop-name">rowsMax</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |   | Maximum number of rows to display when multiline option is set to true. |
 | <span class="prop-name">startAdornment</span> | <span class="prop-type">node |   | Start `InputAdornment` for this component. |
 | <span class="prop-name">type</span> | <span class="prop-type">string | <span class="prop-default">'text'</span> | Type of the input element. It should be a valid HTML5 input type. |
-| <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;arrayOf<br> |   | The input value, required for a controlled component. |
+| <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool&nbsp;&#124;<br>&nbsp;arrayOf<br> |   | The input value, required for a controlled component. |
 
 Any other properties supplied will be spread to the root element (native element).
 
