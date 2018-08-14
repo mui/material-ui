@@ -63,8 +63,8 @@ function PremiumThemes(props) {
   return (
     <Grid container spacing={16}>
       {themes.map(theme => (
-        <Grid item xs={12} sm={6}>
-          <Card key={theme.name} className={classes.card}>
+        <Grid key={theme.name} item xs={12} sm={6}>
+          <Card className={classes.card}>
             <CardMedia
               component="a"
               href={theme.href}

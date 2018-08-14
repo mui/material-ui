@@ -8,8 +8,8 @@ import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import Head from 'docs/src/modules/components/Head';
 import AppContent from 'docs/src/modules/components/AppContent';
 import Demo from 'docs/src/modules/components/Demo';
-import Carbon from 'docs/src/modules/components/Carbon';
 import AppFrame from 'docs/src/modules/components/AppFrame';
+import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import {
   getHeaders,
   getContents,
@@ -37,7 +37,7 @@ const demoRegexp = /^"demo": "(.*)"/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/tree/master';
 
 function MarkdownDocs(props, context) {
-  const { classes, demos, disableCarbon, markdown, markdownLocation: markdownLocationProp } = props;
+  const { classes, demos, disableAd, markdown, markdownLocation: markdownLocationProp } = props;
   const contents = getContents(markdown);
   const headers = getHeaders(markdown);
 
@@ -55,21 +55,35 @@ function MarkdownDocs(props, context) {
     }
   }
 
-  const section = markdownLocation.split('/')[4];
+  if (headers.components.length > 0) {
+    const section = markdownLocation.split('/')[4];
+    contents.push(`
+## API
+
+${headers.components
+      .map(
+        component =>
+          `- [&lt;${component} /&gt;](${section === 'lab' ? '/lab/api' : '/api'}/${kebabCase(
+            component,
+          )})`,
+      )
+      .join('\n')}
+        `);
+  }
 
   return (
     <AppFrame>
+      <Head
+        title={`${headers.title || getTitle(markdown)} - Material-UI`}
+        description={getDescription(markdown)}
+      />
+      <AppTableOfContents contents={contents} disableAd={disableAd} />
       <AppContent className={classes.root}>
-        <Head
-          title={`${headers.title || getTitle(markdown)} - Material-UI`}
-          description={getDescription(markdown)}
-        />
         <div className={classes.header}>
           <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${markdownLocation}`}>
             {'Edit this page'}
           </Button>
         </div>
-        {disableCarbon ? null : <Carbon key={markdownLocation} />}
         {contents.map((content, index) => {
           const match = content.match(demoRegexp);
 
@@ -94,23 +108,6 @@ function MarkdownDocs(props, context) {
             <MarkdownElement className={classes.markdownElement} key={content} text={content} />
           );
         })}
-        {headers.components.length > 0 ? (
-          <MarkdownElement
-            className={classes.markdownElement}
-            text={`
-## API
-
-${headers.components
-              .map(
-                component =>
-                  `- [&lt;${component} /&gt;](${
-                    section === 'lab' ? '/lab/api' : '/api'
-                  }/${kebabCase(component)})`,
-              )
-              .join('\n')}
-          `}
-          />
-        ) : null}
       </AppContent>
     </AppFrame>
   );
@@ -119,7 +116,7 @@ ${headers.components
 MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
   demos: PropTypes.object,
-  disableCarbon: PropTypes.bool,
+  disableAd: PropTypes.bool,
   markdown: PropTypes.string.isRequired,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.
@@ -127,7 +124,7 @@ MarkdownDocs.propTypes = {
 };
 
 MarkdownDocs.defaultProps = {
-  disableCarbon: false,
+  disableAd: false,
 };
 
 MarkdownDocs.contextTypes = {

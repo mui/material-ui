@@ -22,9 +22,9 @@ Shown below is a sample link markup used to load the Roboto font from a CDN.
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
 
-## Install with [npm](https://www.npmjs.com/package/typeface-roboto)
+## Install with npm
 
-You can install it by typing the below command in your terminal:
+You can [install it](https://www.npmjs.com/package/typeface-roboto) by typing the below command in your terminal:
 
 `npm install typeface-roboto --save`
 

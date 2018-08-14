@@ -14,7 +14,7 @@ import { pageToTitle } from 'docs/src/modules/utils/helpers';
 
 const styles = theme => ({
   paper: {
-    width: 250,
+    width: 240,
     backgroundColor: theme.palette.background.paper,
   },
   title: {
@@ -117,7 +117,7 @@ function AppDrawer(props, context) {
   );
 
   return (
-    <div className={className}>
+    <nav className={className}>
       <Hidden lgUp={!disablePermanent} implementation="js">
         <SwipeableDrawer
           classes={{
@@ -148,7 +148,7 @@ function AppDrawer(props, context) {
           </Drawer>
         </Hidden>
       )}
-    </div>
+    </nav>
   );
 }
 

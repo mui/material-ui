@@ -85,10 +85,9 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
     constructor(props, context) {
       super(props, context);
+      this.jss = context[ns.jss] || jss;
 
-      this.jss = this.context[ns.jss] || jss;
-
-      const { muiThemeProviderOptions } = this.context;
+      const { muiThemeProviderOptions } = context;
       if (muiThemeProviderOptions) {
         if (muiThemeProviderOptions.sheetsManager) {
           this.sheetsManager = muiThemeProviderOptions.sheetsManager;
@@ -103,7 +102,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       this.stylesCreatorSaved = stylesCreator;
       this.sheetOptions = {
         generateClassName,
-        ...this.context[ns.sheetOptions],
+        ...context[ns.sheetOptions],
       };
       // We use || as the function call is lazy evaluated.
       this.theme = listenToTheme ? themeListener.initial(context) || getDefaultTheme() : noopTheme;

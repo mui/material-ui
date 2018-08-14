@@ -277,9 +277,8 @@ function withRoot(Component) {
     redux = null;
 
     constructor(props) {
-      super(props);
-
-      this.redux = initRedux(this.props.reduxServerState || {});
+      super();
+      this.redux = initRedux(props.reduxServerState || {});
     }
 
     getChildContext() {

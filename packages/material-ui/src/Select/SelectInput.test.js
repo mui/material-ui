@@ -174,6 +174,21 @@ describe('<SelectInput />', () => {
       assert.strictEqual(handleBlur.callCount, 1);
     });
 
+    it('should pass "name" as part of the event.target for onBlur', () => {
+      const handleBlur = spy();
+      wrapper.setProps({ onBlur: handleBlur, name: 'blur-testing' });
+
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
+      assert.strictEqual(wrapper.state().open, true);
+      assert.strictEqual(instance.ignoreNextBlur, true);
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
+      assert.strictEqual(handleBlur.callCount, 0);
+      assert.strictEqual(instance.ignoreNextBlur, false);
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
+      assert.strictEqual(handleBlur.callCount, 1);
+      assert.strictEqual(handleBlur.args[0][0].target.name, 'blur-testing');
+    });
+
     ['space', 'up', 'down'].forEach(key => {
       it(`'should open menu when pressed ${key} key on select`, () => {
         wrapper

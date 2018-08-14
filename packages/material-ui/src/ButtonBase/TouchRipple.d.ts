@@ -2,8 +2,7 @@ import * as React from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import { StandardProps } from '..';
 
-export interface TouchRippleProps
-  extends StandardProps<TransitionGroup.TransitionGroupProps, TouchRippleClassKey> {
+export type TouchRippleProps = StandardProps<TransitionGroup.TransitionGroupProps, TouchRippleClassKey> & {
   center?: boolean;
 }
 

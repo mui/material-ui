@@ -124,7 +124,9 @@ describe('<SwipeableDrawer />', () => {
 
     afterEach(() => {
       reset();
-      wrapper.unmount();
+      if (wrapper.length > 0) {
+        wrapper.unmount();
+      }
     });
 
     const bodyWidth = document.body.offsetWidth;

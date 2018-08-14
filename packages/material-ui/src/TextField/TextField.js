@@ -44,7 +44,6 @@ function TextField(props) {
     children,
     className,
     defaultValue,
-    disabled,
     error,
     FormHelperTextProps,
     fullWidth,
@@ -82,7 +81,6 @@ function TextField(props) {
       autoComplete={autoComplete}
       autoFocus={autoFocus}
       defaultValue={defaultValue}
-      disabled={disabled}
       fullWidth={fullWidth}
       multiline={multiline}
       name={name}

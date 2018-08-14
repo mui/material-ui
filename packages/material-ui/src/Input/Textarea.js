@@ -42,7 +42,7 @@ export const styles = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component {
-  isControlled = this.props.value != null;
+  isControlled = null;
 
   shadowRef = null;
 
@@ -57,8 +57,8 @@ class Textarea extends React.Component {
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
   constructor(props) {
-    super(props);
-
+    super();
+    this.isControlled = props.value != null;
     // <Input> expects the components it renders to respond to 'value'
     // so that it can check whether they are filled.
     this.value = props.value || props.defaultValue || '';

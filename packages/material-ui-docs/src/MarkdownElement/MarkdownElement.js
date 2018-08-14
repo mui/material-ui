@@ -18,6 +18,13 @@ marked.Lexer.prototype.lex = function lex(src) {
 
 const renderer = new marked.Renderer();
 
+export function textToHash(text) {
+  return text
+    .toLowerCase()
+    .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
+    .replace(/[^\w]+/g, '-');
+}
+
 renderer.heading = (text, level) => {
   // Small title. No need for an anchor.
   // It's reducing the risk of duplicated id and it's less elements in the DOM.
@@ -41,7 +48,7 @@ renderer.heading = (text, level) => {
   );
 };
 
-marked.setOptions({
+const markedOptions = {
   gfm: true,
   tables: true,
   breaks: false,
@@ -75,7 +82,7 @@ marked.setOptions({
     return prism.highlight(code, language);
   },
   renderer,
-});
+};
 
 const styles = theme => ({
   root: {
@@ -258,7 +265,7 @@ function MarkdownElement(props) {
   return (
     <div
       className={classNames(classes.root, 'markdown-body', className)}
-      dangerouslySetInnerHTML={{ __html: marked(text) }}
+      dangerouslySetInnerHTML={{ __html: marked(text, markedOptions) }}
       {...other}
     />
   );
