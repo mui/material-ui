@@ -256,15 +256,11 @@ SwitchBase.propTypes = {
   /**
    * The input component property `type`.
    */
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
   /**
    * The value of the component.
    */
   value: PropTypes.string,
-};
-
-SwitchBase.defaultProps = {
-  type: 'checkbox',
 };
 
 SwitchBase.contextTypes = {

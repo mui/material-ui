@@ -102,6 +102,7 @@ function Switch(props) {
   return (
     <span className={classNames(classes.root, className)}>
       <SwitchBase
+        type="checkbox"
         icon={<span className={classes.icon} />}
         classes={{
           root: classNames(classes.switchBase, classes[`color${capitalize(color)}`]),

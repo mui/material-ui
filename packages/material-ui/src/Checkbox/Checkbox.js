@@ -42,6 +42,7 @@ function Checkbox(props) {
 
   return (
     <SwitchBase
+      type="checkbox"
       checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
       classes={{
         root: classNames(classes.root, classes[`color${capitalize(color)}`]),
