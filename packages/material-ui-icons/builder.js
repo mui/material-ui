@@ -133,7 +133,8 @@ async function worker({ svgPath, options, renameFilter, template }) {
     .replace(/ clip-path=".+?"/g, '') // Fix visibility issue and save some bytes.
     .replace(/<clipPath.+?<\/clipPath>/g, ''); // Remove unused definitions
 
-  const size = Number(svgPath.match(/^.*_([0-9]+)px.svg$/)[1]);
+  const sizeMatch = svgPath.match(/^.*_([0-9]+)px.svg$/);
+  const size = sizeMatch ? Number(sizeMatch[1]) : null;
 
   if (size !== 24) {
     const scale = Math.round((24 / size) * 100) / 100; // Keep a maximum of 2 decimals
