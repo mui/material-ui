@@ -134,15 +134,6 @@ export const styles = theme => {
   };
 };
 
-function addEventListener(node, event, handler, capture) {
-  node.addEventListener(event, handler, capture);
-  return {
-    remove: function remove() {
-      node.removeEventListener(event, handler, capture);
-    },
-  };
-}
-
 function percentToValue(percent, min, max) {
   return ((max - min) * percent) / 100 + min;
 }
@@ -198,6 +189,8 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 class Slider extends React.Component {
   state = { currentState: 'initial' };
 
+  jumpAnimationTimeoutId = -1;
+
   componentDidMount() {
     if (this.containerRef) {
       this.containerRef.addEventListener('touchstart', preventPageScrolling, { passive: false });
@@ -206,6 +199,9 @@ class Slider extends React.Component {
 
   componentWillUnmount() {
     this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
+    document.body.removeEventListener('mousemove', this.handleMouseMove);
+    document.body.removeEventListener('mouseup', this.handleMouseUp);
+    clearTimeout(this.jumpAnimationTimeoutId);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -281,7 +277,7 @@ class Slider extends React.Component {
     event.preventDefault();
     this.setState({ currentState: 'activated' });
 
-    this.globalMouseUpListener = addEventListener(document, 'touchend', this.handleMouseUp);
+    document.body.addEventListener('touchend', this.handleMouseUp);
 
     if (typeof this.props.onDragStart === 'function') {
       this.props.onDragStart(event);
@@ -292,8 +288,8 @@ class Slider extends React.Component {
     event.preventDefault();
     this.setState({ currentState: 'activated' });
 
-    this.globalMouseUpListener = addEventListener(document, 'mouseup', this.handleMouseUp);
-    this.globalMouseMoveListener = addEventListener(document, 'mousemove', this.handleMouseMove);
+    document.body.addEventListener('mousemove', this.handleMouseMove);
+    document.body.addEventListener('mouseup', this.handleMouseUp);
 
     if (typeof this.props.onDragStart === 'function') {
       this.props.onDragStart(event);
@@ -303,13 +299,8 @@ class Slider extends React.Component {
   handleMouseUp = event => {
     this.setState({ currentState: 'normal' });
 
-    if (this.globalMouseUpListener) {
-      this.globalMouseUpListener.remove();
-    }
-
-    if (this.globalMouseMoveListener) {
-      this.globalMouseMoveListener.remove();
-    }
+    document.body.removeEventListener('mousemove', this.handleMouseMove);
+    document.body.removeEventListener('mouseup', this.handleMouseUp);
 
     if (typeof this.props.onDragEnd === 'function') {
       this.props.onDragEnd(event);
@@ -373,7 +364,8 @@ class Slider extends React.Component {
 
   playJumpAnimation() {
     this.setState({ currentState: 'jumped' }, () => {
-      setTimeout(() => {
+      clearTimeout(this.jumpAnimationTimeoutId);
+      this.jumpAnimationTimeoutId = setTimeout(() => {
         this.setState({ currentState: 'normal' });
       }, this.props.theme.transitions.duration.complex);
     });
