@@ -44,11 +44,13 @@ describe('<Slider />', () => {
         value={0}
       />,
     );
-    const button = wrapper.find('button');
 
     wrapper.simulate('click');
-    button.simulate('mousedown');
-    button.simulate('mouseup');
+    wrapper.simulate('mousedown');
+    // document.simulate('mouseup')
+    const mouseupEvent = document.createEvent('HTMLEvents');
+    mouseupEvent.initEvent('mouseup', false, true);
+    document.dispatchEvent(mouseupEvent);
 
     assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
     assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
