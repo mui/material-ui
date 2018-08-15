@@ -14,10 +14,14 @@ export const styles = theme => {
     easing: theme.transitions.easing.easeOut,
   };
 
-  const commonTransitionsProperty = ['width', 'height', 'box-shadow', 'left', 'top'];
-
-  const commonTransitions = theme.transitions.create(
-    commonTransitionsProperty,
+  const trackTransitions = theme.transitions.create(['width', 'height'], commonTransitionsOptions);
+  const thumbCommonTransitions = theme.transitions.create(
+    ['widh', 'height', 'left', 'top', 'box-shadow'],
+    commonTransitionsOptions,
+  );
+  // no transition on the position
+  const thumbActivatedTransitions = theme.transitions.create(
+    ['widh', 'height', 'box-shadow'],
     commonTransitionsOptions,
   );
 
@@ -63,7 +67,7 @@ export const styles = theme => {
       top: '50%',
       height: 2,
       backgroundColor: colors.primary,
-      '&$focused, &$activated': {
+      '&$activated': {
         transition: 'none',
       },
       '&$disabled': {
@@ -80,13 +84,13 @@ export const styles = theme => {
     trackBefore: {
       zIndex: 1,
       left: 0,
-      transition: commonTransitions,
+      transition: trackTransitions,
     },
     /* Styles applied to the track element after the thumb. */
     trackAfter: {
       right: 0,
       opacity: 0.24,
-      transition: commonTransitions,
+      transition: trackTransitions,
       '&$vertical': {
         bottom: 0,
       },
@@ -99,7 +103,7 @@ export const styles = theme => {
       width: 12,
       height: 12,
       borderRadius: '50%',
-      transition: commonTransitions,
+      transition: thumbCommonTransitions,
       backgroundColor: colors.primary,
       '&$focused, &:hover': {
         boxShadow: `0px 0px 0px 9px ${colors.thumbOutline}`,
@@ -108,7 +112,7 @@ export const styles = theme => {
         width: 17,
         height: 17,
         boxShadow: `0px 0px 0px 18px ${colors.thumbOutline}`,
-        transition: 'none',
+        transition: thumbActivatedTransitions,
       },
       '&$disabled': {
         cursor: 'no-drop',
