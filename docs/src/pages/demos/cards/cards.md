@@ -21,7 +21,11 @@ Although cards can support multiple actions, UI controls, and an overflow menu, 
 
 Example of a card using an image to reinforce the content.
 
-{{"demo": "pages/demos/cards/SimpleMediaCard.js"}}
+{{"demo": "pages/demos/cards/MediaCard.js"}}
+
+By default, we use the combination of a `<div>` element and a *background image* to display the media. It can be problematic in some situations. For instance, you might want to display a video or a responsive image. Use the `component` property for these use cases:
+
+{{"demo": "pages/demos/cards/ImgMediaCard.js"}}
 
 ## UI Controls
 
