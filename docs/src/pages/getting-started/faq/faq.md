@@ -22,6 +22,8 @@ Overall, it's simple to recover from this problem by wrapping each Material-UI a
 
 [A resolution example](/customization/css-in-js#jssprovider). The last part of any solution will vary based on what bundler you are using, but the overall goal is to ensure the common module that contains the first snippet above only gets loaded and run once.
 
+⚠️ You are in the hurry? Rest assured, we provide an option to make the class names **deterministic** as a quick escape hatch: [`dangerouslyUseGlobalCSS`](/customization/css-in-js#global-css).
+
 ## Why do the fixed positioned elements move when a modal is opened?
 
 We block the scroll as soon as a modal is opened.

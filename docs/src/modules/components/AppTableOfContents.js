@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'docs/src/modules/components/Link';
 import marked from 'marked';
-import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
+import throttle from 'lodash/throttle';
 import EventListener from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -69,9 +69,9 @@ const styles = theme => ({
 });
 
 class AppTableOfContents extends React.Component {
-  handleScroll = debounce(() => {
+  handleScroll = throttle(() => {
     this.findActiveIndex();
-  }, 83); // Corresponds to 5 frames at 60 Hz.
+  }, 166); // Corresponds to 10 frames at 60 Hz.
 
   constructor(props) {
     super(props);
@@ -108,7 +108,7 @@ class AppTableOfContents extends React.Component {
   }
 
   componentWillUnmount() {
-    this.handleScroll.clear();
+    this.handleScroll.cancel();
   }
 
   findActiveIndex = () => {
