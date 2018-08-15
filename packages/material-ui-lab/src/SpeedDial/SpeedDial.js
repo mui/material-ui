@@ -303,7 +303,7 @@ SpeedDial.propTypes = {
 
 SpeedDial.defaultProps = {
   hidden: false,
-  direction: 'top',
+  direction: 'up',
   TransitionComponent: Zoom,
   transitionDuration: {
     enter: duration.enteringScreen,
