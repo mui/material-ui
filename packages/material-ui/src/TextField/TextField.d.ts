@@ -35,7 +35,7 @@ export interface TextFieldProps
   select?: boolean;
   SelectProps?: Partial<SelectProps>;
   type?: string;
-  value?: Array<string | number> | string | number;
+  value?: Array<string | number | boolean> | string | number | boolean;
 }
 
 export type TextFieldClassKey = FormControlClassKey;

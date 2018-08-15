@@ -19,7 +19,7 @@ title: SpeedDial API
 | <span class="prop-name">ButtonProps</span> | <span class="prop-type">object |   | Properties applied to the [`Button`](/api/button) element. |
 | <span class="prop-name required">children *</span> | <span class="prop-type">node |   | SpeedDialActions to display when the SpeedDial is `open`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
-| <span class="prop-name">direction</span> | <span class="prop-type">enum:&nbsp;'up'&nbsp;&#124;<br>&nbsp;'down'&nbsp;&#124;<br>&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br> | <span class="prop-default">'top'</span> | The direction the actions open relative to the floating action button. |
+| <span class="prop-name">direction</span> | <span class="prop-type">enum:&nbsp;'up'&nbsp;&#124;<br>&nbsp;'down'&nbsp;&#124;<br>&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br> | <span class="prop-default">'up'</span> | The direction the actions open relative to the floating action button. |
 | <span class="prop-name">hidden</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the SpeedDial will be hidden. |
 | <span class="prop-name required">icon *</span> | <span class="prop-type">element |   | The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component provides a default Icon with animation. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func |   | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, key: string) => void`<br>*event:* The event source of the callback<br>*key:* The key pressed |
