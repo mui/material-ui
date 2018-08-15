@@ -31,10 +31,7 @@ class MyDocument extends Document {
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
             name="viewport"
-            content={
-              'user-scalable=0, initial-scale=1, ' +
-              'minimum-scale=1, width=device-width, height=device-height'
-            }
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
           />
           {/*
             manifest.json provides metadata used when your web app is added to the
