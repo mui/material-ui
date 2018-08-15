@@ -35,7 +35,7 @@ export const styles = theme => ({
     overflowY: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    height: '100vh',
+    height: '100%',
     flex: '1 0 auto',
     zIndex: theme.zIndex.drawer,
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
@@ -64,7 +64,7 @@ export const styles = theme => ({
     bottom: 'auto',
     right: 0,
     height: 'auto',
-    maxHeight: '100vh',
+    maxHeight: '100%',
   },
   /* Styles applied to the `Paper` component if `anchor="bottom"`. */
   paperAnchorBottom: {
@@ -73,7 +73,7 @@ export const styles = theme => ({
     bottom: 0,
     right: 0,
     height: 'auto',
-    maxHeight: '100vh',
+    maxHeight: '100%',
   },
   /* Styles applied to the `Paper` component if `anchor="left"` & `variant` is not "temporary". */
   paperAnchorDockedLeft: {
