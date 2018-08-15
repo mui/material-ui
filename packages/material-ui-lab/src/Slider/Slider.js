@@ -24,6 +24,7 @@ export const styles = theme => {
   const colors = {
     primary: theme.palette.primary.main,
     disabled: theme.palette.grey[400],
+    thumbOutline: fade(theme.palette.primary.main, 0.16),
   };
 
   return {
@@ -100,12 +101,13 @@ export const styles = theme => {
       borderRadius: '50%',
       transition: commonTransitions,
       backgroundColor: colors.primary,
-      '&$focused': {
-        boxShadow: `0px 0px 0px 9px ${fade(colors.primary, 0.16)}`,
+      '&$focused, &:hover': {
+        boxShadow: `0px 0px 0px 9px ${colors.thumbOutline}`,
       },
       '&$activated': {
         width: 17,
         height: 17,
+        boxShadow: `0px 0px 0px 18px ${colors.thumbOutline}`,
         transition: 'none',
       },
       '&$disabled': {
@@ -117,6 +119,7 @@ export const styles = theme => {
       '&$jumped': {
         width: 17,
         height: 17,
+        boxShadow: `0px 0px 0px 18px ${colors.thumbOutline}`,
       },
     },
     /* Class applied to the root element to trigger JSS nested styles if `reverse={true}` . */
