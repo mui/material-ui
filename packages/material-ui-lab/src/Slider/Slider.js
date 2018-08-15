@@ -14,10 +14,13 @@ export const styles = theme => {
     easing: theme.transitions.easing.easeOut,
   };
 
-  const commonTransitionsProperty = ['width', 'height', 'box-shadow', 'left', 'top'];
-
   const commonTransitions = theme.transitions.create(
-    commonTransitionsProperty,
+    ['width', 'height', 'left', 'top', 'box-shadow'],
+    commonTransitionsOptions,
+  );
+  // no transition on the position
+  const thumbActivatedTransitions = theme.transitions.create(
+    ['width', 'height', 'box-shadow'],
     commonTransitionsOptions,
   );
 
@@ -62,7 +65,7 @@ export const styles = theme => {
       top: '50%',
       height: 2,
       backgroundColor: colors.primary,
-      '&$focused, &$activated': {
+      '&$activated': {
         transition: 'none',
       },
       '&$disabled': {
@@ -106,7 +109,7 @@ export const styles = theme => {
       '&$activated': {
         width: 17,
         height: 17,
-        transition: 'none',
+        transition: thumbActivatedTransitions,
       },
       '&$disabled': {
         cursor: 'no-drop',
