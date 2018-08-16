@@ -459,7 +459,6 @@ class Slider extends React.Component {
             style={inlineThumbStyles}
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyDown}
-            onMouseDown={this.handleMouseDown}
             onTouchStartCapture={this.handleTouchStart}
             onTouchMove={this.handleMouseMove}
             onFocusVisible={this.handleFocus}
