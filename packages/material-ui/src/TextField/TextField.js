@@ -44,7 +44,6 @@ function TextField(props) {
     children,
     className,
     defaultValue,
-    disabled,
     error,
     FormHelperTextProps,
     fullWidth,
@@ -82,7 +81,6 @@ function TextField(props) {
       autoComplete={autoComplete}
       autoFocus={autoFocus}
       defaultValue={defaultValue}
-      disabled={disabled}
       fullWidth={fullWidth}
       multiline={multiline}
       name={name}
@@ -262,7 +260,8 @@ TextField.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    PropTypes.bool,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]),
 };
 

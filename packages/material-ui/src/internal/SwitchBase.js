@@ -40,8 +40,7 @@ class SwitchBase extends React.Component {
   isControlled = null;
 
   constructor(props) {
-    super(props);
-
+    super();
     this.isControlled = props.checked != null;
     if (!this.isControlled) {
       // not controlled, use internal state
@@ -257,15 +256,11 @@ SwitchBase.propTypes = {
   /**
    * The input component property `type`.
    */
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
   /**
    * The value of the component.
    */
   value: PropTypes.string,
-};
-
-SwitchBase.defaultProps = {
-  type: 'checkbox',
 };
 
 SwitchBase.contextTypes = {

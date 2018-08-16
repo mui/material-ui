@@ -65,7 +65,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">select</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Render a `Select` element while passing the `Input` element to `Select` as `input` parameter. If this option is set you must pass the options of the select as children. |
 | <span class="prop-name">SelectProps</span> | <span class="prop-type">object |   | Properties applied to the [`Select`](/api/select) element. |
 | <span class="prop-name">type</span> | <span class="prop-type">string |   | Type attribute of the `Input` element. It should be a valid HTML5 input type. |
-| <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;arrayOf<br> |   | The value of the `Input` element, required for a controlled component. |
+| <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool&nbsp;&#124;<br>&nbsp;arrayOf<br> |   | The value of the `Input` element, required for a controlled component. |
 
 Any other properties supplied will be spread to the root element ([FormControl](/api/form-control)).
 

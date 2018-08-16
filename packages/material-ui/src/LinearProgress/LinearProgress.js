@@ -18,7 +18,8 @@ export const styles = theme => ({
   colorPrimary: {
     backgroundColor: lighten(theme.palette.primary.light, 0.6),
   },
-  /* Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if variant="buffer". */
+  // eslint-disable-next-line max-len
+  /* Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
   colorSecondary: {
     backgroundColor: lighten(theme.palette.secondary.light, 0.4),
   },

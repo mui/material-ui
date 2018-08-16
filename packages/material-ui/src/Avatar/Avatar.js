@@ -60,18 +60,7 @@ function Avatar(props) {
   );
   let children = null;
 
-  if (childrenProp) {
-    if (
-      childrenClassNameProp &&
-      typeof childrenProp !== 'string' &&
-      React.isValidElement(childrenProp)
-    ) {
-      const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
-      children = React.cloneElement(childrenProp, { className: childrenClassName });
-    } else {
-      children = childrenProp;
-    }
-  } else if (src || srcSet) {
+  if (src || srcSet) {
     children = (
       <img
         alt={alt}
@@ -82,6 +71,11 @@ function Avatar(props) {
         {...imgProps}
       />
     );
+  } else if (childrenClassNameProp && React.isValidElement(childrenProp)) {
+    const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
+    children = React.cloneElement(childrenProp, { className: childrenClassName });
+  } else {
+    children = childrenProp;
   }
 
   return (

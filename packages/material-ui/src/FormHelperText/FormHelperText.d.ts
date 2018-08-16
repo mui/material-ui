@@ -12,7 +12,14 @@ export interface FormHelperTextProps
   required?: boolean;
 }
 
-export type FormHelperTextClassKey = 'root' | 'error' | 'disabled' | 'marginDense' | 'focused' | 'filled' | 'required';
+export type FormHelperTextClassKey =
+  | 'root'
+  | 'error'
+  | 'disabled'
+  | 'marginDense'
+  | 'focused'
+  | 'filled'
+  | 'required';
 
 declare const FormHelperText: React.ComponentType<FormHelperTextProps>;
 

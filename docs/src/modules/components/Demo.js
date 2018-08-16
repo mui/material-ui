@@ -65,7 +65,6 @@ const styles = theme => ({
     marginBottom: 40,
     marginLeft: -theme.spacing.unit * 2,
     marginRight: -theme.spacing.unit * 2,
-    clear: 'both',
     [theme.breakpoints.up('sm')]: {
       padding: `0 ${theme.spacing.unit}px`,
       marginLeft: 0,
@@ -73,6 +72,7 @@ const styles = theme => ({
     },
   },
   demo: theme.mixins.gutters({
+    borderRadius: theme.shape.borderRadius,
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
     display: 'flex',

@@ -25,56 +25,24 @@ function HomeBackers(props) {
         <MarkdownElement
           className={classes.markdownElement}
           text={`
-<h2>Supporting Material-UI</h2>
+## Supporting Material-UI
 
 Material-UI is an MIT-licensed open source project.
 It's an independent project with ongoing development made possible entirely
 thanks to the support of these awesome [backers](/discover-more/backers).
 
-<h3>Gold Sponsors</h3>
+### Gold Sponsors
 
 Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 
-#### via [Patreon](https://www.patreon.com/oliviertassinari)
+via [Patreon](https://www.patreon.com/oliviertassinari)
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank">
-          <img
-            width="126"
-            src="https://avatars1.githubusercontent.com/u/20172349?s=378"
-            alt="0"
-            title="Premium Themes"
-          >
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://bitsrc.io" rel="noopener" target="_blank">
-          <img
-            width="80"
-            src="https://avatars1.githubusercontent.com/u/24789812?s=180"
-            alt="1"
-            title="The fastest way to share code"
-          >
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://coreui.io/?utm_source=material-ui&utm_medium=logo&utm_campaign=homepage" rel="noopener" target="_blank">
-          <img
-            width="80"
-            src="https://avatars1.githubusercontent.com/u/36859861?s=180"
-            alt="1"
-            title="The fastest way to build modern dashboard"
-          >
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<p style="display: flex;">
+  <a href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank"><img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="Premium Themes"></a>
+  <a href="https://bitsrc.io" rel="noopener" target="_blank"><img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="The fastest way to share code"></a>
+</p>
 
-#### via [OpenCollective](https://opencollective.com/material-ui)
+via [OpenCollective](https://opencollective.com/material-ui)
 
 ${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
             .map(
@@ -82,6 +50,12 @@ ${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                 `<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/website" rel="noopener" target="_blank" style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/${num}/avatar.svg" alt="${num}" /></a>`,
             )
             .join('')}
+
+
+### There is more!
+
+See the full list of [our backers](/discover-more/backers).
+
 `}
         />
       </NoSsr>

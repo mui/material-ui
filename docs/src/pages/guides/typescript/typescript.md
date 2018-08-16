@@ -146,39 +146,6 @@ const DecoratedClass = withStyles(styles)(
 
 Unfortunately due to a [current limitation of TypeScript decorators](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles(styles)` can't be used as a decorator in TypeScript.
 
-### Union props
-
-When your `props` are a union, Typescript needs you to explicitly tell it the type, by providing a generic `<Props>` parameter to `decorate`:
-
-```tsx
-interface Book {
-  category: "book";
-  author: string;
-}
-
-interface Painting {
-  category: "painting";
-  artist: string;
-}
-
-type BookOrPainting = Book | Painting;
-
-type Props = BookOrPainting & WithStyles<typeof styles>;
-
-const DecoratedUnionProps = withStyles(styles)<BookOrPainting>( // <-- without the type argument, we'd get a compiler error!
-  class extends React.Component<Props> {
-    render() {
-      const props = this.props;
-      return (
-        <Typography classes={props.classes}>
-          {props.category === "book" ? props.author : props.artist}
-        </Typography>
-      );
-    }
-  }
-);
-```
-
 ## Customization of `Theme`
 
 When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting

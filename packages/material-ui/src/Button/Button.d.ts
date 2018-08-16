@@ -26,6 +26,8 @@ export type ButtonClassKey =
   | 'flatPrimary'
   | 'flatSecondary'
   | 'outlined'
+  | 'outlinedPrimary'
+  | 'outlinedSecondary'
   | 'colorInherit'
   | 'contained'
   | 'containedPrimary'

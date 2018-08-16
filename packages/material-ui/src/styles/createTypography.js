@@ -20,8 +20,7 @@ export default function createTypography(palette: Object, typography: Object | F
     // Apply the CSS properties to all the variants.
     allVariants,
     ...other
-  } =
-    typeof typography === 'function' ? typography(palette) : typography;
+  } = typeof typography === 'function' ? typography(palette) : typography;
 
   const coef = fontSize / 14;
   function pxToRem(value) {

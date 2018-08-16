@@ -104,6 +104,15 @@ Optionally, you can set the icon color using one of the theme color properties: 
 
 {{"demo": "pages/style/icons/Icons.js"}}
 
-### [Font Awesome](https://fontawesome.com/icons)
+### Font Awesome
+
+[Font Awesome](https://fontawesome.com/icons) can be used with the `Icon` component as follow:
 
 {{"demo": "pages/style/icons/FontAwesome.js", "hideEditButton": true}}
+
+## Font vs SVG. Which approach to use?
+
+Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality.
+Whenever possible SVG is preferred as it allows code splitting, supports more icons, renders faster and better.
+
+For more details, you can check out [why GitHub migrated](https://blog.github.com/2016-02-22-delivering-octicons-with-svg/) from font icons to SVG icons.

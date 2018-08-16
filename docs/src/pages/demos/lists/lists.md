@@ -9,23 +9,23 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 [Lists](https://material.io/design/components/lists.html) are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
 
-### Simple List
+## Simple List
 
 {{"demo": "pages/demos/lists/SimpleList.js"}}
 
-### Folder List
+## Folder List
 
 {{"demo": "pages/demos/lists/FolderList.js"}}
 
-### Inset List
+## Inset List
 
 {{"demo": "pages/demos/lists/InsetList.js"}}
 
-### Nested List
+## Nested List
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
-### Pinned Subheader List
+## Pinned Subheader List
 
 Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
 

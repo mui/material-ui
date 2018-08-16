@@ -15,11 +15,18 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/cards/SimpleCard'), 'utf8')
 `,
         },
-        'pages/demos/cards/SimpleMediaCard.js': {
-          js: require('docs/src/pages/demos/cards/SimpleMediaCard').default,
+        'pages/demos/cards/MediaCard.js': {
+          js: require('docs/src/pages/demos/cards/MediaCard').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/cards/SimpleMediaCard'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/cards/MediaCard'), 'utf8')
+`,
+        },
+        'pages/demos/cards/ImgMediaCard.js': {
+          js: require('docs/src/pages/demos/cards/ImgMediaCard').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/cards/ImgMediaCard'), 'utf8')
 `,
         },
         'pages/demos/cards/MediaControlCard.js': {
