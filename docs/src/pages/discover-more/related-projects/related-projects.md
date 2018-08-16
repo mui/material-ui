@@ -13,6 +13,7 @@ Feel free to submit a pull request to add more projects; we will accept them if 
 - [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) A fuzzy-search component for React and Material-UI.
 - [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers) Components that implement Material Design date and time pickers for Material-UI.
 - [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker) A TimePicker for Material-UI.
+- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers) A datepicker or timepicker in Material UI Next or can be imported as a clock or calendar component.
 - [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive data tables for Material-UI with filtering, sorting, search and more.
 - [mui-downshift](https://github.com/techniq/mui-downshift) Thin layer over paypal's downshift to use Material-UI visual components.
 - [react-material-ui-typescript](https://github.com/goemen/react-material-ui-typescript) A boilerplate for React using Typescript, Material UI and Redux, React Router.
