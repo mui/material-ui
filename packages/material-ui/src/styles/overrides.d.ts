@@ -167,6 +167,7 @@ type ComponentNameToClassKey = {
   MuiSwitchBase: SwitchBaseClassKey;
   MuiTab: TabClassKey;
   MuiTable: TableClassKey;
+  MuiTableBody: TableBodyClassKey;
   MuiTableCell: TableCellClassKey;
   MuiTablePagination: TablePaginationClassKey;
   MuiTableRow: TableRowClassKey;
