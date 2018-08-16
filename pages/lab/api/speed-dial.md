@@ -26,7 +26,7 @@ title: SpeedDial API
 | <span class="prop-name required">open *</span> | <span class="prop-type">bool |   | If `true`, the SpeedDial is open. |
 | <span class="prop-name">openIcon</span> | <span class="prop-type">node |   | The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func<br> | <span class="prop-default">Zoom</span> | Transition component. |
-| <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object |   | Properties applied to the `Transition` element. |
 
 Any other properties supplied will be spread to the root element (native element).
@@ -36,17 +36,14 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">fab</span> | Styles applied to the Button component.
-| <span class="prop-name">directionUp</span> | Styles applied to the root and action container elements when direction="up"
-| <span class="prop-name">directionDown</span> | Styles applied to the root and action container elements when direction="down"
-| <span class="prop-name">directionLeft</span> | Styles applied to the root and action container elements when direction="left"
-| <span class="prop-name">directionRight</span> | Styles applied to the root and action container elements when direction="right"
-| <span class="prop-name">actions</span> | Styles applied to the actions (`children` wrapper) element.
-| <span class="prop-name">actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
+- `root`
+- `fab`
+- `directionUp`
+- `directionDown`
+- `directionLeft`
+- `directionRight`
+- `actions`
+- `actionsClosed`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/SpeedDial/SpeedDial.js)

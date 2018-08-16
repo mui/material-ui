@@ -30,12 +30,9 @@ Any other properties supplied will be spread to the root element ([Paper](/api/p
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">expanded</span> | Styles applied to the root element if `expanded={true}`.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+- `root`
+- `expanded`
+- `disabled`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/ExpansionPanel/ExpansionPanel.js)

@@ -15,7 +15,7 @@ title: Tabs API
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">action</span> | <span class="prop-type">func |   | Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It currently only supports `updateIndicator()` action.<br><br>**Signature:**<br>`function(actions: object) => void`<br>*actions:* This object contains all possible actions that can be triggered programmatically. |
+| <span class="prop-name">action</span> | <span class="prop-type">func |   | Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It currently only supports `updateIndicator()` action.<br><br>**Signature:**<br>`function(actions: object) => void`<br>*actions:* This object contains all possible actions that can be triggered programmatically. |
 | <span class="prop-name">centered</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the tabs will be centered. This property is intended for large views. |
 | <span class="prop-name">children</span> | <span class="prop-type">node |   | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
@@ -37,18 +37,15 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">flexContainer</span> | Styles applied to the flex container element.
-| <span class="prop-name">centered</span> | Styles applied to the flex container element if `centered={true}` & `scrollable={false}`.
-| <span class="prop-name">scroller</span> | Styles applied to the tablist element.
-| <span class="prop-name">fixed</span> | Styles applied to the tablist element if `scrollable={false}`.
-| <span class="prop-name">scrollable</span> | Styles applied to the tablist element if `scrollable={true}`.
-| <span class="prop-name">scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
-| <span class="prop-name">scrollButtonsAuto</span> | Styles applied to the `ScrollButtonComponent` component if `sscrollButtons="auto"`.
-| <span class="prop-name">indicator</span> | Styles applied to the `TabIndicator` component.
+- `root`
+- `flexContainer`
+- `centered`
+- `scroller`
+- `fixed`
+- `scrollable`
+- `scrollButtons`
+- `scrollButtonsAuto`
+- `indicator`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Tabs/Tabs.js)

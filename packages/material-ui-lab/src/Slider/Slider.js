@@ -119,6 +119,7 @@ export const styles = theme => {
         height: 17,
       },
     },
+    /* Class applied to the thumb element if custom thumb icon provided` . */
     thumbTransparent: {
       backgroundColor: 'transparent',
     },
@@ -428,23 +429,27 @@ class Slider extends React.Component {
       [classes.vertical]: vertical,
     });
 
-    const thumbClasses = classNames(classes.thumb, commonClasses);
-
     const trackProperty = vertical ? 'height' : 'width';
     const thumbProperty = vertical ? 'top' : 'left';
     const inlineTrackBeforeStyles = { [trackProperty]: this.calculateTrackBeforeStyles(percent) };
     const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
 
-    const Thumbnail = () => {
-      if (React.isValidElement(Thumb)) {
-        return React.cloneElement(Thumb, {
+    /** Start Thumbnail Icon Logic Here */
+    const withIcon = !!Thumb;
+    const Thumbnail = withIcon
+      ? React.cloneElement(Thumb, {
           ...Thumb.props,
-          className: classes.thumbIcon,
-        });
-      }
-      return null;
-    };
+          className: `${classes.thumbIcon} ${Thumb.props.className || ''}`,
+        })
+      : null;
+    /** End Thumbnail Icon Logic Here */
+
+    const thumbClasses = classNames(
+      classes.thumb,
+      commonClasses,
+      `${withIcon ? classes.thumbTransparent : ''}`,
+    );
 
     return (
       <Component
@@ -466,9 +471,7 @@ class Slider extends React.Component {
         <div className={containerClasses}>
           <div className={trackBeforeClasses} style={inlineTrackBeforeStyles} />
           <ButtonBase
-            className={
-              Thumbnail() ? classNames(thumbClasses, classes.thumbTransparent) : thumbClasses
-            }
+            className={classNames(thumbClasses)}
             disableRipple
             style={inlineThumbStyles}
             onBlur={this.handleBlur}
@@ -477,7 +480,7 @@ class Slider extends React.Component {
             onTouchMove={this.handleMouseMove}
             onFocusVisible={this.handleFocus}
           >
-            {Thumbnail()}
+            {Thumbnail}
           </ButtonBase>
           <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
         </div>
@@ -539,7 +542,11 @@ Slider.propTypes = {
    * @ignore
    */
   theme: PropTypes.object.isRequired,
-  thumb: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  /**
+   * The component used for the slider icon.
+   * This is optional, if provided should be a react element.
+   */
+  thumb: PropTypes.element,
   /**
    * The value of the slider.
    */

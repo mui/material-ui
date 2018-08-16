@@ -28,13 +28,10 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">absolute</span> | Styles applied to the root element if `absolute={true}`.
-| <span class="prop-name">inset</span> | Styles applied to the root element if `inset={true}`.
-| <span class="prop-name">light</span> | Styles applied to the root element if `light={true}`.
+- `root`
+- `absolute`
+- `inset`
+- `light`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Divider/Divider.js)

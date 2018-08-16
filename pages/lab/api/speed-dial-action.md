@@ -29,12 +29,9 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root (`Tooltip`) component.
-| <span class="prop-name">button</span> | Styles applied to the `Button` component.
-| <span class="prop-name">buttonClosed</span> | Styles applied to the `Button` component if `open={false}`.
+- `root`
+- `button`
+- `buttonClosed`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js)
