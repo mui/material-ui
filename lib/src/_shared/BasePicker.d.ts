@@ -10,6 +10,7 @@ export interface BasePickerProps {
   ampm?: boolean;
   format?: string;
   labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
+  disableOpenOnEnter?: boolean;
 }
 
 export interface InnerBasePickerProps {
