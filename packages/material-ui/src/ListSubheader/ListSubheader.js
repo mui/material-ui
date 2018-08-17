@@ -34,10 +34,24 @@ export const styles = theme => ({
     zIndex: 1,
     backgroundColor: 'inherit',
   },
+  /* Styles appiled to the root element if `disableGutters={trze}`. */
+  nogutters: {
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
 });
 
 function ListSubheader(props) {
-  const { classes, className, color, component: Component, disableSticky, inset, ...other } = props;
+  const {
+    classes,
+    className,
+    color,
+    component: Component,
+    disableSticky,
+    disableGutters,
+    inset,
+    ...other
+  } = props;
 
   return (
     <Component
@@ -47,6 +61,7 @@ function ListSubheader(props) {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.inset]: inset,
           [classes.sticky]: !disableSticky,
+          [classes.nogutters]: disableGutters,
         },
         className,
       )}
@@ -79,6 +94,10 @@ ListSubheader.propTypes = {
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
+   * If `true`, the List Subheader will not have gutters.
+   */
+  disableGutters: PropTypes.bool,
+  /**
    * If `true`, the List Subheader will not stick to the top during scroll.
    */
   disableSticky: PropTypes.bool,
@@ -92,6 +111,7 @@ ListSubheader.defaultProps = {
   color: 'default',
   component: 'li',
   disableSticky: false,
+  disableGutters: false,
   inset: false,
 };
 
