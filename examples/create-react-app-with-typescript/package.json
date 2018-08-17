@@ -2,6 +2,7 @@
   "name": "create-react-app-with-typescript",
   "version": "0.1.0",
   "private": true,
+  "main": "src/index.tsx",
   "dependencies": {
     "@material-ui/core": "latest",
     "@types/react": "*",
