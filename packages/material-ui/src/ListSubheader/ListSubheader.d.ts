@@ -3,14 +3,14 @@ import { StandardProps } from '..';
 
 export interface ListSubheaderProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, ListSubheaderClassKey> {
-  component?: React.ReactType<ListSubheaderProps>;
   color?: 'default' | 'primary' | 'inherit';
-  inset?: boolean;
-  disableSticky?: boolean;
+  component?: React.ReactType<ListSubheaderProps>;
   disableGutters?: boolean;
+  disableSticky?: boolean;
+  inset?: boolean;
 }
 
-export type ListSubheaderClassKey = 'root' | 'colorPrimary' | 'colorInherit' | 'inset' | 'sticky' | 'nogutters';
+export type ListSubheaderClassKey = 'root' | 'colorPrimary' | 'colorInherit' | 'inset' | 'sticky' | 'gutters';
 
 declare const ListSubheader: React.ComponentType<ListSubheaderProps>;
 

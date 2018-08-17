@@ -6,7 +6,7 @@ import { capitalize } from '../utils/helpers';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
-  root: theme.mixins.gutters({
+  root: {
     boxSizing: 'border-box',
     lineHeight: '48px',
     listStyle: 'none',
@@ -14,7 +14,7 @@ export const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.pxToRem(14),
-  }),
+  },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     color: theme.palette.primary.main,
@@ -23,6 +23,8 @@ export const styles = theme => ({
   colorInherit: {
     color: 'inherit',
   },
+  /* Styles applied to the inner `component` element if `disableGutters={false}`. */
+  gutters: theme.mixins.gutters(),
   /* Styles applied to the root element if `inset={true}`. */
   inset: {
     paddingLeft: 72,
@@ -34,11 +36,6 @@ export const styles = theme => ({
     zIndex: 1,
     backgroundColor: 'inherit',
   },
-  /* Styles appiled to the root element if `disableGutters={trze}`. */
-  nogutters: {
-    paddingLeft: 0,
-    paddingRight: 0,
-  },
 });
 
 function ListSubheader(props) {
@@ -47,8 +44,8 @@ function ListSubheader(props) {
     className,
     color,
     component: Component,
-    disableSticky,
     disableGutters,
+    disableSticky,
     inset,
     ...other
   } = props;
@@ -61,7 +58,7 @@ function ListSubheader(props) {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.inset]: inset,
           [classes.sticky]: !disableSticky,
-          [classes.nogutters]: disableGutters,
+          [classes.gutters]: !disableGutters,
         },
         className,
       )}
@@ -110,8 +107,8 @@ ListSubheader.propTypes = {
 ListSubheader.defaultProps = {
   color: 'default',
   component: 'li',
-  disableSticky: false,
   disableGutters: false,
+  disableSticky: false,
   inset: false,
 };
 
