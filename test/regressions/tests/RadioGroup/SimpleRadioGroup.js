@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';

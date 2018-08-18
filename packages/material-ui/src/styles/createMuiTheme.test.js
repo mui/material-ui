@@ -1,5 +1,3 @@
-// @flow
-
 import { assert } from 'chai';
 import createMuiTheme from './createMuiTheme';
 import { deepOrange, green } from '../colors';

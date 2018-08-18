@@ -1,5 +1,3 @@
-// @flow weak
-
 function shallowRecursively(wrapper, selector, { context, ...other }) {
   if (wrapper.isEmptyRender() || typeof wrapper.getElement().type === 'string') {
     return wrapper;

@@ -1,5 +1,3 @@
-// @flow
-
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { indigo, pink, deepOrange, green, red } from '../colors';

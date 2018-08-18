@@ -1,10 +1,9 @@
-const ENV = process.env.BABEL_ENV;
 let defaultPresets;
 
 // We release a ES version of Material-UI.
 // It's something that matches the latest official supported features of JavaScript.
 // Nothing more (stage-1, etc), nothing less (require, etc).
-if (ENV === 'es') {
+if (process.env.BABEL_ENV === 'es') {
   defaultPresets = [];
 } else {
   defaultPresets = [
@@ -19,28 +18,29 @@ if (ENV === 'es') {
           safari: 10,
           node: '6.11',
         },
-        modules: ['modules', 'production-umd'].includes(ENV) ? false : 'commonjs',
+        modules: ['modules', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
       },
     ],
   ];
 }
 
 module.exports = {
-  presets: defaultPresets.concat([
-    ['@babel/preset-stage-1', { loose: true }],
-    '@babel/preset-react',
-    '@babel/flow',
-  ]),
+  presets: defaultPresets.concat(['@babel/preset-react']),
   plugins: [
+    ['@babel/plugin-proposal-class-properties', { loose: true }],
+    ['@babel/plugin-proposal-object-rest-spread', {
+      // Workaround for https://github.com/babel/babel/issues/8323
+      loose: process.env.BABEL_ENV !== 'es',
+    }],
     '@babel/plugin-transform-object-assign',
-    ['@babel/plugin-transform-runtime', { polyfill: false, useBuiltIns: true }],
+    '@babel/plugin-transform-runtime',
   ],
   env: {
     coverage: {
       plugins: [
-        'istanbul',
+        'babel-plugin-istanbul',
         [
-          'module-resolver',
+          'babel-plugin-module-resolver',
           {
             root: ['./'],
             alias: {
@@ -54,7 +54,7 @@ module.exports = {
     development: {
       plugins: [
         [
-          'module-resolver',
+          'babel-plugin-module-resolver',
           {
             alias: {
               modules: './modules',
@@ -67,7 +67,7 @@ module.exports = {
       plugins: [
         'babel-plugin-preval',
         [
-          'module-resolver',
+          'babel-plugin-module-resolver',
           {
             alias: {
               '@material-ui/core': './packages/material-ui/src',
@@ -86,7 +86,7 @@ module.exports = {
       plugins: [
         'babel-plugin-preval',
         [
-          'module-resolver',
+          'babel-plugin-module-resolver',
           {
             alias: {
               '@material-ui/core': './packages/material-ui/src',
@@ -117,7 +117,9 @@ module.exports = {
           },
         ],
       ],
-      ignore: ['**/*.test*'],
+      // It's most likely a babel bug.
+      // We are using this ignore option in the CLI command but that has no effect.
+      ignore: ['**/*.test.js'],
     },
     production: {
       plugins: [
@@ -131,7 +133,9 @@ module.exports = {
           },
         ],
       ],
-      ignore: ['**/*.test*'],
+      // It's most likely a babel bug.
+      // We are using this ignore option in the CLI command but that has no effect.
+      ignore: ['**/*.test.js'],
     },
     'production-umd': {
       plugins: [
@@ -150,7 +154,7 @@ module.exports = {
       sourceMaps: 'both',
       plugins: [
         [
-          'module-resolver',
+          'babel-plugin-module-resolver',
           {
             root: ['./'],
             alias: {
@@ -162,5 +166,4 @@ module.exports = {
       ],
     },
   },
-  ignore: ['scripts/*.js'],
 };

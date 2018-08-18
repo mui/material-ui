@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';

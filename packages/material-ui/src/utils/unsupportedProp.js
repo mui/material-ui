@@ -1,12 +1,4 @@
-// @flow
-
-function unsupportedProp(
-  props: Object,
-  propName: string,
-  componentName?: string,
-  location?: string,
-  propFullName?: string,
-) {
+function unsupportedProp(props, propName, componentName, location, propFullName) {
   /* istanbul ignore if */
   if (process.env.NODE_ENV === 'production') {
     return null;

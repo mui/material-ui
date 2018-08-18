@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import Icon from '@material-ui/core/Icon';
 import ListItem from '@material-ui/core/ListItem';

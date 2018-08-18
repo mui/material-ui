@@ -1,5 +1,3 @@
-// @flow
-
 import { assert } from 'chai';
 import createMixins from './createMixins';
 import createMuiTheme from './createMuiTheme';
