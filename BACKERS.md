@@ -97,7 +97,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 | Jolse Maginnis | asmeikal | David Auffret | Naresh Bhatia | Henk van Hest |
 | Avétis KAZARIAN | Withinpixels | SIM KIM SIA | Renaud Bompuis | Yaron Malin |
 | Arvanitis Panagiotis | Jesse Weigel | Bogdan Mihai Nicolae | Dung Tran | Kyle Pennell |
-| Kai Mit Pansen | Eric Nagy | Karens Grigorjancs | Mohamed Turco |
+| Kai Mit Pansen | Eric Nagy | Karens Grigorjancs | Mohamed Turco | Haroun Serang |
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
