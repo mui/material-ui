@@ -178,23 +178,27 @@ const AllTheComposition = withTheme()(
 <AllTheComposition />;
 
 {
-  const Foo = withTheme()(class extends React.Component<WithTheme> {
-    render() {
-      return null;
-    }
-  });
+  const Foo = withTheme()(
+    class extends React.Component<WithTheme> {
+      render() {
+        return null;
+      }
+    },
+  );
 
-  <Foo />
+  <Foo />;
 }
 
 declare const themed: boolean;
 {
   // Test that withTheme: true guarantees the presence of the theme
-  const Foo = withStyles({}, { withTheme: true })(class extends React.Component<WithTheme> {
-    render() {
-      return <div style={{ margin: this.props.theme.spacing.unit }} />;
-    }
-  });
+  const Foo = withStyles({}, { withTheme: true })(
+    class extends React.Component<WithTheme> {
+      render() {
+        return <div style={{ margin: this.props.theme.spacing.unit }} />;
+      }
+    },
+  );
   <Foo />;
 
   const Bar = withStyles({}, { withTheme: true })(({ theme }) => (

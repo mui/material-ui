@@ -38,13 +38,14 @@ export interface WithStylesOptions<ClassKey extends string = string>
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
-export type WithStyles<T extends string | StyleRules | StyleRulesCallback = string, IncludeTheme extends boolean | undefined = undefined> =
-  (IncludeTheme extends true ? WithTheme : Partial<WithTheme>)
-  & {
-    classes: ClassNameMap<
-      T extends string
-        ? T
-        : T extends StyleRulesCallback<infer K> ? K : T extends StyleRules<infer K> ? K : never
+export type WithStyles<
+  T extends string | StyleRules | StyleRulesCallback = string,
+  IncludeTheme extends boolean | undefined = undefined
+> = (IncludeTheme extends true ? WithTheme : Partial<WithTheme>) & {
+  classes: ClassNameMap<
+    T extends string
+      ? T
+      : T extends StyleRulesCallback<infer K> ? K : T extends StyleRules<infer K> ? K : never
   >;
 };
 
@@ -53,7 +54,10 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
-export default function withStyles<ClassKey extends string, Options extends WithStylesOptions<ClassKey>>(
+export default function withStyles<
+  ClassKey extends string,
+  Options extends WithStylesOptions<ClassKey>
+>(
   style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: Options,
 ): {

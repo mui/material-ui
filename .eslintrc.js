@@ -18,7 +18,7 @@ module.exports = {
     ecmaVersion: 7,
     sourceType: 'module',
   },
-  plugins: ['babel', 'import', 'jsx-a11y', 'mocha', 'flowtype', 'material-ui', 'prettier'],
+  plugins: ['babel', 'import', 'jsx-a11y', 'mocha', 'flowtype', 'material-ui'],
   settings: {
     'import/resolver': {
       webpack: {
@@ -103,8 +103,6 @@ module.exports = {
     'flowtype/space-before-type-colon': 'off',
     'flowtype/type-id-match': 'off',
     'flowtype/use-flow-type': 'error',
-
-    'prettier/prettier': 'error',
 
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/label-has-for': 'off',

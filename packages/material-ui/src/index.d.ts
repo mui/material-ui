@@ -6,10 +6,9 @@ export type AnyComponent<P = any> =
   | (new (props: P) => React.Component)
   | ((props: P & { children?: React.ReactNode }) => React.ReactElement<P> | null);
 
-export type PropsOf<C extends AnyComponent> =
-  C extends new (props: infer P) => React.Component ? P :
-  C extends (props: infer P) => React.ReactElement<any> | null ? P :
-  never;
+export type PropsOf<C extends AnyComponent> = C extends new (props: infer P) => React.Component
+  ? P
+  : C extends (props: infer P) => React.ReactElement<any> | null ? P : never;
 
 /**
  * All standard components exposed by `material-ui` are `StyledComponents` with
