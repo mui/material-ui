@@ -39,7 +39,7 @@ class Day extends PureComponent {
         tabIndex={hidden || disabled ? -1 : 0}
         {...other}
       >
-        <span> {children} </span>
+        {children}
       </IconButton>
     );
   }
