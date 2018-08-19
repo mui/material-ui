@@ -5,6 +5,70 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 1.5.1
+###### *Aug 19, 2018*
+
+Big thanks to the 22 contributors who made this release possible!
+
+Here are some highlights ✨:
+- Upgrade Babel to `v7.0.0-rc.1` (#12581).
+- Document the meta viewport (#12541).
+- And many more bug fixes 🐛 and documentation improvements 📝.
+
+### Breaking change
+
+N/A
+
+#### Component Fixes / Enhancements
+
+- [Tab] Fix fullWidth CSS (#12495) @jankjr
+- [TextField] Fix disabled prop only affecting the Input component (#12489) @WreckedArrow
+- [Table] Sync typings (#12503) @franklixuefei
+- [Table] Remove padding from getting spread to native element (#12505) @JoshuaLicense
+- [Select] Accept boolean (#12522) @oliviertassinari
+- [Avatar] Prepare Preact support (#12519) @jorgegorka
+- [Drawer] Change height from 100vh to 100% (#12528) @joemaffei
+- [TextField] Accept boolean (#12538) @palaniichukdmytro
+- [withWidth] Remove broken innerRef (#12542) @oliviertassinari
+- [CardMedia] Add an example with the component property (#12481) @adeelibr
+- [ListSubheader] Add a disableGutters property (#12570) @johannwagner
+- [Dialog] Simplify the DialogContentText implementation (#12577) @oliviertassinari
+- [Popover] Fix wrong getContentAnchorEl definition (#12562) @duvet86
+
+#### Docs
+
+- [docs] Tweak dashboard example nav list heading (#12501) @JoshuaLicense
+- [docs] Fix a typo in the Modal page (#12502) @melaniebcohen
+- [docs] Don't load the ad on mobile (#12509) @oliviertassinari
+- [docs] Fix typo (suot to suit) (#12513) @ratanachai
+- [docs] Fix typo in the icons section (#12514) @PolGuixe
+- [docs] Document breakpoint argument for withMobileDialog (#12521) @nxtman123
+- [docs] Increase SEO potential (#12525) @oliviertassinari
+- [docs] "codestyle" comment typo fix (#12511) @nasiscoe
+- [docs] Document the meta viewport (#12541) @oliviertassinari
+- [docs] Throttle the active toc instead of debouncing (#12543) @oliviertassinari
+- [docs] Add material-ui-next-pickers (#12547) @chingyawhao
+- [docs] Fix the broken Table sorting logic (#12569) @oliviertassinari
+- [docs] Link a new Menu demo (#12574) @pierrelstan
+- [docs] Improve typescript issue assistance (#12560) @eps1lon
+- [docs] Add notistack in the related projects (#12578) @oliviertassinari
+
+#### Core
+
+- [typescript] Style typing improvements (#12492) @pelotom
+- [core] Should run the tests when needed (#12510) @oliviertassinari
+- [core] Add MuiTableBody to theme overrides (#12550) @pvdstel
+- [test] Disable CircleCI cache (#12573) @oliviertassinari
+- [test] Introduce prettier into CI pipeline (#12564) @eps1lon
+- [test] Fix prettier ci task with multiple changed files (#12579) @eps1lon
+- [core] Upgrade to babel@rc.1 (#12581) @oliviertassinari
+
+#### Lab
+
+- [SpeedDial] Fix invalid prop direction supplied (#12533) @eps1lon
+- [SpeedDial] Remove dead code from test (#12545) @mbrookes
+- [Slider] Fix failing handler test (#12535) @eps1lon
+
 ## 1.5.0
 ###### *Aug 12, 2018*
 
