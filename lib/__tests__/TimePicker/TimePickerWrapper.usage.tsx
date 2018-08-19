@@ -26,6 +26,9 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
           placeholder="08:00 AM"
           value={selectedDate}
           onChange={this.handleChange}
+          DialogProps={{
+            contentEditable: true
+          }}
         />
       </MuiUtilsProvider>
     );

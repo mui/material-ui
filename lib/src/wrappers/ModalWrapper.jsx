@@ -34,6 +34,8 @@ export default class ModalWrapper extends PureComponent {
     onClose: PropTypes.func,
     /** Format string */
     format: PropTypes.string,
+    /** Dialog props passed to material-ui Dialog */
+    DialogProps: PropTypes.object,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
     onClear: PropTypes.func,
@@ -41,7 +43,6 @@ export default class ModalWrapper extends PureComponent {
     children: PropTypes.node.isRequired,
     dialogContentClassName: PropTypes.string,
     isAccepted: PropTypes.bool.isRequired,
-    container: PropTypes.node,
   }
 
   static defaultProps = {
@@ -62,7 +63,7 @@ export default class ModalWrapper extends PureComponent {
     onOpen: undefined,
     onClose: undefined,
     onSetToday: undefined,
-    container: undefined,
+    DialogProps: undefined,
   }
 
   state = {
@@ -155,7 +156,7 @@ export default class ModalWrapper extends PureComponent {
       onClose,
       onSetToday,
       isAccepted,
-      container,
+      DialogProps,
       ...other
     } = this.props;
 
@@ -186,7 +187,7 @@ export default class ModalWrapper extends PureComponent {
           cancelLabel={cancelLabel}
           clearable={clearable}
           showTodayButton={showTodayButton}
-          container={container}
+          {...DialogProps}
         >
           {children}
         </ModalDialog>
