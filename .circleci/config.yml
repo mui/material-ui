@@ -77,9 +77,6 @@ jobs:
           name: Lint
           command: yarn lint
       - run:
-          name: Flow
-          command: yarn flow
-      - run:
           name: TypeScript
           command: yarn typescript
       - run:

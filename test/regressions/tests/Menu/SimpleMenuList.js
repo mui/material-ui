@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import MenuList from '@material-ui/core/MenuList';

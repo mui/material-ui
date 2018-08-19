@@ -18,7 +18,7 @@ module.exports = {
     ecmaVersion: 7,
     sourceType: 'module',
   },
-  plugins: ['babel', 'import', 'jsx-a11y', 'mocha', 'flowtype', 'material-ui'],
+  plugins: ['babel', 'import', 'jsx-a11y', 'mocha', 'material-ui'],
   settings: {
     'import/resolver': {
       webpack: {
@@ -94,15 +94,6 @@ module.exports = {
     'mocha/no-global-tests': 'error',
     'mocha/no-pending-tests': 'error',
     'mocha/no-skipped-tests': 'error',
-
-    'flowtype/define-flow-type': 'error',
-    'flowtype/require-valid-file-annotation': 'off',
-    'flowtype/require-parameter-type': 'off',
-    'flowtype/require-return-type': 'off',
-    'flowtype/space-after-type-colon': 'off',
-    'flowtype/space-before-type-colon': 'off',
-    'flowtype/type-id-match': 'off',
-    'flowtype/use-flow-type': 'error',
 
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/label-has-for': 'off',

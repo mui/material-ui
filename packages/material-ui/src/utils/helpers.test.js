@@ -1,5 +1,3 @@
-// @flow
-
 import { assert } from 'chai';
 import { capitalize, contains, find } from './helpers';
 

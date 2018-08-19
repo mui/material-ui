@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
@@ -14,7 +12,7 @@ import createGenerateClassName from './createGenerateClassName';
 import { createShallow, createMount, getClasses } from '../test-utils';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Empty extends React.Component<{}> {
+class Empty extends React.Component {
   render() {
     return <div />;
   }

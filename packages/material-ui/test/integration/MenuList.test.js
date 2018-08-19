@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';

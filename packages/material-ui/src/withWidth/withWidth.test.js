@@ -8,7 +8,7 @@ import createMuiTheme from '../styles/createMuiTheme';
 
 const Empty = () => <div />;
 // eslint-disable-next-line react/prefer-stateless-function
-class EmptyClass extends React.Component<{}> {
+class EmptyClass extends React.Component {
   render() {
     return <div />;
   }
