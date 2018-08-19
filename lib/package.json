@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-rc.12",
+  "version": "1.0.0-rc.13",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "build/dist/material-ui-pickers.cjs.js",
@@ -46,10 +46,10 @@
   "dependencies": {
     "@babel/runtime": "7.0.0-beta.54",
     "lodash.throttle": "^4.1.1",
-    "react-addons-css-transition-group": "^15.6.2",
-    "react-event-listener": "^0.6.1",
+    "react-event-listener": "^0.6.2",
     "react-text-mask": "=5.4.1",
-    "recompose": "^0.27.1"
+    "react-transition-group": "^2.4.0",
+    "recompose": "^0.28.0"
   },
   "size-limit": [
     {

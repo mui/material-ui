@@ -37,10 +37,10 @@ export const CalendarHeader = ({
 
         <SlideTransition
           slideDirection={slideDirection}
+          transKey={currentMonth}
           className={classes.transitionContainer}
         >
           <Typography
-            key={utils.getCalendarHeaderText(currentMonth)}
             align="center"
             variant="body1"
           >
@@ -59,9 +59,9 @@ export const CalendarHeader = ({
 
       <div className={classes.daysHeader}>
         {
-          utils.getWeekdays().map(day => (
+          utils.getWeekdays().map((day, index) => (
             <Typography
-              key={day}
+              key={index} // eslint-disable-line react/no-array-index-key
               variant="caption"
               className={classes.dayLabel}
             >
@@ -113,6 +113,7 @@ const styles = theme => ({
       backgroundColor: theme.palette.background.paper,
       '& > *': { // icon
         zIndex: 1,
+        overflow: 'visible',
       },
     },
   },

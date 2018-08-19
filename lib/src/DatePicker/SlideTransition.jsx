@@ -2,27 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import CSSTransition from 'react-transition-group/CSSTransition';
 
 const animationDuration = 350;
 
+const transitionFactory = props => child => React.cloneElement(child, props);
+
 const SlideTransition = ({
-  classes, className, children, slideDirection, ...other
+  classes, className, children, transKey, slideDirection,
 }) => (
-  <ReactCSSTransitionGroup
+  <TransitionGroup
     className={classnames(classes.transitionContainer, className)}
-    transitionEnterTimeout={animationDuration}
-    transitionLeaveTimeout={animationDuration}
-    transitionName={{
-      enter: classes[`slideEnter-${slideDirection}`],
-      enterActive: classes.slideEnterActive,
-      leave: classes.slideLeave,
-      leaveActive: classes[`slideLeaveActiveLeft-${slideDirection}`],
-    }}
-    {...other}
+    childFactory={transitionFactory({
+       classNames: {
+              enter: classes[`slideEnter-${slideDirection}`],
+              enterActive: classes.slideEnterActive,
+              exit: classes.slideExit,
+              exitActive: classes[`slideExitActiveLeft-${slideDirection}`],
+            },
+      })
+    }
   >
-    {children}
-  </ReactCSSTransitionGroup>
+    <CSSTransition key={transKey} mountOnEnter unmountOnExit timeout={animationDuration}>
+      {children}
+    </CSSTransition>
+  </TransitionGroup>
 );
 
 SlideTransition.propTypes = {
@@ -30,6 +35,7 @@ SlideTransition.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   slideDirection: PropTypes.oneOf(['left', 'right']).isRequired,
+  transKey: PropTypes.string.isRequired,
 };
 
 SlideTransition.defaultProps = {
@@ -65,15 +71,15 @@ const styles = (theme) => {
       transform: 'translate(0%)',
       transition: slideTransition,
     },
-    slideLeave: {
+    slideExit: {
       transform: 'translate(0%)',
     },
-    'slideLeaveActiveLeft-left': {
+    'slideExitActiveLeft-left': {
       willChange: 'transform',
       transform: 'translate(-100%)',
       transition: slideTransition,
     },
-    'slideLeaveActiveLeft-right': {
+    'slideExitActiveLeft-right': {
       willChange: 'transform',
       transform: 'translate(100%)',
       transition: slideTransition,

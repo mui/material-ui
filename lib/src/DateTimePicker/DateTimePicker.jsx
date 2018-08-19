@@ -188,6 +188,7 @@ export class DateTimePicker extends Component {
               onHourChange={this.handleHourChange}
               onMinutesChange={this.handleChange}
               onSecondsChange={this.handleChange}
+              ampm={ampm}
             />
           </View>
         </ViewContainerComponent>

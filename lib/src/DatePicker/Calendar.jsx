@@ -10,8 +10,8 @@ import CalendarHeader from './CalendarHeader';
 import Day from './Day';
 import DayWrapper from './DayWrapper';
 import DomainPropTypes from '../constants/prop-types';
-import SlideTransition from './SlideTransition';
 import withUtils from '../_shared/WithUtils';
+import SlideTransition from './SlideTransition';
 
 /* eslint-disable no-unused-expressions */
 export class Calendar extends Component {
@@ -247,12 +247,12 @@ export class Calendar extends Component {
 
         <SlideTransition
           slideDirection={slideDirection}
+          transKey={currentMonth}
           className={classes.transitionContainer}
         >
           <div
             /* eslint-disable-next-line */
             autoFocus // Autofocus required for getting work keyboard navigation feature
-            key={currentMonth}
           >
             {this.renderWeeks()}
           </div>
