@@ -245,7 +245,6 @@ export class Calendar extends Component {
           utils={utils}
         />
 
-
         <SlideTransition
           slideDirection={slideDirection}
           transKey={currentMonth}

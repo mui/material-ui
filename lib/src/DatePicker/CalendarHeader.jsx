@@ -113,6 +113,7 @@ const styles = theme => ({
       backgroundColor: theme.palette.background.paper,
       '& > *': { // icon
         zIndex: 1,
+        overflow: 'visible',
       },
     },
   },
