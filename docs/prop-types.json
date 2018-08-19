@@ -654,8 +654,8 @@
           "required": false,
           "description": "Date format string for input",
           "defaultValue": {
-            "value": "'MMMM Do'",
-            "computed": false
+            "value": "undefined",
+            "computed": true
           }
         },
         "onChange": {
@@ -972,6 +972,13 @@
                 "computed": false
               }
             ]
+          },
+          "required": true,
+          "description": ""
+        },
+        "transKey": {
+          "type": {
+            "name": "string"
           },
           "required": true,
           "description": ""
@@ -1474,6 +1481,28 @@
           },
           "required": true,
           "description": ""
+        },
+        "ViewContainerComponent": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "func"
+              },
+              {
+                "name": "object"
+              }
+            ]
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'div'",
+            "computed": false
+          }
         }
       }
     }
@@ -2983,6 +3012,17 @@
             "value": "undefined",
             "computed": true
           }
+        },
+        "onInputChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Callback firing on change input in keyboard mode",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
         }
       }
     }
@@ -3485,6 +3525,17 @@
           },
           "required": false,
           "description": "Format string",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "DialogProps": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": "Dialog props passed to material-ui Dialog",
           "defaultValue": {
             "value": "undefined",
             "computed": true
