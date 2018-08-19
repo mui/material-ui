@@ -48,13 +48,41 @@ describe('<Slider />', () => {
     wrapper.simulate('click');
     wrapper.simulate('mousedown');
     // document.simulate('mouseup')
-    const mouseupEvent = document.createEvent('HTMLEvents');
-    mouseupEvent.initEvent('mouseup', false, true);
-    document.dispatchEvent(mouseupEvent);
+    document.body.dispatchEvent(new window.MouseEvent('mouseup'));
 
     assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
     assert.strictEqual(handleDragStart.callCount, 1, 'should have called the handleDragStart cb');
     assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
+  });
+
+  describe('unmount', () => {
+    it('should not have global event listeners registered after unmount', () => {
+      const handleChange = spy();
+      const handleDragEnd = spy();
+
+      const wrapper = mount(<Slider onChange={handleChange} onDragEnd={handleDragEnd} value={0} />);
+
+      const callGlobalListeners = () => {
+        document.body.dispatchEvent(new window.MouseEvent('mousemove'));
+        document.body.dispatchEvent(new window.MouseEvent('mouseup'));
+      };
+
+      wrapper.simulate('mousedown');
+      callGlobalListeners();
+      // pre condition: the dispatched event actually did something when mounted
+      assert.strictEqual(handleChange.callCount, 1, 'should have called the handleChange cb');
+      assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
+
+      wrapper.unmount();
+
+      // After unmounting global listeners should not be registered aynmore since that would
+      // break component encapsulation. If they are still mounted either react will throw warnings
+      // or other component logic throws.
+      // post condition: the dispatched events dont cause errors/warnings
+      callGlobalListeners();
+      assert.strictEqual(handleChange.callCount, 1, 'should not have called handleChange again');
+      assert.strictEqual(handleDragEnd.callCount, 1, 'should not have called handleDragEnd again');
+    });
   });
 
   describe('prop: vertical', () => {
