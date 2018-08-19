@@ -109,8 +109,6 @@ export const styles = theme => {
         boxShadow: `0px 0px 0px 9px ${colors.thumbOutline}`,
       },
       '&$activated': {
-        width: 17,
-        height: 17,
         boxShadow: `0px 0px 0px 18px ${colors.thumbOutline}`,
         transition: thumbActivatedTransitions,
       },
@@ -121,8 +119,6 @@ export const styles = theme => {
         backgroundColor: colors.disabled,
       },
       '&$jumped': {
-        width: 17,
-        height: 17,
         boxShadow: `0px 0px 0px 18px ${colors.thumbOutline}`,
       },
     },
