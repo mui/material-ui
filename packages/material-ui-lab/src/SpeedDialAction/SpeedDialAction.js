@@ -46,7 +46,7 @@ class SpeedDialAction extends React.Component {
     this.setState({ tooltipOpen: true });
   };
 
-  componentDidUpdate = (prevProps) => {
+  componentDidUpdate = prevProps => {
     if (!this.props.tooltipAlwaysOpen) return;
     if (prevProps.open === this.props.open) return;
     if (!this.props.open && this.state.tooltipOpen) {
@@ -54,7 +54,7 @@ class SpeedDialAction extends React.Component {
     } else if (!this.state.tooltipOpen) {
       setTimeout(() => this.setState({ tooltipOpen: true }), this.props.delay + 100);
     }
-  }
+  };
 
   render() {
     const {
@@ -139,8 +139,8 @@ SpeedDialAction.propTypes = {
    */
   open: PropTypes.bool,
   /**
-  * Option to always display the tooltip (usually applicable on mobile)
-  */
+   * Option to always display the tooltip (usually applicable on mobile)
+   */
   tooltipAlwaysOpen: PropTypes.bool,
   /**
    * Placement of the tooltip.
