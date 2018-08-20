@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/Slider';
-import DeleteIcon from '@material-ui/icons/Delete';
+import StarsIcon from '@material-ui/icons/Gamepad';
 
 const styles = {
   root: {
     width: 300,
+  },
+  thumbIcon: {
+    borderRadius: '50%',
   },
 };
 
@@ -31,16 +34,18 @@ class CustomIconSlider extends React.Component {
           value={value}
           aria-labelledby="label"
           onChange={this.handleChange}
-          thumb={<img src="/static/images/cards/live-from-space.jpg" alt="" />}
+          thumb={(<img
+            alt="slider thumb icon"
+            src="/static/images/cards/live-from-space.jpg"
+            className={classes.thumbIcon}
+          />)}
         />
-        <Typography id="label">Slider Simple</Typography>
-        <Slider value={value} aria-labelledby="label" onChange={this.handleChange} />
         <Typography id="label">Slider Icon</Typography>
         <Slider
           value={value}
           aria-labelledby="label"
           onChange={this.handleChange}
-          thumb={<DeleteIcon style={{ color: 'green' }} />}
+          thumb={<StarsIcon style={{ color: '#2196f3' }} />}
         />
       </div>
     );
