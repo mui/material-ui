@@ -27,7 +27,7 @@ export interface DateTextFieldProps extends Omit<TextFieldProps, 'onChange' | 'v
     InputAdornmentProps?: object;
     adornmentPosition?: "start" | "end";
     onError?: () => void;
-    onInputChange?: () => void;
+    onInputChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
 declare const DateTextField: ComponentClass<DateTextFieldProps>;
