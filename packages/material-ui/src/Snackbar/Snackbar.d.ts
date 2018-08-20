@@ -13,12 +13,12 @@ export interface SnackbarProps
       React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
       SnackbarClassKey
     > {
-  action?: React.ReactNode;
+  action?: SnackbarContentProps['action'];
   anchorOrigin?: SnackbarOrigin;
   autoHideDuration?: number;
   ContentProps?: Partial<SnackbarContentProps>;
   disableWindowBlurListener?: boolean;
-  message?: React.ReactNode;
+  message?: SnackbarContentProps['message'];
   onClose?: (event: React.SyntheticEvent<any>, reason: string) => void;
   onMouseEnter?: React.MouseEventHandler<any>;
   onMouseLeave?: React.MouseEventHandler<any>;
