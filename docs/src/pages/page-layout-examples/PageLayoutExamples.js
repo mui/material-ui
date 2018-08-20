@@ -30,20 +30,22 @@ const styles = {
 
 const themes = [
   {
+    name: 'Dashboard',
+    description:
+      'A minimal dasboard with taskbar and mini variant draw. ' +
+      'The chart is courtesy of Recharts, but it is simple to substitute an alternative.',
+    src: '/static/images/layouts/dashboard.png',
+    href: '/page-layout-examples/dashboard',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/dashboard',
+  },
+  {
     name: 'Sign-in',
     description: 'A simple sign-in page.',
     src: '/static/images/layouts/sign-in.png',
     href: '/page-layout-examples/sign-in',
     source:
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/sign-in',
-  },
-  {
-    name: 'Album',
-    description: 'A reponsive album / gallery page layout with a hero unit and footer.',
-    src: '/static/images/layouts/album.png',
-    href: '/page-layout-examples/album',
-    source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/album',
   },
   {
     name: 'Blog',
@@ -56,16 +58,6 @@ const themes = [
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/blog',
   },
   {
-    name: 'Pricing',
-    description:
-      'Quickly build an effective pricing table for your potential customers with this page ' +
-      'layout.',
-    src: '/static/images/layouts/pricing.png',
-    href: '/page-layout-examples/pricing',
-    source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/pricing',
-  },
-  {
     name: 'Checkout',
     description:
       'A step-by-step checkout page layout. ' +
@@ -76,14 +68,22 @@ const themes = [
       'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/checkout',
   },
   {
-    name: 'Dashboard',
-    description:
-      'A minimal dasboard with taskbar and mini variant draw. ' +
-      'The chart is courtesy of Recharts, but it is simple to substitute an alternative.',
-    src: '/static/images/layouts/dashboard.png',
-    href: '/page-layout-examples/dashboard',
+    name: 'Album',
+    description: 'A reponsive album / gallery page layout with a hero unit and footer.',
+    src: '/static/images/layouts/album.png',
+    href: '/page-layout-examples/album',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/dashboard',
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/album',
+  },
+  {
+    name: 'Pricing',
+    description:
+      'Quickly build an effective pricing table for your potential customers with this page ' +
+      'layout.',
+    src: '/static/images/layouts/pricing.png',
+    href: '/page-layout-examples/pricing',
+    source:
+      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/pricing',
   },
 ];
 
