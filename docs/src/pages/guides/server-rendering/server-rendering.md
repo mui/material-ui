@@ -260,10 +260,10 @@ in the dependencies of your package.json.
 
 *example of fix (package.json):*
 ```diff
-    "dependencies": {
-      ...
-      -"@material-ui/core": "^1.4.2",
-      +"@material-ui/core": "1.4.3",
-      ...
-    },
+  "dependencies": {
+    ...
+-   "@material-ui/core": "^1.4.2",
++   "@material-ui/core": "1.4.3",
+    ...
+  },
 ```
