@@ -32,7 +32,7 @@ title: Input API
 | <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> |   | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | <span class="prop-name">multiline</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, a textarea element will be rendered. |
 | <span class="prop-name">name</span> | <span class="prop-type">string |   | Name attribute of the `input` element. |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback fired when the value is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`. |
+| <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback fired when the value is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`. |
 | <span class="prop-name">placeholder</span> | <span class="prop-type">string |   | The short hint displayed in the input before the user enters a value. |
 | <span class="prop-name">readOnly</span> | <span class="prop-type">bool |   | It prevents the user from changing the value of the field (not from interacting with the field). |
 | <span class="prop-name">required</span> | <span class="prop-type">bool |   | If `true`, the input will be required. |
@@ -49,19 +49,22 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-- `root`
-- `formControl`
-- `focused`
-- `disabled`
-- `underline`
-- `error`
-- `multiline`
-- `fullWidth`
-- `input`
-- `inputMarginDense`
-- `inputMultiline`
-- `inputType`
-- `inputTypeSearch`
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
+| <span class="prop-name">focused</span> | Styles applied to the root element if the component is focused.
+| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">underline</span> | Styles applied to the root element if `disableUnderline={false}`.
+| <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">multiline</span> | Styles applied to the root element if `multiline={true}`.
+| <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+| <span class="prop-name">input</span> | Styles applied to the `input` element.
+| <span class="prop-name">inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
+| <span class="prop-name">inputType</span> | Styles applied to the `input` element if `type` is not "text"`.
+| <span class="prop-name">inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Input/Input.js)

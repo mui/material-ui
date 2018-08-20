@@ -25,7 +25,6 @@ title: Slider API
 | <span class="prop-name">onDragStart</span> | <span class="prop-type">func |   | Callback function that is fired when the slider has begun to move. |
 | <span class="prop-name">reverse</span> | <span class="prop-type">bool |   | If `true`, the slider will be reversed. |
 | <span class="prop-name">step</span> | <span class="prop-type">number |   | The granularity the slider can step through values. |
-| <span class="prop-name">thumb</span> | <span class="prop-type">element |   | The component used for the slider icon. This is optional, if provided should be a react element. |
 | <span class="prop-name required">value *</span> | <span class="prop-type">number |   | The value of the slider. |
 | <span class="prop-name">vertical</span> | <span class="prop-type">bool |   | If `true`, the slider will be vertical. |
 
@@ -36,20 +35,21 @@ Any other properties supplied will be spread to the root element (native element
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 
-- `root`
-- `container`
-- `track`
-- `trackBefore`
-- `trackAfter`
-- `thumb`
-- `thumbTransparent`
-- `thumbIcon`
-- `reverse`
-- `disabled`
-- `jumped`
-- `focused`
-- `activated`
-- `vertical`
+
+| Name | Description |
+|:-----|:------------|
+| <span class="prop-name">root</span> | Styles applied to the root element.
+| <span class="prop-name">container</span> | Styles applied to the container element.
+| <span class="prop-name">track</span> | Styles applied to the track elements.
+| <span class="prop-name">trackBefore</span> | Styles applied to the track element before the thumb.
+| <span class="prop-name">trackAfter</span> | Styles applied to the track element after the thumb.
+| <span class="prop-name">thumb</span> | Styles applied to the thumb element.
+| <span class="prop-name">reverse</span> | Class applied to the root element to trigger JSS nested styles if `reverse={true}` .
+| <span class="prop-name">disabled</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`.
+| <span class="prop-name">jumped</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `jumped`.
+| <span class="prop-name">focused</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `focused`.
+| <span class="prop-name">activated</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `activated`.
+| <span class="prop-name">vertical</span> | Class applied to the root, track and container to trigger JSS nested styles if `vertical`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/Slider/Slider.js)
