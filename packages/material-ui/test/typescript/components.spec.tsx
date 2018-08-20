@@ -803,7 +803,18 @@ const TextFieldTest = () => (
       onChange={event => log({ name: event.currentTarget.value })}
     />
     <TextField id="name" label="Name" value={'Alice'} InputProps={{ classes: { root: 'foo' } }} />
-    <TextField type="number" InputProps={{ inputProps: { min: '0', max: '10', step: '1' } }} />
+    <TextField
+      type="number"
+      inputProps={{
+        min: '0',
+        max: '10',
+        step: '1',
+        style: {
+          // just a long css property to test autocompletion
+          WebkitAnimationIterationCount: 0,
+        },
+      }}
+    />
   </div>
 );
 
