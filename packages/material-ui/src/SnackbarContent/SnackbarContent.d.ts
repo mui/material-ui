@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
 
 export interface SnackbarContentProps extends StandardProps<PaperProps, SnackbarContentClassKey> {
-  action?: React.ReactElement<any>;
+  action?: React.ReactElement<any> | React.ReactElement<any>[];
   message: React.ReactElement<any> | string;
 }
 
