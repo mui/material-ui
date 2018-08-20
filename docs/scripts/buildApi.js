@@ -109,8 +109,8 @@ function buildDocs(options) {
     /**
      * Collect classes comments from the source
      */
-    const stylesRegexp = /export const styles.*\n(.*\n)*};\n\n/;
-    const styleRegexp = /\/\* (.*) \*\/\n\s*(\w*)/g;
+    const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*};[\r\n][\r\n]/;
+    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*(\w*)/g;
     // Extract the styles section from the source
     const stylesSrc = stylesRegexp.exec(styleSrc);
     if (stylesSrc) {
