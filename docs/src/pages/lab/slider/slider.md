@@ -38,3 +38,7 @@ Sliders reflect the current state of the settings they control.
 ## Reverse slider
 
 {{"demo": "pages/lab/slider/ReverseSlider.js"}}
+
+If you want to have a custom thumb icon.
+
+{{"demo": "pages/lab/slider/CustomIconSlider.js"}}
