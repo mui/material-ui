@@ -34,11 +34,13 @@ class CustomIconSlider extends React.Component {
           value={value}
           aria-labelledby="label"
           onChange={this.handleChange}
-          thumb={(<img
-            alt="slider thumb icon"
-            src="/static/images/cards/live-from-space.jpg"
-            className={classes.thumbIcon}
-          />)}
+          thumb={
+            <img
+              alt="slider thumb icon"
+              src="/static/images/cards/live-from-space.jpg"
+              className={classes.thumbIcon}
+            />
+          }
         />
         <Typography id="label">Slider Icon</Typography>
         <Slider
