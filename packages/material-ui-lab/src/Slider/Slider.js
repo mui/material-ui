@@ -120,7 +120,7 @@ export const styles = theme => {
       },
     },
     /* Class applied to the thumb element if custom thumb icon provided` . */
-    thumbTransparent: {
+    thumbIconWrapper: {
       backgroundColor: 'transparent',
     },
     thumbIcon: {
@@ -128,7 +128,7 @@ export const styles = theme => {
       top: 0,
       height: 26,
       width: 'auto',
-      backgroundColor: 'transparent',
+      zIndex: 2,
     },
     /* Class applied to the root element to trigger JSS nested styles if `reverse={true}` . */
     reverse: {},
@@ -447,9 +447,11 @@ class Slider extends React.Component {
     /** End Thumbnail Icon Logic Here */
 
     const thumbClasses = classNames(
-      `${withIcon ? '' : classes.thumb}`,
+      {
+        [classes.thumb]: !withIcon,
+        [classes.thumbIconWrapper]: withIcon,
+      },
       commonClasses,
-      `${withIcon ? classes.thumbTransparent : ''}`,
     );
 
     return (
