@@ -250,7 +250,7 @@ function handleRender(req, res) {
   const html = renderToString(
 ```
 
-The second thing to look at is to verify that your client and server are running the **exactly the same version** of Material UI. It is possible that a mismatch of even minor versions can cause styling
+The second thing to look at is to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling
 problems. To check version numbers, run `npm list @material-ui/core` in the
 environment where you build your application and also in your deployment environment.
  
