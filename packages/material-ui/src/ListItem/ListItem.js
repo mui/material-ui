@@ -69,6 +69,8 @@ export const styles = theme => ({
     // is absolutely positionned.
     paddingRight: 32,
   },
+  /* Styles applied to the root element if `selected={true}`. */
+  selected: {},
 });
 
 class ListItem extends React.Component {

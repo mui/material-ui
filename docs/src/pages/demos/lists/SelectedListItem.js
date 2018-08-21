@@ -28,15 +28,14 @@ class SelectedListItem extends React.Component {
 
   render() {
     const { classes } = this.props;
-    let index = 0;
 
     return (
       <div className={classes.root}>
         <List component="nav">
           <ListItem
             button
-            selected={this.state.selected === index}
-            onClick={event => this.handleListItemClick(event, index++)}>
+            selected={this.state.selectedIndex === 0}
+            onClick={event => this.handleListItemClick(event, 0)}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -44,8 +43,8 @@ class SelectedListItem extends React.Component {
           </ListItem>
           <ListItem
             button
-            selected={this.state.selected === index}
-            onClick={event => this.handleListItemClick(event, index++)}>
+            selected={this.state.selectedIndex === 1}
+            onClick={event => this.handleListItemClick(event, 1)}>
             <ListItemIcon>
               <DraftsIcon />
             </ListItemIcon>
@@ -56,16 +55,16 @@ class SelectedListItem extends React.Component {
         <List component="nav">
           <ListItem
             button
-            selected={this.state.selected === index}
-            onClick={event => this.handleListItemClick(event, index++)}>
+            selected={this.state.selectedIndex === 2}
+            onClick={event => this.handleListItemClick(event, 2)}>
             <ListItemText primary="Trash" />
           </ListItem>
           <ListItem
             button
-            selected={this.state.selected === index}
-            onClick={event => this.handleListItemClick(event, index++)}
+            selected={this.state.selectedIndex === 3}
+            onClick={event => this.handleListItemClick(event, 3)}
             component="a"
-            href="#simple-list">
+            href="#selected-listitem">
             <ListItemText primary="Spam" />
           </ListItem>
         </List>
