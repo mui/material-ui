@@ -425,7 +425,7 @@ const GridListTest = () => (
 const ListTest = () => (
   <List>
     {[0, 1, 2, 3].map(value => (
-      <ListItem dense button key={value} onClick={log}>
+      <ListItem dense button selected={false} key={value} onClick={log}>
         <Checkbox checked={true} tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
@@ -452,7 +452,7 @@ const MenuTest = () => {
   return (
     <Menu id="lock-menu" anchorEl={anchorEl} open={true} onClose={log}>
       {options.map((option, index) => (
-        <MenuItem key={option} selected={false} onClick={log}>
+        <MenuItem key={option} onClick={log}>
           {option}
         </MenuItem>
       ))}
