@@ -16,6 +16,8 @@ import blue from '../../src/colors/blue';
 import { WithTheme } from '../../src/styles/withTheme';
 import { StandardProps } from '../../src';
 import { TypographyStyle } from '../../src/styles/createTypography';
+import { BaseOverrides } from '../../src/styles/overrides';
+import { ThemeOptions } from '../../src/styles/createMuiTheme';
 
 // Shared types for examples
 interface ComponentProps {
@@ -353,4 +355,36 @@ withStyles(theme =>
   const style: StyleRulesCallback = theme => ({
     text: theme.typography.body2,
   });
+}
+
+{
+  // https://github.com/mui-org/material-ui/issues/12164
+  // Add ability to extend overrides set from the createMuiTheme
+  type ExternalComponentsOverrides = BaseOverrides<{
+    SomeComponent: 'toolbar' | 'panel',
+    SomeAnotherComponent: 'switch' | 'checkbox'
+  }>
+
+  const theme = createMuiTheme<ExternalComponentsOverrides>({
+    overrides: {
+      MuiAppBar: {
+        root: {
+          margin: 10
+        }
+      },
+      SomeComponent: {
+        toolbar: {
+          margin: 5
+        },
+        panel: {
+          backgroundColor: 'red'
+        }
+      },
+      SomeAnotherComponent: {
+        switch: {
+          color: 'red'
+        }
+      }
+    } 
+  }) 
 }
