@@ -37,7 +37,7 @@ class CustomIconSlider extends React.Component {
           thumb={
             <img
               alt="slider thumb icon"
-              src="/static/images/cards/live-from-space.jpg"
+              src="/static/images/misc/circle.png"
               className={classes.thumbIcon}
             />
           }

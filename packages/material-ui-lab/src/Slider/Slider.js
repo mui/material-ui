@@ -127,6 +127,10 @@ export const styles = theme => {
         height: 12,
         transition: 'none',
       },
+      '&$jumped': {
+        width: 12,
+        height: 12,
+      },
     },
     thumbIcon: {
       position: 'relative',
@@ -391,7 +395,7 @@ class Slider extends React.Component {
     const { currentState } = this.state;
     const {
       component: Component,
-      thumb: Thumb,
+      thumb: thumbIcon,
       classes,
       className: classNameProp,
       disabled,
@@ -441,15 +445,15 @@ class Slider extends React.Component {
     const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
 
-    /** Start Slider Icon Logic Here */
-    const withIcon = !!Thumb;
-    const Thumbnail = withIcon
-      ? React.cloneElement(Thumb, {
-          ...Thumb.props,
-          className: `${classes.thumbIcon} ${Thumb.props.className || ''}`,
+    /** Start Thumb Icon Logic Here */
+    const withIcon = !!thumbIcon;
+    const ThumbIcon = withIcon
+      ? React.cloneElement(thumbIcon, {
+          ...thumbIcon.props,
+          className: `${classes.thumbIcon} ${thumbIcon.props.className || ''}`,
         })
       : null;
-    /** End Slider Icon Logic Here */
+    /** End Thumb Icon Logic Here */
 
     const thumbClasses = classNames(
       classes.thumb,
@@ -488,7 +492,7 @@ class Slider extends React.Component {
             onTouchMove={this.handleMouseMove}
             onFocusVisible={this.handleFocus}
           >
-            {Thumbnail}
+            {ThumbIcon}
           </ButtonBase>
           <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
         </div>
