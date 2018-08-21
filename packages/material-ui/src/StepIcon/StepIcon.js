@@ -59,7 +59,7 @@ function StepIcon(props) {
     );
   }
 
-  return icon;
+  return React.cloneElement(icon, {className: classes.root});
 }
 
 StepIcon.propTypes = {
