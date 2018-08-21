@@ -78,7 +78,7 @@
     "test": "node scripts/test.js --env=jsdom",
     "docs:generate": "react-docgen ../lib/src --out prop-types.json --resolver findAllComponentDefinitions --pretty",
     "backers:generate": "node scripts/generate-backers",
-    "deploy": "npm run build && npm run docs:generate && npm run backers:generate && firebase deploy"
+    "deploy": "npm run docs:generate && npm run backers:generate && npm run build && firebase deploy"
   },
   "jest": {
     "collectCoverageFrom": [
