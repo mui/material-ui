@@ -120,6 +120,8 @@ export const styles = theme => {
       },
     },
     /* Class applied to the thumb element if custom thumb icon provided` . */
+    thumbTransparent: {
+    },
     thumbIcon: {
       position: 'relative',
       top: 0,
@@ -446,6 +448,7 @@ class Slider extends React.Component {
     const thumbClasses = classNames(
       `${withIcon ? '' : classes.thumb}`,
       commonClasses,
+      `${withIcon ? classes.thumbTransparent : ''}`,
     );
 
     return (
