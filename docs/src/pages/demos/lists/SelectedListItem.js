@@ -24,7 +24,7 @@ class SelectedListItem extends React.Component {
 
   handleListItemClick = (event, index) => {
     this.setState({ selectedIndex: index });
-  }
+  };
 
   render() {
     const { classes } = this.props;
@@ -35,7 +35,8 @@ class SelectedListItem extends React.Component {
           <ListItem
             button
             selected={this.state.selectedIndex === 0}
-            onClick={event => this.handleListItemClick(event, 0)}>
+            onClick={event => this.handleListItemClick(event, 0)}
+          >
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -44,7 +45,8 @@ class SelectedListItem extends React.Component {
           <ListItem
             button
             selected={this.state.selectedIndex === 1}
-            onClick={event => this.handleListItemClick(event, 1)}>
+            onClick={event => this.handleListItemClick(event, 1)}
+          >
             <ListItemIcon>
               <DraftsIcon />
             </ListItemIcon>
@@ -56,7 +58,8 @@ class SelectedListItem extends React.Component {
           <ListItem
             button
             selected={this.state.selectedIndex === 2}
-            onClick={event => this.handleListItemClick(event, 2)}>
+            onClick={event => this.handleListItemClick(event, 2)}
+          >
             <ListItemText primary="Trash" />
           </ListItem>
           <ListItem
@@ -64,7 +67,8 @@ class SelectedListItem extends React.Component {
             selected={this.state.selectedIndex === 3}
             onClick={event => this.handleListItemClick(event, 3)}
             component="a"
-            href="#selected-listitem">
+            href="#selected-listitem"
+          >
             <ListItemText primary="Spam" />
           </ListItem>
         </List>
