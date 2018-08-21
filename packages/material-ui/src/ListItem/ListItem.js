@@ -18,6 +18,9 @@ export const styles = theme => ({
     textAlign: 'left',
     paddingTop: 12,
     paddingBottom: 12,
+    '&$selected': {
+      backgroundColor: theme.palette.action.selected,
+    },
   },
   /* Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`. */
   container: {
@@ -89,6 +92,7 @@ class ListItem extends React.Component {
       disableGutters,
       divider,
       focusVisibleClassName,
+      selected,
       ...other
     } = this.props;
 
@@ -108,6 +112,7 @@ class ListItem extends React.Component {
         [classes.disabled]: disabled,
         [classes.button]: button,
         [classes.secondaryAction]: hasSecondaryAction,
+        [classes.selected]: selected,
       },
       classNameProp,
     );
@@ -205,6 +210,10 @@ ListItem.propTypes = {
    * @ignore
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * Use to apply selected styling.
+   */
+  selected: PropTypes.bool,
 };
 
 ListItem.defaultProps = {
@@ -214,6 +223,7 @@ ListItem.defaultProps = {
   disabled: false,
   disableGutters: false,
   divider: false,
+  selected: false,
 };
 
 ListItem.contextTypes = {
