@@ -45,7 +45,7 @@ This property accepts the following keys:
 | <span class="prop-name">trackBefore</span> | Styles applied to the track element before the thumb.
 | <span class="prop-name">trackAfter</span> | Styles applied to the track element after the thumb.
 | <span class="prop-name">thumb</span> | Styles applied to the thumb element.
-| <span class="prop-name">thumbTransparent</span> | Class applied to the thumb element if custom thumb icon provided` .
+| <span class="prop-name">thumbIconWrapper</span> | Class applied to the thumb element if custom thumb icon provided` .
 | <span class="prop-name">thumbIcon</span> | 
 | <span class="prop-name">reverse</span> | Class applied to the root element to trigger JSS nested styles if `reverse={true}` .
 | <span class="prop-name">disabled</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`.
