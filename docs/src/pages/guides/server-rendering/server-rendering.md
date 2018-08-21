@@ -250,8 +250,8 @@ function handleRender(req, res) {
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI.
 It is possible that a mismatch of even minor versions can cause styling problems.
 To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
- 
-You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
+
+  You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
 *example of fix (package.json):*
 ```diff
