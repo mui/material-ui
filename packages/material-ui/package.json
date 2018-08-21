@@ -59,7 +59,7 @@
     "react-event-listener": "^0.6.2",
     "react-jss": "^8.1.0",
     "react-transition-group": "^2.2.1",
-    "recompose": "^0.28.0",
+    "recompose": "^0.28.2",
     "warning": "^4.0.1"
   },
   "sideEffects": false,
