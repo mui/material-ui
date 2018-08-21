@@ -122,10 +122,15 @@ export const styles = theme => {
     /* Class applied to the thumb element if custom thumb icon provided` . */
     thumbIconWrapper: {
       backgroundColor: 'transparent',
+      '&$activated': {
+        width: 12,
+        height: 12,
+        transition: 'none',
+      },
     },
     thumbIcon: {
       position: 'relative',
-      top: 0,
+      top: -7,
       height: 26,
       width: 'auto',
       zIndex: 2,
@@ -436,7 +441,7 @@ class Slider extends React.Component {
     const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
 
-    /** Start Thumbnail Icon Logic Here */
+    /** Start Slider Icon Logic Here */
     const withIcon = !!Thumb;
     const Thumbnail = withIcon
       ? React.cloneElement(Thumb, {
@@ -444,11 +449,11 @@ class Slider extends React.Component {
           className: `${classes.thumbIcon} ${Thumb.props.className || ''}`,
         })
       : null;
-    /** End Thumbnail Icon Logic Here */
+    /** End Slider Icon Logic Here */
 
     const thumbClasses = classNames(
+      classes.thumb,
       {
-        [classes.thumb]: !withIcon,
         [classes.thumbIconWrapper]: withIcon,
       },
       commonClasses,

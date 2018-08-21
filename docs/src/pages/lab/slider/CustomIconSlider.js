@@ -29,7 +29,7 @@ class CustomIconSlider extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Typography id="label">Slider Image</Typography>
+        <Typography id="label">Image thumb</Typography>
         <Slider
           value={value}
           aria-labelledby="label"
@@ -42,7 +42,7 @@ class CustomIconSlider extends React.Component {
             />
           }
         />
-        <Typography id="label">Slider Icon</Typography>
+        <Typography id="label">Icon thumb</Typography>
         <Slider
           value={value}
           aria-labelledby="label"
