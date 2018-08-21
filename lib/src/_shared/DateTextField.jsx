@@ -107,7 +107,7 @@ export class DateTextField extends PureComponent {
     invalidLabel: PropTypes.string,
     /** Message displaying in text field, if null passed (doesn't work in keyboard mode) */
     emptyLabel: PropTypes.string,
-    /** Dynamic label generation function (date, invalidLabel) => string */
+    /** Dynamic label generation function [(date: Date, invalidLabel: string) => string] */
     labelFunc: PropTypes.func,
     /** On/off manual keyboard input mode */
     keyboard: PropTypes.bool,
@@ -123,9 +123,9 @@ export class DateTextField extends PureComponent {
     InputAdornmentProps: PropTypes.object,
     /** Specifies position of keyboard button adornment */
     adornmentPosition: PropTypes.oneOf(['start', 'end']),
-    /** Callback firing when date that applied in the keyboard is invalid  */
+    /** Callback firing when date that applied in the keyboard is invalid [(error: string) => void] */
     onError: PropTypes.func,
-    /** Callback firing on change input in keyboard mode */
+    /** Callback firing on change input in keyboard mode [(e: Event) => void] */
     onInputChange: PropTypes.func,
   }
 

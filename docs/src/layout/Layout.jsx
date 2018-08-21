@@ -130,6 +130,11 @@ class Layout extends Component {
 }
 
 const styles = theme => ({
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.background.default,
+    },
+  },
   flex: {
     flex: 1,
   },
@@ -148,7 +153,6 @@ const styles = theme => ({
     marginTop: 55,
     padding: '20px',
     minHeight: 'calc(100vh - 55px)',
-    backgroundColor: theme.palette.background.default,
     [theme.breakpoints.up('md')]: {
       marginTop: 64,
       minHeight: 'calc(100vh - 64px)',

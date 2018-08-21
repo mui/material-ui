@@ -663,7 +663,7 @@
             "name": "func"
           },
           "required": true,
-          "description": "Callback firing when date accepted"
+          "description": "Callback firing when date accepted [(date: Date) => void]"
         },
         "autoOk": {
           "type": {
@@ -725,7 +725,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Allow to specify dynamic label for text field labelFunc(date, invalidLabel)",
+          "description": "Allow to specify dynamic label for text field [(date: Date, invalidLabel: string) => string]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -758,7 +758,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Custom renderer for day renderDay(date, selectedDate, dayInCurrentMonth)",
+          "description": "Custom renderer for day [(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -769,7 +769,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Disable specific date",
+          "description": "Disable specific date [(date: Date) => boolean]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1705,7 +1705,7 @@
             "name": "func"
           },
           "required": true,
-          "description": "Callback firing when date accepted"
+          "description": "Callback firing when date accepted [(date: Date) => void]"
         },
         "autoOk": {
           "type": {
@@ -1847,7 +1847,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Custom renderer for day renderDay(date, selectedDate, dayInCurrentMonth)",
+          "description": "Custom renderer for day [(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -1869,7 +1869,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Disable specific date",
+          "description": "Disable specific date [(date: Date) => boolean]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -2530,7 +2530,7 @@
             "name": "func"
           },
           "required": true,
-          "description": "Callback firing when date accepted"
+          "description": "Callback firing when date accepted [(date: Date) => void]"
         },
         "autoOk": {
           "type": {
@@ -2901,7 +2901,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Dynamic label generation function (date, invalidLabel) => string",
+          "description": "Dynamic label generation function [(date: Date, invalidLabel: string) => string]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -3007,7 +3007,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Callback firing when date that applied in the keyboard is invalid",
+          "description": "Callback firing when date that applied in the keyboard is invalid [(error: string) => void]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -3018,7 +3018,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Callback firing on change input in keyboard mode",
+          "description": "Callback firing on change input in keyboard mode [(e: Event) => void]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -3425,7 +3425,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Function for dynamic rendering label (date, invalidLabel) => string",
+          "description": "Function for dynamic rendering label [(date: Date, invalidLabel: string) => string]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -3502,7 +3502,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "On open callback",
+          "description": "On open callback [(e: Event) => void]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -3513,7 +3513,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "On close callback",
+          "description": "On close callback [(e: Event) => void]",
           "defaultValue": {
             "value": "undefined",
             "computed": true

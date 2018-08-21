@@ -10,6 +10,7 @@ const navItems = [
     children: [
       { title: 'Installation', href: '/installation' },
       { title: 'Usage', href: '/usage' },
+      { title: 'Parsing dates', href: '/parsing' },
     ],
   },
   {
@@ -46,6 +47,7 @@ class NavigationMenu extends React.Component {
       const open = children && children.length > 0
         ? children.some(item => item.href === location.pathname)
         : false;
+
       return (
         <NavItem
           key={href || title}
@@ -59,6 +61,7 @@ class NavigationMenu extends React.Component {
       );
     };
   }
+
   render() {
     return (
       <List component="nav">

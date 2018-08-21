@@ -99,7 +99,7 @@ DateTimePickerWrapper.propTypes = {
   value: DomainPropTypes.date,
   /** Date format string for input */
   format: PropTypes.string,
-  /** Callback firing when date accepted */
+  /** Callback firing when date accepted [(date: Date) => void] */
   onChange: PropTypes.func.isRequired,
   /** Auto accept date on minute selection */
   autoOk: PropTypes.bool,
@@ -125,11 +125,11 @@ DateTimePickerWrapper.propTypes = {
   dateRangeIcon: PropTypes.node,
   /** Time tab icon */
   timeIcon: PropTypes.node,
-  /** Custom renderer for day renderDay(date, selectedDate, dayInCurrentMonth) */
+  /** Custom renderer for day [(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]*/
   renderDay: PropTypes.func,
   /** 12h/24h view for hour selection clock */
   ampm: PropTypes.bool,
-  /** Disable specific date */
+  /** Disable specific date [(date: Date) => boolean] */
   shouldDisableDate: PropTypes.func,
   /** Enable animated scrolling to current year */
   animateYearScrolling: PropTypes.bool,

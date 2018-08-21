@@ -56,7 +56,7 @@ TimePickerWrapper.propTypes = {
   value: DomainPropTypes.date,
   /** Date format string for input */
   format: PropTypes.string,
-  /** Callback firing when date accepted */
+  /** Callback firing when date accepted [(date: Date) => void] */
   onChange: PropTypes.func.isRequired,
   /** Auto accept date on minute selection */
   autoOk: PropTypes.bool,

@@ -31,7 +31,8 @@ const DatePickerDemoDemo = () => (
       sourceFile="Demo/CustomElementsDatePicker.jsx"
       description={
         <Typography variant="body1" gutterBottom>
-          Customization performing by overriding render method for Day component
+          Customization performing by overriding render method for Day component.
+          <a href="https://codesandbox.io/s/mozqv539lp"> Here </a> example with moment-js
         </Typography>
       }
     />

@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { Table, Typography, withStyles, Paper, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import PropTypesDoc from '../../prop-types.json';
 
+const functionSignatureRegex = /\[(.{1,256})\]/;
 class PropTypesTable extends React.PureComponent {
   static propTypes = {
     src: PropTypes.string.isRequired,
@@ -63,7 +64,17 @@ class PropTypesTable extends React.PureComponent {
       return `union ${variants}`;
     }
 
+    if (prop.type.name === 'func') {
+      const signatureTestMatch = functionSignatureRegex.exec(prop.description);
+      return signatureTestMatch ? signatureTestMatch[1] : 'func';
+    }
+
     return prop.type.name;
+  }
+
+  getDescriptionHtml = (description) => {
+    const filteredDescription = description.replace(functionSignatureRegex, '');
+    return { __html: filteredDescription };
   }
 
   render() {
@@ -80,6 +91,7 @@ class PropTypesTable extends React.PureComponent {
             TextField
           </a> component.
         </Typography>
+
         <Paper className={classes.tableWrapper}>
           <Table>
             <TableHead>
@@ -90,6 +102,7 @@ class PropTypesTable extends React.PureComponent {
                 <TableCell> Description </TableCell>
               </TableRow>
             </TableHead>
+
             <TableBody>
               {
                 Object.keys(propsDoc)
@@ -99,18 +112,20 @@ class PropTypesTable extends React.PureComponent {
                       <TableCell
                         className={classnames({ [classes.required]: propsDoc[prop].required })}
                       >
-                        {
-                          propsDoc[prop].required
-                            ? `${prop} *`
-                            : prop
-                        }
+                        {propsDoc[prop].required ? `${prop} *` : prop}
                       </TableCell>
+
                       <TableCell className={classes.type}>
                         {this.getPropType(propsDoc[prop])}
                       </TableCell>
+
                       <TableCell> {this.getDefaultValue(propsDoc[prop].defaultValue)} </TableCell>
+
                       <TableCell>
-                        <span dangerouslySetInnerHTML={{ __html: propsDoc[prop].description }} />
+                        <span dangerouslySetInnerHTML={
+                          this.getDescriptionHtml(propsDoc[prop].description)
+                        }
+                        />
                       </TableCell>
                     </TableRow>
                   ))
@@ -131,6 +146,7 @@ const styles = theme => ({
     color: '#8bc34a',
   },
   type: {
+    minWidth: 240,
     color: theme.palette.primary.main,
   },
 });

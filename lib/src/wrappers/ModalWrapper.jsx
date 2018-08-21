@@ -11,7 +11,7 @@ export default class ModalWrapper extends PureComponent {
     value: DomainPropTypes.date,
     /** Format string */
     invalidLabel: PropTypes.node,
-    /** Function for dynamic rendering label (date, invalidLabel) => string */
+    /** Function for dynamic rendering label [(date: Date, invalidLabel: string) => string] */
     labelFunc: PropTypes.func,
     /** "OK" label message */
     okLabel: PropTypes.node,
@@ -28,9 +28,9 @@ export default class ModalWrapper extends PureComponent {
      * <b>Note*</b> that clear button has higher priority
     */
     showTodayButton: PropTypes.bool,
-    /** On open callback */
+    /** On open callback [(e: Event) => void]*/
     onOpen: PropTypes.func,
-    /** On close callback */
+    /** On close callback [(e: Event) => void] */
     onClose: PropTypes.func,
     /** Format string */
     format: PropTypes.string,
