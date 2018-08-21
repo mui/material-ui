@@ -121,6 +121,7 @@ export const styles = theme => {
     },
     /* Class applied to the thumb element if custom thumb icon provided` . */
     thumbTransparent: {
+      backgroundColor: 'transparent',
     },
     thumbIcon: {
       position: 'relative',
