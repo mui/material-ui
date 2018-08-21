@@ -228,12 +228,9 @@ Another symptom is that the styling changes between initial page load and the do
 
 The class names value relies on the concept of [class name generator](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
 The whole page needs to be rendered with **a single generator**.
-This generator needs to behave identically on the server and on the client.
-This has one important implication, you need to provide a new class name generator for each request.
+This generator needs to behave identically on the server and on the client. For instance:
 
-The first thing to look at to make sure your class name generator is behaving identically on
-the server and on the client is that `createGenerateClassName()` needs to be inside the request
-handler:
+- You need to provide a new class name generator for each request. But you might share a `createGenerateClassName()` between different requests:
 
 *example of fix:*
 ```diff
@@ -250,12 +247,11 @@ function handleRender(req, res) {
   const html = renderToString(
 ```
 
-The second thing to look at is to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling
-problems. To check version numbers, run `npm list @material-ui/core` in the
-environment where you build your application and also in your deployment environment.
+- You need to verify that your client and server are running the **exactly the same version** of Material-UI.
+It is possible that a mismatch of even minor versions can cause styling problems.
+To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
  
-You can also ensure the same version in different environments by specifying a specific MUI version
-in the dependencies of your package.json.
+You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
 *example of fix (package.json):*
 ```diff
