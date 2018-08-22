@@ -18,7 +18,7 @@ export const styles = theme => ({
       opacity: 0.12,
     },
   },
-  /* Styles applied to the focus highlight that covers the action area when it is keyboard focused. */
+  /* Styles applied to the overlay that covers the action area when it is keyboard focused. */
   focusHighlight: {
     pointerEvents: 'none',
     position: 'absolute',
