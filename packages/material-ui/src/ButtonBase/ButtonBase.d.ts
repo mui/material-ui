@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { MuiComponent, PropsOf } from '..';
+import { MuiComponent, PropsOf, AnyReactType } from '..';
 import { TouchRippleProps } from './TouchRipple';
+import { OverrideMuiProps } from '../muiComponent';
 
-declare const ButtonBase: MuiComponent<{
+export interface ButtonBaseTypeMap {
   outerProps: {
+    href?: string;
     action?: (actions: ButtonBaseActions) => void;
     buttonRef?: React.Ref<any> | React.RefObject<any>;
     centerRipple?: boolean;
@@ -16,7 +18,11 @@ declare const ButtonBase: MuiComponent<{
   };
   defaultRoot: 'button';
   classKey: ButtonBaseClassKey;
-}>;
+}
+
+declare const ButtonBase: {
+  (props: { href: string } & OverrideMuiProps<ButtonBaseTypeMap, 'a'>): JSX.Element;
+} & MuiComponent<ButtonBaseTypeMap>;
 
 export type ButtonBaseProps = PropsOf<typeof ButtonBase>;
 
