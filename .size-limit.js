@@ -11,8 +11,6 @@ const [main] = fs.readdirSync(dirname).reduce((result, filename) => {
   return result;
 }, []);
 
-console.log('-', main)
-
 module.exports = [
   {
     name: 'The initial cost people pay for using one component',
