@@ -15,6 +15,8 @@ export interface ChipProps
 
 export type ChipClassKey =
   | 'root'
+  | 'colorPrimary'
+  | 'colorSecondary'
   | 'clickable'
   | 'clickablePrimary'
   | 'clickableSecondary'
