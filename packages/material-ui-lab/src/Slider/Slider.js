@@ -122,22 +122,21 @@ export const styles = theme => {
     /* Class applied to the thumb element if custom thumb icon provided` . */
     thumbIconWrapper: {
       backgroundColor: 'transparent',
+      width: 17,
+      height: 17,
       '&$activated': {
-        width: 12,
-        height: 12,
+        width: 22,
+        height: 22,
         transition: 'none',
       },
       '&$jumped': {
-        width: 12,
-        height: 12,
+        width: 22,
+        height: 22,
       },
     },
     thumbIcon: {
-      position: 'relative',
-      top: -7,
-      height: 26,
-      width: 'auto',
-      zIndex: 2,
+      height: 'inherit',
+      width: 'inherit',
     },
     /* Class applied to the root element to trigger JSS nested styles if `reverse={true}` . */
     reverse: {},
@@ -450,7 +449,7 @@ class Slider extends React.Component {
     const ThumbIcon = withIcon
       ? React.cloneElement(thumbIcon, {
           ...thumbIcon.props,
-          className: `${classes.thumbIcon} ${thumbIcon.props.className || ''}`,
+          className: classNames(thumbIcon.props.className, classes.thumbIcon),
         })
       : null;
     /** End Thumb Icon Logic Here */
