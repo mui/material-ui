@@ -54,7 +54,7 @@ jobs:
             # changed files on this branch
             # `git diff --name-only master` but since the checkout used reset --hard
             # we need to parse the revs for the actual master
-            echo 'export CHANGED_FILES=$(git diff --name-only $(git rev-parse origin/master))' >> $BASH_ENV
+            echo 'export CHANGED_FILES=$(git diff --name-only $(git rev-parse origin/master)...)' >> $BASH_ENV
       - run:
           name: Check if yarn prettier was run
           command: |
