@@ -10,7 +10,7 @@ Each breakpoint matches with a *fixed* screen width:
 - **sm**, small: 600px or larger
 - **md**, medium: 960px or larger
 - **lg**, large: 1280px or larger
-- **xl**, xlarge: 1920px or larger
+- **xl**, extra-large: 1920px or larger
 
 These values can always be customized.
 You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme?expend-path=$.breakpoints.values) object.
