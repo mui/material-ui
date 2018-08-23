@@ -3,7 +3,7 @@ import { StandardProps } from '../';
 
 export function cloneChildrenWithClassName<T>(children: React.ReactNode, className: string): T[];
 
-export type NamedMuiComponent = React.ComponentType<{}> & { muiName: string };
+export type NamedMuiComponent = React.ComponentType & { muiName: string };
 
 export interface NamedMuiElement {
   type: NamedMuiComponent;

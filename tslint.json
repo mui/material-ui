@@ -13,7 +13,8 @@
         "semicolon": [true, "always", "ignore-bound-class-methods"],
         "space-within-parens": true,
         "strict-export-declare-modifiers": true,
-        "no-relative-import-in-test": true
+        "no-relative-import-in-test": true,
+        "use-default-type-parameter": true
     },
     "rulesDirectory": [
         "./node_modules/dtslint/bin/rules"
