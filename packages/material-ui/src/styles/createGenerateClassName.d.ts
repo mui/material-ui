@@ -1,6 +1,6 @@
 import { GenerateClassName } from 'jss';
 
-interface GenerateClassNameOptions {
+export interface GenerateClassNameOptions {
   dangerouslyUseGlobalCSS?: boolean;
   productionPrefix?: string;
 }

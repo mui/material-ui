@@ -92,7 +92,7 @@ export type Overrides = {
   [Name in keyof ComponentNameToClassKey]?: Partial<StyleRules<ComponentNameToClassKey[Name]>>
 };
 
-type ComponentNameToClassKey = {
+export type ComponentNameToClassKey = {
   MuiAppBar: AppBarClassKey;
   MuiAvatar: AvatarClassKey;
   MuiBackdrop: BackdropClassKey;

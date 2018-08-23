@@ -11,7 +11,8 @@
         "no-unnecessary-callback-wrapper": true,
         "no-unnecessary-type-assertion": true,
         "semicolon": [true, "always", "ignore-bound-class-methods"],
-        "space-within-parens": true
+        "space-within-parens": true,
+        "strict-export-declare-modifiers": true
     },
     "rulesDirectory": [
         "./node_modules/dtslint/bin/rules"
