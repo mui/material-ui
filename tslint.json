@@ -14,7 +14,14 @@
         "space-within-parens": true,
         "strict-export-declare-modifiers": true,
         "no-relative-import-in-test": true,
-        "use-default-type-parameter": true
+        "use-default-type-parameter": true,
+        // This can be tricky in most cases and doesn't hurt if it is done one to many
+        "no-unnecessary-generics": false,
+        "prefer-declare-function": true,
+        "interface-over-type-literal": true,
+        "array-type": [true, "array-simple"],
+        "no-duplicate-imports": true,
+        "callable-types": true
     },
     "rulesDirectory": [
         "./node_modules/dtslint/bin/rules"
