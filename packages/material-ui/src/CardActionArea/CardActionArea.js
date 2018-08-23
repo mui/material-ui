@@ -11,10 +11,13 @@ export const styles = theme => ({
   root: {
     display: 'block',
     textAlign: 'inherit',
+    '&:hover $focusHighlight': {
+      opacity: theme.palette.action.hoverOpacity,
+    },
   },
   /* Styles applied to the ButtonBase root element if the action area is keyboard focused. */
   focusVisible: {
-    '& $focusHighlight': {
+    '& $focusHighlight, &:hover $focusHighlight': {
       opacity: 0.12,
     },
   },
