@@ -65,10 +65,10 @@ describe('<TableSortLabel />', () => {
     });
 
     it('should accept a custom icon for the sort icon', () => {
-      shallow = createShallow({ untilSelector: Sort, dive: true });
+      shallow = createShallow({ untilSelector: 'Sort' });
       const wrapper = mount(<TableSortLabel IconComponent={Sort} />);
-      const icon = wrapper.props().IconComponent;
-      assert.strictEqual(icon, Sort);
+      assert.strictEqual(wrapper.props().IconComponent, Sort);
+      assert.strictEqual(wrapper.find(Sort).length, 1);
     });
   });
 
