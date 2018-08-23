@@ -96,7 +96,7 @@ TableSortLabel.propTypes = {
    */
   direction: PropTypes.oneOf(['asc', 'desc']),
   /**
-   * Sort icon to use
+   * Sort icon to use.
    */
   IconComponent: PropTypes.func,
 };
