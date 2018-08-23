@@ -67,9 +67,9 @@ import {
   Tooltip,
   Typography,
   withMobileDialog,
-} from '../../src';
-import { withStyles, StyleRulesCallback, WithStyles, Theme, createStyles } from '../../src/styles';
-import { DialogProps } from '../../src/Dialog';
+} from '@material-ui/core';
+import { withStyles, StyleRulesCallback, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { DialogProps } from '@material-ui/core/Dialog';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;

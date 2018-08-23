@@ -1,6 +1,11 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "src"
+    "baseUrl": ".",
+    "rootDir": "src",
+    "paths": {
+      "@material-ui/core/*": ["src/*"],
+      "@material-ui/core": ["src/"]
+    }
   }
 }

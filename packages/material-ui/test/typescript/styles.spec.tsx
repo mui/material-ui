@@ -10,12 +10,12 @@ import {
   StyleRulesCallback,
   StyledComponentProps,
   WithStyles,
-} from '../../src/styles';
-import Button from '../../src/Button/Button';
-import blue from '../../src/colors/blue';
-import { WithTheme } from '../../src/styles/withTheme';
-import { StandardProps } from '../../src';
-import { TypographyStyle } from '../../src/styles/createTypography';
+} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button/Button';
+import blue from '@material-ui/core/colors/blue';
+import { WithTheme } from '@material-ui/core/styles/withTheme';
+import { StandardProps } from '@material-ui/core';
+import { TypographyStyle } from '@material-ui/core/styles/createTypography';
 
 // Shared types for examples
 interface ComponentProps {
