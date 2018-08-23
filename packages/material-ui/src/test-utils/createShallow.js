@@ -5,10 +5,7 @@ import until from './until';
 export default function createShallow(options1 = {}) {
   const { shallow = enzymeShallow, dive = false, untilSelector = false, ...other1 } = options1;
 
-  const shallowWithContext = function shallowWithContext(
-    node,
-    options2 = {},
-  ) {
+  const shallowWithContext = function shallowWithContext(node, options2 = {}) {
     const options = {
       ...other1,
       ...options2,
