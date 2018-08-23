@@ -13,11 +13,11 @@ const styles = (theme: Theme) =>
     },
   });
 
-interface IHelloProps extends WithWidth, WithStyles<typeof styles> {
+interface HelloProps extends WithWidth, WithStyles<typeof styles> {
   name?: string;
 }
 
-export class Hello extends React.Component<IHelloProps> {
+export class Hello extends React.Component<HelloProps> {
   static defaultProps = {
     name: 'Alex',
   };
