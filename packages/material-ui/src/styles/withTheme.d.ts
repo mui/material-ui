@@ -6,8 +6,6 @@ export interface WithTheme {
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
-declare const withTheme: () => <P extends ConsistentWith<P, WithTheme>>(
+export default function withTheme(): <P extends ConsistentWith<P, WithTheme>>(
   component: AnyComponent<P & WithTheme>,
 ) => React.ComponentType<Overwrite<P, Partial<WithTheme>>>;
-
-export default withTheme;
