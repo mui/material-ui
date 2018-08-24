@@ -7,7 +7,6 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "suppressImplicitAnyIndexErrors": true,
     "noEmit": true,
     "experimentalDecorators": true,
     "baseUrl": "./packages",
