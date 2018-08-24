@@ -10,12 +10,12 @@ import {
   StyleRulesCallback,
   StyledComponentProps,
   WithStyles,
-} from '../../src/styles';
-import Button from '../../src/Button/Button';
-import blue from '../../src/colors/blue';
-import { WithTheme } from '../../src/styles/withTheme';
-import { StandardProps } from '../../src';
-import { TypographyStyle } from '../../src/styles/createTypography';
+} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button/Button';
+import blue from '@material-ui/core/colors/blue';
+import { WithTheme } from '@material-ui/core/styles/withTheme';
+import { StandardProps } from '@material-ui/core';
+import { TypographyStyle } from '@material-ui/core/styles/createTypography';
 
 // Shared types for examples
 interface ComponentProps {
@@ -209,7 +209,7 @@ declare const themed: boolean;
 
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
-//@withStyles(styles)
+// @withStyles(styles)
 const DecoratedComponent = withStyles(styles)(
   class extends React.Component<ComponentProps & WithStyles<typeof styles>> {
     render() {
@@ -309,7 +309,7 @@ withStyles(theme =>
   const StyledComponent = withStyles(styles)(Component);
 
   class App extends React.Component {
-    public render() {
+    render() {
       return (
         <div className="App">
           <StyledComponent caption="Developer" />

@@ -3,9 +3,9 @@ import { StandardProps } from '../';
 
 export function cloneChildrenWithClassName<T>(children: React.ReactNode, className: string): T[];
 
-type NamedMuiComponent = React.ComponentType<{}> & { muiName: string };
+export type NamedMuiComponent = React.ComponentType & { muiName: string };
 
-interface NamedMuiElement {
+export interface NamedMuiElement {
   type: NamedMuiComponent;
   props: StandardProps<{}, never>;
   key: string | number | null;
