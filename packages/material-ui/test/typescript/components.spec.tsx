@@ -68,7 +68,13 @@ import {
   Typography,
   withMobileDialog,
 } from '@material-ui/core';
-import { withStyles, StyleRulesCallback, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  withStyles,
+  StyleRulesCallback,
+  WithStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import { DialogProps } from '@material-ui/core/Dialog';
 
 const log = console.log;
@@ -232,11 +238,7 @@ const ChipsTest = () => (
   <div>
     <Chip label="Basic Chip" />
     <Chip avatar={<Avatar>MB</Avatar>} label="Clickable Chip" onClick={log} />
-    <Chip
-      avatar={<Avatar src={'image.bmp'} />}
-      label="Deletable Chip"
-      onDelete={log}
-    />
+    <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={log} />
     <Chip
       avatar={
         <Avatar>
@@ -308,12 +310,7 @@ const DrawerTest = () => {
   };
   return (
     <div>
-      <Drawer
-        variant="persistent"
-        open={open.left}
-        onClose={log}
-        onClick={log}
-      >
+      <Drawer variant="persistent" open={open.left} onClose={log} onClick={log}>
         List
       </Drawer>
       <Drawer
@@ -328,22 +325,10 @@ const DrawerTest = () => {
       >
         List
       </Drawer>
-      <Drawer
-        anchor="bottom"
-        variant="temporary"
-        open={open.bottom}
-        onClose={log}
-        onClick={log}
-      >
+      <Drawer anchor="bottom" variant="temporary" open={open.bottom} onClose={log} onClick={log}>
         List
       </Drawer>
-      <Drawer
-        variant="persistent"
-        anchor="right"
-        open={open.right}
-        onClose={log}
-        onClick={log}
-      >
+      <Drawer variant="persistent" anchor="right" open={open.right} onClose={log} onClick={log}>
         List
       </Drawer>
     </div>
@@ -359,12 +344,7 @@ const SwipeableDrawerTest = () => {
   };
   return (
     <div>
-      <SwipeableDrawer
-        open={open.left}
-        onClose={log}
-        onClick={log}
-        onOpen={log}
-      >
+      <SwipeableDrawer open={open.left} onClose={log} onClick={log} onOpen={log}>
         List
       </SwipeableDrawer>
       <SwipeableDrawer
@@ -379,13 +359,7 @@ const SwipeableDrawerTest = () => {
       >
         List
       </SwipeableDrawer>
-      <SwipeableDrawer
-        anchor="bottom"
-        open={open.bottom}
-        onClose={log}
-        onClick={log}
-        onOpen={log}
-      >
+      <SwipeableDrawer anchor="bottom" open={open.bottom} onClose={log} onClick={log} onOpen={log}>
         List
       </SwipeableDrawer>
       <SwipeableDrawer
