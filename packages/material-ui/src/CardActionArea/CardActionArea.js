@@ -14,13 +14,12 @@ export const styles = theme => ({
     '&:hover $focusHighlight': {
       opacity: theme.palette.action.hoverOpacity,
     },
-  },
-  /* Styles applied to the ButtonBase root element if the action area is keyboard focused. */
-  focusVisible: {
-    '& $focusHighlight, &:hover $focusHighlight': {
+    '&$focusVisible $focusHighlight': {
       opacity: 0.12,
     },
   },
+  /* Styles applied to the ButtonBase root element if the action area is keyboard focused. */
+  focusVisible: {},
   /* Styles applied to the overlay that covers the action area when it is keyboard focused. */
   focusHighlight: {
     pointerEvents: 'none',
@@ -47,7 +46,7 @@ function CardActionArea(props) {
       {...other}
     >
       {children}
-      <span aria-hidden="true" className={classes.focusHighlight} />
+      <span className={classes.focusHighlight} />
     </ButtonBase>
   );
 }
