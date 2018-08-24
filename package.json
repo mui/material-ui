@@ -34,7 +34,6 @@
     "docs:deploy": "git push material-ui-docs master:latest",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "lint:fix": "eslint . --cache --fix && echo \"eslint: no lint errors\"",
-    "lint:typescript": "tslint -p tsconfig.json \"packages/*/{src,test}/**/*.{ts,tsx}\"",
     "prettier": "yarn --silent prettier:files | xargs prettier --write",
     "prettier:files": "find . -name \"*.js\" -o -name \"*.d.ts\" -o -name \"*.tsx\" | grep -v -f .eslintignore",
     "prettier:check": "yarn --silent prettier:files | xargs prettier --list-different",
@@ -50,7 +49,7 @@
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha packages/material-ui/test/**/*.test.js packages/material-ui/src/{,**/}*.test.js && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
-    "typescript": "cd packages/material-ui && yarn run lint:typescript",
+    "typescript": "tslint -p tsconfig.json \"packages/*/{src,test}/**/*.{ts,tsx}\"",
     "flow": "flow --show-all-errors",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true"
   },
