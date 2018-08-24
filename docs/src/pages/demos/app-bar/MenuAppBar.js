@@ -50,7 +50,7 @@ class MenuAppBar extends React.Component {
     const open = Boolean(anchorEl);
 
     return (
-      <div className={classes.root}>
+      <div className={styles.root}>
         <FormGroup>
           <FormControlLabel
             control={
@@ -61,10 +61,10 @@ class MenuAppBar extends React.Component {
         </FormGroup>
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <IconButton className={styles.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" className={classes.flex}>
+            <Typography variant="title" color="inherit" className={styles.flex}>
               Photos
             </Typography>
             {auth && (
