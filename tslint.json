@@ -19,7 +19,8 @@
         "no-unnecessary-generics": false,
         "prefer-declare-function": true,
         "interface-over-type-literal": true,
-        "array-type": [true, "array-simple"]
+        "array-type": [true, "array-simple"],
+        "no-duplicate-imports": true
     },
     "rulesDirectory": [
         "./node_modules/dtslint/bin/rules"
