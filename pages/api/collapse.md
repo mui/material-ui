@@ -37,7 +37,7 @@ This property accepts the following keys:
 | <span class="prop-name">container</span> | Styles applied to the container element.
 | <span class="prop-name">entered</span> | Styles applied to the container element when the transition has entered.
 | <span class="prop-name">wrapper</span> | Styles applied to the outer wrapper element.
-| <span class="prop-name">wrapperInner</span> | Styles applied to the outer wrapper element.
+| <span class="prop-name">wrapperInner</span> | Styles applied to the inner wrapper element.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Collapse/Collapse.js)
