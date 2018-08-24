@@ -24,7 +24,7 @@ export const styles = theme => ({
     // Hack to get children with a negative margin to not falsify the height computation.
     display: 'flex',
   },
-  /* Styles applied to the outer wrapper element. */
+  /* Styles applied to the inner wrapper element. */
   wrapperInner: {
     width: '100%',
   },
