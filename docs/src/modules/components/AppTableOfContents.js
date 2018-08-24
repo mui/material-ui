@@ -112,11 +112,18 @@ class AppTableOfContents extends React.Component {
   }
 
   findActiveIndex = () => {
-    const active = this.itemsClient.find(
-      (item, index) =>
+    let active;
+
+    for (let i = 0; i < this.itemsClient.length; i += 1) {
+      const item = this.itemsClient[i];
+      if (
         document.documentElement.scrollTop < item.node.offsetTop + 100 ||
-        index === this.itemsClient.length - 1,
-    );
+        i === this.itemsClient.length - 1
+      ) {
+        active = item;
+        break;
+      }
+    }
 
     if (active && this.state.active !== active.hash) {
       this.setState({
