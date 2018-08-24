@@ -150,5 +150,3 @@ Thank you to [BrowserStack](https://www.browserstack.com/) for providing the inf
 
 This project is licensed under the terms of the
 [MIT license](/LICENSE).
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmui-org%2Fmaterial-ui.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmui-org%2Fmaterial-ui?ref=badge_large)
