@@ -20,7 +20,8 @@
         "prefer-declare-function": true,
         "interface-over-type-literal": true,
         "array-type": [true, "array-simple"],
-        "no-duplicate-imports": true
+        "no-duplicate-imports": true,
+        "callable-types": true
     },
     "rulesDirectory": [
         "./node_modules/dtslint/bin/rules"
