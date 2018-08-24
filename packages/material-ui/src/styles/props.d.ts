@@ -89,7 +89,7 @@ export type ComponentsProps = {
   [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>
 };
 
-export type ComponentsPropsList = {
+export interface ComponentsPropsList {
   MuiAppBar: AppBarProps;
   MuiAvatar: AvatarProps;
   MuiBackdrop: BackdropProps;
@@ -173,4 +173,4 @@ export type ComponentsPropsList = {
   MuiTooltip: TooltipProps;
   MuiTouchRipple: TouchRippleProps;
   MuiTypography: TypographyProps;
-};
+}

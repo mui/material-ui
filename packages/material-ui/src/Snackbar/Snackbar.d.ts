@@ -3,10 +3,10 @@ import { StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
-export type SnackbarOrigin = {
+export interface SnackbarOrigin {
   horizontal: 'left' | 'center' | 'right';
   vertical: 'top' | 'center' | 'bottom';
-};
+}
 
 export interface SnackbarProps
   extends StandardProps<
