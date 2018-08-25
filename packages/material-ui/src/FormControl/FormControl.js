@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { isFilled, isAdornedStart } from '../Input/utils';
 import withStyles from '../styles/withStyles';
-import { isFilled, isAdornedStart } from '../Input/Input';
 import { capitalize } from '../utils/helpers';
 import { isMuiElement } from '../utils/reactHelpers';
 
