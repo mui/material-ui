@@ -16,7 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import SimpleMediaCard from '../../demos/cards/SimpleMediaCard';
+import ImgMediaCard from '../../demos/cards/ImgMediaCard';
 
 const styles = {
   root: {
@@ -93,19 +93,19 @@ class SimpleBackdrop extends React.Component {
             <FrontContent classes={{ root: classes.content }}>
               <List>
                 <ListItem>
-                  <SimpleMediaCard />
+                  <ImgMediaCard />
                 </ListItem>
                 <ListItem>
-                  <SimpleMediaCard />
+                  <ImgMediaCard />
                 </ListItem>
                 <ListItem>
-                  <SimpleMediaCard />
+                  <ImgMediaCard />
                 </ListItem>
                 <ListItem>
-                  <SimpleMediaCard />
+                  <ImgMediaCard />
                 </ListItem>
                 <ListItem>
-                  <SimpleMediaCard />
+                  <ImgMediaCard />
                 </ListItem>
               </List>
             </FrontContent>

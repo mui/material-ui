@@ -981,21 +981,15 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-<<<<<<< HEAD
-"@webassemblyjs/ast@1.5.13":
-  version "1.5.13"
-  resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.5.13.tgz#81155a570bd5803a30ec31436bc2c9c0ede38f25"
-=======
 "@types/react@>=16":
   version "16.4.2"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.2.tgz#f1a9cf1ee85221530def2ac26aee20f910a9dac8"
   dependencies:
     csstype "^2.2.0"
 
-"@webassemblyjs/ast@1.5.12":
-  version "1.5.12"
-  resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.5.12.tgz#a9acbcb3f25333c4edfa1fdf3186b1ccf64e6664"
->>>>>>> fix yarn lock
+"@webassemblyjs/ast@1.5.13":
+  version "1.5.13"
+  resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.5.13.tgz#81155a570bd5803a30ec31436bc2c9c0ede38f25"
   dependencies:
     "@webassemblyjs/helper-module-context" "1.5.13"
     "@webassemblyjs/helper-wasm-bytecode" "1.5.13"
