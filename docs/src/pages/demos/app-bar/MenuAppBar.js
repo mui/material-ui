@@ -32,8 +32,8 @@ class MenuAppBar extends React.Component {
     anchorEl: null,
   };
 
-  handleChange = (event, checked) => {
-    this.setState({ auth: checked });
+  handleChange = event => {
+    this.setState({ auth: event.target.checked });
   };
 
   handleMenu = event => {
@@ -50,7 +50,7 @@ class MenuAppBar extends React.Component {
     const open = Boolean(anchorEl);
 
     return (
-      <div className={styles.root}>
+      <div className={classes.root}>
         <FormGroup>
           <FormControlLabel
             control={
@@ -61,10 +61,10 @@ class MenuAppBar extends React.Component {
         </FormGroup>
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={styles.menuButton} color="inherit" aria-label="Menu">
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" className={styles.flex}>
+            <Typography variant="title" color="inherit" className={classes.flex}>
               Photos
             </Typography>
             {auth && (
