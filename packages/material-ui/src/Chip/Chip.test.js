@@ -327,7 +327,7 @@ describe('<Chip />', () => {
         const wrapper2 = mount(<ChipNaked classes={{}} />);
         const handleBlur = spy();
         wrapper2.instance().chipRef.blur = handleBlur;
-        wrapper2.find('div').simulate('keydown', {
+        wrapper2.find('div').simulate('keyUp', {
           preventDefault: () => {},
           keyCode: keycode('esc'),
         });
@@ -352,7 +352,7 @@ describe('<Chip />', () => {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('space'),
         };
-        wrapper.find('div').simulate('keydown', spaceKeydownEvent);
+        wrapper.find('div').simulate('keyUp', spaceKeydownEvent);
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
         assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
         assert.strictEqual(onClickSpy.args[0][0].keyCode, spaceKeydownEvent.keyCode);
@@ -364,7 +364,7 @@ describe('<Chip />', () => {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('enter'),
         };
-        wrapper.find('div').simulate('keydown', enterKeydownEvent);
+        wrapper.find('div').simulate('keyUp', enterKeydownEvent);
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
         assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
         assert.strictEqual(onClickSpy.args[0][0].keyCode, enterKeydownEvent.keyCode);
@@ -381,7 +381,7 @@ describe('<Chip />', () => {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('backspace'),
         };
-        wrapper2.find('div').simulate('keydown', backspaceKeydownEvent);
+        wrapper2.find('div').simulate('keyUp', backspaceKeydownEvent);
 
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
         assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called onClick');

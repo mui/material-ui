@@ -178,30 +178,47 @@ class Chip extends React.Component {
     }
   };
 
+  handleKeyUp = event => {
+    // Ignore events from children of `Chip`.
+    if (event.currentTarget !== event.target) {
+      return;
+    }
+
+    const { onClick, onDelete, onKeyUp } = this.props;
+    const key = keycode(event);
+
+    if (onKeyUp) {
+      onKeyUp(event);
+    }
+    this.preventQuickKey(event);
+    if (onClick && (key === 'space' || key === 'enter')) {
+      onClick(event);
+    } else if (onDelete && key === 'backspace') {
+      onDelete(event);
+    } else if (key === 'esc') {
+      if (this.chipRef) {
+        this.chipRef.blur();
+      }
+    }
+  };
+
   handleKeyDown = event => {
     // Ignore events from children of `Chip`.
     if (event.currentTarget !== event.target) {
       return;
     }
 
-    const { onClick, onDelete, onKeyDown } = this.props;
-    const key = keycode(event);
-
-    if (onClick && (key === 'space' || key === 'enter')) {
-      event.preventDefault();
-      onClick(event);
-    } else if (onDelete && key === 'backspace') {
-      event.preventDefault();
-      onDelete(event);
-    } else if (key === 'esc') {
-      event.preventDefault();
-      if (this.chipRef) {
-        this.chipRef.blur();
-      }
-    }
-
+    const { onKeyDown } = this.props;
     if (onKeyDown) {
       onKeyDown(event);
+    }
+    this.preventQuickKey(event);
+  };
+
+  preventQuickKey = event => {
+    const key = keycode(event);
+    if (key === 'space' || key === 'enter' || key === 'backspace' || key === 'esc') {
+      event.preventDefault();
     }
   };
 
@@ -217,6 +234,7 @@ class Chip extends React.Component {
       label,
       onClick,
       onDelete,
+      onKeyUp,
       onKeyDown,
       tabIndex: tabIndexProp,
       ...other
@@ -278,6 +296,7 @@ class Chip extends React.Component {
         tabIndex={tabIndex}
         onClick={onClick}
         onKeyDown={this.handleKeyDown}
+        onKeyUp={this.handleKeyUp}
         ref={ref => {
           this.chipRef = ref;
         }}
@@ -346,6 +365,10 @@ Chip.propTypes = {
    * @ignore
    */
   onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyUp: PropTypes.func,
   /**
    * @ignore
    */
