@@ -5,6 +5,7 @@ import keycode from 'keycode';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Fade from '../Fade';
+import Portal from '../Portal';
 import Backdrop from '../Backdrop';
 import Modal from './Modal';
 
@@ -40,10 +41,13 @@ describe('<Modal />', () => {
           <p>Hello World</p>
         </ModalNaked>,
       );
-      assert.strictEqual(wrapper.childAt(0).name(), 'Portal', 'should render a portal when openn');
-      const modal = wrapper.childAt(0).childAt(0);
+      assert.strictEqual(wrapper.childAt(0).name(), 'Portal');
+      const modal = wrapper
+        .childAt(0)
+        .childAt(0)
+        .childAt(0);
       assert.strictEqual(modal.type(), 'div');
-      assert.strictEqual(modal.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(modal.hasClass(classes.root), true);
     });
   });
 
@@ -159,7 +163,7 @@ describe('<Modal />', () => {
     it('should render the content into the portal', () => {
       wrapper.setProps({ open: true });
       const portalLayer = wrapper
-        .find('Portal')
+        .find(Portal)
         .instance()
         .getMountNode();
       const container = document.getElementById('container');
