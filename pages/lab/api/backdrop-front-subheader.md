@@ -25,8 +25,10 @@ Any other properties supplied will be spread to the root element (native element
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
+
 - `root`
 - `divided`
+- `minimized`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab/src/Backdrop/BackdropFrontSubheader.js)
@@ -34,5 +36,5 @@ for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
-you need to use the following style sheet name: `MuiBackdropFrontHeader`.
+you need to use the following style sheet name: `MuiBackdropFrontSubheader`.
 

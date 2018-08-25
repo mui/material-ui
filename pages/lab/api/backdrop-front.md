@@ -18,9 +18,8 @@ title: BackdropFront API
 | <span class="prop-name required">children *</span> | <span class="prop-type">node |   | The content of the front panel. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool |   | If `true`, the panel will be displayed in a disabled state, with a scrim overlay |
-| <span class="prop-name">minimized</span> | <span class="prop-type">bool |   | If `true`, minimize the panel. |
-| <span class="prop-name">minimizedIcon</span> | <span class="prop-type">node |   | The icon to display as the minimized indicator. |
-| <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback fired when the expand/collapse state is changed.<br><br>**Signature:**<br>`function(event: object, minimized: boolean) => void`<br>*event:* The event source of the callback<br>*minimized:* The `minimized` state of the panel |
+| <span class="prop-name">expanded</span> | <span class="prop-type">bool | <span class="prop-default">true</span> | If `true`, expands the panel, otherwise collapse it to a minimized view. |
+| <span class="prop-name">onExpand</span> | <span class="prop-type">func |   | Callback fired when minimized, non-disabled panel is clicked.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 
 Any other properties supplied will be spread to the root element ([Paper](/api/paper)).
 
@@ -28,6 +27,7 @@ Any other properties supplied will be spread to the root element ([Paper](/api/p
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
+
 - `root`
 - `scrim`
 - `scrimActive`

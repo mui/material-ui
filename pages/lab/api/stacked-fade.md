@@ -18,7 +18,7 @@ title: StackedFade API
 | <span class="prop-name">children</span> | <span class="prop-type">union:&nbsp;element&nbsp;&#124;<br>&nbsp;func<br> |   | A single child content element. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">in</span> | <span class="prop-type">bool |   | If `true`, the component will transition in. |
-| <span class="prop-name">timeout</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{enter?: number, exit?: number}<br> | <span class="prop-default">duration.shortest</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <span class="prop-name">timeout</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br> | <span class="prop-default">duration.shortest</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 Any other properties supplied will be spread to the root element ([Fade](/api/fade)).
 
@@ -26,6 +26,7 @@ Any other properties supplied will be spread to the root element ([Fade](/api/fa
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
+
 - `root`
 - `selected`
 

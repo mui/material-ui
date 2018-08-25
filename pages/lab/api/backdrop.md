@@ -25,6 +25,7 @@ Any other properties supplied will be spread to the root element ([Paper](/api/p
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
+
 - `root`
 - `colorPrimary`
 - `colorSecondary`
