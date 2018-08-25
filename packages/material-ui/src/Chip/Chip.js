@@ -179,29 +179,42 @@ class Chip extends React.Component {
   };
 
   handleKeyDown = event => {
+    const { onKeyDown } = this.props;
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
+
     // Ignore events from children of `Chip`.
     if (event.currentTarget !== event.target) {
       return;
     }
 
-    const { onClick, onDelete, onKeyDown } = this.props;
+    const key = keycode(event);
+    if (key === 'space' || key === 'enter' || key === 'backspace' || key === 'esc') {
+      event.preventDefault();
+    }
+  };
+
+  handleKeyUp = event => {
+    const { onClick, onDelete, onKeyUp } = this.props;
+
+    if (onKeyUp) {
+      onKeyUp(event);
+    }
+
+    // Ignore events from children of `Chip`.
+    if (event.currentTarget !== event.target) {
+      return;
+    }
+
     const key = keycode(event);
 
     if (onClick && (key === 'space' || key === 'enter')) {
-      event.preventDefault();
       onClick(event);
     } else if (onDelete && key === 'backspace') {
-      event.preventDefault();
       onDelete(event);
-    } else if (key === 'esc') {
-      event.preventDefault();
-      if (this.chipRef) {
-        this.chipRef.blur();
-      }
-    }
-
-    if (onKeyDown) {
-      onKeyDown(event);
+    } else if (key === 'esc' && this.chipRef) {
+      this.chipRef.blur();
     }
   };
 
@@ -218,6 +231,7 @@ class Chip extends React.Component {
       onClick,
       onDelete,
       onKeyDown,
+      onKeyUp,
       tabIndex: tabIndexProp,
       ...other
     } = this.props;
@@ -278,6 +292,7 @@ class Chip extends React.Component {
         tabIndex={tabIndex}
         onClick={onClick}
         onKeyDown={this.handleKeyDown}
+        onKeyUp={this.handleKeyUp}
         ref={ref => {
           this.chipRef = ref;
         }}
@@ -346,6 +361,10 @@ Chip.propTypes = {
    * @ignore
    */
   onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyUp: PropTypes.func,
   /**
    * @ignore
    */
