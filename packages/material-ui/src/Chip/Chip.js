@@ -178,47 +178,43 @@ class Chip extends React.Component {
     }
   };
 
-  handleKeyUp = event => {
-    // Ignore events from children of `Chip`.
-    if (event.currentTarget !== event.target) {
-      return;
-    }
-
-    const { onClick, onDelete, onKeyUp } = this.props;
-    const key = keycode(event);
-
-    if (onKeyUp) {
-      onKeyUp(event);
-    }
-    this.preventQuickKey(event);
-    if (onClick && (key === 'space' || key === 'enter')) {
-      onClick(event);
-    } else if (onDelete && key === 'backspace') {
-      onDelete(event);
-    } else if (key === 'esc') {
-      if (this.chipRef) {
-        this.chipRef.blur();
-      }
-    }
-  };
-
   handleKeyDown = event => {
-    // Ignore events from children of `Chip`.
-    if (event.currentTarget !== event.target) {
-      return;
-    }
-
     const { onKeyDown } = this.props;
     if (onKeyDown) {
       onKeyDown(event);
     }
-    this.preventQuickKey(event);
-  };
 
-  preventQuickKey = event => {
+    // Ignore events from children of `Chip`.
+    if (event.currentTarget !== event.target) {
+      return;
+    }
+
     const key = keycode(event);
     if (key === 'space' || key === 'enter' || key === 'backspace' || key === 'esc') {
       event.preventDefault();
+    }
+  };
+
+  handleKeyUp = event => {
+    const { onClick, onDelete, onKeyUp } = this.props;
+
+    if (onKeyUp) {
+      onKeyUp(event);
+    }
+
+    // Ignore events from children of `Chip`.
+    if (event.currentTarget !== event.target) {
+      return;
+    }
+
+    const key = keycode(event);
+
+    if (onClick && (key === 'space' || key === 'enter')) {
+      onClick(event);
+    } else if (onDelete && key === 'backspace') {
+      onDelete(event);
+    } else if (key === 'esc' && this.chipRef) {
+      this.chipRef.blur();
     }
   };
 
@@ -234,8 +230,8 @@ class Chip extends React.Component {
       label,
       onClick,
       onDelete,
-      onKeyUp,
       onKeyDown,
+      onKeyUp,
       tabIndex: tabIndexProp,
       ...other
     } = this.props;
