@@ -152,7 +152,9 @@ class MultiSectionBackdrop extends React.Component {
               </List>
             </BackSection>
             <BackSection expanded={expanded === 'filters'}>
-              {tags.map(label => <Chip key={label} label={label} className={classes.chip} />)}
+              {tags.map(label => (
+                <Chip key={label} label={label} className={classes.chip} />
+              ))}
             </BackSection>
           </Back>
           <Front
