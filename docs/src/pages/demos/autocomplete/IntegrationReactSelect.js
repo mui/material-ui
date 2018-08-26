@@ -89,10 +89,11 @@ const styles = theme => ({
     fontSize: 16,
   },
   paper: {
-    marginTop: theme.spacing.unit,
     position: 'absolute',
     zIndex: 1,
-    width: '100%',
+    marginTop: theme.spacing.unit,
+    left: 0,
+    right: 0,
   },
   divider: {
     height: theme.spacing.unit * 2,
