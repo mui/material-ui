@@ -39,7 +39,7 @@ export interface TransitionsOptions {
   getAutoHeightDuration?: (height: number) => number;
 }
 
-//export type TransitionsOptions = DeepPartial<Transitions>;
+// export type TransitionsOptions = DeepPartial<Transitions>;
 
 declare const transitions: Transitions;
 export default transitions;

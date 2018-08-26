@@ -60,8 +60,6 @@ export default function withStyles<
 >(
   style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: Options,
-): {
-  <P extends ConsistentWith<P, StyledComponentProps<ClassKey> & Partial<WithTheme>>>(
-    component: AnyComponent<P & WithStyles<ClassKey, Options['withTheme']>>,
-  ): React.ComponentType<Overwrite<Omit<P, 'theme'>, StyledComponentProps<ClassKey>>>;
-};
+): <P extends ConsistentWith<P, StyledComponentProps<ClassKey> & Partial<WithTheme>>>(
+  component: AnyComponent<P & WithStyles<ClassKey, Options['withTheme']>>,
+) => React.ComponentType<Overwrite<Omit<P, 'theme'>, StyledComponentProps<ClassKey>>>;

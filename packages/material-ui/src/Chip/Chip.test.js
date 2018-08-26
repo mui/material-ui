@@ -78,7 +78,7 @@ describe('<Chip />', () => {
     it('should merge user classes & spread custom props to the root node', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofChip');
+      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofChip');
       assert.strictEqual(wrapper.props().onClick, handleClick);
     });
 
@@ -312,7 +312,7 @@ describe('<Chip />', () => {
         const anyKeydownEvent = { keycode: keycode('p') };
         const onKeyDownSpy = spy();
         wrapper = mount(<Chip classes={{}} onKeyDown={onKeyDownSpy} />);
-        wrapper.find('div').simulate('keydown', anyKeydownEvent);
+        wrapper.find('div').simulate('keyDown', anyKeydownEvent);
         assert.strictEqual(onKeyDownSpy.callCount, 1, 'should have called onKeyDown');
         assert.strictEqual(
           onKeyDownSpy.args[0][0].keyCode,
@@ -327,7 +327,7 @@ describe('<Chip />', () => {
         const wrapper2 = mount(<ChipNaked classes={{}} />);
         const handleBlur = spy();
         wrapper2.instance().chipRef.blur = handleBlur;
-        wrapper2.find('div').simulate('keydown', {
+        wrapper2.find('div').simulate('keyUp', {
           preventDefault: () => {},
           keyCode: keycode('esc'),
         });
@@ -348,44 +348,61 @@ describe('<Chip />', () => {
 
       it('should call onClick when `space` is pressed ', () => {
         const preventDefaultSpy = spy();
-        const spaceKeydownEvent = {
+        const spaceKeyDown = {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('space'),
         };
-        wrapper.find('div').simulate('keydown', spaceKeydownEvent);
-        assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
-        assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
-        assert.strictEqual(onClickSpy.args[0][0].keyCode, spaceKeydownEvent.keyCode);
+        wrapper.find('div').simulate('keyDown', spaceKeyDown);
+        assert.strictEqual(preventDefaultSpy.callCount, 1);
+        assert.strictEqual(onClickSpy.callCount, 0);
+
+        const spaceKeyUp = {
+          keyCode: keycode('space'),
+        };
+        wrapper.find('div').simulate('keyUp', spaceKeyUp);
+        assert.strictEqual(onClickSpy.callCount, 1);
+        assert.strictEqual(onClickSpy.args[0][0].keyCode, spaceKeyUp.keyCode);
       });
 
       it('should call onClick when `enter` is pressed ', () => {
         const preventDefaultSpy = spy();
-        const enterKeydownEvent = {
+        const enterKeyDown = {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('enter'),
         };
-        wrapper.find('div').simulate('keydown', enterKeydownEvent);
-        assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
-        assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
-        assert.strictEqual(onClickSpy.args[0][0].keyCode, enterKeydownEvent.keyCode);
+        wrapper.find('div').simulate('keyDown', enterKeyDown);
+        assert.strictEqual(preventDefaultSpy.callCount, 1);
+        assert.strictEqual(onClickSpy.callCount, 0);
+
+        const enterKeyUp = {
+          keyCode: keycode('enter'),
+        };
+        wrapper.find('div').simulate('keyUp', enterKeyUp);
+        assert.strictEqual(onClickSpy.callCount, 1);
+        assert.strictEqual(onClickSpy.args[0][0].keyCode, enterKeyUp.keyCode);
       });
     });
 
     describe('onDelete is defined and `backspace` is pressed', () => {
       it('should call onDelete', () => {
+        const preventDefaultSpy = spy();
         const onDeleteSpy = spy();
         const wrapper2 = mount(<ChipNaked classes={{}} onDelete={onDeleteSpy} />);
 
-        const preventDefaultSpy = spy();
-        const backspaceKeydownEvent = {
+        const backspaceKeyDown = {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('backspace'),
         };
-        wrapper2.find('div').simulate('keydown', backspaceKeydownEvent);
+        wrapper2.find('div').simulate('keyDown', backspaceKeyDown);
+        assert.strictEqual(preventDefaultSpy.callCount, 1);
+        assert.strictEqual(onDeleteSpy.callCount, 0);
 
-        assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
-        assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called onClick');
-        assert.strictEqual(onDeleteSpy.args[0][0].keyCode, backspaceKeydownEvent.keyCode);
+        const backspaceKeyUp = {
+          keyCode: keycode('backspace'),
+        };
+        wrapper2.find('div').simulate('keyUp', backspaceKeyUp);
+        assert.strictEqual(onDeleteSpy.callCount, 1);
+        assert.strictEqual(onDeleteSpy.args[0][0].keyCode, backspaceKeyUp.keyCode);
       });
     });
 
@@ -393,11 +410,13 @@ describe('<Chip />', () => {
       let onClickSpy;
       let onDeleteSpy;
       let onKeyDownSpy;
+      let onKeyUpSpy;
 
       before(() => {
         onClickSpy = spy();
         onDeleteSpy = spy();
         onKeyDownSpy = spy();
+        onKeyUpSpy = spy();
 
         wrapper = mount(
           <Chip
@@ -405,6 +424,7 @@ describe('<Chip />', () => {
             onClick={onClickSpy}
             onDelete={onDeleteSpy}
             onKeyDown={onKeyDownSpy}
+            onKeyUp={onKeyUpSpy}
             label={<input className="child-input" />}
           />,
         );
@@ -416,23 +436,28 @@ describe('<Chip />', () => {
       });
 
       it('should not call onDelete for child event', () => {
-        wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('backspace') });
-        assert.strictEqual(onDeleteSpy.notCalled, true);
+        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('backspace') });
+        assert.strictEqual(onDeleteSpy.callCount, 0);
       });
 
       it('should not call onClick for child event when `space` is pressed', () => {
-        wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('space') });
-        assert.strictEqual(onClickSpy.notCalled, true);
+        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('space') });
+        assert.strictEqual(onClickSpy.callCount, 0);
       });
 
       it('should not call onClick for child event when `enter` is pressed', () => {
-        wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('enter') });
-        assert.strictEqual(onClickSpy.notCalled, true);
+        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('enter') });
+        assert.strictEqual(onClickSpy.callCount, 0);
       });
 
-      it('should not call onKeyDown for child event', () => {
-        wrapper.find('.child-input').simulate('keydown', { keyCode: keycode('p') });
-        assert.strictEqual(onKeyDownSpy.notCalled, true);
+      it('should call handlers for child event', () => {
+        onKeyDownSpy.resetHistory();
+        wrapper.find('.child-input').simulate('keyDown', { keyCode: keycode('p') });
+        assert.strictEqual(onKeyDownSpy.callCount, 1);
+
+        onKeyUpSpy.resetHistory();
+        wrapper.find('.child-input').simulate('keyUp', { keyCode: keycode('p') });
+        assert.strictEqual(onKeyUpSpy.callCount, 1);
       });
     });
   });

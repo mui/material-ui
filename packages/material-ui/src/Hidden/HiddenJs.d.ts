@@ -7,7 +7,7 @@ export interface HiddenJsProps {
   lgUp?: boolean;
   mdDown?: boolean;
   mdUp?: boolean;
-  only?: Breakpoint | Array<Breakpoint>;
+  only?: Breakpoint | Breakpoint[];
   smDown?: boolean;
   smUp?: boolean;
   xlDown?: boolean;

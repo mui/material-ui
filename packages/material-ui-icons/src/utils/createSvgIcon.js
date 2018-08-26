@@ -9,7 +9,7 @@ function createSvgIcon(path, displayName) {
     </SvgIcon>
   );
 
-  Icon.displayName = displayName;
+  Icon.displayName = `${displayName}Icon`;
   Icon = pure(Icon);
   Icon.muiName = 'SvgIcon';
 

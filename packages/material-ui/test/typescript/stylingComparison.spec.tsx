@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Typography, { TypographyProps } from '../../src/Typography/Typography';
-import { withStyles, WithStyles, createStyles, Theme } from '../../src/styles';
+import { withStyles, WithStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Typography, { TypographyProps } from '@material-ui/core/Typography';
 
 const styles = ({ palette, spacing }: Theme) =>
   createStyles({

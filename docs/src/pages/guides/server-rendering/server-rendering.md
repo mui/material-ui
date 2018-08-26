@@ -221,14 +221,16 @@ function handleRender(req, res) {
 
 ### React class name hydration mismatch
 
-There is a class name mismatch between the client and the server (it might work for the first request).
+There is a class name mismatch between the client and the server. It might work for the first request.
+Another symptom is that the styling changes between initial page load and the downloading of the client scripts. 
 
 #### Action to Take
 
 The class names value relies on the concept of [class name generator](/customization/css-in-js#creategenerateclassname-options-class-name-generator).
 The whole page needs to be rendered with **a single generator**.
-This generator needs to behave identically on the server and on the client.
-This has one important implication, you need to provide a new class name generator for each request.
+This generator needs to behave identically on the server and on the client. For instance:
+
+- You need to provide a new class name generator for each request. But you might share a `createGenerateClassName()` between different requests:
 
 *example of fix:*
 ```diff
@@ -243,4 +245,20 @@ function handleRender(req, res) {
 
   // Render the component to a string.
   const html = renderToString(
+```
+
+- You need to verify that your client and server are running the **exactly the same version** of Material-UI.
+It is possible that a mismatch of even minor versions can cause styling problems.
+To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
+
+  You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
+
+*example of fix (package.json):*
+```diff
+  "dependencies": {
+    ...
+-   "@material-ui/core": "^1.4.2",
++   "@material-ui/core": "1.4.3",
+    ...
+  },
 ```

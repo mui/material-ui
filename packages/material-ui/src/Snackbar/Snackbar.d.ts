@@ -3,22 +3,22 @@ import { StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
-export type SnackbarOrigin = {
+export interface SnackbarOrigin {
   horizontal: 'left' | 'center' | 'right';
   vertical: 'top' | 'center' | 'bottom';
-};
+}
 
 export interface SnackbarProps
   extends StandardProps<
       React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
       SnackbarClassKey
     > {
-  action?: React.ReactElement<any> | React.ReactElement<any>[];
+  action?: SnackbarContentProps['action'];
   anchorOrigin?: SnackbarOrigin;
   autoHideDuration?: number;
   ContentProps?: Partial<SnackbarContentProps>;
   disableWindowBlurListener?: boolean;
-  message?: React.ReactElement<any>;
+  message?: SnackbarContentProps['message'];
   onClose?: (event: React.SyntheticEvent<any>, reason: string) => void;
   onMouseEnter?: React.MouseEventHandler<any>;
   onMouseLeave?: React.MouseEventHandler<any>;

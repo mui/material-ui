@@ -1,6 +1,6 @@
 ---
 title: Card React component
-components: Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
+components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
 # Cards
@@ -40,4 +40,3 @@ Here's an example of a media control card.
 On desktop, card content can expand.
 
 {{"demo": "pages/demos/cards/RecipeReviewCard.js"}}
-

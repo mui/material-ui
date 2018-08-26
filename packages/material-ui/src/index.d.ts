@@ -4,7 +4,7 @@ export { StyledComponentProps };
 
 export type AnyComponent<P = any> =
   | (new (props: P) => React.Component)
-  | ((props: P & { children?: React.ReactNode }) => React.ReactElement<P> | null);
+  | ((props: P & { children?: React.ReactNode }) => React.ReactElement<any> | null);
 
 export type PropsOf<C extends AnyComponent> = C extends new (props: infer P) => React.Component
   ? P
@@ -97,6 +97,7 @@ export { default as BottomNavigationAction } from './BottomNavigationAction';
 export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
 export { default as Card } from './Card';
+export { default as CardActionArea } from './CardActionArea';
 export { default as CardActions } from './CardActions';
 export { default as CardContent } from './CardContent';
 export { default as CardHeader } from './CardHeader';
