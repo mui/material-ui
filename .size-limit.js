@@ -11,7 +11,7 @@ const [main] = fs.readdirSync(dirname).reduce((result, filename) => {
   return result;
 }, []);
 
-console.log('-', main)
+console.log('-', main);
 
 module.exports = [
   {
