@@ -25,6 +25,7 @@ title: ListItem API
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the list item will be disabled. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
 | <span class="prop-name">divider</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, a 1px light border is added to the bottom of the list item. |
+| <span class="prop-name">selected</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Use to apply selected styling. |
 
 Any other properties supplied will be spread to the root element (native element).
 
@@ -46,6 +47,7 @@ This property accepts the following keys:
 | <span class="prop-name">gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
 | <span class="prop-name">button</span> | Styles applied to the inner `component` element if `button={true}`.
 | <span class="prop-name">secondaryAction</span> | Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.
+| <span class="prop-name">selected</span> | Styles applied to the root element if `selected={true}`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/ListItem/ListItem.js)

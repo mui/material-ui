@@ -21,6 +21,12 @@ export default function SecondaryActionCheckboxListItem() {
             <Checkbox />
           </ListItemSecondaryAction>
         </ListItem>
+        <ListItem button selected>
+          <ListItemText primary="Primary" />
+          <ListItemSecondaryAction>
+            <Checkbox />
+          </ListItemSecondaryAction>
+        </ListItem>
       </List>
     </div>
   );
