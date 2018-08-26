@@ -319,7 +319,7 @@ class Slider extends React.Component {
   };
 
   emitChange(event, rawValue, callback) {
-    const { step, value: previousValue, onChange, disabled } = this.props;
+    const { step, value: previousValue, onChange, disabled, min, max } = this.props;
     let value = rawValue;
 
     if (disabled) {
@@ -327,7 +327,10 @@ class Slider extends React.Component {
     }
 
     if (step) {
-      value = roundToStep(rawValue, step);
+      if(rawValue <= min || rawValue >= max){
+      } else{
+        value = roundToStep(rawValue, step);
+      }
     } else {
       value = Number(rawValue.toFixed(3));
     }
