@@ -66,8 +66,6 @@ class SelectedListItem extends React.Component {
             button
             selected={this.state.selectedIndex === 3}
             onClick={event => this.handleListItemClick(event, 3)}
-            component="a"
-            href="#selected-listitem"
           >
             <ListItemText primary="Spam" />
           </ListItem>

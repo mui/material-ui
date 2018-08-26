@@ -34,6 +34,11 @@ describe('<MenuItem />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
+  it('should render with the selected class', () => {
+    const wrapper = shallow(<MenuItem selected />);
+    assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
+  });
+
   it('should have a default role of menuitem', () => {
     const wrapper = shallow(<MenuItem />);
     assert.strictEqual(wrapper.props().role, 'menuitem', 'should have the menuitem role');

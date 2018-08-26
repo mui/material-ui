@@ -34,18 +34,6 @@ export default function AvatarListItem() {
           <ListItemText primary="Avatar" secondary="Secondary" />
         </ListItem>
       </List>
-      <ListItem selected>
-        <Avatar>
-          <Icon>folder</Icon>
-        </Avatar>
-        <ListItemText primary="Avatar" />
-      </ListItem>
-      <ListItem selected>
-        <Avatar>
-          <Icon>folder</Icon>
-        </Avatar>
-        <ListItemText primary="Avatar" secondary="Secondary" />
-      </ListItem>
     </div>
   );
 }

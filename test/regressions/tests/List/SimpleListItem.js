@@ -20,9 +20,6 @@ export default function SimpleListItem() {
       <ListItem selected>
         <ListItemText primary="Primary" />
       </ListItem>
-      <ListItem selected>
-        <ListItemText primary="Primary" secondary="Secondary" />
-      </ListItem>
     </div>
   );
 }

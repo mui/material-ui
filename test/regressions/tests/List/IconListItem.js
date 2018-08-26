@@ -31,9 +31,6 @@ export default function IconListItem() {
         </ListItemIcon>
         <ListItemText primary="Icon" />
       </ListItem>
-      <ListItem selected>
-        <ListItemText inset primary="Inset" secondary="Secondary" />
-      </ListItem>
     </div>
   );
 }

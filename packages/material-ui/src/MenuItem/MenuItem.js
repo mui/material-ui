@@ -18,20 +18,22 @@ export const styles = theme => ({
     whiteSpace: 'nowrap',
     paddingLeft: 16,
     paddingRight: 16,
+    '&$selected': {},
   },
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
 });
 
 function MenuItem(props) {
-  const { classes, className, component, role, ...other } = props;
+  const { classes, className, component, selected, role, ...other } = props;
 
   return (
     <ListItem
       button
       role={role}
       tabIndex={-1}
-      className={classNames(classes.root, className)}
+      selected={selected}
+      className={classNames(classes.root, { [classes.selected]: selected }, className)}
       component={component}
       {...other}
     />
@@ -61,6 +63,10 @@ MenuItem.propTypes = {
    * @ignore
    */
   role: PropTypes.string,
+  /**
+   * @ignore
+   */
+  selected: PropTypes.bool,
 };
 
 MenuItem.defaultProps = {

@@ -452,7 +452,7 @@ const MenuTest = () => {
   return (
     <Menu id="lock-menu" anchorEl={anchorEl} open={true} onClose={log}>
       {options.map((option, index) => (
-        <MenuItem key={option} onClick={log}>
+        <MenuItem key={option} selected={false} onClick={log}>
           {option}
         </MenuItem>
       ))}
