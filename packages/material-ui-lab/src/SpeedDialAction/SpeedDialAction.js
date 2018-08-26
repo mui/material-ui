@@ -47,7 +47,7 @@ class SpeedDialAction extends React.Component {
   };
 
   componentDidUpdate = prevProps => {
-    if (!this.props.tooltipOpen || (prevProps.open === this.props.open)) return;
+    if (!this.props.tooltipOpen || prevProps.open === this.props.open) return;
     if (!this.props.open && this.state.tooltipOpen) {
       this.setState({ tooltipOpen: false });
     } else if (!this.state.tooltipOpen) {
@@ -140,7 +140,7 @@ SpeedDialAction.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Option to always display the tooltip (usually applicable on mobile)
+   * Make the tooltip always visible, regardless of hover.
    */
   tooltipOpen: PropTypes.bool,
   /**
