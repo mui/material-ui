@@ -24,6 +24,12 @@ We have removed the `/es` folder.
 +import AccessAlarm from '@material-ui/icons/AccessAlarm';
 ```
 
+- [core] Drop Firefox 45 support (#12669)
+
+Firefore 52 is the last version supported by Windows XP.
+The market share of Firefox 45 is 0.03%.
+We use the same strategy for Chrome.
+
 #### Component Fixes / Enhancements
 
 - [Input] Improve type checking for inputProps (#12591) @eps1lon
@@ -36,6 +42,7 @@ We have removed the `/es` folder.
 - [Input] Extract helpers to their own module (#12657) @Pajn
 - [Chip] Add onKeyUp handler for correct behavior (#12660) @markselby9
 - [CardActionArea] Add CardActionArea component (#12624) @yuchi
+- [ListItem] Move the selected prop from MenuItem to ListItem (#12602) @the-question
 
 #### Docs
 
@@ -53,6 +60,7 @@ We have removed the `/es` folder.
 - [docs] Use the event.target.checked API systematically (#12644) @chellem
 - [docs] Correct `by and enum` typo in api.md (#12663) @G-Rath
 - [docs] Autocomplete react-select dropdown overlay (#12664) @gerhat
+- [docs] Fix typo in usage.md (#12666) @DeveloperDavo
 
 #### Core
 
