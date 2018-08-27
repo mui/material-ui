@@ -105,6 +105,7 @@ class ChipsPlayground extends React.Component {
                 deleteIcon={onDelete === 'custom' ? <DoneIcon /> : undefined}
                 onDelete={onDelete !== 'none' ? this.handleDeleteExample : undefined}
                 avatar={avatarToPlayground}
+                variant={variant}
               />
             </Grid>
           </Grid>
