@@ -106,7 +106,7 @@ export const styles = theme => {
       backgroundColor: 'transparent',
       border: `1px solid ${
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-        }`,
+      }`,
     },
     /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
     outlinedPrimary: {
@@ -300,16 +300,20 @@ class Chip extends React.Component {
         deleteIconProp && React.isValidElement(deleteIconProp) ? (
           React.cloneElement(deleteIconProp, {
             className: classNames(deleteIconProp.props.className, classes.deleteIcon, {
-              [classes[`deleteIconColor${capitalize(color)}`]]: color !== 'default' && variant !== 'outlined',
-              [classes[`deleteIconColor${capitalize(color)}Outlined`]]: color !== 'default' && variant === 'outlined',
+              [classes[`deleteIconColor${capitalize(color)}`]]:
+                color !== 'default' && variant !== 'outlined',
+              [classes[`deleteIconColor${capitalize(color)}Outlined`]]:
+                color !== 'default' && variant === 'outlined',
             }),
             onClick: this.handleDeleteIconClick,
           })
         ) : (
           <CancelIcon
             className={classNames(classes.deleteIcon, {
-              [classes[`deleteIconColor${capitalize(color)}`]]: color !== 'default' && variant !== 'outlined',
-              [classes[`deleteIconColor${capitalize(color)}Outlined`]]: color !== 'default' && variant === 'outlined',
+              [classes[`deleteIconColor${capitalize(color)}`]]:
+                color !== 'default' && variant !== 'outlined',
+              [classes[`deleteIconColor${capitalize(color)}Outlined`]]:
+                color !== 'default' && variant === 'outlined',
             })}
             onClick={this.handleDeleteIconClick}
           />
@@ -419,10 +423,7 @@ Chip.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf([
-    'default',
-    'outlined',
-  ]),
+  variant: PropTypes.oneOf(['default', 'outlined']),
 };
 
 Chip.defaultProps = {

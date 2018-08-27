@@ -30,11 +30,7 @@ function Chips(props) {
   return (
     <div className={classes.root}>
       <Chip label="Basic Chip" className={classes.chip} />
-      <Chip
-        label="Outlined Chip"
-        variant="outlined"
-        className={classes.chip}
-      />
+      <Chip label="Outlined Chip" variant="outlined" className={classes.chip} />
       <Chip
         avatar={<Avatar>MB</Avatar>}
         label="Clickable Chip"
