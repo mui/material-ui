@@ -109,7 +109,7 @@ export const styles = theme => {
       }`,
       '$clickable&:hover, $clickable&:focus': {
         backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-      }
+      },
     },
     /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
     outlinedPrimary: {
