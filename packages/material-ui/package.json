@@ -2,7 +2,7 @@
   "name": "@material-ui/core",
   "private": true,
   "author": "Material-UI Team",
-  "version": "1.5.1",
+  "version": "3.0.0",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
