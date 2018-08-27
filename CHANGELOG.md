@@ -6,7 +6,7 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Major version release is not included in this schedule for breaking change and new features.
 
 ## 3.0.0
-###### *Aug 26, 2018*
+###### *Aug 27, 2018*
 
 Big thanks to the 27 contributors who made this release possible!
 
