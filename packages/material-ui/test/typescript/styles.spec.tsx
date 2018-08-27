@@ -18,7 +18,7 @@ import { StandardProps } from '@material-ui/core';
 import { TypographyStyle } from '@material-ui/core/styles/createTypography';
 
 // Shared types for examples
-interface ComponentProps {
+interface ComponentProps extends WithStyles<typeof styles> {
   text: string;
 }
 
@@ -31,7 +31,7 @@ const styles = ({ palette, spacing }: Theme) => ({
   },
 });
 
-const StyledExampleOne = withStyles(styles)<ComponentProps>(({ classes, text }) => (
+const StyledExampleOne = withStyles(styles)(({ classes, text }: ComponentProps) => (
   <div className={classes.root}>{text}</div>
 ));
 <StyledExampleOne text="I am styled!" />;
@@ -70,7 +70,7 @@ const stylesAsPojo = {
 
 const AnotherStyledSFC = withStyles({
   root: { backgroundColor: 'hotpink' },
-})(({ classes }) => <div className={classes.root}>Stylish!</div>);
+})(({ classes }: WithStyles<'root'>) => <div className={classes.root}>Stylish!</div>);
 
 // Overriding styles
 const theme = createMuiTheme({
@@ -201,7 +201,7 @@ declare const themed: boolean;
   );
   <Foo />;
 
-  const Bar = withStyles({}, { withTheme: true })(({ theme }) => (
+  const Bar = withStyles({}, { withTheme: true })(({ theme }: WithStyles<string, true>) => (
     <div style={{ margin: theme.spacing.unit }} />
   ));
   <Bar />;
@@ -292,12 +292,13 @@ withStyles(theme =>
     });
 
   interface ListItemContentProps extends WithStyles<typeof styles> {
+    children?: React.ReactElement<any>;
     inset?: boolean;
     row?: boolean;
   }
 
-  const ListItemContent = withStyles(styles, { name: 'ui-ListItemContent' })<ListItemContentProps>(
-    ({ children, classes, inset, row }) => (
+  const ListItemContent = withStyles(styles, { name: 'ui-ListItemContent' })(
+    ({ children, classes, inset, row }: ListItemContentProps) => (
       <div className={classes.root} color="textSecondary">
         {children}
       </div>
@@ -311,7 +312,7 @@ withStyles(theme =>
     b: boolean;
   }
 
-  const ListItemContent = withStyles({ x: {}, y: {} })<FooProps>(props => <div />);
+  const ListItemContent = withStyles({ x: {}, y: {} })((props: FooProps) => <div />);
 }
 
 {
@@ -382,4 +383,77 @@ withStyles(theme =>
   const style: StyleRulesCallback = theme => ({
     text: theme.typography.body2,
   });
+}
+
+{
+  // can't provide own `classes` type
+  interface Props {
+    classes: number;
+  }
+
+  class Component extends React.Component<Props & WithStyles<typeof styles>> {}
+  // $ExpectError
+  const StyledComponent = withStyles(styles)(Component);
+}
+
+{
+  // https://github.com/mui-org/material-ui/issues/12670
+  interface Props {
+    noDefault: string;
+    withDefaultProps: number;
+  }
+
+  class MyButton extends React.Component<Props & WithStyles<typeof styles>> {
+    static defaultProps = {
+      withDefaultProps: 0,
+    };
+
+    render() {
+      const { classes, noDefault, withDefaultProps } = this.props;
+      return (
+        <Button className={classes.btn}>
+          {withDefaultProps}, {noDefault}
+        </Button>
+      );
+    }
+  }
+
+  const styles = () =>
+    createStyles({
+      btn: {
+        color: 'red',
+      },
+    });
+
+  const StyledMyButton = withStyles(styles)(MyButton);
+
+  const CorrectUsage = () => <StyledMyButton noDefault="2" />;
+  // Property 'noDefault' is missing in type '{}'
+  const MissingPropUsage = () => <StyledMyButton />; // $ExpectError
+}
+
+{
+  // union props
+  interface Book {
+    category: 'book';
+    author: string;
+  }
+  interface Painting {
+    category: 'painting';
+    artist: string;
+  }
+  type BookOrPainting = Book | Painting;
+  type Props = BookOrPainting & WithStyles<typeof styles>;
+  const DecoratedUnionProps = withStyles(styles)(
+    class extends React.Component<Props> {
+      render() {
+        const props = this.props;
+        return (
+          <div className={props.classes.root}>
+            {props.category === 'book' ? props.author : props.artist}
+          </div>
+        );
+      }
+    },
+  );
 }

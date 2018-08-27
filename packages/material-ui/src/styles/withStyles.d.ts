@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { WithTheme } from '../styles/withTheme';
-import { AnyComponent, ConsistentWith, Overwrite, Omit } from '..';
+import { Matching, Omit, PropsOf, Shared } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
@@ -60,6 +60,14 @@ export default function withStyles<
 >(
   style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: Options,
-): <P extends ConsistentWith<P, StyledComponentProps<ClassKey> & Partial<WithTheme>>>(
-  component: AnyComponent<P & WithStyles<ClassKey, Options['withTheme']>>,
-) => React.ComponentType<Overwrite<Omit<P, 'theme'>, StyledComponentProps<ClassKey>>>;
+): <
+  C extends React.ComponentType<Matching<PropsOf<C>, WithStyles<ClassKey, Options['withTheme']>>>
+>(
+  component: C,
+) => React.ComponentType<
+  Omit<
+    JSX.LibraryManagedAttributes<C, PropsOf<C>>,
+    keyof Shared<WithStyles<ClassKey, Options['withTheme']>, PropsOf<C>>
+  > &
+    StyledComponentProps<ClassKey>
+>;
