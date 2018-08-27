@@ -50,7 +50,9 @@ class Checkbox extends React.Component {
   };
 
   updateIndeterminateStatus = () => {
-    this.inputRef.indeterminate = this.props.indeterminate;
+    if (this.inputRef) {
+      this.inputRef.indeterminate = this.props.indeterminate;
+    }
   };
 
   render() {
