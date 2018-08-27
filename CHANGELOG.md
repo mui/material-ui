@@ -26,7 +26,7 @@ We have removed the `/es` folder.
 
 - [core] Drop Firefox 45 support (#12669)
 
-Firefore 52 is the last version supported by Windows XP.
+Firefox 52 is the last version supported by Windows XP.
 The market share of Firefox 45 is 0.03%.
 We use the same strategy for Chrome.
 
