@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-handler-names */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -55,6 +57,10 @@ class Checkbox extends React.Component {
     }
   };
 
+  handleInputRef = ref => {
+    this.inputRef = ReactDOM.findDOMNode(ref);
+  };
+
   render() {
     const {
       checkedIcon,
@@ -76,9 +82,7 @@ class Checkbox extends React.Component {
           disabled: classes.disabled,
         }}
         icon={indeterminate ? indeterminateIcon : icon}
-        inputRef={ref => {
-          this.inputRef = ReactDOM.findDOMNode(ref);
-        }}
+        inputRef={this.handleInputRef}
         {...other}
       />
     );
