@@ -107,7 +107,7 @@ export const styles = theme => {
       border: `1px solid ${
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
-      '$clickable&:hover, $clickable&:focus': {
+      '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
         backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       },
     },
@@ -115,7 +115,7 @@ export const styles = theme => {
     outlinedPrimary: {
       color: theme.palette.primary.main,
       border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
-      '$clickable&:hover, $clickable&:focus': {
+      '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
         backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
         border: `1px solid ${theme.palette.primary.main}`,
       },
@@ -124,7 +124,7 @@ export const styles = theme => {
     outlinedSecondary: {
       color: theme.palette.secondary.main,
       border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
-      '$clickable&:hover, $clickable&:focus': {
+      '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
         border: `1px solid ${theme.palette.secondary.main}`,
       },
