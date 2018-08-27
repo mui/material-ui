@@ -6,7 +6,7 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Major version release is not included in this schedule for breaking change and new features.
 
 ## 3.0.0
-###### *Aug 26, 2018*
+###### *Aug 27, 2018*
 
 Big thanks to the 27 contributors who made this release possible!
 
@@ -26,7 +26,7 @@ We have removed the `/es` folder.
 
 - [core] Drop Firefox 45 support (#12669)
 
-Firefore 52 is the last version supported by Windows XP.
+Firefox 52 is the last version supported by Windows XP.
 The market share of Firefox 45 is 0.03%.
 We use the same strategy for Chrome.
 
