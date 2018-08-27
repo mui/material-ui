@@ -101,6 +101,31 @@ export const styles = theme => {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.2),
       },
     },
+    /* Styles applied to the root element if `variant="outlined"`. */
+    outlined: {
+      backgroundColor: 'transparent',
+      border: `1px solid ${
+        theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+        }`,
+    },
+    /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
+    outlinedPrimary: {
+      color: theme.palette.primary.main,
+      border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
+      '$clickable&:hover': {
+        backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        border: `1px solid ${theme.palette.primary.main}`,
+      },
+    },
+    /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
+    outlinedSecondary: {
+      color: theme.palette.secondary.main,
+      border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
+      '$clickable&:hover': {
+        backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        border: `1px solid ${theme.palette.secondary.main}`,
+      },
+    },
     /* Styles applied to the `avatar` element. */
     avatar: {
       marginRight: -4,
@@ -146,18 +171,32 @@ export const styles = theme => {
         color: fade(deleteIconColor, 0.4),
       },
     },
-    /* Styles applied to the deleteIcon element if `color="primary"`. */
+    /* Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`. */
     deleteIconColorPrimary: {
       color: fade(theme.palette.primary.contrastText, 0.65),
       '&:hover, &:active': {
         color: theme.palette.primary.contrastText,
       },
     },
-    /* Styles applied to the deleteIcon element if `color="secondary"`. */
+    /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="default"`. */
     deleteIconColorSecondary: {
       color: fade(theme.palette.primary.contrastText, 0.65),
       '&:hover, &:active': {
         color: theme.palette.primary.contrastText,
+      },
+    },
+    /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
+    deleteIconColorPrimaryOutlined: {
+      color: fade(theme.palette.primary.main, 0.65),
+      '&:hover, &:active': {
+        color: theme.palette.primary.main,
+      },
+    },
+    /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
+    deleteIconColorSecondaryOutlined: {
+      color: fade(theme.palette.secondary.main, 0.65),
+      '&:hover, &:active': {
+        color: theme.palette.secondary.main,
       },
     },
   };
@@ -232,6 +271,7 @@ class Chip extends React.Component {
       onDelete,
       onKeyDown,
       onKeyUp,
+      variant,
       tabIndex: tabIndexProp,
       ...other
     } = this.props;
@@ -246,6 +286,11 @@ class Chip extends React.Component {
       },
       { [classes.deletable]: onDelete },
       { [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default' },
+      {
+        [classes.outlined]: variant === 'outlined',
+        [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
+        [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
+      },
       classNameProp,
     );
 
@@ -255,14 +300,16 @@ class Chip extends React.Component {
         deleteIconProp && React.isValidElement(deleteIconProp) ? (
           React.cloneElement(deleteIconProp, {
             className: classNames(deleteIconProp.props.className, classes.deleteIcon, {
-              [classes[`deleteIconColor${capitalize(color)}`]]: color !== 'default',
+              [classes[`deleteIconColor${capitalize(color)}`]]: color !== 'default' && variant !== 'outlined',
+              [classes[`deleteIconColor${capitalize(color)}Outlined`]]: color !== 'default' && variant === 'outlined',
             }),
             onClick: this.handleDeleteIconClick,
           })
         ) : (
           <CancelIcon
             className={classNames(classes.deleteIcon, {
-              [classes[`deleteIconColor${capitalize(color)}`]]: color !== 'default',
+              [classes[`deleteIconColor${capitalize(color)}`]]: color !== 'default' && variant !== 'outlined',
+              [classes[`deleteIconColor${capitalize(color)}Outlined`]]: color !== 'default' && variant === 'outlined',
             })}
             onClick={this.handleDeleteIconClick}
           />
@@ -369,12 +416,20 @@ Chip.propTypes = {
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf([
+    'default',
+    'outlined',
+  ]),
 };
 
 Chip.defaultProps = {
   clickable: false,
   component: 'div',
   color: 'default',
+  variant: 'default',
 };
 
 export default withStyles(styles, { name: 'MuiChip' })(Chip);

@@ -10,6 +10,7 @@ export interface ChipProps
   deleteIcon?: React.ReactElement<any>;
   label?: React.ReactNode;
   onDelete?: React.EventHandler<any>;
+  variant?: 'default' | 'outlined';
 }
 
 export type ChipClassKey =
@@ -29,7 +30,9 @@ export type ChipClassKey =
   | 'label'
   | 'deleteIcon'
   | 'deleteIconPrimary'
-  | 'deleteIconSecondary';
+  | 'deleteIconSecondary'
+  | 'deleteIconPrimaryOutlined'
+  | 'deleteIconSecondaryOutlined';
 
 declare const Chip: React.ComponentType<ChipProps>;
 
