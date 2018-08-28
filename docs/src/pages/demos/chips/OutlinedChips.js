@@ -74,7 +74,7 @@ function OutlinedChips(props) {
       />
       <Chip
         avatar={<Avatar>MB</Avatar>}
-        label="Clickable Link Chip"
+        label="Primary Clickable Chip"
         clickable
         className={classes.chip}
         color="primary"
@@ -83,7 +83,7 @@ function OutlinedChips(props) {
         variant="outlined"
       />
       <Chip
-        label="Clickable Link Chip"
+        label="Deletable Primary Chip"
         onDelete={handleDelete}
         className={classes.chip}
         color="primary"
@@ -95,7 +95,7 @@ function OutlinedChips(props) {
             <FaceIcon />
           </Avatar>
         }
-        label="Clickable Link Chip"
+        label="Deletable Secondary Chip"
         onDelete={handleDelete}
         className={classes.chip}
         color="secondary"
