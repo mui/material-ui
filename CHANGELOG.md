@@ -5,6 +5,43 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 3.0.1
+###### *Aug 28, 2018*
+
+Big thanks to the 10 contributors who made this release possible!
+
+We are making a quick release after v3.0.0 to patch an incorrect peer dependency.
+It's also a good opportunity to upgrade to the stable release of Babel 7.
+
+### `@material-ui/core@v3.0.1`
+
+- [Checkbox] Improve indeterminate status (#12671) @hareaca
+- [StepLabel] Fix custom icon spacing (#12694) @JiayuanDeng
+- [Chip] Add outlined variant (#12680) @orporan
+- [Stepper] Add a new test case (#12684) @Anugraha123
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
+### `@material-ui/icons@v3.0.1`
+
+- [core] Fix for incorrect peer dependency version warning (#12677) @xaviergonz
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
+### `@material-ui/lab@v3.0.0-alpha.13`
+
+- [core] Fix for incorrect peer dependency version warning (#12677) @xaviergonz
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
+### Docs
+
+- [docs] Typo (#12675) @nazartokar
+- [docs] Update notification link for release 3.0.0 (#12681) @lumatijev
+- [docs] Warn about using withRoot HOC more than one time per page (#12692) @oorestisime
+
+### Core
+
+- [core] Fix for incorrect peer dependency version warning (#12677) @xaviergonz
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
 ## 3.0.0
 ###### *Aug 27, 2018*
 
