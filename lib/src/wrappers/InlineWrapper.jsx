@@ -6,7 +6,7 @@ import DomainPropTypes from '../constants/prop-types';
 
 export default class InlineWrapper extends PureComponent {
   static propTypes = {
-    /** Show only calendar in popover mode */
+    /** Show only calendar for datepicker in popover mode */
     onlyCalendar: PropTypes.bool,
     /** Picker value */
     value: DomainPropTypes.date,
@@ -103,6 +103,7 @@ export default class InlineWrapper extends PureComponent {
       PopoverProps,
       isAccepted,
       keyboard,
+      onlyCalendar,
       ...other
     } = this.props;
 

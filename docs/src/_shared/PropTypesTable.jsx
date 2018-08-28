@@ -11,6 +11,18 @@ class PropTypesTable extends React.PureComponent {
     classes: PropTypes.object.isRequired,
   }
 
+  getFilteredProps = (src) => {
+    const { props } = PropTypesDoc[`../lib/src/${src}`][0];
+
+    return Object.keys(props)
+      .filter(key => Boolean(props[key].description))
+      .reduce((obj, key) => {
+        // eslint-disable-next-line
+        obj[key] = props[key];
+        return obj;
+      }, {});
+  }
+
   getCommonProps = () => {
     const modalWrapperProps = this.getFilteredProps('wrappers/ModalWrapper.jsx');
     const inlineWrapperProps = this.getFilteredProps('wrappers/InlineWrapper.jsx');
@@ -23,18 +35,6 @@ class PropTypesTable extends React.PureComponent {
     const selfProps = this.getFilteredProps(this.props.src);
 
     return { ...selfProps, ...this.getCommonProps() };
-  }
-
-  getFilteredProps = (src) => {
-    const { props } = PropTypesDoc[`../lib/src/${src}`][0];
-
-    return Object.keys(props)
-      .filter(key => Boolean(props[key].description))
-      .reduce((obj, key) => {
-        // eslint-disable-next-line
-        obj[key] = props[key];
-        return obj;
-      }, {});
   }
 
   getDefaultValue = (defaultValue) => {
