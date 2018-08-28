@@ -1,3 +1,3 @@
-export { default } from './DatePickerWrapper'
+export { default } from './DatePickerModal'
 
-export { DatePickerWrapperProps as DatePickerProps } from './DatePickerWrapper'
+export { DatePickerWrapperProps as DatePickerProps } from './DatePickerModal'

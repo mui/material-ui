@@ -1,8 +1,8 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import Calendar from './Calendar';
-import YearSelection from './YearSelection';
+import Calendar from './components/Calendar';
+import YearSelection from './components/YearSelection';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import DomainPropTypes from '../constants/prop-types';

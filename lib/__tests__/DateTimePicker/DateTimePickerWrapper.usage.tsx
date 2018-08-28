@@ -6,7 +6,7 @@ import DateTimePickerWrapper  from '../../src/DateTimePicker';
 import * as classNames from 'classnames'
 import { Moment } from 'moment'
 import * as PropTypes from 'prop-types'
-import { DayComponent } from '../../src/DatePicker/Calendar'
+import { DayComponent } from '../../src/DatePicker/components/Calendar'
 import { utilsToUse } from '../test-utils';
 import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 

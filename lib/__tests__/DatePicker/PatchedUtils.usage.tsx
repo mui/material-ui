@@ -6,7 +6,7 @@ import * as format from 'date-fns/format'
 import { Fragment, Component } from 'react';
 import { IconButton } from '@material-ui/core'
 import { Moment } from 'moment'
-import { DayComponent } from '../../src/DatePicker/Calendar'
+import { DayComponent } from '../../src/DatePicker/components/Calendar'
 import DatePickerWrapper  from '../../src/DatePicker';
 import DateFnsUtils from '../../src/utils/date-fns-utils'
 import MomentUtils from '../../src/utils/moment-utils'

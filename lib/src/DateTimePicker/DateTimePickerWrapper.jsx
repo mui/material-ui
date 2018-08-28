@@ -125,7 +125,10 @@ DateTimePickerWrapper.propTypes = {
   dateRangeIcon: PropTypes.node,
   /** Time tab icon */
   timeIcon: PropTypes.node,
-  /** Custom renderer for day [(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]*/
+  /**
+   * Custom renderer for day
+   * [(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]
+  */
   renderDay: PropTypes.func,
   /** 12h/24h view for hour selection clock */
   ampm: PropTypes.bool,

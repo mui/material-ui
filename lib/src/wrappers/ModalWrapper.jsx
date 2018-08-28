@@ -7,12 +7,6 @@ import DomainPropTypes from '../constants/prop-types';
 
 export default class ModalWrapper extends PureComponent {
   static propTypes = {
-    /** Picker value */
-    value: DomainPropTypes.date,
-    /** Format string */
-    invalidLabel: PropTypes.node,
-    /** Function for dynamic rendering label [(date: Date, invalidLabel: string) => string] */
-    labelFunc: PropTypes.func,
     /** "OK" label message */
     okLabel: PropTypes.node,
     /** "Cancel" label message */
@@ -28,14 +22,16 @@ export default class ModalWrapper extends PureComponent {
      * <b>Note*</b> that clear button has higher priority
     */
     showTodayButton: PropTypes.bool,
-    /** On open callback [(e: Event) => void]*/
+    /** On open callback [(e: Event) => void] */
     onOpen: PropTypes.func,
     /** On close callback [(e: Event) => void] */
-    onClose: PropTypes.func,
-    /** Format string */
     format: PropTypes.string,
     /** Dialog props passed to material-ui Dialog */
     DialogProps: PropTypes.object,
+    value: DomainPropTypes.date,
+    invalidLabel: PropTypes.node,
+    labelFunc: PropTypes.func,
+    onClose: PropTypes.func,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
     onClear: PropTypes.func,
@@ -187,10 +183,9 @@ export default class ModalWrapper extends PureComponent {
           cancelLabel={cancelLabel}
           clearable={clearable}
           showTodayButton={showTodayButton}
+          children={children}
           {...DialogProps}
-        >
-          {children}
-        </ModalDialog>
+        />
       </Fragment>
     );
   }

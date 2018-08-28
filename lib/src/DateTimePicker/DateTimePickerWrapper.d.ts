@@ -2,7 +2,7 @@ import { ComponentClass, ReactNode } from 'react';
 import { DateTimePickerView } from '../constants/date-picker-view';
 import { DateType } from '../constants/prop-types';
 import { Utils } from '../typings/utils';
-import { RenderDay } from '../DatePicker/Calendar';
+import { RenderDay } from '../DatePicker/components/Calendar';
 import { ModalWrapperProps } from '../wrappers/ModalWrapper';
 import { MaterialUiPickersDate } from '../typings/date'
 import { BasePickerProps } from '../_shared/BasePicker'

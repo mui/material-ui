@@ -27,6 +27,11 @@ const DatePickerDemoDemo = () => (
     />
 
     <SourcablePanel
+      title="Inline popover"
+      sourceFile="Demo/InlineDatePicker.jsx"
+    />
+
+    <SourcablePanel
       title="Custom day element"
       sourceFile="Demo/CustomElementsDatePicker.jsx"
       description={

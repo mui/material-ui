@@ -9,12 +9,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
 const dialogWidth = 310;
+const dialogHeight = 405;
 const styles = {
   dialogRoot: {
     minWidth: dialogWidth,
+    minHeight: dialogHeight,
   },
   dialog: {
     width: dialogWidth,
+    minHeight: dialogHeight,
     overflow: 'hidden',
 
     '&:first-child': {

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import View from './DateTimePickerView';
-import YearSelection from '../DatePicker/YearSelection';
-import Calendar from '../DatePicker/Calendar';
+import YearSelection from '../DatePicker/components/YearSelection';
+import Calendar from '../DatePicker/components/Calendar';
 import TimePickerView from '../TimePicker/TimePickerView';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import DatetimePickerHeader from './DateTimePickerHeader';

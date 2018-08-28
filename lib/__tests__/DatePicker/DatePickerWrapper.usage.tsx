@@ -5,7 +5,7 @@ import DatePickerWrapper  from '../../src/DatePicker';
 import { IconButton } from '@material-ui/core'
 import * as classNames from 'classnames';
 import { Moment } from 'moment'
-import { DayComponent } from '../../src/DatePicker/Calendar'
+import { DayComponent } from '../../src/DatePicker/components/Calendar'
 import { utilsToUse } from '../test-utils';
 import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 
