@@ -122,9 +122,9 @@ function Control(props) {
       fullWidth
       InputProps={{
         inputComponent,
+        inputRef: props.innerRef,
         inputProps: {
           className: props.selectProps.classes.input,
-          inputRef: props.innerRef,
           children: props.children,
           ...props.innerProps,
         },
