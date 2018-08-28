@@ -110,6 +110,25 @@ describe('<Chip />', () => {
       assert.strictEqual(wrapper.hasClass(classes.clickableColorPrimary), true);
     });
 
+    it('should render with the root and outlined clickable primary class', () => {
+      wrapper = shallow(
+        <Chip
+          className="my-Chip"
+          data-my-prop="woofChip"
+          onClick={handleClick}
+          color="primary"
+          variant="outlined"
+        />,
+      );
+
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickable), true);
+      assert.strictEqual(wrapper.hasClass(classes.clickableColorPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.outlined), true);
+      assert.strictEqual(wrapper.hasClass(classes.outlinedPrimary), true);
+    });
+
     it('should render with the root and clickable secondary class', () => {
       wrapper = shallow(
         <Chip
@@ -264,6 +283,27 @@ describe('<Chip />', () => {
       const wrapper = mount(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
       assert.strictEqual(wrapper.find(CancelIcon).length, 1);
     });
+
+    it(
+      'should render a default icon with the root, deletable, deleteIcon' +
+        ' and deleteIconOutlinedColorSecondary classes',
+      () => {
+        const wrapper = shallow(
+          <Chip
+            label="Custom delete icon Chip"
+            onDelete={() => {}}
+            variant="outlined"
+            color="secondary"
+          />,
+        );
+        assert.strictEqual(wrapper.hasClass(classes.root), true);
+        assert.strictEqual(wrapper.hasClass(classes.deletable), true);
+
+        const iconWrapper = wrapper.find(CancelIcon);
+        assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
+        assert.strictEqual(iconWrapper.hasClass(classes.deleteIconOutlinedColorSecondary), true);
+      },
+    );
 
     it('should render a default icon with the root, deletable and deleteIcon classes', () => {
       const wrapper = shallow(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
