@@ -20,7 +20,6 @@ export default class InlineDatePickerDemo extends PureComponent {
             label="Basic example"
             value={selectedDate}
             onChange={this.handleDateChange}
-            animateYearScrolling={false}
           />
         </div>
 
@@ -31,18 +30,17 @@ export default class InlineDatePickerDemo extends PureComponent {
             helperText="No year selection"
             value={selectedDate}
             onChange={this.handleDateChange}
-            animateYearScrolling={false}
           />
         </div>
 
         <div className="picker">
           <InlineDatePicker
-            label="With today button"
             keyboard
-            maxDateMessage="Date must be less than today"
+            label="With keyboard"
             value={selectedDate}
             onChange={this.handleDateChange}
-            animateYearScrolling={false}
+            format="DD/MM/YYYY"
+            mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
           />
         </div>
       </Fragment>

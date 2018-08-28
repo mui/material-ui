@@ -1,5 +1,642 @@
 {
-  "../lib/src/DatePicker/Calendar.jsx": [
+  "../lib/src/DatePicker/DatePicker.jsx": [
+    {
+      "description": "",
+      "displayName": "DatePicker",
+      "methods": [
+        {
+          "name": "date",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "minDate",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "maxDate",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleYearSelect",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "date",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "openYearSelection",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "openCalendar",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "date": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "minDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'1900-01-01'",
+            "computed": false
+          }
+        },
+        "maxDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'2100-01-01'",
+            "computed": false
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "disablePast": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "disableFuture": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "animateYearScrolling": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "openToYearSelection": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "null",
+            "computed": false
+          }
+        },
+        "leftArrowIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "rightArrowIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "renderDay": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "utils": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "shouldDisableDate": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "allowKeyboardControl": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "../lib/src/DatePicker/DatePickerInline.jsx": [
+    {
+      "description": "",
+      "displayName": "DatePickerInline",
+      "methods": [],
+      "props": {
+        "onlyCalendar": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "value": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "new Date()",
+            "computed": false
+          }
+        },
+        "minDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'1900-01-01'",
+            "computed": false
+          }
+        },
+        "maxDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'2100-01-01'",
+            "computed": false
+          }
+        },
+        "initialFocusedDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "format": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "disablePast": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "disableFuture": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "animateYearScrolling": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "openToYearSelection": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "labelFunc": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "leftArrowIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'keyboard_arrow_left'",
+            "computed": false
+          }
+        },
+        "rightArrowIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'keyboard_arrow_right'",
+            "computed": false
+          }
+        },
+        "renderDay": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "shouldDisableDate": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "allowKeyboardControl": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "forwardedRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "autoOk": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        }
+      }
+    }
+  ],
+  "../lib/src/DatePicker/DatePickerModal.jsx": [
+    {
+      "description": "",
+      "displayName": "DatePickerModal",
+      "methods": [],
+      "props": {
+        "value": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "Datepicker value",
+          "defaultValue": {
+            "value": "new Date()",
+            "computed": false
+          }
+        },
+        "minDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "Min selectable date",
+          "defaultValue": {
+            "value": "'1900-01-01'",
+            "computed": false
+          }
+        },
+        "maxDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "Max selectable date",
+          "defaultValue": {
+            "value": "'2100-01-01'",
+            "computed": false
+          }
+        },
+        "initialFocusedDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "Initial focused date when calendar opens, if no value is provided",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "format": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Date format string for input",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": "Callback firing when date accepted [(date: Date) => void]"
+        },
+        "autoOk": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Auto accept date on selection",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "disablePast": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Disable past dates",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "disableFuture": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Disable future dates",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "animateYearScrolling": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "To animate scrolling to current year (with scrollIntoView)",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "openToYearSelection": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Open datepicker from year selection",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "labelFunc": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Allow to specify dynamic label for text field\n[(date: Date, invalidLabel: string) => string]",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "leftArrowIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "Left arrow icon",
+          "defaultValue": {
+            "value": "'keyboard_arrow_left'",
+            "computed": false
+          }
+        },
+        "rightArrowIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "Right arrow icon",
+          "defaultValue": {
+            "value": "'keyboard_arrow_right'",
+            "computed": false
+          }
+        },
+        "renderDay": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Custom renderer for day\n[(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "shouldDisableDate": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "Disable specific date [(date: Date) => boolean]",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "allowKeyboardControl": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Enables keyboard listener for moving between days in calendar",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "forwardedRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        }
+      }
+    }
+  ],
+  "../lib/src/DatePicker/components/Calendar.jsx": [
     {
       "description": "",
       "displayName": "Calendar",
@@ -276,7 +913,7 @@
       }
     }
   ],
-  "../lib/src/DatePicker/CalendarHeader.jsx": [
+  "../lib/src/DatePicker/components/CalendarHeader.jsx": [
     {
       "description": "",
       "displayName": "CalendarHeader",
@@ -381,426 +1018,7 @@
       }
     }
   ],
-  "../lib/src/DatePicker/DatePicker.jsx": [
-    {
-      "description": "",
-      "displayName": "DatePicker",
-      "methods": [
-        {
-          "name": "date",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "minDate",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "maxDate",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "handleYearSelect",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "date",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "openYearSelection",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "openCalendar",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
-      "props": {
-        "date": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "minDate": {
-          "type": {
-            "name": "custom",
-            "raw": "DomainPropTypes.date"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'1900-01-01'",
-            "computed": false
-          }
-        },
-        "maxDate": {
-          "type": {
-            "name": "custom",
-            "raw": "DomainPropTypes.date"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "'2100-01-01'",
-            "computed": false
-          }
-        },
-        "onChange": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": ""
-        },
-        "disablePast": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "disableFuture": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "animateYearScrolling": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "openToYearSelection": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "null",
-            "computed": false
-          }
-        },
-        "leftArrowIcon": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "rightArrowIcon": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "renderDay": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "utils": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "shouldDisableDate": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "allowKeyboardControl": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        }
-      }
-    }
-  ],
-  "../lib/src/DatePicker/DatePickerWrapper.jsx": [
-    {
-      "description": "",
-      "displayName": "DatePickerWrapper",
-      "methods": [],
-      "props": {
-        "value": {
-          "type": {
-            "name": "custom",
-            "raw": "DomainPropTypes.date"
-          },
-          "required": false,
-          "description": "Datepicker value",
-          "defaultValue": {
-            "value": "new Date()",
-            "computed": false
-          }
-        },
-        "minDate": {
-          "type": {
-            "name": "custom",
-            "raw": "DomainPropTypes.date"
-          },
-          "required": false,
-          "description": "Min selectable date",
-          "defaultValue": {
-            "value": "'1900-01-01'",
-            "computed": false
-          }
-        },
-        "maxDate": {
-          "type": {
-            "name": "custom",
-            "raw": "DomainPropTypes.date"
-          },
-          "required": false,
-          "description": "Max selectable date",
-          "defaultValue": {
-            "value": "'2100-01-01'",
-            "computed": false
-          }
-        },
-        "initialFocusedDate": {
-          "type": {
-            "name": "custom",
-            "raw": "DomainPropTypes.date"
-          },
-          "required": false,
-          "description": "Initial focused date when calendar opens, if no value is provided",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "format": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "Date format string for input",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "onChange": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": "Callback firing when date accepted [(date: Date) => void]"
-        },
-        "autoOk": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "Auto accept date on selection",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "disablePast": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "Disable past dates",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "disableFuture": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "Disable future dates",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "animateYearScrolling": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "To animate scrolling to current year (with scrollIntoView)",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "openToYearSelection": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "Open datepicker from year selection",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "labelFunc": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "Allow to specify dynamic label for text field [(date: Date, invalidLabel: string) => string]",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "leftArrowIcon": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "Left arrow icon",
-          "defaultValue": {
-            "value": "'keyboard_arrow_left'",
-            "computed": false
-          }
-        },
-        "rightArrowIcon": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "Right arrow icon",
-          "defaultValue": {
-            "value": "'keyboard_arrow_right'",
-            "computed": false
-          }
-        },
-        "renderDay": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "Custom renderer for day [(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "shouldDisableDate": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "Disable specific date [(date: Date) => boolean]",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "allowKeyboardControl": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "Enables keyboard listener for moving between days in calendar",
-          "defaultValue": {
-            "value": "true",
-            "computed": false
-          }
-        },
-        "forwardedRef": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        }
-      }
-    }
-  ],
-  "../lib/src/DatePicker/Day.jsx": [
+  "../lib/src/DatePicker/components/Day.jsx": [
     {
       "description": "",
       "displayName": "Day",
@@ -867,7 +1085,7 @@
       }
     }
   ],
-  "../lib/src/DatePicker/DayWrapper.jsx": [
+  "../lib/src/DatePicker/components/DayWrapper.jsx": [
     {
       "description": "",
       "displayName": "DayWrapper",
@@ -927,7 +1145,7 @@
       }
     }
   ],
-  "../lib/src/DatePicker/SlideTransition.jsx": [
+  "../lib/src/DatePicker/components/SlideTransition.jsx": [
     {
       "description": "",
       "displayName": "SlideTransition",
@@ -986,7 +1204,7 @@
       }
     }
   ],
-  "../lib/src/DatePicker/Year.jsx": [
+  "../lib/src/DatePicker/components/Year.jsx": [
     {
       "description": "",
       "displayName": "Year",
@@ -1053,7 +1271,7 @@
       }
     }
   ],
-  "../lib/src/DatePicker/YearSelection.jsx": [
+  "../lib/src/DatePicker/components/YearSelection.jsx": [
     {
       "description": "",
       "displayName": "YearSelection",
@@ -1847,7 +2065,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Custom renderer for day [(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]",
+          "description": "Custom renderer for day\n[(date: Date, nowSelectedDate: Date, isInCurrentMonth: boolean) => ReactElement]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -3322,10 +3540,10 @@
       }
     }
   ],
-  "../lib/src/wrappers/ModalWrapper.jsx": [
+  "../lib/src/wrappers/InlineWrapper.jsx": [
     {
       "description": "",
-      "displayName": "ModalWrapper",
+      "displayName": "InlineWrapper",
       "methods": [
         {
           "name": "getDerivedStateFromProps",
@@ -3342,29 +3560,15 @@
           "returns": null
         },
         {
-          "name": "handleKeyDown",
+          "name": "open",
           "docblock": null,
           "modifiers": [],
           "params": [
             {
-              "name": "event",
+              "name": "e",
               "type": null
             }
           ],
-          "returns": null
-        },
-        {
-          "name": "handleSetTodayDate",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "open",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
           "returns": null
         },
         {
@@ -3373,30 +3577,20 @@
           "modifiers": [],
           "params": [],
           "returns": null
-        },
-        {
-          "name": "handleAccept",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "handleDismiss",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "handleClear",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
         }
       ],
       "props": {
+        "onlyCalendar": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Show only calendar in popover mode",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
         "value": {
           "type": {
             "name": "custom",
@@ -3407,28 +3601,6 @@
           "defaultValue": {
             "value": "new Date()",
             "computed": false
-          }
-        },
-        "invalidLabel": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "Format string",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "labelFunc": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "Function for dynamic rendering label [(date: Date, invalidLabel: string) => string]",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
           }
         },
         "okLabel": {
@@ -3530,12 +3702,285 @@
             "computed": true
           }
         },
+        "PopoverProps": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": "Dialog props passed to material-ui Dialog",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "labelFunc": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "onClear": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "isAccepted": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "keyboard": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        }
+      }
+    }
+  ],
+  "../lib/src/wrappers/ModalWrapper.jsx": [
+    {
+      "description": "",
+      "displayName": "ModalWrapper",
+      "methods": [
+        {
+          "name": "getDerivedStateFromProps",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "nextProps",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleKeyDown",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "event",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleSetTodayDate",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "open",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "close",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleAccept",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleDismiss",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "handleClear",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "okLabel": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "\"OK\" label message",
+          "defaultValue": {
+            "value": "'OK'",
+            "computed": false
+          }
+        },
+        "cancelLabel": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "\"Cancel\" label message",
+          "defaultValue": {
+            "value": "'Cancel'",
+            "computed": false
+          }
+        },
+        "clearLabel": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "\"Clear\" label message",
+          "defaultValue": {
+            "value": "'Clear'",
+            "computed": false
+          }
+        },
+        "clearable": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If true clear button will be displayed",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "todayLabel": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "\"Today\" label message",
+          "defaultValue": {
+            "value": "'Today'",
+            "computed": false
+          }
+        },
+        "showTodayButton": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If true today button will be displayed\n<b>Note*</b> that clear button has higher priority",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "onOpen": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "On open callback [(e: Event) => void]",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "format": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "On close callback [(e: Event) => void]",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
         "DialogProps": {
           "type": {
             "name": "object"
           },
           "required": false,
           "description": "Dialog props passed to material-ui Dialog",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "value": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "new Date()",
+            "computed": false
+          }
+        },
+        "invalidLabel": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "labelFunc": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "onClose": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
           "defaultValue": {
             "value": "undefined",
             "computed": true

@@ -6,6 +6,8 @@ import DomainPropTypes from '../constants/prop-types';
 
 export default class InlineWrapper extends PureComponent {
   static propTypes = {
+    /** Show only calendar in popover mode */
+    onlyCalendar: PropTypes.bool,
     /** Picker value */
     value: DomainPropTypes.date,
     /** "OK" label message */
@@ -46,6 +48,7 @@ export default class InlineWrapper extends PureComponent {
     clearLabel: 'Clear',
     todayLabel: 'Today',
     clearable: false,
+    onlyCalendar: false,
     showTodayButton: false,
     format: undefined,
     onClear: undefined,

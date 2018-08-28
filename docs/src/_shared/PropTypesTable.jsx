@@ -13,8 +13,10 @@ class PropTypesTable extends React.PureComponent {
 
   getCommonProps = () => {
     const modalWrapperProps = this.getFilteredProps('wrappers/ModalWrapper.jsx');
+    const inlineWrapperProps = this.getFilteredProps('wrappers/InlineWrapper.jsx');
     const textFieldProps = this.getFilteredProps('_shared/DateTextField.jsx');
-    return { ...modalWrapperProps, ...textFieldProps };
+
+    return { ...inlineWrapperProps, ...modalWrapperProps, ...textFieldProps };
   }
 
   getPropsDoc = () => {
