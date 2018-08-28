@@ -78,7 +78,6 @@ function Stepper(props) {
       !alternativeLabel &&
         connector &&
         index > 0 &&
-        step.props.children &&
         React.cloneElement(connector, {
           key: index, // eslint-disable-line react/no-array-index-key
         }),
