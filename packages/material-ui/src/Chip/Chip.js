@@ -274,22 +274,20 @@ class Chip extends React.Component {
       onDelete,
       onKeyDown,
       onKeyUp,
-      variant,
       tabIndex: tabIndexProp,
+      variant,
       ...other
     } = this.props;
 
     const className = classNames(
       classes.root,
-      { [classes[`color${capitalize(color)}`]]: color !== 'default' },
-      { [classes.clickable]: onClick || clickable },
       {
+        [classes[`color${capitalize(color)}`]]: color !== 'default',
+        [classes.clickable]: onClick || clickable,
         [classes[`clickableColor${capitalize(color)}`]]:
           (onClick || clickable) && color !== 'default',
-      },
-      { [classes.deletable]: onDelete },
-      { [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default' },
-      {
+        [classes.deletable]: onDelete,
+        [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default',
         [classes.outlined]: variant === 'outlined',
         [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
         [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
