@@ -13,7 +13,7 @@ if (process.env.BABEL_ENV === 'es') {
         targets: {
           ie: 11,
           edge: 14,
-          firefox: 45,
+          firefox: 52,
           chrome: 49,
           safari: 10,
           node: '6.11',

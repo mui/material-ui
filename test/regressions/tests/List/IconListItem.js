@@ -25,6 +25,12 @@ export default function IconListItem() {
       <ListItem dense>
         <ListItemText inset primary="Inset" secondary="Secondary" />
       </ListItem>
+      <ListItem selected>
+        <ListItemIcon>
+          <Icon>phone</Icon>
+        </ListItemIcon>
+        <ListItemText primary="Icon" />
+      </ListItem>
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { ListItemProps } from '../ListItem';
 export interface MenuItemProps extends StandardProps<ListItemProps, MenuItemClassKey> {
   component?: React.ReactType<MenuItemProps>;
   role?: string;
-  selected?: boolean;
 }
 
 export type MenuItemClassKey = 'root' | 'selected';

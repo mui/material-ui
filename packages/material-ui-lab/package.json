@@ -2,7 +2,7 @@
   "name": "@material-ui/lab",
   "private": true,
   "author": "Material-UI Team",
-  "version": "1.0.0-alpha.11",
+  "version": "1.0.0-alpha.12",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",
   "main": "./src/index.js",
   "keywords": [
@@ -34,7 +34,7 @@
     "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
-    "@material-ui/core": "^1.0.0",
+    "@material-ui/core": "^3.0.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
   },

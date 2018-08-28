@@ -21,7 +21,8 @@ Choosing an option should immediately ideally commit the option and close the me
 
 ## Selected menus
 
-If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element. The currently selected menu item is set using the `selected` prop.
+If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element.
+The currently selected menu item is set using the `selected` property (from [ListItem](/api/list-item)).
 
 {{"demo": "pages/demos/menus/SimpleListMenu.js"}}
 
