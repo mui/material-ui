@@ -185,7 +185,7 @@ describe('<Slider />', () => {
     });
   });
 
-  describe('prop: value', () => {
+  describe('prop: step', () => {
     const transitionComplexDuration = 375;
     let wrapper;
     let clock;
