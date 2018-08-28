@@ -22,6 +22,6 @@ npm run develop
 
 ## `withRoot` usage
 
-We are using the `withRoot` higher-order component to accommodate the styling solution of Material-UI with Gatsby.
+We are using the `withRoot` higher-order component to accommodate Material-UI's styling solution with Gatsby.
 
-⚠️ You should be using a single `withRoot` for rendering one page.
+⚠️ You should only use a single `withRoot` for rendering one page.
