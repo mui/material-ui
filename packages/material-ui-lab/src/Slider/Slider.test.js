@@ -184,4 +184,28 @@ describe('<Slider />', () => {
       assert.strictEqual(trackAfter.prop('style').width, 'calc(100% - 5px)');
     });
   });
+
+  describe('prop: value', () => {
+    const transitionComplexDuration = 375;
+    let wrapper;
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+      wrapper = mount(<Slider value={0} min={0} max={102} step={10} />);
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('after change value should change position of thumb', () => {
+      wrapper.setProps({ value: 103 });
+
+      clock.tick(transitionComplexDuration);
+
+      const button = wrapper.find('button');
+      assert.strictEqual(button.prop('style').left, '100%');
+    });
+  });
 });
