@@ -305,7 +305,7 @@ class Chip extends React.Component {
             className: classNames(deleteIconProp.props.className, classes.deleteIcon, {
               [classes[`deleteIconColor${capitalize(color)}`]]:
                 color !== 'default' && variant !== 'outlined',
-              [classes[`deleteIconColor${capitalize(color)}Outlined`]]:
+              [classes[`deleteIconOutlinedColor${capitalize(color)}`]]:
                 color !== 'default' && variant === 'outlined',
             }),
             onClick: this.handleDeleteIconClick,
@@ -315,7 +315,7 @@ class Chip extends React.Component {
             className={classNames(classes.deleteIcon, {
               [classes[`deleteIconColor${capitalize(color)}`]]:
                 color !== 'default' && variant !== 'outlined',
-              [classes[`deleteIconColor${capitalize(color)}Outlined`]]:
+              [classes[`deleteIconOutlinedColor${capitalize(color)}`]]:
                 color !== 'default' && variant === 'outlined',
             })}
             onClick={this.handleDeleteIconClick}
