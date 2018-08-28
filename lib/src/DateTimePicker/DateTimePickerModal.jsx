@@ -7,7 +7,7 @@ import ModalWrapper from '../wrappers/ModalWrapper';
 import DateTimePicker from './DateTimePicker';
 import BasePicker from '../_shared/BasePicker';
 
-export const DateTimePickerWrapper = (props) => {
+export const DateTimePickerModal = (props) => {
   const {
     value,
     format,
@@ -93,7 +93,7 @@ export const DateTimePickerWrapper = (props) => {
   );
 };
 
-DateTimePickerWrapper.propTypes = {
+DateTimePickerModal.propTypes = {
   classes: PropTypes.object.isRequired,
   /** DateTimepicker value */
   value: DomainPropTypes.date,
@@ -143,7 +143,7 @@ DateTimePickerWrapper.propTypes = {
   forwardedRef: PropTypes.func,
 };
 
-DateTimePickerWrapper.defaultProps = {
+DateTimePickerModal.defaultProps = {
   value: new Date(),
   format: undefined,
   autoOk: false,
@@ -173,6 +173,6 @@ const styles = {
   },
 };
 
-const EnhancedWrapper = withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerWrapper);
+const EnhancedWrapper = withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerModal);
 export default React.forwardRef((props, ref) => <EnhancedWrapper {...props} forwardedRef={ref} />);
 

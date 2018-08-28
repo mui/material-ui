@@ -2,12 +2,12 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import View from './DateTimePickerView';
+import View from './components/DateTimePickerView';
 import YearSelection from '../DatePicker/components/YearSelection';
 import Calendar from '../DatePicker/components/Calendar';
 import TimePickerView from '../TimePicker/components/TimePickerView';
-import DateTimePickerTabs from './DateTimePickerTabs';
-import DatetimePickerHeader from './DateTimePickerHeader';
+import DateTimePickerTabs from './components/DateTimePickerTabs';
+import DatetimePickerHeader from './components/DateTimePickerHeader';
 import { convertToMeridiem } from '../_helpers/time-utils';
 
 import DomainPropTypes from '../constants/prop-types';

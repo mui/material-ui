@@ -1,3 +1,3 @@
-export { default } from './DateTimePickerWrapper';
+export { default } from './DateTimePickerModal';
 
-export { DateTimePickerWrapperProps as DateTimePickerProps } from './DateTimePickerWrapper'
+export { DateTimePickerWrapperProps as DateTimePickerProps } from './DateTimePickerModal'

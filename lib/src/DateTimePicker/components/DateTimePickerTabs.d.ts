@@ -1,5 +1,5 @@
 import { ComponentClass, ReactNode } from 'react';
-import { DateTimePickerView } from '../constants/date-picker-view';
+import { DateTimePickerView } from '../../constants/date-picker-view';
 
 export interface DateTimePickerTabsProps {
   view: DateTimePickerView;
