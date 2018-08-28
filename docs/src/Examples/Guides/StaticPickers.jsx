@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Paper from '@material-ui/core/Paper';
 import BasePicker from 'material-ui-pickers/_shared/BasePicker';
 import Calendar from 'material-ui-pickers/DatePicker/components/Calendar';
-import TimePickerView from 'material-ui-pickers/TimePicker/TimePickerView';
+import TimePickerView from 'material-ui-pickers/TimePicker/components/TimePickerView';
 
 /* eslint-disable no-unused-vars */
 class StaticPickers extends PureComponent {

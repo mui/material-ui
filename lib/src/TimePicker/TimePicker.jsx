@@ -7,7 +7,7 @@ import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import { convertToMeridiem } from '../_helpers/time-utils';
 import withUtils from '../_shared/WithUtils';
-import TimePickerView from './TimePickerView';
+import TimePickerView from './components/TimePickerView';
 import * as clockType from '../constants/clock-types';
 
 export class TimePicker extends Component {

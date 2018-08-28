@@ -1,2 +1,2 @@
-export { default } from './TimePickerWrapper';
+export { default } from './TimePickerModal';
 
