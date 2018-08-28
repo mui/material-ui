@@ -26,3 +26,7 @@ It can transform into a contextual action bar or used as a navbar.
 ## Dense (desktop only)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}
+
+## App Bar with search field
+
+{{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
