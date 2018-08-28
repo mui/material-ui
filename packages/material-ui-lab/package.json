@@ -39,7 +39,7 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0-rc.1"
+    "@babel/runtime": "7.0.0"
   },
   "devDependencies": {},
   "sideEffects": false,
