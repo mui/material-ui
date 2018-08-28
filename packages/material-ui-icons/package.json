@@ -41,8 +41,8 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0-rc.1",
-    "recompose": "^0.28.2"
+    "@babel/runtime": "7.0.0",
+    "recompose": "^0.29.0"
   },
   "devDependencies": {
     "fs-extra": "^7.0.0",

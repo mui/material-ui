@@ -10,6 +10,9 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 
 Big thanks to the 27 contributors who made this release possible!
 
+We are upgrading the major version of `@material-ui/core` to match the version of `@material-ui/icons`.
+The next major release is planned for [Q1, 2019](https://github.com/mui-org/material-ui/milestone/25).
+
 ### Breaking change
 
 - [icons] Save 22 Megabytes from the package (#12662)
