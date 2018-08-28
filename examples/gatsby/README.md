@@ -16,12 +16,12 @@ npm install
 npm run develop
 ```
 
-## Providing the theme
-
-To propagate the theme to a component tree use the `src/withRoot.js` HOC.
-You should wrap **only** your top-level components with this HOC otherwise you risk re-rendering your React tree multiple times and styling issues during the build phase.
-
-
 ## The idea behind the example
 
 [Gatsby](https://github.com/gatsbyjs/gatsby) is a static site generator for React.
+
+## `withRoot` usage
+
+We are using the `withRoot` higher-order component to accommodate the styling solution of Material-UI with Gatsby.
+
+⚠️ You should be using a single `withRoot` for rendering one page.
