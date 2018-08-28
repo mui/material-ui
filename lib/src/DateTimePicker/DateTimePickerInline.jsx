@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
 
 import DomainPropTypes from '../constants/prop-types';
 import InlineWrapper from '../wrappers/InlineWrapper';
@@ -13,7 +12,6 @@ export const DateTimePickerInline = (props) => {
     format,
     autoOk,
     openTo,
-    classes,
     minDate,
     maxDate,
     initialFocusedDate,
@@ -47,7 +45,6 @@ export const DateTimePickerInline = (props) => {
         }) => (
           <InlineWrapper
             ref={forwardedRef}
-            dialogContentClassName={classes.dialogContent}
             disableFuture={disableFuture}
             disablePast={disablePast}
             maxDate={maxDate}
@@ -86,7 +83,6 @@ export const DateTimePickerInline = (props) => {
 };
 
 DateTimePickerInline.propTypes = {
-  classes: PropTypes.object.isRequired,
   value: DomainPropTypes.date,
   format: PropTypes.string,
   onChange: PropTypes.func.isRequired,
@@ -135,12 +131,6 @@ DateTimePickerInline.defaultProps = {
   allowKeyboardControl: true,
 };
 
-const styles = {
-  dialogContent: {
-    width: 310,
-  },
-};
-
-const EnhancedWrapper = withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerInline);
-export default React.forwardRef((props, ref) => <EnhancedWrapper {...props} forwardedRef={ref} />);
+export default React.forwardRef((props, ref) =>
+  <DateTimePickerInline {...props} forwardedRef={ref} />);
 

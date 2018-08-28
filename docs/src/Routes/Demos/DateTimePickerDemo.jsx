@@ -20,6 +20,12 @@ const DateTimePickerDemo = () => (
       title="Basic usage"
       sourceFile="Demo/DateTimePicker/BasicDateTimePicker.jsx"
     />
+
+    <SourcablePanel
+      title="Inline mode"
+      sourceFile="Demo/DateTimePicker/InlineDateTimePicker.jsx"
+    />
+
     <SourcablePanel
       title="Customization"
       sourceFile="Demo/DateTimePicker/CustomDateTimePicker.jsx"
