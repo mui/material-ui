@@ -32,12 +32,12 @@ export const CalendarHeader = ({
           onClick={selectPreviousMonth}
           className={classes.iconButton}
         >
-          <Icon>{rtl ? rightArrowIcon : leftArrowIcon}</Icon>
+          <Icon> {rtl ? rightArrowIcon : leftArrowIcon} </Icon>
         </IconButton>
 
         <SlideTransition
           slideDirection={slideDirection}
-          transKey={currentMonth}
+          transKey={currentMonth.toString()}
           className={classes.transitionContainer}
         >
           <Typography

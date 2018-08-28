@@ -247,7 +247,7 @@ export class Calendar extends Component {
 
         <SlideTransition
           slideDirection={slideDirection}
-          transKey={currentMonth}
+          transKey={currentMonth.toString()}
           className={classes.transitionContainer}
         >
           <div
