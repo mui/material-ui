@@ -82,32 +82,29 @@ class SearchAppBar extends Component {
       <div className={classes.root}>
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography className={classes.title} variant="title" color="inherit" noWrap>
-                Material UI
-              </Typography>
-              <div className={classes.grow} />
-              <section className={classes.searchContainer}>
-                <div className={classes.searchIcon}>
-                  <SearchIcon />
-                </div>
-                <Input
-                  id="search-input"
-                  placeholder="Search…"
-                  value={searchInput}
-                  onChange={this.handleChange}
-                  disableUnderline
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                />
-              </section>
+            <IconButton color="inherit" aria-label="Open drawer">
+              <MenuIcon />
+            </IconButton>
+            <Typography className={classes.title} variant="title" color="inherit" noWrap>
+              Material UI
+            </Typography>
+            <div className={classes.grow} />
+            <section className={classes.searchContainer}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <Input
+                id="search-input"
+                placeholder="Search…"
+                value={searchInput}
+                onChange={this.handleChange}
+                disableUnderline
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+              />
+            </section>
           </Toolbar>
         </AppBar>
       </div>
