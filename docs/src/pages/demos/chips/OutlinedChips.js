@@ -25,7 +25,7 @@ function handleClick() {
   alert('You clicked the Chip.'); // eslint-disable-line no-alert
 }
 
-function Chips(props) {
+function OutlinedChips(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
@@ -105,8 +105,8 @@ function Chips(props) {
   );
 }
 
-Chips.propTypes = {
+OutlinedChips.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Chips);
+export default withStyles(styles)(OutlinedChips);

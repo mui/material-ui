@@ -23,6 +23,9 @@ export type ChipClassKey =
   | 'deletable'
   | 'deletablePrimary'
   | 'deletableSecondary'
+  | 'outlined'
+  | 'outlinedPrimary'
+  | 'outlinedSecondary'
   | 'avatar'
   | 'avatarPrimary'
   | 'avatarSecondary'
@@ -31,8 +34,8 @@ export type ChipClassKey =
   | 'deleteIcon'
   | 'deleteIconPrimary'
   | 'deleteIconSecondary'
-  | 'deleteIconPrimaryOutlined'
-  | 'deleteIconSecondaryOutlined';
+  | 'deleteIconOutlinedColorPrimary'
+  | 'deleteIconOutlinedColorSecondary';
 
 declare const Chip: React.ComponentType<ChipProps>;
 

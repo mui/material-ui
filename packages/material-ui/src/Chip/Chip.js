@@ -189,14 +189,14 @@ export const styles = theme => {
       },
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
-    deleteIconColorPrimaryOutlined: {
+    deleteIconOutlinedColorPrimary: {
       color: fade(theme.palette.primary.main, 0.65),
       '&:hover, &:active': {
         color: theme.palette.primary.main,
       },
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
-    deleteIconColorSecondaryOutlined: {
+    deleteIconOutlinedColorSecondary: {
       color: fade(theme.palette.secondary.main, 0.65),
       '&:hover, &:active': {
         color: theme.palette.secondary.main,

@@ -27,7 +27,7 @@ and (string) Avatar.
 
 ### Outlined Chips
 
-Outlined chips offer alternative style 
+Outlined chips offer alternative style.
 
 {{"demo": "pages/demos/chips/OutlinedChips.js"}}
 
