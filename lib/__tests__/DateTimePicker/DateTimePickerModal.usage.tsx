@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Fragment, Component } from 'react';
-import { IconButton, Typography, Icon } from '@material-ui/core';
+import { Component } from 'react';
+import { IconButton, Icon } from '@material-ui/core';
 import InputAdornment  from '@material-ui/core/InputAdornment';
 import DateTimePickerWrapper  from '../../src/DateTimePicker';
 import * as classNames from 'classnames'

@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { Fragment, Component } from 'react';
 import TimePickerWrapper  from '../../src/TimePicker';
 import { Moment } from 'moment'
 import { utilsToUse } from '../test-utils';
 import MuiUtilsProvider from '../../src/utils/MuiPickersUtilsProvider'
 
 // initially from the docs site
-export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
+export default class BasicUsage extends React.Component<{}, {selectedDate: Date}> {
   state = {
     selectedDate: new Date(),
   }
