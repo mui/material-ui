@@ -1,10 +1,11 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Popover from '@material-ui/core/Popover';
+import withStyles from '@material-ui/core/styles/withStyles';
 import DateTextField from '../_shared/DateTextField';
 import DomainPropTypes from '../constants/prop-types';
 
-export default class InlineWrapper extends PureComponent {
+export class InlineWrapper extends PureComponent {
   static propTypes = {
     /** Show only calendar for datepicker in popover mode */
     onlyCalendar: PropTypes.bool,
@@ -38,6 +39,7 @@ export default class InlineWrapper extends PureComponent {
     isAccepted: PropTypes.bool,
     children: PropTypes.node.isRequired,
     keyboard: PropTypes.bool,
+    classes: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
@@ -104,6 +106,7 @@ export default class InlineWrapper extends PureComponent {
       isAccepted,
       keyboard,
       onlyCalendar,
+      classes,
       ...other
     } = this.props;
 
@@ -122,6 +125,9 @@ export default class InlineWrapper extends PureComponent {
           open={Boolean(this.state.anchorEl)}
           anchorEl={this.state.anchorEl}
           onClose={this.close}
+          classes={{
+            paper: classes.popoverPaper,
+          }}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: keyboard ? 'right' : 'center',
@@ -137,3 +143,12 @@ export default class InlineWrapper extends PureComponent {
     );
   }
 }
+
+const styles = {
+  popoverPaper: {
+    minWidth: 290,
+    paddingBottom: 8,
+  },
+};
+
+export default withStyles(styles)(InlineWrapper);

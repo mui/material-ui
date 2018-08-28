@@ -41,6 +41,11 @@ const DatePickerDemoDemo = () => (
       sourceFile="Demo/TimePicker/KeyboardTimePicker.jsx"
     />
 
+    <SourcablePanel
+      title="Inline mode"
+      sourceFile="Demo/TimePicker/InlineTimePicker.jsx"
+    />
+
     <PropTypesTable src="TimePicker/TimePickerWrapper.jsx" />
   </div>
 );
