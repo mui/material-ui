@@ -184,10 +184,4 @@ describe('<Slider />', () => {
       assert.strictEqual(trackAfter.prop('style').width, 'calc(100% - 5px)');
     });
   });
-
-  describe('prop: step', () => {
-    it('should be able to slide to the edge value 102', () => {
-      //Not sure how to implement such a test
-    });
-  });
 });
