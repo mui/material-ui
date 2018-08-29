@@ -1,3 +1,3 @@
 export { default } from './TimePickerModal';
 
-export { default as InlineTimePicker } from './TimePickerInline'
+export { default as InlineTimePicker } from './TimePickerInline';

@@ -123,7 +123,9 @@ export class DateTextField extends PureComponent {
     InputAdornmentProps: PropTypes.object,
     /** Specifies position of keyboard button adornment */
     adornmentPosition: PropTypes.oneOf(['start', 'end']),
-    /** Callback firing when date that applied in the keyboard is invalid [(error: string) => void] */
+    /** Callback firing when date that applied in the keyboard is invalid
+     *  [(error: string) => void]
+    */
     onError: PropTypes.func,
     /** Callback firing on change input in keyboard mode [(e: Event) => void] */
     onInputChange: PropTypes.func,
