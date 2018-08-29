@@ -111,7 +111,7 @@ You don't have to worry about CSS specificity as the inline-style takes preceden
 
 ## 2. Dynamic variation for a one-time situation
 
-You have learn how to override the style of the Material-UI components in the previous sections.
+You have learned how to override the style of the Material-UI components in the previous sections.
 Now, let's see how we can make these overrides dynamic.
 We demonstrate 5 alternatives, each has it's pros and cons.
 
