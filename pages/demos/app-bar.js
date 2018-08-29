@@ -43,6 +43,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/app-bar/SearchAppBar'), 'utf8')
 `,
         },
+        'pages/demos/app-bar/PrimarySearchAppBar.js': {
+          js: require('docs/src/pages/demos/app-bar/PrimarySearchAppBar').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/PrimarySearchAppBar'), 'utf8')
+`,
+        },
       }}
     />
   );
