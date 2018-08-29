@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// Material UI
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
-// Material UI Icons
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -18,12 +16,6 @@ const styles = theme => ({
   },
   grow: {
     flex: '1 1 auto',
-  },
-  appBar: {
-    transition: theme.transitions.create('width'),
-    '@media print': {
-      position: 'absolute',
-    },
   },
   title: {
     marginLeft: 24,
@@ -80,7 +72,7 @@ class SearchAppBar extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="static" className={classes.appBar}>
+        <AppBar position="static">
           <Toolbar>
             <IconButton color="inherit" aria-label="Open drawer">
               <MenuIcon />
