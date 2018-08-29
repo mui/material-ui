@@ -86,7 +86,7 @@ class SearchAppBar extends Component {
               <MenuIcon />
             </IconButton>
             <Typography className={classes.title} variant="title" color="inherit" noWrap>
-              Material UI
+              Material-UI
             </Typography>
             <div className={classes.grow} />
             <section className={classes.searchContainer}>
