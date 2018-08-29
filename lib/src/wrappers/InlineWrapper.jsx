@@ -11,21 +11,6 @@ export class InlineWrapper extends PureComponent {
     onlyCalendar: PropTypes.bool,
     /** Picker value */
     value: DomainPropTypes.date,
-    /** "OK" label message */
-    okLabel: PropTypes.node,
-    /** "Cancel" label message */
-    cancelLabel: PropTypes.node,
-    /** "Clear" label message */
-    clearLabel: PropTypes.node,
-    /** If true clear button will be displayed */
-    clearable: PropTypes.bool,
-    /** "Today" label message */
-    todayLabel: PropTypes.string,
-    /**
-     * If true today button will be displayed
-     * <b>Note*</b> that clear button has higher priority
-    */
-    showTodayButton: PropTypes.bool,
     /** On open callback [(e: Event) => void] */
     onOpen: PropTypes.func,
     /** On close callback [(e: Event) => void] */
@@ -45,13 +30,7 @@ export class InlineWrapper extends PureComponent {
   static defaultProps = {
     value: new Date(),
     labelFunc: undefined,
-    okLabel: 'OK',
-    cancelLabel: 'Cancel',
-    clearLabel: 'Clear',
-    todayLabel: 'Today',
-    clearable: false,
     onlyCalendar: false,
-    showTodayButton: false,
     format: undefined,
     onClear: undefined,
     onOpen: undefined,
@@ -95,11 +74,6 @@ export class InlineWrapper extends PureComponent {
       value,
       format,
       children,
-      okLabel,
-      cancelLabel,
-      clearLabel,
-      todayLabel,
-      showTodayButton,
       onOpen,
       onClose,
       PopoverProps,
