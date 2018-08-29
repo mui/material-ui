@@ -11,6 +11,7 @@ import unsupportedProp from '../utils/unsupportedProp';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
+    fontSize: theme.typography.pxToRem(14),
     ...theme.typography.button,
     maxWidth: 264,
     position: 'relative',
@@ -89,7 +90,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the label wrapper element if `label` is provided. */
   label: {
-    fontSize: theme.typography.pxToRem(14),
     whiteSpace: 'normal',
     [theme.breakpoints.up('md')]: {
       fontSize: theme.typography.pxToRem(13),
