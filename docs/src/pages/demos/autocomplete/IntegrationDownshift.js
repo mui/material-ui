@@ -247,7 +247,15 @@ function IntegrationDownshift(props) {
   return (
     <div className={classes.root}>
       <Downshift id="downshift-simple">
-        {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
+        {({
+          getInputProps,
+          getItemProps,
+          getMenuProps,
+          highlightedIndex,
+          inputValue,
+          isOpen,
+          selectedItem,
+        }) => (
           <div className={classes.container}>
             {renderInput({
               fullWidth: true,
@@ -256,19 +264,21 @@ function IntegrationDownshift(props) {
                 placeholder: 'Search a country (start with a)',
               }),
             })}
-            {isOpen ? (
-              <Paper className={classes.paper} square>
-                {getSuggestions(inputValue).map((suggestion, index) =>
-                  renderSuggestion({
-                    suggestion,
-                    index,
-                    itemProps: getItemProps({ item: suggestion.label }),
-                    highlightedIndex,
-                    selectedItem,
-                  }),
-                )}
-              </Paper>
-            ) : null}
+            <div {...getMenuProps()}>
+              {isOpen ? (
+                <Paper className={classes.paper} square>
+                  {getSuggestions(inputValue).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion.label }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              ) : null}
+            </div>
           </div>
         )}
       </Downshift>
@@ -276,7 +286,15 @@ function IntegrationDownshift(props) {
       <DownshiftMultiple classes={classes} />
       <div className={classes.divider} />
       <Downshift id="downshift-popper">
-        {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
+        {({
+          getInputProps,
+          getItemProps,
+          getMenuProps,
+          highlightedIndex,
+          inputValue,
+          isOpen,
+          selectedItem,
+        }) => (
           <div className={classes.container}>
             {renderInput({
               fullWidth: true,
@@ -288,19 +306,21 @@ function IntegrationDownshift(props) {
                 popperNode = node;
               },
             })}
-            <Popper open={isOpen} anchorEl={popperNode}>
-              <Paper square style={{ width: popperNode ? popperNode.clientWidth : null }}>
-                {getSuggestions(inputValue).map((suggestion, index) =>
-                  renderSuggestion({
-                    suggestion,
-                    index,
-                    itemProps: getItemProps({ item: suggestion.label }),
-                    highlightedIndex,
-                    selectedItem,
-                  }),
-                )}
-              </Paper>
-            </Popper>
+            <div {...getMenuProps()}>
+              <Popper disablePortal open={isOpen} anchorEl={popperNode}>
+                <Paper square style={{ width: popperNode ? popperNode.clientWidth : null }}>
+                  {getSuggestions(inputValue).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion.label }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              </Popper>
+            </div>
           </div>
         )}
       </Downshift>
