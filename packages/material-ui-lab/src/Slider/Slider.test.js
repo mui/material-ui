@@ -186,22 +186,24 @@ describe('<Slider />', () => {
   });
 
   describe('prop: step', () => {
-    const transitionComplexDuration = 375;
-    let wrapper;
-    const handleDragEnd = spy();
+    it('should be able to slide to the edge value 102', () => {
+      const transitionComplexDuration = 375;
+      let wrapper;
+      const handleDragEnd = spy();
 
-    before(() => {
-      wrapper = mount(<Slider value={0} min={0} max={102} onDragEnd={handleDragEnd} step={10} />);
+      before(() => {
+        wrapper = mount(<Slider value={0} min={0} max={102} onDragEnd={handleDragEnd} step={10} />);
+      });
+
+      const callGlobalListeners = () => {
+        document.body.dispatchEvent(new window.MouseEvent('mousemove'));
+        document.body.dispatchEvent(new window.MouseEvent('mouseup'));
+      };
+
+      wrapper.simulate('mousedown');
+      callGlobalListeners();
+      // pre condition: the dispatched event actually did something when mounted
+      assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
     });
-
-    const callGlobalListeners = () => {
-      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
-      document.body.dispatchEvent(new window.MouseEvent('mouseup'));
-    };
-
-    wrapper.simulate('mousedown');
-    callGlobalListeners();
-    // pre condition: the dispatched event actually did something when mounted
-    assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
   });
 });
