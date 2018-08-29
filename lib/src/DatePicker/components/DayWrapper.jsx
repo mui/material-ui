@@ -23,6 +23,7 @@ class DayWrapper extends PureComponent {
     const {
       children, value, dayInCurrentMonth, disabled, onSelect, ...other
     } = this.props;
+
     return (
       <div
         onClick={dayInCurrentMonth && !disabled ? this.handleClick : undefined}

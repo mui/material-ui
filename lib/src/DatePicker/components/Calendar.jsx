@@ -134,6 +134,7 @@ export class Calendar extends Component {
   };
 
   moveToDay = (day) => {
+    console.log(day);
     if (day && !this.shouldDisableDate(day)) {
       this.props.onChange(day);
     }
