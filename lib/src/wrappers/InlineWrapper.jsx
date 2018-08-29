@@ -146,8 +146,10 @@ export class InlineWrapper extends PureComponent {
 
 const styles = {
   popoverPaper: {
+    maxWidth: 310,
     minWidth: 290,
-    paddingBottom: 8,
+    paddingBottom: 8, 
+o,
   },
 };
 
