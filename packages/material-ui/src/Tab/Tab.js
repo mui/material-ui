@@ -12,7 +12,6 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.button,
-    fontSize: theme.typography.pxToRem(14),
     maxWidth: 264,
     position: 'relative',
     minWidth: 72,
