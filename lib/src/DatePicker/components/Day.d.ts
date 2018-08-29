@@ -11,3 +11,4 @@ export interface DayProps {
 declare const Day: ComponentClass<DayProps>;
 
 export default Day;
+
