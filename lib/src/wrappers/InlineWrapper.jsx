@@ -148,8 +148,7 @@ const styles = {
   popoverPaper: {
     maxWidth: 310,
     minWidth: 290,
-    paddingBottom: 8, 
-o,
+    paddingBottom: 8,
   },
 };
 
