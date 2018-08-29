@@ -91,9 +91,6 @@ export const styles = theme => ({
   /* Styles applied to the label wrapper element if `label` is provided. */
   label: {
     whiteSpace: 'normal',
-    [theme.breakpoints.up('md')]: {
-      fontSize: theme.typography.pxToRem(13),
-    },
   },
   /* Styles applied to the label wrapper element if `label` is provided and the text is wrapped. */
   labelWrapped: {
