@@ -11,7 +11,7 @@ const styles = {
 
 class StepSlider extends React.Component {
   state = {
-    value: 3,
+    value: 30,
   };
 
   handleChange = (event, value) => {
@@ -24,7 +24,7 @@ class StepSlider extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Slider value={value} min={0} max={6} step={1} onChange={this.handleChange} />
+        <Slider value={value} min={0} max={102} step={10} onChange={this.handleChange} />
       </div>
     );
   }

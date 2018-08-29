@@ -188,24 +188,20 @@ describe('<Slider />', () => {
   describe('prop: step', () => {
     const transitionComplexDuration = 375;
     let wrapper;
-    let clock;
+    const handleDragEnd = spy();
 
     before(() => {
-      clock = useFakeTimers();
-      wrapper = mount(<Slider value={0} min={0} max={102} step={10} />);
+      wrapper = mount(<Slider value={0} min={0} max={102} onDragEnd={handleDragEnd} step={10} />);
     });
 
-    after(() => {
-      clock.restore();
-    });
+    const callGlobalListeners = () => {
+      document.body.dispatchEvent(new window.MouseEvent('mousemove'));
+      document.body.dispatchEvent(new window.MouseEvent('mouseup'));
+    };
 
-    it('after change value should change position of thumb', () => {
-      wrapper.setProps({ value: 103 });
-
-      clock.tick(transitionComplexDuration);
-
-      const button = wrapper.find('button');
-      assert.strictEqual(button.prop('style').left, '100%');
-    });
+    wrapper.simulate('mousedown');
+    callGlobalListeners();
+    // pre condition: the dispatched event actually did something when mounted
+    assert.strictEqual(handleDragEnd.callCount, 1, 'should have called the handleDragEnd cb');
   });
 });

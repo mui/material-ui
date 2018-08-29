@@ -27,10 +27,6 @@ Sliders reflect the current state of the settings they control.
 
 {{"demo": "pages/lab/slider/StepSlider.js"}}
 
-## Slider with steps with edge values
-
-{{"demo": "pages/lab/slider/StepSliderEdgeValues.js"}}
-
 ## Disabled slider
 
 {{"demo": "pages/lab/slider/DisabledSlider.js"}}
