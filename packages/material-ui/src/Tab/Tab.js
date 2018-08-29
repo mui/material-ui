@@ -11,8 +11,8 @@ import unsupportedProp from '../utils/unsupportedProp';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    fontSize: theme.typography.pxToRem(14),
     ...theme.typography.button,
+    fontSize: theme.typography.pxToRem(14),
     maxWidth: 264,
     position: 'relative',
     minWidth: 72,
@@ -21,6 +21,7 @@ export const styles = theme => ({
     flexShrink: 0,
     overflow: 'hidden',
     [theme.breakpoints.up('md')]: {
+      fontSize: theme.typography.pxToRem(13),
       minWidth: 160,
     },
   },
@@ -89,9 +90,7 @@ export const styles = theme => ({
     },
   },
   /* Styles applied to the label wrapper element if `label` is provided. */
-  label: {
-    whiteSpace: 'normal',
-  },
+  label: {},
   /* Styles applied to the label wrapper element if `label` is provided and the text is wrapped. */
   labelWrapped: {
     [theme.breakpoints.down('sm')]: {
