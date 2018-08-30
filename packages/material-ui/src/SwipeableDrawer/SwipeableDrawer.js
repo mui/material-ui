@@ -289,29 +289,29 @@ class SwipeableDrawer extends React.Component {
     const beginSwipe = isHorizontal(this.props) ? this.startX : this.startY;
 
     // compute minimal swipe distance by hysteresis property
-    const minDistance =  this.getMaxTranslate() * this.props.hysteresis;
+    const minDistance = this.getMaxTranslate() * this.props.hysteresis;
 
     // get the real distance
     const distance = Math.abs(beginSwipe - current);
 
-    if (beginSwipe > current){
+    if (beginSwipe > current) {
       // closing swipe
-      if(distance < minDistance){
+      if (distance < minDistance) {
         // distance too short, go back to opened state
         this.setPosition(0, {
           mode: 'exit',
         });
-      }else{
+      } else {
         this.props.onClose();
       }
-    }else{
+    } else {
       // opening swipe
-      if(distance < minDistance){
+      if (distance < minDistance) {
         // distance too short, go back to closed state
         this.setPosition(_this.getMaxTranslate(), {
           mode: 'enter',
         });
-      }else{
+      } else {
         _this.props.onOpen();
       }
     }
