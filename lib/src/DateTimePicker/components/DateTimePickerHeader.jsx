@@ -62,7 +62,7 @@ export const DateTimePickerHeader = (props) => {
         </div>
 
         {
-          ampm &&
+          ampm && (
             <div className={classes.ampmSelection}>
               <ToolbarButton
                 className={classes.ampmLabel}
@@ -79,6 +79,7 @@ export const DateTimePickerHeader = (props) => {
                 onClick={setMeridiemMode('pm')}
               />
             </div>
+          )
         }
       </div>
     </PickerToolbar>
