@@ -328,7 +328,11 @@ class Slider extends React.Component {
 
     if (step) {
       if (rawValue > min && rawValue < max) {
-        value = roundToStep(rawValue, step);
+        if (rawValue == max - step) {
+          value = max;
+        } else {
+          value = roundToStep(rawValue, step);
+        }
       }
     } else {
       value = Number(rawValue.toFixed(3));
