@@ -8,7 +8,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
-import withUtils from '../_shared/WithUtils';
+import withUtils from './WithUtils';
 
 const getDisplayDate = (props) => {
   const {
@@ -53,15 +53,15 @@ const getError = (value, props) => {
   }
 
   if (
-    (maxDate && utils.isAfter(value, maxDate)) ||
-    (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
+    (maxDate && utils.isAfter(value, maxDate))
+    || (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
   ) {
     return maxDateMessage;
   }
 
   if (
-    (minDate && utils.isBefore(value, minDate)) ||
-    (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
+    (minDate && utils.isBefore(value, minDate))
+    || (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
   ) {
     return minDateMessage;
   }
@@ -164,12 +164,12 @@ export class DateTextField extends PureComponent {
 
   componentDidUpdate(prevProps) {
     if (
-      !this.props.utils.isEqual(this.props.value, prevProps.value) ||
-      prevProps.format !== this.props.format ||
-      prevProps.maxDate !== this.props.maxDate ||
-      prevProps.minDate !== this.props.minDate ||
-      prevProps.emptyLabel !== this.props.emptyLabel ||
-      prevProps.utils !== this.props.utils
+      !this.props.utils.isEqual(this.props.value, prevProps.value)
+      || prevProps.format !== this.props.format
+      || prevProps.maxDate !== this.props.maxDate
+      || prevProps.minDate !== this.props.minDate
+      || prevProps.emptyLabel !== this.props.emptyLabel
+      || prevProps.utils !== this.props.utils
     ) {
       /* eslint-disable-next-line react/no-did-update-set-state */
       this.setState(DateTextField.updateState(this.props));
@@ -320,7 +320,11 @@ export class DateTextField extends PureComponent {
             disabled={disabled}
             onClick={this.openPicker}
           >
-            <Icon> {keyboardIcon} </Icon>
+            <Icon>
+              {' '}
+              {keyboardIcon}
+              {' '}
+            </Icon>
           </IconButton>
         </InputAdornment>
       );

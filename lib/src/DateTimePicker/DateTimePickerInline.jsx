@@ -131,6 +131,6 @@ DateTimePickerInline.defaultProps = {
   allowKeyboardControl: true,
 };
 
-export default React.forwardRef((props, ref) =>
-  <DateTimePickerInline {...props} forwardedRef={ref} />);
-
+export default React.forwardRef(
+  (props, ref) => <DateTimePickerInline {...props} forwardedRef={ref} />,
+);

@@ -142,13 +142,15 @@ export class DateTimePicker extends Component {
         />
 
         {
-          showTabs &&
+          showTabs
+            && (
             <DateTimePickerTabs
               view={openView}
               onChange={this.handleViewChange}
               dateRangeIcon={dateRangeIcon}
               timeIcon={timeIcon}
             />
+            )
         }
 
         <ViewContainerComponent className={classes.viewContainer} {...ViewContainerComponentProps}>

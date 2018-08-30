@@ -76,7 +76,7 @@ export const DatePickerModal = (props) => {
               shouldDisableDate={shouldDisableDate}
             />
           </ModalWrapper>
-          )
+        )
       }
     </BasePicker>
   );
@@ -147,4 +147,3 @@ DatePickerModal.defaultProps = {
 export default React.forwardRef((props, ref) => (
   <DatePickerModal {...props} forwardedRef={ref} />
 ));
-

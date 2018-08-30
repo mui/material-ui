@@ -87,7 +87,7 @@ export const DateTimePickerModal = (props) => {
               timeIcon={timeIcon}
             />
           </ModalWrapper>
-          )
+        )
       }
     </BasePicker>
   );
@@ -175,4 +175,3 @@ const styles = {
 
 const EnhancedWrapper = withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerModal);
 export default React.forwardRef((props, ref) => <EnhancedWrapper {...props} forwardedRef={ref} />);
-

@@ -155,7 +155,8 @@ export class TimePicker extends Component {
             />
 
             {
-              seconds &&
+              seconds
+                && (
                 <Fragment>
                   <ToolbarButton
                     variant="display3"
@@ -171,11 +172,13 @@ export class TimePicker extends Component {
                     label={utils.getSecondText(date)}
                   />
                 </Fragment>
+                )
             }
           </div>
 
           {
-            ampm &&
+            ampm
+              && (
               <div className={seconds ? classes.ampmSelectionWithSeconds : classes.ampmSelection}>
                 <ToolbarButton
                   className={classes.ampmLabel}
@@ -193,6 +196,7 @@ export class TimePicker extends Component {
                   onClick={this.setMeridiemMode('pm')}
                 />
               </div>
+              )
           }
         </PickerToolbar>
 

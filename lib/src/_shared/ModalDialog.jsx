@@ -77,7 +77,8 @@ export const ModalDialog = ({
         }),
       }}
     >
-      { clearable &&
+      { clearable
+        && (
         <Button
           color="primary"
           onClick={onClear}
@@ -85,9 +86,11 @@ export const ModalDialog = ({
         >
           { clearLabel }
         </Button>
+        )
       }
 
-      { !clearable && showTodayButton &&
+      { !clearable && showTodayButton
+        && (
         <Button
           color="primary"
           onClick={onSetToday}
@@ -95,6 +98,7 @@ export const ModalDialog = ({
         >
           { todayLabel }
         </Button>
+        )
       }
 
       <Button

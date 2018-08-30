@@ -124,4 +124,3 @@ DatePickerInline.defaultProps = {
 export default React.forwardRef((props, ref) => (
   <DatePickerInline {...props} forwardedRef={ref} />
 ));
-

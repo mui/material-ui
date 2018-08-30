@@ -108,7 +108,7 @@ export class DatePicker extends PureComponent {
 
         {
           showYearSelection
-            ?
+            ? (
               <YearSelection
                 date={this.date}
                 onChange={this.handleYearSelect}
@@ -119,7 +119,8 @@ export class DatePicker extends PureComponent {
                 animateYearScrolling={animateYearScrolling}
                 utils={utils}
               />
-            :
+            )
+            : (
               <Calendar
                 date={this.date}
                 onChange={onChange}
@@ -134,6 +135,7 @@ export class DatePicker extends PureComponent {
                 shouldDisableDate={shouldDisableDate}
                 allowKeyboardControl={allowKeyboardControl}
               />
+            )
         }
       </Fragment>
     );
@@ -141,4 +143,3 @@ export class DatePicker extends PureComponent {
 }
 
 export default withUtils()(DatePicker);
-
