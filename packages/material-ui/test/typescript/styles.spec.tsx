@@ -399,20 +399,20 @@ withStyles(theme =>
 {
   // https://github.com/mui-org/material-ui/issues/12670
   interface Props {
-    noDefault: string;
-    withDefaultProps: number;
+    nonDefaulted: string;
+    defaulted: number;
   }
 
   class MyButton extends React.Component<Props & WithStyles<typeof styles>> {
     static defaultProps = {
-      withDefaultProps: 0,
+      defaulted: 0,
     };
 
     render() {
-      const { classes, noDefault, withDefaultProps } = this.props;
+      const { classes, nonDefaulted, defaulted } = this.props;
       return (
         <Button className={classes.btn}>
-          {withDefaultProps}, {noDefault}
+          {defaulted}, {nonDefaulted}
         </Button>
       );
     }
@@ -427,33 +427,7 @@ withStyles(theme =>
 
   const StyledMyButton = withStyles(styles)(MyButton);
 
-  const CorrectUsage = () => <StyledMyButton noDefault="2" />;
-  // Property 'noDefault' is missing in type '{}'
+  const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
+  // Property 'nonDefaulted' is missing in type '{}'
   const MissingPropUsage = () => <StyledMyButton />; // $ExpectError
-}
-
-{
-  // union props
-  interface Book {
-    category: 'book';
-    author: string;
-  }
-  interface Painting {
-    category: 'painting';
-    artist: string;
-  }
-  type BookOrPainting = Book | Painting;
-  type Props = BookOrPainting & WithStyles<typeof styles>;
-  const DecoratedUnionProps = withStyles(styles)(
-    class extends React.Component<Props> {
-      render() {
-        const props = this.props;
-        return (
-          <div className={props.classes.root}>
-            {props.category === 'book' ? props.author : props.artist}
-          </div>
-        );
-      }
-    },
-  );
 }
