@@ -9,6 +9,10 @@ title: Menu API
 
 <p class="description">The API documentation of the Menu React component.</p>
 
+```js
+import Menu from '@material-ui/core/Menu';
+```
+
 
 
 ## Props

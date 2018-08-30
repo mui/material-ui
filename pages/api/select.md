@@ -9,6 +9,10 @@ title: Select API
 
 <p class="description">The API documentation of the Select React component.</p>
 
+```js
+import Select from '@material-ui/core/Select';
+```
+
 
 
 ## Props

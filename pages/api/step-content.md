@@ -9,6 +9,10 @@ title: StepContent API
 
 <p class="description">The API documentation of the StepContent React component.</p>
 
+```js
+import StepContent from '@material-ui/core/StepContent';
+```
+
 
 
 ## Props

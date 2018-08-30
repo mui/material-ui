@@ -9,6 +9,10 @@ title: Icon API
 
 <p class="description">The API documentation of the Icon React component.</p>
 
+```js
+import Icon from '@material-ui/core/Icon';
+```
+
 
 
 ## Props

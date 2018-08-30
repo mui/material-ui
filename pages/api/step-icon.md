@@ -9,6 +9,10 @@ title: StepIcon API
 
 <p class="description">The API documentation of the StepIcon React component.</p>
 
+```js
+import StepIcon from '@material-ui/core/StepIcon';
+```
+
 
 
 ## Props
