@@ -7,7 +7,7 @@ import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import { convertToMeridiem } from '../_helpers/time-utils';
 import withUtils from '../_shared/WithUtils';
-import TimePickerView from './TimePickerView';
+import TimePickerView from './components/TimePickerView';
 import * as clockType from '../constants/clock-types';
 
 export class TimePicker extends Component {
@@ -155,7 +155,8 @@ export class TimePicker extends Component {
             />
 
             {
-              seconds &&
+              seconds
+                && (
                 <Fragment>
                   <ToolbarButton
                     variant="display3"
@@ -171,11 +172,13 @@ export class TimePicker extends Component {
                     label={utils.getSecondText(date)}
                   />
                 </Fragment>
+                )
             }
           </div>
 
           {
-            ampm &&
+            ampm
+              && (
               <div className={seconds ? classes.ampmSelectionWithSeconds : classes.ampmSelection}>
                 <ToolbarButton
                   className={classes.ampmLabel}
@@ -193,6 +196,7 @@ export class TimePicker extends Component {
                   onClick={this.setMeridiemMode('pm')}
                 />
               </div>
+              )
           }
         </PickerToolbar>
 

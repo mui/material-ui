@@ -17,7 +17,7 @@ const DatePickerDemoDemo = () => (
 
     <SourcablePanel
       title="Basic usage"
-      sourceFile="Demo/TimePickerBasic.jsx"
+      sourceFile="Demo/TimePicker/TimePickerBasic.jsx"
       description={
         <Typography variant="body1" gutterBottom>
           A time picker should adjusts to a user’s preferred time setting,
@@ -28,7 +28,7 @@ const DatePickerDemoDemo = () => (
 
     <SourcablePanel
       title="Seconds input"
-      sourceFile="Demo/SecondsTimePicker.jsx"
+      sourceFile="Demo/TimePicker/SecondsTimePicker.jsx"
       description={
         <Typography variant="body1" gutterBottom>
           Seconds input can be used for selection of precise time point
@@ -38,7 +38,12 @@ const DatePickerDemoDemo = () => (
 
     <SourcablePanel
       title="Keyboard input"
-      sourceFile="Demo/KeyboardTimePicker.jsx"
+      sourceFile="Demo/TimePicker/KeyboardTimePicker.jsx"
+    />
+
+    <SourcablePanel
+      title="Inline mode"
+      sourceFile="Demo/TimePicker/InlineTimePicker.jsx"
     />
 
     <PropTypesTable src="TimePicker/TimePickerWrapper.jsx" />

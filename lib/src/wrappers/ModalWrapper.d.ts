@@ -1,6 +1,7 @@
 import { ComponentClass, ReactNode } from 'react';
 import { DateTextFieldProps } from '../_shared/DateTextField';
 import { DialogProps } from '@material-ui/core/Dialog';
+import { MaterialUiPickersDate } from '../typings/date';
 
 export interface ModalWrapperProps extends Partial<DateTextFieldProps> {
     onAccept?: () => void;
