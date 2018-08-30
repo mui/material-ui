@@ -44,7 +44,7 @@
     "luxon": "^1.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0-beta.54",
+    "@babel/runtime": "^7.0.0",
     "lodash.throttle": "^4.1.1",
     "react-event-listener": "^0.6.2",
     "react-text-mask": "=5.4.1",
@@ -99,7 +99,7 @@
     "@types/react-event-listener": "^0.4.5",
     "@types/recompose": "^0.26.2",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^8.2.6",
+    "babel-eslint": "^9.0.0",
     "babel-jest": "^23.4.2",
     "classnames": "^2.2.5",
     "codecov": "^3.0.4",
