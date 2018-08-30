@@ -284,26 +284,36 @@ class SwipeableDrawer extends React.Component {
           ? window.innerHeight - event.changedTouches[0].clientY
           : event.changedTouches[0].clientY;
     }
-    const translateRatio = this.getTranslate(current) / this.getMaxTranslate();
 
-    // We have to open or close after setting swiping to null,
-    // because only then CSS transition is enabled.
-    if (translateRatio > 0.5) {
-      if (this.isSwiping && !this.props.open) {
-        // Reset the position, the swipe was aborted.
-        this.setPosition(this.getMaxTranslate(), {
-          mode: 'enter',
+    // get the beginning of the swipe, pending on orientation
+    const beginSwipe = isHorizontal(this.props) ? this.startX : this.startY;
+
+    // compute minimal swipe distance by hysteresis property
+    const minDistance =  this.getMaxTranslate() * this.props.hysteresis;
+
+    // get the real distance
+    const distance = Math.abs(beginSwipe - current);
+
+    if (beginSwipe > current){
+      // closing swipe
+      if(distance < minDistance){
+        // distance too short, go back to opened state
+        this.setPosition(0, {
+          mode: 'exit',
         });
-      } else {
+      }else{
         this.props.onClose();
       }
-    } else if (this.isSwiping && !this.props.open) {
-      this.props.onOpen();
-    } else {
-      // Reset the position, the swipe was aborted.
-      this.setPosition(0, {
-        mode: 'exit',
-      });
+    }else{
+      // opening swipe
+      if(distance < minDistance){
+        // distance too short, go back to closed state
+        this.setPosition(_this.getMaxTranslate(), {
+          mode: 'enter',
+        });
+      }else{
+        _this.props.onOpen();
+      }
     }
 
     this.isSwiping = null;
@@ -432,6 +442,11 @@ SwipeableDrawer.propTypes = {
    */
   swipeAreaWidth: PropTypes.number,
   /**
+   * Affects how far the slide must be, to change the drawer state.
+   * Specified as percent (0-1) of the width of the drawer
+   */
+  hysteresis: PropTypes.number,
+  /**
    * @ignore
    */
   theme: PropTypes.object.isRequired,
@@ -456,6 +471,7 @@ SwipeableDrawer.defaultProps = {
   disableSwipeToOpen:
     typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent),
   swipeAreaWidth: 20,
+  hysteresis: 0.1,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
   variant: 'temporary', // Mobile first.
 };
