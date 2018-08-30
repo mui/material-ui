@@ -192,11 +192,13 @@ describe('<Slider />', () => {
       wrapper = mount(<Slider value={90} min={0} max={104} step={10} />);
     });
 
-    const button = wrapper.find('button');
-    wrapper.simulate('keypress', {key: 'tab'}); //tab
-    wrapper.simulate('keypress', {key: 'left arrow'}); //tab
-    wrapper.simulate('keypress', {key: 'left arrow'}); //tab
+    it('should reach edge value', () => {
+      const button = wrapper.find('button');
+      wrapper.simulate('keypress', {key: 'tab'}); //tab
+      wrapper.simulate('keypress', {key: 'left arrow'}); //tab
+      wrapper.simulate('keypress', {key: 'left arrow'}); //tab
 
-    expect(wrapper.props().value).to.equal(104);
+      expect(wrapper.props().value).to.equal(104);
+    });
   });
 });
