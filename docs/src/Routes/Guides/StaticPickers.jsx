@@ -7,14 +7,13 @@ const StaticPickers = () => (
     <Typography variant="display2" gutterBottom> Static pickers </Typography>
 
     <Typography variant="body1" gutterBottom>
-      Somewhere its required to use some internal control for calendar or some timeinput, but
-      such usage can be such pain, because you will need to manage state by yorself.
+      Somewhere its required to use some internal control for calendar or some timeinput.
+      Here you are! You can use directly any sub-control of the pickers.
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      There you can use our own HOC that uses for any picker,
-      which will manage the state on his side.
-      And use any internal component with pure and simmilar to any other picker api.
+      Also you can use our own HOC that is using for any picker
+      which provide managing temporary chosen date and submitting state logic.
     </Typography>
 
     <SourcablePanel
@@ -23,7 +22,8 @@ const StaticPickers = () => (
       description={
         <Typography variant="body1" gutterBottom>
           The api for each component in much is same as for root component.
-          But somewhere when needed you can check it on the github or from component prop-types.
+          But somewhere when needed you can check the api
+          on the github or from component`s prop-types.
         </Typography>
       }
     />

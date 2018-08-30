@@ -21,4 +21,3 @@ export default class Input extends PureComponent {
     );
   }
 }
-

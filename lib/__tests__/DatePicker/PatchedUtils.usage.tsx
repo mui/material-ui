@@ -1,12 +1,7 @@
 import * as React from 'react'
-import * as PropTypes from 'prop-types';
-import * as classNames from 'classnames';
 import * as format from 'date-fns/format'
 
-import { Fragment, Component } from 'react';
-import { IconButton } from '@material-ui/core'
 import { Moment } from 'moment'
-import { DayComponent } from '../../src/DatePicker/Calendar'
 import DatePickerWrapper  from '../../src/DatePicker';
 import DateFnsUtils from '../../src/utils/date-fns-utils'
 import MomentUtils from '../../src/utils/moment-utils'
@@ -18,7 +13,7 @@ class PatchedDateFnsUtils extends DateFnsUtils {
   }
 }
 
-export class WithPatchedDateFns extends Component<{}, {selectedDate: Date}> {
+export class WithPatchedDateFns extends React.Component<{}, {selectedDate: Date}> {
   state = {
     selectedDate: new Date(),
   }
@@ -50,7 +45,7 @@ class PatchedMomentUtils extends MomentUtils {
   }
 }
 
-export default class WithPatchedMoment extends Component<{}, {selectedDate: Date}> {
+export default class WithPatchedMoment extends React.Component<{}, {selectedDate: Date}> {
   state = {
     selectedDate: new Date(),
   }

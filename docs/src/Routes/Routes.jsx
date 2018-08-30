@@ -12,12 +12,14 @@ import CssOverrides from './Guides/CssOverrides';
 import FormatCustomization from './Guides/FormatsCustomization';
 import ControllingProgrammatically from './Guides/ControllingProgrammatically';
 import StaticPickers from './Guides/StaticPickers';
+import ParsingDates from './GettingStarted/ParsingDates';
 
 export default () => (
   <Switch>
     <Route path="/" exact component={Landing} />
     <Route path="/installation" component={Installation} />
     <Route path="/usage" component={Usage} />
+    <Route path="/parsing" component={ParsingDates} />
     <Route path="/demo" component={Demos} />
     <Route path="/localization/date-fns" component={DateFnsLocalization} />
     <Route path="/localization/moment" component={MomentLocalization} />

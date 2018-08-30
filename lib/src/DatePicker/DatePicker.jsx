@@ -1,8 +1,8 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import Calendar from './Calendar';
-import YearSelection from './YearSelection';
+import Calendar from './components/Calendar';
+import YearSelection from './components/YearSelection';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import DomainPropTypes from '../constants/prop-types';
@@ -108,7 +108,7 @@ export class DatePicker extends PureComponent {
 
         {
           showYearSelection
-            ?
+            ? (
               <YearSelection
                 date={this.date}
                 onChange={this.handleYearSelect}
@@ -119,7 +119,8 @@ export class DatePicker extends PureComponent {
                 animateYearScrolling={animateYearScrolling}
                 utils={utils}
               />
-            :
+            )
+            : (
               <Calendar
                 date={this.date}
                 onChange={onChange}
@@ -134,6 +135,7 @@ export class DatePicker extends PureComponent {
                 shouldDisableDate={shouldDisableDate}
                 allowKeyboardControl={allowKeyboardControl}
               />
+            )
         }
       </Fragment>
     );
@@ -141,4 +143,3 @@ export class DatePicker extends PureComponent {
 }
 
 export default withUtils()(DatePicker);
-

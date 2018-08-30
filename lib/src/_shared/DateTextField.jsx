@@ -8,7 +8,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
-import withUtils from '../_shared/WithUtils';
+import withUtils from './WithUtils';
 
 const getDisplayDate = (props) => {
   const {
@@ -53,15 +53,15 @@ const getError = (value, props) => {
   }
 
   if (
-    (maxDate && utils.isAfter(value, maxDate)) ||
-    (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
+    (maxDate && utils.isAfter(value, maxDate))
+    || (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
   ) {
     return maxDateMessage;
   }
 
   if (
-    (minDate && utils.isBefore(value, minDate)) ||
-    (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
+    (minDate && utils.isBefore(value, minDate))
+    || (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
   ) {
     return minDateMessage;
   }
@@ -107,7 +107,7 @@ export class DateTextField extends PureComponent {
     invalidLabel: PropTypes.string,
     /** Message displaying in text field, if null passed (doesn't work in keyboard mode) */
     emptyLabel: PropTypes.string,
-    /** Dynamic label generation function (date, invalidLabel) => string */
+    /** Dynamic label generation function [(date: Date, invalidLabel: string) => string] */
     labelFunc: PropTypes.func,
     /** On/off manual keyboard input mode */
     keyboard: PropTypes.bool,
@@ -123,9 +123,11 @@ export class DateTextField extends PureComponent {
     InputAdornmentProps: PropTypes.object,
     /** Specifies position of keyboard button adornment */
     adornmentPosition: PropTypes.oneOf(['start', 'end']),
-    /** Callback firing when date that applied in the keyboard is invalid  */
+    /** Callback firing when date that applied in the keyboard is invalid
+     *  [(error: string) => void]
+    */
     onError: PropTypes.func,
-    /** Callback firing on change input in keyboard mode */
+    /** Callback firing on change input in keyboard mode [(e: Event) => void] */
     onInputChange: PropTypes.func,
   }
 
@@ -162,12 +164,12 @@ export class DateTextField extends PureComponent {
 
   componentDidUpdate(prevProps) {
     if (
-      !this.props.utils.isEqual(this.props.value, prevProps.value) ||
-      prevProps.format !== this.props.format ||
-      prevProps.maxDate !== this.props.maxDate ||
-      prevProps.minDate !== this.props.minDate ||
-      prevProps.emptyLabel !== this.props.emptyLabel ||
-      prevProps.utils !== this.props.utils
+      !this.props.utils.isEqual(this.props.value, prevProps.value)
+      || prevProps.format !== this.props.format
+      || prevProps.maxDate !== this.props.maxDate
+      || prevProps.minDate !== this.props.minDate
+      || prevProps.emptyLabel !== this.props.emptyLabel
+      || prevProps.utils !== this.props.utils
     ) {
       /* eslint-disable-next-line react/no-did-update-set-state */
       this.setState(DateTextField.updateState(this.props));
@@ -318,7 +320,11 @@ export class DateTextField extends PureComponent {
             disabled={disabled}
             onClick={this.openPicker}
           >
-            <Icon> {keyboardIcon} </Icon>
+            <Icon>
+              {' '}
+              {keyboardIcon}
+              {' '}
+            </Icon>
           </IconButton>
         </InputAdornment>
       );

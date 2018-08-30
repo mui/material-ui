@@ -2,7 +2,7 @@
 [![npm package](https://img.shields.io/npm/v/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
 [![npm download](https://img.shields.io/npm/dm/material-ui-pickers.svg)](https://www.npmjs.org/package/material-ui-pickers)
 [![codecov](https://codecov.io/gh/dmtrKovalenko/material-ui-pickers/branch/master/graph/badge.svg)](https://codecov.io/gh/dmtrKovalenko/material-ui-pickers)
-[![Bundle Size](https://img.shields.io/badge/gzip-21.2%20KB-brightgreen.svg)](https://unpkg.com/material-ui-pickers@1.0.0-rc.10/dist/material-ui-pickers.cjs.js)
+[![Bundle Size](https://img.shields.io/badge/gzip-14.7%20KB-brightgreen.svg)](https://unpkg.com/material-ui-pickers@1.0.0-rc.10/dist/material-ui-pickers.cjs.js)
 [![Build Status](https://api.travis-ci.org/dmtrKovalenko/material-ui-pickers.svg?branch=master)](https://travis-ci.org/dmtrKovalenko/material-ui-pickers)
 > Components, that implements material design date and time pickers for material-ui v1
 
@@ -12,10 +12,10 @@ Available as npm package.
 npm i material-ui-pickers
 ```
 
-Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/) and [date-fns](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns, because it's much more lightweight and will be correctly tree-shaked from the bundle. Note, that we support only the 2.0.0-alpha.7 version of date-fns for now (see  #414). Stay tuned!
+Now choose the library that pickers will use to work with date. We are providing interfaces for [moment](https://momentjs.com/) and [date-fns](https://date-fns.org/). If you are not using moment in the project (or dont have it in the bundle already) we suggest using date-fns, because it's much more lightweight and will be correctly tree-shaked from the bundle. Note, that we support only the 2.0.0-alpha.16 version of date-fns for now (see  #414). Stay tuned!
 
 ```sh
-npm i date-fns@2.0.0-alpha.7
+npm i date-fns@2.0.0-alpha.16
 // or
 npm i moment
 // or

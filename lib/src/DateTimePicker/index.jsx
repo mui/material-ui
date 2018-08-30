@@ -1,2 +1,3 @@
-export { default } from './DateTimePickerWrapper';
+export { default } from './DateTimePickerModal';
 
+export { default as InlineDateTimePicker } from './DateTimePickerInline';

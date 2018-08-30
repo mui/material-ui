@@ -5,7 +5,7 @@ import withHandlers from 'recompose/withHandlers';
 import toRenderProps from 'recompose/toRenderProps';
 import withState from 'recompose/withState';
 
-import withUtils from '../_shared/WithUtils';
+import withUtils from './WithUtils';
 
 const getInitialDate = ({ utils, value, initialFocusedDate }) => {
   const initialDate = value || initialFocusedDate || utils.date();
@@ -63,4 +63,3 @@ export const BasePickerHoc = compose(
 );
 
 export default toRenderProps(BasePickerHoc);
-
