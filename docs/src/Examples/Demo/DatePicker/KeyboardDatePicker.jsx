@@ -31,7 +31,7 @@ export default class BasicUsage extends PureComponent {
           <DatePicker
             keyboard
             label="Masked input"
-            format="DD/MM/YYYY"
+            format="dd/MM/yyyy"
             placeholder="10/10/2018"
             // handle clearing outside => pass plain array if you are not controlling value outside
             mask={value => (value ? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/] : [])}

@@ -46,7 +46,7 @@ const DatePickerDemoDemo = () => (
       sourceFile="Demo/TimePicker/InlineTimePicker.jsx"
     />
 
-    <PropTypesTable src="TimePicker/TimePickerWrapper.jsx" />
+    <PropTypesTable src="TimePicker/TimePickerModal.jsx" />
   </div>
 );
 

@@ -54,7 +54,7 @@ export default class CustomDateTimePicker extends PureComponent {
             minDate={new Date('2018-01-01T00:00')}
             value={selectedDate}
             onChange={this.handleDateChange}
-            format="YYYY/MM/DD hh:mm A"
+            format="yyyy/MM/dd hh:mm A"
             disableOpenOnEnter
             mask={[/\d/, /\d/, /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/, ' ', /a|p/i, 'M']}
           />

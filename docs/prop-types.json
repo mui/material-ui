@@ -1277,25 +1277,6 @@
       "displayName": "YearSelection",
       "methods": [
         {
-          "name": "componentDidMount",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        },
-        {
-          "name": "onYearSelect",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "year",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
           "name": "getSelectedYearRef",
           "docblock": null,
           "modifiers": [],
@@ -1312,6 +1293,25 @@
           "docblock": null,
           "modifiers": [],
           "params": [],
+          "returns": null
+        },
+        {
+          "name": "componentDidMount",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        },
+        {
+          "name": "onYearSelect",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "year",
+              "type": null
+            }
+          ],
           "returns": null
         }
       ],
@@ -1725,67 +1725,187 @@
       }
     }
   ],
-  "../lib/src/DateTimePicker/DateTimePickerHeader.jsx": [
+  "../lib/src/DateTimePicker/DateTimePickerInline.jsx": [
     {
       "description": "",
-      "displayName": "DateTimePickerHeader",
+      "displayName": "DateTimePickerInline",
       "methods": [],
       "props": {
-        "date": {
+        "value": {
           "type": {
-            "name": "object"
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
           },
-          "required": true,
-          "description": ""
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "new Date()",
+            "computed": false
+          }
         },
-        "classes": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "theme": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "meridiemMode": {
+        "format": {
           "type": {
             "name": "string"
           },
-          "required": true,
-          "description": ""
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
         },
-        "openView": {
-          "type": {
-            "name": "string"
-          },
-          "required": true,
-          "description": ""
-        },
-        "onOpenViewChange": {
+        "onChange": {
           "type": {
             "name": "func"
           },
           "required": true,
           "description": ""
         },
-        "setMeridiemMode": {
+        "autoOk": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "autoSubmit": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "disableFuture": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "disablePast": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "minDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'1900-01-01'",
+            "computed": false
+          }
+        },
+        "maxDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'2100-01-01'",
+            "computed": false
+          }
+        },
+        "initialFocusedDate": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "showTabs": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "leftArrowIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'keyboard_arrow_left'",
+            "computed": false
+          }
+        },
+        "rightArrowIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'keyboard_arrow_right'",
+            "computed": false
+          }
+        },
+        "dateRangeIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'date_range'",
+            "computed": false
+          }
+        },
+        "timeIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'access_time'",
+            "computed": false
+          }
+        },
+        "renderDay": {
           "type": {
             "name": "func"
           },
-          "required": true,
-          "description": ""
-        },
-        "utils": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
         },
         "ampm": {
           "type": {
@@ -1797,95 +1917,87 @@
             "value": "true",
             "computed": false
           }
-        }
-      }
-    }
-  ],
-  "../lib/src/DateTimePicker/DateTimePickerTabs.jsx": [
-    {
-      "description": "",
-      "displayName": "DateTimePickerTabs",
-      "methods": [],
-      "props": {
-        "view": {
-          "type": {
-            "name": "string"
-          },
-          "required": true,
-          "description": ""
         },
-        "onChange": {
+        "shouldDisableDate": {
           "type": {
             "name": "func"
           },
-          "required": true,
-          "description": ""
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
         },
-        "classes": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "theme": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "dateRangeIcon": {
-          "type": {
-            "name": "node"
-          },
-          "required": true,
-          "description": ""
-        },
-        "timeIcon": {
-          "type": {
-            "name": "node"
-          },
-          "required": true,
-          "description": ""
-        }
-      }
-    }
-  ],
-  "../lib/src/DateTimePicker/DateTimePickerView.jsx": [
-    {
-      "description": "",
-      "displayName": "DateTimePickerView",
-      "methods": [],
-      "props": {
-        "selected": {
+        "animateYearScrolling": {
           "type": {
             "name": "bool"
           },
-          "required": true,
-          "description": ""
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
         },
-        "children": {
+        "openTo": {
           "type": {
-            "name": "node"
+            "name": "enum",
+            "value": [
+              {
+                "value": "'year'",
+                "computed": false
+              },
+              {
+                "value": "'date'",
+                "computed": false
+              },
+              {
+                "value": "'hour'",
+                "computed": false
+              },
+              {
+                "value": "'minutes'",
+                "computed": false
+              }
+            ]
           },
-          "required": true,
-          "description": ""
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "'date'",
+            "computed": false
+          }
         },
-        "classes": {
+        "allowKeyboardControl": {
           "type": {
-            "name": "object"
+            "name": "bool"
           },
-          "required": true,
-          "description": ""
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "forwardedRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
         }
       }
     }
   ],
-  "../lib/src/DateTimePicker/DateTimePickerWrapper.jsx": [
+  "../lib/src/DateTimePicker/DateTimePickerModal.jsx": [
     {
       "description": "",
-      "displayName": "DateTimePickerWrapper",
+      "displayName": "DateTimePickerModal",
       "methods": [],
       "props": {
         "classes": {
@@ -2158,89 +2270,15 @@
       }
     }
   ],
-  "../lib/src/TimePicker/Clock.jsx": [
+  "../lib/src/DateTimePicker/components/DateTimePickerHeader.jsx": [
     {
       "description": "",
-      "displayName": "Clock",
-      "methods": [
-        {
-          "name": "setTime",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "e",
-              "type": null
-            },
-            {
-              "name": "isFinish",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "handleTouchMove",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "e",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "handleTouchEnd",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "e",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "handleMove",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "e",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "handleMouseUp",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "e",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "hasSelected",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
+      "displayName": "DateTimePickerHeader",
+      "methods": [],
       "props": {
-        "type": {
+        "date": {
           "type": {
-            "name": "enum",
-            "computed": true,
-            "value": "Object.keys(clockType).map(key => clockType[key])"
+            "name": "object"
           },
           "required": true,
           "description": ""
@@ -2252,26 +2290,44 @@
           "required": true,
           "description": ""
         },
-        "value": {
+        "theme": {
           "type": {
-            "name": "number"
+            "name": "object"
           },
           "required": true,
           "description": ""
         },
-        "onChange": {
+        "meridiemMode": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "openView": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onOpenViewChange": {
           "type": {
             "name": "func"
           },
           "required": true,
           "description": ""
         },
-        "children": {
+        "setMeridiemMode": {
           "type": {
-            "name": "arrayOf",
-            "value": {
-              "name": "node"
-            }
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "utils": {
+          "type": {
+            "name": "object"
           },
           "required": true,
           "description": ""
@@ -2283,46 +2339,70 @@
           "required": false,
           "description": "",
           "defaultValue": {
-            "value": "false",
+            "value": "true",
             "computed": false
           }
         }
       }
     }
   ],
-  "../lib/src/TimePicker/ClockNumber.jsx": [
+  "../lib/src/DateTimePicker/components/DateTimePickerTabs.jsx": [
     {
       "description": "",
-      "displayName": "ClockNumber",
-      "methods": [
-        {
-          "name": "getTransformStyle",
-          "docblock": null,
-          "modifiers": [],
-          "params": [
-            {
-              "name": "index",
-              "type": null
-            }
-          ],
-          "returns": null
-        }
-      ],
+      "displayName": "DateTimePickerTabs",
+      "methods": [],
       "props": {
-        "index": {
-          "type": {
-            "name": "number"
-          },
-          "required": true,
-          "description": ""
-        },
-        "label": {
+        "view": {
           "type": {
             "name": "string"
           },
           "required": true,
           "description": ""
         },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "theme": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "dateRangeIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
+        "timeIcon": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "../lib/src/DateTimePicker/components/DateTimePickerView.jsx": [
+    {
+      "description": "",
+      "displayName": "DateTimePickerView",
+      "methods": [],
+      "props": {
         "selected": {
           "type": {
             "name": "bool"
@@ -2330,92 +2410,16 @@
           "required": true,
           "description": ""
         },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": true,
+          "description": ""
+        },
         "classes": {
           "type": {
             "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "isInner": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        }
-      }
-    }
-  ],
-  "../lib/src/TimePicker/ClockPointer.jsx": [
-    {
-      "description": "",
-      "displayName": "ClockPointer",
-      "methods": [
-        {
-          "name": "getDerivedStateFromProps",
-          "docblock": null,
-          "modifiers": [
-            "static"
-          ],
-          "params": [
-            {
-              "name": "nextProps",
-              "type": null
-            },
-            {
-              "name": "state",
-              "type": null
-            }
-          ],
-          "returns": null
-        },
-        {
-          "name": "getAngleStyle",
-          "docblock": null,
-          "modifiers": [],
-          "params": [],
-          "returns": null
-        }
-      ],
-      "props": {
-        "classes": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": ""
-        },
-        "value": {
-          "type": {
-            "name": "number"
-          },
-          "required": true,
-          "description": ""
-        },
-        "hasSelected": {
-          "type": {
-            "name": "bool"
-          },
-          "required": true,
-          "description": ""
-        },
-        "isInner": {
-          "type": {
-            "name": "bool"
-          },
-          "required": true,
-          "description": ""
-        },
-        "type": {
-          "type": {
-            "name": "enum",
-            "computed": true,
-            "value": "Object.keys(clockType).map(key => clockType[key])"
           },
           "required": true,
           "description": ""
@@ -2594,7 +2598,427 @@
       }
     }
   ],
-  "../lib/src/TimePicker/TimePickerView.jsx": [
+  "../lib/src/TimePicker/TimePickerInline.jsx": [
+    {
+      "description": "",
+      "displayName": "TimePickerInline",
+      "methods": [],
+      "props": {
+        "value": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "new Date()",
+            "computed": false
+          }
+        },
+        "format": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "ampm": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "seconds": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "forwardedRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        }
+      }
+    }
+  ],
+  "../lib/src/TimePicker/TimePickerModal.jsx": [
+    {
+      "description": "",
+      "displayName": "TimePickerModal",
+      "methods": [],
+      "props": {
+        "value": {
+          "type": {
+            "name": "custom",
+            "raw": "DomainPropTypes.date"
+          },
+          "required": false,
+          "description": "DateTimepicker value",
+          "defaultValue": {
+            "value": "new Date()",
+            "computed": false
+          }
+        },
+        "format": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Date format string for input",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": "Callback firing when date accepted [(date: Date) => void]"
+        },
+        "autoOk": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Auto accept date on minute selection",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "ampm": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "12h/24h view for hour selection clock",
+          "defaultValue": {
+            "value": "true",
+            "computed": false
+          }
+        },
+        "seconds": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Show the seconds view",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "forwardedRef": {
+          "type": {
+            "name": "func"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "undefined",
+            "computed": true
+          }
+        }
+      }
+    }
+  ],
+  "../lib/src/TimePicker/components/Clock.jsx": [
+    {
+      "description": "",
+      "displayName": "Clock",
+      "methods": [
+        {
+          "name": "setTime",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "e",
+              "type": null
+            },
+            {
+              "name": "isFinish",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleTouchMove",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "e",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleTouchEnd",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "e",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleMove",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "e",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "handleMouseUp",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "e",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "hasSelected",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "type": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "Object.keys(clockType).map(key => clockType[key])"
+          },
+          "required": true,
+          "description": ""
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "value": {
+          "type": {
+            "name": "number"
+          },
+          "required": true,
+          "description": ""
+        },
+        "onChange": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": ""
+        },
+        "children": {
+          "type": {
+            "name": "arrayOf",
+            "value": {
+              "name": "node"
+            }
+          },
+          "required": true,
+          "description": ""
+        },
+        "ampm": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "../lib/src/TimePicker/components/ClockNumber.jsx": [
+    {
+      "description": "",
+      "displayName": "ClockNumber",
+      "methods": [
+        {
+          "name": "getTransformStyle",
+          "docblock": null,
+          "modifiers": [],
+          "params": [
+            {
+              "name": "index",
+              "type": null
+            }
+          ],
+          "returns": null
+        }
+      ],
+      "props": {
+        "index": {
+          "type": {
+            "name": "number"
+          },
+          "required": true,
+          "description": ""
+        },
+        "label": {
+          "type": {
+            "name": "string"
+          },
+          "required": true,
+          "description": ""
+        },
+        "selected": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": ""
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "isInner": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        }
+      }
+    }
+  ],
+  "../lib/src/TimePicker/components/ClockPointer.jsx": [
+    {
+      "description": "",
+      "displayName": "ClockPointer",
+      "methods": [
+        {
+          "name": "getDerivedStateFromProps",
+          "docblock": null,
+          "modifiers": [
+            "static"
+          ],
+          "params": [
+            {
+              "name": "nextProps",
+              "type": null
+            },
+            {
+              "name": "state",
+              "type": null
+            }
+          ],
+          "returns": null
+        },
+        {
+          "name": "getAngleStyle",
+          "docblock": null,
+          "modifiers": [],
+          "params": [],
+          "returns": null
+        }
+      ],
+      "props": {
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
+        },
+        "value": {
+          "type": {
+            "name": "number"
+          },
+          "required": true,
+          "description": ""
+        },
+        "hasSelected": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": ""
+        },
+        "isInner": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": ""
+        },
+        "type": {
+          "type": {
+            "name": "enum",
+            "computed": true,
+            "value": "Object.keys(clockType).map(key => clockType[key])"
+          },
+          "required": true,
+          "description": ""
+        }
+      }
+    }
+  ],
+  "../lib/src/TimePicker/components/TimePickerView.jsx": [
     {
       "description": "",
       "displayName": "TimePickerView",
@@ -2710,89 +3134,6 @@
           },
           "required": true,
           "description": ""
-        }
-      }
-    }
-  ],
-  "../lib/src/TimePicker/TimePickerWrapper.jsx": [
-    {
-      "description": "",
-      "displayName": "TimePickerWrapper",
-      "methods": [],
-      "props": {
-        "value": {
-          "type": {
-            "name": "custom",
-            "raw": "DomainPropTypes.date"
-          },
-          "required": false,
-          "description": "DateTimepicker value",
-          "defaultValue": {
-            "value": "new Date()",
-            "computed": false
-          }
-        },
-        "format": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "Date format string for input",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
-        },
-        "onChange": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": "Callback firing when date accepted [(date: Date) => void]"
-        },
-        "autoOk": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "Auto accept date on minute selection",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "ampm": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "12h/24h view for hour selection clock",
-          "defaultValue": {
-            "value": "true",
-            "computed": false
-          }
-        },
-        "seconds": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "Show the seconds view",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "forwardedRef": {
-          "type": {
-            "name": "func"
-          },
-          "required": false,
-          "description": "",
-          "defaultValue": {
-            "value": "undefined",
-            "computed": true
-          }
         }
       }
     }
@@ -3225,7 +3566,7 @@
             "name": "func"
           },
           "required": false,
-          "description": "Callback firing when date that applied in the keyboard is invalid [(error: string) => void]",
+          "description": "Callback firing when date that applied in the keyboard is invalid\n [(error: string) => void]",
           "defaultValue": {
             "value": "undefined",
             "computed": true
@@ -3585,7 +3926,7 @@
             "name": "bool"
           },
           "required": false,
-          "description": "Show only calendar in popover mode",
+          "description": "Show only calendar for datepicker in popover mode",
           "defaultValue": {
             "value": "false",
             "computed": false
@@ -3600,72 +3941,6 @@
           "description": "Picker value",
           "defaultValue": {
             "value": "new Date()",
-            "computed": false
-          }
-        },
-        "okLabel": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "\"OK\" label message",
-          "defaultValue": {
-            "value": "'OK'",
-            "computed": false
-          }
-        },
-        "cancelLabel": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "\"Cancel\" label message",
-          "defaultValue": {
-            "value": "'Cancel'",
-            "computed": false
-          }
-        },
-        "clearLabel": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "\"Clear\" label message",
-          "defaultValue": {
-            "value": "'Clear'",
-            "computed": false
-          }
-        },
-        "clearable": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "If true clear button will be displayed",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "todayLabel": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "\"Today\" label message",
-          "defaultValue": {
-            "value": "'Today'",
-            "computed": false
-          }
-        },
-        "showTodayButton": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "If true today button will be displayed\n<b>Note*</b> that clear button has higher priority",
-          "defaultValue": {
-            "value": "false",
             "computed": false
           }
         },
@@ -3763,6 +4038,13 @@
             "value": "undefined",
             "computed": true
           }
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": ""
         }
       }
     }
