@@ -26,6 +26,6 @@ of the `SpeedDialIcon` component.
 
 The SpeedDialActions tooltips can be be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
 
-It is enabled here across all devices for demo purposes, but in production could use the isTouch logic to conditionally set the property.
+It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the property.
 
 {{"demo": "pages/lab/speed-dial/SpeedDialTooltipOpen.js"}}
