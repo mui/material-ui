@@ -49,6 +49,7 @@ class SpeedDialAction extends React.Component {
       icon,
       id,
       onClick,
+      onKeyDown,
       open,
       tooltipTitle,
       tooltipPlacement,
@@ -74,6 +75,7 @@ class SpeedDialAction extends React.Component {
           tabIndex={-1}
           role="menuitem"
           aria-labelledby={id}
+          onKeyDown={onKeyDown}
           {...ButtonProps}
         >
           {icon}

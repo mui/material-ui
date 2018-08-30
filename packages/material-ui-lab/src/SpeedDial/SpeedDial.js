@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import warning from 'warning';
 import { withStyles } from '@material-ui/core/styles';
@@ -51,62 +50,63 @@ export const styles = {
 };
 
 class SpeedDial extends React.Component {
+  /**
+   * refs to all children SpeedDialActions
+   */
+  actions = [];
+
   state = {
-    nextKey: null,
-    prevKey: null,
+    focusedAction: -1,
   };
 
-  handleKeyDown = event => {
-    const actions = ReactDOM.findDOMNode(this.actionsRef);
-    const fab = ReactDOM.findDOMNode(this.fabRef);
+  handleButtonKeyDown = event => {
     const key = keycode(event);
-    const currentFocus = document.activeElement;
-    const { open, onClose, onKeyDown } = this.props;
-    const { nextKey, prevKey } = this.state;
+    const { direction, open } = this.props;
 
-    const firstKeyPress = (key === 'up' || key === 'down') && nextKey == null;
-
-    if (key === 'up' || key === 'down') {
+    if (open && key === direction) {
       event.preventDefault();
+
+      const focusedAction = 0;
+      const firstActionRef = this.actions[focusedAction];
+      if (firstActionRef != null) {
+        firstActionRef.focus();
+        this.setState({ focusedAction });
+      }
     }
-    // If not actions, SpeedDial must be focused, so focus the first action.
-    if (currentFocus.parentElement.parentElement !== actions) {
-      if (open && (firstKeyPress || key === nextKey)) {
-        actions.firstChild.firstChild.focus();
+  };
 
-        // This determines which key focuses the next / previous action.
-        // For example, if a user presses down to select the first action
-        // (i.e. following DOM ordering rather than visual ordering),
-        // down will select the next action, and up the previous.
-        if (nextKey == null) {
-          this.setState({ nextKey: key });
-          this.setState({ prevKey: key === 'up' ? 'down' : 'up' });
-        }
-      }
-      // Select the previous action or SpeedDial
-    } else if (key === prevKey) {
-      event.preventDefault();
-      if (currentFocus.parentElement.previousElementSibling) {
-        currentFocus.parentElement.previousElementSibling.firstChild.focus();
-      } else {
-        fab.focus();
-      }
-      // Select the next action
-    } else if (key === nextKey) {
-      event.preventDefault();
-      if (currentFocus.parentElement.nextElementSibling) {
-        currentFocus.parentElement.nextElementSibling.firstChild.focus();
-      }
-      // Close the SpeedDial
-    } else if (key === 'esc') {
-      fab.focus();
+  handleActionButtonKeyDown = event => {
+    const key = keycode(event);
+    const { direction, onClose } = this.props;
+    const { focusedAction } = this.state;
+
+    const directionAxis = direction === 'up' || direction === 'down' ? 'vertical' : 'horizontal';
+    const isNavigating =
+      (directionAxis === 'vertical' && (key === 'up' || key === 'down')) ||
+      (directionAxis === 'horizontal' && (key === 'left' || key === 'right'));
+
+    if (key === 'esc') {
+      this.fabRef.focus();
       if (onClose) {
         onClose(event, key);
       }
+    } else if (isNavigating) {
+      event.preventDefault();
+
+      const actionStep = key === direction ? 1 : -1;
+
+      // consider the actions as a ring
+      const nextAction = (focusedAction + actionStep + this.actions.length) % this.actions.length;
+      const nextActionRef = this.actions[nextAction];
+      nextActionRef.focus();
+      this.setState({ focusedAction: nextAction });
     }
-    // Forward the event
-    if (onKeyDown) {
-      onKeyDown(event, key);
+  };
+
+  createHandleSpeedDialActionButtonRef = (dialActionIndex, origButtonRef) => ref => {
+    this.actions[dialActionIndex] = ref;
+    if (origButtonRef) {
+      origButtonRef(ref);
     }
   };
 
@@ -139,6 +139,7 @@ class SpeedDial extends React.Component {
       if (React.isValidElement(child)) totalValidChildren += 1;
     });
 
+    this.actions = [];
     let validChildCount = 0;
     const children = React.Children.map(childrenProp, child => {
       if (!React.isValidElement(child)) {
@@ -155,8 +156,17 @@ class SpeedDial extends React.Component {
 
       const delay = 30 * (open ? validChildCount : totalValidChildren - validChildCount);
       validChildCount += 1;
+
+      const { ButtonProps: { buttonRef: origButtonRef, ...ChildButtonProps } = {} } = child.props;
+      const NewChildButtonProps = {
+        ...ChildButtonProps,
+        buttonRef: this.createHandleSpeedDialActionButtonRef(validChildCount - 1, origButtonRef),
+      };
+
       return React.cloneElement(child, {
+        ButtonProps: NewChildButtonProps,
         delay,
+        onKeyDown: this.handleActionButtonKeyDown,
         open,
         id: `${id}-item-${validChildCount}`,
       });
@@ -188,12 +198,12 @@ class SpeedDial extends React.Component {
             variant="fab"
             color="primary"
             onClick={onClick}
-            onKeyDown={this.handleKeyDown}
+            onKeyDown={this.handleButtonKeyDown}
             aria-label={ariaLabel}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : 'false'}
             aria-controls={`${id}-actions`}
-            ref={ref => {
+            buttonRef={ref => {
               this.fabRef = ref;
             }}
             className={classes.fab}
