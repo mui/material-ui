@@ -7,10 +7,6 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
 export const styles = theme => ({
-  /* Styles applied to the root (`Tooltip`) component. */
-  root: {
-    position: 'relative',
-  },
   /* Styles applied to the `Button` component. */
   button: {
     margin: 8,
@@ -62,7 +58,6 @@ class SpeedDialAction extends React.Component {
     return (
       <Tooltip
         id={id}
-        className={classNames(classes.root, classNameProp)}
         title={tooltipTitle}
         placement={tooltipPlacement}
         onClose={this.handleTooltipClose}
@@ -97,10 +92,6 @@ SpeedDialAction.propTypes = {
    * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * Adds a transition delay, to allow a series of SpeedDialActions to be animated.
    */
@@ -145,7 +136,7 @@ SpeedDialAction.propTypes = {
   /**
    * Label to display in the tooltip.
    */
-  tooltipTitle: PropTypes.node,
+  tooltipTitle: PropTypes.node.isRequired,
 };
 
 SpeedDialAction.defaultProps = {
