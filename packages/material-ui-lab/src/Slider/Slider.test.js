@@ -184,4 +184,19 @@ describe('<Slider />', () => {
       assert.strictEqual(trackAfter.prop('style').width, 'calc(100% - 5px)');
     });
   });
+
+  describe('prop: slider', () => {
+    let wrapper;
+
+    before(() => {
+      wrapper = mount(<Slider value={90} min={0} max={104} step={10} />);
+    });
+
+    const button = wrapper.find('button');
+    wrapper.simulate('keypress', {key: 'tab'}); //tab
+    wrapper.simulate('keypress', {key: 'left arrow'}); //tab
+    wrapper.simulate('keypress', {key: 'left arrow'}); //tab
+
+    expect(wrapper.props().value).to.equal(104);
+  });
 });
