@@ -20,7 +20,7 @@ export default class BasicDatePicker extends PureComponent {
             label="Basic example"
             value={selectedDate}
             onChange={this.handleDateChange}
-            animateYearScrolling={false}
+            animateYearScrolling
           />
         </div>
 
@@ -33,7 +33,6 @@ export default class BasicDatePicker extends PureComponent {
             maxDateMessage="Date must be less than today"
             value={selectedDate}
             onChange={this.handleDateChange}
-            animateYearScrolling={false}
           />
         </div>
 
@@ -44,7 +43,6 @@ export default class BasicDatePicker extends PureComponent {
             maxDateMessage="Date must be less than today"
             value={selectedDate}
             onChange={this.handleDateChange}
-            animateYearScrolling={false}
           />
         </div>
       </Fragment>
