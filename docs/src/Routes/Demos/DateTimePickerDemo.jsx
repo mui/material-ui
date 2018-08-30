@@ -18,11 +18,17 @@ const DateTimePickerDemo = () => (
 
     <SourcablePanel
       title="Basic usage"
-      sourceFile="Demo/BasicDateTimePicker.jsx"
+      sourceFile="Demo/DateTimePicker/BasicDateTimePicker.jsx"
     />
+
+    <SourcablePanel
+      title="Inline mode"
+      sourceFile="Demo/DateTimePicker/InlineDateTimePicker.jsx"
+    />
+
     <SourcablePanel
       title="Customization"
-      sourceFile="Demo/CustomDateTimePicker.jsx"
+      sourceFile="Demo/DateTimePicker/CustomDateTimePicker.jsx"
       description={
         <Typography variant="body1" gutterBottom>
           Applied mostly all customization, that available for date & time pickers

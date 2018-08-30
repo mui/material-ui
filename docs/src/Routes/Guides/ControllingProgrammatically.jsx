@@ -7,8 +7,8 @@ const ControllingProgrammatically = () => (
     <Typography variant="display2" gutterBottom> Control programmatically </Typography>
 
     <Typography variant="body1" gutterBottom>
-      Any picker component provide special property <span className="inline-code"> pickerRef </span>
-      to add an ability open picker from the code. See an example below
+      Any picker can be controlled by <span className="inline-code"> ref </span> property
+      which add an ability open any picker from the code. See an example below
     </Typography>
 
     <SourcablePanel

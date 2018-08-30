@@ -18,25 +18,31 @@ const DatePickerDemoDemo = () => (
 
     <SourcablePanel
       title="Basic usage"
-      sourceFile="Demo/BasicDatePicker.jsx"
+      sourceFile="Demo/DatePicker/BasicDatePicker.jsx"
     />
 
     <SourcablePanel
       title="Keyboard input"
-      sourceFile="Demo/KeyboardDatePicker.jsx"
+      sourceFile="Demo/DatePicker/KeyboardDatePicker.jsx"
+    />
+
+    <SourcablePanel
+      title="Inline mode"
+      sourceFile="Demo/DatePicker/InlineDatePicker.jsx"
     />
 
     <SourcablePanel
       title="Custom day element"
-      sourceFile="Demo/CustomElementsDatePicker.jsx"
+      sourceFile="Demo/DatePicker/CustomElementsDatePicker.jsx"
       description={
         <Typography variant="body1" gutterBottom>
-          Customization performing by overriding render method for Day component
+          Customization performing by overriding render method for Day component.
+          <a href="https://codesandbox.io/s/mozqv539lp"> Here </a> example with moment-js
         </Typography>
       }
     />
 
-    <PropTypesTable src="DatePicker/DatePickerWrapper.jsx" />
+    <PropTypesTable src="DatePicker/DatePickerModal.jsx" />
   </div>
 );
 

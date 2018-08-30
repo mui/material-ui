@@ -24,6 +24,10 @@ export interface DateTextFieldProps extends Omit<TextFieldProps, 'onChange' | 'v
     invalidDateMessage?: React.ReactNode;
     clearable?: boolean;
     TextFieldComponent?: React.ComponentType<TextFieldProps>;
+    InputAdornmentProps?: object;
+    adornmentPosition?: "start" | "end";
+    onError?: () => void;
+    onInputChange?: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
 declare const DateTextField: ComponentClass<DateTextFieldProps>;

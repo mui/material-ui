@@ -7,12 +7,6 @@ import DomainPropTypes from '../constants/prop-types';
 
 export default class ModalWrapper extends PureComponent {
   static propTypes = {
-    /** Picker value */
-    value: DomainPropTypes.date,
-    /** Format string */
-    invalidLabel: PropTypes.node,
-    /** Function for dynamic rendering label (date, invalidLabel) => string */
-    labelFunc: PropTypes.func,
     /** "OK" label message */
     okLabel: PropTypes.node,
     /** "Cancel" label message */
@@ -28,12 +22,16 @@ export default class ModalWrapper extends PureComponent {
      * <b>Note*</b> that clear button has higher priority
     */
     showTodayButton: PropTypes.bool,
-    /** On open callback */
+    /** On open callback [(e: Event) => void] */
     onOpen: PropTypes.func,
-    /** On close callback */
-    onClose: PropTypes.func,
-    /** Format string */
+    /** On close callback [(e: Event) => void] */
     format: PropTypes.string,
+    /** Dialog props passed to material-ui Dialog */
+    DialogProps: PropTypes.object,
+    value: DomainPropTypes.date,
+    invalidLabel: PropTypes.node,
+    labelFunc: PropTypes.func,
+    onClose: PropTypes.func,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
     onClear: PropTypes.func,
@@ -41,7 +39,6 @@ export default class ModalWrapper extends PureComponent {
     children: PropTypes.node.isRequired,
     dialogContentClassName: PropTypes.string,
     isAccepted: PropTypes.bool.isRequired,
-    container: PropTypes.node,
   }
 
   static defaultProps = {
@@ -62,7 +59,7 @@ export default class ModalWrapper extends PureComponent {
     onOpen: undefined,
     onClose: undefined,
     onSetToday: undefined,
-    container: undefined,
+    DialogProps: undefined,
   }
 
   state = {
@@ -155,7 +152,7 @@ export default class ModalWrapper extends PureComponent {
       onClose,
       onSetToday,
       isAccepted,
-      container,
+      DialogProps,
       ...other
     } = this.props;
 
@@ -186,10 +183,9 @@ export default class ModalWrapper extends PureComponent {
           cancelLabel={cancelLabel}
           clearable={clearable}
           showTodayButton={showTodayButton}
-          container={container}
-        >
-          {children}
-        </ModalDialog>
+          children={children}
+          {...DialogProps}
+        />
       </Fragment>
     );
   }

@@ -13,4 +13,4 @@ function App() {
   );
 }
 
-render(<App />, document.querySelector('#app'));
+ReactDOM.render(<App />, document.querySelector('#app'));

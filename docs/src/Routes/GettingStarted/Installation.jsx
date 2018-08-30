@@ -23,14 +23,17 @@ const Installation = () => (
     <Typography variant="body1" gutterBottom>
       Material-ui-pickers was designed to use that date management library that you need.
     </Typography>
+
     <Typography variant="body1" gutterBottom>
       We are providing interfaces for <a className="link" href="https://momentjs.com/">moment</a>
       &nbsp;, <a className="link" href="https://date-fns.org/">date-fns 2</a> and
-      <a className="link" href="https://moment.github.io/luxon/"> luxon</a>. If you
+      <a className="link" href="https://moment.github.io/luxon/"> luxon</a>.
+      P.S. If you
       are not using moment in the project (or dont have it in the bundle already)
       we suggest using date-fns,
       because it is much more lightweight and will be correctly tree-shaken from the bundle.
     </Typography>
+
     <Typography variant="body1" gutterBottom>
       Note, that we support only 2.0.0-alpha.16 version of date-fns for now (see
       &nbsp;<a className="link" href="https://github.com/dmtrKovalenko/material-ui-pickers/issues/414#issuecomment-389523267">#414</a>
@@ -49,6 +52,7 @@ const Installation = () => (
       We are using material-ui-icons icon font to display icons.
       In order if you can override with a help of corresponding props. Just add this to your html
     </Typography>
+
     <Code
       withMargin
       language="html"

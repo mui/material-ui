@@ -9,12 +9,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
 const dialogWidth = 310;
+const dialogHeight = 405;
 const styles = {
   dialogRoot: {
     minWidth: dialogWidth,
+    minHeight: dialogHeight,
   },
   dialog: {
     width: dialogWidth,
+    minHeight: dialogHeight,
     overflow: 'hidden',
 
     '&:first-child': {
@@ -74,7 +77,8 @@ export const ModalDialog = ({
         }),
       }}
     >
-      { clearable &&
+      { clearable
+        && (
         <Button
           color="primary"
           onClick={onClear}
@@ -82,9 +86,11 @@ export const ModalDialog = ({
         >
           { clearLabel }
         </Button>
+        )
       }
 
-      { !clearable && showTodayButton &&
+      { !clearable && showTodayButton
+        && (
         <Button
           color="primary"
           onClick={onSetToday}
@@ -92,6 +98,7 @@ export const ModalDialog = ({
         >
           { todayLabel }
         </Button>
+        )
       }
 
       <Button

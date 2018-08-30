@@ -15,13 +15,13 @@ const DrawerMenu = ({ classes }) => (
         </Typography>
       </Link>
 
-      <Link
+      <a
         target="_blank"
-        rel="noopenner noreferrer"
-        to="https://github.com/dmtrKovalenko/material-ui-pickers/releases"
+        rel="noopener noreferrer"
+        href="https://github.com/dmtrKovalenko/material-ui-pickers/releases"
       >
         <Typography variant="caption" className={classes.headerLink}> v{version} </Typography>
-      </Link>
+      </a>
     </Toolbar>
 
     <Divider />

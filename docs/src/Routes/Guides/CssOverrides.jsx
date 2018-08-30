@@ -7,12 +7,12 @@ const CssOverrides = () => (
     <Typography variant="display2" gutterBottom> Override stylesheet </Typography>
 
     <Typography variant="body1" gutterBottom>
-      Default pickers appearance build based on material-ui theme,
-      so pickers will take all colors/font size setting as other material-ui components.
+      Default pickers appearance built based on material-ui theme provided.
+      So pickers will take all colors/fonts/theme setting as any other material-ui components.
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      But we are not providing any for-component classes api to override a view of
+      But we are not providing any for-component classes api to override stylesheet for
       particular component. Only one way to override existed stylesheet -
       usage of global material-ui theme overrides.
     </Typography>

@@ -33,7 +33,7 @@ export default class DateFnsLocalizationExample extends PureComponent {
             format="D MMM YYYY"
             value={selectedDate}
             onChange={this.handleDateChange}
-            clearLabel="clair"
+            clearLabel="vider"
             cancelLabel="annuler"
           />
         </div>

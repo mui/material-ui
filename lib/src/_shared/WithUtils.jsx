@@ -14,4 +14,3 @@ const WithUtils = () => (Component) => {
 };
 
 export default WithUtils;
-

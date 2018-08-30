@@ -2,14 +2,12 @@ import { ComponentClass, ReactNode } from 'react';
 import { DateTimePickerView } from '../constants/date-picker-view';
 import { DateType } from '../constants/prop-types';
 import { Utils } from '../typings/utils';
-import { RenderDay } from '../DatePicker/Calendar';
+import { RenderDay } from '../DatePicker/components/Calendar';
 import { MaterialUiPickersDate } from '../typings/date'
 
-export interface DateTimePickerProps {
-  date: MaterialUiPickersDate;
+export interface BaseDateTimePickerProps {
   minDate?: DateType;
   maxDate?: DateType;
-  onChange: (date: MaterialUiPickersDate, isFinished: boolean, viewType?: DateTimePickerView) => void;
   disablePast?: boolean;
   disableFuture?: boolean;
   autoSubmit?: boolean;
@@ -17,13 +15,18 @@ export interface DateTimePickerProps {
   animateYearScrolling?: boolean;
   ampm?: boolean;
   openTo?: DateTimePickerView;
-  leftArrowIcon: ReactNode;
-  rightArrowIcon: ReactNode;
+  leftArrowIcon?: ReactNode;
+  rightArrowIcon?: ReactNode;
   dateRangeIcon?: ReactNode;
   timeIcon?: ReactNode;
   renderDay?: RenderDay;
-  utils?: Utils<MaterialUiPickersDate>;
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
+}
+
+export interface DateTimePickerProps extends BaseDateTimePickerProps {
+  date: MaterialUiPickersDate;
+  utils?: Utils<MaterialUiPickersDate>;
+  onChange: (date: MaterialUiPickersDate, isFinished: boolean, viewType?: DateTimePickerView) => void;
 }
 
 declare const DateTimePicker: ComponentClass<DateTimePickerProps>;

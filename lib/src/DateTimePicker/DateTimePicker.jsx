@@ -2,12 +2,12 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import View from './DateTimePickerView';
-import YearSelection from '../DatePicker/YearSelection';
-import Calendar from '../DatePicker/Calendar';
-import TimePickerView from '../TimePicker/TimePickerView';
-import DateTimePickerTabs from './DateTimePickerTabs';
-import DatetimePickerHeader from './DateTimePickerHeader';
+import View from './components/DateTimePickerView';
+import YearSelection from '../DatePicker/components/YearSelection';
+import Calendar from '../DatePicker/components/Calendar';
+import TimePickerView from '../TimePicker/components/TimePickerView';
+import DateTimePickerTabs from './components/DateTimePickerTabs';
+import DatetimePickerHeader from './components/DateTimePickerHeader';
 import { convertToMeridiem } from '../_helpers/time-utils';
 
 import DomainPropTypes from '../constants/prop-types';
@@ -142,13 +142,15 @@ export class DateTimePicker extends Component {
         />
 
         {
-          showTabs &&
+          showTabs
+            && (
             <DateTimePickerTabs
               view={openView}
               onChange={this.handleViewChange}
               dateRangeIcon={dateRangeIcon}
               timeIcon={timeIcon}
             />
+            )
         }
 
         <ViewContainerComponent className={classes.viewContainer} {...ViewContainerComponentProps}>
@@ -188,6 +190,7 @@ export class DateTimePicker extends Component {
               onHourChange={this.handleHourChange}
               onMinutesChange={this.handleChange}
               onSecondsChange={this.handleChange}
+              ampm={ampm}
             />
           </View>
         </ViewContainerComponent>
