@@ -158,19 +158,15 @@ class SpeedDial extends React.Component {
       return React.cloneElement(child, {
         delay,
         open,
-        onKeyDown: this.handleKeyDown,
         id: `${id}-item-${validChildCount}`,
       });
     });
 
     const icon = () => {
-      if (!React.isValidElement(iconProp)) {
-        return iconProp;
-      }
-      if (isMuiElement(iconProp, ['SpeedDialIcon'])) {
+      if (React.isValidElement(iconProp) && isMuiElement(iconProp, ['SpeedDialIcon'])) {
         return React.cloneElement(iconProp, { open });
       }
-      return icon;
+      return iconProp;
     };
 
     const actionsPlacementClass = {

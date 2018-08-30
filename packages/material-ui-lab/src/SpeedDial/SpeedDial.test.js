@@ -1,13 +1,14 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import SpeedDial from './SpeedDial';
 import SpeedDialAction from '../SpeedDialAction';
 
 describe('<SpeedDial />', () => {
+  let mount;
   let shallow;
   let classes;
   const icon = <Icon>font_icon</Icon>;
@@ -17,12 +18,23 @@ describe('<SpeedDial />', () => {
   };
 
   before(() => {
+    mount = createMount();
     shallow = createShallow({ dive: true });
     classes = getClasses(
       <SpeedDial {...defaultProps} icon={icon}>
         <div />
       </SpeedDial>,
     );
+  });
+
+  it('should render with a minimal setup', () => {
+    const wrapper = mount(
+      <SpeedDial {...defaultProps} icon={icon}>
+        <SpeedDialAction icon={<Icon>save_icon</Icon>} tooltipTitle="Save" />
+      </SpeedDial>,
+    );
+
+    wrapper.unmount();
   });
 
   it('should render a Fade transition', () => {
