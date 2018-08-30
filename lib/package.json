@@ -128,7 +128,7 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-size-snapshot": "^0.6.0",
     "rollup-plugin-uglify": "^4.0.0",
-    "size-limit": "^0.19.3",
+    "size-limit": "^0.18.1",
     "typescript": "^3.0.3"
   },
   "jest": {
