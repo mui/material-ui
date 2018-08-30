@@ -6,7 +6,7 @@ import { Typography } from '@material-ui/core';
 import muiPickerProviderCode from '!raw-loader!Examples/CodeSnippets/MuiPickerProviderCode';
 
 const installLibCode =
-`npm i -s date-fns@2.0.0-alpha.7
+`npm i -s date-fns@2.0.0-alpha.16
 // or
 npm i -s moment
 // or
@@ -35,7 +35,7 @@ const Installation = () => (
     </Typography>
 
     <Typography variant="body1" gutterBottom>
-      Note, that we support only 2.0.0-alpha.7 version of date-fns for now (see
+      Note, that we support only 2.0.0-alpha.16 version of date-fns for now (see
       &nbsp;<a className="link" href="https://github.com/dmtrKovalenko/material-ui-pickers/issues/414#issuecomment-389523267">#414</a>
       ).
       Stay tuned!
