@@ -421,14 +421,13 @@ class Input extends React.Component {
       inputPropsClassName,
     );
 
-    let InputComponent = 'input';
+    let InputComponent = inputComponent;
     let inputProps = {
       ...inputPropsProp,
       ref: this.handleRefInput,
     };
 
-    if (inputComponent) {
-      InputComponent = inputComponent;
+    if (typeof InputComponent !== 'string') {
       inputProps = {
         // Rename ref to inputRef as we don't know the
         // provided `inputComponent` structure.
@@ -633,6 +632,7 @@ Input.muiName = 'Input';
 Input.defaultProps = {
   disableUnderline: false,
   fullWidth: false,
+  inputComponent: 'input',
   multiline: false,
   type: 'text',
 };
