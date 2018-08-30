@@ -198,7 +198,7 @@ describe('<Slider />', () => {
       wrapper.simulate('keypress', {key: 'left arrow'}); //tab
       wrapper.simulate('keypress', {key: 'left arrow'}); //tab
 
-      expect(wrapper.props().value).to.equal(104);
+      assert.strictEqual(wrapper.prop('value'), 104);
     });
   });
 });
