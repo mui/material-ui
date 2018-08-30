@@ -26,6 +26,25 @@ of the `<head />` to ensure the components always render correctly.
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
 
+Note that by creating an overridden component this way, you fully "inherit" the original component, but when using the
+overridden component, passing props known to the original component are simply lost. That is, using the overridden
+component like this: `<ClassName type="submit">` will not have the desired effect - the `type` prop is not passed down
+to the original `Button`. You can work around this without manually passing down each prop that the original
+component supports by using [JSX spread attributes](https://zhenyong.github.io/react/docs/jsx-spread.html), like so:
+
+```jsx
+function ClassNames(props) {
+  return (
+    <Button className={props.classes.button} {...props}>
+      {props.children ? props.children : 'class names'}
+    </Button>
+  );
+}
+```
+
+The only requirement is that your environment supports [Object Rest and Spread Properties](https://github.com/tc39/proposal-object-rest-spread). For example, Babel does
+this via the [object rest spread plugin](https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-object-rest-spread). 
+
 ### Overriding with classes
 
 When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` property to customize all the CSS injected by Material-UI for a given component.
