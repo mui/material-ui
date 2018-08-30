@@ -332,6 +332,7 @@ ${pagesMarkdown.map(page => `- [${pageToTitle(page)}](${page.pathname})`).join('
 
 function generateImportStatement(reactAPI) {
   const source = reactAPI.filename
+    // determine the published package name
     .replace(
       /\/packages\/material-ui(-(.+?))?\/src/,
       (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
