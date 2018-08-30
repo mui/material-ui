@@ -23,16 +23,7 @@ export class YearSelection extends PureComponent {
     animateYearScrolling: false,
   }
 
-  componentDidMount = () => {
-    this.scrollToCurrentYear();
-  }
-
-  onYearSelect = (year) => {
-    const { date, onChange, utils } = this.props;
-
-    const newDate = utils.setYear(date, year);
-    onChange(newDate);
-  }
+  selectedYearRef = undefined;
 
   getSelectedYearRef = (ref) => {
     this.selectedYearRef = ref;
@@ -43,13 +34,22 @@ export class YearSelection extends PureComponent {
     const currentYearElement = findDOMNode(this.selectedYearRef);
 
     if (currentYearElement && currentYearElement.scrollIntoView) {
-      currentYearElement.scrollIntoView({
+      setTimeout(() => currentYearElement.scrollIntoView({
         behavior: animateYearScrolling ? 'smooth' : 'auto',
-      });
+      }), 100);
     }
   }
 
-  selectedYearRef = undefined;
+  componentDidMount = () => {
+    this.scrollToCurrentYear();
+  }
+
+  onYearSelect = (year) => {
+    const { date, onChange, utils } = this.props;
+
+    const newDate = utils.setYear(date, year);
+    onChange(newDate);
+  }
 
   render() {
     const {
@@ -67,18 +67,15 @@ export class YearSelection extends PureComponent {
 
               return (
                 <Year
-                  selected={selected}
-                  disabled={(
-                    (disablePast && utils.isBeforeYear(year, utils.date())) ||
-                    (disableFuture && utils.isAfterYear(year, utils.date()))
-                  )}
-                  value={yearNumber}
                   key={utils.getYearText(year)}
+                  selected={selected}
+                  value={yearNumber}
                   onSelect={this.onYearSelect}
-                  ref={selected
-                    ? this.getSelectedYearRef
-                    : undefined
-                  }
+                  ref={selected ? this.getSelectedYearRef : undefined}
+                  disabled={(
+                    (disablePast && utils.isBeforeYear(year, utils.date()))
+                    || (disableFuture && utils.isAfterYear(year, utils.date()))
+                  )}
                 >
                   {utils.getYearText(year)}
                 </Year>
