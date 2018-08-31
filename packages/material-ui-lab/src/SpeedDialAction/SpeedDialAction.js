@@ -41,7 +41,7 @@ class SpeedDialAction extends React.Component {
       state.tooltipOpen = false;
     }
     return state;
-  }
+  };
 
   handleTooltipClose = () => {
     if (this.props.tooltipOpen) return;
