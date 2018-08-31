@@ -29,7 +29,7 @@ function CSSGrid(props) {
 
   return (
     <div>
-      <Typography variant="subheading" gutterBottom>
+      <Typography variant="subtitle1" gutterBottom>
         Material-UI Grid:
       </Typography>
       <Grid container spacing={24}>
@@ -53,7 +53,7 @@ function CSSGrid(props) {
         </Grid>
       </Grid>
       <Divider className={classes.divider} />
-      <Typography variant="subheading" gutterBottom>
+      <Typography variant="subtitle1" gutterBottom>
         CSS Grid Layout:
       </Typography>
       <div className={classes.container}>

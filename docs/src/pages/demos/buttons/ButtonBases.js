@@ -120,7 +120,7 @@ function ButtonBases(props) {
           <span className={classes.imageButton}>
             <Typography
               component="span"
-              variant="subheading"
+              variant="subtitle1"
               color="inherit"
               className={classes.imageTitle}
             >

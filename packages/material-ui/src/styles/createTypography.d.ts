@@ -13,7 +13,16 @@ export type ThemeStyle =
   | 'body1'
   | 'body2'
   | 'caption'
-  | 'button';
+  | 'button'
+  | 'headline1'
+  | 'headline2'
+  | 'headline3'
+  | 'headline4'
+  | 'headline5'
+  | 'headline6'
+  | 'subtitle1'
+  | 'subtitle2'
+  | 'overline';
 
 export interface FontStyle
   extends Required<{
@@ -27,6 +36,9 @@ export interface FontStyle
 export interface FontStyleOptions extends Partial<FontStyle> {
   htmlFontSize?: number;
   allVariants?: CSSProperties;
+  caseAllCaps?: CSSProperties;
+  suppressDeprecationWarnings?: boolean;
+  useNextVariants?: boolean;
 }
 
 export type TypographyStyle = Required<

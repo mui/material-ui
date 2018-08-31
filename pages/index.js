@@ -119,7 +119,7 @@ class HomePage extends React.Component {
               />
               <div className={classes.text}>
                 <Typography
-                  variant="display2"
+                  variant="headline3"
                   align="center"
                   component="h1"
                   color="inherit"
@@ -129,7 +129,7 @@ class HomePage extends React.Component {
                   {'MATERIAL-UI'}
                 </Typography>
                 <Typography
-                  variant="headline"
+                  variant="headline5"
                   component="h2"
                   color="inherit"
                   gutterBottom

@@ -39,6 +39,24 @@ export const styles = theme => ({
     width: 1,
     overflow: 'hidden',
   },
+  /* Styles applied to the root element if `variant="headline1"`. */
+  headline1: theme.typography.headline1,
+  /* Styles applied to the root element if `variant="headline2"`. */
+  headline2: theme.typography.headline2,
+  /* Styles applied to the root element if `variant="headline3"`. */
+  headline3: theme.typography.headline3,
+  /* Styles applied to the root element if `variant="headline4"`. */
+  headline4: theme.typography.headline4,
+  /* Styles applied to the root element if `variant="headline5"`. */
+  headline5: theme.typography.headline5,
+  /* Styles applied to the root element if `variant="headline6"`. */
+  headline6: theme.typography.headline6,
+  /* Styles applied to the root element if `variant="subtitle1"`. */
+  subtitle1: theme.typography.subtitle1,
+  /* Styles applied to the root element if `variant="subtitle2"`. */
+  subtitle2: theme.typography.subtitle2,
+  /* Styles applied to the root element if `variant="overline"`. */
+  overline: theme.typography.overline,
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
@@ -106,10 +124,12 @@ function Typography(props) {
     headlineMapping,
     noWrap,
     paragraph,
-    variant,
+    theme,
+    variant: variantProp,
     ...other
   } = props;
 
+  const variant = theme.typography.getVariant(variantProp);
   const className = classNames(
     classes.root,
     {
@@ -123,7 +143,7 @@ function Typography(props) {
     classNameProp,
   );
 
-  const Component = componentProp || (paragraph ? 'p' : headlineMapping[variant]) || 'span';
+  const Component = componentProp || (paragraph ? 'p' : headlineMapping[variantProp]) || 'span';
 
   return <Component className={className} {...other} />;
 }
@@ -186,6 +206,24 @@ Typography.propTypes = {
    * Applies the theme typography styles.
    */
   variant: PropTypes.oneOf([
+    // new
+    'headline1',
+    'headline2',
+    'headline3',
+    'headline4',
+    'headline5',
+    'headline6',
+    'subtitle1',
+    'subtitle2',
+    'overline',
+    // restyled
+    'body1',
+    'body2',
+    'caption',
+    'button',
+    'srOnly',
+    'inherit',
+    // deprecated
     'display4',
     'display3',
     'display2',
@@ -193,12 +231,6 @@ Typography.propTypes = {
     'headline',
     'title',
     'subheading',
-    'body2',
-    'body1',
-    'caption',
-    'button',
-    'srOnly',
-    'inherit',
   ]),
 };
 
@@ -216,10 +248,18 @@ Typography.defaultProps = {
     subheading: 'h3',
     body2: 'aside',
     body1: 'p',
+    headline1: 'h1',
+    headline2: 'h2',
+    headline3: 'h3',
+    headline4: 'h4',
+    headline5: 'h5',
+    headline6: 'h6',
+    subtitle1: 'h6',
+    subtitle2: 'h6',
   },
   noWrap: false,
   paragraph: false,
   variant: 'body1',
 };
 
-export default withStyles(styles, { name: 'MuiTypography' })(Typography);
+export default withStyles(styles, { name: 'MuiTypography', withTheme: true })(Typography);

@@ -132,7 +132,7 @@ class Dashboard extends React.Component {
               </IconButton>
               <Typography
                 component="h1"
-                variant="title"
+                variant="headline6"
                 color="inherit"
                 noWrap
                 className={classes.title}
@@ -165,13 +165,13 @@ class Dashboard extends React.Component {
           </Drawer>
           <main className={classes.content}>
             <div className={classes.appBarSpacer} />
-            <Typography variant="display1" gutterBottom component="h2">
+            <Typography variant="headline4" gutterBottom component="h2">
               Orders
             </Typography>
             <Typography component="div" className={classes.chartContainer}>
               <SimpleLineChart />
             </Typography>
-            <Typography variant="display1" gutterBottom component="h2">
+            <Typography variant="headline4" gutterBottom component="h2">
               Products
             </Typography>
             <div className={classes.tableContainer}>

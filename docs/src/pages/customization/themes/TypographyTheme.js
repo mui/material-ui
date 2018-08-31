@@ -29,7 +29,7 @@ const theme = createMuiTheme({
     body1: {
       fontWeight: 500,
     },
-    subheading: {
+    subtitle: {
       fontSize: 12,
     },
     button: {
@@ -44,7 +44,7 @@ function TypographyTheme(props) {
   const children = (
     <div>
       <Typography>body1</Typography>
-      <Typography variant="subheading">subheading</Typography>
+      <Typography variant="subtitle1">subtitle</Typography>
       <Button>Button</Button>
     </div>
   );
