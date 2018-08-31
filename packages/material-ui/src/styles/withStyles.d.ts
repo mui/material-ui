@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { WithTheme } from '../styles/withTheme';
-import { Matching, Omit, PropsOf, Shared } from '..';
+import { Matching, Omit, PropsOf } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
@@ -67,7 +67,7 @@ export default function withStyles<
 ) => React.ComponentType<
   Omit<
     JSX.LibraryManagedAttributes<C, PropsOf<C>>,
-    keyof Shared<WithStyles<ClassKey, Options['withTheme']>, PropsOf<C>>
+    keyof WithStyles<ClassKey, Options['withTheme']>
   > &
     StyledComponentProps<ClassKey>
 >;
