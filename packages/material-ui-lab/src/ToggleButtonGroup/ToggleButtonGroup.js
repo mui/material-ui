@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import hasValue from './hasValue';
-import isValueSelected from './isValueSelected';
+import hasValue from '../ToggleButton/hasValue';
+import isValueSelected from '../ToggleButton/isValueSelected';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
