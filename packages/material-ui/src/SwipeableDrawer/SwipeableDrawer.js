@@ -291,7 +291,7 @@ class SwipeableDrawer extends React.Component {
     // compute minimal swipe distance by hysteresis property
     const minDistance = this.getMaxTranslate() * this.props.hysteresis;
 
-    // get the real distance
+    // get the absolute distance
     const distance = Math.abs(beginSwipe - current);
 
     if (beginSwipe > current) {
@@ -308,11 +308,11 @@ class SwipeableDrawer extends React.Component {
       // opening swipe
       if (distance < minDistance) {
         // distance too short, go back to closed state
-        this.setPosition(_this.getMaxTranslate(), {
+        this.setPosition(this.getMaxTranslate(), {
           mode: 'enter',
         });
       } else {
-        _this.props.onOpen();
+        this.props.onOpen();
       }
     }
 
@@ -471,7 +471,7 @@ SwipeableDrawer.defaultProps = {
   disableSwipeToOpen:
     typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent),
   swipeAreaWidth: 20,
-  hysteresis: 0.1,
+  hysteresis: 0.5,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
   variant: 'temporary', // Mobile first.
 };
