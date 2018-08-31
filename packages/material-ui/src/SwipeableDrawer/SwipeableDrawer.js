@@ -31,6 +31,9 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class SwipeableDrawer extends React.Component {
+
+  touchStartTime = null;
+
   backdrop = null;
 
   paper = null;
@@ -190,6 +193,13 @@ class SwipeableDrawer extends React.Component {
       });
     }
 
+     
+    // get the touchstart time for computing velocity later on 
+    // (performance.now() is more accurate than new Date() and is 
+    // supported starting IE10)
+    this.touchStartTime = performance.now();
+    
+
     document.body.addEventListener('touchmove', this.handleBodyTouchMove, { passive: false });
     document.body.addEventListener('touchend', this.handleBodyTouchEnd);
     // https://plus.google.com/+PaulIrish/posts/KTwfn1Y2238
@@ -294,9 +304,16 @@ class SwipeableDrawer extends React.Component {
     // get the absolute distance
     const distance = Math.abs(beginSwipe - current);
 
+    // get elapsed time by compute difference from point of time of exec. 
+    // handleBodyTouchStart() to now
+    const elapsedTime = performance.now() - this.touchStartTime;
+
+    // velocity in px/ms
+    const velocity = distance / elapsedTime;
+
     if (beginSwipe > current) {
       // closing swipe
-      if (distance < minDistance) {
+      if (distance < minDistance && velocity < this.props.velocity) {
         // distance too short, go back to opened state
         this.setPosition(0, {
           mode: 'exit',
@@ -306,7 +323,7 @@ class SwipeableDrawer extends React.Component {
       }
     } else {
       // opening swipe
-      if (distance < minDistance) {
+      if (distance < minDistance && velocity < this.props.velocity) {
         // distance too short, go back to closed state
         this.setPosition(this.getMaxTranslate(), {
           mode: 'enter',
@@ -317,6 +334,7 @@ class SwipeableDrawer extends React.Component {
     }
 
     this.isSwiping = null;
+    this.touchStartTime = null;
   };
 
   handleBackdropRef = node => {
@@ -442,10 +460,16 @@ SwipeableDrawer.propTypes = {
    */
   swipeAreaWidth: PropTypes.number,
   /**
-   * Affects how far the slide must be, to change the drawer state.
+   * Affects how far the drawer must be opened/closed to change his state.
    * Specified as percent (0-1) of the width of the drawer
    */
   hysteresis: PropTypes.number,
+  /**
+   * Defines, from which (average) velocity on, the swipe is 
+   * defined as not aborted although hysteresis isn't reached.
+   * Good threshold is between 0.1 - 0.2 px/ms 
+   */
+  velocity: PropTypes.number,
   /**
    * @ignore
    */
@@ -472,6 +496,7 @@ SwipeableDrawer.defaultProps = {
     typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent),
   swipeAreaWidth: 20,
   hysteresis: 0.5,
+  velocity: Infinity,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
   variant: 'temporary', // Mobile first.
 };
