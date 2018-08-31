@@ -61,7 +61,7 @@ export default function withStyles<
   style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: Options,
 ): <
-  C extends React.ComponentType<Matching<PropsOf<C>, WithStyles<ClassKey, Options['withTheme']>>>
+  C extends React.ComponentType<Matching<WithStyles<ClassKey, Options['withTheme']>, PropsOf<C>>>
 >(
   component: C,
 ) => React.ComponentType<
