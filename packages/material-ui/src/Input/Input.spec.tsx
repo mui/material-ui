@@ -7,8 +7,14 @@ const WrontNativeName = <Input inputComponent="asd" />; // $ExpectError
 
 const NativeInput = <Input inputComponent="input" />;
 
-const NativeInputWithProps = (
-  <Input inputComponent="input" inputProps={{ readOnly: true, size: 5 }} />
+// typescript infers `e: any`
+// $ExpectError
+const NativeInputWithProps = <Input inputProps={{ onFocus: e => {}, readOnly: true, size: 5 }} />;
+// `e` needs an explicit type
+const NativeInputWithPropsExplicit = (
+  <Input
+    inputProps={{ onFocus: (e: React.FocusEvent<HTMLInputElement>) => {}, readOnly: true, size: 5 }}
+  />
 );
 
 const UnknownPropWarning = (
