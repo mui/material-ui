@@ -61,7 +61,7 @@ class SpeedDial extends React.Component {
 
   handleButtonKeyDown = event => {
     const key = keycode(event);
-    const { direction, open } = this.props;
+    const { direction, onKeyDown, open } = this.props;
 
     if (open && key === direction) {
       event.preventDefault();
@@ -73,11 +73,15 @@ class SpeedDial extends React.Component {
         this.setState({ focusedAction });
       }
     }
+
+    if (onKeyDown) {
+      onKeyDown(event, key);
+    }
   };
 
   handleActionButtonKeyDown = event => {
     const key = keycode(event);
-    const { direction, onClose } = this.props;
+    const { direction, onClose, onKeyDown } = this.props;
     const { focusedAction } = this.state;
 
     const directionAxis = direction === 'up' || direction === 'down' ? 'vertical' : 'horizontal';
@@ -100,6 +104,10 @@ class SpeedDial extends React.Component {
       const nextActionRef = this.actions[nextAction];
       nextActionRef.focus();
       this.setState({ focusedAction: nextAction });
+    }
+
+    if (onKeyDown) {
+      onKeyDown(event, key);
     }
   };
 
