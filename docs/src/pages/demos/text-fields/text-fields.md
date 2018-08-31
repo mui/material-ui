@@ -54,6 +54,14 @@ The following demo uses the [react-text-mask](https://github.com/text-mask/text-
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
+## Input [type="file"]
+
+You can use `Input` as a `type=file` field, The illustrated example below shows
+`Input` that accepts files of type only `audio/mpeg, audio/mp3`. The example
+can be of three states allowed/disabled/error.
+
+{{"demo": "pages/demos/text-fields/InputFileType.js"}}
+
 ## Customized inputs
 
 If you have been reading the [overrides documentation page](/customization/overrides)
