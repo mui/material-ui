@@ -9,6 +9,10 @@ title: FormHelperText API
 
 <p class="description">The API documentation of the FormHelperText React component.</p>
 
+```js
+import FormHelperText from '@material-ui/core/FormHelperText';
+```
+
 
 
 ## Props

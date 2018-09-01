@@ -9,6 +9,10 @@ title: AppBar API
 
 <p class="description">The API documentation of the AppBar React component.</p>
 
+```js
+import AppBar from '@material-ui/core/AppBar';
+```
+
 
 
 ## Props

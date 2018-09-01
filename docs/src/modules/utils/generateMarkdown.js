@@ -330,6 +330,22 @@ ${pagesMarkdown.map(page => `- [${pageToTitle(page)}](${page.pathname})`).join('
 `;
 }
 
+function generateImportStatement(reactAPI) {
+  const source = reactAPI.filename
+    // determine the published package name
+    .replace(
+      /\/packages\/material-ui(-(.+?))?\/src/,
+      (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
+    )
+    // convert things like `Table/Table.js` to `Table`
+    .replace(/([^/]+)\/\1\.js$/, '$1')
+    // strip off trailing `.js` if any
+    .replace(/\.js$/, '');
+  return `\`\`\`js
+import ${reactAPI.name} from '${source}';
+\`\`\``;
+}
+
 export default function generateMarkdown(reactAPI) {
   return [
     generateHeader(reactAPI),
@@ -339,6 +355,8 @@ export default function generateMarkdown(reactAPI) {
     `# ${reactAPI.name}`,
     '',
     `<p class="description">The API documentation of the ${reactAPI.name} React component.</p>`,
+    '',
+    generateImportStatement(reactAPI),
     '',
     reactAPI.description,
     '',

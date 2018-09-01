@@ -9,6 +9,10 @@ title: Paper API
 
 <p class="description">The API documentation of the Paper React component.</p>
 
+```js
+import Paper from '@material-ui/core/Paper';
+```
+
 
 
 ## Props

@@ -9,6 +9,10 @@ title: StepButton API
 
 <p class="description">The API documentation of the StepButton React component.</p>
 
+```js
+import StepButton from '@material-ui/core/StepButton';
+```
+
 
 
 ## Props

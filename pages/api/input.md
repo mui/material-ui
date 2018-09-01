@@ -9,6 +9,10 @@ title: Input API
 
 <p class="description">The API documentation of the Input React component.</p>
 
+```js
+import Input from '@material-ui/core/Input';
+```
+
 
 
 ## Props

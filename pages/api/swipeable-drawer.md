@@ -9,6 +9,10 @@ title: SwipeableDrawer API
 
 <p class="description">The API documentation of the SwipeableDrawer React component.</p>
 
+```js
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+```
+
 
 
 ## Props

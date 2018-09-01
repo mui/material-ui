@@ -9,6 +9,10 @@ title: Typography API
 
 <p class="description">The API documentation of the Typography React component.</p>
 
+```js
+import Typography from '@material-ui/core/Typography';
+```
+
 
 
 ## Props

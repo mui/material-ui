@@ -9,6 +9,10 @@ title: Snackbar API
 
 <p class="description">The API documentation of the Snackbar React component.</p>
 
+```js
+import Snackbar from '@material-ui/core/Snackbar';
+```
+
 
 
 ## Props

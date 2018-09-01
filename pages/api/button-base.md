@@ -9,6 +9,10 @@ title: ButtonBase API
 
 <p class="description">The API documentation of the ButtonBase React component.</p>
 
+```js
+import ButtonBase from '@material-ui/core/ButtonBase';
+```
+
 `ButtonBase` contains as few styles as possible.
 It aims to be a simple building block for creating a button.
 It contains a load of style reset and some focus/ripple logic.

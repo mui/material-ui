@@ -9,6 +9,10 @@ title: MenuItem API
 
 <p class="description">The API documentation of the MenuItem React component.</p>
 
+```js
+import MenuItem from '@material-ui/core/MenuItem';
+```
+
 
 
 ## Props

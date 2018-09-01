@@ -9,6 +9,10 @@ title: Stepper API
 
 <p class="description">The API documentation of the Stepper React component.</p>
 
+```js
+import Stepper from '@material-ui/core/Stepper';
+```
+
 
 
 ## Props

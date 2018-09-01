@@ -9,6 +9,10 @@ title: Collapse API
 
 <p class="description">The API documentation of the Collapse React component.</p>
 
+```js
+import Collapse from '@material-ui/core/Collapse';
+```
+
 The Collapse transition is used by the
 [Vertical Stepper](/demos/steppers#vertical-stepper) StepContent component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.

@@ -9,6 +9,10 @@ title: Chip API
 
 <p class="description">The API documentation of the Chip React component.</p>
 
+```js
+import Chip from '@material-ui/core/Chip';
+```
+
 Chips represent complex entities in small blocks, such as a contact.
 
 ## Props
