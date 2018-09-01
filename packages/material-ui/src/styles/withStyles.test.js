@@ -215,7 +215,7 @@ describe('withStyles', () => {
       assert.deepEqual(sheetsRegistry.registry[0].rules.raw, { root: { padding: 9 } });
     });
 
-    it('should support override comonents', () => {
+    it('should support override components', () => {
       const styles = { root: { padding: 8 } };
       const FormLabel = withStyles(styles, { name: 'MuiFormLabel' })(Empty);
       const OverrideFormLabel = ({ warning, classes, ...props }) => (
