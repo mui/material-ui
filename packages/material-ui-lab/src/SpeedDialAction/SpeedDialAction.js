@@ -128,7 +128,20 @@ SpeedDialAction.propTypes = {
   /**
    * Placement of the tooltip.
    */
-  tooltipPlacement: PropTypes.string,
+  tooltipPlacement: PropTypes.oneOf([
+    'bottom-end',
+    'bottom-start',
+    'bottom',
+    'left-end',
+    'left-start',
+    'left',
+    'right-end',
+    'right-start',
+    'right',
+    'top-end',
+    'top-start',
+    'top',
+  ]),
   /**
    * Label to display in the tooltip.
    */
