@@ -304,14 +304,14 @@ class Input extends React.Component {
     }
   };
 
-  handleChange = event => {
+  handleChange = (...args) => {
     if (!this.isControlled) {
       this.checkDirty(this.inputRef);
     }
 
     // Perform in the willUpdate
     if (this.props.onChange) {
-      this.props.onChange(event);
+      this.props.onChange(...args);
     }
   };
 
