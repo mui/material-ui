@@ -4,25 +4,20 @@ import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 
 const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
   input: {
-    width: '30%',
     margin: theme.spacing.unit,
   },
 });
 
-function Inputs(props) {
+function UploadInputs(props) {
   const { classes } = props;
   return (
-    <div className={classes.container}>
+    <React.Fragment>
       <Input
         type="file"
         className={classes.input}
         inputProps={{
-          accept: 'audio/mpeg, audio/mp3',
+          accept: 'audio/*',
           'aria-label': 'File upload',
         }}
       />
@@ -31,26 +26,16 @@ function Inputs(props) {
         className={classes.input}
         disabled
         inputProps={{
-          accept: 'audio/mpeg, audio/mp3',
+          accept: 'audio/*',
           'aria-label': 'File upload',
         }}
       />
-      <Input
-        type="file"
-        defaultValue="Error"
-        className={classes.input}
-        error
-        inputProps={{
-          accept: 'audio/mpeg, audio/mp3',
-          'aria-label': 'File upload',
-        }}
-      />
-    </div>
+    </React.Fragment>
   );
 }
 
-Inputs.propTypes = {
+UploadInputs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Inputs);
+export default withStyles(styles)(UploadInputs);

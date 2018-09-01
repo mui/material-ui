@@ -50,11 +50,11 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/text-fields/FormattedInputs'), 'utf8')
 `,
         },
-        'pages/demos/text-fields/InputFileType.js': {
-          js: require('docs/src/pages/demos/text-fields/InputFileType').default,
+        'pages/demos/text-fields/UploadInputs.js': {
+          js: require('docs/src/pages/demos/text-fields/UploadInputs').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/InputFileType'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/UploadInputs'), 'utf8')
 `,
         },
         'pages/demos/text-fields/CustomizedInputs.js': {
