@@ -194,6 +194,11 @@ class Slider extends React.Component {
 
   jumpAnimationTimeoutId = -1;
 
+  constructor(props) {
+    super(props);
+    this.handleMouseMoveBind = this.handleMouseMove.bind(this);
+    this.handleMouseUpBind = this.handleMouseUp.bind(this);
+  }
   componentDidMount() {
     if (this.containerRef) {
       this.containerRef.addEventListener('touchstart', preventPageScrolling, { passive: false });
@@ -202,8 +207,10 @@ class Slider extends React.Component {
 
   componentWillUnmount() {
     this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
-    document.body.removeEventListener('mousemove', this.handleMouseMove);
-    document.body.removeEventListener('mouseup', this.handleMouseUp);
+    document.body.removeEventListener('mousemove', this.handleMouseMoveBind);
+    document.body.removeEventListener('mouseup', this.handleMouseUpBind);
+    document.body.removeEventListener('touchmove', this.handleMouseMoveBind);
+    document.body.removeEventListener('touchend', this.handleMouseUpBind);
     clearTimeout(this.jumpAnimationTimeoutId);
   }
 
@@ -277,22 +284,19 @@ class Slider extends React.Component {
   };
 
   handleTouchStart = event => {
-    event.preventDefault();
-    this.setState({ currentState: 'activated' });
-
-    document.body.addEventListener('touchend', this.handleMouseUp);
-
-    if (typeof this.props.onDragStart === 'function') {
-      this.props.onDragStart(event);
-    }
+    this.handleMouseDown(event, true);
   };
 
-  handleMouseDown = event => {
+  handleMouseDown = (event, isTouch) => {
     event.preventDefault();
     this.setState({ currentState: 'activated' });
+    this.touch = isTouch;
+    this.moved = false;
 
-    document.body.addEventListener('mousemove', this.handleMouseMove);
-    document.body.addEventListener('mouseup', this.handleMouseUp);
+    document.body.addEventListener('mousemove', this.handleMouseMoveBind);
+    document.body.addEventListener('mouseup', this.handleMouseUpBind);
+    document.body.addEventListener('touchmove', this.handleMouseMoveBind);
+    document.body.addEventListener('touchend', this.handleMouseUpBind);
 
     if (typeof this.props.onDragStart === 'function') {
       this.props.onDragStart(event);
@@ -302,11 +306,16 @@ class Slider extends React.Component {
   handleMouseUp = event => {
     this.setState({ currentState: 'normal' });
 
-    document.body.removeEventListener('mousemove', this.handleMouseMove);
-    document.body.removeEventListener('mouseup', this.handleMouseUp);
+    document.body.removeEventListener('mousemove', this.handleMouseMoveBind);
+    document.body.removeEventListener('mouseup', this.handleMouseUpBind);
+    document.body.removeEventListener('touchmove', this.handleMouseMoveBind);
+    document.body.removeEventListener('touchend', this.handleMouseUpBind);
 
     if (typeof this.props.onDragEnd === 'function') {
       this.props.onDragEnd(event);
+    }
+    if (this.touch && !this.moved) {
+      this.handleClick(event);
     }
   };
 
@@ -314,6 +323,7 @@ class Slider extends React.Component {
     const { min, max, vertical, reverse } = this.props;
     const percent = calculatePercent(this.containerRef, event, vertical, reverse);
     const value = percentToValue(percent, min, max);
+    this.moved = true;
 
     this.emitChange(event, value);
   };
@@ -439,8 +449,7 @@ class Slider extends React.Component {
         aria-orientation={vertical ? 'vertical' : 'horizontal'}
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
-        onTouchStartCapture={this.handleTouchStart}
-        onTouchMove={this.handleMouseMove}
+        onTouchStart={this.handleTouchStart}
         ref={ref => {
           this.containerRef = findDOMNode(ref);
         }}
@@ -454,8 +463,6 @@ class Slider extends React.Component {
             style={inlineThumbStyles}
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyDown}
-            onTouchStartCapture={this.handleTouchStart}
-            onTouchMove={this.handleMouseMove}
             onFocusVisible={this.handleFocus}
           />
           <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
