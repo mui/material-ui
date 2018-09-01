@@ -15,6 +15,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import MoreIcon from '@material-ui/icons/MoreVert';
 
 const styles = theme => ({
   root: {
@@ -25,6 +26,11 @@ const styles = theme => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 1,
+    transition: theme.transitions.create('paddingLeft', 'paddingRight'),
+    [theme.breakpoints.down('sm')]: {
+      paddingRight: 0,
+      paddingLeft: 0,
+    },
   },
   row: {
     display: 'flex',
@@ -34,16 +40,26 @@ const styles = theme => ({
   title: {
     marginLeft: 24,
     flex: '0 1 auto',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   searchContainer: {
-    width: '50%',
+    width: '45%',
     position: 'relative',
     marginRight: theme.spacing.unit * 2,
     marginLeft: theme.spacing.unit,
     borderRadius: 2,
     background: fade(theme.palette.common.white, 0.15),
+    transition: theme.transitions.create('width'),
     '&:hover': {
       background: fade(theme.palette.common.white, 0.25),
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '65%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
     },
   },
   searchIcon: {
@@ -60,16 +76,24 @@ const styles = theme => ({
     color: 'inherit',
   },
   inputInput: {
-    paddingTop: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
+    paddingLeft: theme.spacing.unit * 8,
+  },
+  rightSectionDesktop: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
+  },
+  rightSectionMobile: {
+     [theme.breakpoints.up('lg')]: {
+      display: 'none',
+    },
   },
 });
 
 class PrimarySearchAppBar extends Component {
   state = {
     anchorEl: null,
+    mobileMoreAnchorEl: null,
     searchInput: '',
   };
 
@@ -77,36 +101,74 @@ class PrimarySearchAppBar extends Component {
     this.setState({ searchInput: event.target.value });
   };
 
-  handleMenuOpen = event => {
+  handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
   handleMenuClose = () => {
     this.setState({ anchorEl: null });
+    this.handleMobileMenuClose();
+  };
+
+  handleMobileMenuOpen = event => {
+    this.setState({ mobileMoreAnchorEl: event.currentTarget });
+  };
+
+  handleMobileMenuClose = () => {
+    this.setState({ mobileMoreAnchorEl: null });
   };
 
   render() {
-    const { searchInput, anchorEl } = this.state;
+    const { searchInput, anchorEl, mobileMoreAnchorEl } = this.state;
     const { classes } = this.props;
     const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const renderMenu = (
       <Menu
         id="menu-appbar"
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.handleClose}>Profile</MenuItem>
         <MenuItem onClick={this.handleClose}>My account</MenuItem>
+      </Menu>
+    );
+
+    const renderMobileMenu = (
+      <Menu
+        id="mobile-menu"
+        anchorEl={mobileMoreAnchorEl}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isMobileMenuOpen}
+        onClose={this.handleMobileMenuClose}
+      >
+        <MenuItem>
+          <IconButton color="inherit">
+            <Badge className={classes.margin} badgeContent={4} color="primary">
+              <MailIcon />
+            </Badge>
+          </IconButton>
+          <p>Messages</p>
+        </MenuItem>
+        <MenuItem>
+          <IconButton color="inherit">
+            <Badge className={classes.margin} badgeContent={17} color="primary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          <p>Notifications</p>
+        </MenuItem>
+        <MenuItem onClick={this.handleProfileMenuOpen}>
+          <IconButton color="inherit">
+            <AccountCircle />
+          </IconButton>
+          <p>Profile</p>
+        </MenuItem>
       </Menu>
     );
 
@@ -138,7 +200,7 @@ class PrimarySearchAppBar extends Component {
                 }}
               />
             </section>
-            <div>
+            <div className={classes.rightSectionDesktop}>
               <IconButton color="inherit">
                 <Badge className={classes.margin} badgeContent={4} color="secondary">
                   <MailIcon />
@@ -152,15 +214,25 @@ class PrimarySearchAppBar extends Component {
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : null}
                 aria-haspopup="true"
-                onClick={this.handleMenuOpen}
+                onClick={this.handleProfileMenuOpen}
                 color="inherit"
               >
                 <AccountCircle />
               </IconButton>
             </div>
+            <div className={classes.rightSectionMobile}>
+              <IconButton
+                aria-haspopup="true"
+                onClick={this.handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </div>
           </Toolbar>
         </AppBar>
         {renderMenu}
+        {renderMobileMenu}
       </div>
     );
   }
