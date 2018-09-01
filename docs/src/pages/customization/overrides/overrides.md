@@ -26,25 +26,6 @@ of the `<head />` to ensure the components always render correctly.
 
 {{"demo": "pages/customization/overrides/ClassNames.js"}}
 
-Note that by creating an overridden component this way, you fully "inherit" the original component, but when using the
-overridden component, passing props known to the original component are simply lost. That is, using the overridden
-component like this: `<ClassName type="submit">` will not have the desired effect - the `type` prop is not passed down
-to the original `Button`. You can work around this without manually passing down each prop that the original
-component supports by using [JSX spread attributes](https://zhenyong.github.io/react/docs/jsx-spread.html), like so:
-
-```jsx
-function ClassNames(props) {
-  return (
-    <Button className={props.classes.button} {...props}>
-      {props.children ? props.children : 'class names'}
-    </Button>
-  );
-}
-```
-
-The only requirement is that your environment supports [Object Rest and Spread Properties](https://github.com/tc39/proposal-object-rest-spread). For example, Babel does
-this via the [object rest spread plugin](https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-object-rest-spread). 
-
 ### Overriding with classes
 
 When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` property to customize all the CSS injected by Material-UI for a given component.
@@ -61,6 +42,30 @@ you wish to add or override.
 Notice that in addition to the button styling, the button label's capitalization has been changed:
 
 {{"demo": "pages/customization/overrides/ClassesNesting.js"}}
+
+#### Shorthand
+
+The above code example can be condensed by using **the same CSS API** than the child component.
+In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button#css-api).
+
+```jsx
+const StyledButton = withStyles({
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+})(Button);
+```
+
+{{"demo": "pages/customization/overrides/ClassesShorthand.js"}}
 
 #### Internal states
 
