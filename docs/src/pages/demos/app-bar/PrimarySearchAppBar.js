@@ -84,7 +84,7 @@ const styles = theme => ({
     },
   },
   rightSectionMobile: {
-     [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up('lg')]: {
       display: 'none',
     },
   },
@@ -221,11 +221,7 @@ class PrimarySearchAppBar extends Component {
               </IconButton>
             </div>
             <div className={classes.rightSectionMobile}>
-              <IconButton
-                aria-haspopup="true"
-                onClick={this.handleMobileMenuOpen}
-                color="inherit"
-              >
+              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
                 <MoreIcon />
               </IconButton>
             </div>
