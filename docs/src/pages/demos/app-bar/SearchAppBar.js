@@ -20,6 +20,9 @@ const styles = theme => ({
   title: {
     marginLeft: 24,
     flex: '0 1 auto',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   searchContainer: {
     position: 'relative',
