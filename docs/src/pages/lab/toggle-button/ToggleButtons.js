@@ -12,7 +12,8 @@ import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import ToggleButton, { ToggleButtonGroup } from '@material-ui/lab/ToggleButton';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 const styles = theme => ({
   toggleContainer: {
