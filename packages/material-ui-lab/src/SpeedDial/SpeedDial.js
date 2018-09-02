@@ -8,6 +8,7 @@ import Zoom from '@material-ui/core/Zoom';
 import { duration } from '@material-ui/core/styles/transitions';
 import Button from '@material-ui/core/Button';
 import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
+import * as utils from './utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -51,26 +52,38 @@ export const styles = {
 
 class SpeedDial extends React.Component {
   /**
-   * refs to all children SpeedDialActions
+   * refs to the Button in all children SpeedDialActions
+   * @type {HTMLButtonElement[]}
    */
   actions = [];
 
   state = {
+    /**
+     * an index in this.actions
+     */
     focusedAction: -1,
+    /**
+     * pressing this key while the focus is on a child SpeedDialAction focuses
+     * the next SpeedDialAction.
+     * It is equal to the first arrow key pressed while focus is on the SpeedDial
+     * that is not orthogonal to the direction.
+     * @type {utils.ArrowKey}
+     */
+    nextItemArrowKey: 'up',
   };
 
   handleButtonKeyDown = event => {
     const key = keycode(event);
     const { direction, onKeyDown, open } = this.props;
 
-    if (open && key === direction) {
+    if (open && utils.sameOrientation(key, direction)) {
       event.preventDefault();
 
       const focusedAction = 0;
       const firstActionRef = this.actions[focusedAction];
       if (firstActionRef != null) {
         firstActionRef.focus();
-        this.setState({ focusedAction });
+        this.setState({ focusedAction, nextItemArrowKey: key });
       }
     }
 
@@ -82,24 +95,19 @@ class SpeedDial extends React.Component {
   handleActionButtonKeyDown = event => {
     const key = keycode(event);
     const { direction, onClose, onKeyDown } = this.props;
-    const { focusedAction } = this.state;
-
-    const directionAxis = direction === 'up' || direction === 'down' ? 'vertical' : 'horizontal';
-    const isNavigating =
-      (directionAxis === 'vertical' && (key === 'up' || key === 'down')) ||
-      (directionAxis === 'horizontal' && (key === 'left' || key === 'right'));
+    const { focusedAction, nextItemArrowKey } = this.state;
 
     if (key === 'esc') {
       this.fabRef.focus();
       if (onClose) {
         onClose(event, key);
       }
-    } else if (isNavigating) {
+    } else if (utils.sameOrientation(key, direction)) {
       event.preventDefault();
 
-      const actionStep = key === direction ? 1 : -1;
+      const actionStep = key === nextItemArrowKey ? 1 : -1;
 
-      // consider the actions as a ring
+      // wrap at beginning/end
       const nextAction = (focusedAction + actionStep + this.actions.length) % this.actions.length;
       const nextActionRef = this.actions[nextAction];
       nextActionRef.focus();
@@ -111,12 +119,21 @@ class SpeedDial extends React.Component {
     }
   };
 
-  createHandleSpeedDialActionButtonRef = (dialActionIndex, origButtonRef) => ref => {
-    this.actions[dialActionIndex] = ref;
-    if (origButtonRef) {
-      origButtonRef(ref);
-    }
-  };
+  /**
+   * creates a ref callback for the Button in a SpeedDialAction
+   * Is called before the original ref callback for Button that was set in buttonProps
+   *
+   * @param dialActionIndex {number}
+   * @param origButtonRef {React.RefObject?}
+   */
+  createHandleSpeedDialActionButtonRef(dialActionIndex, origButtonRef) {
+    return ref => {
+      this.actions[dialActionIndex] = ref;
+      if (origButtonRef) {
+        origButtonRef(ref);
+      }
+    };
+  }
 
   render() {
     const {
@@ -141,6 +158,8 @@ class SpeedDial extends React.Component {
 
     // Filter the label for valid id characters.
     const id = ariaLabel.replace(/^[^a-z]+|[^\w:.-]+/gi, '');
+
+    const orientation = utils.getOrientation(direction);
 
     let totalValidChildren = 0;
     React.Children.forEach(childrenProp, child => {
@@ -222,14 +241,13 @@ class SpeedDial extends React.Component {
         </TransitionComponent>
         <div
           id={`${id}-actions`}
+          role="menu"
+          aria-orientation={orientation}
           className={classNames(
             classes.actions,
             { [classes.actionsClosed]: !open },
             actionsPlacementClass,
           )}
-          ref={ref => {
-            this.actionsRef = ref;
-          }}
         >
           {children}
         </div>
