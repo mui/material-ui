@@ -42,7 +42,7 @@
     "size:why": "size-limit --why packages/material-ui/build/index.js",
     "size:overhead:why": "size-limit --why ./test/size/overhead.js",
     "spellcheck": "eslint . --config .eslintrc.spellcheck.js && echo \"eslint: no lint errors\"",
-    "test": "yarn lint && yarn typescript && yarn test:unit",
+    "test": "yarn lint && yarn typescript && yarn test:coverage",
     "test:unit": "cross-env NODE_ENV=test mocha packages/material-ui/test/**/*.test.js packages/material-ui/src/{,**/}*.test.js docs/src/**/*.test.js",
     "test:watch": "yarn test:unit --watch",
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha packages/material-ui/test/**/*.test.js packages/material-ui/src/{,**/}*.test.js && nyc report -r lcovonly",
