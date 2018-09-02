@@ -31,18 +31,21 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class SwipeableDrawer extends React.Component {
-
-  touchStartTime = null;
-
   backdrop = null;
 
-  paper = null;
-
   isSwiping = null;
+
+  paper = null;
 
   startX = null;
 
   startY = null;
+
+  lastTime = null;
+
+  lastTranslate = null;
+
+  velocity = 0;
 
   state = {};
 
@@ -187,18 +190,15 @@ class SwipeableDrawer extends React.Component {
 
     this.setState({ maybeSwiping: true });
     if (!open && this.paper) {
-      // the ref may be null when a parent component updates while swiping
+      // The ref may be null when a parent component updates while swiping.
       this.setPosition(this.getMaxTranslate() + (disableDiscovery ? 20 : -swipeAreaWidth), {
         changeTransition: false,
       });
     }
 
-     
-    // get the touchstart time for computing velocity later on 
-    // (performance.now() is more accurate than new Date() and is 
-    // supported starting IE10)
-    this.touchStartTime = performance.now();
-    
+    this.velocity = 0;
+    this.lastTime = null;
+    this.lastTranslate = null;
 
     document.body.addEventListener('touchmove', this.handleBodyTouchMove, { passive: false });
     document.body.addEventListener('touchend', this.handleBodyTouchEnd);
@@ -265,9 +265,24 @@ class SwipeableDrawer extends React.Component {
       return;
     }
 
+    const translate = this.getTranslate(horizontalSwipe ? currentX : currentY);
+
+    if (this.lastTranslate === null) {
+      this.lastTranslate = translate;
+      this.lastTime = performance.now() + 1;
+    }
+
+    const velocity = ((translate - this.lastTranslate) / (performance.now() - this.lastTime)) * 1e3;
+
+    // Low Pass filter.
+    this.velocity = this.velocity * 0.4 + velocity * 0.6;
+
+    this.lastTranslate = translate;
+    this.lastTime = performance.now();
+
     // We are swiping, let's prevent the scroll event on iOS.
     event.preventDefault();
-    this.setPosition(this.getTranslate(horizontalSwipe ? currentX : currentY));
+    this.setPosition(translate);
   };
 
   handleBodyTouchEnd = event => {
@@ -280,6 +295,8 @@ class SwipeableDrawer extends React.Component {
       this.isSwiping = null;
       return;
     }
+
+    this.isSwiping = null;
 
     const anchor = getAnchor(this.props);
     let current;
@@ -295,46 +312,32 @@ class SwipeableDrawer extends React.Component {
           : event.changedTouches[0].clientY;
     }
 
-    // get the beginning of the swipe, pending on orientation
-    const beginSwipe = isHorizontal(this.props) ? this.startX : this.startY;
+    const translateRatio = this.getTranslate(current) / this.getMaxTranslate();
 
-    // compute minimal swipe distance by hysteresis property
-    const minDistance = this.getMaxTranslate() * this.props.hysteresis;
-
-    // get the absolute distance
-    const distance = Math.abs(beginSwipe - current);
-
-    // get elapsed time by compute difference from point of time of exec. 
-    // handleBodyTouchStart() to now
-    const elapsedTime = performance.now() - this.touchStartTime;
-
-    // velocity in px/ms
-    const velocity = distance / elapsedTime;
-
-    if (beginSwipe > current) {
-      // closing swipe
-      if (distance < minDistance && velocity < this.props.velocity) {
-        // distance too short, go back to opened state
+    if (this.props.open) {
+      if (this.velocity > this.props.minFlingVelocity || translateRatio > this.props.hysteresis) {
+        this.props.onClose();
+      } else {
+        // Reset the position, the swipe was aborted.
         this.setPosition(0, {
           mode: 'exit',
         });
-      } else {
-        this.props.onClose();
       }
-    } else {
-      // opening swipe
-      if (distance < minDistance && velocity < this.props.velocity) {
-        // distance too short, go back to closed state
-        this.setPosition(this.getMaxTranslate(), {
-          mode: 'enter',
-        });
-      } else {
-        this.props.onOpen();
-      }
+
+      return;
     }
 
-    this.isSwiping = null;
-    this.touchStartTime = null;
+    if (
+      this.velocity < -this.props.minFlingVelocity ||
+      1 - translateRatio > this.props.hysteresis
+    ) {
+      this.props.onOpen();
+    } else {
+      // Reset the position, the swipe was aborted.
+      this.setPosition(this.getMaxTranslate(), {
+        mode: 'enter',
+      });
+    }
   };
 
   handleBackdropRef = node => {
@@ -365,6 +368,8 @@ class SwipeableDrawer extends React.Component {
       disableBackdropTransition,
       disableDiscovery,
       disableSwipeToOpen,
+      hysteresis,
+      minFlingVelocity,
       ModalProps: { BackdropProps, ...ModalPropsProp } = {},
       onOpen,
       open,
@@ -431,6 +436,17 @@ SwipeableDrawer.propTypes = {
    */
   disableSwipeToOpen: PropTypes.bool,
   /**
+   * Affects how far the drawer must be opened/closed to change his state.
+   * Specified as percent (0-1) of the width of the drawer
+   */
+  hysteresis: PropTypes.number,
+  /**
+   * Defines, from which (average) velocity on, the swipe is
+   * defined as complete although hysteresis isn't reached.
+   * Good threshold is between 250 - 1000 px/s
+   */
+  minFlingVelocity: PropTypes.number,
+  /**
    * @ignore
    */
   ModalProps: PropTypes.object,
@@ -460,17 +476,6 @@ SwipeableDrawer.propTypes = {
    */
   swipeAreaWidth: PropTypes.number,
   /**
-   * Affects how far the drawer must be opened/closed to change his state.
-   * Specified as percent (0-1) of the width of the drawer
-   */
-  hysteresis: PropTypes.number,
-  /**
-   * Defines, from which (average) velocity on, the swipe is 
-   * defined as not aborted although hysteresis isn't reached.
-   * Good threshold is between 0.1 - 0.2 px/ms 
-   */
-  velocity: PropTypes.number,
-  /**
    * @ignore
    */
   theme: PropTypes.object.isRequired,
@@ -494,9 +499,9 @@ SwipeableDrawer.defaultProps = {
   disableDiscovery: false,
   disableSwipeToOpen:
     typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent),
+  hysteresis: 0.55,
+  minFlingVelocity: 400,
   swipeAreaWidth: 20,
-  hysteresis: 0.5,
-  velocity: Infinity,
   transitionDuration: { enter: duration.enteringScreen, exit: duration.leavingScreen },
   variant: 'temporary', // Mobile first.
 };
