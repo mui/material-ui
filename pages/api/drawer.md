@@ -9,6 +9,10 @@ title: Drawer API
 
 <p class="description">The API documentation of the Drawer React component.</p>
 
+```js
+import Drawer from '@material-ui/core/Drawer';
+```
+
 The properties of the [Modal](/api/modal) component are available
 when `variant="temporary"` is set.
 

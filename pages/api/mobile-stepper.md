@@ -9,6 +9,10 @@ title: MobileStepper API
 
 <p class="description">The API documentation of the MobileStepper React component.</p>
 
+```js
+import MobileStepper from '@material-ui/core/MobileStepper';
+```
+
 
 
 ## Props

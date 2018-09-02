@@ -3,41 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Textarea from './Textarea';
-
-// Supports determination of isControlled().
-// Controlled input accepts its current value as a prop.
-//
-// @see https://facebook.github.io/react/docs/forms.html#controlled-components
-// @param value
-// @returns {boolean} true if string (including '') or number (including zero)
-export function hasValue(value) {
-  return value != null && !(Array.isArray(value) && value.length === 0);
-}
-
-// Determine if field is empty or filled.
-// Response determines if label is presented above field or as placeholder.
-//
-// @param obj
-// @param SSR
-// @returns {boolean} False when not present or empty string.
-//                    True when any number or string with length.
-export function isFilled(obj, SSR = false) {
-  return (
-    obj &&
-    ((hasValue(obj.value) && obj.value !== '') ||
-      (SSR && hasValue(obj.defaultValue) && obj.defaultValue !== ''))
-  );
-}
-
-// Determine if an Input is adorned on start.
-// It's corresponding to the left with LTR.
-//
-// @param obj
-// @returns {boolean} False when no adornments.
-//                    True when adorned at the start.
-export function isAdornedStart(obj) {
-  return obj.startAdornment;
-}
+import { isFilled } from './utils';
 
 export const styles = theme => {
   const light = theme.palette.type === 'light';
@@ -338,14 +304,14 @@ class Input extends React.Component {
     }
   };
 
-  handleChange = event => {
+  handleChange = (...args) => {
     if (!this.isControlled) {
       this.checkDirty(this.inputRef);
     }
 
     // Perform in the willUpdate
     if (this.props.onChange) {
-      this.props.onChange(event);
+      this.props.onChange(...args);
     }
   };
 
@@ -455,14 +421,13 @@ class Input extends React.Component {
       inputPropsClassName,
     );
 
-    let InputComponent = 'input';
+    let InputComponent = inputComponent;
     let inputProps = {
       ...inputPropsProp,
       ref: this.handleRefInput,
     };
 
-    if (inputComponent) {
-      InputComponent = inputComponent;
+    if (typeof InputComponent !== 'string') {
       inputProps = {
         // Rename ref to inputRef as we don't know the
         // provided `inputComponent` structure.
@@ -667,6 +632,7 @@ Input.muiName = 'Input';
 Input.defaultProps = {
   disableUnderline: false,
   fullWidth: false,
+  inputComponent: 'input',
   multiline: false,
   type: 'text',
 };

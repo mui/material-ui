@@ -9,6 +9,10 @@ title: Backdrop API
 
 <p class="description">The API documentation of the Backdrop React component.</p>
 
+```js
+import Backdrop from '@material-ui/core/Backdrop';
+```
+
 
 
 ## Props

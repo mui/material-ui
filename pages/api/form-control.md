@@ -9,6 +9,10 @@ title: FormControl API
 
 <p class="description">The API documentation of the FormControl React component.</p>
 
+```js
+import FormControl from '@material-ui/core/FormControl';
+```
+
 Provides context such as filled/focused/error/required for form inputs.
 Relying on the context provides high flexibilty and ensures that the state always stays
 consistent across the children of the `FormControl`.

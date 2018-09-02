@@ -9,6 +9,10 @@ title: Zoom API
 
 <p class="description">The API documentation of the Zoom React component.</p>
 
+```js
+import Zoom from '@material-ui/core/Zoom';
+```
+
 The Zoom transition can be used for the floating variant of the
 [Button](https://material-ui.com/demos/buttons/#floating-action-buttons) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.

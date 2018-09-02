@@ -5,6 +5,121 @@ Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 - Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
 - Major version release is not included in this schedule for breaking change and new features.
 
+## 3.0.1
+###### *Aug 28, 2018*
+
+Big thanks to the 10 contributors who made this release possible!
+
+We are making a quick release after v3.0.0 to patch an incorrect peer dependency.
+It's also a good opportunity to upgrade to the stable release of Babel 7.
+
+### `@material-ui/core@v3.0.1`
+
+- [Checkbox] Improve indeterminate status (#12671) @hareaca
+- [StepLabel] Fix custom icon spacing (#12694) @JiayuanDeng
+- [Chip] Add outlined variant (#12680) @orporan
+- [Stepper] Add a new test case (#12684) @Anugraha123
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
+### `@material-ui/icons@v3.0.1`
+
+- [core] Fix for incorrect peer dependency version warning (#12677) @xaviergonz
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
+### `@material-ui/lab@v3.0.0-alpha.13`
+
+- [core] Fix for incorrect peer dependency version warning (#12677) @xaviergonz
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
+### Docs
+
+- [docs] Typo (#12675) @nazartokar
+- [docs] Update notification link for release 3.0.0 (#12681) @lumatijev
+- [docs] Warn about using withRoot HOC more than one time per page (#12692) @oorestisime
+
+### Core
+
+- [core] Fix for incorrect peer dependency version warning (#12677) @xaviergonz
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
+## 3.0.0
+###### *Aug 27, 2018*
+
+Big thanks to the 27 contributors who made this release possible!
+
+We are upgrading the major version of `@material-ui/core` to match the version of `@material-ui/icons`.
+The next major release is planned for [Q1, 2019](https://github.com/mui-org/material-ui/milestone/25).
+
+### Breaking change
+
+- [icons] Save 22 Megabytes from the package (#12662)
+
+Cut the package size by half.
+It should make the npm installation twice as fast.
+It's not OK to have some installation timeout.
+We have removed the `/es` folder.
+
+```diff
+-import AccessAlarm from '@material-ui/icons/es/AccessAlarm';
++import AccessAlarm from '@material-ui/icons/AccessAlarm';
+```
+
+- [core] Drop Firefox 45 support (#12669)
+
+Firefox 52 is the last version supported by Windows XP.
+The market share of Firefox 45 is 0.03%.
+We use the same strategy for Chrome.
+
+#### Component Fixes / Enhancements
+
+- [Input] Improve type checking for inputProps (#12591) @eps1lon
+- [ClickAwayListener] Prevent rerendering (#12613) @shcherbyakdev
+- [Chip] Add missing ChipClassKey values (#12625) @IvanCoronado
+- [Dialog] Add 'lg' support to maxWidth (#12626) @TheMoonDawg
+- [TableSortLabel] Support custom icon component (#12630) @wolfejw86
+- [SvgIcon] Add Icon suffix to SVG icons (#12634) @yordis
+- [Collapse] Fix document for style wrapperInner (#12638) @peter50216
+- [Input] Extract helpers to their own module (#12657) @Pajn
+- [Chip] Add onKeyUp handler for correct behavior (#12660) @markselby9
+- [CardActionArea] Add CardActionArea component (#12624) @yuchi
+- [ListItem] Move the selected prop from MenuItem to ListItem (#12602) @the-question
+
+#### Docs
+
+- [examples] Update ts example to be closer to the official docs (#12593) @eps1lon
+- [docs] Fix a display issue on IE11 (#12599) @oliviertassinari
+- [docs] Warn about checking for version mismatch (#12601) @hluedeke
+- [docs] Consistent content height in Albumn layout example (#12556) @mbrookes
+- [example] Support Gatsby v2 (#12331) @blukai
+- [docs] xlarge = extra-large (#12619) @FarzadSole
+- [docs] Add "Insights" by justaskusers.com to the list of showcases (#12620) @mattes3
+- [docs] Use public api of jss instead of private vars (#12629) @eps1lon
+- [docs] Improve Autocomplete filtering suggestions (#12641) @jorgegorka
+- [docs] Fix IE 11 support (#12650) @
+- [docs] Fix typos (#12652) @dandv
+- [docs] Use the event.target.checked API systematically (#12644) @chellem
+- [docs] Correct `by and enum` typo in api.md (#12663) @G-Rath
+- [docs] Autocomplete react-select dropdown overlay (#12664) @gerhat
+- [docs] Fix typo in usage.md (#12666) @DeveloperDavo
+
+#### Core
+
+- [core] Better Windows support for the API generation (#12584) @adeelibr
+- [TypeScript] Update SnackbarContent type def to accept action prop as array (#12595) @cngraf
+- [test] Fix the missing libxcursor1 binary (#12611) @oliviertassinari
+- [core] Fix recompose version (#12605) @yamachu
+- [typescript] Fix AnyComponent for functional components (#12589) @vierbergenlars
+- [core] Let's see if the CI catch the issue (#12615) @oliviertassinari
+- [typescript] Use interfaces for typography types (#12616) @pelotom
+- [ci] Consider only files changed on the built branch (#12627) @eps1lon
+- [test] Lint typescript definitions (#12637) @eps1lon
+- [core] Upgrade dev dependencies (#12658) @
+
+#### Lab
+
+- [Slider] Fix memory leaks (#12537) @eps1lon
+- [Slider] Fix transitions (#12531) @eps1lon
+
 ## 1.5.1
 ###### *Aug 19, 2018*
 

@@ -77,7 +77,7 @@ jobs:
           name: Lint
           command: yarn lint
       - run:
-          name: TypeScript
+          name: Tests TypeScript definitions
           command: yarn typescript
       - run:
           name: Tests fake browser

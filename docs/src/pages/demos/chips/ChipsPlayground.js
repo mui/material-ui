@@ -31,6 +31,7 @@ class ChipsPlayground extends React.Component {
     color: 'default',
     onDelete: 'none',
     avatar: 'none',
+    variant: 'default',
   };
 
   handleChange = key => (event, value) => {
@@ -45,9 +46,10 @@ class ChipsPlayground extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { color, onDelete, avatar } = this.state;
+    const { color, onDelete, avatar, variant } = this.state;
 
     const colorToCode = color !== 'default' ? `color="${color}" ` : '';
+    const variantToCode = variant !== 'default' ? `variant="${variant}" ` : '';
 
     let onDeleteToCode;
     switch (onDelete) {
@@ -88,7 +90,7 @@ class ChipsPlayground extends React.Component {
 
     const code = `
 \`\`\`jsx
-<Chip ${colorToCode}${onDeleteToCode}${avatarToCode}/>
+<Chip ${colorToCode}${onDeleteToCode}${avatarToCode}${variantToCode}/>
 \`\`\`
 `;
 
@@ -100,9 +102,10 @@ class ChipsPlayground extends React.Component {
               <Chip
                 label="Awesome Chip Component"
                 color={color}
-                deleteIcon={onDelete === 'custom' && <DoneIcon />}
-                onDelete={onDelete !== 'none' && this.handleDeleteExample}
+                deleteIcon={onDelete === 'custom' ? <DoneIcon /> : undefined}
+                onDelete={onDelete !== 'none' ? this.handleDeleteExample : undefined}
                 avatar={avatarToPlayground}
+                variant={variant}
               />
             </Grid>
           </Grid>
@@ -156,6 +159,21 @@ class ChipsPlayground extends React.Component {
                     <FormControlLabel value="letter" control={<Radio />} label="letter" />
                     <FormControlLabel value="img" control={<Radio />} label="img" />
                     <FormControlLabel value="icon" control={<Radio />} label="icon" />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl component="fieldset">
+                  <FormLabel>variant</FormLabel>
+                  <RadioGroup
+                    row
+                    name="variant"
+                    aria-label="variant"
+                    value={variant}
+                    onChange={this.handleChange('variant')}
+                  >
+                    <FormControlLabel value="default" control={<Radio />} label="default" />
+                    <FormControlLabel value="outlined" control={<Radio />} label="outlined" />
                   </RadioGroup>
                 </FormControl>
               </Grid>

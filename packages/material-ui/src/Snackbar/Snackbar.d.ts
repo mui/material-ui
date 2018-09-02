@@ -2,11 +2,12 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
+import { ClickAwayListenerProps } from '../ClickAwayListener';
 
-export type SnackbarOrigin = {
+export interface SnackbarOrigin {
   horizontal: 'left' | 'center' | 'right';
   vertical: 'top' | 'center' | 'bottom';
-};
+}
 
 export interface SnackbarProps
   extends StandardProps<
@@ -16,6 +17,7 @@ export interface SnackbarProps
   action?: SnackbarContentProps['action'];
   anchorOrigin?: SnackbarOrigin;
   autoHideDuration?: number;
+  ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
   ContentProps?: Partial<SnackbarContentProps>;
   disableWindowBlurListener?: boolean;
   message?: SnackbarContentProps['message'];

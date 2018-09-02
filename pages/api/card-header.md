@@ -9,6 +9,10 @@ title: CardHeader API
 
 <p class="description">The API documentation of the CardHeader React component.</p>
 
+```js
+import CardHeader from '@material-ui/core/CardHeader';
+```
+
 
 
 ## Props

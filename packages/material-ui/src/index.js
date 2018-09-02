@@ -20,6 +20,7 @@ export { default as BottomNavigationAction } from './BottomNavigationAction';
 export { default as Button } from './Button';
 export { default as ButtonBase } from './ButtonBase';
 export { default as Card } from './Card';
+export { default as CardActionArea } from './CardActionArea';
 export { default as CardActions } from './CardActions';
 export { default as CardContent } from './CardContent';
 export { default as CardHeader } from './CardHeader';

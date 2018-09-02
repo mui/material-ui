@@ -2,6 +2,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import TableSortLabel from './TableSortLabel';
+import Sort from '@material-ui/icons/Sort';
 
 describe('<TableSortLabel />', () => {
   let shallow;
@@ -61,6 +62,13 @@ describe('<TableSortLabel />', () => {
       const icon = wrapper.find(`.${classes.icon}`).first();
       assert.strictEqual(icon.hasClass(classes.iconDirectionAsc), true);
       assert.strictEqual(icon.hasClass(classes.iconDirectionDesc), false);
+    });
+
+    it('should accept a custom icon for the sort icon', () => {
+      shallow = createShallow({ untilSelector: 'Sort' });
+      const wrapper = mount(<TableSortLabel IconComponent={Sort} />);
+      assert.strictEqual(wrapper.props().IconComponent, Sort);
+      assert.strictEqual(wrapper.find(Sort).length, 1);
     });
   });
 

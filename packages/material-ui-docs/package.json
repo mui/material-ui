@@ -30,12 +30,12 @@
     "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
-    "@material-ui/core": "^1.0.0",
+    "@material-ui/core": "^3.0.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0-rc.1",
+    "@babel/runtime": "7.0.0",
     "marked": "^0.5.0",
     "nprogress": "^0.2.0",
     "prismjs": "^1.8.4"

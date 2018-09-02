@@ -9,6 +9,10 @@ title: DialogTitle API
 
 <p class="description">The API documentation of the DialogTitle React component.</p>
 
+```js
+import DialogTitle from '@material-ui/core/DialogTitle';
+```
+
 
 
 ## Props

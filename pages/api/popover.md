@@ -9,6 +9,10 @@ title: Popover API
 
 <p class="description">The API documentation of the Popover React component.</p>
 
+```js
+import Popover from '@material-ui/core/Popover';
+```
+
 
 
 ## Props

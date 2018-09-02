@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
 import Menu from '../Menu/Menu';
-import { isFilled } from '../Input/Input';
+import { isFilled } from '../Input/utils';
 
 /**
  * @ignore - internal component.

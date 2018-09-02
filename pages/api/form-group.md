@@ -9,6 +9,10 @@ title: FormGroup API
 
 <p class="description">The API documentation of the FormGroup React component.</p>
 
+```js
+import FormGroup from '@material-ui/core/FormGroup';
+```
+
 `FormGroup` wraps controls such as `Checkbox` and `Switch`.
 It provides compact row layout.
 For the `Radio`, you should be using the `RadioGroup` component instead of this one.
