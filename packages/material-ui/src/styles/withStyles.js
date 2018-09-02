@@ -14,6 +14,7 @@ import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
 import getThemeProps from './getThemeProps';
+import getThemeComponent from './getThemeComponent';
 
 // Default JSS instance.
 const jss = create(jssPreset());
@@ -120,6 +121,14 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     }
 
     state = {};
+
+    getChildContext() {
+      const { muiWithStylesOverriddenComponents: overriddenComponents = {} } = this.context;
+      if (!overriddenComponents[name] && getThemeComponent({ theme: this.theme, name })) {
+        return { muiWithStylesOverriddenComponents: { ...overriddenComponents, [name]: true } };
+      }
+      return { muiWithStylesOverriddenComponents: overriddenComponents };
+    }
 
     componentDidMount() {
       if (!listenToTheme) {
@@ -274,8 +283,13 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
     render() {
       const { classes, innerRef, ...other } = this.props;
+      const { muiWithStylesOverriddenComponents: overriddenComponents = {} } = this.context;
 
       const more = getThemeProps({ theme: this.theme, name });
+      let FinalComponent = Component;
+      if (!overriddenComponents[name]) {
+        FinalComponent = getThemeComponent({ theme: this.theme, name }) || Component;
+      }
 
       // Provide the theme to the wrapped component.
       // So we don't have to use the `withTheme()` Higher-order Component.
@@ -283,7 +297,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         more.theme = this.theme;
       }
 
-      return <Component {...more} classes={this.getClasses()} ref={innerRef} {...other} />;
+      return <FinalComponent {...more} classes={this.getClasses()} ref={innerRef} {...other} />;
     }
   }
 
@@ -298,8 +312,13 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   };
 
+  WithStyles.childContextTypes = {
+    muiWithStylesOverriddenComponents: PropTypes.object.isRequired,
+  };
+
   WithStyles.contextTypes = {
     muiThemeProviderOptions: PropTypes.object,
+    muiWithStylesOverriddenComponents: PropTypes.object,
     ...contextTypes,
     ...(listenToTheme ? themeListener.contextTypes : {}),
   };

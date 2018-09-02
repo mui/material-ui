@@ -215,6 +215,46 @@ describe('withStyles', () => {
       assert.deepEqual(sheetsRegistry.registry[0].rules.raw, { root: { padding: 9 } });
     });
 
+    it('should support override components', () => {
+      const styles = { root: { padding: 8 } };
+      const FormLabel = withStyles(styles, { name: 'MuiFormLabel' })(Empty);
+      const OverrideFormLabel = ({ warning, classes, ...props }) => (
+        <FormLabel
+          classes={{
+            ...classes,
+            root: warning ? `${classes.root || ''} test-warning` : classes.root,
+          }}
+          {...props}
+        />
+      );
+
+      const root = mount(
+        <MuiThemeProvider
+          theme={createMuiTheme({
+            components: {
+              MuiFormLabel: OverrideFormLabel,
+            },
+          })}
+        >
+          <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
+            <FormLabel warning />
+          </JssProvider>
+        </MuiThemeProvider>,
+      );
+
+      assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
+      assert.exists(root.find(OverrideFormLabel), 'should render OverrideFormLabel');
+      assert.exists(
+        root.find(OverrideFormLabel).find(FormLabel),
+        'should render FormLabel inside OverrideFormLabel',
+      );
+      assert.strictEqual(
+        root.find(OverrideFormLabel).find(FormLabel).prop('classes').root,
+        'MuiFormLabel-root-1 test-warning',
+        'FormLabel should have root class name injected by OverrideFormLabel',
+      );
+    });
+
     describe('options: disableStylesGeneration', () => {
       it('should not generate the styles', () => {
         const styles = { root: { display: 'flex' } };
