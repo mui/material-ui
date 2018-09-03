@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Button from '@material-ui/core/Button';
-import Tooltip, { TooltipPlacement } from '@material-ui/core/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 export const styles = theme => ({
   /* Styles applied to the root (`Tooltip`) component. */
@@ -151,7 +152,20 @@ SpeedDialAction.propTypes = {
   /**
    * Placement of the tooltip.
    */
-  tooltipPlacement: TooltipPlacement,
+  tooltipPlacement: PropTypes.oneOf([
+    'bottom-end',
+    'bottom-start',
+    'bottom',
+    'left-end',
+    'left-start',
+    'left',
+    'right-end',
+    'right-start',
+    'right',
+    'top-end',
+    'top-start',
+    'top',
+  ]),
   /**
    * Label to display in the tooltip.
    */

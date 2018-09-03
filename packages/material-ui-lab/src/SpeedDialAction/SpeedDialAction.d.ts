@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 import { ButtonProps } from '@material-ui/core/Button';
-import { TooltipProps, TooltipPlacement } from '@material-ui/core/Tooltip';
+import { TooltipProps } from '@material-ui/core/Tooltip';
 
 export interface SpeedDialActionProps
   extends StandardProps<ButtonProps & Partial<TooltipProps>, SpeedDialActionClassKey> {
   ButtonProps?: Partial<ButtonProps>;
   delay?: number;
   icon: React.ReactNode;
-  tooltipPlacement?: TooltipPlacement;
+  tooltipPlacement?:  React.ReactType<SpeedDialActionProps>;
   tooltipTitle?: React.ReactNode;
 }
 
