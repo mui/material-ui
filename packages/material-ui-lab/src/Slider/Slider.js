@@ -194,9 +194,6 @@ class Slider extends React.Component {
 
   jumpAnimationTimeoutId = -1;
 
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     if (this.containerRef) {
       this.containerRef.addEventListener('touchstart', preventPageScrolling, { passive: false });
