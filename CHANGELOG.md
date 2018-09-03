@@ -1,9 +1,4 @@
-Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
-
-#### Release Schedule
-
-- Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
-- Major version release is not included in this schedule for breaking change and new features.
+### [Versions](https://material-ui.com/versions)
 
 ## 3.0.1
 ###### *Aug 28, 2018*
