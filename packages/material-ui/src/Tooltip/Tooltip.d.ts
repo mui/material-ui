@@ -16,19 +16,7 @@ export interface TooltipProps
   onClose?: (event: React.ChangeEvent<{}>) => void;
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
-  placement?:
-    | 'bottom-end'
-    | 'bottom-start'
-    | 'bottom'
-    | 'left-end'
-    | 'left-start'
-    | 'left'
-    | 'right-end'
-    | 'right-start'
-    | 'right'
-    | 'top-end'
-    | 'top-start'
-    | 'top';
+  placement?: TooltipPlacement;
   PopperProps?: object;
   title: React.ReactNode;
   TransitionComponent?: React.ReactType;
@@ -43,6 +31,20 @@ export type TooltipClassKey =
   | 'tooltipPlacementRight'
   | 'tooltipPlacementTop'
   | 'tooltipPlacementBottom';
+
+export type TooltipPlacement =
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'bottom'
+  | 'left-end'
+  | 'left-start'
+  | 'left'
+  | 'right-end'
+  | 'right-start'
+  | 'right'
+  | 'top-end'
+  | 'top-start'
+  | 'top';
 
 declare const Tooltip: React.ComponentType<TooltipProps>;
 

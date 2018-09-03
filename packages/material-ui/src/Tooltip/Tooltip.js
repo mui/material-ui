@@ -348,6 +348,21 @@ class Tooltip extends React.Component {
   }
 }
 
+export const TooltipPlacement = PropTypes.oneOf([
+  'bottom-end',
+  'bottom-start',
+  'bottom',
+  'left-end',
+  'left-start',
+  'left',
+  'right-end',
+  'right-start',
+  'right',
+  'top-end',
+  'top-start',
+  'top',
+]);
+
 Tooltip.propTypes = {
   /**
    * Tooltip reference element.
@@ -413,20 +428,7 @@ Tooltip.propTypes = {
   /**
    * Tooltip placement.
    */
-  placement: PropTypes.oneOf([
-    'bottom-end',
-    'bottom-start',
-    'bottom',
-    'left-end',
-    'left-start',
-    'left',
-    'right-end',
-    'right-start',
-    'right',
-    'top-end',
-    'top-start',
-    'top',
-  ]),
+  placement: TooltipPlacement,
   /**
    * Properties applied to the [`Popper`](/api/popper) element.
    */
