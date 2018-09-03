@@ -3,11 +3,11 @@ defaults: &defaults
   docker:
     - image: circleci/node:9.10
 restore_repo: &restore_repo
-  # The cache logic of CircleCI has been disabled for Security reasons.
-  # We can no longer use it.
-  # restore_cache:
-  #   keys:
-  #     - v1-repo-{{ .Branch }}-{{ .Revision }}
+  restore_cache:
+    keys:
+      - v1-yarn-sha-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - v1-yarn-sha-{{ .Branch }}
+      - v1-yarn-sha-
   run:
     name: Install js dependencies
     command: yarn
@@ -17,11 +17,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-yarn-sha-{{ checksum "yarn.lock" }}
-            # offline mirror
-            - v1-npm-packages-offline-cache
       - run:
           name: Check versions and env
           command: |
@@ -39,17 +34,10 @@ jobs:
           name: Should not have any git not staged
           command: git diff --exit-code
       - save_cache:
-          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
+          key: v1-yarn-sha-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn/v1
-      - save_cache:
-          key: v1-npm-packages-offline-cache
-          paths:
             - ~/.cache/npm-packages-offline-cache/v1
-      - save_cache:
-          key: v1-repo-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - /tmp/material-ui
   test_unit:
     <<: *defaults
     steps:
