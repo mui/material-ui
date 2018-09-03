@@ -6,7 +6,6 @@ import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
-
 export const styles = theme => ({
   /* Styles applied to the root (`Tooltip`) component. */
   root: {

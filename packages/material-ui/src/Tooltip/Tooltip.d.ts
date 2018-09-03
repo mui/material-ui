@@ -16,7 +16,19 @@ export interface TooltipProps
   onClose?: (event: React.ChangeEvent<{}>) => void;
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
-  placement?: React.ReactType<TooltipProps>;
+  placement?:
+    | 'bottom-end'
+    | 'bottom-start'
+    | 'bottom'
+    | 'left-end'
+    | 'left-start'
+    | 'left'
+    | 'right-end'
+    | 'right-start'
+    | 'right'
+    | 'top-end'
+    | 'top-start'
+    | 'top';
   PopperProps?: object;
   title: React.ReactNode;
   TransitionComponent?: React.ReactType;
