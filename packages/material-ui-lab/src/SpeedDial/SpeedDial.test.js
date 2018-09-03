@@ -1,3 +1,4 @@
+import { codes as keycodes } from 'keycode';
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
@@ -155,6 +156,195 @@ describe('<SpeedDial />', () => {
       testDirection('Down');
       testDirection('Left');
       testDirection('Right');
+    });
+  });
+
+  describe('dial focus', () => {
+    let actionRefs;
+    let dialButtonRef;
+    let onkeydown;
+    let wrapper;
+
+    const mountSpeedDial = (direction = 'up', actionCount = 6) => {
+      actionRefs = [];
+      dialButtonRef = undefined;
+      onkeydown = spy();
+
+      wrapper = mount(
+        <SpeedDial
+          {...defaultProps}
+          ButtonProps={{
+            buttonRef: ref => {
+              dialButtonRef = ref;
+            },
+          }}
+          direction={direction}
+          icon={icon}
+          onKeyDown={onkeydown}
+        >
+          {Array.from({ length: actionCount }, (_, i) => {
+            return (
+              <SpeedDialAction
+                key={i}
+                ButtonProps={{
+                  buttonRef: ref => {
+                    actionRefs[i] = ref;
+                  },
+                }}
+                icon={icon}
+                tooltipTitle={`action${i}`}
+              />
+            );
+          })}
+        </SpeedDial>,
+      );
+    };
+
+    /**
+     * @returns the button of SpeedDial
+     */
+    const getDialButton = () => wrapper.find('Button').first();
+    /**
+     *
+     * @param actionIndex
+     * @returns the button of the nth SpeedDialAction
+     */
+    const getActionButton = actionIndex => wrapper.find(SpeedDialAction).at(actionIndex);
+    /**
+     * @returns true if the button of the nth action is focused
+     */
+    const isActionFocused = index => {
+      return actionRefs[index] === window.document.activeElement;
+    };
+    /**
+     * promisified setImmediate
+     */
+    const immediate = () => new Promise(resolve => setImmediate(resolve));
+
+    const resetDialToOpen = direction => {
+      if (wrapper && wrapper.exists()) {
+        wrapper.unmount();
+      }
+
+      mountSpeedDial(direction);
+      dialButtonRef.focus();
+    };
+
+    after(() => {
+      wrapper.unmount();
+    });
+
+    it('displays the actions on focus gain', () => {
+      resetDialToOpen();
+      assert.strictEqual(wrapper.prop('open'), true);
+    });
+
+    describe('first item selection', () => {
+      const createShouldAssertFirst = assertFn => (dialDirection, arrowKey) => {
+        resetDialToOpen(dialDirection);
+        getDialButton().simulate('keydown', { keyCode: keycodes[arrowKey] });
+        assertFn(isActionFocused(0));
+      };
+
+      const shouldFocusFirst = createShouldAssertFirst(assert.isTrue);
+      const shouldNotFocusFirst = createShouldAssertFirst(assert.isFalse);
+
+      it('considers arrow keys with the same orientation', () => {
+        shouldFocusFirst('up', 'up');
+        shouldFocusFirst('up', 'down');
+
+        shouldFocusFirst('down', 'up');
+        shouldFocusFirst('down', 'down');
+
+        shouldFocusFirst('right', 'right');
+        shouldFocusFirst('right', 'left');
+
+        shouldFocusFirst('left', 'right');
+        shouldFocusFirst('left', 'left');
+      });
+
+      it('ignores arrow keys orthogonal to the direction', () => {
+        shouldNotFocusFirst('up', 'left');
+        shouldNotFocusFirst('up', 'right');
+
+        shouldNotFocusFirst('down', 'left');
+        shouldNotFocusFirst('down', 'right');
+
+        shouldNotFocusFirst('right', 'up');
+        shouldNotFocusFirst('right', 'up');
+
+        shouldNotFocusFirst('left', 'down');
+        shouldNotFocusFirst('left', 'down');
+      });
+    });
+
+    describe('actions navigation', () => {
+      /**
+       * tests a combination of arrow keys on a focused SpeedDial
+       */
+      const testCombination = async (
+        dialDirection,
+        [firstKey, ...combination],
+        [firstFocusedAction, ...foci],
+      ) => {
+        resetDialToOpen(dialDirection);
+
+        getDialButton().simulate('keydown', { keyCode: keycodes[firstKey] });
+        assert.isTrue(
+          isActionFocused(firstFocusedAction),
+          `focused action initial ${firstKey} should be ${firstFocusedAction}`,
+        );
+
+        combination.forEach((arrowKey, i) => {
+          const previousFocusedAction = foci[i - 1] || firstFocusedAction;
+          const expectedFocusedAction = foci[i];
+          const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
+
+          getActionButton(previousFocusedAction).simulate('keydown', {
+            keyCode: keycodes[arrowKey],
+          });
+          assert.isTrue(
+            isActionFocused(expectedFocusedAction),
+            `focused action after ${combinationUntilNot.join(
+              ',',
+            )} should be ${expectedFocusedAction}`,
+          );
+        });
+
+        /**
+         * Tooltip still fires onFocus after unmount ("Warning: setState unmounted").
+         * Could not fix this issue so we are using this workaroun
+         */
+        await immediate();
+      };
+
+      it('considers the first arrow key press as forward navigation', async () => {
+        await testCombination('up', ['up', 'up', 'up', 'down'], [0, 1, 2, 1]);
+        await testCombination('up', ['down', 'down', 'down', 'up'], [0, 1, 2, 1]);
+
+        await testCombination('right', ['right', 'right', 'right', 'left'], [0, 1, 2, 1]);
+        await testCombination('right', ['left', 'left', 'left', 'right'], [0, 1, 2, 1]);
+
+        await testCombination('down', ['down', 'down', 'down', 'up'], [0, 1, 2, 1]);
+        await testCombination('down', ['up', 'up', 'up', 'down'], [0, 1, 2, 1]);
+
+        await testCombination('left', ['left', 'left', 'left', 'right'], [0, 1, 2, 1]);
+        await testCombination('left', ['right', 'right', 'right', 'left'], [0, 1, 2, 1]);
+      });
+
+      it('ignores array keys orthogonal to the direction', async () => {
+        await testCombination('up', ['up', 'left', 'right', 'up'], [0, 0, 0, 1]);
+        await testCombination('right', ['right', 'up', 'down', 'right'], [0, 0, 0, 1]);
+        await testCombination('down', ['down', 'left', 'right', 'down'], [0, 0, 0, 1]);
+        await testCombination('left', ['left', 'up', 'down', 'left'], [0, 0, 0, 1]);
+      });
+
+      it('wraps around', async () => {
+        await testCombination('up', ['up', 'down', 'up'], [0, 5, 0]);
+        await testCombination('right', ['right', 'left', 'right'], [0, 5, 0]);
+        await testCombination('down', ['down', 'up', 'down'], [0, 5, 0]);
+        await testCombination('left', ['left', 'right', 'left'], [0, 5, 0]);
+      });
     });
   });
 });
