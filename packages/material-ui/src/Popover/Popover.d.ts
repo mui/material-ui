@@ -3,7 +3,6 @@ import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps, ModalClassKey } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
-import { ClassNameMap } from '../styles/withStyles';
 
 export interface PopoverOrigin {
   horizontal: 'left' | 'center' | 'right' | number;
@@ -29,7 +28,7 @@ export interface PopoverProps
   getContentAnchorEl?: null | ((element: HTMLElement) => HTMLElement);
   marginThreshold?: number;
   modal?: boolean;
-  ModalClasses?: Partial<ClassNameMap<ModalClassKey>>;
+  ModalClasses?: ModalProps['classes'];
   PaperProps?: Partial<PaperProps>;
   role?: string;
   transformOrigin?: PopoverOrigin;
