@@ -3,11 +3,6 @@ defaults: &defaults
   docker:
     - image: circleci/node:9.10
 restore_repo: &restore_repo
-  restore_cache:
-    keys:
-      - v1-yarn-sha-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - v1-yarn-sha-{{ .Branch }}
-      - v1-yarn-sha-
   run:
     name: Install js dependencies
     command: yarn
@@ -17,6 +12,10 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-yarn-sha-{{ checksum "yarn.lock" }}
+            - v1-yarn-sha-
       - run:
           name: Check versions and env
           command: |
@@ -34,7 +33,7 @@ jobs:
           name: Should not have any git not staged
           command: git diff --exit-code
       - save_cache:
-          key: v1-yarn-sha-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn/v1
             - ~/.cache/npm-packages-offline-cache/v1
