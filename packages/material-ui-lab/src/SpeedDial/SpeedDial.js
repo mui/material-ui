@@ -57,6 +57,11 @@ class SpeedDial extends React.Component {
    */
   actions = [];
 
+  /**
+   * @type {HTMLButtonElement?}
+   */
+  dialRef = undefined;
+
   state = {
     /**
      * an index in this.actions
@@ -98,7 +103,7 @@ class SpeedDial extends React.Component {
     const { focusedAction, nextItemArrowKey } = this.state;
 
     if (key === 'esc') {
-      this.fabRef.focus();
+      this.dialRef.focus();
       if (onClose) {
         onClose(event, key);
       }
@@ -138,7 +143,7 @@ class SpeedDial extends React.Component {
   render() {
     const {
       ariaLabel,
-      ButtonProps,
+      ButtonProps: { buttonRef: origDialButtonRef, ...ButtonProps } = {},
       children: childrenProp,
       classes,
       className: classNameProp,
@@ -230,11 +235,14 @@ class SpeedDial extends React.Component {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : 'false'}
             aria-controls={`${id}-actions`}
-            buttonRef={ref => {
-              this.fabRef = ref;
-            }}
             className={classes.fab}
             {...ButtonProps}
+            buttonRef={ref => {
+              this.dialRef = ref;
+              if (origDialButtonRef) {
+                origDialButtonRef(ref);
+              }
+            }}
           >
             {icon()}
           </Button>
