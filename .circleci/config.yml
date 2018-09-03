@@ -13,9 +13,9 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys:
-            - v2-yarn-sha-{{ checksum "yarn.lock" }}
-            - v2-yarn-sha-
+          key: v1-npm-packages-offline-cache
+      - restore_cache:
+          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
       - run:
           name: Check versions and env
           command: |
@@ -33,9 +33,12 @@ jobs:
           name: Should not have any git not staged
           command: git diff --exit-code
       - save_cache:
-          key: v2-yarn-sha-{{ checksum "yarn.lock" }}
+          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn/v1
+      - save_cache:
+          key: v1-npm-packages-offline-cache
+          paths:
             - ~/.cache/npm-packages-offline-cache/v1
   test_unit:
     <<: *defaults
