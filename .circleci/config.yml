@@ -28,7 +28,13 @@ jobs:
             env
             yarn cache dir
       - restore_cache:
-          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
+          keys:
+          - v1-yarn-sha-{{ checksum "yarn.lock" }}
+          # offline mirror
+          - v1-npm-packages-offline-cache
+      - run:
+          name: yarn offline mirror setup
+          command: yarn config set yarn-offline-mirror ~/.cache/npm-packages-offline-cache/v1
       - run:
           name: Install js dependencies
           command: yarn
@@ -39,6 +45,10 @@ jobs:
           key: v1-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn/v1
+      - save_cache:
+          key: v1-npm-packages-offline-cache
+          paths:
+            - ~/.cache/npm-packages-offline-cache/v1
       - save_cache:
           key: v1-repo-{{ .Branch }}-{{ .Revision }}
           paths:
