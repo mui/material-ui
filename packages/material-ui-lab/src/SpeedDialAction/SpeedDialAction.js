@@ -38,9 +38,9 @@ class SpeedDialAction extends React.Component {
 
   static getDerivedStateFromProps = (props, state) => {
     if (!props.open && state.tooltipOpen) {
-      state.tooltipOpen = false;
+      return { tooltipOpen: false };
     }
-    return state;
+    return null;
   };
 
   handleTooltipClose = () => {
@@ -60,7 +60,7 @@ class SpeedDialAction extends React.Component {
     }
   };
 
-  componentWillUnmount = () => this.timeout && clearTimeout(this.timeout);
+  componentWillUnmount = () => clearTimeout(this.timeout);
 
   render() {
     const {
