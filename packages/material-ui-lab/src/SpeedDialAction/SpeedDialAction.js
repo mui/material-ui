@@ -145,7 +145,7 @@ SpeedDialAction.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Make the tooltip always visible, regardless of hover.
+   * Make the tooltip always visible when the SpeedDial is open.
    */
   tooltipOpen: PropTypes.bool,
   /**

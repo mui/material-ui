@@ -52,3 +52,4 @@ you need to use the following style sheet name: `MuiSpeedDialAction`.
 ## Demos
 
 - [Speed Dial](/lab/speed-dial)
+
