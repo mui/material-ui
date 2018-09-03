@@ -53,7 +53,8 @@ You can follow [our milestones](https://github.com/mui-org/material-ui/milestone
 
 ## Support policy
 
-We are only supporting the latest version of Material-UI. We don't have the resources to have LTS yet.
+We only support the latest version of Material-UI.
+We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
 
 ## Deprecation practices
 
@@ -64,7 +65,7 @@ To make these transitions as easy as possible, we make two commitments to you:
 - We follow the deprecation policy described here, so you have time to update your apps to the latest APIs and best practices.
 
 To help ensure that you have sufficient time and a clear path to update, this is our deprecation policy:
-- We announce deprecated features in the changelog.
+- We announce deprecated features in the changelog, and when possible, with warnings at runtime.
 - When we announce a deprecation, we also announce a recommended update path.
 - We support existing use of a stable API during the deprecation period, so your code will keep working during that period.
 - We only make peer dependency updates (React) that require changes to your apps in a major release.
