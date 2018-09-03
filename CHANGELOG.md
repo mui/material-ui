@@ -5,6 +5,10 @@
 
 Big thanks to the 16 contributors who made this release possible!
 
+Here are some highlights ✨:
+- A documented release strategy (#12752).
+- And many more bug fixes 🐛 and documentation improvements 📝.
+
 ### `@material-ui/core@v3.0.2`
 
 - [Tab] Ability change font size of tab (#12706) @adeelibr
@@ -33,6 +37,7 @@ Big thanks to the 16 contributors who made this release possible!
 
 - [SpeedDialAction] Update tooltipPlacement propTypes (#12730) @Primajin
 - [Slider] Add missing packages (#12745) @GermanBluefox
+- [SpeedDial] Allow tooltip to always be displayed (#12590) @hashwin
 
 ### Docs
 
@@ -45,7 +50,7 @@ Big thanks to the 16 contributors who made this release possible!
 - [docs] Fix Typo in Page Layout Examples (#12734) @mblodorn
 - [docs] Explain how to pass props down to overridden components (#12716) @manuelkiessling
 - [docs] Generate import examples in API docs (#12720) @jedwards1211
-- [docs] More transparency around the release strategy
+- [docs] More transparency around the release strategy (#12752) @oliviertassinari
 
 ### Core
 
