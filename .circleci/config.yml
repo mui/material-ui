@@ -15,7 +15,9 @@ jobs:
       - restore_cache:
           key: v1-npm-packages-offline-cache
       - restore_cache:
-          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
+          keys: 
+            - v1-yarn-sha-{{ checksum "yarn.lock" }}
+            - v1-yarn-sha-
       - run:
           name: Check versions and env
           command: |
