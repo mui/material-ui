@@ -9,6 +9,10 @@ title: InputLabel API
 
 <p class="description">The API documentation of the InputLabel React component.</p>
 
+```js
+import InputLabel from '@material-ui/core/InputLabel';
+```
+
 
 
 ## Props

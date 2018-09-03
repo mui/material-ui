@@ -19,7 +19,9 @@ export const styles = theme => ({
     minHeight: 48,
     flexShrink: 0,
     overflow: 'hidden',
+    whiteSpace: 'normal',
     [theme.breakpoints.up('md')]: {
+      fontSize: theme.typography.pxToRem(13),
       minWidth: 160,
     },
   },
@@ -88,13 +90,7 @@ export const styles = theme => ({
     },
   },
   /* Styles applied to the label wrapper element if `label` is provided. */
-  label: {
-    fontSize: theme.typography.pxToRem(14),
-    whiteSpace: 'normal',
-    [theme.breakpoints.up('md')]: {
-      fontSize: theme.typography.pxToRem(13),
-    },
-  },
+  label: {},
   /* Styles applied to the label wrapper element if `label` is provided and the text is wrapped. */
   labelWrapped: {
     [theme.breakpoints.down('sm')]: {

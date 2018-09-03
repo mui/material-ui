@@ -56,7 +56,7 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 
 export default function withStyles<
   ClassKey extends string,
-  Options extends WithStylesOptions<ClassKey>
+  Options extends WithStylesOptions<ClassKey> = {}
 >(
   style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: Options,

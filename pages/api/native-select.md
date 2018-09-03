@@ -9,6 +9,10 @@ title: NativeSelect API
 
 <p class="description">The API documentation of the NativeSelect React component.</p>
 
+```js
+import NativeSelect from '@material-ui/core/NativeSelect';
+```
+
 An alternative to `<Select native />` with a much smaller dependency graph.
 
 ## Props

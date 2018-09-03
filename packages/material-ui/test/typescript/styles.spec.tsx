@@ -239,6 +239,35 @@ withStyles(theme =>
 );
 
 {
+  // allow top level media queries
+  // https://github.com/mui-org/material-ui/issues/12277
+
+  // typescript thinks `content` is the CSS property not a classname
+  // $ExpectError
+  const ambiguousStyles = createStyles({
+    content: {
+      minHeight: '100vh',
+    },
+    '@media (min-width: 960px)': {
+      content: {
+        display: 'flex',
+      },
+    },
+  });
+
+  const styles = createStyles({
+    contentClass: {
+      minHeight: '100vh',
+    },
+    '@media (min-width: 960px)': {
+      contentClass: {
+        display: 'flex',
+      },
+    },
+  });
+}
+
+{
   const styles = (theme: Theme) =>
     createStyles({
       // Styled similar to ListItemText

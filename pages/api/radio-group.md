@@ -9,6 +9,10 @@ title: RadioGroup API
 
 <p class="description">The API documentation of the RadioGroup React component.</p>
 
+```js
+import RadioGroup from '@material-ui/core/RadioGroup';
+```
+
 
 
 ## Props

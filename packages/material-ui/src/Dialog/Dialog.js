@@ -91,6 +91,9 @@ export const styles = theme => ({
     height: '100%',
     maxHeight: 'none',
     borderRadius: 0,
+    '&$paperScrollBody': {
+      margin: 0,
+    },
   },
 });
 

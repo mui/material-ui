@@ -9,6 +9,10 @@ title: Slider API
 
 <p class="description">The API documentation of the Slider React component.</p>
 
+```js
+import Slider from '@material-ui/lab/Slider';
+```
+
 
 
 ## Props

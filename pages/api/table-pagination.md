@@ -9,6 +9,10 @@ title: TablePagination API
 
 <p class="description">The API documentation of the TablePagination React component.</p>
 
+```js
+import TablePagination from '@material-ui/core/TablePagination';
+```
+
 A `TableCell` based component for placing inside `TableFooter` for pagination.
 
 ## Props

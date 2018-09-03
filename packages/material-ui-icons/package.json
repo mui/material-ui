@@ -2,7 +2,7 @@
   "name": "@material-ui/icons",
   "private": true,
   "author": "Material-UI Team",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
   "main": "./src/index.js",
   "keywords": [
@@ -41,8 +41,8 @@
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0-rc.1",
-    "recompose": "^0.28.2"
+    "@babel/runtime": "7.0.0",
+    "recompose": "^0.29.0"
   },
   "devDependencies": {
     "fs-extra": "^7.0.0",

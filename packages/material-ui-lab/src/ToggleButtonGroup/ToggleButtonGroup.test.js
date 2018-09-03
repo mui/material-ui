@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import ToggleButtonGroup from './ToggleButtonGroup';
-import ToggleButton from './ToggleButton';
+import ToggleButton from '../ToggleButton';
 
 describe('<ToggleButtonGroup />', () => {
   let shallow;

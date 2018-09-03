@@ -25,22 +25,24 @@ function handleClick() {
   alert('You clicked the Chip.'); // eslint-disable-line no-alert
 }
 
-function Chips(props) {
+function OutlinedChips(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <Chip label="Basic Chip" className={classes.chip} />
+      <Chip label="Basic Chip" className={classes.chip} variant="outlined" />
       <Chip
         avatar={<Avatar>MB</Avatar>}
         label="Clickable Chip"
         onClick={handleClick}
         className={classes.chip}
+        variant="outlined"
       />
       <Chip
         avatar={<Avatar src="/static/images/uxceo-128.jpg" />}
         label="Deletable Chip"
         onDelete={handleDelete}
         className={classes.chip}
+        variant="outlined"
       />
       <Chip
         avatar={
@@ -52,6 +54,7 @@ function Chips(props) {
         onClick={handleClick}
         onDelete={handleDelete}
         className={classes.chip}
+        variant="outlined"
       />
       <Chip
         label="Custom delete icon Chip"
@@ -59,6 +62,7 @@ function Chips(props) {
         onDelete={handleDelete}
         className={classes.chip}
         deleteIcon={<DoneIcon />}
+        variant="outlined"
       />
       <Chip
         label="Clickable Link Chip"
@@ -66,6 +70,7 @@ function Chips(props) {
         component="a"
         href="#chip"
         clickable
+        variant="outlined"
       />
       <Chip
         avatar={<Avatar>MB</Avatar>}
@@ -75,12 +80,14 @@ function Chips(props) {
         color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
+        variant="outlined"
       />
       <Chip
         label="Deletable Primary Chip"
         onDelete={handleDelete}
         className={classes.chip}
         color="primary"
+        variant="outlined"
       />
       <Chip
         avatar={
@@ -92,13 +99,14 @@ function Chips(props) {
         onDelete={handleDelete}
         className={classes.chip}
         color="secondary"
+        variant="outlined"
       />
     </div>
   );
 }
 
-Chips.propTypes = {
+OutlinedChips.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Chips);
+export default withStyles(styles)(OutlinedChips);
