@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PopoverProps, PopoverClassKey } from '../Popover';
+import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { PaperProps } from '../Paper';
 import { StandardProps } from '..';

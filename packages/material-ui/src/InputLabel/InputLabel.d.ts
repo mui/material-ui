@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { FormLabelProps, FormLabelClassKey } from '../FormLabel';
+import { FormLabelProps } from '../FormLabel';
 
 export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabelClassKey> {
   disableAnimation?: boolean;
