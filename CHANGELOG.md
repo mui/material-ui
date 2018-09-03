@@ -1,5 +1,56 @@
 ### [Versions](https://material-ui.com/versions)
 
+## 3.0.2
+###### *Aug 28, 2018*
+
+Big thanks to the 16 contributors who made this release possible!
+
+### `@material-ui/core@v3.0.2`
+
+- [Tab] Ability change font size of tab (#12706) @adeelibr
+- [typescript] Set default for withStyles' Options generic (#12698) @nmchaves
+- [Dialog] Remove dialog margin when fullScreen=true and scroll=body (#12718) @akaxiaok
+- [Table] Improved sorting in table for demo EnhancedTable (#12736) @adeelibr
+- [Snackbar] Add `ClickAwayListenerProps` property (#12735) @tendermario
+- [IconButton] Fix border radius cutting of badges on IE11 (#12743) @novascreen
+- [Select] Pass child to onChange handler (#12747) @akaxiaok
+- [Input] Fix Input passing inputRef to intrinsic elements (#12719) @eps1lon
+- [withStyles] Better theme.props support (#12750) @oliviertassinari
+- [SwipeableDrawer] Add hysteresis and velocity property (#12722) @jniclas
+
+### `@material-ui/lab@v3.0.0-alpha.14`
+
+#### Breaking changes
+
+- [ToggleButton] Fix ToggleButtonGroup exports (#12733) @mbrookes
+
+```diff
+-import { ToggleButtonGroup } from '@material-ui/lab/ToggleButton';
++import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+```
+
+#### Component Fixes / Enhancements
+
+- [SpeedDialAction] Update tooltipPlacement propTypes (#12730) @Primajin
+- [Slider] Add missing packages (#12745) @GermanBluefox
+
+### Docs
+
+- [docs] Fix typo in Overrides chapter (#12705) @sanderpost
+- [docs] Improve the Downshift demo (#12703) @oliviertassinari
+- [examples] Fix typing of `withRoot` to accept props (#12712) @mattmccutchen
+- [docs] Fix class name in overrides example (#12717) @manuelkiessling
+- [examples] Fix withRoot accepting any props (#12713) @eps1lon
+- [typescript] Illustrate issue with ambiguous css class names (#12724) @eps1lon
+- [docs] Fix Typo in Page Layout Examples (#12734) @mblodorn
+- [docs] Explain how to pass props down to overridden components (#12716) @manuelkiessling
+- [docs] Generate import examples in API docs (#12720) @jedwards1211
+- [docs] More transparency around the release strategy
+
+### Core
+
+N/A
+
 ## 3.0.1
 ###### *Aug 28, 2018*
 
@@ -90,7 +141,7 @@ We use the same strategy for Chrome.
 - [docs] Add "Insights" by justaskusers.com to the list of showcases (#12620) @mattes3
 - [docs] Use public api of jss instead of private vars (#12629) @eps1lon
 - [docs] Improve Autocomplete filtering suggestions (#12641) @jorgegorka
-- [docs] Fix IE 11 support (#12650) @
+- [docs] Fix IE 11 support (#12650) @oliviertassinari
 - [docs] Fix typos (#12652) @dandv
 - [docs] Use the event.target.checked API systematically (#12644) @chellem
 - [docs] Correct `by and enum` typo in api.md (#12663) @G-Rath
@@ -108,7 +159,7 @@ We use the same strategy for Chrome.
 - [typescript] Use interfaces for typography types (#12616) @pelotom
 - [ci] Consider only files changed on the built branch (#12627) @eps1lon
 - [test] Lint typescript definitions (#12637) @eps1lon
-- [core] Upgrade dev dependencies (#12658) @
+- [core] Upgrade dev dependencies (#12658) @oliviertassinari
 
 #### Lab
 
