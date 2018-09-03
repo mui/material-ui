@@ -54,6 +54,13 @@ The following demo uses the [react-text-mask](https://github.com/text-mask/text-
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
+## Upload inputs
+
+You can use the input as an upload field.
+The example below shows an `Input` that accepts audio files.
+
+{{"demo": "pages/demos/text-fields/UploadInputs.js"}}
+
 ## Customized inputs
 
 If you have been reading the [overrides documentation page](/customization/overrides)
