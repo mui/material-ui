@@ -21,6 +21,9 @@ const styles = theme => ({
     marginLeft: 24,
     flex: '0 1 auto',
     [theme.breakpoints.down('sm')]: {
+      marginLeft: 12,
+    },
+    [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
   },
@@ -36,9 +39,19 @@ const styles = theme => ({
     '& $inputInput': {
       transition: theme.transitions.create('width'),
       width: 120,
+      [theme.breakpoints.down('sm')]: {
+        width: '100%',
+      },
       '&:focus': {
         width: 200,
+         [theme.breakpoints.down('sm')]: {
+           width: '100%',
+         },
       },
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 0,
+      marginRight: 0,
     },
   },
   searchIcon: {

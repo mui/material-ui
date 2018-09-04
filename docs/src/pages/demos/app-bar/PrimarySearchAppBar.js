@@ -26,11 +26,7 @@ const styles = theme => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 1,
-    transition: theme.transitions.create('paddingLeft', 'paddingRight'),
-    [theme.breakpoints.down('sm')]: {
-      paddingRight: 0,
-      paddingLeft: 0,
-    },
+    padding: 0,
   },
   row: {
     display: 'flex',
@@ -41,22 +37,20 @@ const styles = theme => ({
     marginLeft: 24,
     flex: '0 1 auto',
     [theme.breakpoints.down('sm')]: {
+      marginLeft: 6,
+    },
+    [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
   },
   searchContainer: {
-    width: '45%',
+    width: '40%',
     position: 'relative',
-    marginRight: theme.spacing.unit * 2,
-    marginLeft: theme.spacing.unit,
     borderRadius: 2,
     background: fade(theme.palette.common.white, 0.15),
     transition: theme.transitions.create('width'),
     '&:hover': {
       background: fade(theme.palette.common.white, 0.25),
-    },
-    [theme.breakpoints.down('md')]: {
-      width: '65%',
     },
     [theme.breakpoints.down('sm')]: {
       width: '100%',
