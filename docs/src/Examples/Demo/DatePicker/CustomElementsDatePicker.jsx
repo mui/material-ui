@@ -37,7 +37,7 @@ class CustomElements extends PureComponent {
     }
 
     return date && isValid(date)
-      ? `Week of ${format(startOfWeek(date), 'MMM Do')}`
+      ? `Week of ${format(startOfWeek(date), 'MMM do')}`
       : invalidLabel;
   }
 
@@ -69,7 +69,7 @@ class CustomElements extends PureComponent {
     return (
       <div className={wrapperClassName}>
         <IconButton className={dayClassName}>
-          <span> { format(date, 'D')} </span>
+          <span> { format(date, 'd')} </span>
         </IconButton>
       </div>
     );
