@@ -5,7 +5,7 @@ defaults: &defaults
 restore_repo: &restore_repo
   run:
     name: Install js dependencies
-    command: yarn --offline
+    command: yarn config set yarn-offline-mirror ~/.cache/npm-packages-offline-cache/v1 && yarn --offline
 version: 2
 jobs:
   checkout:
@@ -27,9 +27,6 @@ jobs:
             docker-compose --version
             env
             yarn cache dir
-      - run:
-          name: yarn offline mirror setup
-          command: yarn config set yarn-offline-mirror ~/.cache/npm-packages-offline-cache/v1
       - *restore_repo
       - run:
           name: Should not have any git not staged
