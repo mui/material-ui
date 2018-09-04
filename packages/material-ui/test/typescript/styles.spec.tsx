@@ -14,7 +14,7 @@ import {
 import Button from '@material-ui/core/Button/Button';
 import blue from '@material-ui/core/colors/blue';
 import { WithTheme } from '@material-ui/core/styles/withTheme';
-import { StandardProps } from '@material-ui/core';
+import { Matching, PropsOf, StandardProps } from '@material-ui/core';
 import { TypographyStyle } from '@material-ui/core/styles/createTypography';
 
 // Shared types for examples
@@ -394,6 +394,21 @@ withStyles(theme =>
   class Component extends React.Component<Props & WithStyles<typeof styles>> {}
   // $ExpectError
   const StyledComponent = withStyles(styles)(Component);
+
+  // implicit SFC pass
+  withStyles(styles)((props: Props) => null);
+  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null);
+  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null);
+  withStyles(styles)(
+    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null,
+  );
+
+  // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
+  // which is not helpful
+  const StatelessComponent: React.SFC<Props> = props => null;
+  const StatelessComponentWithStyles: React.SFC<Props & WithStyles<typeof styles>> = props => null;
+  withStyles(styles)(StatelessComponent); // $ExpectError
+  withStyles(styles)(StatelessComponentWithStyles); // $ExpectError
 }
 
 {
