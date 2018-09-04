@@ -2,22 +2,31 @@ defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:9.10
-restore_repo: &restore_repo
+install_js: &install_js
   run:
     name: Install js dependencies
-    command: yarn config set yarn-offline-mirror ~/.cache/npm-packages-offline-cache/v1 && yarn --offline
+    command: |-
+      yarn config set yarn-offline-mirror ~/.cache/npm-packages-offline-cache/v1
+      yarn --offline
+
+restore_yarn_cache: &restore_yarn_cache
+  restore_cache:
+    keys: 
+      - v1-yarn-sha-{{ checksum "yarn.lock" }}
+      - v1-yarn-sha-
+
+restore_yarn_offline_mirror: &restore_yarn_offline_mirror
+  restore_cache:
+    key: v1-npm-packages-offline-cache
+
 version: 2
 jobs:
   checkout:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache:
-          key: v1-npm-packages-offline-cache
-      - restore_cache:
-          keys: 
-            - v1-yarn-sha-{{ checksum "yarn.lock" }}
-            - v1-yarn-sha-
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
       - run:
           name: Check versions and env
           command: |
@@ -27,7 +36,7 @@ jobs:
             docker-compose --version
             env
             yarn cache dir
-      - *restore_repo
+      - *install_js
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
@@ -43,7 +52,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *restore_repo
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
+      - *install_js
       - run:
           name: Export changed files
           command: |
@@ -92,7 +103,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *restore_repo
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
+      - *install_js
       - run:
           name: material-ui-icons
           command: |
@@ -161,7 +174,9 @@ jobs:
       - image: circleci/node:9.10
     steps:
       - checkout
-      - *restore_repo
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
+      - *install_js
       - run:
           name: Can we generate the material-ui build?
           command: cd packages/material-ui && yarn build
@@ -175,7 +190,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *restore_repo
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
+      - *install_js
       - run:
           name: Can we generate the api of the docs?
           command: yarn docs:api
@@ -198,7 +215,9 @@ jobs:
       - image: selenium/standalone-chrome:3.11.0
     steps:
       - checkout
-      - *restore_repo
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
+      - *install_js
       - run:
           name: Visual regression tests
           command: |
