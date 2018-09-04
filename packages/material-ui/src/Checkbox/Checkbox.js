@@ -50,6 +50,31 @@ class Checkbox extends React.Component {
     }
   }
 
+  handleClick = (event, ...clickArgs) => {
+    const { indeterminate: wasIndeterminate, onChange, onClick } = this.props;
+
+    if (this.inputRef && onChange) {
+      const { checked: isChecked, indeterminate: isIndeterminate } = this.inputRef;
+      const gotDetermined = wasIndeterminate && !isIndeterminate;
+
+      // some browser (e.g. Edge) do not change checked after setting indeterminate to false
+      if (gotDetermined && !isChecked) {
+        this.inputRef.checked = true;
+
+        // re-dispatch as change event
+        const changeEvent = new Event('change', event);
+        this.inputRef.dispatchEvent(changeEvent);
+        // dispatching the event does not trigger react onChange
+        // but calling onChange with the plain event will not include target unless we dispatch it
+        onChange(changeEvent, true);
+      }
+    }
+
+    if (onClick) {
+      onClick(event, ...clickArgs);
+    }
+  };
+
   handleInputRef = ref => {
     this.inputRef = ref;
   };
@@ -83,6 +108,7 @@ class Checkbox extends React.Component {
         icon={indeterminate ? indeterminateIcon : icon}
         inputRef={this.handleInputRef}
         {...other}
+        onClick={this.handleClick}
       />
     );
   }
