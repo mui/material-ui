@@ -41,25 +41,25 @@ export const styles = theme => ({
 });
 
 class Checkbox extends React.Component {
-  componentDidMount = () => {
+  componentDidMount() {
     this.updateIndeterminateStatus();
-  };
+  }
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate(prevProps) {
     if (prevProps.indeterminate !== this.props.indeterminate) {
       this.updateIndeterminateStatus();
     }
-  };
-
-  updateIndeterminateStatus = () => {
-    if (this.inputRef) {
-      this.inputRef.indeterminate = this.props.indeterminate;
-    }
-  };
+  }
 
   handleInputRef = ref => {
     this.inputRef = ReactDOM.findDOMNode(ref);
   };
+
+  updateIndeterminateStatus() {
+    if (this.inputRef) {
+      this.inputRef.indeterminate = this.props.indeterminate;
+    }
+  }
 
   render() {
     const {
