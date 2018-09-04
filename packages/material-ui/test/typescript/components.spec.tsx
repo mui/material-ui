@@ -37,6 +37,7 @@ import {
   IconButton,
   Input,
   InputAdornment,
+  InputLabel,
   LinearProgress,
   List,
   ListItem,
@@ -48,6 +49,7 @@ import {
   MenuItem,
   MobileStepper,
   Paper,
+  Popover,
   Select,
   Snackbar,
   SnackbarContent,
@@ -450,7 +452,13 @@ const MenuTest = () => {
   ];
 
   return (
-    <Menu id="lock-menu" anchorEl={anchorEl} open={true} onClose={log}>
+    <Menu
+      id="lock-menu"
+      anchorEl={anchorEl}
+      open={true}
+      onClose={log}
+      PopoverClasses={{ paper: 'foo' }}
+    >
       {options.map((option, index) => (
         <MenuItem key={option} selected={false} onClick={log}>
           {option}
@@ -848,3 +856,19 @@ const TransitionTest = () => (
 );
 
 const BackdropTest = () => <Backdrop open onTouchMove={() => {}} />;
+
+const PopoverTest = () => <Popover open ModalClasses={{ root: 'foo', hidden: 'bar' }} />;
+
+const InputLabelTest = () => (
+  <InputLabel
+    FormLabelClasses={{
+      root: 'foo',
+      asterisk: 'foo',
+      disabled: 'foo',
+      error: 'foo',
+      filled: 'foo',
+      focused: 'foo',
+      required: 'foo',
+    }}
+  />
+);
