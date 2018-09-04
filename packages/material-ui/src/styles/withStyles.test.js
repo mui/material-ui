@@ -171,6 +171,28 @@ describe('withStyles', () => {
       assert.strictEqual(sheetsRegistry.registry.length, 0);
     });
 
+    it('should support theme.props', () => {
+      const styles = { root: { display: 'flex' } };
+      const StyledComponent = withStyles(styles, { name: 'MuiFoo' })(Empty);
+
+      const wrapper = mount(
+        <MuiThemeProvider
+          theme={createMuiTheme({
+            props: {
+              MuiFoo: {
+                foo: 'bar',
+              },
+            },
+          })}
+        >
+          <StyledComponent foo={undefined} />
+        </MuiThemeProvider>,
+      );
+
+      assert.strictEqual(wrapper.find(Empty).props().foo, 'bar');
+      wrapper.unmount();
+    });
+
     it('should work when depending on a theme', () => {
       const styles = theme => ({ root: { padding: theme.spacing.unit } });
       const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);

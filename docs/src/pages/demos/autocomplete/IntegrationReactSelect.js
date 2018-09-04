@@ -199,14 +199,14 @@ function Menu(props) {
 }
 
 const components = {
-  Option,
   Control,
+  Menu,
+  MultiValue,
   NoOptionsMessage,
+  Option,
   Placeholder,
   SingleValue,
-  MultiValue,
   ValueContainer,
-  Menu,
 };
 
 class IntegrationReactSelect extends React.Component {

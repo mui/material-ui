@@ -10,7 +10,7 @@ title: ToggleButtonGroup API
 <p class="description">The API documentation of the ToggleButtonGroup React component.</p>
 
 ```js
-import ToggleButtonGroup from '@material-ui/lab/ToggleButton/ToggleButtonGroup';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 ```
 
 
