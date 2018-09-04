@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-handler-names */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
@@ -52,7 +51,7 @@ class Checkbox extends React.Component {
   }
 
   handleInputRef = ref => {
-    this.inputRef = ReactDOM.findDOMNode(ref);
+    this.inputRef = ref;
   };
 
   updateIndeterminateStatus() {
