@@ -9,6 +9,10 @@ title: CardActionArea API
 
 <p class="description">The API documentation of the CardActionArea React component.</p>
 
+```js
+import CardActionArea from '@material-ui/core/CardActionArea';
+```
+
 
 
 ## Props

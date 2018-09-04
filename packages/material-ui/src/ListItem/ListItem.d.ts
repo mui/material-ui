@@ -17,6 +17,7 @@ export interface ListItemProps
   disableGutters?: boolean;
   divider?: boolean;
   focusVisibleClassName?: string;
+  selected?: boolean;
 }
 
 export type ListItemClassKey =
@@ -29,7 +30,8 @@ export type ListItemClassKey =
   | 'divider'
   | 'gutters'
   | 'button'
-  | 'secondaryAction';
+  | 'secondaryAction'
+  | 'selected';
 
 declare const ListItem: React.ComponentType<ListItemProps>;
 

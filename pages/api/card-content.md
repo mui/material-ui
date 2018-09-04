@@ -9,6 +9,10 @@ title: CardContent API
 
 <p class="description">The API documentation of the CardContent React component.</p>
 
+```js
+import CardContent from '@material-ui/core/CardContent';
+```
+
 
 
 ## Props

@@ -9,6 +9,10 @@ title: Tooltip API
 
 <p class="description">The API documentation of the Tooltip React component.</p>
 
+```js
+import Tooltip from '@material-ui/core/Tooltip';
+```
+
 
 
 ## Props

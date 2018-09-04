@@ -11,3 +11,5 @@ Our priorities:
 1. **Documentation**. We want to translate the documentation into Chinese and other languages. Any help is welcomed!
 1. **Bundle size**. The library needs to be as small as possible, so we need to work on solutions to further reduce the bundle size, for example, supporting Preact or Nerv can help.
 1. **Type checking**. We will continue to improve the TypeScript and possibly the Flow coverage of the library.
+
+You can follow [our milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.

@@ -173,7 +173,7 @@ describe('<ClickAwayListener />', () => {
     });
   });
 
-  it('should hanlde null child', () => {
+  it('should handle null child', () => {
     const Child = () => null;
     const handleClickAway = spy();
     wrapper = mount(

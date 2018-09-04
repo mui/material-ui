@@ -9,6 +9,10 @@ title: TableSortLabel API
 
 <p class="description">The API documentation of the TableSortLabel React component.</p>
 
+```js
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+```
+
 A button based label for placing inside `TableCell` for column sorting.
 
 ## Props

@@ -36,6 +36,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/lists/NestedList'), 'utf8')
 `,
         },
+        'pages/demos/lists/SelectedListItem.js': {
+          js: require('docs/src/pages/demos/lists/SelectedListItem').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/lists/SelectedListItem'), 'utf8')
+`,
+        },
         'pages/demos/lists/PinnedSubheaderList.js': {
           js: require('docs/src/pages/demos/lists/PinnedSubheaderList').default,
           raw: preval`

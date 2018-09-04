@@ -9,6 +9,10 @@ title: CardActions API
 
 <p class="description">The API documentation of the CardActions React component.</p>
 
+```js
+import CardActions from '@material-ui/core/CardActions';
+```
+
 
 
 ## Props

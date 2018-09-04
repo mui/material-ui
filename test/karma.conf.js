@@ -102,7 +102,7 @@ module.exports = function setKarmaConfig(config) {
           os: 'Windows',
           os_version: '10',
           browser: 'Firefox',
-          browser_version: '45.0',
+          browser_version: '52.0',
         },
         BrowserStack_Safari: {
           base: 'BrowserStack',

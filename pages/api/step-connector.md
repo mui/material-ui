@@ -9,6 +9,10 @@ title: StepConnector API
 
 <p class="description">The API documentation of the StepConnector React component.</p>
 
+```js
+import StepConnector from '@material-ui/core/StepConnector';
+```
+
 
 
 ## Props

@@ -36,13 +36,31 @@ class SpeedDialAction extends React.Component {
     tooltipOpen: false,
   };
 
+  static getDerivedStateFromProps = (props, state) => {
+    if (!props.open && state.tooltipOpen) {
+      return { tooltipOpen: false };
+    }
+    return null;
+  };
+
   handleTooltipClose = () => {
+    if (this.props.tooltipOpen) return;
     this.setState({ tooltipOpen: false });
   };
 
   handleTooltipOpen = () => {
+    if (this.props.tooltipOpen) return;
     this.setState({ tooltipOpen: true });
   };
+
+  componentDidUpdate = prevProps => {
+    if (!this.props.tooltipOpen || prevProps.open === this.props.open) return;
+    if (!this.state.tooltipOpen) {
+      this.timeout = setTimeout(() => this.setState({ tooltipOpen: true }), this.props.delay + 100);
+    }
+  };
+
+  componentWillUnmount = () => clearTimeout(this.timeout);
 
   render() {
     const {
@@ -56,6 +74,7 @@ class SpeedDialAction extends React.Component {
       open,
       tooltipTitle,
       tooltipPlacement,
+      tooltipOpen,
       ...other
     } = this.props;
 
@@ -126,9 +145,26 @@ SpeedDialAction.propTypes = {
    */
   open: PropTypes.bool,
   /**
+   * Make the tooltip always visible when the SpeedDial is open.
+   */
+  tooltipOpen: PropTypes.bool,
+  /**
    * Placement of the tooltip.
    */
-  tooltipPlacement: PropTypes.string,
+  tooltipPlacement: PropTypes.oneOf([
+    'bottom-end',
+    'bottom-start',
+    'bottom',
+    'left-end',
+    'left-start',
+    'left',
+    'right-end',
+    'right-start',
+    'right',
+    'top-end',
+    'top-start',
+    'top',
+  ]),
   /**
    * Label to display in the tooltip.
    */

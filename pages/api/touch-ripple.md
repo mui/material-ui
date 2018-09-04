@@ -9,6 +9,10 @@ title: TouchRipple API
 
 <p class="description">The API documentation of the TouchRipple React component.</p>
 
+```js
+import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
+```
+
 
 
 ## Props

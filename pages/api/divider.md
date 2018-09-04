@@ -9,6 +9,10 @@ title: Divider API
 
 <p class="description">The API documentation of the Divider React component.</p>
 
+```js
+import Divider from '@material-ui/core/Divider';
+```
+
 
 
 ## Props
