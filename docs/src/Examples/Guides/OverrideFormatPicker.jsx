@@ -8,7 +8,7 @@ import format from 'date-fns/format';
 
 class LocalizedUtils extends DateFnsUtils {
   getDatePickerHeaderText(date) {
-    return format(date, 'D MMM YYYY', { locale: this.locale });
+    return format(date, 'd MMM YYYY', { locale: this.locale });
   }
 }
 
@@ -30,7 +30,7 @@ export default class DateFnsLocalizationExample extends PureComponent {
           <DatePicker
             clearable
             label="Localization done right"
-            format="D MMM YYYY"
+            format="d MMM YYYY"
             value={selectedDate}
             onChange={this.handleDateChange}
             clearLabel="vider"
