@@ -108,6 +108,41 @@ describe('<SpeedDial />', () => {
     assert.strictEqual(actionsWrapper.childAt(1).props().open, true, 'open should be true');
   });
 
+  describe('prop: onClick', () => {
+    it('should be set as the onClick prop of the button', () => {
+      const onClick = spy();
+      const wrapper = shallow(
+        <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
+          <div />
+        </SpeedDial>,
+      );
+      const buttonWrapper = wrapper.childAt(0).childAt(0);
+      assert.strictEqual(buttonWrapper.props().onClick, onClick);
+    });
+
+    describe('for touch devices', () => {
+      before(() => {
+        document.documentElement.ontouchstart = () => {};
+      });
+
+      it('should be set as the onTouchStart prop of the button if touch device', () => {
+        const onClick = spy();
+
+        const wrapper = shallow(
+          <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
+            <div />
+          </SpeedDial>,
+        );
+        const buttonWrapper = wrapper.childAt(0).childAt(0);
+        assert.strictEqual(buttonWrapper.props().onTouchStart, onClick);
+      });
+
+      after(() => {
+        delete document.documentElement.ontouchstart;
+      });
+    });
+  });
+
   describe('prop: onKeyDown', () => {
     it('should be called when a key is pressed', () => {
       const handleKeyDown = spy();
