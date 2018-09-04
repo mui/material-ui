@@ -5,7 +5,7 @@ defaults: &defaults
 restore_repo: &restore_repo
   run:
     name: Install js dependencies
-    command: yarn
+    command: yarn --offline
 version: 2
 jobs:
   checkout:
