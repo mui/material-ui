@@ -52,8 +52,8 @@ const styles = theme => ({
     '&:hover': {
       background: fade(theme.palette.common.white, 0.25),
     },
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
+    [theme.breakpoints.down('xs')]: {
+      width: 140,
     },
   },
   searchIcon: {
