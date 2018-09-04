@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/customization/themes/themes.md';
 
-function Page() {
+const req = require.context('../../docs/src/pages/customization/themes/', true, /\.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./themes-${props.lang}.md`)}
       demos={{
         'pages/customization/themes/Palette.js': {
           js: require('docs/src/pages/customization/themes/Palette').default,
@@ -75,5 +77,9 @@ module.exports = require('fs')
     />
   );
 }
+
+Page.propTypes = {
+  lang: PropTypes.string,
+};
 
 export default withRoot(Page);

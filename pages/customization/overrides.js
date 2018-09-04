@@ -1,14 +1,16 @@
 /* eslint-disable max-len */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/customization/overrides/overrides.md';
 
-function Page() {
+const req = require.context('../../docs/src/pages/customization/overrides/', true, /\.md$/);
+
+function Page(props) {
   return (
     <MarkdownDocs
-      markdown={markdown}
+      markdown={req(`./overrides-${props.lang}.md`)}
       demos={{
         'pages/customization/overrides/ClassNames.js': {
           js: require('docs/src/pages/customization/overrides/ClassNames').default,
@@ -84,5 +86,9 @@ module.exports = require('fs')
     />
   );
 }
+
+Page.propTypes = {
+  lang: PropTypes.string,
+};
 
 export default withRoot(Page);
