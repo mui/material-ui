@@ -8,6 +8,7 @@ import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import { capitalize } from '../utils/helpers';
+import { forwardRef } from '../utils/reactHelpers';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -51,22 +52,23 @@ class Checkbox extends React.Component {
   }
 
   handleClick = (event, ...clickArgs) => {
-    const { indeterminate: wasIndeterminate, onChange, onClick } = this.props;
+    const { checked: wasChecked, indeterminate: wasIndeterminate, onChange, onClick } = this.props;
+    const { checked: isChecked, indeterminate: isIndeterminate } = event.target;
+    const gotDetermined = wasIndeterminate && !isIndeterminate;
+    const checkChanged = wasChecked !== isChecked;
 
-    if (this.inputRef && onChange) {
-      const { checked: isChecked, indeterminate: isIndeterminate } = this.inputRef;
-      const gotDetermined = wasIndeterminate && !isIndeterminate;
+    // some browser (e.g. Edge) do not change checked after setting indeterminate to false
+    if (gotDetermined && !checkChanged) {
+      this.inputRef.checked = !isChecked;
+      event.target.checked = !isChecked;
 
-      // some browser (e.g. Edge) do not change checked after setting indeterminate to false
-      if (gotDetermined && !isChecked) {
-        this.inputRef.checked = true;
-
+      if (onChange) {
         // re-dispatch as change event
-        const changeEvent = new Event('change', event);
+        const changeEvent = new window.Event('change', event);
         this.inputRef.dispatchEvent(changeEvent);
         // dispatching the event does not trigger react onChange
         // but calling onChange with the plain event will not include target unless we dispatch it
-        onChange(changeEvent, true);
+        onChange(changeEvent, event.target.checked);
       }
     }
 
@@ -77,6 +79,8 @@ class Checkbox extends React.Component {
 
   handleInputRef = ref => {
     this.inputRef = ref;
+
+    forwardRef(ref, this.props.inputRef);
   };
 
   updateIndeterminateStatus() {
@@ -106,8 +110,8 @@ class Checkbox extends React.Component {
           disabled: classes.disabled,
         }}
         icon={indeterminate ? indeterminateIcon : icon}
-        inputRef={this.handleInputRef}
         {...other}
+        inputRef={this.handleInputRef}
         onClick={this.handleClick}
       />
     );
