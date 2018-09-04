@@ -1,4 +1,5 @@
 import React from 'react';
+import { codes } from 'keycode';
 import { spy, useFakeTimers } from 'sinon';
 import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
@@ -188,17 +189,52 @@ describe('<Slider />', () => {
   describe('prop: slider', () => {
     let wrapper;
 
-    before(() => {
-      wrapper = mount(<Slider value={90} min={0} max={104} step={10} />);
+    const moveLeftEvent = new window.KeyboardEvent('keydown', {
+      keyCode: codes.left,
+    });
+    const moveRightEvent = new window.KeyboardEvent('keydown', {
+      keyCode: codes.right,
     });
 
-    it('should reach edge value', () => {
-      const button = wrapper.find('button');
-      wrapper.simulate('keypress', {key: 'tab'}); //tab
-      wrapper.simulate('keypress', {key: 'left arrow'}); //tab
-      wrapper.simulate('keypress', {key: 'left arrow'}); //tab
+    before(() => {
+      wrapper = mount(<Slider value={90} min={0} max={104} step={10} />);
+      const onChange = (_, value) => {
+        wrapper.setProps({ value });
+      };
+      wrapper = mount(<Slider value={90} min={6} max={108} step={10} onChange={onChange} />);
+    });
 
-      assert.strictEqual(wrapper.prop('value'), 104);
+    it('should reach right edge value', () => {
+      wrapper.setProps({ value: 90 });
+      const button = wrapper.find('button');
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 100);
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 108);
+
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 100);
+
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 90);
+    });
+
+    it('should reach left edge value', () => {
+      wrapper.setProps({ value: 20 });
+      const button = wrapper.find('button');
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 10);
+
+      button.prop('onKeyDown')(moveLeftEvent);
+      assert.strictEqual(wrapper.prop('value'), 6);
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 10);
+
+      button.prop('onKeyDown')(moveRightEvent);
+      assert.strictEqual(wrapper.prop('value'), 20);
     });
   });
 });
