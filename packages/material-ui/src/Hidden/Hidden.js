@@ -66,6 +66,10 @@ Hidden.propTypes = {
     PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
   ]),
   /**
+   * Render prop.  If specified Hidden will render this rather than children.
+   */
+  render: PropTypes.func,
+  /**
    * If true, screens this size and down will be hidden.
    */
   smDown: PropTypes.bool,

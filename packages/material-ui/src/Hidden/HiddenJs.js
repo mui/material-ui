@@ -7,7 +7,7 @@ import exactProp from '../utils/exactProp';
  * @ignore - internal component.
  */
 function HiddenJs(props) {
-  const { children, only, width } = props;
+  const { children, only, width, render } = props;
 
   let visible = true;
 
@@ -45,6 +45,10 @@ function HiddenJs(props) {
 
   if (!visible) {
     return null;
+  }
+
+  if (render) {
+    return render();
   }
 
   return children;
@@ -99,6 +103,10 @@ HiddenJs.propTypes = {
     PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
   ]),
+  /**
+   * Render prop.  If specified Hidden will render this rather than children.
+   */
+  render: PropTypes.func,
   /**
    * If true, screens this size and down will be hidden.
    */

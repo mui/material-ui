@@ -44,6 +44,7 @@ function HiddenCss(props) {
     xlUp,
     xsDown,
     xsUp,
+    render,
     ...other
   } = props;
 
@@ -79,6 +80,10 @@ function HiddenCss(props) {
     onlyBreakpoints.forEach(breakpoint => {
       classNames.push(classes[`only${capitalize(breakpoint)}`]);
     });
+  }
+
+  if (render) {
+    return render({ className: classNames.join(' ') });
   }
 
   return <div className={classNames.join(' ')}>{children}</div>;
@@ -126,6 +131,10 @@ HiddenCss.propTypes = {
     PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
   ]),
+  /**
+   * Render prop.  If specified Hidden will render this rather than children.
+   */
+  render: PropTypes.func,
   /**
    * If true, screens this size and down will be hidden.
    */
