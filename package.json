@@ -49,7 +49,7 @@
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha packages/material-ui/test/**/*.test.js packages/material-ui/src/{,**/}*.test.js && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
-    "typescript": "tslint -p tsconfig.json \"packages/*/{src,test}/**/*.{ts,tsx}\"",
+    "typescript": "tslint -p tsconfig.json \"packages/*/{src,test}/**/*.{ts,tsx}\" && tsc",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true"
   },
   "peerDependencies": {
@@ -70,6 +70,7 @@
     "@babel/register": "7.0.0",
     "@types/enzyme": "^3.1.4",
     "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.7",
     "argos-cli": "^0.0.9",
     "autoprefixer": "^9.0.0",
     "autosuggest-highlight": "^3.1.1",
@@ -154,7 +155,7 @@
     "sinon": "^6.0.0",
     "size-limit": "^0.19.0",
     "tslint": "^5.11.0",
-    "typescript": "^3.0.0",
+    "typescript": "3.0.1",
     "url-loader": "^1.0.1",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
