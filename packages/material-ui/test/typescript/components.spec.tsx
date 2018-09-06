@@ -821,7 +821,7 @@ const ResponsiveComponentTest = () => {
   ));
   <ResponsiveComponent />;
 
-  const ResponsiveDialogComponent = withMobileDialog<DialogProps>()(Dialog);
+  // const ResponsiveDialogComponent = withMobileDialog<DialogProps>()(Dialog);
 };
 
 const TooltipComponentTest = () => (

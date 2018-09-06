@@ -170,7 +170,7 @@ const ComponentWithTheme = withTheme()(({ theme }) => <div>{theme.spacing.unit}<
 type AllTheProps = WithTheme & WithStyles<typeof styles>;
 
 const AllTheComposition = withTheme()(
-  withStyles(styles)(({ theme, classes }: AllTheProps) => (
+  withStyles(styles, { withTheme: true })(({ theme, classes }: AllTheProps) => (
     <div className={classes.root}>{theme.palette.text.primary}</div>
   )),
 );
@@ -395,12 +395,12 @@ withStyles(theme =>
   // $ExpectError
   const StyledComponent = withStyles(styles)(Component);
 
-  // implicit SFC pass
-  withStyles(styles)((props: Props) => null);
-  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null);
-  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null);
+  // implicit SFC
+  withStyles(styles)((props: Props) => null); // $ExpectError
+  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null); // $ExpectError
+  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null); // $ExpectError
   withStyles(styles)(
-    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null,
+    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null, // $ExpectError
   );
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".

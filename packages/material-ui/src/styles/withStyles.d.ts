@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { WithTheme } from '../styles/withTheme';
-import { Matching, Omit, PropsOf } from '..';
+import { Matching, Omit, Overwrite, PropsOf } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';

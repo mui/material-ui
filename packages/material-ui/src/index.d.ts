@@ -65,16 +65,14 @@ export type ConsistentWith<T, U> = Pick<U, keyof T & keyof U>;
 export type Overwrite<T, U> = Omit<T, keyof U> & U;
 
 /**
- * a property P will be present if:
- * - it is present in DecorationTargetProps
- * - it is present in InjectedProps[P] and can satisfy DecorationTargetProps[P]
- *   or it is not present in InjectedProps[P]
+ * a property P will will have the the type of:
+ * - DecorationTargetProps if it is not present in InjectedProps
+ * - InjectedTargetProps if it is present in DecorationTargetProps
  *
- * source: @types/react-redux
  */
 export type Matching<InjectedProps, DecorationTargetProps> = {
   [P in keyof DecorationTargetProps]: P extends keyof InjectedProps
-    ? InjectedProps[P] extends DecorationTargetProps[P] ? DecorationTargetProps[P] : never
+    ? InjectedProps[P]
     : DecorationTargetProps[P]
 };
 
