@@ -5965,9 +5965,9 @@ junk@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/junk/-/junk-1.0.3.tgz#87be63488649cbdca6f53ab39bec9ccd2347f592"
 
-just-extend@^1.1.27:
-  version "1.1.27"
-  resolved "https://registry.yarnpkg.com/just-extend/-/just-extend-1.1.27.tgz#ec6e79410ff914e472652abfa0e603c03d60e905"
+just-extend@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/just-extend/-/just-extend-3.0.0.tgz#cee004031eaabf6406da03a7b84e4fe9d78ef288"
 
 karma-browserstack-launcher@^1.3.0:
   version "1.3.0"
@@ -6775,11 +6775,11 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.4.tgz#d93962f6c52f2c1558c0fbda6d512819f1efe1c4"
 
 nise@^1.4.2:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/nise/-/nise-1.4.3.tgz#d1996e8d15256ceff1a0a1596e0c72bff370e37c"
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/nise/-/nise-1.4.4.tgz#b8d9dd35334c99e514b75e46fcc38e358caecdd0"
   dependencies:
     "@sinonjs/formatio" "^2.0.0"
-    just-extend "^1.1.27"
+    just-extend "^3.0.0"
     lolex "^2.3.2"
     path-to-regexp "^1.7.0"
     text-encoding "^0.6.4"

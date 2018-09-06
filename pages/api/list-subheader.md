@@ -9,6 +9,10 @@ title: ListSubheader API
 
 <p class="description">The API documentation of the ListSubheader React component.</p>
 
+```js
+import ListSubheader from '@material-ui/core/ListSubheader';
+```
+
 
 
 ## Props

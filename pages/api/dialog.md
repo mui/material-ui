@@ -9,6 +9,10 @@ title: Dialog API
 
 <p class="description">The API documentation of the Dialog React component.</p>
 
+```js
+import Dialog from '@material-ui/core/Dialog';
+```
+
 Dialogs are overlaid modal paper based components with a backdrop.
 
 ## Props

@@ -275,15 +275,15 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     render() {
       const { classes, innerRef, ...other } = this.props;
 
-      const more = getThemeProps({ theme: this.theme, name });
+      const more = getThemeProps({ theme: this.theme, name, props: other });
 
       // Provide the theme to the wrapped component.
       // So we don't have to use the `withTheme()` Higher-order Component.
-      if (withTheme) {
+      if (withTheme && !more.theme) {
         more.theme = this.theme;
       }
 
-      return <Component {...more} classes={this.getClasses()} ref={innerRef} {...other} />;
+      return <Component {...more} classes={this.getClasses()} ref={innerRef} />;
     }
   }
 

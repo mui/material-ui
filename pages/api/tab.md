@@ -9,6 +9,10 @@ title: Tab API
 
 <p class="description">The API documentation of the Tab React component.</p>
 
+```js
+import Tab from '@material-ui/core/Tab';
+```
+
 
 
 ## Props

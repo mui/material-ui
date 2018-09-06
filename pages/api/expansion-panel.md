@@ -9,6 +9,10 @@ title: ExpansionPanel API
 
 <p class="description">The API documentation of the ExpansionPanel React component.</p>
 
+```js
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+```
+
 
 
 ## Props
