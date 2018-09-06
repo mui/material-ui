@@ -35,7 +35,6 @@ const styles = theme => ({
   },
   title: {
     marginLeft: 24,
-    flex: '0 1 auto',
     [theme.breakpoints.down('sm')]: {
       marginLeft: 6,
     },
@@ -53,11 +52,11 @@ const styles = theme => ({
       background: fade(theme.palette.common.white, 0.25),
     },
     [theme.breakpoints.down('xs')]: {
-      width: 140,
+      width: '80%',
     },
   },
   searchIcon: {
-    width: theme.spacing.unit * 9,
+    width: theme.spacing.unit * 6,
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -66,11 +65,10 @@ const styles = theme => ({
     justifyContent: 'center',
   },
   inputRoot: {
-    width: '100%',
     color: 'inherit',
   },
   inputInput: {
-    paddingLeft: theme.spacing.unit * 8,
+    paddingLeft: theme.spacing.unit * 6,
   },
   rightSectionDesktop: {
     [theme.breakpoints.down('md')]: {
@@ -167,63 +165,61 @@ class PrimarySearchAppBar extends Component {
     );
 
     return (
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar className={classes.toolbar}>
-            <div className={classes.row}>
-              <IconButton color="inherit" aria-label="Open drawer">
-                <MenuIcon />
-              </IconButton>
-              <Typography className={classes.title} variant="title" color="inherit" noWrap>
-                Material-UI
-              </Typography>
+      <AppBar position="static">
+        <Toolbar className={classes.toolbar}>
+          <div className={classes.row}>
+            <IconButton color="inherit" aria-label="Open drawer">
+              <MenuIcon />
+            </IconButton>
+            <Typography className={classes.title} variant="title" color="inherit" noWrap>
+              Material-UI
+            </Typography>
+          </div>
+          <section className={classes.searchContainer}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
             </div>
-            <section className={classes.searchContainer}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <Input
-                id="search-input"
-                placeholder="Search…"
-                value={searchInput}
-                onChange={this.handleChange}
-                disableUnderline
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </section>
-            <div className={classes.rightSectionDesktop}>
-              <IconButton color="inherit">
-                <Badge className={classes.margin} badgeContent={4} color="secondary">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
-              <IconButton color="inherit">
-                <Badge className={classes.margin} badgeContent={17} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                aria-owns={isMenuOpen ? 'material-appbar' : null}
-                aria-haspopup="true"
-                onClick={this.handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-            <div className={classes.rightSectionMobile}>
-              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                <MoreIcon />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </AppBar>
+            <Input
+              id="search-input"
+              placeholder="Search…"
+              value={searchInput}
+              onChange={this.handleChange}
+              disableUnderline
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+            />
+          </section>
+          <div className={classes.rightSectionDesktop}>
+            <IconButton color="inherit">
+              <Badge className={classes.margin} badgeContent={4} color="secondary">
+                <MailIcon />
+              </Badge>
+            </IconButton>
+            <IconButton color="inherit">
+              <Badge className={classes.margin} badgeContent={17} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              aria-owns={isMenuOpen ? 'material-appbar' : null}
+              aria-haspopup="true"
+              onClick={this.handleProfileMenuOpen}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+          </div>
+          <div className={classes.rightSectionMobile}>
+            <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+              <MoreIcon />
+            </IconButton>
+          </div>
+        </Toolbar>
         {renderMenu}
         {renderMobileMenu}
-      </div>
+      </AppBar>
     );
   }
 }
