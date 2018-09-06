@@ -141,7 +141,7 @@ This will apply a change such as the following:
 -/>
 +<Switch
 +  checked={this.state.checkedA}
-+  onChange={this.handleSwitch()}
++  onChange={this.handleSwitch}
 +/>
 ```
 
