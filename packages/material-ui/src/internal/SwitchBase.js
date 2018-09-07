@@ -205,14 +205,6 @@ SwitchBase.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * If `true`, the component appears indeterminate.
-   */
-  indeterminate: PropTypes.bool,
-  /**
-   * The icon to display when the component is indeterminate.
-   */
-  indeterminateIcon: PropTypes.node,
-  /**
    * Attributes applied to the `input` element.
    */
   inputProps: PropTypes.object,
