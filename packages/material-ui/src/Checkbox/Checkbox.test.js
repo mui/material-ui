@@ -40,5 +40,16 @@ describe('<Checkbox />', () => {
       const wrapper = mount(<Checkbox indeterminate />);
       assert.strictEqual(wrapper.find(IndeterminateCheckBoxIcon).length, 1);
     });
+
+    it('should set input indeterminate status', () => {
+      const wrapper = mount(<Checkbox indeterminate />);
+      assert.strictEqual(wrapper.find('input').getDOMNode().indeterminate, true);
+    });
+
+    it('should change input indeterminate status on props change', () => {
+      const wrapper = mount(<Checkbox indeterminate />);
+      wrapper.setProps({ indeterminate: false });
+      assert.strictEqual(wrapper.find('input').getDOMNode().indeterminate, false);
+    });
   });
 });

@@ -1,5 +1,3 @@
-// @flow weak
-
 import './utils/performance';
 import './utils/init';
 

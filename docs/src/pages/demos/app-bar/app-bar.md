@@ -1,6 +1,6 @@
 ---
 title: App Bar React component
-components: AppBar, Toolbar
+components: AppBar, Toolbar, Menu
 ---
 
 # App Bar

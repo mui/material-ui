@@ -14,7 +14,7 @@ class DisabledTabs extends React.Component {
 
   render() {
     return (
-      <Paper>
+      <Paper square>
         <Tabs
           value={this.state.value}
           indicatorColor="primary"

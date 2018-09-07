@@ -5,8 +5,7 @@
   "description": "Custom eslint rules for Material-UI.",
   "main": "src/index.js",
   "scripts": {
-    "test": "../../node_modules/.bin/mocha src/**/*.test.js",
-    "build": "echo done"
+    "test": "mocha src/**/*.test.js"
   },
   "repository": {
     "type": "git",

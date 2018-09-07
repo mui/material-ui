@@ -10,12 +10,12 @@ import {
   StyleRulesCallback,
   StyledComponentProps,
   WithStyles,
-} from '../../src/styles';
-import Button from '../../src/Button/Button';
-import blue from '../../src/colors/blue';
-import { WithTheme } from '../../src/styles/withTheme';
-import { StandardProps } from '../../src';
-import { TypographyStyle } from '../../src/styles/createTypography';
+} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button/Button';
+import blue from '@material-ui/core/colors/blue';
+import { WithTheme } from '@material-ui/core/styles/withTheme';
+import { StandardProps } from '@material-ui/core';
+import { TypographyStyle } from '@material-ui/core/styles/createTypography';
 
 // Shared types for examples
 interface ComponentProps {
@@ -178,23 +178,27 @@ const AllTheComposition = withTheme()(
 <AllTheComposition />;
 
 {
-  const Foo = withTheme()(class extends React.Component<WithTheme> {
-    render() {
-      return null;
-    }
-  });
+  const Foo = withTheme()(
+    class extends React.Component<WithTheme> {
+      render() {
+        return null;
+      }
+    },
+  );
 
-  <Foo />
+  <Foo />;
 }
 
 declare const themed: boolean;
 {
   // Test that withTheme: true guarantees the presence of the theme
-  const Foo = withStyles({}, { withTheme: true })(class extends React.Component<WithTheme> {
-    render() {
-      return <div style={{ margin: this.props.theme.spacing.unit }} />;
-    }
-  });
+  const Foo = withStyles({}, { withTheme: true })(
+    class extends React.Component<WithTheme> {
+      render() {
+        return <div style={{ margin: this.props.theme.spacing.unit }} />;
+      }
+    },
+  );
   <Foo />;
 
   const Bar = withStyles({}, { withTheme: true })(({ theme }) => (
@@ -205,7 +209,7 @@ declare const themed: boolean;
 
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
-//@withStyles(styles)
+// @withStyles(styles)
 const DecoratedComponent = withStyles(styles)(
   class extends React.Component<ComponentProps & WithStyles<typeof styles>> {
     render() {
@@ -233,6 +237,35 @@ withStyles(theme =>
     },
   }),
 );
+
+{
+  // allow top level media queries
+  // https://github.com/mui-org/material-ui/issues/12277
+
+  // typescript thinks `content` is the CSS property not a classname
+  // $ExpectError
+  const ambiguousStyles = createStyles({
+    content: {
+      minHeight: '100vh',
+    },
+    '@media (min-width: 960px)': {
+      content: {
+        display: 'flex',
+      },
+    },
+  });
+
+  const styles = createStyles({
+    contentClass: {
+      minHeight: '100vh',
+    },
+    '@media (min-width: 960px)': {
+      contentClass: {
+        display: 'flex',
+      },
+    },
+  });
+}
 
 {
   const styles = (theme: Theme) =>
@@ -305,7 +338,7 @@ withStyles(theme =>
   const StyledComponent = withStyles(styles)(Component);
 
   class App extends React.Component {
-    public render() {
+    render() {
       return (
         <div className="App">
           <StyledComponent caption="Developer" />

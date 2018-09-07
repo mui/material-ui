@@ -98,22 +98,16 @@ const withWidth = (options = {}) => Component => {
     }
 
     render() {
-      const { initialWidth, theme, width, ...other } = this.props;
+      const { initialWidth, theme, width, ...other } = getThemeProps({
+        theme: this.props.theme,
+        name: 'MuiWithWidth',
+        props: { ...this.props },
+      });
 
-      const props = {
-        width:
-          width ||
-          this.state.width ||
-          initialWidth ||
-          initialWidthOption ||
-          getThemeProps({ theme, name: 'MuiWithWidth' }).initialWidth,
+      const more = {
+        width: width || this.state.width || initialWidth || initialWidthOption,
         ...other,
       };
-      const more = {};
-
-      if (withThemeOption) {
-        more.theme = theme;
-      }
 
       // When rendering the component on the server,
       // we have no idea about the client browser screen width.
@@ -121,13 +115,17 @@ const withWidth = (options = {}) => Component => {
       // we are not rendering the child component.
       //
       // An alternative is to use the `initialWidth` property.
-      if (props.width === undefined) {
+      if (more.width === undefined) {
         return null;
+      }
+
+      if (withThemeOption) {
+        more.theme = theme;
       }
 
       return (
         <EventListener target="window" onResize={this.handleResize}>
-          <Component {...more} {...props} />
+          <Component {...more} />
         </EventListener>
       );
     }

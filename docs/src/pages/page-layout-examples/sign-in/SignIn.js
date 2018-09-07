@@ -14,6 +14,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 const styles = theme => ({
   layout: {
     width: 'auto',
+    display: 'block', // Fix IE11 issue.
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
@@ -34,6 +35,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
+    width: '100%', // Fix IE11 issue.
     marginTop: theme.spacing.unit,
   },
   submit: {

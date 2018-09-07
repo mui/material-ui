@@ -1,4 +1,7 @@
+/* eslint-disable react/jsx-handler-names */
+
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
@@ -37,22 +40,53 @@ export const styles = theme => ({
   },
 });
 
-function Checkbox(props) {
-  const { checkedIcon, classes, color, icon, indeterminate, indeterminateIcon, ...other } = props;
+class Checkbox extends React.Component {
+  componentDidMount = () => {
+    this.updateIndeterminateStatus();
+  };
 
-  return (
-    <SwitchBase
-      type="checkbox"
-      checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
-      classes={{
-        root: classNames(classes.root, classes[`color${capitalize(color)}`]),
-        checked: classes.checked,
-        disabled: classes.disabled,
-      }}
-      icon={indeterminate ? indeterminateIcon : icon}
-      {...other}
-    />
-  );
+  componentDidUpdate = prevProps => {
+    if (prevProps.indeterminate !== this.props.indeterminate) {
+      this.updateIndeterminateStatus();
+    }
+  };
+
+  updateIndeterminateStatus = () => {
+    if (this.inputRef) {
+      this.inputRef.indeterminate = this.props.indeterminate;
+    }
+  };
+
+  handleInputRef = ref => {
+    this.inputRef = ReactDOM.findDOMNode(ref);
+  };
+
+  render() {
+    const {
+      checkedIcon,
+      classes,
+      color,
+      icon,
+      indeterminate,
+      indeterminateIcon,
+      ...other
+    } = this.props;
+
+    return (
+      <SwitchBase
+        type="checkbox"
+        checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
+        classes={{
+          root: classNames(classes.root, classes[`color${capitalize(color)}`]),
+          checked: classes.checked,
+          disabled: classes.disabled,
+        }}
+        icon={indeterminate ? indeterminateIcon : icon}
+        inputRef={this.handleInputRef}
+        {...other}
+      />
+    );
+  }
 }
 
 Checkbox.propTypes = {

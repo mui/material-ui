@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import Icon from '@material-ui/core/Icon';
 import ListItem from '@material-ui/core/ListItem';
@@ -26,6 +24,12 @@ export default function IconListItem() {
       </ListItem>
       <ListItem dense>
         <ListItemText inset primary="Inset" secondary="Secondary" />
+      </ListItem>
+      <ListItem selected>
+        <ListItemIcon>
+          <Icon>phone</Icon>
+        </ListItemIcon>
+        <ListItemText primary="Icon" />
       </ListItem>
     </div>
   );

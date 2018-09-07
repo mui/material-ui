@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -18,6 +16,12 @@ export default function SecondaryActionCheckboxListItem() {
           </ListItemSecondaryAction>
         </ListItem>
         <ListItem button dense>
+          <ListItemText primary="Primary" />
+          <ListItemSecondaryAction>
+            <Checkbox />
+          </ListItemSecondaryAction>
+        </ListItem>
+        <ListItem button selected>
           <ListItemText primary="Primary" />
           <ListItemSecondaryAction>
             <Checkbox />

@@ -9,6 +9,10 @@ title: TextField API
 
 <p class="description">The API documentation of the TextField React component.</p>
 
+```js
+import TextField from '@material-ui/core/TextField';
+```
+
 The `TextField` is a convenience wrapper for the most common cases (80%).
 It cannot be all things to all people, otherwise the API would grow out of control.
 

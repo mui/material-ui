@@ -78,7 +78,7 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
   }
 }
 
-export default function createPalette(palette: Object) {
+export default function createPalette(palette) {
   const {
     primary = {
       light: indigo[300],

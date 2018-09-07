@@ -3,16 +3,21 @@ defaults: &defaults
   docker:
     - image: circleci/node:9.10
 restore_repo: &restore_repo
-  restore_cache:
-    keys:
-      - v1-repo-{{ .Branch }}-{{ .Revision }}
+  # The cache logic of CircleCI has been disabled for Security reasons.
+  # We can no longer use it.
+  # restore_cache:
+  #   keys:
+  #     - v1-repo-{{ .Branch }}-{{ .Revision }}
+  run:
+    name: Install js dependencies
+    command: yarn
 version: 2
 jobs:
   checkout:
     <<: *defaults
     steps:
-      - *restore_repo
       - checkout
+      - *restore_repo
       - run:
           name: Check versions and env
           command: |
@@ -41,15 +46,38 @@ jobs:
   test_unit:
     <<: *defaults
     steps:
+      - checkout
       - *restore_repo
+      - run:
+          name: Export changed files
+          command: |
+            # changed files on this branch
+            # `git diff --name-only master` but since the checkout used reset --hard
+            # we need to parse the revs for the actual master
+            echo 'export CHANGED_FILES=$(git diff --name-only $(git rev-parse origin/master)...)' >> $BASH_ENV
+      - run:
+          name: Check if yarn prettier was run
+          command: |
+            # if we use an empty string as a pattern grep will match everything
+            if [ -z "$CHANGED_FILES" ]; then
+              echo "no changes"
+            else
+              # Files that should have been formatted while working on this branch
+              # CircleCI does not support interpolation when setting environment variables
+              echo 'export FORMATTED_FILES=$(yarn --silent prettier:files | grep "$CHANGED_FILES")' >> $BASH_ENV
+              source $BASH_ENV
+
+              if [ -z "$FORMATTED_FILES" ]; then
+                echo "no files for prettier were changed"
+              else
+                yarn prettier:ci $FORMATTED_FILES
+              fi
+            fi
       - run:
           name: Lint
           command: yarn lint
       - run:
-          name: Flow
-          command: yarn flow
-      - run:
-          name: TypeScript
+          name: Tests TypeScript definitions
           command: yarn typescript
       - run:
           name: Tests fake browser
@@ -67,6 +95,7 @@ jobs:
   test_material-ui-x:
     <<: *defaults
     steps:
+      - checkout
       - *restore_repo
       - run:
           name: material-ui-icons
@@ -135,6 +164,7 @@ jobs:
     docker:
       - image: circleci/node:9.10
     steps:
+      - checkout
       - *restore_repo
       - run:
           name: Can we generate the material-ui build?
@@ -148,6 +178,7 @@ jobs:
   test_browser:
     <<: *defaults
     steps:
+      - checkout
       - *restore_repo
       - run:
           name: Can we generate the api of the docs?
@@ -158,7 +189,9 @@ jobs:
       - run:
           name: Install dependencies for Chrome Headless
           # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
-          command: sudo apt-get install -y gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
       - run:
           name: Tests real browsers
           command: yarn test:karma
@@ -168,6 +201,7 @@ jobs:
       - image: circleci/node:9.10
       - image: selenium/standalone-chrome:3.11.0
     steps:
+      - checkout
       - *restore_repo
       - run:
           name: Visual regression tests

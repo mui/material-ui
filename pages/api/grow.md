@@ -9,6 +9,10 @@ title: Grow API
 
 <p class="description">The API documentation of the Grow React component.</p>
 
+```js
+import Grow from '@material-ui/core/Grow';
+```
+
 The Grow transition is used by the [Tooltip](/demos/tooltips) and
 [Popover](/utils/popover) components.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.

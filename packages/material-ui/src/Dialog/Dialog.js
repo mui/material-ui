@@ -70,6 +70,15 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the `Paper` component if `maxWidth="lg"`. */
+  paperWidthLg: {
+    maxWidth: theme.breakpoints.values.lg,
+    '&$paperScrollBody': {
+      [theme.breakpoints.down(theme.breakpoints.values.lg + 48 * 2)]: {
+        margin: 48,
+      },
+    },
+  },
   /* Styles applied to the `Paper` component if `fullWidth={true}`. */
   paperFullWidth: {
     width: '100%',
@@ -82,6 +91,9 @@ export const styles = theme => ({
     height: '100%',
     maxHeight: 'none',
     borderRadius: 0,
+    '&$paperScrollBody': {
+      margin: 0,
+    },
   },
 });
 
@@ -201,7 +213,7 @@ Dialog.propTypes = {
    * on the desktop where you might need some coherent different width size across your
    * application. Set to `false` to disable `maxWidth`.
    */
-  maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', false]),
+  maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', false]),
   /**
    * Callback fired when the backdrop is clicked.
    */

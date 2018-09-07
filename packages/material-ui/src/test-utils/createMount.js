@@ -1,11 +1,8 @@
-// @flow weak
-
 import { unmountComponentAtNode } from 'react-dom';
-import type { Element } from 'react';
 import { mount as enzymeMount } from 'enzyme';
 
 // Generate an enhanced mount function.
-export default function createMount(options1: Object = {}) {
+export default function createMount(options1 = {}) {
   const { mount = enzymeMount, ...other1 } = options1;
 
   const attachTo = window.document.createElement('div');
@@ -13,7 +10,7 @@ export default function createMount(options1: Object = {}) {
   attachTo.setAttribute('id', 'app');
   window.document.body.insertBefore(attachTo, window.document.body.firstChild);
 
-  const mountWithContext = function mountWithContext(node: Element<any>, options2: Object = {}) {
+  const mountWithContext = function mountWithContext(node, options2 = {}) {
     return mount(node, {
       attachTo,
       ...other1,

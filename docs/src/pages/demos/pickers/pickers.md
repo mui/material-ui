@@ -17,6 +17,7 @@ If you are interested in implementing or have implemented a rich Material Design
 Here are some components that are **promising**:
 - [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers): date pickers and time pickers.
 - [material-ui-time-picker](https://github.com/TeamWertarbyte/material-ui-time-picker): time pickers.
+- [material-ui-next-pickers](https://github.com/chingyawhao/material-ui-next-pickers): date pickers and time pickers.
 
 ⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime).
 

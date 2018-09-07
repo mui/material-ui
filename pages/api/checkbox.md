@@ -9,6 +9,10 @@ title: Checkbox API
 
 <p class="description">The API documentation of the Checkbox React component.</p>
 
+```js
+import Checkbox from '@material-ui/core/Checkbox';
+```
+
 
 
 ## Props

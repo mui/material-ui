@@ -1,5 +1,3 @@
-// @flow weak
-
 const webpack = require('webpack');
 
 const browserStack = {
@@ -50,6 +48,7 @@ module.exports = function setKarmaConfig(config) {
     },
     reporters: ['dots'],
     webpack: {
+      mode: 'development',
       devtool: 'inline-source-map',
       plugins: [
         new webpack.DefinePlugin({
@@ -103,7 +102,7 @@ module.exports = function setKarmaConfig(config) {
           os: 'Windows',
           os_version: '10',
           browser: 'Firefox',
-          browser_version: '45.0',
+          browser_version: '52.0',
         },
         BrowserStack_Safari: {
           base: 'BrowserStack',

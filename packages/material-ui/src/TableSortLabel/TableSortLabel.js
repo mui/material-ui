@@ -56,7 +56,7 @@ export const styles = theme => ({
  * A button based label for placing inside `TableCell` for column sorting.
  */
 function TableSortLabel(props) {
-  const { active, classes, className, children, direction, ...other } = props;
+  const { active, classes, className, children, direction, IconComponent, ...other } = props;
 
   return (
     <ButtonBase
@@ -66,7 +66,7 @@ function TableSortLabel(props) {
       {...other}
     >
       {children}
-      <ArrowDownwardIcon
+      <IconComponent
         className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
       />
     </ButtonBase>
@@ -95,11 +95,16 @@ TableSortLabel.propTypes = {
    * The current sort direction.
    */
   direction: PropTypes.oneOf(['asc', 'desc']),
+  /**
+   * Sort icon to use.
+   */
+  IconComponent: PropTypes.func,
 };
 
 TableSortLabel.defaultProps = {
   active: false,
   direction: 'desc',
+  IconComponent: ArrowDownwardIcon,
 };
 
 export default withStyles(styles, { name: 'MuiTableSortLabel' })(TableSortLabel);

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -23,6 +21,15 @@ export default function PrimaryActionCheckboxListItem() {
           </ListItemSecondaryAction>
         </ListItem>
         <ListItem button dense>
+          <Checkbox tabIndex={-1} disableRipple />
+          <ListItemText primary="Primary" />
+          <ListItemSecondaryAction>
+            <IconButton>
+              <Icon>comment</Icon>
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
+        <ListItem button selected>
           <Checkbox tabIndex={-1} disableRipple />
           <ListItemText primary="Primary" />
           <ListItemSecondaryAction>
