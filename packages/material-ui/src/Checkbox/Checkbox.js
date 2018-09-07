@@ -90,7 +90,8 @@ Checkbox.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * If `true`, the component appears indeterminate.
+   * If `true`, the component appears indeterminate. This does not set the native
+   * input element to indeterminate due inconsistent behavior across browsers.
    */
   indeterminate: PropTypes.bool,
   /**
