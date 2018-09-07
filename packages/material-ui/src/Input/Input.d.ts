@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface InputProps
+export type IntrinsicElement = keyof JSX.IntrinsicElements;
+
+export interface InputProps<E extends IntrinsicElement | React.ComponentType = 'input'>
   extends StandardProps<
       React.HTMLAttributes<HTMLDivElement>,
       InputClassKey,
@@ -16,8 +18,10 @@ export interface InputProps
   error?: boolean;
   fullWidth?: boolean;
   id?: string;
-  inputComponent?: React.ReactType<InputComponentProps>;
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  inputComponent?: E;
+  inputProps?: E extends React.ComponentType<infer P>
+    ? P
+    : E extends IntrinsicElement ? JSX.IntrinsicElements[E] : never;
   inputRef?: React.Ref<any> | React.RefObject<any>;
   margin?: 'dense';
   multiline?: boolean;
@@ -43,11 +47,6 @@ export interface InputProps
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
 }
 
-export interface InputComponentProps extends InputProps {
-  // Accommodate arbitrary additional props coming from the `inputProps` prop
-  [arbitrary: string]: any;
-}
-
 export type InputClassKey =
   | 'root'
   | 'formControl'
@@ -64,6 +63,6 @@ export type InputClassKey =
   | 'inputType'
   | 'inputTypeSearch';
 
-declare const Input: React.ComponentType<InputProps>;
-
-export default Input;
+export default class Input<
+  E extends IntrinsicElement | React.ComponentType = 'input'
+> extends React.Component<InputProps<E>> {}
