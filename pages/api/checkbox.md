@@ -27,7 +27,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool |   | If `true`, the ripple effect will be disabled. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node | <span class="prop-default">&lt;CheckBoxOutlineBlankIcon /></span> | The icon to display when the component is unchecked. |
 | <span class="prop-name">id</span> | <span class="prop-type">string |   | The id of the `input` element. |
-| <span class="prop-name">indeterminate</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the component appears indeterminate. This does not set the native input element to indeterminate due inconsistent behavior across browsers. |
+| <span class="prop-name">indeterminate</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the component appears indeterminate. This does not set the native input element to indeterminate due inconsistent behavior across browsers. However, we set a `data-indeterminate` attribute on the input. |
 | <span class="prop-name">indeterminateIcon</span> | <span class="prop-type">node | <span class="prop-default">&lt;IndeterminateCheckBoxIcon /></span> | The icon to display when the component is indeterminate. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object |   | Properties applied to the `input` element. |
 | <span class="prop-name">inputRef</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> |   | Use that property to pass a ref callback to the native input component. |
@@ -48,6 +48,7 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">checked</span> | Styles applied to the root element if `checked={true}`.
 | <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">indeterminate</span> | Styles applied to the root element if `indeterminate={true}`.
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
