@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-handler-names */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
@@ -9,6 +8,7 @@ import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import { capitalize } from '../utils/helpers';
+import { forwardRef } from '../utils/reactHelpers';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -41,25 +41,53 @@ export const styles = theme => ({
 });
 
 class Checkbox extends React.Component {
-  componentDidMount = () => {
+  componentDidMount() {
     this.updateIndeterminateStatus();
-  };
+  }
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate(prevProps) {
     if (prevProps.indeterminate !== this.props.indeterminate) {
       this.updateIndeterminateStatus();
     }
-  };
+  }
 
-  updateIndeterminateStatus = () => {
-    if (this.inputRef) {
-      this.inputRef.indeterminate = this.props.indeterminate;
+  handleClick = (event, ...clickArgs) => {
+    const { checked: wasChecked, indeterminate: wasIndeterminate, onChange, onClick } = this.props;
+    const { checked: isChecked, indeterminate: isIndeterminate } = event.target;
+    const gotDetermined = wasIndeterminate && !isIndeterminate;
+    const checkChanged = wasChecked !== isChecked;
+
+    // some browser (e.g. Edge) do not change checked after setting indeterminate to false
+    if (gotDetermined && !checkChanged) {
+      this.inputRef.checked = !isChecked;
+      event.target.checked = !isChecked;
+
+      if (onChange) {
+        // re-dispatch as change event
+        const changeEvent = new window.Event('change', event);
+        this.inputRef.dispatchEvent(changeEvent);
+        // dispatching the event does not trigger react onChange
+        // but calling onChange with the plain event will not include target unless we dispatch it
+        onChange(changeEvent, event.target.checked);
+      }
+    }
+
+    if (onClick) {
+      onClick(event, ...clickArgs);
     }
   };
 
   handleInputRef = ref => {
-    this.inputRef = ReactDOM.findDOMNode(ref);
+    this.inputRef = ref;
+
+    forwardRef(ref, this.props.inputRef);
   };
+
+  updateIndeterminateStatus() {
+    if (this.inputRef) {
+      this.inputRef.indeterminate = this.props.indeterminate;
+    }
+  }
 
   render() {
     const {
@@ -82,8 +110,9 @@ class Checkbox extends React.Component {
           disabled: classes.disabled,
         }}
         icon={indeterminate ? indeterminateIcon : icon}
-        inputRef={this.handleInputRef}
         {...other}
+        inputRef={this.handleInputRef}
+        onClick={this.handleClick}
       />
     );
   }

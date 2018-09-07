@@ -22,3 +22,19 @@ export function isMuiElement(element, muiNames) {
 export function isMuiComponent(element, muiNames) {
   return muiNames.indexOf(element.muiName) !== -1;
 }
+
+/**
+ * passes {instanceRef} to {toRef}
+ *
+ * useful if you want to expose the ref of an inner component to the public api
+ * while still using this inside the component
+ * @param {ReactInstance} instanceRef
+ * @param {RefObject | RefCallback | any} toRef
+ */
+export function forwardRef(instanceRef, toRef) {
+  if (typeof toRef === 'function') {
+    toRef(instanceRef);
+  } else if (toRef && 'current' in toRef) {
+    toRef.current = instanceRef;
+  }
+}

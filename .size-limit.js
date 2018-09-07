@@ -22,7 +22,7 @@ module.exports = [
     name: 'The size of all the modules of material-ui.',
     webpack: true,
     path: 'packages/material-ui/build/index.js',
-    limit: '90.1 KB',
+    limit: '90.28 KB',
   },
   {
     name: 'The main bundle of the docs',
