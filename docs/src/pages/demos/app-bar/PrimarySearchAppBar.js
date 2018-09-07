@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -19,44 +19,38 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 
 const styles = theme => ({
   root: {
+    width: '100%',
+  },
+  grow: {
     flexGrow: 1,
   },
-  toolbar: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flex: 1,
-    padding: 0,
-  },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
   },
   title: {
-    marginLeft: 24,
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: 6,
-    },
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
     },
   },
-  searchContainer: {
-    width: '40%',
+  search: {
     position: 'relative',
-    borderRadius: 2,
-    background: fade(theme.palette.common.white, 0.15),
-    transition: theme.transitions.create('width'),
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      background: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    [theme.breakpoints.down('xs')]: {
-      width: '80%',
+    marginRight: theme.spacing.unit * 2,
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing.unit * 3,
+      width: 'auto',
     },
   },
   searchIcon: {
-    width: theme.spacing.unit * 6,
+    width: theme.spacing.unit * 9,
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -66,31 +60,37 @@ const styles = theme => ({
   },
   inputRoot: {
     color: 'inherit',
+    width: '100%',
   },
   inputInput: {
-    paddingLeft: theme.spacing.unit * 6,
-  },
-  rightSectionDesktop: {
-    [theme.breakpoints.down('md')]: {
-      display: 'none',
+    paddingTop: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 10,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 200,
     },
   },
-  rightSectionMobile: {
-    [theme.breakpoints.up('lg')]: {
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
       display: 'none',
     },
   },
 });
 
-class PrimarySearchAppBar extends Component {
+class PrimarySearchAppBar extends React.Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
-    searchInput: '',
-  };
-
-  handleChange = event => {
-    this.setState({ searchInput: event.target.value });
   };
 
   handleProfileMenuOpen = event => {
@@ -111,14 +111,13 @@ class PrimarySearchAppBar extends Component {
   };
 
   render() {
-    const { searchInput, anchorEl, mobileMoreAnchorEl } = this.state;
+    const { anchorEl, mobileMoreAnchorEl } = this.state;
     const { classes } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const renderMenu = (
       <Menu
-        id="menu-appbar"
         anchorEl={anchorEl}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -132,7 +131,6 @@ class PrimarySearchAppBar extends Component {
 
     const renderMobileMenu = (
       <Menu
-        id="mobile-menu"
         anchorEl={mobileMoreAnchorEl}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -141,7 +139,7 @@ class PrimarySearchAppBar extends Component {
       >
         <MenuItem>
           <IconButton color="inherit">
-            <Badge className={classes.margin} badgeContent={4} color="primary">
+            <Badge className={classes.margin} badgeContent={4} color="secondary">
               <MailIcon />
             </Badge>
           </IconButton>
@@ -149,7 +147,7 @@ class PrimarySearchAppBar extends Component {
         </MenuItem>
         <MenuItem>
           <IconButton color="inherit">
-            <Badge className={classes.margin} badgeContent={17} color="primary">
+            <Badge className={classes.margin} badgeContent={11} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
@@ -165,61 +163,59 @@ class PrimarySearchAppBar extends Component {
     );
 
     return (
-      <AppBar position="static">
-        <Toolbar className={classes.toolbar}>
-          <div className={classes.row}>
-            <IconButton color="inherit" aria-label="Open drawer">
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
               <MenuIcon />
             </IconButton>
             <Typography className={classes.title} variant="title" color="inherit" noWrap>
               Material-UI
             </Typography>
-          </div>
-          <section className={classes.searchContainer}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <Input
+                placeholder="Search…"
+                disableUnderline
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+              />
             </div>
-            <Input
-              id="search-input"
-              placeholder="Search…"
-              value={searchInput}
-              onChange={this.handleChange}
-              disableUnderline
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
-          </section>
-          <div className={classes.rightSectionDesktop}>
-            <IconButton color="inherit">
-              <Badge className={classes.margin} badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton color="inherit">
-              <Badge className={classes.margin} badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              aria-owns={isMenuOpen ? 'material-appbar' : null}
-              aria-haspopup="true"
-              onClick={this.handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.rightSectionMobile}>
-            <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+              <IconButton color="inherit">
+                <Badge className={classes.margin} badgeContent={4} color="secondary">
+                  <MailIcon />
+                </Badge>
+              </IconButton>
+              <IconButton color="inherit">
+                <Badge className={classes.margin} badgeContent={17} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton
+                aria-owns={isMenuOpen ? 'material-appbar' : null}
+                aria-haspopup="true"
+                onClick={this.handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </div>
+            <div className={classes.sectionMobile}>
+              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+                <MoreIcon />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
         {renderMenu}
         {renderMobileMenu}
-      </AppBar>
+      </div>
     );
   }
 }
