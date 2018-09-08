@@ -36,6 +36,7 @@ export const styles = theme => {
       textDecoration: 'none',
       border: 'none', // Remove `button` border
       padding: 0, // Remove `button` padding
+      verticalAlign: 'middle',
     },
     /* Styles applied to the root element if `color="primary"`. */
     colorPrimary: {
