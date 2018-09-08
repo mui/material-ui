@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable react/prop-types, react/jsx-handler-names */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -183,7 +183,7 @@ function MultiValue(props) {
       className={classNames(props.selectProps.classes.chip, {
         [props.selectProps.classes.chipFocused]: props.isFocused,
       })}
-      onDelete={props.removeProps.handleOnClick}
+      onDelete={props.removeProps.onClick}
       deleteIcon={<CancelIcon {...props.removeProps} />}
     />
   );
