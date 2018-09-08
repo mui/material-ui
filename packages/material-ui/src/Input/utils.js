@@ -19,8 +19,7 @@ export function isFilled(obj, SSR = false) {
   return (
     obj &&
     ((hasValue(obj.value) && obj.value !== '') ||
-      (SSR && hasValue(obj.defaultValue) && obj.defaultValue !== '') ||
-      (obj.validity && obj.validity.valid) === false)
+      (SSR && hasValue(obj.defaultValue) && obj.defaultValue !== ''))
   );
 }
 

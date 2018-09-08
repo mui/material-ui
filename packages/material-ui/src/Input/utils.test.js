@@ -22,14 +22,6 @@ describe('Input/utils.js', () => {
         assert.strictEqual(isFilled({ value }), true);
       });
 
-      it(`is true for value ${value} while invalid`, () => {
-        assert.strictEqual(isFilled({ value, validity: { valid: false } }), true);
-      });
-
-      it(`is true for value ${value} while valid`, () => {
-        assert.strictEqual(isFilled({ value, validity: { valid: true } }), true);
-      });
-
       it(`is true for SSR defaultValue ${value}`, () => {
         assert.strictEqual(isFilled({ defaultValue: value }, true), true);
       });
@@ -37,14 +29,6 @@ describe('Input/utils.js', () => {
     [null, undefined, ''].forEach(value => {
       it(`is false for value ${value}`, () => {
         assert.strictEqual(isFilled({ value }), false);
-      });
-
-      it(`is true for value ${value} while invalid`, () => {
-        assert.strictEqual(isFilled({ value, validity: { valid: false } }), true);
-      });
-
-      it(`is false for value ${value} while valid`, () => {
-        assert.strictEqual(isFilled({ value, validity: { valid: true } }), false);
       });
 
       it(`is false for SSR defaultValue ${value}`, () => {

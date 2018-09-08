@@ -66,3 +66,20 @@ but you are not confident jumping in, here's an example of how you can change th
 Icons can be specified as prepended or appended.
 
 {{"demo": "pages/demos/text-fields/InputWithIcon.js"}}
+
+## Limitations
+
+The input label "shrink" state isn't always correct.
+The input label is supposed to shrink as soon as the input is displaying something.
+In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+
+![shrink](/static/images/text-fields/shrink.png)
+
+To workaround the issue, you can force the "shrink" state of the label.
+```jsx
+<TextField InputLabelProps={{ shrink: true }} />
+```
+or
+```jsx
+<InputLabel shrink>Count</InputLabel>
+```
