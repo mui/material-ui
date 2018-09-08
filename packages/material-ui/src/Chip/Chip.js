@@ -298,25 +298,26 @@ class Chip extends React.Component {
 
     let deleteIcon = null;
     if (onDelete) {
+      const customClasses = {
+        [classes[`deleteIconColor${capitalize(color)}`]]:
+          color !== 'default' && variant !== 'outlined',
+        [classes[`deleteIconOutlinedColor${capitalize(color)}`]]:
+          color !== 'default' && variant === 'outlined',
+      };
+
       deleteIcon =
         deleteIconProp && React.isValidElement(deleteIconProp) ? (
           React.cloneElement(deleteIconProp, {
-            className: classNames(deleteIconProp.props.className, classes.deleteIcon, {
-              [classes[`deleteIconColor${capitalize(color)}`]]:
-                color !== 'default' && variant !== 'outlined',
-              [classes[`deleteIconOutlinedColor${capitalize(color)}`]]:
-                color !== 'default' && variant === 'outlined',
-            }),
+            className: classNames(
+              deleteIconProp.props.className,
+              classes.deleteIcon,
+              customClasses,
+            ),
             onClick: this.handleDeleteIconClick,
           })
         ) : (
           <CancelIcon
-            className={classNames(classes.deleteIcon, {
-              [classes[`deleteIconColor${capitalize(color)}`]]:
-                color !== 'default' && variant !== 'outlined',
-              [classes[`deleteIconOutlinedColor${capitalize(color)}`]]:
-                color !== 'default' && variant === 'outlined',
-            })}
+            className={classNames(classes.deleteIcon, customClasses)}
             onClick={this.handleDeleteIconClick}
           />
         );

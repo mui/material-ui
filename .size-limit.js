@@ -4,7 +4,7 @@ const buildId = fs.readFileSync('.next/BUILD_ID', 'utf8');
 
 const dirname = '.next/static/chunks';
 const [main] = fs.readdirSync(dirname).reduce((result, filename) => {
-  if (filename.length === 23) {
+  if (filename.length === 31) {
     return [...result, { path: `${dirname}/${filename}` }];
   }
 
@@ -28,7 +28,7 @@ module.exports = [
     name: 'The main bundle of the docs',
     webpack: false,
     path: main.path,
-    limit: '178 KB',
+    limit: '176 KB',
   },
   {
     name: 'The home page of the docs',
