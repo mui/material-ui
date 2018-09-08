@@ -183,7 +183,7 @@ function MultiValue(props) {
       className={classNames(props.selectProps.classes.chip, {
         [props.selectProps.classes.chipFocused]: props.isFocused,
       })}
-      onDelete={props.removeProps.onClick}
+      onDelete={props.removeProps.handleOnClick}
       deleteIcon={<CancelIcon {...props.removeProps} />}
     />
   );
