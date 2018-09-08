@@ -14,12 +14,18 @@ import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
 import getThemeProps from './getThemeProps';
+import packageId from './packageId';
 
 // Default JSS instance.
 const jss = create(jssPreset());
 
 // Use a singleton or the provided one by the context.
-const generateClassName = createGenerateClassName();
+//
+// ⚠️ People might use the default generator more than once.
+// It can be an issue, aside from the bundle size overhead, it can break the styles.
+// The generated classNames can collide.
+// We are avoiding the collision with a seed, one per package installation.
+const generateClassName = createGenerateClassName({ seed: packageId });
 
 // Global index counter to preserve source order.
 // We create the style sheet during at the creation of the component,
