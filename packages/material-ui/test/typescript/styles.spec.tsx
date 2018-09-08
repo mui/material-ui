@@ -169,11 +169,14 @@ const ComponentWithTheme = withTheme()(({ theme }) => <div>{theme.spacing.unit}<
 // withStyles + withTheme
 type AllTheProps = WithTheme & WithStyles<typeof styles>;
 
-const AllTheComposition = withTheme()(
-  withStyles(styles, { withTheme: true })(({ theme, classes }: AllTheProps) => (
-    <div className={classes.root}>{theme.palette.text.primary}</div>
-  )),
-);
+const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => (
+  <div className={classes.root}>{theme.palette.text.primary}</div>
+));
+
+// missing prop theme
+<StyledComponent />; // $ExpectError
+
+const AllTheComposition = withTheme()(StyledComponent);
 
 <AllTheComposition />;
 

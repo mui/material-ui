@@ -71,9 +71,11 @@ export type Overwrite<T, U> = Omit<T, keyof U> & U;
  *
  */
 export type Matching<InjectedProps, DecorationTargetProps> = {
-  [P in keyof DecorationTargetProps]: P extends keyof InjectedProps
-    ? InjectedProps[P]
-    : DecorationTargetProps[P]
+	[P in keyof DecorationTargetProps]: P extends keyof InjectedProps
+		? InjectedProps[P] extends DecorationTargetProps[P]
+			? DecorationTargetProps[P]
+			: InjectedProps[P]
+		: DecorationTargetProps[P];
 };
 
 export namespace PropTypes {
