@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Matching, Omit, PropsOf } from '..';
+import { Omit, PropInjector, PropsOf } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
@@ -60,14 +60,4 @@ export default function withStyles<
 >(
   style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   options?: Options,
-): <
-  C extends React.ComponentType<Matching<WithStyles<ClassKey, Options['withTheme']>, PropsOf<C>>>
->(
-  component: C,
-) => React.ComponentType<
-  Omit<
-    JSX.LibraryManagedAttributes<C, PropsOf<C>>,
-    keyof WithStyles<ClassKey, Options['withTheme']>
-  > &
-    StyledComponentProps<ClassKey>
->;
+): PropInjector<WithStyles<ClassKey, Options['withTheme']>, StyledComponentProps<ClassKey>>;

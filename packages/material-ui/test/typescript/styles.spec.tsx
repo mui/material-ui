@@ -14,7 +14,7 @@ import {
 import Button from '@material-ui/core/Button/Button';
 import blue from '@material-ui/core/colors/blue';
 import { WithTheme } from '@material-ui/core/styles/withTheme';
-import { Matching, PropsOf, StandardProps } from '@material-ui/core';
+import { PropsOf, StandardProps } from '@material-ui/core';
 import { TypographyStyle } from '@material-ui/core/styles/createTypography';
 
 // Shared types for examples
@@ -162,7 +162,7 @@ function OverridesTheme() {
 }
 
 // withTheme
-const ComponentWithTheme = withTheme()(({ theme }) => <div>{theme.spacing.unit}</div>);
+const ComponentWithTheme = withTheme()(({ theme }: WithTheme) => <div>{theme.spacing.unit}</div>);
 
 <ComponentWithTheme />;
 
