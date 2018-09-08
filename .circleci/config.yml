@@ -2,22 +2,32 @@ defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:9.10
-restore_repo: &restore_repo
-  # The cache logic of CircleCI has been disabled for Security reasons.
-  # We can no longer use it.
-  # restore_cache:
-  #   keys:
-  #     - v1-repo-{{ .Branch }}-{{ .Revision }}
+# CircleCI has disabled the cache across forks for security reasons.
+# Following their official statement, it was a quick solution, they
+# are working on providing this feature back with appropriate security measures.
+# restore_repo: &restore_repo
+#   restore_cache:
+#     key: v1-repo-{{ .Branch }}-{{ .Revision }}
+install_js: &install_js
   run:
     name: Install js dependencies
-    command: yarn
+    command: |
+      yarn config set yarn-offline-mirror ~/.cache/npm-packages-offline-cache/v1
+      yarn
+restore_yarn_cache: &restore_yarn_cache
+  restore_cache:
+    key: v1-yarn-sha-{{ checksum "yarn.lock" }}
+restore_yarn_offline_mirror: &restore_yarn_offline_mirror
+  restore_cache:
+    key: v1-npm-packages-offline-cache
 version: 2
 jobs:
   checkout:
     <<: *defaults
     steps:
       - checkout
-      - *restore_repo
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
       - run:
           name: Check versions and env
           command: |
@@ -27,11 +37,7 @@ jobs:
             docker-compose --version
             env
             yarn cache dir
-      - restore_cache:
-          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install js dependencies
-          command: yarn
+      - *install_js
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
@@ -40,14 +46,16 @@ jobs:
           paths:
             - ~/.cache/yarn/v1
       - save_cache:
-          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          key: v1-npm-packages-offline-cache
           paths:
-            - /tmp/material-ui
+            - ~/.cache/npm-packages-offline-cache/v1
   test_unit:
     <<: *defaults
     steps:
       - checkout
-      - *restore_repo
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
+      - *install_js
       - run:
           name: Export changed files
           command: |
@@ -96,7 +104,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *restore_repo
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
+      - *install_js
       - run:
           name: material-ui-icons
           command: |
@@ -165,7 +175,9 @@ jobs:
       - image: circleci/node:9.10
     steps:
       - checkout
-      - *restore_repo
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
+      - *install_js
       - run:
           name: Can we generate the material-ui build?
           command: cd packages/material-ui && yarn build
@@ -179,9 +191,11 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *restore_repo
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
+      - *install_js
       - run:
-          name: Can we generate the api of the docs?
+          name: "`yarn docs:api` changes commited?"
           command: yarn docs:api
       - run:
           name: Should not have any git not staged
@@ -202,7 +216,9 @@ jobs:
       - image: selenium/standalone-chrome:3.11.0
     steps:
       - checkout
-      - *restore_repo
+      - *restore_yarn_offline_mirror
+      - *restore_yarn_cache
+      - *install_js
       - run:
           name: Visual regression tests
           command: |

@@ -17,7 +17,7 @@ export interface InputProps
   fullWidth?: boolean;
   id?: string;
   inputComponent?: React.ReactType<InputComponentProps>;
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  inputProps?: InputComponentProps;
   inputRef?: React.Ref<any> | React.RefObject<any>;
   margin?: 'dense';
   multiline?: boolean;

@@ -21,7 +21,7 @@ export const styles = theme => ({
 });
 
 class ToggleButtonGroup extends React.Component {
-  handleChange = buttonValue => {
+  handleChange = (event, buttonValue) => {
     const { onChange, value } = this.props;
 
     if (!onChange) {
@@ -39,17 +39,17 @@ class ToggleButtonGroup extends React.Component {
       newValue = value ? [...value, buttonValue] : [buttonValue];
     }
 
-    onChange(newValue);
+    onChange(event, newValue);
   };
 
-  handleExclusiveChange = buttonValue => {
+  handleExclusiveChange = (event, buttonValue) => {
     const { onChange, value } = this.props;
 
     if (!onChange) {
       return;
     }
 
-    onChange(value === buttonValue ? null : buttonValue);
+    onChange(event, value === buttonValue ? null : buttonValue);
   };
 
   render() {
@@ -119,7 +119,8 @@ ToggleButtonGroup.propTypes = {
    *
    * @param {object} event The event source of the callback
    * @param {object} value of the selected buttons. When `exclusive` is true
-   * this is a single value; when false an array of selected values.
+   * this is a single value; when false an array of selected values. If no value
+   * is selected the value is null.
    */
   onChange: PropTypes.func,
   /**
