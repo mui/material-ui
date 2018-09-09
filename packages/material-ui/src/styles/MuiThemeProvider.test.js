@@ -71,7 +71,7 @@ describe('<MuiThemeProvider />', () => {
     it('should be able to extract the styles', () => {
       const theme = createMuiTheme();
       const sheetsRegistry = new SheetsRegistry();
-      const generateClassName = createGenerateClassName({ seed: '' });
+      const generateClassName = createGenerateClassName();
 
       const markup = ReactDOMServer.renderToString(
         <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
