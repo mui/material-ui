@@ -6,16 +6,16 @@ describe('createGenerateClassName', () => {
   describe('counter', () => {
     it('should increment a scoped counter', () => {
       const rule = { key: 'root' };
-      const generateClassName1 = createGenerateClassName();
+      const generateClassName1 = createGenerateClassName({ seed: '' });
       assert.strictEqual(generateClassName1(rule), 'root-1');
       assert.strictEqual(generateClassName1(rule), 'root-2');
-      const generateClassName2 = createGenerateClassName();
+      const generateClassName2 = createGenerateClassName({ seed: '' });
       assert.strictEqual(generateClassName2(rule), 'root-1');
     });
   });
 
   it('should escape parenthesis', () => {
-    const generateClassName = createGenerateClassName();
+    const generateClassName = createGenerateClassName({ seed: '' });
     assert.strictEqual(
       generateClassName(
         { key: 'root' },
@@ -31,7 +31,7 @@ describe('createGenerateClassName', () => {
   });
 
   it('should escape spaces', () => {
-    const generateClassName = createGenerateClassName();
+    const generateClassName = createGenerateClassName({ seed: '' });
     assert.strictEqual(
       generateClassName(
         { key: 'root' },
@@ -49,6 +49,7 @@ describe('createGenerateClassName', () => {
   describe('options: dangerouslyUseGlobalCSS', () => {
     it('should use a global class name', () => {
       const generateClassName = createGenerateClassName({
+        seed: '',
         dangerouslyUseGlobalCSS: true,
       });
       assert.strictEqual(
@@ -84,6 +85,7 @@ describe('createGenerateClassName', () => {
 
     it('should default to a non deterministic name', () => {
       const generateClassName = createGenerateClassName({
+        seed: '',
         dangerouslyUseGlobalCSS: true,
       });
       assert.strictEqual(
@@ -99,13 +101,13 @@ describe('createGenerateClassName', () => {
     it('should take the sheet meta in development if available', () => {
       const rule = { key: 'root' };
       const styleSheet = { options: { classNamePrefix: 'Button' } };
-      const generateClassName = createGenerateClassName();
+      const generateClassName = createGenerateClassName({ seed: '' });
       assert.strictEqual(generateClassName(rule, styleSheet), 'Button-root-1');
     });
 
     it('should use a base 10 representation', () => {
       const rule = { key: 'root' };
-      const generateClassName = createGenerateClassName();
+      const generateClassName = createGenerateClassName({ seed: '' });
       assert.strictEqual(generateClassName(rule), 'root-1');
       assert.strictEqual(generateClassName(rule), 'root-2');
       assert.strictEqual(generateClassName(rule), 'root-3');
@@ -140,13 +142,14 @@ describe('createGenerateClassName', () => {
 
       it('should output a short representation', () => {
         const rule = { key: 'root' };
-        const generateClassName = createGenerateClassName();
+        const generateClassName = createGenerateClassName({ seed: '' });
         assert.strictEqual(generateClassName(rule), 'jss1');
       });
 
       it('should work with global CSS', () => {
         const rule = { key: 'root' };
         const generateClassName = createGenerateClassName({
+          seed: '',
           dangerouslyUseGlobalCSS: true,
         });
         assert.strictEqual(generateClassName(rule), 'jss1');

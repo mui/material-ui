@@ -11,11 +11,7 @@ function replaceRenderer({ bodyComponent, replaceBodyHTMLString, setHeadComponen
   const muiPageContext = getPageContext.default ? getPageContext.default() : getPageContext();
 
   const bodyHTML = renderToString(
-    <JssProvider registry={muiPageContext.sheetsRegistry}>
-      {React.cloneElement(bodyComponent, {
-        muiPageContext,
-      })}
-    </JssProvider>,
+    <JssProvider registry={muiPageContext.sheetsRegistry}>{bodyComponent}</JssProvider>,
   );
 
   replaceBodyHTMLString(bodyHTML);
