@@ -99,7 +99,7 @@ const tiers = [
 const footers = [
   {
     title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Loctions'],
+    description: ['Team', 'History', 'Contact us', 'Locations'],
   },
   {
     title: 'Features',
