@@ -122,7 +122,7 @@ export const styles = theme => {
         height: 17,
       },
     },
-    /* Class applied to the thumb element if custom thumb icon provided` . */
+    /* Class applied to the thumb element if custom thumb icon provided. */
     thumbIconWrapper: {
       backgroundColor: 'transparent',
       width: 17,
@@ -141,7 +141,7 @@ export const styles = theme => {
       height: 'inherit',
       width: 'inherit',
     },
-    /* Class applied to the root element to trigger JSS nested styles if `reverse={true}` . */
+    /* Class applied to the root element to trigger JSS nested styles if `reverse={true}`. */
     reverse: {},
     /* Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`. */
     disabled: {},
