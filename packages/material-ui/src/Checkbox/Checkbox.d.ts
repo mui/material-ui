@@ -8,6 +8,7 @@ export interface CheckboxProps
   color?: 'primary' | 'secondary' | 'default';
   icon?: React.ReactNode;
   indeterminate?: boolean;
+  indeterminateIcon?: React.ReactNode;
 }
 
 export type CheckboxClassKey =
