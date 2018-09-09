@@ -25,7 +25,7 @@ const jss = create(jssPreset());
 // It can be an issue, aside from the bundle size overhead, it can break the styles.
 // The generated classNames can collide.
 // We are avoiding the collision with a seed, one per package installation.
-const generateClassName = createGenerateClassName({ seed: packageId });
+const generateClassName = createGenerateClassName({ seed: `${packageId}-` });
 
 // Global index counter to preserve source order.
 // We create the style sheet during at the creation of the component,
