@@ -118,7 +118,7 @@ Checkbox.propTypes = {
   /**
    * If `true`, the component appears indeterminate.
    * This does not set the native input element to indeterminate due
-   * inconsistent behavior across browsers.
+   * to inconsistent behavior across browsers.
    * However, we set a `data-indeterminate` attribute on the input.
    */
   indeterminate: PropTypes.bool,

@@ -195,10 +195,10 @@ jobs:
       - *restore_yarn_cache
       - *install_js
       - run:
-          name: "`yarn docs:api` changes commited?"
+          name: Can we generate the documentation?
           command: yarn docs:api
       - run:
-          name: Should not have any git not staged
+          name: "`yarn docs:api` changes commited?"
           command: git diff --exit-code
       - run:
           name: Install dependencies for Chrome Headless
