@@ -52,6 +52,7 @@ function SvgIcon(props) {
     color,
     component: Component,
     fontSize,
+    moreChildren,
     nativeColor,
     titleAccess,
     viewBox,
@@ -74,10 +75,12 @@ function SvgIcon(props) {
       viewBox={viewBox}
       color={nativeColor}
       aria-hidden={titleAccess ? 'false' : 'true'}
+      role="img"
       {...other}
     >
       {children}
       {titleAccess ? <title>{titleAccess}</title> : null}
+      {moreChildren}
     </Component>
   );
 }
@@ -110,6 +113,11 @@ SvgIcon.propTypes = {
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
   fontSize: PropTypes.oneOf(['inherit', 'default']),
+  /**
+   * Provide more children the svg icon.
+   * It can be used to inject a `desc` element for accessibility.
+   */
+  moreChildren: PropTypes.node,
   /**
    * Applies a color attribute to the SVG element.
    */
