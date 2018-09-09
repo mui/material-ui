@@ -143,7 +143,7 @@ describe('withStyles', () => {
 
     beforeEach(() => {
       jss = create(jssPreset());
-      generateClassName = createGenerateClassName({ seed: '' });
+      generateClassName = createGenerateClassName();
       sheetsRegistry = new SheetsRegistry();
     });
 
