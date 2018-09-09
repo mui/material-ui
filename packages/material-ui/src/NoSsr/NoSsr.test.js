@@ -63,7 +63,7 @@ describe('<NoSsr />', () => {
         assert.strictEqual(wrapper.find('span').length, 1);
         assert.strictEqual(wrapper.text(), 'Hello');
         done();
-      }, 200);
+      }, 300);
     });
   });
 });

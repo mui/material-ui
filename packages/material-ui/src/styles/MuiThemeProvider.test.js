@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { renderToString } from 'react-dom/server';
+import ReactDOMServer from 'react-dom/server';
 import { createMount } from '../test-utils';
 import createMuiTheme from './createMuiTheme';
 import Button from '../Button';
@@ -71,9 +71,9 @@ describe('<MuiThemeProvider />', () => {
     it('should be able to extract the styles', () => {
       const theme = createMuiTheme();
       const sheetsRegistry = new SheetsRegistry();
-      const generateClassName = createGenerateClassName();
+      const generateClassName = createGenerateClassName({ seed: '' });
 
-      const markup = renderToString(
+      const markup = ReactDOMServer.renderToString(
         <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
           <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
             <Button>Hello World</Button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import classNames from 'classnames';
@@ -442,7 +442,7 @@ class Slider extends React.Component {
         onTouchStartCapture={this.handleTouchStart}
         onTouchMove={this.handleMouseMove}
         ref={ref => {
-          this.containerRef = findDOMNode(ref);
+          this.containerRef = ReactDOM.findDOMNode(ref);
         }}
         {...other}
       >
