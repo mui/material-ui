@@ -74,6 +74,7 @@ function SvgIcon(props) {
       viewBox={viewBox}
       color={nativeColor}
       aria-hidden={titleAccess ? 'false' : 'true'}
+      role={titleAccess ? 'img' : 'presentation'}
       {...other}
     >
       {children}
