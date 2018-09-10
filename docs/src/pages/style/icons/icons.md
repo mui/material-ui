@@ -128,13 +128,14 @@ This includes icons without text next to them used as interactive controls — b
 ### Decorative SVG Icons
 
 If your icons are purely decorative, you’re already done!
-We add the `aria-hidden=true` and `role="img"` attributes so that your icons are properly accessible (invisible).
+We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
 
 ### Semantic SVG Icons
 
-If your icon has semantic meaning, all you need to do is throw a `titleAccess="meaning"` property. It should be enough but you can always use the `moreChildren` property to add a `desc` description element.
+If your icon has semantic meaning, all you need to do is throw in a `titleAccess="meaning"` property.
+We add the `role="img"` attribute and the `<title>` element so that your icons are properly accessible.
 
-In the case of focusable interactive elements, like when used with a icon button, you can use the `aria-label` property:
+In the case of focusable interactive elements, like when used with an icon button, you can use the `aria-label` property:
 
 ```jsx
 import IconButton from '@material-ui/core/IconButton';
@@ -156,7 +157,7 @@ We add the `aria-hidden=true` attribute so that your icons are properly accessib
 
 ### Semantic Font Icons
 
-If your icons have semantic meaning, you need to provide a text alternative only visible assisitive technologies.
+If your icons have semantic meaning, you need to provide a text alternative only visible to assisitive technologies.
 
 ```css
 .sr-only {

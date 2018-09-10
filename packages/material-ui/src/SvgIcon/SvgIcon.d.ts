@@ -6,7 +6,6 @@ export interface SvgIconProps
   color?: PropTypes.Color | 'action' | 'disabled' | 'error';
   component?: React.ReactType<SvgIconProps>;
   fontSize?: 'inherit' | 'default';
-  moreChildren?: React.ReactNode;
   nativeColor?: string;
   titleAccess?: string;
   viewBox?: string;
