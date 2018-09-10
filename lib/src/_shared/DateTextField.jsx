@@ -129,6 +129,7 @@ export class DateTextField extends PureComponent {
     onError: PropTypes.func,
     /** Callback firing on change input in keyboard mode [(e: Event) => void] */
     onInputChange: PropTypes.func,
+    pipe: PropTypes.func,
   }
 
   static defaultProps = {
@@ -158,6 +159,7 @@ export class DateTextField extends PureComponent {
     TextFieldComponent: TextField,
     InputAdornmentProps: {},
     adornmentPosition: 'end',
+    pipe: undefined,
   }
 
   state = DateTextField.updateState(this.props)
@@ -293,6 +295,7 @@ export class DateTextField extends PureComponent {
       onBlur,
       onClear,
       onClick,
+      pipe,
       TextFieldComponent,
       utils,
       value,
@@ -306,6 +309,7 @@ export class DateTextField extends PureComponent {
       inputComponent: MaskedInput,
       inputProps: {
         mask: !keyboard ? null : mask,
+        pipe: !keyboard ? null : pipe,
         readOnly: !keyboard,
       },
     };
