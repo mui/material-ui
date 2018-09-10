@@ -227,6 +227,9 @@ class IntegrationReactSelect extends React.Component {
       input: base => ({
         ...base,
         color: theme.palette.text.primary,
+        '& input': {
+          font: 'inherit',
+        },
       }),
     };
 
