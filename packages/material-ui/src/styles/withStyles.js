@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import getDisplayName from 'recompose/getDisplayName';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
 import { create } from 'jss';
@@ -226,6 +225,10 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         let meta = name;
 
         if (process.env.NODE_ENV !== 'production' && !meta) {
+          // Use customized getDisplayName to support IE11 in development
+          // Save some bytes by not importing this in production
+          // eslint-disable-next-line global-require
+          const getDisplayName = require('../utils/getDisplayName').default;
           meta = getDisplayName(Component);
           warning(
             typeof meta === 'string',
