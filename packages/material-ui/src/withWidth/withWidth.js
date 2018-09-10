@@ -125,7 +125,7 @@ const withWidth = (options = {}) => Component => {
 
       return (
         <React.Fragment>
-          <Component {...more} /> 
+          <Component {...more} />
           <EventListener target="window" onResize={this.handleResize} />
         </React.Fragment>
       );
