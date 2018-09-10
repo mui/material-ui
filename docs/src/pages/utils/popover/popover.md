@@ -8,7 +8,7 @@ components: Grow, Popover
 <p class="description">A Popover can be used to display some content on top of another.</p>
 
 Things to know when using the `Popover` component:
-- The component is build on top of the [`Modal`](/utils/modal) component.
+- The component is built on top of the [`Modal`](/utils/modal) component.
 - The scroll and click away are blocked unlike with the [`Popper`](/utils/popper) component.
 
 ## Simple Popover
