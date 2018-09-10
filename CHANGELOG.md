@@ -1,5 +1,40 @@
 ### [Versions](https://material-ui.com/versions)
 
+## 3.0.3
+###### *Sep 9, 2018*
+
+Big thanks to the 13 contributors who made this release possible!
+
+### `@material-ui/core@v3.0.3`
+
+- [typescript] Fix ModalClasses prop type on popover (#12761) @YuriiOstapchuk
+- [AppBar] Add position="relative" (#12790) @jgoux
+- [Checkbox] Revert input indeterminate support (#12803) @eps1lon
+- [Checkbox] Indeterminate CSS & DOM helpers (#12804) @oliviertassinari
+- [Chip] Add verticalAlign: 'middle' (#12809) @akaxiaok
+- [autocomplete] Fix delete chip not working on mobile (#12813) @aretheregods
+- [styles] Support multiple withStyles instances (#12814) @oliviertassinari
+
+### `@material-ui/lab@v3.0.0-alpha.15`
+
+- [SpeedDialAction] Update tooltipPlacement propTypes (#12758) @Primajin
+- [ToggleButtons] normalize onChange api (#12549) @eps1lon
+
+### Docs
+
+- [docs] Remove function call from onChange handler (#12785) @snikobonyadrad
+- [docs] Unescapes character in markdown (#12778) @schalkventer
+- [docs] Enable service worker by default as the latest CRA (#12775) @sharils
+- [docs] New DataTable component (#12799) @mbrn
+- [docs] Add AppBar demos with exapandable & primary search fields (#12695) @adeelibr
+- [docs] Simpler AppBar search demos (#12806) @oliviertassinari
+- [docs] Document the shrink status input limitation (#12769) @racingrebel
+
+### Core
+
+- [test] Use yarn offline mirror (#12763) @eps1lon
+- [core] Small changes investigating issues (#12812) @oliviertassinari
+
 ## 3.0.2
 ###### *Sep 3, 2018*
 

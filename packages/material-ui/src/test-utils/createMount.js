@@ -1,4 +1,4 @@
-import { unmountComponentAtNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { mount as enzymeMount } from 'enzyme';
 
 // Generate an enhanced mount function.
@@ -20,7 +20,7 @@ export default function createMount(options1 = {}) {
 
   mountWithContext.attachTo = attachTo;
   mountWithContext.cleanUp = () => {
-    unmountComponentAtNode(attachTo);
+    ReactDOM.unmountComponentAtNode(attachTo);
     attachTo.parentNode.removeChild(attachTo);
   };
 

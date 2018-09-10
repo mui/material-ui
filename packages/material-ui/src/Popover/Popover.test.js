@@ -657,7 +657,7 @@ describe('<Popover />', () => {
 
         instance.getTransformOriginValue = stub().returns(true);
 
-        element = { clientHeight: 0, clientWidth: 0 };
+        element = { offsetHeight: 0, offsetWidth: 0 };
       });
 
       after(() => {

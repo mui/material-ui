@@ -20,6 +20,7 @@ Feel free to submit a pull request to add more projects; we will accept them if 
 - [react-material-ui-typescript](https://github.com/goemen/react-material-ui-typescript) A boilerplate for React using Typescript, Material UI and Redux, React Router.
 - [react-media-material-ui](https://github.com/jcoreio/react-media-material-ui) Easily use breakpoints from your Material-UI theme with [react-media](https://github.com/ReactTraining/react-media).
 - [Wertarbyte](https://mui.wertarbyte.com/) Wertarbyte are using Material-UI for many of their projects. This is a collection of complementary components they have built.
+- [material-table](https://github.com/mbrn/material-table) DataTable based on table component with additional features like search, filtering, sorting and much more.
 
 ## Complementary Projects
 

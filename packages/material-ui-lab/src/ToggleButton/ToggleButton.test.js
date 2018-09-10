@@ -78,7 +78,7 @@ describe('<ToggleButton />', () => {
       wrapper.simulate('click', event);
 
       assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.args[0][0], 'one');
+      assert.strictEqual(handleChange.args[0][1], 'one');
     });
 
     it('should not be called if the click is prevented', () => {

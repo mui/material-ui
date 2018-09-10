@@ -89,14 +89,14 @@ class ToggleButton extends React.Component {
     const { onChange, onClick, value } = this.props;
 
     if (onClick) {
-      onClick(event);
+      onClick(event, value);
       if (event.isDefaultPrevented()) {
         return;
       }
     }
 
     if (onChange) {
-      onChange(value);
+      onChange(event, value);
     }
   };
 
