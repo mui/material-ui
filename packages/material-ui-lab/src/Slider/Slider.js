@@ -125,17 +125,6 @@ export const styles = theme => {
     /* Class applied to the thumb element if custom thumb icon provided. */
     thumbIconWrapper: {
       backgroundColor: 'transparent',
-      width: 17,
-      height: 17,
-      '&$activated': {
-        width: 22,
-        height: 22,
-        transition: 'none',
-      },
-      '&$jumped': {
-        width: 22,
-        height: 22,
-      },
     },
     thumbIcon: {
       height: 'inherit',
