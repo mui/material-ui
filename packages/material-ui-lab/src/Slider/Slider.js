@@ -10,7 +10,7 @@ import clamp from '../utils/clamp';
 
 export const styles = theme => {
   const commonTransitionsOptions = {
-    duration: theme.transitions.duration.short,
+    duration: theme.transitions.duration.shortest,
     easing: theme.transitions.easing.easeOut,
   };
 
