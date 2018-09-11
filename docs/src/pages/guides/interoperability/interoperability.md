@@ -14,6 +14,7 @@ We have provided examples for the following styling solutions:
 - [Styled Components](#styled-components)
 - [Glamorous](#glamorous)
 - [Glamor](#glamor)
+- [CSS to MUI Webpack Loader](#css-to-mui-webpack-loader)
 
 ## Raw CSS
 
@@ -374,3 +375,52 @@ export default GlamorButton;
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ov5l1j2j8z)
 
 **Note:** Both Glamor and JSS inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order), as in the demo.
+
+## CSS to MUI Webpack Loader
+
+The [css-to-mui-loader](https://www.npmjs.com/package/css-to-mui-loader) for Webpack allows you to write CSS that gets transpiled into JS for use with the [`withStyles()`](/customization/css-in-js#withstyles-styles-options-higher-order-component) higher-order component. It provides a few hooks for accessing the theme from within the CSS.
+
+**webpack.config.js**
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [ 'babel-loader', 'css-to-mui-loader' ]
+      }
+    ]
+  }
+}
+```
+
+**CssToMuiButton.css**
+```css
+.button {
+  background: $(theme.palette.primary.main);
+  padding: 2su; /* Material UI spacing units */
+}
+
+.button:hover {
+  background: $(theme.palette.primary.light);
+}
+
+@media $(theme.breakpoints.down('sm')) {
+  .button {
+    font-size: $(theme.typography.caption.fontSize);
+  }
+}
+```
+
+**CssToMuiButton.js**
+```js
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './CssToMuiButton.css';
+
+const CssToMuiButton = withStyles(styles)(({ classes }) => (
+  <Button className={classes.button}>
+    CSS to MUI Button
+  </Button>
+));
+```
