@@ -377,13 +377,17 @@ class Slider extends React.Component {
   render() {
     const { currentState } = this.state;
     const {
-      component: Component,
-      classes,
       className: classNameProp,
+      classes,
+      component: Component,
       disabled,
       max,
       min,
+      onChange,
+      onDragEnd,
+      onDragStart,
       reverse,
+      step,
       theme,
       value,
       vertical,
