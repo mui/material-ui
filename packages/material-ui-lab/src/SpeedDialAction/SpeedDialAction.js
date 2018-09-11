@@ -97,7 +97,6 @@ class SpeedDialAction extends React.Component {
           onClick={onClick}
           tabIndex={-1}
           role="menuitem"
-          aria-labelledby={id}
           {...ButtonProps}
         >
           {icon}
