@@ -29,10 +29,10 @@ class CustomIconSlider extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Typography id="label">Image thumb</Typography>
+        <Typography id="slider-image">Image thumb</Typography>
         <Slider
           value={value}
-          aria-labelledby="label"
+          aria-labelledby="slider-image"
           onChange={this.handleChange}
           thumb={
             <img
@@ -42,10 +42,10 @@ class CustomIconSlider extends React.Component {
             />
           }
         />
-        <Typography id="label">Icon thumb</Typography>
+        <Typography id="slider-icon">Icon thumb</Typography>
         <Slider
           value={value}
-          aria-labelledby="label"
+          aria-labelledby="slider-icon"
           onChange={this.handleChange}
           thumb={<LensIcon style={{ color: '#2196f3' }} />}
         />
