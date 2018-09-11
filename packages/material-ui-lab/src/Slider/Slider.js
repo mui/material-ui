@@ -437,8 +437,7 @@ class Slider extends React.Component {
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
 
     /** Start Thumb Icon Logic Here */
-    const withIcon = !!thumbIcon;
-    const ThumbIcon = withIcon
+    const ThumbIcon = thumbIcon
       ? React.cloneElement(thumbIcon, {
           ...thumbIcon.props,
           className: classNames(thumbIcon.props.className, classes.thumbIcon),
@@ -449,7 +448,7 @@ class Slider extends React.Component {
     const thumbClasses = classNames(
       classes.thumb,
       {
-        [classes.thumbIconWrapper]: withIcon,
+        [classes.thumbIconWrapper]: !!thumbIcon,
       },
       commonClasses,
     );
