@@ -52,7 +52,7 @@ This property accepts the following keys:
 | <span class="prop-name">body1</span> | Styles applied to the root element if `variant="body1"`.
 | <span class="prop-name">caption</span> | Styles applied to the root element if `variant="caption"`.
 | <span class="prop-name">button</span> | Styles applied to the root element if `variant="button"`.
-| <span class="prop-name">srOnly</span> | Styles applied to the root element if `variant="srOnly"`. Only targets the screen readers.
+| <span class="prop-name">srOnly</span> | Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers.
 | <span class="prop-name">alignLeft</span> | Styles applied to the root element if `align="left"`.
 | <span class="prop-name">alignCenter</span> | Styles applied to the root element if `align="center"`.
 | <span class="prop-name">alignRight</span> | Styles applied to the root element if `align="right"`.
