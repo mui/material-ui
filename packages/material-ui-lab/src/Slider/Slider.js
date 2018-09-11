@@ -448,7 +448,7 @@ class Slider extends React.Component {
     const thumbClasses = classNames(
       classes.thumb,
       {
-        [classes.thumbIconWrapper]: !!thumbIcon,
+        [classes.thumbIconWrapper]: thumbIcon,
       },
       commonClasses,
     );
