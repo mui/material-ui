@@ -72,7 +72,6 @@ import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 
 Note: Importing named exports in this way will result in the code for *every icon* being included in your project, so is not recommended unless you configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/). It may also impact Hot Module Reload performance.
 
-
 ### More SVG icons
 
 Looking for even more SVG icons? There are a lot of projects out there,
@@ -116,3 +115,68 @@ Both approaches work fine, however, there are some subtle differences, especiall
 Whenever possible SVG is preferred as it allows code splitting, supports more icons, renders faster and better.
 
 For more details, you can check out [why GitHub migrated](https://blog.github.com/2016-02-22-delivering-octicons-with-svg/) from font icons to SVG icons.
+
+## Accessibility
+
+Icons can convey all sorts of meaningful information, so it’s important that they reach the largest amount of people possible.
+There are two use cases you’ll want to consider:
+- **Decorative Icons** are only being used for visual or branding reinforcement.
+If they were removed from the page, users would still understand and be able to use your page.
+- **Semantic Icons** are ones that you’re using to convey meaning, rather than just pure decoration.
+This includes icons without text next to them used as interactive controls — buttons, form elements, toggles, etc.
+
+### Decorative SVG Icons
+
+If your icons are purely decorative, you’re already done!
+We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
+
+### Semantic SVG Icons
+
+If your icon has semantic meaning, all you need to do is throw in a `titleAccess="meaning"` property.
+We add the `role="img"` attribute and the `<title>` element so that your icons are properly accessible.
+
+In the case of focusable interactive elements, like when used with an icon button, you can use the `aria-label` property:
+
+```jsx
+import IconButton from '@material-ui/core/IconButton';
+import SvgIcon from '@material-ui/core/SvgIcon';
+
+// ...
+
+<IconButton aria-label="Delete">
+  <SvgIcon>
+    <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
+  </SvgIcon>
+</IconButton>
+```
+
+### Decorative Font Icons
+
+If your icons are purely decorative, you’re already done!
+We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
+
+### Semantic Font Icons
+
+If your icons have semantic meaning, you need to provide a text alternative only visible to assisitive technologies.
+
+```css
+.sr-only {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+```
+
+```jsx
+import Icon from '@material-ui/core/IconButton';
+
+// ...
+
+<Icon>add_circle</Icon>
+<span className="sr-only">Create a user</span>
+```
+
+### Reference
+
+- https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/
