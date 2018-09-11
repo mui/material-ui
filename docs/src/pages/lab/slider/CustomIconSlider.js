@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/Slider';
-import StarsIcon from '@material-ui/icons/Gamepad';
+import LensIcon from '@material-ui/icons/Lens';
 
 const styles = {
   root: {
@@ -47,7 +47,7 @@ class CustomIconSlider extends React.Component {
           value={value}
           aria-labelledby="label"
           onChange={this.handleChange}
-          thumb={<StarsIcon style={{ color: '#2196f3' }} />}
+          thumb={<LensIcon style={{ color: '#2196f3' }} />}
         />
       </div>
     );
