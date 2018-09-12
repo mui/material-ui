@@ -99,6 +99,10 @@ class Tooltip extends React.Component {
   }
 
   componentDidMount() {
+    if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
+      this.ignoreNonTouchEvents = true;
+    }
+
     warning(
       !this.childrenRef.disabled || !this.childrenRef.tagName.toLowerCase() === 'button',
       [
@@ -222,13 +226,9 @@ class Tooltip extends React.Component {
     }
 
     clearTimeout(this.closeTimer);
-    this.closeTimer = setTimeout(() => {
-      this.ignoreNonTouchEvents = false;
-    }, this.props.theme.transitions.duration.shortest);
   };
 
   handleTouchStart = event => {
-    this.ignoreNonTouchEvents = true;
     const { children, enterTouchDelay } = this.props;
 
     if (children.props.onTouchStart) {
