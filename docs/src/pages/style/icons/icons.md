@@ -159,22 +159,14 @@ We add the `aria-hidden=true` attribute so that your icons are properly accessib
 
 If your icons have semantic meaning, you need to provide a text alternative only visible to assisitive technologies.
 
-```css
-.sr-only {
-  position: absolute;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-}
-```
-
 ```jsx
-import Icon from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
+import Typography from '@material-ui/core/Typography';
 
 // ...
 
 <Icon>add_circle</Icon>
-<span className="sr-only">Create a user</span>
+<Typography variant="srOnly">Create a user</Typography>
 ```
 
 ### Reference
