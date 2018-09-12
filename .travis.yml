@@ -2,19 +2,20 @@ language: node_js
 node_js:
   - "8"
 
-matrix:
-  - UTILS=moment
-  - UTILS=date-fns
-  - UTILS=luxon
+env:
+  matrix:
+    - UTILS=moment
+    - UTILS=date-fns
+    - UTILS=luxon
 
 before_install:
   - cd lib
 
-script:
-  - npm run test && codecov
-
 jobs:
   include:
+    - stage: test
+    - script: npm run test && codecov
+
     - stage: build
     - script: npm run build && size-limit
 
