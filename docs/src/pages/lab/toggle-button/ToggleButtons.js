@@ -33,9 +33,9 @@ class ToggleButtons extends React.Component {
     formats: ['bold'],
   };
 
-  handleFormat = formats => this.setState({ formats });
+  handleFormat = (event, formats) => this.setState({ formats });
 
-  handleAlignment = alignment => this.setState({ alignment });
+  handleAlignment = (event, alignment) => this.setState({ alignment });
 
   render() {
     const { classes } = this.props;
@@ -60,10 +60,10 @@ class ToggleButtons extends React.Component {
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
-          <Typography type="caption" gutterBottom>
+          <Typography variant="caption" gutterBottom>
             Exclusive Selection
           </Typography>
-          <Typography type="caption">
+          <Typography variant="caption">
             Text justification toggle buttons present options for left, right, center, full, and
             justified text with only one item available for selection at a time. Selecting one
             option deselects any other.
@@ -87,10 +87,10 @@ class ToggleButtons extends React.Component {
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
-          <Typography type="caption" gutterBottom>
+          <Typography variant="caption" gutterBottom>
             Multiple Selection
           </Typography>
-          <Typography type="caption">
+          <Typography variant="caption">
             Logically-grouped options, like Bold, Italic, and Underline, allow multiple options to
             be selected.
           </Typography>

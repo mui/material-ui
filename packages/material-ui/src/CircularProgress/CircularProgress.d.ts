@@ -12,11 +12,13 @@ export interface CircularProgressProps
 
 export type CircularProgressClassKey =
   | 'root'
+  | 'static'
+  | 'indeterminate'
   | 'colorPrimary'
   | 'colorSecondary'
   | 'svg'
-  | 'svgIndeterminate'
   | 'circle'
+  | 'circleStatic'
   | 'circleIndeterminate';
 
 declare const CircularProgress: React.ComponentType<CircularProgressProps>;

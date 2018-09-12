@@ -41,7 +41,7 @@ This property accepts the following keys:
 | <span class="prop-name">root</span> | Styles applied to the root element.
 | <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">colorAction</span> | Styles applied to the root element if `color="saction"`.
+| <span class="prop-name">colorAction</span> | Styles applied to the root element if `color="action"`.
 | <span class="prop-name">colorError</span> | Styles applied to the root element if `color="error"`.
 | <span class="prop-name">colorDisabled</span> | Styles applied to the root element if `color="disabled"`.
 | <span class="prop-name">fontSizeInherit</span> | Styles applied to the root element if `fontSize="inherit"`.

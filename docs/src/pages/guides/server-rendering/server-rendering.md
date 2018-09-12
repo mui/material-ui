@@ -65,7 +65,7 @@ The key step in server side rendering is to render the initial HTML of our compo
 We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`. We will see how this is passed along in our `renderFullPage` function.
 
 ```jsx
-import { renderToString } from 'react-dom/server'
+import ReactDOMServer from 'react-dom/server'
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import {
@@ -96,7 +96,7 @@ function handleRender(req, res) {
   const generateClassName = createGenerateClassName();
 
   // Render the component to a string.
-  const html = renderToString(
+  const html = ReactDOMServer.renderToString(
     <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
       <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
         <App />
@@ -142,8 +142,13 @@ Let's take a look at our client file:
 
 ```jsx
 import React from 'react';
-import { hydrate } from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import ReactDOM from 'react-dom';
+import JssProvider from 'react-jss/lib/JssProvider';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  createGenerateClassName,
+} from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import App from './App';
@@ -171,10 +176,15 @@ const theme = createMuiTheme({
   },
 });
 
-hydrate(
-  <MuiThemeProvider theme={theme}>
-    <Main />
-  </MuiThemeProvider>,
+// Create a new class name generator.
+const generateClassName = createGenerateClassName();
+
+ReactDOM.hydrate(
+  <JssProvider generateClassName={generateClassName}>
+    <MuiThemeProvider theme={theme}>
+      <Main />
+    </MuiThemeProvider>
+  </JssProvider>,
   document.querySelector('#root'),
 );
 ```
@@ -216,13 +226,13 @@ function handleRender(req, res) {
   //…
 
   // Render the component to a string.
-  const html = renderToString(
+  const html = ReactDOMServer.renderToString(
 ```
 
 ### React class name hydration mismatch
 
 There is a class name mismatch between the client and the server. It might work for the first request.
-Another symptom is that the styling changes between initial page load and the downloading of the client scripts. 
+Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 
 #### Action to Take
 
@@ -244,7 +254,7 @@ function handleRender(req, res) {
   //…
 
   // Render the component to a string.
-  const html = renderToString(
+  const html = ReactDOMServer.renderToString(
 ```
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI.

@@ -14,11 +14,11 @@ import {
 import Button from '@material-ui/core/Button/Button';
 import blue from '@material-ui/core/colors/blue';
 import { WithTheme } from '@material-ui/core/styles/withTheme';
-import { StandardProps } from '@material-ui/core';
+import { PropsOf, StandardProps } from '@material-ui/core';
 import { TypographyStyle } from '@material-ui/core/styles/createTypography';
 
 // Shared types for examples
-interface ComponentProps {
+interface ComponentProps extends WithStyles<typeof styles> {
   text: string;
 }
 
@@ -31,7 +31,7 @@ const styles = ({ palette, spacing }: Theme) => ({
   },
 });
 
-const StyledExampleOne = withStyles(styles)<ComponentProps>(({ classes, text }) => (
+const StyledExampleOne = withStyles(styles)(({ classes, text }: ComponentProps) => (
   <div className={classes.root}>{text}</div>
 ));
 <StyledExampleOne text="I am styled!" />;
@@ -70,7 +70,7 @@ const stylesAsPojo = {
 
 const AnotherStyledSFC = withStyles({
   root: { backgroundColor: 'hotpink' },
-})(({ classes }) => <div className={classes.root}>Stylish!</div>);
+})(({ classes }: WithStyles<'root'>) => <div className={classes.root}>Stylish!</div>);
 
 // Overriding styles
 const theme = createMuiTheme({
@@ -162,18 +162,21 @@ function OverridesTheme() {
 }
 
 // withTheme
-const ComponentWithTheme = withTheme()(({ theme }) => <div>{theme.spacing.unit}</div>);
+const ComponentWithTheme = withTheme()(({ theme }: WithTheme) => <div>{theme.spacing.unit}</div>);
 
 <ComponentWithTheme />;
 
 // withStyles + withTheme
 type AllTheProps = WithTheme & WithStyles<typeof styles>;
 
-const AllTheComposition = withTheme()(
-  withStyles(styles)(({ theme, classes }: AllTheProps) => (
-    <div className={classes.root}>{theme.palette.text.primary}</div>
-  )),
-);
+const StyledComponent = withStyles(styles)(({ theme, classes }: AllTheProps) => (
+  <div className={classes.root}>{theme.palette.text.primary}</div>
+));
+
+// missing prop theme
+<StyledComponent />; // $ExpectError
+
+const AllTheComposition = withTheme()(StyledComponent);
 
 <AllTheComposition />;
 
@@ -201,7 +204,7 @@ declare const themed: boolean;
   );
   <Foo />;
 
-  const Bar = withStyles({}, { withTheme: true })(({ theme }) => (
+  const Bar = withStyles({}, { withTheme: true })(({ theme }: WithStyles<string, true>) => (
     <div style={{ margin: theme.spacing.unit }} />
   ));
   <Bar />;
@@ -292,12 +295,13 @@ withStyles(theme =>
     });
 
   interface ListItemContentProps extends WithStyles<typeof styles> {
+    children?: React.ReactElement<any>;
     inset?: boolean;
     row?: boolean;
   }
 
-  const ListItemContent = withStyles(styles, { name: 'ui-ListItemContent' })<ListItemContentProps>(
-    ({ children, classes, inset, row }) => (
+  const ListItemContent = withStyles(styles, { name: 'ui-ListItemContent' })(
+    ({ children, classes, inset, row }: ListItemContentProps) => (
       <div className={classes.root} color="textSecondary">
         {children}
       </div>
@@ -311,7 +315,7 @@ withStyles(theme =>
     b: boolean;
   }
 
-  const ListItemContent = withStyles({ x: {}, y: {} })<FooProps>(props => <div />);
+  const ListItemContent = withStyles({ x: {}, y: {} })((props: FooProps) => <div />);
 }
 
 {
@@ -382,4 +386,66 @@ withStyles(theme =>
   const style: StyleRulesCallback = theme => ({
     text: theme.typography.body2,
   });
+}
+
+{
+  // can't provide own `classes` type
+  interface Props {
+    classes: number;
+  }
+
+  class Component extends React.Component<Props & WithStyles<typeof styles>> {}
+  // $ExpectError
+  const StyledComponent = withStyles(styles)(Component);
+
+  // implicit SFC
+  withStyles(styles)((props: Props) => null); // $ExpectError
+  withStyles(styles)((props: Props & WithStyles<typeof styles>) => null); // $ExpectError
+  withStyles(styles)((props: Props & { children?: React.ReactNode }) => null); // $ExpectError
+  withStyles(styles)(
+    (props: Props & WithStyles<typeof styles> & { children?: React.ReactNode }) => null, // $ExpectError
+  );
+
+  // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
+  // which is not helpful
+  const StatelessComponent: React.SFC<Props> = props => null;
+  const StatelessComponentWithStyles: React.SFC<Props & WithStyles<typeof styles>> = props => null;
+  withStyles(styles)(StatelessComponent); // $ExpectError
+  withStyles(styles)(StatelessComponentWithStyles); // $ExpectError
+}
+
+{
+  // https://github.com/mui-org/material-ui/issues/12670
+  interface Props {
+    nonDefaulted: string;
+    defaulted: number;
+  }
+
+  class MyButton extends React.Component<Props & WithStyles<typeof styles>> {
+    static defaultProps = {
+      defaulted: 0,
+    };
+
+    render() {
+      const { classes, nonDefaulted, defaulted } = this.props;
+      return (
+        <Button className={classes.btn}>
+          {defaulted}, {nonDefaulted}
+        </Button>
+      );
+    }
+  }
+
+  const styles = () =>
+    createStyles({
+      btn: {
+        color: 'red',
+      },
+    });
+
+  const StyledMyButton = withStyles(styles)(MyButton);
+
+  const CorrectUsage = () => <StyledMyButton nonDefaulted="2" />;
+  // Property 'nonDefaulted' is missing in type '{}'
+  const MissingPropUsage = () => <StyledMyButton />; // $ExpectError
 }

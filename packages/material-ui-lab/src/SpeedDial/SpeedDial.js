@@ -214,6 +214,7 @@ class SpeedDial extends React.Component {
         </TransitionComponent>
         <div
           id={`${id}-actions`}
+          role="menu"
           className={classNames(
             classes.actions,
             { [classes.actionsClosed]: !open },

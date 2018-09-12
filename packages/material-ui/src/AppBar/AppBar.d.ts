@@ -3,7 +3,7 @@ import { PaperProps } from '../Paper';
 
 export interface AppBarProps extends StandardProps<PaperProps, AppBarClassKey> {
   color?: PropTypes.Color;
-  position?: 'fixed' | 'absolute' | 'sticky' | 'static';
+  position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative';
 }
 
 export type AppBarClassKey =
@@ -12,6 +12,7 @@ export type AppBarClassKey =
   | 'positionAbsolute'
   | 'positionSticky'
   | 'positionStatic'
+  | 'positionRelative'
   | 'colorDefault'
   | 'colorPrimary'
   | 'colorSecondary';

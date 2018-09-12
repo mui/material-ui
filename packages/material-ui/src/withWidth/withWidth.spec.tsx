@@ -38,9 +38,11 @@ const Decorated = withWidth()(withStyles(styles)(Hello));
 
 <Decorated name="Bob" />;
 
-const WidthSFC = withWidth()<{
-  // shouldn't need to specify width here; it's a given
+interface SFCProps extends WithWidth {
   name: string;
-}>(({ width, name }) => <div style={{ width }}>hello, {name}</div>);
+}
+const WidthSFC = withWidth()(({ width, name }: SFCProps) => (
+  <div style={{ width }}>hello, {name}</div>
+));
 
 <WidthSFC name="Hortense" />;

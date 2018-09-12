@@ -1,5 +1,5 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import classNames from 'classnames';
@@ -10,7 +10,7 @@ import clamp from '../utils/clamp';
 
 export const styles = theme => {
   const commonTransitionsOptions = {
-    duration: theme.transitions.duration.short,
+    duration: theme.transitions.duration.shortest,
     easing: theme.transitions.easing.easeOut,
   };
 
@@ -377,13 +377,17 @@ class Slider extends React.Component {
   render() {
     const { currentState } = this.state;
     const {
-      component: Component,
-      classes,
       className: classNameProp,
+      classes,
+      component: Component,
       disabled,
       max,
       min,
+      onChange,
+      onDragEnd,
+      onDragStart,
       reverse,
+      step,
       theme,
       value,
       vertical,
@@ -442,7 +446,7 @@ class Slider extends React.Component {
         onTouchStartCapture={this.handleTouchStart}
         onTouchMove={this.handleMouseMove}
         ref={ref => {
-          this.containerRef = findDOMNode(ref);
+          this.containerRef = ReactDOM.findDOMNode(ref);
         }}
         {...other}
       >

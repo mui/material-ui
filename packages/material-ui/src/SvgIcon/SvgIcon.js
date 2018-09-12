@@ -26,7 +26,7 @@ export const styles = theme => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
   },
-  /* Styles applied to the root element if `color="saction"`. */
+  /* Styles applied to the root element if `color="action"`. */
   colorAction: {
     color: theme.palette.action.active,
   },
@@ -74,6 +74,7 @@ function SvgIcon(props) {
       viewBox={viewBox}
       color={nativeColor}
       aria-hidden={titleAccess ? 'false' : 'true'}
+      role={titleAccess ? 'img' : 'presentation'}
       {...other}
     >
       {children}

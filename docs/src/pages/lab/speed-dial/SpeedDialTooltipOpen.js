@@ -76,7 +76,7 @@ class SpeedDialTooltipOpen extends React.Component {
       <div className={classes.root}>
         <Button onClick={this.handleVisibility}>Toggle Speed Dial</Button>
         <SpeedDial
-          ariaLabel="SpeedDial example"
+          ariaLabel="SpeedDial tooltip example"
           className={classes.speedDial}
           hidden={hidden}
           icon={<SpeedDialIcon />}

@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -238,15 +240,10 @@ class Input extends React.Component {
       }
     };
 
-    // Support for react >= 16.3.0 && < 17.0.0
-    /* istanbul ignore else */
-    if (React.createContext) {
-      this.UNSAFE_componentWillReceiveProps = componentWillReceiveProps;
-      this.UNSAFE_componentWillUpdate = componentWillUpdate;
-    } else {
-      this.componentWillReceiveProps = componentWillReceiveProps;
-      this.componentWillUpdate = componentWillUpdate;
-    }
+    this.componentWillReceiveProps = componentWillReceiveProps;
+    this.componentWillReceiveProps.__suppressDeprecationWarning = true;
+    this.componentWillUpdate = componentWillUpdate;
+    this.componentWillUpdate.__suppressDeprecationWarning = true;
   }
 
   state = {
