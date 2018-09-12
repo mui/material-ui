@@ -3,10 +3,9 @@ node_js:
   - "8"
 
 env:
-  matrix:
-    - UTILS=moment
-    - UTILS=date-fns
-    - UTILS=luxon
+  - UTILS=date-fns
+  - UTILS=moment
+  - UTILS=luxon
 
 before_install:
   - cd lib
