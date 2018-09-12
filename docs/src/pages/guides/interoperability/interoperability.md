@@ -8,12 +8,13 @@ but you should find that the principals applied here can be adapted to other lib
 We have provided examples for the following styling solutions:
 
 - [Raw CSS](#raw-css)
-- [Global CSS](#global-css)
-- [React JSS](#react-jss)
 - [CSS Modules](#css-modules)
 - [Styled Components](#styled-components)
 - [Glamorous](#glamorous)
 - [Glamor](#glamor)
+- [Global CSS](#global-css)
+- [React JSS](#react-jss)
+- [CSS to MUI webpack Loader](#css-to-mui-webpack-loader)
 
 ## Raw CSS
 
@@ -56,57 +57,6 @@ export default RawCSSButton;
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vmv2mz9785)
 
 **Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order), as in the demo.
-
-## Global CSS
-
-Explicitly providing the class names to the component is too much effort?
-Rest assured, we provide an option to make the class names **deterministic** for quick
-prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js#global-css).
-
-**GlobalCSSButton.css**
-```css
-.MuiButton-root {
-  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
-  border-radius: 3px;
-  border: 0;
-  color: white;
-  height: 48px;
-  padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
-}
-```
-
-**GlobalCSSButton.js**
-```jsx
-import React from 'react';
-import Button from '@material-ui/core/Button';
-
-function GlobalCSSButton() {
-  return (
-    <div>
-      <Button>
-        Global CSS
-      </Button>
-    </div>
-  );
-}
-
-export default GlobalCSSButton;
-```
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2zv5m0j37p)
-
-**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order), as in the demo.
-
-## React JSS
-
-![stars](https://img.shields.io/github/stars/cssinjs/react-jss.svg?style=social&label=Star)
-![npm](https://img.shields.io/npm/dm/react-jss.svg?)
-
-Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
-We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
-
-{{"demo": "pages/guides/interoperability/ReactJss.js"}}
 
 ## CSS Modules
 
@@ -374,3 +324,103 @@ export default GlamorButton;
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ov5l1j2j8z)
 
 **Note:** Both Glamor and JSS inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order), as in the demo.
+
+## Global CSS
+
+Explicitly providing the class names to the component is too much effort?
+Rest assured, we provide an option to make the class names **deterministic** for quick
+prototyping: [`dangerouslyUseGlobalCSS`](/customization/css-in-js#global-css).
+
+**GlobalCSSButton.css**
+```css
+.MuiButton-root {
+  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+}
+```
+
+**GlobalCSSButton.js**
+```jsx
+import React from 'react';
+import Button from '@material-ui/core/Button';
+
+function GlobalCSSButton() {
+  return (
+    <div>
+      <Button>
+        Global CSS
+      </Button>
+    </div>
+  );
+}
+
+export default GlobalCSSButton;
+```
+
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2zv5m0j37p)
+
+**Note:** JSS injects its styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order), as in the demo.
+
+## React JSS
+
+![stars](https://img.shields.io/github/stars/cssinjs/react-jss.svg?style=social&label=Star)
+![npm](https://img.shields.io/npm/dm/react-jss.svg?)
+
+Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
+We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
+
+{{"demo": "pages/guides/interoperability/ReactJss.js"}}
+
+## CSS to MUI webpack Loader
+
+The [css-to-mui-loader](https://www.npmjs.com/package/css-to-mui-loader) for webpack allows you to write CSS that gets transpiled into JS for use with the [`withStyles()`](/customization/css-in-js#withstyles-styles-options-higher-order-component) higher-order component. It provides a few hooks for accessing the theme from within the CSS.
+
+**webpack.config.js**
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [ 'babel-loader', 'css-to-mui-loader' ]
+      }
+    ]
+  }
+}
+```
+
+**CssToMuiButton.css**
+```css
+.button {
+  background: $(theme.palette.primary.main);
+  padding: 2su; /* Material-UI spacing units */
+}
+
+.button:hover {
+  background: $(theme.palette.primary.light);
+}
+
+@media $(theme.breakpoints.down('sm')) {
+  .button {
+    font-size: $(theme.typography.caption.fontSize);
+  }
+}
+```
+
+**CssToMuiButton.js**
+```js
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './CssToMuiButton.css';
+
+const CssToMuiButton = withStyles(styles)(({ classes }) => (
+  <Button className={classes.button}>
+    CSS to MUI Button
+  </Button>
+));
+```

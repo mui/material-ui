@@ -2,11 +2,7 @@ import * as React from 'react';
 import { StyledComponentProps } from './styles';
 export { StyledComponentProps };
 
-export type AnyComponent<P = any> =
-  | (new (props: P) => React.Component)
-  | ((props: P & { children?: React.ReactNode }) => React.ReactElement<any> | null);
-
-export type PropsOf<C extends AnyComponent> = C extends new (props: infer P) => React.Component
+export type PropsOf<C> = C extends new (props: infer P) => React.Component
   ? P
   : C extends (props: infer P) => React.ReactElement<any> | null ? P : never;
 
@@ -55,7 +51,26 @@ export type Omit<T, K extends keyof any> = T extends any ? Pick<T, Exclude<keyof
  *
  * @internal
  */
-export type ConsistentWith<T, U> = Pick<U, keyof T & keyof U>;
+export type ConsistentWith<DecorationTargetProps, InjectedProps> = {
+  [P in keyof DecorationTargetProps]: P extends keyof InjectedProps
+    ? InjectedProps[P] extends DecorationTargetProps[P]
+      ? DecorationTargetProps[P]
+      : InjectedProps[P]
+    : DecorationTargetProps[P]
+};
+
+/**
+ * a function that takes {component} and returns a component that passes along
+ * all the props to {component} except the {InjectedProps} and will accept
+ * additional {AdditionalProps}
+ */
+export type PropInjector<InjectedProps, AdditionalProps = {}> = <
+  C extends React.ComponentType<ConsistentWith<PropsOf<C>, InjectedProps>>
+>(
+  component: C,
+) => React.ComponentType<
+  Omit<JSX.LibraryManagedAttributes<C, PropsOf<C>>, keyof InjectedProps> & AdditionalProps
+>;
 
 /**
  * Like `T & U`, but using the value types from `U` where their properties overlap.
