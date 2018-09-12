@@ -70,7 +70,10 @@ describe('<Select />', () => {
       const onChangeHandler = spy();
       const wrapper = mount(<Select onChange={onChangeHandler} {...defaultProps} value={'1'} />);
       wrapper.find('[role="button"]').simulate('click');
-      wrapper.find(MenuItem).at(1).simulate('click');
+      wrapper
+        .find(MenuItem)
+        .at(1)
+        .simulate('click');
       const selected = onChangeHandler.args[0][1];
       assert.strictEqual(React.isValidElement(selected), true, 'should b be a element');
     });
