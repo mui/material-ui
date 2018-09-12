@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/Slider';
-import LensIcon from '@material-ui/icons/Lens';
+import LensIcon from '@material-ui/icons/LensOutlined';
 
 const styles = {
   root: {
@@ -11,6 +11,9 @@ const styles = {
   },
   thumbIcon: {
     borderRadius: '50%',
+  },
+  thumbIconWrapper: {
+    backgroundColor: '#fff',
   },
 };
 
@@ -47,6 +50,9 @@ class CustomIconSlider extends React.Component {
           value={value}
           aria-labelledby="slider-icon"
           onChange={this.handleChange}
+          classes={{
+            thumbIconWrapper: classes.thumbIconWrapper,
+          }}
           thumb={<LensIcon style={{ color: '#2196f3' }} />}
         />
       </div>
