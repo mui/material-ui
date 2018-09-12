@@ -125,7 +125,7 @@ describe('<SpeedDial />', () => {
         document.documentElement.ontouchstart = () => {};
       });
 
-      it('should be set as the onTouchStart prop of the button if touch device', () => {
+      it('should be set as the onTouchEnd prop of the button if touch device', () => {
         const onClick = spy();
 
         const wrapper = shallow(
@@ -134,7 +134,7 @@ describe('<SpeedDial />', () => {
           </SpeedDial>,
         );
         const buttonWrapper = wrapper.childAt(0).childAt(0);
-        assert.strictEqual(buttonWrapper.props().onTouchStart, onClick);
+        assert.strictEqual(buttonWrapper.props().onTouchEnd, onClick);
       });
 
       after(() => {
