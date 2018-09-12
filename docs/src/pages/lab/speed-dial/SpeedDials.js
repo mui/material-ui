@@ -67,11 +67,6 @@ class SpeedDials extends React.Component {
     const { classes } = this.props;
     const { hidden, open } = this.state;
 
-    let isTouch;
-    if (typeof document !== 'undefined') {
-      isTouch = 'ontouchstart' in document.documentElement;
-    }
-
     return (
       <div className={classes.root}>
         <Button onClick={this.handleVisibility}>Toggle Speed Dial</Button>
@@ -83,8 +78,8 @@ class SpeedDials extends React.Component {
           onBlur={this.handleClose}
           onClick={this.handleClick}
           onClose={this.handleClose}
-          onFocus={isTouch ? undefined : this.handleOpen}
-          onMouseEnter={isTouch ? undefined : this.handleOpen}
+          onFocus={this.handleOpen}
+          onMouseEnter={this.handleOpen}
           onMouseLeave={this.handleClose}
           open={open}
         >

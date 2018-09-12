@@ -79,9 +79,18 @@ class SpeedDialAction extends React.Component {
     } = this.props;
 
     let clickProp = { onClick };
-
+    let startTime;
     if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
-      clickProp = { onTouchEnd: onClick };
+      clickProp = {
+        onTouchStart: () => {
+          startTime = new Date();
+        },
+        onTouchEnd: () => {
+          if (new Date() - startTime < 500) {
+            onClick();
+          }
+        },
+      };
     }
 
     return (

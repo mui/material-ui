@@ -116,7 +116,7 @@ describe('<SpeedDial />', () => {
           <div />
         </SpeedDial>,
       );
-      const buttonWrapper = wrapper.childAt(0).childAt(0);
+      const buttonWrapper = wrapper.find(Button);
       assert.strictEqual(buttonWrapper.props().onClick, onClick);
     });
 
@@ -133,7 +133,7 @@ describe('<SpeedDial />', () => {
             <div />
           </SpeedDial>,
         );
-        const buttonWrapper = wrapper.childAt(0).childAt(0);
+        const buttonWrapper = wrapper.find(Button);
         assert.strictEqual(buttonWrapper.props().onTouchEnd, onClick);
       });
 
