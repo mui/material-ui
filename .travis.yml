@@ -14,10 +14,10 @@ before_install:
 jobs:
   include:
     - stage: test
-    - script: npm run test && codecov
+      script: npm run test && codecov
 
     - stage: build
-    - script: npm run build && size-limit
+      script: npm run build && size-limit
 
     - stage: lint
-    - script: npm run lint
+      script: npm run lint
