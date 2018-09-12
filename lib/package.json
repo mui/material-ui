@@ -58,11 +58,7 @@
     }
   ],
   "scripts": {
-    "test": "npm run test:date-fns && npm run test:luxon && npm run test:moment",
-    "all-tests": "jest && npm run typescript",
-    "test:moment": "cross-env UTILS=moment npm run all-tests",
-    "test:date-fns": "cross-env UTILS=date-fns npm run all-tests",
-    "test:luxon": "cross-env UTILS=luxon npm run all-tests",
+    "test": "jest && npm run typescript",
     "typescript": "tsc -p tsconfig.json",
     "start": "rollup --config --watch",
     "prebuild": "rimraf build",
@@ -71,7 +67,6 @@
     "build:es2015": "cross-env NODE_ENV=cjs babel ./src --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=esm babel ./src/index.js --out-file ./build/index.es.js",
     "build": "npm run build:bundle && npm run build:es2015modules &&  npm run build:es2015 && npm run build:copy",
-    "ci": "npm run test && codecov && npm run lint && npm run build && size-limit",
     "prerelease": "npm run ci",
     "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
