@@ -56,7 +56,24 @@
     "react": "*",
     "react-dom": "*"
   },
-  "dependencies": {},
+  "dependencies": {
+    "brcast": "^3.0.1",
+    "debounce": "^1.2.0",
+    "deepmerge": "^2.1.1",
+    "jss": "^9.8.7",
+    "jss-camel-case": "^6.1.0",
+    "jss-default-unit": "^8.0.2",
+    "jss-global": "^3.0.0",
+    "jss-nested": "^6.0.1",
+    "jss-props-sort": "^6.0.0",
+    "jss-vendor-prefixer": "^8.0.1",
+    "marked": "^0.5.0",
+    "nprogress": "^0.2.0",
+    "popper.js": "^1.14.4",
+    "prismjs": "^1.15.0",
+    "react-jss": "^8.6.1",
+    "recompose": "^0.30.0"
+  },
   "devDependencies": {
     "@babel/cli": "7.0.0",
     "@babel/core": "7.0.0",
