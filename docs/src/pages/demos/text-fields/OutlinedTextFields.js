@@ -15,10 +15,10 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
   },
   dense: {
-    marginTop: '21px',
+    marginTop: 16,
   },
   menu: {
-    width: 280,
+    width: 200,
   },
 });
 
@@ -61,7 +61,7 @@ class OutlinedTextFields extends React.Component {
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
-          id="name-outlined"
+          id="outlined-name"
           label="Name"
           className={classes.textField}
           value={this.state.name}
@@ -70,7 +70,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="uncontrolled-outlined"
+          id="outlined-uncontrolled"
           label="Uncontrolled"
           defaultValue="foo"
           className={classes.textField}
@@ -79,7 +79,7 @@ class OutlinedTextFields extends React.Component {
         />
         <TextField
           required
-          id="required-outlined"
+          id="outlined-required"
           label="Required"
           defaultValue="Hello World"
           className={classes.textField}
@@ -88,7 +88,7 @@ class OutlinedTextFields extends React.Component {
         />
         <TextField
           error
-          id="error-outlined"
+          id="outlined-error"
           label="Error"
           defaultValue="Hello World"
           className={classes.textField}
@@ -97,7 +97,7 @@ class OutlinedTextFields extends React.Component {
         />
         <TextField
           disabled
-          id="disabled-outlined"
+          id="outlined-disabled"
           label="Disabled"
           defaultValue="Hello World"
           className={classes.textField}
@@ -105,7 +105,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="email-input-outlined"
+          id="outlined-email-input"
           label="Email"
           className={classes.textField}
           type="email"
@@ -115,7 +115,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="password-input-outlined"
+          id="outlined-password-input"
           label="Password"
           className={classes.textField}
           type="password"
@@ -124,7 +124,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="read-only-input-outlined"
+          id="outlined-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
           className={classes.textField}
@@ -135,14 +135,14 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="dense-outlined"
+          id="outlined-dense"
           label="Dense"
           className={classNames(classes.textField, classes.dense)}
           margin="dense"
           variant="outlined"
         />
         <TextField
-          id="multiline-flexible-outlined"
+          id="outlined-multiline-flexible"
           label="Multiline"
           multiline
           rowsMax="4"
@@ -154,7 +154,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="multiline-static-outlined"
+          id="outlined-multiline-static"
           label="Multiline"
           multiline
           rows="4"
@@ -164,17 +164,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="multiline-static-outlined-dense"
-          label="Multiline"
-          multiline
-          rows="4"
-          defaultValue="Default Value"
-          className={classes.textField}
-          margin="dense"
-          variant="outlined"
-        />
-        <TextField
-          id="helperText-outlined"
+          id="outlined-helperText"
           label="Helper text"
           defaultValue="Default Value"
           className={classes.textField}
@@ -183,7 +173,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="with-placeholder-outlined"
+          id="outlined-with-placeholder"
           label="With placeholder"
           placeholder="Placeholder"
           className={classes.textField}
@@ -191,7 +181,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="textarea-outlined"
+          id="outlined-textarea"
           label="Multiline Placeholder"
           placeholder="Placeholder"
           multiline
@@ -200,7 +190,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="number-outlined"
+          id="outlined-number"
           label="Number"
           value={this.state.age}
           onChange={this.handleChange('age')}
@@ -213,7 +203,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="search-outlined"
+          id="outlined-search"
           label="Search field"
           type="search"
           className={classes.textField}
@@ -221,7 +211,7 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
         <TextField
-          id="select-currency-outlined"
+          id="outlined-select-currency"
           select
           label="Select"
           className={classes.textField}
@@ -243,7 +233,7 @@ class OutlinedTextFields extends React.Component {
           ))}
         </TextField>
         <TextField
-          id="select-currency-native-outlined"
+          id="outlined-select-currency-native"
           select
           label="Native select"
           className={classes.textField}
@@ -266,14 +256,22 @@ class OutlinedTextFields extends React.Component {
           ))}
         </TextField>
         <TextField
-          id="full-width-outlined"
+          id="outlined-full-width"
           label="Label"
-          InputLabelProps={{
-            shrink: true,
-          }}
+          style={{ margin: 8 }}
           placeholder="Placeholder"
           helperText="Full width!"
           fullWidth
+          margin="normal"
+          variant="outlined"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <TextField
+          id="outlined-bare"
+          className={classes.textField}
+          defaultValue="Bare"
           margin="normal"
           variant="outlined"
         />

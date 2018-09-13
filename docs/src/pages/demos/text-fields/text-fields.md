@@ -37,6 +37,10 @@ The component takes care of the most used properties, then it's up to the user t
 
 {{"demo": "pages/demos/text-fields/ComposedTextField.js"}}
 
+## Inputs
+
+{{"demo": "pages/demos/text-fields/Inputs.js"}}
+
 ## Layout
 
 `TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using
@@ -60,10 +64,6 @@ For instance, you can use an icon button to hide or reveal the password.
 ## Outlined Input Adornments
 
 {{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
-
-## Inputs
-
-{{"demo": "pages/demos/text-fields/Inputs.js"}}
 
 ## Formatted inputs
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { isFilled, isAdornedStart } from '../Input/utils';
+import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import { isMuiElement } from '../utils/reactHelpers';
@@ -52,7 +52,7 @@ class FormControl extends React.Component {
     const { children } = props;
     if (children) {
       React.Children.forEach(children, child => {
-        if (!isMuiElement(child, ['Input', 'Select', 'NativeSelect'])) {
+        if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }
 
@@ -60,7 +60,7 @@ class FormControl extends React.Component {
           this.state.filled = true;
         }
 
-        const input = isMuiElement(child, ['Select', 'NativeSelect']) ? child.props.input : child;
+        const input = isMuiElement(child, ['Select']) ? child.props.input : child;
 
         if (input && isAdornedStart(input.props)) {
           this.state.adornedStart = true;
@@ -127,6 +127,7 @@ class FormControl extends React.Component {
       fullWidth,
       margin,
       required,
+      variant,
       ...other
     } = this.props;
 
@@ -186,7 +187,7 @@ FormControl.propTypes = {
    */
   required: PropTypes.bool,
   /**
-   * The type of `input` within the `FormControl`.
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };

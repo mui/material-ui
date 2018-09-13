@@ -6,13 +6,15 @@ import SelectInput from './SelectInput';
 import withStyles from '../styles/withStyles';
 import mergeClasses from '../styles/mergeClasses';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
+// To replace with InputBase in v4.0.0
 import Input from '../Input';
+import { formControlState } from '../InputBase/InputBase';
 import { styles as nativeSelectStyles } from '../NativeSelect/NativeSelect';
 import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 
 export const styles = nativeSelectStyles;
 
-function Select(props) {
+function Select(props, context) {
   const {
     autoWidth,
     children,
@@ -29,10 +31,16 @@ function Select(props) {
     open,
     renderValue,
     SelectDisplayProps,
+    variant,
     ...other
   } = props;
 
   const inputComponent = native ? NativeSelectInput : SelectInput;
+  const fcs = formControlState({
+    props,
+    context,
+    states: ['variant'],
+  });
 
   return React.cloneElement(input, {
     // Most of the logic is implemented in `SelectInput`.
@@ -41,6 +49,7 @@ function Select(props) {
     inputProps: {
       children,
       IconComponent,
+      variant: fcs.variant,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
       ...(native
         ? {}
@@ -166,8 +175,7 @@ Select.propTypes = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]),
   /**
-   * The type of `input`. This is normally obtained via context from
-   * `FormControl`.
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
@@ -179,6 +187,10 @@ Select.defaultProps = {
   input: <Input />,
   multiple: false,
   native: false,
+};
+
+Select.contextTypes = {
+  muiFormControl: PropTypes.object,
 };
 
 Select.muiName = 'Select';

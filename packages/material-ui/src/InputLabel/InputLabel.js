@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import FormLabel from '../FormLabel';
+import { formControlState } from '../InputBase/InputBase';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -36,28 +37,14 @@ export const styles = theme => ({
       easing: theme.transitions.easing.easeOut,
     }),
   },
-  /* Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
-  contained: {
-    // Raise the label above yellow background on webkit autofill.
-    // This is only done on shrink to work chrome behavior where
-    // autofilled values are not applied to the `input` value attribute,
-    // which causes the form not to be `filled`, and therefore the
-    // floating label is not in the `shrink` state.
-    '&$shrink': {
-      zIndex: 1,
-    },
-  },
   /* Styles applied to the root element if `variant="filled"`. */
   filled: {
     transform: 'translate(12px, 22px) scale(1)',
-
     '&$marginDense': {
       transform: 'translate(12px, 19px) scale(1)',
     },
-
     '&$shrink': {
       transform: 'translate(12px, 10px) scale(0.75)',
-
       '&$marginDense': {
         transform: 'translate(12px, 7px) scale(0.75)',
       },
@@ -66,73 +53,59 @@ export const styles = theme => ({
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
     transform: 'translate(14px, 22px) scale(1)',
-
     '&$marginDense': {
       transform: 'translate(14px, 17.5px) scale(1)',
     },
-
     '&$shrink': {
       transform: 'translate(14px, -6px) scale(0.75)',
     },
   },
 });
 
-// Disable ESLint- TextField requires a ref to this component
-// for notched outline support and this is preferable to the
-// use of <RootRef /> internally.
-//
-// eslint-disable-next-line react/prefer-stateless-function
-class InputLabel extends React.Component {
-  render() {
-    const {
-      children,
-      classes,
-      className: classNameProp,
-      disableAnimation,
-      FormLabelClasses,
-      margin: marginProp,
-      shrink: shrinkProp,
-      variant: variantProp,
-      ...other
-    } = this.props;
+function InputLabel(props, context) {
+  const {
+    children,
+    classes,
+    className: classNameProp,
+    disableAnimation,
+    FormLabelClasses,
+    margin: marginProp,
+    shrink: shrinkProp,
+    variant: variantProp,
+    ...other
+  } = props;
 
-    const { muiFormControl } = this.context;
-    let shrink = shrinkProp;
-    let variant = variantProp;
+  const { muiFormControl } = context;
 
-    if (typeof shrink === 'undefined' && muiFormControl) {
-      shrink = muiFormControl.filled || muiFormControl.focused || muiFormControl.adornedStart;
-    }
-
-    let margin = marginProp;
-    if (typeof margin === 'undefined' && muiFormControl) {
-      margin = muiFormControl.margin;
-    }
-
-    if (typeof variant === 'undefined' && muiFormControl) {
-      variant = muiFormControl.variant;
-    }
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.formControl]: muiFormControl,
-        [classes.animated]: !disableAnimation,
-        [classes.shrink]: shrink,
-        [classes.marginDense]: margin === 'dense',
-        [classes.contained]: variant === 'filled' || variant === 'outlined',
-        [classes.filled]: variant === 'filled',
-        [classes.outlined]: variant === 'outlined',
-      },
-      classNameProp,
-    );
-
-    return (
-      <FormLabel data-shrink={shrink} className={className} classes={FormLabelClasses} {...other}>
-        {children}
-      </FormLabel>
-    );
+  let shrink = shrinkProp;
+  if (typeof shrink === 'undefined' && muiFormControl) {
+    shrink = muiFormControl.filled || muiFormControl.focused || muiFormControl.adornedStart;
   }
+
+  const fcs = formControlState({
+    props,
+    context,
+    states: ['margin', 'variant'],
+  });
+
+  const className = classNames(
+    classes.root,
+    {
+      [classes.formControl]: muiFormControl,
+      [classes.animated]: !disableAnimation,
+      [classes.shrink]: shrink,
+      [classes.marginDense]: fcs.margin === 'dense',
+      [classes.filled]: fcs.variant === 'filled',
+      [classes.outlined]: fcs.variant === 'outlined',
+    },
+    classNameProp,
+  );
+
+  return (
+    <FormLabel data-shrink={shrink} className={className} classes={FormLabelClasses} {...other}>
+      {children}
+    </FormLabel>
+  );
 }
 
 InputLabel.propTypes = {
@@ -183,8 +156,7 @@ InputLabel.propTypes = {
    */
   shrink: PropTypes.bool,
   /**
-   * The type of `input`. This is normally obtained via context from
-   * `FormControl`.
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };

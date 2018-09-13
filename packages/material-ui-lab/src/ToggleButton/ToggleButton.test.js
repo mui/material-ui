@@ -60,9 +60,7 @@ describe('<ToggleButton />', () => {
         </ToggleButton>,
       );
       const event = {};
-
       wrapper.simulate('click', event);
-
       assert.strictEqual(handleChange.callCount, 1);
     });
 
@@ -74,9 +72,7 @@ describe('<ToggleButton />', () => {
         </ToggleButton>,
       );
       const event = {};
-
       wrapper.simulate('click', event);
-
       assert.strictEqual(handleChange.callCount, 1);
       assert.strictEqual(handleChange.args[0][1], 'one');
     });
@@ -94,7 +90,6 @@ describe('<ToggleButton />', () => {
       };
 
       wrapper.simulate('click', event);
-
       assert.strictEqual(handleChange.callCount, 0);
     });
   });

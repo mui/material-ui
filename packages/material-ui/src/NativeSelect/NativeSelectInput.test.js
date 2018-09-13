@@ -70,7 +70,7 @@ describe('<NativeSelectInput />', () => {
       />,
     );
 
-    assert.isTrue(wrapper.find(`.${defaultProps.classes.select}`).hasClass(outlined));
+    assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).hasClass(outlined), true);
   });
 
   it('should apply filled class', () => {
@@ -83,6 +83,6 @@ describe('<NativeSelectInput />', () => {
       />,
     );
 
-    assert.isTrue(wrapper.find(`.${defaultProps.classes.select}`).hasClass(filled));
+    assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).hasClass(filled), true);
   });
 });

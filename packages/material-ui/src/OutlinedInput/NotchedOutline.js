@@ -14,6 +14,7 @@ export const styles = theme => {
       position: 'absolute',
       width: '100%',
       height: '100%',
+      boxSizing: 'border-box',
       top: 0,
       left: 0,
       margin: 0,
@@ -21,9 +22,8 @@ export const styles = theme => {
       pointerEvents: 'none',
       borderRadius: theme.shape.borderRadius,
       borderStyle: 'solid',
-      borderWidth: '1px',
+      borderWidth: 1,
       borderColor: light ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)',
-
       // Match the Input Label
       transition: theme.transitions.create([`padding-${align}`, 'border-color', 'border-width'], {
         duration: theme.transitions.duration.shorter,
@@ -34,12 +34,10 @@ export const styles = theme => {
     legend: {
       textAlign: align,
       padding: 0,
-
       transition: theme.transitions.create('width', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
       }),
-
       // Firefox workaround. Firefox will only obscure the
       // rendered height of the legend and, unlike other browsers,
       // will not push fieldset contents.
@@ -50,7 +48,7 @@ export const styles = theme => {
     /* Styles applied to the root element if the control is focused. */
     focused: {
       borderColor: theme.palette.primary.main,
-      borderWidth: '2px',
+      borderWidth: 2,
     },
     /* Styles applied to the root element if `error={true}`. */
     error: {
@@ -64,19 +62,18 @@ export const styles = theme => {
 };
 
 /**
- * An outline for form control elements which opens to fit a label.
+ * @ignore - internal component.
  */
 function NotchedOutline(props) {
   const {
-    disabled,
-    error,
     children,
     classes,
     className,
+    disabled,
+    error,
     focused,
+    labelWidth,
     notched,
-    notchWidth,
-    NotchProps,
     style,
     theme,
     ...other
@@ -87,8 +84,10 @@ function NotchedOutline(props) {
   return (
     <fieldset
       aria-hidden
-      {...other}
-      style={{ [`padding${capitalize(align)}`]: 8 + (notched ? 0 : notchWidth / 2), ...style }}
+      style={{
+        [`padding${capitalize(align)}`]: 8 + (notched ? 0 : labelWidth / 2),
+        ...style,
+      }}
       className={classNames(
         classes.root,
         {
@@ -98,18 +97,16 @@ function NotchedOutline(props) {
         },
         className,
       )}
+      {...other}
     >
       <legend
-        align={align}
-        {...NotchProps}
+        className={classes.legend}
         style={{
-          // IE Fix: fieldset with legend does not render
+          // IE 11: fieldset with legend does not render
           // a border radius. This maintains consistency
           // by always having a legend rendered
-          width: notched ? notchWidth : 0.01,
-          ...NotchProps.style,
+          width: notched ? labelWidth : 0.01,
         }}
-        className={classes.legend}
       />
     </fieldset>
   );
@@ -138,27 +135,21 @@ NotchedOutline.propTypes = {
    */
   focused: PropTypes.bool,
   /**
-   * If `true`, the outline is notched to accommodate text.
+   * The width of the legend.
    */
-  notched: PropTypes.bool,
+  labelWidth: PropTypes.number.isRequired,
   /**
-   * The width of the notch, where a label will be placed.
+   * If `true`, the outline is notched to accommodate the label.
    */
-  NotchProps: PropTypes.object,
+  notched: PropTypes.bool.isRequired,
   /**
-   * Props applied to the notch element.
+   * @ignore
    */
-  notchWidth: PropTypes.number.isRequired,
+  style: PropTypes.object,
   /**
    * @ignore
    */
   theme: PropTypes.object,
 };
 
-NotchedOutline.defaultProps = {
-  NotchProps: {},
-};
-
-NotchedOutline.muiName = 'NotchedOutline';
-
-export default withStyles(styles, { withTheme: true, name: 'MuiNotchedOutline' })(NotchedOutline);
+export default withStyles(styles, { name: 'MuiNotchedOutline', withTheme: true })(NotchedOutline);

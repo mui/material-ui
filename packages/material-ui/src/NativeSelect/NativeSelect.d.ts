@@ -10,7 +10,7 @@ export interface NativeSelectProps
   IconComponent?: React.ReactType;
   input?: React.ReactNode;
   value?: string | number | boolean;
-  variant?: 'standard';
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
 export type NativeSelectClassKey =

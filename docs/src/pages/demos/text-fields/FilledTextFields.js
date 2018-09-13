@@ -15,10 +15,10 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
   },
   dense: {
-    marginTop: '21px',
+    marginTop: 16,
   },
   menu: {
-    width: 280,
+    width: 200,
   },
 });
 
@@ -61,7 +61,7 @@ class FilledTextFields extends React.Component {
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
-          id="name-filled"
+          id="filled-name"
           label="Name"
           className={classes.textField}
           value={this.state.name}
@@ -70,7 +70,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="uncontrolled-filled"
+          id="filled-uncontrolled"
           label="Uncontrolled"
           defaultValue="foo"
           className={classes.textField}
@@ -79,7 +79,7 @@ class FilledTextFields extends React.Component {
         />
         <TextField
           required
-          id="required-filled"
+          id="filled-required"
           label="Required"
           defaultValue="Hello World"
           className={classes.textField}
@@ -88,7 +88,7 @@ class FilledTextFields extends React.Component {
         />
         <TextField
           error
-          id="error-filled"
+          id="filled-error"
           label="Error"
           defaultValue="Hello World"
           className={classes.textField}
@@ -97,7 +97,7 @@ class FilledTextFields extends React.Component {
         />
         <TextField
           disabled
-          id="disabled-filled"
+          id="filled-disabled"
           label="Disabled"
           defaultValue="Hello World"
           className={classes.textField}
@@ -105,7 +105,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="email-input-filled"
+          id="filled-email-input"
           label="Email"
           className={classes.textField}
           type="email"
@@ -115,7 +115,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="password-input-filled"
+          id="filled-password-input"
           label="Password"
           className={classes.textField}
           type="password"
@@ -124,7 +124,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="read-only-input-filled"
+          id="filled-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
           className={classes.textField}
@@ -135,14 +135,14 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="dense-filled"
+          id="filled-dense"
           label="Dense"
           className={classNames(classes.textField, classes.dense)}
           margin="dense"
           variant="filled"
         />
         <TextField
-          id="multiline-flexible-filled"
+          id="filled-multiline-flexible"
           label="Multiline"
           multiline
           rowsMax="4"
@@ -154,7 +154,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="multiline-static-filled"
+          id="filled-multiline-static"
           label="Multiline"
           multiline
           rows="4"
@@ -164,17 +164,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="multiline-static-filled-dense"
-          label="Multiline"
-          multiline
-          rows="4"
-          defaultValue="Default Value"
-          className={classes.textField}
-          margin="dense"
-          variant="filled"
-        />
-        <TextField
-          id="helperText-filled"
+          id="filled-helperText"
           label="Helper text"
           defaultValue="Default Value"
           className={classes.textField}
@@ -183,7 +173,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="with-placeholder-filled"
+          id="filled-with-placeholder"
           label="With placeholder"
           placeholder="Placeholder"
           className={classes.textField}
@@ -191,7 +181,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="textarea-filled"
+          id="filled-textarea"
           label="Multiline Placeholder"
           placeholder="Placeholder"
           multiline
@@ -200,7 +190,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="number-filled"
+          id="filled-number"
           label="Number"
           value={this.state.age}
           onChange={this.handleChange('age')}
@@ -213,7 +203,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="search-filled"
+          id="filled-search"
           label="Search field"
           type="search"
           className={classes.textField}
@@ -221,7 +211,7 @@ class FilledTextFields extends React.Component {
           variant="filled"
         />
         <TextField
-          id="select-currency-filled"
+          id="filled-select-currency"
           select
           label="Select"
           className={classes.textField}
@@ -243,7 +233,7 @@ class FilledTextFields extends React.Component {
           ))}
         </TextField>
         <TextField
-          id="select-currency-native-filled"
+          id="filled-select-currency-native"
           select
           label="Native select"
           className={classes.textField}
@@ -266,14 +256,22 @@ class FilledTextFields extends React.Component {
           ))}
         </TextField>
         <TextField
-          id="full-width-filled"
+          id="filled-full-width"
           label="Label"
-          InputLabelProps={{
-            shrink: true,
-          }}
+          style={{ margin: 8 }}
           placeholder="Placeholder"
           helperText="Full width!"
           fullWidth
+          margin="normal"
+          variant="filled"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <TextField
+          id="filled-bare"
+          className={classes.textField}
+          defaultValue="Bare"
           margin="normal"
           variant="filled"
         />

@@ -9,7 +9,7 @@ export interface NativeSelectInputProps {
   name?: string;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>, child: React.ReactNode) => void;
   value?: string | number | boolean;
-  variant?: 'standard';
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
 declare const NativeSelectInput: React.ComponentType<NativeSelectInputProps>;

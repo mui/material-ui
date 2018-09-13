@@ -12,14 +12,14 @@ export const styles = {
     alignItems: 'center',
   },
   /* Styles applied to the root element if `variant="filled"` */
-  filled: {},
+  filled: {
+    '&$positionStart': {
+      marginTop: 16,
+    },
+  },
   /* Styles applied to the root element if `position="start"`. */
   positionStart: {
     marginRight: 8,
-
-    '&$filled': {
-      marginTop: 16,
-    },
   },
   /* Styles applied to the root element if `position="end"`. */
   positionEnd: {
@@ -89,7 +89,7 @@ InputAdornment.propTypes = {
    */
   position: PropTypes.oneOf(['start', 'end']),
   /**
-   * @ignore
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };

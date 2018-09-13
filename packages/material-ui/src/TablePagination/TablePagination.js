@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
-import Input from '../Input';
+import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
 import Select from '../Select';
 import TableCell from '../TableCell';
@@ -49,7 +49,7 @@ export const styles = theme => ({
   selectIcon: {
     top: 1,
   },
-  /* Styles applied to the Input component. */
+  /* Styles applied to the `InputBase` component. */
   input: {
     fontSize: 'inherit',
     flexShrink: 0,
@@ -120,7 +120,7 @@ class TablePagination extends React.Component {
                 select: classes.select,
                 icon: classes.selectIcon,
               }}
-              input={<Input className={classes.input} disableUnderline />}
+              input={<InputBase className={classes.input} />}
               value={rowsPerPage}
               onChange={onChangeRowsPerPage}
               {...SelectProps}

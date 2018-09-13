@@ -62,7 +62,6 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">multiline</span> | <span class="prop-type">bool |   | If `true`, a textarea element will be rendered instead of an input. |
 | <span class="prop-name">name</span> | <span class="prop-type">string |   | Name attribute of the `input` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func |   | Callback fired when the value is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`. |
-| <span class="prop-name">OutlineProps</span> | <span class="prop-type">object |   | Props applied to the [`NotchedOutline`](/api/notched-outline) element. |
 | <span class="prop-name">placeholder</span> | <span class="prop-type">string |   | The short hint displayed in the input before the user enters a value. |
 | <span class="prop-name">required</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the label is displayed as required and the input will be required. |
 | <span class="prop-name">rows</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |   | Number of rows to display when multiline option is set to true. |
@@ -71,7 +70,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">SelectProps</span> | <span class="prop-type">object |   | Properties applied to the [`Select`](/api/select) element. |
 | <span class="prop-name">type</span> | <span class="prop-type">string |   | Type attribute of the `Input` element. It should be a valid HTML5 input type. |
 | <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool&nbsp;&#124;<br>&nbsp;arrayOf<br> |   | The value of the `Input` element, required for a controlled component. |
-| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br> |   | The type of `input` within the `FormControl`. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br> | <span class="prop-default">'standard'</span> | The variant to use. |
 
 Any other properties supplied will be spread to the root element ([FormControl](/api/form-control)).
 

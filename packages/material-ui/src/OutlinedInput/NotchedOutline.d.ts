@@ -6,9 +6,8 @@ export interface NotchedOutlineProps
   disabled?: boolean;
   error?: boolean;
   focused?: boolean;
-  notched?: boolean;
-  notchWidth: number;
-  NotchProps?: React.HTMLAttributes<HTMLLegendElement>;
+  labelWidth: number;
+  notched: boolean;
 }
 
 export type NotchedOutlineClassKey = 'root' | 'legend' | 'focused' | 'error' | 'disabled';

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
 import Menu from '../Menu/Menu';
-import { isFilled } from '../Input/utils';
+import { isFilled } from '../InputBase/utils';
 
 /**
  * @ignore - internal component.
@@ -181,19 +181,10 @@ class SelectInput extends React.Component {
       tabIndex: tabIndexProp,
       type = 'hidden',
       value,
-      variant: variantProp,
+      variant,
       ...other
     } = this.props;
     const open = this.isOpenControlled && this.displayRef ? openProp : this.state.open;
-
-    const { muiFormControl } = this.context;
-    let variant = variantProp;
-
-    if (muiFormControl) {
-      if (typeof variant === 'undefined') {
-        variant = muiFormControl.variant;
-      }
-    }
 
     delete other['aria-invalid'];
 
@@ -458,14 +449,9 @@ SelectInput.propTypes = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]).isRequired,
   /**
-   * The type of `input`. This is normally obtained via context from
-   * `FormControl`.
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
-};
-
-SelectInput.contextTypes = {
-  muiFormControl: PropTypes.object,
 };
 
 export default SelectInput;

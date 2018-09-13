@@ -26,9 +26,9 @@ function NativeSelectInput(props) {
         className={classNames(
           classes.select,
           {
-            [classes.disabled]: disabled,
             [classes.filled]: variant === 'filled',
             [classes.outlined]: variant === 'outlined',
+            [classes.disabled]: disabled,
           },
           className,
         )}
@@ -89,8 +89,7 @@ NativeSelectInput.propTypes = {
    */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   /**
-   * The type of `input`. This is normally obtained via context from
-   * `FormControl`.
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };

@@ -29,7 +29,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 | <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'dense'<br> |   | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | <span class="prop-name">required</span> | <span class="prop-type">bool |   | if `true`, the label will indicate that the input is required. |
 | <span class="prop-name">shrink</span> | <span class="prop-type">bool |   | If `true`, the label is shrunk. |
-| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br> |   | The type of `input`. This is normally obtained via context from `FormControl`. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br> |   | The variant to use. |
 
 Any other properties supplied will be spread to the root element ([FormLabel](/api/form-label)).
 
@@ -46,7 +46,6 @@ This property accepts the following keys:
 | <span class="prop-name">marginDense</span> | Styles applied to the root element if `margin="dense"`.
 | <span class="prop-name">shrink</span> | Styles applied to the `input` element if `shrink={true}`.
 | <span class="prop-name">animated</span> | Styles applied to the `input` element if `disableAnimation={false}`.
-| <span class="prop-name">contained</span> | Styles applied to the root element if `variant="filled"` or `variant="outlined"`.
 | <span class="prop-name">filled</span> | Styles applied to the root element if `variant="filled"`.
 | <span class="prop-name">outlined</span> | Styles applied to the root element if `variant="outlined"`.
 

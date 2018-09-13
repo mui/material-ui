@@ -5,10 +5,18 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import PropTypes from 'prop-types';
 import Input from '../Input';
+import FilledInput from '../FilledInput';
+import OutlinedInput from '../OutlinedInput';
 import InputLabel from '../InputLabel';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
+
+const variantComponent = {
+  standard: Input,
+  filled: FilledInput,
+  outlined: OutlinedInput,
+};
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
@@ -39,16 +47,20 @@ import Select from '../Select';
  * - using the underlying components directly as shown in the demos
  */
 class TextField extends React.Component {
+  labelNode = null;
+
+  labelRef = null;
+
   constructor(props) {
     super(props);
-
-    this.inputLabelRef = React.createRef();
+    this.labelRef = React.createRef();
   }
 
   componentDidMount() {
-    this.inputLabelNode = ReactDOM.findDOMNode(this.inputLabelRef.current);
-
-    this.forceUpdate();
+    if (this.props.variant === 'outlined') {
+      this.labelNode = ReactDOM.findDOMNode(this.labelRef.current);
+      this.forceUpdate();
+    }
   }
 
   render() {
@@ -73,7 +85,6 @@ class TextField extends React.Component {
       onBlur,
       onChange,
       onFocus,
-      OutlineProps,
       placeholder,
       required,
       rows,
@@ -91,20 +102,26 @@ class TextField extends React.Component {
       'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
     );
 
+    const InputMore = {};
+
+    if (variant === 'outlined') {
+      if (InputLabelProps && typeof InputLabelProps.shrink !== 'undefined') {
+        InputMore.notched = InputLabelProps.shrink;
+      }
+
+      InputMore.labelWidth = this.labelNode ? this.labelNode.offsetWidth * 0.75 + 8 : 0;
+    }
+
     const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
+    const InputComponent = variantComponent[variant];
     const InputElement = (
-      <Input
+      <InputComponent
         autoComplete={autoComplete}
         autoFocus={autoFocus}
         defaultValue={defaultValue}
         fullWidth={fullWidth}
         multiline={multiline}
         name={name}
-        OutlineProps={{
-          notched: InputLabelProps && InputLabelProps.shrink,
-          notchWidth: this.inputLabelNode ? this.inputLabelNode.offsetWidth * 0.75 + 8 : 0,
-          ...OutlineProps,
-        }}
         rows={rows}
         rowsMax={rowsMax}
         type={type}
@@ -116,6 +133,7 @@ class TextField extends React.Component {
         onFocus={onFocus}
         placeholder={placeholder}
         inputProps={inputProps}
+        {...InputMore}
         {...InputProps}
       />
     );
@@ -131,7 +149,7 @@ class TextField extends React.Component {
         {...other}
       >
         {label && (
-          <InputLabel htmlFor={id} innerRef={this.inputLabelRef} {...InputLabelProps}>
+          <InputLabel htmlFor={id} ref={this.labelRef} {...InputLabelProps}>
             {label}
           </InputLabel>
         )}
@@ -249,10 +267,6 @@ TextField.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
-   * Props applied to the [`NotchedOutline`](/api/notched-outline) element.
-   */
-  OutlineProps: PropTypes.object,
-  /**
    * The short hint displayed in the input before the user enters a value.
    */
   placeholder: PropTypes.string,
@@ -291,7 +305,7 @@ TextField.propTypes = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]),
   /**
-   * The type of `input` within the `FormControl`.
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
@@ -299,6 +313,7 @@ TextField.propTypes = {
 TextField.defaultProps = {
   required: false,
   select: false,
+  variant: 'standard',
 };
 
 export default TextField;
