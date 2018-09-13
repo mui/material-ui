@@ -175,8 +175,7 @@
     "instrument": false
   },
   "engines": {
-    "node": ">=8.0.0",
-    "yarn": "^1.4.0"
+    "node": ">=8.0.0"
   },
   "workspaces": [
     "packages/*"
