@@ -1,7 +1,7 @@
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/grid-list/grid-list.md';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
+import markdown from 'docs/pages/demos/grid-list/grid-list.md';
 
 function Page() {
   return (
@@ -9,31 +9,31 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/grid-list/ImageGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/ImageGridList').default,
+          js: require('docs/pages/demos/grid-list/ImageGridList').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/ImageGridList'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/grid-list/ImageGridList'), 'utf8')
 `,
         },
         'pages/demos/grid-list/TitlebarGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/TitlebarGridList').default,
+          js: require('docs/pages/demos/grid-list/TitlebarGridList').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/TitlebarGridList'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/grid-list/TitlebarGridList'), 'utf8')
 `,
         },
         'pages/demos/grid-list/AdvancedGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/AdvancedGridList').default,
+          js: require('docs/pages/demos/grid-list/AdvancedGridList').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/AdvancedGridList'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/grid-list/AdvancedGridList'), 'utf8')
 `,
         },
         'pages/demos/grid-list/SingleLineGridList.js': {
-          js: require('docs/src/pages/demos/grid-list/SingleLineGridList').default,
+          js: require('docs/pages/demos/grid-list/SingleLineGridList').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/grid-list/SingleLineGridList'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/grid-list/SingleLineGridList'), 'utf8')
 `,
         },
       }}

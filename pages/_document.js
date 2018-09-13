@@ -1,6 +1,6 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import getPageContext from 'docs/src/modules/styles/getPageContext';
+import getPageContext from 'docs/src/styles/getPageContext';
 import config from 'docs/src/config';
 
 // You can find a benchmark of the available CSS minifiers under

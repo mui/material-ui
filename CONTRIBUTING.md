@@ -85,14 +85,14 @@ For example, let say you want to add new demos for buttons component, then you h
 
 In this case, I'm going to add the new file to the following directory:
 ```
-docs/src/pages/demos/buttons/
+docs/pages/demos/buttons/
 ```
 And let's give it a name: `SuperButtons.js`.
 
 #### 2. Edit the page Markdown file.
 
 The Markdown file is the source for the website documentation. So, whatever you wrote there will be reflected on the website.
-In this case, the file you need to edit is `docs/src/pages/demos/buttons/buttons.md`, and I'm going to add a description about SuperButtons.
+In this case, the file you need to edit is `docs/pages/demos/buttons/buttons.md`, and I'm going to add a description about SuperButtons.
 
 ```diff
 + ### Super buttons
@@ -114,10 +114,10 @@ pages/demos/buttons.js
 Then, you will need to add the following code:
 ```diff
 + 'pages/demos/buttons/SuperButtons.js': {
-+   js: require('docs/src/pages/demos/buttons/SuperButtons').default,
++   js: require('docs/pages/demos/buttons/SuperButtons').default,
 +   raw: preval`
 + module.exports = require('fs')
-+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/SuperButtons'), 'utf8')
++  .readFileSync(require.resolve('docs/pages/demos/buttons/SuperButtons'), 'utf8')
 +`,
 +        },
 ```

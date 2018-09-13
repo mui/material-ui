@@ -1,7 +1,7 @@
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/style/icons/icons.md';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
+import markdown from 'docs/pages/style/icons/icons.md';
 
 function Page() {
   return (
@@ -9,39 +9,39 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/style/icons/SvgIcons.js': {
-          js: require('docs/src/pages/style/icons/SvgIcons').default,
+          js: require('docs/pages/style/icons/SvgIcons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/icons/SvgIcons'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/style/icons/SvgIcons'), 'utf8')
 `,
         },
         'pages/style/icons/SvgMaterialIcons.js': {
-          js: require('docs/src/pages/style/icons/SvgMaterialIcons').default,
+          js: require('docs/pages/style/icons/SvgMaterialIcons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/icons/SvgMaterialIcons'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/style/icons/SvgMaterialIcons'), 'utf8')
 `,
         },
         //         'pages/style/icons/SvgMaterialIconsAll.js': {
-        //           js: require('docs/src/pages/style/icons/SvgMaterialIconsAll').default,
+        //           js: require('docs/pages/style/icons/SvgMaterialIconsAll').default,
         //           raw: preval`
         // module.exports = require('fs')
-        //   .readFileSync(require.resolve('docs/src/pages/style/icons/SvgMaterialIconsAll'),
+        //   .readFileSync(require.resolve('docs/pages/style/icons/SvgMaterialIconsAll'),
         //      'utf8')
         // `,
         //         },
         'pages/style/icons/Icons.js': {
-          js: require('docs/src/pages/style/icons/Icons').default,
+          js: require('docs/pages/style/icons/Icons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/icons/Icons'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/style/icons/Icons'), 'utf8')
 `,
         },
         'pages/style/icons/FontAwesome.js': {
-          js: require('docs/src/pages/style/icons/FontAwesome').default,
+          js: require('docs/pages/style/icons/FontAwesome').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/icons/FontAwesome'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/style/icons/FontAwesome'), 'utf8')
 `,
         },
       }}

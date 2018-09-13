@@ -1,7 +1,7 @@
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/getting-started/usage/usage.md';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
+import markdown from 'docs/pages/getting-started/usage/usage.md';
 
 function Page() {
   return (
@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/getting-started/usage/Usage.js': {
-          js: require('docs/src/pages/getting-started/usage/Usage').default,
+          js: require('docs/pages/getting-started/usage/Usage').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/getting-started/usage/Usage'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/getting-started/usage/Usage'), 'utf8')
 `,
         },
       }}

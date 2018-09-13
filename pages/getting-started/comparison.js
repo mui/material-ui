@@ -1,7 +1,7 @@
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/getting-started/comparison/comparison.md';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
+import markdown from 'docs/pages/getting-started/comparison/comparison.md';
 
 function Page() {
   return <MarkdownDocs markdown={markdown} />;

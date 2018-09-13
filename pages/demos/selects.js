@@ -1,7 +1,7 @@
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/selects/selects.md';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
+import markdown from 'docs/pages/demos/selects/selects.md';
 
 function Page() {
   return (
@@ -9,38 +9,38 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/selects/SimpleSelect.js': {
-          js: require('docs/src/pages/demos/selects/SimpleSelect').default,
+          js: require('docs/pages/demos/selects/SimpleSelect').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/SimpleSelect'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/selects/SimpleSelect'), 'utf8')
 `,
         },
         'pages/demos/selects/NativeSelects.js': {
-          js: require('docs/src/pages/demos/selects/NativeSelects').default,
+          js: require('docs/pages/demos/selects/NativeSelects').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/NativeSelects'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/selects/NativeSelects'), 'utf8')
 `,
         },
         'pages/demos/selects/MultipleSelect.js': {
-          js: require('docs/src/pages/demos/selects/MultipleSelect').default,
+          js: require('docs/pages/demos/selects/MultipleSelect').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/MultipleSelect'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/selects/MultipleSelect'), 'utf8')
 `,
         },
         'pages/demos/selects/DialogSelect.js': {
-          js: require('docs/src/pages/demos/selects/DialogSelect').default,
+          js: require('docs/pages/demos/selects/DialogSelect').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/DialogSelect'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/selects/DialogSelect'), 'utf8')
 `,
         },
         'pages/demos/selects/ControlledOpenSelect.js': {
-          js: require('docs/src/pages/demos/selects/ControlledOpenSelect').default,
+          js: require('docs/pages/demos/selects/ControlledOpenSelect').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/selects/ControlledOpenSelect'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/selects/ControlledOpenSelect'), 'utf8')
 `,
         },
       }}

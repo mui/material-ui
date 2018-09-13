@@ -1,7 +1,7 @@
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/app-bar/app-bar.md';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
+import markdown from 'docs/pages/demos/app-bar/app-bar.md';
 
 function Page() {
   return (
@@ -9,45 +9,45 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/app-bar/SimpleAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/SimpleAppBar').default,
+          js: require('docs/pages/demos/app-bar/SimpleAppBar').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/SimpleAppBar'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/app-bar/SimpleAppBar'), 'utf8')
 `,
         },
         'pages/demos/app-bar/ButtonAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/ButtonAppBar').default,
+          js: require('docs/pages/demos/app-bar/ButtonAppBar').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/ButtonAppBar'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/app-bar/ButtonAppBar'), 'utf8')
 `,
         },
         'pages/demos/app-bar/MenuAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/MenuAppBar').default,
+          js: require('docs/pages/demos/app-bar/MenuAppBar').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/MenuAppBar'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/app-bar/MenuAppBar'), 'utf8')
 `,
         },
         'pages/demos/app-bar/DenseAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/DenseAppBar').default,
+          js: require('docs/pages/demos/app-bar/DenseAppBar').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/DenseAppBar'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/app-bar/DenseAppBar'), 'utf8')
 `,
         },
         'pages/demos/app-bar/SearchAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/SearchAppBar').default,
+          js: require('docs/pages/demos/app-bar/SearchAppBar').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/SearchAppBar'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/app-bar/SearchAppBar'), 'utf8')
 `,
         },
         'pages/demos/app-bar/PrimarySearchAppBar.js': {
-          js: require('docs/src/pages/demos/app-bar/PrimarySearchAppBar').default,
+          js: require('docs/pages/demos/app-bar/PrimarySearchAppBar').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/PrimarySearchAppBar'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/app-bar/PrimarySearchAppBar'), 'utf8')
 `,
         },
       }}

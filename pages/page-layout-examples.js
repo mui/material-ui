@@ -1,7 +1,7 @@
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/page-layout-examples/page-layout-examples.md';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
+import markdown from 'docs/pages/page-layout-examples/page-layout-examples.md';
 
 function Page() {
   return (
@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/page-layout-examples/PageLayoutExamples.js': {
-          js: require('docs/src/pages/page-layout-examples/PageLayoutExamples').default,
+          js: require('docs/pages/page-layout-examples/PageLayoutExamples').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/page-layout-examples/PageLayoutExamples'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/page-layout-examples/PageLayoutExamples'), 'utf8')
 `,
         },
       }}

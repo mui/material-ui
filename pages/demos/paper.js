@@ -1,7 +1,7 @@
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/paper/paper.md';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
+import markdown from 'docs/pages/demos/paper/paper.md';
 
 function Page() {
   return (
@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/paper/PaperSheet.js': {
-          js: require('docs/src/pages/demos/paper/PaperSheet').default,
+          js: require('docs/pages/demos/paper/PaperSheet').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/paper/PaperSheet'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/paper/PaperSheet'), 'utf8')
 `,
         },
       }}

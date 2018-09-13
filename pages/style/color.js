@@ -1,7 +1,7 @@
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/style/color/color.md';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
+import markdown from 'docs/pages/style/color/color.md';
 
 function Page() {
   return (
@@ -9,17 +9,17 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/style/color/Color.js': {
-          js: require('docs/src/pages/style/color/Color').default,
+          js: require('docs/pages/style/color/Color').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/color/Color'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/style/color/Color'), 'utf8')
 `,
         },
         'pages/style/color/ColorTool.js': {
-          js: require('docs/src/pages/style/color/ColorTool').default,
+          js: require('docs/pages/style/color/ColorTool').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/style/color/ColorTool'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/style/color/ColorTool'), 'utf8')
 `,
         },
       }}

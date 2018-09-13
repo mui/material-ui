@@ -1,7 +1,7 @@
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/text-fields/text-fields.md';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
+import markdown from 'docs/pages/demos/text-fields/text-fields.md';
 
 function Page() {
   return (
@@ -9,59 +9,59 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/text-fields/TextFields.js': {
-          js: require('docs/src/pages/demos/text-fields/TextFields').default,
+          js: require('docs/pages/demos/text-fields/TextFields').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/TextFields'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/text-fields/TextFields'), 'utf8')
 `,
         },
         'pages/demos/text-fields/ComposedTextField.js': {
-          js: require('docs/src/pages/demos/text-fields/ComposedTextField').default,
+          js: require('docs/pages/demos/text-fields/ComposedTextField').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/ComposedTextField'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/text-fields/ComposedTextField'), 'utf8')
 `,
         },
         'pages/demos/text-fields/TextFieldMargins.js': {
-          js: require('docs/src/pages/demos/text-fields/TextFieldMargins').default,
+          js: require('docs/pages/demos/text-fields/TextFieldMargins').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/TextFieldMargins'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/text-fields/TextFieldMargins'), 'utf8')
 `,
         },
         'pages/demos/text-fields/InputAdornments.js': {
-          js: require('docs/src/pages/demos/text-fields/InputAdornments').default,
+          js: require('docs/pages/demos/text-fields/InputAdornments').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/InputAdornments'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/text-fields/InputAdornments'), 'utf8')
 `,
         },
         'pages/demos/text-fields/Inputs.js': {
-          js: require('docs/src/pages/demos/text-fields/Inputs').default,
+          js: require('docs/pages/demos/text-fields/Inputs').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/Inputs'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/text-fields/Inputs'), 'utf8')
 `,
         },
         'pages/demos/text-fields/FormattedInputs.js': {
-          js: require('docs/src/pages/demos/text-fields/FormattedInputs').default,
+          js: require('docs/pages/demos/text-fields/FormattedInputs').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/FormattedInputs'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/text-fields/FormattedInputs'), 'utf8')
 `,
         },
         'pages/demos/text-fields/CustomizedInputs.js': {
-          js: require('docs/src/pages/demos/text-fields/CustomizedInputs').default,
+          js: require('docs/pages/demos/text-fields/CustomizedInputs').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/CustomizedInputs'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/text-fields/CustomizedInputs'), 'utf8')
 `,
         },
         'pages/demos/text-fields/InputWithIcon.js': {
-          js: require('docs/src/pages/demos/text-fields/InputWithIcon').default,
+          js: require('docs/pages/demos/text-fields/InputWithIcon').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/InputWithIcon'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/text-fields/InputWithIcon'), 'utf8')
 `,
         },
       }}

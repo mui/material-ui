@@ -56,7 +56,7 @@ const blacklistFilename = [
 ];
 
 // Also use some of the demos to avoid code duplication.
-const requireDemos = require.context('docs/src/pages', true, /js$/);
+const requireDemos = require.context('docs/pages', true, /js$/);
 const demos = requireDemos.keys().reduce((res, path) => {
   const [name, ...suiteArray] = path
     .replace('./', '')

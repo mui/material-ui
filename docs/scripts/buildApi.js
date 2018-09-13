@@ -4,11 +4,11 @@ import { mkdir, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import * as reactDocgen from 'react-docgen';
-import generateMarkdown from '../src/modules/utils/generateMarkdown';
-import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
-import { getHeaders } from '../src/modules/utils/parseMarkdown';
-import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
-import getStylesCreator from '../../packages/material-ui/src/styles/getStylesCreator';
+import generateMarkdown from 'docs/src/utils/generateMarkdown';
+import { findPagesMarkdown, findComponents } from 'docs/src/utils/find';
+import { getHeaders } from 'docs/src/utils/parseMarkdown';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import getStylesCreator from '@material-ui/core/styles/getStylesCreator';
 
 function ensureExists(pat, mask, cb) {
   mkdir(pat, mask, err => {
@@ -160,8 +160,8 @@ function buildDocs(options) {
     writeFileSync(
       path.resolve(docsApiDirectory, `${kebabCase(reactAPI.name)}.js`),
       `import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
 import markdown from './${kebabCase(reactAPI.name)}.md';
 
 function Page() {
