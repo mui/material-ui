@@ -29,6 +29,7 @@ import Slider from '@material-ui/lab/Slider';
 | <span class="prop-name">onDragStart</span> | <span class="prop-type">func |   | Callback function that is fired when the slider has begun to move. |
 | <span class="prop-name">reverse</span> | <span class="prop-type">bool |   | If `true`, the slider will be reversed. |
 | <span class="prop-name">step</span> | <span class="prop-type">number |   | The granularity the slider can step through values. |
+| <span class="prop-name">thumb</span> | <span class="prop-type">element |   | The component used for the slider icon. This is optional, if provided should be a react element. |
 | <span class="prop-name required">value *</span> | <span class="prop-type">number |   | The value of the slider. |
 | <span class="prop-name">vertical</span> | <span class="prop-type">bool |   | If `true`, the slider will be vertical. |
 
@@ -48,7 +49,9 @@ This property accepts the following keys:
 | <span class="prop-name">trackBefore</span> | Styles applied to the track element before the thumb.
 | <span class="prop-name">trackAfter</span> | Styles applied to the track element after the thumb.
 | <span class="prop-name">thumb</span> | Styles applied to the thumb element.
-| <span class="prop-name">reverse</span> | Class applied to the root element to trigger JSS nested styles if `reverse={true}` .
+| <span class="prop-name">thumbIconWrapper</span> | Class applied to the thumb element if custom thumb icon provided.
+| <span class="prop-name">thumbIcon</span> | 
+| <span class="prop-name">reverse</span> | Class applied to the root element to trigger JSS nested styles if `reverse={true}`.
 | <span class="prop-name">disabled</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`.
 | <span class="prop-name">jumped</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `jumped`.
 | <span class="prop-name">focused</span> | Class applied to the track and thumb elements to trigger JSS nested styles if `focused`.
