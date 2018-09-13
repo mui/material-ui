@@ -79,13 +79,14 @@ class SpeedDialAction extends React.Component {
     } = this.props;
 
     let clickProp = { onClick };
-    let startTime;
     if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
+      let startTime;
       clickProp = {
         onTouchStart: () => {
           startTime = new Date();
         },
         onTouchEnd: () => {
+          // only perform action if the touch is a tap, i.e. not long press
           if (new Date() - startTime < 500) {
             onClick();
           }
