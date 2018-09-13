@@ -62,8 +62,9 @@ yarn docs:api
 ```
 
 ### Building locally
-To use the provided build scripts with yarn you have to install `yarn@^1.4.0`. Depending on the package you want to build just run 
-`yarn workspace @material-ui/PACKAGE build`.
+
+To use the provided build scripts with yarn you have to install `yarn@^1.4.0`.
+Depending on the package you want to build just run `yarn workspace @material-ui/PACKAGE build`.
 
 ### Coding style
 
