@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/versions/versions.md';
+import markdown from 'docs/pages/versions/versions.md';
 
 function Page() {
   return (
@@ -9,17 +9,17 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/versions/LatestVersion.js': {
-          js: require('docs/src/pages/versions/LatestVersion').default,
+          js: require('docs/pages/versions/LatestVersion').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/versions/LatestVersion'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/versions/LatestVersion'), 'utf8')
 `,
         },
         'pages/versions/StableVersions.js': {
-          js: require('docs/src/pages/versions/StableVersions').default,
+          js: require('docs/pages/versions/StableVersions').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/versions/StableVersions'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/versions/StableVersions'), 'utf8')
 `,
         },
       }}

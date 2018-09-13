@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import Head from 'docs/src/modules/components/Head';
-import Checkout from 'docs/src/pages/page-layout-examples/checkout/Checkout';
+import Checkout from 'docs/pages/page-layout-examples/checkout/Checkout';
 
 function Page() {
   return (

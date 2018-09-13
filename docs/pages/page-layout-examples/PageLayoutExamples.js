@@ -37,7 +37,7 @@ const themes = [
     src: '/static/images/layouts/dashboard.png',
     href: '/page-layout-examples/dashboard',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/dashboard',
+      'https://github.com/mui-org/material-ui/tree/master/docs/pages/page-layout-examples/dashboard',
   },
   {
     name: 'Sign-in',
@@ -45,7 +45,7 @@ const themes = [
     src: '/static/images/layouts/sign-in.png',
     href: '/page-layout-examples/sign-in',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/sign-in',
+      'https://github.com/mui-org/material-ui/tree/master/docs/pages/page-layout-examples/sign-in',
   },
   {
     name: 'Blog',
@@ -55,7 +55,7 @@ const themes = [
     src: '/static/images/layouts/blog.png',
     href: '/page-layout-examples/blog',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/blog',
+      'https://github.com/mui-org/material-ui/tree/master/docs/pages/page-layout-examples/blog',
   },
   {
     name: 'Checkout',
@@ -65,7 +65,7 @@ const themes = [
     src: '/static/images/layouts/checkout.png',
     href: '/page-layout-examples/checkout',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/checkout',
+      'https://github.com/mui-org/material-ui/tree/master/docs/pages/page-layout-examples/checkout',
   },
   {
     name: 'Album',
@@ -73,7 +73,7 @@ const themes = [
     src: '/static/images/layouts/album.png',
     href: '/page-layout-examples/album',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/album',
+      'https://github.com/mui-org/material-ui/tree/master/docs/pages/page-layout-examples/album',
   },
   {
     name: 'Pricing',
@@ -83,7 +83,7 @@ const themes = [
     src: '/static/images/layouts/pricing.png',
     href: '/page-layout-examples/pricing',
     source:
-      'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/page-layout-examples/pricing',
+      'https://github.com/mui-org/material-ui/tree/master/docs/pages/page-layout-examples/pricing',
   },
 ];
 

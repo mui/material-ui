@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import Head from 'docs/src/modules/components/Head';
-import Blog from 'docs/src/pages/page-layout-examples/blog/Blog';
+import Blog from 'docs/pages/page-layout-examples/blog/Blog';
 
 function Page() {
   return (

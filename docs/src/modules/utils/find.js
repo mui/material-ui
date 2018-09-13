@@ -9,7 +9,7 @@ const markdownRegex = /\.md$/;
 //   filename: String,
 // }
 function findPagesMarkdown(
-  directory = path.resolve(__dirname, '../../../src/pages'),
+  directory = path.resolve(__dirname, '../../../pages'),
   pagesMarkdown = [],
 ) {
   const items = fs.readdirSync(directory);

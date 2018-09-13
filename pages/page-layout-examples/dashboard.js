@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import Head from 'docs/src/modules/components/Head';
-import Dashboard from 'docs/src/pages/page-layout-examples/dashboard/Dashboard';
+import Dashboard from 'docs/pages/page-layout-examples/dashboard/Dashboard';
 
 function Page() {
   return (

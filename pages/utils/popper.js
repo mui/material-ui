@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/utils/popper/popper.md';
+import markdown from 'docs/pages/utils/popper/popper.md';
 
 function Page() {
   return (
@@ -9,45 +9,45 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/utils/popper/SimplePopper.js': {
-          js: require('docs/src/pages/utils/popper/SimplePopper').default,
+          js: require('docs/pages/utils/popper/SimplePopper').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/popper/SimplePopper'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/utils/popper/SimplePopper'), 'utf8')
 `,
         },
         'pages/utils/popper/PositionedPopper.js': {
-          js: require('docs/src/pages/utils/popper/PositionedPopper').default,
+          js: require('docs/pages/utils/popper/PositionedPopper').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/popper/PositionedPopper'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/utils/popper/PositionedPopper'), 'utf8')
 `,
         },
         'pages/utils/popper/NoTransitionPopper.js': {
-          js: require('docs/src/pages/utils/popper/NoTransitionPopper').default,
+          js: require('docs/pages/utils/popper/NoTransitionPopper').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/popper/NoTransitionPopper'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/utils/popper/NoTransitionPopper'), 'utf8')
 `,
         },
         'pages/utils/popper/FakedReferencePopper.js': {
-          js: require('docs/src/pages/utils/popper/FakedReferencePopper').default,
+          js: require('docs/pages/utils/popper/FakedReferencePopper').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/popper/FakedReferencePopper'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/utils/popper/FakedReferencePopper'), 'utf8')
 `,
         },
         'pages/utils/popper/ScrollPlayground.js': {
-          js: require('docs/src/pages/utils/popper/ScrollPlayground').default,
+          js: require('docs/pages/utils/popper/ScrollPlayground').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/popper/ScrollPlayground'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/utils/popper/ScrollPlayground'), 'utf8')
 `,
         },
         'pages/utils/popper/RenderPropsPopper.js': {
-          js: require('docs/src/pages/utils/popper/RenderPropsPopper').default,
+          js: require('docs/pages/utils/popper/RenderPropsPopper').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/popper/RenderPropsPopper'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/utils/popper/RenderPropsPopper'), 'utf8')
 `,
         },
       }}

@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/buttons/buttons.md';
+import markdown from 'docs/pages/demos/buttons/buttons.md';
 
 function Page() {
   return (
@@ -9,73 +9,73 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/demos/buttons/TextButtons.js': {
-          js: require('docs/src/pages/demos/buttons/TextButtons').default,
+          js: require('docs/pages/demos/buttons/TextButtons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/TextButtons'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/buttons/TextButtons'), 'utf8')
 `,
         },
         'pages/demos/buttons/OutlinedButtons.js': {
-          js: require('docs/src/pages/demos/buttons/OutlinedButtons').default,
+          js: require('docs/pages/demos/buttons/OutlinedButtons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/OutlinedButtons'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/buttons/OutlinedButtons'), 'utf8')
 `,
         },
         'pages/demos/buttons/ContainedButtons.js': {
-          js: require('docs/src/pages/demos/buttons/ContainedButtons').default,
+          js: require('docs/pages/demos/buttons/ContainedButtons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/ContainedButtons'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/buttons/ContainedButtons'), 'utf8')
 `,
         },
         'pages/demos/buttons/FloatingActionButtons.js': {
-          js: require('docs/src/pages/demos/buttons/FloatingActionButtons').default,
+          js: require('docs/pages/demos/buttons/FloatingActionButtons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/FloatingActionButtons'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/buttons/FloatingActionButtons'), 'utf8')
 `,
         },
         'pages/demos/buttons/FloatingActionButtonZoom.js': {
-          js: require('docs/src/pages/demos/buttons/FloatingActionButtonZoom').default,
+          js: require('docs/pages/demos/buttons/FloatingActionButtonZoom').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/FloatingActionButtonZoom'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/buttons/FloatingActionButtonZoom'), 'utf8')
 `,
         },
         'pages/demos/buttons/ButtonSizes.js': {
-          js: require('docs/src/pages/demos/buttons/ButtonSizes').default,
+          js: require('docs/pages/demos/buttons/ButtonSizes').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/ButtonSizes'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/buttons/ButtonSizes'), 'utf8')
 `,
         },
         'pages/demos/buttons/IconButtons.js': {
-          js: require('docs/src/pages/demos/buttons/IconButtons').default,
+          js: require('docs/pages/demos/buttons/IconButtons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/IconButtons'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/buttons/IconButtons'), 'utf8')
 `,
         },
         'pages/demos/buttons/IconLabelButtons.js': {
-          js: require('docs/src/pages/demos/buttons/IconLabelButtons').default,
+          js: require('docs/pages/demos/buttons/IconLabelButtons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/IconLabelButtons'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/buttons/IconLabelButtons'), 'utf8')
 `,
         },
         'pages/demos/buttons/CustomizedButtons.js': {
-          js: require('docs/src/pages/demos/buttons/CustomizedButtons').default,
+          js: require('docs/pages/demos/buttons/CustomizedButtons').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/CustomizedButtons'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/buttons/CustomizedButtons'), 'utf8')
 `,
         },
         'pages/demos/buttons/ButtonBases.js': {
-          js: require('docs/src/pages/demos/buttons/ButtonBases').default,
+          js: require('docs/pages/demos/buttons/ButtonBases').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/buttons/ButtonBases'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/demos/buttons/ButtonBases'), 'utf8')
 `,
         },
       }}

@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/discover-more/team/team.md';
+import markdown from 'docs/pages/discover-more/team/team.md';
 
 function Page() {
   return (
@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/discover-more/team/Team.js': {
-          js: require('docs/src/pages/discover-more/team/Team').default,
+          js: require('docs/pages/discover-more/team/Team').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/discover-more/team/Team'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/discover-more/team/Team'), 'utf8')
 `,
         },
       }}

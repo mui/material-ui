@@ -1,7 +1,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/utils/portal/portal.md';
+import markdown from 'docs/pages/utils/portal/portal.md';
 
 function Page() {
   return (
@@ -9,10 +9,10 @@ function Page() {
       markdown={markdown}
       demos={{
         'pages/utils/portal/SimplePortal.js': {
-          js: require('docs/src/pages/utils/portal/SimplePortal').default,
+          js: require('docs/pages/utils/portal/SimplePortal').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/utils/portal/SimplePortal'), 'utf8')
+  .readFileSync(require.resolve('docs/pages/utils/portal/SimplePortal'), 'utf8')
 `,
         },
       }}
