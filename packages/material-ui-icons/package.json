@@ -57,6 +57,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=6.0.0",
+    "yarn": "^1.4.0"
   }
 }
