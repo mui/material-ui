@@ -14,7 +14,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import Slider from '@material-ui/lab/Slider';
 import { rgbToHex } from '@material-ui/core/styles/colorManipulator';
 import { capitalize } from '@material-ui/core/utils/helpers';
-import actionTypes from 'docs/src/modules/redux/actionTypes';
+import actionTypes from 'docs/src/redux/actionTypes';
 import ColorDemo from './ColorDemo';
 
 const hues = Object.keys(colors).slice(1, 17);

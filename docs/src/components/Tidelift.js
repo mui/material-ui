@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Link from 'docs/src/modules/components/Link';
+import Link from 'docs/src/components/Link';
 
 const styles = theme => ({
   root: {

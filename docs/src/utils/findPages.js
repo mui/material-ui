@@ -1,4 +1,4 @@
-import { findPages } from 'docs/src/modules/utils/find';
+import { findPages } from 'docs/src/utils/find';
 
 const pages = findPages({
   front: true,

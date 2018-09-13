@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const pkg = require('./package.json');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { findPages } = require('./docs/src/modules/utils/find');
+const { findPages } = require('./docs/src/utils/find');
 
 process.env.LIB_VERSION = pkg.version;
 

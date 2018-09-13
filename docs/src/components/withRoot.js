@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import find from 'lodash/find';
 import { withRouter } from 'next/router';
 import { Provider } from 'react-redux';
-import AppWrapper from 'docs/src/modules/components/AppWrapper';
-import initRedux from 'docs/src/modules/redux/initRedux';
-import findPages from /* preval */ 'docs/src/modules/utils/findPages';
+import AppWrapper from 'docs/src/components/AppWrapper';
+import initRedux from 'docs/src/redux/initRedux';
+import findPages from /* preval */ 'docs/src/utils/findPages';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 
 if (process.browser) {

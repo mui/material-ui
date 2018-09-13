@@ -11,7 +11,7 @@ import BuildIcon from '@material-ui/icons/Build'; // eslint-disable-line import/
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
 import NoSsr from '@material-ui/core/NoSsr';
-import Link from 'docs/src/modules/components/Link';
+import Link from 'docs/src/components/Link';
 
 const styles = theme => ({
   step: {

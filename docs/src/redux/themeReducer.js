@@ -1,4 +1,4 @@
-import actionTypes from 'docs/src/modules/redux/actionTypes';
+import actionTypes from 'docs/src/redux/actionTypes';
 import blue from '@material-ui/core/colors/blue';
 import pink from '@material-ui/core/colors/pink';
 import { darken } from '@material-ui/core/styles/colorManipulator';

@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
-import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
-import GoogleTag from 'docs/src/modules/components/GoogleTag';
+import getPageContext, { updatePageContext } from 'docs/src/styles/getPageContext';
+import GoogleTag from 'docs/src/components/GoogleTag';
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {

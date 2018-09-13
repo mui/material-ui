@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import themeReducer from 'docs/src/modules/redux/themeReducer';
+import themeReducer from 'docs/src/redux/themeReducer';
 
 // Get the Redux DevTools extension and fallback to a no-op function
 let devtools = x => x;

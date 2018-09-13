@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 
 import React from 'react';
-import withRoot from 'docs/src/modules/components/withRoot';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import withRoot from 'docs/src/components/withRoot';
+import MarkdownDocs from 'docs/src/components/MarkdownDocs';
 import markdown from 'docs/pages/customization/overrides/overrides.md';
 
 function Page() {

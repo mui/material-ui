@@ -2,14 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'docs/src/modules/components/Link';
+import Link from 'docs/src/components/Link';
 import marked from 'marked';
 import throttle from 'lodash/throttle';
 import EventListener from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
-import CodeFund from 'docs/src/modules/components/CodeFund';
+import CodeFund from 'docs/src/components/CodeFund';
 
 const renderer = new marked.Renderer();
 

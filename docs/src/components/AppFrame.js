@@ -19,12 +19,12 @@ import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import GithubIcon from '@material-ui/docs/svgIcons/GitHub';
-import Link from 'docs/src/modules/components/Link';
-import AppDrawer from 'docs/src/modules/components/AppDrawer';
-import AppSearch from 'docs/src/modules/components/AppSearch';
-import Notifications from 'docs/src/modules/components/Notifications';
-import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import actionTypes from 'docs/src/modules/redux/actionTypes';
+import Link from 'docs/src/components/Link';
+import AppDrawer from 'docs/src/components/AppDrawer';
+import AppSearch from 'docs/src/components/AppSearch';
+import Notifications from 'docs/src/components/Notifications';
+import { pageToTitle } from 'docs/src/utils/helpers';
+import actionTypes from 'docs/src/redux/actionTypes';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();

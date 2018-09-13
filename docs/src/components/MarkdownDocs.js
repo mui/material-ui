@@ -5,17 +5,17 @@ import warning from 'warning';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
-import Head from 'docs/src/modules/components/Head';
-import AppContent from 'docs/src/modules/components/AppContent';
-import Demo from 'docs/src/modules/components/Demo';
-import AppFrame from 'docs/src/modules/components/AppFrame';
-import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
+import Head from 'docs/src/components/Head';
+import AppContent from 'docs/src/components/AppContent';
+import Demo from 'docs/src/components/Demo';
+import AppFrame from 'docs/src/components/AppFrame';
+import AppTableOfContents from 'docs/src/components/AppTableOfContents';
 import {
   getHeaders,
   getContents,
   getTitle,
   getDescription,
-} from 'docs/src/modules/utils/parseMarkdown';
+} from 'docs/src/utils/parseMarkdown';
 
 const styles = theme => ({
   root: {

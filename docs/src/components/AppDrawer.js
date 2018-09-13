@@ -8,9 +8,9 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
-import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
-import Link from 'docs/src/modules/components/Link';
-import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import AppDrawerNavItem from 'docs/src/components/AppDrawerNavItem';
+import Link from 'docs/src/components/Link';
+import { pageToTitle } from 'docs/src/utils/helpers';
 
 const styles = theme => ({
   paper: {

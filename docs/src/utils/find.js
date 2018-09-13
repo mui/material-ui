@@ -9,7 +9,7 @@ const markdownRegex = /\.md$/;
 //   filename: String,
 // }
 function findPagesMarkdown(
-  directory = path.resolve(__dirname, '../../../pages'),
+  directory = path.resolve(__dirname, '../../pages'),
   pagesMarkdown = [],
 ) {
   const items = fs.readdirSync(directory);
@@ -82,7 +82,7 @@ const blackList = ['/.eslintrc', '/_document'];
 // Each pathname is a route you can navigate to.
 function findPages(
   options = {},
-  directory = path.resolve(__dirname, '../../../../pages'),
+  directory = path.resolve(__dirname, '../../../pages'),
   pages = [],
 ) {
   fs.readdirSync(directory).forEach(item => {

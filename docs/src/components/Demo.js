@@ -14,7 +14,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 import Github from '@material-ui/docs/svgIcons/GitHub';
 import MarkdownElement from '@material-ui/docs/MarkdownElement';
-import { getDependencies } from 'docs/src/modules/utils/helpers';
+import { getDependencies } from 'docs/src/utils/helpers';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
