@@ -61,6 +61,11 @@ To update the component API documentation (auto generated from component PropTyp
 yarn docs:api
 ```
 
+### Building locally
+
+To use the provided build scripts with yarn you have to install `yarn@^1.4.0`.
+Depending on the package you want to build just run `yarn workspace @material-ui/PACKAGE build`.
+
 ### Coding style
 
 Please follow the coding style of the current code base. Material-UI uses eslint, so if possible, enable linting in your editor to get real-time feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with `yarn lint`.
