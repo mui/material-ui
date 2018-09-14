@@ -107,10 +107,7 @@ class SpeedDialAction extends React.Component {
       return (
         <span className={classes.tooltipOpenContainer}>
           <Grow in={open}>
-            <Paper
-              className={classes.textLabel}
-              {...clickProp}
-            >
+            <Paper className={classes.textLabel} {...clickProp}>
               <Typography>{tooltipTitle}</Typography>
             </Paper>
           </Grow>
