@@ -32,6 +32,15 @@ export const styles = theme => ({
     opacity: 0,
     transform: 'scale(0)',
   },
+  textLabel: {
+    position: 'absolute',
+    right: 65,
+    top: 15,
+    padding: '5px 16px',
+  },
+  tooltipOpenContainer: {
+    position: 'relative',
+  },
 });
 
 class SpeedDialAction extends React.Component {
@@ -114,10 +123,10 @@ class SpeedDialAction extends React.Component {
 
     if (tooltipOpen) {
       return (
-        <span style={{ position: 'relative' }}>
+        <span className={classes.tooltipOpenContainer}>
           <Grow in={open}>
             <Paper
-              style={{ position: 'absolute', right: 65, top: 15, padding: '5px 16px' }}
+              className={classes.textLabel}
               {...clickProp}
             >
               <Typography>{tooltipTitle}</Typography>
