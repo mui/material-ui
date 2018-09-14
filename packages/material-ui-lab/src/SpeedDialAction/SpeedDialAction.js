@@ -35,7 +35,7 @@ export const styles = theme => ({
   textLabel: {
     position: 'absolute',
     right: 65,
-    top: 15,
+    top: 14,
     padding: '5px 16px',
   },
   tooltipOpenContainer: {
@@ -48,31 +48,13 @@ class SpeedDialAction extends React.Component {
     tooltipOpen: false,
   };
 
-  static getDerivedStateFromProps = (props, state) => {
-    if (!props.open && state.tooltipOpen) {
-      return { tooltipOpen: false };
-    }
-    return null;
-  };
-
   handleTooltipClose = () => {
-    if (this.props.tooltipOpen) return;
     this.setState({ tooltipOpen: false });
   };
 
   handleTooltipOpen = () => {
-    if (this.props.tooltipOpen) return;
     this.setState({ tooltipOpen: true });
   };
-
-  componentDidUpdate = prevProps => {
-    if (!this.props.tooltipOpen || prevProps.open === this.props.open) return;
-    if (!this.state.tooltipOpen) {
-      this.timeout = setTimeout(() => this.setState({ tooltipOpen: true }), this.props.delay + 100);
-    }
-  };
-
-  componentWillUnmount = () => clearTimeout(this.timeout);
 
   render() {
     const {
