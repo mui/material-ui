@@ -103,10 +103,8 @@ class SpeedDialAction extends React.Component {
         mini
         className={classNames(classes.button, !open && classes.buttonClosed)}
         style={{ transitionDelay: `${delay}ms` }}
-        onClick={onClick}
         tabIndex={-1}
         role="menuitem"
-        aria-labelledby={id}
         {...ButtonProps}
         {...clickProp}
       >
