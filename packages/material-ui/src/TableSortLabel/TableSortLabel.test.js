@@ -72,6 +72,31 @@ describe('<TableSortLabel />', () => {
     });
   });
 
+  describe('can hide icon', () => {
+    it('can hide icon when not active', () => {
+      const activeFlag = false;
+      const hideSortIconFlag = true;
+      const wrapper = mount(<TableSortLabel active={activeFlag} hideSortIcon={hideSortIconFlag} />);
+      const iconChildren = wrapper.find(`.${classes.icon}`).first();
+      assert.strictEqual(iconChildren.length, 0);
+    });
+
+    it('does not hide icon by default when not active', () => {
+      const activeFlag = false;
+      const wrapper = mount(<TableSortLabel active={activeFlag} />);
+      const iconChildren = wrapper.find(`.${classes.icon}`).first();
+      assert.strictEqual(iconChildren.length, 1);
+    });
+
+    it('does not hide icon when active', () => {
+      const activeFlag = true;
+      const hideSortIconFlag = true;
+      const wrapper = mount(<TableSortLabel active={activeFlag} hideSortIcon={hideSortIconFlag} />);
+      const iconChildren = wrapper.find(`.${classes.icon}`).first();
+      assert.strictEqual(iconChildren.length, 1);
+    });
+  });
+
   describe('mount', () => {
     it('should mount without error', () => {
       mount(<TableSortLabel />);

@@ -56,7 +56,16 @@ export const styles = theme => ({
  * A button based label for placing inside `TableCell` for column sorting.
  */
 function TableSortLabel(props) {
-  const { active, classes, className, children, direction, IconComponent, ...other } = props;
+  const {
+    active,
+    classes,
+    className,
+    children,
+    direction,
+    hideSortIcon,
+    IconComponent,
+    ...other
+  } = props;
 
   return (
     <ButtonBase
@@ -66,9 +75,11 @@ function TableSortLabel(props) {
       {...other}
     >
       {children}
-      <IconComponent
-        className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
-      />
+      {(active || !hideSortIcon) && (
+        <IconComponent
+          className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
+        />
+      )}
     </ButtonBase>
   );
 }
@@ -95,6 +106,10 @@ TableSortLabel.propTypes = {
    * The current sort direction.
    */
   direction: PropTypes.oneOf(['asc', 'desc']),
+  /**
+   * Hide sort icon if necessary, only when active = False
+   */
+  hideSortIcon: PropTypes.bool,
   /**
    * Sort icon to use.
    */
