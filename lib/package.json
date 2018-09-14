@@ -45,11 +45,11 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "classnames": "^2.2.5",
-    "lodash.throttle": "^4.1.1",
     "react-event-listener": "^0.6.2",
     "react-text-mask": "=5.4.1",
     "react-transition-group": "^2.4.0",
-    "recompose": "^0.28.0"
+    "recompose": "^0.28.0",
+    "throttle-debounce": "^2.0.1"
   },
   "size-limit": [
     {
