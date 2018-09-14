@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["@babel/env", { "modules": false, "loose": true }],
+    ["@babel/env", { "loose": true }],
     "@babel/react"
   ],
   "plugins": [
@@ -9,14 +9,12 @@
   "env": {
     "test": {
       "plugins": [
-        "@babel/transform-runtime",
-        "@babel/transform-modules-commonjs"
+        "@babel/transform-runtime"
       ]
     },
     "cjs": {
       "plugins": [
-        "@babel/transform-runtime",
-        "@babel/transform-modules-commonjs"
+        "@babel/transform-runtime"
       ]
     }
   }
