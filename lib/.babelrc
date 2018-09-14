@@ -4,7 +4,8 @@
     "@babel/react"
   ],
   "plugins": [
-    ["@babel/proposal-class-properties", { "loose": true }]
+    ["@babel/proposal-class-properties", { "loose": true }],
+    ["transform-react-remove-prop-types", { mode: "unsafe-wrap" }]
   ],
   "env": {
     "test": {

@@ -93,6 +93,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^23.4.2",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.15",
     "classnames": "^2.2.5",
     "codecov": "^3.0.4",
     "cross-env": "^5.2.0",
