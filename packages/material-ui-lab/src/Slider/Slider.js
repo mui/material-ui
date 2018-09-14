@@ -122,7 +122,15 @@ export const styles = theme => {
         height: 17,
       },
     },
-    /* Class applied to the root element to trigger JSS nested styles if `reverse={true}` . */
+    /* Class applied to the thumb element if custom thumb icon provided. */
+    thumbIconWrapper: {
+      backgroundColor: 'transparent',
+    },
+    thumbIcon: {
+      height: 'inherit',
+      width: 'inherit',
+    },
+    /* Class applied to the root element to trigger JSS nested styles if `reverse={true}`. */
     reverse: {},
     /* Class applied to the track and thumb elements to trigger JSS nested styles if `disabled`. */
     disabled: {},
@@ -380,6 +388,7 @@ class Slider extends React.Component {
       className: classNameProp,
       classes,
       component: Component,
+      thumb: thumbIcon,
       disabled,
       max,
       min,
@@ -425,13 +434,28 @@ class Slider extends React.Component {
       [classes.vertical]: vertical,
     });
 
-    const thumbClasses = classNames(classes.thumb, commonClasses);
-
     const trackProperty = vertical ? 'height' : 'width';
     const thumbProperty = vertical ? 'top' : 'left';
     const inlineTrackBeforeStyles = { [trackProperty]: this.calculateTrackBeforeStyles(percent) };
     const inlineTrackAfterStyles = { [trackProperty]: this.calculateTrackAfterStyles(percent) };
     const inlineThumbStyles = { [thumbProperty]: `${percent}%` };
+
+    /** Start Thumb Icon Logic Here */
+    const ThumbIcon = thumbIcon
+      ? React.cloneElement(thumbIcon, {
+          ...thumbIcon.props,
+          className: classNames(thumbIcon.props.className, classes.thumbIcon),
+        })
+      : null;
+    /** End Thumb Icon Logic Here */
+
+    const thumbClasses = classNames(
+      classes.thumb,
+      {
+        [classes.thumbIconWrapper]: thumbIcon,
+      },
+      commonClasses,
+    );
 
     return (
       <Component
@@ -461,7 +485,9 @@ class Slider extends React.Component {
             onTouchStartCapture={this.handleTouchStart}
             onTouchMove={this.handleMouseMove}
             onFocusVisible={this.handleFocus}
-          />
+          >
+            {ThumbIcon}
+          </ButtonBase>
           <div className={trackAfterClasses} style={inlineTrackAfterStyles} />
         </div>
       </Component>
@@ -522,6 +548,11 @@ Slider.propTypes = {
    * @ignore
    */
   theme: PropTypes.object.isRequired,
+  /**
+   * The component used for the slider icon.
+   * This is optional, if provided should be a react element.
+   */
+  thumb: PropTypes.element,
   /**
    * The value of the slider.
    */

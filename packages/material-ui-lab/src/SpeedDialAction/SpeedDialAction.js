@@ -78,6 +78,22 @@ class SpeedDialAction extends React.Component {
       ...other
     } = this.props;
 
+    let clickProp = { onClick };
+    if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
+      let startTime;
+      clickProp = {
+        onTouchStart: () => {
+          startTime = new Date();
+        },
+        onTouchEnd: () => {
+          // only perform action if the touch is a tap, i.e. not long press
+          if (new Date() - startTime < 500) {
+            onClick();
+          }
+        },
+      };
+    }
+
     return (
       <Tooltip
         id={id}
@@ -94,10 +110,10 @@ class SpeedDialAction extends React.Component {
           mini
           className={classNames(classes.button, !open && classes.buttonClosed)}
           style={{ transitionDelay: `${delay}ms` }}
-          onClick={onClick}
           tabIndex={-1}
           role="menuitem"
           {...ButtonProps}
+          {...clickProp}
         >
           {icon}
         </Button>

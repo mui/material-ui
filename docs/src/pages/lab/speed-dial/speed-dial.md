@@ -22,7 +22,7 @@ of the `SpeedDialIcon` component.
 
 {{"demo": "pages/lab/speed-dial/OpenIconSpeedDial.js"}}
 
-## Persistant action tooltips
+## Persistent action tooltips
 
 The SpeedDialActions tooltips can be be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
 
