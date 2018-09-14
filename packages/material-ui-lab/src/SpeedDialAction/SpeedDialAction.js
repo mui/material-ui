@@ -118,7 +118,10 @@ class SpeedDialAction extends React.Component {
       return (
         <span style={{ position: 'relative' }}>
           <Grow in={open}>
-            <Paper style={{ position: 'absolute', right: 65, top: 15, padding: '5px 16px' }} {...clickProp}>
+            <Paper
+              style={{ position: 'absolute', right: 65, top: 15, padding: '5px 16px' }}
+              {...clickProp}
+            >
               <Typography>{tooltipTitle}</Typography>
             </Paper>
           </Grow>
