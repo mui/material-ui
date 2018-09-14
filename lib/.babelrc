@@ -4,7 +4,6 @@
     "@babel/react"
   ],
   "plugins": [
-    ["@babel/proposal-object-rest-spread", { "loose": true }],
     ["@babel/proposal-class-properties", { "loose": true }]
   ],
   "env": {
@@ -18,11 +17,6 @@
       "plugins": [
         "@babel/transform-runtime",
         "@babel/transform-modules-commonjs"
-      ]
-    },
-    "esm": {
-      "plugins": [
-        "@babel/transform-runtime"
       ]
     }
   }
