@@ -139,7 +139,7 @@ Material-UI has chosen **JSS** while React Toolbox started rewriting their libra
 - JSS exposes a low-level API:
   - We are free to model it to our unique needs, which has allowed us to build one of the most advanced override and theming mechanism.
   - It's not coupled to React like `styled-components` is. It has the potential to reach any 3rd party JS frameworks and libraries. The parallels can be made with SCSS. SCSS is compatible with any JavaScript frameworks and libraries, helping it to get traction in the community.
-- JSS is [two times faster](https://github.com/A-gambit/CSS-IN-JS-Benchmarks/blob/master/RESULT.md) to mount components than style-components is, with all the optimization turned on.
+- JSS is [two times faster](https://github.com/A-gambit/CSS-IN-JS-Benchmarks/blob/master/RESULT.md) to mount components than styled-components is, with all the optimization turned on.
 
 This is not to say that Material-UI is opinionated about how users write their styles.
 You can use styled-components if you would like to do so.
