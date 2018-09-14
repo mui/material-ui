@@ -5,6 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import Grow from '@material-ui/core/Grow';
 
 export const styles = theme => ({
   /* Styles applied to the root (`Tooltip`) component. */
@@ -94,6 +97,36 @@ class SpeedDialAction extends React.Component {
       };
     }
 
+    const actionButton = (
+      <Button
+        variant="fab"
+        mini
+        className={classNames(classes.button, !open && classes.buttonClosed)}
+        style={{ transitionDelay: `${delay}ms` }}
+        onClick={onClick}
+        tabIndex={-1}
+        role="menuitem"
+        aria-labelledby={id}
+        {...ButtonProps}
+        {...clickProp}
+      >
+        {icon}
+      </Button>
+    );
+
+    if (tooltipOpen) {
+      return (
+        <span style={{ position: 'relative' }}>
+          <Grow in={open}>
+            <Paper style={{ position: 'absolute', right: 65, top: 15, padding: '5px 16px' }} {...clickProp}>
+              <Typography>{tooltipTitle}</Typography>
+            </Paper>
+          </Grow>
+          {actionButton}
+        </span>
+      );
+    }
+
     return (
       <Tooltip
         id={id}
@@ -105,18 +138,7 @@ class SpeedDialAction extends React.Component {
         open={open && this.state.tooltipOpen}
         {...other}
       >
-        <Button
-          variant="fab"
-          mini
-          className={classNames(classes.button, !open && classes.buttonClosed)}
-          style={{ transitionDelay: `${delay}ms` }}
-          tabIndex={-1}
-          role="menuitem"
-          {...ButtonProps}
-          {...clickProp}
-        >
-          {icon}
-        </Button>
+        {actionButton}
       </Tooltip>
     );
   }
