@@ -106,7 +106,7 @@ class SpeedDialAction extends React.Component {
     if (tooltipOpen) {
       return (
         <span className={classes.tooltipOpenContainer}>
-          <Grow in={open}>
+          <Grow in={open} timeout={{ enter: delay + 400 }}>
             <Paper className={classes.textLabel} {...clickProp}>
               <Typography>{tooltipTitle}</Typography>
             </Paper>
