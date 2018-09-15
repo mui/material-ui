@@ -8,6 +8,8 @@ import { emphasize, fade, darken } from '../styles/colorManipulator';
 import unsupportedProp from '../utils/unsupportedProp';
 import { capitalize } from '../utils/helpers';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
+import '../Icon/Icon'; // See above ^
+import '../SvgIcon/SvgIcon'; // See above ^
 
 export const styles = theme => {
   const height = 32;
@@ -153,6 +155,25 @@ export const styles = theme => {
       width: 19,
       height: 19,
     },
+    icon: {
+      marginLeft: 4,
+      marginRight: -8,
+      width: '1em',
+      height: '1em',
+      color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
+    },
+    iconColorPrimary: {
+      color: 'inherit',
+      backgroundColor: 'rgba(0,0,0,0)',
+    },
+    iconColorSecondary: {
+      color: 'inherit',
+      backgroundColor: 'rgba(0,0,0,0)',
+    },
+    iconChildren: {
+      width: 19,
+      height: 19,
+    },
     /* Styles applied to the label `span` element`. */
     label: {
       display: 'flex',
@@ -270,6 +291,7 @@ class Chip extends React.Component {
       color,
       component: Component,
       deleteIcon: deleteIconProp,
+      icon: iconProp,
       label,
       onClick,
       onDelete,
@@ -333,6 +355,16 @@ class Chip extends React.Component {
       });
     }
 
+    let icon = null;
+    if (iconProp && React.isValidElement(iconProp)) {
+      icon = React.cloneElement(iconProp, {
+        className: classNames(classes.icon, iconProp.props.className, {
+          [classes[`iconColor${capitalize(color)}`]]: color !== 'default',
+        }),
+        childrenClassName: classNames(classes.iconChildren, iconProp.props.childrenClassName),
+      });
+    }
+
     let tabIndex = tabIndexProp;
 
     if (!tabIndex) {
@@ -352,7 +384,7 @@ class Chip extends React.Component {
         }}
         {...other}
       >
-        {avatar}
+        {avatar || icon}
         <span className={classes.label}>{label}</span>
         {deleteIcon}
       </Component>
@@ -398,6 +430,10 @@ Chip.propTypes = {
    * Override the default delete icon element. Shown only if `onDelete` is set.
    */
   deleteIcon: PropTypes.element,
+  /**
+   * Icon element.
+   */
+  icon: PropTypes.element,
   /**
    * The content of the label.
    */
