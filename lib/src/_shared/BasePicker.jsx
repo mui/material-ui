@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import * as React from 'react';
 import withUtils from './WithUtils';
 
@@ -11,13 +13,19 @@ const getInitialDate = ({ utils, value, initialFocusedDate }) => {
 class BasePicker extends React.Component {
   state = {
     date: getInitialDate(this.props),
-    isAccepted: false
+    isAccepted: false,
   };
+
+  componentDidUpdate(prevProps) {
+    const { utils, value } = this.props;
+    if (prevProps.value !== value || prevProps.utils.locale !== utils.locale) {
+      this.changeDate(getInitialDate(this.props));
+    }
+  }
 
   changeDate = (date, callback) => this.setState({ date }, callback);
 
-  handleAcceptedChange = (isAccepted, callback) =>
-    this.setState({ isAccepted }, callback);
+  handleAcceptedChange = (isAccepted, callback) => this.setState({ isAccepted }, callback);
 
   handleClear = () => this.props.onChange(null);
 
@@ -55,13 +63,6 @@ class BasePicker extends React.Component {
     });
   };
 
-  componentDidUpdate(prevProps) {
-    const { utils, value } = this.props;
-    if (prevProps.value !== value || prevProps.utils.locale !== utils.locale) {
-      this.changeDate(getInitialDate(this.props));
-    }
-  }
-
   render() {
     return this.props.children({
       ...this.props,
@@ -74,7 +75,7 @@ class BasePicker extends React.Component {
       handleTextFieldChange: this.handleTextFieldChange,
       pick12hOr24hFormat: this.pick12hOr24hFormat,
       handleChange: this.handleChange,
-    })
+    });
   }
 }
 
