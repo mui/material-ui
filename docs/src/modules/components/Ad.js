@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import withWidth from '@material-ui/core/withWidth';
 import CodeFund from 'docs/src/modules/components/CodeFund';
-import CarbonAds from 'docs/src/modules/components/CarbonAds';
+import Carbon from 'docs/src/modules/components/Carbon';
 
 const styles = theme => ({
   root: {
@@ -24,6 +24,8 @@ const styles = theme => ({
 
 class Ad extends React.Component {
   timerAdblock = null;
+
+  random = Math.random();
 
   state = {
     adblock: null,
@@ -93,7 +95,7 @@ class Ad extends React.Component {
 
     return (
       <div className={classes.root}>
-        {Math.random() >= 0.5 ? <CodeFund /> : <CarbonAds />}
+        {this.random >= 0.5 ? <CodeFund /> : <Carbon />}
         {adblock === false && (
           <Tooltip
             id="ad-info"

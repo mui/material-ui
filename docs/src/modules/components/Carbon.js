@@ -1,5 +1,4 @@
 import React from 'react';
-import pure from 'recompose/pure';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -34,13 +33,13 @@ const styles = theme => ({
   },
 });
 
-class CarbonAds extends React.Component {
+class Carbon extends React.Component {
   componentDidMount() {
     const script = document.createElement('script');
     script.setAttribute('async', '');
     script.src = '//cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom';
     script.id = '_carbonads_js';
-    const ad = document.querySelector('#ad');
+    const ad = document.querySelector('#carbon_ad');
     if (ad) {
       ad.appendChild(script);
     }
@@ -48,9 +47,9 @@ class CarbonAds extends React.Component {
 
   render() {
     return (
-        <div id="ad" />
+        <div id="carbon_ad" />
     );
   }
 }
 
-export default pure(withStyles(styles)(CarbonAds));
+export default withStyles(styles)(Carbon);
