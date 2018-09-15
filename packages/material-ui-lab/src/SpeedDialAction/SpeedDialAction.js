@@ -32,12 +32,14 @@ export const styles = theme => ({
     opacity: 0,
     transform: 'scale(0)',
   },
+  /* Styles applied to the `Paper` component if `tooltipOpen={true}` */
   textLabel: {
     position: 'absolute',
     right: 65,
     top: 14,
     padding: '5px 16px',
   },
+  /* Styles applied to the root (`span`) component if `tooltipOpen={true}`. */
   tooltipOpenContainer: {
     position: 'relative',
   },
