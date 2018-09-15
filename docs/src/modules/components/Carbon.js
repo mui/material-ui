@@ -46,9 +46,7 @@ class Carbon extends React.Component {
   }
 
   render() {
-    return (
-        <div id="carbon_ad" />
-    );
+    return <div id="carbon_ad" />;
   }
 }
 
