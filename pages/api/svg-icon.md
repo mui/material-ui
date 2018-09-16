@@ -45,8 +45,8 @@ This property accepts the following keys:
 | <span class="prop-name">colorError</span> | Styles applied to the root element if `color="error"`.
 | <span class="prop-name">colorDisabled</span> | Styles applied to the root element if `color="disabled"`.
 | <span class="prop-name">fontSizeInherit</span> | Styles applied to the root element if `fontSize="inherit"`.
-| <span class="prop-name">fontSizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">fontSizeLarge</span> | Styles applied to the root element if `size="large"`.
+| <span class="prop-name">fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
+| <span class="prop-name">fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/SvgIcon/SvgIcon.js)

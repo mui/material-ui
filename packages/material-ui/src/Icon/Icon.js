@@ -39,11 +39,11 @@ export const styles = theme => ({
   fontSizeInherit: {
     fontSize: 'inherit',
   },
-  /* Styles applied to the root element if `size="small"`. */
+  /* Styles applied to the root element if `fontSize="small"`. */
   fontSizeSmall: {
     fontSize: 18,
   },
-  /* Styles applied to the root element if `size="large"`. */
+  /* Styles applied to the root element if `fontSize="large"`. */
   fontSizeLarge: {
     fontSize: 36,
   },
