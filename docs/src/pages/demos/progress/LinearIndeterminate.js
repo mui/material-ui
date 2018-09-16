@@ -12,7 +12,7 @@ const styles = {
   },
   barColorPrimary: {
     backgroundColor: '#00695C',
-  }
+  },
 };
 
 function LinearIndeterminate(props) {
@@ -23,7 +23,9 @@ function LinearIndeterminate(props) {
       <br />
       <LinearProgress color="secondary" />
       <br />
-      <LinearProgress classes={{colorPrimary: classes.colorPrimary, barColorPrimary: classes.barColorPrimary}}/>
+      <LinearProgress
+        classes={{ colorPrimary: classes.colorPrimary, barColorPrimary: classes.barColorPrimary }}
+      />
     </div>
   );
 }
