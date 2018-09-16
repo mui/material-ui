@@ -1,6 +1,6 @@
 import React from 'react';
 import { assert } from 'chai';
-import { isMuiComponent, isMuiElement } from './reactHelpers';
+import { isMuiElement } from './reactHelpers';
 import { Input, ListItemAvatar, ListItemSecondaryAction, SvgIcon } from '..';
 
 describe('utils/reactHelpers.js', () => {
@@ -23,19 +23,6 @@ describe('utils/reactHelpers.js', () => {
         [SvgIcon, 'SvgIcon'],
       ].forEach(([Component, muiName]) => {
         assert.strictEqual(isMuiElement(<Component />, [muiName]), true);
-      });
-    });
-  });
-
-  describe('isMuiComponent', () => {
-    it('should match static muiName property', () => {
-      [
-        [Input, 'Input'],
-        [ListItemAvatar, 'ListItemAvatar'],
-        [ListItemSecondaryAction, 'ListItemSecondaryAction'],
-        [SvgIcon, 'SvgIcon'],
-      ].forEach(([Component, muiName]) => {
-        assert.strictEqual(isMuiComponent(Component, [muiName]), true);
       });
     });
   });

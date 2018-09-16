@@ -16,6 +16,7 @@ function NativeSelectInput(props) {
     name,
     onChange,
     value,
+    variant,
     ...other
   } = props;
 
@@ -25,6 +26,8 @@ function NativeSelectInput(props) {
         className={classNames(
           classes.select,
           {
+            [classes.filled]: variant === 'filled',
+            [classes.outlined]: variant === 'outlined',
             [classes.disabled]: disabled,
           },
           className,
@@ -85,6 +88,10 @@ NativeSelectInput.propTypes = {
    * The input value.
    */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 export default NativeSelectInput;

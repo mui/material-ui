@@ -12,7 +12,7 @@ function mergeClasses(options = {}) {
     ...baseClasses,
     ...Object.keys(newClasses).reduce((accumulator, key) => {
       warning(
-        baseClasses[key] || noBase,
+        baseClasses[key] || noBase || !newClasses[key],
         [
           `Material-UI: the key \`${key}\` ` +
             `provided to the classes property is not implemented in ${getDisplayName(Component)}.`,

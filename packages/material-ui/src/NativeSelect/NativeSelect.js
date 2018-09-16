@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NativeSelectInput from './NativeSelectInput';
 import withStyles from '../styles/withStyles';
+import { formControlState } from '../InputBase/InputBase';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
 
@@ -21,6 +22,7 @@ export const styles = theme => ({
     // Native select can't be selected either.
     userSelect: 'none',
     paddingRight: 32,
+    borderRadius: 0, // Reset
     width: 'calc(100% - 32px)',
     minWidth: 16, // So it doesn't collapse.
     cursor: 'pointer',
@@ -42,6 +44,15 @@ export const styles = theme => ({
     '&$disabled': {
       cursor: 'default',
     },
+  },
+  /* Styles applied to the `Input` component if `variant="filled"`. */
+  filled: {
+    width: 'calc(100% - 44px)',
+  },
+  /* Styles applied to the `Input` component if `variant="outlined"`. */
+  outlined: {
+    width: 'calc(100% - 46px)',
+    borderRadius: theme.shape.borderRadius,
   },
   /* Styles applied to the `Input` component `selectMenu` class. */
   selectMenu: {
@@ -66,10 +77,15 @@ export const styles = theme => ({
 });
 
 /**
- * An alternative to `<Select native />` with a much smaller dependency graph.
+ * An alternative to `<Select native />` with a much smaller bundle size footprint.
  */
-function NativeSelect(props) {
-  const { children, classes, IconComponent, input, inputProps, ...other } = props;
+function NativeSelect(props, context) {
+  const { children, classes, IconComponent, input, inputProps, variant, ...other } = props;
+  const fcs = formControlState({
+    props,
+    context,
+    states: ['variant'],
+  });
 
   return React.cloneElement(input, {
     // Most of the logic is implemented in `NativeSelectInput`.
@@ -79,6 +95,7 @@ function NativeSelect(props) {
       children,
       classes,
       IconComponent,
+      variant: fcs.variant,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
       ...inputProps,
       ...(input ? input.props.inputProps : {}),
@@ -121,6 +138,10 @@ NativeSelect.propTypes = {
    * The input value.
    */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 NativeSelect.defaultProps = {
@@ -128,6 +149,10 @@ NativeSelect.defaultProps = {
   input: <Input />,
 };
 
-NativeSelect.muiName = 'NativeSelect';
+NativeSelect.contextTypes = {
+  muiFormControl: PropTypes.object,
+};
+
+NativeSelect.muiName = 'Select';
 
 export default withStyles(styles, { name: 'MuiNativeSelect' })(NativeSelect);

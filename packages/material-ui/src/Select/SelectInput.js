@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
 import Menu from '../Menu/Menu';
-import { isFilled } from '../Input/utils';
+import { isFilled } from '../InputBase/utils';
 
 /**
  * @ignore - internal component.
@@ -181,6 +181,7 @@ class SelectInput extends React.Component {
       tabIndex: tabIndexProp,
       type = 'hidden',
       value,
+      variant,
       ...other
     } = this.props;
     const open = this.isOpenControlled && this.displayRef ? openProp : this.state.open;
@@ -270,6 +271,8 @@ class SelectInput extends React.Component {
             classes.selectMenu,
             {
               [classes.disabled]: disabled,
+              [classes.filled]: variant === 'filled',
+              [classes.outlined]: variant === 'outlined',
             },
             className,
           )}
@@ -445,6 +448,10 @@ SelectInput.propTypes = {
     PropTypes.bool,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])),
   ]).isRequired,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 export default SelectInput;

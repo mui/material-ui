@@ -15,6 +15,18 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 {{"demo": "pages/demos/text-fields/TextFields.js"}}
 
+## Filled
+
+`TextField` supports filled styling.
+
+{{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
+
+## Outlined
+
+`TextField` supports outlined styling.
+
+{{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
+
 ## Components
 
 `TextField` is composed of smaller components ([`FormControl`](/api/form-control), [`InputLabel`](/api/input-label), [`Input`](/api/input), and [`FormHelperText`](/api/form-helper-text)) that you can leverage directly to significantly customize your form inputs.
@@ -24,6 +36,10 @@ This is on purpose.
 The component takes care of the most used properties, then it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
 
 {{"demo": "pages/demos/text-fields/ComposedTextField.js"}}
+
+## Inputs
+
+{{"demo": "pages/demos/text-fields/Inputs.js"}}
 
 ## Layout
 
@@ -41,9 +57,13 @@ For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "pages/demos/text-fields/InputAdornments.js"}}
 
-## Inputs
+## Filled Input Adornments
 
-{{"demo": "pages/demos/text-fields/Inputs.js"}}
+{{"demo": "pages/demos/text-fields/FilledInputAdornments.js"}}
+
+## Outlined Input Adornments
+
+{{"demo": "pages/demos/text-fields/OutlinedInputAdornments.js"}}
 
 ## Formatted inputs
 
