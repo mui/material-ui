@@ -102,6 +102,8 @@ class TextField extends React.Component {
       'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
     );
 
+    const valuePassed = this.props.hasOwnProperty('value');
+
     const InputMore = {};
 
     if (variant === 'outlined') {
@@ -125,7 +127,6 @@ class TextField extends React.Component {
         rows={rows}
         rowsMax={rowsMax}
         type={type}
-        value={value}
         id={id}
         inputRef={inputRef}
         onBlur={onBlur}
@@ -133,6 +134,7 @@ class TextField extends React.Component {
         onFocus={onFocus}
         placeholder={placeholder}
         inputProps={inputProps}
+        {...valuePassed && { value }}
         {...InputMore}
         {...InputProps}
       />
@@ -154,7 +156,7 @@ class TextField extends React.Component {
           </InputLabel>
         )}
         {select ? (
-          <Select value={value} input={InputElement} {...SelectProps}>
+          <Select input={InputElement} {...valuePassed && { value }} {...SelectProps}>
             {children}
           </Select>
         ) : (
