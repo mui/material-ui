@@ -7,6 +7,7 @@ export interface TableSortLabelProps
   extends StandardProps<ButtonBaseProps, TableSortLabelClassKey> {
   active?: boolean;
   direction?: 'asc' | 'desc';
+  hideSortIcon?: boolean;
   IconComponent?: React.ComponentType<SvgIconProps>;
 }
 
