@@ -65,6 +65,18 @@ class ChipsPlayground extends React.Component {
         break;
     }
 
+    let iconToCode;
+    let iconToPlayground;
+    switch (icon) {
+      case 'none':
+        iconToCode = '';
+        break;
+      default:
+        iconToCode = 'icon={<FaceIcon />}';
+        iconToPlayground = <FaceIcon />;
+        break;
+    }
+
     let avatarToCode;
     let avatarToPlayground;
     switch (avatar) {
@@ -89,18 +101,9 @@ class ChipsPlayground extends React.Component {
         break;
     }
 
-    let iconToCode;
-    let iconToPlayground;
-    switch (icon) {
-      case 'none':
-        iconToCode = '';
-        break;
-      default:
-        iconToCode = 'icon={<FaceIcon />}';
-        iconToPlayground = (
-          <FaceIcon />
-        );
-        break;
+    if (avatar !== 'none') {
+      iconToCode = '';
+      iconToPlayground = null;
     }
 
     const code = `
@@ -163,6 +166,21 @@ class ChipsPlayground extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <FormControl component="fieldset">
+                  <FormLabel>icon</FormLabel>
+                  <RadioGroup
+                    row
+                    name="icon"
+                    aria-label="icon"
+                    value={icon}
+                    onChange={this.handleChange('icon')}
+                  >
+                    <FormControlLabel value="none" control={<Radio />} label="none" />
+                    <FormControlLabel value="icon" control={<Radio />} label="icon" />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl component="fieldset">
                   <FormLabel>avatar</FormLabel>
                   <RadioGroup
                     row
@@ -174,21 +192,6 @@ class ChipsPlayground extends React.Component {
                     <FormControlLabel value="none" control={<Radio />} label="none" />
                     <FormControlLabel value="letter" control={<Radio />} label="letter" />
                     <FormControlLabel value="img" control={<Radio />} label="img" />
-                    <FormControlLabel value="icon" control={<Radio />} label="icon" />
-                  </RadioGroup>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl component="fieldset">
-                  <FormLabel>icon</FormLabel>
-                  <RadioGroup
-                    row
-                    name="icon"
-                    aria-label="icon"
-                    value={icon}
-                    onChange={this.handleChange('icon')}
-                  >
-                    <FormControlLabel value="none" control={<Radio />} label="none" />
                     <FormControlLabel value="icon" control={<Radio />} label="icon" />
                   </RadioGroup>
                 </FormControl>

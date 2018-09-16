@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import { SvgIcon } from '@material-ui/core/SvgIcon';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
@@ -55,9 +54,7 @@ function Chips(props) {
         className={classes.chip}
       />
       <Chip
-        icon={
-          <FaceIcon />
-        }
+        icon={<FaceIcon />}
         label="Clickable Deletable Chip"
         onClick={handleClick}
         onDelete={handleDelete}
@@ -87,9 +84,7 @@ function Chips(props) {
         deleteIcon={<DoneIcon />}
       />
       <Chip
-        icon={
-          <FaceIcon />
-        }
+        icon={<FaceIcon />}
         label="Primary Clickable Chip"
         clickable
         className={classes.chip}
@@ -115,9 +110,7 @@ function Chips(props) {
         color="secondary"
       />
       <Chip
-        icon={
-          <FaceIcon />
-        }
+        icon={<FaceIcon />}
         label="Deletable Secondary Chip"
         onDelete={handleDelete}
         className={classes.chip}

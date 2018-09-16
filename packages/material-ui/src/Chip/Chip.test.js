@@ -501,4 +501,17 @@ describe('<Chip />', () => {
       });
     });
   });
+
+  describe('prop: icon', () => {
+    it('should render the icon', () => {
+      const wrapper = shallow(<Chip icon={<span />} />);
+      assert.strictEqual(
+        wrapper
+          .find('span')
+          .first()
+          .hasClass(classes.icon),
+        true,
+      );
+    });
+  });
 });
