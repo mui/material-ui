@@ -5,9 +5,8 @@ export interface SvgIconProps
   extends StandardProps<React.SVGProps<SVGSVGElement>, SvgIconClassKey> {
   color?: PropTypes.Color | 'action' | 'disabled' | 'error';
   component?: React.ReactType<SvgIconProps>;
-  fontSize?: 'inherit' | 'default';
+  fontSize?: 'inherit' | 'default' | 'small' | 'large';
   nativeColor?: string;
-  size?: 'small' | 'medium' | 'large';
   titleAccess?: string;
   viewBox?: string;
 }
@@ -19,7 +18,9 @@ export type SvgIconClassKey =
   | 'colorDisabled'
   | 'colorError'
   | 'colorPrimary'
-  | 'fontSizeInherit';
+  | 'fontSizeInherit'
+  | 'fontSizeSmall'
+  | 'fontSizeLarge';
 
 declare const SvgIcon: React.ComponentType<SvgIconProps>;
 

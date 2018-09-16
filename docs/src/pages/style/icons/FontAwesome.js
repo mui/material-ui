@@ -48,7 +48,7 @@ class FontAwesome extends React.Component {
         <Icon
           className={classNames(classes.icon, 'fa fa-plus-circle')}
           color="disabled"
-          style={{ fontSize: 36 }}
+          fontSize="large"
         />
       </div>
     );
