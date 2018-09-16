@@ -18,16 +18,11 @@ const styles = theme => ({
       '& .carbon-text': {
         ...theme.typography.body1,
         display: 'block',
-        margin: `${theme.spacing.unit}px`,
+        margin: `${theme.spacing.unit}px 0`,
       },
       '& .carbon-poweredby': {
         ...theme.typography.caption,
         display: 'block',
-        marginTop: 0,
-        position: 'static',
-        right: 0,
-        bottom: 0,
-        padding: `0px ${theme.spacing.unit}px`,
       },
     },
   },
@@ -39,14 +34,12 @@ class Carbon extends React.Component {
     script.setAttribute('async', '');
     script.src = '//cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom';
     script.id = '_carbonads_js';
-    const ad = document.querySelector('#carbon_ad');
-    if (ad) {
-      ad.appendChild(script);
-    }
+    const scriptSlot = document.querySelector('#carbon-ad');
+    scriptSlot.appendChild(script);
   }
 
   render() {
-    return <div id="carbon_ad" />;
+    return <div id="carbon-ad" />;
   }
 }
 

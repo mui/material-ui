@@ -35,7 +35,7 @@ class CodeFund extends React.Component {
   componentDidMount() {
     const script = document.createElement('script');
     script.setAttribute('async', '');
-    script.src = 'https://codefund.io/scripts/71fdcb01-40be-4590-af75-cd1bd4773c2a/embed.js';
+    script.src = '//codefund.io/scripts/71fdcb01-40be-4590-af75-cd1bd4773c2a/embed.js';
     const scriptSlot = document.querySelector('#code-fund-script-slot');
     scriptSlot.appendChild(script);
   }

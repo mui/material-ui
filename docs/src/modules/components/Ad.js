@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
+import Paper from '@material-ui/core/Paper';
 import withWidth from '@material-ui/core/withWidth';
 import CodeFund from 'docs/src/modules/components/CodeFund';
 import Carbon from 'docs/src/modules/components/Carbon';
@@ -19,6 +20,9 @@ const styles = theme => ({
     cursor: 'default',
     bottom: 0,
     right: 0,
+  },
+  paper: {
+    padding: 8,
   },
 });
 
@@ -72,12 +76,12 @@ class Ad extends React.Component {
     const { adblock } = this.state;
 
     if (process.env.NODE_ENV !== 'production') {
-      return null;
+      return <div className={classes.root} />;
     }
 
     if (adblock) {
       return (
-        <div id="cf_ad">
+        <Paper elevation={0} className={classes.paper}>
           <Typography gutterBottom>Like Material-UI?</Typography>
           <Typography gutterBottom>
             {`If you don't mind tech-related ads, and want to support Open Source,
@@ -89,7 +93,7 @@ class Ad extends React.Component {
               ❤️
             </span>
           </Typography>
-        </div>
+        </Paper>
       );
     }
 
