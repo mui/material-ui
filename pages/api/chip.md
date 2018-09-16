@@ -20,6 +20,7 @@ Chips represent complex entities in small blocks, such as a contact.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">avatar</span> | <span class="prop-type">element |   | Avatar element. |
+| <span class="prop-name">icon</span> | <span class="prop-type">element |   | Icon element. |
 | <span class="prop-name">children</span> | <span class="prop-type">unsupportedProp |   | This property isn't supported. Use the `component` property if you need to change the children structure. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">clickable</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If true, the chip will appear clickable, and will raise when pressed, even if the onClick property is not defined. This can be used, for example, along with the component property to indicate an anchor Chip is clickable. |
@@ -56,6 +57,10 @@ This property accepts the following keys:
 | <span class="prop-name">avatarColorPrimary</span> | Styles applied to the `avatar` element if `checked={true}` and `color="primary"`
 | <span class="prop-name">avatarColorSecondary</span> | Styles applied to the `avatar` element if `checked={true}` and `color="secondary"`
 | <span class="prop-name">avatarChildren</span> | Styles applied to the `avatar` elements children.
+| <span class="prop-name">icon</span> | Styles applied to the `icon` element.
+| <span class="prop-name">iconColorPrimary</span> | Styles applied to the `icon` element if `checked={true}` and `color="primary"`
+| <span class="prop-name">iconColorSecondary</span> | Styles applied to the `icon` element if `checked={true}` and `color="secondary"`
+| <span class="prop-name">iconChildren</span> | Styles applied to the `icon` elements children.
 | <span class="prop-name">label</span> | Styles applied to the label `span` element`.
 | <span class="prop-name">deleteIcon</span> | Styles applied to the `deleteIcon` element.
 | <span class="prop-name">deleteIconColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`.
