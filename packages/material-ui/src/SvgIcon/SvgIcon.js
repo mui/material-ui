@@ -42,6 +42,14 @@ export const styles = theme => ({
   fontSizeInherit: {
     fontSize: 'inherit',
   },
+  /* Styles applied to the root element if `fontSize="small"`. */
+  fontSizeSmall: {
+    fontSize: 18,
+  },
+  /* Styles applied to the root element if `fontSize="large"`. */
+  fontSizeLarge: {
+    fontSize: 36,
+  },
 });
 
 function SvgIcon(props) {
@@ -61,7 +69,7 @@ function SvgIcon(props) {
   const className = classNames(
     classes.root,
     {
-      [classes.fontSizeInherit]: fontSize === 'inherit',
+      [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default',
       [classes[`color${capitalize(color)}`]]: color !== 'inherit',
     },
     classNameProp,
@@ -110,7 +118,7 @@ SvgIcon.propTypes = {
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
-  fontSize: PropTypes.oneOf(['inherit', 'default']),
+  fontSize: PropTypes.oneOf(['inherit', 'default', 'small', 'large']),
   /**
    * Applies a color attribute to the SVG element.
    */
