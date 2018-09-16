@@ -58,9 +58,9 @@ export const styles = theme => ({
 function TableSortLabel(props) {
   const {
     active,
+    children,
     classes,
     className,
-    children,
     direction,
     hideSortIcon,
     IconComponent,
@@ -75,7 +75,7 @@ function TableSortLabel(props) {
       {...other}
     >
       {children}
-      {(active || !hideSortIcon) && (
+      {hideSortIcon && !active ? null : (
         <IconComponent
           className={classNames(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
         />
@@ -107,7 +107,7 @@ TableSortLabel.propTypes = {
    */
   direction: PropTypes.oneOf(['asc', 'desc']),
   /**
-   * Hide sort icon if necessary, only when active = False
+   * Hide sort icon when active is false.
    */
   hideSortIcon: PropTypes.bool,
   /**
@@ -119,6 +119,7 @@ TableSortLabel.propTypes = {
 TableSortLabel.defaultProps = {
   active: false,
   direction: 'desc',
+  hideSortIcon: false,
   IconComponent: ArrowDownwardIcon,
 };
 

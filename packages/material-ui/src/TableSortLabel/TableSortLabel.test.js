@@ -65,33 +65,27 @@ describe('<TableSortLabel />', () => {
     });
 
     it('should accept a custom icon for the sort icon', () => {
-      shallow = createShallow({ untilSelector: 'Sort' });
       const wrapper = mount(<TableSortLabel IconComponent={Sort} />);
       assert.strictEqual(wrapper.props().IconComponent, Sort);
       assert.strictEqual(wrapper.find(Sort).length, 1);
     });
   });
 
-  describe('can hide icon', () => {
+  describe('prop: hideSortIcon', () => {
     it('can hide icon when not active', () => {
-      const activeFlag = false;
-      const hideSortIconFlag = true;
-      const wrapper = mount(<TableSortLabel active={activeFlag} hideSortIcon={hideSortIconFlag} />);
+      const wrapper = shallow(<TableSortLabel active={false} hideSortIcon />);
       const iconChildren = wrapper.find(`.${classes.icon}`).first();
       assert.strictEqual(iconChildren.length, 0);
     });
 
     it('does not hide icon by default when not active', () => {
-      const activeFlag = false;
-      const wrapper = mount(<TableSortLabel active={activeFlag} />);
+      const wrapper = shallow(<TableSortLabel active={false} />);
       const iconChildren = wrapper.find(`.${classes.icon}`).first();
       assert.strictEqual(iconChildren.length, 1);
     });
 
     it('does not hide icon when active', () => {
-      const activeFlag = true;
-      const hideSortIconFlag = true;
-      const wrapper = mount(<TableSortLabel active={activeFlag} hideSortIcon={hideSortIconFlag} />);
+      const wrapper = shallow(<TableSortLabel active hideSortIcon />);
       const iconChildren = wrapper.find(`.${classes.icon}`).first();
       assert.strictEqual(iconChildren.length, 1);
     });
