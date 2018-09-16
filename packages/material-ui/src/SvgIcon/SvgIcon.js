@@ -42,34 +42,42 @@ export const styles = theme => ({
   fontSizeInherit: {
     fontSize: 'inherit',
   },
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
+    fontSize: 20,
+  },
+  /* Styles applied to the root element if `size="large"`. */
+  sizeLarge: {
+    fontSize: 36,
+  },
 });
 
 function SvgIcon(props) {
   const {
     children,
     classes,
-    className: classNameProp,
+    className,
     color,
     component: Component,
     fontSize,
     nativeColor,
+    size,
     titleAccess,
     viewBox,
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.fontSizeInherit]: fontSize === 'inherit',
-      [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-    },
-    classNameProp,
-  );
-
   return (
     <Component
-      className={className}
+      className={classNames(
+        classes.root,
+        {
+          [classes.fontSizeInherit]: fontSize === 'inherit',
+          [classes[`color${capitalize(color)}`]]: color !== 'inherit',
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
+        },
+        className,
+      )}
       focusable="false"
       viewBox={viewBox}
       color={nativeColor}
@@ -116,6 +124,10 @@ SvgIcon.propTypes = {
    */
   nativeColor: PropTypes.string,
   /**
+   * The size of the icon.
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
    * Provides a human-readable title for the element that contains it.
    * https://www.w3.org/TR/SVG-access/#Equivalent
    */
@@ -134,6 +146,7 @@ SvgIcon.defaultProps = {
   color: 'inherit',
   component: 'svg',
   fontSize: 'default',
+  size: 'medium',
   viewBox: '0 0 24 24',
 };
 

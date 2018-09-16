@@ -39,19 +39,37 @@ export const styles = theme => ({
   fontSizeInherit: {
     fontSize: 'inherit',
   },
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {
+    fontSize: 20,
+  },
+  /* Styles applied to the root element if `size="large"`. */
+  sizeLarge: {
+    fontSize: 36,
+  },
 });
 
 function Icon(props) {
-  const { children, classes, className, color, fontSize, ...other } = props;
+  const {
+    children,
+    classes,
+    className,
+    color,
+    component: Component,
+    fontSize,
+    size,
+    ...other
+  } = props;
 
   return (
-    <span
+    <Component
       className={classNames(
         'material-icons',
         classes.root,
         {
+          [classes.fontSizeInherit]: fontSize === 'inherit',
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default',
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
         },
         className,
       )}
@@ -59,7 +77,7 @@ function Icon(props) {
       {...other}
     >
       {children}
-    </span>
+    </Component>
   );
 }
 
@@ -82,14 +100,25 @@ Icon.propTypes = {
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
   fontSize: PropTypes.oneOf(['inherit', 'default']),
+  /**
+   * The size of the icon.
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 Icon.defaultProps = {
   color: 'inherit',
+  component: 'span',
   fontSize: 'default',
+  size: 'medium',
 };
 
 Icon.muiName = 'Icon';

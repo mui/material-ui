@@ -14,9 +14,7 @@ export const styles = theme => ({
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
-    width: 48,
-    height: 48,
-    padding: 0,
+    padding: 12,
     borderRadius: '50%',
     overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
     color: theme.palette.action.active,
@@ -63,16 +61,6 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
-    width: 40,
-    height: 40,
-  },
-  /* Styles applied to the root element if `size="large"`. */
-  sizeLarge: {
-    width: 56,
-    height: 56,
-  },
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the children container element. */
@@ -89,7 +77,7 @@ export const styles = theme => ({
  * regarding the available icon options.
  */
 function IconButton(props) {
-  const { children, classes, className, color, size, disabled, ...other } = props;
+  const { children, classes, className, color, disabled, ...other } = props;
 
   return (
     <ButtonBase
@@ -97,7 +85,6 @@ function IconButton(props) {
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
-          [classes[`size${capitalize(size)}`]]: size !== 'medium',
           [classes.disabled]: disabled,
         },
         className,
@@ -138,16 +125,10 @@ IconButton.propTypes = {
    * If `true`, the ripple will be disabled.
    */
   disableRipple: PropTypes.bool,
-  /**
-   * The size of the button.
-   * `small` is equivalent to the dense button styling.
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 IconButton.defaultProps = {
   color: 'default',
-  size: 'medium',
   disabled: false,
 };
 

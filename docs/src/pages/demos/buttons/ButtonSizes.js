@@ -58,14 +58,14 @@ function ButtonSizes(props) {
         </Button>
       </div>
       <div>
-        <IconButton aria-label="Delete" size="small" className={classes.button}>
-          <DeleteIcon />
+        <IconButton aria-label="Delete" className={classes.button}>
+          <DeleteIcon size="small" />
         </IconButton>
         <IconButton aria-label="Delete" className={classes.button}>
           <DeleteIcon />
         </IconButton>
-        <IconButton aria-label="Delete" size="large" className={classes.button}>
-          <DeleteIcon />
+        <IconButton aria-label="Delete" className={classes.button}>
+          <DeleteIcon size="large" />
         </IconButton>
       </div>
     </div>

@@ -6,7 +6,6 @@ export interface IconButtonProps extends StandardProps<ButtonBaseProps, IconButt
   color?: PropTypes.Color;
   disabled?: boolean;
   disableRipple?: boolean;
-  size?: 'small' | 'medium' | 'large';
 }
 
 export type IconButtonClassKey =
@@ -15,8 +14,6 @@ export type IconButtonClassKey =
   | 'colorPrimary'
   | 'colorSecondary'
   | 'disabled'
-  | 'sizeSmall'
-  | 'sizeLarge'
   | 'label';
 
 declare const IconButton: React.ComponentType<IconButtonProps>;
