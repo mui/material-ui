@@ -14,9 +14,7 @@ export const styles = theme => ({
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
-    width: 48,
-    height: 48,
-    padding: 0,
+    padding: 12,
     borderRadius: '50%',
     overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
     color: theme.palette.action.active,
