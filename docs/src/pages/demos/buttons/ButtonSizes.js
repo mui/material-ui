@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = theme => ({
   button: {
@@ -54,6 +56,17 @@ function ButtonSizes(props) {
         <Button variant="fab" color="secondary" aria-label="Add" className={classes.button}>
           <AddIcon />
         </Button>
+      </div>
+      <div>
+        <IconButton aria-label="Delete" className={classes.button}>
+          <DeleteIcon fontSize="small" />
+        </IconButton>
+        <IconButton aria-label="Delete" className={classes.button}>
+          <DeleteIcon />
+        </IconButton>
+        <IconButton aria-label="Delete" className={classes.button}>
+          <DeleteIcon fontSize="large" />
+        </IconButton>
       </div>
     </div>
   );

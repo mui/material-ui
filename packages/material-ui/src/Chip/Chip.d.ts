@@ -8,6 +8,7 @@ export interface ChipProps
   color?: PropTypes.Color;
   component?: React.ReactType<ChipProps>;
   deleteIcon?: React.ReactElement<any>;
+  icon?: React.ReactElement<any>;
   label?: React.ReactNode;
   onDelete?: React.EventHandler<any>;
   variant?: 'default' | 'outlined';

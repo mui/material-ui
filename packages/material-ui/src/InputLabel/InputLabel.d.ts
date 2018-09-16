@@ -12,7 +12,15 @@ export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabe
   shrink?: boolean;
 }
 
-export type InputLabelClassKey = 'root' | 'formControl' | 'marginDense' | 'shrink' | 'animated';
+export type InputLabelClassKey =
+  | 'root'
+  | 'formControl'
+  | 'marginDense'
+  | 'shrink'
+  | 'animated'
+  | 'contained'
+  | 'filled'
+  | 'outlined';
 
 declare const InputLabel: React.ComponentType<InputLabelProps>;
 

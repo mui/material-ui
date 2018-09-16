@@ -39,7 +39,7 @@ function Icons(props) {
       <Icon className={classes.iconHover} color="error" style={{ fontSize: 30 }}>
         add_circle
       </Icon>
-      <Icon className={classes.icon} color="disabled" style={{ fontSize: 36 }}>
+      <Icon className={classes.icon} color="disabled" fontSize="large">
         add_circle
       </Icon>
     </div>

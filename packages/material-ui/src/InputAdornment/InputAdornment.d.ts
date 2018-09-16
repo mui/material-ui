@@ -8,7 +8,7 @@ export interface InputAdornmentProps
   position: 'start' | 'end';
 }
 
-export type InputAdornmentClassKey = 'root' | 'positionStart' | 'positionEnd';
+export type InputAdornmentClassKey = 'root' | 'positionStart' | 'positionEnd' | 'filled';
 
 declare const InputAdornment: React.ComponentType<InputAdornmentProps>;
 

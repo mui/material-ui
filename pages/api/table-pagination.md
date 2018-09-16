@@ -51,7 +51,7 @@ This property accepts the following keys:
 | <span class="prop-name">selectRoot</span> | Styles applied to the Select component `root` class.
 | <span class="prop-name">select</span> | Styles applied to the Select component `select` class.
 | <span class="prop-name">selectIcon</span> | Styles applied to the Select component `icon` class.
-| <span class="prop-name">input</span> | Styles applied to the Input component.
+| <span class="prop-name">input</span> | Styles applied to the `InputBase` component.
 | <span class="prop-name">menuItem</span> | Styles applied to the MenuItem component.
 | <span class="prop-name">actions</span> | Styles applied to the internal `TablePaginationActions` component.
 
