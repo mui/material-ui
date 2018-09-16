@@ -9,7 +9,7 @@ import EventListener from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
-import CodeFund from 'docs/src/modules/components/CodeFund';
+import Ad from 'docs/src/modules/components/Ad';
 
 const renderer = new marked.Renderer();
 
@@ -138,7 +138,7 @@ class AppTableOfContents extends React.Component {
 
     return (
       <nav className={classes.root}>
-        {disableAd ? null : <CodeFund />}
+        {disableAd ? null : <Ad />}
         {itemsServer.length > 0 ? (
           <React.Fragment>
             <Typography variant="body2" gutterBottom className={classes.contents}>
