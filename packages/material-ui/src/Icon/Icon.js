@@ -41,7 +41,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `fontSize="small"`. */
   fontSizeSmall: {
-    fontSize: 18,
+    fontSize: 20,
   },
   /* Styles applied to the root element if `fontSize="large"`. */
   fontSizeLarge: {
