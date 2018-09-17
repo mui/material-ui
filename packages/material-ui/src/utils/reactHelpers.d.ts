@@ -12,4 +12,3 @@ export interface NamedMuiElement {
 }
 
 export function isMuiElement(element: any, muiNames: string[]): element is NamedMuiElement;
-export function isMuiComponent(element: any, muiNames: string[]): element is NamedMuiComponent;
