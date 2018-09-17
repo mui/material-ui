@@ -32,6 +32,13 @@ export const styles = theme => ({
   caption: theme.typography.caption,
   /* Styles applied to the root element if `variant="button"`. */
   button: theme.typography.button,
+  /* Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers. */
+  srOnly: {
+    position: 'absolute',
+    height: 1,
+    width: 1,
+    overflow: 'hidden',
+  },
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
@@ -105,8 +112,8 @@ function Typography(props) {
 
   const className = classNames(
     classes.root,
-    classes[variant],
     {
+      [classes[variant]]: variant !== 'inherit',
       [classes[`color${capitalize(color)}`]]: color !== 'default',
       [classes.noWrap]: noWrap,
       [classes.gutterBottom]: gutterBottom,
@@ -190,6 +197,8 @@ Typography.propTypes = {
     'body1',
     'caption',
     'button',
+    'srOnly',
+    'inherit',
   ]),
 };
 

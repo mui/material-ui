@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.0.0",
-    "recompose": "^0.29.0"
+    "recompose": "0.28.0 - 0.30.0"
   },
   "devDependencies": {
     "fs-extra": "^7.0.0",

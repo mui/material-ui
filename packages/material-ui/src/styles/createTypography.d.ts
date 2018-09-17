@@ -2,7 +2,7 @@ import { Palette } from './createPalette';
 import { Overwrite, Omit } from '..';
 import { CSSProperties } from './withStyles';
 
-export type TextStyle =
+export type ThemeStyle =
   | 'display1'
   | 'display2'
   | 'display3'
@@ -12,9 +12,8 @@ export type TextStyle =
   | 'subheading'
   | 'body1'
   | 'body2'
-  | 'caption';
-
-export type Style = TextStyle | 'button';
+  | 'caption'
+  | 'button';
 
 export interface FontStyle
   extends Required<{
@@ -41,10 +40,13 @@ export interface TypographyUtils {
   pxToRem: (px: number) => string;
 }
 
-export interface Typography extends Record<Style, TypographyStyle>, FontStyle, TypographyUtils {}
+export interface Typography
+  extends Record<ThemeStyle, TypographyStyle>,
+    FontStyle,
+    TypographyUtils {}
 
 export interface TypographyOptions
-  extends Partial<Record<Style, TypographyStyleOptions> & FontStyleOptions> {}
+  extends Partial<Record<ThemeStyle, TypographyStyleOptions> & FontStyleOptions> {}
 
 export default function createTypography(
   palette: Palette,

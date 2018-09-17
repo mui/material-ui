@@ -31,6 +31,7 @@ class ChipsPlayground extends React.Component {
     color: 'default',
     onDelete: 'none',
     avatar: 'none',
+    icon: 'none',
     variant: 'default',
   };
 
@@ -46,7 +47,7 @@ class ChipsPlayground extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { color, onDelete, avatar, variant } = this.state;
+    const { color, onDelete, avatar, icon, variant } = this.state;
 
     const colorToCode = color !== 'default' ? `color="${color}" ` : '';
     const variantToCode = variant !== 'default' ? `variant="${variant}" ` : '';
@@ -61,6 +62,18 @@ class ChipsPlayground extends React.Component {
         break;
       default:
         onDeleteToCode = 'onDelete={handleDelete} ';
+        break;
+    }
+
+    let iconToCode;
+    let iconToPlayground;
+    switch (icon) {
+      case 'none':
+        iconToCode = '';
+        break;
+      default:
+        iconToCode = 'icon={<FaceIcon />}';
+        iconToPlayground = <FaceIcon />;
         break;
     }
 
@@ -88,9 +101,14 @@ class ChipsPlayground extends React.Component {
         break;
     }
 
+    if (avatar !== 'none') {
+      iconToCode = '';
+      iconToPlayground = null;
+    }
+
     const code = `
 \`\`\`jsx
-<Chip ${colorToCode}${onDeleteToCode}${avatarToCode}${variantToCode}/>
+<Chip ${colorToCode}${onDeleteToCode}${avatarToCode}${iconToCode}${variantToCode}/>
 \`\`\`
 `;
 
@@ -105,6 +123,7 @@ class ChipsPlayground extends React.Component {
                 deleteIcon={onDelete === 'custom' ? <DoneIcon /> : undefined}
                 onDelete={onDelete !== 'none' ? this.handleDeleteExample : undefined}
                 avatar={avatarToPlayground}
+                icon={iconToPlayground}
                 variant={variant}
               />
             </Grid>
@@ -142,6 +161,21 @@ class ChipsPlayground extends React.Component {
                     <FormControlLabel value="none" control={<Radio />} label="none" />
                     <FormControlLabel value="default" control={<Radio />} label="default" />
                     <FormControlLabel value="custom" control={<Radio />} label="custom" />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl component="fieldset">
+                  <FormLabel>icon</FormLabel>
+                  <RadioGroup
+                    row
+                    name="icon"
+                    aria-label="icon"
+                    value={icon}
+                    onChange={this.handleChange('icon')}
+                  >
+                    <FormControlLabel value="none" control={<Radio />} label="none" />
+                    <FormControlLabel value="icon" control={<Radio />} label="icon" />
                   </RadioGroup>
                 </FormControl>
               </Grid>

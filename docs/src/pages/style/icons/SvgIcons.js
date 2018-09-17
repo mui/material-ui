@@ -39,11 +39,11 @@ function SvgIcons(props) {
       <HomeIcon className={classes.icon} color="secondary" />
       <HomeIcon className={classes.icon} color="action" />
       <HomeIcon className={classes.iconHover} color="error" style={{ fontSize: 30 }} />
-      <HomeIcon color="disabled" className={classes.icon} style={{ fontSize: 36 }} />
+      <HomeIcon color="disabled" className={classes.icon} fontSize="large" />
       <HomeIcon
         className={classes.icon}
         color="primary"
-        style={{ fontSize: 36 }}
+        fontSize="large"
         component={svgProps => (
           <svg {...svgProps}>
             <defs>

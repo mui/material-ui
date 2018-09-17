@@ -57,6 +57,14 @@ function OutlinedChips(props) {
         variant="outlined"
       />
       <Chip
+        icon={<FaceIcon />}
+        label="Clickable Deletable Chip"
+        onClick={handleClick}
+        onDelete={handleDelete}
+        className={classes.chip}
+        variant="outlined"
+      />
+      <Chip
         label="Custom delete icon Chip"
         onClick={handleClick}
         onDelete={handleDelete}
@@ -83,6 +91,16 @@ function OutlinedChips(props) {
         variant="outlined"
       />
       <Chip
+        icon={<FaceIcon />}
+        label="Primary Clickable Chip"
+        clickable
+        className={classes.chip}
+        color="primary"
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+        variant="outlined"
+      />
+      <Chip
         label="Deletable Primary Chip"
         onDelete={handleDelete}
         className={classes.chip}
@@ -95,6 +113,14 @@ function OutlinedChips(props) {
             <FaceIcon />
           </Avatar>
         }
+        label="Deletable Secondary Chip"
+        onDelete={handleDelete}
+        className={classes.chip}
+        color="secondary"
+        variant="outlined"
+      />
+      <Chip
+        icon={<FaceIcon />}
         label="Deletable Secondary Chip"
         onDelete={handleDelete}
         className={classes.chip}

@@ -40,12 +40,12 @@ function getDemo(props) {
       'demo.js': props.raw,
       'index.js': `
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import Demo from './demo';
 
 const rootElement = document.querySelector('#root');
 if (rootElement) {
-  render(<Demo />, rootElement);
+  ReactDOM.render(<Demo />, rootElement);
 }
       `,
       'index.html': `

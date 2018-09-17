@@ -143,7 +143,7 @@ describe('<ToggleButtonGroup />', () => {
           .simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
-        assert.strictEqual(handleChange.args[0][0], null);
+        assert.strictEqual(handleChange.args[0][1], null);
       });
 
       it('should be a single value when value is toggled on', () => {
@@ -161,7 +161,7 @@ describe('<ToggleButtonGroup />', () => {
           .simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
-        assert.strictEqual(handleChange.args[0][0], 'one');
+        assert.strictEqual(handleChange.args[0][1], 'one');
       });
 
       it('should be a single value when a new value is toggled on', () => {
@@ -179,7 +179,7 @@ describe('<ToggleButtonGroup />', () => {
           .simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
-        assert.strictEqual(handleChange.args[0][0], 'two');
+        assert.strictEqual(handleChange.args[0][1], 'two');
       });
     });
 
@@ -199,7 +199,7 @@ describe('<ToggleButtonGroup />', () => {
           .simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
-        assert.strictEqual(handleChange.args[0][0], null);
+        assert.strictEqual(handleChange.args[0][1], null);
       });
 
       it('should be an array with a single value when value is toggled on', () => {
@@ -217,7 +217,7 @@ describe('<ToggleButtonGroup />', () => {
           .simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
-        assert.deepEqual(handleChange.args[0][0], ['one']);
+        assert.deepEqual(handleChange.args[0][1], ['one']);
       });
 
       it('should be an array with a single value when a secondary value is toggled off', () => {
@@ -235,7 +235,7 @@ describe('<ToggleButtonGroup />', () => {
           .simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
-        assert.deepEqual(handleChange.args[0][0], ['two']);
+        assert.deepEqual(handleChange.args[0][1], ['two']);
       });
 
       it('should be an array of all selected values when a second value is toggled on', () => {
@@ -253,7 +253,7 @@ describe('<ToggleButtonGroup />', () => {
           .simulate('click');
 
         assert.strictEqual(handleChange.callCount, 1);
-        assert.deepEqual(handleChange.args[0][0], ['one', 'two']);
+        assert.deepEqual(handleChange.args[0][1], ['one', 'two']);
       });
     });
   });

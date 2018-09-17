@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import FormLabel from '../FormLabel';
+import { formControlState } from '../InputBase/InputBase';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -31,10 +32,33 @@ export const styles = theme => ({
   },
   /* Styles applied to the `input` element if `disableAnimation={false}`. */
   animated: {
-    transition: theme.transitions.create('transform', {
+    transition: theme.transitions.create(['color', 'transform'], {
       duration: theme.transitions.duration.shorter,
       easing: theme.transitions.easing.easeOut,
     }),
+  },
+  /* Styles applied to the root element if `variant="filled"`. */
+  filled: {
+    transform: 'translate(12px, 22px) scale(1)',
+    '&$marginDense': {
+      transform: 'translate(12px, 19px) scale(1)',
+    },
+    '&$shrink': {
+      transform: 'translate(12px, 10px) scale(0.75)',
+      '&$marginDense': {
+        transform: 'translate(12px, 7px) scale(0.75)',
+      },
+    },
+  },
+  /* Styles applied to the root element if `variant="outlined"`. */
+  outlined: {
+    transform: 'translate(14px, 22px) scale(1)',
+    '&$marginDense': {
+      transform: 'translate(14px, 17.5px) scale(1)',
+    },
+    '&$shrink': {
+      transform: 'translate(14px, -6px) scale(0.75)',
+    },
   },
 });
 
@@ -47,20 +71,22 @@ function InputLabel(props, context) {
     FormLabelClasses,
     margin: marginProp,
     shrink: shrinkProp,
+    variant: variantProp,
     ...other
   } = props;
 
   const { muiFormControl } = context;
-  let shrink = shrinkProp;
 
+  let shrink = shrinkProp;
   if (typeof shrink === 'undefined' && muiFormControl) {
     shrink = muiFormControl.filled || muiFormControl.focused || muiFormControl.adornedStart;
   }
 
-  let margin = marginProp;
-  if (typeof margin === 'undefined' && muiFormControl) {
-    margin = muiFormControl.margin;
-  }
+  const fcs = formControlState({
+    props,
+    context,
+    states: ['margin', 'variant'],
+  });
 
   const className = classNames(
     classes.root,
@@ -68,7 +94,9 @@ function InputLabel(props, context) {
       [classes.formControl]: muiFormControl,
       [classes.animated]: !disableAnimation,
       [classes.shrink]: shrink,
-      [classes.marginDense]: margin === 'dense',
+      [classes.marginDense]: fcs.margin === 'dense',
+      [classes.filled]: fcs.variant === 'filled',
+      [classes.outlined]: fcs.variant === 'outlined',
     },
     classNameProp,
   );
@@ -127,6 +155,10 @@ InputLabel.propTypes = {
    * If `true`, the label is shrunk.
    */
   shrink: PropTypes.bool,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 InputLabel.defaultProps = {

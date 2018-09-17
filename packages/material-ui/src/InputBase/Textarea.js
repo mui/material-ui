@@ -171,7 +171,7 @@ class Textarea extends React.Component {
     } = this.props;
 
     return (
-      <div className={classes.root} style={{ height: this.state.height }}>
+      <div className={classes.root}>
         <EventListener target="window" onResize={this.handleResize} />
         <textarea
           aria-hidden="true"
@@ -199,6 +199,7 @@ class Textarea extends React.Component {
           value={value}
           onChange={this.handleChange}
           ref={this.handleRefInput}
+          style={{ height: this.state.height }}
           {...other}
         />
       </div>

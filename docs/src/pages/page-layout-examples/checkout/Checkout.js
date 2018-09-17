@@ -124,7 +124,7 @@ class Checkout extends React.Component {
                     Thank you for your order.
                   </Typography>
                   <Typography variant="subheading">
-                    Your order number is #2001539. We have emailed your oder confirmation, and will
+                    Your order number is #2001539. We have emailed your order confirmation, and will
                     send you an update when your order has shipped.
                   </Typography>
                 </React.Fragment>

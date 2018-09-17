@@ -112,10 +112,10 @@ const styles = theme => ({
     position: 'relative',
     marginRight: theme.spacing.unit * 2,
     marginLeft: theme.spacing.unit,
-    borderRadius: 2,
-    background: fade(theme.palette.common.white, 0.15),
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      background: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     '& $inputInput': {
       transition: theme.transitions.create('width'),

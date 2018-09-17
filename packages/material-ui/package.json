@@ -2,7 +2,7 @@
   "name": "@material-ui/core",
   "private": true,
   "author": "Material-UI Team",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
@@ -59,7 +59,7 @@
     "react-event-listener": "^0.6.2",
     "react-jss": "^8.1.0",
     "react-transition-group": "^2.2.1",
-    "recompose": "^0.29.0",
+    "recompose": "0.28.0 - 0.30.0",
     "warning": "^4.0.1"
   },
   "sideEffects": false,

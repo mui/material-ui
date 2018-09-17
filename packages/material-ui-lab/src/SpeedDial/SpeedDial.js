@@ -218,6 +218,12 @@ class SpeedDial extends React.Component {
       [classes.directionRight]: direction === 'right',
     };
 
+    let clickProp = { onClick };
+
+    if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
+      clickProp = { onTouchEnd: onClick };
+    }
+
     return (
       <div className={classNames(classes.root, actionsPlacementClass, classNameProp)} {...other}>
         <TransitionComponent
@@ -229,13 +235,13 @@ class SpeedDial extends React.Component {
           <Button
             variant="fab"
             color="primary"
-            onClick={onClick}
-            onKeyDown={this.handleButtonKeyDown}
+            onKeyDown={this.handleKeyDown}
             aria-label={ariaLabel}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : 'false'}
             aria-controls={`${id}-actions`}
             className={classes.fab}
+            {...clickProp}
             {...ButtonProps}
             buttonRef={ref => {
               this.dialRef = ref;

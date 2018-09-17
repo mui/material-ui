@@ -1,7 +1,4 @@
-/* eslint-disable react/jsx-handler-names */
-
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SwitchBase from '../internal/SwitchBase';
@@ -20,6 +17,8 @@ export const styles = theme => ({
   checked: {},
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `indeterminate={true}`. */
+  indeterminate: {},
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     '&$checked': {
@@ -40,53 +39,42 @@ export const styles = theme => ({
   },
 });
 
-class Checkbox extends React.Component {
-  componentDidMount = () => {
-    this.updateIndeterminateStatus();
-  };
+function Checkbox(props) {
+  const {
+    checkedIcon,
+    classes,
+    className,
+    color,
+    icon,
+    indeterminate,
+    indeterminateIcon,
+    inputProps,
+    ...other
+  } = props;
 
-  componentDidUpdate = prevProps => {
-    if (prevProps.indeterminate !== this.props.indeterminate) {
-      this.updateIndeterminateStatus();
-    }
-  };
-
-  updateIndeterminateStatus = () => {
-    if (this.inputRef) {
-      this.inputRef.indeterminate = this.props.indeterminate;
-    }
-  };
-
-  handleInputRef = ref => {
-    this.inputRef = ReactDOM.findDOMNode(ref);
-  };
-
-  render() {
-    const {
-      checkedIcon,
-      classes,
-      color,
-      icon,
-      indeterminate,
-      indeterminateIcon,
-      ...other
-    } = this.props;
-
-    return (
-      <SwitchBase
-        type="checkbox"
-        checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
-        classes={{
-          root: classNames(classes.root, classes[`color${capitalize(color)}`]),
-          checked: classes.checked,
-          disabled: classes.disabled,
-        }}
-        icon={indeterminate ? indeterminateIcon : icon}
-        inputRef={this.handleInputRef}
-        {...other}
-      />
-    );
-  }
+  return (
+    <SwitchBase
+      type="checkbox"
+      checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
+      className={classNames(
+        {
+          [classes.indeterminate]: indeterminate,
+        },
+        className,
+      )}
+      classes={{
+        root: classNames(classes.root, classes[`color${capitalize(color)}`]),
+        checked: classes.checked,
+        disabled: classes.disabled,
+      }}
+      inputProps={{
+        'data-indeterminate': indeterminate,
+        ...inputProps,
+      }}
+      icon={indeterminate ? indeterminateIcon : icon}
+      {...other}
+    />
+  );
 }
 
 Checkbox.propTypes = {
@@ -103,6 +91,10 @@ Checkbox.propTypes = {
    * See [CSS API](#css-api) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
@@ -125,6 +117,9 @@ Checkbox.propTypes = {
   id: PropTypes.string,
   /**
    * If `true`, the component appears indeterminate.
+   * This does not set the native input element to indeterminate due
+   * to inconsistent behavior across browsers.
+   * However, we set a `data-indeterminate` attribute on the input.
    */
   indeterminate: PropTypes.bool,
   /**

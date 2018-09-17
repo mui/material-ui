@@ -29,7 +29,7 @@ function Backdrop(props) {
   const { classes, className, invisible, open, transitionDuration, ...other } = props;
 
   return (
-    <Fade appear in={open} timeout={transitionDuration} {...other}>
+    <Fade in={open} timeout={transitionDuration} {...other}>
       <div
         data-mui-test="Backdrop"
         className={classNames(
