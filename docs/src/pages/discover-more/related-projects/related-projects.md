@@ -21,6 +21,7 @@ Feel free to submit a pull request to add more projects; we will accept them if 
 - [react-media-material-ui](https://github.com/jcoreio/react-media-material-ui) Easily use breakpoints from your Material-UI theme with [react-media](https://github.com/ReactTraining/react-media).
 - [Wertarbyte](https://mui.wertarbyte.com/) Wertarbyte are using Material-UI for many of their projects. This is a collection of complementary components they have built.
 - [material-table](https://github.com/mbrn/material-table) DataTable based on table component with additional features like search, filtering, sorting and much more.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
 
 ## Complementary Projects
 

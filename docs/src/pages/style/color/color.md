@@ -64,6 +64,8 @@ Only the `main` shades need be provided (unless you wish to further customise `l
 
 If you are using the default primary and / or secondary shades then by providing the color object, `createMuiTheme()` will use the appropriate shades from the material color for main, light and dark.
 
+You can also use the [Material-UI Theme Editor](https://in-your-saas.github.io/material-ui-theme-editor/) to modify your theme and have a live preview of the result. You'll also be able to simply download the theme and integrate it to your application.
+
 ### Material color tool
 
 The Material Design team has also built an awesome palette configuration tool: [material.io/tools/color](https://material.io/tools/color/).
