@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { setRef } from '../utils/reactHelpers';
 import Textarea from './Textarea';
 import { isFilled } from './utils';
 
@@ -276,13 +277,7 @@ class InputBase extends React.Component {
       refProp = this.props.inputProps.ref;
     }
 
-    if (refProp) {
-      if (typeof refProp === 'function') {
-        refProp(ref);
-      } else {
-        refProp.current = ref;
-      }
-    }
+    setRef(refProp, ref);
   };
 
   handleClick = event => {

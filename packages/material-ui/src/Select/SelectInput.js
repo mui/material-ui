@@ -5,6 +5,7 @@ import keycode from 'keycode';
 import warning from 'warning';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
+import { setRef } from '../utils/reactHelpers';
 
 /**
  * @ignore - internal component.
@@ -148,11 +149,7 @@ class SelectInput extends React.Component {
       value: this.props.value,
     };
 
-    if (typeof inputRef === 'function') {
-      inputRef(nodeProxy);
-    } else {
-      inputRef.current = nodeProxy;
-    }
+    setRef(inputRef, nodeProxy);
   };
 
   render() {
