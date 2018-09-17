@@ -17,6 +17,7 @@ export const styles = {
     padding: 0,
     margin: 0,
     border: 0,
+    verticalAlign: 'middle',
   },
   /* Styles applied to the root element if `margin="normal"`. */
   marginNormal: {
