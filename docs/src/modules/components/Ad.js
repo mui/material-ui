@@ -32,15 +32,11 @@ class Ad extends React.Component {
   random = Math.random();
 
   state = {
-    adblock: null,
+    adblock: process.env.NODE_ENV === 'production' ? null : true,
   };
 
   componentDidMount() {
-    if (process.env.NODE_ENV !== 'production') {
-      return;
-    }
-
-    if (this.props.width === 'xs') {
+    if (this.props.width === 'xs' || this.state.adblock) {
       return;
     }
     this.checkAdblock();
@@ -74,10 +70,6 @@ class Ad extends React.Component {
   render() {
     const { classes } = this.props;
     const { adblock } = this.state;
-
-    if (process.env.NODE_ENV !== 'production') {
-      return <div className={classes.root} />;
-    }
 
     if (adblock) {
       return (
