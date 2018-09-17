@@ -2,14 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import exactProp from '../utils/exactProp';
-
-function setRef(ref, value) {
-  if (typeof ref === 'function') {
-    ref(value);
-  } else if (ref) {
-    ref.current = value;
-  }
-}
+import { setRef } from '../utils/reactHelpers';
 
 /**
  * Helper component to allow attaching a ref to a
