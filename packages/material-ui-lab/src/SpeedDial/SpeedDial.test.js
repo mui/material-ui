@@ -242,14 +242,20 @@ describe('<SpeedDial />', () => {
     /**
      *
      * @param actionIndex
-     * @returns the button of the nth SpeedDialAction
+     * @returns the button of the nth SpeedDialAction or the FAB if -1
      */
-    const getActionButton = actionIndex => wrapper.find(SpeedDialAction).at(actionIndex);
+    const getActionButton = actionIndex => {
+      if (actionIndex === -1) {
+        return getDialButton();
+      }
+      return wrapper.find(SpeedDialAction).at(actionIndex);
+    };
     /**
      * @returns true if the button of the nth action is focused
      */
     const isActionFocused = index => {
-      return actionRefs[index] === window.document.activeElement;
+      const expectedFocusedElement = index === -1 ? dialButtonRef : actionRefs[index];
+      return expectedFocusedElement === window.document.activeElement;
     };
     /**
      * promisified setImmediate
@@ -348,7 +354,7 @@ describe('<SpeedDial />', () => {
 
         /**
          * Tooltip still fires onFocus after unmount ("Warning: setState unmounted").
-         * Could not fix this issue so we are using this workaroun
+         * Could not fix this issue so we are using this workaround
          */
         await immediate();
       };
@@ -374,11 +380,11 @@ describe('<SpeedDial />', () => {
         await testCombination('left', ['left', 'up', 'down', 'left'], [0, 0, 0, 1]);
       });
 
-      it('wraps around', async () => {
-        await testCombination('up', ['up', 'down', 'up'], [0, 5, 0]);
-        await testCombination('right', ['right', 'left', 'right'], [0, 5, 0]);
-        await testCombination('down', ['down', 'up', 'down'], [0, 5, 0]);
-        await testCombination('left', ['left', 'right', 'left'], [0, 5, 0]);
+      it('does not wrap around', async () => {
+        await testCombination('up', ['up', 'down', 'down', 'up'], [0, -1, -1, 0]);
+        await testCombination('right', ['right', 'left', 'left', 'right'], [0, -1, -1, 0]);
+        await testCombination('down', ['down', 'up', 'up', 'down'], [0, -1, -1, 0]);
+        await testCombination('left', ['left', 'right', 'right', 'left'], [0, -1, -1, 0]);
       });
     });
   });
