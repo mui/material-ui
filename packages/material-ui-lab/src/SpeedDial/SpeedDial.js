@@ -235,7 +235,7 @@ class SpeedDial extends React.Component {
           <Button
             variant="fab"
             color="primary"
-            onKeyDown={this.handleKeyDown}
+            onKeyDown={this.handleButtonKeyDown}
             aria-label={ariaLabel}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : 'false'}
