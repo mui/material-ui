@@ -272,3 +272,5 @@ To check version numbers, run `npm list @material-ui/core` in the environment wh
     ...
   },
 ```
+
+- You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
