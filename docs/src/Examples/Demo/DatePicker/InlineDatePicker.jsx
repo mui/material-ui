@@ -39,7 +39,7 @@ export default class InlineDatePickerDemo extends PureComponent {
             label="With keyboard"
             value={selectedDate}
             onChange={this.handleDateChange}
-            format="DD/MM/YYYY"
+            format="dd/MM/YYYY"
             mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
           />
         </div>
