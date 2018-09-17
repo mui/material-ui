@@ -64,9 +64,7 @@ Only the `main` shades need be provided (unless you wish to further customise `l
 
 If you are using the default primary and / or secondary shades then by providing the color object, `createMuiTheme()` will use the appropriate shades from the material color for main, light and dark.
 
-You can also use the [Material-UI Theme Editor](https://in-your-saas.github.io/material-ui-theme-editor/) to modify your theme and have a live preview of the result. You'll also be able to simply download the theme and integrate it to your application.
-
-### Material color tool
+### Official color tool
 
 The Material Design team has also built an awesome palette configuration tool: [material.io/tools/color](https://material.io/tools/color/).
 This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
@@ -97,6 +95,11 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+### Tools by the community
+
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) Is an online tool for creating Material-UI themes via Material Design Color Tool.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
 
 ## Color palette
 
