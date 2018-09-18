@@ -12,11 +12,12 @@ export const styles = {
     display: 'inline-flex',
     flexDirection: 'column',
     position: 'relative',
-    // Reset fieldset default style
+    // Reset fieldset default style.
     minWidth: 0,
     padding: 0,
     margin: 0,
     border: 0,
+    verticalAlign: 'top', // Fix alignment issue on Safari.
   },
   /* Styles applied to the root element if `margin="normal"`. */
   marginNormal: {

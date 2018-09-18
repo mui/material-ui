@@ -68,7 +68,6 @@ export const styles = theme => {
       padding: `${8 - 2}px 0 ${8 - 1}px`,
       border: 0,
       boxSizing: 'content-box',
-      verticalAlign: 'middle',
       background: 'none',
       margin: 0, // Reset for Safari
       // Remove grey highlight
