@@ -212,6 +212,8 @@ class Slider extends React.Component {
     this.containerRef.removeEventListener('touchstart', preventPageScrolling, { passive: false });
     document.body.removeEventListener('mousemove', this.handleMouseMove);
     document.body.removeEventListener('mouseup', this.handleMouseUp);
+    document.body.removeEventListener('touchmove', this.handleMouseMove);
+    document.body.removeEventListener('touchend', this.handleMouseUp);
     clearTimeout(this.jumpAnimationTimeoutId);
   }
 
@@ -285,22 +287,19 @@ class Slider extends React.Component {
   };
 
   handleTouchStart = event => {
-    event.preventDefault();
-    this.setState({ currentState: 'activated' });
-
-    document.body.addEventListener('touchend', this.handleMouseUp);
-
-    if (typeof this.props.onDragStart === 'function') {
-      this.props.onDragStart(event);
-    }
+    this.handleMouseDown(event, true);
   };
 
-  handleMouseDown = event => {
+  handleMouseDown = (event, isTouch) => {
     event.preventDefault();
     this.setState({ currentState: 'activated' });
+    this.touch = isTouch;
+    this.moved = false;
 
     document.body.addEventListener('mousemove', this.handleMouseMove);
     document.body.addEventListener('mouseup', this.handleMouseUp);
+    document.body.addEventListener('touchmove', this.handleMouseMove);
+    document.body.addEventListener('touchend', this.handleMouseUp);
 
     if (typeof this.props.onDragStart === 'function') {
       this.props.onDragStart(event);
@@ -312,9 +311,14 @@ class Slider extends React.Component {
 
     document.body.removeEventListener('mousemove', this.handleMouseMove);
     document.body.removeEventListener('mouseup', this.handleMouseUp);
+    document.body.removeEventListener('touchmove', this.handleMouseMove);
+    document.body.removeEventListener('touchend', this.handleMouseUp);
 
     if (typeof this.props.onDragEnd === 'function') {
       this.props.onDragEnd(event);
+    }
+    if (this.touch && !this.moved) {
+      this.handleClick(event);
     }
   };
 
@@ -322,6 +326,7 @@ class Slider extends React.Component {
     const { min, max, vertical, reverse } = this.props;
     const percent = calculatePercent(this.containerRef, event, vertical, reverse);
     const value = percentToValue(percent, min, max);
+    this.moved = true;
 
     this.emitChange(event, value);
   };
@@ -467,8 +472,7 @@ class Slider extends React.Component {
         aria-orientation={vertical ? 'vertical' : 'horizontal'}
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
-        onTouchStartCapture={this.handleTouchStart}
-        onTouchMove={this.handleMouseMove}
+        onTouchStart={this.handleTouchStart}
         ref={ref => {
           this.containerRef = ReactDOM.findDOMNode(ref);
         }}
@@ -482,8 +486,6 @@ class Slider extends React.Component {
             style={inlineThumbStyles}
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyDown}
-            onTouchStartCapture={this.handleTouchStart}
-            onTouchMove={this.handleMouseMove}
             onFocusVisible={this.handleFocus}
           >
             {ThumbIcon}
