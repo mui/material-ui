@@ -353,6 +353,8 @@ class InputBase extends React.Component {
       ...other
     } = this.props;
 
+    const valuePassed = this.props.hasOwnProperty('value');
+
     const { muiFormControl } = this.context;
     const fcs = formControlState({
       props: this.props,
@@ -452,7 +454,7 @@ class InputBase extends React.Component {
           readOnly={readOnly}
           required={fcs.required}
           rows={rows}
-          value={value}
+          {...valuePassed && { value }}
           {...inputProps}
         />
         {endAdornment}
