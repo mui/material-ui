@@ -1,6 +1,6 @@
 ---
 title: Text Field React component
-components: FormControl, FormHelperText, Input, InputAdornment, InputLabel, TextField
+components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
 # Text Fields

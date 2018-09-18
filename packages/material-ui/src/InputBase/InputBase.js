@@ -148,6 +148,11 @@ export function formControlState({ props, states, context }) {
   }, {});
 }
 
+/**
+ * `InputBase` contains as few styles as possible.
+ * It aims to be a simple building block for creating an input.
+ * It contains a load of style reset and some state logic.
+ */
 class InputBase extends React.Component {
   isControlled = null;
 
