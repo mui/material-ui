@@ -1,9 +1,8 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import DatePicker from 'material-ui-pickers/DatePicker';
-
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
+import DatePicker from 'material-ui-pickers/DatePicker';
+import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
 
 class ControllingProgrammaticallyExample extends PureComponent {
   static propTypes = {
@@ -33,7 +32,7 @@ class ControllingProgrammaticallyExample extends PureComponent {
             clearable
             ref={(node) => { this.picker = node; }}
             label="Open me from button"
-            format="d MMM YYYY"
+            format="d MMM yyyy"
             value={selectedDate}
             onChange={this.handleDateChange}
           />
