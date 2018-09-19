@@ -1,5 +1,5 @@
-import React, { Fragment, PureComponent } from 'react';
 import { InlineDatePicker } from 'material-ui-pickers/DatePicker';
+import React, { Fragment, PureComponent } from 'react';
 
 export default class InlineDatePickerDemo extends PureComponent {
   state = {
@@ -39,7 +39,7 @@ export default class InlineDatePickerDemo extends PureComponent {
             label="With keyboard"
             value={selectedDate}
             onChange={this.handleDateChange}
-            format="dd/MM/YYYY"
+            format="dd/MM/yyyy"
             mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
           />
         </div>
