@@ -138,7 +138,9 @@ class Tooltip extends React.Component {
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
     this.focusTimer = setTimeout(() => {
-      this.handleEnter(event);
+      if (this.childrenRef === document.activeElement) {
+        this.handleEnter(event);
+      }
     });
   };
 
