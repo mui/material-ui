@@ -14,7 +14,7 @@ class GoogleTag extends React.Component {
         hitType: 'pageview',
         page: window.location.pathname,
       });
-    });
+    }, 0);
   }
 
   componentWillUnmount() {
