@@ -32,7 +32,7 @@ export const styles = theme => {
     },
     /* Styles applied to the legend element. */
     legend: {
-      textAlign: align,
+      textAlign: 'left',
       padding: 0,
       transition: theme.transitions.create('width', {
         duration: theme.transitions.duration.shorter,
