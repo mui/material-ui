@@ -2,7 +2,10 @@
 
 <p class="description">You can add static typing to JavaScript to improve developer productivity and code quality thanks to TypeScript.</p>
 
-Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example. A minimum version of TypeScript 2.8 is required.
+Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example. A minimum version of TypeScript 2.8 is required. 
+
+Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json). 
+Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors.
 
 ## Usage of `withStyles`
 
@@ -78,6 +81,52 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
 
 `createStyles` is just the identity function; it doesn't "do anything" at runtime, just helps guide type inference at compile time.
 
+### Media queries
+
+`withStyles` allows a styles object with top level media-queries like so:
+
+```ts
+const styles = createStyles({
+  root: {
+    minHeight: '100vh',
+  },
+  '@media (min-width: 960px)': {
+    root: {
+      display: 'flex',
+    },
+  },
+});
+```
+
+However to allow these styles to pass TypeScript the definitions have to be ambiguous concerning names for CSS classes and actual CSS property names. Due to this class names that are equal to CSS properties should be avoided.
+
+```ts
+// error because TypeScript thinks `@media (min-width: 960px)` is a class name
+// and `content` is the css property
+const ambiguousStyles = createStyles({
+  content: {
+    minHeight: '100vh',
+  },
+  '@media (min-width: 960px)': {
+    content: {
+      display: 'flex',
+    },
+  },
+});
+
+// works just fine
+const ambiguousStyles = createStyles({
+  contentClass: {
+    minHeight: '100vh',
+  },
+  '@media (min-width: 960px)': {
+    contentClass: {
+      display: 'flex',
+    },
+  },
+});
+```
+
 ### Augmenting your props using `WithStyles`
 
 Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
@@ -146,39 +195,6 @@ const DecoratedClass = withStyles(styles)(
 
 Unfortunately due to a [current limitation of TypeScript decorators](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles(styles)` can't be used as a decorator in TypeScript.
 
-### Union props
-
-When your `props` are a union, Typescript needs you to explicitly tell it the type, by providing a generic `<Props>` parameter to `decorate`:
-
-```tsx
-interface Book {
-  category: "book";
-  author: string;
-}
-
-interface Painting {
-  category: "painting";
-  artist: string;
-}
-
-type BookOrPainting = Book | Painting;
-
-type Props = BookOrPainting & WithStyles<typeof styles>;
-
-const DecoratedUnionProps = withStyles(styles)<BookOrPainting>( // <-- without the type argument, we'd get a compiler error!
-  class extends React.Component<Props> {
-    render() {
-      const props = this.props;
-      return (
-        <Typography classes={props.classes}>
-          {props.category === "book" ? props.author : props.artist}
-        </Typography>
-      );
-    }
-  }
-);
-```
-
 ## Customization of `Theme`
 
 When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting
@@ -209,6 +225,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 
 And a custom theme factory with additional defaulted options:
 
+**./styles/createMyTheme**:
 ```ts
 import createMuiTheme, { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 

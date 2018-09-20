@@ -30,6 +30,17 @@ const styles = theme => ({
 
 const appList = [
   {
+    title: 'Insights',
+    description:
+      '"Insights" by Just Ask Users helps user experience research teams ' +
+      "make sense of their user study findings. Teams can see their users' pains and needs " +
+      'easily so that they can enhance the product that they are designing. ' +
+      'Material-UI is used both on the website (with server-side rendering) and ' +
+      'within the interactive app itself.',
+    image: '/static/images/showcase/justaskusers.jpg',
+    link: 'https://justaskusers.com/',
+  },
+  {
     title: 'Posters Galore',
     description:
       'The admin of an imaginary poster shop, used as a demo for the react-admin framework. ' +
@@ -209,6 +220,14 @@ const appList = [
       'user news and events of his interest.',
     link: 'https://tentu.eus/',
     image: '/static/images/showcase/tentu.jpg',
+  },
+  {
+    title: 'Typekev',
+    description:
+      'The personal website of a React and Blockchain developer. The code is open-source.',
+    image: '/static/images/showcase/typekev.jpg',
+    link: 'https://typekev.com/',
+    source: 'https://github.com/typekev/typekev-site',
   },
 ];
 

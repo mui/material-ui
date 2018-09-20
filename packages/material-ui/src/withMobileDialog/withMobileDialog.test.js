@@ -1,20 +1,17 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
-import Paper from '../Paper';
+import { createShallow } from '../test-utils';
 import Dialog from '../Dialog';
 import withMobileDialog from './withMobileDialog';
 
 describe('withMobileDialog', () => {
   let shallow;
-  let classes;
   const defaultProps = {
     open: false,
   };
 
   before(() => {
-    shallow = createShallow({ untilSelector: 'Dialog' });
-    classes = getClasses(<Dialog {...defaultProps}>foo</Dialog>);
+    shallow = createShallow({ dive: true });
   });
 
   function isFullScreen(breakpoints, width) {
@@ -26,7 +23,13 @@ describe('withMobileDialog', () => {
             foo
           </ResponsiveDialog>,
         );
-        assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), true);
+        assert.strictEqual(
+          wrapper
+            .find('WithMobileDialog')
+            .shallow()
+            .props().fullScreen,
+          true,
+        );
       });
     });
   }
@@ -40,7 +43,13 @@ describe('withMobileDialog', () => {
             foo
           </ResponsiveDialog>,
         );
-        assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperFullScreen), false);
+        assert.strictEqual(
+          wrapper
+            .find('WithMobileDialog')
+            .shallow()
+            .props().fullScreen,
+          false,
+        );
       });
     });
   }

@@ -9,6 +9,10 @@ title: TableHead API
 
 <p class="description">The API documentation of the TableHead React component.</p>
 
+```js
+import TableHead from '@material-ui/core/TableHead';
+```
+
 
 
 ## Props

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
@@ -72,7 +70,7 @@ describe('<Typography />', () => {
     ['error', 'colorError'],
   ].forEach(([color, className]) => {
     it(`should render ${color} color`, () => {
-      const wrapper = shallow(<Typography color={(color: any)}>Hello</Typography>);
+      const wrapper = shallow(<Typography color={color}>Hello</Typography>);
       assert.ok(classes[className] !== undefined);
       assert.strictEqual(wrapper.hasClass(classes[className]), true, `should be ${color} text`);
     });

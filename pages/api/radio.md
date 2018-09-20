@@ -9,6 +9,10 @@ title: Radio API
 
 <p class="description">The API documentation of the Radio React component.</p>
 
+```js
+import Radio from '@material-ui/core/Radio';
+```
+
 
 
 ## Props

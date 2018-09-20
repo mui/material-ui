@@ -18,7 +18,8 @@ const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases
 
 const styles = {
   root: {
-    minHeight: 50,
+    height: 410,
+    overflow: 'auto',
     width: '100%',
   },
 };

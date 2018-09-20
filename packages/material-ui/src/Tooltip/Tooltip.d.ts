@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { TransitionProps } from '../transitions/transition';
-import { PortalProps } from '../Portal';
 
 export interface TooltipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
@@ -30,7 +29,7 @@ export interface TooltipProps
     | 'top-end'
     | 'top-start'
     | 'top';
-  PopperProps?: Object;
+  PopperProps?: object;
   title: React.ReactNode;
   TransitionComponent?: React.ReactType;
   TransitionProps?: TransitionProps;

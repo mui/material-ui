@@ -6,7 +6,6 @@ import markdown from 'docs/src/pages/versions/versions.md';
 function Page() {
   return (
     <MarkdownDocs
-      disableCarbon
       markdown={markdown}
       demos={{
         'pages/versions/LatestVersion.js': {

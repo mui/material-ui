@@ -28,7 +28,7 @@ class PositionedPopper extends React.Component {
     const { currentTarget } = event;
     this.setState(state => ({
       anchorEl: currentTarget,
-      open: !state.placement === placement || !state.open,
+      open: state.placement !== placement || !state.open,
       placement,
     }));
   };

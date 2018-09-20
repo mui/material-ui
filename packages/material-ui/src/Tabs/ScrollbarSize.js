@@ -4,10 +4,10 @@ import EventListener from 'react-event-listener';
 import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 
 const styles = {
-  width: '100px',
-  height: '100px',
+  width: 100,
+  height: 100,
   position: 'absolute',
-  top: '-10000px',
+  top: -10000,
   overflow: 'scroll',
   msOverflowStyle: 'scrollbar',
 };
@@ -42,12 +42,14 @@ class ScrollbarSize extends React.Component {
   }
 
   setMeasurements = () => {
-    if (!this.node) {
+    const nodeRef = this.nodeRef;
+
+    if (!nodeRef) {
       return;
     }
 
-    this.scrollbarHeight = this.node.offsetHeight - this.node.clientHeight;
-    this.scrollbarWidth = this.node.offsetWidth - this.node.clientWidth;
+    this.scrollbarHeight = nodeRef.offsetHeight - nodeRef.clientHeight;
+    this.scrollbarWidth = nodeRef.offsetWidth - nodeRef.clientWidth;
   };
 
   render() {
@@ -58,8 +60,8 @@ class ScrollbarSize extends React.Component {
         {onChange ? <EventListener target="window" onResize={this.handleResize} /> : null}
         <div
           style={styles}
-          ref={node => {
-            this.node = node;
+          ref={ref => {
+            this.nodeRef = ref;
           }}
         />
       </div>

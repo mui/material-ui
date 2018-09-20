@@ -14,8 +14,8 @@ class TableBody extends React.Component {
   getChildContext() {
     // eslint-disable-line class-methods-use-this
     return {
-      table: {
-        body: true,
+      tablelvl2: {
+        variant: 'body',
       },
     };
   }
@@ -53,7 +53,7 @@ TableBody.defaultProps = {
 };
 
 TableBody.childContextTypes = {
-  table: PropTypes.object,
+  tablelvl2: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTableBody' })(TableBody);

@@ -1,12 +1,10 @@
-// @flow
-
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { renderToString } from 'react-dom/server';
+import ReactDOMServer from 'react-dom/server';
 import { createMount } from '../test-utils';
 import createMuiTheme from './createMuiTheme';
 import Button from '../Button';
@@ -16,7 +14,7 @@ import MuiThemeProvider from './MuiThemeProvider';
 
 function getThemeSpy() {
   const themeSpy = spy();
-  const ThemeSpy = (props: Object) => {
+  const ThemeSpy = props => {
     themeSpy(props.theme);
     return props.children;
   };
@@ -75,7 +73,7 @@ describe('<MuiThemeProvider />', () => {
       const sheetsRegistry = new SheetsRegistry();
       const generateClassName = createGenerateClassName();
 
-      const markup = renderToString(
+      const markup = ReactDOMServer.renderToString(
         <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
           <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
             <Button>Hello World</Button>
@@ -86,13 +84,13 @@ describe('<MuiThemeProvider />', () => {
       assert.notStrictEqual(markup.match('Hello World'), null);
       assert.strictEqual(sheetsRegistry.registry.length, 3);
       assert.strictEqual(sheetsRegistry.toString().length > 4000, true);
-      assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'MuiTouchRipple-root-28');
+      assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'MuiTouchRipple-root-30');
       assert.deepEqual(
         sheetsRegistry.registry[1].classes,
         {
-          disabled: 'MuiButtonBase-disabled-26',
-          focusVisible: 'MuiButtonBase-focusVisible-27',
-          root: 'MuiButtonBase-root-25',
+          disabled: 'MuiButtonBase-disabled-28',
+          focusVisible: 'MuiButtonBase-focusVisible-29',
+          root: 'MuiButtonBase-root-27',
         },
         'the class names should be deterministic',
       );

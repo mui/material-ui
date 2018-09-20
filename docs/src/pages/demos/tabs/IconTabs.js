@@ -17,7 +17,7 @@ export default class IconTabs extends React.Component {
 
   render() {
     return (
-      <Paper style={{ width: 500 }}>
+      <Paper square style={{ width: 500 }}>
         <Tabs
           value={this.state.value}
           onChange={this.handleChange}

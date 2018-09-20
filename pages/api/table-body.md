@@ -9,6 +9,10 @@ title: TableBody API
 
 <p class="description">The API documentation of the TableBody React component.</p>
 
+```js
+import TableBody from '@material-ui/core/TableBody';
+```
+
 
 
 ## Props

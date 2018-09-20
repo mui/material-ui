@@ -140,14 +140,14 @@ class AnchorPlayground extends React.Component {
     });
   };
 
-  centerScroll = node => {
-    if (!node) {
+  centerScroll = ref => {
+    if (!ref) {
       return;
     }
 
-    const container = node.parentElement;
-    container.scrollTop = node.clientHeight / 4;
-    container.scrollLeft = node.clientWidth / 4;
+    const container = ref.parentElement;
+    container.scrollTop = ref.clientHeight / 4;
+    container.scrollLeft = ref.clientWidth / 4;
   };
 
   render() {
@@ -175,6 +175,7 @@ class AnchorPlayground extends React.Component {
 >
 \`\`\`
 `;
+    const id = open ? 'scroll-playground' : null;
 
     return (
       <div className={classes.root}>
@@ -188,6 +189,7 @@ class AnchorPlayground extends React.Component {
                   }}
                   variant="contained"
                   onClick={this.handleClickButton}
+                  aria-describedby={id}
                 >
                   Toggle Popper
                 </Button>
@@ -196,6 +198,7 @@ class AnchorPlayground extends React.Component {
                   modifiers.
                 </Typography>
                 <Popper
+                  id={id}
                   open={open}
                   anchorEl={this.anchorEl}
                   placement={placement}

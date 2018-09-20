@@ -1,5 +1,3 @@
-// @flow
-
-export default function createStyles(s: Object) {
-  return s;
+export default function createStyles(styles) {
+  return styles;
 }

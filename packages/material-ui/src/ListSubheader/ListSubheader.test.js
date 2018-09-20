@@ -50,4 +50,16 @@ describe('<ListSubheader />', () => {
       assert.strictEqual(wrapper.hasClass(classes.sticky), false);
     });
   });
+
+  describe('prop: disableGutters', () => {
+    it('should not display gutters class', () => {
+      const wrapper = shallow(<ListSubheader disableGutters />);
+      assert.strictEqual(wrapper.hasClass(classes.gutters), false);
+    });
+
+    it('should display gutters class', () => {
+      const wrapper = shallow(<ListSubheader />);
+      assert.strictEqual(wrapper.hasClass(classes.gutters), true);
+    });
+  });
 });

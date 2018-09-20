@@ -3,7 +3,7 @@ Game Icons Test Fixtures
 
 Source: http://game-icons.net/
 Date: July 7, 2015
-License: [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)
+License: CC BY 3.0
 Extracted from SVG (B/T) set.
 
 

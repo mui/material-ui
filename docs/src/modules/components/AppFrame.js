@@ -10,6 +10,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
 import ColorsIcon from '@material-ui/icons/InvertColors';
 import LightbulbOutlineIcon from '@material-ui/docs/svgIcons/LightbulbOutline';
@@ -59,12 +60,12 @@ const styles = theme => ({
   },
   appBarShift: {
     [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 250px)',
+      width: 'calc(100% - 240px)',
     },
   },
   drawer: {
     [theme.breakpoints.up('lg')]: {
-      width: 250,
+      width: 240,
     },
   },
   navIconHide: {
@@ -131,6 +132,7 @@ class AppFrame extends React.Component {
     return (
       <div className={classes.root}>
         <NProgressBar />
+        <CssBaseline />
         <AppBar className={appBarClassName}>
           <Toolbar>
             <IconButton
@@ -220,9 +222,7 @@ AppFrame.contextTypes = {
 };
 
 export default compose(
-  withStyles(styles, {
-    name: 'AppFrame',
-  }),
+  withStyles(styles),
   connect(state => ({
     uiTheme: state.theme,
   })),

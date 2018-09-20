@@ -54,6 +54,13 @@ function Chips(props) {
         className={classes.chip}
       />
       <Chip
+        icon={<FaceIcon />}
+        label="Clickable Deletable Chip"
+        onClick={handleClick}
+        onDelete={handleDelete}
+        className={classes.chip}
+      />
+      <Chip
         label="Custom delete icon Chip"
         onClick={handleClick}
         onDelete={handleDelete}
@@ -66,6 +73,48 @@ function Chips(props) {
         component="a"
         href="#chip"
         clickable
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Primary Clickable Chip"
+        clickable
+        className={classes.chip}
+        color="primary"
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        icon={<FaceIcon />}
+        label="Primary Clickable Chip"
+        clickable
+        className={classes.chip}
+        color="primary"
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        label="Deletable Primary Chip"
+        onDelete={handleDelete}
+        className={classes.chip}
+        color="primary"
+      />
+      <Chip
+        avatar={
+          <Avatar>
+            <FaceIcon />
+          </Avatar>
+        }
+        label="Deletable Secondary Chip"
+        onDelete={handleDelete}
+        className={classes.chip}
+        color="secondary"
+      />
+      <Chip
+        icon={<FaceIcon />}
+        label="Deletable Secondary Chip"
+        onDelete={handleDelete}
+        className={classes.chip}
+        color="secondary"
       />
     </div>
   );

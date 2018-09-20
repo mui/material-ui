@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import keycode from 'keycode';
 import { createShallow, createMount } from '../test-utils';
 import Menu from '../Menu';
+import Portal from '../Portal';
 import MenuItem from '../MenuItem';
 import SelectInput from './SelectInput';
 
@@ -151,7 +152,7 @@ describe('<SelectInput />', () => {
       wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
       assert.strictEqual(wrapper.state().open, true);
       const portalLayer = wrapper
-        .find('Portal')
+        .find(Portal)
         .instance()
         .getMountNode();
       portalLayer.querySelectorAll('li')[1].click();
@@ -174,6 +175,21 @@ describe('<SelectInput />', () => {
       assert.strictEqual(handleBlur.callCount, 1);
     });
 
+    it('should pass "name" as part of the event.target for onBlur', () => {
+      const handleBlur = spy();
+      wrapper.setProps({ onBlur: handleBlur, name: 'blur-testing' });
+
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
+      assert.strictEqual(wrapper.state().open, true);
+      assert.strictEqual(instance.ignoreNextBlur, true);
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
+      assert.strictEqual(handleBlur.callCount, 0);
+      assert.strictEqual(instance.ignoreNextBlur, false);
+      wrapper.find(`.${defaultProps.classes.select}`).simulate('blur');
+      assert.strictEqual(handleBlur.callCount, 1);
+      assert.strictEqual(handleBlur.args[0][0].target.name, 'blur-testing');
+    });
+
     ['space', 'up', 'down'].forEach(key => {
       it(`'should open menu when pressed ${key} key on select`, () => {
         wrapper
@@ -189,7 +205,7 @@ describe('<SelectInput />', () => {
       assert.strictEqual(wrapper.state().open, true);
 
       const portalLayer = wrapper
-        .find('Portal')
+        .find(Portal)
         .instance()
         .getMountNode();
       const backdrop = portalLayer.querySelector('[data-mui-test="Backdrop"]');
@@ -244,7 +260,7 @@ describe('<SelectInput />', () => {
     it('should take the anchor width into account', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} />);
       const instance = wrapper.instance();
-      instance.displayNode = { clientWidth: 14 };
+      instance.displayRef = { clientWidth: 14 };
       instance.update({ open: true });
       wrapper.update();
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 14);
@@ -253,7 +269,7 @@ describe('<SelectInput />', () => {
     it('should not take the anchor width into account', () => {
       const wrapper = shallow(<SelectInput {...defaultProps} autoWidth />);
       const instance = wrapper.instance();
-      instance.displayNode = { clientWidth: 14 };
+      instance.displayRef = { clientWidth: 14 };
       instance.update({ open: true });
       wrapper.update();
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, null);
@@ -306,7 +322,7 @@ describe('<SelectInput />', () => {
         wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
         const portalLayer = wrapper
-          .find('Portal')
+          .find(Portal)
           .instance()
           .getMountNode();
 

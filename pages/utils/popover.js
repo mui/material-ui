@@ -29,6 +29,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/utils/popover/MouseOverPopover'), 'utf8')
 `,
         },
+        'pages/utils/popover/RenderPropsPopover.js': {
+          js: require('docs/src/pages/utils/popover/RenderPropsPopover').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/utils/popover/RenderPropsPopover'), 'utf8')
+`,
+        },
       }}
     />
   );

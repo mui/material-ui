@@ -1,12 +1,10 @@
-// @flow
-
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
 }
 
-export default function createTypography(palette: Object, typography: Object | Function) {
+export default function createTypography(palette, typography) {
   const {
     fontFamily = '"Roboto", "Helvetica", "Arial", sans-serif',
     // The default font size of the Material Specification.
@@ -20,8 +18,7 @@ export default function createTypography(palette: Object, typography: Object | F
     // Apply the CSS properties to all the variants.
     allVariants,
     ...other
-  } =
-    typeof typography === 'function' ? typography(palette) : typography;
+  } = typeof typography === 'function' ? typography(palette) : typography;
 
   const coef = fontSize / 14;
   function pxToRem(value) {

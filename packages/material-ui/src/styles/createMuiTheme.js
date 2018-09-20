@@ -1,5 +1,3 @@
-// @flow
-
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import isPlainObject from 'is-plain-object';
 import warning from 'warning';
@@ -13,7 +11,7 @@ import spacing from './spacing';
 import transitions from './transitions';
 import zIndex from './zIndex';
 
-function createMuiTheme(options: Object = {}) {
+function createMuiTheme(options = {}) {
   const {
     breakpoints: breakpointsInput = {},
     mixins: mixinsInput = {},

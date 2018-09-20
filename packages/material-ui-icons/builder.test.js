@@ -100,7 +100,7 @@ describe('builder', () => {
         'svg',
         '000000',
         'transparent',
-        'dice-six-faces-four.js',
+        'Dice-six-faces-four.js',
       );
       assert.strictEqual(fs.existsSync(actualFilePath), true);
 

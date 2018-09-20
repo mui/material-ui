@@ -31,10 +31,7 @@ class MyDocument extends Document {
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
             name="viewport"
-            content={
-              'user-scalable=0, initial-scale=1, ' +
-              'minimum-scale=1, width=device-width, height=device-height'
-            }
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
           />
           {/*
             manifest.json provides metadata used when your web app is added to the
@@ -60,13 +57,13 @@ class MyDocument extends Document {
         <body>
           <Main />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.google.id}`} />
+          <script async src="https://www.google-analytics.com/analytics.js" />
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};
-gtag('js', new Date());
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', '${config.google.id}', 'material-ui.com');
               `,
             }}
           />

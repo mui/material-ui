@@ -6,7 +6,7 @@ export function isBody(node) {
   return node && node.tagName.toLowerCase() === 'body';
 }
 
-// Do we have a scroll bar?
+// Do we have a vertical scroll bar?
 export default function isOverflowing(container) {
   const doc = ownerDocument(container);
   const win = ownerWindow(doc);

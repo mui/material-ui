@@ -24,6 +24,7 @@ export const styles = theme => ({
     padding: '4px 8px',
     fontSize: theme.typography.pxToRem(10),
     lineHeight: `${theme.typography.round(14 / 10)}em`,
+    maxWidth: 300,
   },
   /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   touch: {
@@ -66,30 +67,26 @@ export const styles = theme => ({
 });
 
 class Tooltip extends React.Component {
+  childrenRef = null;
+
+  closeTimer = null;
+
+  defaultId = null;
+
   enterTimer = null;
+
+  focusTimer = null;
+
+  ignoreNonTouchEvents = false;
+
+  isControlled = null;
 
   leaveTimer = null;
 
   touchTimer = null;
 
-  closeTimer = null;
-
-  childrenRef = null;
-
-  isControlled = null;
-
-  ignoreNonTouchEvents = false;
-
-  defaultId = null;
-
-  internalState = {
-    hover: false,
-    focus: false,
-  };
-
   constructor(props) {
-    super(props);
-
+    super();
     this.isControlled = props.open != null;
     this.state = {
       open: null,
@@ -125,30 +122,40 @@ class Tooltip extends React.Component {
   }
 
   componentWillUnmount() {
+    clearTimeout(this.closeTimer);
     clearTimeout(this.enterTimer);
+    clearTimeout(this.focusTimer);
     clearTimeout(this.leaveTimer);
     clearTimeout(this.touchTimer);
-    clearTimeout(this.closeTimer);
   }
+
+  onRootRef = ref => {
+    this.childrenRef = ref;
+  };
+
+  handleFocus = event => {
+    event.persist();
+    // The autoFocus of React might trigger the event before the componentDidMount.
+    // We need to account for this eventuality.
+    this.focusTimer = setTimeout(() => {
+      // We need to make sure the focus hasn't moved since the event was triggered.
+      if (this.childrenRef === document.activeElement) {
+        this.handleEnter(event);
+      }
+    }, 0);
+
+    const childrenProps = this.props.children.props;
+    if (childrenProps.onFocus) {
+      childrenProps.onFocus(event);
+    }
+  };
 
   handleEnter = event => {
     const { children, enterDelay } = this.props;
     const childrenProps = children.props;
 
-    if (event.type === 'focus') {
-      this.internalState.focus = true;
-
-      if (childrenProps.onFocus) {
-        childrenProps.onFocus(event);
-      }
-    }
-
-    if (event.type === 'mouseenter') {
-      this.internalState.hover = true;
-
-      if (childrenProps.onMouseEnter) {
-        childrenProps.onMouseEnter(event);
-      }
+    if (event.type === 'mouseover' && childrenProps.onMouseOver) {
+      childrenProps.onMouseOver(event);
     }
 
     if (this.ignoreNonTouchEvents && event.type !== 'touchstart') {
@@ -173,12 +180,15 @@ class Tooltip extends React.Component {
   };
 
   handleOpen = event => {
-    if (!this.isControlled) {
+    // The mouseover event will trigger for every nested element in the tooltip.
+    // We can skip rerendering when the tooltip is already open.
+    // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
+    if (!this.isControlled && !this.state.open) {
       this.setState({ open: true });
     }
 
     if (this.props.onOpen) {
-      this.props.onOpen(event, true);
+      this.props.onOpen(event);
     }
   };
 
@@ -186,20 +196,12 @@ class Tooltip extends React.Component {
     const { children, leaveDelay } = this.props;
     const childrenProps = children.props;
 
-    if (event.type === 'blur') {
-      this.internalState.focus = false;
-
-      if (childrenProps.onBlur) {
-        childrenProps.onBlur(event);
-      }
+    if (event.type === 'blur' && childrenProps.onBlur) {
+      childrenProps.onBlur(event);
     }
 
-    if (event.type === 'mouseleave') {
-      this.internalState.hover = false;
-
-      if (childrenProps.onMouseLeave) {
-        childrenProps.onMouseLeave(event);
-      }
+    if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
+      childrenProps.onMouseLeave(event);
     }
 
     clearTimeout(this.enterTimer);
@@ -215,16 +217,12 @@ class Tooltip extends React.Component {
   };
 
   handleClose = event => {
-    if (this.internalState.focus || this.internalState.hover) {
-      return;
-    }
-
     if (!this.isControlled) {
       this.setState({ open: false });
     }
 
     if (this.props.onClose) {
-      this.props.onClose(event, false);
+      this.props.onClose(event);
     }
 
     clearTimeout(this.closeTimer);
@@ -300,12 +298,12 @@ class Tooltip extends React.Component {
     }
 
     if (!disableHoverListener) {
-      childrenProps.onMouseEnter = this.handleEnter;
+      childrenProps.onMouseOver = this.handleEnter;
       childrenProps.onMouseLeave = this.handleLeave;
     }
 
     if (!disableFocusListener) {
-      childrenProps.onFocus = this.handleEnter;
+      childrenProps.onFocus = this.handleFocus;
       childrenProps.onBlur = this.handleLeave;
     }
 
@@ -319,13 +317,7 @@ class Tooltip extends React.Component {
 
     return (
       <React.Fragment>
-        <RootRef
-          rootRef={node => {
-            this.childrenRef = node;
-          }}
-        >
-          {React.cloneElement(children, childrenProps)}
-        </RootRef>
+        <RootRef rootRef={this.onRootRef}>{React.cloneElement(children, childrenProps)}</RootRef>
         <Popper
           className={classes.popper}
           placement={placement}

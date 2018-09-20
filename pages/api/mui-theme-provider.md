@@ -9,6 +9,10 @@ title: MuiThemeProvider API
 
 <p class="description">The API documentation of the MuiThemeProvider React component.</p>
 
+```js
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+```
+
 This component takes a `theme` property.
 It makes the `theme` available down the React tree thanks to React context.
 This component should preferably be used at **the root of your component tree**.

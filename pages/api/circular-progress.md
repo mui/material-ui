@@ -9,6 +9,10 @@ title: CircularProgress API
 
 <p class="description">The API documentation of the CircularProgress React component.</p>
 
+```js
+import CircularProgress from '@material-ui/core/CircularProgress';
+```
+
 ## ARIA
 
 If the progress bar is describing the loading progress of a particular region of a page,

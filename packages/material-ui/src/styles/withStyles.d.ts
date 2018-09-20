@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { WithTheme } from '../styles/withTheme';
-import { ConsistentWith, Overwrite } from '..';
+import { Omit, PropInjector, PropsOf } from '..';
 import { Theme } from './createMuiTheme';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
@@ -38,14 +37,16 @@ export interface WithStylesOptions<ClassKey extends string = string>
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
-export type WithStyles<T extends string | StyleRules | StyleRulesCallback = string> = Partial<
-  WithTheme
-> & {
+export type WithStyles<
+  T extends string | StyleRules | StyleRulesCallback = string,
+  IncludeTheme extends boolean | undefined = false
+> = (IncludeTheme extends true ? { theme: Theme } : {}) & {
   classes: ClassNameMap<
     T extends string
       ? T
       : T extends StyleRulesCallback<infer K> ? K : T extends StyleRules<infer K> ? K : never
   >;
+  innerRef?: React.Ref<any> | React.RefObject<any>;
 };
 
 export interface StyledComponentProps<ClassKey extends string = string> {
@@ -53,11 +54,10 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }
 
-export default function withStyles<ClassKey extends string>(
+export default function withStyles<
+  ClassKey extends string,
+  Options extends WithStylesOptions<ClassKey> = {}
+>(
   style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
-  options?: WithStylesOptions<ClassKey>,
-): {
-  <P extends ConsistentWith<P, StyledComponentProps<ClassKey>>>(
-    component: React.ComponentType<P & WithStyles<ClassKey>>,
-  ): React.ComponentType<Overwrite<P, StyledComponentProps<ClassKey>>>;
-};
+  options?: Options,
+): PropInjector<WithStyles<ClassKey, Options['withTheme']>, StyledComponentProps<ClassKey>>;

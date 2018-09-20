@@ -16,7 +16,7 @@ component and some styles:
 - It properly manages focus; moving to the modal content,
   and keeping it there until the modal is closed.
 - It disables scrolling of the page content while open.
-- Adds the appropriate ARIA roles are automatically.
+- Adds the appropriate ARIA roles automatically.
 
 This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
 

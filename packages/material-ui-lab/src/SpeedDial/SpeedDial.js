@@ -15,17 +15,38 @@ export const styles = {
   root: {
     zIndex: 1050,
     display: 'flex',
-    flexDirection: 'column-reverse', // Place the Actions above the FAB.
+    pointerEvents: 'none',
+  },
+  /* Styles applied to the Button component. */
+  fab: {
+    pointerEvents: 'auto',
+  },
+  /* Styles applied to the root and action container elements when direction="up" */
+  directionUp: {
+    flexDirection: 'column-reverse',
+  },
+  /* Styles applied to the root and action container elements when direction="down" */
+  directionDown: {
+    flexDirection: 'column',
+  },
+  /* Styles applied to the root and action container elements when direction="left" */
+  directionLeft: {
+    flexDirection: 'row-reverse',
+  },
+  /* Styles applied to the root and action container elements when direction="right" */
+  directionRight: {
+    flexDirection: 'row',
   },
   /* Styles applied to the actions (`children` wrapper) element. */
   actions: {
     display: 'flex',
-    flexDirection: 'column-reverse', // Display the first action at the bottom.
-    marginBottom: 16,
+    paddingBottom: 16,
+    pointerEvents: 'auto',
   },
   /* Styles applied to the actions (`children` wrapper) element if `open={false}`. */
   actionsClosed: {
     transition: 'top 0s linear 0.2s',
+    pointerEvents: 'none',
   },
 };
 
@@ -36,8 +57,8 @@ class SpeedDial extends React.Component {
   };
 
   handleKeyDown = event => {
-    const actions = ReactDOM.findDOMNode(this.actions);
-    const fab = ReactDOM.findDOMNode(this.fab);
+    const actions = ReactDOM.findDOMNode(this.actionsRef);
+    const fab = ReactDOM.findDOMNode(this.fabRef);
     const key = keycode(event);
     const currentFocus = document.activeElement;
     const { open, onClose, onKeyDown } = this.props;
@@ -68,7 +89,7 @@ class SpeedDial extends React.Component {
       if (currentFocus.parentElement.previousElementSibling) {
         currentFocus.parentElement.previousElementSibling.firstChild.focus();
       } else {
-        ReactDOM.findDOMNode(this.fab).focus();
+        fab.focus();
       }
       // Select the next action
     } else if (key === nextKey) {
@@ -102,6 +123,7 @@ class SpeedDial extends React.Component {
       onClose,
       onKeyDown,
       open,
+      direction,
       openIcon,
       TransitionComponent,
       transitionDuration,
@@ -151,8 +173,21 @@ class SpeedDial extends React.Component {
       return icon;
     };
 
+    const actionsPlacementClass = {
+      [classes.directionUp]: direction === 'up',
+      [classes.directionDown]: direction === 'down',
+      [classes.directionLeft]: direction === 'left',
+      [classes.directionRight]: direction === 'right',
+    };
+
+    let clickProp = { onClick };
+
+    if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
+      clickProp = { onTouchEnd: onClick };
+    }
+
     return (
-      <div className={classNames(classes.root, classNameProp)} {...other}>
+      <div className={classNames(classes.root, actionsPlacementClass, classNameProp)} {...other}>
         <TransitionComponent
           in={!hidden}
           timeout={transitionDuration}
@@ -162,15 +197,16 @@ class SpeedDial extends React.Component {
           <Button
             variant="fab"
             color="primary"
-            onClick={onClick}
             onKeyDown={this.handleKeyDown}
             aria-label={ariaLabel}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : 'false'}
             aria-controls={`${id}-actions`}
-            ref={node => {
-              this.fab = node;
+            ref={ref => {
+              this.fabRef = ref;
             }}
+            className={classes.fab}
+            {...clickProp}
             {...ButtonProps}
           >
             {icon()}
@@ -178,9 +214,14 @@ class SpeedDial extends React.Component {
         </TransitionComponent>
         <div
           id={`${id}-actions`}
-          className={classNames(classes.actions, { [classes.actionsClosed]: !open })}
-          ref={node => {
-            this.actions = node;
+          role="menu"
+          className={classNames(
+            classes.actions,
+            { [classes.actionsClosed]: !open },
+            actionsPlacementClass,
+          )}
+          ref={ref => {
+            this.actionsRef = ref;
           }}
         >
           {children}
@@ -213,6 +254,10 @@ SpeedDial.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The direction the actions open relative to the floating action button.
+   */
+  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
   /**
    * If `true`, the SpeedDial will be hidden.
    */
@@ -265,6 +310,7 @@ SpeedDial.propTypes = {
 
 SpeedDial.defaultProps = {
   hidden: false,
+  direction: 'up',
   TransitionComponent: Zoom,
   transitionDuration: {
     enter: duration.enteringScreen,

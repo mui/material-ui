@@ -9,6 +9,10 @@ title: FormControl API
 
 <p class="description">The API documentation of the FormControl React component.</p>
 
+```js
+import FormControl from '@material-ui/core/FormControl';
+```
+
 Provides context such as filled/focused/error/required for form inputs.
 Relying on the context provides high flexibilty and ensures that the state always stays
 consistent across the children of the `FormControl`.
@@ -30,6 +34,7 @@ This context is used by the following components:
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the component will take up the full width of its container. |
 | <span class="prop-name">margin</span> | <span class="prop-type">enum:&nbsp;'none'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'normal'<br> | <span class="prop-default">'none'</span> | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | <span class="prop-name">required</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | If `true`, the label will indicate that the input is required. |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br> | <span class="prop-default">'standard'</span> | The variant to use. |
 
 Any other properties supplied will be spread to the root element (native element).
 

@@ -19,7 +19,7 @@ export const styles = theme => ({
     padding: '8px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
-    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
       duration: theme.transitions.duration.short,
     }),
     '&:hover': {
@@ -39,6 +39,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the span element that wraps the children. */
   label: {
+    width: '100%', // assure the correct width for iOS Safari
     display: 'inherit',
     alignItems: 'inherit',
     justifyContent: 'inherit',
@@ -79,7 +80,27 @@ export const styles = theme => ({
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
   },
-  /* Styles applied to the root element if `variant="contained"`. */
+  /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
+  outlinedPrimary: {
+    border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.primary.main}`,
+    },
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
+    },
+  },
+  /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
+  outlinedSecondary: {
+    border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.secondary.main}`,
+    },
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
+    },
+  },
+  /* Styles applied to the root element if `variant="[contained | fab]"`. */
   contained: {
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
@@ -106,7 +127,7 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element if `variant="contained"` and `color="primary"`. */
+  /* Styles applied to the root element if `variant="[contained | fab]"` and `color="primary"`. */
   containedPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
@@ -118,7 +139,7 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the root element if `variant="contained"` and `color="secondary"`. */
+  /* Styles applied to the root element if `variant="[contained | fab]"` and `color="secondary"`. */
   containedSecondary: {
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.main,
@@ -136,7 +157,7 @@ export const styles = theme => ({
   raisedPrimary: {}, // legacy
   /* Styles applied to the root element for backwards compatibility with legacy variant naming. */
   raisedSecondary: {}, // legacy
-  /* Styles applied to the root element if `variant="fab"`. */
+  /* Styles applied to the root element if `variant="[fab | extendedFab]"`. */
   fab: {
     borderRadius: '50%',
     padding: 0,
@@ -164,7 +185,7 @@ export const styles = theme => ({
   colorInherit: {
     color: 'inherit',
   },
-  /* Styles applied to the root element if `size="mini"`. */
+  /* Styles applied to the root element if `size="mini"` & `variant="[fab | extendedFab]"`. */
   mini: {
     width: 40,
     height: 40,
@@ -227,6 +248,8 @@ function Button(props) {
       [classes.raisedPrimary]: (contained || fab) && color === 'primary',
       [classes.raisedSecondary]: (contained || fab) && color === 'secondary',
       [classes.outlined]: variant === 'outlined',
+      [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
+      [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,

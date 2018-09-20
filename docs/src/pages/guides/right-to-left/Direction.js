@@ -10,7 +10,7 @@ function Direction() {
   return (
     <MuiThemeProvider theme={theme}>
       <div dir="rtl">
-        <TextField label="Name" />
+        <TextField placeholder="Name" />
         <input type="text" placeholder="Name" />
       </div>
     </MuiThemeProvider>

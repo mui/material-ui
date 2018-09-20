@@ -9,6 +9,10 @@ title: GridList API
 
 <p class="description">The API documentation of the GridList React component.</p>
 
+```js
+import GridList from '@material-ui/core/GridList';
+```
+
 
 
 ## Props

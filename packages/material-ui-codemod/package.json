@@ -14,10 +14,10 @@
   ],
   "scripts": {
     "test": "yarn test:unit",
-    "test:unit": "cd ../../ && ./node_modules/.bin/mocha packages/material-ui-codemod/src/**/*.test.js",
+    "test:unit": "cd ../../ && mocha packages/material-ui-codemod/src/**/*.test.js",
     "test:watch": "yarn test:unit --watch",
-    "prebuild": "../../node_modules/.bin/rimraf lib",
-    "build": "../../node_modules/.bin/cross-env NODE_ENV=production ../../node_modules/.bin/babel ./src --out-dir ./lib --ignore **/*.test*",
+    "prebuild": "rimraf lib",
+    "build": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./lib --ignore **/*.test.js",
     "release": "yarn build && npm publish"
   },
   "repository": {

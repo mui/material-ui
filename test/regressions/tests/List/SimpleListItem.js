@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -18,6 +16,9 @@ export default function SimpleListItem() {
       </ListItem>
       <ListItem dense>
         <ListItemText primary="Primary" secondary="Secondary" />
+      </ListItem>
+      <ListItem selected>
+        <ListItemText primary="Primary" />
       </ListItem>
     </div>
   );
