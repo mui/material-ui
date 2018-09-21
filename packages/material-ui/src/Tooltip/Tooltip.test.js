@@ -95,10 +95,13 @@ describe('<Tooltip />', () => {
 
   it('should close when the interaction is over', () => {
     const wrapper = shallow(<Tooltip {...defaultProps} />);
-    wrapper.instance().childrenRef = document.createElement('div');
+    const childrenRef = document.createElement('div');
+    childrenRef.tabIndex = 0;
+    wrapper.instance().childrenRef = childrenRef;
     const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(wrapper.state().open, false);
     children.simulate('mouseOver', { type: 'mouseover' });
+    childrenRef.focus();
     children.simulate('focus', { type: 'focus', persist });
     clock.tick(0);
     assert.strictEqual(wrapper.state().open, true);
@@ -111,19 +114,25 @@ describe('<Tooltip />', () => {
   describe('touch screen', () => {
     it('should not respond to quick events', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} />);
-      wrapper.instance().childrenRef = document.createElement('div');
+      const childrenRef = document.createElement('div');
+      childrenRef.tabIndex = 0;
+      wrapper.instance().childrenRef = childrenRef;
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('touchStart', { type: 'touchstart', persist });
       children.simulate('touchEnd', { type: 'touchend', persist });
+      childrenRef.focus();
       children.simulate('focus', { type: 'focus', persist });
       assert.strictEqual(wrapper.state().open, false);
     });
 
     it('should open on long press', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} />);
-      wrapper.instance().childrenRef = document.createElement('div');
+      const childrenRef = document.createElement('div');
+      childrenRef.tabIndex = 0;
+      wrapper.instance().childrenRef = childrenRef;
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('touchStart', { type: 'touchstart', persist });
+      childrenRef.focus();
       children.simulate('focus', { type: 'focus', persist });
       clock.tick(1e3);
       assert.strictEqual(wrapper.state().open, true);
