@@ -35,18 +35,28 @@ import { setRef } from '../utils/reactHelpers';
  * ```
  */
 class RootRef extends React.Component {
+  ref = null;
+
   componentDidMount() {
-    setRef(this.props.rootRef, ReactDOM.findDOMNode(this));
+    this.ref = ReactDOM.findDOMNode(this);
+    setRef(this.props.rootRef, this.ref);
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.rootRef !== this.props.rootRef) {
-      setRef(prevProps.rootRef, null);
-      setRef(this.props.rootRef, ReactDOM.findDOMNode(this));
+    const ref = ReactDOM.findDOMNode(this);
+
+    if (prevProps.rootRef !== this.props.rootRef || this.ref !== ref) {
+      if (prevProps.rootRef !== this.props.rootRef) {
+        setRef(prevProps.rootRef, null);
+      }
+
+      this.ref = ref;
+      setRef(this.props.rootRef, this.ref);
     }
   }
 
   componentWillUnmount() {
+    this.ref = null;
     setRef(this.props.rootRef, null);
   }
 
