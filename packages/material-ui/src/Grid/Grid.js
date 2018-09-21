@@ -44,7 +44,8 @@ function generateGrid(globalStyles, theme, breakpoint) {
       return;
     }
 
-    const width = `${Math.round((size / 12) * 10e7) / 10e4}%`;
+    // Keep 7 significant numbers.
+    const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
 
     // Close to the bootstrap implementation:
     // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
