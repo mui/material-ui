@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import hasValue from './hasValue';
-import isValueSelected from './isValueSelected';
+import { Provider } from './context';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -64,22 +64,6 @@ class ToggleButtonGroup extends React.Component {
       ...other
     } = this.props;
 
-    const children = React.Children.map(childrenProp, child => {
-      if (!React.isValidElement(child)) {
-        return null;
-      }
-
-      const { selected: buttonSelected, value: buttonValue } = child.props;
-
-      const selected =
-        buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
-
-      return React.cloneElement(child, {
-        selected,
-        onChange: exclusive ? this.handleExclusiveChange : this.handleChange,
-      });
-    });
-
     const groupSelected = selectedProp === 'auto' ? hasValue(value) : selectedProp;
     const className = classNames(
       classes.root,
@@ -91,7 +75,11 @@ class ToggleButtonGroup extends React.Component {
 
     return (
       <div className={className} {...other}>
-        {children}
+        <Provider value={
+          { value, onChange: exclusive ? this.handleExclusiveChange : this.handleChange }}
+        >
+          {childrenProp}
+        </Provider>
       </div>
     );
   }

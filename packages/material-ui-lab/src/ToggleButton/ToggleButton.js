@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import withContext from './withContext';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -187,4 +188,4 @@ ToggleButton.defaultProps = {
 
 ToggleButton.muiName = 'ToggleButton';
 
-export default withStyles(styles, { name: 'MuiToggleButton' })(ToggleButton);
+export default withStyles(styles, { name: 'MuiToggleButton' })(withContext(ToggleButton));
