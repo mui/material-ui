@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Grow from '@material-ui/core/Grow';
 
 export const styles = theme => ({
   /* Styles applied to the root (`Tooltip`) component. */
@@ -22,13 +21,16 @@ export const styles = theme => ({
     '&:hover': {
       backgroundColor: emphasize(theme.palette.background.default, 0.15),
     },
+  },
+  /* Styles applied to the `Button` or `Paper` component if `open={true}`. */
+  grow: {
     transition: `${theme.transitions.create('transform', {
       duration: theme.transitions.duration.shorter,
     })}, opacity 0.8s`,
     opacity: 1,
   },
-  /* Styles applied to the `Button` component if `open={false}`. */
-  buttonClosed: {
+  /* Styles applied to the `Button` or `Paper` component if `open={false}`. */
+  growClosed: {
     opacity: 0,
     transform: 'scale(0)',
   },
@@ -90,12 +92,13 @@ class SpeedDialAction extends React.Component {
       };
     }
 
+    clickProp.style = { transitionDelay: `${delay}ms` };
+
     const actionButton = (
       <Button
         variant="fab"
         mini
-        className={classNames(classes.button, !open && classes.buttonClosed)}
-        style={{ transitionDelay: `${delay}ms` }}
+        className={classNames(classes.button, classes.grow, !open && classes.growClosed)}
         tabIndex={-1}
         role="menuitem"
         {...ButtonProps}
@@ -108,11 +111,12 @@ class SpeedDialAction extends React.Component {
     if (tooltipOpen) {
       return (
         <span className={classes.tooltipOpenContainer}>
-          <Grow in={open} timeout={{ enter: delay + 400 }}>
-            <Paper className={classes.textLabel} {...clickProp}>
-              <Typography>{tooltipTitle}</Typography>
-            </Paper>
-          </Grow>
+          <Paper
+            className={classNames(classes.textLabel, classes.grow, !open && classes.growClosed)}
+            {...clickProp}
+          >
+            <Typography>{tooltipTitle}</Typography>
+          </Paper>
           {actionButton}
         </span>
       );

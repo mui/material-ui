@@ -39,7 +39,8 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the root (`Tooltip`) component.
 | <span class="prop-name">button</span> | Styles applied to the `Button` component.
-| <span class="prop-name">buttonClosed</span> | Styles applied to the `Button` component if `open={false}`.
+| <span class="prop-name">grow</span> | Styles applied to the `Button` or `Paper` component if `open={true}`.
+| <span class="prop-name">growClosed</span> | Styles applied to the `Button` or `Paper` component if `open={false}`.
 | <span class="prop-name">textLabel</span> | Styles applied to the `Paper` component if `tooltipOpen={true}`
 | <span class="prop-name">tooltipOpenContainer</span> | Styles applied to the root (`span`) component if `tooltipOpen={true}`.
 
