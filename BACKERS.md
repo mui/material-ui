@@ -61,7 +61,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 | Avétis KAZARIAN | Withinpixels | SIM KIM SIA | Renaud Bompuis | Yaron Malin |
 | Arvanitis Panagiotis | Jesse Weigel | Bogdan Mihai Nicolae | Dung Tran | Kyle Pennell |
 | Kai Mit Pansen | Eric Nagy | Karens Grigorjancs | Mohamed Turco | Haroun Serang |
-| Antonio Seveso |
+| Antonio Seveso | Umar Ali |
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
