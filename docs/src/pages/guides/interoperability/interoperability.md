@@ -256,10 +256,7 @@ export default EmotionButton
 
 [![Edit Material UI - Emotion Button 2](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/24om4jl05y)
 
-### Controlling Priority
-
-By default, JSS and Emotion both inject their styles at the bottom of the `<head>.` The best way to ensure that your styles are injected below the default Material-UI styles is to configure [the injection order](https://material-ui.com/customization/css-in-js/#css-injection-order).
-
+**Note:** By default Emotion and JSS both inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order), as in the examples.
 
 ## React Emotion
 
@@ -277,7 +274,7 @@ const StyledButton = styled(Button)`
   color: white;
   height: 48px;
   padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
+  box-shadow: 0 3px 5px 2 px rgba(255, 105, 135, 0.3);
 `;
 
 function ReactEmotionButton() {
@@ -294,6 +291,7 @@ export default ReactEmotionButton;
 
 [![Edit Material UI - React Emotion Button ](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/nkx4p8rw9l)
 
+**Note:** By default Emotion and JSS both inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order), as in the examples.
 
 ## CSS Modules
 
