@@ -43,10 +43,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Demo from './demo';
 
-const rootElement = document.querySelector('#root');
-if (rootElement) {
-  ReactDOM.render(<Demo />, rootElement);
-}
+ReactDOM.render(<Demo />, document.querySelector('#root'));
       `,
       'index.html': `
 <body>
