@@ -3,10 +3,10 @@ import { Consumer } from '../ToggleButtonGroup/context';
 import isValueSelected from '../ToggleButtonGroup/isValueSelected';
 
 export default function withContext(ToggleButton) {
-  return ({ selectedProp, onChangeProp, ...other }) => {
+  return ({ selected: selectedProp, onChange: onChangeProp, ...other }) => {
     return (
       <Consumer>
-        {ctx => {
+        {(ctx = {}) => {
           const selected = selectedProp === undefined
             ? isValueSelected(other.value, ctx.value)
             : selectedProp;
