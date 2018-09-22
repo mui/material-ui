@@ -14,7 +14,7 @@ export const styles = theme => ({
     position: 'relative',
   },
   /* Styles applied to the `Button` component. */
-  button: {
+  actionButton: {
     margin: 8,
     color: theme.palette.text.secondary,
     backgroundColor: emphasize(theme.palette.background.default, 0.12),
@@ -23,14 +23,14 @@ export const styles = theme => ({
     },
   },
   /* Styles applied to the `Button` or `Paper` component if `open={true}`. */
-  grow: {
+  button: {
     transition: `${theme.transitions.create('transform', {
       duration: theme.transitions.duration.shorter,
     })}, opacity 0.8s`,
     opacity: 1,
   },
   /* Styles applied to the `Button` or `Paper` component if `open={false}`. */
-  growClosed: {
+  buttonClosed: {
     opacity: 0,
     transform: 'scale(0)',
   },
@@ -98,7 +98,7 @@ class SpeedDialAction extends React.Component {
       <Button
         variant="fab"
         mini
-        className={classNames(classes.button, classes.grow, !open && classes.growClosed)}
+        className={classNames(classes.actionButton, classes.button, !open && classes.buttonClosed)}
         tabIndex={-1}
         role="menuitem"
         {...ButtonProps}
@@ -112,7 +112,7 @@ class SpeedDialAction extends React.Component {
       return (
         <span className={classes.tooltipOpenContainer}>
           <Paper
-            className={classNames(classes.textLabel, classes.grow, !open && classes.growClosed)}
+            className={classNames(classes.textLabel, classes.button, !open && classes.buttonClosed)}
             {...clickProp}
           >
             <Typography>{tooltipTitle}</Typography>
