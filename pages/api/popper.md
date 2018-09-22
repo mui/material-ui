@@ -9,6 +9,10 @@ title: Popper API
 
 <p class="description">The API documentation of the Popper React component.</p>
 
+```js
+import Popper from '@material-ui/core/Popper';
+```
+
 Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
 
 ## Props

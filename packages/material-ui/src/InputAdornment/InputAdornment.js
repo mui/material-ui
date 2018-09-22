@@ -11,6 +11,12 @@ export const styles = {
     maxHeight: '2em',
     alignItems: 'center',
   },
+  /* Styles applied to the root element if `variant="filled"` */
+  filled: {
+    '&$positionStart': {
+      marginTop: 16,
+    },
+  },
   /* Styles applied to the root element if `position="start"`. */
   positionStart: {
     marginRight: 8,
@@ -29,6 +35,7 @@ function InputAdornment(props) {
     className,
     disableTypography,
     position,
+    variant,
     ...other
   } = props;
 
@@ -37,6 +44,7 @@ function InputAdornment(props) {
       className={classNames(
         classes.root,
         {
+          [classes.filled]: variant === 'filled',
           [classes.positionStart]: position === 'start',
           [classes.positionEnd]: position === 'end',
         },
@@ -80,6 +88,10 @@ InputAdornment.propTypes = {
    * The position this adornment should appear relative to the `Input`.
    */
   position: PropTypes.oneOf(['start', 'end']),
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 InputAdornment.defaultProps = {

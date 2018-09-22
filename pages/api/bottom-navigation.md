@@ -9,6 +9,10 @@ title: BottomNavigation API
 
 <p class="description">The API documentation of the BottomNavigation React component.</p>
 
+```js
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+```
+
 
 
 ## Props

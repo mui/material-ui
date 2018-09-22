@@ -4,6 +4,7 @@ import { createShallow, getClasses, createMount } from '../test-utils';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
 import Select from './Select';
+import { spy } from 'sinon';
 
 describe('<Select />', () => {
   let shallow;
@@ -63,5 +64,18 @@ describe('<Select />', () => {
       </Select>,
     );
     assert.strictEqual(wrapper.find('input').props().value, 10);
+  });
+  describe('prop: onChange', () => {
+    it('should get selected element from arguments', () => {
+      const onChangeHandler = spy();
+      const wrapper = mount(<Select onChange={onChangeHandler} {...defaultProps} value={'1'} />);
+      wrapper.find('[role="button"]').simulate('click');
+      wrapper
+        .find(MenuItem)
+        .at(1)
+        .simulate('click');
+      const selected = onChangeHandler.args[0][1];
+      assert.strictEqual(React.isValidElement(selected), true, 'should b be a element');
+    });
   });
 });

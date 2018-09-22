@@ -31,16 +31,13 @@ describe('<TextField />', () => {
     describe('structure', () => {
       it('should be a FormControl', () => {
         assert.strictEqual(wrapper.type(), FormControl);
-      });
-
-      it('should pass className to the FormControl', () => {
         wrapper.setProps({ className: 'foo' });
-        assert.strictEqual(wrapper.dive().hasClass('foo'), true);
+        assert.strictEqual(wrapper.hasClass('foo'), true);
       });
 
       it('should pass margin to the FormControl', () => {
         wrapper.setProps({ margin: 'normal' });
-        assert.strictEqual(wrapper.dive().props().margin, 'normal');
+        assert.strictEqual(wrapper.props().margin, 'normal');
       });
 
       it('should have an Input as the only child', () => {
@@ -66,15 +63,12 @@ describe('<TextField />', () => {
 
       it('should have 2 children', () => {
         assert.strictEqual(wrapper.children().length, 2);
-      });
-
-      it('should have an InputLabel as the first child', () => {
         assert.strictEqual(wrapper.childAt(0).type(), InputLabel);
       });
 
       it('should apply the className to the InputLabel', () => {
         wrapper.setProps({ InputLabelProps: { className: 'foo' } });
-        assert.strictEqual(wrapper.find(InputLabel).hasClass('foo'), true);
+        assert.strictEqual(wrapper.childAt(0).hasClass('foo'), true);
       });
 
       it('should have an Input as the second child', () => {
@@ -91,17 +85,30 @@ describe('<TextField />', () => {
         assert.strictEqual(wrapper.children().length, 2);
       });
 
-      it('should have an FormHelperText as the second child', () => {
-        assert.strictEqual(wrapper.childAt(1).type(), FormHelperText);
-      });
-
       it('should apply the className to the FormHelperText', () => {
         wrapper.setProps({ FormHelperTextProps: { className: 'foo' } });
-        assert.strictEqual(wrapper.find(FormHelperText).hasClass('foo'), true);
+        assert.strictEqual(wrapper.childAt(1).hasClass('foo'), true);
       });
 
       it('should have an Input as the first child', () => {
         assert.strictEqual(wrapper.childAt(0).type(), Input);
+        assert.strictEqual(wrapper.childAt(1).type(), FormHelperText);
+      });
+    });
+
+    describe('with an outline', () => {
+      it('should set outline props', () => {
+        wrapper = shallow(<TextField variant="outlined" />);
+        assert.strictEqual(wrapper.props().variant, 'outlined');
+        assert.strictEqual(
+          wrapper.find('WithStyles(OutlinedInput)').props().labelWidth,
+          wrapper.instance().inputLabelNode ? wrapper.instance().inputLabelNode.offsetWidth : 0,
+        );
+      });
+
+      it('should set shrink prop on outline from label', () => {
+        wrapper = shallow(<TextField variant="outlined" InputLabelProps={{ shrink: true }} />);
+        assert.strictEqual(wrapper.find('WithStyles(OutlinedInput)').props().notched, true);
       });
     });
 

@@ -10,6 +10,7 @@ export interface FormHelperTextProps
   component?: React.ReactType<FormHelperTextProps>;
   margin?: 'dense';
   required?: boolean;
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
 export type FormHelperTextClassKey =
@@ -19,6 +20,7 @@ export type FormHelperTextClassKey =
   | 'marginDense'
   | 'focused'
   | 'filled'
+  | 'contained'
   | 'required';
 
 declare const FormHelperText: React.ComponentType<FormHelperTextProps>;

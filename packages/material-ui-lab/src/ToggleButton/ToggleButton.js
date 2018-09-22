@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
@@ -89,14 +89,14 @@ class ToggleButton extends React.Component {
     const { onChange, onClick, value } = this.props;
 
     if (onClick) {
-      onClick(event);
+      onClick(event, value);
       if (event.isDefaultPrevented()) {
         return;
       }
     }
 
     if (onChange) {
-      onChange(value);
+      onChange(event, value);
     }
   };
 

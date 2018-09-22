@@ -10,7 +10,7 @@ You don't need to provide any JavaScript polyfill as we manage unsupported brows
 
 | IE    | Edge   | Firefox | Chrome | Safari |
 |:------|:-------|:--------|:-------|:-------|
-| 11    | >= 14  | >= 45   | >= 49  | >= 10  |
+| 11    | >= 14  | >= 52   | >= 49  | >= 10  |
 
 ## Server
 

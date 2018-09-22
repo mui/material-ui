@@ -2,10 +2,6 @@
 
 import warning from 'warning';
 
-// People might bundle this classname generator twice.
-// We need to use a global.
-global.__MUI_GENERATOR_COUNTER__ = 0;
-
 const escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
 
 function safePrefix(classNamePrefix) {
@@ -22,27 +18,8 @@ function safePrefix(classNamePrefix) {
 // It's inspired by
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
 export default function createGenerateClassName(options = {}) {
-  const { dangerouslyUseGlobalCSS = false, productionPrefix = 'jss' } = options;
+  const { dangerouslyUseGlobalCSS = false, productionPrefix = 'jss', seed = '' } = options;
   let ruleCounter = 0;
-
-  // - HMR can lead to many class name generators being instantiated,
-  // so the warning is only triggered in production.
-  // - We expect a class name generator to be instantiated per new request on the server,
-  // so the warning is only triggered client side.
-  if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
-    global.__MUI_GENERATOR_COUNTER__ += 1;
-
-    if (global.__MUI_GENERATOR_COUNTER__ > 2) {
-      // eslint-disable-next-line no-console
-      console.error(
-        [
-          'Material-UI: we have detected more than needed creation of the class name generator.',
-          'You should only use one class name generator on the client side.',
-          'If you do otherwise, you take the risk to have conflicting class names in production.',
-        ].join('\n'),
-      );
-    }
-  }
 
   return (rule, styleSheet) => {
     ruleCounter += 1;
@@ -63,27 +40,27 @@ export default function createGenerateClassName(options = {}) {
 
         if (styleSheet.options.classNamePrefix && process.env.NODE_ENV !== 'production') {
           const prefix = safePrefix(styleSheet.options.classNamePrefix);
-          return `${prefix}-${rule.key}-${ruleCounter}`;
+          return `${prefix}-${rule.key}-${seed}${ruleCounter}`;
         }
       }
 
       if (process.env.NODE_ENV === 'production') {
-        return `${productionPrefix}${ruleCounter}`;
+        return `${productionPrefix}${seed}${ruleCounter}`;
       }
 
-      return `${rule.key}-${ruleCounter}`;
+      return `${rule.key}-${seed}${ruleCounter}`;
     }
 
     if (process.env.NODE_ENV === 'production') {
-      return `${productionPrefix}${ruleCounter}`;
+      return `${productionPrefix}${seed}${ruleCounter}`;
     }
 
     if (styleSheet && styleSheet.options.classNamePrefix) {
       const prefix = safePrefix(styleSheet.options.classNamePrefix);
 
-      return `${prefix}-${rule.key}-${ruleCounter}`;
+      return `${prefix}-${rule.key}-${seed}${ruleCounter}`;
     }
 
-    return `${rule.key}-${ruleCounter}`;
+    return `${rule.key}-${seed}${ruleCounter}`;
   };
 }

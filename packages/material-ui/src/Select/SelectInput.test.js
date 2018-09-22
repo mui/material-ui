@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import keycode from 'keycode';
 import { createShallow, createMount } from '../test-utils';
 import Menu from '../Menu';
+import Portal from '../Portal';
 import MenuItem from '../MenuItem';
 import SelectInput from './SelectInput';
 
@@ -151,7 +152,7 @@ describe('<SelectInput />', () => {
       wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
       assert.strictEqual(wrapper.state().open, true);
       const portalLayer = wrapper
-        .find('Portal')
+        .find(Portal)
         .instance()
         .getMountNode();
       portalLayer.querySelectorAll('li')[1].click();
@@ -204,7 +205,7 @@ describe('<SelectInput />', () => {
       assert.strictEqual(wrapper.state().open, true);
 
       const portalLayer = wrapper
-        .find('Portal')
+        .find(Portal)
         .instance()
         .getMountNode();
       const backdrop = portalLayer.querySelector('[data-mui-test="Backdrop"]');
@@ -321,7 +322,7 @@ describe('<SelectInput />', () => {
         wrapper.find(`.${defaultProps.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
         const portalLayer = wrapper
-          .find('Portal')
+          .find(Portal)
           .instance()
           .getMountNode();
 

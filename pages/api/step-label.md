@@ -9,6 +9,10 @@ title: StepLabel API
 
 <p class="description">The API documentation of the StepLabel React component.</p>
 
+```js
+import StepLabel from '@material-ui/core/StepLabel';
+```
+
 
 
 ## Props

@@ -9,6 +9,10 @@ title: Button API
 
 <p class="description">The API documentation of the Button React component.</p>
 
+```js
+import Button from '@material-ui/core/Button';
+```
+
 
 
 ## Props

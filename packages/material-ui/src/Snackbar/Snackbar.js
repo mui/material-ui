@@ -210,6 +210,7 @@ class Snackbar extends React.Component {
       children,
       classes,
       className,
+      ClickAwayListenerProps,
       ContentProps,
       disableWindowBlurListener,
       message,
@@ -236,7 +237,7 @@ class Snackbar extends React.Component {
     }
 
     return (
-      <ClickAwayListener onClickAway={this.handleClickAway}>
+      <ClickAwayListener onClickAway={this.handleClickAway} {...ClickAwayListenerProps}>
         <div
           className={classNames(
             classes.root,
@@ -306,6 +307,10 @@ Snackbar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Properties applied to the `ClickAwayListener` element.
+   */
+  ClickAwayListenerProps: PropTypes.object,
   /**
    * Properties applied to the [`SnackbarContent`](/api/snackbar-content) element.
    */

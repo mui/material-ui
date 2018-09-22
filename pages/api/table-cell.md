@@ -9,6 +9,10 @@ title: TableCell API
 
 <p class="description">The API documentation of the TableCell React component.</p>
 
+```js
+import TableCell from '@material-ui/core/TableCell';
+```
+
 
 
 ## Props

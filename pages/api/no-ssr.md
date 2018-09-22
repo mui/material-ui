@@ -9,6 +9,10 @@ title: NoSsr API
 
 <p class="description">The API documentation of the NoSsr React component.</p>
 
+```js
+import NoSsr from '@material-ui/core/NoSsr';
+```
+
 NoSsr purposely removes components from the subject of Server Side Rendering (SSR).
 
 This component can be useful in a variety of situations:

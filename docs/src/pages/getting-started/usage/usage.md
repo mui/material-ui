@@ -35,7 +35,7 @@ Yes, this really is all you need to get started, as you can see in this live and
 
 ## Globals
 
-Material-UI usage experience can be improved with a handful of important global that you’ll need to be aware of.
+Material-UI usage experience can be improved with a handful of important globals that you’ll need to be aware of.
 
 ### Responsive meta tag
 

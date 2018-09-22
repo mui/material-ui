@@ -10,14 +10,6 @@ if (process.env.BABEL_ENV === 'es') {
     [
       '@babel/preset-env',
       {
-        targets: {
-          ie: 11,
-          edge: 14,
-          firefox: 45,
-          chrome: 49,
-          safari: 10,
-          node: '6.11',
-        },
         modules: ['modules', 'production-umd'].includes(process.env.BABEL_ENV) ? false : 'commonjs',
       },
     ],
@@ -28,10 +20,13 @@ module.exports = {
   presets: defaultPresets.concat(['@babel/preset-react']),
   plugins: [
     ['@babel/plugin-proposal-class-properties', { loose: true }],
-    ['@babel/plugin-proposal-object-rest-spread', {
-      // Workaround for https://github.com/babel/babel/issues/8323
-      loose: process.env.BABEL_ENV !== 'es',
-    }],
+    [
+      '@babel/plugin-proposal-object-rest-spread',
+      {
+        // Workaround for https://github.com/babel/babel/issues/8323
+        loose: process.env.BABEL_ENV !== 'es',
+      },
+    ],
     '@babel/plugin-transform-object-assign',
     '@babel/plugin-transform-runtime',
   ],

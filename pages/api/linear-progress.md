@@ -9,6 +9,10 @@ title: LinearProgress API
 
 <p class="description">The API documentation of the LinearProgress React component.</p>
 
+```js
+import LinearProgress from '@material-ui/core/LinearProgress';
+```
+
 ## ARIA
 
 If the progress bar is describing the loading progress of a particular region of a page,

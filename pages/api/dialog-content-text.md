@@ -9,6 +9,10 @@ title: DialogContentText API
 
 <p class="description">The API documentation of the DialogContentText React component.</p>
 
+```js
+import DialogContentText from '@material-ui/core/DialogContentText';
+```
+
 
 
 ## Props

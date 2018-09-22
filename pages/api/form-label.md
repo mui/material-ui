@@ -9,6 +9,10 @@ title: FormLabel API
 
 <p class="description">The API documentation of the FormLabel React component.</p>
 
+```js
+import FormLabel from '@material-ui/core/FormLabel';
+```
+
 
 
 ## Props

@@ -11,8 +11,6 @@ export interface SwitchBaseProps
   disabled?: boolean;
   disableRipple?: boolean;
   icon: React.ReactNode;
-  indeterminate?: boolean;
-  indeterminateIcon?: React.ReactNode;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   inputRef?: React.Ref<any>;
   name?: string;

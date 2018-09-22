@@ -9,6 +9,10 @@ title: Avatar API
 
 <p class="description">The API documentation of the Avatar React component.</p>
 
+```js
+import Avatar from '@material-ui/core/Avatar';
+```
+
 
 
 ## Props

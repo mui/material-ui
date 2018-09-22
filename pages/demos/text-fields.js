@@ -15,6 +15,20 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/text-fields/TextFields'), 'utf8')
 `,
         },
+        'pages/demos/text-fields/FilledTextFields.js': {
+          js: require('docs/src/pages/demos/text-fields/FilledTextFields').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/FilledTextFields'), 'utf8')
+`,
+        },
+        'pages/demos/text-fields/OutlinedTextFields.js': {
+          js: require('docs/src/pages/demos/text-fields/OutlinedTextFields').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/OutlinedTextFields'), 'utf8')
+`,
+        },
         'pages/demos/text-fields/ComposedTextField.js': {
           js: require('docs/src/pages/demos/text-fields/ComposedTextField').default,
           raw: preval`
@@ -34,6 +48,20 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/text-fields/InputAdornments'), 'utf8')
+`,
+        },
+        'pages/demos/text-fields/FilledInputAdornments.js': {
+          js: require('docs/src/pages/demos/text-fields/FilledInputAdornments').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/FilledInputAdornments'), 'utf8')
+`,
+        },
+        'pages/demos/text-fields/OutlinedInputAdornments.js': {
+          js: require('docs/src/pages/demos/text-fields/OutlinedInputAdornments').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/OutlinedInputAdornments'), 'utf8')
 `,
         },
         'pages/demos/text-fields/Inputs.js': {

@@ -9,6 +9,10 @@ title: Table API
 
 <p class="description">The API documentation of the Table React component.</p>
 
+```js
+import Table from '@material-ui/core/Table';
+```
+
 
 
 ## Props

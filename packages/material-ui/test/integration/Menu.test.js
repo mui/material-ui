@@ -5,6 +5,7 @@ import { ReactWrapper } from 'enzyme';
 import TestUtils from 'react-dom/test-utils';
 import { createMount } from 'packages/material-ui/src/test-utils';
 import Popover from 'packages/material-ui/src/Popover';
+import Portal from 'packages/material-ui/src/Portal';
 import SimpleMenu from './fixtures/menus/SimpleMenu';
 
 function simulateEvent(node, event, mock) {
@@ -44,7 +45,7 @@ describe('<Menu> integration', () => {
     it('should focus the first item as nothing has been selected', () => {
       wrapper.setState({ open: true });
       portalLayer = wrapper
-        .find('Portal')
+        .find(Portal)
         .instance()
         .getMountNode();
       assert.strictEqual(
@@ -124,7 +125,7 @@ describe('<Menu> integration', () => {
     it('should focus the 3rd selected item', () => {
       wrapper.setState({ open: true });
       const portalLayer = wrapper
-        .find('Portal')
+        .find(Portal)
         .instance()
         .getMountNode();
       assert.strictEqual(
@@ -136,7 +137,7 @@ describe('<Menu> integration', () => {
 
     it('should select the 2nd item and close the menu', () => {
       const portalLayer = wrapper
-        .find('Portal')
+        .find(Portal)
         .instance()
         .getMountNode();
       const item = portalLayer.querySelector('ul').children[1];
@@ -148,7 +149,7 @@ describe('<Menu> integration', () => {
     it('should focus the 2nd selected item', () => {
       wrapper.setState({ open: true });
       const portalLayer = wrapper
-        .find('Portal')
+        .find(Portal)
         .instance()
         .getMountNode();
       assert.strictEqual(
@@ -167,7 +168,7 @@ describe('<Menu> integration', () => {
     beforeEach(() => {
       wrapper = mount(<SimpleMenu transitionDuration={0} />);
       wrapper.setState({ open: true });
-      const portal = wrapper.find('Portal').props().children;
+      const portal = wrapper.find(Portal).props().children;
       const portalWrapper = new ReactWrapper(portal);
       list = portalWrapper.find('List');
       backdrop = portalWrapper.find('Backdrop');

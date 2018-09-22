@@ -9,6 +9,10 @@ title: FormControlLabel API
 
 <p class="description">The API documentation of the FormControlLabel React component.</p>
 
+```js
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+```
+
 Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
 Use this component if you want to display an extra label.
 

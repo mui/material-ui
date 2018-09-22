@@ -16,4 +16,4 @@ You can customise the layout to add some pizazz in keeping with your corporate t
 ## Dependencies
 
 - `@material-ui/core`
-- `@material-ui/icons
+- `@material-ui/icons`

@@ -1,9 +1,272 @@
-Material-UI strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
+### [Versions](https://material-ui.com/versions)
 
-#### Release Schedule
+## 3.1.0
+###### *Sep 16, 2018*
 
-- Weekly release: patch or minor version at the end of every week for routine bugfix or new features (anytime for urgent bugfix).
-- Major version release is not included in this schedule for breaking change and new features.
+Big thanks to the 24 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 💅 Add outlined and filled text field variants (#12076) @enagy27.
+- ♿️ Document how to make the icons accessible (#12822).
+- 🐛 Fix a class name generation regression (#12844).
+- And many more bug fixes 🐛 and documentation improvements 📝.
+
+### `@material-ui/core@v3.1.0`
+
+- [Checkbox] Add indeterminateIcon type definition (#12815) @cvanem
+- [Popover] Change to offsetWidth and offsetHeight (#12816) @akaxiaok
+- [styles] Use the same class name generator (#12818) @oliviertassinari
+- [styles] Revert packageId as default option (#12823) @oliviertassinari
+- [withStyles] Fix JSS issues in IE11 in development (#12826) @novascreen
+- [autocomplete] Fix incorrect input font in react-select autocomplete demo (#12828) @wijwoj
+- [withWidth] Prevent Rerendering (#12825) @junhyukee
+- [SvgIcon] Improve accessibility (#12822) @oliviertassinari
+- [CircularProgress] Update missing type definitions (#12835) @gsalisi
+- [styles] Remove the packageId (#12844) @oliviertassinari
+- [Typography] Add inherit and screen reader only (#12837) @oliviertassinari
+- [Select] Test if child passed to onChange handler (#12852) @akaxiaok
+- [TableSortLabel] Remove sort icon when not active (#12874) @markselby9
+- [icons] Add `fontSize` small and large (#12865) @JoshuaLicense
+- [Chip] Add an icon property (#12881) @aretheregods
+- [TextField] Add outlined and filled variants (#12076) @enagy27
+
+### `@material-ui/lab@v3.0.0-alpha.16`
+
+- [Slider] Don't pass component props down to root div (#12842) @mbrookes
+- [Slider] Faster transitions (#12843) @mbrookes
+- [SpeedDial] Fix ARIA & fix duplicate id in docs example (#12846) @mbrookes
+- [SpeedDial] Remove redundant aria-labelledby (#12847) @mbrookes
+- [SpeedDial] Fix not opening on first tap in mobile (#12771) @hashwin
+- [Slider] Feature Custom Icon (#12600) @adeelibr
+
+### Docs
+
+- [docs] Fix the gatsby example (#12817) @oliviertassinari
+- [docs] Fix Typo in Pricing.js (#12821) @enducker
+- [docs] Fix Typo in Checkout.js (#12820) @enducker
+- [docs] Fix typo in popover.md (#12832) @amacleay
+- [docs] Add documentation for css-to-mui-loader (#12841) @mcdougal
+- [docs] Fix ToggleButtons example typography variant (#12845) @mbrookes
+- [docs] Fix very minor typo (Docs - page layout examples) (#12849) @bcapinski
+- [SvgIcon] Fix minor typo in docs (#12848) @iamhosseindhv
+- [docs] Fix typo in blog page layout README (#12868) @sethduncan
+- [docs] Update comparison.md (#12877) @GideonShils
+- [docs] Split test ad networks (#12878) @mbrookes
+- [docs] Customize LinearProgress color (#12883) @mbrn
+
+### Core
+
+- [typescript] Update createGenerateClassName.d.ts (#12824) @Qeneke
+- [github] Make issue templates version agnostic (#12839) @mbrookes
+- [typescript] Fix with* injectors ignoring defaultProps (#12673) @eps1lon
+- [core] Set required yarn version (#12864) @eps1lon
+- [core] Upgrade dev dependencies (#12884) @oliviertassinari
+
+## 3.0.3
+###### *Sep 9, 2018*
+
+Big thanks to the 13 contributors who made this release possible!
+
+### `@material-ui/core@v3.0.3`
+
+- [typescript] Fix ModalClasses prop type on popover (#12761) @YuriiOstapchuk
+- [AppBar] Add position="relative" (#12790) @jgoux
+- [Checkbox] Revert input indeterminate support (#12803) @eps1lon
+- [Checkbox] Indeterminate CSS & DOM helpers (#12804) @oliviertassinari
+- [Chip] Add verticalAlign: 'middle' (#12809) @akaxiaok
+- [autocomplete] Fix delete chip not working on mobile (#12813) @aretheregods
+- [styles] Support multiple withStyles instances (#12814) @oliviertassinari
+
+### `@material-ui/lab@v3.0.0-alpha.15`
+
+- [SpeedDialAction] Update tooltipPlacement propTypes (#12758) @Primajin
+- [ToggleButtons] normalize onChange api (#12549) @eps1lon
+
+### Docs
+
+- [docs] Remove function call from onChange handler (#12785) @snikobonyadrad
+- [docs] Unescapes character in markdown (#12778) @schalkventer
+- [docs] Enable service worker by default as the latest CRA (#12775) @sharils
+- [docs] New DataTable component (#12799) @mbrn
+- [docs] Add AppBar demos with exapandable & primary search fields (#12695) @adeelibr
+- [docs] Simpler AppBar search demos (#12806) @oliviertassinari
+- [docs] Document the shrink status input limitation (#12769) @racingrebel
+
+### Core
+
+- [test] Use yarn offline mirror (#12763) @eps1lon
+- [core] Small changes investigating issues (#12812) @oliviertassinari
+
+## 3.0.2
+###### *Sep 3, 2018*
+
+Big thanks to the 16 contributors who made this release possible!
+
+Here are some highlights ✨:
+- A documented release strategy (#12752).
+- And many more bug fixes 🐛 and documentation improvements 📝.
+
+### `@material-ui/core@v3.0.2`
+
+- [Tab] Ability change font size of tab (#12706) @adeelibr
+- [typescript] Set default for withStyles' Options generic (#12698) @nmchaves
+- [Dialog] Remove dialog margin when fullScreen=true and scroll=body (#12718) @akaxiaok
+- [Table] Improved sorting in table for demo EnhancedTable (#12736) @adeelibr
+- [Snackbar] Add `ClickAwayListenerProps` property (#12735) @tendermario
+- [IconButton] Fix border radius cutting of badges on IE11 (#12743) @novascreen
+- [Select] Pass child to onChange handler (#12747) @akaxiaok
+- [Input] Fix Input passing inputRef to intrinsic elements (#12719) @eps1lon
+- [withStyles] Better theme.props support (#12750) @oliviertassinari
+- [SwipeableDrawer] Add hysteresis and velocity property (#12722) @jniclas
+
+### `@material-ui/lab@v3.0.0-alpha.14`
+
+#### Breaking changes
+
+- [ToggleButton] Fix ToggleButtonGroup exports (#12733) @mbrookes
+
+```diff
+-import { ToggleButtonGroup } from '@material-ui/lab/ToggleButton';
++import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+```
+
+#### Component Fixes / Enhancements
+
+- [SpeedDialAction] Update tooltipPlacement propTypes (#12730) @Primajin
+- [Slider] Add missing packages (#12745) @GermanBluefox
+- [SpeedDial] Allow tooltip to always be displayed (#12590) @hashwin
+
+### Docs
+
+- [docs] Fix typo in Overrides chapter (#12705) @sanderpost
+- [docs] Improve the Downshift demo (#12703) @oliviertassinari
+- [examples] Fix typing of `withRoot` to accept props (#12712) @mattmccutchen
+- [docs] Fix class name in overrides example (#12717) @manuelkiessling
+- [examples] Fix withRoot accepting any props (#12713) @eps1lon
+- [typescript] Illustrate issue with ambiguous css class names (#12724) @eps1lon
+- [docs] Fix Typo in Page Layout Examples (#12734) @mblodorn
+- [docs] Explain how to pass props down to overridden components (#12716) @manuelkiessling
+- [docs] Generate import examples in API docs (#12720) @jedwards1211
+- [docs] More transparency around the release strategy (#12752) @oliviertassinari
+
+### Core
+
+N/A
+
+## 3.0.1
+###### *Aug 28, 2018*
+
+Big thanks to the 10 contributors who made this release possible!
+
+We are making a quick release after v3.0.0 to patch an incorrect peer dependency.
+It's also a good opportunity to upgrade to the stable release of Babel 7.
+
+### `@material-ui/core@v3.0.1`
+
+- [Checkbox] Improve indeterminate status (#12671) @hareaca
+- [StepLabel] Fix custom icon spacing (#12694) @JiayuanDeng
+- [Chip] Add outlined variant (#12680) @orporan
+- [Stepper] Add a new test case (#12684) @Anugraha123
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
+### `@material-ui/icons@v3.0.1`
+
+- [core] Fix for incorrect peer dependency version warning (#12677) @xaviergonz
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
+### `@material-ui/lab@v3.0.0-alpha.13`
+
+- [core] Fix for incorrect peer dependency version warning (#12677) @xaviergonz
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
+### Docs
+
+- [docs] Typo (#12675) @nazartokar
+- [docs] Update notification link for release 3.0.0 (#12681) @lumatijev
+- [docs] Warn about using withRoot HOC more than one time per page (#12692) @oorestisime
+
+### Core
+
+- [core] Fix for incorrect peer dependency version warning (#12677) @xaviergonz
+- [core] Upgrade the dependencies (#12693) @oliviertassinari
+
+## 3.0.0
+###### *Aug 27, 2018*
+
+Big thanks to the 27 contributors who made this release possible!
+
+We are upgrading the major version of `@material-ui/core` to match the version of `@material-ui/icons`.
+The next major release is planned for [Q1, 2019](https://github.com/mui-org/material-ui/milestone/25).
+
+### Breaking change
+
+- [icons] Save 22 Megabytes from the package (#12662)
+
+Cut the package size by half.
+It should make the npm installation twice as fast.
+It's not OK to have some installation timeout.
+We have removed the `/es` folder.
+
+```diff
+-import AccessAlarm from '@material-ui/icons/es/AccessAlarm';
++import AccessAlarm from '@material-ui/icons/AccessAlarm';
+```
+
+- [core] Drop Firefox 45 support (#12669)
+
+Firefox 52 is the last version supported by Windows XP.
+The market share of Firefox 45 is 0.03%.
+We use the same strategy for Chrome.
+
+#### Component Fixes / Enhancements
+
+- [Input] Improve type checking for inputProps (#12591) @eps1lon
+- [ClickAwayListener] Prevent rerendering (#12613) @shcherbyakdev
+- [Chip] Add missing ChipClassKey values (#12625) @IvanCoronado
+- [Dialog] Add 'lg' support to maxWidth (#12626) @TheMoonDawg
+- [TableSortLabel] Support custom icon component (#12630) @wolfejw86
+- [SvgIcon] Add Icon suffix to SVG icons (#12634) @yordis
+- [Collapse] Fix document for style wrapperInner (#12638) @peter50216
+- [Input] Extract helpers to their own module (#12657) @Pajn
+- [Chip] Add onKeyUp handler for correct behavior (#12660) @markselby9
+- [CardActionArea] Add CardActionArea component (#12624) @yuchi
+- [ListItem] Move the selected prop from MenuItem to ListItem (#12602) @the-question
+
+#### Docs
+
+- [examples] Update ts example to be closer to the official docs (#12593) @eps1lon
+- [docs] Fix a display issue on IE11 (#12599) @oliviertassinari
+- [docs] Warn about checking for version mismatch (#12601) @hluedeke
+- [docs] Consistent content height in Albumn layout example (#12556) @mbrookes
+- [example] Support Gatsby v2 (#12331) @blukai
+- [docs] xlarge = extra-large (#12619) @FarzadSole
+- [docs] Add "Insights" by justaskusers.com to the list of showcases (#12620) @mattes3
+- [docs] Use public api of jss instead of private vars (#12629) @eps1lon
+- [docs] Improve Autocomplete filtering suggestions (#12641) @jorgegorka
+- [docs] Fix IE 11 support (#12650) @oliviertassinari
+- [docs] Fix typos (#12652) @dandv
+- [docs] Use the event.target.checked API systematically (#12644) @chellem
+- [docs] Correct `by and enum` typo in api.md (#12663) @G-Rath
+- [docs] Autocomplete react-select dropdown overlay (#12664) @gerhat
+- [docs] Fix typo in usage.md (#12666) @DeveloperDavo
+
+#### Core
+
+- [core] Better Windows support for the API generation (#12584) @adeelibr
+- [TypeScript] Update SnackbarContent type def to accept action prop as array (#12595) @cngraf
+- [test] Fix the missing libxcursor1 binary (#12611) @oliviertassinari
+- [core] Fix recompose version (#12605) @yamachu
+- [typescript] Fix AnyComponent for functional components (#12589) @vierbergenlars
+- [core] Let's see if the CI catch the issue (#12615) @oliviertassinari
+- [typescript] Use interfaces for typography types (#12616) @pelotom
+- [ci] Consider only files changed on the built branch (#12627) @eps1lon
+- [test] Lint typescript definitions (#12637) @eps1lon
+- [core] Upgrade dev dependencies (#12658) @oliviertassinari
+
+#### Lab
+
+- [Slider] Fix memory leaks (#12537) @eps1lon
+- [Slider] Fix transitions (#12531) @eps1lon
 
 ## 1.5.1
 ###### *Aug 19, 2018*

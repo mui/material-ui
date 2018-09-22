@@ -9,7 +9,7 @@ import EventListener from 'react-event-listener';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { textToHash } from '@material-ui/docs/MarkdownElement/MarkdownElement';
-import CodeFund from 'docs/src/modules/components/CodeFund';
+import Ad from 'docs/src/modules/components/Ad';
 
 const renderer = new marked.Renderer();
 
@@ -112,11 +112,18 @@ class AppTableOfContents extends React.Component {
   }
 
   findActiveIndex = () => {
-    const active = this.itemsClient.find(
-      (item, index) =>
+    let active;
+
+    for (let i = 0; i < this.itemsClient.length; i += 1) {
+      const item = this.itemsClient[i];
+      if (
         document.documentElement.scrollTop < item.node.offsetTop + 100 ||
-        index === this.itemsClient.length - 1,
-    );
+        i === this.itemsClient.length - 1
+      ) {
+        active = item;
+        break;
+      }
+    }
 
     if (active && this.state.active !== active.hash) {
       this.setState({
@@ -131,7 +138,7 @@ class AppTableOfContents extends React.Component {
 
     return (
       <nav className={classes.root}>
-        {disableAd ? null : <CodeFund />}
+        {disableAd ? null : <Ad />}
         {itemsServer.length > 0 ? (
           <React.Fragment>
             <Typography variant="body2" gutterBottom className={classes.contents}>

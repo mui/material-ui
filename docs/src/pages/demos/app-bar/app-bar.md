@@ -23,6 +23,18 @@ It can transform into a contextual action bar or used as a navbar.
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
 
+## App Bar with search field
+
+A side searchbar.
+
+{{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
+
+## App Bar with a primary search field
+
+A primary searchbar.
+
+{{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
+
 ## Dense (desktop only)
 
 {{"demo": "pages/demos/app-bar/DenseAppBar.js"}}

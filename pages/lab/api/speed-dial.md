@@ -9,6 +9,10 @@ title: SpeedDial API
 
 <p class="description">The API documentation of the SpeedDial React component.</p>
 
+```js
+import SpeedDial from '@material-ui/lab/SpeedDial';
+```
+
 
 
 ## Props

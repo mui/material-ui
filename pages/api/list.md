@@ -9,6 +9,10 @@ title: List API
 
 <p class="description">The API documentation of the List React component.</p>
 
+```js
+import List from '@material-ui/core/List';
+```
+
 
 
 ## Props

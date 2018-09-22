@@ -22,10 +22,13 @@ const shades = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 'A700', 'A400',
 
 const styles = theme => ({
   radio: {
+    padding: 0,
+  },
+  radioIcon: {
     width: 48,
     height: 48,
   },
-  radioSelected: {
+  radioIconSelected: {
     width: 48,
     height: 48,
     border: '1px solid white',
@@ -194,15 +197,16 @@ class ColorTool extends React.Component {
               return (
                 <Tooltip placement="right" title={hue} key={hue}>
                   <Radio
+                    className={classes.radio}
                     color="default"
                     checked={this.state[intent] === backgroundColor}
                     onChange={this.handleChangeHue(intent)}
                     value={hue}
                     name={intent}
                     aria-labelledby={`tooltip-${intent}-${hue}`}
-                    icon={<div className={classes.radio} style={{ backgroundColor }} />}
+                    icon={<div className={classes.radioIcon} style={{ backgroundColor }} />}
                     checkedIcon={
-                      <div className={classes.radioSelected} style={{ backgroundColor }}>
+                      <div className={classes.radioIconSelected} style={{ backgroundColor }}>
                         <CheckIcon style={{ fontSize: 30 }} />
                       </div>
                     }

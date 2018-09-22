@@ -9,6 +9,10 @@ title: GridListTile API
 
 <p class="description">The API documentation of the GridListTile React component.</p>
 
+```js
+import GridListTile from '@material-ui/core/GridListTile';
+```
+
 
 
 ## Props

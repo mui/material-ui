@@ -124,8 +124,8 @@ class Popover extends React.Component {
     // Check if the parent has requested anchoring on an inner content node
     const contentAnchorOffset = this.getContentAnchorOffset(element);
     const elemRect = {
-      width: element.clientWidth,
-      height: element.clientHeight,
+      width: element.offsetWidth,
+      height: element.offsetHeight,
     };
 
     // Get the transform origin point on the element itself

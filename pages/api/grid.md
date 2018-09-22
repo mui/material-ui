@@ -9,6 +9,10 @@ title: Grid API
 
 <p class="description">The API documentation of the Grid React component.</p>
 
+```js
+import Grid from '@material-ui/core/Grid';
+```
+
 
 
 ## Props

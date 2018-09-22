@@ -39,13 +39,21 @@ export const styles = theme => ({
   fontSizeInherit: {
     fontSize: 'inherit',
   },
+  /* Styles applied to the root element if `fontSize="small"`. */
+  fontSizeSmall: {
+    fontSize: 20,
+  },
+  /* Styles applied to the root element if `fontSize="large"`. */
+  fontSizeLarge: {
+    fontSize: 36,
+  },
 });
 
 function Icon(props) {
-  const { children, classes, className, color, fontSize, ...other } = props;
+  const { children, classes, className, color, component: Component, fontSize, ...other } = props;
 
   return (
-    <span
+    <Component
       className={classNames(
         'material-icons',
         classes.root,
@@ -59,7 +67,7 @@ function Icon(props) {
       {...other}
     >
       {children}
-    </span>
+    </Component>
   );
 }
 
@@ -82,13 +90,19 @@ Icon.propTypes = {
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
-  fontSize: PropTypes.oneOf(['inherit', 'default']),
+  fontSize: PropTypes.oneOf(['inherit', 'default', 'small', 'large']),
 };
 
 Icon.defaultProps = {
   color: 'inherit',
+  component: 'span',
   fontSize: 'default',
 };
 

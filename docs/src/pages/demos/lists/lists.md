@@ -25,6 +25,10 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 {{"demo": "pages/demos/lists/NestedList.js"}}
 
+## Selected ListItem
+
+{{"demo": "pages/demos/lists/SelectedListItem.js"}}
+
 ## Pinned Subheader List
 
 Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.

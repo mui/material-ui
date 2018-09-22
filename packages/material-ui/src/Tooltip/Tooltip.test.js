@@ -4,11 +4,15 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Popper from '../Popper';
 import Tooltip from './Tooltip';
+import createMuiTheme from '../styles/createMuiTheme';
 
 function persist() {}
+
+const TooltipNaked = unwrap(Tooltip);
+const theme = createMuiTheme();
 
 describe('<Tooltip />', () => {
   let shallow;
@@ -91,10 +95,13 @@ describe('<Tooltip />', () => {
 
   it('should close when the interaction is over', () => {
     const wrapper = shallow(<Tooltip {...defaultProps} />);
-    wrapper.instance().childrenRef = document.createElement('div');
+    const childrenRef = document.createElement('div');
+    childrenRef.tabIndex = 0;
+    wrapper.instance().childrenRef = childrenRef;
     const children = wrapper.childAt(0).childAt(0);
     assert.strictEqual(wrapper.state().open, false);
     children.simulate('mouseOver', { type: 'mouseover' });
+    childrenRef.focus();
     children.simulate('focus', { type: 'focus', persist });
     clock.tick(0);
     assert.strictEqual(wrapper.state().open, true);
@@ -107,19 +114,25 @@ describe('<Tooltip />', () => {
   describe('touch screen', () => {
     it('should not respond to quick events', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} />);
-      wrapper.instance().childrenRef = document.createElement('div');
+      const childrenRef = document.createElement('div');
+      childrenRef.tabIndex = 0;
+      wrapper.instance().childrenRef = childrenRef;
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('touchStart', { type: 'touchstart', persist });
       children.simulate('touchEnd', { type: 'touchend', persist });
+      childrenRef.focus();
       children.simulate('focus', { type: 'focus', persist });
       assert.strictEqual(wrapper.state().open, false);
     });
 
     it('should open on long press', () => {
       const wrapper = shallow(<Tooltip {...defaultProps} />);
-      wrapper.instance().childrenRef = document.createElement('div');
+      const childrenRef = document.createElement('div');
+      childrenRef.tabIndex = 0;
+      wrapper.instance().childrenRef = childrenRef;
       const children = wrapper.childAt(0).childAt(0);
       children.simulate('touchStart', { type: 'touchstart', persist });
+      childrenRef.focus();
       children.simulate('focus', { type: 'focus', persist });
       clock.tick(1e3);
       assert.strictEqual(wrapper.state().open, true);
@@ -138,23 +151,29 @@ describe('<Tooltip />', () => {
 
   describe('prop: delay', () => {
     it('should take the enterDelay into account', () => {
-      const wrapper = shallow(<Tooltip enterDelay={111} {...defaultProps} />);
-      wrapper.instance().childrenRef = document.createElement('div');
-      const children = wrapper.childAt(0).childAt(0);
-      children.simulate('focus', { type: 'focus', persist });
+      const wrapper = mount(
+        <TooltipNaked classes={{}} theme={theme} enterDelay={111} {...defaultProps} />,
+      );
+      const childrenRef = wrapper.instance().childrenRef;
+      childrenRef.tabIndex = 0;
+      childrenRef.focus();
+      assert.strictEqual(document.activeElement, childrenRef);
       assert.strictEqual(wrapper.state().open, false);
       clock.tick(111);
       assert.strictEqual(wrapper.state().open, true);
     });
 
     it('should take the leaveDelay into account', () => {
-      const wrapper = shallow(<Tooltip leaveDelay={111} {...defaultProps} />);
-      wrapper.instance().childrenRef = document.createElement('div');
-      const children = wrapper.childAt(0).childAt(0);
-      children.simulate('focus', { type: 'focus', persist });
+      const wrapper = mount(
+        <TooltipNaked classes={{}} theme={theme} leaveDelay={111} {...defaultProps} />,
+      );
+      const childrenRef = wrapper.instance().childrenRef;
+      childrenRef.tabIndex = 0;
+      childrenRef.focus();
+      assert.strictEqual(document.activeElement, childrenRef);
       clock.tick(0);
       assert.strictEqual(wrapper.state().open, true);
-      children.simulate('blur', { type: 'blur', persist });
+      childrenRef.blur();
       assert.strictEqual(wrapper.state().open, true);
       clock.tick(111);
       assert.strictEqual(wrapper.state().open, false);

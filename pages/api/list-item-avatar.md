@@ -9,6 +9,10 @@ title: ListItemAvatar API
 
 <p class="description">The API documentation of the ListItemAvatar React component.</p>
 
+```js
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+```
+
 This is a simple wrapper to apply the `dense` mode styles to `Avatar`.
 
 ## Props

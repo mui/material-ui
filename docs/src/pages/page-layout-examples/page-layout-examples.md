@@ -14,5 +14,5 @@ the purpose of each file.
 {{"demo": "pages/page-layout-examples/PageLayoutExamples.js", "hideHeader": true}}
 
 If while using these examples you make changes or enhancements that could improve the 
-developer experience, or you would like to contrbute an additional example,
+developer experience, or you would like to contribute an additional example,
 please consider creating a [pull-request on GitHub](https://github.com/mui-org/material-ui/pulls). 

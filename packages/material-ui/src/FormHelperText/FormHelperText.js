@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { formControlState } from '../InputBase/InputBase';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -29,6 +30,10 @@ export const styles = theme => ({
   marginDense: {
     marginTop: 4,
   },
+  /* Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
+  contained: {
+    margin: '8px 12px 0',
+  },
   /* Styles applied to the root element if `focused={true}`. */
   focused: {},
   /* Styles applied to the root element if `filled={true}`. */
@@ -42,58 +47,40 @@ function FormHelperText(props, context) {
     classes,
     className: classNameProp,
     component: Component,
-    disabled: disabledProp,
-    error: errorProp,
-    filled: filledProp,
-    focused: focusedProp,
-    margin: marginProp,
-    required: requiredProp,
+    disabled,
+    error,
+    filled,
+    focused,
+    margin,
+    required,
+    variant,
     ...other
   } = props;
-  const { muiFormControl } = context;
 
-  let disabled = disabledProp;
-  let error = errorProp;
-  let filled = filledProp;
-  let focused = focusedProp;
-  let margin = marginProp;
-  let required = requiredProp;
+  const fcs = formControlState({
+    props,
+    context,
+    states: ['variant', 'margin', 'disabled', 'error', 'filled', 'focused', 'required'],
+  });
 
-  if (muiFormControl) {
-    if (typeof disabled === 'undefined') {
-      disabled = muiFormControl.disabled;
-    }
-    if (typeof error === 'undefined') {
-      error = muiFormControl.error;
-    }
-    if (typeof margin === 'undefined') {
-      margin = muiFormControl.margin;
-    }
-    if (typeof required === 'undefined') {
-      required = muiFormControl.required;
-    }
-    if (typeof focused === 'undefined') {
-      focused = muiFormControl.focused;
-    }
-    if (typeof filled === 'undefined') {
-      filled = muiFormControl.filled;
-    }
-  }
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.disabled]: disabled,
-      [classes.error]: error,
-      [classes.filled]: filled,
-      [classes.focused]: focused,
-      [classes.marginDense]: margin === 'dense',
-      [classes.required]: required,
-    },
-    classNameProp,
+  return (
+    <Component
+      className={classNames(
+        classes.root,
+        {
+          [classes.contained]: fcs.variant === 'filled' || fcs.variant === 'outlined',
+          [classes.marginDense]: fcs.margin === 'dense',
+          [classes.disabled]: fcs.disabled,
+          [classes.error]: fcs.error,
+          [classes.filled]: fcs.filled,
+          [classes.focused]: fcs.focused,
+          [classes.required]: fcs.required,
+        },
+        classNameProp,
+      )}
+      {...other}
+    />
   );
-
-  return <Component className={className} {...other} />;
 }
 
 FormHelperText.propTypes = {
@@ -140,6 +127,10 @@ FormHelperText.propTypes = {
    * If `true`, the helper text should use required classes key.
    */
   required: PropTypes.bool,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
 FormHelperText.defaultProps = {

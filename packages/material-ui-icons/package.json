@@ -1,8 +1,8 @@
 {
   "name": "@material-ui/icons",
-  "private": false,
+  "private": true,
   "author": "Material-UI Team",
-  "version": "2.0.3",
+  "version": "3.0.1",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
   "main": "./src/index.js",
   "keywords": [
@@ -30,20 +30,19 @@
     "prebuild": "rimraf material-design-icons && rimraf build",
     "build:es2015": "cross-env NODE_ENV=production babel --config-file ../../babel.config.js ./src --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel --config-file ../../babel.config.js ./src/index.js --out-file ./build/index.es.js",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ../../babel.config.js ./src --out-dir ./build/es",
     "build:copy-files": "babel-node --config-file ../../babel.config.js ./scripts/copy-files.js",
     "build:typings": "babel-node --config-file ../../babel.config.js ./scripts/create-typings.js",
-    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:es && yarn build:typings && yarn build:copy-files",
+    "build": "yarn build:es2015 && yarn build:es2015modules && yarn build:typings && yarn build:copy-files",
     "release": "yarn build && npm publish build"
   },
   "peerDependencies": {
-    "@material-ui/core": "^1.0.0",
+    "@material-ui/core": "^3.0.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0-rc.1",
-    "recompose": "^0.28.0"
+    "@babel/runtime": "7.0.0",
+    "recompose": "0.28.0 - 0.30.0"
   },
   "devDependencies": {
     "fs-extra": "^7.0.0",

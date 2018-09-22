@@ -9,6 +9,10 @@ title: Popover API
 
 <p class="description">The API documentation of the Popover React component.</p>
 
+```js
+import Popover from '@material-ui/core/Popover';
+```
+
 
 
 ## Props
@@ -68,5 +72,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
+- [Menus](/demos/menus)
 - [Popover](/utils/popover)
 
