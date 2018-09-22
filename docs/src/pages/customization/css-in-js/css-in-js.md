@@ -119,7 +119,7 @@ const generateClassName = createGenerateClassName();
 const jss = create({
   ...jssPreset(),
   // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-  insertionPoint: 'insertion-point-jss',
+  insertionPoint: 'jss-insertion-point',
 });
 
 function App() {

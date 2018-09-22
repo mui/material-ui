@@ -1,6 +1,6 @@
 ---
 title: Text Field React component
-components: FormControl, FormHelperText, Input, InputAdornment, InputLabel, TextField
+components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
 # Text Fields
@@ -15,17 +15,17 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 {{"demo": "pages/demos/text-fields/TextFields.js"}}
 
-## Filled
-
-`TextField` supports filled styling.
-
-{{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
-
 ## Outlined
 
 `TextField` supports outlined styling.
 
 {{"demo": "pages/demos/text-fields/OutlinedTextFields.js"}}
+
+## Filled
+
+`TextField` supports filled styling.
+
+{{"demo": "pages/demos/text-fields/FilledTextFields.js"}}
 
 ## Components
 

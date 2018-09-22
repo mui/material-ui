@@ -39,7 +39,7 @@ export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, st
 
 export type WithStyles<
   T extends string | StyleRules | StyleRulesCallback = string,
-  IncludeTheme extends boolean | undefined = undefined
+  IncludeTheme extends boolean | undefined = false
 > = (IncludeTheme extends true ? { theme: Theme } : {}) & {
   classes: ClassNameMap<
     T extends string

@@ -12,6 +12,7 @@ import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
+import getDisplayName from '../utils/getDisplayName';
 import getThemeProps from './getThemeProps';
 
 // Default JSS instance.
@@ -220,10 +221,6 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
         let meta = name;
 
         if (process.env.NODE_ENV !== 'production' && !meta) {
-          // Use customized getDisplayName to support IE11 in development
-          // Save some bytes by not importing this in production
-          // eslint-disable-next-line global-require
-          const getDisplayName = require('../utils/getDisplayName').default;
           meta = getDisplayName(Component);
           warning(
             typeof meta === 'string',

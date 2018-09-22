@@ -13,7 +13,9 @@ title: InputBase API
 import InputBase from '@material-ui/core/InputBase';
 ```
 
-
+`InputBase` contains as few styles as possible.
+It aims to be a simple building block for creating an input.
+It contains a load of style reset and some state logic.
 
 ## Props
 
@@ -80,4 +82,8 @@ for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiInputBase`.
+
+## Demos
+
+- [Text Fields](/demos/text-fields)
 

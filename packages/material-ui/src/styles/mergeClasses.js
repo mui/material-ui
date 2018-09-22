@@ -1,5 +1,5 @@
 import warning from 'warning';
-import getDisplayName from 'recompose/getDisplayName';
+import getDisplayName from '../utils/getDisplayName';
 
 function mergeClasses(options = {}) {
   const { baseClasses, newClasses, Component, noBase = false } = options;

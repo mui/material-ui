@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { assert } from 'chai';
+import { spy } from 'sinon';
 import { createMount } from '../test-utils';
 import RootRef from './RootRef';
 
@@ -17,17 +19,17 @@ describe('<RootRef />', () => {
   });
 
   it('call rootRef function on mount and unmount', () => {
-    const results = [];
+    const rootRef = spy();
     const wrapper = mount(
-      <RootRef rootRef={ref => results.push(ref)}>
+      <RootRef rootRef={rootRef}>
         <Fn />
       </RootRef>,
     );
-    assert.strictEqual(results.length, 1);
-    assert.strictEqual(results[0] instanceof window.HTMLDivElement, true);
+    assert.strictEqual(rootRef.args.length, 1);
+    assert.strictEqual(rootRef.args[0][0] instanceof window.HTMLDivElement, true);
     wrapper.unmount();
-    assert.strictEqual(results.length, 2);
-    assert.strictEqual(results[1], null);
+    assert.strictEqual(rootRef.args.length, 2);
+    assert.strictEqual(rootRef.args[1][0], null);
   });
 
   it('set rootRef current field on mount and unmount', () => {
@@ -60,5 +62,23 @@ describe('<RootRef />', () => {
     wrapper.unmount();
     assert.strictEqual(results.length, 4);
     assert.strictEqual(results[3], null);
+  });
+
+  it('should support DOM node updates', () => {
+    const rootRef = spy();
+    function TestCase(props) {
+      const { on } = props;
+      return <RootRef rootRef={rootRef}>{on ? <div /> : <span />}</RootRef>;
+    }
+
+    TestCase.propTypes = {
+      on: PropTypes.bool.isRequired,
+    };
+
+    const wrapper = mount(<TestCase on={false} />);
+    wrapper.setProps({ on: true });
+    assert.strictEqual(rootRef.callCount, 2);
+    assert.strictEqual(rootRef.args[0][0].nodeName, 'SPAN');
+    assert.strictEqual(rootRef.args[1][0].nodeName, 'DIV');
   });
 });
