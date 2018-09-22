@@ -41,12 +41,7 @@ class SimpleSnackbar extends React.Component {
             <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
               UNDO
             </Button>,
-            <IconButton
-              key="close"
-              aria-label="Close"
-              color="inherit"
-              onClick={this.handleClose}
-            >
+            <IconButton key="close" aria-label="Close" color="inherit" onClick={this.handleClose}>
               <CloseIcon />
             </IconButton>,
           ]}
