@@ -9,6 +9,8 @@ We have provided examples for the following styling solutions:
 
 - [Raw CSS](#raw-css)
 - [Styled Components](#styled-components)
+- [Emotion](#emotion)
+- [React Emotion](#react-emotion)
 - [CSS Modules](#css-modules)
 - [Global CSS](#global-css)
 - [React JSS](#react-jss)
@@ -183,6 +185,115 @@ export default StyledComponentsButton;
 ```
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/j4n13yl1r9)
+
+
+## Emotion
+
+Emotion's **css()** method works seamlessly with Material-UI. The class names returned by **css()** can be directly passed to a component's `className` prop to override the root styles.
+
+```js
+import React from "react";
+import { css } from "emotion";
+import Button from "@material-ui/core/Button";
+
+const buttonStyles = css`
+  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  border-radius: 3;
+  border: 0;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
+`;
+
+// We just assign them the Button's className attribute
+function EmotionButton() {
+  return (
+    <div>
+      <Button>Material-UI</Button>
+      <Button className={buttonStyles}>Emotion</Button>
+    </div>
+  );
+}
+export default EmotionButton
+```
+
+[![Edit Emotion](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/yw93kl7y0j)
+
+The styles created with **css()** can also be mapped to class names using the `classes` prop. This is useful when you want to customize the styles of deeper elements within a component.
+
+```js
+import React from "react";
+import { css } from "emotion";
+import Button from "@material-ui/core/Button";
+
+const styles = {
+  button: css({
+    background: "linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%)",
+    borderRadius: 3,
+    border: 0,
+    height: 48,
+    padding: "0 30px",
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, 0.3)"
+  }),
+  label: css({
+    color: "white"
+  })
+};
+
+function EmotionButton() {
+  return (
+    <div>
+      <Button>Material-UI</Button>
+      <Button className={styles.button} classes={{ label: styles.label }}>
+        Emotion
+      </Button>
+    </div>
+  );
+}
+export default EmotionButton
+```
+
+[![Edit Material UI - Emotion Button 2](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/24om4jl05y)
+
+### Controlling Priority
+
+By default, JSS and Emotion both inject their styles at the bottom of the `<head>.` The best way to ensure that your styles are injected below the default Material-UI styles is to configure [the injection order](https://material-ui.com/customization/css-in-js/#css-injection-order).
+
+
+## React Emotion
+
+The **styled()** function can be used to customize the root styles of any Material-UI component.
+
+```js
+import React from "react";
+import styled from "react-emotion";
+import Button from "@material-ui/core/Button";
+
+const StyledButton = styled(Button)`
+  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  border-radius: 3;
+  border: 0;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
+`;
+
+function ReactEmotionButton() {
+  return (
+    <div>
+      <Button>Material-UI</Button>
+      <StyledButton>React Emotion</StyledButton>
+    </div>
+  );
+}
+
+export default ReactEmotionButton;
+```
+
+[![Edit Material UI - React Emotion Button ](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/nkx4p8rw9l)
+
 
 ## CSS Modules
 
