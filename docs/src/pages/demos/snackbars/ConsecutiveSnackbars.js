@@ -1,17 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-
-const styles = theme => ({
-  close: {
-    width: theme.spacing.unit * 4,
-    height: theme.spacing.unit * 4,
-  },
-});
 
 class ConsecutiveSnackbars extends React.Component {
   queue = [];
@@ -57,7 +48,6 @@ class ConsecutiveSnackbars extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { message, key } = this.state.messageInfo;
     return (
       <div>
@@ -85,7 +75,6 @@ class ConsecutiveSnackbars extends React.Component {
               key="close"
               aria-label="Close"
               color="inherit"
-              className={classes.close}
               onClick={this.handleClose}
             >
               <CloseIcon />
@@ -97,8 +86,4 @@ class ConsecutiveSnackbars extends React.Component {
   }
 }
 
-ConsecutiveSnackbars.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ConsecutiveSnackbars);
+export default ConsecutiveSnackbars;
