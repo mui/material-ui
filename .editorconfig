@@ -1,19 +1,25 @@
-# EditorConfig is awesome: http://EditorConfig.org
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# editorconfig.org
 
-# top-most EditorConfig file
 root = true
+
+
+[*]
+
+# change these settings to your own preference
+indent_style = space
+indent_size = 2
+
+# we recommend you to keep these unchanged
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
 
 [*.md]
 trim_trailing_whitespace = false
 
-[*.js]
-trim_trailing_whitespace = true
-
-# Unix-style newlines with a newline ending every file
-[*]
+[{package,bower}.json]
 indent_style = space
 indent_size = 2
-end_of_line = lf
-charset = utf-8
-insert_final_newline = true
-max_line_length = 100
