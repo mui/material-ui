@@ -31,12 +31,18 @@ export const styles = theme => {
     thumbOutline: fade(theme.palette.primary.main, 0.16),
   };
 
+  /**
+   * radius of the box-shadow when pressed
+   * hover should have a diameter equal to the pressed radius
+   */
+  const pressedOutlineRadius = 9;
+
   return {
     /* Styles applied to the root element. */
     root: {
       position: 'relative',
       width: '100%',
-      padding: '16px 8px',
+      padding: pressedOutlineRadius * 2 + 2,
       cursor: 'pointer',
       WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
@@ -106,10 +112,10 @@ export const styles = theme => {
       transition: thumbCommonTransitions,
       backgroundColor: colors.primary,
       '&$focused, &:hover': {
-        boxShadow: `0px 0px 0px 9px ${colors.thumbOutline}`,
+        boxShadow: `0px 0px 0px ${pressedOutlineRadius}px ${colors.thumbOutline}`,
       },
       '&$activated': {
-        boxShadow: `0px 0px 0px 18px ${colors.thumbOutline}`,
+        boxShadow: `0px 0px 0px ${pressedOutlineRadius * 2}px ${colors.thumbOutline}`,
         transition: thumbActivatedTransitions,
       },
       '&$disabled': {
@@ -119,7 +125,7 @@ export const styles = theme => {
         backgroundColor: colors.disabled,
       },
       '&$jumped': {
-        boxShadow: `0px 0px 0px 18px ${colors.thumbOutline}`,
+        boxShadow: `0px 0px 0px ${pressedOutlineRadius * 2}px ${colors.thumbOutline}`,
       },
     },
     /* Class applied to the thumb element if custom thumb icon provided. */
