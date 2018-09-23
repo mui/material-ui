@@ -8,7 +8,7 @@ export const styles = {
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
-    height: '0.01em',  // IE flexbox alignment fix
+    height: '0.01em', // Fix IE 11 flexbox alignment. To remove at some point.
     maxHeight: '2em',
     alignItems: 'center',
   },
