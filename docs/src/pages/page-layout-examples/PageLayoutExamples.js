@@ -69,7 +69,7 @@ const themes = [
   },
   {
     name: 'Album',
-    description: 'A reponsive album / gallery page layout with a hero unit and footer.',
+    description: 'A responsive album / gallery page layout with a hero unit and footer.',
     src: '/static/images/layouts/album.png',
     href: '/page-layout-examples/album',
     source:
