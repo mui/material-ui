@@ -80,11 +80,16 @@ As well as the option to make the class names **deterministic** with the `danger
 - development: `.MuiAppBar-root`
 - production: `.MuiAppBar-root`
 
-⚠️ **Be very cautious when using `dangerouslyUseGlobalCSS`.**
-We provide this option as an escape hatch for quick prototyping,
-but you should avoid relying on it for code running in production
-as it's very hard to keep track of class name API changes.
-Global CSS is inherently fragile.
+⚠️ **Be cautious when using `dangerouslyUseGlobalCSS`.**
+We provide this option as an escape hatch for quick prototyping.
+Relying on it for code running in production has the following implications:
+- Global CSS is inherently fragile. People use strict methodologies like [BEM](http://getbem.com/introduction/) to workaround the issue.
+- It's harder to keep track of `classes` API changes.
+
+⚠️ When using `dangerouslyUseGlobalCSS` standalone (without Material-UI), you should name your style sheets. `withStyles` has a name option for that:
+```jsx
+const Button = withStyles(styles, { name: 'button' })(ButtonBase)
+```
 
 ## CSS injection order
 
@@ -111,9 +116,11 @@ import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
-// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = 'jss-insertion-point';
+const jss = create({
+  ...jssPreset(),
+  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  insertionPoint: 'jss-insertion-point',
+});
 
 function App() {
   return (
@@ -146,9 +153,11 @@ import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
-// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = document.getElementById('jss-insertion-point');
+const jss = create({
+  ...jssPreset(),
+  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  insertionPoint: document.getElementById('jss-insertion-point'),
+});
 
 function App() {
   return (
@@ -175,9 +184,11 @@ const styleNode = document.createComment("jss-insertion-point");
 document.head.insertBefore(styleNode, document.head.firstChild);
 
 const generateClassName = createGenerateClassName();
-const jss = create(jssPreset());
-// We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-jss.options.insertionPoint = 'jss-insertion-point';
+const jss = create({
+  ...jssPreset(),
+  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  insertionPoint: 'jss-insertion-point',
+});
 
 function App() {
   return (
@@ -314,6 +325,7 @@ A function which returns [a class name generator function](http://cssinjs.org/js
 1. `options` (*Object* [optional]):
   - `options.dangerouslyUseGlobalCSS` (*Boolean* [optional]): Defaults to `false`. Makes the Material-UI class names deterministic.
   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
+  - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators.
 
 #### Returns
 

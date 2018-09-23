@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { formControlState } from '../InputBase/InputBase';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -27,6 +28,10 @@ export const styles = theme => ({
   disabled: {},
   /* Styles applied to the root element if `error={true}`. */
   error: {},
+  /* Styles applied to the root element if `filled={true}`. */
+  filled: {},
+  /* Styles applied to the root element if `required={true}`. */
+  required: {},
   asterisk: {
     '&$error': {
       color: theme.palette.error.main,
@@ -40,52 +45,40 @@ function FormLabel(props, context) {
     classes,
     className: classNameProp,
     component: Component,
-    disabled: disabledProp,
-    error: errorProp,
-    focused: focusedProp,
-    required: requiredProp,
+    disabled,
+    error,
+    filled,
+    focused,
+    required,
     ...other
   } = props;
 
-  const { muiFormControl } = context;
-
-  let required = requiredProp;
-  let focused = focusedProp;
-  let disabled = disabledProp;
-  let error = errorProp;
-
-  if (muiFormControl) {
-    if (typeof required === 'undefined') {
-      required = muiFormControl.required;
-    }
-    if (typeof focused === 'undefined') {
-      focused = muiFormControl.focused;
-    }
-    if (typeof disabled === 'undefined') {
-      disabled = muiFormControl.disabled;
-    }
-    if (typeof error === 'undefined') {
-      error = muiFormControl.error;
-    }
-  }
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.focused]: focused,
-      [classes.disabled]: disabled,
-      [classes.error]: error,
-    },
-    classNameProp,
-  );
+  const fcs = formControlState({
+    props,
+    context,
+    states: ['required', 'focused', 'disabled', 'error', 'filled'],
+  });
 
   return (
-    <Component className={className} {...other}>
+    <Component
+      className={classNames(
+        classes.root,
+        {
+          [classes.disabled]: fcs.disabled,
+          [classes.error]: fcs.error,
+          [classes.filled]: fcs.filled,
+          [classes.focused]: fcs.focused,
+          [classes.required]: fcs.required,
+        },
+        classNameProp,
+      )}
+      {...other}
+    >
       {children}
-      {required && (
+      {fcs.required && (
         <span
           className={classNames(classes.asterisk, {
-            [classes.error]: error,
+            [classes.error]: fcs.error,
           })}
           data-mui-test="FormLabelAsterisk"
         >
@@ -123,6 +116,10 @@ FormLabel.propTypes = {
    * If `true`, the label should be displayed in an error state.
    */
   error: PropTypes.bool,
+  /**
+   * If `true`, the label should use filled classes key.
+   */
+  filled: PropTypes.bool,
   /**
    * If `true`, the input of this label is focused (used by `FormGroup` components).
    */

@@ -9,6 +9,10 @@ title: ListItemIcon API
 
 <p class="description">The API documentation of the ListItemIcon React component.</p>
 
+```js
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+```
+
 A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
 
 ## Props

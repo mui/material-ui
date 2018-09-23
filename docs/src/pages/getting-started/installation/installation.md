@@ -41,3 +41,18 @@ you must first install the [@material-ui/icons](https://www.npmjs.com/package@ma
 ```sh
 npm install @material-ui/icons
 ```
+
+## CDN
+
+You can start using Material-UI with minimal Front-end infrastructure,
+which is great for prototyping. We discourage using this approach in production though -
+the client has to download the entire library, regardless of which components are actually used,
+affecting performance and bandwidth utilisation.
+
+#### UMD releases
+
+We are providing two Universal Module Definition (UMD) files:
+- one for development: https://unpkg.com/@material-ui/core/umd/material-ui.development.js
+- one for production: https://unpkg.com/@material-ui/core/umd/material-ui.production.min.js
+
+You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn) to quickly get started.

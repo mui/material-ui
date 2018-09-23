@@ -32,6 +32,13 @@ export const styles = theme => ({
   caption: theme.typography.caption,
   /* Styles applied to the root element if `variant="button"`. */
   button: theme.typography.button,
+  /* Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers. */
+  srOnly: {
+    position: 'absolute',
+    height: 1,
+    width: 1,
+    overflow: 'hidden',
+  },
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
@@ -74,6 +81,10 @@ export const styles = theme => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
   },
+  /* Styles applied to the root element if `color="textPrimary"`. */
+  colorTextPrimary: {
+    color: theme.palette.text.primary,
+  },
   /* Styles applied to the root element if `color="textSecondary"`. */
   colorTextSecondary: {
     color: theme.palette.text.secondary,
@@ -89,8 +100,8 @@ function Typography(props) {
     align,
     classes,
     className: classNameProp,
-    component: componentProp,
     color,
+    component: componentProp,
     gutterBottom,
     headlineMapping,
     noWrap,
@@ -101,8 +112,8 @@ function Typography(props) {
 
   const className = classNames(
     classes.root,
-    classes[variant],
     {
+      [classes[variant]]: variant !== 'inherit',
       [classes[`color${capitalize(color)}`]]: color !== 'default',
       [classes.noWrap]: noWrap,
       [classes.gutterBottom]: gutterBottom,
@@ -138,7 +149,15 @@ Typography.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'textSecondary', 'secondary', 'error', 'default']),
+  color: PropTypes.oneOf([
+    'default',
+    'error',
+    'inherit',
+    'primary',
+    'secondary',
+    'textPrimary',
+    'textSecondary',
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
@@ -178,6 +197,8 @@ Typography.propTypes = {
     'body1',
     'caption',
     'button',
+    'srOnly',
+    'inherit',
   ]),
 };
 

@@ -6,6 +6,7 @@ describe('getThemeProps', () => {
     const props = getThemeProps({
       theme: {},
       name: 'MuiFoo',
+      props: {},
     });
     assert.deepEqual(props, {});
   });
@@ -20,6 +21,7 @@ describe('getThemeProps', () => {
         },
       },
       name: 'MuiFoo',
+      props: {},
     });
     assert.deepEqual(props, {});
   });
@@ -34,6 +36,7 @@ describe('getThemeProps', () => {
         },
       },
       name: 'MuiFoo',
+      props: {},
     });
     assert.deepEqual(props, {
       disableRipple: true,

@@ -1,0 +1,11 @@
+{
+    "defaultSeverity": "error",
+    "extends": ["dtslint/dtslint.json"],
+    "jsRules": {},
+    "rules": {
+        "file-name-casing": false,
+        // This can be tricky in most cases and doesn't hurt if it is done one to many
+        "no-unnecessary-generics": false,
+        "semicolon": [true, "always", "ignore-bound-class-methods"]
+    }
+}

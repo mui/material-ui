@@ -36,6 +36,6 @@ describe('<TableHead />', () => {
 
   it('should define table.head in the child context', () => {
     const wrapper = shallow(<TableHead>foo</TableHead>);
-    assert.strictEqual(wrapper.instance().getChildContext().table.head, true);
+    assert.strictEqual(wrapper.instance().getChildContext().tablelvl2.variant, 'head');
   });
 });

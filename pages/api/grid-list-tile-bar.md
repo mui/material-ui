@@ -9,6 +9,10 @@ title: GridListTileBar API
 
 <p class="description">The API documentation of the GridListTileBar React component.</p>
 
+```js
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+```
+
 
 
 ## Props

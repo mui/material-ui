@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import getDisplayName from 'recompose/getDisplayName';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
 import { create } from 'jss';
@@ -13,12 +12,16 @@ import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
+import getDisplayName from '../utils/getDisplayName';
 import getThemeProps from './getThemeProps';
 
 // Default JSS instance.
 const jss = create(jssPreset());
 
 // Use a singleton or the provided one by the context.
+//
+// The counter-based approach doesn't tolerate any mistake.
+// It's much safer to use the same counter everywhere.
 const generateClassName = createGenerateClassName();
 
 // Global index counter to preserve source order.
@@ -85,10 +88,9 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
     constructor(props, context) {
       super(props, context);
+      this.jss = context[ns.jss] || jss;
 
-      this.jss = this.context[ns.jss] || jss;
-
-      const { muiThemeProviderOptions } = this.context;
+      const { muiThemeProviderOptions } = context;
       if (muiThemeProviderOptions) {
         if (muiThemeProviderOptions.sheetsManager) {
           this.sheetsManager = muiThemeProviderOptions.sheetsManager;
@@ -103,7 +105,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       this.stylesCreatorSaved = stylesCreator;
       this.sheetOptions = {
         generateClassName,
-        ...this.context[ns.sheetOptions],
+        ...context[ns.sheetOptions],
       };
       // We use || as the function call is lazy evaluated.
       this.theme = listenToTheme ? themeListener.initial(context) || getDefaultTheme() : noopTheme;
@@ -276,15 +278,15 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     render() {
       const { classes, innerRef, ...other } = this.props;
 
-      const more = getThemeProps({ theme: this.theme, name });
+      const more = getThemeProps({ theme: this.theme, name, props: other });
 
       // Provide the theme to the wrapped component.
       // So we don't have to use the `withTheme()` Higher-order Component.
-      if (withTheme) {
+      if (withTheme && !more.theme) {
         more.theme = this.theme;
       }
 
-      return <Component {...more} classes={this.getClasses()} ref={innerRef} {...other} />;
+      return <Component {...more} classes={this.getClasses()} ref={innerRef} />;
     }
   }
 

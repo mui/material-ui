@@ -3,6 +3,7 @@ const webpackBaseConfig = require('../../docs/webpackBaseConfig');
 
 module.exports = Object.assign({}, webpackBaseConfig, {
   entry: path.resolve(__dirname, 'index.js'),
+  mode: 'development',
   output: {
     path: path.resolve(__dirname, '../../tmp'),
     filename: 'tests.js',

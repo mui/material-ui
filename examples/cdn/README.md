@@ -18,7 +18,7 @@ open index.html
 ## The idea behind the example
 
 You can start using Material-UI with minimal Front-end infrastructure,
-which is great for prototyping. Don't use this approach in production though -
+which is great for prototyping. We discourage using this approach in production though -
 the client has to download the entire library, regardless of which components are actually used,
 affecting performance and bandwidth utilisation.
 

@@ -17,6 +17,8 @@ export const styles = theme => ({
   checked: {},
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `indeterminate={true}`. */
+  indeterminate: {},
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
     '&$checked': {
@@ -38,15 +40,36 @@ export const styles = theme => ({
 });
 
 function Checkbox(props) {
-  const { checkedIcon, classes, color, icon, indeterminate, indeterminateIcon, ...other } = props;
+  const {
+    checkedIcon,
+    classes,
+    className,
+    color,
+    icon,
+    indeterminate,
+    indeterminateIcon,
+    inputProps,
+    ...other
+  } = props;
 
   return (
     <SwitchBase
+      type="checkbox"
       checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
+      className={classNames(
+        {
+          [classes.indeterminate]: indeterminate,
+        },
+        className,
+      )}
       classes={{
         root: classNames(classes.root, classes[`color${capitalize(color)}`]),
         checked: classes.checked,
         disabled: classes.disabled,
+      }}
+      inputProps={{
+        'data-indeterminate': indeterminate,
+        ...inputProps,
       }}
       icon={indeterminate ? indeterminateIcon : icon}
       {...other}
@@ -69,6 +92,10 @@ Checkbox.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'default']),
@@ -90,6 +117,9 @@ Checkbox.propTypes = {
   id: PropTypes.string,
   /**
    * If `true`, the component appears indeterminate.
+   * This does not set the native input element to indeterminate due
+   * to inconsistent behavior across browsers.
+   * However, we set a `data-indeterminate` attribute on the input.
    */
   indeterminate: PropTypes.bool,
   /**

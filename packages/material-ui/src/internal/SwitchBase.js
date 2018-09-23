@@ -40,8 +40,7 @@ class SwitchBase extends React.Component {
   isControlled = null;
 
   constructor(props) {
-    super(props);
-
+    super();
     this.isControlled = props.checked != null;
     if (!this.isControlled) {
       // not controlled, use internal state
@@ -87,6 +86,7 @@ class SwitchBase extends React.Component {
 
   render() {
     const {
+      autoFocus,
       checked: checkedProp,
       checkedIcon,
       classes,
@@ -100,6 +100,8 @@ class SwitchBase extends React.Component {
       onBlur,
       onChange,
       onFocus,
+      readOnly,
+      required,
       tabIndex,
       type,
       value,
@@ -138,16 +140,19 @@ class SwitchBase extends React.Component {
       >
         {checked ? checkedIcon : icon}
         <input
-          id={hasLabelFor && id}
-          type={type}
-          name={name}
+          autoFocus={autoFocus}
           checked={checked}
-          onChange={this.handleInputChange}
           className={classes.input}
           disabled={disabled}
-          tabIndex={tabIndex}
-          value={value}
+          id={hasLabelFor && id}
+          name={name}
+          onChange={this.handleInputChange}
+          readOnly={readOnly}
           ref={inputRef}
+          required={required}
+          tabIndex={tabIndex}
+          type={type}
+          value={value}
           {...inputProps}
         />
       </IconButton>
@@ -158,6 +163,10 @@ class SwitchBase extends React.Component {
 // NB: If changed, please update Checkbox, Switch and Radio
 // so that the API documentation is updated.
 SwitchBase.propTypes = {
+  /**
+   * If `true`, the input will be focused during the first mount.
+   */
+  autoFocus: PropTypes.bool,
   /**
    * If `true`, the component is checked.
    */
@@ -196,14 +205,6 @@ SwitchBase.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * If `true`, the component appears indeterminate.
-   */
-  indeterminate: PropTypes.bool,
-  /**
-   * The icon to display when the component is indeterminate.
-   */
-  indeterminateIcon: PropTypes.node,
-  /**
    * Attributes applied to the `input` element.
    */
   inputProps: PropTypes.object,
@@ -232,21 +233,26 @@ SwitchBase.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
+   * It prevents the user from changing the value of the field
+   * (not from interacting with the field).
+   */
+  readOnly: PropTypes.bool,
+  /**
+   * If `true`, the input will be required.
+   */
+  required: PropTypes.bool,
+  /**
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The input component property `type`.
    */
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
   /**
    * The value of the component.
    */
   value: PropTypes.string,
-};
-
-SwitchBase.defaultProps = {
-  type: 'checkbox',
 };
 
 SwitchBase.contextTypes = {

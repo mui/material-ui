@@ -1,6 +1,6 @@
 ---
 title: App Bar React component
-components: AppBar, Toolbar
+components: AppBar, Toolbar, Menu
 ---
 
 # App Bar
@@ -9,7 +9,7 @@ components: AppBar, Toolbar
 
 The [top App Bar](https://material.io/design/components/app-bars-top.html) provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions.
 
-It can transform into a contextual action bar.
+It can transform into a contextual action bar or used as a navbar.
 
 ## Simple App Bar
 
@@ -22,6 +22,18 @@ It can transform into a contextual action bar.
 ## App Bar with menu
 
 {{"demo": "pages/demos/app-bar/MenuAppBar.js"}}
+
+## App Bar with search field
+
+A side searchbar.
+
+{{"demo": "pages/demos/app-bar/SearchAppBar.js"}}
+
+## App Bar with a primary search field
+
+A primary searchbar.
+
+{{"demo": "pages/demos/app-bar/PrimarySearchAppBar.js"}}
 
 ## Dense (desktop only)
 

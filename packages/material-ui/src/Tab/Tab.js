@@ -19,7 +19,9 @@ export const styles = theme => ({
     minHeight: 48,
     flexShrink: 0,
     overflow: 'hidden',
+    whiteSpace: 'normal',
     [theme.breakpoints.up('md')]: {
+      fontSize: theme.typography.pxToRem(13),
       minWidth: 160,
     },
   },
@@ -66,7 +68,7 @@ export const styles = theme => ({
   fullWidth: {
     flexShrink: 1,
     flexGrow: 1,
-    maxWidth: 'auto',
+    maxWidth: 'none',
   },
   /* Styles applied to the `icon` and `label`'s wrapper element. */
   wrapper: {
@@ -88,13 +90,7 @@ export const styles = theme => ({
     },
   },
   /* Styles applied to the label wrapper element if `label` is provided. */
-  label: {
-    fontSize: theme.typography.pxToRem(14),
-    whiteSpace: 'normal',
-    [theme.breakpoints.up('md')]: {
-      fontSize: theme.typography.pxToRem(13),
-    },
-  },
+  label: {},
   /* Styles applied to the label wrapper element if `label` is provided and the text is wrapped. */
   labelWrapped: {
     [theme.breakpoints.down('sm')]: {
@@ -138,8 +134,8 @@ class Tab extends React.Component {
   };
 
   checkTextWrap = () => {
-    if (this.label) {
-      const labelWrapped = this.label.getClientRects().length > 1;
+    if (this.labelRef) {
+      const labelWrapped = this.labelRef.getClientRects().length > 1;
       if (this.state.labelWrapped !== labelWrapped) {
         this.setState({ labelWrapped });
       }
@@ -171,8 +167,8 @@ class Tab extends React.Component {
             className={classNames(classes.label, {
               [classes.labelWrapped]: this.state.labelWrapped,
             })}
-            ref={node => {
-              this.label = node;
+            ref={ref => {
+              this.labelRef = ref;
             }}
           >
             {labelProp}

@@ -21,7 +21,8 @@ export type GridJustification =
   | 'center'
   | 'flex-end'
   | 'space-between'
-  | 'space-around';
+  | 'space-around'
+  | 'space-evenly';
 
 export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 

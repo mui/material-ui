@@ -26,7 +26,7 @@ export const styles = theme => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
   },
-  /* Styles applied to the root element if `color="saction"`. */
+  /* Styles applied to the root element if `color="action"`. */
   colorAction: {
     color: theme.palette.action.active,
   },
@@ -42,13 +42,21 @@ export const styles = theme => ({
   fontSizeInherit: {
     fontSize: 'inherit',
   },
+  /* Styles applied to the root element if `fontSize="small"`. */
+  fontSizeSmall: {
+    fontSize: 20,
+  },
+  /* Styles applied to the root element if `fontSize="large"`. */
+  fontSizeLarge: {
+    fontSize: 36,
+  },
 });
 
 function SvgIcon(props) {
   const {
     children,
     classes,
-    className: classNameProp,
+    className,
     color,
     component: Component,
     fontSize,
@@ -58,22 +66,21 @@ function SvgIcon(props) {
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.fontSizeInherit]: fontSize === 'inherit',
-      [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-    },
-    classNameProp,
-  );
-
   return (
     <Component
-      className={className}
+      className={classNames(
+        classes.root,
+        {
+          [classes[`color${capitalize(color)}`]]: color !== 'inherit',
+          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default',
+        },
+        className,
+      )}
       focusable="false"
       viewBox={viewBox}
       color={nativeColor}
       aria-hidden={titleAccess ? 'false' : 'true'}
+      role={titleAccess ? 'img' : 'presentation'}
       {...other}
     >
       {children}
@@ -109,7 +116,7 @@ SvgIcon.propTypes = {
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
-  fontSize: PropTypes.oneOf(['inherit', 'default']),
+  fontSize: PropTypes.oneOf(['inherit', 'default', 'small', 'large']),
   /**
    * Applies a color attribute to the SVG element.
    */

@@ -15,6 +15,20 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/chips/Chips'), 'utf8')
 `,
         },
+        'pages/demos/chips/OutlinedChips.js': {
+          js: require('docs/src/pages/demos/chips/OutlinedChips').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/chips/OutlinedChips'), 'utf8')
+`,
+        },
+        'pages/demos/chips/ChipsPlayground.js': {
+          js: require('docs/src/pages/demos/chips/ChipsPlayground').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/chips/ChipsPlayground'), 'utf8')
+`,
+        },
         'pages/demos/chips/ChipsArray.js': {
           js: require('docs/src/pages/demos/chips/ChipsArray').default,
           raw: preval`

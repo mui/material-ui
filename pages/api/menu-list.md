@@ -9,6 +9,10 @@ title: MenuList API
 
 <p class="description">The API documentation of the MenuList React component.</p>
 
+```js
+import MenuList from '@material-ui/core/MenuList';
+```
+
 
 
 ## Props

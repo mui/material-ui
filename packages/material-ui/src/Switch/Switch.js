@@ -30,6 +30,9 @@ export const styles = theme => ({
   /* Styles applied to the internal `SwitchBase` component's `root` class. */
   switchBase: {
     zIndex: 1,
+    padding: 0,
+    height: 48,
+    width: 48,
     color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
@@ -102,6 +105,7 @@ function Switch(props) {
   return (
     <span className={classNames(classes.root, className)}>
       <SwitchBase
+        type="checkbox"
         icon={<span className={classes.icon} />}
         classes={{
           root: classNames(classes.switchBase, classes[`color${capitalize(color)}`]),

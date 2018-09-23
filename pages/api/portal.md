@@ -9,6 +9,10 @@ title: Portal API
 
 <p class="description">The API documentation of the Portal React component.</p>
 
+```js
+import Portal from '@material-ui/core/Portal';
+```
+
 Portals provide a first-class way to render children into a DOM node
 that exists outside the DOM hierarchy of the parent component.
 

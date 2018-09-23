@@ -41,8 +41,8 @@ class SimplePortal extends React.Component {
         </div>
         <div
           className={classes.alert}
-          ref={node => {
-            this.container = node;
+          ref={ref => {
+            this.container = ref;
           }}
         />
       </div>

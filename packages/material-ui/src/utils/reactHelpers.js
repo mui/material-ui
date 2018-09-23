@@ -19,6 +19,10 @@ export function isMuiElement(element, muiNames) {
   return React.isValidElement(element) && muiNames.indexOf(element.type.muiName) !== -1;
 }
 
-export function isMuiComponent(element, muiNames) {
-  return muiNames.indexOf(element.muiName) !== -1;
+export function setRef(ref, value) {
+  if (typeof ref === 'function') {
+    ref(value);
+  } else if (ref) {
+    ref.current = value;
+  }
 }

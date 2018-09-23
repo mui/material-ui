@@ -11,7 +11,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, CollapseCl
   timeout?: TransitionProps['timeout'] | 'auto';
 }
 
-export type CollapseClassKey = 'container' | 'entered';
+export type CollapseClassKey = 'container' | 'entered' | 'wrapper' | 'wrapperInner';
 
 declare const Collapse: React.ComponentType<CollapseProps>;
 

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
@@ -48,6 +46,7 @@ describe('<SwitchBase />', () => {
   let classes;
   let SwitchBaseNaked;
   const defaultProps = {
+    type: 'checkbox',
     icon: <h1>h1</h1>,
     checkedIcon: <h2>h2</h2>,
   };

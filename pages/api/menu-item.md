@@ -9,6 +9,10 @@ title: MenuItem API
 
 <p class="description">The API documentation of the MenuItem React component.</p>
 
+```js
+import MenuItem from '@material-ui/core/MenuItem';
+```
+
 
 
 ## Props
@@ -18,7 +22,6 @@ title: MenuItem API
 | <span class="prop-name">children</span> | <span class="prop-type">node |   | Menu item contents. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object |   | Override or extend the styles applied to the component. See [CSS API](#css-api) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">selected</span> | <span class="prop-type">bool | <span class="prop-default">false</span> | Use to apply selected styling. |
 
 Any other properties supplied will be spread to the root element ([ListItem](/api/list-item)).
 

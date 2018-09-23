@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="200" src="/static/brand.png" alt="Material-UI logo"></a></p>
+  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="150" src="https://material-ui.com/static/images/material-ui-logo.svg" alt="Material-UI logo"></a></p>
 </p>
 
 <h1 align="center">Material-UI</h1>
@@ -10,15 +10,15 @@
 
 [![npm package](https://img.shields.io/npm/v/@material-ui/core/latest.svg)](https://www.npmjs.com/package/@material-ui/core)
 [![npm downloads](https://img.shields.io/npm/dm/@material-ui/core.svg)](https://www.npmjs.com/package/@material-ui/core)
-[![CircleCI](https://img.shields.io/circleci/project/github/mui-org/material-ui/v1-beta.svg)](https://circleci.com/gh/mui-org/material-ui/tree/v1-beta)
+[![CircleCI](https://img.shields.io/circleci/project/github/mui-org/material-ui/master.svg)](https://circleci.com/gh/mui-org/material-ui/tree/master)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/v1-beta.svg)](https://codecov.io/gh/mui-org/material-ui/branch/v1-beta)
+[![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/master.svg)](https://codecov.io/gh/mui-org/material-ui/branch/master)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1320/badge)](https://bestpractices.coreinfrastructure.org/projects/1320)
 ![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
 [![Follow on Twitter](https://img.shields.io/twitter/follow/MaterialUI.svg?label=follow+Material-UI)](https://twitter.com/MaterialUI)
-[![PeerDependencies](https://img.shields.io/david/peer/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui#info=peerDependencies&view=list)
-[![Dependencies](https://img.shields.io/david/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui)
-[![DevDependencies](https://img.shields.io/david/dev/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui#info=devDependencies&view=list)
+[![PeerDependencies](https://img.shields.io/david/peer/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui?type=peer&path=packages/material-ui)
+[![Dependencies](https://img.shields.io/david/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui?path=packages/material-ui)
+[![DevDependencies](https://img.shields.io/david/dev/mui-org/material-ui.svg)](https://david-dm.org/mui-org/material-ui?type=dev)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/mui-org/material-ui.svg)](http://isitmaintained.com/project/mui-org/material-ui "Average time to resolve an issue")
 
 </div>
@@ -54,70 +54,30 @@ Material-UI is an MIT-licensed open source project. It's an independent project 
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
 - [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
 
-Your contributions, donations, and sponsorship allow us to build a sustainable organization. They directly support office hours, continued enhancements, great documentation and learning materials!
-
-### What's the difference between Patreon and OpenCollective?
+#### What's the difference between Patreon and OpenCollective?
 
 Funds donated via Patreon directly support [Olivier Tassinari](https://github.com/oliviertassinari)'s work on Material-UI.
-Funds donated via OpenCollective also support Olivier, but will be shared amongst other contributors and pay for operating expenses.
-These funds are managed transparently through the OpenCollective website.
+Funds donated via OpenCollective are managed transparently and will be used for compensating work and expenses for core team members.
 Your name/logo will receive proper recognition and exposure by donating on either platform.
 
-<h3 align="center">Gold Sponsors</h3>
+### Gold Sponsors
 
 Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 
-#### via [Patreon](https://www.patreon.com/oliviertassinari)
+via [Patreon](https://www.patreon.com/oliviertassinari)
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank">
-          <img
-            width="126"
-            src="https://avatars1.githubusercontent.com/u/20172349?s=378"
-            alt="0"
-            title="Premium Themes"
-          >
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://bitsrc.io" rel="noopener" target="_blank">
-          <img
-            width="80"
-            src="https://avatars1.githubusercontent.com/u/24789812?s=180"
-            alt="1"
-            title="The fastest way to share code"
-          >
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://coreui.io/?utm_source=material-ui&utm_medium=logo&utm_campaign=homepage" rel="noopener" target="_blank">
-          <img
-            width="80"
-            src="https://avatars1.githubusercontent.com/u/36859861?s=180"
-            alt="1"
-            title="The fastest way to build modern dashboard"
-          >
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<p style="display: flex;">
+  <a href="https://www.creative-tim.com/?utm_source=material-ui&utm_medium=docs&utm_campaign=homepage" rel="noopener" target="_blank"><img width="126" src="https://avatars1.githubusercontent.com/u/20172349?s=378" alt="creative-tim" title="Premium Themes"></a>
+  <a href="https://bitsrc.io" rel="noopener" target="_blank"><img width="96" src="https://avatars1.githubusercontent.com/u/24789812?s=192" alt="bitsrc" title="The fastest way to share code"></a>
+</p>
 
-#### via [OpenCollective](https://opencollective.com/material-ui)
+via [OpenCollective](https://opencollective.com/material-ui)
 
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/0/website" rel="noopener" target="_blank"  style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/0/avatar.svg" alt="0" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/1/website" rel="noopener" target="_blank"  style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/1/avatar.svg" alt="1" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/2/website" rel="noopener" target="_blank"  style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/2/avatar.svg" alt="2" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/3/website" rel="noopener" target="_blank"  style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/3/avatar.svg" alt="3" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/4/website" rel="noopener" target="_blank"  style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/4/avatar.svg" alt="4" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/5/website" rel="noopener" target="_blank"  style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/5/avatar.svg" alt="5" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/6/website" rel="noopener" target="_blank"  style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/6/avatar.svg" alt="6" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/7/website" rel="noopener" target="_blank"  style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/7/avatar.svg" alt="7" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/8/website" rel="noopener" target="_blank"  style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/8/avatar.svg" alt="8" /></a>
-<a href="https://opencollective.com/material-ui/tiers/gold-sponsors/9/website" rel="noopener" target="_blank"  style="margin-right: 8px;"><img src="https://opencollective.com/material-ui/tiers/gold-sponsors/9/avatar.svg" alt="9" /></a>
+![gold-sponsors](https://opencollective.com/material-ui/tiers/gold-sponsors.svg?avatarHeight=80&width=600)
+
+### There is more!
+
+See the full list of [our backers](/BACKERS.md).
 
 ## Usage
 

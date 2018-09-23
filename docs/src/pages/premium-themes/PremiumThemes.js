@@ -48,6 +48,14 @@ const themes = [
     category: 'Admin & Dashboard',
     href: 'https://www.creative-tim.com/product/material-dashboard-pro-react?partner=104080',
   },
+  {
+    name: 'Material Kit Pro',
+    description: 'A Badass Material-UI Kit based on Material Design.',
+    src: '/static/images/themes/creative-tim-kit.jpg',
+    price: '$89',
+    category: 'Components',
+    href: 'https://www.creative-tim.com/product/material-kit-pro-react?partner=104080',
+  },
 ];
 
 function PremiumThemes(props) {
@@ -55,8 +63,8 @@ function PremiumThemes(props) {
   return (
     <Grid container spacing={16}>
       {themes.map(theme => (
-        <Grid item xs={12} sm={6}>
-          <Card key={theme.name} className={classes.card}>
+        <Grid key={theme.name} item xs={12} sm={6}>
+          <Card className={classes.card}>
             <CardMedia
               component="a"
               href={theme.href}

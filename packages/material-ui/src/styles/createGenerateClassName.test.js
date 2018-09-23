@@ -58,12 +58,13 @@ describe('createGenerateClassName', () => {
           },
           {
             options: {
-              classNamePrefix: 'MuiButton',
+              name: 'Button',
+              classNamePrefix: 'Button2',
               jss: {},
             },
           },
         ),
-        'MuiButton-root',
+        'Button-root',
       );
       assert.strictEqual(
         generateClassName(
@@ -149,16 +150,6 @@ describe('createGenerateClassName', () => {
           dangerouslyUseGlobalCSS: true,
         });
         assert.strictEqual(generateClassName(rule), 'jss1');
-      });
-
-      it('should warn', () => {
-        createGenerateClassName();
-        createGenerateClassName();
-        assert.strictEqual(consoleErrorMock.callCount() > 0, true);
-        assert.match(
-          consoleErrorMock.args()[0][0],
-          /Material-UI: we have detected more than needed creation of the/,
-        );
       });
     });
   });

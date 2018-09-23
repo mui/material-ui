@@ -1,5 +1,3 @@
-// @flow
-
 import path from 'path';
 
 /*
@@ -17,7 +15,7 @@ import path from 'path';
  * @param {object} options
  * @return {string} output file dest relative to outputDir
  */
-function defaultDestRewriter(svgPathObj: Object, innerPath: string, options: Object) {
+function defaultDestRewriter(svgPathObj, innerPath, options) {
   let fileName = svgPathObj.base;
   if (options.fileSuffix) {
     fileName.replace(options.fileSuffix, '.svg');

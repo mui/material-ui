@@ -33,12 +33,11 @@ const options = [
 ];
 
 class ConfirmationDialogRaw extends React.Component {
-  radioGroup = null;
+  radioGroupRef = null;
 
   constructor(props) {
-    super(props);
-
-    this.state.value = this.props.value;
+    super();
+    this.state.value = props.value;
   }
 
   state = {};
@@ -51,7 +50,7 @@ class ConfirmationDialogRaw extends React.Component {
   }
 
   handleEntering = () => {
-    this.radioGroup.focus();
+    this.radioGroupRef.focus();
   };
 
   handleCancel = () => {
@@ -81,8 +80,8 @@ class ConfirmationDialogRaw extends React.Component {
         <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
         <DialogContent>
           <RadioGroup
-            ref={node => {
-              this.radioGroup = node;
+            ref={ref => {
+              this.radioGroupRef = ref;
             }}
             aria-label="Ringtone"
             name="ringtone"

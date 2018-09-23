@@ -50,6 +50,7 @@ export const styles = theme => ({
   disabled: {},
   /* Styles applied to the `icon` container element. */
   iconContainer: {
+    display: 'flex',
     paddingRight: 8,
     '&$alternativeLabel': {
       paddingRight: 0,

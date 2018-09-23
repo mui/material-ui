@@ -20,6 +20,7 @@ export interface ModalProps
   onBackdropClick?: React.ReactEventHandler<{}>;
   onClose?: React.ReactEventHandler<{}>;
   onEscapeKeyDown?: React.ReactEventHandler<{}>;
+  onRendered?: PortalProps['onRendered'];
   open: boolean;
 }
 

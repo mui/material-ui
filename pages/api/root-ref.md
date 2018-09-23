@@ -9,6 +9,10 @@ title: RootRef API
 
 <p class="description">The API documentation of the RootRef React component.</p>
 
+```js
+import RootRef from '@material-ui/core/RootRef';
+```
+
 Helper component to allow attaching a ref to a
 wrapped element to access the underlying DOM element.
 
@@ -19,8 +23,8 @@ import React from 'react';
 import RootRef from '@material-ui/core/RootRef';
 
 class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.domRef = React.createRef();
   }
 

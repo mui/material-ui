@@ -9,6 +9,10 @@ title: Toolbar API
 
 <p class="description">The API documentation of the Toolbar React component.</p>
 
+```js
+import Toolbar from '@material-ui/core/Toolbar';
+```
+
 
 
 ## Props

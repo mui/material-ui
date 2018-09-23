@@ -1,15 +1,10 @@
-// @flow
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import MenuItem from 'packages/material-ui/src/MenuItem';
 import Select from 'packages/material-ui/src/Select';
 import Dialog from 'packages/material-ui/src/Dialog';
 
-type Props = {
-  MenuProps?: Object,
-};
-
-function SelectAndDialog(props: Props) {
+function SelectAndDialog(props) {
   return (
     <Dialog open>
       <Select value={10} MenuProps={props.MenuProps}>
@@ -23,5 +18,9 @@ function SelectAndDialog(props: Props) {
     </Dialog>
   );
 }
+
+SelectAndDialog.propTypes = {
+  MenuProps: PropTypes.object,
+};
 
 export default SelectAndDialog;

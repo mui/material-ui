@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, getClasses } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import SpeedDial from './SpeedDial';
@@ -9,7 +9,6 @@ import SpeedDialAction from '../SpeedDialAction';
 
 describe('<SpeedDial />', () => {
   let shallow;
-  let mount;
   let classes;
   const icon = <Icon>font_icon</Icon>;
   const defaultProps = {
@@ -19,16 +18,11 @@ describe('<SpeedDial />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    mount = createMount();
     classes = getClasses(
       <SpeedDial {...defaultProps} icon={icon}>
         <div />
       </SpeedDial>,
     );
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   it('should render a Fade transition', () => {
@@ -114,6 +108,41 @@ describe('<SpeedDial />', () => {
     assert.strictEqual(actionsWrapper.childAt(1).props().open, true, 'open should be true');
   });
 
+  describe('prop: onClick', () => {
+    it('should be set as the onClick prop of the button', () => {
+      const onClick = spy();
+      const wrapper = shallow(
+        <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
+          <div />
+        </SpeedDial>,
+      );
+      const buttonWrapper = wrapper.find(Button);
+      assert.strictEqual(buttonWrapper.props().onClick, onClick);
+    });
+
+    describe('for touch devices', () => {
+      before(() => {
+        document.documentElement.ontouchstart = () => {};
+      });
+
+      it('should be set as the onTouchEnd prop of the button if touch device', () => {
+        const onClick = spy();
+
+        const wrapper = shallow(
+          <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
+            <div />
+          </SpeedDial>,
+        );
+        const buttonWrapper = wrapper.find(Button);
+        assert.strictEqual(buttonWrapper.props().onTouchEnd, onClick);
+      });
+
+      after(() => {
+        delete document.documentElement.ontouchstart;
+      });
+    });
+  });
+
   describe('prop: onKeyDown', () => {
     it('should be called when a key is pressed', () => {
       const handleKeyDown = spy();
@@ -127,6 +156,28 @@ describe('<SpeedDial />', () => {
       buttonWrapper.simulate('keyDown', event);
       assert.strictEqual(handleKeyDown.callCount, 1);
       assert.strictEqual(handleKeyDown.args[0][0], event);
+    });
+  });
+
+  describe('prop: direction', () => {
+    const testDirection = direction => {
+      const className = `direction${direction}`;
+      const wrapper = shallow(
+        <SpeedDial {...defaultProps} direction={direction.toLowerCase()} icon={icon}>
+          <SpeedDialAction icon={icon} />
+          <SpeedDialAction icon={icon} />
+        </SpeedDial>,
+      );
+      const actionsWrapper = wrapper.childAt(1);
+      assert.strictEqual(wrapper.hasClass(classes[className]), true);
+      assert.strictEqual(actionsWrapper.hasClass(classes[className]), true);
+    };
+
+    it('should place actions in correct position', () => {
+      testDirection('Up');
+      testDirection('Down');
+      testDirection('Left');
+      testDirection('Right');
     });
   });
 });

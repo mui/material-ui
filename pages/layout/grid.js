@@ -50,6 +50,20 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/layout/grid/CSSGrid'), 'utf8')
 `,
         },
+        'pages/layout/grid/NestedGrid.js': {
+          js: require('docs/src/pages/layout/grid/NestedGrid').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/layout/grid/NestedGrid'), 'utf8')
+`,
+        },
+        'pages/layout/grid/ComplexGrid.js': {
+          js: require('docs/src/pages/layout/grid/ComplexGrid').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/layout/grid/ComplexGrid'), 'utf8')
+`,
+        },
         'pages/layout/grid/AutoGridNoWrap.js': {
           js: require('docs/src/pages/layout/grid/AutoGridNoWrap').default,
           raw: preval`

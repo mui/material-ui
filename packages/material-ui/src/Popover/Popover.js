@@ -90,8 +90,7 @@ class Popover extends React.Component {
   handleGetOffsetLeft = getOffsetLeft;
 
   handleResize = debounce(() => {
-    const element = ReactDOM.findDOMNode(this.paperRef);
-    this.setPositioningStyles(element);
+    this.setPositioningStyles(this.paperRef);
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
   componentDidMount() {
@@ -125,8 +124,8 @@ class Popover extends React.Component {
     // Check if the parent has requested anchoring on an inner content node
     const contentAnchorOffset = this.getContentAnchorOffset(element);
     const elemRect = {
-      width: element.clientWidth,
-      height: element.clientHeight,
+      width: element.offsetWidth,
+      height: element.offsetHeight,
     };
 
     // Get the transform origin point on the element itself
@@ -209,8 +208,7 @@ class Popover extends React.Component {
     }
 
     // If an anchor element wasn't provided, just use the parent body element of this Popover
-    const anchorElement =
-      getAnchorEl(anchorEl) || ownerDocument(ReactDOM.findDOMNode(this.paperRef)).body;
+    const anchorElement = getAnchorEl(anchorEl) || ownerDocument(this.paperRef).body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
@@ -241,7 +239,8 @@ class Popover extends React.Component {
           'Material-UI: you can not change the default `anchorOrigin.vertical` value ',
           'when also providing the `getContentAnchorEl` property to the popover component.',
           'Only use one of the two properties.',
-          'Set `getContentAnchorEl` to null or leave `anchorOrigin.vertical` unchanged.',
+          'Set `getContentAnchorEl` to `null | undefined`' +
+            ' or leave `anchorOrigin.vertical` unchanged.',
         ].join('\n'),
       );
     }
@@ -280,6 +279,7 @@ class Popover extends React.Component {
       elevation,
       getContentAnchorEl,
       marginThreshold,
+      ModalClasses,
       onEnter,
       onEntered,
       onEntering,
@@ -309,7 +309,13 @@ class Popover extends React.Component {
       containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
     return (
-      <Modal container={container} open={open} BackdropProps={{ invisible: true }} {...other}>
+      <Modal
+        classes={ModalClasses}
+        container={container}
+        open={open}
+        BackdropProps={{ invisible: true }}
+        {...other}
+      >
         <TransitionComponent
           appear
           in={open}
@@ -327,8 +333,8 @@ class Popover extends React.Component {
             className={classes.paper}
             data-mui-test="Popover"
             elevation={elevation}
-            ref={node => {
-              this.paperRef = node;
+            ref={ref => {
+              this.paperRef = ReactDOM.findDOMNode(ref);
             }}
             {...PaperProps}
           >
@@ -421,6 +427,10 @@ Popover.propTypes = {
    * Specifies how close to the edge of the window the popover can appear.
    */
   marginThreshold: PropTypes.number,
+  /**
+   * `classes` property applied to the [`Modal`](/api/modal) element.
+   */
+  ModalClasses: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
    *

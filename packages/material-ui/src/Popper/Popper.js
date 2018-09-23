@@ -35,28 +35,28 @@ class Popper extends React.Component {
   popper = null;
 
   constructor(props) {
-    super(props);
-
+    super();
     this.state = {
-      exited: !this.props.open,
+      exited: !props.open,
     };
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.open && !this.props.open && !this.props.transition) {
+    if (prevProps.open !== this.props.open && !this.props.open && !this.props.transition) {
       // Otherwise handleExited will call this.
       this.handleClose();
     }
 
     // Let's update the popper position.
     if (
+      prevProps.open !== this.props.open ||
       prevProps.anchorEl !== this.props.anchorEl ||
       prevProps.popperOptions !== this.props.popperOptions ||
       prevProps.modifiers !== this.props.modifiers ||
       prevProps.disablePortal !== this.props.disablePortal ||
       prevProps.placement !== this.props.placement
     ) {
-      this.handleRendered();
+      this.handleOpen();
     }
   }
 
@@ -81,7 +81,7 @@ class Popper extends React.Component {
     return null;
   }
 
-  handleRendered = () => {
+  handleOpen = () => {
     const {
       anchorEl,
       modifiers,
@@ -93,13 +93,13 @@ class Popper extends React.Component {
     } = this.props;
     const popperNode = ReactDOM.findDOMNode(this);
 
+    if (!popperNode || !anchorEl || !open) {
+      return;
+    }
+
     if (this.popper) {
       this.popper.destroy();
       this.popper = null;
-    }
-
-    if (!popperNode || !anchorEl || !open) {
-      return;
     }
 
     this.popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
@@ -153,6 +153,7 @@ class Popper extends React.Component {
       container,
       disablePortal,
       keepMounted,
+      modifiers,
       open,
       placement: placementProps,
       popperOptions,
@@ -178,7 +179,7 @@ class Popper extends React.Component {
     }
 
     return (
-      <Portal onRendered={this.handleRendered} disablePortal={disablePortal} container={container}>
+      <Portal onRendered={this.handleOpen} disablePortal={disablePortal} container={container}>
         <div
           role="tooltip"
           style={{
@@ -198,6 +199,8 @@ Popper.propTypes = {
   /**
    * This is the DOM element, or a function that returns the DOM element,
    * that may be used to set the position of the popover.
+   * The return value will passed as the reference object of the Popper
+   * instance.
    */
   anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**

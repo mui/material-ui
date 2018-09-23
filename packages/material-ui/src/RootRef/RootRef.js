@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import exactProp from '../utils/exactProp';
+import { setRef } from '../utils/reactHelpers';
 
 /**
  * Helper component to allow attaching a ref to a
@@ -14,8 +15,8 @@ import exactProp from '../utils/exactProp';
  * import RootRef from '@material-ui/core/RootRef';
  *
  * class MyComponent extends React.Component {
- *   constructor(props) {
- *     super(props);
+ *   constructor() {
+ *     super();
  *     this.domRef = React.createRef();
  *   }
  *
@@ -34,23 +35,29 @@ import exactProp from '../utils/exactProp';
  * ```
  */
 class RootRef extends React.Component {
+  ref = null;
+
   componentDidMount() {
-    const rootRef = this.props.rootRef;
-    const node = ReactDOM.findDOMNode(this);
-    if (typeof rootRef === 'function') {
-      rootRef(node);
-    } else if (rootRef) {
-      rootRef.current = node;
+    this.ref = ReactDOM.findDOMNode(this);
+    setRef(this.props.rootRef, this.ref);
+  }
+
+  componentDidUpdate(prevProps) {
+    const ref = ReactDOM.findDOMNode(this);
+
+    if (prevProps.rootRef !== this.props.rootRef || this.ref !== ref) {
+      if (prevProps.rootRef !== this.props.rootRef) {
+        setRef(prevProps.rootRef, null);
+      }
+
+      this.ref = ref;
+      setRef(this.props.rootRef, this.ref);
     }
   }
 
   componentWillUnmount() {
-    const rootRef = this.props.rootRef;
-    if (typeof rootRef === 'function') {
-      rootRef(null);
-    } else if (rootRef) {
-      rootRef.current = null;
-    }
+    this.ref = null;
+    setRef(this.props.rootRef, null);
   }
 
   render() {

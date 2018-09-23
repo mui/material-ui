@@ -9,6 +9,10 @@ title: Step API
 
 <p class="description">The API documentation of the Step React component.</p>
 
+```js
+import Step from '@material-ui/core/Step';
+```
+
 
 
 ## Props
@@ -35,6 +39,7 @@ This property accepts the following keys:
 | <span class="prop-name">horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
 | <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical"`.
 | <span class="prop-name">alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
+| <span class="prop-name">completed</span> | Styles applied to the root element if `completed={true}`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/Step/Step.js)

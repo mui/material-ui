@@ -11,12 +11,12 @@ export const styles = {
     padding: 0,
     position: 'relative',
   },
-  /* Styles applied to the root element if `disablePddding={false}`. */
+  /* Styles applied to the root element if `disablePadding={false}`. */
   padding: {
     paddingTop: 8,
     paddingBottom: 8,
   },
-  /* Styles applied to the root element if `dense={true}` & `disablePddding={false}`. */
+  /* Styles applied to the root element if `dense={true}` & `disablePadding={false}`. */
   dense: {
     paddingTop: 4,
     paddingBottom: 4,

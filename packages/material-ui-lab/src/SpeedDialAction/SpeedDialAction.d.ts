@@ -8,7 +8,9 @@ export interface SpeedDialActionProps
   ButtonProps?: Partial<ButtonProps>;
   delay?: number;
   icon: React.ReactNode;
+  tooltipPlacement?: TooltipProps['placement'];
   tooltipTitle?: React.ReactNode;
+  tooltipOpen?: boolean;
 }
 
 export type SpeedDialActionClassKey = 'root' | 'button' | 'buttonClosed';

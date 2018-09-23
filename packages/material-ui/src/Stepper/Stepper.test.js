@@ -167,4 +167,14 @@ describe('<Stepper />', () => {
       );
     });
   });
+
+  it('renders with a null child', () => {
+    const wrapper = shallow(
+      <Stepper>
+        <Step />
+        {null}
+      </Stepper>,
+    );
+    assert.strictEqual(wrapper.find(Step).length, 1);
+  });
 });

@@ -9,6 +9,10 @@ title: DialogActions API
 
 <p class="description">The API documentation of the DialogActions React component.</p>
 
+```js
+import DialogActions from '@material-ui/core/DialogActions';
+```
+
 
 
 ## Props

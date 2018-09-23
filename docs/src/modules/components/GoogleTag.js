@@ -1,16 +1,20 @@
 import React from 'react';
-import config from 'docs/src/config';
 
 class GoogleTag extends React.Component {
   googleTimer = null;
 
   componentDidMount() {
+    if (process.env.NODE_ENV !== 'production') {
+      return;
+    }
+
     // Wait for the title to be updated.
     this.googleTimer = setTimeout(() => {
-      window.gtag('config', config.google.id, {
-        page_path: window.location.pathname,
+      window.ga('send', {
+        hitType: 'pageview',
+        page: window.location.pathname,
       });
-    });
+    }, 0);
   }
 
   componentWillUnmount() {

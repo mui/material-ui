@@ -14,7 +14,7 @@ import { pageToTitle } from 'docs/src/modules/utils/helpers';
 
 const styles = theme => ({
   paper: {
-    width: 250,
+    width: 240,
     backgroundColor: theme.palette.background.paper,
   },
   title: {
@@ -62,7 +62,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth }) {
 
   if (page.children && page.children.length > 1) {
     const title = pageToTitle(page);
-    const openImmediately = activePage.pathname.indexOf(page.pathname) === 0;
+    const openImmediately = activePage.pathname.indexOf(`${page.pathname}/`) === 0;
 
     items.push(
       <AppDrawerNavItem depth={depth} key={title} openImmediately={openImmediately} title={title}>
@@ -117,8 +117,8 @@ function AppDrawer(props, context) {
   );
 
   return (
-    <div className={className}>
-      <Hidden lgUp={!disablePermanent}>
+    <nav className={className}>
+      <Hidden lgUp={!disablePermanent} implementation="js">
         <SwipeableDrawer
           classes={{
             paper: classNames(classes.paper, 'algolia-drawer'),
@@ -148,7 +148,7 @@ function AppDrawer(props, context) {
           </Drawer>
         </Hidden>
       )}
-    </div>
+    </nav>
   );
 }
 

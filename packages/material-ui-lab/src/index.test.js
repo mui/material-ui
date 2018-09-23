@@ -1,4 +1,3 @@
-// @flow weak
 /* eslint import/namespace: ['error', { allowComputed: true }] */
 /**
  * Important: This test also serves as a point to

@@ -75,30 +75,34 @@ function TableCell(props, context) {
     component,
     sortDirection,
     numeric,
-    padding,
+    padding: paddingProp,
     scope: scopeProp,
     variant,
     ...other
   } = props;
-  const { table } = context;
+
+  const { table, tablelvl2 } = context;
   let Component;
   if (component) {
     Component = component;
   } else {
-    Component = table && table.head ? 'th' : 'td';
+    Component = tablelvl2 && tablelvl2.variant === 'head' ? 'th' : 'td';
   }
 
   let scope = scopeProp;
-  if (!scope && table && table.head) {
+  if (!scope && tablelvl2 && tablelvl2.variant === 'head') {
     scope = 'col';
   }
+  const padding = paddingProp || (table && table.padding ? table.padding : 'default');
 
   const className = classNames(
     classes.root,
     {
-      [classes.head]: variant ? variant === 'head' : table && table.head,
-      [classes.body]: variant ? variant === 'body' : table && table.body,
-      [classes.footer]: variant ? variant === 'footer' : table && table.footer,
+      [classes.head]: variant ? variant === 'head' : tablelvl2 && tablelvl2.variant === 'head',
+      [classes.body]: variant ? variant === 'body' : tablelvl2 && tablelvl2.variant === 'body',
+      [classes.footer]: variant
+        ? variant === 'footer'
+        : tablelvl2 && tablelvl2.variant === 'footer',
       [classes.numeric]: numeric,
       [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
     },
@@ -142,6 +146,7 @@ TableCell.propTypes = {
   numeric: PropTypes.bool,
   /**
    * Sets the padding applied to the cell.
+   * By default, the Table parent component set the value.
    */
   padding: PropTypes.oneOf(['default', 'checkbox', 'dense', 'none']),
   /**
@@ -161,11 +166,11 @@ TableCell.propTypes = {
 
 TableCell.defaultProps = {
   numeric: false,
-  padding: 'default',
 };
 
 TableCell.contextTypes = {
-  table: PropTypes.object.isRequired,
+  table: PropTypes.object,
+  tablelvl2: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);

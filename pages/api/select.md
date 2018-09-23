@@ -9,6 +9,10 @@ title: Select API
 
 <p class="description">The API documentation of the Select React component.</p>
 
+```js
+import Select from '@material-ui/core/Select';
+```
+
 
 
 ## Props
@@ -31,7 +35,8 @@ title: Select API
 | <span class="prop-name">open</span> | <span class="prop-type">bool |   | Control `select` open state. You can only use it when the `native` property is `false` (default). |
 | <span class="prop-name">renderValue</span> | <span class="prop-type">func |   | Render the selected value. You can only use it when the `native` property is `false` (default).<br><br>**Signature:**<br>`function(value: any) => ReactElement`<br>*value:* The `value` provided to the component. |
 | <span class="prop-name">SelectDisplayProps</span> | <span class="prop-type">object |   | Properties applied to the clickable div element. |
-| <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;arrayOf<br> |   | The input value. This property is required when the `native` property is `false` (default). |
+| <span class="prop-name">value</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;bool&nbsp;&#124;<br>&nbsp;arrayOf<br> |   | The input value. This property is required when the `native` property is `false` (default). |
+| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'standard'&nbsp;&#124;<br>&nbsp;'outlined'&nbsp;&#124;<br>&nbsp;'filled'<br> |   | The variant to use. |
 
 Any other properties supplied will be spread to the root element ([Input](/api/input)).
 
@@ -45,6 +50,8 @@ This property accepts the following keys:
 |:-----|:------------|
 | <span class="prop-name">root</span> | Styles applied to the `Input` component `root` class.
 | <span class="prop-name">select</span> | Styles applied to the `Input` component `select` class.
+| <span class="prop-name">filled</span> | Styles applied to the `Input` component if `variant="filled"`.
+| <span class="prop-name">outlined</span> | Styles applied to the `Input` component if `variant="outlined"`.
 | <span class="prop-name">selectMenu</span> | Styles applied to the `Input` component `selectMenu` class.
 | <span class="prop-name">disabled</span> | Styles applied to the `Input` component `disabled` class.
 | <span class="prop-name">icon</span> | Styles applied to the `Input` component `icon` class.

@@ -1,6 +1,6 @@
 # Themes
 
-<p class="description">Customize Material-UI with our theme. You can change the colors, the typography and much more.</p>
+<p class="description">Customize Material-UI with your theme. You can change the colors, the typography and much more.</p>
 
 The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 
@@ -147,7 +147,7 @@ const theme = createMuiTheme({
       // light: will be calculated from palette.primary.main,
       main: '#ff4400',
       // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contast with palette.primary.main
+      // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
       light: '#0066ff',
@@ -429,7 +429,8 @@ const theme = createMuiTheme({
 
 ### `withTheme()(Component) => Component`
 
-Provide the `theme` object as a property of the input component.
+Provide the `theme` object as a property of the input component so it can be used
+in the render method.
 
 #### Arguments
 
@@ -442,7 +443,11 @@ Provide the `theme` object as a property of the input component.
 #### Examples
 
 ```js
-import { withTheme } from '@material-ui/core/styles'
+import { withTheme } from '@material-ui/core/styles';
+
+function MyComponent(props) {
+  return <div>{props.theme.direction}</div>;
+}
 
 export default withTheme()(MyComponent);
 ```

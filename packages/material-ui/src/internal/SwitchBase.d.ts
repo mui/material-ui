@@ -4,18 +4,19 @@ import { IconButtonProps } from '../IconButton';
 
 export interface SwitchBaseProps
   extends StandardProps<IconButtonProps, SwitchBaseClassKey, 'onChange'> {
+  autoFocus?: boolean;
   checked?: boolean | string;
   checkedIcon: React.ReactNode;
   defaultChecked?: boolean;
   disabled?: boolean;
   disableRipple?: boolean;
   icon: React.ReactNode;
-  indeterminate?: boolean;
-  indeterminateIcon?: React.ReactNode;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   inputRef?: React.Ref<any>;
   name?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+  readOnly?: boolean;
+  required?: boolean;
   tabIndex?: number;
   value?: string;
 }

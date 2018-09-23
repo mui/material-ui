@@ -9,6 +9,10 @@ title: Hidden API
 
 <p class="description">The API documentation of the Hidden React component.</p>
 
+```js
+import Hidden from '@material-ui/core/Hidden';
+```
+
 Responsively hides children based on the selected implementation.
 
 ## Props

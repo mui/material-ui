@@ -44,8 +44,8 @@ function generateGrid(globalStyles, theme, breakpoint) {
       return;
     }
 
-    // Only keep 6 significant numbers.
-    const width = `${Math.round((size / 12) * 10e6) / 10e4}%`;
+    // Keep 7 significant numbers.
+    const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
 
     // Close to the bootstrap implementation:
     // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
@@ -164,21 +164,25 @@ export const styles = theme => ({
   'align-content-xs-space-around': {
     alignContent: 'space-around',
   },
-  /* Styles applied to the root element if `justifyContent="center"`. */
+  /* Styles applied to the root element if `justify="center"`. */
   'justify-xs-center': {
     justifyContent: 'center',
   },
-  /* Styles applied to the root element if `justifyContent="flex-end"`. */
+  /* Styles applied to the root element if `justify="flex-end"`. */
   'justify-xs-flex-end': {
     justifyContent: 'flex-end',
   },
-  /* Styles applied to the root element if `justifyContent="space-between"`. */
+  /* Styles applied to the root element if `justify="space-between"`. */
   'justify-xs-space-between': {
     justifyContent: 'space-between',
   },
-  /* Styles applied to the root element if `justifyContent="space-around"`. */
+  /* Styles applied to the root element if `justify="space-around"`. */
   'justify-xs-space-around': {
     justifyContent: 'space-around',
+  },
+  /* Styles applied to the root element if `justify="space-evenly"`. */
+  'justify-xs-space-evenly': {
+    justifyContent: 'space-evenly',
   },
   ...generateGutter(theme, 'xs'),
   ...breakpointKeys.reduce((accumulator, key) => {
@@ -290,7 +294,14 @@ Grid.propTypes = {
    * Defines the `justify-content` style property.
    * It is applied for all screen sizes.
    */
-  justify: PropTypes.oneOf(['flex-start', 'center', 'flex-end', 'space-between', 'space-around']),
+  justify: PropTypes.oneOf([
+    'flex-start',
+    'center',
+    'flex-end',
+    'space-between',
+    'space-around',
+    'space-evenly',
+  ]),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.

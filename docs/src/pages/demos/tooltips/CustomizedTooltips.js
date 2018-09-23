@@ -69,6 +69,9 @@ const styles = theme => ({
       borderStyle: 'solid',
     },
   },
+  button: {
+    margin: theme.spacing.unit,
+  },
 });
 
 class CustomizedTooltips extends React.Component {
@@ -88,10 +91,10 @@ class CustomizedTooltips extends React.Component {
     return (
       <div>
         <Tooltip title="Add">
-          <Button>Default</Button>
+          <Button className={classes.button}>Default</Button>
         </Tooltip>
         <Tooltip title="Add" classes={{ tooltip: classes.lightTooltip }}>
-          <Button>Light</Button>
+          <Button className={classes.button}>Light</Button>
         </Tooltip>
         <Tooltip
           title={
@@ -112,7 +115,7 @@ class CustomizedTooltips extends React.Component {
             },
           }}
         >
-          <Button>Arrow</Button>
+          <Button className={classes.button}>Arrow</Button>
         </Tooltip>
       </div>
     );

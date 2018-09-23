@@ -31,6 +31,15 @@ const blacklistSuite = [
   'docs-demos-tooltips',
   'docs-utils-transitions',
 
+  // Less important
+  'docs-layouts',
+  'docs-page-layout-examples-album',
+  'docs-page-layout-examples-blog',
+  'docs-page-layout-examples-checkout',
+  'docs-page-layout-examples-dashboard',
+  'docs-page-layout-examples-pricing',
+  'docs-page-layout-examples-sign-in',
+
   // Useless
   'docs-', // Home
   'docs-discover-more-showcase',

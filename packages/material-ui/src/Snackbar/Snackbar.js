@@ -210,6 +210,7 @@ class Snackbar extends React.Component {
       children,
       classes,
       className,
+      ClickAwayListenerProps,
       ContentProps,
       disableWindowBlurListener,
       message,
@@ -236,7 +237,7 @@ class Snackbar extends React.Component {
     }
 
     return (
-      <ClickAwayListener onClickAway={this.handleClickAway}>
+      <ClickAwayListener onClickAway={this.handleClickAway} {...ClickAwayListenerProps}>
         <div
           className={classNames(
             classes.root,
@@ -282,12 +283,8 @@ Snackbar.propTypes = {
    * The anchor of the `Snackbar`.
    */
   anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.oneOf(['left', 'center', 'right']),
-    ]).isRequired,
-    vertical: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['top', 'center', 'bottom'])])
-      .isRequired,
+    horizontal: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
+    vertical: PropTypes.oneOf(['top', 'center', 'bottom']).isRequired,
   }),
   /**
    * The number of milliseconds to wait before automatically calling the
@@ -310,6 +307,10 @@ Snackbar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Properties applied to the `ClickAwayListener` element.
+   */
+  ClickAwayListenerProps: PropTypes.object,
   /**
    * Properties applied to the [`SnackbarContent`](/api/snackbar-content) element.
    */

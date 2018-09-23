@@ -24,6 +24,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/overrides/ClassesNesting'), 'utf8')
 `,
         },
+        'pages/customization/overrides/ClassesShorthand.js': {
+          js: require('docs/src/pages/customization/overrides/ClassesShorthand').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/customization/overrides/ClassesShorthand'), 'utf8')
+`,
+        },
         'pages/customization/overrides/ClassesState.js': {
           js: require('docs/src/pages/customization/overrides/ClassesState').default,
           raw: preval`

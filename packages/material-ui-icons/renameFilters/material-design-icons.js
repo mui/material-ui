@@ -1,11 +1,9 @@
-// @flow
-
-function myDestRewriter(svgPathObj: Object) {
+function myDestRewriter(svgPathObj) {
   let fileName = svgPathObj.base;
 
   fileName = fileName
     .slice(3)
-    .replace('_24px.svg', '.js')
+    .replace(/_([0-9]+)px\.svg/, '.js')
     .replace(/(^.)|(_)(.)/g, (match, p1, p2, p3) => (p1 || p3).toUpperCase());
 
   if (fileName.indexOf('3dRotation') === 0) {

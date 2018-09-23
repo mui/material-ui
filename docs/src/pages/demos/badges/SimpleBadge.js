@@ -30,7 +30,7 @@ function SimpleBadge(props) {
         <Badge className={classes.margin} badgeContent={10} color="secondary">
           <MailIcon />
         </Badge>
-        <IconButton className={classes.margin}>
+        <IconButton aria-label="4 pending messages" className={classes.margin}>
           <Badge badgeContent={4} color="primary">
             <MailIcon />
           </Badge>

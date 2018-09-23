@@ -9,6 +9,10 @@ title: ListItemSecondaryAction API
 
 <p class="description">The API documentation of the ListItemSecondaryAction React component.</p>
 
+```js
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+```
+
 
 
 ## Props

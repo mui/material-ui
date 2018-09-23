@@ -9,6 +9,10 @@ title: Modal API
 
 <p class="description">The API documentation of the Modal React component.</p>
 
+```js
+import Modal from '@material-ui/core/Modal';
+```
+
 This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
 
 ## Props

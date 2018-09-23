@@ -6,6 +6,7 @@ function createRippleHandler(instance, eventName, action, cb) {
 
     let ignore = false;
 
+    // Ignore events that have been `event.preventDefault()` marked.
     if (event.defaultPrevented) {
       ignore = true;
     }

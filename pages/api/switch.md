@@ -9,6 +9,10 @@ title: Switch API
 
 <p class="description">The API documentation of the Switch React component.</p>
 
+```js
+import Switch from '@material-ui/core/Switch';
+```
+
 
 
 ## Props

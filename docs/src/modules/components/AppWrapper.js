@@ -4,11 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
-import AppFrame from 'docs/src/modules/components/AppFrame';
 import GoogleTag from 'docs/src/modules/components/GoogleTag';
 
 // Inject the insertion-point-jss after docssearch
@@ -87,8 +85,7 @@ class AppWrapper extends React.Component {
         generateClassName={pageContext.generateClassName}
       >
         <MuiThemeProvider theme={pageContext.theme} sheetsManager={pageContext.sheetsManager}>
-          <CssBaseline />
-          <AppFrame>{children}</AppFrame>
+          {children}
           <GoogleTag />
         </MuiThemeProvider>
       </JssProvider>

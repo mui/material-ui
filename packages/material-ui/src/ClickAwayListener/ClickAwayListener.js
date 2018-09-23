@@ -64,9 +64,10 @@ class ClickAwayListener extends React.Component {
     }
 
     return (
-      <EventListener target="document" {...listenerProps} {...other}>
+      <React.Fragment>
         {children}
-      </EventListener>
+        <EventListener target="document" {...listenerProps} {...other} />
+      </React.Fragment>
     );
   }
 }
