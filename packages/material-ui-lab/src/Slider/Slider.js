@@ -42,7 +42,7 @@ export const styles = theme => {
     root: {
       position: 'relative',
       width: '100%',
-      padding: pressedOutlineRadius * 2 + 2,
+      padding: pressedOutlineRadius * 2 + theme.spacing.unit,
       cursor: 'pointer',
       WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
