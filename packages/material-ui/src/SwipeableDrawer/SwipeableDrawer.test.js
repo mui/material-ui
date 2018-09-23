@@ -487,4 +487,32 @@ describe('<SwipeableDrawer />', () => {
     wrapper.instance().handlePaperRef(null);
     fireBodyMouseEvent('touchmove', { touches: [{ pageX: 20, clientY: 0 }] });
   });
+
+  describe('no backdrop', () => {
+    it('does not crash when backdrop is hidden while swiping', () => {
+      mount(
+        <SwipeableDrawerNaked
+          onClose={() => {}}
+          onOpen={() => {}}
+          open={false}
+          theme={createMuiTheme()}
+          hideBackdrop
+        />,
+      );
+      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+    });
+
+    it('does not crash when backdrop props are empty while swiping', () => {
+      mount(
+        <SwipeableDrawerNaked
+          onClose={() => {}}
+          onOpen={() => {}}
+          open={false}
+          theme={createMuiTheme()}
+          BackdropProps={{}}
+        />,
+      );
+      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 0, clientY: 0 }] });
+    });
+  });
 });
