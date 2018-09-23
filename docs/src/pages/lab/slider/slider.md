@@ -37,7 +37,10 @@ Sliders reflect the current state of the settings they control.
 
 ## Reverse slider
 
-{{"demo": "pages/lab/slider/ReverseSlider.js"}}
+Per [material-design specification](https://material.io/design/components/sliders.html#usage)
+the position of the minimum value should depend on the language direction: On the left for left-to-right 
+and on the right for right-to-left languages. Check the [Right-to-left guide](/guides/right-to-left/)
+to learn how to switch to right-to-left languages.
 
 ## Custom thumb
 
