@@ -29,7 +29,14 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 ## Components
 
-`TextField` is composed of smaller components ([`FormControl`](/api/form-control), [`InputLabel`](/api/input-label), [`Input`](/api/input), and [`FormHelperText`](/api/form-helper-text)) that you can leverage directly to significantly customize your form inputs.
+`TextField` is composed of smaller components (
+[`FormControl`](/api/form-control),
+[`Input`](/api/input),
+[`InputLabel`](/api/filled-input),
+[`InputLabel`](/api/input-label),
+[`OutlinedInput`](/api/outlined-input),
+and [`FormHelperText`](/api/form-helper-text)
+) that you can leverage directly to significantly customize your form inputs.
 
 You might also have noticed that some native HTML input properties are missing from the `TextField` component.
 This is on purpose.

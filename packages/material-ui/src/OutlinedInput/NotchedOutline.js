@@ -72,7 +72,7 @@ function NotchedOutline(props) {
     disabled,
     error,
     focused,
-    labelWidth,
+    labelWidth: labelWidthProp,
     notched,
     style,
     theme,
@@ -80,6 +80,7 @@ function NotchedOutline(props) {
   } = props;
 
   const align = theme.direction === 'rtl' ? 'right' : 'left';
+  const labelWidth = labelWidthProp * 0.75 + 8;
 
   return (
     <fieldset
