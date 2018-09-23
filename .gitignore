@@ -1,21 +1,5 @@
-# The best pattern people should follow is ignoring the editors' files in their
-# global .gitignore configuration file.
-# However, in order to prevent issues. We also ignore editors' files here.
-.idea
-.vscode
-
-*.log
-.DS_STORE
-/.eslintcache
-/.next
-/.nyc_output
-/coverage
-/docs/export
-/packages/material-ui-codemod/lib
-/packages/material-ui-icons/material-io-tools-icons
-/test/regressions/screenshots
-/test/selenium-output
-/tmp
-build
 node_modules
-package-lock.json
+dist
+.tmp
+bower_components
+test/bower_components
