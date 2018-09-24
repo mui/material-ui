@@ -29,3 +29,9 @@ The SpeedDialActions tooltips can be be displayed persistently so that users don
 It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the property.
 
 {{"demo": "pages/lab/speed-dial/SpeedDialTooltipOpen.js"}}
+
+## Colored action buttons
+
+The SpeedDialActions can be colored.
+
+{{"demo": "pages/lab/speed-dial/ColoredSpeedDialActions.js"}}

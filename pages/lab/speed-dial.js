@@ -29,6 +29,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/lab/speed-dial/SpeedDialTooltipOpen'), 'utf8')
 `,
         },
+        'pages/lab/speed-dial/ColoredSpeedDialActions.js': {
+          js: require('docs/src/pages/lab/speed-dial/ColoredSpeedDialActions').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/lab/speed-dial/ColoredSpeedDialActions'), 'utf8')
+`,
+        }
       }}
     />
   );
