@@ -6,10 +6,6 @@ import Slider from '@material-ui/lab/Slider';
 
 const styles = {
   root: {
-    backgroundImage:
-      'url(https://storage.googleapis.com/spec-host-backup/mio-design%2Fassets%2F19taN2gM0P-Iglvzq-i1853dQ-igWSaxB%2Fsliders-crane-ahero.png)',
-    backgroundPosition: '-190px -221px',
-    backgroundSize: '730px',
     width: 300,
   },
 };
