@@ -75,7 +75,7 @@ export const styles = theme => {
       display: 'block',
       // Make the flex item shrink with Firefox
       minWidth: 0,
-      flexGrow: 1,
+      width: '100%', // Fix IE11 width issue
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11

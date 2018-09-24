@@ -1,5 +1,59 @@
 ### [Versions](https://material-ui.com/versions)
 
+## 3.1.1
+###### *Sep 24, 2018*
+
+Big thanks to the 21 contributors who made this release possible!
+It contains many bug fixes 🐛 and documentation improvements 📝.
+
+### `@material-ui/core@v3.1.1`
+
+- [TextField] Fix alignment bug in Safari (#12906) @shcherbyakdev
+- [InputLabel] Fix Chrome's autofill (#12926) @PutziSan
+- [Tooltip] Fix unwanted tooltip opening (#12929) @ayubov
+- [TextField] Fix RTL support of outlined (#12939) @RobertPurcea
+- [Button] Make the outlined button border grey when disabled (#12933) @dispix
+- [RootRef] Keep track of the DOM node changes (#12953) @oliviertassinari
+- [Grid] Fix rounding errors (#12952) @RobertPurcea
+- [Tooltip] Back to 100% test coverage (#12954) @oliviertassinari
+- [SwipableDrawer] Don't break when backdrop is null (#12969) @spirosikmd
+- [InputAdornment] Fix flexbox alignment bug for IE (#12975) @oliviertassinari
+- [FilledInput] Update the background color to match the spec (#12977) @adeelibr
+- [ListItem] Fix background color bug on mobile (#12976) @ryusaka
+
+### `@material-ui/lab@v3.0.0-alpha.17`
+
+- [Slider] Remove touchend event listener (#12923) @brian-growratio
+- [SpeedDialAction] Add missing TypeScript property (#12959) @KarimFereidooni
+
+### Docs
+
+- [docs] Make jss insertion point reference the same as html comment (#12896) @emattias
+- [docs] Small fixes (#12904) @oliviertassinari
+- [docs] Add reference to material-ui-theme-editor (#12888) @jdrouet
+- [docs] Add another case to check when SSR fails (#12908) @oliviertassinari
+- [docs] Correct misspelling (dasboard => dashboard) (#12910) @seishan
+- [docs] Use core package for (peer-)dependency badges (#12911) @eps1lon
+- [docs] Display the backers avatars correctly (3057f970a385fc0cf43e6c978c373b847d0d341e) @oliviertassinari
+- [docs] Update themes.md (#12942) @brucegl
+- [docs] Fix documentation error in <Input /> (#12955) @lukePeavey
+- [docs] Minor style update of the tabs demos (#12958) @dotku
+- [docs] Glamorous is deprecated for emotion (#12963) @oliviertassinari
+- [docs] Add Emotion to style interoperability guide (#12966) @lukePeavey
+- [docs] Fix IconButton Snackbar demos (#12964) @bhalahariharan
+- [docs] Show how to combine OutlinedInput and FilledInput (#12968) @oliviertassinari
+- [docs] Fix Typo in PaymentForm.js (#12971) @n3n
+- [docs] Fix Typo in page-layout-examples (#12974) @n3n
+
+### Core
+
+- [typescript] Improve definitions with strictNullChecks disabled (#12895) @eps1lon
+- [typescript] Remove unused isMuiComponent definition (#12903) @eps1lon
+- [core] Add setRef helper (#12901) @eps1lon
+- [core] Fix umd bundle (#12905) @oliviertassinari
+- [core] Use .browserlistrc as single point of thruth for target env §#12912) @eps1lon
+- [typescript] Add missing `MuiFilledInput` to 'Overrides' (#12938) @marcel-ernst
+
 ## 3.1.0
 ###### *Sep 16, 2018*
 

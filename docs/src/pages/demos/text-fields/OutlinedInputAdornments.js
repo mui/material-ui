@@ -18,7 +18,7 @@ const styles = theme => ({
     margin: theme.spacing.unit,
   },
   textField: {
-    flexBasis: 280,
+    flexBasis: 200,
   },
 });
 
