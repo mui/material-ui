@@ -88,7 +88,7 @@ class ColoredSpeedDialActions extends React.Component {
             <SpeedDialAction
               key={action.name}
               ButtonProps={{
-                color: action.color
+                color: action.color,
               }}
               icon={action.icon}
               tooltipTitle={action.name}

@@ -35,7 +35,7 @@ module.exports = require('fs')
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/lab/speed-dial/ColoredSpeedDialActions'), 'utf8')
 `,
-        }
+        },
       }}
     />
   );
