@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
-const req = require.context('../../docs/src/pages/customization/themes/', true, /\.md$/);
+const req = require.context('markdown', true, /\.md$/);
 
 function Page(props) {
   return (
@@ -77,9 +76,5 @@ module.exports = require('fs')
     />
   );
 }
-
-Page.propTypes = {
-  lang: PropTypes.string,
-};
 
 export default withRoot(Page);
