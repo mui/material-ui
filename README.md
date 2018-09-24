@@ -77,7 +77,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
 
 ### There is more!
 
-See the full list of [our backers](/BACKERS.md).
+See the full list of [our backers](https://material-ui.com/discover-more/backers/).
 
 ## Usage
 

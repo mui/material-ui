@@ -25,7 +25,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
-![gold-sponsors](https://opencollective.com/material-ui/tiers/gold-sponsors.svg?avatarHeight=80&width=600)
+<object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/gold-sponsors.svg?avatarHeight=80&width=600"></object>
 
 ## Silver Sponsors
 
@@ -35,7 +35,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
-![silver-sponsors](https://opencollective.com/material-ui/tiers/silver-sponsors.svg?avatarHeight=70&width=600)
+<object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/silver-sponsors.svg?avatarHeight=70&width=600"></object>
 
 ## Bronze Sponsors
 
@@ -45,7 +45,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
-![bronze-sponsors](https://opencollective.com/material-ui/tiers/bronze-sponsors.svg?avatarHeight=60&width=600)
+<object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/bronze-sponsors.svg?avatarHeight=60&width=600"></object>
 
 ## Backers
 
@@ -65,7 +65,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
-![backer](https://opencollective.com/material-ui/tiers/backer.svg?avatarHeight=50&width=600)
+<object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/backer.svg?avatarHeight=50&width=600"></object>
 
 ## Why?
 
