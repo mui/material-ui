@@ -76,6 +76,7 @@ export const styles = theme => {
       },
       '&$disabled': {
         backgroundColor: colors.disabled,
+        boxShadow: 'none',
       },
       '&$vertical': {
         transform: 'translate(-50%, 0)',
