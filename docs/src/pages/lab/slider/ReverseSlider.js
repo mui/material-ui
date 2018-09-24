@@ -7,6 +7,9 @@ const styles = {
   root: {
     width: 300,
   },
+  slider: {
+    padding: '22px 0px',
+  },
 };
 
 class ReverseSlider extends React.Component {
@@ -24,8 +27,8 @@ class ReverseSlider extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Slider value={value} onChange={this.handleChange} />
-        <Slider value={value} onChange={this.handleChange} reverse />
+        <Slider className={classes.slider} value={value} onChange={this.handleChange} />
+        <Slider className={classes.slider} value={value} onChange={this.handleChange} reverse />
       </div>
     );
   }

@@ -8,6 +8,9 @@ const styles = {
     display: 'flex',
     height: 300,
   },
+  slider: {
+    padding: '0px 22px',
+  },
 };
 
 class VerticalSlider extends React.Component {
@@ -25,8 +28,14 @@ class VerticalSlider extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Slider value={value} onChange={this.handleChange} vertical />
-        <Slider value={value} onChange={this.handleChange} vertical reverse />
+        <Slider className={classes.slider} value={value} onChange={this.handleChange} vertical />
+        <Slider
+          className={classes.slider}
+          value={value}
+          onChange={this.handleChange}
+          vertical
+          reverse
+        />
       </div>
     );
   }

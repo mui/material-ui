@@ -42,7 +42,6 @@ export const styles = theme => {
     root: {
       position: 'relative',
       width: '100%',
-      padding: pressedOutlineRadius * 2 + theme.spacing.unit,
       cursor: 'pointer',
       WebkitTapHighlightColor: 'transparent',
       '&$disabled': {
@@ -50,7 +49,6 @@ export const styles = theme => {
       },
       '&$vertical': {
         height: '100%',
-        padding: '8px 16px',
       },
       '&$reverse': {
         transform: 'scaleX(-1)',

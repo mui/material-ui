@@ -7,6 +7,9 @@ const styles = {
   root: {
     width: 300,
   },
+  slider: {
+    padding: '22px 0px',
+  },
 };
 
 class StepSlider extends React.Component {
@@ -24,7 +27,14 @@ class StepSlider extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Slider value={value} min={0} max={6} step={1} onChange={this.handleChange} />
+        <Slider
+          className={classes.slider}
+          value={value}
+          min={0}
+          max={6}
+          step={1}
+          onChange={this.handleChange}
+        />
       </div>
     );
   }

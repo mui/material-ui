@@ -7,6 +7,9 @@ const styles = {
   root: {
     width: 300,
   },
+  slider: {
+    padding: '8px 0px',
+  },
 };
 
 function DisabledSlider(props) {
@@ -14,9 +17,9 @@ function DisabledSlider(props) {
 
   return (
     <div className={classes.root}>
-      <Slider value={0} disabled />
-      <Slider value={50} disabled />
-      <Slider value={100} disabled />
+      <Slider className={classes.slider} value={0} disabled />
+      <Slider className={classes.slider} value={50} disabled />
+      <Slider className={classes.slider} value={100} disabled />
     </div>
   );
 }

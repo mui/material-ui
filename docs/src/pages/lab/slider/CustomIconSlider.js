@@ -9,6 +9,9 @@ const styles = {
   root: {
     width: 300,
   },
+  slider: {
+    padding: '22px 0px',
+  },
   thumbIcon: {
     borderRadius: '50%',
   },
@@ -34,6 +37,7 @@ class CustomIconSlider extends React.Component {
       <div className={classes.root}>
         <Typography id="slider-image">Image thumb</Typography>
         <Slider
+          className={classes.slider}
           value={value}
           aria-labelledby="slider-image"
           onChange={this.handleChange}
@@ -47,6 +51,7 @@ class CustomIconSlider extends React.Component {
         />
         <Typography id="slider-icon">Icon thumb</Typography>
         <Slider
+          className={classes.slider}
           value={value}
           aria-labelledby="slider-icon"
           onChange={this.handleChange}
