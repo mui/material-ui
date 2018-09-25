@@ -57,12 +57,12 @@ describe('<StepLabel />', () => {
       assert.strictEqual(props.prop1, 'value1', 'should have inherited custom prop1');
       assert.strictEqual(props.prop2, 'value2', 'should have inherited custom prop2');
     });
-  
-  it('renders <StepIconComponent>', () => {
+
+    it('renders <StepIconComponent>', () => {
       const stepIconProps = { prop1: 'value1', prop2: 'value2' };
       const CustomizedIcon = () => <div />;
       const wrapper = shallow(
-        <StepLabel 
+        <StepLabel
           StepIconComponent={CustomizedIcon}
           active
           completed
@@ -78,17 +78,11 @@ describe('<StepLabel />', () => {
       assert.strictEqual(props.prop1, 'value1', 'should have inherited custom prop1');
       assert.strictEqual(props.prop2, 'value2', 'should have inherited custom prop2');
     });
-  
+
     it('does not render <StepIcon> if <StepIconComponent> is provided', () => {
       const CustomizedIcon = () => <div />;
       const wrapper = shallow(
-        <StepLabel
-          icon={1}
-          StepIconComponent={CustomizedIcon}
-          active
-          completed
-          alternativeLabel
-        >
+        <StepLabel icon={1} StepIconComponent={CustomizedIcon} active completed alternativeLabel>
           Step One
         </StepLabel>,
       );
@@ -113,9 +107,9 @@ describe('<StepLabel />', () => {
       const stepIcon = wrapper.find(StepIcon);
       assert.strictEqual(stepIcon.props().active, true, 'should set active');
     });
-    
+
     it('renders <StepIconComponent> with the prop active set to true', () => {
-            const CustomizedIcon = () => <div />;
+      const CustomizedIcon = () => <div />;
       const wrapper = shallow(
         <StepLabel StepIconComponent={CustomizedIcon} active>
           Step One
@@ -148,7 +142,7 @@ describe('<StepLabel />', () => {
       const stepIcon = wrapper.find(StepIcon);
       assert.strictEqual(stepIcon.props().completed, true, 'should set completed');
     });
-    
+
     it('renders <StepIconComponent> with the prop completed set to true', () => {
       const CustomizedIcon = () => <div />;
       const wrapper = shallow(
@@ -177,9 +171,9 @@ describe('<StepLabel />', () => {
       const stepIcon = wrapper.find(StepIcon);
       assert.strictEqual(stepIcon.props().error, true, 'should set error');
     });
-    
+
     it('renders <StepIconComponent> with the prop error set to true', () => {
-            const CustomizedIcon = () => <div />;
+      const CustomizedIcon = () => <div />;
       const wrapper = shallow(
         <StepLabel StepIconComponent={CustomizedIcon} error>
           Step One

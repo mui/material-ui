@@ -78,7 +78,7 @@ function StepLabel(props) {
     last,
     optional,
     orientation,
-    StepIconComponent,
+    StepIconComponent = StepIcon,
     StepIconProps,
     ...other
   } = props;
@@ -103,7 +103,6 @@ function StepLabel(props) {
             [classes.alternativeLabel]: alternativeLabel,
           })}
         >
-        {StepIconComponent ? (
           <StepIconComponent
             completed={completed}
             active={active}
@@ -111,15 +110,6 @@ function StepLabel(props) {
             icon={icon}
             {...StepIconProps}
           />
-        ) : (
-          <StepIcon
-            completed={completed}
-            active={active}
-            error={error}
-            icon={icon}
-            {...StepIconProps}
-          />
-        )}
         </span>
       )}
       <span className={classes.labelContainer}>
@@ -198,15 +188,7 @@ StepLabel.propTypes = {
   /**
    * The React Element to render in place of the [`StepIcon`](/api/step-icon) element.
    */
-  StepIconComponent: PropTypes.oneOfType([
-    PropTypes.func,
-    // eslint-disable-next-line consistent-return
-    (props, propName) => {
-      if (!props[propName] || typeof props[propName].render !== 'function') {
-        return new Error(`${propName}.render must be a function!`);
-      }
-    },
-  ]),
+  StepIconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**
    * Properties applied to the [`StepIcon`](/api/step-icon) element.
    */
