@@ -57,6 +57,7 @@ function CardHeader(props) {
     title = (
       <Typography
         variant={avatar ? 'body2' : 'headline'}
+        suppressDeprecationWarnings
         className={classes.title}
         component="span"
         {...titleTypographyProps}

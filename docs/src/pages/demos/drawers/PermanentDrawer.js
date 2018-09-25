@@ -106,7 +106,7 @@ class PermanentDrawer extends React.Component {
             className={classNames(classes.appBar, classes[`appBar-${anchor}`])}
           >
             <Toolbar>
-              <Typography variant="headline6" color="inherit" noWrap>
+              <Typography variant="h6" color="inherit" noWrap>
                 Permanent drawer
               </Typography>
             </Toolbar>

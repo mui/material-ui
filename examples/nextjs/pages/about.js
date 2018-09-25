@@ -19,7 +19,7 @@ function About(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="headline4" gutterBottom>
+      <Typography variant="h4" gutterBottom>
         Material-UI
       </Typography>
       <Typography variant="subtitle1" gutterBottom>

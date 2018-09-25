@@ -38,7 +38,7 @@ function Review(props) {
   const { classes } = props;
   return (
     <React.Fragment>
-      <Typography variant="headline6" gutterBottom>
+      <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
       <List disablePadding>
@@ -57,14 +57,14 @@ function Review(props) {
       </List>
       <Grid container spacing={16}>
         <Grid item xs={12} sm={6}>
-          <Typography variant="headline6" gutterBottom className={classes.title}>
+          <Typography variant="h6" gutterBottom className={classes.title}>
             Shipping
           </Typography>
           <Typography gutterBottom>John Smith</Typography>
           <Typography gutterBottom>{addresses.join(', ')}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="headline6" gutterBottom className={classes.title}>
+          <Typography variant="h6" gutterBottom className={classes.title}>
             Payment details
           </Typography>
           <Grid container>

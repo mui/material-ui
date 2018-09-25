@@ -17,10 +17,10 @@ const renderers = {
 
     switch (level) {
       case 1:
-        variant = 'headline4';
+        variant = 'h4';
         break;
       case 2:
-        variant = 'headline6';
+        variant = 'h6';
         break;
       case 3:
         variant = 'subtitle1';

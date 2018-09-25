@@ -39,10 +39,10 @@ describe('createTypography', () => {
     assert.strictEqual(typography.display4.fontSize, '11.2rem');
   });
 
-  it('should create a typography with custom headline1', () => {
+  it('should create a typography with custom h1', () => {
     const customFontSize = '18px';
-    const typography = createTypography(palette, { headline1: { fontSize: customFontSize } });
-    assert.strictEqual(typography.headline1.fontSize, customFontSize);
+    const typography = createTypography(palette, { h1: { fontSize: customFontSize } });
+    assert.strictEqual(typography.h1.fontSize, customFontSize);
   });
 
   it('should apply a CSS property to all the variants', () => {
@@ -67,8 +67,8 @@ describe('createTypography', () => {
   });
 
   it('only defines letter-spacing if the font-family is not overwritten', () => {
-    assert.isDefined(createTypography(palette, {}).headline1.letterSpacing);
-    assert.isUndefined(createTypography(palette, { fontFamily: 'Gotham' }).headline1.letterSpacing);
+    assert.isDefined(createTypography(palette, {}).h1.letterSpacing);
+    assert.isUndefined(createTypography(palette, { fontFamily: 'Gotham' }).h1.letterSpacing);
   });
 
   describe('typography v2 migration', () => {
@@ -88,7 +88,7 @@ describe('createTypography', () => {
       const typography = createTypography(palette, options);
 
       if (expectDeprecation) {
-        assert.isTrue(warning.calledOnce);
+        assert.strictEqual(warning.calledOnce, true);
         assert.include(warning.firstCall.args[0], 'Deprecation Warning: Material-UI:');
       }
 

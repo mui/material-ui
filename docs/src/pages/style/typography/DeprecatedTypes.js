@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
-import createTypography from '@material-ui/core/styles/createTypography';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -11,15 +10,18 @@ const styles = {
   },
 };
 
-function Types(props) {
-  const { classes, theme } = props;
-  const typographyV1Theme = {
+function typographyV1Theme(theme) {
+  return createMuiTheme({
     ...theme,
-    typography: createTypography(theme.palette, {
+    typography: {
       suppressDeprecationWarnings: true,
       useNextVariants: false,
-    }),
-  };
+    },
+  });
+}
+
+function DeprecatedTypes(props) {
+  const { classes } = props;
 
   return (
     <MuiThemeProvider theme={typographyV1Theme}>
@@ -68,9 +70,8 @@ function Types(props) {
   );
 }
 
-Types.propTypes = {
+DeprecatedTypes.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Types);
+export default withStyles(styles)(DeprecatedTypes);

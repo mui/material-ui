@@ -1,8 +1,10 @@
 import React from 'react';
+import warning from 'warning';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
+import typographyMigration from '../styles/typographyMigration';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -32,6 +34,24 @@ export const styles = theme => ({
   caption: theme.typography.caption,
   /* Styles applied to the root element if `variant="button"`. */
   button: theme.typography.button,
+  /* Styles applied to the root element if `variant="h1"`. */
+  h1: theme.typography.h1,
+  /* Styles applied to the root element if `variant="h2"`. */
+  h2: theme.typography.h2,
+  /* Styles applied to the root element if `variant="h3"`. */
+  h3: theme.typography.h3,
+  /* Styles applied to the root element if `variant="h4"`. */
+  h4: theme.typography.h4,
+  /* Styles applied to the root element if `variant="h5"`. */
+  h5: theme.typography.h5,
+  /* Styles applied to the root element if `variant="h6"`. */
+  h6: theme.typography.h6,
+  /* Styles applied to the root element if `variant="subtitle1"`. */
+  subtitle1: theme.typography.subtitle1,
+  /* Styles applied to the root element if `variant="subtitle2"`. */
+  subtitle2: theme.typography.subtitle2,
+  /* Styles applied to the root element if `variant="overline"`. */
+  overline: theme.typography.overline,
   /* Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers. */
   srOnly: {
     position: 'absolute',
@@ -39,24 +59,6 @@ export const styles = theme => ({
     width: 1,
     overflow: 'hidden',
   },
-  /* Styles applied to the root element if `variant="headline1"`. */
-  headline1: theme.typography.headline1,
-  /* Styles applied to the root element if `variant="headline2"`. */
-  headline2: theme.typography.headline2,
-  /* Styles applied to the root element if `variant="headline3"`. */
-  headline3: theme.typography.headline3,
-  /* Styles applied to the root element if `variant="headline4"`. */
-  headline4: theme.typography.headline4,
-  /* Styles applied to the root element if `variant="headline5"`. */
-  headline5: theme.typography.headline5,
-  /* Styles applied to the root element if `variant="headline6"`. */
-  headline6: theme.typography.headline6,
-  /* Styles applied to the root element if `variant="subtitle1"`. */
-  subtitle1: theme.typography.subtitle1,
-  /* Styles applied to the root element if `variant="subtitle2"`. */
-  subtitle2: theme.typography.subtitle2,
-  /* Styles applied to the root element if `variant="overline"`. */
-  overline: theme.typography.overline,
   /* Styles applied to the root element if `align="left"`. */
   alignLeft: {
     textAlign: 'left',
@@ -113,6 +115,56 @@ export const styles = theme => ({
   },
 });
 
+function nextVariantMapping(variant) {
+  const nextVariant = {
+    display4: 'h1',
+    display3: 'h2',
+    display2: 'h3',
+    display1: 'h4',
+    headline: 'h5',
+    title: 'h6',
+    subheading: 'subtitle1',
+  }[variant];
+
+  // already v2
+  if (!nextVariant) {
+    return variant;
+  }
+  return nextVariant;
+}
+
+function getVariant(theme, props, variant) {
+  const typography = theme.typography;
+
+  warning(
+    typography.suppressDeprecationWarnings ||
+      props.suppressDeprecationWarnings ||
+      !typographyMigration.deprecatedVariants.includes(variant),
+    'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
+      `${variant} that will be removed in the next major release. ${
+        typographyMigration.migrationGuideMessage
+      }`,
+  );
+
+  // complete v2 switch
+  if (typography.useNextVariants) {
+    return nextVariantMapping(variant);
+  }
+
+  // v1 => restyle warnings
+  warning(
+    typography.suppressDeprecationWarnings ||
+      props.suppressDeprecationWarnings ||
+      !typographyMigration.restyledVariants.includes(variant),
+    'Deprecation Warning: Material-UI: You are using the typography variant ' +
+      `${variant} which will be restyled in the next major release. ${
+        typographyMigration.migrationGuideMessage
+      }`,
+  );
+
+  return variant;
+}
+
 function Typography(props) {
   const {
     align,
@@ -124,12 +176,13 @@ function Typography(props) {
     headlineMapping,
     noWrap,
     paragraph,
+    suppressDeprecationWarnings,
     theme,
     variant: variantProp,
     ...other
   } = props;
 
-  const variant = theme.typography.getVariant(variantProp);
+  const variant = getVariant(theme, props, variantProp);
   const className = classNames(
     classes.root,
     {
@@ -203,24 +256,26 @@ Typography.propTypes = {
    */
   paragraph: PropTypes.bool,
   /**
+   * Suppress the deprecation warnings when using the old v1 variants.
+   */
+  suppressDeprecationWarnings: PropTypes.bool,
+  /**
    * Applies the theme typography styles.
    */
   variant: PropTypes.oneOf([
-    // new
-    'headline1',
-    'headline2',
-    'headline3',
-    'headline4',
-    'headline5',
-    'headline6',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
     'subtitle1',
     'subtitle2',
-    'overline',
-    // restyled
     'body1',
     'body2',
     'caption',
     'button',
+    'overline',
     'srOnly',
     'inherit',
     // deprecated
@@ -239,6 +294,17 @@ Typography.defaultProps = {
   color: 'default',
   gutterBottom: false,
   headlineMapping: {
+    h1: 'h1',
+    h2: 'h2',
+    h3: 'h3',
+    h4: 'h4',
+    h5: 'h5',
+    h6: 'h6',
+    subtitle1: 'h6',
+    subtitle2: 'h6',
+    body1: 'p',
+    body2: 'p',
+    // deprecated
     display4: 'h1',
     display3: 'h1',
     display2: 'h1',
@@ -246,19 +312,10 @@ Typography.defaultProps = {
     headline: 'h1',
     title: 'h2',
     subheading: 'h3',
-    body2: 'aside',
-    body1: 'p',
-    headline1: 'h1',
-    headline2: 'h2',
-    headline3: 'h3',
-    headline4: 'h4',
-    headline5: 'h5',
-    headline6: 'h6',
-    subtitle1: 'h6',
-    subtitle2: 'h6',
   },
   noWrap: false,
   paragraph: false,
+  suppressDeprecationWarnings: false,
   variant: 'body1',
 };
 

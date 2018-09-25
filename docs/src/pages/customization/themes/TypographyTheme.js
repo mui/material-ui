@@ -12,6 +12,7 @@ const styles = {
 
 const theme = createMuiTheme({
   typography: {
+    useNextVariants: true,
     // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
@@ -29,7 +30,7 @@ const theme = createMuiTheme({
     body1: {
       fontWeight: 500,
     },
-    subtitle: {
+    subtitle1: {
       fontSize: 12,
     },
     button: {

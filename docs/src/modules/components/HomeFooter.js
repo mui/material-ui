@@ -33,7 +33,7 @@ function HomeFooter(props) {
 
   return (
     <footer className={classes.root}>
-      <Typography variant="headline6" gutterBottom>
+      <Typography variant="h6" gutterBottom>
         Quick Links
       </Typography>
       <Typography variant="subtitle1" component="div">

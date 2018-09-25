@@ -115,23 +115,23 @@ const styles = theme => ({
       lineHeight: 1.6,
     },
     '& h1': {
-      ...theme.typography.headline1,
+      ...theme.typography.h2,
       margin: '32px 0 16px',
     },
     '& .description': {
-      ...theme.typography.headline5,
+      ...theme.typography.h5,
       margin: '0 0 40px',
     },
     '& h2': {
-      ...theme.typography.headline2,
+      ...theme.typography.h4,
       margin: '32px 0 24px',
     },
     '& h3': {
-      ...theme.typography.headline3,
+      ...theme.typography.h5,
       margin: '32px 0 24px',
     },
     '& h4': {
-      ...theme.typography.headline4,
+      ...theme.typography.h6,
       margin: '24px 0 16px',
     },
     '& p, & ul, & ol': {

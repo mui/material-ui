@@ -35,23 +35,23 @@ function Types(props) {
   return (
     <div className={classes.root}>
       <List className={classes.list}>
-        <TypographyVariant classes={classes} variant="headline1">
-          headline 1
+        <TypographyVariant classes={classes} variant="h1">
+          H1
         </TypographyVariant>
-        <TypographyVariant classes={classes} variant="headline2">
-          headline 2
+        <TypographyVariant classes={classes} variant="h2">
+          H2
         </TypographyVariant>
-        <TypographyVariant classes={classes} variant="headline3">
-          headline 3
+        <TypographyVariant classes={classes} variant="h3">
+          H3
         </TypographyVariant>
-        <TypographyVariant classes={classes} variant="headline4">
-          headline 4
+        <TypographyVariant classes={classes} variant="h4">
+          H4
         </TypographyVariant>
-        <TypographyVariant classes={classes} variant="headline5">
-          headline 5
+        <TypographyVariant classes={classes} variant="h5">
+          H5
         </TypographyVariant>
-        <TypographyVariant classes={classes} variant="headline6">
-          headline 6
+        <TypographyVariant classes={classes} variant="h6">
+          H6
         </TypographyVariant>
         <TypographyVariant classes={classes} variant="subtitle1">
           subtitle 1

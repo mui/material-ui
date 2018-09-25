@@ -35,7 +35,7 @@ describe('utils/reactHelpers.js', () => {
 
       setRef(ref, instance);
 
-      assert.isTrue(ref.called);
+      assert.strictEqual(ref.called, true);
       assert.strictEqual(ref.firstCall.args[0], instance);
     });
 

@@ -87,7 +87,7 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={classNames(classes.step, classes.leftStep)}>
         <div className={classes.stepTitle}>
           <FileDownloadIcon className={classes.stepIcon} />
-          <Typography variant="headline6">Installation</Typography>
+          <Typography variant="h6">Installation</Typography>
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subtitle1" gutterBottom>
@@ -139,7 +139,7 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={classes.step}>
         <div className={classes.stepTitle}>
           <BuildIcon className={classes.stepIcon} />
-          <Typography variant="headline6">Usage</Typography>
+          <Typography variant="h6">Usage</Typography>
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subtitle1" gutterBottom>
@@ -173,7 +173,7 @@ function HomeSteps(props) {
       <Grid item xs={12} md={4} className={classNames(classes.step, classes.rightStep)}>
         <div className={classes.stepTitle}>
           <WhatshotIcon className={classes.stepIcon} />
-          <Typography variant="headline6">Premium Themes</Typography>
+          <Typography variant="h6">Premium Themes</Typography>
         </div>
         <div className={classes.stepBody}>
           <Typography variant="subtitle1" gutterBottom>

@@ -18,7 +18,7 @@ function SimpleAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
-          <Typography variant="headline6" color="inherit">
+          <Typography variant="h6" color="inherit">
             Photos
           </Typography>
         </Toolbar>

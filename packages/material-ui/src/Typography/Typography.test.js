@@ -2,15 +2,9 @@ import React from 'react';
 import { assert } from 'chai';
 import { mock } from 'sinon';
 import MuiThemeProvider from '../styles/MuiThemeProvider';
-import {
-  createMount,
-  createShallow,
-  getClasses,
-  withEnabledWarnings,
-  withDisabledWarnings,
-} from '../test-utils';
+import createMuiTheme from '../styles/createMuiTheme';
+import { createMount, createShallow, getClasses } from '../test-utils';
 import Typography from './Typography';
-import { before } from 'mocha';
 
 describe('<Typography />', () => {
   let shallow;
@@ -20,9 +14,14 @@ describe('<Typography />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    v1ThemeWithoutWarnings = withDisabledWarnings();
-    v2Theme = withEnabledWarnings({
+    v1ThemeWithoutWarnings = createMuiTheme({
       typography: {
+        suppressDeprecationWarnings: true,
+      },
+    });
+    v2Theme = createMuiTheme({
+      typography: {
+        suppressDeprecationWarnings: false,
         useNextVariants: true,
       },
     });
@@ -67,29 +66,19 @@ describe('<Typography />', () => {
     );
     assert.strictEqual(wrapper.hasClass(classes.alignCenter), true);
   });
-  [
-    'headline1',
-    'headline2',
-    'headline3',
-    'headline4',
-    'headline5',
-    'headline6',
-    'subtitle1',
-    'body2',
-    'body1',
-    'caption',
-    'button',
-  ].forEach(variant => {
-    it(`should render ${variant} text`, () => {
-      const wrapper = shallow(
-        <Typography theme={v2Theme} variant={variant}>
-          Hello
-        </Typography>,
-      );
-      assert.ok(classes[variant] !== undefined);
-      assert.strictEqual(wrapper.hasClass(classes[variant]), true, `should be ${variant} text`);
-    });
-  });
+  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'body2', 'body1', 'caption', 'button'].forEach(
+    variant => {
+      it(`should render ${variant} text`, () => {
+        const wrapper = shallow(
+          <Typography theme={v2Theme} variant={variant}>
+            Hello
+          </Typography>,
+        );
+        assert.strictEqual(classes[variant] != null, true);
+        assert.strictEqual(wrapper.hasClass(classes[variant]), true, `should be ${variant} text`);
+      });
+    },
+  );
 
   [
     ['primary', 'colorPrimary'],
@@ -104,7 +93,7 @@ describe('<Typography />', () => {
           Hello
         </Typography>,
       );
-      assert.ok(classes[className] !== undefined);
+      assert.strictEqual(classes[className] != null, true);
       assert.strictEqual(wrapper.hasClass(classes[className]), true, `should be ${color} text`);
     });
   });
@@ -140,7 +129,7 @@ describe('<Typography />', () => {
     });
 
     it('should render the mapped headline', () => {
-      const wrapper = shallow(<Typography variant="headline6">Hello</Typography>);
+      const wrapper = shallow(<Typography variant="h6">Hello</Typography>);
       assert.strictEqual(wrapper.name(), 'h6');
     });
 
@@ -170,20 +159,24 @@ describe('<Typography />', () => {
       warning.resetHistory();
 
       try {
-        const theme = withEnabledWarnings();
+        const theme = createMuiTheme({
+          typography: {
+            suppressDeprecationWarnings: false,
+          },
+        });
         const wrapper = mount(<MuiThemeProvider theme={theme}>{component}</MuiThemeProvider>);
         wrapper.unmount();
 
         if (expectedWarning) {
           assert.fail('got no error', `expected a warning to match '${expectedWarning}'`);
         }
-      } catch (e) {
+      } catch (err) {
         assert.strictEqual(
           expectDeprecation,
           true,
           'expected no deprecation but got a warning anyway',
         );
-        assert.strictEqual(warning.calledOnce, true, 'expected deprecation warning but got none');
+        assert.strictEqual(warning.calledOnce, true);
         assert.include(warning.firstCall.args[0], expectedWarning);
       }
     };
@@ -198,10 +191,10 @@ describe('<Typography />', () => {
 
     describe('theme.typography.useNextVariants', () => {
       it('maps internal deprecated variants', () => {
-        const theme = withDisabledWarnings({ typography: { useNextVariants: true } });
+        const theme = createMuiTheme({ typography: { useNextVariants: true } });
         const v2Typography = <Typography theme={theme} variant="display4" />;
         const wrapper = shallow(v2Typography);
-        assert.isTrue(wrapper.hasClass(classes.headline1));
+        assert.strictEqual(wrapper.hasClass(classes.h1), true);
       });
 
       it('will still warn if you use them in your app', () => {
@@ -214,13 +207,8 @@ describe('<Typography />', () => {
     });
 
     describe('with MUI_SUPPRESS_DEPRECATION_WARNINGS', () => {
-      let theme;
-
-      before(() => {
-        theme = withDisabledWarnings({ useNextVariants: true });
-      });
-
       it('causes mui to not log deprecation warnings', () => {
+        const theme = createMuiTheme();
         testMount(<Typography theme={theme} variant="display4" />, false);
       });
     });

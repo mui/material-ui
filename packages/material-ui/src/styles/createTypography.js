@@ -1,24 +1,24 @@
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import warning from 'warning';
-import {
-  deprecatedVariants,
-  migrationGuideMessage,
-  nextVariantMapping,
-  restyledVariants,
-} from './typographyMigration';
+import typographyMigration from './typographyMigration';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
 }
+
+const caseAllCaps = {
+  textTransform: 'uppercase',
+};
+
+const defaultFontFamiliy = '"Roboto", "Helvetica", "Arial", sans-serif';
 
 /**
  * @see @link{https://material.io/design/typography/the-type-system.html}
  * @see @link{https://material.io/design/typography/understanding-typography.html}
  */
 export default function createTypography(palette, typography) {
-  const defaultFontFamiliy = '"Roboto", "Helvetica", "Arial", sans-serif';
   const {
-    fontFamily: fontFamilyOption,
+    fontFamily = defaultFontFamiliy,
     // The default font size of the Material Specification.
     fontSize = 14, // px
     fontWeightLight = 300,
@@ -27,9 +27,6 @@ export default function createTypography(palette, typography) {
     // Tell Material-UI what's the font-size on the html element.
     // 16px is the default font-size used by browsers.
     htmlFontSize = 16,
-    caseAllCaps = {
-      textTransform: 'uppercase',
-    },
     suppressDeprecationWarnings = process.env.MUI_SUPPRESS_DEPRECATION_WARNINGS,
     useNextVariants = false,
     // Apply the CSS properties to all the variants.
@@ -37,93 +34,58 @@ export default function createTypography(palette, typography) {
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
 
-  const fontFamily = fontFamilyOption || defaultFontFamiliy;
-
   warning(
-    !Object.keys(other).some(variant => deprecatedVariants.includes(variant)),
+    !Object.keys(other).some(variant => typographyMigration.deprecatedVariants.includes(variant)),
     'Deprecation Warning: Material-UI: You are passing a deprecated variant to ' +
-      `createTypography. ${migrationGuideMessage}`,
+      `createTypography. ${typographyMigration.migrationGuideMessage}`,
   );
 
   warning(
-    useNextVariants || !Object.keys(other).some(variant => restyledVariants.includes(variant)),
+    useNextVariants ||
+      !Object.keys(other).some(variant => typographyMigration.restyledVariants.includes(variant)),
     'Deprecation Warning: Material-UI: You are passing a variant to createTypography ' +
       'that will be restyled in the next major release, without indicating that you ' +
-      `are using typography v2 (set \`useNextVariants\` to true. ${migrationGuideMessage}`,
+      `are using typography v2 (set \`useNextVariants\` to true. ${
+        typographyMigration.migrationGuideMessage
+      }`,
   );
 
   const coef = fontSize / 14;
-
-  const letterSpacingToEm = (tracking, spSize) => {
-    return `${(tracking / spSize) * coef}em`;
-  };
-
-  const pxToRem = size => {
-    return `${(size / htmlFontSize) * coef}rem`;
-  };
-
-  const getVariant = variant => {
-    warning(
-      suppressDeprecationWarnings || !deprecatedVariants.includes(variant),
-      'Deprecation Warning: Material-UI: You are using the deprecated typography variant ' +
-        `${variant} that will be removed in the next major release. ${migrationGuideMessage}`,
-    );
-
-    // complete v2 switch
-    if (useNextVariants) {
-      return nextVariantMapping(variant);
-    }
-
-    const isRestyledVariant = restyledVariants.includes(variant);
-    // v1 => restyle warnings
-    warning(
-      suppressDeprecationWarnings || !isRestyledVariant,
-      'Deprecation Warning: Material-UI: You are using the typography variant ' +
-        `${variant} which will be restyled in the next major release. ${migrationGuideMessage}`,
-    );
-
-    return variant;
-  };
-
-  const utils = { getVariant, letterSpacingToEm, pxToRem };
-
-  const propertiesForCategory = (weight, size, casing, letterSpacing) => {
+  const letterSpacingToEm = (tracking, spSize) => `${(tracking / spSize) * coef}em`;
+  const pxToRem = size => `${(size / htmlFontSize) * coef}rem`;
+  const buildVariant = (fontWeight, size, lineHeight, letterSpacing, casing) => ({
+    color: palette.text.primary,
+    fontFamily,
+    fontWeight,
+    fontSize: pxToRem(size),
+    // Unitless following http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
+    lineHeight,
     // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
     // across font-families can cause issues with the kerning.
-    const robotoStyles = !fontFamilyOption
+    ...(fontFamily === defaultFontFamiliy
       ? { letterSpacing: letterSpacingToEm(letterSpacing, size) }
-      : {};
+      : {}),
+    ...casing,
+    ...allVariants,
+  });
 
-    return {
-      color: palette.text.primary,
-      fontFamily,
-      fontSize: pxToRem(size),
-      fontWeight: weight,
-      ...robotoStyles,
-      ...casing,
-      ...allVariants,
-    };
-  };
-
-  /* eslint-disable key-spacing, no-multi-spaces */
-  // prettier-ignore
   const nextVariants = {
-    headline1:   propertiesForCategory(fontWeightLight,   96, {},         -1.5),
-    headline2:   propertiesForCategory(fontWeightLight,   60, {},         -0.5),
-    headline3:   propertiesForCategory(fontWeightRegular, 48, {},          0),
-    headline4:   propertiesForCategory(fontWeightRegular, 34, {},          0.25),
-    headline5:   propertiesForCategory(fontWeightRegular, 24, {},          0),
-    headline6:   propertiesForCategory(fontWeightMedium,  20, {},          0.15),
-    subtitle1:   propertiesForCategory(fontWeightRegular, 16, {},          0.15),
-    subtitle2:   propertiesForCategory(fontWeightMedium,  14, {},          0.1),
-    body1Next:   propertiesForCategory(fontWeightRegular, 16, {},          0.5),
-    body2Next:   propertiesForCategory(fontWeightRegular, 14, {},          0.25),
-    buttonNext:  propertiesForCategory(fontWeightMedium,  14, caseAllCaps, 0.75),
-    captionNext: propertiesForCategory(fontWeightRegular, 12, {},          0.4),
-    overline:    propertiesForCategory(fontWeightRegular, 10, caseAllCaps, 1.5),
+    h1: buildVariant(fontWeightLight, 96, 1, -1.5),
+    h2: buildVariant(fontWeightLight, 60, 1, -0.5),
+    h3: buildVariant(fontWeightRegular, 48, 1.04, 0),
+    h4: buildVariant(fontWeightRegular, 34, 1.17, 0.25),
+    h5: buildVariant(fontWeightRegular, 24, 1.33, 0),
+    h6: buildVariant(fontWeightMedium, 20, 1.6, 0.15),
+    subtitle1: buildVariant(fontWeightRegular, 16, 1.75, 0.15),
+    subtitle2: buildVariant(fontWeightMedium, 14, 1.57, 0.1),
+    body1Next: buildVariant(fontWeightRegular, 16, 1.5, 0.5),
+    body2Next: buildVariant(fontWeightRegular, 14, 1.42, 0.25),
+    buttonNext: buildVariant(fontWeightMedium, 14, 2.57, 0.75, caseAllCaps),
+    captionNext: buildVariant(fontWeightRegular, 12, 1.66, 0.4),
+    overline: buildVariant(fontWeightRegular, 12, 2.66, 1.5, caseAllCaps),
   };
-  /* eslint-enable key-spacing, no-multi-spaces */
 
+  // To remove in v4
   const oldVariants = {
     display4: {
       fontSize: pxToRem(112),
@@ -220,19 +182,9 @@ export default function createTypography(palette, typography) {
     },
   };
 
-  const nextVariantsOverwrite = useNextVariants
-    ? {
-        ...nextVariants,
-        body1: nextVariants.body1Next,
-        body2: nextVariants.body2Next,
-        button: nextVariants.buttonNext,
-        caption: nextVariants.captionNext,
-      }
-    : nextVariants;
-
   return deepmerge(
     {
-      ...utils,
+      pxToRem,
       round,
       fontFamily,
       fontSize,
@@ -240,7 +192,15 @@ export default function createTypography(palette, typography) {
       fontWeightRegular,
       fontWeightMedium,
       ...oldVariants,
-      ...nextVariantsOverwrite,
+      ...(useNextVariants
+        ? {
+            ...nextVariants,
+            body1: nextVariants.body1Next,
+            body2: nextVariants.body2Next,
+            button: nextVariants.buttonNext,
+            caption: nextVariants.captionNext,
+          }
+        : nextVariants),
       suppressDeprecationWarnings,
       useNextVariants,
     },
