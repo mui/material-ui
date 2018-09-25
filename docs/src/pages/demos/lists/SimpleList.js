@@ -40,7 +40,7 @@ function SimpleList(props) {
         <ListItem button>
           <ListItemText primary="Trash" />
         </ListItem>
-        <ListItem button component="a" href="#simple-list">
+        <ListItem href="#simple-list">
           <ListItemText primary="Spam" />
         </ListItem>
       </List>
