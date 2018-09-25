@@ -17,6 +17,7 @@ export interface ButtonBaseProps
   focusVisibleClassName?: string;
   onFocusVisible?: React.FocusEventHandler<any>;
   TouchRippleProps?: Partial<TouchRippleProps>;
+  to?: string|Object;
 }
 
 export type ButtonBaseClassKey = 'root' | 'disabled' | 'focusVisible';
