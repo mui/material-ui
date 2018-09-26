@@ -180,13 +180,13 @@ class SpeedDial extends React.Component {
       [classes.directionRight]: direction === 'right',
     };
 
-    const clickProp = { onClick };
+    const clickProps = { onClick };
 
     if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
-      clickProp.onTouchEnd = e => {
+      clickProps.onTouchEnd = event => {
         onClick();
-        e.preventDefault();
-        e.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
       };
     }
 
@@ -210,7 +210,7 @@ class SpeedDial extends React.Component {
               this.fabRef = ref;
             }}
             className={classes.fab}
-            {...clickProp}
+            {...clickProps}
             {...ButtonProps}
           >
             {icon()}
