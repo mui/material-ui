@@ -31,11 +31,11 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class SwipeableDrawer extends React.Component {
-  backdrop = null;
+  backdropRef = null;
 
   isSwiping = null;
 
-  paper = null;
+  paperRef = null;
 
   startX = null;
 
@@ -99,7 +99,7 @@ class SwipeableDrawer extends React.Component {
   }
 
   getMaxTranslate() {
-    return isHorizontal(this.props) ? this.paper.clientWidth : this.paper.clientHeight;
+    return isHorizontal(this.props) ? this.paperRef.clientWidth : this.paperRef.clientHeight;
   }
 
   getTranslate(current) {
@@ -118,7 +118,7 @@ class SwipeableDrawer extends React.Component {
     const transform = isHorizontal(this.props)
       ? `translate(${rtlTranslateMultiplier * translate}px, 0)`
       : `translate(0, ${rtlTranslateMultiplier * translate}px)`;
-    const drawerStyle = this.paper.style;
+    const drawerStyle = this.paperRef.style;
     drawerStyle.webkitTransform = transform;
     drawerStyle.transform = transform;
 
@@ -143,8 +143,8 @@ class SwipeableDrawer extends React.Component {
       drawerStyle.transition = transition;
     }
 
-    if (!this.props.disableBackdropTransition) {
-      const backdropStyle = this.backdrop.style;
+    if (!this.props.disableBackdropTransition && !this.props.hideBackdrop) {
+      const backdropStyle = this.backdropRef.style;
       backdropStyle.opacity = 1 - translate / this.getMaxTranslate();
 
       if (changeTransition) {
@@ -189,7 +189,7 @@ class SwipeableDrawer extends React.Component {
     this.startY = currentY;
 
     this.setState({ maybeSwiping: true });
-    if (!open && this.paper) {
+    if (!open && this.paperRef) {
       // The ref may be null when a parent component updates while swiping.
       this.setPosition(this.getMaxTranslate() + (disableDiscovery ? 20 : -swipeAreaWidth), {
         changeTransition: false,
@@ -208,7 +208,7 @@ class SwipeableDrawer extends React.Component {
 
   handleBodyTouchMove = event => {
     // the ref may be null when a parent component updates while swiping
-    if (!this.paper) return;
+    if (!this.paperRef) return;
 
     const anchor = getAnchor(this.props);
     const horizontalSwipe = isHorizontal(this.props);
@@ -340,12 +340,12 @@ class SwipeableDrawer extends React.Component {
     }
   };
 
-  handleBackdropRef = node => {
-    this.backdrop = node ? ReactDOM.findDOMNode(node) : null;
+  handleBackdropRef = ref => {
+    this.backdropRef = ref ? ReactDOM.findDOMNode(ref) : null;
   };
 
-  handlePaperRef = node => {
-    this.paper = node ? ReactDOM.findDOMNode(node) : null;
+  handlePaperRef = ref => {
+    this.paperRef = ref ? ReactDOM.findDOMNode(ref) : null;
   };
 
   listenTouchStart() {

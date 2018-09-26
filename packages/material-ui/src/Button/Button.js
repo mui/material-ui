@@ -86,12 +86,18 @@ export const styles = theme => ({
     '&:hover': {
       border: `1px solid ${theme.palette.primary.main}`,
     },
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
+    },
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
   outlinedSecondary: {
     border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
     '&:hover': {
       border: `1px solid ${theme.palette.secondary.main}`,
+    },
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
     },
   },
   /* Styles applied to the root element if `variant="[contained | fab]"`. */

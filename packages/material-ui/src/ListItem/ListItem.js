@@ -18,7 +18,7 @@ export const styles = theme => ({
     textAlign: 'left',
     paddingTop: 12,
     paddingBottom: 12,
-    '&$selected': {
+    '&$selected, &$selected:hover': {
       backgroundColor: theme.palette.action.selected,
     },
   },

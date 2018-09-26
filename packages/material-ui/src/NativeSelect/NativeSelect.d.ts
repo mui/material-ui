@@ -10,9 +10,17 @@ export interface NativeSelectProps
   IconComponent?: React.ReactType;
   input?: React.ReactNode;
   value?: string | number | boolean;
+  variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export type NativeSelectClassKey = 'root' | 'select' | 'selectMenu' | 'disabled' | 'icon';
+export type NativeSelectClassKey =
+  | 'root'
+  | 'select'
+  | 'selectMenu'
+  | 'disabled'
+  | 'icon'
+  | 'filled'
+  | 'outlined';
 
 declare const NativeSelect: React.ComponentType<NativeSelectProps>;
 

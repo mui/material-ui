@@ -73,12 +73,6 @@ animation to finish before the new one enters.
 
 {{"demo": "pages/demos/buttons/FloatingActionButtonZoom.js"}}
 
-## Sizes
-
-Fancy larger or smaller buttons? Use the `size` or the `mini` property.
-
-{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
-
 ## Icon Buttons
 
 Icon buttons are commonly found in app bars and toolbars.
@@ -87,6 +81,12 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
 deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/demos/buttons/IconButtons.js"}}
+
+## Sizes
+
+Fancy larger or smaller buttons? Use the `size` or the `mini` property.
+
+{{"demo": "pages/demos/buttons/ButtonSizes.js"}}
 
 ### Buttons with icons and label
 

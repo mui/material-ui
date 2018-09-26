@@ -26,6 +26,7 @@ Chips represent complex entities in small blocks, such as a contact.
 | <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'<br> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">deleteIcon</span> | <span class="prop-type">element |   | Override the default delete icon element. Shown only if `onDelete` is set. |
+| <span class="prop-name">icon</span> | <span class="prop-type">element |   | Icon element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node |   | The content of the label. |
 | <span class="prop-name">onDelete</span> | <span class="prop-type">func |   | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
 | <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'outlined'<br> | <span class="prop-default">'default'</span> | The variant to use. |
@@ -53,9 +54,12 @@ This property accepts the following keys:
 | <span class="prop-name">outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
 | <span class="prop-name">outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
 | <span class="prop-name">avatar</span> | Styles applied to the `avatar` element.
-| <span class="prop-name">avatarColorPrimary</span> | Styles applied to the `avatar` element if `checked={true}` and `color="primary"`
-| <span class="prop-name">avatarColorSecondary</span> | Styles applied to the `avatar` element if `checked={true}` and `color="secondary"`
+| <span class="prop-name">avatarColorPrimary</span> | Styles applied to the `avatar` element if `color="primary"`
+| <span class="prop-name">avatarColorSecondary</span> | Styles applied to the `avatar` element if `color="secondary"`
 | <span class="prop-name">avatarChildren</span> | Styles applied to the `avatar` elements children.
+| <span class="prop-name">icon</span> | Styles applied to the `icon` element.
+| <span class="prop-name">iconColorPrimary</span> | Styles applied to the `icon` element if `color="primary"`
+| <span class="prop-name">iconColorSecondary</span> | Styles applied to the `icon` element if `color="secondary"`
 | <span class="prop-name">label</span> | Styles applied to the label `span` element`.
 | <span class="prop-name">deleteIcon</span> | Styles applied to the `deleteIcon` element.
 | <span class="prop-name">deleteIconColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`.

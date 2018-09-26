@@ -1,5 +1,5 @@
 import React from 'react';
-import getDisplayName from 'recompose/getDisplayName';
+import getDisplayName from '../../packages/material-ui/src/utils/getDisplayName';
 
 function createComponentDidUpdate(instance) {
   return function componentDidUpdate() {

@@ -32,7 +32,7 @@ const themes = [
   {
     name: 'Dashboard',
     description:
-      'A minimal dasboard with taskbar and mini variant draw. ' +
+      'A minimal dashboard with taskbar and mini variant draw. ' +
       'The chart is courtesy of Recharts, but it is simple to substitute an alternative.',
     src: '/static/images/layouts/dashboard.png',
     href: '/page-layout-examples/dashboard',
@@ -69,7 +69,7 @@ const themes = [
   },
   {
     name: 'Album',
-    description: 'A reponsive album / gallery page layout with a hero unit and footer.',
+    description: 'A responsive album / gallery page layout with a hero unit and footer.',
     src: '/static/images/layouts/album.png',
     href: '/page-layout-examples/album',
     source:

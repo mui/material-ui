@@ -10,7 +10,7 @@ You can customise the layout to add some pizazz in keeping with your corporate t
 
 | File  | Purpose  |
 |---    |---       |
-| `Album.js` | A simple albumn or gallery layout in a single file. |
+| `Album.js` | A simple album or gallery layout in a single file. |
 
 
 ## Dependencies

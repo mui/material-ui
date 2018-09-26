@@ -1,5 +1,121 @@
 ### [Versions](https://material-ui.com/versions)
 
+## 3.1.1
+###### *Sep 24, 2018*
+
+Big thanks to the 21 contributors who made this release possible!
+It contains many bug fixes 🐛 and documentation improvements 📝.
+
+### `@material-ui/core@v3.1.1`
+
+- [TextField] Fix alignment bug in Safari (#12906) @shcherbyakdev
+- [InputLabel] Fix Chrome's autofill (#12926) @PutziSan
+- [Tooltip] Fix unwanted tooltip opening (#12929) @ayubov
+- [TextField] Fix RTL support of outlined (#12939) @RobertPurcea
+- [Button] Make the outlined button border grey when disabled (#12933) @dispix
+- [RootRef] Keep track of the DOM node changes (#12953) @oliviertassinari
+- [Grid] Fix rounding errors (#12952) @RobertPurcea
+- [Tooltip] Back to 100% test coverage (#12954) @oliviertassinari
+- [SwipableDrawer] Don't break when backdrop is null (#12969) @spirosikmd
+- [InputAdornment] Fix flexbox alignment bug for IE (#12975) @oliviertassinari
+- [FilledInput] Update the background color to match the spec (#12977) @adeelibr
+- [ListItem] Fix background color bug on mobile (#12976) @ryusaka
+
+### `@material-ui/lab@v3.0.0-alpha.17`
+
+- [Slider] Remove touchend event listener (#12923) @brian-growratio
+- [SpeedDialAction] Add missing TypeScript property (#12959) @KarimFereidooni
+
+### Docs
+
+- [docs] Make jss insertion point reference the same as html comment (#12896) @emattias
+- [docs] Small fixes (#12904) @oliviertassinari
+- [docs] Add reference to material-ui-theme-editor (#12888) @jdrouet
+- [docs] Add another case to check when SSR fails (#12908) @oliviertassinari
+- [docs] Correct misspelling (dasboard => dashboard) (#12910) @seishan
+- [docs] Use core package for (peer-)dependency badges (#12911) @eps1lon
+- [docs] Display the backers avatars correctly (3057f970a385fc0cf43e6c978c373b847d0d341e) @oliviertassinari
+- [docs] Update themes.md (#12942) @brucegl
+- [docs] Fix documentation error in <Input /> (#12955) @lukePeavey
+- [docs] Minor style update of the tabs demos (#12958) @dotku
+- [docs] Glamorous is deprecated for emotion (#12963) @oliviertassinari
+- [docs] Add Emotion to style interoperability guide (#12966) @lukePeavey
+- [docs] Fix IconButton Snackbar demos (#12964) @bhalahariharan
+- [docs] Show how to combine OutlinedInput and FilledInput (#12968) @oliviertassinari
+- [docs] Fix Typo in PaymentForm.js (#12971) @n3n
+- [docs] Fix Typo in page-layout-examples (#12974) @n3n
+
+### Core
+
+- [typescript] Improve definitions with strictNullChecks disabled (#12895) @eps1lon
+- [typescript] Remove unused isMuiComponent definition (#12903) @eps1lon
+- [core] Add setRef helper (#12901) @eps1lon
+- [core] Fix umd bundle (#12905) @oliviertassinari
+- [core] Use .browserlistrc as single point of thruth for target env §#12912) @eps1lon
+- [typescript] Add missing `MuiFilledInput` to 'Overrides' (#12938) @marcel-ernst
+
+## 3.1.0
+###### *Sep 16, 2018*
+
+Big thanks to the 24 contributors who made this release possible!
+
+Here are some highlights ✨:
+- 💅 Add outlined and filled text field variants (#12076) @enagy27.
+- ♿️ Document how to make the icons accessible (#12822).
+- 🐛 Fix a class name generation regression (#12844).
+- And many more bug fixes 🐛 and documentation improvements 📝.
+
+### `@material-ui/core@v3.1.0`
+
+- [Checkbox] Add indeterminateIcon type definition (#12815) @cvanem
+- [Popover] Change to offsetWidth and offsetHeight (#12816) @akaxiaok
+- [styles] Use the same class name generator (#12818) @oliviertassinari
+- [styles] Revert packageId as default option (#12823) @oliviertassinari
+- [withStyles] Fix JSS issues in IE11 in development (#12826) @novascreen
+- [autocomplete] Fix incorrect input font in react-select autocomplete demo (#12828) @wijwoj
+- [withWidth] Prevent Rerendering (#12825) @junhyukee
+- [SvgIcon] Improve accessibility (#12822) @oliviertassinari
+- [CircularProgress] Update missing type definitions (#12835) @gsalisi
+- [styles] Remove the packageId (#12844) @oliviertassinari
+- [Typography] Add inherit and screen reader only (#12837) @oliviertassinari
+- [Select] Test if child passed to onChange handler (#12852) @akaxiaok
+- [TableSortLabel] Remove sort icon when not active (#12874) @markselby9
+- [icons] Add `fontSize` small and large (#12865) @JoshuaLicense
+- [Chip] Add an icon property (#12881) @aretheregods
+- [TextField] Add outlined and filled variants (#12076) @enagy27
+
+### `@material-ui/lab@v3.0.0-alpha.16`
+
+- [Slider] Don't pass component props down to root div (#12842) @mbrookes
+- [Slider] Faster transitions (#12843) @mbrookes
+- [SpeedDial] Fix ARIA & fix duplicate id in docs example (#12846) @mbrookes
+- [SpeedDial] Remove redundant aria-labelledby (#12847) @mbrookes
+- [SpeedDial] Fix not opening on first tap in mobile (#12771) @hashwin
+- [Slider] Feature Custom Icon (#12600) @adeelibr
+
+### Docs
+
+- [docs] Fix the gatsby example (#12817) @oliviertassinari
+- [docs] Fix Typo in Pricing.js (#12821) @enducker
+- [docs] Fix Typo in Checkout.js (#12820) @enducker
+- [docs] Fix typo in popover.md (#12832) @amacleay
+- [docs] Add documentation for css-to-mui-loader (#12841) @mcdougal
+- [docs] Fix ToggleButtons example typography variant (#12845) @mbrookes
+- [docs] Fix very minor typo (Docs - page layout examples) (#12849) @bcapinski
+- [SvgIcon] Fix minor typo in docs (#12848) @iamhosseindhv
+- [docs] Fix typo in blog page layout README (#12868) @sethduncan
+- [docs] Update comparison.md (#12877) @GideonShils
+- [docs] Split test ad networks (#12878) @mbrookes
+- [docs] Customize LinearProgress color (#12883) @mbrn
+
+### Core
+
+- [typescript] Update createGenerateClassName.d.ts (#12824) @Qeneke
+- [github] Make issue templates version agnostic (#12839) @mbrookes
+- [typescript] Fix with* injectors ignoring defaultProps (#12673) @eps1lon
+- [core] Set required yarn version (#12864) @eps1lon
+- [core] Upgrade dev dependencies (#12884) @oliviertassinari
+
 ## 3.0.3
 ###### *Sep 9, 2018*
 

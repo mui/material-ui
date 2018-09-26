@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
+import warning from 'warning';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
-import { emphasize, fade, darken } from '../styles/colorManipulator';
+import { emphasize, fade } from '../styles/colorManipulator';
 import unsupportedProp from '../utils/unsupportedProp';
 import { capitalize } from '../utils/helpers';
 import '../Avatar/Avatar'; // So we don't have any override priority issue.
@@ -115,19 +116,17 @@ export const styles = theme => {
     /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
     outlinedPrimary: {
       color: theme.palette.primary.main,
-      border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
+      border: `1px solid ${theme.palette.primary.main}`,
       '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
         backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
-        border: `1px solid ${theme.palette.primary.main}`,
       },
     },
     /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
     outlinedSecondary: {
       color: theme.palette.secondary.main,
-      border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
+      border: `1px solid ${theme.palette.secondary.main}`,
       '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
-        border: `1px solid ${theme.palette.secondary.main}`,
       },
     },
     /* Styles applied to the `avatar` element. */
@@ -138,20 +137,34 @@ export const styles = theme => {
       color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
       fontSize: theme.typography.pxToRem(16),
     },
-    /* Styles applied to the `avatar` element if `checked={true}` and `color="primary"` */
+    /* Styles applied to the `avatar` element if `color="primary"` */
     avatarColorPrimary: {
-      color: darken(theme.palette.primary.contrastText, 0.1),
+      color: theme.palette.primary.contrastText,
       backgroundColor: theme.palette.primary.dark,
     },
-    /* Styles applied to the `avatar` element if `checked={true}` and `color="secondary"` */
+    /* Styles applied to the `avatar` element if `color="secondary"` */
     avatarColorSecondary: {
-      color: darken(theme.palette.secondary.contrastText, 0.1),
+      color: theme.palette.secondary.contrastText,
       backgroundColor: theme.palette.secondary.dark,
     },
     /* Styles applied to the `avatar` elements children. */
     avatarChildren: {
       width: 19,
       height: 19,
+    },
+    /* Styles applied to the `icon` element. */
+    icon: {
+      color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
+      marginLeft: 4,
+      marginRight: -8,
+    },
+    /* Styles applied to the `icon` element if `color="primary"` */
+    iconColorPrimary: {
+      color: 'inherit',
+    },
+    /* Styles applied to the `icon` element if `color="secondary"` */
+    iconColorSecondary: {
+      color: 'inherit',
     },
     /* Styles applied to the label `span` element`. */
     label: {
@@ -177,28 +190,28 @@ export const styles = theme => {
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`. */
     deleteIconColorPrimary: {
-      color: fade(theme.palette.primary.contrastText, 0.65),
+      color: fade(theme.palette.primary.contrastText, 0.7),
       '&:hover, &:active': {
         color: theme.palette.primary.contrastText,
       },
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="default"`. */
     deleteIconColorSecondary: {
-      color: fade(theme.palette.primary.contrastText, 0.65),
+      color: fade(theme.palette.primary.contrastText, 0.7),
       '&:hover, &:active': {
         color: theme.palette.primary.contrastText,
       },
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
     deleteIconOutlinedColorPrimary: {
-      color: fade(theme.palette.primary.main, 0.65),
+      color: fade(theme.palette.primary.main, 0.7),
       '&:hover, &:active': {
         color: theme.palette.primary.main,
       },
     },
     /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
     deleteIconOutlinedColorSecondary: {
-      color: fade(theme.palette.secondary.main, 0.65),
+      color: fade(theme.palette.secondary.main, 0.7),
       '&:hover, &:active': {
         color: theme.palette.secondary.main,
       },
@@ -270,6 +283,7 @@ class Chip extends React.Component {
       color,
       component: Component,
       deleteIcon: deleteIconProp,
+      icon: iconProp,
       label,
       onClick,
       onDelete,
@@ -333,11 +347,26 @@ class Chip extends React.Component {
       });
     }
 
+    let icon = null;
+    if (iconProp && React.isValidElement(iconProp)) {
+      icon = React.cloneElement(iconProp, {
+        className: classNames(classes.icon, iconProp.props.className, {
+          [classes[`iconColor${capitalize(color)}`]]: color !== 'default',
+        }),
+      });
+    }
+
     let tabIndex = tabIndexProp;
 
     if (!tabIndex) {
       tabIndex = onClick || onDelete || clickable ? 0 : -1;
     }
+
+    warning(
+      !avatar || !icon,
+      'Material-UI: the Chip component can not handle the avatar ' +
+        'and the icon property at the same time. Pick one.',
+    );
 
     return (
       <Component
@@ -352,7 +381,7 @@ class Chip extends React.Component {
         }}
         {...other}
       >
-        {avatar}
+        {avatar || icon}
         <span className={classes.label}>{label}</span>
         {deleteIcon}
       </Component>
@@ -398,6 +427,10 @@ Chip.propTypes = {
    * Override the default delete icon element. Shown only if `onDelete` is set.
    */
   deleteIcon: PropTypes.element,
+  /**
+   * Icon element.
+   */
+  icon: PropTypes.element,
   /**
    * The content of the label.
    */
