@@ -78,10 +78,16 @@ function StepLabel(props) {
     last,
     optional,
     orientation,
-    StepIconComponent = StepIcon,
+    StepIconComponent: StepIconComponentProp,
     StepIconProps,
     ...other
   } = props;
+
+  let StepIconComponent = StepIconComponentProp;
+
+  if (icon && !StepIconComponent) {
+    StepIconComponent = StepIcon;
+  }
 
   return (
     <span
@@ -97,7 +103,7 @@ function StepLabel(props) {
       )}
       {...other}
     >
-      {(icon || StepIconComponent) && (
+      {icon || StepIconComponent ? (
         <span
           className={classNames(classes.iconContainer, {
             [classes.alternativeLabel]: alternativeLabel,
@@ -111,7 +117,7 @@ function StepLabel(props) {
             {...StepIconProps}
           />
         </span>
-      )}
+      ) : null}
       <span className={classes.labelContainer}>
         <Typography
           variant="body1"
@@ -186,7 +192,7 @@ StepLabel.propTypes = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * The React Element to render in place of the [`StepIcon`](/api/step-icon) element.
+   * The component to render in place of the [`StepIcon`](/api/step-icon).
    */
   StepIconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
   /**

@@ -57,9 +57,10 @@ describe('<StepLabel />', () => {
       assert.strictEqual(props.prop1, 'value1', 'should have inherited custom prop1');
       assert.strictEqual(props.prop2, 'value2', 'should have inherited custom prop2');
     });
+  });
 
+  describe('prop: StepIconComponent', () => {
     it('renders <StepIconComponent>', () => {
-      const stepIconProps = { prop1: 'value1', prop2: 'value2' };
       const CustomizedIcon = () => <div />;
       const wrapper = shallow(
         <StepLabel
@@ -67,19 +68,19 @@ describe('<StepLabel />', () => {
           active
           completed
           alternativeLabel
-          StepIconProps={stepIconProps}
+          StepIconProps={{ prop1: 'value1', prop2: 'value2' }}
         >
           Step One
         </StepLabel>,
       );
       const customizedIcon = wrapper.find(CustomizedIcon);
-      assert.strictEqual(customizedIcon.length, 1, 'should have an <CustomizedIcon />');
+      assert.strictEqual(customizedIcon.length, 1);
       const props = customizedIcon.props();
-      assert.strictEqual(props.prop1, 'value1', 'should have inherited custom prop1');
-      assert.strictEqual(props.prop2, 'value2', 'should have inherited custom prop2');
+      assert.strictEqual(props.prop1, 'value1');
+      assert.strictEqual(props.prop2, 'value2');
     });
 
-    it('does not render <StepIcon> if <StepIconComponent> is provided', () => {
+    it('does not render <StepIcon>', () => {
       const CustomizedIcon = () => <div />;
       const wrapper = shallow(
         <StepLabel icon={1} StepIconComponent={CustomizedIcon} active completed alternativeLabel>
@@ -87,7 +88,17 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       const stepIcon = wrapper.find(StepIcon);
-      assert.strictEqual(stepIcon.length, 0, 'should not have an <StepIcon />');
+      assert.strictEqual(stepIcon.length, 0);
+    });
+
+    it('does not render <StepIcon>', () => {
+      const wrapper = shallow(
+        <StepLabel active completed alternativeLabel>
+          Step One
+        </StepLabel>,
+      );
+      const stepIcon = wrapper.find(StepIcon);
+      assert.strictEqual(stepIcon.length, 0);
     });
   });
 
@@ -105,17 +116,6 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       const stepIcon = wrapper.find(StepIcon);
-      assert.strictEqual(stepIcon.props().active, true, 'should set active');
-    });
-
-    it('renders <StepIconComponent> with the prop active set to true', () => {
-      const CustomizedIcon = () => <div />;
-      const wrapper = shallow(
-        <StepLabel StepIconComponent={CustomizedIcon} active>
-          Step One
-        </StepLabel>,
-      );
-      const stepIcon = wrapper.find(CustomizedIcon);
       assert.strictEqual(stepIcon.props().active, true, 'should set active');
     });
 
@@ -142,17 +142,6 @@ describe('<StepLabel />', () => {
       const stepIcon = wrapper.find(StepIcon);
       assert.strictEqual(stepIcon.props().completed, true, 'should set completed');
     });
-
-    it('renders <StepIconComponent> with the prop completed set to true', () => {
-      const CustomizedIcon = () => <div />;
-      const wrapper = shallow(
-        <StepLabel StepIconComponent={CustomizedIcon} completed>
-          Step One
-        </StepLabel>,
-      );
-      const customizedIcon = wrapper.find(CustomizedIcon);
-      assert.strictEqual(customizedIcon.props().completed, true, 'should set completed');
-    });
   });
 
   describe('prop: error', () => {
@@ -169,17 +158,6 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       const stepIcon = wrapper.find(StepIcon);
-      assert.strictEqual(stepIcon.props().error, true, 'should set error');
-    });
-
-    it('renders <StepIconComponent> with the prop error set to true', () => {
-      const CustomizedIcon = () => <div />;
-      const wrapper = shallow(
-        <StepLabel StepIconComponent={CustomizedIcon} error>
-          Step One
-        </StepLabel>,
-      );
-      const stepIcon = wrapper.find(CustomizedIcon);
       assert.strictEqual(stepIcon.props().error, true, 'should set error');
     });
   });
