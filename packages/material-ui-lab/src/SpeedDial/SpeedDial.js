@@ -183,7 +183,7 @@ class SpeedDial extends React.Component {
     const clickProp = { onClick };
 
     if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
-      clickProp.onTouchEnd = (e) => {
+      clickProp.onTouchEnd = e => {
         onClick();
         e.preventDefault();
         e.stopPropagation();
