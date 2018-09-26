@@ -51,7 +51,7 @@ This property accepts the following keys:
 | <span class="prop-name">fixed</span> | Styles applied to the tablist element if `scrollable={false}`.
 | <span class="prop-name">scrollable</span> | Styles applied to the tablist element if `scrollable={true}`.
 | <span class="prop-name">scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
-| <span class="prop-name">scrollButtonsAuto</span> | Styles applied to the `ScrollButtonComponent` component if `sscrollButtons="auto"`.
+| <span class="prop-name">scrollButtonsAuto</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"`.
 | <span class="prop-name">indicator</span> | Styles applied to the `TabIndicator` component.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
