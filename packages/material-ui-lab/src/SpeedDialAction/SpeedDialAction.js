@@ -13,6 +13,15 @@ export const styles = theme => ({
   root: {
     position: 'relative',
   },
+  /* Styles applied to the `Tooltip` label wrapper element */
+  tooltip: {
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: theme.shadows[1],
+    fontSize: theme.typography.pxToRem(14),
+    color: theme.palette.text.primary,
+    padding: '5px 16px',
+  },
   /* Styles applied to the `Button` component. */
   actionButton: {
     margin: 8,
@@ -134,6 +143,7 @@ class SpeedDialAction extends React.Component {
         onClose={this.handleTooltipClose}
         onOpen={this.handleTooltipOpen}
         open={open && this.state.tooltipOpen}
+        classes={{ tooltip: classes.tooltip }}
         {...other}
       >
         {actionButton}
