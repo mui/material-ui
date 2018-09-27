@@ -85,26 +85,27 @@ class SpeedDialAction extends React.Component {
       ...other
     } = this.props;
 
-    let clickProps = { onClick };
+    const clickProps = { onClick };
     if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
       let startTime;
-      clickProps = {
-        ...clickProps,
-        onTouchStart: () => {
-          startTime = new Date();
-        },
-        onTouchEnd: event => {
-          // only perform action if the touch is a tap, i.e. not long press
-          if (new Date() - startTime < 500) {
-            onClick();
-          }
-          event.preventDefault();
-          event.stopPropagation();
-        },
+      clickProps.onTouchStart = () => {
+        startTime = new Date();
+      };
+      clickProps.onTouchEnd = event => {
+        // only perform action if the touch is a tap, i.e. not long press
+        if (new Date() - startTime < 500) {
+          onClick();
+        }
+        event.preventDefault();
+        event.stopPropagation();
       };
     }
 
     clickProps.style = { transitionDelay: `${delay}ms` };
+
+    if (ButtonProps.style) {
+      ButtonProps.style.transitionDelay = `${delay}ms`;
+    }
 
     const actionButton = (
       <Button
@@ -113,8 +114,8 @@ class SpeedDialAction extends React.Component {
         className={classNames(classes.actionButton, classes.button, !open && classes.buttonClosed)}
         tabIndex={-1}
         role="menuitem"
-        {...ButtonProps}
         {...clickProps}
+        {...ButtonProps}
       >
         {icon}
       </Button>
