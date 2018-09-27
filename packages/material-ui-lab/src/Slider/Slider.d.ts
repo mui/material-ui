@@ -7,7 +7,6 @@ import { TransitionHandlerProps } from '@material-ui/core/transitions/transition
 export interface SliderProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, SliderClassKey, 'onChange'> {
   disabled?: boolean;
-  reverse?: boolean;
   vertical?: boolean;
   max?: number;
   min?: number;
@@ -29,7 +28,6 @@ export type SliderClassKey =
   | 'activated'
   | 'disabled'
   | 'vertical'
-  | 'reverse'
   | 'jumped';
 
 declare const Slider: React.ComponentType<SliderProps>;
