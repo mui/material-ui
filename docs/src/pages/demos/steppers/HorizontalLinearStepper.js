@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
@@ -17,6 +18,12 @@ const styles = theme => ({
   instructions: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
+  },
+  lineActive: {
+    borderColor: theme.palette.secondary.main,
+  },
+  lineCompleted: {
+    borderColor: theme.palette.primary.main,
   },
 });
 
@@ -102,7 +109,14 @@ class HorizontalLinearStepper extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Stepper activeStep={activeStep}>
+        <Stepper
+          activeStep={activeStep}
+          connector={
+            <StepConnector
+              classes={{ lineActive: classes.lineActive, lineCompleted: classes.lineCompleted }}
+            />
+          }
+        >
           {steps.map((label, index) => {
             const props = {};
             const labelProps = {};
