@@ -1,7 +1,7 @@
 import React from 'react';
 
-class GoogleTag extends React.Component {
-  googleTimer = null;
+class GoogleAnalytics extends React.Component {
+  timer = null;
 
   componentDidMount() {
     if (process.env.NODE_ENV !== 'production') {
@@ -9,16 +9,16 @@ class GoogleTag extends React.Component {
     }
 
     // Wait for the title to be updated.
-    this.googleTimer = setTimeout(() => {
-      window.ga('send', {
-        hitType: 'pageview',
+    this.timer = setTimeout(() => {
+      window.ga('set', {
         page: window.location.pathname,
       });
-    }, 0);
+      window.ga('send', { hitType: 'pageview' });
+    });
   }
 
   componentWillUnmount() {
-    clearTimeout(this.googleTimer);
+    clearTimeout(this.timer);
   }
 
   render() {
@@ -26,4 +26,4 @@ class GoogleTag extends React.Component {
   }
 }
 
-export default GoogleTag;
+export default GoogleAnalytics;

@@ -93,23 +93,6 @@ describe('<Slider />', () => {
     });
   });
 
-  describe('prop: reverse', () => {
-    it('should render with the default and reverse classes', () => {
-      const wrapper = shallow(<Slider reverse value={0} />);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.reverse), true);
-    });
-  });
-
-  describe('props: vertical & reverse', () => {
-    it('should render with the default, reverse and vertical classes', () => {
-      const wrapper = shallow(<Slider reverse vertical value={0} />);
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass(classes.reverse), true);
-      assert.strictEqual(wrapper.hasClass(classes.vertical), true);
-    });
-  });
-
   describe('prop: disabled', () => {
     const handleChange = spy();
     let wrapper;

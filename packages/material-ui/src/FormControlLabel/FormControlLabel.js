@@ -25,6 +25,8 @@ export const styles = theme => ({
   /* Styles applied to the root element if `labelPlacement="start"`. */
   labelPlacementStart: {
     flexDirection: 'row-reverse',
+    marginLeft: 16, // used for row presentation of radio/checkbox
+    marginRight: -14,
   },
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},

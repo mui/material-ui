@@ -47,7 +47,7 @@
   "devDependencies": {
     "fs-extra": "^7.0.0",
     "mkdirp": "^0.5.0",
-    "mustache": "^2.0.0",
+    "mustache": "^3.0.0",
     "svgo": "^1.0.5",
     "temp": "^0.8.3",
     "yargs": "^12.0.0"

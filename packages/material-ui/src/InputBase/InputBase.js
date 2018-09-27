@@ -37,6 +37,7 @@ export const styles = theme => {
       alignItems: 'center',
       '&$disabled': {
         color: theme.palette.text.disabled,
+        cursor: 'default',
       },
     },
     /* Styles applied to the root element if the component is a descendant of `FormControl`. */

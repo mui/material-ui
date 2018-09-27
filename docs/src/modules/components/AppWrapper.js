@@ -7,7 +7,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { lightTheme, darkTheme, setPrismTheme } from '@material-ui/docs/MarkdownElement/prism';
 import getPageContext, { updatePageContext } from 'docs/src/modules/styles/getPageContext';
-import GoogleTag from 'docs/src/modules/components/GoogleTag';
+import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 
 // Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -86,7 +86,7 @@ class AppWrapper extends React.Component {
       >
         <MuiThemeProvider theme={pageContext.theme} sheetsManager={pageContext.sheetsManager}>
           {children}
-          <GoogleTag />
+          <GoogleAnalytics />
         </MuiThemeProvider>
       </JssProvider>
     );
