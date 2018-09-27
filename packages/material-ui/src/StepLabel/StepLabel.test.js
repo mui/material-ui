@@ -60,40 +60,33 @@ describe('<StepLabel />', () => {
   });
 
   describe('prop: StepIconComponent', () => {
-    it('renders <StepIconComponent>', () => {
+    it('should render', () => {
       const CustomizedIcon = () => <div />;
       const wrapper = shallow(
         <StepLabel
           StepIconComponent={CustomizedIcon}
           active
           completed
-          alternativeLabel
           StepIconProps={{ prop1: 'value1', prop2: 'value2' }}
         >
           Step One
         </StepLabel>,
       );
+      const stepIcon = wrapper.find(StepIcon);
+      assert.strictEqual(stepIcon.length, 0);
+
       const customizedIcon = wrapper.find(CustomizedIcon);
       assert.strictEqual(customizedIcon.length, 1);
       const props = customizedIcon.props();
       assert.strictEqual(props.prop1, 'value1');
       assert.strictEqual(props.prop2, 'value2');
+      assert.strictEqual(props.completed, true);
+      assert.strictEqual(props.active, true);
     });
 
-    it('does not render <StepIcon>', () => {
-      const CustomizedIcon = () => <div />;
+    it('should not render', () => {
       const wrapper = shallow(
-        <StepLabel icon={1} StepIconComponent={CustomizedIcon} active completed alternativeLabel>
-          Step One
-        </StepLabel>,
-      );
-      const stepIcon = wrapper.find(StepIcon);
-      assert.strictEqual(stepIcon.length, 0);
-    });
-
-    it('does not render <StepIcon>', () => {
-      const wrapper = shallow(
-        <StepLabel active completed alternativeLabel>
+        <StepLabel active completed>
           Step One
         </StepLabel>,
       );
