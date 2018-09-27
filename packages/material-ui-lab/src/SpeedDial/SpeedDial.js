@@ -10,6 +10,7 @@ import { duration } from '@material-ui/core/styles/transitions';
 import Button from '@material-ui/core/Button';
 import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 
+const dialRadius = 32;
 const spacingActions = 16;
 
 export const styles = {
@@ -44,16 +45,20 @@ export const styles = {
     display: 'flex',
     pointerEvents: 'auto',
     '&$directionUp': {
-      paddingBottom: spacingActions,
+      marginBottom: -dialRadius,
+      paddingBottom: spacingActions + dialRadius,
     },
     '&$directionRight': {
-      paddingLeft: spacingActions,
+      marginLeft: -dialRadius,
+      paddingLeft: spacingActions + dialRadius,
     },
     '&$directionDown': {
-      paddingTop: spacingActions,
+      marginTop: -dialRadius,
+      paddingTop: spacingActions + dialRadius,
     },
     '&$directionLeft': {
-      paddingRight: spacingActions,
+      marginRight: -dialRadius,
+      paddingRight: spacingActions + dialRadius,
     },
   },
   /* Styles applied to the actions (`children` wrapper) element if `open={false}`. */
