@@ -10,6 +10,8 @@ import { duration } from '@material-ui/core/styles/transitions';
 import Button from '@material-ui/core/Button';
 import { isMuiElement } from '@material-ui/core/utils/reactHelpers';
 
+const spacingActions = 16;
+
 export const styles = {
   /* Styles applied to the root element. */
   root: {
@@ -40,8 +42,19 @@ export const styles = {
   /* Styles applied to the actions (`children` wrapper) element. */
   actions: {
     display: 'flex',
-    paddingBottom: 16,
     pointerEvents: 'auto',
+    '&$directionUp': {
+      paddingBottom: spacingActions,
+    },
+    '&$directionRight': {
+      paddingLeft: spacingActions,
+    },
+    '&$directionDown': {
+      paddingTop: spacingActions,
+    },
+    '&$directionLeft': {
+      paddingRight: spacingActions,
+    },
   },
   /* Styles applied to the actions (`children` wrapper) element if `open={false}`. */
   actionsClosed: {
