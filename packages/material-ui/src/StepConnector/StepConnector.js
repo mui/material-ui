@@ -38,10 +38,25 @@ export const styles = theme => ({
     borderLeftWidth: 1,
     minHeight: 24,
   },
+  /* Styles applied to the line element if `active={true}`. */
+  lineActive: {},
+  /* Styles applied to the line element if `completed={true}`. */
+  lineCompleted: {},
+  /* Styles applied to the line element if `disabled={true}`. */
+  lineDisabled: {},
 });
 
 function StepConnector(props) {
-  const { alternativeLabel, className: classNameProp, classes, orientation, ...other } = props;
+  const {
+    alternativeLabel,
+    className: classNameProp,
+    classes,
+    orientation,
+    active,
+    completed,
+    disabled,
+    ...other
+  } = props;
 
   const className = classNames(
     classes.root,
@@ -54,6 +69,9 @@ function StepConnector(props) {
   const lineClassName = classNames(classes.line, {
     [classes.lineHorizontal]: orientation === 'horizontal',
     [classes.lineVertical]: orientation === 'vertical',
+    [classes.lineActive]: active,
+    [classes.lineCompleted]: completed,
+    [classes.lineDisabled]: disabled,
   });
 
   return (
@@ -64,6 +82,10 @@ function StepConnector(props) {
 }
 
 StepConnector.propTypes = {
+  /**
+   * @ignore
+   */
+  active: PropTypes.bool,
   /**
    * @ignore
    * Set internally by Step when it's supplied with the alternativeLabel property.
@@ -81,12 +103,23 @@ StepConnector.propTypes = {
   /**
    * @ignore
    */
+  completed: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 
 StepConnector.defaultProps = {
   alternativeLabel: false,
   orientation: 'horizontal',
+  active: false,
+  completed: false,
+  disabled: false,
 };
 
 export default withStyles(styles, { name: 'MuiStepConnector' })(StepConnector);

@@ -35,5 +35,23 @@ describe('<StepConnector />', () => {
       const line = wrapper.find('span');
       assert.include(line.props().className, 'StepConnector-lineVertical');
     });
+
+    it('has the class lineActive when active', () => {
+      const wrapper = shallow(<StepConnector active />);
+      const line = wrapper.find('span');
+      assert.include(line.props().className, 'StepConnector-lineActive');
+    });
+
+    it('has the class lineCompleted when completed', () => {
+      const wrapper = shallow(<StepConnector completed />);
+      const line = wrapper.find('span');
+      assert.include(line.props().className, 'StepConnector-lineCompleted');
+    });
+
+    it('has the class lineDisabled when disabled', () => {
+      const wrapper = shallow(<StepConnector disabled />);
+      const line = wrapper.find('span');
+      assert.include(line.props().className, 'StepConnector-lineDisabled');
+    });
   });
 });

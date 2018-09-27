@@ -38,6 +38,9 @@ This property accepts the following keys:
 | <span class="prop-name">line</span> | Styles applied to the line element.
 | <span class="prop-name">lineHorizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
 | <span class="prop-name">lineVertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">lineActive</span> | Styles applied to the line element if `active="true"`.
+| <span class="prop-name">lineCompleted</span> | Styles applied to the line element if `completed="true"`.
+| <span class="prop-name">lineDisabled</span> | Styles applied to the line element if `disabled="true"`.
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/mui-org/material-ui/tree/master/packages/material-ui/src/StepConnector/StepConnector.js)

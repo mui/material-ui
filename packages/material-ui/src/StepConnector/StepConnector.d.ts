@@ -8,6 +8,9 @@ export interface StepConnectorProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, StepConnectorClasskey> {
   alternativeLabel?: boolean;
   orientation?: Orientation;
+  active?: boolean;
+  completed?: boolean;
+  disabled?: boolean;
 }
 
 export type StepConnectorClasskey =
@@ -17,7 +20,10 @@ export type StepConnectorClasskey =
   | 'alternativeLabel'
   | 'line'
   | 'lineHorizontal'
-  | 'lineVertical';
+  | 'lineVertical'
+  | 'lineActive'
+  | 'lineCompleted'
+  | 'lineDisabled';
 
 declare const StepConnector: React.ComponentType<StepConnectorProps>;
 
