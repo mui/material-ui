@@ -50,6 +50,7 @@ export const styles = theme => ({
     top: 14,
     padding: '5px 16px',
   },
+  textLabelText: {},
   /* Styles applied to the root (`span`) component if `tooltipOpen={true}`. */
   tooltipOpenContainer: {
     position: 'relative',
@@ -128,7 +129,7 @@ class SpeedDialAction extends React.Component {
             className={classNames(classes.textLabel, classes.button, !open && classes.buttonClosed)}
             {...clickProps}
           >
-            <Typography>{tooltipTitle}</Typography>
+            <Typography className={classes.textLabelText}>{tooltipTitle}</Typography>
           </Paper>
           {actionButton}
         </span>
