@@ -35,8 +35,6 @@ export const styles = {
 };
 
 class GridListTile extends React.Component {
-  imgElement = null;
-
   handleResize = debounce(() => {
     this.fit();
   }, 166); // Corresponds to 10 frames at 60 Hz.

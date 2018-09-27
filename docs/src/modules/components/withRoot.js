@@ -274,8 +274,6 @@ function findActivePage(currentPages, router) {
 
 function withRoot(Component) {
   class WithRoot extends React.Component {
-    redux = null;
-
     constructor(props) {
       super();
       this.redux = initRedux(props.reduxServerState || {});

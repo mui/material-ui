@@ -99,8 +99,6 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class Snackbar extends React.Component {
-  timerAutoHide = null;
-
   state = {};
 
   componentDidMount() {

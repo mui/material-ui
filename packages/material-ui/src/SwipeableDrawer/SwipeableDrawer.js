@@ -31,23 +31,9 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class SwipeableDrawer extends React.Component {
-  backdropRef = null;
+  state = {};
 
   isSwiping = null;
-
-  paperRef = null;
-
-  startX = null;
-
-  startY = null;
-
-  lastTime = null;
-
-  lastTranslate = null;
-
-  velocity = 0;
-
-  state = {};
 
   componentDidMount() {
     if (this.props.variant === 'temporary') {

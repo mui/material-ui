@@ -20,8 +20,6 @@ const styles = theme => ({
 });
 
 class ComposedTextField extends React.Component {
-  labelRef = null;
-
   state = {
     name: 'Composed TextField',
   };

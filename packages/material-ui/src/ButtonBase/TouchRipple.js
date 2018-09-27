@@ -96,14 +96,14 @@ export const styles = theme => ({
 
 class TouchRipple extends React.PureComponent {
   // Used to filter out mouse emulated events on mobile.
-  ignoringMouseDown = false;
+  // ignoringMouseDown = false;
 
   // We use a timer in order to only show the ripples for touch "click" like events.
   // We don't want to display the ripple for touch scroll events.
-  startTimer = null;
+  // startTimer = null;
 
   // This is the hook called once the previous timeout is ready.
-  startTimerCommit = null;
+  // startTimerCommit = null;
 
   state = {
     // eslint-disable-next-line react/no-unused-state

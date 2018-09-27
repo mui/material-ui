@@ -46,12 +46,6 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component {
-  mountNode = null;
-
-  modalRef = null;
-
-  dialogRef = null;
-
   mounted = false;
 
   constructor(props) {

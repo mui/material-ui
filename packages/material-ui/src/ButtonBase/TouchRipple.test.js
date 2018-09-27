@@ -101,7 +101,7 @@ describe('<TouchRipple />', () => {
     it('should set ignoringMouseDown to true', () => {
       const wrapper = shallow(<TouchRipple />);
       const instance = wrapper.instance();
-      assert.strictEqual(instance.ignoringMouseDown, false);
+      assert.strictEqual(instance.ignoringMouseDown === true, false);
       instance.start({ type: 'touchstart' }, { fakeElement: true }, cb);
       assert.strictEqual(wrapper.state().ripples.length, 1);
       assert.strictEqual(instance.ignoringMouseDown, true);

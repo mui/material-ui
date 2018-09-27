@@ -65,8 +65,6 @@ const inlineStyles = {
 };
 
 class AnchorPlayground extends React.Component {
-  anchorEl = null;
-
   state = {
     open: false,
     anchorOriginVertical: 'top',

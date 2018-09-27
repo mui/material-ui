@@ -27,8 +27,6 @@ const styles = theme => ({
 });
 
 class Ad extends React.Component {
-  timerAdblock = null;
-
   random = Math.random();
 
   state = {

@@ -142,8 +142,6 @@ const styles = theme => ({
 });
 
 class IntegrationAutosuggest extends React.Component {
-  popperNode = null;
-
   state = {
     single: '',
     popper: '',

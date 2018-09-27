@@ -12,6 +12,8 @@ import exactProp from '../utils/exactProp';
  * - Under too heavy server load, you can turn on service degradation.
  */
 class NoSsr extends React.Component {
+  mounted = false;
+
   state = {
     mounted: false,
   };

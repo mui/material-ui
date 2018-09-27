@@ -21,8 +21,6 @@ const styles = theme => ({
 });
 
 class DelayingAppearance extends React.Component {
-  timer = null;
-
   state = {
     loading: false,
     query: 'idle',

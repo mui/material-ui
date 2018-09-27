@@ -1,8 +1,6 @@
 import React from 'react';
 
 class GoogleAnalytics extends React.Component {
-  timer = null;
-
   componentDidMount() {
     if (process.env.NODE_ENV !== 'production') {
       return;

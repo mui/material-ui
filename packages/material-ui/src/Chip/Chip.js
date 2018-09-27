@@ -223,8 +223,6 @@ export const styles = theme => {
  * Chips represent complex entities in small blocks, such as a contact.
  */
 class Chip extends React.Component {
-  chipRef = null;
-
   handleDeleteIconClick = event => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();

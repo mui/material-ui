@@ -83,8 +83,6 @@ export const styles = {
 };
 
 class Popover extends React.Component {
-  paperRef = null;
-
   handleGetOffsetTop = getOffsetTop;
 
   handleGetOffsetLeft = getOffsetLeft;

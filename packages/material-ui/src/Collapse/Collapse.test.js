@@ -379,7 +379,7 @@ describe('<Collapse />', () => {
     });
 
     it('instance should have a wrapper property', () => {
-      assert.notStrictEqual(mountInstance.wrapper, undefined);
+      assert.notStrictEqual(mountInstance.wrapperRef, undefined);
     });
   });
 
