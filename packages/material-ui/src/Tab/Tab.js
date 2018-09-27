@@ -100,8 +100,6 @@ export const styles = theme => ({
 });
 
 class Tab extends React.Component {
-  label = null;
-
   state = {
     labelWrapped: false,
   };

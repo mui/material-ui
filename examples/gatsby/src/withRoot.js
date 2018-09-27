@@ -6,8 +6,6 @@ import getPageContext from './getPageContext';
 
 function withRoot(Component) {
   class WithRoot extends React.Component {
-    muiPageContext = null;
-
     constructor(props) {
       super(props);
       this.muiPageContext = getPageContext();

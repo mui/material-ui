@@ -57,8 +57,6 @@ export const styles = theme => ({
 });
 
 class Tabs extends React.Component {
-  tabs = null;
-
   valueToIndex = new Map();
 
   handleResize = debounce(() => {

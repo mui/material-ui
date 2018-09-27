@@ -28,10 +28,6 @@ const styles = {
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Grow extends React.Component {
-  autoTimeout = null;
-
-  timer = null;
-
   componentWillUnmount() {
     clearTimeout(this.timer);
   }

@@ -11,9 +11,7 @@ import ownerDocument from '../utils/ownerDocument';
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  */
 class ClickAwayListener extends React.Component {
-  node = null;
-
-  mounted = null;
+  mounted = false;
 
   componentDidMount() {
     // Finds the first child when a component returns a fragment.

@@ -10,8 +10,6 @@ const styles = {
 };
 
 class LinearDeterminate extends React.Component {
-  timer = null;
-
   state = {
     completed: 0,
   };

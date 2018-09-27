@@ -67,21 +67,7 @@ export const styles = theme => ({
 });
 
 class Tooltip extends React.Component {
-  childrenRef = null;
-
-  closeTimer = null;
-
-  defaultId = null;
-
-  enterTimer = null;
-
-  focusTimer = null;
-
   ignoreNonTouchEvents = false;
-
-  leaveTimer = null;
-
-  touchTimer = null;
 
   constructor(props) {
     super();

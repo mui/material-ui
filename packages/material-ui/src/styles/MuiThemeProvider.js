@@ -13,8 +13,6 @@ import exactProp from '../utils/exactProp';
 class MuiThemeProvider extends React.Component {
   broadcast = createBroadcast();
 
-  unsubscribeId = null;
-
   // We are not using the React state in order to avoid unnecessary rerender.
   constructor(props, context) {
     super();
