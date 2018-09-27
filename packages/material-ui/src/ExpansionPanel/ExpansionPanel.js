@@ -81,8 +81,6 @@ export const styles = theme => {
 };
 
 class ExpansionPanel extends React.Component {
-  isControlled = null;
-
   constructor(props) {
     super();
     this.isControlled = props.expanded != null;

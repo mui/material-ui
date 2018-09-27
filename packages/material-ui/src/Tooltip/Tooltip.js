@@ -79,8 +79,6 @@ class Tooltip extends React.Component {
 
   ignoreNonTouchEvents = false;
 
-  isControlled = null;
-
   leaveTimer = null;
 
   touchTimer = null;

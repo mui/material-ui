@@ -29,8 +29,6 @@ const withTheme = () => Component => {
       };
     }
 
-    state = {};
-
     componentDidMount() {
       this.unsubscribeId = themeListener.subscribe(this.context, theme => {
         this.setState({ theme });
