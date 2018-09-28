@@ -10,13 +10,10 @@ env:
 before_install:
   - cd lib
 
-script: npm run test
+script: npm run test && npx codecov
 
 jobs:
   include:
-    - stage: codecov
-      script: npx codecov
-
     - stage: typescript
       script: npm run typescript
 
