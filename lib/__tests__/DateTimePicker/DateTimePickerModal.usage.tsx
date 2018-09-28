@@ -43,6 +43,7 @@ export default class BasicUsage extends Component<{}, {selectedDate: Date}> {
           helperText="Required"
           leftArrowIcon={<Icon> add_alarm </Icon>}
           rightArrowIcon={<Icon> snooze </Icon>}
+          initialFocusedDate={new Date()}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">

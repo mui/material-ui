@@ -4,7 +4,7 @@ import Code from '_shared/Code';
 import { Typography, withStyles } from '@material-ui/core';
 import quickStartCode from '!raw-loader!Examples/CodeSnippets/QuickStart'; // eslint-disable-line
 
-const sandBoxId = '74mqv6qq90'
+const sandBoxId = '74mqv6qq90';
 
 const Usage = ({ classes }) => (
   <div>

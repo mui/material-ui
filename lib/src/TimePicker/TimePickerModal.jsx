@@ -64,7 +64,7 @@ TimePickerModal.propTypes = {
   ampm: PropTypes.bool,
   /** Show the seconds view */
   seconds: PropTypes.bool,
-  forwardedRef: PropTypes.func,
+  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 TimePickerModal.defaultProps = {

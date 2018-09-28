@@ -51,7 +51,7 @@ export const DatePickerInline = (props) => {
             maxDate={maxDate}
             minDate={minDate}
             onChange={handleTextFieldChange}
-            ref={forwardedRef}
+            innerRef={forwardedRef}
             value={value}
             isAccepted={isAccepted}
             {...other}
@@ -96,7 +96,7 @@ DatePickerInline.propTypes = {
   renderDay: PropTypes.func,
   shouldDisableDate: PropTypes.func,
   allowKeyboardControl: PropTypes.bool,
-  forwardedRef: PropTypes.func,
+  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   autoOk: PropTypes.bool,
 };
 

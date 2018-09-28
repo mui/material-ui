@@ -121,7 +121,7 @@ DatePickerModal.propTypes = {
   shouldDisableDate: PropTypes.func,
   /** Enables keyboard listener for moving between days in calendar */
   allowKeyboardControl: PropTypes.bool,
-  forwardedRef: PropTypes.func,
+  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 DatePickerModal.defaultProps = {
