@@ -11,20 +11,12 @@ import InputLabel from '../InputLabel';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
+import Typography from '@material-ui/core/Typography';
 
 const variantComponent = {
   standard: Input,
   filled: FilledInput,
   outlined: OutlinedInput,
-};
-
-const styles = {
-  characterLimit: {
-    display: 'inline-block',
-    fontSize: '0.75rem',
-    textAlign: 'right',
-    margin: '5px 15px 0 0',
-  },
 };
 
 /**
@@ -167,9 +159,9 @@ class TextField extends React.Component {
           InputElement
         )}
         {characterLimit && (
-          <p style={styles.characterLimit}>
+          <Typography variant="caption" align="right">
             {value.length}/{characterLimit}
-          </p>
+          </Typography>
         )}
         {helperText && (
           <FormHelperText id={helperTextId} {...FormHelperTextProps}>
