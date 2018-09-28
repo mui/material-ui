@@ -49,7 +49,7 @@ TimePickerInline.propTypes = {
   onChange: PropTypes.func.isRequired,
   ampm: PropTypes.bool,
   seconds: PropTypes.bool,
-  forwardedRef: PropTypes.func,
+  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 TimePickerInline.defaultProps = {

@@ -96,7 +96,7 @@ DatePickerInline.propTypes = {
   renderDay: PropTypes.func,
   shouldDisableDate: PropTypes.func,
   allowKeyboardControl: PropTypes.bool,
-  forwardedRef: PropTypes.func,
+  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   autoOk: PropTypes.bool,
 };
 

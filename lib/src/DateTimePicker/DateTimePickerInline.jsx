@@ -104,7 +104,7 @@ DateTimePickerInline.propTypes = {
   animateYearScrolling: PropTypes.bool,
   openTo: PropTypes.oneOf(['year', 'date', 'hour', 'minutes']),
   allowKeyboardControl: PropTypes.bool,
-  forwardedRef: PropTypes.func,
+  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 DateTimePickerInline.defaultProps = {
