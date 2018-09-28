@@ -11,7 +11,6 @@ export interface BasePickerProps {
   format?: string;
   labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
   disableOpenOnEnter?: boolean;
-  initialFocusedDate?: MaterialUiPickersDate;
 }
 
 export interface InnerBasePickerProps {
