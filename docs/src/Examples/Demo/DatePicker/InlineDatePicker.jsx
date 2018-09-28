@@ -36,6 +36,7 @@ export default class InlineDatePickerDemo extends PureComponent {
         <div className="picker">
           <InlineDatePicker
             keyboard
+            variant="outlined"
             label="With keyboard"
             value={selectedDate}
             onChange={this.handleDateChange}

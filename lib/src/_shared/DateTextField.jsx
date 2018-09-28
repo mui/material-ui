@@ -4,7 +4,6 @@ import Icon from '@material-ui/core/Icon';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
-import withStyles from '@material-ui/core/styles/withStyles';
 
 import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
@@ -77,7 +76,6 @@ export class DateTextField extends PureComponent {
   });
 
   static propTypes = {
-    classes: PropTypes.shape({}).isRequired,
     value: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string,
@@ -272,7 +270,6 @@ export class DateTextField extends PureComponent {
   render() {
     const {
       adornmentPosition,
-      classes,
       clearable,
       disabled,
       disableFuture,
@@ -305,7 +302,6 @@ export class DateTextField extends PureComponent {
 
     const { displayValue, error } = this.state;
     const localInputProps = {
-      className: classes.input,
       inputComponent: MaskedInput,
       inputProps: {
         mask: !keyboard ? null : mask,
@@ -351,10 +347,4 @@ export class DateTextField extends PureComponent {
   }
 }
 
-const styles = {
-  input: {
-    alignItems: 'flex-end',
-  },
-};
-
-export default withStyles(styles)(withUtils()(DateTextField));
+export default withUtils()(DateTextField);
