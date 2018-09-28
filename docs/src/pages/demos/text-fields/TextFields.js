@@ -246,6 +246,18 @@ class TextFields extends React.Component {
           defaultValue="Bare"
           margin="normal"
         />
+        <TextField
+          id="standard-name-with-character-limit"
+          label="Name"
+          className={classes.textField}
+          value={this.state.name}
+          onChange={this.handleChange('name')}
+          margin="dense"
+          characterLimit={15}
+          inputProps={{
+            maxlength: '15',
+          }}
+        />
       </form>
     );
   }

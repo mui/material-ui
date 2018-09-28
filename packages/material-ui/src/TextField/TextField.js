@@ -18,6 +18,15 @@ const variantComponent = {
   outlined: OutlinedInput,
 };
 
+const styles = {
+  characterLimit: {
+    display: 'inline-block',
+    fontSize: '0.75rem',
+    textAlign: 'right',
+    margin: '5px 15px 0 0',
+  },
+};
+
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
  * It cannot be all things to all people, otherwise the API would grow out of control.
@@ -90,6 +99,7 @@ class TextField extends React.Component {
       type,
       value,
       variant,
+      characterLimit,
       ...other
     } = this.props;
 
@@ -156,6 +166,11 @@ class TextField extends React.Component {
         ) : (
           InputElement
         )}
+        {characterLimit && (
+          <p style={styles.characterLimit}>
+            {value.length}/{characterLimit}
+          </p>
+        )}
         {helperText && (
           <FormHelperText id={helperTextId} {...FormHelperTextProps}>
             {helperText}
@@ -178,6 +193,10 @@ TextField.propTypes = {
    * If `true`, the input will be focused during the first mount.
    */
   autoFocus: PropTypes.bool,
+  /**
+   * character limit
+   */
+  characterLimit: PropTypes.number,
   /**
    * @ignore
    */
