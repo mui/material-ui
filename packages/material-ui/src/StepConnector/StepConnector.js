@@ -117,9 +117,6 @@ StepConnector.propTypes = {
 StepConnector.defaultProps = {
   alternativeLabel: false,
   orientation: 'horizontal',
-  active: false,
-  completed: false,
-  disabled: false,
 };
 
 export default withStyles(styles, { name: 'MuiStepConnector' })(StepConnector);
