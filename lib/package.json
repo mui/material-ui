@@ -65,7 +65,6 @@
     "build:bundle": "rollup --config",
     "build:lib": "cross-env NODE_ENV=cjs babel ./src --out-dir ./build",
     "build": "npm run build:bundle && npm run build:lib && npm run build:copy",
-    "prerelease": "npm run ci",
     "release": "np --no-publish --any-branch",
     "postrelease": "npm run build && npm publish build",
     "lint": "eslint ./src/**/*.js*",
