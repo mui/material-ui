@@ -57,7 +57,7 @@
     }
   ],
   "scripts": {
-    "test": "jest && npm run typescript",
+    "test": "jest",
     "typescript": "tsc -p tsconfig.json",
     "start": "rollup --config --watch",
     "prebuild": "rimraf build",
