@@ -133,6 +133,8 @@ class AnchorPlayground extends React.Component {
     horizontal: '${transformOriginHorizontal}',
   }}
 >
+  The content of the Popover.
+</Popover>
 \`\`\`
 `;
 
