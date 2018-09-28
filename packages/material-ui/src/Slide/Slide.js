@@ -75,8 +75,6 @@ export function setTranslateValue(props, node) {
 class Slide extends React.Component {
   mounted = false;
 
-  transition = null;
-
   handleResize = debounce(() => {
     // Skip configuration where the position is screen size invariant.
     if (this.props.in || this.props.direction === 'down' || this.props.direction === 'right') {
@@ -89,6 +87,8 @@ class Slide extends React.Component {
   }, 166); // Corresponds to 10 frames at 60 Hz.
 
   componentDidMount() {
+    this.mounted = true;
+
     // state.mounted handle SSR, once the component is mounted, we need
     // to properly hide it.
     if (!this.props.in) {
@@ -96,8 +96,6 @@ class Slide extends React.Component {
       // otherwise component will be shown when in=false.
       this.updatePosition();
     }
-
-    this.mounted = true;
   }
 
   componentDidUpdate(prevProps) {

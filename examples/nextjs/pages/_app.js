@@ -11,8 +11,6 @@ class MyApp extends App {
     this.pageContext = getPageContext();
   }
 
-  pageContext = null;
-
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');

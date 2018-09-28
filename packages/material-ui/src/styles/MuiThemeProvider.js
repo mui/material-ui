@@ -13,11 +13,7 @@ import exactProp from '../utils/exactProp';
 class MuiThemeProvider extends React.Component {
   broadcast = createBroadcast();
 
-  unsubscribeId = null;
-
   // We are not using the React state in order to avoid unnecessary rerender.
-  outerTheme = null;
-
   constructor(props, context) {
     super();
     // Get the outer theme from the context, can be null

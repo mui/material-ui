@@ -47,10 +47,6 @@ const variantComponent = {
  * - using the underlying components directly as shown in the demos
  */
 class TextField extends React.Component {
-  labelNode = null;
-
-  labelRef = null;
-
   constructor(props) {
     super(props);
     this.labelRef = React.createRef();

@@ -122,8 +122,6 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       };
     }
 
-    state = {};
-
     componentDidMount() {
       if (!listenToTheme) {
         return;

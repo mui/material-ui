@@ -154,15 +154,9 @@ export function formControlState({ props, states, context }) {
  * It contains a load of style reset and some state logic.
  */
 class InputBase extends React.Component {
-  isControlled = null;
-
-  input = null; // Holds the input reference
-
   constructor(props, context) {
     super(props, context);
-
     this.isControlled = props.value != null;
-
     if (this.isControlled) {
       this.checkDirty(props);
     }

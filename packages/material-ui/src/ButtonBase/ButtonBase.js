@@ -58,13 +58,9 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
  * It contains a load of style reset and some focus/ripple logic.
  */
 class ButtonBase extends React.Component {
-  ripple = null;
+  state = {};
 
   keyDown = false; // Used to help track keyboard activation keyDown
-
-  button = null;
-
-  focusVisibleTimeout = null;
 
   focusVisibleCheckTime = 50;
 
@@ -98,8 +94,6 @@ class ButtonBase extends React.Component {
     }
   });
 
-  state = {};
-
   componentDidMount() {
     this.button = ReactDOM.findDOMNode(this);
     listenForFocusKeys(ownerWindow(this.button));
@@ -126,7 +120,6 @@ class ButtonBase extends React.Component {
   }
 
   componentWillUnmount() {
-    this.button = null;
     clearTimeout(this.focusVisibleTimeout);
   }
 

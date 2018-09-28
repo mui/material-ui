@@ -31,8 +31,6 @@ export const styles = {
 };
 
 class Menu extends React.Component {
-  menuListRef = null;
-
   componentDidMount() {
     if (this.props.open && this.props.disableAutoFocusItem !== true) {
       this.focus();

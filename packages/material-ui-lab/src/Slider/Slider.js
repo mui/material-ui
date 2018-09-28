@@ -190,7 +190,9 @@ if (process.env.NODE_ENV !== 'production' && !React.createContext) {
 }
 
 class Slider extends React.Component {
-  state = { currentState: 'initial' };
+  state = {
+    currentState: 'initial',
+  };
 
   jumpAnimationTimeoutId = -1;
 

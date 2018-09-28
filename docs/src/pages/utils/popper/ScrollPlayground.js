@@ -104,8 +104,6 @@ const styles = theme => ({
 });
 
 class AnchorPlayground extends React.Component {
-  anchorEl = null;
-
   state = {
     arrow: false,
     arrowRef: null,

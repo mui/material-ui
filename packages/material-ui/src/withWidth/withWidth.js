@@ -47,14 +47,10 @@ const withWidth = (options = {}) => Component => {
     constructor(props) {
       super(props);
 
-      if (noSSR) {
-        this.state.width = this.getWidth();
-      }
+      this.state = {
+        width: noSSR ? this.getWidth() : undefined,
+      };
     }
-
-    state = {
-      width: undefined,
-    };
 
     componentDidMount() {
       const width = this.getWidth();
