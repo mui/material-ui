@@ -44,7 +44,7 @@ export const DateTimePickerInline = (props) => {
           pick12hOr24hFormat,
         }) => (
           <InlineWrapper
-            ref={forwardedRef}
+            innerRef={forwardedRef}
             disableFuture={disableFuture}
             disablePast={disablePast}
             maxDate={maxDate}

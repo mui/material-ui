@@ -23,7 +23,7 @@ export const TimePickerInline = (props) => {
           pick12hOr24hFormat,
         }) => (
           <InlineWrapper
-            ref={forwardedRef}
+            innerRef={forwardedRef}
             value={value}
             onChange={handleTextFieldChange}
             isAccepted={isAccepted}

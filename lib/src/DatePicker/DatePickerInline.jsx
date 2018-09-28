@@ -51,7 +51,7 @@ export const DatePickerInline = (props) => {
             maxDate={maxDate}
             minDate={minDate}
             onChange={handleTextFieldChange}
-            ref={forwardedRef}
+            innerRef={forwardedRef}
             value={value}
             isAccepted={isAccepted}
             {...other}
