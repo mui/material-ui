@@ -132,7 +132,7 @@ class AnchorPlayground extends React.Component {
     vertical: '${transformOriginVertical}',
     horizontal: '${transformOriginHorizontal}',
   }}
->
+/>
 \`\`\`
 `;
 
