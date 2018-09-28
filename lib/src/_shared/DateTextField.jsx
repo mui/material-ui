@@ -52,16 +52,17 @@ const getError = (value, props) => {
   }
 
   if (
-    (maxDate && utils.isAfter(value, maxDate))
+    (maxDate && utils.isAfter(value, utils.endOfDay(maxDate)))
     || (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
   ) {
     return maxDateMessage;
   }
 
   if (
-    (minDate && utils.isBefore(value, minDate))
+    (minDate && utils.isBefore(value, utils.startOfDay(minDate)))
     || (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
   ) {
+    console.log(value, minDate);
     return minDateMessage;
   }
 
