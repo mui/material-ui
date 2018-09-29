@@ -1,10 +1,6 @@
-import compose from 'recompose/compose';
-import lifecycle from 'recompose/lifecycle';
-import setDisplayName from 'recompose/setDisplayName';
-import withHandlers from 'recompose/withHandlers';
-import toRenderProps from 'recompose/toRenderProps';
-import withState from 'recompose/withState';
+/* eslint-disable react/prop-types */
 
+import * as React from 'react';
 import withUtils from './WithUtils';
 
 const getInitialDate = ({ utils, value, initialFocusedDate }) => {
@@ -14,52 +10,73 @@ const getInitialDate = ({ utils, value, initialFocusedDate }) => {
   return utils.isValid(date) ? date : utils.date();
 };
 
-export const BasePickerHoc = compose(
-  withUtils(),
-  setDisplayName('BasePicker'),
-  withState('date', 'changeDate', getInitialDate),
-  withState('isAccepted', 'handleAcceptedChange', false),
-  lifecycle({
-    componentDidUpdate(prevProps) {
-      const { utils, value } = this.props;
-      if (prevProps.value !== value || prevProps.utils.locale !== utils.locale) {
-        this.props.changeDate(getInitialDate(this.props));
-      }
-    },
-  }),
-  withHandlers({
-    handleClear: ({ onChange }) => () => onChange(null),
-    handleAccept: ({ onChange, date }) => () => onChange(date),
-    handleSetTodayDate: ({ changeDate, utils }) => () => changeDate(utils.date()),
-    handleTextFieldChange: ({ changeDate, onChange }) => (date) => {
-      if (date === null) {
-        onChange(null);
-      } else {
-        changeDate(date, () => onChange(date));
-      }
-    },
-    pick12hOr24hFormat: ({ format, labelFunc, ampm }) => (default12hFormat, default24hFormat) => {
-      if (format || labelFunc) {
-        return format;
-      }
+class BasePicker extends React.Component {
+  state = {
+    date: getInitialDate(this.props),
+    isAccepted: false,
+  };
 
-      return ampm ? default12hFormat : default24hFormat;
-    },
-    handleChange: ({
-      autoOk,
-      changeDate,
-      onChange,
-      handleAcceptedChange,
-    }) => (newDate, isFinish = true) => {
-      changeDate(newDate, () => {
-        if (isFinish && autoOk) {
-          onChange(newDate);
-          // pass down accept true, and make it false in the next tick
-          handleAcceptedChange(true, () => handleAcceptedChange(false));
-        }
-      });
-    },
-  }),
-);
+  componentDidUpdate(prevProps) {
+    const { utils, value } = this.props;
+    if (prevProps.value !== value || prevProps.utils.locale !== utils.locale) {
+      this.changeDate(getInitialDate(this.props));
+    }
+  }
 
-export default toRenderProps(BasePickerHoc);
+  changeDate = (date, callback) => this.setState({ date }, callback);
+
+  handleAcceptedChange = (isAccepted, callback) => this.setState({ isAccepted }, callback);
+
+  handleClear = () => this.props.onChange(null);
+
+  handleAccept = () => this.props.onChange(this.state.date);
+
+  handleSetTodayDate = () => this.changeDate(this.props.utils.date());
+
+  handleTextFieldChange = (date) => {
+    const { onChange } = this.props;
+    if (date === null) {
+      onChange(null);
+    } else {
+      this.changeDate(date, () => onChange(date));
+    }
+  };
+
+  pick12hOr24hFormat = (default12hFormat, default24hFormat) => {
+    const { format, labelFunc, ampm } = this.props;
+    if (format || labelFunc) {
+      return format;
+    }
+
+    return ampm ? default12hFormat : default24hFormat;
+  };
+
+  handleChange = (newDate, isFinish = true) => {
+    const { handleAcceptedChange, changeDate } = this;
+    const { autoOk, onChange } = this.props;
+    changeDate(newDate, () => {
+      if (isFinish && autoOk) {
+        onChange(newDate);
+        // pass down accept true, and make it false in the next tick
+        handleAcceptedChange(true, () => handleAcceptedChange(false));
+      }
+    });
+  };
+
+  render() {
+    return this.props.children({
+      ...this.props,
+      ...this.state,
+      changeDate: this.changeDate,
+      handleAcceptedChange: this.handleAcceptedChange,
+      handleClear: this.handleClear,
+      handleAccept: this.handleAccept,
+      handleSetTodayDate: this.handleSetTodayDate,
+      handleTextFieldChange: this.handleTextFieldChange,
+      pick12hOr24hFormat: this.pick12hOr24hFormat,
+      handleChange: this.handleChange,
+    });
+  }
+}
+
+export default withUtils()(BasePicker);

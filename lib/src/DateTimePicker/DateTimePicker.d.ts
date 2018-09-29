@@ -4,23 +4,15 @@ import { DateType } from '../constants/prop-types';
 import { Utils } from '../typings/utils';
 import { RenderDay } from '../DatePicker/components/Calendar';
 import { MaterialUiPickersDate } from '../typings/date'
+import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 
-export interface BaseDateTimePickerProps {
-  minDate?: DateType;
-  maxDate?: DateType;
-  disablePast?: boolean;
-  disableFuture?: boolean;
+export interface BaseDateTimePickerProps extends BaseDatePickerProps {
   autoSubmit?: boolean;
   showTabs?: boolean;
-  animateYearScrolling?: boolean;
   ampm?: boolean;
   openTo?: DateTimePickerView;
-  leftArrowIcon?: ReactNode;
-  rightArrowIcon?: ReactNode;
   dateRangeIcon?: ReactNode;
   timeIcon?: ReactNode;
-  renderDay?: RenderDay;
-  shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
 }
 
 export interface DateTimePickerProps extends BaseDateTimePickerProps {

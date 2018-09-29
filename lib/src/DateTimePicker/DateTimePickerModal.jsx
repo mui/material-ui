@@ -140,7 +140,7 @@ DateTimePickerModal.propTypes = {
   openTo: PropTypes.oneOf(['year', 'date', 'hour', 'minutes']),
   /** Enables keyboard listener for moving between days in calendar */
   allowKeyboardControl: PropTypes.bool,
-  forwardedRef: PropTypes.func,
+  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 };
 
 DateTimePickerModal.defaultProps = {

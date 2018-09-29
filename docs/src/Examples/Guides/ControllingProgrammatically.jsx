@@ -1,9 +1,8 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import DatePicker from 'material-ui-pickers/DatePicker';
-
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
+import DatePicker from 'material-ui-pickers/DatePicker/DatePickerInline';
+import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
 
 class ControllingProgrammaticallyExample extends PureComponent {
   static propTypes = {
@@ -18,8 +17,9 @@ class ControllingProgrammaticallyExample extends PureComponent {
     this.setState({ selectedDate: date });
   }
 
-  openPicker = () => {
-    this.picker.open();
+  openPicker = (e) => {
+    // do not pass Event for default pickers
+    this.picker.open(e);
   }
 
   render() {
@@ -28,12 +28,13 @@ class ControllingProgrammaticallyExample extends PureComponent {
     return (
       <div className={this.props.classes.container}>
         <Button onClick={this.openPicker}> Open picker </Button>
+
         <div className="picker">
           <DatePicker
             clearable
-            ref={(node) => { this.picker = node; }}
+            ref={(node) => { console.log(node); this.picker = node; }}
             label="Open me from button"
-            format="D MMM YYYY"
+            format="d MMM yyyy"
             value={selectedDate}
             onChange={this.handleDateChange}
           />

@@ -4,7 +4,6 @@ import Icon from '@material-ui/core/Icon';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
-import withStyles from '@material-ui/core/styles/withStyles';
 
 import DomainPropTypes from '../constants/prop-types';
 import MaskedInput from './MaskedInput';
@@ -53,16 +52,17 @@ const getError = (value, props) => {
   }
 
   if (
-    (maxDate && utils.isAfter(value, maxDate))
+    (maxDate && utils.isAfter(value, utils.endOfDay(utils.date(maxDate))))
     || (disableFuture && utils.isAfter(value, utils.endOfDay(utils.date())))
   ) {
     return maxDateMessage;
   }
 
   if (
-    (minDate && utils.isBefore(value, minDate))
+    (minDate && utils.isBefore(value, utils.startOfDay(utils.date(minDate))))
     || (disablePast && utils.isBefore(value, utils.startOfDay(utils.date())))
   ) {
+    console.log(value, minDate);
     return minDateMessage;
   }
 
@@ -77,7 +77,6 @@ export class DateTextField extends PureComponent {
   });
 
   static propTypes = {
-    classes: PropTypes.shape({}).isRequired,
     value: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string,
@@ -129,6 +128,7 @@ export class DateTextField extends PureComponent {
     onError: PropTypes.func,
     /** Callback firing on change input in keyboard mode [(e: Event) => void] */
     onInputChange: PropTypes.func,
+    pipe: PropTypes.func,
   }
 
   static defaultProps = {
@@ -158,6 +158,7 @@ export class DateTextField extends PureComponent {
     TextFieldComponent: TextField,
     InputAdornmentProps: {},
     adornmentPosition: 'end',
+    pipe: undefined,
   }
 
   state = DateTextField.updateState(this.props)
@@ -270,7 +271,6 @@ export class DateTextField extends PureComponent {
   render() {
     const {
       adornmentPosition,
-      classes,
       clearable,
       disabled,
       disableFuture,
@@ -293,6 +293,7 @@ export class DateTextField extends PureComponent {
       onBlur,
       onClear,
       onClick,
+      pipe,
       TextFieldComponent,
       utils,
       value,
@@ -302,10 +303,10 @@ export class DateTextField extends PureComponent {
 
     const { displayValue, error } = this.state;
     const localInputProps = {
-      className: classes.input,
       inputComponent: MaskedInput,
       inputProps: {
         mask: !keyboard ? null : mask,
+        pipe: !keyboard ? null : pipe,
         readOnly: !keyboard,
       },
     };
@@ -347,10 +348,4 @@ export class DateTextField extends PureComponent {
   }
 }
 
-const styles = {
-  input: {
-    alignItems: 'flex-end',
-  },
-};
-
-export default withStyles(styles)(withUtils()(DateTextField));
+export default withUtils()(DateTextField);

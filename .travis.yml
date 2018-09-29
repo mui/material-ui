@@ -2,5 +2,26 @@ language: node_js
 node_js:
   - "8"
 
-script: 
-  - cd lib && npm install --ignore-scripts && npm run ci
+env:
+  - UTILS=date-fns
+  - UTILS=moment
+  - UTILS=luxon
+
+before_install:
+  - cd lib
+
+script: npm run test && npx codecov
+
+jobs:
+  include:
+    - stage: codecov
+      script: npx codecov
+
+    - stage: typescript
+      script: npm run typescript
+
+    - stage: build
+      script: npm run build && size-limit
+
+    - stage: lint
+      script: npm run lint

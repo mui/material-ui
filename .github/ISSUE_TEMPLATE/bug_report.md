@@ -1,3 +1,9 @@
+---
+name: Bug report
+about: Create a report to help us improve
+
+---
+
 <!-- Thanks so much for your time taking to open an issue, your work is appreciated! ❤️ -->
 
 ## Environment
@@ -8,7 +14,6 @@
 | material-ui         |         |
 | React               |         |
 | Browser             |         |
-| Platform            |         |
 | Peer library        |         | <!-- date-fns, luxon or moment and version  -->
 
 ## Steps to reproduce
