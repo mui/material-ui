@@ -34,7 +34,7 @@ class Demo extends Component {
             Material-UI Pickers
           </Typography>
           <Typography variant="headline" align="center" color="inherit" gutterBottom className="text-light">
-            Date and Time pickers for material-ui v1
+            Accessible, customizable, delightful date & time pickers for @material-ui/core
           </Typography>
 
           <Link to="/installation">
